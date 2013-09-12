@@ -10,38 +10,18 @@ namespace JJ.Framework.Persistence
 {
     public static class ContextFactory
     {
-        public static IContext CreateContext(string persistenceContextTypeName, string persistenceLocation, string modelAssemblyName, string mappingAssemblyName = null)
+        public static IContext CreateContext(string persistenceContextTypeName, string persistenceLocation, params string[] modelAssemblyNames)
         {
             Type persistenceContextType = ReflectionHelper.GetType(persistenceContextTypeName);
-            Assembly modelAssembly = Assembly.Load(modelAssemblyName);
-            Assembly mappingAssembly = mappingAssemblyName != null ? Assembly.Load(mappingAssemblyName) : null;
 
-            return ContextFactory.CreateContext(persistenceContextType, persistenceLocation, modelAssembly, mappingAssembly);
+            Assembly[] modelAssemblies = modelAssemblyNames.Select(x => Assembly.Load(x)).ToArray();
+
+            return ContextFactory.CreateContext(persistenceContextType, persistenceLocation, modelAssemblies);
         }
 
-        //public static IContext CreateContext(string persistenceLocation, Assembly modelAssembly,)
-        //{
-        //    return ContextFactory.CreateContext(persistenceLocation, modelAssembly, GetType(persistenceContextTypeName));
-        //}
-
-        //public static IContext CreateContext(string persistenceLocation, string modelAssemblyName, Type persistenceContextType)
-        //{
-        //    return ContextFactory.CreateContext(persistenceLocation, GetAssembly(modelAssemblyName), persistenceContextType);
-        //}
-
-        private static IContext CreateContext(Type persistenceContextType, string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly)
+        private static IContext CreateContext(Type persistenceContextType, string persistenceLocation, params Assembly[] modelAssemblies)
         {
-            return (IContext)Activator.CreateInstance(persistenceContextType, persistenceLocation, modelAssembly, mappingAssembly);
+            return (IContext)Activator.CreateInstance(persistenceContextType, persistenceLocation, modelAssemblies);
         }
-
-        //private static Assembly GetAssembly(string assemblyName)
-        //{
-        //    return Assembly.Load(modelAssemblyName);
-        //}
-
-        //private static Type GetType(string typeName)
-        //{
-        //    return ReflectionHelper.GetType(persistenceContextTypeName);
-        //}
     }
 }

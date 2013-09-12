@@ -13,24 +13,22 @@ namespace JJ.Framework.Persistence.NHibernate
 {
     internal static class SessionFactoryCache
     {
-        public static ISessionFactory GetSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly = null)
+        public static ISessionFactory GetSessionFactory(string connectionString, params Assembly[] modelAssemblies)
         {
-            return CreateSessionFactory(connectionString, modelAssembly, mappingAssembly);
+            return CreateSessionFactory(connectionString, modelAssemblies);
         }
 
-        private static ISessionFactory CreateSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly = null)
+        private static ISessionFactory CreateSessionFactory(string connectionString, params Assembly[] modelAssemblies)
         {
             // TODO: This dependency on specifically SQL Server 2008 is not appropriate here.
 
             var config = new global::NHibernate.Cfg.Configuration();
 
-            var fluentConfig = Fluently.Configure(config)
-                                       .Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).Dialect<MsSql2008Dialect>())
-                                       .Mappings(x => x.FluentMappings.AddFromAssembly(modelAssembly));
+            var fluentConfig = Fluently.Configure(config).Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).Dialect<MsSql2008Dialect>());
 
-            if (mappingAssembly != null)
+            foreach (Assembly modelAssembly in modelAssemblies)
             {
-                fluentConfig = fluentConfig.Mappings(x => x.FluentMappings.AddFromAssembly(mappingAssembly));
+                fluentConfig = fluentConfig.Mappings(x => x.FluentMappings.AddFromAssembly(modelAssembly));
             }
 
             return fluentConfig.BuildSessionFactory();

@@ -11,5 +11,6 @@ namespace JJ.Framework.Persistence
         string PersistenceLocation { get; }
         string PersistenceContextType { get; }
         string PersistenceModelAssembly { get; }
+        string PersistenceModelAssembly2 { get; }
     }
 }

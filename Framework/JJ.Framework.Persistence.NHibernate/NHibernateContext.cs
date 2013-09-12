@@ -13,10 +13,10 @@ namespace JJ.Framework.Persistence.NHibernate
     {
         private ISession _nhibernateSession;
 
-        public NHibernateContext(string connectionString, Assembly modelAssembly, Assembly mappingAssembly)
-            : base (connectionString, modelAssembly)
+        public NHibernateContext(string connectionString, params Assembly[] modelAssemblies)
+            : base(connectionString, modelAssemblies)
         {
-            ISessionFactory sessionFactory = SessionFactoryCache.GetSessionFactory(connectionString, modelAssembly, mappingAssembly);
+            ISessionFactory sessionFactory = SessionFactoryCache.GetSessionFactory(connectionString, modelAssemblies);
             _nhibernateSession = sessionFactory.OpenSession();
         }
 
@@ -43,7 +43,9 @@ namespace JJ.Framework.Persistence.NHibernate
 
         public override EntityWrapper<TEntity> Update<TEntity>(TEntity entity)
         {
-            throw new NotImplementedException();
+            var entityWrapper = new EntityWrapper<TEntity>(this, entity);
+            _nhibernateSession.Update(entity);
+            return entityWrapper;
         }
 
         public override IEnumerable<EntityWrapper<TEntity>> Query<TEntity>()

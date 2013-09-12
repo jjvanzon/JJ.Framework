@@ -9,7 +9,7 @@ namespace JJ.Framework.Persistence
 {
     public abstract class ContextBase : IContext
     {
-        public ContextBase(string persistenceLocation, Assembly modelAssembly)
+        public ContextBase(string persistenceLocation, params Assembly[] modelAssemblies)
         { }
 
         public abstract EntityWrapper<TEntity> GetEntity<TEntity>(object id) where TEntity : new();

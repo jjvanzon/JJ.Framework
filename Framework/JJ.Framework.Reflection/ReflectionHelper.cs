@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Framework.Common;
 
 namespace JJ.Framework.Reflection
 {
@@ -23,6 +24,11 @@ namespace JJ.Framework.Reflection
                 throw new Exception(String.Format("Type '{0}' not found in assembly '{1}'.", typeName, assemblyName));
             }
             return type;
+        }
+
+        public static string GetAssemblyName(Assembly assembly)
+        {
+            return assembly.ManifestModule.Name.CutRight(".exe").CutRight(".dll");
         }
     }
 }
