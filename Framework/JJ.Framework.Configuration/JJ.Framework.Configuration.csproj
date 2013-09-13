@@ -43,10 +43,9 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="ConfigurationSectionHandler.cs" />
-    <Compile Include="ConfigurationT.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="XmlExpressionTranslator.cs" />
-    <Compile Include="~CustomConfigurationSection.cs" />
-    <Compile Include="ConfigurationSectionT.cs" />
+    <Compile Include="ConfigurationSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

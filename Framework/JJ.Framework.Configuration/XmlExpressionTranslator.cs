@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Serialization;
 using JJ.Framework.Common;
 
 namespace JJ.Framework.Configuration
@@ -26,7 +27,6 @@ namespace JJ.Framework.Configuration
 
         public string Result
         {
-            // TODO: handle nulls.
             get 
             {
                 XmlNode xmlNode = _stack.Peek();
@@ -59,14 +59,6 @@ namespace JJ.Framework.Configuration
                         return;
                     }
 
-                //case ExpressionType.Convert:
-                //case ExpressionType.ConvertChecked:
-                //    {
-                //        var unaryExpression = (UnaryExpression)node;
-                //        VisitConvert(unaryExpression);
-                //        return;
-                //    }
-
                 //case ExpressionType.ArrayLength:
                 //    {
                 //        var unaryExpression = (UnaryExpression)node;
@@ -74,33 +66,12 @@ namespace JJ.Framework.Configuration
                 //        return;
                 //    }
 
-                //case ExpressionType.Call:
-                //    {
-                //        var methodCallExpression = (MethodCallExpression)node;
-                //        VisitMethodCall(methodCallExpression);
-                //        return;
-                //    }
-
-                //case ExpressionType.Constant:
-                //    {
-                //        var constantExpression = (ConstantExpression)node;
-                //        VisitConstant(constantExpression);
-                //        return;
-                //    }
-
-                //case ExpressionType.ArrayIndex:
-                //    {
-                //        var binaryExpression = (BinaryExpression)node;
-                //        VisitArrayIndex(binaryExpression);
-                //        return;
-                //    }
-
-                //case ExpressionType.NewArrayInit:
-                //    {
-                //        var newArrayExpression = (NewArrayExpression)node;
-                //        VisitNewArray(newArrayExpression);
-                //        return;
-                //    }
+                case ExpressionType.ArrayIndex:
+                    {
+                        var binaryExpression = (BinaryExpression)node;
+                        VisitArrayIndex(binaryExpression);
+                        return;
+                    }
 
                 case ExpressionType.Parameter:
                     {
@@ -109,13 +80,8 @@ namespace JJ.Framework.Configuration
                     }
             }
 
-            throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", node.GetType().Name));
+            throw new NotSupportedException(String.Format("NodeType '{0}' not supported.", node.NodeType));
         }
-
-        //private void VisitConstant(ConstantExpression constantExpression)
-        //{
-        //    _stack.Push(constantExpression.Value);
-        //}
 
         private void VisitMember(MemberExpression node)
         {
@@ -128,57 +94,72 @@ namespace JJ.Framework.Configuration
             // Then process 'child' node.
             switch (node.Member.MemberType)
             {
-                //case MemberTypes.Field:
-                //    VisitField(node);
-                //    break;
-
+                case MemberTypes.Field:
                 case MemberTypes.Property:
-                    VisitProperty(node);
+                    VisitFieldOrProperty(node);
                     break;
 
                 default:
-                    throw new NotSupportedException(String.Format("MemberType {0} is not supported.", node.Member.MemberType));
+                    throw new NotSupportedException(String.Format("MemberType {0} not supported.", node.Member.MemberType));
             }
         }
 
-        //private void VisitField(MemberExpression node)
-        //{
-        //    var field = (FieldInfo)node.Member;
-        //    object obj = null;
-        //    if (!field.IsStatic)
-        //    {
-        //        obj = _stack.Pop();
-        //    }
-        //    object value = field.GetValue(obj);
-
-        //    _stack.Push(value);
-        //}
-
-        private void VisitProperty(MemberExpression node)
+        private void VisitFieldOrProperty(MemberExpression node)
         {
-            var property = (PropertyInfo)node.Member;
-            XmlNode xmlNode = null;
-            // TODO: This check may be overkill.
-            MethodInfo getterOrSetter = property.GetGetMethod() ?? property.GetSetMethod();
-            if (!getterOrSetter.IsStatic)
-            {
-                xmlNode = _stack.Pop();
-            }
+            XmlNode parentXmlNode = _stack.Pop();
 
-            string name = FormatName(property.Name);
-            XmlNode childXmlNode = xmlNode.SelectSingleNode(name);
-            // HACK
-            if (childXmlNode == null)
-            {
-                childXmlNode = xmlNode.SelectSingleNode("@" + name);
-            }
-
-            if (childXmlNode == null)
-            {
-                throw new Exception(String.Format("XML node '{0}' not found.", name));
-            }
+            XmlNode childXmlNode = GetChildXmlNode(parentXmlNode, node.Member);
 
             _stack.Push(childXmlNode);
+        }
+
+        private XmlNode GetChildXmlNode(XmlNode parentXmlNode, MemberInfo member)
+        {
+            // XML Attribute
+
+            XmlAttributeAttribute xmlAttributeAttribute = member.GetCustomAttribute<XmlAttributeAttribute>();
+            if (xmlAttributeAttribute != null)
+            {
+                string xmlAttributeName = FormatName(member.Name);
+                if (!String.IsNullOrEmpty(xmlAttributeAttribute.AttributeName))
+                {
+                    xmlAttributeName = xmlAttributeAttribute.AttributeName;
+                }
+
+                string xpath = "@" + xmlAttributeName;
+
+                XmlNode childXmlNode = parentXmlNode.SelectSingleNode(xpath);
+                if (childXmlNode == null)
+                {
+                    throw new Exception(String.Format("XML attribute '{0}' not found.", xmlAttributeName));
+                }
+
+                return childXmlNode;
+            }
+
+            // Xml Element
+            {
+                string xmlElementName = FormatName(member.Name);
+
+                XmlElementAttribute xmlElementAttribute = member.GetCustomAttribute<XmlElementAttribute>();
+                if (xmlElementAttribute != null)
+                {
+                    if (!String.IsNullOrEmpty(xmlElementAttribute.ElementName))
+                    {
+                        xmlElementName = xmlElementAttribute.ElementName;
+                    }
+                }
+
+                string xpath = xmlElementName;
+
+                XmlNode childXmlNode = parentXmlNode.SelectSingleNode(xpath);
+                if (childXmlNode == null)
+                {
+                    throw new Exception(String.Format("XML element '{0}' not found.", xmlElementName));
+                }
+
+                return childXmlNode;
+            }
         }
 
         private string FormatName(string input)
@@ -191,103 +172,76 @@ namespace JJ.Framework.Configuration
             return input.Left(1).ToLower() + input.CutLeft(1);
         }
 
-        //private void VisitMethodCall(MethodCallExpression node)
-        //{
-        //    if (!node.Method.IsStatic)
-        //    {
-        //        Visit(node.Object);
-        //    }
-        //    else
-        //    {
-        //        Stack.Push(null);
-        //    }
-
-        //    for (int i = 0; i < node.Arguments.Count; i++)
-        //    {
-        //        Visit(node.Arguments[i]);
-        //    }
-        //    object[] arguments = new object[node.Arguments.Count];
-        //    for (int i = node.Arguments.Count - 1; i >= 0; i--)
-        //    {
-        //        arguments[i] = Stack.Pop();
-        //    }
-
-        //    object obj = Stack.Pop();
-        //    object value = node.Method.Invoke(obj, arguments);
-        //    Stack.Push(value);
-        //}
-
-        //private void VisitConvert(UnaryExpression node)
-        //{
-        //    switch (node.Operand.NodeType)
-        //    {
-        //        case ExpressionType.MemberAccess:
-        //            var memberExpression = (MemberExpression)node.Operand;
-        //            VisitMember(memberExpression);
-        //            break;
-
-        //        case ExpressionType.Call:
-        //            Visit(node.Operand);
-        //            break;
-
-        //        case ExpressionType.ArrayIndex:
-        //            var binaryExpression = (BinaryExpression)node.Operand;
-        //            VisitArrayIndex(binaryExpression);
-        //            break;
-
-        //        case ExpressionType.Constant:
-        //            VisitConstant(node);
-        //            break;
-
-        //        default:
-        //            throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.Operand.NodeType));
-        //    }
-        //    object obj = Stack.Pop();
-        //    if (obj is IConvertible)
-        //    {
-        //        obj = Convert.ChangeType(obj, node.Type);
-        //    }
-        //    Stack.Push(obj);
-        //}
-
+        // Array[i] does not work, only Array[0], so ArrayLength is also not useful then.
         //private void VisitArrayLength(UnaryExpression node)
         //{
         //    if (node.Operand.NodeType == ExpressionType.MemberAccess)
         //    {
-        //        var memberExpression = (MemberExpression)node.Operand;
-        //        VisitMember(memberExpression);
-        //        Array array = (Array)Stack.Pop();
-        //        Stack.Push(array.Length);
+        //        var arrayExpression = (MemberExpression)node.Operand;
+        //
+        //        XmlNodeList xmlNodes = VisitArray(arrayExpression);
+        //
+        //        // HACK:
+        //        // You want to put the array length on the stack,
+        //        // but you can only put XmlNodes on the stack,
+        //        // and array length is not an XmlNode, so create one.
+        //        // TODO: Refactor so that int can be put on the stack.
+        //        XmlDocument dummyXmlDocument = new XmlDocument();
+        //        XmlNode arrayLengthXmlNode = dummyXmlDocument.CreateElement("arrayLength");
+        //        arrayLengthXmlNode.InnerText = xmlNodes.Count.ToString();
+        //        _stack.Push(arrayLengthXmlNode);
+        //
         //        return;
         //    }
-
+        //
         //    throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.Operand.NodeType));
         //}
 
-        //private void VisitArrayIndex(BinaryExpression node)
-        //{
-        //    var memberExpression = (MemberExpression)node.Left;
-        //    VisitMember(memberExpression);
-        //    var array = (Array)Stack.Pop();
+        private void VisitArrayIndex(BinaryExpression node)
+        {
+            // TODO: At least support [i] instead of just [0].
+            if (!(node.Right is ConstantExpression))
+            {
+                throw new NotSupportedException("Array index must be a constant.");
+            }
 
-        //    var constantExpression = (ConstantExpression)node.Right;
-        //    int index = (int)constantExpression.Value;
-        //    Stack.Push(array.GetValue(index));
-        //}
+            var indexExpression = (ConstantExpression)node.Right;
+            int index = (int)indexExpression.Value;
 
-        //private void VisitNewArray(NewArrayExpression node)
-        //{
-        //    for (int i = 0; i < node.Expressions.Count; i++)
-        //    {
-        //        Visit(node.Expressions[i]);
-        //    }
-        //    Array array = (Array)Activator.CreateInstance(node.Type, node.Expressions.Count);
-        //    for (int i = node.Expressions.Count - 1; i >= 0; i--)
-        //    {
-        //        object item = Stack.Pop();
-        //        array.SetValue(item, i);
-        //    }
-        //    Stack.Push(array);
-        //}
+            var arrayExpression = (MemberExpression)node.Left;
+            XmlNodeList xmlNodes = VisitArray(arrayExpression);
+
+            if (index > xmlNodes.Count - 1)
+            {
+                throw new IndexOutOfRangeException(String.Format("{0} does not have index [{1}].", arrayExpression.Member.Name, index));
+            }
+            XmlElement arrayItemXml = (XmlElement)xmlNodes[index];
+            _stack.Push(arrayItemXml);
+        }
+
+        private XmlNodeList VisitArray(MemberExpression arrayExpression)
+        {
+            // HACK:
+            // This method should have returned void and put XmlNodeList on the stack,
+            // The stack can only hold XmlNodes for now.
+            // TODO: Refactor so that XmlNodeList can be put on the stack.
+            // Or maybe refactoring the system entirely will make a separate VisitArray method not required anymore.
+
+            VisitMember(arrayExpression);
+
+            XmlElement arrayXml = (XmlElement)_stack.Pop();
+
+            XmlArrayItemAttribute xmlArrayItemAttribute = arrayExpression.Member.GetCustomAttribute<XmlArrayItemAttribute>();
+            if (xmlArrayItemAttribute != null)
+            {
+                string elementName = xmlArrayItemAttribute.ElementName;
+                if (!String.IsNullOrEmpty(elementName))
+                {
+                    return arrayXml.GetElementsByTagName(elementName);
+                }
+            }
+
+            throw new NotSupportedException("Array properties must have an XmlArrayItem attribute with a name.");
+        }
     }
 }

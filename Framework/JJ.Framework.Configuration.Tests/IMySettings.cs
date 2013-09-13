@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace JJ.Framework.Configuration.Tests
 {
-    public interface ISubConfiguration
+    public interface IMySettings
     {
-        string ChildElement { get; }
+        int MySetting { get; }
     }
 }

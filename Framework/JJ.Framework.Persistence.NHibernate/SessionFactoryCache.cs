@@ -15,6 +15,7 @@ namespace JJ.Framework.Persistence.NHibernate
     {
         public static ISessionFactory GetSessionFactory(string connectionString, params Assembly[] modelAssemblies)
         {
+            // TODO: Cache the session factories.
             return CreateSessionFactory(connectionString, modelAssemblies);
         }
 

@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <Choose>
@@ -51,10 +52,11 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AppSettingsTest.cs" />
     <Compile Include="ConfigurationSectionTests.cs" />
+    <Compile Include="IMySettings.cs" />
     <Compile Include="ISubConfiguration.cs" />
-    <Compile Include="~PersistenceConfiguration.cs" />
-    <Compile Include="IPersistenceConfiguration.cs" />
+    <Compile Include="IConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

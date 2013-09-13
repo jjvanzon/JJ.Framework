@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace JJ.Framework.Configuration
 {
-    internal class ConfigurationSectionHandler : IConfigurationSectionHandler
+    public class ConfigurationSectionHandler : IConfigurationSectionHandler
     {
         public object Create(object parent, object configContext, XmlNode section)
         {

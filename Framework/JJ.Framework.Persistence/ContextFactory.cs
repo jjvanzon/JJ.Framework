@@ -12,7 +12,7 @@ namespace JJ.Framework.Persistence
     {
         public static IContext CreateContext(string persistenceContextTypeName, string persistenceLocation, params string[] modelAssemblyNames)
         {
-            Type persistenceContextType = ReflectionHelper.GetType(persistenceContextTypeName);
+            Type persistenceContextType = Type.GetType(persistenceContextTypeName);
 
             Assembly[] modelAssemblies = modelAssemblyNames.Select(x => Assembly.Load(x)).ToArray();
 

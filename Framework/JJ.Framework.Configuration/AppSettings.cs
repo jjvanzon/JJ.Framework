@@ -17,10 +17,6 @@ namespace JJ.Framework.Configuration
             string stringValue = ConfigurationManager.AppSettings[name];
             TValue value = ConfigurationHelper.ConvertValue<TValue>(stringValue);
             return value;
-
-            //string name = ExpressionHelper.GetName(expression);
-            //TValue value = (TValue)Convert.ChangeType(ConfigurationManager.AppSettings[name], typeof(TValue));
-            //return value;
         }
     }
 }

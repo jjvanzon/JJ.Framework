@@ -7,105 +7,126 @@ namespace JJ.Framework.Configuration.Tests
     [TestClass]
     public class ConfigurationSectionTests
     {
-        //[TestMethod]
-        //public void Test_ConfigurationSection_WithGenericClass()
-        //{
-        //    Assembly assembly = typeof(IPersistenceConfiguration).Assembly;
-        //    var section = new ConfigurationSection<IPersistenceConfiguration>(assembly);
-
-        //    string contextType = section.GetValue(x => x.ContextType);
-        //    string location = section.GetValue(x => x.Location);
-        //    string modelAssembly1 = section.GetValue(x => x.ModelAssemblies[0]);
-        //}
-
-        //[TestMethod]
-        //public void Test_ConfigurationSection_WithGenericClass_WithSubConfiguration()
-        //{
-        //    var section = new ConfigurationSection<IPersistenceConfiguration>("jj.framework.configuration.tests");
-
-        //    string contextType = section.GetValue(x => x.ContextType);
-        //    string location = section.GetValue(x => x.Location);
-        //    string assembly1 = section.GetValue(x => x.ModelAssemblies[0]);
-
-        //    int someProperty = section.GetElement(x => x.SubConfiguration).GetValue(x => x.SomeProperty);
-        //}
-
-        //[TestMethod]
-        //public void Test_ConfigurationSection_WithStaticGenericClass()
-        //{
-        //    Assembly assembly = typeof(JJ.Framework.Configuration.ConfigurationSection<>).Assembly;
-        //    var section = new ConfigurationSection<IPersistenceConfiguration>(assembly);
-
-        //    string contextType = Configuration<IPersistenceConfiguration>.GetSection(assembly).GetValue(x => x.ContextType);
-        //    string assembly1 = Configuration<IPersistenceConfiguration>.GetSection(assembly).GetValue(x => x.ModelAssemblies[0]);
-        //    int someProperty = Configuration<IPersistenceConfiguration>.GetSection(assembly).GetValue(x => x.SubConfiguration).GetValue(x => x.SomeProperty);
-        //}
-
-        //[TestMethod]
-        //public void Test_ConfigurationSection_WithStaticGenericClass_WithSectionNameConvention()
-        //{
-        //    // This would not require a complicated expression translator,
-        //    // but it would be kind of lazy not to make a proper expression translator
-        //    string contextType = Configuration<IPersistenceConfiguration>.GetValue(x => x.ContextType);
-        //    string assembly1 = Configuration<IPersistenceConfiguration>.GetValue(x => x.ModelAssemblies[0]);
-        //    int someProperty = Configuration<IPersistenceConfiguration>.GetValue(x => x.SubConfiguration).GetValue(x => x.SomeProperty);
-        //}
-
-        // Complex Expression Translator
-
-        // This would be nice, but requires complex expression resolution.
-        // Or actually, just requires a special expression translator.
-
         [TestMethod]
-        public void Test_ConfigurationSection_WithStaticGenericClass_SectionNameConvention_AndComplexExpressionTranslator()
+        public void Test_Configuration_Example()
         {
-            string contextType = Configuration<IPersistenceConfiguration>.GetValue(x => x.ContextType);
-            //string assembly1 = Configuration<IPersistenceConfiguration>.GetValue(x => x.ModelAssemblies[0]);
-            int someProperty = Configuration<IPersistenceConfiguration>.GetValue(x => x.SubConfiguration.SomeProperty);
+            var configuration = new ConfigurationSection<IMySettings>("my.assembly.name");
+            int mySetting = configuration.GetValue(x => x.MySetting);
         }
 
         [TestMethod]
-        public void Test_ConfigurationSection_WithStaticGenericClass_CustomSectionName_AndComplexExpressionTranslator()
+        public void Test_Configuration_IntAttribute()
         {
-            ConfigurationSection<IPersistenceConfiguration> configuration;
+            int intAttribute_Value = Configuration<IConfiguration>.GetValue(x => x.IntAttribute);
+            Assert.AreEqual(100, intAttribute_Value);
+        }
+
+        [TestMethod]
+        public void Test_Configuration_StringAttribute()
+        {
+            string stringAttribute_Value = Configuration<IConfiguration>.GetValue(x => x.StringAttribute);
+            Assert.AreEqual("stringAttribute_Value", stringAttribute_Value);
+        }
+
+        [TestMethod]
+        public void Test_Configuration_Attribute_WithAlternativeName()
+        {
+            string stringAttribute2_Value = Configuration<IConfiguration>.GetValue(x => x.StringAttribute2);
+            Assert.AreEqual("stringAttribute2_Value", stringAttribute2_Value);
+        }
+
+        [TestMethod]
+        public void Test_Configuration_Element()
+        {
+            string element_Value = Configuration<IConfiguration>.GetValue(x => x.Element);
+            Assert.AreEqual("element_Value", element_Value);
+        }
+
+        [TestMethod]
+        public void Test_Configuration_Element_WithAlternativeName()
+        {
+            string element2_Value = Configuration<IConfiguration>.GetValue(x => x.Element2);
+            Assert.AreEqual("element2_Value", element2_Value);
+        }
+
+        [TestMethod]
+        public void Test_Configuration_ChildElement()
+        {
+            string childElement_Value = Configuration<IConfiguration>.GetValue(x => x.SubConfiguration.ChildElement);
+            Assert.AreEqual("childElement_Value", childElement_Value);
+        }
+
+        [TestMethod]
+        public void Test_Configuration_Array()
+        {
+            string arrayItem_0_Value = Configuration<IConfiguration>.GetValue(x => x.Array[0]);
+            Assert.AreEqual("arrayItem_0_Value", arrayItem_0_Value);
+
+            string arrayItem_1_Value = Configuration<IConfiguration>.GetValue(x => x.Array[1]);
+            Assert.AreEqual("arrayItem_1_Value", arrayItem_1_Value);
+        }
+
+        [TestMethod]
+        public void Test_Configuration_ArrayLength()
+        {
+            int arrayLength = Configuration<IConfiguration>.GetValue(x => x.Array.Length);
+            Assert.AreEqual(2, arrayLength);
+        }
+
+        [TestMethod]
+        public void Test_Configuration_ArrayIndex_WithVariable()
+        {
+            int i = 0;
+            string arrayItem_0_Value = Configuration<IConfiguration>.GetValue(x => x.Array[i]);
+            Assert.AreEqual("arrayItem_0_Value", arrayItem_0_Value);
+        }
+        
+        //[TestMethod]
+        //public void Test_Configuration_TrySomething_WithArrays()
+        //{
+        //    //string[] array = Configuration<IConfiguration>.GetArray(x => x.Array);
+
+        //    /*foreach (string modelAssembly in Configuration<IPersistenceConfiguration>.GetArray(x => x.ModelAssemblies))
+        //    {
+                
+        //    }*/
+
+        //    /*foreach (ConfigurationNode<ISubConfiguration> item in Configuration<IConfiguration>.GetNodes(x => x.ArrayOfSubConfigurations))
+        //    {
+        //        int value = item.GetValue(x => x.ChildElement);
+        //    }*/
+
+        //    /*foreach (ConfigurationNode<ISubConfiguration> item in Configuration<IConfiguration>.GetNodes(x => x.ArrayOfSubConfigurations))
+        //    {
+        //        foreach (ConfigurationNode<ISubConfiguration> item2 in item.GetNodes(x => x.ArrayOfSubConfigurations))
+        //        {
+        //            int value = item.GetValue(x => x.ChildElement);
+        //        }
+        //    }*/
+        //}
+
+        //[TestMethod]
+        //public void Test_Configuration_TrySomething_WithConcreteTypes()
+        //{
+        //    //PersistenceConfiguration configuration = ConfigurationManager.GetSection<PersistenceConfiguration>()
+        //    //System.Configuration.ConfigurationManager.GetSection(
+        //}
+
+        [TestMethod]
+        public void Test_ConfigurationSection_Constructors()
+        {
+            ConfigurationSection<IConfiguration> configuration;
 
             // Method 1: section name based on configuration interface's assembly.
-            configuration = new ConfigurationSection<IPersistenceConfiguration>();
+            configuration = new ConfigurationSection<IConfiguration>();
 
             // Method 2: section name based on assembly.
-            configuration = new ConfigurationSection<IPersistenceConfiguration>(typeof(IPersistenceConfiguration).Assembly);
+            configuration = new ConfigurationSection<IConfiguration>(typeof(IConfiguration).Assembly);
 
             // Method 3: custom section name.
-            configuration = new ConfigurationSection<IPersistenceConfiguration>("jj.framework.configuration.tests");
+            configuration = new ConfigurationSection<IConfiguration>("jj.framework.configuration.tests");
             
-            string contextType = configuration.GetValue(x => x.ContextType);
-            //string assembly1 = configuration.GetValue(x => x.ModelAssemblies[0]);
-            //int someProperty = configuration.GetValue(x => x.SubConfiguration.SomeProperty);
+            int intAttribute_Value = configuration.GetValue(x => x.IntAttribute);
         }
-
-        // Custom Classes
-
-        // Rejected idea.
-        // The interfacing would be awsome like this,
-        // but it requires you to create a custom class for every step in the property path,
-        // which we were trying to prevent.
-
-        //[TestMethod]
-        //public void Test_ConfigurationSection_WithCustomStaticClass()
-        //{
-        //    string contextType = PersistenceConfiguration.ContextType;
-        //    string assembly1 = PersistenceConfiguration.ModelAssemblies[0];
-        //    int someProperty = PersistenceConfiguration.SubConfiguration.Property;
-        //}
-
-        //[TestMethod]
-        //public void Test_ConfigurationSection_WithCustomClass()
-        //{
-        //    var section = new PersistenceConfiguration();
-
-        //    string contextType = section.ContextType;
-        //    string location = section.Location;
-        //    string assembly1 = section.ModelAssemblies[0];
-        //}
     }
 }
