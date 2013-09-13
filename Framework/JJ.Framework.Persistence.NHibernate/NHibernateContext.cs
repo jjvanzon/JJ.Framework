@@ -11,56 +11,58 @@ namespace JJ.Framework.Persistence.NHibernate
 {
     public class NHibernateContext : ContextBase
     {
-        private ISession _nhibernateSession;
+        private ISession _session;
 
         public NHibernateContext(string connectionString, params Assembly[] modelAssemblies)
             : base(connectionString, modelAssemblies)
         {
             ISessionFactory sessionFactory = SessionFactoryCache.GetSessionFactory(connectionString, modelAssemblies);
-            _nhibernateSession = sessionFactory.OpenSession();
+            _session = sessionFactory.OpenSession();
         }
 
         public override EntityWrapper<TEntity> CreateEntity<TEntity>()
         {
             TEntity entity = new TEntity();
-            var entityWrapper = new EntityWrapper<TEntity>(this, entity);
-            return entityWrapper;
+            return CreateWrapper(entity);
         }
 
         public override EntityWrapper<TEntity> GetEntity<TEntity>(object id) 
         {
-            TEntity entity = _nhibernateSession.Get<TEntity>(id);
-            var entityWrapper = new EntityWrapper<TEntity>(this, entity);
-            return entityWrapper;
+            TEntity entity = _session.Get<TEntity>(id);
+            return CreateWrapper(entity);
         }
 
         public override EntityWrapper<TEntity> Insert<TEntity>(TEntity entity)
         {
-            var entityWrapper = new EntityWrapper<TEntity>(this, entity);
-            _nhibernateSession.Save(entity);
-            return entityWrapper;
+            _session.Save(entity);
+            return CreateWrapper(entity);
         }
 
         public override EntityWrapper<TEntity> Update<TEntity>(TEntity entity)
         {
-            var entityWrapper = new EntityWrapper<TEntity>(this, entity);
-            _nhibernateSession.Update(entity);
-            return entityWrapper;
+            _session.Update(entity);
+            return CreateWrapper(entity);
         }
 
         public override IEnumerable<EntityWrapper<TEntity>> Query<TEntity>()
         {
-            return _nhibernateSession.Query<TEntity>().Select(x => new EntityWrapper<TEntity>(this, x));
+            return _session.Query<TEntity>().Select(x => new EntityWrapper<TEntity>(this, x));
         }
 
         public override void Commit()
         {
-            _nhibernateSession.Flush();
+            _session.Flush();
         }
 
         public override void Dispose()
         {
-            _nhibernateSession.Dispose();
+            _session.Dispose();
+        }
+
+        private EntityWrapper<TEntity> CreateWrapper<TEntity>(TEntity entity)
+        {
+            var entityWrapper = new EntityWrapper<TEntity>(this, entity);
+            return entityWrapper;
         }
     }
 }

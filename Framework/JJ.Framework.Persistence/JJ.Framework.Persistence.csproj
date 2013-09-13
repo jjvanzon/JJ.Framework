@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="ContextBase.cs" />
     <Compile Include="ContextFactory.cs" />
-    <Compile Include="IPersistenceSettings.cs" />
+    <Compile Include="PersistenceConfiguration.cs" />
     <Compile Include="EntityWrapper.cs" />
     <Compile Include="IEntityWrapper.cs" />
     <Compile Include="IContext.cs" />

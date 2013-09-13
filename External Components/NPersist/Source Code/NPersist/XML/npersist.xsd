@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="class">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="property" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="table" type="xs:string" use="required"/>
+			<xs:attribute name="type-column" type="xs:string"/>
+			<xs:attribute name="type-value" type="xs:string"/>
+			<xs:attribute name="inherits" type="xs:string"/>
+			<xs:attribute name="implements" type="xs:string"/>
+			<xs:attribute name="inheritance">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="SingleTableInheritance"/>
+						<xs:enumeration value="ClassTableInheritance"/>
+						<xs:enumeration value="ConcreteTableInheritance"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="abstract" type="xs:boolean"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="column">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="primary" type="xs:boolean"/>
+			<xs:attribute name="default" type="xs:string"/>
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="AnsiString"/>
+						<xs:enumeration value="Binary"/>
+						<xs:enumeration value="Byte"/>
+						<xs:enumeration value="Boolean"/>
+						<xs:enumeration value="Currency"/>
+						<xs:enumeration value="Date"/>
+						<xs:enumeration value="DateTime"/>
+						<xs:enumeration value="Decimal"/>
+						<xs:enumeration value="Double"/>
+						<xs:enumeration value="Guid"/>
+						<xs:enumeration value="Int16"/>
+						<xs:enumeration value="Int32"/>
+						<xs:enumeration value="Int64"/>
+						<xs:enumeration value="Object"/>
+						<xs:enumeration value="SByte"/>
+						<xs:enumeration value="Single"/>
+						<xs:enumeration value="String"/>
+						<xs:enumeration value="Time"/>
+						<xs:enumeration value="UInt16"/>
+						<xs:enumeration value="UInt32"/>
+						<xs:enumeration value="UInt64"/>
+						<xs:enumeration value="VarNumeric"/>
+						<xs:enumeration value="AnsiStringFixedLength"/>
+						<xs:enumeration value="StringFixedLength"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="prec" type="xs:int" use="required"/>
+			<xs:attribute name="length" type="xs:int" use="required"/>
+			<xs:attribute name="scale" type="xs:int" use="required"/>
+			<xs:attribute name="auto-inc" type="xs:boolean"/>
+			<xs:attribute name="seed" type="xs:int"/>
+			<xs:attribute name="inc" type="xs:int"/>
+			<xs:attribute name="specific-type" type="xs:string"/>
+			<xs:attribute name="allow-null" type="xs:boolean"/>
+			<xs:attribute name="foreign" type="xs:boolean"/>
+			<xs:attribute name="primary-table" type="xs:string"/>
+			<xs:attribute name="primary-column" type="xs:string"/>
+			<xs:attribute name="foreign-key" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="connection-string" type="xs:string"/>
+	<xs:element name="domain">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="class" maxOccurs="unbounded"/>
+				<xs:element ref="source"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="root" type="xs:string" use="required"/>
+			<xs:attribute name="source" type="xs:string" use="required"/>
+			<xs:attribute name="assembly" type="xs:string"/>
+			<xs:attribute name="field-prefix" type="xs:string"/>
+			<xs:attribute name="target-languages" type="xs:string" use="required"/>
+		</xs:complexType>
+		<xs:unique name="TableName">
+			<xs:selector xpath=".//table"/>
+			<xs:field xpath="@name"/>
+		</xs:unique>
+		<xs:keyref name="PropertyTableMap" refer="TableName">
+			<xs:selector xpath=".//property"/>
+			<xs:field xpath="@table"/>
+		</xs:keyref>
+		<xs:keyref name="ClassTableMap" refer="TableName">
+			<xs:selector xpath=".//class"/>
+			<xs:field xpath="@table"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="property">
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="id" type="xs:boolean"/>
+			<xs:attribute name="id-index" type="xs:int"/>
+			<xs:attribute name="columns" type="xs:string"/>
+			<xs:attribute name="type" type="xs:string"/>
+			<xs:attribute name="ref" type="RefType"/>
+			<xs:attribute name="table" type="xs:string"/>
+			<xs:attribute name="id-columns" type="xs:string"/>
+			<xs:attribute name="list" type="xs:boolean"/>
+			<xs:attribute name="item-type" type="xs:string"/>
+			<xs:attribute name="read-only" type="xs:boolean"/>
+			<xs:attribute name="inverse" type="xs:string"/>
+			<xs:attribute name="inherits-inverse" type="xs:boolean"/>
+			<xs:attribute name="nullable" type="xs:boolean"/>
+			<xs:attribute name="cascade-create" type="xs:boolean"/>
+			<xs:attribute name="cascade-delete" type="xs:boolean"/>
+			<xs:attribute name="default" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="source">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="connection-string"/>
+				<xs:element ref="table" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="MSSqlServer"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="provider" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="SqlClient"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="schema" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="table">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="column" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="RefType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None"/>
+			<xs:enumeration value="OneToOne"/>
+			<xs:enumeration value="OneToMany"/>
+			<xs:enumeration value="ManyToOne"/>
+			<xs:enumeration value="ManyToMany"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

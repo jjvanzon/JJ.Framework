@@ -13,10 +13,30 @@ namespace JJ.Framework.Persistence.NHibernate
 {
     internal static class SessionFactoryCache
     {
+        private static object _lock = new object();
+        private static Dictionary<string, ISessionFactory> _dictionary = new Dictionary<string, ISessionFactory>();
+        private static string _separator = "a3ac31a9-708b-41da-b497-b451b9582fd8";
+
         public static ISessionFactory GetSessionFactory(string connectionString, params Assembly[] modelAssemblies)
         {
-            // TODO: Cache the session factories.
-            return CreateSessionFactory(connectionString, modelAssemblies);
+            lock (_lock)
+            {
+                string key = GetKey(connectionString, modelAssemblies);
+
+                if (_dictionary.ContainsKey(key))
+                {
+                    return _dictionary[key];
+                }
+
+                _dictionary[key] = CreateSessionFactory(connectionString, modelAssemblies);
+
+                return _dictionary[key];
+            }
+        }
+        
+        private static string GetKey(string connectionString, Assembly[] modelAssemblies)
+        {
+            return connectionString + _separator + String.Join(_separator, (object[])modelAssemblies);
         }
 
         private static ISessionFactory CreateSessionFactory(string connectionString, params Assembly[] modelAssemblies)

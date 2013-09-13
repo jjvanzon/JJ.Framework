@@ -1,0 +1,34 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickStart.Domain", "QuickStart.Domain.csproj", "{BDBC70D1-167E-4608-A498-1773F2907289}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickStart.WinGui", "QuickStart.WinGui\QuickStart.WinGui.csproj", "{F72D81B8-0B54-4E1D-B452-394D4AED6C13}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		NPDebug = NPDebug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{BDBC70D1-167E-4608-A498-1773F2907289}.Debug.ActiveCfg = Debug|.NET
+		{BDBC70D1-167E-4608-A498-1773F2907289}.Debug.Build.0 = Debug|.NET
+		{BDBC70D1-167E-4608-A498-1773F2907289}.NPDebug.ActiveCfg = Debug|.NET
+		{BDBC70D1-167E-4608-A498-1773F2907289}.NPDebug.Build.0 = Debug|.NET
+		{BDBC70D1-167E-4608-A498-1773F2907289}.Release.ActiveCfg = Release|.NET
+		{BDBC70D1-167E-4608-A498-1773F2907289}.Release.Build.0 = Release|.NET
+		{F72D81B8-0B54-4E1D-B452-394D4AED6C13}.Debug.ActiveCfg = Debug|.NET
+		{F72D81B8-0B54-4E1D-B452-394D4AED6C13}.Debug.Build.0 = Debug|.NET
+		{F72D81B8-0B54-4E1D-B452-394D4AED6C13}.NPDebug.ActiveCfg = Debug|.NET
+		{F72D81B8-0B54-4E1D-B452-394D4AED6C13}.NPDebug.Build.0 = Debug|.NET
+		{F72D81B8-0B54-4E1D-B452-394D4AED6C13}.Release.ActiveCfg = Release|.NET
+		{F72D81B8-0B54-4E1D-B452-394D4AED6C13}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

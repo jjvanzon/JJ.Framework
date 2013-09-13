@@ -1,0 +1,98 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1350BD7A-DB4F-4DFB-B8B3-78F8145208B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Puzzle.NPersist.Tests.Northwind.NET_3._5</RootNamespace>
+    <AssemblyName>Puzzle.NPersist.Tests.Northwind.NET 3.5</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Basic\CascadeDeleteTests.cs" />
+    <Compile Include="Basic\CommitRegionTests.cs" />
+    <Compile Include="Basic\CrudTests.cs" />
+    <Compile Include="Basic\EditTests.cs" />
+    <Compile Include="Basic\IdentityMapTests.cs" />
+    <Compile Include="Basic\InverseManagerTests.cs" />
+    <Compile Include="Basic\LazyLoadingTests.cs" />
+    <Compile Include="Basic\ListPropertyTests.cs" />
+    <Compile Include="Basic\ManyManyInverseTests.cs" />
+    <Compile Include="Basic\ObjectObjectMappingTests.cs" />
+    <Compile Include="Basic\OptimisticConcurrencyTests.cs" />
+    <Compile Include="Basic\PropertyEventTests.cs" />
+    <Compile Include="ContextFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleLinq2NPathUnitTest.cs" />
+    <Compile Include="TestBase.cs" />
+    <Compile Include="UnitTest1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AuthoringTests.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj">
+      <Project>{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}</Project>
+      <Name>Puzzle.NAspect.Framework.NET 3.5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj">
+      <Project>{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}</Project>
+      <Name>Puzzle.NCore.Framework NET 3.5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj">
+      <Project>{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}</Project>
+      <Name>Puzzle.NPath.Framework.NET 3.5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj">
+      <Project>{E6C03D2A-D150-4473-9439-D300746A1390}</Project>
+      <Name>Puzzle.NPersist.Framework.NET 3.5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Samples\Northwind\Domain\NET 3.5\Puzzle.NPersist.Samples.Northwind.Domain.NET 3.5.csproj">
+      <Project>{D1836646-6373-4785-B1B1-AC5C6A4BF50F}</Project>
+      <Name>Puzzle.NPersist.Samples.Northwind.Domain.NET 3.5</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Basic\app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

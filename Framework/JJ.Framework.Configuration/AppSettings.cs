@@ -14,7 +14,7 @@ namespace JJ.Framework.Configuration
         public static TValue Get<TValue>(Expression<Func<TInterface, TValue>> expression)
         {
             string name = ExpressionHelper.GetName(expression);
-            string stringValue = ConfigurationManager.AppSettings[name];
+            string stringValue = System.Configuration.ConfigurationManager.AppSettings[name];
             TValue value = ConfigurationHelper.ConvertValue<TValue>(stringValue);
             return value;
         }

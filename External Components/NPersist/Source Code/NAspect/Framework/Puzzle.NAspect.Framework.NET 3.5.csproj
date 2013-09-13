@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Puzzle.NAspect.Framework.NET3.5</AssemblyName>
+    <AssemblyOriginatorKeyFile>PuzzleKey.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>
+    </RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG;NET2</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;NET2</DefineConstants>
+    <DocumentationFile>bin\Release\Puzzle.NAspect.Framework.NET3.5.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AOP\Aspects\Targets\AspectTarget.cs" />
+    <Compile Include="AOP\Aspects\Attributes\TypedAspectAttributes.cs" />
+    <Compile Include="AOP\Aspects\GenericAspect.cs" />
+    <Compile Include="AOP\Aspects\IAspect.cs" />
+    <Compile Include="AOP\Aspects\Targets\IAspectTarget.cs" />
+    <Compile Include="AOP\Aspects\InterfaceAspect.cs" />
+    <Compile Include="AOP\Aspects\ITypedAspect.cs" />
+    <Compile Include="AOP\Aspects\TypedToGenericConverter.cs" />
+    <Compile Include="AOP\Interceptors\Attributes\InterceptorAttributes.cs" />
+    <Compile Include="AOP\Interceptors\Delegates\AfterDelegate.cs" />
+    <Compile Include="AOP\Interceptors\Delegates\AroundDelegate.cs" />
+    <Compile Include="AOP\Interceptors\Delegates\BeforeDelegate.cs" />
+    <Compile Include="AOP\Interceptors\Interfaces\IAfterInterceptor.cs" />
+    <Compile Include="AOP\Interceptors\Interfaces\IAroundInterceptor.cs" />
+    <Compile Include="AOP\Aspects\AspectBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AOP\Aspects\AspectMatcher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AOP\Aspects\AttributeAspect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AOP\Aspects\IGenericAspect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AOP\Aspects\SignatureAspect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AOP\Interceptors\Interfaces\IBeforeInterceptor.cs" />
+    <Compile Include="AOP\Interceptors\Interfaces\IInterceptor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AOP\IProxyAware.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AOP\Pointcuts\AttributePointcut.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AOP\Pointcuts\IPointcut.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AOP\Pointcuts\Targets\IPointcutTarget.cs" />
+    <Compile Include="AOP\Pointcuts\Pointcut.cs" />
+    <Compile Include="AOP\Pointcuts\PointcutBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AOP\Pointcuts\PointcutMatcher.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AOP\Pointcuts\Targets\PointcutTarget.cs" />
+    <Compile Include="AOP\Pointcuts\SignaturePointcut.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Attributes\FixedInterceptorAttribute.cs" />
+    <Compile Include="Attributes\FixedMixinAttribute.cs" />
+    <Compile Include="Attributes\RequiresMixinAttribute.cs" />
+    <Compile Include="Configuration\NAspectConfigurationHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Container\ApplicationContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Container\ConfigurationCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Container\ConfigurationDeserializer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Container\EngineFactory.cs" />
+    <Compile Include="Container\Engine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Container\IEngine.cs" />
+    <Compile Include="Container\ProxyTypeInfo.cs" />
+    <Compile Include="Elements\EngineConfiguration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Enumerations\AspectTargetType.cs" />
+    <Compile Include="Enumerations\PointcutTargetType.cs" />
+    <Compile Include="TypeExtender\ExtendedMember.cs" />
+    <Compile Include="TypeExtender\ExtendedProperty.cs" />
+    <Compile Include="TypeExtender\ITypeExtender.cs" />
+    <Compile Include="TypeExtender\TypeExtender.cs" />
+    <Compile Include="Weaving\AfterMethodInvocation.cs" />
+    <Compile Include="Weaving\AOPProxyMixin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Weaving\BeforeMethodInvocation.cs" />
+    <Compile Include="Weaving\CallInfo.cs" />
+    <Compile Include="Weaving\FastCall.cs" />
+    <Compile Include="Weaving\IAOPProxy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Weaving\InterfaceProxyBase.cs" />
+    <Compile Include="Weaving\Parameters\InvocationParameterInfo.cs" />
+    <Compile Include="Weaving\MethodCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Weaving\MethodInvocation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Weaving\Parameters\InvocationParameter.cs" />
+    <Compile Include="Weaving\ProxyFactories\InterfaceProxyFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Weaving\ProxyFactories\SubclassProxyFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Weaving\ProxyParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Weaving\Debug\SerializableProxyMixin.cs" />
+    <Compile Include="Weaving\Tools.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serializer\Elements\VizAspect.cs" />
+    <Compile Include="Serializer\Elements\VizConstructor.cs" />
+    <Compile Include="Serializer\Elements\VizInterceptor.cs" />
+    <Compile Include="Serializer\Elements\VizMethod.cs" />
+    <Compile Include="Serializer\Elements\VizMixin.cs" />
+    <Compile Include="Serializer\Elements\VizParameter.cs" />
+    <Compile Include="Serializer\Elements\VizPointcut.cs" />
+    <Compile Include="Serializer\Elements\VizType.cs" />
+    <Compile Include="Serializer\ISerializableProxy.cs" />
+    <Compile Include="Serializer\SerializedProxy.cs" />
+    <Compile Include="Tools\Text.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj">
+      <Project>{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}</Project>
+      <Name>Puzzle.NCore.Framework NET 3.5</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PuzzleKey.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

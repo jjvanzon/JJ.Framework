@@ -53,10 +53,11 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AppSettingsTest.cs" />
-    <Compile Include="ConfigurationSectionTests.cs" />
-    <Compile Include="IMySettings.cs" />
-    <Compile Include="ISubConfiguration.cs" />
-    <Compile Include="IConfiguration.cs" />
+    <Compile Include="ConfigurationManagerTests.cs" />
+    <Compile Include="Settings\MySettings.cs" />
+    <Compile Include="Settings\IMySettings.cs" />
+    <Compile Include="Settings\ISubConfiguration.cs" />
+    <Compile Include="Settings\TestConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
