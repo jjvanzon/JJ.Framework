@@ -36,6 +36,10 @@ namespace JJ.Framework.Configuration
             where T : new()
         {
             XmlNode sourceNode = (XmlNode)System.Configuration.ConfigurationManager.GetSection(sectionName);
+            if (sourceNode == null)
+            {
+                throw new Exception(String.Format("Configuration section '{0}' not found.", sectionName));
+            }
 
             lock (_sectionDictionaryLock)
             {

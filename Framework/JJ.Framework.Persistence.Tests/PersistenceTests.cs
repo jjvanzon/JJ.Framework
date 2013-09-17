@@ -38,71 +38,70 @@ namespace JJ.Framework.Persistence.Tests
             { }
         }
 
-        // GetEntity
+        // Get
 
         [TestMethod]
-        public void Test_Persistence_NHibernate_GetEntity()
+        public void Test_Persistence_NHibernate_Get()
         {
             string contextType = GetNHibernateContextType();
-            Test_Persistence_GetEntity(contextType);
+            Test_Persistence_Get(contextType);
         }
 
         [TestMethod]
-        public void Test_Persistence_NPersist_GetEntity()
+        public void Test_Persistence_NPersist_Get()
         {
             string contextType = GetNPersistContextType();
-            Test_Persistence_GetEntity(contextType);
+            Test_Persistence_Get(contextType);
         }
 
         [TestMethod]
-        public void Test_Persistence_EntityFramework_GetEntity()
+        public void Test_Persistence_EntityFramework_Get()
         {
             string contextType = GetEntityFrameworkContextType();
-            Test_Persistence_GetEntity(contextType);
+            Test_Persistence_Get(contextType);
         }
 
-        private void Test_Persistence_GetEntity(string contextType)
+        private void Test_Persistence_Get(string contextType)
         {
             using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
             {
-                Thing thing = context.GetEntity<Thing>(1).Entity;
-                int id = thing.ID;
-                string name = thing.Name;
+                Thing entity = context.Get<Thing>(1);
+                int id = entity.ID;
+                string name = entity.Name;
             }
         }
 
-        // GetEntities
+        // GetAll
 
         [TestMethod]
-        public void Test_Persistence_NHibernate_GetEntities()
+        public void Test_Persistence_NHibernate_GetAll()
         {
             string contextType = GetNHibernateContextType();
-            Test_Persistence_GetEntities(contextType);
+            Test_Persistence_GetAll(contextType);
         }
 
         [TestMethod]
-        public void Test_Persistence_NPersist_GetEntities()
+        public void Test_Persistence_NPersist_GetAll()
         {
             string contextType = GetNPersistContextType();
-            Test_Persistence_GetEntities(contextType);
+            Test_Persistence_GetAll(contextType);
         }
 
         [TestMethod]
-        public void Test_Persistence_EntityFramework_GetEntities()
+        public void Test_Persistence_EntityFramework_GetAll()
         {
             string contextType = GetEntityFrameworkContextType();
-            Test_Persistence_GetEntities(contextType);
+            Test_Persistence_GetAll(contextType);
         }
 
-        private void Test_Persistence_GetEntities(string contextType)
+        private void Test_Persistence_GetAll(string contextType)
         {
             using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
             {
-                foreach (EntityWrapper<Thing> wrapper in context.GetEntities<Thing>())
+                foreach (Thing entity in context.GetAll<Thing>())
                 {
-                    Thing thing = wrapper.Entity;
-                    int id = thing.ID;
-                    string name = thing.Name;
+                    int id = entity.ID;
+                    string name = entity.Name;
                 }
             }
         }
@@ -110,32 +109,32 @@ namespace JJ.Framework.Persistence.Tests
         // Create
 
         [TestMethod]
-        public void Test_Persistence_NHibernate_CreateEntity()
+        public void Test_Persistence_NHibernate_Create()
         {
             string contextType = GetNHibernateContextType();
-            Test_Persistence_CreateEntity(contextType);
+            Test_Persistence_Create(contextType);
         }
 
         [TestMethod]
-        public void Test_Persistence_NPersist_CreateEntity()
+        public void Test_Persistence_NPersist_Create()
         {
             string contextType = GetNPersistContextType();
-            Test_Persistence_CreateEntity(contextType);
+            Test_Persistence_Create(contextType);
         }
 
         [TestMethod]
-        public void Test_Persistence_EntityFramework_CreateEntity()
+        public void Test_Persistence_EntityFramework_Create()
         {
             string contextType = GetEntityFrameworkContextType();
-            Test_Persistence_CreateEntity(contextType);
+            Test_Persistence_Create(contextType);
         }
 
-        private void Test_Persistence_CreateEntity(string contextType)
+        private void Test_Persistence_Create(string contextType)
         {
             using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
             {
-                Thing thing = context.CreateEntity<Thing>().Entity;
-                thing.Name = "Thing was created";
+                Thing entity = context.Create<Thing>();
+                entity.Name = "Thing was created";
                 context.Commit();
             }
         }
@@ -167,8 +166,8 @@ namespace JJ.Framework.Persistence.Tests
         {
             using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
             {
-                Thing thing = new Thing { Name = "Thing was inserted" };
-                context.Insert<Thing>(thing);
+                Thing entity = new Thing { Name = "Thing was inserted" };
+                context.Insert<Thing>(entity);
                 context.Commit();
             }
         }
@@ -200,10 +199,9 @@ namespace JJ.Framework.Persistence.Tests
         {
             using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
             {
-                Thing thing = context.GetEntity<Thing>(1).Entity;
-
-                thing.Name += "Thing was updated";
-                context.Update<Thing>(thing);
+                Thing entity = context.Get<Thing>(1);
+                entity.Name += "Thing was updated";
+                context.Update<Thing>(entity);
             }
         }
 
@@ -235,16 +233,16 @@ namespace JJ.Framework.Persistence.Tests
             int id;
             using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
             {
-                Thing thing = context.CreateEntity<Thing>().Entity;
-                thing.Name = "Thing was created";
+                Thing entity = context.Create<Thing>();
+                entity.Name = "Thing was created";
                 context.Commit();
-                id = thing.ID;
+                id = entity.ID;
             }
 
             using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
             {
-                Thing thing = context.GetEntity<Thing>(id).Entity;
-                context.Delete(thing);
+                Thing entity = context.Get<Thing>(id);
+                context.Delete(entity);
                 context.Commit();
             }
         }
@@ -276,11 +274,10 @@ namespace JJ.Framework.Persistence.Tests
         {
             using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
             {
-                foreach (EntityWrapper<Thing> wrapper in context.Query<Thing>())
+                foreach (Thing entity in context.Query<Thing>())
                 {
-                    Thing thing = wrapper.Entity;
-                    int id = thing.ID;
-                    string name = thing.Name;
+                    int id = entity.ID;
+                    string name = entity.Name;
                 }
             }
         }

@@ -19,36 +19,31 @@ namespace JJ.Framework.Persistence.EntityFramework
             _context = UnderlyingEntityFrameworkContextFactory.CreateContext(persistenceLocation, modelAssemblies);
         }
 
-        public override EntityWrapper<TEntity> GetEntity<TEntity>(object id)
+        public override TEntity Get<TEntity>(object id)
         {
             throw new NotImplementedException();
         }
 
-        public override IEnumerable<EntityWrapper<TEntity>> GetEntities<TEntity>()
+        public override IEnumerable<TEntity> GetAll<TEntity>()
         {
-            foreach (var x in _context.Set<TEntity>())
-            {
-                yield return new EntityWrapper<TEntity>(this, x);
-            }
+            return _context.Set<TEntity>();
         }
 
-        public override EntityWrapper<TEntity> CreateEntity<TEntity>()
+        public override TEntity Create<TEntity>()
         {
             var entity = new TEntity();
             _context.Set<TEntity>().Add(entity);
-            return CreateWrapper(entity);
+            return entity;
         }
 
-        public override EntityWrapper<TEntity> Insert<TEntity>(TEntity entity)
+        public override void Insert<TEntity>(TEntity entity)
         {
             _context.Set<TEntity>().Add(entity);
-            return CreateWrapper(entity);
         }
 
-        public override EntityWrapper<TEntity> Update<TEntity>(TEntity entity)
+        public override void Update<TEntity>(TEntity entity)
         {
             _context.Entry<TEntity>(entity).State = EntityState.Modified;
-            return CreateWrapper(entity);
         }
 
         public override void Delete<TEntity>(TEntity entity)
@@ -56,13 +51,9 @@ namespace JJ.Framework.Persistence.EntityFramework
             _context.Set<TEntity>().Remove(entity);
         }
 
-        public override IEnumerable<EntityWrapper<TEntity>> Query<TEntity>()
+        public override IEnumerable<TEntity> Query<TEntity>()
         {
-            //return _context.Set<TEntity>().Select(x => new EntityWrapper<TEntity>(this, x));
-            foreach (var x in _context.Set<TEntity>())
-            {
-                yield return new EntityWrapper<TEntity>(this, x);
-            }
+            return _context.Set<TEntity>();
         }
 
         public override void Commit()
@@ -76,12 +67,6 @@ namespace JJ.Framework.Persistence.EntityFramework
             {
                 _context.Dispose();
             }
-        }
-
-        private EntityWrapper<TEntity> CreateWrapper<TEntity>(TEntity entity)
-        {
-            var entityWrapper = new EntityWrapper<TEntity>(this, entity);
-            return entityWrapper;
         }
     }
 }

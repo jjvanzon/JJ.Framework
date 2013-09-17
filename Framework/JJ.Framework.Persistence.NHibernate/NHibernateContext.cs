@@ -20,34 +20,31 @@ namespace JJ.Framework.Persistence.NHibernate
             _session = sessionFactory.OpenSession();
         }
 
-        public override EntityWrapper<TEntity> CreateEntity<TEntity>()
+        public override TEntity Get<TEntity>(object id)
+        {
+            return _session.Get<TEntity>(id);
+        }
+
+        public override IEnumerable<TEntity> GetAll<TEntity>()
+        {
+            return _session.Query<TEntity>();
+        }
+
+        public override TEntity Create<TEntity>()
         {
             TEntity entity = new TEntity();
             _session.Save(entity);
-            return CreateWrapper(entity);
+            return entity;
         }
 
-        public override EntityWrapper<TEntity> GetEntity<TEntity>(object id) 
-        {
-            TEntity entity = _session.Get<TEntity>(id);
-            return CreateWrapper(entity);
-        }
-
-        public override IEnumerable<EntityWrapper<TEntity>> GetEntities<TEntity>()
-        {
-            return _session.Query<TEntity>().Select(x => new EntityWrapper<TEntity>(this, x));
-        }
-
-        public override EntityWrapper<TEntity> Insert<TEntity>(TEntity entity)
+        public override void Insert<TEntity>(TEntity entity)
         {
             _session.Save(entity);
-            return CreateWrapper(entity);
         }
 
-        public override EntityWrapper<TEntity> Update<TEntity>(TEntity entity)
+        public override void Update<TEntity>(TEntity entity)
         {
             _session.Update(entity);
-            return CreateWrapper(entity);
         }
 
         public override void Delete<TEntity>(TEntity entity)
@@ -55,9 +52,9 @@ namespace JJ.Framework.Persistence.NHibernate
             _session.Delete(entity);
         }
 
-        public override IEnumerable<EntityWrapper<TEntity>> Query<TEntity>()
+        public override IEnumerable<TEntity> Query<TEntity>()
         {
-            return _session.Query<TEntity>().Select(x => new EntityWrapper<TEntity>(this, x));
+            return _session.Query<TEntity>();
         }
 
         public override void Commit()
@@ -71,12 +68,6 @@ namespace JJ.Framework.Persistence.NHibernate
             {
                 _session.Dispose();
             }
-        }
-
-        private EntityWrapper<TEntity> CreateWrapper<TEntity>(TEntity entity)
-        {
-            var entityWrapper = new EntityWrapper<TEntity>(this, entity);
-            return entityWrapper;
         }
     }
 }

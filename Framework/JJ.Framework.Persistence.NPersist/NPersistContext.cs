@@ -17,33 +17,31 @@ namespace JJ.Framework.Persistence.NPersist
             _context = UnderlyingNPersistContextFactory.CreateContext(persistenceLocation, modelAssemblies);
         }
 
-        public override EntityWrapper<TEntity> CreateEntity<TEntity>()
+        public override TEntity Create<TEntity>()
         {
             TEntity entity = _context.CreateObject<TEntity>();
-            return CreateWrapper(entity);
+            return entity;
         }
 
-        public override EntityWrapper<TEntity> GetEntity<TEntity>(object id)
+        public override TEntity Get<TEntity>(object id)
         {
             TEntity entity = _context.GetObjectById<TEntity>(id);
-            return CreateWrapper(entity);
+            return entity;
         }
 
-        public override IEnumerable<EntityWrapper<TEntity>> GetEntities<TEntity>()
+        public override IEnumerable<TEntity> GetAll<TEntity>()
         {
             throw new NotImplementedException();
         }
 
-        public override EntityWrapper<TEntity> Insert<TEntity>(TEntity entity)
+        public override void Insert<TEntity>(TEntity entity)
         {
             _context.AttachObject(entity);
-            return CreateWrapper(entity);
         }
 
-        public override EntityWrapper<TEntity> Update<TEntity>(TEntity entity)
+        public override void Update<TEntity>(TEntity entity)
         {
             _context.AttachObject(entity);
-            return CreateWrapper(entity);
         }
 
         public override void Delete<TEntity>(TEntity entity)
@@ -51,7 +49,7 @@ namespace JJ.Framework.Persistence.NPersist
             _context.DeleteObject(entity);
         }
 
-        public override IEnumerable<EntityWrapper<TEntity>> Query<TEntity>()
+        public override IEnumerable<TEntity> Query<TEntity>()
         {
             throw new NotImplementedException();
         }
@@ -67,12 +65,6 @@ namespace JJ.Framework.Persistence.NPersist
             {
                 _context.Dispose();
             }
-        }
-
-        private EntityWrapper<TEntity> CreateWrapper<TEntity>(TEntity entity)
-        {
-            var entityWrapper = new EntityWrapper<TEntity>(this, entity);
-            return entityWrapper;
         }
     }
 }
