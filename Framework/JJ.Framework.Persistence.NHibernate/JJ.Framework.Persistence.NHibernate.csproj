@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="NHibernateContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SessionFactoryCache.cs" />
+    <Compile Include="NHibernateSessionFactoryCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">

@@ -14,7 +14,7 @@ namespace JJ.Framework.Persistence.NPersist
         public NPersistContext(string persistenceLocation, params Assembly[] modelAssemblies)
             : base(persistenceLocation, modelAssemblies)
         {
-            _context = NPersistContextFactory.CreateNPersistContext(persistenceLocation, modelAssemblies);
+            _context = UnderlyingNPersistContextFactory.CreateContext(persistenceLocation, modelAssemblies);
         }
 
         public override EntityWrapper<TEntity> CreateEntity<TEntity>()
@@ -29,6 +29,11 @@ namespace JJ.Framework.Persistence.NPersist
             return CreateWrapper(entity);
         }
 
+        public override IEnumerable<EntityWrapper<TEntity>> GetEntities<TEntity>()
+        {
+            throw new NotImplementedException();
+        }
+
         public override EntityWrapper<TEntity> Insert<TEntity>(TEntity entity)
         {
             _context.AttachObject(entity);
@@ -39,6 +44,11 @@ namespace JJ.Framework.Persistence.NPersist
         {
             _context.AttachObject(entity);
             return CreateWrapper(entity);
+        }
+
+        public override void Delete<TEntity>(TEntity entity)
+        {
+            _context.DeleteObject(entity);
         }
 
         public override IEnumerable<EntityWrapper<TEntity>> Query<TEntity>()
@@ -53,7 +63,10 @@ namespace JJ.Framework.Persistence.NPersist
 
         public override void Dispose()
         {
-            _context.Dispose();
+            if (_context != null)
+            {
+                _context.Dispose();
+            }
         }
 
         private EntityWrapper<TEntity> CreateWrapper<TEntity>(TEntity entity)

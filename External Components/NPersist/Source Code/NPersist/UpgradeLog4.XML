@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Puzzle.NPersist.NET 3.5">
+</Property><Property Name="Solution File" Value="D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Puzzle.NPersist.NET 3.5.sln">
+</Property><Property Name="Date" Value="Monday, September 16, 2013">
+</Property><Property Name="Time" Value="01:56">
+</Property><Property Name="Log Number" Value="4">
+</Property></Properties><Event ErrorLevel="0" Project="Puzzle.NPersist.Framework.NET 3.5" Source="Framework\Puzzle.NPersist.Framework.NET 3.5.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Puzzle.NPersist.Framework.NET 3.5" Source="Framework\Puzzle.NPersist.Framework.NET 3.5.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Puzzle.NCore.Framework NET 3.5" Source="..\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Puzzle.NCore.Framework NET 3.5" Source="..\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Puzzle.NPath.Framework.NET 3.5" Source="..\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Puzzle.NPath.Framework.NET 3.5" Source="..\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Puzzle.NAspect.Framework.NET 3.5" Source="..\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Puzzle.NAspect.Framework.NET 3.5" Source="..\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="Puzzle.NPersist.Samples.Northwind.Domain.NET 3.5" Source="Samples\Northwind\Domain\NET 3.5\Puzzle.NPersist.Samples.Northwind.Domain.NET 3.5.csproj" Description="The project file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="Puzzle.NPersist.Samples.Northwind.Domain.NET 3.5" Source="Samples\Northwind\Domain\NET 3.5\Puzzle.NPersist.Samples.Northwind.Domain.NET 3.5.csproj" Description="No Conversion Required">
+</Event><Event ErrorLevel="0" Project="InMemTest" Source="Tests\NET 3.5\InMemTest\InMemTest.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="InMemTest" Source="Tests\NET 3.5\InMemTest\InMemTest.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="NPersistLinqTests" Source="Tests\NET 3.5\NPersistLinqTests\NPersistLinqTests.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="NPersistLinqTests" Source="Tests\NET 3.5\NPersistLinqTests\NPersistLinqTests.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Puzzle.NPersist.NET 3.5.sln" Description="The solution file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="" Source="Puzzle.NPersist.NET 3.5.sln" Description="No Conversion Required">
+</Event></UpgradeLog>

@@ -31,6 +31,8 @@ namespace JJ.Framework.Persistence
 
         private static Type GetPersistenceContextType(string name)
         {
+            if (name == null) throw new ArgumentNullException("name");
+
             lock (_contextTypeDictionaryLock)
             {
                 if (_contextTypeDictionary.ContainsKey(name))
@@ -44,12 +46,16 @@ namespace JJ.Framework.Persistence
                 {
                     // Otherwise assume it is an assembly name.
                     Assembly assembly = Assembly.Load(name);
-                    Type[] types = assembly.GetTypes().Where(x => x.GetInterface(typeof(IContext).Name) != null).ToArray();
-                    type = types.SingleOrDefault();
-                    if (type == null)
+                    Type[] types = ReflectionHelper.GetImplementations(assembly, typeof(IContext));
+                    if (types.Length == 0)
                     {
                         throw new Exception(String.Format("Context type '{0}' not found.", name));
                     }
+                    if (types.Length > 1)
+                    {
+                        throw new Exception(String.Format("Multiple context types found in assembly '{0}'. Please specify a fully qualified type name.", name));
+                    }
+                    type = types[0];
                 }
 
                 _contextTypeDictionary[name] = type;

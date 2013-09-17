@@ -16,13 +16,14 @@ namespace JJ.Framework.Persistence.NHibernate
         public NHibernateContext(string connectionString, params Assembly[] modelAssemblies)
             : base(connectionString, modelAssemblies)
         {
-            ISessionFactory sessionFactory = SessionFactoryCache.GetSessionFactory(connectionString, modelAssemblies);
+            ISessionFactory sessionFactory = NHibernateSessionFactoryCache.GetSessionFactory(connectionString, modelAssemblies);
             _session = sessionFactory.OpenSession();
         }
 
         public override EntityWrapper<TEntity> CreateEntity<TEntity>()
         {
             TEntity entity = new TEntity();
+            _session.Save(entity);
             return CreateWrapper(entity);
         }
 
@@ -30,6 +31,11 @@ namespace JJ.Framework.Persistence.NHibernate
         {
             TEntity entity = _session.Get<TEntity>(id);
             return CreateWrapper(entity);
+        }
+
+        public override IEnumerable<EntityWrapper<TEntity>> GetEntities<TEntity>()
+        {
+            return _session.Query<TEntity>().Select(x => new EntityWrapper<TEntity>(this, x));
         }
 
         public override EntityWrapper<TEntity> Insert<TEntity>(TEntity entity)
@@ -44,6 +50,11 @@ namespace JJ.Framework.Persistence.NHibernate
             return CreateWrapper(entity);
         }
 
+        public override void Delete<TEntity>(TEntity entity)
+        {
+            _session.Delete(entity);
+        }
+
         public override IEnumerable<EntityWrapper<TEntity>> Query<TEntity>()
         {
             return _session.Query<TEntity>().Select(x => new EntityWrapper<TEntity>(this, x));
@@ -56,7 +67,10 @@ namespace JJ.Framework.Persistence.NHibernate
 
         public override void Dispose()
         {
-            _session.Dispose();
+            if (_session != null)
+            {
+                _session.Dispose();
+            }
         }
 
         private EntityWrapper<TEntity> CreateWrapper<TEntity>(TEntity entity)

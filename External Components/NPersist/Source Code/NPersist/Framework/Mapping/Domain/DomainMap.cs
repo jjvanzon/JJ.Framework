@@ -735,8 +735,10 @@ namespace Puzzle.NPersist.Framework.Mapping
 			classMap = GetClassMap(className);
 			if (classMap == null)
 			{
-				if (ns.Length > 0)
-				{
+                // Jan-Joost van Zon, 2013-09-16: Fixed bug. Namespace could be null.
+				//if (ns.Length > 0)
+                if (!String.IsNullOrEmpty(ns))
+                {
 					classMap = GetClassMap(ns + "." + className);
 				}
 			}

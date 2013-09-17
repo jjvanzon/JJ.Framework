@@ -12,11 +12,15 @@ namespace JJ.Framework.Persistence
         public ContextBase(string persistenceLocation, params Assembly[] modelAssemblies)
         { }
 
-        public abstract EntityWrapper<TEntity> GetEntity<TEntity>(object id) where TEntity : new();
-        public abstract EntityWrapper<TEntity> CreateEntity<TEntity>() where TEntity : new();
-        public abstract EntityWrapper<TEntity> Insert<TEntity>(TEntity entity);
-        public abstract EntityWrapper<TEntity> Update<TEntity>(TEntity entity);
-        public abstract IEnumerable<EntityWrapper<TEntity>> Query<TEntity>();
+        public abstract EntityWrapper<TEntity> GetEntity<TEntity>(object id) where TEntity : class, new();
+        public abstract IEnumerable<EntityWrapper<TEntity>> GetEntities<TEntity>() where TEntity : class, new();
+
+        public abstract EntityWrapper<TEntity> CreateEntity<TEntity>() where TEntity : class, new();
+        public abstract EntityWrapper<TEntity> Insert<TEntity>(TEntity entity) where TEntity : class;
+        public abstract EntityWrapper<TEntity> Update<TEntity>(TEntity entity) where TEntity : class;
+        public abstract void Delete<TEntity>(TEntity entity) where TEntity : class;
+
+        public abstract IEnumerable<EntityWrapper<TEntity>> Query<TEntity>() where TEntity : class;
 
         public abstract void Commit();
 

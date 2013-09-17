@@ -21,7 +21,7 @@ namespace JJ.Framework.Configuration
         public static T GetSection<T>(Assembly assembly)
             where T : new()
         {
-            string sectionName = ReflectionHelper.GetAssemblyName(assembly).ToLower();
+            string sectionName = assembly.GetName().Name.ToLower();
             return GetSection<T>(sectionName);
         }
 
