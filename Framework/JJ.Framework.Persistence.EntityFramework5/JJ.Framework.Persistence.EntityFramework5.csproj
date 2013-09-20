@@ -7,8 +7,8 @@
     <ProjectGuid>{9676E4C3-1A1F-45B8-8FFD-C398F14002E7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Persistence.EntityFramework</RootNamespace>
-    <AssemblyName>JJ.Framework.Persistence.EntityFramework</AssemblyName>
+    <RootNamespace>JJ.Framework.Persistence.EntityFramework5</RootNamespace>
+    <AssemblyName>JJ.Framework.Persistence.EntityFramework5</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -47,9 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityFrameworkContext.cs" />
+    <Compile Include="EntityFramework5Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnderlyingEntityFrameworkContextFactory.cs" />
+    <Compile Include="UnderlyingEntityFramework5ContextFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

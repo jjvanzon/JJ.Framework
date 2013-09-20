@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Persistence.EntityFramework
+namespace JJ.Framework.Persistence.EntityFramework5
 {
-    internal static class UnderlyingEntityFrameworkContextFactory
+    internal static class UnderlyingEntityFramework5ContextFactory
     {
         public static DbContext CreateContext(string connectionString, params Assembly[] modelAssemblies)
         {
@@ -56,7 +56,6 @@ namespace JJ.Framework.Persistence.EntityFramework
 
         private static string GetSpecialConnectionString(string connectionString, string modelName)
         {
-            //return String.Format(@"metadata=res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl;provider=System.Data.SqlClient;provider connection string=""{1};App=EntityFramework""", modelName, connectionString);
             return String.Format(@"metadata=res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl;provider=System.Data.SqlClient;provider connection string=""{1}""", modelName, connectionString);
         }
     }

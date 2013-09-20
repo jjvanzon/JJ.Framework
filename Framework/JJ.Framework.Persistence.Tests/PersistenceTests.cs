@@ -3,12 +3,16 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Configuration;
 using JJ.Framework.Persistence.Tests.Model;
+using JJ.Framework.Testing;
 
 namespace JJ.Framework.Persistence.Tests
 {
     [TestClass]
     public class PersistenceTests
     {
+        private const int EXISTING_THING_ID = 1;
+        private const int NON_EXISTENT_THING_ID = 0;
+
         // CreateContext
 
         [TestMethod]
@@ -26,9 +30,9 @@ namespace JJ.Framework.Persistence.Tests
         }
 
         [TestMethod]
-        public void Test_Persistence_EntityFramework_CreateContext()
+        public void Test_Persistence_EntityFramework5_CreateContext()
         {
-            string contextType = GetEntityFrameworkContextType();
+            string contextType = GetEntityFramework5ContextType();
             Test_Persistence_CreateContext(contextType);
         }
 
@@ -55,9 +59,9 @@ namespace JJ.Framework.Persistence.Tests
         }
 
         [TestMethod]
-        public void Test_Persistence_EntityFramework_Get()
+        public void Test_Persistence_EntityFramework5_Get()
         {
-            string contextType = GetEntityFrameworkContextType();
+            string contextType = GetEntityFramework5ContextType();
             Test_Persistence_Get(contextType);
         }
 
@@ -65,9 +69,55 @@ namespace JJ.Framework.Persistence.Tests
         {
             using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
             {
-                Thing entity = context.Get<Thing>(1);
+                Thing entity;
+
+                // Get existing
+                entity = context.Get<Thing>(EXISTING_THING_ID);
                 int id = entity.ID;
                 string name = entity.Name;
+
+                // Get non-existent
+                AssertExtensions.ThrowsException(() => entity = context.Get<Thing>(NON_EXISTENT_THING_ID));
+            }
+        }
+
+        // TryGet
+
+        [TestMethod]
+        public void Test_Persistence_NHibernate_TryGet()
+        {
+            string contextType = GetNHibernateContextType();
+            Test_Persistence_TryGet(contextType);
+        }
+
+        [TestMethod]
+        public void Test_Persistence_NPersist_TryGet()
+        {
+            string contextType = GetNPersistContextType();
+            Test_Persistence_TryGet(contextType);
+        }
+
+        [TestMethod]
+        public void Test_Persistence_EntityFramework5_TryGet()
+        {
+            string contextType = GetEntityFramework5ContextType();
+            Test_Persistence_TryGet(contextType);
+        }
+
+        private void Test_Persistence_TryGet(string contextType)
+        {
+            using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
+            {
+                Thing entity;
+
+                // Try get existing
+                entity = context.TryGet<Thing>(EXISTING_THING_ID);
+                int id = entity.ID;
+                string name = entity.Name;
+
+                // Try get non-existent
+                entity = context.TryGet<Thing>(NON_EXISTENT_THING_ID);
+                Assert.IsNull(entity);                
             }
         }
 
@@ -88,9 +138,9 @@ namespace JJ.Framework.Persistence.Tests
         }
 
         [TestMethod]
-        public void Test_Persistence_EntityFramework_GetAll()
+        public void Test_Persistence_EntityFramework5_GetAll()
         {
-            string contextType = GetEntityFrameworkContextType();
+            string contextType = GetEntityFramework5ContextType();
             Test_Persistence_GetAll(contextType);
         }
 
@@ -123,9 +173,9 @@ namespace JJ.Framework.Persistence.Tests
         }
 
         [TestMethod]
-        public void Test_Persistence_EntityFramework_Create()
+        public void Test_Persistence_EntityFramework5_Create()
         {
-            string contextType = GetEntityFrameworkContextType();
+            string contextType = GetEntityFramework5ContextType();
             Test_Persistence_Create(contextType);
         }
 
@@ -156,9 +206,9 @@ namespace JJ.Framework.Persistence.Tests
         }
 
         [TestMethod]
-        public void Test_Persistence_EntityFramework_Insert()
+        public void Test_Persistence_EntityFramework5_Insert()
         {
-            string contextType = GetEntityFrameworkContextType();
+            string contextType = GetEntityFramework5ContextType();
             Test_Persistence_Insert(contextType);
         }
 
@@ -189,9 +239,9 @@ namespace JJ.Framework.Persistence.Tests
         }
 
         [TestMethod]
-        public void Test_Persistence_EntityFramework_Update()
+        public void Test_Persistence_EntityFramework5_Update()
         {
-            string contextType = GetEntityFrameworkContextType();
+            string contextType = GetEntityFramework5ContextType();
             Test_Persistence_Update(contextType);
         }
 
@@ -222,9 +272,9 @@ namespace JJ.Framework.Persistence.Tests
         }
 
         [TestMethod]
-        public void Test_Persistence_EntityFramework_Delete()
+        public void Test_Persistence_EntityFramework5_Delete()
         {
-            string contextType = GetEntityFrameworkContextType();
+            string contextType = GetEntityFramework5ContextType();
             Test_Persistence_Delete(contextType);
         }
 
@@ -264,9 +314,9 @@ namespace JJ.Framework.Persistence.Tests
         }
 
         [TestMethod]
-        public void Test_Persistence_EntityFramework_Query()
+        public void Test_Persistence_EntityFramework5_Query()
         {
-            string contextType = GetEntityFrameworkContextType();
+            string contextType = GetEntityFramework5ContextType();
             Test_Persistence_Query(contextType);
         }
 
@@ -294,9 +344,9 @@ namespace JJ.Framework.Persistence.Tests
             return GetConfiguration().NPersistContextType;
         }
 
-        private string GetEntityFrameworkContextType()
+        private string GetEntityFramework5ContextType()
         {
-            return GetConfiguration().EntityFrameworkContextType;
+            return GetConfiguration().EntityFramework5ContextType;
         }
 
         private ConfigurationSection GetConfiguration()

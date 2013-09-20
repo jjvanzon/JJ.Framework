@@ -9,8 +9,7 @@ namespace JJ.Framework.Persistence.Tests
 {
     public class ConfigurationSection
     {
-        
-        public string EntityFrameworkContextType { get; set; }
+        public string EntityFramework5ContextType { get; set; }
 
         [XmlElement("nhibernateContextType")]
         public string NHibernateContextType { get; set; }

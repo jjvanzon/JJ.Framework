@@ -20,7 +20,7 @@ namespace JJ.Framework.Persistence.NHibernate
             _session = sessionFactory.OpenSession();
         }
 
-        public override TEntity Get<TEntity>(object id)
+        public override TEntity TryGet<TEntity>(object id)
         {
             return _session.Get<TEntity>(id);
         }

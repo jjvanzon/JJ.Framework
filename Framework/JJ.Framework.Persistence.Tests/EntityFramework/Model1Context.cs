@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Persistence.Tests.EntityFramework
+namespace JJ.Framework.Persistence.Tests.EntityFramework5
 {
     public class Model1Context : DbContext
     {

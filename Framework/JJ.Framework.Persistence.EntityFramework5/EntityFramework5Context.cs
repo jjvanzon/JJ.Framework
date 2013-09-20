@@ -7,21 +7,21 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Persistence.EntityFramework
+namespace JJ.Framework.Persistence.EntityFramework5
 {
-    public class EntityFrameworkContext : ContextBase
+    public class EntityFramework5Context : ContextBase
     {
         private DbContext _context;
 
-        public EntityFrameworkContext(string persistenceLocation, params Assembly[] modelAssemblies)
+        public EntityFramework5Context(string persistenceLocation, params Assembly[] modelAssemblies)
             : base(persistenceLocation, modelAssemblies)
         {
-            _context = UnderlyingEntityFrameworkContextFactory.CreateContext(persistenceLocation, modelAssemblies);
+            _context = UnderlyingEntityFramework5ContextFactory.CreateContext(persistenceLocation, modelAssemblies);
         }
 
-        public override TEntity Get<TEntity>(object id)
+        public override TEntity TryGet<TEntity>(object id)
         {
-            throw new NotImplementedException();
+            return _context.Set<TEntity>().Find(id);
         }
 
         public override IEnumerable<TEntity> GetAll<TEntity>()

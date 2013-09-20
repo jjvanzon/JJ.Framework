@@ -9,6 +9,8 @@ namespace JJ.Framework.Persistence
     public interface IContext : IDisposable
     {
         TEntity Get<TEntity>(object id) where TEntity : class, new();
+        TEntity TryGet<TEntity>(object id) where TEntity : class, new();
+
         IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class, new();
 
         TEntity Create<TEntity>() where TEntity : class, new();

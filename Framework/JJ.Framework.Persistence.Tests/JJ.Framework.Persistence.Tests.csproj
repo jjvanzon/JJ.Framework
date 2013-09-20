@@ -130,9 +130,9 @@
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.EntityFramework\JJ.Framework.Persistence.EntityFramework.csproj">
+    <ProjectReference Include="..\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.EntityFramework5.csproj">
       <Project>{9676e4c3-1a1f-45b8-8ffd-c398f14002e7}</Project>
-      <Name>JJ.Framework.Persistence.EntityFramework</Name>
+      <Name>JJ.Framework.Persistence.EntityFramework5</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj">
       <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
@@ -145,6 +145,10 @@
     <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
+      <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
+      <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

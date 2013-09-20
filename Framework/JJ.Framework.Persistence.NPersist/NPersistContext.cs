@@ -19,19 +19,17 @@ namespace JJ.Framework.Persistence.NPersist
 
         public override TEntity Create<TEntity>()
         {
-            TEntity entity = _context.CreateObject<TEntity>();
-            return entity;
+            return _context.CreateObject<TEntity>();
         }
 
-        public override TEntity Get<TEntity>(object id)
+        public override TEntity TryGet<TEntity>(object id)
         {
-            TEntity entity = _context.GetObjectById<TEntity>(id);
-            return entity;
+            return _context.TryGetObjectById<TEntity>(id);
         }
 
         public override IEnumerable<TEntity> GetAll<TEntity>()
         {
-            throw new NotImplementedException();
+            return _context.GetObjects<TEntity>();
         }
 
         public override void Insert<TEntity>(TEntity entity)
