@@ -56,7 +56,14 @@ namespace JJ.Framework.Persistence.EntityFramework5
 
         private static string GetSpecialConnectionString(string connectionString, string modelName)
         {
-            return String.Format(@"metadata=res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl;provider=System.Data.SqlClient;provider connection string=""{1}""", modelName, connectionString);
+            // Add MultipleActiveResultSets or all sorts of stuff will fail for Entity Framework.
+            if (!connectionString.Contains("MultipleActiveResultSets="))
+            {
+                connectionString += ";MultipleActiveResultSets=True";
+            }
+
+            string specialConnectionString = String.Format(@"metadata=res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl;provider=System.Data.SqlClient;provider connection string=""{1}""", modelName, connectionString);
+            return specialConnectionString;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Puzzle.NPersist.Framework;
 
 namespace JJ.Framework.Persistence.NPersist
 {
@@ -49,7 +50,7 @@ namespace JJ.Framework.Persistence.NPersist
 
         public override IEnumerable<TEntity> Query<TEntity>()
         {
-            throw new NotImplementedException();
+            return _context.Repository<TEntity>();
         }
 
         public override void Commit()

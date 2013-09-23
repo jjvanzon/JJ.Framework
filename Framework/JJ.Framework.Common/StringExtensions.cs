@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Common
 {
-    public static class StringExtensions
+    public static partial class StringExtensions
     {
         public static string Left(this string str, int length)
         {
@@ -48,6 +48,11 @@ namespace JJ.Framework.Common
         public static string CutLeft(this string str, int length)
         {
             return str.Right(str.Length - length);
+        }
+
+        public static string FromTill(this string str, int startIndex, int endIndex)
+        {
+            return str.Substring(startIndex, endIndex - startIndex + 1);
         }
     }
 }

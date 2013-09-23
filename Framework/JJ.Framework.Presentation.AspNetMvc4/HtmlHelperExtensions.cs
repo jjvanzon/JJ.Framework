@@ -9,7 +9,7 @@ using System.Web.Mvc.Html;
 
 namespace JJ.Framework.Presentation.AspNetMvc4
 {
-    public static class HtmlExtensions
+    public static class HtmlHelperExtensions
     {
         /// <summary>
         /// Adds a hidden input element for every model property (to keep the view model in tact between posts).
