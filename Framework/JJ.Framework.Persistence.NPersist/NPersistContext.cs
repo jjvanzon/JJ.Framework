@@ -65,5 +65,10 @@ namespace JJ.Framework.Persistence.NPersist
                 _context.Dispose();
             }
         }
+
+        /*public override IEnumerable<TEntity> QueryUncommitted<TEntity>()
+        {
+            throw new NotImplementedException();
+        }*/
     }
 }

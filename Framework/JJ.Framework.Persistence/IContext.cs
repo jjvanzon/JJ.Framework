@@ -19,6 +19,7 @@ namespace JJ.Framework.Persistence
         void Delete<TEntity>(TEntity entity) where TEntity : class;
 
         IEnumerable<TEntity> Query<TEntity>() where TEntity : class;
+        //IEnumerable<TEntity> QueryUncommitted<TEntity>() where TEntity : class;
 
         void Commit();
 

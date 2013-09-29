@@ -105,5 +105,10 @@ namespace JJ.Framework.Persistence.NHibernate
                 _session.Dispose();
             }
         }
+
+        /*public override IEnumerable<TEntity> QueryUncommitted<TEntity>()
+        {
+            throw new NotImplementedException();
+        }*/
     }
 }

@@ -53,8 +53,20 @@ namespace JJ.Framework.Persistence.EntityFramework5
 
         public override IEnumerable<TEntity> Query<TEntity>()
         {
+            return Enumerable.Union(
+                    _context.ChangeTracker.Entries<TEntity>().Select(x => x.Entity),
+                    _context.Set<TEntity>()).Distinct();
+        }
+
+        /*public override IEnumerable<TEntity> Query<TEntity>()
+        {
             return _context.Set<TEntity>();
         }
+
+        public override IEnumerable<TEntity> QueryUncommitted<TEntity>()
+        {
+            return _context.ChangeTracker.Entries<TEntity>().Select(x => x.Entity);
+        }*/
 
         public override void Commit()
         {
