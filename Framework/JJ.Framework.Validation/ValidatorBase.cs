@@ -20,7 +20,6 @@ namespace JJ.Framework.Validation
         protected abstract void Execute();
 
         private readonly ValidationMessages _validationMessages = new ValidationMessages();
-
         public ValidationMessages ValidationMessages { get { return _validationMessages; } }
 
         public bool IsValid
