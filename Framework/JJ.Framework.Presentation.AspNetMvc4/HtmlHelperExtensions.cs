@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
@@ -14,6 +15,7 @@ namespace JJ.Framework.Presentation.AspNetMvc4
         /// <summary>
         /// Adds a hidden input element for every model property (to keep the view model in tact between posts).
         /// </summary>
+        [Obsolete("Instead use HiddenFor for specific view model elements that must be posted back. This is more efficient and less error prone, and HiddenForAllProperties would not cover complex view models.")]
         public static MvcHtmlString HiddenForAllProperties(this HtmlHelper htmlHelper, object model)
         {
             if (model == null)
@@ -33,6 +35,39 @@ namespace JJ.Framework.Presentation.AspNetMvc4
             }
 
             return new MvcHtmlString(sb.ToString());
+        }
+
+        public static MvcHtmlString ActionLinkWithCollection<T>(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName, string parameterName, IEnumerable<T> collection)
+        {
+            // First HTML-encode all elements of the url, for safety.
+            linkText = htmlHelper.Encode(linkText);
+            actionName = htmlHelper.Encode(actionName);
+            controllerName = htmlHelper.Encode(controllerName);
+            parameterName = htmlHelper.Encode(parameterName);
+
+            // URL-encode the values.
+            var values = new List<string>();
+            foreach (var x in collection)
+            {
+                string str = Convert.ToString(x);
+                string value = HttpUtility.UrlEncode(str);
+                values.Add(value);
+            }
+
+            // Build the URL parameter string.
+            string parameterString = "";
+            if (collection.Count() != 0)
+            {
+                parameterString = "?" + parameterName + "=" + String.Join("&" + parameterName + "=", values);
+            }
+
+            // Build the URL.
+            string url = "/" + controllerName + "/" + actionName + parameterString;
+
+            // Build the <a> tag.
+            string html = @"<a href=""" + url + @""">" + linkText + "</a>";
+
+            return new MvcHtmlString(html);
         }
     }
 }

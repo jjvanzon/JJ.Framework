@@ -12,7 +12,7 @@ namespace JJ.Framework.Persistence.NHibernate
     public class NHibernateContext : ContextBase
     {
         private ISession _session;
-        private ITransaction _transaction;
+        //private ITransaction _transaction;
 
         private HashSet<object> _entitiesToSave = new HashSet<object>();
         private HashSet<object> _entitiesToDelete = new HashSet<object>();

@@ -10,6 +10,8 @@ namespace JJ.Framework.Reflection
 {
     public static class ReflectionHelper
     {
+        // GetImplementation
+
         public static Type GetImplementation(Assembly assembly, Type baseType)
         {
             Type type = TryGetImplementation(assembly, baseType);
@@ -52,6 +54,38 @@ namespace JJ.Framework.Reflection
             return assemblies.SelectMany(x => GetImplementations(x, baseType)).ToArray();
         }
 
+        // GetItemType
+
+        public static Type GetItemType(object collection)
+        {
+            if (collection == null) throw new ArgumentNullException("collection");
+            return GetItemType(collection.GetType());
+        }
+
+        public static Type GetItemType(Type collectionType)
+        {
+            Type itemType = TryGetItemType(collectionType);
+            if (itemType == null)
+            {
+                throw new Exception(String.Format("Type '{0}' has no item type.", collectionType.GetType().Name));
+            }
+            return itemType;
+        }
+
+        public static Type TryGetItemType(Type collectionType)
+        {
+            if (collectionType == null) throw new ArgumentNullException("collectionType");
+
+            Type enumerableInterface = collectionType.GetInterface(typeof(IEnumerable<>).FullName);
+            if (enumerableInterface != null)
+            {
+                Type itemType = enumerableInterface.GetGenericArguments()[0];
+                return itemType;
+            }
+
+            return null;
+        }
+
         // Generic overloads
 
         public static Type GetImplementation<TBaseType>(Assembly assembly)
@@ -73,6 +107,5 @@ namespace JJ.Framework.Reflection
         {
             return GetImplementations(assemblies, typeof(TBaseType));
         }
-
     }
 }
