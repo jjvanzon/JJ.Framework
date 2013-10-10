@@ -41,30 +41,9 @@ namespace JJ.Framework.Presentation.AspNetMvc4
         {
             // First HTML-encode all elements of the url, for safety.
             linkText = htmlHelper.Encode(linkText);
-            actionName = htmlHelper.Encode(actionName);
-            controllerName = htmlHelper.Encode(controllerName);
-            parameterName = htmlHelper.Encode(parameterName);
-
-            // URL-encode the values.
-            var values = new List<string>();
-            foreach (var x in collection)
-            {
-                string str = Convert.ToString(x);
-                string value = HttpUtility.UrlEncode(str);
-                values.Add(value);
-            }
-
-            // Build the URL parameter string.
-            string parameterString = "";
-            if (collection.Count() != 0)
-            {
-                parameterString = "?" + parameterName + "=" + String.Join("&" + parameterName + "=", values);
-            }
-
-            // Build the URL.
-            string url = "/" + controllerName + "/" + actionName + parameterString;
 
             // Build the <a> tag.
+            string url = UrlHelpers.GetUrlWithCollectionParameter(actionName, controllerName, parameterName, collection);
             string html = @"<a href=""" + url + @""">" + linkText + "</a>";
 
             return new MvcHtmlString(html);
