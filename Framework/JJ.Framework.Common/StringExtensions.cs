@@ -8,51 +8,69 @@ namespace JJ.Framework.Common
 {
     public static partial class StringExtensions
     {
-        public static string Left(this string str, int length)
+        public static string Left(this string input, int length)
         {
-            return str.Substring(0, length);
+            return input.Substring(0, length);
         }
 
-        public static string Right(this string str, int length)
+        public static string Right(this string input, int length)
         {
-            return str.Substring(str.Length - length, length);
+            return input.Substring(input.Length - length, length);
         }
 
-        public static string CutRight(this string str, char chr)
+        public static string CutRight(this string input, char chr)
         {
-            return CutRight(str, chr.ToString());
+            return CutRight(input, chr.ToString());
         }
 
-        public static string CutRight(this string str, string end)
+        public static string CutRight(this string input, string end)
         {
-            if (str.EndsWith(end)) return str.CutRight(end.Length);
-            return str;
+            if (input.EndsWith(end)) return input.CutRight(end.Length);
+            return input;
         }
 
-        public static string CutRight(this string str, int length)
+        public static string CutRight(this string input, int length)
         {
-            return str.Left(str.Length - length);
+            return input.Left(input.Length - length);
         }
 
-        public static string CutLeft(this string str, char chr)
+        public static string CutLeft(this string input, char chr)
         {
-            return CutLeft(str, chr.ToString());
+            return CutLeft(input, chr.ToString());
         }
 
-        public static string CutLeft(this string str, string start)
+        public static string CutLeft(this string input, string start)
         {
-            if (str.StartsWith(start)) return str.CutLeft(start.Length);
-            return str;
+            if (input.StartsWith(start)) return input.CutLeft(start.Length);
+            return input;
         }
 
-        public static string CutLeft(this string str, int length)
+        public static string CutLeft(this string input, int length)
         {
-            return str.Right(str.Length - length);
+            return input.Right(input.Length - length);
         }
 
-        public static string FromTill(this string str, int startIndex, int endIndex)
+        public static string FromTill(this string input, int startIndex, int endIndex)
         {
-            return str.Substring(startIndex, endIndex - startIndex + 1);
+            return input.Substring(startIndex, endIndex - startIndex + 1);
+        }
+
+        public static string CutRightUntil(this string input, string until)
+        {
+            if (until == null) throw new ArgumentNullException("until");
+            int index = input.LastIndexOf(until);
+            if (index == -1) return input;
+            string output = input.Left(index + until.Length);
+            return output;
+        }
+
+        public static string CutLeftUntil(this string input, string until)
+        {
+            if (until == null) throw new ArgumentNullException("until");
+            int index = input.IndexOf(until);
+            if (index == -1) return input;
+            string output = input.Right(input.Length - index);
+            return output;
         }
     }
 }

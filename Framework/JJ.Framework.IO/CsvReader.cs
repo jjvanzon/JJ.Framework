@@ -10,6 +10,8 @@ namespace JJ.Framework.IO
 {
     public class CsvReader : IDisposable
     {
+        // TODO: Enforce number of columns.
+
         private Stream _stream;
         private StreamReader _reader;
         private string[] _values;

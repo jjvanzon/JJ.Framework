@@ -10,7 +10,7 @@ using System.Web.Mvc.Html;
 
 namespace JJ.Framework.Presentation.AspNetMvc4
 {
-    public static class HtmlHelperExtensions
+    public static partial class HtmlHelperExtensions
     {
         /// <summary>
         /// Adds a hidden input element for every model property (to keep the view model in tact between posts).
@@ -30,11 +30,28 @@ namespace JJ.Framework.Presentation.AspNetMvc4
                 string name = property.Name;
                 object value = property.GetValue(model);
                 //string html = htmlHelper.Hidden(name, value).ToString(); // Generates more attributes than I want.
-                string html = String.Format(@"<input name=""{0}"" id=""{0}"" type=""hidden"" value=""{1}""/>", htmlHelper.Encode(name), htmlHelper.Encode(value));
+                //string html = String.Format(@"<input name=""{0}"" id=""{0}"" type=""hidden"" value=""{1}""/>", htmlHelper.Encode(name), htmlHelper.Encode(value));
+                string html = htmlHelper.Hidden(name, value).ToString();
                 sb.AppendLine(html);
             }
 
             return new MvcHtmlString(sb.ToString());
+        }
+
+        /// <summary>
+        /// Own version of Html.Hidden. The one from Microsoft can generate false when you pass true to it, and also generates more attributes than required.
+        /// </summary>
+        /// <returns></returns>
+        public static MvcHtmlString Hidden(this HtmlHelper htmlHelper, object name, object value)
+        {
+            // Tip from original BeginCollectionItem author:
+            //
+            // "    autocomplete="off" is needed to work around a very annoying Chrome behaviour
+            //      whereby it reuses old values after the user clicks "Back", which causes the
+            //      xyz.index and xyz[...] values to get out of sync.   "
+
+            string html = String.Format(@"<input name=""{0}"" id=""{0}"" type=""hidden"" value=""{1}"" autocomplete=""off""/>", htmlHelper.Encode(name), htmlHelper.Encode(value));
+            return new MvcHtmlString(html);
         }
 
         public static MvcHtmlString ActionLinkWithCollection<T>(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName, string parameterName, IEnumerable<T> collection)
