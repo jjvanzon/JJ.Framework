@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HtmlToXmlConverter.cs" />
+    <Compile Include="IEnumerableTExtensions.cs" />
     <Compile Include="StringExtensions.Split.cs" />
     <Compile Include="IEnumerableOfStringExtensions.cs" />
     <Compile Include="InvalidEnumValueException.cs" />

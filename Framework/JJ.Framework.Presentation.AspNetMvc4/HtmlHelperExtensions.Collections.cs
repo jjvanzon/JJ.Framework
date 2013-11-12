@@ -1,27 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc.Html;
-using JJ.Framework.Common;
 
 namespace JJ.Framework.Presentation.AspNetMvc4
 {
-    public static partial class HtmlHelperExtensions
+    public static partial class HtmlHelperExtensions_Collections
     {
+        public static IDisposable BeginItem(this HtmlHelper htmlHelper, Expression<Func<object>> expression)
+        {
+            Qualifier qualifier = GetCurrentQualifier(htmlHelper);
+
+            string identifier = ExpressionHelper.GetExpressionText(expression);
+
+            qualifier.AddItemNode(htmlHelper, identifier);
+
+            return qualifier;
+        }
+
         public static IDisposable BeginCollection(this HtmlHelper htmlHelper, Expression<Func<object>> expression)
         {
             Qualifier qualifier = GetCurrentQualifier(htmlHelper);
 
             string identifier = ExpressionHelper.GetExpressionText(expression);
 
-            qualifier.AddPart(identifier);
+            qualifier.AddCollectionNode(htmlHelper, identifier);
 
             return qualifier;
         }
@@ -30,35 +36,9 @@ namespace JJ.Framework.Presentation.AspNetMvc4
         {
             Qualifier qualifier = GetCurrentQualifier(htmlHelper);
 
-            qualifier.IncrementIndex();
+            qualifier.IncrementIndex(htmlHelper);
 
-            return new DummyDisposable(); // Just for consistent 'using' syntax.
-        }
-
-        public static MvcHtmlString HiddenFor<T>(this HtmlHelper htmlHelper, Expression<Func<T>> expression, T value)
-        {
-            Qualifier qualifier = GetCurrentQualifier(htmlHelper);
-            string qualifierText = qualifier.Text;
-
-            string html = "";
-
-            // When indexes of collections are not consecutive, they do not bind it to the model. Unless you speficy a '{0}.index' hidden field.
-            if (!qualifier.IndexWasAdded)
-            {
-                string collectionName = qualifierText.CutRightUntil("[").CutRight("[");
-                string hiddenIndexFieldName = String.Format("{0}.index", collectionName);
-                string hiddenIndexField = htmlHelper.Hidden(hiddenIndexFieldName, qualifier.Index).ToString();
-                html += hiddenIndexField;
-
-                qualifier.SetIndexWasAdded();
-            }
-
-            string identifier = ExpressionHelper.GetExpressionText(expression);
-            string hiddenFieldName = qualifierText + "." + identifier;
-            string hiddenField = htmlHelper.Hidden(hiddenFieldName, value).ToString();
-            html += hiddenField;
-
-            return new MvcHtmlString(html);
+            return new DummyDisposable(); 
         }
 
         private static object _dictionaryLock = new object();
@@ -71,90 +51,150 @@ namespace JJ.Framework.Presentation.AspNetMvc4
             {
                 object key = Thread.CurrentThread.ManagedThreadId;
 
-                if (_dictionary.ContainsKey(key))
+                if (!_dictionary.ContainsKey(key))
                 {
-                    return _dictionary[key];
+                    _dictionary[key] = new Qualifier(htmlHelper);
                 }
-
-                _dictionary[key] = new Qualifier();
 
                 return _dictionary[key];
             }
         }
 
+        /// <summary>
+        /// A qualifier to which you can add item nodes, collection nodes and indexes.
+        /// Automatically assigns the HtmlFieldPrefix and adds hidden input elements that store the indexes.
+        /// When Dispose is called, the last node of the qualifier is removed.
+        /// </summary>
         private class Qualifier : IDisposable
         {
-            private readonly Stack<QualifierPart> _parts = new Stack<QualifierPart>();
+            private HtmlHelper _originalHtmlHelper;
+            private string _originalHtmlFieldPrefix;
+            private readonly Stack<Node> _nodes = new Stack<Node>();
 
-            public bool IndexWasAdded { get; private set; }
-
-            public void SetIndexWasAdded()
+            public Qualifier(HtmlHelper htmlHelper)
             {
-                IndexWasAdded = true;
+                _originalHtmlHelper = htmlHelper;
+                _originalHtmlFieldPrefix = _originalHtmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix;
             }
 
-            public void AddPart(string identifier)
+            public void AddItemNode(HtmlHelper htmlHelper, string identifier)
             {
-                var part = new QualifierPart { Identifier = identifier };
+                _nodes.Push(new ItemNode(identifier));
 
-                _parts.Push(part);
+                htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = FormatText();
             }
 
-            public void IncrementIndex()
+            public void AddCollectionNode(HtmlHelper htmlHelper, string identifier)
             {
-                QualifierPart part = _parts.Peek();
-                part.Index++;
-                IndexWasAdded = false;
+                _nodes.Push(new CollectionNode(identifier));
             }
-            
-            public int Index
+
+            public void IncrementIndex(HtmlHelper htmlHelper)
             {
-                get
+                // You cannot use the HtmlHelper from the constructor,
+                // because the HtmlHelper can change when you go from one partial view to another.
+
+                var node = _nodes.Peek() as CollectionNode;
+                if (node == null)
                 {
-                    QualifierPart part = _parts.Peek();
-                    return part.Index;
+                    throw new Exception("Cannot call BeginCollectionItem, because you are not inside a BeginCollection scope.");
                 }
+
+                node.IncrementIndex();
+
+                WriteHiddenIndexField(htmlHelper, node.Index);
+
+                htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = FormatText();
             }
 
-            public string Text
+            private void WriteHiddenIndexField(HtmlHelper htmlHelper, int index)
             {
-                get { return String.Join(".", _parts.Select(x => x.Text).Reverse()); }
+                // When indexes of collections are not consecutive, they do not bind it to the model. Unless you add a '{0}.index' hidden field.
+
+                TextWriter writer = htmlHelper.ViewContext.Writer;
+
+                string formattedText = FormatText();
+                string collectionName = CutOffIndex(formattedText);
+                string indexFieldName = String.Format("{0}.index", collectionName);
+
+                // Tip from original BeginCollectionItem author:
+                // "    autocomplete="off" is needed to work around a very annoying Chrome behaviour
+                //      whereby it reuses old values after the user clicks "Back", which causes the
+                //      xyz.index and xyz[...] values to get out of sync.   "
+
+                // You cannot use HtmlHelper.Hidden, because it will use the wrong name prefix, and also generate a bad ID field with the wrong prefix.
+                string html = String.Format(@"<input type=""hidden"" name=""{0}"" value=""{1}"" autocomplete=""off""/>", htmlHelper.Encode(indexFieldName), htmlHelper.Encode(index));
+
+                writer.Write(html);
             }
 
-            // This is not really a dispose. It is called multiple times.
+            private string CutOffIndex(string input)
+            {
+                int pos = input.LastIndexOf('[');
+                string output = input.Substring(0, pos);
+                return output;
+            }
+
+            public string FormatText()
+            {
+                return String.Join(".", _nodes.Select(x => x.FormatText()).Reverse());
+            }
+
             public void Dispose()
             {
-                if (_parts.Count > 0)
+                if (_nodes.Count > 0)
                 {
-                    _parts.Pop();
+                    _nodes.Pop();
+                }
+                else
+                {
+                    _originalHtmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = _originalHtmlFieldPrefix;
                 }
             }
         }
 
-        private class QualifierPart
+        private abstract class Node
         {
-            public QualifierPart()
+            public string Identifier { get; private set; }
+
+            public Node(string identifier)
+            {
+                Identifier = identifier;
+            }
+
+            public abstract string FormatText();
+        }
+
+        private class ItemNode : Node
+        {
+            public ItemNode(string identifier)
+                : base(identifier)
+            { }
+
+            public override string FormatText()
+            {
+                return Identifier;
+            }
+        }
+
+        private class CollectionNode : Node
+        {
+            public CollectionNode(string identifier)
+                : base(identifier)
             {
                 Index = -1;
             }
 
-            public string Identifier { get; set; }
+            public int Index { get; private set; }
 
-            public int Index { get; set; }
-
-            public string Text
+            public void IncrementIndex()
             {
-                get 
-                {
-                    if (Index == -1)
-                    {
-                        return Identifier;
-                    }
-                    else
-                    {
-                        return Identifier + "[" + Index.ToString() + "]";
-                    }
-                }
+                Index++;
+            }
+
+            public override string FormatText()
+            {
+                return Identifier + "[" + Index.ToString() + "]";
             }
         }
 

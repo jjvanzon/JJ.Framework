@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.OneOff.BeginCollectionItemTest.ViewModels.ItemViewModel>" %>
 <%@ Import Namespace="HtmlHelpers.BeginCollectionItem" %>
-<%@ Import Namespace="JJ.Framework.Presentation.AspNetMvc4" %>
 <%@ Import Namespace="JJ.OneOff.BeginCollectionItemTest.Views" %>
 <%@ Import Namespace="JJ.OneOff.BeginCollectionItemTest.ViewModels" %>
 
