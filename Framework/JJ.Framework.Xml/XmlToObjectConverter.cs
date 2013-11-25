@@ -10,12 +10,15 @@ using System.Xml;
 using System.Xml.Serialization;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
+using JJ.Framework.Xml.Internal;
 
-namespace JJ.Framework.Configuration
+namespace JJ.Framework.Xml
 {
-    internal class XmlToObjectConverter<T>
+    public class XmlToObjectConverter<T>
         where T: new()
     {
+        // TODO: Support standard <add> syntax for XML arrays.
+
         public T Convert(XmlNode sourceNode)
         {
             T destObject = new T();
@@ -43,7 +46,7 @@ namespace JJ.Framework.Configuration
                         break;
 
                     default:
-                        throw new InvalidEnumValueException(nodeType);
+                        throw new InvalidValueException(nodeType);
                 }
             }
         }
@@ -94,7 +97,7 @@ namespace JJ.Framework.Configuration
         {
             XmlAttribute sourceAttribute = GetSourceAttribute(sourceParentNode, destProperty);
             string sourceValue = GetSourceValue(sourceAttribute);
-            object destValue = ConfigurationHelper.ConvertValue(sourceValue, destProperty.PropertyType);
+            object destValue = ConversionHelper.ConvertValue(sourceValue, destProperty.PropertyType);
             destProperty.SetValue(destObject, destValue);
         }
 
@@ -140,7 +143,7 @@ namespace JJ.Framework.Configuration
             if (IsLeafType(type))
             {
                 string sourceValue = GetSourceValue(sourceElement);
-                object destValue = ConfigurationHelper.ConvertValue(sourceValue, type);
+                object destValue = ConversionHelper.ConvertValue(sourceValue, type);
                 destProperty.SetValue(destObject, destValue);
             }
             else
@@ -206,7 +209,7 @@ namespace JJ.Framework.Configuration
                 if (IsLeafType(itemType))
                 {
                     string sourceValue = GetSourceValue(sourceItem);
-                    object destValue = ConfigurationHelper.ConvertValue(sourceValue, itemType);
+                    object destValue = ConversionHelper.ConvertValue(sourceValue, itemType);
                     destArray.SetValue(destValue, i);
                 }
                 else
@@ -283,11 +286,9 @@ namespace JJ.Framework.Configuration
             return type.IsReferenceType() || type.IsNullableType();
         }
 
-        private HashSet<Type> _additionalLeafTypes = new HashSet<Type> { typeof(string) };
-
         private bool IsLeafType(Type type)
         {
-            return type.IsValueType || type.IsPrimitive || _additionalLeafTypes.Contains(type);
+            return type.IsPrimitive || type == typeof(string);
         }
     }
 }

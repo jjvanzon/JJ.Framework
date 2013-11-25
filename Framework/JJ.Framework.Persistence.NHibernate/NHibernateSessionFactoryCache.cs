@@ -13,9 +13,9 @@ namespace JJ.Framework.Persistence.NHibernate
 {
     internal static class NHibernateSessionFactoryCache
     {
-        private static object _lock = new object();
-        private static Dictionary<string, ISessionFactory> _dictionary = new Dictionary<string, ISessionFactory>();
-        private static string _separator = "a3ac31a9-708b-41da-b497-b451b9582fd8";
+        private static readonly object _lock = new object();
+        private static readonly Dictionary<string, ISessionFactory> _dictionary = new Dictionary<string, ISessionFactory>();
+        private static readonly string _separator = "a3ac31a9-708b-41da-b497-b451b9582fd8";
 
         public static ISessionFactory GetSessionFactory(string connectionString, params Assembly[] modelAssemblies)
         {

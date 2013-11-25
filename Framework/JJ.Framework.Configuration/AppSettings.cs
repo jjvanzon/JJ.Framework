@@ -15,7 +15,7 @@ namespace JJ.Framework.Configuration
         {
             string name = ExpressionHelper.GetName(expression);
             string stringValue = System.Configuration.ConfigurationManager.AppSettings[name];
-            TValue value = ConfigurationHelper.ConvertValue<TValue>(stringValue);
+            TValue value = ConversionHelper.ConvertValue<TValue>(stringValue);
             return value;
         }
     }

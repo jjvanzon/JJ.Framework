@@ -23,6 +23,11 @@ namespace JJ.Framework.Common
             return value.Split(separator, StringSplitOptions.None, quote);
         }
 
+        public static string[] Split(this string value, params string[] separators)
+        {
+            return value.Split(separators, StringSplitOptions.None);
+        }
+
         public static string[] Split(this string value, string separator, StringSplitOptions options, char? quote)
         {
             // TODO: Make code better understandable.
@@ -73,7 +78,7 @@ namespace JJ.Framework.Common
                 strings.Add(str2);
             }
 
-            return strings.Trim(quote.Value);
+            return strings.TrimAll(quote.Value);
         }
     }
 }

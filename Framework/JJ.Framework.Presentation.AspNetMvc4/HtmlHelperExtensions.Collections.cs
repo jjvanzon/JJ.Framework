@@ -41,22 +41,22 @@ namespace JJ.Framework.Presentation.AspNetMvc4
             return new DummyDisposable(); 
         }
 
-        private static object _dictionaryLock = new object();
+        private static object _qualifierDictionaryLock = new object();
 
-        private static Dictionary<object, Qualifier> _dictionary = new Dictionary<object, Qualifier>();
+        private static Dictionary<object, Qualifier> _qualifierDictionary = new Dictionary<object, Qualifier>();
 
         private static Qualifier GetCurrentQualifier(HtmlHelper htmlHelper)
         {
-            lock (_dictionaryLock)
+            lock (_qualifierDictionaryLock)
             {
                 object key = Thread.CurrentThread.ManagedThreadId;
 
-                if (!_dictionary.ContainsKey(key))
+                if (!_qualifierDictionary.ContainsKey(key))
                 {
-                    _dictionary[key] = new Qualifier(htmlHelper);
+                    _qualifierDictionary[key] = new Qualifier(htmlHelper);
                 }
 
-                return _dictionary[key];
+                return _qualifierDictionary[key];
             }
         }
 
@@ -64,11 +64,12 @@ namespace JJ.Framework.Presentation.AspNetMvc4
         /// A qualifier to which you can add item nodes, collection nodes and indexes.
         /// Automatically assigns the HtmlFieldPrefix and adds hidden input elements that store the indexes.
         /// When Dispose is called, the last node of the qualifier is removed.
+        /// If no nodes are left, Dispose restores the original HtmlFieldPrefix.
         /// </summary>
         private class Qualifier : IDisposable
         {
-            private HtmlHelper _originalHtmlHelper;
-            private string _originalHtmlFieldPrefix;
+            private readonly HtmlHelper _originalHtmlHelper;
+            private readonly string _originalHtmlFieldPrefix;
             private readonly Stack<Node> _nodes = new Stack<Node>();
 
             public Qualifier(HtmlHelper htmlHelper)

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Configuration
+namespace JJ.Framework.Xml.Internal
 {
-    internal static class ConfigurationHelper
+    internal static class ConversionHelper
     {
         public static TValue ConvertValue<TValue>(object input)
         {

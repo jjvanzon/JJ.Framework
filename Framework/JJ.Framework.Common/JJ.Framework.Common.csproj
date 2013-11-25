@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SgmlReaderDll">
-      <HintPath>..\..\External Components\SgmlReader\SgmlReaderDll.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,8 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HtmlToXmlConverter.cs" />
-    <Compile Include="IEnumerableTExtensions.cs" />
+    <Compile Include="IEnumerableOfTExtensions.cs" />
     <Compile Include="StringExtensions.Split.cs" />
     <Compile Include="IEnumerableOfStringExtensions.cs" />
     <Compile Include="InvalidEnumValueException.cs" />

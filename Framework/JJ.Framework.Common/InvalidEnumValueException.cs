@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Common
 {
-    public class InvalidEnumValueException : Exception
+    public class InvalidValueException : Exception
     {
-        private const string MESSAGE = "Invalid {0} enum value: '{1}'.";
+        private const string MESSAGE = "Invalid {0} value: '{1}'.";
 
-        public InvalidEnumValueException(object value)
+        public InvalidValueException(object value)
             : base(String.Format(MESSAGE, value.GetType(), value))
         { }
     }

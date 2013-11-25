@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace JJ.Framework.Common
+namespace JJ.Framework.Xml
 {
     public static class HtmlToXmlConverter
     {

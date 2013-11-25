@@ -10,12 +10,12 @@ namespace JJ.Framework.Validation
     {
         public ValidatorBase(T obj)
         {
-            X = obj;
+            Object = obj;
 
             Execute();
         }
 
-        public T X { get; private set; }
+        public T Object { get; private set; }
 
         protected abstract void Execute();
 

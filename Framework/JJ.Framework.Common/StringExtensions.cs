@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace JJ.Framework.Common
@@ -71,6 +72,30 @@ namespace JJ.Framework.Common
             if (index == -1) return input;
             string output = input.Right(input.Length - index);
             return output;
+        }
+
+        /// <summary>
+        /// Trims and replaces sequences of two or more white space characters by a single space.
+        /// </summary>
+        public static string RemoveExcessiveWhiteSpace(this string text)
+        {
+            text = text.Trim();
+
+            // Replace two or more white space characters by a single space.
+            Regex regex = new Regex(@"(\s{2,})");
+            text = regex.Replace(text, " ");
+
+            return text;
+        }
+
+        public static string StartWithCap(this string input)
+        {
+            if (input.Length == 0)
+            {
+                return input;
+            }
+
+            return input.Left(1).ToUpper() + input.CutLeft(1);
         }
     }
 }

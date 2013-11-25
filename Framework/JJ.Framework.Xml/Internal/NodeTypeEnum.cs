@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Configuration
+namespace JJ.Framework.Xml.Internal
 {
     internal enum NodeTypeEnum
     {

@@ -22,7 +22,13 @@ namespace JJ.Framework.Maths
 
         public static T GetRandomItem<T>(IEnumerable<T> collection)
         {
-            int index = Randomizer.GetInt32(collection.Count() - 1);
+            int count = collection.Count();
+            if (count == 0)
+            {
+                throw new Exception("Collection is empty.");
+            }
+
+            int index = Randomizer.GetInt32(count - 1);
             return collection.ElementAt(index);
         }
     }
