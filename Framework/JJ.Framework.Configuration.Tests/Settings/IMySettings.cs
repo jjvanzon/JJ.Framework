@@ -7,8 +7,8 @@ using System.Xml.Serialization;
 
 namespace JJ.Framework.Configuration.Tests
 {
-    public class MySettings
+    public interface IMySettings
     {
-        public int MySetting { get; set; }
+        int MySetting { get; }
     }
 }

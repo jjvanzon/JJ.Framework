@@ -54,9 +54,9 @@
   <ItemGroup>
     <Compile Include="AppSettingsTest.cs" />
     <Compile Include="ConfigurationManagerTests.cs" />
-    <Compile Include="Settings\MySettings.cs" />
     <Compile Include="Settings\IMySettings.cs" />
-    <Compile Include="Settings\ISubConfiguration.cs" />
+    <Compile Include="Settings\MySettings.cs" />
+    <Compile Include="Settings\TestSubConfiguration.cs" />
     <Compile Include="Settings\TestConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
