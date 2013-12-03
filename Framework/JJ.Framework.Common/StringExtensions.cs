@@ -97,5 +97,18 @@ namespace JJ.Framework.Common
 
             return input.Left(1).ToUpper() + input.CutLeft(1);
         }
+
+        public static string Replace(this string input, string oldValue, string newValue, bool ignoreCase)
+        {
+            RegexOptions options = default(RegexOptions);
+            if (ignoreCase)
+            {
+                options = RegexOptions.IgnoreCase;
+            }
+
+            var regex = new Regex(Regex.Escape(oldValue), options);
+            string output = regex.Replace(input, newValue);
+            return output;
+        }
     }
 }

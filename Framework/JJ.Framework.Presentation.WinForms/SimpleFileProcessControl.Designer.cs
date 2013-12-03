@@ -104,7 +104,7 @@
             this.labelDescription.TabIndex = 10;
             this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // SimpleProcessControl
+            // SimpleFileProcessControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -114,8 +114,9 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.labelProgress);
             this.Controls.Add(this.buttonStart);
-            this.Name = "SimpleProcessControl";
+            this.Name = "SimpleFileProcessControl";
             this.Size = new System.Drawing.Size(506, 255);
+            this.Load += new System.EventHandler(this.SimpleFileProcessControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

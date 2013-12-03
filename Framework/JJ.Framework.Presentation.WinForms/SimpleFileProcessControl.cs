@@ -20,7 +20,10 @@ namespace JJ.Framework.Presentation.WinForms
             InitializeComponent();
 
             _isRunning = false;
+        }
 
+        private void SimpleFileProcessControl_Load(object sender, EventArgs e)
+        {
             ApplyIsRunning();
         }
 
@@ -38,27 +41,31 @@ namespace JJ.Framework.Presentation.WinForms
         {
             if (MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                RunProcess(textBoxFilePath.Text);
+                // you cannot use the property on another thread.
+                string filePath = FilePath;
+
+                Async(() => RunProcess(filePath));
             }
         }
 
-        private void RunProcess(string filePath)
+        private void Cancel()
         {
-            Async(() => RunProcessSync(filePath));
+            IsRunning = false;
         }
 
-        private void RunProcessSync(string filePath)
+        // Processing
+
+        private void RunProcess(string filePath)
         {
-            _isRunning = true;
+            IsRunning = true;
 
-            ApplyIsRunningAsync();
-
+            // try-catch outcommented because the Microsoft Visual Studio 2012 Express for Web only breaks on non-user-handled exceptions.
             /*try
             {*/
-                if (OnRunProcess != null)
-                {
-                    OnRunProcess(this, EventArgs.Empty);
-                }
+            if (OnRunProcess != null)
+            {
+                OnRunProcess(this, EventArgs.Empty);
+            }
             /*}
             catch (Exception ex)
             {
@@ -72,36 +79,14 @@ namespace JJ.Framework.Presentation.WinForms
                 }
             }*/
 
-            _isRunning = false;
-
-            ApplyIsRunningAsync();
+            IsRunning = false;
         }
+
+        // Progress Label
 
         public void ShowProgress(string message)
         {
-            OnUiThread(() => ShowProgressSync(message));
-        }
-
-        private void ShowProgressSync(string message)
-        {
-            labelProgress.Text = message;
-        }
-
-        private void Cancel()
-        {
-            _isRunning = false;
-            ApplyIsRunning();
-        }
-
-        private void OnUiThread(Action action)
-        {
-            this.BeginInvoke(action);
-        }
-
-        private void Async(Action action)
-        {
-            var thread = new Thread(new ThreadStart(action));
-            thread.Start();
+            OnUiThread(() => labelProgress.Text = message);
         }
 
         // IsRunning
@@ -114,22 +99,19 @@ namespace JJ.Framework.Presentation.WinForms
             get { return _isRunning; }
             set 
             {
-                if (_isRunning == value) return;
                 _isRunning = value;
-                ApplyIsRunningAsync();
+                ApplyIsRunning();
             }
-        }
-
-        private void ApplyIsRunningAsync()
-        {
-            OnUiThread(() => ApplyIsRunning());
         }
 
         private void ApplyIsRunning()
         {
-            buttonStart.Enabled = !_isRunning;
-            buttonCancel.Enabled = _isRunning;
-            textBoxFilePath.Enabled = !_isRunning;
+            OnUiThread(() =>
+            {
+                buttonStart.Enabled = !_isRunning;
+                buttonCancel.Enabled = _isRunning;
+                textBoxFilePath.Enabled = !_isRunning;
+            });
         }
 
         // Other Properties
@@ -147,6 +129,19 @@ namespace JJ.Framework.Presentation.WinForms
         {
             get { return labelDescription.Text; ; }
             set { labelDescription.Text = value; }
+        }
+
+        // Helpers
+
+        private void OnUiThread(Action action)
+        {
+            this.BeginInvoke(action);
+        }
+
+        private void Async(Action action)
+        {
+            var thread = new Thread(new ThreadStart(action));
+            thread.Start();
         }
     }
 }
