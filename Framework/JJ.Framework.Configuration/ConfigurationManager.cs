@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using JJ.Framework.Xml;
+using System.Configuration;
 
 namespace JJ.Framework.Configuration
 {
-    public static class ConfigurationManager
+    public static class CustomConfigurationManager
     {
         public static T GetSection<T>()
             where T : new()
@@ -36,7 +37,7 @@ namespace JJ.Framework.Configuration
         public static T GetSection<T>(string sectionName)
             where T : new()
         {
-            XmlNode sourceNode = (XmlNode)System.Configuration.ConfigurationManager.GetSection(sectionName);
+            XmlNode sourceNode = (XmlNode)ConfigurationManager.GetSection(sectionName);
             if (sourceNode == null)
             {
                 throw new Exception(String.Format("Configuration section '{0}' not found.", sectionName));

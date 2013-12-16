@@ -8,7 +8,7 @@ namespace JJ.Framework.Maths
 {
     public static class Randomizer
     {
-        private static Random _random = new Random((int)(new DateTime().TimeOfDay.Ticks));
+        private static Random _random = new Random((int)(DateTime.Now.TimeOfDay.Ticks));
 
         public static int GetInt32(int max)
         {

@@ -53,7 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AppSettingsTest.cs" />
-    <Compile Include="ConfigurationManagerTests.cs" />
+    <Compile Include="CustomConfigurationManagerTests.cs" />
     <Compile Include="Settings\IMySettings.cs" />
     <Compile Include="Settings\MySettings.cs" />
     <Compile Include="Settings\TestSubConfiguration.cs" />

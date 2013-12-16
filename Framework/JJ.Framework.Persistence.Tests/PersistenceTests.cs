@@ -351,7 +351,7 @@ namespace JJ.Framework.Persistence.Tests
 
         private ConfigurationSection GetConfiguration()
         {
-            return ConfigurationManager.GetSection<ConfigurationSection>();
+            return CustomConfigurationManager.GetSection<ConfigurationSection>();
         }
     }
 }
