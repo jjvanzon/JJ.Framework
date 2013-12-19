@@ -16,7 +16,7 @@ namespace JJ.Framework.Persistence
         /// Creates a context using the values out of the config file.
         /// A configuration example can be found in your bin directory.
         /// </summary>
-        public static IContext CreateContext()
+        public static IContext CreateContextFromConfiguration()
         {
             PersistenceConfiguration persistenceConfiguration = CustomConfigurationManager.GetSection<PersistenceConfiguration>();
 

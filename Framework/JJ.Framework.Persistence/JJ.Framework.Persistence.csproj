@@ -57,20 +57,20 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="JJ.Framework.Persistence Config Example.config">
+    <Content Include="jj.framework.persistence example.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.Debug.config">
-      <DependentUpon>JJ.Framework.Persistence Config Example.config</DependentUpon>
+      <DependentUpon>jj.framework.persistence example.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.Release.config">
-      <DependentUpon>JJ.Framework.Persistence Config Example.config</DependentUpon>
+      <DependentUpon>jj.framework.persistence example.config</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

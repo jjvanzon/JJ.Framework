@@ -16,6 +16,11 @@ namespace JJ.Framework.Xml.Internal
 
         public static object ConvertValue(object input, Type type)
         {
+            if (type.IsEnum)
+            {
+                return Enum.Parse(type, Convert.ToString(input));
+            }
+
             return Convert.ChangeType(input, type);
         }
     }

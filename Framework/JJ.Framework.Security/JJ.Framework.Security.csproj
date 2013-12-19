@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{44FD9133-5FE7-4824-BD35-27273706D127}</ProjectGuid>
+    <ProjectGuid>{4007568E-B2B4-4FC5-AA38-34EDC272F010}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Common</RootNamespace>
-    <AssemblyName>JJ.Framework.Common</AssemblyName>
+    <RootNamespace>JJ.Framework.Security</RootNamespace>
+    <AssemblyName>JJ.Framework.Security</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,13 +39,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ValueNotSupportedException.cs" />
-    <Compile Include="IEnumerableOfTExtensions.cs" />
-    <Compile Include="StringExtensions.Split.cs" />
-    <Compile Include="IEnumerableOfStringExtensions.cs" />
-    <Compile Include="InvalidValueException.cs" />
+    <Compile Include="AuthenticationConfiguration.cs" />
+    <Compile Include="AuthenticationHelper.cs" />
+    <Compile Include="AuthenticationTypeEnum.cs" />
+    <Compile Include="AuthenticatorBase.cs" />
+    <Compile Include="AuthenticatorFactory.cs" />
+    <Compile Include="LiteralPasswordAuthenticator.cs" />
+    <Compile Include="HashedSaltedPasswordAuthenticator.cs" />
+    <Compile Include="IAuthenticator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringExtensions.cs" />
+    <Compile Include="SecurityConfiguration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
+      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj">
+      <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
+      <Name>JJ.Framework.Configuration</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="jj.framework.security example.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
