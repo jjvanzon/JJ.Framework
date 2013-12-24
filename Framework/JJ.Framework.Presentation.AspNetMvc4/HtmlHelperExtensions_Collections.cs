@@ -32,6 +32,8 @@ namespace JJ.Framework.Presentation.AspNetMvc4
             return qualifier;
         }
 
+        // TODO: You need an overload that takes an int index for when the structure in the viewmodel maps to a totally different structure in the view.
+
         public static IDisposable BeginCollectionItem(this HtmlHelper htmlHelper)
         {
             Qualifier qualifier = GetCurrentQualifier(htmlHelper);

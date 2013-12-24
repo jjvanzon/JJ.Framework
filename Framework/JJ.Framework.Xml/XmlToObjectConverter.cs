@@ -26,6 +26,9 @@ namespace JJ.Framework.Xml
             return destObject;
         }
 
+        /// <summary>
+        /// Goes through all the properties of the destObject's type, and tries them fill it in.
+        /// </summary>
         private void ConvertProperties(XmlNode sourceNode, object destObject)
         {
             foreach (PropertyInfo destProperty in destObject.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
