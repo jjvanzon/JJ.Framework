@@ -7,22 +7,16 @@ namespace JJ.Framework.Validation
 {
     public class ValidationMessage
     {
-        public string PropertyDisplayName { get; private set; }
-        public string Message { get; private set; }
+        public string PropertyKey { get; private set; }
+        public string Text { get; private set; }
 
-        public ValidationMessage(string propertyDisplayName, string message)
+        public ValidationMessage(string propertyKey, string text)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName))
-            {
-                throw new ArgumentNullException("propertyDisplayName");
-            }
-            if (String.IsNullOrEmpty(message))
-            {
-                throw new ArgumentNullException("message");
-            }
+            if (String.IsNullOrEmpty(propertyKey)) throw new ArgumentNullException("propertyKey");
+            if (String.IsNullOrEmpty(text)) throw new ArgumentNullException("text");
 
-            PropertyDisplayName = propertyDisplayName;
-            Message = message;
+            PropertyKey = propertyKey;
+            Text = text;
         }
     }
 }

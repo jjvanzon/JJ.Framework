@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Presentation.AspNetMvc4
 {
@@ -38,17 +39,33 @@ namespace JJ.Framework.Presentation.AspNetMvc4
         }
 
         /// <summary>
-        /// Own version of Html.Hidden. The one from Microsoft can generate false when you pass true to it, and also generates more attributes than required.
+        /// Own version of Html.Hidden. The one from Microsoft can generate a value of false when you pass true to it.
+        /// This only happens when you do not conform to the Post-Redirect-Get pattern.
         /// </summary>
-        public static MvcHtmlString HiddenFor<T>(this HtmlHelper htmlHelper, Expression<Func<T>> expression, T value)
+        [Obsolete(@"
+Consider using the standard MVC HiddenFor and conforming to the Post-Redirect-Get pattern.
+Or rather: 
+- At the end of your post action method store the necessary data / viewmodel in the TempData dictionary of the Controller base class.
+- Then do a RedirectToAction to the Get action.
+- In the Get action method, pick up the viewmodel out of the TempData dictionary if it is present there. Otherwise just create new one.")]
+        public static MvcHtmlString HiddenFor<T>(this HtmlHelper htmlHelper, Expression<Func<T>> expression)
         {
-            string name = ExpressionHelper.GetExpressionText(expression);
+            //string name = JJ.Framework.Reflection.ExpressionHelper.GetName(expression);
+            string name = System.Web.Mvc.ExpressionHelper.GetExpressionText(expression); // The one from MVC will get the appropriate portion of a complex expression, for when you don't use BeginCollection().
+            T value = JJ.Framework.Reflection.ExpressionHelper.GetValue(expression);
             return htmlHelper.Hidden(name, value);
         }
 
         /// <summary>
-        /// Own version of Html.Hidden. The one from Microsoft can generate false when you pass true to it, and also generates more attributes than required.
+        /// Own version of Html.Hidden. The one from Microsoft can generate a value of false when you pass true to it.
+        /// This only happens when you do not conform to the Post-Redirect-Get pattern.
         /// </summary>
+        [Obsolete(@"
+Consider using the standard MVC HiddenFor and conforming to the Post-Redirect-Get pattern.
+Or rather: 
+- At the end of your post action method store the necessary data / viewmodel in the TempData dictionary of the Controller base class.
+- Then do a RedirectToAction to the Get action.
+- In the Get action method, pick up the viewmodel out of the TempData dictionary if it is present there. Otherwise just create new one.")]
         public static MvcHtmlString Hidden(this HtmlHelper htmlHelper, string name, object value)
         {
             // Tip from original BeginCollectionItem author:

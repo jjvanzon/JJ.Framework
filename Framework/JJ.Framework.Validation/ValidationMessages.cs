@@ -11,9 +11,9 @@ namespace JJ.Framework.Validation
     {
         private readonly List<ValidationMessage> _list = new List<ValidationMessage>();
 
-        public void Add(string propertyDisplayName, string message)
+        public void Add(string propertyKey, string message)
         {
-            _list.Add(new ValidationMessage(propertyDisplayName, message));
+            _list.Add(new ValidationMessage(propertyKey, message));
         }
 
         public int Count
@@ -36,7 +36,7 @@ namespace JJ.Framework.Validation
             return _list.GetEnumerator();
         }
 
-        public void AddRange(ValidationMessages validationMessages)
+        public void AddRange(IEnumerable<ValidationMessage> validationMessages)
         {
             _list.AddRange(validationMessages);
         }

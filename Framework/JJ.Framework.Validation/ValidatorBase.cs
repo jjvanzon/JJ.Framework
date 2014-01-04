@@ -31,18 +31,21 @@ namespace JJ.Framework.Validation
         {
             if (ValidationMessages.Count > 0)
             {
-                throw new Exception(ValidationMessages[0].Message);
+                throw new Exception(ValidationMessages[0].Text);
             }
         }
 
-        protected void Execute(IValidator validator)
+        protected void Execute(IValidator validator, string messageHeading = null)
         {
             if (validator == null)
             {
                 throw new ArgumentNullException("validator");
             }
-            ValidationMessages validationMessages2 = validator.ValidationMessages;
-            ValidationMessages.AddRange(validationMessages2);
+
+            foreach (ValidationMessage validationMessage in validator.ValidationMessages)
+            {
+                ValidationMessages.Add(validationMessage.PropertyKey, messageHeading + validationMessage.Text);
+            }
         }
     }
 }
