@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace JJ.Framework.Presentation.AspNetMvc4
+namespace JJ.Framework.Presentation.Mvc
 {
     public static class UrlHelpers // Plural not to conflict with the name 'UrlHelper'.
     {

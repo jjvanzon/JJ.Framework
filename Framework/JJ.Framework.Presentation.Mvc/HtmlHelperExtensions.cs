@@ -10,7 +10,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Presentation.AspNetMvc4
+namespace JJ.Framework.Presentation.Mvc
 {
     public static partial class HtmlHelperExtensions
     {

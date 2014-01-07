@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Web.Mvc;
 
-namespace JJ.Framework.Presentation.AspNetMvc4
+namespace JJ.Framework.Presentation.Mvc
 {
     public static class HtmlHelperExtensions_Collections
     {

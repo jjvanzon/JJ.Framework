@@ -7,7 +7,7 @@
 //using System.Web;
 //using System.Web.Mvc;
 
-//namespace JJ.Framework.Presentation.AspNetMvc4
+//namespace JJ.Framework.Presentation.Mvc
 //{
 //    public static class UrlHelperExtensions
 //    {
