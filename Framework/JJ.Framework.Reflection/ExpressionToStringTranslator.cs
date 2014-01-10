@@ -12,6 +12,9 @@ namespace JJ.Framework.Reflection
     {
         // Not using the ExpressionVisitor base class performs better.
 
+        /// <summary> If you set this to true, an expression like MyArray[i] will translate to e.g. "MyArray[2]", instead of "MyArray[i]". </summary>
+        public bool ShowIndexerValues { get; set; }
+
         private StringBuilder sb = new StringBuilder();
 
         public string Result
@@ -36,7 +39,7 @@ namespace JJ.Framework.Reflection
             Visit(expression.Body);
         }
 
-        private void Visit(Expression node)
+        public void Visit(Expression node)
         {
             switch (node.NodeType)
             {
@@ -184,10 +187,11 @@ namespace JJ.Framework.Reflection
                 sb.Append("[");
                 for (int i = 0; i < node.Arguments.Count - 1; i++)
                 {
-                    Visit(node.Arguments[i]);
+                    VisitIndexerValue(node.Arguments[i]);
                     sb.Append(", ");
                 }
-                Visit(node.Arguments[node.Arguments.Count - 1]);
+
+                VisitIndexerValue(node.Arguments[node.Arguments.Count - 1]);
                 sb.Append("]");
             }
             else
@@ -227,11 +231,39 @@ namespace JJ.Framework.Reflection
 
             sb.Append("[");
 
-            var constantExpression = (ConstantExpression)node.Right;
-            int index = (int)constantExpression.Value;
-            sb.Append(index);
+            switch (node.Right.NodeType)
+            {
+                case ExpressionType.Constant:
+                    var constantExpression = (ConstantExpression)node.Right;
+                    int index = (int)constantExpression.Value;
+                    sb.Append(index);
+                    break;
+
+                case ExpressionType.MemberAccess:
+                    var memberExpression2 = (MemberExpression)node.Right;
+                    VisitIndexerValue(memberExpression2);
+                    break;
+            }
 
             sb.Append("]");
+        }
+
+        /// <summary>
+        /// Normally indexers are shown as the expression that they are, e.g. [i].
+        /// If ShowIndexerValues is set to true, indexers are translated to their value, e.g. [2].
+        /// To translate to their value, the work is delegated to ExpressionToValueTranslator.
+        /// </summary>
+        private void VisitIndexerValue(Expression node)
+        {
+            if (ShowIndexerValues)
+            {
+                object value = ExpressionHelper.GetValue(node);
+                sb.Append(value);
+            }
+            else
+            {
+                Visit(node);
+            }
         }
 
         private void VisitNewArray(NewArrayExpression node)

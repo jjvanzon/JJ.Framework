@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 
-namespace JJ.Framework.Reflection
+namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {
-    internal class ExpressionToValueTranslator
+    public class ExpressionToValueTranslator : ExpressionVisitor, IExpressionToValueTranslator
     {
-        // Not using the ExpressionVisitor base class performs better.
-
         private Stack<object> Stack = new Stack<object>();
 
-        public object Result
+        public object Result 
         {
             get { return Stack.Peek(); }
         }
@@ -28,71 +26,54 @@ namespace JJ.Framework.Reflection
             Visit(expression.Body);
         }
 
-        public void Visit(Expression node)
+        public override Expression Visit(Expression node)
         {
             switch (node.NodeType)
             {
                 case ExpressionType.MemberAccess:
-                {
                     var memberExpression = (MemberExpression)node;
                     VisitMember(memberExpression);
-                    return;
-                }
+                    return node;
 
                 case ExpressionType.Convert:
                 case ExpressionType.ConvertChecked:
-                {
-                    var unaryExpression = (UnaryExpression)node;
-                    VisitConvert(unaryExpression);
-                    return;
-                }
-
                 case ExpressionType.ArrayLength:
-                {
                     var unaryExpression = (UnaryExpression)node;
-                    VisitArrayLength(unaryExpression);
-                    return;
-                }
+                    VisitUnary(unaryExpression);
+                    return node;
 
                 case ExpressionType.Call:
-                {
                     var methodCallExpression = (MethodCallExpression)node;
                     VisitMethodCall(methodCallExpression);
-                    return;
-                }
+                    return node;
 
                 case ExpressionType.Constant:
-                {
                     var constantExpression = (ConstantExpression)node;
                     Stack.Push(constantExpression.Value);
-                    return;
-                }
+                    return node;
 
                 case ExpressionType.ArrayIndex:
-                {
                     var binaryExpression = (BinaryExpression)node;
                     VisitArrayIndex(binaryExpression);
-                    return;
-                }
+                    return node;
 
                 case ExpressionType.NewArrayInit:
-                {
                     var newArrayExpression = (NewArrayExpression)node;
                     VisitNewArray(newArrayExpression);
-                    return;
-                }
+                    return node;
+
+                default:
+                    throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", node.NodeType));
             }
-
-            throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", node.NodeType));
         }
 
-        private void VisitConstant(UnaryExpression unaryExpression)
+        protected override Expression VisitConstant(ConstantExpression node)
         {
-            var constantExpression = (ConstantExpression)unaryExpression.Operand;
-            Stack.Push(constantExpression.Value);
+            Stack.Push(node.Value);
+            return node;
         }
 
-        private void VisitMember(MemberExpression node)
+        protected override Expression VisitMember(MemberExpression node)
         {
             // First process 'parent' node.
             if (node.Expression != null)
@@ -112,8 +93,10 @@ namespace JJ.Framework.Reflection
                     break;
 
                 default:
-                    throw new NotSupportedException(String.Format("MemberTypes other than Field and Property are not supported. MemberType = {0}", node.Member.MemberType));
+                    throw new NotSupportedException(String.Format("MemberTypes ofther than Field and Property are not supported. MemberType = {0}", node.Member.MemberType));
             }
+
+            return node;
         }
 
         private void VisitField(MemberExpression node)
@@ -141,7 +124,7 @@ namespace JJ.Framework.Reflection
             Stack.Push(value);
         }
 
-        private void VisitMethodCall(MethodCallExpression node)
+        protected override Expression VisitMethodCall(MethodCallExpression node)
         {
             if (!node.Method.IsStatic)
             {
@@ -157,7 +140,7 @@ namespace JJ.Framework.Reflection
                 Visit(node.Arguments[i]);
             }
             object[] arguments = new object[node.Arguments.Count];
-            for (int i = node.Arguments.Count - 1; i >= 0; i--)
+            for (int i = 0; i < node.Arguments.Count; i++) 
             {
                 arguments[i] = Stack.Pop();
             }
@@ -165,33 +148,32 @@ namespace JJ.Framework.Reflection
             object obj = Stack.Pop();
             object value = node.Method.Invoke(obj, arguments);
             Stack.Push(value);
+
+            return node;
+        }
+
+        protected override Expression VisitUnary(UnaryExpression node)
+        {
+            switch (node.NodeType)
+            {
+                case ExpressionType.Convert:
+                case ExpressionType.ConvertChecked:
+                    VisitConvert(node);
+                    return node;
+
+                case ExpressionType.ArrayLength:
+                    VisitArrayLength(node);
+                    return node;
+
+                default:
+                    throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.NodeType));
+            }
         }
 
         private void VisitConvert(UnaryExpression node)
         {
-            switch (node.Operand.NodeType)
-            {
-                case ExpressionType.MemberAccess:
-                    var memberExpression = (MemberExpression)node.Operand;
-                    VisitMember(memberExpression);
-                    break;
+            Visit(node.Operand);
 
-                case ExpressionType.Call:
-                    Visit(node.Operand);
-                    break;
-
-                case ExpressionType.ArrayIndex:
-                    var binaryExpression = (BinaryExpression)node.Operand;
-                    VisitArrayIndex(binaryExpression);
-                    break;
-
-                case ExpressionType.Constant:
-                    VisitConstant(node);
-                    break;
-
-                default:
-                    throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.Operand.NodeType));
-            }
             object obj = Stack.Pop();
             if (obj is IConvertible)
             {
@@ -202,16 +184,22 @@ namespace JJ.Framework.Reflection
 
         private void VisitArrayLength(UnaryExpression node)
         {
-            if (node.Operand.NodeType == ExpressionType.MemberAccess)
-            {
-                var memberExpression = (MemberExpression)node.Operand;
-                VisitMember(memberExpression);
-                Array array = (Array)Stack.Pop();
-                Stack.Push(array.Length);
-                return;
-            }
+            Visit(node.Operand);
+            Array array = (Array)Stack.Pop();
+            Stack.Push(array.Length);
+        }
 
-            throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.Operand.NodeType));
+        protected override Expression VisitBinary(BinaryExpression node)
+        {
+            switch (node.NodeType)
+            {
+                case ExpressionType.ArrayIndex:
+                    VisitArrayIndex(node);
+                    return node;
+
+                default:
+                    throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.NodeType));
+            }
         }
 
         private void VisitArrayIndex(BinaryExpression node)
@@ -220,22 +208,12 @@ namespace JJ.Framework.Reflection
             VisitMember(memberExpression);
             var array = (Array)Stack.Pop();
 
-            switch (node.Right.NodeType)
-            {
-                case ExpressionType.Constant:
-                    var constantExpression = (ConstantExpression)node.Right;
-                    int index = (int)constantExpression.Value;
-                    Stack.Push(array.GetValue(index));
-                    break;
-
-                case ExpressionType.MemberAccess:
-                    var memberExpression2 = (MemberExpression)node.Right;
-                    VisitMember(memberExpression2);
-                    break;
-            }
+            var constantExpression = (ConstantExpression)node.Right;
+            int index = (int)constantExpression.Value;
+            Stack.Push(array.GetValue(index));
         }
 
-        private void VisitNewArray(NewArrayExpression node)
+        protected override Expression VisitNewArray(NewArrayExpression node)
         {
             for (int i = 0; i < node.Expressions.Count; i++)
             {
@@ -248,6 +226,8 @@ namespace JJ.Framework.Reflection
                 array.SetValue(item, i);
             }
             Stack.Push(array);
+
+            return node;
         }
     }
 }

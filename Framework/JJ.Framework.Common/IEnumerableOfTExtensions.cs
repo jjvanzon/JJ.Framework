@@ -8,17 +8,19 @@ namespace JJ.Framework.Common
 {
     public static class IEnumerableOfTExtensions
     {
+        private static string _separatorGuid;
+        private static string _nullGuid;
+
+        static IEnumerableOfTExtensions()
+        {
+            _separatorGuid = Guid.NewGuid().ToString();
+            _nullGuid = Guid.NewGuid().ToString();
+        }
+
         public static IEnumerable<T> SelectRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
         {
-            if (collection == null)
-            {
-                throw new ArgumentNullException("collection");
-            }
-
-            if (selector == null)
-            {
-                throw new ArgumentNullException("selector");
-            }
+            if (collection == null) { throw new ArgumentNullException("collection"); }
+            if (selector == null) { throw new ArgumentNullException("selector"); }
 
             foreach (T item in collection)
             {
@@ -32,6 +34,71 @@ namespace JJ.Framework.Common
                     }
                 }
             }
+        }
+
+        public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
+        {
+            foreach (var x in enumerable)
+            {
+                action(x);
+            }
+        }
+
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> enumerable, T x)
+        {
+            return enumerable.Except(new T[] { x });
+        }
+
+        public static IEnumerable<T> Union<T>(this IEnumerable<T> enumerable, T x)
+        {
+            return enumerable.Union(new T[] { x });
+        }
+
+        public static IEnumerable<T> Union<T>(this T x, IEnumerable<T> enumerable)
+        {
+            return new T[] { x }.Union(enumerable);
+        }
+
+        // TODO: TKey is strange. You would think that the different elements of the key are not always of the same type.
+        public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey>[] keys)
+        {
+            string separator = "";
+            if (keys.Length > 1)
+            {
+                separator = _separatorGuid;
+            }
+
+            var hash = new HashSet<string>();
+
+            foreach (var x in enumerable)
+            {
+                string keyString = "";
+                foreach (var key in keys)
+                {
+                    string keyElementString;
+                    if (key(x) == null)
+                    {
+                        keyElementString = _nullGuid;
+                    }
+                    else
+                    {
+                        keyElementString = key(x).ToString();
+                    }
+
+                    keyString += keyElementString + separator;
+                }
+
+                if (!hash.Contains(keyString))
+                {
+                    yield return x;
+                    hash.Add(keyString);
+                }
+            }
+        }
+
+        public static IEnumerable<TItem> AsEnumerable<TItem>(this TItem item)
+        {
+            return new TItem[] { item };
         }
     }
 }

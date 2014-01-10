@@ -69,7 +69,6 @@ namespace JJ.Framework.Reflection
             return GetItemType(collection.GetType());
         }
 
-        [Obsolete("Use Type.GetElementType() instead")]
         public static Type GetItemType(Type collectionType)
         {
             Type itemType = TryGetItemType(collectionType);
@@ -80,7 +79,6 @@ namespace JJ.Framework.Reflection
             return itemType;
         }
 
-        [Obsolete("Use Type.GetElementType() instead")]
         public static Type TryGetItemType(Type collectionType)
         {
             if (collectionType == null) throw new ArgumentNullException("collectionType");

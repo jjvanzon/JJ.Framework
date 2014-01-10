@@ -1,30 +1,80 @@
-﻿using JJ.Framework.Validation.Resources;
+﻿using JJ.Framework.Reflection;
+using JJ.Framework.Validation.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using JJ.Framework.Common;
 
 namespace JJ.Framework.Validation
 {
-    public abstract class FluentValidator<T> : ValidatorBase<T>
+    public abstract class FluentValidator<TRootObject> : ValidatorBase<TRootObject>
     {
-        public FluentValidator(T obj)
+        public FluentValidator(TRootObject obj)
             : base(obj)
         { }
 
         private object _value;
+        private string _propertyKey;
         private string _propertyDisplayName;
 
-        public FluentValidator<T> For(object value, string propertyDisplayName)
+        /// <summary>
+        /// Indicate which property value we are going to validate.
+        /// </summary>
+        /// <param name="propertyKey">
+        /// A technical key of the property we are going to validate.
+        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
+        /// </param>
+        /// <param name="propertyDisplayName">
+        /// Used in messages to indicate what property the validation message is about.
+        /// </param>
+        /// <param name="propertyExpression">
+        /// Used to extract both the value and a property key.
+        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
+        /// The root of the expression is excluded from the property key, e.g. "() => MyObject.MyProperty" produces the property key "MyProperty".
+        /// </param>
+        public FluentValidator<TRootObject> For(Expression<Func<object>> propertyExpression, string propertyDisplayName)
         {
+            object value = ExpressionHelper.GetValue(propertyExpression);
+            string propertyKey = ExpressionHelper.GetString(propertyExpression, true);
+
+            // Always cut off the root object, e.g. "MyObject.MyProperty" becomes "MyProperty".
+            propertyKey = propertyKey.CutLeftUntil(".").CutLeft(".");
+
+            return For(value, propertyKey, propertyDisplayName);
+        }
+
+        /// <summary>
+        /// Indicate which property value we are going to validate.
+        /// </summary>
+        /// <param name="propertyKey">
+        /// A technical key of the property we are going to validate.
+        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
+        /// </param>
+        /// <param name="propertyDisplayName">
+        /// Used in messages to indicate what property the validation message is about.
+        /// </param>
+        /// <param name="propertyExpression">
+        /// Used to extract both the value and a property key.
+        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
+        /// The root of the expression is excluded from the property key, e.g. "() => MyObject.MyProperty" produces the property key "MyProperty".
+        /// </param>
+        public FluentValidator<TRootObject> For(object value, string propertyKey, string propertyDisplayName)
+        {
+            if (propertyKey == null)
+            {
+                throw new ArgumentNullException("propertyKey");
+            }
             if (propertyDisplayName == null)
             {
                 throw new ArgumentNullException("propertyDisplayName");
             }
 
-            _propertyDisplayName = propertyDisplayName;
             _value = value;
+            _propertyKey = propertyKey;
+            _propertyDisplayName = propertyDisplayName;
 
             return this;
         }
