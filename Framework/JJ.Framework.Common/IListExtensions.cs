@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Common
 {
-    public static class ICollectionExtensions
+    public static class IListExtensions
     {
-        public static void Add<T>(this ICollection<T> collection, params T[] items)
+        public static void Add<T>(this IList<T> collection, params T[] items)
         {
             foreach (var x in items)
             {
@@ -17,17 +17,12 @@ namespace JJ.Framework.Common
             }
         }
 
-        public static void Add(this ICollection collection, params object[] items)
+        /*public static void Add(this IList collection, params object[] items)
         {
-            if (items.Length <= 1)
-            {
-                throw new Exception("This overload of Add can only be called with two or more items.");
-            }
-
             foreach (var x in items)
             {
                 collection.Add(x);
             }
-        }
+        }*/
     }
 }

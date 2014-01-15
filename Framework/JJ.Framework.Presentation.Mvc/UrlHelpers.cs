@@ -12,7 +12,7 @@ namespace JJ.Framework.Presentation.Mvc
 {
     public static class UrlHelpers // Plural not to conflict with the name 'UrlHelper'.
     {
-        public static string GetUrlWithCollectionParameter<T>(string actionName, string controllerName, string parameterName, IEnumerable<T> collection)
+        public static string ActionWithCollectionParameter<T>(string actionName, string controllerName, string parameterName, IEnumerable<T> collection)
         {
             // First URL-encode everything.
             actionName = HttpUtility.UrlEncode(actionName);
@@ -40,7 +40,7 @@ namespace JJ.Framework.Presentation.Mvc
             return url;
         }
 
-        public static string GetUrl(string actionName, string controllerName, params object[] parameterNamesAndValues)
+        public static string ActionWithParams(string actionName, string controllerName, params object[] parameterNamesAndValues)
         {
             // First HTML-encode all elements of the url, for safety.
             actionName = HttpUtility.HtmlEncode(actionName);
@@ -72,9 +72,9 @@ namespace JJ.Framework.Presentation.Mvc
         private static ICollection<KeyValuePair<string, object>> ConvertNamesAndValuesListToKeyValuePairs(IList<object> namesAndValues)
         {
             // Allow converting null to null.
-            if (namesAndValues == null) 
+            if (namesAndValues == null)
             {
-                return null; 
+                return null;
             }
 
             if (namesAndValues.Count % 2 != 0) { throw new Exception("namesAndValues.Count must be a multiple of 2."); }
@@ -89,38 +89,10 @@ namespace JJ.Framework.Presentation.Mvc
                 if (name == null) { throw new Exception("Names in namesAndValues cannot contain nulls."); }
                 if (name.GetType() != typeof(string)) { throw new Exception("Names in namesAndValues must be strings."); }
 
-                keyValuePairs.Add(new KeyValuePair<string,object>((string)name, value));
+                keyValuePairs.Add(new KeyValuePair<string, object>((string)name, value));
             }
 
             return keyValuePairs;
         }
-
-        /*public static string GetUrl(string actionName, string controllerName, ICollection<KeyValuePair<string, object>> parameters = null)
-        {
-            // First HTML-encode all elements of the url, for safety.
-            actionName = HttpUtility.HtmlEncode(actionName);
-            controllerName = HttpUtility.HtmlEncode(controllerName);
-
-            // Build the URL parameter string.
-            string parametersString = "";
-            if (parameters != null && parameters.Count != 0)
-            {
-                var list = new List<string>();
-                foreach (var entry in parameters)
-                {
-                    string name = HttpUtility.UrlEncode(entry.Key);
-                    string value =  HttpUtility.UrlEncode(Convert.ToString(entry.Value));
-                    string str = name + "=" + value;
-                    list.Add(str);
-                }
-
-                parametersString = "?" + String.Join("&", list);
-            }
-
-            // Build the URL.
-            string url = "/" + controllerName + "/" + actionName + parametersString;
-
-            return url;
-        }*/
     }
 }
