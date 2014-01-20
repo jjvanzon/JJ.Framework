@@ -125,6 +125,10 @@
     <value>{0} is verplicht.</value>
     <comment>{0} = property name</comment>
   </data>
+  <data name="IsZero" xml:space="preserve">
+    <value>{0} is verplicht.</value>
+    <comment>{0} = property name</comment>
+  </data>
   <data name="NotAbove" xml:space="preserve">
     <value>{0} is niet hoger dan {1}.</value>
     <comment>{0} = property name, {1} = minimum value</comment>

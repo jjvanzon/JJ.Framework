@@ -27,5 +27,10 @@ namespace JJ.Framework.Validation.Resources
         {
             return String.Format(Messages.IsNullOrWhiteSpace, propertyDisplayName);
         }
+
+        internal static string IsZero(string propertyDisplayName)
+        {
+            return String.Format(Messages.IsZero, propertyDisplayName);
+        }
     }
 }

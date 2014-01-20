@@ -79,6 +79,15 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is zero..
+        /// </summary>
+        internal static string IsZero {
+            get {
+                return ResourceManager.GetString("IsZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not above {1}..
         /// </summary>
         internal static string NotAbove {
