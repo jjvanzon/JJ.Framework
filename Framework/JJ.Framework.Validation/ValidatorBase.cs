@@ -106,7 +106,7 @@ namespace JJ.Framework.Validation
         /// <param name="messagePrefix"> A message prefix can identify the parent object so that validation messages indicate what specific part of the object structure they are about. </param>
         protected void Execute(IValidator validator, Expression<Func<object>> propertyKeyPrefixExpression, string messagePrefix)
         {
-            string propertyKeyPrefix = propertyKeyPrefixExpression != null ? ExpressionHelper.GetString(propertyKeyPrefixExpression, true) : null;
+            string propertyKeyPrefix = propertyKeyPrefixExpression != null ? ExpressionHelper.GetText(propertyKeyPrefixExpression, true) : null;
 
             // Always cut off the root object, e.g. "MyObject.MyProperty" becomes "MyProperty".
             propertyKeyPrefix = propertyKeyPrefix.CutLeftUntil(".").CutLeft(".") ;

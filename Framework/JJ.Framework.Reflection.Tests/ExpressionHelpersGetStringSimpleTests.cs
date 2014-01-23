@@ -20,28 +20,28 @@ namespace JJ.Framework.Reflection.Tests
         public void Test_ExpressionHelpers_GetName_LocalVariable()
         {
             int variable = 1;
-            Assert.AreEqual("variable", ExpressionHelper.GetString(() => variable));
+            Assert.AreEqual("variable", ExpressionHelper.GetText(() => variable));
         }
 
         [TestMethod]
         public void Test_ExpressionHelpers_GetName_Field()
         {
             Item item = new Item { Field = 1 };
-            Assert.AreEqual("item.Field", ExpressionHelper.GetString(() => item.Field));
+            Assert.AreEqual("item.Field", ExpressionHelper.GetText(() => item.Field));
         }
 
         [TestMethod]
         public void Test_ExpressionHelpers_GetName_Property()
         {
             Item item = new Item { Property = 1 };
-            Assert.AreEqual("item.Property", ExpressionHelper.GetString(() => item.Property));
+            Assert.AreEqual("item.Property", ExpressionHelper.GetText(() => item.Property));
         }
 
         [TestMethod]
         public void Test_ExpressionHelpers_GetName_ArrayLength()
         {
             Item[] items = { null, null, null };
-            Assert.AreEqual("items.Length", ExpressionHelper.GetString(() => items.Length));
+            Assert.AreEqual("items.Length", ExpressionHelper.GetText(() => items.Length));
         }
 
         [TestMethod]
@@ -51,7 +51,7 @@ namespace JJ.Framework.Reflection.Tests
             Item parentItem = new Item { Parent = grandParentItem };
             Item item = new Item { Parent = parentItem };
 
-            Assert.AreEqual("item.Parent.Parent.Index", ExpressionHelper.GetString(() => item.Parent.Parent.Index));
+            Assert.AreEqual("item.Parent.Parent.Index", ExpressionHelper.GetText(() => item.Parent.Parent.Index));
         }
     }
 }

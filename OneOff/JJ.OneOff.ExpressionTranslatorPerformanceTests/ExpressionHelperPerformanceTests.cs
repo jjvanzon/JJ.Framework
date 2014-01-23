@@ -176,7 +176,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             Expression<Func<IExpressionHelper>> expressionHelperExpression)
         {
             IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
-            string text = ExpressionHelper.GetString(expressionHelperExpression);
+            string text = ExpressionHelper.GetText(expressionHelperExpression);
 
             Stopwatch stopwatch = Stopwatch.StartNew();
             for (int i = 0; i < Repeats; i++)
@@ -193,7 +193,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             Expression<Func<IExpressionHelper>> expressionHelperExpression)
         {
             IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
-            string text = ExpressionHelper.GetString(expressionHelperExpression);
+            string text = ExpressionHelper.GetText(expressionHelperExpression);
 
             Stopwatch stopwatch = Stopwatch.StartNew();
             for (int i = 0; i < Repeats; i++)
@@ -209,7 +209,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             Expression<Func<IExpressionHelper>> expressionHelperExpression)
         {
             IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
-            string text = ExpressionHelper.GetString(expressionHelperExpression);
+            string text = ExpressionHelper.GetText(expressionHelperExpression);
 
             Item item = CreateItem();
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -235,7 +235,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             Expression<Func<IExpressionHelper>> expressionHelperExpression)
         {
             IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
-            string text = ExpressionHelper.GetString(expressionHelperExpression);
+            string text = ExpressionHelper.GetText(expressionHelperExpression);
 
             Stopwatch stopwatch = Stopwatch.StartNew();
             for (int i = 0; i < Repeats; i++)

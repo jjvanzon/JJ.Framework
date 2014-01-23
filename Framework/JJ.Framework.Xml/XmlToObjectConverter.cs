@@ -19,6 +19,8 @@ namespace JJ.Framework.Xml
     {
         // TODO: Support standard <add> syntax for XML arrays.
 
+        // Only Array types are supported.
+
         public T Convert(XmlNode sourceNode)
         {
             T destObject = new T();

@@ -101,32 +101,32 @@ namespace JJ.Framework.Reflection
             return (T)GetValue((LambdaExpression)expression);
         }
 
-        // GetString
+        // GetText
 
         /// <param name="showIndexerValues"> If you set this to true, an expression like MyArray[i] will translate to e.g. "MyArray[2]", instead of "MyArray[i]". </param>
-        public static string GetString(Expression expression, bool showIndexerValues = false)
+        public static string GetText(Expression expression, bool showIndexerValues = false)
         {
             if (expression == null)
             {
                 throw new ArgumentNullException("expression");
             }
 
-            var translator = new ExpressionToStringTranslator();
+            var translator = new ExpressionToTextTranslator();
             translator.ShowIndexerValues = showIndexerValues;
             translator.Visit(expression);
             return translator.Result;
         }
 
         /// <param name="showIndexerValues"> If you set this to true, an expression like MyArray[i] will translate to e.g. "MyArray[2]", instead of "MyArray[i]". </param>
-        public static string GetString(LambdaExpression expression, bool showIndexerValues = false)
+        public static string GetText(LambdaExpression expression, bool showIndexerValues = false)
         {
-            return GetString(expression.Body, showIndexerValues);
+            return GetText(expression.Body, showIndexerValues);
         }
 
         /// <param name="showIndexerValues"> If you set this to true, an expression like MyArray[i] will translate to e.g. "MyArray[2]", instead of "MyArray[i]". </param>
-        public static string GetString<T>(Expression<Func<T>> expression, bool showIndexerValues = false)
+        public static string GetText<T>(Expression<Func<T>> expression, bool showIndexerValues = false)
         {
-            return GetString((LambdaExpression)expression, showIndexerValues);
+            return GetText((LambdaExpression)expression, showIndexerValues);
         }
     }
 }

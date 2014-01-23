@@ -38,7 +38,7 @@ namespace JJ.Framework.Validation
         public FluentValidator<TRootObject> For(Expression<Func<object>> propertyExpression, string propertyDisplayName)
         {
             object value = ExpressionHelper.GetValue(propertyExpression);
-            string propertyKey = ExpressionHelper.GetString(propertyExpression, true);
+            string propertyKey = ExpressionHelper.GetText(propertyExpression, true);
 
             // Always cut off the root object, e.g. "MyObject.MyProperty" becomes "MyProperty".
             propertyKey = propertyKey.CutLeftUntil(".").CutLeft(".");

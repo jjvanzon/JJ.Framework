@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace JJ.Framework.Reflection
 {
-    internal class ExpressionToStringTranslator 
+    internal class ExpressionToTextTranslator 
     {
         // Not using the ExpressionVisitor base class performs better.
 
