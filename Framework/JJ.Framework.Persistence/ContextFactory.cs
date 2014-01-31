@@ -29,36 +29,36 @@ namespace JJ.Framework.Persistence
 
         private static Dictionary<string, Type> _contextTypeDictionary = new Dictionary<string, Type>();
 
-        private static Type GetPersistenceContextType(string name)
+        private static Type GetPersistenceContextType(string persistenceContextTypeName)
         {
-            if (name == null) throw new ArgumentNullException("name");
+            if (persistenceContextTypeName == null) throw new ArgumentNullException("persistenceContextTypeName");
 
             lock (_contextTypeDictionaryLock)
             {
-                if (_contextTypeDictionary.ContainsKey(name))
+                if (_contextTypeDictionary.ContainsKey(persistenceContextTypeName))
                 {
-                    return _contextTypeDictionary[name];
+                    return _contextTypeDictionary[persistenceContextTypeName];
                 }
 
                 // Try to get type by name
-                Type type = Type.GetType(name);
+                Type type = Type.GetType(persistenceContextTypeName);
                 if (type == null)
                 {
                     // Otherwise assume it is an assembly name.
-                    Assembly assembly = Assembly.Load(name);
-                    Type[] types = ReflectionHelper.GetImplementations(assembly, typeof(IContext));
+                    Assembly assembly = Assembly.Load(persistenceContextTypeName);
+                    Type[] types = ReflectionHelper.GetImplementations<IContext>(assembly);
                     if (types.Length == 0)
                     {
-                        throw new Exception(String.Format("Context type '{0}' not found.", name));
+                        throw new Exception(String.Format("Context type '{0}' not found.", persistenceContextTypeName));
                     }
                     if (types.Length > 1)
                     {
-                        throw new Exception(String.Format("Multiple context types found in assembly '{0}'. Please specify a fully qualified type name.", name));
+                        throw new Exception(String.Format("Multiple context types found in assembly '{0}'. Please specify a fully qualified type name.", persistenceContextTypeName));
                     }
                     type = types[0];
                 }
 
-                _contextTypeDictionary[name] = type;
+                _contextTypeDictionary[persistenceContextTypeName] = type;
                 return type;
             }
         }

@@ -1,7 +1,7 @@
 Jan-Joost van Zon, 2013-09-09
 
 JJ is the new code base.
-The previous code was started 3 years ago.
+The previous code base began 3 years ago.
 
 My ideas about architecture have changed.
 

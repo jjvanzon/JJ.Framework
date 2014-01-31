@@ -10,6 +10,7 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Persistence
 {
+    // TODO: Rename to PersistenceHelper
     public static class ContextHelper
     {
         /// <summary>
@@ -18,12 +19,17 @@ namespace JJ.Framework.Persistence
         /// </summary>
         public static IContext CreateContextFromConfiguration()
         {
-            PersistenceConfiguration persistenceConfiguration = CustomConfigurationManager.GetSection<PersistenceConfiguration>();
+            PersistenceConfiguration persistenceConfiguration = ContextHelper.GetPersistenceConfiguration();
 
             return ContextFactory.CreateContext(
                 persistenceConfiguration.ContextType,
                 persistenceConfiguration.Location,
                 persistenceConfiguration.ModelAssemblies);
+        }
+
+        public static PersistenceConfiguration GetPersistenceConfiguration()
+        {
+            return CustomConfigurationManager.GetSection<PersistenceConfiguration>();
         }
     }
 }

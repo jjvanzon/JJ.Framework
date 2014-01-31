@@ -7,9 +7,7 @@ namespace JJ.Framework.Validation
 {
     public class ValidationMessage
     {
-        // TODO: Put back on read-only again after you removed the hack in QuestionValidator, that requires the setter.
-        public string PropertyKey { get; set; }
-        //public string PropertyKey { get; private set; }
+        public string PropertyKey { get; private set; }
         public string Text { get; private set; }
 
         public ValidationMessage(string propertyKey, string text)
