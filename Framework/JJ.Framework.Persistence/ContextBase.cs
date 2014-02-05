@@ -9,9 +9,17 @@ namespace JJ.Framework.Persistence
 {
     public abstract class ContextBase : IContext
     {
+        private IList<Assembly> _modelAssemblies;
+
+        protected IList<Assembly> ModelAssemblies
+        {
+            get { return _modelAssemblies; }
+        }
+
         public ContextBase(string persistenceLocation, params Assembly[] modelAssemblies)
         {
             Location = persistenceLocation;
+            _modelAssemblies = modelAssemblies;
         }
 
         public virtual TEntity Get<TEntity>(object id) where TEntity : class, new()
