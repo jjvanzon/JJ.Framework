@@ -3,6 +3,5 @@
     public enum IdentityType
     {
         AutoIncrement
-        //Guid
     }
 }

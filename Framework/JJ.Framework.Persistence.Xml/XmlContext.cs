@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Persistence.Xml.Internal;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,57 +18,38 @@ namespace JJ.Framework.Persistence.Xml
 
         public override TEntity TryGet<TEntity>(object id)
         {
-            XmlDocumentAcessor documentAccessor = GetXmlDocumentAccessor<TEntity>();
-            XmlElement element = documentAccessor.TryGetXmlElementByEntityID(id);
-            if (element == null)
-            {
-                return null;
-            }
-            return documentAccessor.ConvertXmlElementToEntity<TEntity>(element);
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            return entityStore.TryGet(id);
         }
 
         public override TEntity Create<TEntity>()
         {
-            TEntity entity = new TEntity();
-            XmlDocumentAcessor documentAccessor = GetXmlDocumentAccessor<TEntity>();
-            XmlElement element = documentAccessor.CreateXmlElement<TEntity>();
-            return entity;
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            return entityStore.Create();
         }
 
         public override void Insert<TEntity>(TEntity entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
-            XmlDocumentAcessor documentAccessor = GetXmlDocumentAccessor<TEntity>();
-            XmlElement element = documentAccessor.CreateXmlElement<TEntity>();
-            documentAccessor.UpdateXmlElement(element, entity);
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            entityStore.Insert(entity);
         }
 
         public override void Update<TEntity>(TEntity entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
-            XmlDocumentAcessor documentAccessor = GetXmlDocumentAccessor<TEntity>();
-            XmlElement element = documentAccessor.GetXmlElementByEntity(entity);
-            documentAccessor.UpdateXmlElement(element, entity);
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            entityStore.Update(entity);
         }
 
         public override void Delete<TEntity>(TEntity entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
-            XmlDocumentAcessor documentAccessor = GetXmlDocumentAccessor<TEntity>();
-            documentAccessor.DeleteXmlElementByEntity(entity);
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            entityStore.Delete(entity);
         }
 
         public override IEnumerable<TEntity> GetAll<TEntity>()
         {
-            XmlDocumentAcessor documentAccessor = GetXmlDocumentAccessor<TEntity>();
-            IList<XmlElement> xmlElements = documentAccessor.GetAllXmlElements();
-            IList<TEntity> entities = new List<TEntity>();
-            foreach (XmlElement xmlElement in xmlElements)
-            {
-                TEntity entity = documentAccessor.ConvertXmlElementToEntity<TEntity>(xmlElement);
-                entities.Add(entity);
-            }
-            return entities;
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            return entityStore.GetAll();
         }
 
         public override IEnumerable<TEntity> Query<TEntity>()
@@ -77,11 +59,11 @@ namespace JJ.Framework.Persistence.Xml
 
         public override void Commit()
         {
-            lock (_documentAccessorDictionaryLock)
+            lock (_lock)
             {
-                foreach (XmlDocumentAcessor documentWrapper in _documentAccessorDictionary.Values)
+                foreach (IEntityStore entityStore in _entityStoreDictionary.Values)
                 {
-                    documentWrapper.Save();
+                    entityStore.Commit();
                 }
             }
         }
@@ -93,26 +75,28 @@ namespace JJ.Framework.Persistence.Xml
 
         // Helpers
 
-        private object _documentAccessorDictionaryLock = new object();
-        private Dictionary<string, XmlDocumentAcessor> _documentAccessorDictionary = new Dictionary<string, XmlDocumentAcessor>();
+        private object _lock = new object();
+        private Dictionary<string, IEntityStore> _entityStoreDictionary = new Dictionary<string, IEntityStore>();
         
-        private XmlDocumentAcessor GetXmlDocumentAccessor<TEntity>()
+        private EntityStore<TEntity> GetEntityStore<TEntity>()
+            where TEntity : class, new()
         {
-            lock (_documentAccessorDictionary)
+            lock (_lock)
             {
                 string entityName = typeof(TEntity).Name;
                 
-                if (_documentAccessorDictionary.ContainsKey(entityName))
+                if (_entityStoreDictionary.ContainsKey(entityName))
                 {
-                    return _documentAccessorDictionary[entityName];
+                    return (EntityStore<TEntity>)_entityStoreDictionary[entityName];
                 }
 
                 string filePath = Path.Combine(Location, entityName) + ".xml";
-                XmlDocumentAcessor documentAccessor = XmlDocumentAccessorFactory.Create(typeof(TEntity), filePath, ModelAssemblies);
+                IXmlMapping xmlMapping = XmlMappingResolver.GetXmlMapping(typeof(TEntity), ModelAssemblies);
+                EntityStore<TEntity> entityStore = new EntityStore<TEntity>(filePath, xmlMapping);
 
-                _documentAccessorDictionary[entityName] = documentAccessor;
+                _entityStoreDictionary[entityName] = entityStore;
 
-                return documentAccessor;
+                return entityStore;
             }
         }
     }

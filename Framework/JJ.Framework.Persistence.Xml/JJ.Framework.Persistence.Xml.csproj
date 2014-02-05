@@ -39,14 +39,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConversionHelper.cs" />
+    <Compile Include="Internal\IEntityStore.cs" />
+    <Compile Include="Internal\XmlMappingResolver.cs" />
+    <Compile Include="Internal\EntityStore.cs" />
     <Compile Include="IXmlMapping.cs" />
     <Compile Include="IdentityType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Internal\XmlElementAccessor.cs" />
     <Compile Include="XmlContext.cs" />
-    <Compile Include="XmlDocumentAcessor.cs" />
-    <Compile Include="XmlDocumentAccessorFactory.cs" />
+    <Compile Include="Internal\XmlHelper.cs" />
     <Compile Include="XmlMapping.cs" />
+    <Compile Include="Internal\XmlToEntityConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
