@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
 
 namespace JJ.Framework.Persistence.Xml.Internal
 {
+    /// <summary>
+    /// Offers functions for retrieving and storing information from an XML file,
+    /// that the XmlContext needs. There will be one XML file per entity.
+    /// The file will be auto-created if it does not exist.
+    /// </summary>
     internal class XmlElementAccessor
     {
         private string _filePath;
@@ -22,8 +28,28 @@ namespace JJ.Framework.Persistence.Xml.Internal
             _rootElementName = rootElementName;
             _elementName = elementName;
             _filePath = filePath;
+
+            AutoCreateXmlFile();
+
             _document = new XmlDocument();
             _document.Load(_filePath);
+        }
+
+        private void AutoCreateXmlFile()
+        {
+            // Auto-crate file
+            if (!File.Exists(_filePath))
+            {
+                using (Stream stream = File.Create(_filePath))
+                {
+                    using (var writer = new StreamWriter(stream))
+                    {
+                        writer.WriteLine(@"<?xml version=""1.0"" encoding=""utf-8""?>");
+                        writer.WriteLine(String.Format("<{0}>", _rootElementName));
+                        writer.WriteLine(String.Format("</{0}>", _rootElementName));
+                    }
+                }
+            }
         }
 
         public List<XmlElement> GetAllElements(string elementName)

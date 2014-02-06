@@ -27,7 +27,7 @@ namespace JJ.Framework.Presentation.Mvc
 
             var sb = new StringBuilder();
 
-            foreach (PropertyInfo property in model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            foreach (PropertyInfo property in ReflectionCache.GetProperties(model.GetType()))
             {
                 string name = property.Name;
                 object value = property.GetValue(model);

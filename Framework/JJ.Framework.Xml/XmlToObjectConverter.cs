@@ -33,7 +33,7 @@ namespace JJ.Framework.Xml
         /// </summary>
         private void ConvertProperties(XmlNode sourceNode, object destObject)
         {
-            foreach (PropertyInfo destProperty in destObject.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            foreach (PropertyInfo destProperty in ReflectionCache.GetProperties(destObject.GetType()))
             {
                 NodeTypeEnum nodeType = GetNodeType(destProperty);
                 switch (nodeType)

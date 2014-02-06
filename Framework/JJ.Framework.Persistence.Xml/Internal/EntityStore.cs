@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Common;
+using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -121,14 +122,11 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         private IEnumerable<string> GetEntityPropertyNames()
         {
-            IList<string> list = new List<string>();
-
-            // TODO: Use reflection cache.
-            foreach (PropertyInfo property in typeof(TEntity).GetProperties())
+            var list = new List<string>();
+            foreach (PropertyInfo property in ReflectionCache.GetProperties(typeof(TEntity)))
             {
                 list.Add(property.Name);
             }
-
             return list;
         }
 

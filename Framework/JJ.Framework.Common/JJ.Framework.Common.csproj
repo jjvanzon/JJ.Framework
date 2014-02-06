@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IListExtensions.cs" />
+    <Compile Include="KeyHelper.cs" />
     <Compile Include="ValueNotSupportedException.cs" />
     <Compile Include="IEnumerableOfTExtensions.cs" />
     <Compile Include="StringExtensions.Split.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -31,8 +32,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
             if (sourceElement == null) throw new ArgumentNullException("sourceElement");
             if (destEntity == null) throw new ArgumentNullException("destEntity");
 
-            // TODO: Use ReflectionCache.
-            foreach (PropertyInfo destProperty in typeof(TEntity).GetProperties())
+            foreach (PropertyInfo destProperty in ReflectionCache.GetProperties(typeof(TEntity)))
             {
                 string sourceValue = _accessor.GetAttributeValue(sourceElement, destProperty.Name);
                 object destValue = ConvertValue(sourceValue, destProperty.PropertyType);
@@ -42,8 +42,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         public void ConvertEntityToXmlElement(object sourceEntity, XmlElement destXmlElement)
         {
-            // TODO: Use reflection cache.
-            foreach (PropertyInfo sourceProperty in typeof(TEntity).GetProperties())
+            foreach (PropertyInfo sourceProperty in ReflectionCache.GetProperties(typeof(TEntity)))
             {
                 object sourceValue = sourceProperty.GetValue(sourceEntity, null);
                 string destValue = Convert.ToString(sourceValue);
