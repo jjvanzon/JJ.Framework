@@ -12,9 +12,49 @@ namespace JJ.Framework.Persistence.Xml
 {
     public class XmlContext : ContextBase
     {
-        public XmlContext(string folderPath, params Assembly[] modelAssemblies)
-            : base(folderPath, modelAssemblies)
-        { }
+        public XmlContext(string folderPath, Assembly modelAssembly, Assembly mappingAssembly)
+            : base(folderPath, modelAssembly, mappingAssembly)
+        {
+            if (mappingAssembly == null) throw new ArgumentNullException("mappingAssembly");
+        }
+
+        private object _lock = new object();
+        private Dictionary<string, IEntityStore> _entityStoreDictionary = new Dictionary<string, IEntityStore>();
+
+        // Expose underlying persistence technology for specialized repository.
+        public XmlDocument GetDocument<TEntity>()
+            where TEntity : class, new()
+        {
+            return GetEntityStore<TEntity>().Accessor.Document;
+        }
+
+        public XmlToEntityConverter<TEntity> GetConverter<TEntity>()
+            where TEntity : class, new()
+        {
+            return GetEntityStore<TEntity>().Converter;
+        }
+
+        private EntityStore<TEntity> GetEntityStore<TEntity>()
+            where TEntity : class, new()
+        {
+            lock (_lock)
+            {
+                string entityName = typeof(TEntity).Name;
+
+                if (_entityStoreDictionary.ContainsKey(entityName))
+                {
+                    return (EntityStore<TEntity>)_entityStoreDictionary[entityName];
+                }
+
+                string filePath = Path.Combine(Location, entityName) + ".xml";
+                IXmlMapping xmlMapping = XmlMappingResolver.GetXmlMapping(typeof(TEntity), MappingAssembly);
+                EntityStore<TEntity> entityStore = new EntityStore<TEntity>(filePath, xmlMapping);
+
+                _entityStoreDictionary[entityName] = entityStore;
+
+                return entityStore;
+            }
+        }
 
         public override TEntity TryGet<TEntity>(object id)
         {
@@ -71,33 +111,6 @@ namespace JJ.Framework.Persistence.Xml
         public override void Dispose()
         {
             // No code required.
-        }
-
-        // Helpers
-
-        private object _lock = new object();
-        private Dictionary<string, IEntityStore> _entityStoreDictionary = new Dictionary<string, IEntityStore>();
-        
-        private EntityStore<TEntity> GetEntityStore<TEntity>()
-            where TEntity : class, new()
-        {
-            lock (_lock)
-            {
-                string entityName = typeof(TEntity).Name;
-                
-                if (_entityStoreDictionary.ContainsKey(entityName))
-                {
-                    return (EntityStore<TEntity>)_entityStoreDictionary[entityName];
-                }
-
-                string filePath = Path.Combine(Location, entityName) + ".xml";
-                IXmlMapping xmlMapping = XmlMappingResolver.GetXmlMapping(typeof(TEntity), ModelAssemblies);
-                EntityStore<TEntity> entityStore = new EntityStore<TEntity>(filePath, xmlMapping);
-
-                _entityStoreDictionary[entityName] = entityStore;
-
-                return entityStore;
-            }
         }
     }
 }

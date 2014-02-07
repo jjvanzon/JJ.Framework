@@ -49,7 +49,7 @@
     <Compile Include="XmlContext.cs" />
     <Compile Include="Internal\XmlHelper.cs" />
     <Compile Include="XmlMapping.cs" />
-    <Compile Include="Internal\XmlToEntityConverter.cs" />
+    <Compile Include="XmlToEntityConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">

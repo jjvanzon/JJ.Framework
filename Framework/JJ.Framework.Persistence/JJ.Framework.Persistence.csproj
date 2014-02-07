@@ -43,8 +43,9 @@
     <Compile Include="ContextFactory.cs" />
     <Compile Include="PersistenceConfiguration.cs" />
     <Compile Include="IContext.cs" />
-    <Compile Include="ContextHelper.cs" />
+    <Compile Include="PersistenceHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj">

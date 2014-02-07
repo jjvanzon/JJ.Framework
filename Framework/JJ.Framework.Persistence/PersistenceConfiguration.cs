@@ -15,7 +15,13 @@ namespace JJ.Framework.Persistence
         [XmlAttribute]
         public string Location { get; set; }
 
-        [XmlArrayItem("modelAssembly")]
-        public string[] ModelAssemblies { get; set; }
+        [XmlAttribute]
+        public string ModelAssembly { get; set; }
+
+        [XmlAttribute]
+        public string MappingAssembly { get; set; }
+
+        [XmlArrayItem("repositoryAssembly")]
+        public string[] RepositoryAssemblies { get; set; }
     }
 }

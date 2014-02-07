@@ -9,17 +9,20 @@ namespace JJ.Framework.Persistence
 {
     public abstract class ContextBase : IContext
     {
-        private IList<Assembly> _modelAssemblies;
+        public string Location { get; private set; }
+        protected Assembly ModelAssembly { get; private set; }
+        protected Assembly MappingAssembly { get; private set; }
 
-        protected IList<Assembly> ModelAssemblies
+        /// <param name="location"></param>
+        /// <param name="modelAssembly">not nullable</param>
+        /// <param name="mappingAssembly">nullable</param>
+        public ContextBase(string location, Assembly modelAssembly, Assembly mappingAssembly)
         {
-            get { return _modelAssemblies; }
-        }
+            if (modelAssembly == null) throw new ArgumentNullException("modelAssembly");
 
-        public ContextBase(string persistenceLocation, params Assembly[] modelAssemblies)
-        {
-            Location = persistenceLocation;
-            _modelAssemblies = modelAssemblies;
+            Location = location;
+            ModelAssembly = modelAssembly;
+            MappingAssembly = mappingAssembly;
         }
 
         public virtual TEntity Get<TEntity>(object id) where TEntity : class, new()
@@ -34,8 +37,6 @@ namespace JJ.Framework.Persistence
             return entity;
         }
 
-        public string Location { get; private set; }
-
         public abstract TEntity TryGet<TEntity>(object id) where TEntity : class, new();
         public abstract IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class, new();
         public abstract TEntity Create<TEntity>() where TEntity : class, new();
@@ -43,7 +44,6 @@ namespace JJ.Framework.Persistence
         public abstract void Update<TEntity>(TEntity entity) where TEntity : class, new();
         public abstract void Delete<TEntity>(TEntity entity) where TEntity : class, new();
         public abstract IEnumerable<TEntity> Query<TEntity>() where TEntity : class, new();
-        //public abstract IEnumerable<TEntity> QueryUncommitted<TEntity>() where TEntity : class;
         public abstract void Commit();
         public abstract void Dispose();
     }

@@ -10,59 +10,59 @@ namespace JJ.Framework.Persistence.NPersist
 {
     public class NPersistContext : ContextBase
     {
-        private Puzzle.NPersist.Framework.Context _context;
+        public Puzzle.NPersist.Framework.Context Context { get; private set; }
 
-        public NPersistContext(string persistenceLocation, params Assembly[] modelAssemblies)
-            : base(persistenceLocation, modelAssemblies)
+        public NPersistContext(string location, Assembly modelAssembly, Assembly mappingAssembly)
+            : base(location, modelAssembly, mappingAssembly)
         {
-            _context = UnderlyingNPersistContextFactory.CreateContext(persistenceLocation, modelAssemblies);
+            Context = UnderlyingNPersistContextFactory.CreateContext(location, modelAssembly, mappingAssembly);
         }
 
         public override TEntity Create<TEntity>()
         {
-            return _context.CreateObject<TEntity>();
+            return Context.CreateObject<TEntity>();
         }
 
         public override TEntity TryGet<TEntity>(object id)
         {
-            return _context.TryGetObjectById<TEntity>(id);
+            return Context.TryGetObjectById<TEntity>(id);
         }
 
         public override IEnumerable<TEntity> GetAll<TEntity>()
         {
-            return _context.GetObjects<TEntity>();
+            return Context.GetObjects<TEntity>();
         }
 
         public override void Insert<TEntity>(TEntity entity)
         {
-            _context.AttachObject(entity);
+            Context.AttachObject(entity);
         }
 
         public override void Update<TEntity>(TEntity entity)
         {
-            _context.AttachObject(entity);
+            Context.AttachObject(entity);
         }
 
         public override void Delete<TEntity>(TEntity entity)
         {
-            _context.DeleteObject(entity);
+            Context.DeleteObject(entity);
         }
 
         public override IEnumerable<TEntity> Query<TEntity>()
         {
-            return _context.Repository<TEntity>();
+            return Context.Repository<TEntity>();
         }
 
         public override void Commit()
         {
-            _context.Commit();
+            Context.Commit();
         }
 
         public override void Dispose()
         {
-            if (_context != null)
+            if (Context != null)
             {
-                _context.Dispose();
+                Context.Dispose();
             }
         }
 

@@ -17,29 +17,29 @@ namespace JJ.Framework.Persistence.NHibernate
         private static readonly Dictionary<string, ISessionFactory> _dictionary = new Dictionary<string, ISessionFactory>();
         private static readonly string _separator = "a3ac31a9-708b-41da-b497-b451b9582fd8";
 
-        public static ISessionFactory GetSessionFactory(string connectionString, params Assembly[] modelAssemblies)
+        public static ISessionFactory GetSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly)
         {
             lock (_lock)
             {
-                string key = GetKey(connectionString, modelAssemblies);
+                string key = GetKey(connectionString, modelAssembly, mappingAssembly);
 
                 if (_dictionary.ContainsKey(key))
                 {
                     return _dictionary[key];
                 }
 
-                _dictionary[key] = CreateSessionFactory(connectionString, modelAssemblies);
+                _dictionary[key] = CreateSessionFactory(connectionString, modelAssembly, mappingAssembly);
 
                 return _dictionary[key];
             }
         }
-        
-        private static string GetKey(string connectionString, Assembly[] modelAssemblies)
+
+        private static string GetKey(string connectionString, Assembly modelAssembly, Assembly mappingAssembly)
         {
-            return connectionString + _separator + String.Join(_separator, (object[])modelAssemblies);
+            return connectionString + _separator + modelAssembly.FullName + _separator + mappingAssembly.FullName;
         }
 
-        private static ISessionFactory CreateSessionFactory(string connectionString, params Assembly[] modelAssemblies)
+        private static ISessionFactory CreateSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly)
         {
             // TODO: This dependency on specifically SQL Server 2008 is not appropriate here.
 
@@ -47,10 +47,8 @@ namespace JJ.Framework.Persistence.NHibernate
 
             var fluentConfig = Fluently.Configure(config).Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).Dialect<MsSql2008Dialect>());
 
-            foreach (Assembly modelAssembly in modelAssemblies)
-            {
-                fluentConfig = fluentConfig.Mappings(x => x.FluentMappings.AddFromAssembly(modelAssembly));
-            }
+            fluentConfig = fluentConfig.Mappings(x => x.FluentMappings.AddFromAssembly(modelAssembly));
+            fluentConfig = fluentConfig.Mappings(x => x.FluentMappings.AddFromAssembly(mappingAssembly));
 
             return fluentConfig.BuildSessionFactory();
         }

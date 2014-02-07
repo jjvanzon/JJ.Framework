@@ -13,12 +13,13 @@ namespace JJ.Framework.Persistence.Tests
     {
         public static IContext CreatePersistenceContext(string contextType = null)
         {
-            PersistenceConfiguration persistenceConfiguration = CustomConfigurationManager.GetSection<PersistenceConfiguration>();
+            PersistenceConfiguration configuration = CustomConfigurationManager.GetSection<PersistenceConfiguration>();
             
             return ContextFactory.CreateContext(
-                contextType ?? persistenceConfiguration.ContextType,
-                persistenceConfiguration.Location,
-                persistenceConfiguration.ModelAssemblies);
+                contextType ?? configuration.ContextType,
+                configuration.Location,
+                configuration.ModelAssembly,
+                configuration.MappingAssembly);
         }
     }
 }

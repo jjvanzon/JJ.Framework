@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Reflection;
+﻿using JJ.Framework.Persistence.Xml.Internal;
+using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace JJ.Framework.Persistence.Xml.Internal
+namespace JJ.Framework.Persistence.Xml
 {
-    internal class XmlToEntityConverter<TEntity>
+    public class XmlToEntityConverter<TEntity>
         where TEntity : class, new()
     {
         private readonly XmlElementAccessor _accessor;
 
-        public XmlToEntityConverter(XmlElementAccessor accessor)
+        internal XmlToEntityConverter(XmlElementAccessor accessor)
         {
             if (accessor == null) throw new ArgumentNullException("accessor");
             _accessor = accessor;

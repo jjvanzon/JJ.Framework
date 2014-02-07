@@ -50,6 +50,7 @@ namespace JJ.Framework.Reflection
 
         public static Type[] GetImplementations(Assembly assembly, Type baseType)
         {
+            // TODO: Caching please.
             Type[] types = assembly.GetTypes();
 
             return Enumerable.Union(types.Where(x => x.BaseType == baseType),

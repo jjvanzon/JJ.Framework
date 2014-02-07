@@ -12,46 +12,28 @@ namespace JJ.Framework.Persistence.EntityFramework5
 {
     internal static class UnderlyingEntityFramework5ContextFactory
     {
-        public static DbContext CreateContext(string connectionString, params Assembly[] modelAssemblies)
+        // TODO: If model assembly is not required the don't make it a parameter.
+        // Also: if it is not required, don't check it for null in the ContextBase class.
+        public static DbContext CreateContext(string connectionString, Assembly modelAssembly, Assembly mappingAssembly)
         {
-            Type dbContextType = GetDbContextType(modelAssemblies);
-            string modelName = GetModelName(modelAssemblies);
+            Type dbContextType = ReflectionHelper.GetImplementation<DbContext>(mappingAssembly);
+            string modelName = GetEntityFrameworkModelName(mappingAssembly);
             string specialConnectionString = GetSpecialConnectionString(connectionString, modelName);
 
             return (DbContext)Activator.CreateInstance(dbContextType, specialConnectionString);
         }
 
-        private static Type GetDbContextType(Assembly[] modelAssemblies)
+        private static string GetEntityFrameworkModelName(Assembly mappingAssembly)
         {
-            Type[] types = ReflectionHelper.GetImplementations<DbContext>(modelAssemblies);
-
-            if (types.Length == 0)
+            foreach (string resourceName in mappingAssembly.GetManifestResourceNames())
             {
-                throw new Exception(String.Format("No implementation of type '{0}' found in model assemblies.", typeof(DbContext).Name));
-            }
-
-            if (types.Length > 1)
-            {
-                throw new Exception(String.Format("Multiple implementations of type '{0}' found in model assemblies.", typeof(DbContext).Name));
-            }
-
-            return types[0];
-        }
-
-        private static string GetModelName(Assembly[] modelAssemblies)
-        {
-            foreach (Assembly assembly in modelAssemblies)
-            {
-                foreach (string resourceName in assembly.GetManifestResourceNames())
+                if (resourceName.EndsWith(".msl"))
                 {
-                    if (resourceName.EndsWith(".msl"))
-                    {
-                        return resourceName.CutRight(".msl");
-                    }
+                    return resourceName.CutRight(".msl");
                 }
             }
 
-            throw new Exception("No .msl file found in the embedded resources of the model assemblies. (The .msl file is a resource generated out of an .edmx file.)");
+            throw new Exception(String.Format("No .msl file found in the embedded resources of the mapping assembly '{0}'. (The .msl file is a resource generated out of an .edmx file.)", mappingAssembly.GetName().Name));
         }
 
         private static string GetSpecialConnectionString(string connectionString, string modelName)

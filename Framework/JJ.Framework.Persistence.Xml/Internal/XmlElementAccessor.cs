@@ -15,7 +15,8 @@ namespace JJ.Framework.Persistence.Xml.Internal
     internal class XmlElementAccessor
     {
         private string _filePath;
-        private XmlDocument _document;
+
+        public XmlDocument Document { get; private set; }
 
         private string _rootElementName;
         private string _elementName;
@@ -31,8 +32,8 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
             AutoCreateXmlFile();
 
-            _document = new XmlDocument();
-            _document.Load(_filePath);
+            Document = new XmlDocument();
+            Document.Load(_filePath);
         }
 
         private void AutoCreateXmlFile()
@@ -56,7 +57,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
         {
             string xpath = elementName;
             var list = new List<XmlElement>();
-            foreach (XmlNode node in _document.SelectNodes(xpath))
+            foreach (XmlNode node in Document.SelectNodes(xpath))
             {
                 list.Add((XmlElement)node);
             }
@@ -75,14 +76,14 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         public XmlElement TryGetElementByAttributeValue(string attributeName, string attributeValue)
         {
-            XmlElement root = GetRoot(_document);
+            XmlElement root = GetRoot(Document);
             string xpath = String.Format("{0}[@{1}='{2}']", _elementName, attributeName, attributeValue);
             return (XmlElement)XmlHelper.TryGetNode(root, xpath);
         }
 
         public void DeleteElement(XmlElement element)
         {
-            _document.RemoveChild(element);
+            Document.RemoveChild(element);
         }
 
         private XmlElement GetRoot(XmlDocument document)
@@ -94,21 +95,21 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         public void SaveDocument()
         {
-            _document.Save(_filePath);
+            Document.Save(_filePath);
         }
 
         public XmlElement CreateElement(IEnumerable<string> attributeNames)
         {
             if (attributeNames == null) throw new ArgumentNullException("attributeNames");
 
-            XmlElement root = GetRoot(_document);
+            XmlElement root = GetRoot(Document);
 
-            XmlElement element = _document.CreateElement(_elementName);
+            XmlElement element = Document.CreateElement(_elementName);
             root.AppendChild(element);
 
             foreach (string attributeName in attributeNames)
             {
-                XmlAttribute attribute = _document.CreateAttribute(attributeName);
+                XmlAttribute attribute = Document.CreateAttribute(attributeName);
                 element.Attributes.Append(attribute);
             }
 
@@ -135,7 +136,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
         public string GetMaxAttributeValue(string attributeName)
         {
             string xpath = String.Format("{0}[not(@{1} > ../@{1})]", _elementName, attributeName);
-            XmlElement elementWithMaxID = (XmlElement)XmlHelper.TryGetNode(_document, xpath);
+            XmlElement elementWithMaxID = (XmlElement)XmlHelper.TryGetNode(Document, xpath);
             if (elementWithMaxID != null)
             {
                 return GetAttributeValue(elementWithMaxID, attributeName);

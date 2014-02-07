@@ -15,8 +15,9 @@ namespace JJ.Framework.Persistence.Xml.Internal
     {
         private const string ROOT_ELEMENT_NAME = "root";
 
-        private readonly XmlElementAccessor _accessor;
-        private readonly XmlToEntityConverter<TEntity> _converter;
+        public XmlElementAccessor Accessor { get; private set; }
+        public XmlToEntityConverter<TEntity> Converter { get; private set; }
+
         private readonly IXmlMapping _mapping;
 
         public EntityStore(string filePath, IXmlMapping mapping)
@@ -24,32 +25,32 @@ namespace JJ.Framework.Persistence.Xml.Internal
             if (mapping == null) throw new ArgumentNullException("mapping");
             _mapping = mapping;
 
-            _accessor = new XmlElementAccessor(filePath, ROOT_ELEMENT_NAME, _mapping.ElementName);
-            _converter = new XmlToEntityConverter<TEntity>(_accessor);
+            Accessor = new XmlElementAccessor(filePath, ROOT_ELEMENT_NAME, _mapping.ElementName);
+            Converter = new XmlToEntityConverter<TEntity>(Accessor);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            IList<XmlElement> sourceXmlElements = _accessor.GetAllElements(_mapping.ElementName);
-            IList<TEntity> destEntities = sourceXmlElements.Select(x => _converter.ConvertXmlElementToEntity(x)).ToArray();
+            IList<XmlElement> sourceXmlElements = Accessor.GetAllElements(_mapping.ElementName);
+            IList<TEntity> destEntities = sourceXmlElements.Select(x => Converter.ConvertXmlElementToEntity(x)).ToArray();
             return destEntities;
         }
 
         public TEntity TryGet(object id)
         {
-            XmlElement sourceXmlElement = _accessor.TryGetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
+            XmlElement sourceXmlElement = Accessor.TryGetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
             if (sourceXmlElement == null)
             {
                 return null;
             }
-            TEntity destEntity = _converter.ConvertXmlElementToEntity(sourceXmlElement);
+            TEntity destEntity = Converter.ConvertXmlElementToEntity(sourceXmlElement);
             return destEntity;
         }
 
         public TEntity Get(object id)
         {
-            XmlElement sourceXmlElement = _accessor.GetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
-            TEntity destEntity = _converter.ConvertXmlElementToEntity(sourceXmlElement);
+            XmlElement sourceXmlElement = Accessor.GetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
+            TEntity destEntity = Converter.ConvertXmlElementToEntity(sourceXmlElement);
             return destEntity;
         }
 
@@ -57,11 +58,11 @@ namespace JJ.Framework.Persistence.Xml.Internal
         {
             // Create XML element
             IEnumerable<string> attributeNames = GetEntityPropertyNames();
-            XmlElement xmlElement = _accessor.CreateElement(attributeNames);
+            XmlElement xmlElement = Accessor.CreateElement(attributeNames);
 
             // Set identity
             object id = GetNewIdentity();
-            _accessor.SetAttributeValue(xmlElement, _mapping.IdentityPropertyName, Convert.ToString(id));
+            Accessor.SetAttributeValue(xmlElement, _mapping.IdentityPropertyName, Convert.ToString(id));
 
             TEntity entity = new TEntity();
             SetIDOfEntity(entity, id);
@@ -73,29 +74,29 @@ namespace JJ.Framework.Persistence.Xml.Internal
             if (sourceEntity == null) throw new ArgumentNullException("sourceEntity");
 
             IEnumerable<string> attributeNames = GetEntityPropertyNames();
-            XmlElement destXmlElement = _accessor.CreateElement(attributeNames);
-            _converter.ConvertEntityToXmlElement(sourceEntity, destXmlElement);
+            XmlElement destXmlElement = Accessor.CreateElement(attributeNames);
+            Converter.ConvertEntityToXmlElement(sourceEntity, destXmlElement);
         }
 
         public void Update(TEntity sourceEntity)
         {
             if (sourceEntity == null) throw new ArgumentNullException("sourceEntity");
             object id = GetIDFromEntity(sourceEntity);
-            XmlElement destXmlElement = _accessor.GetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
-            _converter.ConvertEntityToXmlElement(sourceEntity, destXmlElement);
+            XmlElement destXmlElement = Accessor.GetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
+            Converter.ConvertEntityToXmlElement(sourceEntity, destXmlElement);
         }
 
         public void Delete(TEntity sourceEntity)
         {
             if (sourceEntity == null) throw new ArgumentNullException("sourceEntity");
             object id = GetIDFromEntity(sourceEntity);
-            XmlElement destXmlElement = _accessor.GetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
-            _accessor.DeleteElement(destXmlElement);
+            XmlElement destXmlElement = Accessor.GetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
+            Accessor.DeleteElement(destXmlElement);
         }
 
         public void Commit()
         {
-            _accessor.SaveDocument();
+            Accessor.SaveDocument();
         }
 
         // Helpers
@@ -156,7 +157,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
                 return _maxID;
             }
 
-            string maxIDString = _accessor.GetMaxAttributeValue(_mapping.IdentityPropertyName);
+            string maxIDString = Accessor.GetMaxAttributeValue(_mapping.IdentityPropertyName);
 
             if (!String.IsNullOrEmpty(maxIDString))
             {

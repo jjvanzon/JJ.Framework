@@ -10,42 +10,69 @@ namespace JJ.Framework.Persistence
 {
     public static class ContextFactory
     {
-        /// <param name="persistenceContextTypeName">Can be a fully qualified type name, or the name of the assembly that holds the type.</param>
-        public static IContext CreateContext(string persistenceContextTypeName, string persistenceLocation, params string[] modelAssemblyNames)
+        /// <summary>
+        /// Creates a context using the values out of the config file.
+        /// A configuration example can be found in your bin directory.
+        /// </summary>
+        public static IContext CreateContextFromConfiguration()
         {
-            Type persistenceContextType = GetPersistenceContextType(persistenceContextTypeName);
+            PersistenceConfiguration persistenceConfiguration = PersistenceHelper.GetPersistenceConfiguration();
 
-            Assembly[] modelAssemblies = modelAssemblyNames.Select(x => Assembly.Load(x)).ToArray();
-
-            return ContextFactory.CreateContext(persistenceContextType, persistenceLocation, modelAssemblies);
+            return ContextFactory.CreateContext(
+                persistenceConfiguration.ContextType,
+                persistenceConfiguration.Location,
+                persistenceConfiguration.ModelAssembly,
+                persistenceConfiguration.MappingAssembly);
         }
 
-        private static IContext CreateContext(Type persistenceContextType, string persistenceLocation, params Assembly[] modelAssemblies)
+        /// <param name="persistenceContextTypeName">
+        /// Can be a fully qualified type name, or the name of the assembly that holds the type, 
+        /// or if the assembly name starts with 'JJ.Framework.Persistence' you can omit the 'JJ.Framework.Persistence.' from the name.
+        /// </param>
+        public static IContext CreateContext(string contextTypeName, string location, string modelAssemblyName, string mappingAssemblyName)
         {
-            return (IContext)Activator.CreateInstance(persistenceContextType, persistenceLocation, modelAssemblies);
+            Type persistenceContextType = ResolveContextType(contextTypeName);
+
+            Assembly modelAssembly = null;
+            if (!String.IsNullOrEmpty(modelAssemblyName))
+            {
+                modelAssembly = Assembly.Load(modelAssemblyName);
+            }
+
+            Assembly mappingAssembly = null;
+            if (!String.IsNullOrEmpty(mappingAssemblyName))
+            {
+                mappingAssembly = Assembly.Load(mappingAssemblyName);
+            }
+
+            return ContextFactory.CreateContext(persistenceContextType, location, modelAssembly, mappingAssembly);
+        }
+
+        public static IContext CreateContext(Type persistenceContextType, string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly)
+        {
+            return (IContext)Activator.CreateInstance(persistenceContextType, persistenceLocation, modelAssembly, mappingAssembly);
         }
 
         private static object _contextTypeDictionaryLock = new object();
-
         private static Dictionary<string, Type> _contextTypeDictionary = new Dictionary<string, Type>();
 
-        private static Type GetPersistenceContextType(string persistenceContextTypeName)
+        private static Type ResolveContextType(string contextTypeName)
         {
-            if (persistenceContextTypeName == null) throw new ArgumentNullException("persistenceContextTypeName");
+            if (contextTypeName == null) throw new ArgumentNullException("contextTypeName");
 
             lock (_contextTypeDictionaryLock)
             {
-                if (_contextTypeDictionary.ContainsKey(persistenceContextTypeName))
+                if (_contextTypeDictionary.ContainsKey(contextTypeName))
                 {
-                    return _contextTypeDictionary[persistenceContextTypeName];
+                    return _contextTypeDictionary[contextTypeName];
                 }
 
                 // Try to get type by name
-                Type type = Type.GetType(persistenceContextTypeName);
+                Type type = Type.GetType(contextTypeName);
                 if (type == null)
                 {
                     // Otherwise assume the assembly name is :JJ.Framework.Persistence." + persistenceContextTypeName.
-                    string assumedAssemblyName = typeof(JJ.Framework.Persistence.ContextFactory).Assembly.GetName().Name + "." + persistenceContextTypeName;
+                    string assumedAssemblyName = typeof(JJ.Framework.Persistence.ContextFactory).Assembly.GetName().Name + "." + contextTypeName;
                     Assembly assembly;
                     try
                     {
@@ -54,7 +81,7 @@ namespace JJ.Framework.Persistence
                     catch
                     {
                         // Otherwise assume it is a full assembly name.
-                        assembly = Assembly.Load(persistenceContextTypeName);
+                        assembly = Assembly.Load(contextTypeName);
                     }
                     IList<Type> types = ReflectionHelper.GetImplementations<IContext>(assembly);
                     switch (types.Count)
@@ -64,14 +91,14 @@ namespace JJ.Framework.Persistence
                             break;
 
                         case 0:
-                            throw new Exception(String.Format("Context type '{0}' not found.", persistenceContextTypeName));
+                            throw new Exception(String.Format("Context type '{0}' not found.", contextTypeName));
 
                         default:
                             throw new Exception(String.Format("Multiple context types found in assembly '{0}'. Please specify a fully qualified type name or implement only one context in the assembly.", assembly.GetName().Name));
                     }
                 }
 
-                _contextTypeDictionary[persistenceContextTypeName] = type;
+                _contextTypeDictionary[contextTypeName] = type;
                 return type;
             }
         }

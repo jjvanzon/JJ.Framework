@@ -11,9 +11,11 @@ namespace JJ.Framework.Persistence.NPersist
 {
     internal static class UnderlyingNPersistContextFactory
     {
-        public static Puzzle.NPersist.Framework.Context CreateContext(string persistenceLocation, params Assembly[] modelAssemblies)
+        // TODO: If model assembly is not required the don't make it a parameter.
+        // Also: if it is not required, don't check it for null in the ContextBase class.
+        public static Puzzle.NPersist.Framework.Context CreateContext(string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly)
         {
-            DomainModelInfo info = GetDomainModelInfo(modelAssemblies);
+            DomainModelInfo info = GetDomainModelInfo(mappingAssembly);
             var context = new Puzzle.NPersist.Framework.Context(info.Assembly, info.ResourceName);
             context.SetConnectionString(persistenceLocation);
             return context;
@@ -25,24 +27,23 @@ namespace JJ.Framework.Persistence.NPersist
             public string ResourceName { get; set; }
         }
 
-        private static DomainModelInfo GetDomainModelInfo(Assembly[] modelAssemblies)
+        private static DomainModelInfo GetDomainModelInfo(Assembly mappingAssembly)
         {
-            foreach (Assembly assembly in modelAssemblies)
+            if (mappingAssembly == null) throw new ArgumentNullException("mappingAssembly");
+            
+            foreach (string resourceName in mappingAssembly.GetManifestResourceNames())
             {
-                foreach (string resourceName in assembly.GetManifestResourceNames())
+                if (resourceName.EndsWith(".npersist"))
                 {
-                    if (resourceName.EndsWith(".npersist"))
+                    return new DomainModelInfo
                     {
-                        return new DomainModelInfo
-                        {
-                            Assembly = assembly,
-                            ResourceName = resourceName
-                        };
-                    }
+                        Assembly = mappingAssembly,
+                        ResourceName = resourceName
+                    };
                 }
             }
-            
-            throw new Exception("The .npersist file must be included as an embedded resource in one of the model assemblies.");
+
+            throw new Exception(String.Format( "The .npersist was not included as an embedded resource in the mapping assembly '{0}'.", mappingAssembly.GetName().Name));
         }
     }
 }
