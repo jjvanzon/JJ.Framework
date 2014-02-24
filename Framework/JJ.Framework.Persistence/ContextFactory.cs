@@ -16,7 +16,7 @@ namespace JJ.Framework.Persistence
         /// </summary>
         public static IContext CreateContextFromConfiguration()
         {
-            PersistenceConfiguration persistenceConfiguration = PersistenceHelper.GetPersistenceConfiguration();
+            PersistenceConfiguration persistenceConfiguration = PersistenceConfigurationHelper.GetPersistenceConfiguration();
 
             return ContextFactory.CreateContext(
                 persistenceConfiguration.ContextType,

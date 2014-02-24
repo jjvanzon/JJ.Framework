@@ -10,7 +10,7 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Persistence
 {
-    public static class PersistenceHelper
+    public static class PersistenceConfigurationHelper
     {
         public static PersistenceConfiguration GetPersistenceConfiguration()
         {

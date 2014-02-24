@@ -19,7 +19,7 @@ namespace JJ.Framework.Persistence
         /// <typeparam name="TRepositoryInterface">The repository interface type.</typeparam>
         public static TRepositoryInterface CreateRepositoryFromConfiguration<TRepositoryInterface>(IContext context)
         {
-            PersistenceConfiguration configuration = PersistenceHelper.GetPersistenceConfiguration();
+            PersistenceConfiguration configuration = PersistenceConfigurationHelper.GetPersistenceConfiguration();
 
             return RepositoryFactory.CreateRepository<TRepositoryInterface>(context, configuration.RepositoryAssemblies);
         }
