@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Persistence
@@ -17,6 +16,13 @@ namespace JJ.Framework.Persistence
         public static IContext CreateContextFromConfiguration()
         {
             PersistenceConfiguration persistenceConfiguration = PersistenceConfigurationHelper.GetPersistenceConfiguration();
+
+            return CreateContextFromConfiguration(persistenceConfiguration);
+        }
+
+        public static IContext CreateContextFromConfiguration(PersistenceConfiguration persistenceConfiguration)
+        {
+            if (persistenceConfiguration == null) throw new ArgumentNullException("persistenceConfiguration");
 
             return ContextFactory.CreateContext(
                 persistenceConfiguration.ContextType,

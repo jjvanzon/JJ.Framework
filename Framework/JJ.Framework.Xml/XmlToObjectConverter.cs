@@ -5,11 +5,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
+using JJ.Framework.Net45;
 using JJ.Framework.Xml.Internal;
 
 namespace JJ.Framework.Xml

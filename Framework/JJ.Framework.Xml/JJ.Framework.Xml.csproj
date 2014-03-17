@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JJ.Framework.Xml</RootNamespace>
     <AssemblyName>JJ.Framework.Xml</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SgmlReaderDll">
-      <HintPath>..\..\External Components\SgmlReader\SgmlReaderDll.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
@@ -46,9 +44,17 @@
     <Compile Include="XmlToObjectConverter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj">
+      <Project>{499527ff-ae52-450f-b3e3-4ad53e1712ad}</Project>
+      <Name>SgmlReaderDll</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Net45\JJ.Framework.Net45.csproj">
+      <Project>{e754bb24-447b-40ec-9eeb-f0c69e6eea0e}</Project>
+      <Name>JJ.Framework.Net45</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>

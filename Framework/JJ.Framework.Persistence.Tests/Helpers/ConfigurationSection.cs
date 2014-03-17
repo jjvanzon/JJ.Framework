@@ -9,12 +9,16 @@ namespace JJ.Framework.Persistence.Tests
 {
     public class ConfigurationSection
     {
-        public string EntityFramework5ContextType { get; set; }
+        [XmlAttribute]
+        public string Location { get; set; }
 
-        [XmlElement("nhibernateContextType")]
+        [XmlAttribute("nhibernateContextType")]
         public string NHibernateContextType { get; set; }
 
-        [XmlElement("npersistContextType")]
+        [XmlAttribute("npersistContextType")]
         public string NPersistContextType { get; set; }
+
+        [XmlAttribute("entityFramework5ContextType")]
+        public string EntityFramework5ContextType { get; set; }
     }
 }

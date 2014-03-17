@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
+using JJ.Framework.Common;
 
 namespace JJ.Framework.Persistence
 {
@@ -58,7 +58,7 @@ namespace JJ.Framework.Persistence
                 }
             }
 
-            string repositoryAssembliesDescription = String.Join(", ", repositoryAssemblies.Select(x => x.GetName().Name));
+            string repositoryAssembliesDescription = Strings.Join(", ", repositoryAssemblies.Select(x => x.GetName().Name));
             throw new Exception(String.Format("No implementation of type {0} found in any of the following assemblies: {1}", typeof(TRepositoryInterface), repositoryAssembliesDescription));
         }
     }

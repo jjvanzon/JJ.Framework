@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
+using JJ.Framework.Net4;
 
 namespace JJ.Framework.Reflection
 {
@@ -128,7 +128,7 @@ namespace JJ.Framework.Reflection
             PropertyInfo property = TryGetIndexer(type, parameterTypes);
             if (property == null)
             {
-                throw new Exception(String.Format("Indexer not found with parameterTypes '{0}'.", String.Join(", ", parameterTypes.Select(x => x.ToString()))));
+                throw new Exception(String.Format("Indexer not found with parameterTypes '{0}'.", Strings.Join(", ", parameterTypes.Select(x => x.ToString()))));
             }
             return property;
         }
