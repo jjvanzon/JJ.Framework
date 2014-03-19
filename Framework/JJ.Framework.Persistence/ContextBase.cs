@@ -12,7 +12,6 @@ namespace JJ.Framework.Persistence
         protected Assembly ModelAssembly { get; private set; }
         protected Assembly MappingAssembly { get; private set; }
 
-        /// <param name="location"></param>
         /// <param name="modelAssembly">not nullable</param>
         /// <param name="mappingAssembly">nullable</param>
         public ContextBase(string location, Assembly modelAssembly, Assembly mappingAssembly)

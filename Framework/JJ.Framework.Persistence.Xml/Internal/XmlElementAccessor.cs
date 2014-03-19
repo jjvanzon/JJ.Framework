@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,8 +24,8 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         public XmlElementAccessor(string filePath, string rootElementName, string elementName)
         {
-            if (String.IsNullOrWhiteSpace(rootElementName)) throw new Exception("rootElementName cannot be null or white space.");
-            if (String.IsNullOrWhiteSpace(elementName)) throw new Exception("elementName cannot be null or white space.");
+            if (Strings.IsNullOrWhiteSpace(rootElementName)) throw new Exception("rootElementName cannot be null or white space.");
+            if (Strings.IsNullOrWhiteSpace(elementName)) throw new Exception("elementName cannot be null or white space.");
 
             _rootElementName = rootElementName;
             _elementName = elementName;

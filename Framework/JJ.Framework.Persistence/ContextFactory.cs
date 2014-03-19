@@ -31,7 +31,7 @@ namespace JJ.Framework.Persistence
                 persistenceConfiguration.MappingAssembly);
         }
 
-        /// <param name="persistenceContextTypeName">
+        /// <param name="contextTypeName">
         /// Can be a fully qualified type name, or the name of the assembly that holds the type, 
         /// or if the assembly name starts with 'JJ.Framework.Persistence' you can omit the 'JJ.Framework.Persistence.' from the name.
         /// </param>

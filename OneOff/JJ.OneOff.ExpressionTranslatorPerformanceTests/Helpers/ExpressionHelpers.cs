@@ -1,5 +1,4 @@
 ﻿using JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators;
-using JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators;
 using System;
 using System.Collections.Generic;
 using System.Linq;

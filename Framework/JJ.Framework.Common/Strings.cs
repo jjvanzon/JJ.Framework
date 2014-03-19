@@ -15,6 +15,9 @@ namespace JJ.Framework.Common
             return String.Join(separator, values.Select(x => x.ToString()).ToArray());
         }
 
+        /// <summary>
+        /// .Net 4 substitute
+        /// </summary>
         public static bool IsNullOrWhiteSpace(string value)
         {
             if (value == null)
@@ -22,7 +25,7 @@ namespace JJ.Framework.Common
                 return true;
             }
 
-            if( value == "")
+            if (value == "")
             {
                 return true;
             }
