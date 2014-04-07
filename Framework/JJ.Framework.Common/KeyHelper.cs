@@ -7,12 +7,7 @@ namespace JJ.Framework.Common
 {
     public static class KeyHelper
     {
-        private static string _separator;
-
-        static KeyHelper()
-        {
-            _separator = Guid.NewGuid().ToString();
-        }
+        private static string _separator = Guid.NewGuid().ToString();
 
         /// <summary>
         /// Turns several objects into a single string key.
@@ -20,16 +15,15 @@ namespace JJ.Framework.Common
         /// </summary>
         public static string CreateKey(object[] values)
         {
-            string key = "";
-            foreach (object obj in values)
-            {
-                if (!String.IsNullOrEmpty(key))
-                {
-                    key += _separator;
-                }
+            string[] strings = new string[values.Length];
 
-                key += (obj ?? "").ToString();
+            for (int i = 0; i < strings.Length; i++)
+            {
+                strings[i] = Convert.ToString(values[i]);
             }
+
+            string key = String.Join(_separator, strings);
+
             return key;
         }
     }

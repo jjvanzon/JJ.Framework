@@ -1,52 +1,37 @@
-﻿using JJ.Framework.Persistence.Xml.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Xml;
+using JJ.Framework.Persistence.Memory.Internal;
 
-namespace JJ.Framework.Persistence.Xml
+namespace JJ.Framework.Persistence.Memory
 {
-    public class XmlContext : ContextBase
+    public class MemoryContext : ContextBase
     {
-        public XmlContext(string folderPath, Assembly modelAssembly, Assembly mappingAssembly)
-            : base(folderPath, modelAssembly, mappingAssembly)
+        /// <param name="location">nullable</param>
+        public MemoryContext(string location, Assembly modelAssembly, Assembly mappingAssembly)
+            : base(location, modelAssembly, mappingAssembly)
         {
             if (mappingAssembly == null) throw new ArgumentNullException("mappingAssembly");
         }
 
         private object _lock = new object();
-        private Dictionary<Type, IEntityStore> _entityStoreDictionary = new Dictionary<Type, IEntityStore>();
-
-        // Expose underlying persistence technology for specialized repository.
-        public XmlDocument GetDocument<TEntity>()
-            where TEntity : class, new()
-        {
-            return GetEntityStore<TEntity>().Accessor.Document;
-        }
-
-        public XmlToEntityConverter<TEntity> GetConverter<TEntity>()
-            where TEntity : class, new()
-        {
-            return GetEntityStore<TEntity>().Converter;
-        }
+        private Dictionary<Type, object> _entityStoreDictionary = new Dictionary<Type, object>();
 
         private EntityStore<TEntity> GetEntityStore<TEntity>()
             where TEntity : class, new()
         {
             lock (_lock)
             {
-                IEntityStore entityStore;
+                object entityStore;
                 Type entityType = typeof(TEntity);
 
                 if (!_entityStoreDictionary.TryGetValue(entityType, out entityStore))
                 {
                     string entityName = entityType.Name;
-                    string filePath = Path.Combine(Location, entityName) + ".xml";
-                    IXmlMapping xmlMapping = XmlMappingResolver.GetXmlMapping(entityType, MappingAssembly);
-                    entityStore = new EntityStore<TEntity>(filePath, xmlMapping);
+                    IMemoryMapping mapping = MappingResolver.GetMapping(entityType, MappingAssembly);
+                    entityStore = new EntityStore<TEntity>(mapping);
 
                     _entityStoreDictionary[entityType] = entityStore;
                 }
@@ -75,8 +60,7 @@ namespace JJ.Framework.Persistence.Xml
 
         public override void Update<TEntity>(TEntity entity)
         {
-            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
-            entityStore.Update(entity);
+            // No code required.
         }
 
         public override void Delete<TEntity>(TEntity entity)
@@ -93,18 +77,12 @@ namespace JJ.Framework.Persistence.Xml
 
         public override IEnumerable<TEntity> Query<TEntity>()
         {
-            throw new NotSupportedException("XmlContext does not support Query<TEntity>().");
+            throw new NotSupportedException("MemoryContext does not support Query<TEntity>().");
         }
 
         public override void Commit()
         {
-            lock (_lock)
-            {
-                foreach (IEntityStore entityStore in _entityStoreDictionary.Values)
-                {
-                    entityStore.Commit();
-                }
-            }
+            // No code required.
         }
 
         public override void Dispose()

@@ -46,13 +46,6 @@ namespace JJ.Framework.Persistence.Xml.Internal
             return destEntity;
         }
 
-        public TEntity Get(object id)
-        {
-            XmlElement sourceXmlElement = Accessor.GetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
-            TEntity destEntity = Converter.ConvertXmlElementToEntity(sourceXmlElement);
-            return destEntity;
-        }
-
         public TEntity Create()
         {
             // Create XML element
