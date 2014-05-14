@@ -53,7 +53,7 @@ namespace JJ.Framework.Reflection
             Type[] types = assembly.GetTypes();
 
             return Enumerable.Union(types.Where(x => x.BaseType == baseType),
-                                    types.Where(x => x.GetInterface(baseType.Name) != null)).ToArray();
+                                    types.Where(x => x.GetInterface(baseType.Name, ignoreCase: false) != null)).ToArray(); // Include ingoreCase parameter, because it is required for Windows Phone.
         }
 
         public static Type[] GetImplementations(IEnumerable<Assembly> assemblies, Type baseType)
@@ -83,7 +83,7 @@ namespace JJ.Framework.Reflection
         {
             if (collectionType == null) throw new ArgumentNullException("collectionType");
 
-            Type enumerableInterface = collectionType.GetInterface(typeof(IEnumerable<>).FullName);
+            Type enumerableInterface = collectionType.GetInterface(typeof(IEnumerable<>).FullName, ignoreCase: false); // Include ingoreCase parameter, because it is required for Windows Phone.
             if (enumerableInterface != null)
             {
                 Type itemType = enumerableInterface.GetGenericArguments()[0];
@@ -146,24 +146,32 @@ namespace JJ.Framework.Reflection
 
         public static bool IsStatic(MemberInfo member)
         {
-            switch (member.MemberType)
+            if (member == null) throw new ArgumentNullException("member");
+
+            // Windows Phone / Unity compatibility:
+            // Don't switch on node.MemberInfo.MemberType. It produced a strange Exception when deployed to Windows Phone using Unity:
+            // "Method not found: 'System.Reflection.MemberTypes"
+
+            if (member is FieldInfo)
             {
-                case MemberTypes.Field:
-                    var field = (FieldInfo)member;
-                    return field.IsStatic;
-
-                case MemberTypes.Method:
-                    var method = (MethodInfo)member;
-                    return method.IsStatic;
-
-                case MemberTypes.Property:
-                    var property = (PropertyInfo)member;
-                    MethodInfo getterOrSetter = property.GetGetMethod(nonPublic: true) ?? property.GetSetMethod(nonPublic: true);
-                    return getterOrSetter.IsStatic;
-
-                default:
-                    throw new Exception(String.Format("IsStatic cannot be obtained from member with MemberType '{0}'.", member.MemberType));
+                var field = (FieldInfo)member;
+                return field.IsStatic;
             }
+
+            if (member is MethodInfo)
+            {
+                var method = (MethodInfo)member;
+                return method.IsStatic;
+            }
+
+            if (member is PropertyInfo)
+            {
+                var property = (PropertyInfo)member;
+                MethodInfo getterOrSetter = property.GetGetMethod(nonPublic: true) ?? property.GetSetMethod(nonPublic: true);
+                return getterOrSetter.IsStatic;
+            }
+
+            throw new Exception(String.Format("IsStatic cannot be obtained from member of type '{0}'.", member.GetType().Name));
         }
 
         // Generic overloads

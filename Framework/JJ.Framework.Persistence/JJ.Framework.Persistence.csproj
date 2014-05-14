@@ -49,10 +49,6 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj">
-      <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
-      <Name>JJ.Framework.Configuration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>

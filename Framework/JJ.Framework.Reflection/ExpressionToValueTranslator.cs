@@ -101,19 +101,24 @@ namespace JJ.Framework.Reflection
             }
 
             // Then process 'child' node.
-            switch (node.Member.MemberType)
+
+            // Windows Phone / Unity compatibility:
+            // Don't switch on node.MemberInfo.MemberType. It produced a strange Exception when deployed to Windows Phone using Unity:
+            // "Method not found: 'System.Reflection.MemberTypes"
+
+            if (node.Member is FieldInfo)
             {
-                case MemberTypes.Field:
-                    VisitField(node);
-                    break;
-
-                case MemberTypes.Property:
-                    VisitProperty(node);
-                    break;
-
-                default:
-                    throw new NotSupportedException(String.Format("MemberTypes other than Field and Property are not supported. MemberType = {0}", node.Member.MemberType));
+                VisitField(node);
+                return;
             }
+
+            if (node.Member is PropertyInfo)
+            {
+                VisitProperty(node);
+                return;
+            }
+
+            throw new NotSupportedException(String.Format("Member types other than FieldInfo and PropertyInfo are not supported. Member type = {0}", node.Member.GetType().Name));
         }
 
         private void VisitField(MemberExpression node)

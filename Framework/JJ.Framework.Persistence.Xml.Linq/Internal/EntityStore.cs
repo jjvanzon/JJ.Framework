@@ -1,0 +1,169 @@
+﻿using JJ.Framework.Common;
+using JJ.Framework.Reflection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Xml.Linq;
+
+namespace JJ.Framework.Persistence.Xml.Linq.Internal
+{
+    internal class EntityStore<TEntity> : IEntityStore
+        where TEntity : class, new()
+    {
+        private const string ROOT_ELEMENT_NAME = "root";
+
+        public XmlElementAccessor Accessor { get; private set; }
+        public XmlToEntityConverter<TEntity> Converter { get; private set; }
+
+        private readonly IXmlMapping _mapping;
+
+        public EntityStore(string filePath, IXmlMapping mapping)
+        {
+            if (mapping == null) throw new ArgumentNullException("mapping");
+            _mapping = mapping;
+
+            Accessor = new XmlElementAccessor(filePath, ROOT_ELEMENT_NAME, _mapping.ElementName);
+            Converter = new XmlToEntityConverter<TEntity>(Accessor);
+        }
+
+        public IList<TEntity> GetAll()
+        {
+            IEnumerable<XElement> sourceXmlElements = Accessor.GetAllElements(_mapping.ElementName);
+            IList<TEntity> destEntities = sourceXmlElements.Select(x => Converter.ConvertXmlElementToEntity(x)).ToArray();
+            return destEntities;
+        }
+
+        public TEntity TryGet(object id)
+        {
+            XElement sourceXmlElement = Accessor.TryGetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
+            if (sourceXmlElement == null)
+            {
+                return null;
+            }
+            TEntity destEntity = Converter.ConvertXmlElementToEntity(sourceXmlElement);
+            return destEntity;
+        }
+
+        public TEntity Create()
+        {
+            // Create XML element
+            IEnumerable<string> attributeNames = GetEntityPropertyNames();
+            XElement element = Accessor.CreateElement(attributeNames);
+
+            // Set identity
+            object id = GetNewIdentity();
+            Accessor.SetAttributeValue(element, _mapping.IdentityPropertyName, Convert.ToString(id));
+
+            TEntity entity = new TEntity();
+            SetIDOfEntity(entity, id);
+            return entity;
+        }
+
+        public void Insert(TEntity sourceEntity)
+        {
+            if (sourceEntity == null) throw new ArgumentNullException("sourceEntity");
+
+            IEnumerable<string> attributeNames = GetEntityPropertyNames();
+            XElement destXmlElement = Accessor.CreateElement(attributeNames);
+            Converter.ConvertEntityToXmlElement(sourceEntity, destXmlElement);
+        }
+
+        public void Update(TEntity sourceEntity)
+        {
+            if (sourceEntity == null) throw new ArgumentNullException("sourceEntity");
+            object id = GetIDFromEntity(sourceEntity);
+            XElement destXmlElement = Accessor.GetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
+            Converter.ConvertEntityToXmlElement(sourceEntity, destXmlElement);
+        }
+
+        public void Delete(TEntity sourceEntity)
+        {
+            if (sourceEntity == null) throw new ArgumentNullException("sourceEntity");
+            object id = GetIDFromEntity(sourceEntity);
+            XElement destXmlElement = Accessor.GetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
+            Accessor.DeleteElement(destXmlElement);
+        }
+
+        public void Commit()
+        {
+            Accessor.SaveDocument();
+        }
+
+        // Helpers
+
+        private object GetIDFromEntity(TEntity entity)
+        {
+            PropertyInfo property = typeof(TEntity).GetProperty(_mapping.IdentityPropertyName);
+            if (property == null)
+            {
+                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, typeof(TEntity).Name));
+            }
+
+            // iOS compatibility: PropertyInfo.GetValue in mono on a generic type may cause JIT compilation, which is not supported by iOS.
+            //return property.GetValue(entity, null);
+            return property.GetGetMethod().Invoke(entity, null);
+        }
+
+        private void SetIDOfEntity(TEntity entity, object id)
+        {
+            PropertyInfo property = typeof(TEntity).GetProperty(_mapping.IdentityPropertyName);
+            if (property == null)
+            {
+                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, typeof(TEntity).Name));
+            }
+            property.SetValue(entity, id, null);
+        }
+
+        private IEnumerable<string> GetEntityPropertyNames()
+        {
+            var list = new List<string>();
+            foreach (PropertyInfo property in ReflectionCache.GetProperties(typeof(TEntity)))
+            {
+                list.Add(property.Name);
+            }
+            return list;
+        }
+
+        // Identity generation
+
+        public object GetNewIdentity()
+        {
+            switch (_mapping.IdentityType)
+            {
+                case IdentityType.AutoIncrement:
+                    _maxID = GetMaxID();
+                    _maxID++;
+                    return _maxID;
+
+                default:
+                    throw new ValueNotSupportedException(_mapping.IdentityType);
+            }
+        }
+
+        private int _maxID = 0;
+
+        private int GetMaxID()
+        {
+            // Cache the max value.
+            if (_maxID != 0)
+            {
+                return _maxID;
+            }
+
+            string maxIDString = Accessor.GetMaxAttributeValue(_mapping.IdentityPropertyName);
+
+            if (!String.IsNullOrEmpty(maxIDString))
+            {
+                _maxID = Int32.Parse(maxIDString);
+            }
+            else
+            {
+                _maxID = 0;
+            }
+
+            return _maxID;
+        }
+    }
+}

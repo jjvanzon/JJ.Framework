@@ -16,25 +16,29 @@ namespace JJ.Framework.Persistence.Xml.Internal
     internal class XmlElementAccessor
     {
         private string _filePath;
-
-        public XmlDocument Document { get; private set; }
-
         private string _rootElementName;
         private string _elementName;
+        private object _lock = new object();
+
+        public XmlDocument Document { get; private set; }
 
         public XmlElementAccessor(string filePath, string rootElementName, string elementName)
         {
             if (Strings.IsNullOrWhiteSpace(rootElementName)) throw new Exception("rootElementName cannot be null or white space.");
             if (Strings.IsNullOrWhiteSpace(elementName)) throw new Exception("elementName cannot be null or white space.");
 
+            _filePath = filePath;
             _rootElementName = rootElementName;
             _elementName = elementName;
-            _filePath = filePath;
 
-            AutoCreateXmlFile();
+            lock (_lock)
+            {
+                AutoCreateXmlFile();
 
-            Document = new XmlDocument();
-            Document.Load(_filePath);
+                // TODO: Use lock() to prevent simultaneous reads and writes.
+                Document = new XmlDocument();
+                Document.Load(_filePath);
+            }
         }
 
         private void AutoCreateXmlFile()
@@ -54,6 +58,14 @@ namespace JJ.Framework.Persistence.Xml.Internal
             }
         }
 
+        public void SaveDocument()
+        {
+            lock (_lock)
+            {
+                Document.Save(_filePath);
+            }
+        }
+
         public List<XmlElement> GetAllElements(string elementName)
         {
             string xpath = elementName;
@@ -65,6 +77,9 @@ namespace JJ.Framework.Persistence.Xml.Internal
             return list;
         }
 
+        /// <summary>
+        /// Mainly used to get the an element by identity value.
+        /// </summary>
         public XmlElement GetElementByAttributeValue(string attributeName, string attributeValue)
         {
             XmlElement element = TryGetElementByAttributeValue(attributeName, attributeValue);
@@ -75,6 +90,9 @@ namespace JJ.Framework.Persistence.Xml.Internal
             return element;
         }
 
+        /// <summary>
+        /// Mainly used to get the an element by identity value.
+        /// </summary>
         public XmlElement TryGetElementByAttributeValue(string attributeName, string attributeValue)
         {
             XmlElement root = GetRoot(Document);
@@ -92,11 +110,6 @@ namespace JJ.Framework.Persistence.Xml.Internal
             string xpath = _rootElementName;
             XmlElement element = (XmlElement)XmlHelper.GetNode(document, xpath);
             return element;
-        }
-
-        public void SaveDocument()
-        {
-            Document.Save(_filePath);
         }
 
         public XmlElement CreateElement(IEnumerable<string> attributeNames)

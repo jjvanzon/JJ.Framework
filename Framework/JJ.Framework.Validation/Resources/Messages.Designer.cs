@@ -22,7 +22,7 @@ namespace JJ.Framework.Validation.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Messages {
+    public class Messages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace JJ.Framework.Validation.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Framework.Validation.Resources.Messages", typeof(Messages).Assembly);
@@ -51,7 +51,7 @@ namespace JJ.Framework.Validation.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace JJ.Framework.Validation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is null..
         /// </summary>
-        internal static string IsNull {
+        public static string IsNull {
             get {
                 return ResourceManager.GetString("IsNull", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace JJ.Framework.Validation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is null or white space..
         /// </summary>
-        internal static string IsNullOrWhiteSpace {
+        public static string IsNullOrWhiteSpace {
             get {
                 return ResourceManager.GetString("IsNullOrWhiteSpace", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace JJ.Framework.Validation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is zero..
         /// </summary>
-        internal static string IsZero {
+        public static string IsZero {
             get {
                 return ResourceManager.GetString("IsZero", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace JJ.Framework.Validation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is not above {1}..
         /// </summary>
-        internal static string NotAbove {
+        public static string NotAbove {
             get {
                 return ResourceManager.GetString("NotAbove", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace JJ.Framework.Validation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} is not {1}..
         /// </summary>
-        internal static string NotIsValue {
+        public static string NotIsValue {
             get {
                 return ResourceManager.GetString("NotIsValue", resourceCulture);
             }

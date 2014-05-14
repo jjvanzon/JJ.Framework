@@ -105,14 +105,14 @@ namespace JJ.Framework.Validation
         }
 
         public void Above<TValue>(TValue min)
-            where TValue: IComparable
+            where TValue : IComparable
         {
             if (_value == null)
             {
                 return;
             }
 
-            IComparable value =(IComparable)_value;
+            IComparable value = (IComparable)_value;
 
             if (value.CompareTo(min) > 0)
             {
