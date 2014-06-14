@@ -77,7 +77,7 @@ namespace JJ.Framework.Persistence.Tests
                 string name = entity.Name;
 
                 // Get non-existent
-                AssertExtensions.ThrowsException(() => entity = context.Get<Thing>(NON_EXISTENT_THING_ID));
+                AssertExtended.ThrowsException(() => entity = context.Get<Thing>(NON_EXISTENT_THING_ID));
             }
         }
 

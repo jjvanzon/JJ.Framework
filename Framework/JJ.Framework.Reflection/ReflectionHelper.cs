@@ -83,6 +83,17 @@ namespace JJ.Framework.Reflection
         {
             if (collectionType == null) throw new ArgumentNullException("collectionType");
 
+            // The later code does not work for when collectionType is IEnumerable<T> itself,
+            // only if collectionType implements IEnumerable<T>.
+            if (collectionType.IsGenericType)
+            {
+                Type openGenericCollectionType = collectionType.GetGenericTypeDefinition();
+                if (openGenericCollectionType == typeof(IEnumerable<>))
+                {
+                    return collectionType.GetGenericArguments()[0];
+                }
+            }
+
             Type enumerableInterface = collectionType.GetInterface(typeof(IEnumerable<>).FullName, ignoreCase: false); // Include ingoreCase parameter, because it is required for Windows Phone.
             if (enumerableInterface != null)
             {

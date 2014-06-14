@@ -1,0 +1,118 @@
+﻿<root attribute="2"
+      Attribute_WithExplicitName="2"
+      nullableAttribute_FilledIn="2"
+      NullableAttribute_LeftBlank="" >
+
+  <!-- Basics -->
+
+  <simpleElement>2</simpleElement>
+  <element_WithExplicitAnnotation>2</element_WithExplicitAnnotation>
+
+  <!-- Explicit Names -->
+
+  <Element_WithExplicitName>2</Element_WithExplicitName>
+  
+  <Array_WithExplicitName>
+    <item>2</item>
+    <item>2</item>
+  </Array_WithExplicitName>
+
+  <!-- Simple Types -->
+
+  <boolean>true</boolean>
+  <byte>2</byte>
+  <sByte>-2</sByte>
+  <int16>-2</int16>
+  <uInt16>2</uInt16>
+  <int32>-2</int32>
+  <uInt32>2</uInt32>
+  <int64>-2</int64>
+  <uInt64>2</uInt64>
+  <intPtr>-2</intPtr>
+  <uIntPtr>2</uIntPtr>
+  <char>a</char>
+  <double>1.23E4</double>
+  <single>1.23E4</single>
+  <string>Hello</string>
+  <guid>ebac0ca5-b89d-4e54-ac01-19351261f004</guid>
+  <timeSpan>01:23</timeSpan>
+  <dateTime>2001-02-03 04:56</dateTime>
+  <enumType>EnumMember2</enumType>
+
+  <!-- Nullable Types -->
+
+  <nullableBoolean>true</nullableBoolean>
+  <nullableByte>2</nullableByte>
+  <nullableSByte>-2</nullableSByte>
+  <nullableInt16>-2</nullableInt16>
+  <nullableUInt16>2</nullableUInt16>
+  <nullableInt32>-2</nullableInt32>
+  <nullableUInt32>2</nullableUInt32>
+  <nullableInt64>-2</nullableInt64>
+  <nullableUInt64>2</nullableUInt64>
+  <nullableIntPtr>-2</nullableIntPtr>
+  <nullableUIntPtr>2</nullableUIntPtr>
+  <nullableChar>a</nullableChar>
+  <nullableDouble>1.23E4</nullableDouble>
+  <nullableSingle>1.23E4</nullableSingle>
+  <nullableGuid>ebac0ca5-b89d-4e54-ac01-19351261f004</nullableGuid>
+  <nullableTimeSpan>01:23</nullableTimeSpan>
+  <nullableDateTime>2001-02-03 04:56</nullableDateTime>
+  <nullableEnumType>EnumMember2</nullableEnumType>
+
+  <!-- Collections -->
+
+  <array>
+    <item>2</item>
+    <item>2</item>
+  </array>
+
+  <array_WithExplicitAnnotation>
+    <item>2</item>
+    <item>2</item>
+  </array_WithExplicitAnnotation>
+
+  <listOfT>
+    <item>2</item>
+    <item>2</item>
+  </listOfT>
+
+  <iListOfT>
+    <item>2</item>
+    <item>2</item>
+  </iListOfT>
+
+  <iCollectionOfT>
+    <item>2</item>
+    <item>2</item>
+  </iCollectionOfT>
+
+  <iEnumerableOfT>
+    <item>2</item>
+    <item>2</item>
+  </iEnumerableOfT>
+
+  <iList>
+    <item>2</item>
+    <item>2</item>
+  </iList>
+
+  <iCollection>
+    <item>2</item>
+    <item>2</item>
+  </iCollection>
+
+  <iEnumerable>
+    <item>2</item>
+    <item>2</item>
+  </iEnumerable>
+
+  <!-- Composite -->
+
+  <recursiveElement>
+    <element>
+      <element />
+    </element>
+  </recursiveElement>
+
+</root>

@@ -36,23 +36,23 @@ namespace JJ.Framework.Configuration
         public static T GetSection<T>(string sectionName)
             where T : new()
         {
-            XmlNode sourceNode = (XmlNode)ConfigurationManager.GetSection(sectionName);
-            if (sourceNode == null)
+            XmlElement sourceXmlElement = (XmlElement)ConfigurationManager.GetSection(sectionName);
+            if (sourceXmlElement == null)
             {
                 throw new Exception(String.Format("Configuration section '{0}' not found.", sectionName));
             }
 
             lock (_sectionDictionaryLock)
             {
-                if (_sectionDictionary.ContainsKey(sourceNode))
+                if (_sectionDictionary.ContainsKey(sourceXmlElement))
                 {
-                    return (T)_sectionDictionary[sourceNode];
+                    return (T)_sectionDictionary[sourceXmlElement];
                 }
                 
                 var converter = new XmlToObjectConverter<T>();
-                T destObject = converter.Convert(sourceNode);
+                T destObject = converter.Convert(sourceXmlElement);
 
-                _sectionDictionary[sourceNode] = destObject;
+                _sectionDictionary[sourceXmlElement] = destObject;
 
                 return destObject;
             }

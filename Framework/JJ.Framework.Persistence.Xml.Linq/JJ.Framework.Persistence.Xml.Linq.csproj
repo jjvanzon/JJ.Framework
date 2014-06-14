@@ -45,7 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internal\XmlElementAccessor.cs" />
     <Compile Include="XmlContext.cs" />
-    <Compile Include="Internal\XmlHelper.cs" />
     <Compile Include="XmlMapping.cs" />
     <Compile Include="XmlToEntityConverter.cs" />
   </ItemGroup>

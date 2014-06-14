@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Common;
+using JJ.Framework.Xml;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -97,7 +98,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
         {
             XmlElement root = GetRoot(Document);
             string xpath = String.Format("{0}[@{1}='{2}']", _elementName, attributeName, attributeValue);
-            return (XmlElement)XmlHelper.TryGetNode(root, xpath);
+            return (XmlElement)XmlHelper.TrySelectNode(root, xpath);
         }
 
         public void DeleteElement(XmlElement element)
@@ -107,8 +108,10 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         private XmlElement GetRoot(XmlDocument document)
         {
+            // TODO: doc.DocumentElement would also get the root.
+
             string xpath = _rootElementName;
-            XmlElement element = (XmlElement)XmlHelper.GetNode(document, xpath);
+            XmlElement element = (XmlElement)XmlHelper.SelectNode(document, xpath);
             return element;
         }
 
@@ -133,14 +136,14 @@ namespace JJ.Framework.Persistence.Xml.Internal
         public string GetAttributeValue(XmlElement element, string attributeName)
         {
             string xpath = "@" + attributeName;
-            XmlAttribute xmlAttribute = (XmlAttribute)XmlHelper.GetNode(element, xpath);
+            XmlAttribute xmlAttribute = (XmlAttribute)XmlHelper.SelectNode(element, xpath);
             return xmlAttribute.Value;
         }
 
         public void SetAttributeValue(XmlElement element, string attributeName, string value)
         {
             string xpath = "@" + attributeName;
-            XmlAttribute xmlAttribute = (XmlAttribute)XmlHelper.GetNode(element, xpath);
+            XmlAttribute xmlAttribute = (XmlAttribute)XmlHelper.SelectNode(element, xpath);
             xmlAttribute.Value = value;
         }
 
@@ -150,7 +153,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
         public string GetMaxAttributeValue(string attributeName)
         {
             string xpath = String.Format("{0}[not(@{1} > ../@{1})]", _elementName, attributeName);
-            XmlElement elementWithMaxID = (XmlElement)XmlHelper.TryGetNode(Document, xpath);
+            XmlElement elementWithMaxID = (XmlElement)XmlHelper.TrySelectNode(Document, xpath);
             if (elementWithMaxID != null)
             {
                 return GetAttributeValue(elementWithMaxID, attributeName);

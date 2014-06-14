@@ -10,6 +10,9 @@ namespace JJ.Framework.Reflection
 {
     public static class ReflectionCache
     {
+        // TODO: The use of these Tuples as keys (or at least the ones in JJ.Framework.Net4), are not fast dictionary keys.
+        // Use a different approach to reflection caching (like in ReflectionCacheDemo) and test what happens when you use .NET's own Tuple class.
+
         // Fields
 
         private static Dictionary<Tuple<Type, BindingFlags>, FieldInfo[]> _fieldsIndex = new Dictionary<Tuple<Type, BindingFlags>, FieldInfo[]>();

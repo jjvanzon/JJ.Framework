@@ -35,13 +35,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmbeddedResourceHelper.cs" />
     <Compile Include="ExceptionHelper.cs" />
     <Compile Include="IListExtensions.cs" />
     <Compile Include="KeyHelper.cs" />
+    <Compile Include="StringExtensions_Casing.cs" />
     <Compile Include="Strings.cs" />
     <Compile Include="ValueNotSupportedException.cs" />
     <Compile Include="IEnumerableOfTExtensions.cs" />
-    <Compile Include="StringExtensions.Split.cs" />
+    <Compile Include="StringExtensions_Split.cs" />
     <Compile Include="IEnumerableOfStringExtensions.cs" />
     <Compile Include="InvalidValueException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

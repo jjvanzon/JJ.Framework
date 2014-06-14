@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Common
 {
-    public static partial class StringExtensions
+    public static partial class StringExtensions_Split
     {
         public static string[] Split(this string str, char separator, StringSplitOptions options)
         {

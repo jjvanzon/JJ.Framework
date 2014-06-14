@@ -87,16 +87,6 @@ namespace JJ.Framework.Common
             return text;
         }
 
-        public static string StartWithCap(this string input)
-        {
-            if (input.Length == 0)
-            {
-                return input;
-            }
-
-            return input.Left(1).ToUpper() + input.CutLeft(1);
-        }
-
         public static string Replace(this string input, string oldValue, string newValue, bool ignoreCase)
         {
             RegexOptions options = default(RegexOptions);
