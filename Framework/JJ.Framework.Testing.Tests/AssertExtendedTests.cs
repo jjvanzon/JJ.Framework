@@ -4,19 +4,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Framework.Testing.Tests
 {
     [TestClass]
-    public class AssertExtensionsTests
+    public class AssertExtendedTests
     {
         [TestMethod]
         public void Test_ThrowsException_HasException()
         {
-            AssertExtensions.ThrowsException(() => { throw new Exception(); });
+            AssertHelper.ThrowsException(() => { throw new Exception(); });
         }
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
         public void Test_ThrowsException_NoException()
         {
-            AssertExtensions.ThrowsException(() => { });
+            AssertHelper.ThrowsException(() => { });
         }
     }
 }

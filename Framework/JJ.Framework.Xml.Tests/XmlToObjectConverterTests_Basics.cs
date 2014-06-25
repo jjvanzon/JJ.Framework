@@ -22,8 +22,8 @@ namespace JJ.Framework.Xml.Tests
             var converter = new XmlToObjectConverter<Element_WithSimpleChildElement>();
             Element_WithSimpleChildElement destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.AreEqual(2, () => destObject.SimpleElement);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.AreEqual(2, () => destObject.SimpleElement);
         }
 
         [TestMethod]
@@ -37,8 +37,8 @@ namespace JJ.Framework.Xml.Tests
             var converter = new XmlToObjectConverter<Element_WithChildElement_WithExplicitAnnotation>();
             Element_WithChildElement_WithExplicitAnnotation destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.AreEqual(2, () => destObject.Element_WithExplicitAnnotation);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.AreEqual(2, () => destObject.Element_WithExplicitAnnotation);
         }
 
         [TestMethod]
@@ -49,8 +49,8 @@ namespace JJ.Framework.Xml.Tests
             var converter = new XmlToObjectConverter<Element_WithAttribute<int>>();
             Element_WithAttribute<int> destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.AreEqual(2, () => destObject.Attribute);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.AreEqual(2, () => destObject.Attribute);
         }
     }
 }

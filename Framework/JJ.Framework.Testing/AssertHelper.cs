@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace JJ.Framework.Testing
 {
-    public static class AssertExtended
+    public static class AssertHelper
     {
         public static void ThrowsException(Action action)
         {

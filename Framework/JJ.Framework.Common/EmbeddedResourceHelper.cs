@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Net4;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +13,11 @@ namespace JJ.Framework.Common
         public static string GetEmbeddedResourceText(Assembly assembly, string fileName)
         {
             return GetEmbeddedResourceText(assembly, null, fileName);
+        }
+
+        public static byte[] GetEmbeddedResourceBytes(Assembly assembly, string fileName)
+        {
+            return GetEmbeddedResourceBytes(assembly, null, fileName);
         }
 
         public static Stream GetEmbeddedResourceStream(Assembly assembly, string fileName)
@@ -29,10 +35,29 @@ namespace JJ.Framework.Common
         }
 
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
+        public static byte[] GetEmbeddedResourceBytes(Assembly assembly, string subNamespace, string fileName)
+        {
+            string resourceName = GetEmbeddedResourceName(assembly, subNamespace, fileName);
+            using (Stream stream = GetEmbeddedResourceStream(assembly, subNamespace, fileName))
+            {
+                using (var stream2 = new MemoryStream())
+                {
+                    Streams.CopyTo(stream, stream2);
+                    return stream2.ToArray();
+                }
+            }
+        }
+
+        /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
         private static Stream GetEmbeddedResourceStream(Assembly assembly, string subNamespace, string fileName)
         {
             string resourceName = GetEmbeddedResourceName(assembly, subNamespace, fileName);
-            return assembly.GetManifestResourceStream(resourceName);
+            Stream stream = assembly.GetManifestResourceStream(resourceName);
+            if (stream == null)
+            {
+                throw new Exception(String.Format("Embedded resource '{0}' not found.", GetEmbeddedResourceName(assembly, subNamespace, fileName)));
+            }
+            return stream;
         }
 
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>

@@ -92,21 +92,6 @@
     <item>2</item>
   </iEnumerableOfT>
 
-  <iList>
-    <item>2</item>
-    <item>2</item>
-  </iList>
-
-  <iCollection>
-    <item>2</item>
-    <item>2</item>
-  </iCollection>
-
-  <iEnumerable>
-    <item>2</item>
-    <item>2</item>
-  </iEnumerable>
-
   <!-- Composite -->
 
   <recursiveElement>

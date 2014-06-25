@@ -22,8 +22,8 @@ namespace JJ.Framework.Xml.Linq.Tests
             var converter = new XmlToObjectConverter<Element_WithChildElement_WithExplicitName>();
             Element_WithChildElement_WithExplicitName destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.AreEqual(2, () => destObject.Element_WithExplicitName);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.AreEqual(2, () => destObject.Element_WithExplicitName);
         }
 
         [TestMethod]
@@ -34,8 +34,8 @@ namespace JJ.Framework.Xml.Linq.Tests
             var converter = new XmlToObjectConverter<Element_WithAttribute_WithExplicitName>();
             Element_WithAttribute_WithExplicitName destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.AreEqual(2, () => destObject.Attribute_WithExplicitName);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.AreEqual(2, () => destObject.Attribute_WithExplicitName);
         }
 
         [TestMethod]
@@ -52,11 +52,11 @@ namespace JJ.Framework.Xml.Linq.Tests
             var converter = new XmlToObjectConverter<Element_WithArray_WithExplicitName>();
             Element_WithArray_WithExplicitName destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.IsNotNull(() => destObject.Array_WithExplicitName);
-            AssertExtended.AreEqual(2, () => destObject.Array_WithExplicitName.Length);
-            AssertExtended.AreEqual(0, () => destObject.Array_WithExplicitName[0]);
-            AssertExtended.AreEqual(1, () => destObject.Array_WithExplicitName[1]);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.IsNotNull(() => destObject.Array_WithExplicitName);
+            AssertHelper.AreEqual(2, () => destObject.Array_WithExplicitName.Length);
+            AssertHelper.AreEqual(0, () => destObject.Array_WithExplicitName[0]);
+            AssertHelper.AreEqual(1, () => destObject.Array_WithExplicitName[1]);
         }
     }
 }

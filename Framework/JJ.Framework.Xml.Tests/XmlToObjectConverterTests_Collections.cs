@@ -80,11 +80,11 @@ namespace JJ.Framework.Xml.Tests
             var converter = new XmlToObjectConverter<Element_Array_WithExplicitAnnotation>();
             Element_Array_WithExplicitAnnotation destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.IsNotNull(() => destObject.Array_WithExplicitAnnotation);
-            AssertExtended.AreEqual(2, () => destObject.Array_WithExplicitAnnotation.Length);
-            AssertExtended.AreEqual(0, () => destObject.Array_WithExplicitAnnotation[0]);
-            AssertExtended.AreEqual(1, () => destObject.Array_WithExplicitAnnotation[1]);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.IsNotNull(() => destObject.Array_WithExplicitAnnotation);
+            AssertHelper.AreEqual(2, () => destObject.Array_WithExplicitAnnotation.Length);
+            AssertHelper.AreEqual(0, () => destObject.Array_WithExplicitAnnotation[0]);
+            AssertHelper.AreEqual(1, () => destObject.Array_WithExplicitAnnotation[1]);
         }
 
         [TestMethod]
@@ -95,8 +95,8 @@ namespace JJ.Framework.Xml.Tests
             var converter = new XmlToObjectConverter<ElementWithCollection<int[]>>();
             ElementWithCollection<int[]> destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.IsNull(() => destObject.Collection);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.IsNull(() => destObject.Collection);
         }
     }
 }

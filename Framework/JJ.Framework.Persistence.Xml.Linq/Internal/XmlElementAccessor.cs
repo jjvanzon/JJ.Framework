@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Common;
+using JJ.Framework.Net4;
 using System;
 using System.Collections.Generic;
 using System.IO;

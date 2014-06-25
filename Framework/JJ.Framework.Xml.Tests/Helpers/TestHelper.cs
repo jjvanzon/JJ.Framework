@@ -21,8 +21,8 @@ namespace JJ.Framework.Xml.Tests.Helpers
             var converter = new XmlToObjectConverter<Element_WithChildElement_OfSimpleType<T>>();
             Element_WithChildElement_OfSimpleType<T> destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.AreEqual(value, () => destObject.SimpleType);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.AreEqual(value, () => destObject.SimpleType);
         }
 
         /// <summary>
@@ -42,11 +42,11 @@ namespace JJ.Framework.Xml.Tests.Helpers
             var converter = new XmlToObjectConverter<ElementWithCollection<TCollection>>();
             ElementWithCollection<TCollection> destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.IsNotNull(() => destObject.Collection);
-            AssertExtended.AreEqual(2, () => destObject.Collection.Cast<int>().Count());
-            AssertExtended.AreEqual(0, () => destObject.Collection.Cast<int>().ElementAt(0));
-            AssertExtended.AreEqual(1, () => destObject.Collection.Cast<int>().ElementAt(1));
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.IsNotNull(() => destObject.Collection);
+            AssertHelper.AreEqual(2, () => destObject.Collection.Cast<int>().Count());
+            AssertHelper.AreEqual(0, () => destObject.Collection.Cast<int>().ElementAt(0));
+            AssertHelper.AreEqual(1, () => destObject.Collection.Cast<int>().ElementAt(1));
         }
     }
 }

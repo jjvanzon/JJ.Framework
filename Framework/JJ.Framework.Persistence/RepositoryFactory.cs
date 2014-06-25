@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Common;
+using JJ.Framework.Net4;
 
 namespace JJ.Framework.Persistence
 {

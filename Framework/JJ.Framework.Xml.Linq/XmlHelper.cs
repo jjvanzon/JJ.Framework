@@ -54,7 +54,8 @@ namespace JJ.Framework.Xml.Linq
             if (parentElement == null) throw new ArgumentNullException("parentElement");
             if (String.IsNullOrEmpty(childElementName)) throw new ArgumentException("childElementName cannot be null or white space.");
 
-            return parentElement.Elements(childElementName).ToArray();
+            //return parentElement.Elements(childElementName).ToArray();
+            return parentElement.Elements().Where(x => x.Name.LocalName == childElementName).ToArray();
         }
 
         // Attributes
@@ -79,7 +80,8 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         public static XAttribute TryGetAttribute(XElement element, string attributeName)
         {
-            XAttribute attribute = element.Attribute(attributeName);
+            //XAttribute attribute = element.Attribute(attributeName);
+            XAttribute attribute = element.Attributes().Where(x => x.Name.LocalName == attributeName).SingleOrDefault();
             return attribute;
         }
 

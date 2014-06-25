@@ -238,8 +238,8 @@ namespace JJ.Framework.Xml.Tests
             var converter = new XmlToObjectConverter<Element_WithAttribute<int?>>();
             Element_WithAttribute<int?> destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.IsNull(() => destObject.Attribute);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.IsNull(() => destObject.Attribute);
         }
 
         [TestMethod]
@@ -250,8 +250,8 @@ namespace JJ.Framework.Xml.Tests
             var converter = new XmlToObjectConverter<Element_WithAttribute<int?>>();
             Element_WithAttribute<int?> destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.IsNull(() => destObject.Attribute);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.IsNull(() => destObject.Attribute);
         }
     }
 }

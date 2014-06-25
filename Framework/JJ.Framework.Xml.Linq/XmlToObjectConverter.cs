@@ -16,6 +16,9 @@ namespace JJ.Framework.Xml.Linq
     /// <summary>
     /// Converts an XML structure to an object tree.
     /// 
+    /// (Under certain platforms standard XML serialization may not be available 
+    /// or may not be the best option. Hence this class.)
+    /// 
     /// By default properties are mapped to XML elements.
     /// 
     /// To map to XML attributes, mark a property with the XmlAttribute attribute.
@@ -30,7 +33,8 @@ namespace JJ.Framework.Xml.Linq
     /// The supported collection types are Array types, List&lt;T&gt;, IList&lt;T&gt;, ICollection&lt;T&gt; and IEnumerable&lt;T&gt;.
     /// 
     /// By default the names in the XML are the camel-case version of the property names.
-    /// To diverge from this standard, you can specify the node name explicitly by using the following .NET attributes
+    /// To diverge from this standard, you can either pass the casing to the constructor 
+    /// or specify the node name explicitly by using the following .NET attributes
     /// on the properties: XmlElement, XmlAttribute and XmlArray.
     /// 
     /// Reference types are always optional. Value types are optional only if they are nullable.
@@ -46,8 +50,13 @@ namespace JJ.Framework.Xml.Linq
     public class XmlToObjectConverter<TDestObject>
         where TDestObject : new()
     {
+        private XmlCasingEnum _casing;
+
         /// <summary>
         /// Converts an XML structure to an object tree.
+        /// 
+        /// (Under certain platforms standard XML serialization may not be available 
+        /// or may not be the best option. Hence this class.)
         /// 
         /// By default properties are mapped to XML elements.
         /// 
@@ -63,7 +72,8 @@ namespace JJ.Framework.Xml.Linq
         /// The supported collection types are Array types, List&lt;T&gt;, IList&lt;T&gt;, ICollection&lt;T&gt; and IEnumerable&lt;T&gt;.
         /// 
         /// By default the names in the XML are the camel-case version of the property names.
-        /// To diverge from this standard, you can specify the node name explicitly by using the following .NET attributes
+        /// To diverge from this standard, you can either pass the casing to the constructor 
+        /// or specify the node name explicitly by using the following .NET attributes
         /// on the properties: XmlElement, XmlAttribute and XmlArray.
         /// 
         /// Reference types are always optional. Value types are optional only if they are nullable.
@@ -76,8 +86,10 @@ namespace JJ.Framework.Xml.Linq
         /// 
         /// The composite types in the object structure must have parameterless constructors.
         /// </summary>
-        public XmlToObjectConverter()
-        { }
+        public XmlToObjectConverter(XmlCasingEnum casing = XmlCasingEnum.CamelCase)
+        {
+            _casing = casing;
+        }
 
         public TDestObject Convert(byte[] data)
         {
@@ -104,6 +116,8 @@ namespace JJ.Framework.Xml.Linq
             return destObject;
         }
 
+        // TODO: Code smell: methods are too much dependent on a parent object.
+
         /// <summary>
         /// Goes through all the properties of the parent object, tries to look up
         /// the corresponding child nodes out of the parent node and reads out values from them
@@ -128,7 +142,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private void ConvertProperty(XElement sourceParentElement, object destParentObject, PropertyInfo destChildProperty)
         {
-            NodeTypeEnum nodeType = DetermineNodeType(destChildProperty);
+            NodeTypeEnum nodeType = ConversionHelper.DetermineNodeType(destChildProperty);
             switch (nodeType)
             {
                 case NodeTypeEnum.Element:
@@ -148,64 +162,6 @@ namespace JJ.Framework.Xml.Linq
             }
         }
 
-        /// <summary>
-        /// Examines the type and attributes of property 
-        /// to determine what type of XML node is expected for it 
-        /// (element, attribute or array).
-        /// Also verifies that a property is not marked with conflicting attributes.
-        /// 
-        /// By default a property maps to an element.
-        /// You can optionally mark it with the XmlElement attribute to make that extra clear.
-        /// 
-        /// To map to an XML attribute, mark the property with the XmlAttribute attribute.
-        /// 
-        /// To map to an array, the property must be of an Array type,
-        /// and the XML needs both a parent element that represents the array,
-        /// and child elements that represent the array items.
-        /// 
-        /// If a property is an array type, it cannot be marked with the XmlAttribute or XmlElement attributes.
-        /// </summary>
-        private NodeTypeEnum DetermineNodeType(PropertyInfo destProperty)
-        {
-            // TODO: isCollectionType is always called, even if it is a simple int.
-            // Actually, much is called even when it might not be needed and the only reason it is all called,
-            // is to check for conflicting annotations, but it might harm performance considerably.
-
-            bool hasXmlAttributeAttribute = destProperty.GetCustomAttribute<XmlAttributeAttribute>() != null;
-            bool hasXmlElementAttribute = destProperty.GetCustomAttribute<XmlElementAttribute>() != null;
-            bool hasXmlArrayAttribute = destProperty.GetCustomAttribute<XmlArrayAttribute>() != null;
-            bool hasXmlArrayItemAttribute = destProperty.GetCustomAttribute<XmlArrayItemAttribute>() != null;
-            bool isCollectionType = IsSupportedCollectionType(destProperty.PropertyType);
-
-            if (isCollectionType)
-            {
-                bool isValid = !hasXmlAttributeAttribute && !hasXmlElementAttribute;
-                if (!isValid)
-                {
-                    throw new Exception(String.Format("Property '{0}' is an Array or is List<T>-assignable and therefore cannot be marked with XmlAttribute or XmlElement. Use XmlArray and XmlArrayItem instead.", destProperty.Name));
-                }
-                return NodeTypeEnum.Array;
-            }
-
-            if (hasXmlAttributeAttribute)
-            {
-                bool isValid = !hasXmlElementAttribute && !hasXmlArrayAttribute && !hasXmlArrayItemAttribute;
-                if (!isValid)
-                {
-                    throw new Exception(String.Format("Property '{0}' is an XML attribute and therefore cannot be marked with XmlElement, XmlArray or XmlArrayItem.", destProperty.Name));
-                }
-                return NodeTypeEnum.Attribute;
-            }
-
-            // If it is not an array or attribute, then it is an element by default.
-            bool isValidElement = !hasXmlAttributeAttribute && !hasXmlArrayAttribute && !hasXmlArrayItemAttribute;
-            if (!isValidElement)
-            {
-                throw new Exception(String.Format("Property '{0}' is an XML element and therefore cannot be marked with XmlAttribute, XmlArray or XmlArrayItem.", destProperty.Name));
-            }
-            return NodeTypeEnum.Element;
-        }
-
         // XML Elements
 
         /// <summary>
@@ -214,7 +170,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private void ConvertElementFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destChildProperty)
         {
-            string sourceChildElementName = GetElementNameForProperty(destChildProperty);
+            string sourceChildElementName = ConversionHelper.GetElementNameForProperty(destChildProperty, _casing);
 
             XElement sourceChildElement = XmlHelper.TryGetElement(sourceParentElement, sourceChildElementName);
 
@@ -264,7 +220,7 @@ namespace JJ.Framework.Xml.Linq
         private object ConvertElement(XElement sourceElement, Type destType)
         {
             object destValue;
-            if (IsLeafType(destType))
+            if (ConversionHelper.IsLeafType(destType))
             {
                 destValue = ConvertLeafElement(sourceElement, destType);
             }
@@ -283,7 +239,7 @@ namespace JJ.Framework.Xml.Linq
         private object ConvertLeafElement(XElement sourceElement, Type destType)
         {
             string sourceValue = sourceElement.Value;
-            object destValue = ConversionHelper.ConvertValue(sourceValue, destType);
+            object destValue = ConversionHelper.ParseValue(sourceValue, destType);
             return destValue;
         }
 
@@ -304,43 +260,6 @@ namespace JJ.Framework.Xml.Linq
             return destValue;
         }
 
-        /// <summary>
-        /// Gets the XML element name for a property.
-        /// By default this is the property name converted to camel case 
-        /// e.g. MyProperty -&gt; myProperty.
-        /// You can also specify the expected XML element name explicity
-        /// by marking the property with the XmlElement attribute and specifying the
-        /// name with it e.g. [XmlElement("myElement")].
-        /// </summary>
-        private string GetElementNameForProperty(PropertyInfo destProperty)
-        {
-            // Try get element name from XmlElement attribute.
-            string name = TryGetXmlElementNameFromAttribute(destProperty);
-            if (!String.IsNullOrEmpty(name))
-            {
-                return name;
-            }
-
-            // Otherwise the property name converted to camel-case.
-            name = destProperty.Name.StartWithLowerCase();
-            return name;
-        }
-
-        /// <summary>
-        /// Tries to get an XML element name from the XmlElement attribute that the property is marked with,
-        /// e.g. [XmlElement("myElement")]. If no name is specified there, returns null or empty string.
-        /// </summary>
-        private string TryGetXmlElementNameFromAttribute(PropertyInfo destProperty)
-        {
-            XmlElementAttribute xmlElementAttribute = destProperty.GetCustomAttribute<XmlElementAttribute>();
-            if (xmlElementAttribute != null)
-            {
-                return xmlElementAttribute.ElementName;
-            }
-
-            return null;
-        }
-
         // XML Attributes
 
         /// <summary>
@@ -352,7 +271,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private void ConvertAttributeFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destProperty)
         {
-            string sourceXmlAttributeName = GetAttributeNameForProperty(destProperty);
+            string sourceXmlAttributeName = ConversionHelper.GetAttributeNameForProperty(destProperty, _casing);
             XAttribute sourceXmlAttribute = XmlHelper.TryGetAttribute(sourceParentElement, sourceXmlAttributeName);
 
             Type destPropertyType = destProperty.PropertyType;
@@ -393,69 +312,11 @@ namespace JJ.Framework.Xml.Linq
                 return null;
             }
 
-            object destValue = ConversionHelper.ConvertValue(sourceAttributeValue, destType);
+            object destValue = ConversionHelper.ParseValue(sourceAttributeValue, destType);
             return destValue;
         }
 
-        /// <summary>
-        /// Gets the XML attribute name for a property.
-        /// By default this is the property name converted to camel case 
-        /// e.g. MyProperty -&gt; myProperty.
-        /// You can also specify the expected XML element name explicity,
-        /// by marking the property with the XmlAttribute attribute and specifying the
-        /// name with it it e.g. [XmlAttribute("myAttribute")].
-        /// </summary>
-        private string GetAttributeNameForProperty(PropertyInfo destProperty)
-        {
-            // Try get attribute name from XmlAttribute attribute.
-            string name = TryGetAttributeNameFromAttribute(destProperty);
-            if (!String.IsNullOrEmpty(name))
-            {
-                return name;
-            }
-
-            // Otherwise the property name converted to camel-case.
-            name = destProperty.Name.StartWithLowerCase();
-            return name;
-        }
-
-        /// <summary>
-        /// Get the XML attribute name from the XmlAttribute attribute that the property is marked with,
-        /// e.g. [XmlAttribute("myAttribute")]. If no name is specified there, returns null or empty string.
-        /// </summary>
-        private string TryGetAttributeNameFromAttribute(PropertyInfo destProperty)
-        {
-            XmlAttributeAttribute xmlAttributeAttribute = destProperty.GetCustomAttribute<XmlAttributeAttribute>();
-            if (xmlAttributeAttribute != null)
-            {
-                return xmlAttributeAttribute.AttributeName;
-            }
-
-            return null;
-        }
-
         // XML Arrays
-
-        /// <summary>
-        /// Returns whether the type should be handled as an XML Array.
-        /// This means whether it is Array or List&lt;T&gt;-assignable.
-        /// </summary>
-        private bool IsSupportedCollectionType(Type type)
-        {
-            bool isArray = type.IsAssignableTo(typeof(Array));
-            if (isArray)
-            {
-                return true;
-            }
-
-            bool isSupportedGenericCollection = IsSupportedGenericCollectionType(type);
-            if (isSupportedGenericCollection)
-            {
-                return true;
-            }
-
-            return false;
-        }
 
         /// <summary>
         /// Converts an XML array: an XML element that represents the whole array with a child element for each position in the array.
@@ -504,7 +365,7 @@ namespace JJ.Framework.Xml.Linq
                 return;
             }
 
-            bool isSupportedGenericCollection = IsSupportedGenericCollectionType(destCollectionType);
+            bool isSupportedGenericCollection = ConversionHelper.IsSupportedGenericCollectionType(destCollectionType);
             if (isSupportedGenericCollection)
             {
                 IList destCollection = ConvertXmlArrayItemsToList(sourceXmlArrayItems, destCollectionType);
@@ -529,11 +390,14 @@ namespace JJ.Framework.Xml.Linq
             Type destConcreteCollectionType = destCollectionType;
             IList destCollection = (IList)Activator.CreateInstance(destConcreteCollectionType, count);
 
-            Type destItemType = destCollectionType.GetItemType();
+            Type destItemType = destCollectionType.GetElementType();
             for (int i = 0; i < count; i++)
             {
                 XElement sourceXmlArrayItem = sourceXmlArrayItems[i];
+
+                // Recursive call
                 object destValue = ConvertElement(sourceXmlArrayItem, destItemType);
+
                 destCollection[i] = destValue;
             }
 
@@ -560,7 +424,9 @@ namespace JJ.Framework.Xml.Linq
 
             foreach (XElement sourceXmlArrayItem in sourceXmlArrayItems)
             {
+                // Recursive call
                 object destValue = ConvertElement(sourceXmlArrayItem, destItemType);
+
                 destCollection.Add(destValue);
             }
 
@@ -581,7 +447,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XElement TryGetSourceArrayXmlElement(XElement sourceParentElement, PropertyInfo destCollectionProperty)
         {
-            string sourceArrayXmlElementName = GetXmlArrayNameForCollectionProperty(destCollectionProperty);
+            string sourceArrayXmlElementName = ConversionHelper.GetXmlArrayNameForCollectionProperty(destCollectionProperty, _casing);
             XElement sourceArrayXmlElement = XmlHelper.TryGetElement(sourceParentElement, sourceArrayXmlElementName);
             return sourceArrayXmlElement;
         }
@@ -595,76 +461,9 @@ namespace JJ.Framework.Xml.Linq
         /// <param name="destCollectionProperty">Is used to get the expected XML array item element name.</param>
         private IList<XElement> GetSourceXmlArrayItems(XElement sourceXmlArray, PropertyInfo destCollectionProperty)
         {
-            string sourceXmlArrayItemName = GetXmlArrayItemNameForCollectionProperty(destCollectionProperty);
+            string sourceXmlArrayItemName = ConversionHelper.GetXmlArrayItemNameForCollectionProperty(destCollectionProperty);
             IList<XElement> sourceXmlArrayItems = XmlHelper.GetElements(sourceXmlArray, sourceXmlArrayItemName);
             return sourceXmlArrayItems;
-        }
-
-        /// <summary>
-        /// Gets the Array XML element name for a collection property.
-        /// By default this is the property name converted to camel case 
-        /// e.g. MyCollection -&gt; myCollection.
-        /// You can also specify the expected XML element name explicity,
-        /// by marking the property with the XmlArray attribute and specifying the
-        /// name with it it e.g. [XmlArray("myCollection")].
-        /// </summary>
-        private string GetXmlArrayNameForCollectionProperty(PropertyInfo destCollectionProperty)
-        {
-            // Try get element name from XmlArray attribute.
-            string name = TryGetXmlArrayNameFromAttribute(destCollectionProperty);
-            if (!String.IsNullOrEmpty(name))
-            {
-                return name;
-            }
-
-            // Otherwise the collection property name converted to camel-case.
-            name = destCollectionProperty.Name.StartWithLowerCase();
-            return name;
-        }
-
-        /// <summary>
-        /// Gets an Array XML element name from the XmlArray attribute that the property is marked with,
-        /// e.g. [XmlArray("myArray")]. If no name is specified, null or empty string is returned.
-        /// </summary>
-        private string TryGetXmlArrayNameFromAttribute(PropertyInfo destCollectionProperty)
-        {
-            XmlArrayAttribute xmlArrayAttribute = destCollectionProperty.GetCustomAttribute<XmlArrayAttribute>();
-            if (xmlArrayAttribute != null)
-            {
-                return xmlArrayAttribute.ElementName;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the XML element name for an array item for the given collection property.
-        /// The XML array item name should always be specified in the XmlArrayItem attribute that the property is marked with.
-        /// </summary>
-        private string GetXmlArrayItemNameForCollectionProperty(PropertyInfo destCollectionProperty)
-        {
-            // The XML array item name should always be specified in the XmlArrayItem attribute that the property is marked with.
-            return GetXmlArrayItemNameFromAttribute(destCollectionProperty);
-        }
-
-        /// <summary>
-        /// Gets an XML element name from the XmlArrayItem attribute that the property is marked with.
-        /// e.g. [XmlArrayItem("myItem")]. If no name is specified there, an exception is thrown.
-        /// </summary>
-        private string GetXmlArrayItemNameFromAttribute(PropertyInfo destCollectionProperty)
-        {
-            XmlArrayItemAttribute xmlArrayItemAttribute = destCollectionProperty.GetCustomAttribute<XmlArrayItemAttribute>();
-            if (xmlArrayItemAttribute != null)
-            {
-                if (!String.IsNullOrEmpty(xmlArrayItemAttribute.ElementName))
-                {
-                    return xmlArrayItemAttribute.ElementName;
-                }
-            }
-
-            throw new Exception(String.Format(
-                @"Property '{0}' is a collection type, but does specify the XML array item name. " +
-                @"Mark the property with an XmlArrayItem attribute, e.g. XmlArrayItem(""myItem"").", destCollectionProperty.Name));
         }
 
         // Helpers
@@ -676,51 +475,6 @@ namespace JJ.Framework.Xml.Linq
         private bool IsNullable(Type type)
         {
             return type.IsReferenceType() || type.IsNullableType();
-        }
-
-        /// <summary>
-        /// Determines whether a type is considered a single value without any child data members. 
-        /// This includes the primitive types (Boolean, Char, Byte, the numeric types and their signed and unsigned variations),
-        /// and other types such as String, Guid, DateTime, TimeSpan and Enum types.
-        /// </summary>
-        private bool IsLeafType(Type type)
-        {
-            if (type.IsPrimitive ||
-                type.IsEnum ||
-                type == typeof(string) ||
-                type == typeof(Guid) ||
-                type == typeof(DateTime) ||
-                type == typeof(TimeSpan))
-            {
-                return true;
-            }
-
-            if (type.IsNullableType())
-            {
-                Type underlyingType = type.GetUnderlyingNullableType();
-                return IsLeafType(underlyingType);
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Returns wheter a generic collection type is supported.
-        /// The supported types are List&lt;T&gt;, IList&lt;T&gt;, ICollection&lt;T&gt; and IEnumerable&lt;T&gt;.
-        /// </summary>
-        public static bool IsSupportedGenericCollectionType(Type type)
-        {
-            if (!type.IsGenericType)
-            {
-                return false;
-            }
-
-            Type openGenericType = type.GetGenericTypeDefinition();
-            if (openGenericType == typeof(List<>)) return true;
-            if (openGenericType == typeof(IList<>)) return true;
-            if (openGenericType == typeof(IEnumerable<>)) return true;
-            if (openGenericType == typeof(ICollection<>)) return true;
-            return false;
         }
     }
 }

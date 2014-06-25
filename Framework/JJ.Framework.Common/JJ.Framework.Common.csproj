@@ -40,7 +40,6 @@
     <Compile Include="IListExtensions.cs" />
     <Compile Include="KeyHelper.cs" />
     <Compile Include="StringExtensions_Casing.cs" />
-    <Compile Include="Strings.cs" />
     <Compile Include="ValueNotSupportedException.cs" />
     <Compile Include="IEnumerableOfTExtensions.cs" />
     <Compile Include="StringExtensions_Split.cs" />
@@ -48,6 +47,12 @@
     <Compile Include="InvalidValueException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Net4\JJ.Framework.Net4.csproj">
+      <Project>{be8a8bae-8eb6-4f54-89e6-ca44aaceceb6}</Project>
+      <Name>JJ.Framework.Net4</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

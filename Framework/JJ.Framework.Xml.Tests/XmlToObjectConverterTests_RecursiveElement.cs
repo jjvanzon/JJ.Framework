@@ -24,9 +24,9 @@ namespace JJ.Framework.Xml.Tests
             var converter = new XmlToObjectConverter<RecursiveElement>();
             RecursiveElement destObject = converter.Convert(xml);
 
-            AssertExtended.IsNotNull(() => destObject);
-            AssertExtended.IsNotNull(() => destObject.Element);
-            AssertExtended.IsNotNull(() => destObject.Element.Element);
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.IsNotNull(() => destObject.Element);
+            AssertHelper.IsNotNull(() => destObject.Element.Element);
         }
     }
 }
