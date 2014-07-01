@@ -57,13 +57,6 @@ namespace JJ.Framework.Xml.Linq.Internal
             return Convert.ChangeType(input, type, _culture);
         }
 
-        internal static string FormatValue(object value)
-        {
-            // TODO: Check if ToString is enough to support all the types above.
-            // I fear for the nullable types.
-            return Convert.ToString(value, _culture);
-        }
-
         /// <summary>
         /// Examines the type and attributes of property 
         /// to determine what type of XML node is expected for it 

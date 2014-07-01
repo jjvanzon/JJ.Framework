@@ -52,7 +52,7 @@ namespace JJ.Framework.IO
 
         private string[] ParseLine(string line)
         {
-            return line.Split(",", quote: '"');
+            return line.SplitWithQuotation(",", quote: '"');
         }
 
         public string this[int i]

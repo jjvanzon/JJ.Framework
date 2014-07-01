@@ -16,6 +16,9 @@ namespace JJ.Framework.Xml
     /// <summary>
     /// Converts an XML structure to an object tree.
     /// 
+    /// (Under certain platforms standard XML serialization may not be available 
+    /// or may not be the best option. That is why this class exists.)
+    /// 
     /// By default properties are mapped to XML elements.
     /// 
     /// To map to XML attributes, mark a property with the XmlAttribute attribute.

@@ -1,10 +1,12 @@
-﻿using JJ.Framework.Xml.Linq.Tests.Mocks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JJ.Framework.Xml.Linq.Tests.Mocks;
+using JJ.Framework.Common;
+using JJ.Framework.SoapClient;
 
 namespace JJ.Framework.Xml.Linq.Tests
 {
@@ -15,7 +17,9 @@ namespace JJ.Framework.Xml.Linq.Tests
         public void Test_ObjectToXmlConverter()
         {
             ComplicatedElement sourceObject = CreateComplicatedElement();
-            var converter = new ObjectToXmlConverter_UsingXElement(XmlCasingEnum.CamelCase);
+
+            var namespaceMappings = XmlNamespaceMappingFactory.CreateXmlNamespaceMappings(typeof(String).Namespace, typeof(ComplicatedElement).Namespace);
+            var converter = new ObjectToXmlConverter(XmlCasingEnum.CamelCase, namespaceMappings);
             string text = converter.ConvertToString(sourceObject);
         }
 

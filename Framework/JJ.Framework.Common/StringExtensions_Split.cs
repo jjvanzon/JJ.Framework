@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace JJ.Framework.Common
 {
@@ -17,9 +18,9 @@ namespace JJ.Framework.Common
             return input.Split(new string[] { separator }, options);
         }
 
-        public static string[] Split(this string input, string separator, char quote)
+        public static string[] SplitWithQuotation(this string input, string separator, char quote)
         {
-            return input.Split(separator, StringSplitOptions.None, quote);
+            return input.SplitWithQuotation(separator, StringSplitOptions.None, quote);
         }
 
         public static string[] Split(this string value, params string[] separators)
@@ -27,7 +28,19 @@ namespace JJ.Framework.Common
             return value.Split(separators, StringSplitOptions.None);
         }
 
-        public static string[] Split(this string input, string separator, StringSplitOptions options, char? quote)
+        public static string[] SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
+        {
+            IList<string> values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
+
+            return values.TrimAll(quote.Value).ToArray();
+        }
+
+        public static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, char quote)
+        {
+            return input.SplitWithQuotation_WithoutUnescape(separator, StringSplitOptions.None, quote);
+        }
+
+        public static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, StringSplitOptions options, char? quote)
         {
             // TODO: Make code better understandable.
 
@@ -46,7 +59,7 @@ namespace JJ.Framework.Common
                 return new string[0];
             }
 
-            var strings = new List<string>();
+            IList<string> values = new List<string>();
 
             bool inQuote = false;
             int startPos = 0;
@@ -70,11 +83,11 @@ namespace JJ.Framework.Common
                 if (input.Substring(pos, separator.Length) == separator)
                 {
                     // An end-of-element was found.
-                    string element = input.FromTill(startPos, pos - 1);
+                    string value = input.FromTill(startPos, pos - 1);
 
-                    if (!String.IsNullOrEmpty(element) || options != StringSplitOptions.RemoveEmptyEntries)
+                    if (!String.IsNullOrEmpty(value) || options != StringSplitOptions.RemoveEmptyEntries)
                     {
-                        strings.Add(element);
+                        values.Add(value);
                     }
 
                     // Next element is starting.
@@ -87,10 +100,10 @@ namespace JJ.Framework.Common
             string str2 = input.FromTill(startPos, input.Length - 1);
             if (!String.IsNullOrEmpty(str2) || options != StringSplitOptions.RemoveEmptyEntries)
             {
-                strings.Add(str2);
+                values.Add(str2);
             }
 
-            return strings.TrimAll(quote.Value);
+            return values.ToArray();
         }
     }
 }
