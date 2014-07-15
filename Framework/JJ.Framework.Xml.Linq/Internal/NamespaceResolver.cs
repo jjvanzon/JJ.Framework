@@ -12,9 +12,9 @@ namespace JJ.Framework.Xml.Linq.Internal
     {
         private HashSet<string> _xmlNamespaceStrings = new HashSet<string>();
 
-        public IEnumerable<XAttribute> GetNamespaceDeclarationAttributes(string firstNamespacePrefix)
+        public IEnumerable<XAttribute> GetNamespaceDeclarationAttributes()
         {
-            int ordinal = NumberBase.FromBaseNNumber(firstNamespacePrefix, 26, 'a');
+            int ordinal = 0;
 
             foreach (string mapping in _xmlNamespaceStrings)
             {
@@ -49,6 +49,7 @@ namespace JJ.Framework.Xml.Linq.Internal
             // System.Xml.Linq will ensure that the same namespace is the same XNamespace instance.
             XNamespace xnamespace = xmlNamespaceString;
 
+            // Maintain a list of used namespaces so that the GetNamespaceDeclarationAttributes can work.
             if (!_xmlNamespaceStrings.Contains(xmlNamespaceString))
             {
                 _xmlNamespaceStrings.Add(xmlNamespaceString);

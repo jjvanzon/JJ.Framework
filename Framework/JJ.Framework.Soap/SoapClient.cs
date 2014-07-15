@@ -13,8 +13,6 @@ namespace JJ.Framework.Soap
     public class SoapClient
     {
         private const string HTTP_METHOD_POST = "POST";
-        private const string SOAP_XML_NAMESPACE_PREFIX = "a";
-        private const string OPERATION_XML_NAMESPACE_PREFIX = "b";
 
         private string _url;
         private Encoding _encoding;
@@ -82,8 +80,8 @@ namespace JJ.Framework.Soap
             // Create SOAP envelope.
             var envelopeElement =
                 new XElement(s + "Envelope",
-                    new XAttribute(XNamespace.Xmlns + SOAP_XML_NAMESPACE_PREFIX, soapNamespaceString),
-                    new XAttribute(XNamespace.Xmlns + OPERATION_XML_NAMESPACE_PREFIX, operationNamespaceString),
+                    new XAttribute(XNamespace.Xmlns + "s", soapNamespaceString),
+                    new XAttribute(XNamespace.Xmlns + "o", operationNamespaceString),
                     new XElement(s + "Header"),
                     new XElement(s + "Body",
                         operationElement = new XElement(o + operationName)));
@@ -93,8 +91,7 @@ namespace JJ.Framework.Soap
                 var converter = new ObjectToXmlConverter
                 (
                     XmlCasingEnum.UnmodifiedCase, 
-                    useNamespaces: true, 
-                    firstNamespacePrefix: "c", 
+                    generateNamespaces: true, 
                     rootElementName: parameter.Name
                 );
 

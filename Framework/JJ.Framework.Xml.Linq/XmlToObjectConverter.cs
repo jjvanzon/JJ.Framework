@@ -50,7 +50,8 @@ namespace JJ.Framework.Xml.Linq
     public class XmlToObjectConverter<TDestObject>
         where TDestObject : new()
     {
-        // This class does not work with XML namespaces (yet).
+        // This class does not work with XML namespaces (yet). 
+        // It simply ignores them which may however have a performance penalty.
 
         private XmlCasingEnum _casing;
 
