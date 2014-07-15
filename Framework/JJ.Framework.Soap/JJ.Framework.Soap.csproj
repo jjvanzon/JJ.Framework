@@ -41,7 +41,6 @@
     <Compile Include="SoapClient.cs" />
     <Compile Include="WcfSoapClient.cs" />
     <Compile Include="NamespaceMapping.cs" />
-    <Compile Include="~XmlNamespaceMappingFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
