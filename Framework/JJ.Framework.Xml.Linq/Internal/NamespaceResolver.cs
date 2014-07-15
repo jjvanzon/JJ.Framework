@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Mathematics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,20 +10,19 @@ namespace JJ.Framework.Xml.Linq.Internal
 {
     internal class NamespaceResolver
     {
-        private Dictionary<string, XmlNamespaceMapping> _dictionary;
+        private HashSet<string> _xmlNamespaceStrings = new HashSet<string>();
 
-        public NamespaceResolver(IEnumerable<XmlNamespaceMapping> namespaceMappings)
+        public IEnumerable<XAttribute> GetNamespaceDeclarationAttributes(string firstNamespacePrefix)
         {
-            if (namespaceMappings == null) throw new ArgumentNullException("namespaceMappings");
+            int ordinal = NumberBase.FromBaseNNumber(firstNamespacePrefix, 26, 'a');
 
-            _dictionary = namespaceMappings.ToDictionary(x => x.DotNetNamespace);
-        }
-
-        public IEnumerable<XAttribute> GetAllNamespaceDeclarationAttributes()
-        {
-            foreach (XmlNamespaceMapping mapping in _dictionary.Values)
+            foreach (string mapping in _xmlNamespaceStrings)
             {
-                yield return new XAttribute(XNamespace.Xmlns + mapping.XmlNamespacePrefix, mapping.XmlNamespace);
+                string namespacePrefix = NumberBase.ToBaseNNumber(ordinal, 26, 'a');
+
+                yield return new XAttribute(XNamespace.Xmlns + namespacePrefix, mapping);
+
+                ordinal++;
             }
         }
 
@@ -31,37 +31,30 @@ namespace JJ.Framework.Xml.Linq.Internal
             return GetXName(name, property.DeclaringType);
         }
 
-        /// <param name="type">For properties the type must be the type that the property is part of, not the type of the property value.</param>
+        /// <param name="type">
+        /// For properties the type must be the type that the property is part of, not the type of the property value.
+        /// </param>
         public XName GetXName(string name, Type type)
         {
             return GetXName(name, type.Namespace);
         }
 
-        /// <param name="type">For properties the type must be the type that the property is part of, not the type of the property value.</param>
+        /// <param name="type">
+        /// For properties the type must be the type that the property is part of, not the type of the property value.
+        /// </param>
         public XName GetXName(string name, string dotNetNamespace)
         {
-            string xmlNamespace = GetXmlNamespace(dotNetNamespace);
-            if (xmlNamespace != null)
-            {
-                XNamespace xnamespace = xmlNamespace;
-                return xnamespace + name;
-            }
-            else
-            {
-                // TODO: Perhaps a default namespace?
-                return name;
-            }
-        }
+            string xmlNamespaceString = "http://schemas.datacontract.org/2004/07/" + dotNetNamespace;
 
-        private string GetXmlNamespace(string dotNetNamespace)
-        {
-            XmlNamespaceMapping namespaceMapping;
-            if (_dictionary.TryGetValue(dotNetNamespace, out namespaceMapping))
+            // System.Xml.Linq will ensure that the same namespace is the same XNamespace instance.
+            XNamespace xnamespace = xmlNamespaceString;
+
+            if (!_xmlNamespaceStrings.Contains(xmlNamespaceString))
             {
-                return namespaceMapping.XmlNamespace;
+                _xmlNamespaceStrings.Add(xmlNamespaceString);
             }
 
-            return null;
+            return xnamespace + name;
         }
     }
 }

@@ -9,6 +9,12 @@ using System.Threading;
 
 namespace JJ.Framework.Testing
 {
+    /// <summary>
+    /// When using AssertHelper instead of Assert,
+    /// the failure message automatically includes the tested expression.
+    /// It also offers methods to evaluate if the right exception goes off in the right spot
+    /// with the right exception type and / or the right message.
+    /// </summary>
     public static class AssertHelper
     {
         public static void ThrowsException(Action action)
@@ -29,15 +35,6 @@ namespace JJ.Framework.Testing
 
         // TODO: The code below has not been reviewed (as of 2014-06-11).
 
-        public static void NotEqual<T>(T a, T b, string message = "")
-        {
-            if (Object.Equals(a, b))
-            {
-                string fullMessage = GetNotEqualFailedMessage(a, b, message);
-                throw new AssertFailedException(fullMessage);
-            }
-        }
-
         public static void NotEqual<T>(T a, Expression<Func<T>> bExpresion)
         {
             T b = ExpressionHelper.GetValue(bExpresion);
@@ -51,19 +48,9 @@ namespace JJ.Framework.Testing
             }
         }
 
-        public static void AreEqual<T>(T expected, T actual, string message = "")
-        {
-            ExpectedActualCheck(Object.Equals(expected, actual), "AreEqual", expected, actual, message);
-        }
-
         public static void AreEqual<T>(T expected, Expression<Func<T>> actualExpression)
         {
             ExpectedActualCheck((actual) => Object.Equals(expected, actual), "AreEqual", expected, actualExpression);
-        }
-
-        public static void AreSame<T>(T expected, T actual, string message = "")
-        {
-            ExpectedActualCheck(Object.ReferenceEquals(expected, actual), "AreSame", expected, actual, message);
         }
 
         public static void AreSame<T>(T expected, Expression<Func<T>> actualExpression)
@@ -71,19 +58,9 @@ namespace JJ.Framework.Testing
             ExpectedActualCheck((actual) => Object.ReferenceEquals(expected, actual), "AreSame", expected, actualExpression);
         }
 
-        public static void IsTrue(bool condition, string message = "")
-        {
-            Check(condition, "IsTrue", message);
-        }
-
         public static void IsTrue(Expression<Func<bool>> expression)
         {
             Check(x => x == true, "IsTrue", expression);
-        }
-
-        public static void IsFalse(bool condition, string message = "")
-        {
-            Check(!condition, "IsFalse", message);
         }
 
         public static void IsFalse(Expression<Func<bool>> expression)
@@ -91,19 +68,9 @@ namespace JJ.Framework.Testing
             Check(x => x == false, "IsFalse", expression);
         }
 
-        public static void IsNull(object obj, string message = "")
-        {
-            Check(obj == null, "IsNull", message);
-        }
-
         public static void IsNull(Expression<Func<object>> expression)
         {
             Check(x => x == null, "IsNull", expression);
-        }
-
-        public static void IsNotNull(object obj, string message = "")
-        {
-            Check(obj != null, "IsNotNull", message);
         }
 
         public static void IsNotNull(Expression<Func<object>> expression)
@@ -111,11 +78,26 @@ namespace JJ.Framework.Testing
             Check(x => x != null, "IsNotNull", expression);
         }
 
-        public static void Fail(string message = "")
+        public static void IsNullOrEmpty(Expression<Func<string>> expression)
         {
-            string fullMessage = GetAssertFailFailedMessage(message);
-            throw new AssertFailedException(fullMessage);
+            Check(x => String.IsNullOrEmpty(x), "IsNullOrEmpty", expression);
         }
+
+        public static void NotNullOrEmpty(Expression<Func<string>> expression)
+        {
+            Check(x => !String.IsNullOrEmpty(x), "NotNullOrEmpty", expression);
+        }
+
+        public static void IsOfType<T>(Expression<Func<object>> expression)
+        {
+            object obj = ExpressionHelper.GetValue(expression);
+            if (obj == null) throw new Exception("obj cannot be null");
+            Type expected = typeof(T);
+            Type actual = obj.GetType();
+            ExpectedActualCheck((x) => expected == actual, "IsOfType", expected, expression);
+        }
+
+        // ThrowsException Checks
 
         public static void ThrowsException(Action statement, string expectedMessage)
         {
@@ -197,48 +179,6 @@ namespace JJ.Framework.Testing
             {
                 Assert.Fail("An exception should have been raised.");
             }
-        }
-
-        public static void IsNullOrEmpty(string value, string message = "")
-        {
-            Check(String.IsNullOrEmpty(value), "IsNullOrEmpty", message);
-        }
-
-        public static void IsNullOrEmpty(Expression<Func<string>> expression)
-        {
-            Check(x => String.IsNullOrEmpty(x), "IsNullOrEmpty", expression);
-        }
-
-        public static void NotNullOrEmpty(string value, string message = "")
-        {
-            Check(!String.IsNullOrEmpty(value), "NotNullOrEmpty", message);
-        }
-
-        public static void NotNullOrEmpty(Expression<Func<string>> expression)
-        {
-            Check(x => !String.IsNullOrEmpty(x), "NotNullOrEmpty", expression);
-        }
-
-        public static void IsOfType<T>(object obj, string message)
-        {
-            if (obj == null) throw new Exception("obj cannot be null");
-            Type expected = typeof(T);
-            Type actual = obj.GetType();
-            ExpectedActualCheck(expected == actual, "IsOfType", expected, actual, message);
-        }
-
-        public static void IsOfType<T>(Expression<Func<object>> expression)
-        {
-            object obj = ExpressionHelper.GetValue(expression);
-            if (obj == null) throw new Exception("obj cannot be null");
-            Type expected = typeof(T);
-            Type actual = obj.GetType();
-            ExpectedActualCheck((x) => expected == actual, "IsOfType", expected, expression);
-        }
-
-        public static void Inconclusive(string message = null)
-        {
-            throw new AssertInconclusiveException(message);
         }
 
         // Normalized Methods
@@ -323,5 +263,77 @@ namespace JJ.Framework.Testing
                     !String.IsNullOrEmpty(message) ? " " : "",
                     message);
         }
+
+        // Redundant (already available in the Assert class)
+
+        /*
+        public static void AreEqual<T>(T expected, T actual, string message = "")
+        {
+            ExpectedActualCheck(Object.Equals(expected, actual), "AreEqual", expected, actual, message);
+        }
+
+        public static void AreSame<T>(T expected, T actual, string message = "")
+        {
+            ExpectedActualCheck(Object.ReferenceEquals(expected, actual), "AreSame", expected, actual, message);
+        }
+
+        public static void NotEqual<T>(T a, T b, string message = "")
+        {
+            if (Object.Equals(a, b))
+            {
+                string fullMessage = GetNotEqualFailedMessage(a, b, message);
+                throw new AssertFailedException(fullMessage);
+            }
+        }
+
+        public static void IsTrue(bool condition, string message = "")
+        {
+            Check(condition, "IsTrue", message);
+        }
+
+        public static void IsFalse(bool condition, string message = "")
+        {
+            Check(!condition, "IsFalse", message);
+        }
+
+        public static void IsNull(object obj, string message = "")
+        {
+            Check(obj == null, "IsNull", message);
+        }
+
+        public static void IsNotNull(object obj, string message = "")
+        {
+            Check(obj != null, "IsNotNull", message);
+        }
+
+        public static void Fail(string message = "")
+        {
+            string fullMessage = GetAssertFailFailedMessage(message);
+            throw new AssertFailedException(fullMessage);
+        }
+
+        public static void IsNullOrEmpty(string value, string message = "")
+        {
+            Check(String.IsNullOrEmpty(value), "IsNullOrEmpty", message);
+        }
+
+        public static void NotNullOrEmpty(string value, string message = "")
+        {
+            Check(!String.IsNullOrEmpty(value), "NotNullOrEmpty", message);
+        }
+
+        public static void IsOfType<T>(object obj, string message)
+        {
+            if (obj == null) throw new Exception("obj cannot be null");
+            Type expected = typeof(T);
+            Type actual = obj.GetType();
+            ExpectedActualCheck(expected == actual, "IsOfType", expected, actual, message);
+        }
+
+        public static void Inconclusive(string message = null)
+        {
+            throw new AssertInconclusiveException(message);
+        }
+        */
     }
 }

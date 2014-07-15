@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Xml.Linq.Tests.Mocks;
 using JJ.Framework.Common;
-using JJ.Framework.SoapClient;
+using JJ.Framework.Soap;
 
 namespace JJ.Framework.Xml.Linq.Tests
 {
@@ -17,9 +17,7 @@ namespace JJ.Framework.Xml.Linq.Tests
         public void Test_ObjectToXmlConverter()
         {
             ComplicatedElement sourceObject = CreateComplicatedElement();
-
-            var namespaceMappings = XmlNamespaceMappingFactory.CreateXmlNamespaceMappings(typeof(String).Namespace, typeof(ComplicatedElement).Namespace);
-            var converter = new ObjectToXmlConverter(XmlCasingEnum.CamelCase, namespaceMappings);
+            ObjectToXmlConverter converter = new ObjectToXmlConverter(XmlCasingEnum.CamelCase, useNamespaces: true, firstNamespacePrefix: "c");
             string text = converter.ConvertToString(sourceObject);
         }
 

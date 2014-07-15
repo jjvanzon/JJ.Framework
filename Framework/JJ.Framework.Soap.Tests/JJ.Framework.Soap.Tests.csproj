@@ -50,8 +50,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="WcfSoapConnectorTests.cs" />
-    <Compile Include="SoapConnectorTests.cs" />
+    <Compile Include="WcfSoapClientTests.cs" />
+    <Compile Include="SoapClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,9 +59,9 @@
       <Project>{44b139ab-bdf0-414a-aa01-4b7e62adcf57}</Project>
       <Name>JJ.Apps.SetText</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.SoapClient\JJ.Framework.SoapClient.csproj">
+    <ProjectReference Include="..\JJ.Framework.Soap\JJ.Framework.Soap.csproj">
       <Project>{2b86213c-a758-4db9-bd37-5e7d2f4d7c4d}</Project>
-      <Name>JJ.Framework.SoapClient</Name>
+      <Name>JJ.Framework.Soap</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj">
       <Project>{8dcbf3f3-b30f-4c11-8957-bea7f43ee173}</Project>

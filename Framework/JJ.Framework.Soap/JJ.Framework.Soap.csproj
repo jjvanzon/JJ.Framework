@@ -7,8 +7,8 @@
     <ProjectGuid>{2B86213C-A758-4DB9-BD37-5E7D2F4D7C4D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.SoapClient</RootNamespace>
-    <AssemblyName>JJ.Framework.SoapClient</AssemblyName>
+    <RootNamespace>JJ.Framework.Soap</RootNamespace>
+    <AssemblyName>JJ.Framework.Soap</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -38,9 +38,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SoapParameter.cs" />
-    <Compile Include="SoapConnector.cs" />
-    <Compile Include="WcfSoapConnector.cs" />
-    <Compile Include="XmlNamespaceMappingFactory.cs" />
+    <Compile Include="SoapClient.cs" />
+    <Compile Include="WcfSoapClient.cs" />
+    <Compile Include="NamespaceMapping.cs" />
+    <Compile Include="~XmlNamespaceMappingFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

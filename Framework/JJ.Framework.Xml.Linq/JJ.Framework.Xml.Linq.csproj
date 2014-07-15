@@ -38,7 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Internal\NamespaceResolver.cs" />
-    <Compile Include="XmlNamespaceMapping.cs" />
     <Compile Include="ObjectToXmlConverter.cs" />
     <Compile Include="Internal\ConversionHelper.cs" />
     <Compile Include="Internal\NodeTypeEnum.cs" />
@@ -55,6 +54,10 @@
     <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.csproj">
       <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
       <Name>JJ.Framework.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Mathematics\JJ.Framework.Mathematics.csproj">
+      <Project>{810b90b9-f501-4b91-b019-2ad5aad63304}</Project>
+      <Name>JJ.Framework.Mathematics</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Net45\JJ.Framework.Net45.csproj">
       <Project>{e754bb24-447b-40ec-9eeb-f0c69e6eea0e}</Project>

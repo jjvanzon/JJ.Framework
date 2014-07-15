@@ -21,24 +21,35 @@ namespace JJ.Framework.Xml.Linq
     public class ObjectToXmlConverter
     {
         private string _rootElementName;
-
         private XmlCasingEnum _casing;
-
+        private bool _useNamespaces;
+        private string _firstNamespacePrefix;
         private NamespaceResolver _namespaceResolver;
 
         /// <summary>
         /// Under certain platforms standard XML serialization may not be available 
         /// or may not be the best option. That is why this class exists.
         /// </summary>
-        public ObjectToXmlConverter(XmlCasingEnum casing = XmlCasingEnum.CamelCase, IEnumerable<XmlNamespaceMapping> namespaceMappings = null, string rootElementName = "root")
+        /// <param name="useNamespaces">
+        /// If set to true, ObjectToXmlConverter will generate an XML namespace for each .NET namespace,
+        /// in a way that conforms to WCF.
+        /// The XML namespace will have the format "http://schemas.datacontract.org/2004/07/" followed by the .NET namespace.
+        /// The namespace prefixes will be 'alphabetically numbered', starting with 'a', then 'b' and so on.
+        /// </param>
+        /// <param name="firstNamespacePrefix">
+        /// When you set useNamespaces to true, this parameters specifies which is the first namespace prefix to use.
+        /// E.g. if you set firstNamespacePrefix to be "c", then you can use the namespace prefixes "a" and "b" for your own purposes.
+        /// </param>
+        public ObjectToXmlConverter(XmlCasingEnum casing = XmlCasingEnum.CamelCase, bool useNamespaces = false, string firstNamespacePrefix = "a", string rootElementName = "root")
         {
             if (rootElementName == null) throw new ArgumentNullException("rootElementName");
 
-            namespaceMappings = namespaceMappings ?? new XmlNamespaceMapping[0];
-            _namespaceResolver = new NamespaceResolver(namespaceMappings);
-
             _casing = casing;
+            _useNamespaces = useNamespaces;
+            _firstNamespacePrefix = firstNamespacePrefix;
             _rootElementName = rootElementName;
+
+            _namespaceResolver = new NamespaceResolver();
         }
 
         public byte[] ConvertToBytes(object sourceObject)
@@ -70,9 +81,10 @@ namespace JJ.Framework.Xml.Linq
 
         public XElement ConvertObjectToXElement(object sourceObject)
         {
-            XElement destRootElement = CreateRootElement();
-
             IList<XObject> destObjects = ConvertProperties(sourceObject);
+
+            // Make sure you create the root element last, because then all the generated XML namespaces will be included as xmlns attributes.
+            XElement destRootElement = CreateRootElement();
             destRootElement.Add(destObjects);
             return destRootElement;
         }
@@ -84,9 +96,12 @@ namespace JJ.Framework.Xml.Linq
         {
             XElement rootElement = new XElement(_rootElementName);
 
-            foreach (XAttribute namespaceDeclarationAttribute in _namespaceResolver.GetAllNamespaceDeclarationAttributes())
+            if (_useNamespaces)
             {
-                rootElement.Add(namespaceDeclarationAttribute);
+                foreach (XAttribute namespaceDeclarationAttribute in _namespaceResolver.GetNamespaceDeclarationAttributes(_firstNamespacePrefix))
+                {
+                    rootElement.Add(namespaceDeclarationAttribute);
+                }
             }
 
             return rootElement;
@@ -154,7 +169,7 @@ namespace JJ.Framework.Xml.Linq
             }
 
             string destName = ConversionHelper.GetElementNameForProperty(sourceProperty, _casing);
-            XName destXName = _namespaceResolver.GetXName(destName, sourceProperty);
+            XName destXName = GetXName(destName, sourceProperty);
 
             XElement destElement = ConvertToElement(sourceObject, destXName);
             return destElement;
@@ -215,7 +230,7 @@ namespace JJ.Framework.Xml.Linq
             }
 
             string destName = ConversionHelper.GetAttributeNameForProperty(sourceProperty, _casing);
-            XName destXName = _namespaceResolver.GetXName(destName, sourceProperty);
+            XName destXName = GetXName(destName, sourceProperty);
             var destAttribute = new XAttribute(destXName, sourceValue);
             return destAttribute;
         }
@@ -249,7 +264,7 @@ namespace JJ.Framework.Xml.Linq
             IList sourceCollection = (IList)sourceCollectionObject;
 
             string destName = ConversionHelper.GetXmlArrayNameForCollectionProperty(sourceCollectionProperty, _casing);
-            XName destXName = _namespaceResolver.GetXName(destName, sourceCollectionProperty);
+            XName destXName = GetXName(destName, sourceCollectionProperty);
 
             var destXmlArray = new XElement(destXName);
 
@@ -273,11 +288,43 @@ namespace JJ.Framework.Xml.Linq
         {
             string destName = ConversionHelper.GetXmlArrayItemNameForCollectionProperty(sourceCollectionProperty);
             // For collection items, it is the .NET namespace of the item type that determines the XML namespace of the XML element.
-            XName destXName = _namespaceResolver.GetXName(destName, sourceItemType);
+            XName destXName = GetXName(destName, sourceItemType);
 
             // Recursive call
             XElement destXmlArrayItem = ConvertToElement(sourceItem, destXName);
             return destXmlArrayItem;
+        }
+
+        // Helpers
+
+        /// <summary>
+        /// Will conditionally generate a namespace.
+        /// </summary>
+        public XName GetXName(string name, PropertyInfo property)
+        {
+            if (_useNamespaces)
+            {
+                return _namespaceResolver.GetXName(name, property);
+            }
+            else
+            {
+                return name;
+            }
+        }
+
+        /// <summary>
+        /// Will conditionally generate a namespace.
+        /// </summary>
+        private XName GetXName(string name, Type type)
+        {
+            if (_useNamespaces)
+            {
+                return _namespaceResolver.GetXName(name, type);
+            }
+            else
+            {
+                return name;
+            }
         }
     }
 }

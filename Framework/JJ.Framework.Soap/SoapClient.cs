@@ -8,36 +8,37 @@ using System.Net;
 using System.Text;
 using System.Xml.Linq;
 
-namespace JJ.Framework.SoapClient
+namespace JJ.Framework.Soap
 {
-    public class SoapConnector
+    public class SoapClient
     {
         private const string HTTP_METHOD_POST = "POST";
+        private const string SOAP_XML_NAMESPACE_PREFIX = "a";
+        private const string OPERATION_XML_NAMESPACE_PREFIX = "b";
 
         private string _url;
-        private IList<XmlNamespaceMapping> _xmlNamespaceMappings;
-        private string _soapNamespacePrefix;
-        private string _operationNamespacePrefix;
         private Encoding _encoding;
 
-        public SoapConnector(
-            string url,
-            IEnumerable<XmlNamespaceMapping> xmlNamespaceMappings, 
-            string soapXmlNamespacePrefix, 
-            string operationXmlNamespacePrefix,
-            Encoding encoding)
+        /// <summary> nullable </summary>
+        private IList<NamespaceMapping> _namespaceMappings;
+
+        /// <param name="namespaceMappings">
+        /// If set to null, standard WCF namespaces are generated. Otherwise the namespaces provided are used.
+        /// </param>
+        public SoapClient(
+            string url, Encoding encoding, 
+            IEnumerable<NamespaceMapping> namespaceMappings = null)
         {
             if (String.IsNullOrEmpty(url)) throw new ArgumentException("url cannot be null or empty");
-            if (xmlNamespaceMappings == null) throw new ArgumentNullException("xmlNamespaceMappings");
-            if (String.IsNullOrEmpty(soapXmlNamespacePrefix)) throw new ArgumentException("soapXmlNamespacePrefix cannot be null or empty.");
-            if (String.IsNullOrEmpty(operationXmlNamespacePrefix)) throw new ArgumentException("operationXmlNamespacePrefix cannot be null or empty.");
             if (encoding == null) throw new ArgumentNullException("encoding");
 
             _url = url;
-            _xmlNamespaceMappings = xmlNamespaceMappings.ToArray();
-            _soapNamespacePrefix = soapXmlNamespacePrefix;
-            _operationNamespacePrefix = operationXmlNamespacePrefix;
             _encoding = encoding;
+
+            if (namespaceMappings != null)
+            {
+                _namespaceMappings = namespaceMappings.ToArray();
+            }
         }
 
         public TResult Invoke<TResult>(string soapAction, string operationName, params SoapParameter[] parameters)
@@ -81,22 +82,32 @@ namespace JJ.Framework.SoapClient
             // Create SOAP envelope.
             var envelopeElement =
                 new XElement(s + "Envelope",
-                    new XAttribute(XNamespace.Xmlns + _soapNamespacePrefix, soapNamespaceString),
-                    new XAttribute(XNamespace.Xmlns + _operationNamespacePrefix, operationNamespaceString),
+                    new XAttribute(XNamespace.Xmlns + SOAP_XML_NAMESPACE_PREFIX, soapNamespaceString),
+                    new XAttribute(XNamespace.Xmlns + OPERATION_XML_NAMESPACE_PREFIX, operationNamespaceString),
                     new XElement(s + "Header"),
                     new XElement(s + "Body",
                         operationElement = new XElement(o + operationName)));
 
             foreach (SoapParameter parameter in parameters)
             {
-                var converter = new ObjectToXmlConverter(XmlCasingEnum.UnmodifiedCase, _xmlNamespaceMappings, rootElementName: parameter.Name);
+                var converter = new ObjectToXmlConverter
+                (
+                    XmlCasingEnum.UnmodifiedCase, 
+                    useNamespaces: true, 
+                    firstNamespacePrefix: "c", 
+                    rootElementName: parameter.Name
+                );
+
                 XElement parameterElement = converter.ConvertObjectToXElement(parameter.Value);
 
-                // Add namespace prefix to parameterElement.
+                // Add operation namespace prefix to parameterElement.
+                // (The ObjectToXmlConvert will return it namespace-less, but we need to put it in the operation namespace.)
                 parameterElement.Name = o.GetName(parameterElement.Name.LocalName);
 
                 operationElement.Add(parameterElement);
             }
+
+            // TODO: Apply namespace mappings i.e. translate the standard WCF namespaces to the custom ones provided by traversing the whole XML tree.
 
             return envelopeElement;
         }

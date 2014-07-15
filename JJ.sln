@@ -75,7 +75,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation", "Framework\JJ.Framework.Validation\JJ.Framework.Validation.csproj", "{59DDC853-62AF-4F86-A803-3D4DD491E978}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Maths", "Framework\JJ.Framework.Maths\JJ.Framework.Maths.csproj", "{810B90B9-F501-4B91-B019-2AD5AAD63304}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mathematics", "Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.csproj", "{810B90B9-F501-4B91-B019-2AD5AAD63304}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.OneOff.BeginCollectionItemTest", "OneOff\JJ.OneOff.BeginCollectionItemTest\JJ.OneOff.BeginCollectionItemTest.csproj", "{CC7D3740-2460-4806-B6E7-4F3670B06D1B}"
 EndProject
@@ -177,9 +177,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReflectionCache", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReflectionCache.Tests", "Demos\JJ.Demos.ReflectionCache.Tests\JJ.Demos.ReflectionCache.Tests.csproj", "{D157D8E3-26A0-4862-B488-0800AF4FEC9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.SoapClient", "Framework\JJ.Framework.SoapClient\JJ.Framework.SoapClient.csproj", "{2B86213C-A758-4DB9-BD37-5E7D2F4D7C4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mathematics.Tests", "Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Tests.csproj", "{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.SoapClient.Tests", "Framework\JJ.Framework.SoapClient.Tests\JJ.Framework.SoapClient.Tests.csproj", "{3B1E7DE6-17DD-4140-AD96-21DCF5F0CB25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap", "Framework\JJ.Framework.Soap\JJ.Framework.Soap.csproj", "{2B86213C-A758-4DB9-BD37-5E7D2F4D7C4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Tests", "Framework\JJ.Framework.Soap.Tests\JJ.Framework.Soap.Tests.csproj", "{3B1E7DE6-17DD-4140-AD96-21DCF5F0CB25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1667,6 +1669,24 @@ Global
 		{D157D8E3-26A0-4862-B488-0800AF4FEC9B}.Release|x64.Build.0 = Release|x64
 		{D157D8E3-26A0-4862-B488-0800AF4FEC9B}.Release|x86.ActiveCfg = Release|x86
 		{D157D8E3-26A0-4862-B488-0800AF4FEC9B}.Release|x86.Build.0 = Release|x86
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Release|x64.ActiveCfg = Release|Any CPU
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Release|x86.ActiveCfg = Release|Any CPU
 		{2B86213C-A758-4DB9-BD37-5E7D2F4D7C4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2B86213C-A758-4DB9-BD37-5E7D2F4D7C4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B86213C-A758-4DB9-BD37-5E7D2F4D7C4D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -1778,6 +1798,7 @@ Global
 		{8DCBF3F3-B30F-4C11-8957-BEA7F43EE173} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{A247CCEF-12FF-4254-93FC-287366920AB8} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{22AAF27D-B7B6-40E0-BA70-56145DCBA7BB} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{2B86213C-A758-4DB9-BD37-5E7D2F4D7C4D} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{3B1E7DE6-17DD-4140-AD96-21DCF5F0CB25} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
