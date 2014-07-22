@@ -14,15 +14,15 @@ namespace JJ.Framework.Xml.Linq.Internal
 
         public IEnumerable<XAttribute> GetNamespaceDeclarationAttributes()
         {
-            int ordinal = 0;
+            int i = 0;
 
             foreach (string mapping in _xmlNamespaceStrings)
             {
-                string namespacePrefix = NumberBase.ToBaseNNumber(ordinal, 26, 'a');
+                string namespacePrefix = NumberingSystems.ToLetterSequence(i, 'a', 'z');
 
                 yield return new XAttribute(XNamespace.Xmlns + namespacePrefix, mapping);
 
-                ordinal++;
+                i++;
             }
         }
 

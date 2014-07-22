@@ -21,5 +21,23 @@ namespace JJ.Framework.Mathematics
             }
             return x;
         }
+
+        /// <summary>
+        /// Integer variation of the Math.Log function.
+        /// It will only return integers,
+        /// but will prevent rounding erros such as
+        /// 1000 log 10 = 2.99999999996
+        /// </summary>
+        public static int Log(int value, int n)
+        {
+            int temp = value;
+            int i = 0;
+            while (temp >= n)
+            {
+                temp /= n;
+                i++;
+            }
+            return i;
+        }
     }
 }

@@ -25,29 +25,25 @@ namespace JJ.Framework.Xml.Linq
 
         private string _rootElementName;
         private XmlCasingEnum _casing;
-        private bool _generateNamespaces;
+        private bool _mustGenerateNamespaces;
         private NamespaceResolver _namespaceResolver;
 
         /// <summary>
         /// Under certain platforms standard XML serialization may not be available 
         /// or may not be the best option. That is why this class exists.
         /// </summary>
-        /// <param name="generateNamespaces">
+        /// <param name="mustGenerateNamespaces">
         /// If set to true, ObjectToXmlConverter will generate an XML namespace for each .NET namespace,
         /// in a way that conforms to WCF.
         /// The XML namespace will have the format "http://schemas.datacontract.org/2004/07/" followed by the .NET namespace.
         /// The namespace prefixes will be 'alphabetically numbered', starting with 'a', then 'b' and so on.
         /// </param>
-        /// <param name="firstNamespacePrefix">
-        /// When you set useNamespaces to true, this parameters specifies which is the first namespace prefix to use.
-        /// E.g. if you set firstNamespacePrefix to be "c", then you can use the namespace prefixes "a" and "b" for your own purposes.
-        /// </param>
-        public ObjectToXmlConverter(XmlCasingEnum casing = XmlCasingEnum.CamelCase, bool generateNamespaces = false, string rootElementName = "root")
+        public ObjectToXmlConverter(XmlCasingEnum casing = XmlCasingEnum.CamelCase, bool mustGenerateNamespaces = false, string rootElementName = "root")
         {
             if (rootElementName == null) throw new ArgumentNullException("rootElementName");
 
             _casing = casing;
-            _generateNamespaces = generateNamespaces;
+            _mustGenerateNamespaces = mustGenerateNamespaces;
             _rootElementName = rootElementName;
 
             _namespaceResolver = new NamespaceResolver();
@@ -97,7 +93,7 @@ namespace JJ.Framework.Xml.Linq
         {
             XElement rootElement = new XElement(_rootElementName);
 
-            if (_generateNamespaces)
+            if (_mustGenerateNamespaces)
             {
                 foreach (XAttribute namespaceDeclarationAttribute in _namespaceResolver.GetNamespaceDeclarationAttributes())
                 {
@@ -303,7 +299,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         public XName GetXName(string name, PropertyInfo property)
         {
-            if (_generateNamespaces)
+            if (_mustGenerateNamespaces)
             {
                 return _namespaceResolver.GetXName(name, property);
             }
@@ -318,7 +314,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XName GetXName(string name, Type type)
         {
-            if (_generateNamespaces)
+            if (_mustGenerateNamespaces)
             {
                 return _namespaceResolver.GetXName(name, type);
             }

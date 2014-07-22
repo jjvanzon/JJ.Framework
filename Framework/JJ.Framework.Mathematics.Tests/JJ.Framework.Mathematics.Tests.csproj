@@ -52,7 +52,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="MathsTests.cs" />
-    <Compile Include="NumberBaseTest.cs" />
+    <Compile Include="NumberingSystemsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

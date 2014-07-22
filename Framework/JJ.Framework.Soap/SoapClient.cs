@@ -91,7 +91,7 @@ namespace JJ.Framework.Soap
                 var converter = new ObjectToXmlConverter
                 (
                     XmlCasingEnum.UnmodifiedCase, 
-                    generateNamespaces: true, 
+                    mustGenerateNamespaces: true, 
                     rootElementName: parameter.Name
                 );
 

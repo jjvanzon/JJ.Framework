@@ -17,7 +17,7 @@ namespace JJ.Framework.Xml.Linq.Tests
         public void Test_ObjectToXmlConverter()
         {
             ComplicatedElement sourceObject = CreateComplicatedElement();
-            ObjectToXmlConverter converter = new ObjectToXmlConverter(XmlCasingEnum.CamelCase, generateNamespaces: true);
+            ObjectToXmlConverter converter = new ObjectToXmlConverter(XmlCasingEnum.CamelCase, mustGenerateNamespaces: true);
             string text = converter.ConvertToString(sourceObject);
         }
 

@@ -5,11 +5,11 @@ using System.Text;
 
 namespace JJ.Framework.Mathematics
 {
-    public static class NumberBase
+    public static class NumberingSystems
     {
         // The general formula for a digit value is:
         //
-        //     digits[i] = number / pow(base, i) % base
+        //     digits[i] = number / base ^ i % base
         //
         // The formula is best explained with an example.
         // In the example an int value will be converted to a set of decimal digits.
@@ -18,7 +18,7 @@ namespace JJ.Framework.Mathematics
         //
         //    for (int i = 3; i >= 0; i--) // Go from digit 3 to digit 0
         //    {
-        //        digits[i] = value / (10 ^ i) % 10; // E.g. digit 2 = 6437 / 100 % 10 = 64 Mod 10 = 4
+        //        digits[i] = value / Math.Pow(10, i) % 10; // E.g. digit 2 = 6437 / 100 % 10 = 64 Mod 10 = 4
         //    }
         //
         // Or:
@@ -56,18 +56,13 @@ namespace JJ.Framework.Mathematics
             int digitCount = GetDigitCount(number, n);
             int[] digits = new int[digitCount];
 
-            int pow = 1;
             for (int i = digitCount - 1; i >= 0; i--)
             {
                 checked
                 {
-                    int digitValue = number / pow % n;
-                    digits[i] = digitValue;
-
-                    if (i > 0) // Prevent overflow
-                    {
-                        pow *= n;
-                    }
+                    int digit = number % n;
+                    digits[i] = digit;
+                    number /= n;
                 }
             }
 
@@ -88,10 +83,22 @@ namespace JJ.Framework.Mathematics
 
             checked
             {
-                double toTheHowManieth = Math.Log(number, n);
-                int digitCount = (int)toTheHowManieth + 1;
+                int toTheHowManieth = Maths.Log(number, n);
+                int digitCount = toTheHowManieth + 1;
                 return digitCount;
             }
+        }
+
+        /// <summary>
+        /// Produces a string that represents the number in a base-n numbering system.
+        /// The digit characters are specified explicitly in an array.
+        /// </summary>
+        public static string ToBaseNNumber(int number, char[] digitChars)
+        {
+            if (digitChars == null) throw new ArgumentNullException("digitChars");
+            int n = digitChars.Length;
+            string result = ToBaseNNumber(number, n, digitChars);
+            return result;
         }
 
         /// <summary>
@@ -186,7 +193,7 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static int FromBaseNNumber(string input, int n)
         {
-            int result = FromBaseNNumber(input, n, x => CharToDigitValue(x));
+            int result = FromBaseNNumber(input, n, chr => CharToDigitValue(chr));
             return result;
         }
 
@@ -196,35 +203,31 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static int FromBaseNNumber(string input, int n, char[] digitChars)
         {
-            int result = FromBaseNNumber(input, n, x => CharToDigitValue(x, digitChars));
+            int result = FromBaseNNumber(input, n, chr => CharToDigitValue(chr, digitChars));
             return result;
         }
 
         /// <summary>
         /// Converts a base-n number to an integer.
         /// The first digit is a specific character value.
-        /// That way the digits can only be a consecutive character range.
+        /// The digits can only be a consecutive character range.
         /// </summary>
         public static int FromBaseNNumber(string input, int n, char firstChar)
         {
-            int result = FromBaseNNumber(input, n, x => CharToDigitValue(x, firstChar));
+            int result = FromBaseNNumber(input, n, chr => CharToDigitValue(chr, firstChar));
             return result;
         }
 
-        public static int FromSpreadSheetStyleColumnNames(string input)
+        /// <summary>
+        /// Converts a base-n number to an integer.
+        /// The first and last digit characters are specified.
+        /// The digits can only be a consecutive character range.
+        /// </summary>
+        public static int FromBaseNNumber(string input, char firstChar, char lastChar)
         {
-            if (String.IsNullOrEmpty(input)) throw new ArgumentNullException("input");
-
-            if (input.Length == 1)
-            {
-                return FromBaseNNumber(input, 26);
-            }
-            if (input.Length == 2)
-            {
-                
-            }
-
-            throw new NotImplementedException();
+            int n = lastChar - firstChar + 1;
+            int result = FromBaseNNumber(input, n, firstChar);
+            return result;
         }
 
         // Digit Value to Char
@@ -243,6 +246,7 @@ namespace JJ.Framework.Mathematics
 
         private static int CharToDigitValue(char chr, IList<char> digitChars)
         {
+            // TODO: This does not look fast.
             return digitChars.IndexOf(chr);
         }
 
@@ -272,6 +276,104 @@ namespace JJ.Framework.Mathematics
             }
 
             throw new Exception(String.Format("Invalid digit: '{0}'.", chr));
+        }
+
+        // Letter Sequences
+
+            /// <summary>
+        /// Returns spread-sheet-style letter sequences.
+        /// This is not the same as a base-26 numbering system.
+        /// After the range A-Z is depleted, the next value is 'AA',
+        /// which is equivalent to 00, 
+        /// so you basically start counting at 0 again,
+        /// but you get 26 for free.
+        /// </summary>
+        /// <param name="value">0 is the first letter</param>
+        public static string ToLetterSequence(int value, char firstChar = 'A', char lastChar = 'Z')
+        {
+            int n = lastChar - firstChar + 1;
+            string result = ToLetterSequence(value, n, firstChar);
+            return result;
+        }
+
+        /// <summary>
+        /// Returns spread-sheet-style letter sequences.
+        /// This is not the same as a base-26 numbering system.
+        /// After the range A-Z is depleted, the next value is 'AA',
+        /// which is equivalent to 00, 
+        /// so you basically start counting at 0 again,
+        /// but you get 26 for free.
+        /// </summary>
+        /// <param name="temp">0 is the first letter</param>
+        public static string ToLetterSequence(int value, int n, char firstChar = 'A')
+        {
+            int ceiling = n;
+            int i = 1;
+            string result;
+            int temp = value;
+
+            while (true)
+            {
+                if (temp < ceiling)
+                {
+                    result = ToBaseNNumber(temp, n, firstChar);
+                    result = result.PadLeft(i, firstChar);
+                    return result;
+                }
+
+                i++;
+                temp -= ceiling;
+                checked
+                {
+                    ceiling *= n;
+                }
+            }
+        }
+
+        
+        /// <summary>
+        /// Converts a spread-sheet-style letter sequence to a number.
+        /// This is not the same as a base-26 numbering system.
+        /// After the range A-Z is depleted, the next value is 'AA',
+        /// which is equivalent to 00, 
+        /// so you basically start counting at 0 again,
+        /// but you get 26 for free.
+        /// 0 is the first letter.
+        /// </summary>
+        public static int FromLetterSequence(string input, char firstChar = 'A', char lastChar = 'Z')
+        {
+            int n = lastChar - firstChar + 1;
+            int result = FromLetterSequence(input, n, firstChar);
+            return result;
+        }
+
+        /// <summary>
+        /// Converts a spread-sheet-style letter sequence to a number.
+        /// 0 is the first letter.
+        /// This is not the same as a base-26 numbering system.
+        /// After the range A-Z is depleted, the next value is 'AA',
+        /// which is equivalent to 00, 
+        /// so you basically start counting at 0 again,
+        /// but you get 26 for free.
+        /// </summary>
+        public static int FromLetterSequence(string input, int n, char firstChar = 'A')
+        {
+            if (String.IsNullOrEmpty(input)) throw new ArgumentNullException("input");
+
+            int value = FromBaseNNumber(input, n, firstChar);
+
+            // Calculate the part you get for free (see summary).
+            int extra = 0;
+            int pow = 1;
+            for (int i = 0; i < input.Length - 1; i++)
+            {
+                pow *= n;
+                extra += pow;
+            }
+
+            value += extra;
+
+            return value;
         }
     }
 }
