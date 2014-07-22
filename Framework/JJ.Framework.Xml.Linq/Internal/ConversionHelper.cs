@@ -76,9 +76,10 @@ namespace JJ.Framework.Xml.Linq.Internal
         /// </summary>
         public static NodeTypeEnum DetermineNodeType(PropertyInfo property)
         {
-            // TODO: isCollectionType is always called, even if it is a simple int.
-            // Actually, much is called even when it might not be needed and the only reason it is all called,
-            // is to check for conflicting annotations, but it might harm performance considerably.
+            // TODO: Performance penalty: a lot of stuff is done, even for each and every simple int.
+            // Even things that do not need to be called (e.g. IsSupportedCollectionType).
+            // The only reason everything is called might be to check for conflicting .NET attributes,
+            // but at a large performance cost.
 
             bool hasXmlAttributeAttribute = property.GetCustomAttribute<XmlAttributeAttribute>() != null;
             bool hasXmlElementAttribute = property.GetCustomAttribute<XmlElementAttribute>() != null;

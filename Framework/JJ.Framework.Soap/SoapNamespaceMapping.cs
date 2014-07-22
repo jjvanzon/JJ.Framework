@@ -5,12 +5,12 @@ using System.Text;
 
 namespace JJ.Framework.Xml.Linq
 {
-    public class NamespaceMapping
+    public class SoapNamespaceMapping
     {
         public string DotNetNamespace { get; private set; }
         public string XmlNamespace { get; private set; }
 
-        public NamespaceMapping(string dotNetNamespace, string xmlNamespace)
+        public SoapNamespaceMapping(string dotNetNamespace, string xmlNamespace)
         {
             if (String.IsNullOrEmpty(dotNetNamespace)) throw new ArgumentNullException("dotNetNamespace");
             if (String.IsNullOrEmpty(xmlNamespace)) throw new ArgumentNullException("xmlNamespace");

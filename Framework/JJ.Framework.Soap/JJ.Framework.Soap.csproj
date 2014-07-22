@@ -40,7 +40,7 @@
     <Compile Include="SoapParameter.cs" />
     <Compile Include="SoapClient.cs" />
     <Compile Include="WcfSoapClient.cs" />
-    <Compile Include="NamespaceMapping.cs" />
+    <Compile Include="SoapNamespaceMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

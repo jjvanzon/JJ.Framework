@@ -38,13 +38,15 @@ namespace JJ.Framework.Xml.Linq.Internal
         {
             return GetXName(name, type.Namespace);
         }
+        
+        private const string WCF_SOAP_NAMESPACE_START = "http://schemas.datacontract.org/2004/07/";
 
         /// <param name="type">
         /// For properties the type must be the type that the property is part of, not the type of the property value.
         /// </param>
         public XName GetXName(string name, string dotNetNamespace)
         {
-            string xmlNamespaceString = "http://schemas.datacontract.org/2004/07/" + dotNetNamespace;
+            string xmlNamespaceString = WCF_SOAP_NAMESPACE_START + dotNetNamespace;
 
             // System.Xml.Linq will ensure that the same namespace is the same XNamespace instance.
             XNamespace xnamespace = xmlNamespaceString;

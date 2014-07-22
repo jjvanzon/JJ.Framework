@@ -45,7 +45,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         private void AutoCreateXmlFile()
         {
-            // Auto-crate file
+            // Auto-create file
             if (!File.Exists(_filePath))
             {
                 using (Stream stream = File.Create(_filePath))
