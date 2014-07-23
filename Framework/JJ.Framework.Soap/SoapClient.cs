@@ -34,8 +34,8 @@ namespace JJ.Framework.Soap
         /// do not fully support System.ServiceModel or System.Web.Services.
         /// </summary>
         /// <param name="namespaceMappings">
-        /// If set to null, standard WCF namespaces are generated. Otherwise the namespaces provided are used.
-        /// If a namespace mapping is missing, the default namespace will be used.
+        /// If set to null, standard WCF namespaces are generated. Otherwise the provided namespaces are used.
+        /// If a namespace mapping is missing, it will remain unchanged.
         /// </param>
         public SoapClient(
             string url, Encoding encoding, 
@@ -127,14 +127,14 @@ namespace JJ.Framework.Soap
         }
 
         /// <summary>
-        /// Apply namespace mappings i.e. translate the standard WCF namespaces to the custom ones provided by traversing the whole XML tree.
+        /// Apply namespace mappings i.e. translate the standard WCF namespaces to the provided custom ones by traversing the whole XML tree.
         /// </summary>
-        private void ApplyNamespaceMappings(XElement parentElement)
+        private void ApplyNamespaceMappings(XElement root)
         {
             if (_namespaceDictionary != null)
             {
                 // Replace the namespace of each element.
-                foreach (XElement element in parentElement.Descendants())
+                foreach (XElement element in root.DescendantsAndSelf())
                 {
                     string originalNamespaceName = element.Name.NamespaceName;
                     string newNamespaceName;
@@ -147,9 +147,9 @@ namespace JJ.Framework.Soap
                 }
 
                 // Replace the xmlns's
-                IList<XAttribute> xmlnsAttributes = parentElement.Attributes()
-                                                                 .Where(x => x.Name.Namespace == XNamespace.Xmlns)
-                                                                 .ToArray();
+                IList<XAttribute> xmlnsAttributes = root.Attributes()
+                                                        .Where(x => x.Name.Namespace == XNamespace.Xmlns)
+                                                        .ToArray();
 
                 foreach (XAttribute xmlnsAttribute in xmlnsAttributes)
                 {
@@ -161,11 +161,6 @@ namespace JJ.Framework.Soap
                     }
                 }
             }
-        }
-
-        private void ApplyNamespaceMappingsToXmlNs(XElement xmlNsDeclaringElement)
-        {
-            throw new NotImplementedException();
         }
 
         private HttpWebRequest CreateSoapRequest(string url, string soapAction, byte[] content)

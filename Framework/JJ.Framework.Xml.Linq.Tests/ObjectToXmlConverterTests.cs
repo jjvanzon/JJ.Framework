@@ -87,6 +87,7 @@ namespace JJ.Framework.Xml.Linq.Tests
                 IListOfT = new int[] { 2, 2 },
                 ICollectionOfT = new int[] { 2, 2 },
                 IEnumerableOfT = new int[] { 2, 2 },
+                Array_WithoutExplicitItemName = new int[] { 2, 2 },
 
                 // Composite
                 RecursiveElement = new RecursiveElement

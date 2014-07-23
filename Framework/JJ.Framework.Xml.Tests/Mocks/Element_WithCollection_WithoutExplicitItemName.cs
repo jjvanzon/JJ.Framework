@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace JJ.Framework.Xml.Linq.Tests.Mocks
+namespace JJ.Framework.Xml.Tests.Mocks
 {
-    internal class Element_WithCollection<T>
+    internal class Element_WithCollection_WithoutExplicitItemName
     {
-        [XmlArrayItem("item")]
-        public T Collection { get; set; }
+        public int[] Collection { get; set; }
     }
 }

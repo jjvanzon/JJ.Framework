@@ -27,14 +27,12 @@ namespace JJ.Framework.Xml
     /// a parent XML element is expected,
     /// and a child element for each position in the array.
     /// That single collection property maps to both this parent element and the child elements.
-    /// You have to specify the child element name with the collection property using the XmlArrayItem attribute
-    /// e.g. [XmlArrayItem("myArrayItem")], because this name cannot be derived from the property name itself.
-    /// Do note that the XmlArray attribute itself is not required.
     /// The supported collection types are Array types, List&lt;T&gt;, IList&lt;T&gt;, ICollection&lt;T&gt; and IEnumerable&lt;T&gt;.
     /// 
     /// By default the names in the XML are the camel-case version of the property names.
+    /// For XML array items, however, it is not the property name, but the collection property's item type name converted to camel case.
     /// To diverge from this standard, you can specify the node name explicitly by using the following .NET attributes
-    /// on the properties: XmlElement, XmlAttribute and XmlArray.
+    /// on the properties: XmlElement, XmlAttribute, XmlArray and XmlArrayItem.
     /// 
     /// Reference types are always optional. Value types are optional only if they are nullable.
     /// Collection types are always optional. If the parent element is present, an empty collection will be assigned.
@@ -52,6 +50,9 @@ namespace JJ.Framework.Xml
         /// <summary>
         /// Converts an XML structure to an object tree.
         /// 
+        /// (Under certain platforms standard XML serialization may not be available 
+        /// or may not be the best option. That is why this class exists.)
+        /// 
         /// By default properties are mapped to XML elements.
         /// 
         /// To map to XML attributes, mark a property with the XmlAttribute attribute.
@@ -60,14 +61,12 @@ namespace JJ.Framework.Xml
         /// a parent XML element is expected,
         /// and a child element for each position in the array.
         /// That single collection property maps to both this parent element and the child elements.
-        /// You have to specify the child element name with the collection property using the XmlArrayItem attribute
-        /// e.g. [XmlArrayItem("myArrayItem")], because this name cannot be derived from the property name itself.
-        /// Do note that the XmlArray attribute itself is not required.
         /// The supported collection types are Array types, List&lt;T&gt;, IList&lt;T&gt;, ICollection&lt;T&gt; and IEnumerable&lt;T&gt;.
         /// 
         /// By default the names in the XML are the camel-case version of the property names.
+        /// For XML array items, however, it is not the property name, but the collection property's item type name converted to camel case.
         /// To diverge from this standard, you can specify the node name explicitly by using the following .NET attributes
-        /// on the properties: XmlElement, XmlAttribute and XmlArray.
+        /// on the properties: XmlElement, XmlAttribute, XmlArray and XmlArrayItem.
         /// 
         /// Reference types are always optional. Value types are optional only if they are nullable.
         /// Collection types are always optional. If the parent element is present, an empty collection will be assigned.
@@ -407,7 +406,7 @@ namespace JJ.Framework.Xml
         /// e.g. MyProperty -&gt; myProperty.
         /// You can also specify the expected XML element name explicity,
         /// by marking the property with the XmlAttribute attribute and specifying the
-        /// name with it it e.g. [XmlAttribute("myAttribute")].
+        /// name with it e.g. [XmlAttribute("myAttribute")].
         /// </summary>
         private string GetAttributeNameForProperty(PropertyInfo destProperty)
         {
@@ -581,7 +580,7 @@ namespace JJ.Framework.Xml
         /// e.g. MyCollection -&gt; myCollection.
         /// You can also specify the expected XML element name explicity,
         /// by marking the property with the XmlArray attribute and specifying the
-        /// name with it it e.g. [XmlArray("myCollection")].
+        /// name with it e.g. [XmlArray("myCollection")].
         /// </summary>
         private XmlElement TryGetSourceArrayXmlElement(XmlElement sourceParentElement, PropertyInfo destCollectionProperty)
         {
@@ -610,7 +609,7 @@ namespace JJ.Framework.Xml
         /// e.g. MyCollection -&gt; myCollection.
         /// You can also specify the expected XML element name explicity,
         /// by marking the property with the XmlArray attribute and specifying the
-        /// name with it it e.g. [XmlArray("myCollection")].
+        /// name with it e.g. [XmlArray("myCollection")].
         /// </summary>
         private string GetXmlArrayNameForCollectionProperty(PropertyInfo destCollectionProperty)
         {
@@ -643,32 +642,39 @@ namespace JJ.Framework.Xml
 
         /// <summary>
         /// Gets the XML element name for an array item for the given collection property.
-        /// The XML array item name should always be specified in the XmlArrayItem attribute that the property is marked with.
+        /// By default this is the collection property's item type name converted to camel case e.g. MyElementType -&gt; myElementType.
+        /// You can also specify the expected XML element name explicity,
+        /// by marking the collection property with the XmlArrayItem attribute and specifying the
+        /// name with it e.g. [XmlArrayItem("myElementType")].
         /// </summary>
-        private string GetXmlArrayItemNameForCollectionProperty(PropertyInfo destCollectionProperty)
+        public static string GetXmlArrayItemNameForCollectionProperty(PropertyInfo collectionProperty)
         {
-            // The XML array item name should always be specified in the XmlArrayItem attribute that the property is marked with.
-            return GetXmlArrayItemNameFromAttribute(destCollectionProperty);
+            // Try get element name from XmlArrayItem attribute.
+            string name = TryGetXmlArrayItemNameFromAttribute(collectionProperty);
+            if (!String.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
+            // Otherwise the property type name converted to the expected casing (e.g. camel-case).
+            Type itemType = collectionProperty.PropertyType.GetItemType();
+            name = itemType.Name.StartWithLowerCase();
+            return name;
         }
 
         /// <summary>
         /// Gets an XML element name from the XmlArrayItem attribute that the property is marked with.
-        /// e.g. [XmlArrayItem("myItem")]. If no name is specified there, an exception is thrown.
+        /// e.g. [XmlArrayItem("myItem")]. If no name is specified, null or empty string is returned.
         /// </summary>
-        private string GetXmlArrayItemNameFromAttribute(PropertyInfo destCollectionProperty)
+        private static string TryGetXmlArrayItemNameFromAttribute(PropertyInfo collectionProperty)
         {
-            XmlArrayItemAttribute xmlArrayItemAttribute = destCollectionProperty.GetCustomAttribute<XmlArrayItemAttribute>();
+            XmlArrayItemAttribute xmlArrayItemAttribute = collectionProperty.GetCustomAttribute<XmlArrayItemAttribute>();
             if (xmlArrayItemAttribute != null)
             {
-                if (!String.IsNullOrEmpty(xmlArrayItemAttribute.ElementName))
-                {
-                    return xmlArrayItemAttribute.ElementName;
-                }
+                return xmlArrayItemAttribute.ElementName;
             }
 
-            throw new Exception(String.Format(
-                @"Property '{0}' is a collection type, but does specify the XML array item name. " + 
-                @"Mark the property with an XmlArrayItem attribute, e.g. XmlArrayItem(""myItem"").", destCollectionProperty.Name));
+            return null;
         }
 
         // Helpers

@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Helpers\TestHelper.cs" />
     <Compile Include="Mocks\ComplicatedElement.cs" />
+    <Compile Include="Mocks\Element_WithCollection_WithoutExplicitItemName.cs" />
     <Compile Include="Mocks\Element_Array_WithExplicitAnnotation.cs" />
     <Compile Include="Mocks\Element_WithArray_WithExplicitName.cs" />
     <Compile Include="Mocks\Element_WithAttribute.cs" />

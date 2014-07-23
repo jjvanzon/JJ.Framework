@@ -284,7 +284,8 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XElement ConvertToXmlArrayItem(object sourceItem, Type sourceItemType, PropertyInfo sourceCollectionProperty)
         {
-            string destName = ConversionHelper.GetXmlArrayItemNameForCollectionProperty(sourceCollectionProperty);
+            string destName = ConversionHelper.GetXmlArrayItemNameForCollectionProperty(sourceCollectionProperty, _casing);
+
             // For collection items, it is the .NET namespace of the item type that determines the XML namespace of the XML element.
             XName destXName = GetXName(destName, sourceItemType);
 

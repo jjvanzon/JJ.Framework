@@ -110,6 +110,8 @@ namespace JJ.Framework.Xml.Linq.Tests.Mocks
         [XmlArrayItem("item")]
         public IEnumerable<int> IEnumerableOfT { get; set; }
 
+        public int[] Array_WithoutExplicitItemName { get; set; }
+
         // It is not possible to support non-generic collection types,
         // because then you have no idea to which item type the elements map.
 

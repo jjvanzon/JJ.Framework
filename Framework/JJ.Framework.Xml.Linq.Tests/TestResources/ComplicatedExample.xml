@@ -92,6 +92,11 @@
     <item>2</item>
   </iEnumerableOfT>
 
+  <array_WithoutExplicitItemName>
+    <int32>2</int32>
+    <int32>2</int32>
+  </array_WithoutExplicitItemName>
+
   <!-- Composite -->
 
   <recursiveElement>

@@ -11,7 +11,7 @@
   <!-- Explicit Names -->
 
   <Element_WithExplicitName>2</Element_WithExplicitName>
-  
+
   <Array_WithExplicitName>
     <item>2</item>
     <item>2</item>
@@ -92,20 +92,10 @@
     <item>2</item>
   </iEnumerableOfT>
 
-  <iList>
-    <item>2</item>
-    <item>2</item>
-  </iList>
-
-  <iCollection>
-    <item>2</item>
-    <item>2</item>
-  </iCollection>
-
-  <iEnumerable>
-    <item>2</item>
-    <item>2</item>
-  </iEnumerable>
+  <array_WithoutExplicitItemName>
+    <int32>2</int32>
+    <int32>2</int32>
+  </array_WithoutExplicitItemName>
 
   <!-- Composite -->
 

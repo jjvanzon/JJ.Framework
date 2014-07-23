@@ -43,29 +43,6 @@ namespace JJ.Framework.Xml.Tests
             TestHelper.Test_XmlToObjectConverter_Collection<IEnumerable<int>>();
         }
 
-        // It is not possible to support non-generic collection types,
-        // because then you have no idea to which item type the elements map.
-
-        /*
-        [TestMethod]
-        public void Test_XmlToObjectConverter_Collection_IList()
-        {
-            TestHelper.Test_XmlToObjectConverter_Collection<IList>();
-        }
-
-        [TestMethod]
-        public void Test_XmlToObjectConverter_Collection_ICollection()
-        {
-            TestHelper.Test_XmlToObjectConverter_Collection<ICollection>();
-        }
-
-        [TestMethod]
-        public void Test_XmlToObjectConverter_Collection_IEnumerable()
-        {
-            TestHelper.Test_XmlToObjectConverter_Collection<IEnumerable>();
-        }
-        */
-
         [TestMethod]
         public void Test_XmlToObjectConverter_Array_WithExplicitAnnotation()
         {
@@ -98,5 +75,49 @@ namespace JJ.Framework.Xml.Tests
             AssertHelper.IsNotNull(() => destObject);
             AssertHelper.IsNull(() => destObject.Collection);
         }
+
+        [TestMethod]
+        public void Test_XmlToObjectConverter_Collection_WithoutExplicitItemName()
+        {
+            string xml = @"
+            <root>
+                <collection>
+                    <int32>0</int32>
+                    <int32>1</int32>
+                </collection>
+            </root>";
+
+            var converter = new XmlToObjectConverter<Element_WithCollection_WithoutExplicitItemName>();
+            Element_WithCollection_WithoutExplicitItemName destObject = converter.Convert(xml);
+
+            AssertHelper.IsNotNull(() => destObject);
+            AssertHelper.IsNotNull(() => destObject.Collection);
+            AssertHelper.AreEqual(2, () => destObject.Collection.Count());
+            AssertHelper.AreEqual(0, () => destObject.Collection.ElementAt(0));
+            AssertHelper.AreEqual(1, () => destObject.Collection.ElementAt(1));
+        }
+
+        // It is not possible to support non-generic collection types,
+        // because then you have no idea to which item type the elements map.
+
+        /*
+        [TestMethod]
+        public void Test_XmlToObjectConverter_Collection_IList()
+        {
+            TestHelper.Test_XmlToObjectConverter_Collection<IList>();
+        }
+
+        [TestMethod]
+        public void Test_XmlToObjectConverter_Collection_ICollection()
+        {
+            TestHelper.Test_XmlToObjectConverter_Collection<ICollection>();
+        }
+
+        [TestMethod]
+        public void Test_XmlToObjectConverter_Collection_IEnumerable()
+        {
+            TestHelper.Test_XmlToObjectConverter_Collection<IEnumerable>();
+        }
+        */
     }
 }

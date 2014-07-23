@@ -446,7 +446,7 @@ namespace JJ.Framework.Xml.Linq
         /// e.g. MyCollection -&gt; myCollection.
         /// You can also specify the expected XML element name explicity,
         /// by marking the property with the XmlArray attribute and specifying the
-        /// name with it it e.g. [XmlArray("myCollection")].
+        /// name with it e.g. [XmlArray("myCollection")].
         /// </summary>
         private XElement TryGetSourceArrayXmlElement(XElement sourceParentElement, PropertyInfo destCollectionProperty)
         {
@@ -464,7 +464,7 @@ namespace JJ.Framework.Xml.Linq
         /// <param name="destCollectionProperty">Is used to get the expected XML array item element name.</param>
         private IList<XElement> GetSourceXmlArrayItems(XElement sourceXmlArray, PropertyInfo destCollectionProperty)
         {
-            string sourceXmlArrayItemName = ConversionHelper.GetXmlArrayItemNameForCollectionProperty(destCollectionProperty);
+            string sourceXmlArrayItemName = ConversionHelper.GetXmlArrayItemNameForCollectionProperty(destCollectionProperty, _casing);
             IList<XElement> sourceXmlArrayItems = XmlHelper.GetElements(sourceXmlArray, sourceXmlArrayItemName);
             return sourceXmlArrayItems;
         }

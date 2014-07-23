@@ -39,8 +39,8 @@ namespace JJ.Framework.Xml.Linq.Tests.Helpers
                 </collection>
             </root>";
 
-            var converter = new XmlToObjectConverter<ElementWithCollection<TCollection>>();
-            ElementWithCollection<TCollection> destObject = converter.Convert(xml);
+            var converter = new XmlToObjectConverter<Element_WithCollection<TCollection>>();
+            Element_WithCollection<TCollection> destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);
             AssertHelper.IsNotNull(() => destObject.Collection);
