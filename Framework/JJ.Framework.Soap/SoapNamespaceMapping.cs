@@ -7,16 +7,18 @@ namespace JJ.Framework.Xml.Linq
 {
     public class SoapNamespaceMapping
     {
-        public string DotNetNamespace { get; private set; }
-        public string XmlNamespace { get; private set; }
+        public const string WCF_SOAP_NAMESPACE_HEADER = "http://schemas.datacontract.org/2004/07/";
 
-        public SoapNamespaceMapping(string dotNetNamespace, string xmlNamespace)
+        public string SourceXmlNamespace { get; private set; }
+        public string DestXmlNamespace { get; private set; }
+
+        public SoapNamespaceMapping(string sourceXmlNamespace, string destXmlNamespace)
         {
-            if (String.IsNullOrEmpty(dotNetNamespace)) throw new ArgumentNullException("dotNetNamespace");
-            if (String.IsNullOrEmpty(xmlNamespace)) throw new ArgumentNullException("xmlNamespace");
+            if (String.IsNullOrEmpty(sourceXmlNamespace)) throw new ArgumentNullException("sourceXmlNamespace");
+            if (String.IsNullOrEmpty(destXmlNamespace)) throw new ArgumentNullException("destXmlNamespace");
 
-            DotNetNamespace = dotNetNamespace;
-            XmlNamespace = xmlNamespace;
+            SourceXmlNamespace = sourceXmlNamespace;
+            DestXmlNamespace = destXmlNamespace;
         }
     }
 }

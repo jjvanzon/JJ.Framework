@@ -21,7 +21,6 @@ namespace JJ.Framework.Soap
 
         private const string SOAP_ENVELOPE_NAMESPACE_NAME = "http://schemas.xmlsoap.org/soap/envelope/";
         private const string DEFAULT_NAMESPACE_NAME = "http://tempuri.org/";
-        private const string WCF_SOAP_NAMESPACE_START = "http://schemas.datacontract.org/2004/07/";
 
         private string _url;
         private Encoding _encoding;
@@ -55,7 +54,7 @@ namespace JJ.Framework.Soap
         {
             if (namespaceMappings != null)
             {
-                _namespaceDictionary = namespaceMappings.ToDictionary(x => WCF_SOAP_NAMESPACE_START + x.DotNetNamespace, x => x.XmlNamespace);
+                _namespaceDictionary = namespaceMappings.ToDictionary(x => x.SourceXmlNamespace, x => x.DestXmlNamespace);
             }
         }
 
@@ -118,10 +117,10 @@ namespace JJ.Framework.Soap
                 // (The ObjectToXmlConvert will return it namespace-less, but we need to put it in the operation namespace.)
                 parameterElement.Name = o.GetName(parameterElement.Name.LocalName);
 
-                ApplyNamespaceMappings(parameterElement);
-
                 operationElement.Add(parameterElement);
             }
+
+            ApplyNamespaceMappings(envelopeElement);
 
             return envelopeElement;
         }
@@ -144,20 +143,20 @@ namespace JJ.Framework.Soap
                         XNamespace newNamespace = newNamespaceName;
                         element.Name = newNamespace.GetName(element.Name.LocalName);
                     }
-                }
 
-                // Replace the xmlns's
-                IList<XAttribute> xmlnsAttributes = root.Attributes()
-                                                        .Where(x => x.Name.Namespace == XNamespace.Xmlns)
-                                                        .ToArray();
+                    // Replace the xmlns's
+                    IList<XAttribute> xmlnsAttributes = element.Attributes()
+                                                            .Where(x => x.Name.Namespace == XNamespace.Xmlns)
+                                                            .ToArray();
 
-                foreach (XAttribute xmlnsAttribute in xmlnsAttributes)
-                {
-                    string originalNamespaceName = xmlnsAttribute.Value;
-                    string newNamespaceName;
-                    if (_namespaceDictionary.TryGetValue(originalNamespaceName, out newNamespaceName))
+                    foreach (XAttribute xmlnsAttribute in xmlnsAttributes)
                     {
-                        xmlnsAttribute.Value = newNamespaceName;
+                        string originalNamespaceName2 = xmlnsAttribute.Value;
+                        string newNamespaceName2;
+                        if (_namespaceDictionary.TryGetValue(originalNamespaceName2, out newNamespaceName2))
+                        {
+                            xmlnsAttribute.Value = newNamespaceName2;
+                        }
                     }
                 }
             }
