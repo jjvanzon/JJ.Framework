@@ -1,11 +1,12 @@
-﻿using JJ.Framework.Persistence.Xml.Linq.Internal;
-using JJ.Framework.Reflection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
+using JJ.Framework.Reflection;
+using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Persistence.Xml.Linq.Internal;
 
 namespace JJ.Framework.Persistence.Xml.Linq
 {
@@ -44,9 +45,7 @@ namespace JJ.Framework.Persistence.Xml.Linq
         {
             foreach (PropertyInfo sourceProperty in ReflectionCache.GetProperties(typeof(TEntity)))
             {
-                // iOS compatibility: PropertyInfo.GetValue in mono on a generic type may cause JIT compilation, which is not supported by iOS.
-                //object sourceValue = sourceProperty.GetValue(sourceEntity, null);
-                object sourceValue = sourceProperty.GetGetMethod().Invoke(sourceEntity, null);
+                object sourceValue = sourceProperty.GetValue_PlatformSafe(sourceEntity);
                 string destValue = Convert.ToString(sourceValue);
                 _accessor.SetAttributeValue(destElement, sourceProperty.Name, destValue);
             }

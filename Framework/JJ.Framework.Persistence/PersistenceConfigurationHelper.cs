@@ -10,7 +10,7 @@ namespace JJ.Framework.Persistence
 {
     public static class PersistenceConfigurationHelper
     {
-        // Windows Phone does not support System.Configuration, 
+        // Windows Phone 8 does not support System.Configuration, 
         // so dynamically reference JJ.Framework.Configuration.
 
         // This is the old code when statically linked to JJ.Framework.Configuration.

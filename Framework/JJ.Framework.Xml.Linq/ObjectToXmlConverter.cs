@@ -1,8 +1,4 @@
-﻿using JJ.Framework.Common;
-using JJ.Framework.IO;
-using JJ.Framework.Reflection;
-using JJ.Framework.Xml.Linq.Internal;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +7,11 @@ using System.Reflection;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+using JJ.Framework.Common;
+using JJ.Framework.Reflection;
+using JJ.Framework.IO;
+using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Xml.Linq.Internal;
 
 namespace JJ.Framework.Xml.Linq
 {
@@ -69,8 +70,6 @@ namespace JJ.Framework.Xml.Linq
 
         public string ConvertToString(object sourceObject)
         {
-            if (sourceObject == null) throw new ArgumentNullException("sourceObject");
-
             XElement destRootElement = ConvertObjectToXElement(sourceObject);
 
             string destString = destRootElement.ToString();
@@ -79,12 +78,21 @@ namespace JJ.Framework.Xml.Linq
 
         public XElement ConvertObjectToXElement(object sourceObject)
         {
+            if (sourceObject == null) throw new ArgumentNullException("sourceObject");
+
+            if (ConversionHelper.IsLeafType(sourceObject.GetType()))
+            {
+                XElement destLeafElement = ConvertToLeafElement(sourceObject, _rootElementName);
+                return destLeafElement;
+            }
+
             IList<XObject> destObjects = ConvertProperties(sourceObject);
 
             // Make sure you create the root element last, because then all the generated XML namespaces will be included as xmlns attributes.
             XElement destRootElement = CreateRootElement();
             destRootElement.Add(destObjects);
             return destRootElement;
+
         }
 
         /// <summary>
@@ -159,7 +167,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XElement TryConvertToElement(object sourceParentObject, PropertyInfo sourceProperty)
         {
-            object sourceObject = sourceProperty.GetGetMethod().Invoke(sourceParentObject, null); // iOS compatibility: PropertyInfo.GetValue in mono on a generic type may cause JIT compilation, which is not supported by iOS.
+            object sourceObject = sourceProperty.GetValue_PlatformSafe(sourceParentObject);
 
             if (sourceObject == null)
             {
@@ -220,7 +228,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XAttribute TryConvertToAttribute(object sourceObject, PropertyInfo sourceProperty)
         {
-            object sourceValue = sourceProperty.GetGetMethod().Invoke(sourceObject, null); // iOS compatibility: PropertyInfo.GetValue in mono on a generic type may cause JIT compilation, which is not supported by iOS.
+            object sourceValue = sourceProperty.GetValue_PlatformSafe(sourceObject);
 
             if (sourceValue == null)
             {
@@ -244,7 +252,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XElement TryConvertToXmlArray(object sourceParentObject, PropertyInfo sourceCollectionProperty)
         {
-            object sourceCollectionObject = sourceCollectionProperty.GetGetMethod().Invoke(sourceParentObject, null); // iOS compatibility: PropertyInfo.GetValue in mono on a generic type may cause JIT compilation, which is not supported by iOS.
+            object sourceCollectionObject = sourceCollectionProperty.GetValue_PlatformSafe(sourceParentObject);
             if (sourceCollectionObject == null)
             {
                 return null;

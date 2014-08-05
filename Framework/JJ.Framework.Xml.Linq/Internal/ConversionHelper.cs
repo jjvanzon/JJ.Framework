@@ -8,12 +8,13 @@ using System.Xml.Serialization;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 using JJ.Framework.Net45;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Xml.Linq.Internal
 {
     internal static class ConversionHelper
     {
-        private static CultureInfo _culture = new CultureInfo("en-US");
+        private static CultureInfo _culture = CultureInfo_PlatformSafe.GetCultureInfo("en-US");
 
         public static object ParseValue(string input, Type type)
         {

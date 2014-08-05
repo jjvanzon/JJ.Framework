@@ -1,11 +1,12 @@
-﻿using JJ.Framework.Common;
-using JJ.Framework.Reflection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
+using JJ.Framework.Common;
+using JJ.Framework.Reflection;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Persistence.Xml.Linq.Internal
 {
@@ -101,9 +102,7 @@ namespace JJ.Framework.Persistence.Xml.Linq.Internal
                 throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, typeof(TEntity).Name));
             }
 
-            // iOS compatibility: PropertyInfo.GetValue in mono on a generic type may cause JIT compilation, which is not supported by iOS.
-            //return property.GetValue(entity, null);
-            return property.GetGetMethod().Invoke(entity, null);
+            return property.GetValue_PlatformSafe(entity);
         }
 
         private void SetIDOfEntity(TEntity entity, object id)

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JJ.Framework.Common.Tests
+namespace JJ.Framework.Logging.Tests
 {
     [TestClass]
     public class ExceptionHelperTests

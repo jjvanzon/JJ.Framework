@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Common;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Reflection
 {
@@ -53,7 +54,7 @@ namespace JJ.Framework.Reflection
             Type[] types = assembly.GetTypes();
 
             return Enumerable.Union(types.Where(x => x.BaseType == baseType),
-                                    types.Where(x => x.GetInterface(baseType.Name, ignoreCase: false) != null)).ToArray(); // Include ingoreCase parameter, because it is required for Windows Phone.
+                                    types.Where(x => x.GetInterface_PlatformSafe(baseType.Name) != null)).ToArray();
         }
 
         public static Type[] GetImplementations(IEnumerable<Assembly> assemblies, Type baseType)
@@ -96,7 +97,7 @@ namespace JJ.Framework.Reflection
                 }
             }
 
-            Type enumerableInterface = collectionType.GetInterface(typeof(IEnumerable<>).FullName, ignoreCase: false); // Include ingoreCase parameter, because it is required for Windows Phone.
+            Type enumerableInterface = collectionType.GetInterface_PlatformSafe(typeof(IEnumerable<>).FullName);
             if (enumerableInterface != null)
             {
                 Type itemType = enumerableInterface.GetGenericArguments()[0];
@@ -161,30 +162,26 @@ namespace JJ.Framework.Reflection
         {
             if (member == null) throw new ArgumentNullException("member");
 
-            // Windows Phone / Unity compatibility:
-            // Don't switch on node.MemberInfo.MemberType. It produced a strange Exception when deployed to Windows Phone using Unity:
-            // "Method not found: 'System.Reflection.MemberTypes"
+            PlatformSafeMemberTypes memberType = member.MemberType_PlatformSafe();
 
-            if (member is FieldInfo)
+            switch (memberType)
             {
-                var field = (FieldInfo)member;
-                return field.IsStatic;
-            }
+                case PlatformSafeMemberTypes.Field:
+                    var field = (FieldInfo)member;
+                    return field.IsStatic;
 
-            if (member is MethodInfo)
-            {
-                var method = (MethodInfo)member;
-                return method.IsStatic;
-            }
+                case PlatformSafeMemberTypes.Method:
+                    var method = (MethodInfo)member;
+                    return method.IsStatic;
 
-            if (member is PropertyInfo)
-            {
-                var property = (PropertyInfo)member;
-                MethodInfo getterOrSetter = property.GetGetMethod(nonPublic: true) ?? property.GetSetMethod(nonPublic: true);
-                return getterOrSetter.IsStatic;
-            }
+                case PlatformSafeMemberTypes.Property:
+                    var property = (PropertyInfo)member;
+                    MethodInfo getterOrSetter = property.GetGetMethod(nonPublic: true) ?? property.GetSetMethod(nonPublic: true);
+                    return getterOrSetter.IsStatic;
 
-            throw new Exception(String.Format("IsStatic cannot be obtained from member of type '{0}'.", member.GetType().Name));
+                default:
+                    throw new Exception(String.Format("IsStatic cannot be obtained from member of type '{0}'.", member.GetType().Name));
+            }
         }
 
         // Generic overloads

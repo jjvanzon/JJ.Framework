@@ -71,7 +71,7 @@ namespace JJ.Framework.Soap
                     using (StreamReader reader = new StreamReader(responseStream, _encoding))
                     {
                         string dataReceived = reader.ReadToEnd();
-                        TResult result = ParseReceivedData<TResult>(dataReceived);
+                        TResult result = ParseReceivedData<TResult>(operationName, dataReceived);
                         return result;
                     }
                 }
@@ -177,13 +177,14 @@ namespace JJ.Framework.Soap
             return request;
         }
 
-        private TResult ParseReceivedData<TResult>(string data)
+        private TResult ParseReceivedData<TResult>(string operationName, string data)
             where TResult : class, new()
         {
             XNamespace o = DEFAULT_NAMESPACE_NAME;
 
             XElement root = XElement.Parse(data);
-            XElement saveResult = root.Descendants(o + "SaveResult").Single();
+            string elementName = operationName + "Result";
+            XElement saveResult = root.Descendants(o + elementName).Single();
 
             // You do not need to apply namespace mappings,
             // because namespaces of the elements are ignored when parsing the XML.

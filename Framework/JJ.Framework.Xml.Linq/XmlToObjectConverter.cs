@@ -10,6 +10,7 @@ using JJ.Framework.Common;
 using JJ.Framework.Net45;
 using JJ.Framework.Reflection;
 using JJ.Framework.Xml.Linq.Internal;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Xml.Linq
 {

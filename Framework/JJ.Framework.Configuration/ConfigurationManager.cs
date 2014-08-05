@@ -26,9 +26,11 @@ namespace JJ.Framework.Configuration
             return GetSection<T>(sectionName);
         }
 
-        // Cache the objects, but allow RefreshSection to refresh the configuration.
+        // Cache the objects, but allow RefreshSection to refresh the configuration
+        // by using XmlElement as the cache key instead of e.g. the sectionName.
         // (The solution below, however, keeps the old object in memory though.)
         // TODO: Make sure you get rid of old objects.
+        // TODO: You do not need to support RefeshSection. The symmetrical thing to do is give this class its own RefreshSection method.
 
         private static object _sectionDictionaryLock = new object();
         private static Dictionary<XmlNode, object> _sectionDictionary = new Dictionary<XmlNode, object>();

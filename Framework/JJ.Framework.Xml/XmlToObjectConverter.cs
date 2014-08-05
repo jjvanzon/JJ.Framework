@@ -35,7 +35,7 @@ namespace JJ.Framework.Xml
     /// on the properties: XmlElement, XmlAttribute, XmlArray and XmlArrayItem.
     /// 
     /// Reference types are always optional. Value types are optional only if they are nullable.
-    /// Collection types are always optional. If the parent element is present, an empty collection will be assigned.
+    /// Collection types are always optional. If only the parent element is present, an empty collection will be assigned.
     /// If the parent element is missing from the XML, the collection will be null.
     /// 
     /// Recognized values are the .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
@@ -69,7 +69,7 @@ namespace JJ.Framework.Xml
         /// on the properties: XmlElement, XmlAttribute, XmlArray and XmlArrayItem.
         /// 
         /// Reference types are always optional. Value types are optional only if they are nullable.
-        /// Collection types are always optional. If the parent element is present, an empty collection will be assigned.
+        /// Collection types are always optional. If only the parent element is present, an empty collection will be assigned.
         /// If the parent element is missing from the XML, the collection will be null.
         /// 
         /// Recognized values are the .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr

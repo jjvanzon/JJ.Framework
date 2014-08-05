@@ -36,7 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmbeddedResourceHelper.cs" />
-    <Compile Include="ExceptionHelper.cs" />
     <Compile Include="IListExtensions.cs" />
     <Compile Include="KeyHelper.cs" />
     <Compile Include="StringExtensions_Casing.cs" />

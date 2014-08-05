@@ -1,11 +1,12 @@
-﻿using JJ.Framework.Common;
-using JJ.Framework.Net4;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using JJ.Framework.Common;
+using JJ.Framework.Net4;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Persistence.Xml.Linq.Internal
 {
@@ -58,21 +59,9 @@ namespace JJ.Framework.Persistence.Xml.Linq.Internal
 
         public void SaveDocument()
         {
-            // Windows Phone 8 compatibility:
-            // XDocument.Save does not exist.
-            // XElement.Save(string) does not exist either.
-            // XElement.Save(Stream) exists on Windows Phone, but not in .NET 3.5.
-            // so use XElement.Save(TextWriter).
-
             lock (_lock)
             {
-                using (FileStream stream = new FileStream(_filePath, FileMode.Create, FileAccess.Write, FileShare.None))
-                {
-                    using (TextWriter writer = new StreamWriter(stream))
-                    {
-                        Document.Save(writer);
-                    }
-                }
+                Document.Save_PlatformSafe(_filePath);
             }
         }
 

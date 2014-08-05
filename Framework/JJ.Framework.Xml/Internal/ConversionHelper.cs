@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using JJ.Framework.Reflection;
 using System.Globalization;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Xml.Internal
 {
     internal static class ConversionHelper
     {
-        private static CultureInfo _culture = new CultureInfo("en-US");
+        private static CultureInfo _culture = CultureInfo_PlatformSafe.GetCultureInfo("en-US");
 
         public static object ConvertValue(string input, Type type)
         {
