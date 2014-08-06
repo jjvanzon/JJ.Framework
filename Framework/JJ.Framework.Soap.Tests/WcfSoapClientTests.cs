@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Xml.Linq;
 using System.Text;
-using JJ.Apps.SetText.ViewModels;
+using JJ.Apps.SetText.Interface.ViewModels;
 using JJ.Models.Canonical;
 using System.Collections.Generic;
 

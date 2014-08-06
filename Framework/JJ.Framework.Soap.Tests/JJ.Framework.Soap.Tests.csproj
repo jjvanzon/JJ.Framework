@@ -55,9 +55,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Apps\JJ.Apps.SetText\JJ.Apps.SetText.csproj">
-      <Project>{44b139ab-bdf0-414a-aa01-4b7e62adcf57}</Project>
-      <Name>JJ.Apps.SetText</Name>
+    <ProjectReference Include="..\..\Apps\JJ.Apps.SetText.Interface\JJ.Apps.SetText.Interface.csproj">
+      <Project>{f074226b-734d-4308-b1c5-30350a228d8b}</Project>
+      <Name>JJ.Apps.SetText.Interface</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Models\JJ.Models.Canonical\JJ.Models.Canonical.csproj">
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
