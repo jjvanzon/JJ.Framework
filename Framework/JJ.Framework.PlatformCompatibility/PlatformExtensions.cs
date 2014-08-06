@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace JJ.Framework.PlatformCompatibility
 {
-    public static class PlatformSafeExtensions
+    public static class PlatformExtensions
     {
         /// <summary>
         /// Windows Phone / Unity compatibility:
@@ -17,9 +17,9 @@ namespace JJ.Framework.PlatformCompatibility
         /// "Method not found: 'System.Reflection.MemberTypes".
         /// Use 'is PropertyInfo' and such or call this method instead.
         /// </summary>
-        public static PlatformSafeMemberTypes MemberType_PlatformSafe(this MemberInfo memberInfo)
+        public static MemberTypes_PlatformSafe MemberType_PlatformSafe(this MemberInfo memberInfo)
         {
-            return PlatformHelper.PlatformSafe_MemberType(memberInfo);
+            return PlatformHelper.MemberInfo_MemberType_PlatformSafe(memberInfo);
         }
 
         /// <summary>
@@ -28,7 +28,8 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static object GetValue_PlatformSafe(this PropertyInfo propertyInfo, object obj, params object[] parameters)
         {
-            return PlatformHelper.PlatformSafe_PropertyInfo_GetValue(propertyInfo, obj, parameters);
+            // TODO: Is the original GetValue not without params. Why make a substitute different than what it substitutes?
+            return PlatformHelper.PropertyInfo_GetValue_PlatformSafe(propertyInfo, obj, parameters);
         }
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static Type GetInterface_PlatformSafe(this Type type, string name)
         {
-            return PlatformHelper.PlatformSafe_Type_GetInterface(type, name);
+            return PlatformHelper.Type_GetInterface_PlatformSafe(type, name);
         }
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static void Save_PlatformSafe(this XDocument doc, string fileName)
         {
-            PlatformHelper.PlatformSafe_XDocument_Save(doc, fileName);
+            PlatformHelper.XDocument_Save_PlatformSafe(doc, fileName);
         }
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static void Save_PlatformSafe(this XElement element, string fileName)
         {
-            PlatformHelper.PlatformSafe_XElement_Save(element, fileName);
+            PlatformHelper.XElement_Save_PlatformSafe(element, fileName);
         }
 
         /// <summary>
@@ -70,7 +71,32 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static void Save_PlatformSafe(this XElement element, Stream stream)
         {
-            PlatformHelper.PlatformSafe_XElement_Save(element, stream);
+            PlatformHelper.XElement_Save_PlatformSafe(element, stream);
+        }
+
+        /// <summary>
+        /// .Net 4.5 substitute
+        /// </summary>
+        public static TAttribute GetCustomAttribute_PlatformSupport<TAttribute>(this PropertyInfo propertyInfo)
+            where TAttribute : Attribute
+        {
+            return PlatformHelper.PropertyInfo_GetCustomAttribute_PlatformSupport<TAttribute>(propertyInfo);
+        }
+
+        /// <summary>
+        /// .Net 4.5 substitute
+        /// </summary>
+        public static void SetValue_PlatformSupport(this PropertyInfo propertyInfo, object obj, object value)
+        {
+            PlatformHelper.PropertyInfo_SetValue_PlatformSupport(propertyInfo, obj, value);
+        }
+
+        /// <summary>
+        /// .Net 4.5 substitute
+        /// </summary>
+        public static object GetValue_PlatformSupport(this PropertyInfo propertyInfo, object obj)
+        {
+            return PlatformHelper.PropertyInfo_GetValue_PlatformSupport(propertyInfo, obj);
         }
     }
 }

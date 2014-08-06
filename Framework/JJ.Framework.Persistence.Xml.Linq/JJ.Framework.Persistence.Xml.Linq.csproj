@@ -53,10 +53,6 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Net4\JJ.Framework.Net4.csproj">
-      <Project>{be8a8bae-8eb6-4f54-89e6-ca44aaceceb6}</Project>
-      <Name>JJ.Framework.Net4</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Persistence</Name>

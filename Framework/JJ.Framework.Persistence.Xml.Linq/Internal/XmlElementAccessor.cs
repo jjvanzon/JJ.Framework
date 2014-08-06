@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 using JJ.Framework.Common;
-using JJ.Framework.Net4;
 using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Persistence.Xml.Linq.Internal
@@ -26,8 +25,8 @@ namespace JJ.Framework.Persistence.Xml.Linq.Internal
 
         public XmlElementAccessor(string filePath, string rootElementName, string elementName)
         {
-            if (Strings.IsNullOrWhiteSpace(rootElementName)) throw new Exception("rootElementName cannot be null or white space.");
-            if (Strings.IsNullOrWhiteSpace(elementName)) throw new Exception("elementName cannot be null or white space.");
+            if (String_PlatformSupport.IsNullOrWhiteSpace(rootElementName)) throw new Exception("rootElementName cannot be null or white space.");
+            if (String_PlatformSupport.IsNullOrWhiteSpace(elementName)) throw new Exception("elementName cannot be null or white space.");
 
             _filePath = filePath;
             _rootElementName = rootElementName;

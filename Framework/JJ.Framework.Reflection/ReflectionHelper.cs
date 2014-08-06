@@ -162,19 +162,19 @@ namespace JJ.Framework.Reflection
         {
             if (member == null) throw new ArgumentNullException("member");
 
-            PlatformSafeMemberTypes memberType = member.MemberType_PlatformSafe();
+            MemberTypes_PlatformSafe memberType = member.MemberType_PlatformSafe();
 
             switch (memberType)
             {
-                case PlatformSafeMemberTypes.Field:
+                case MemberTypes_PlatformSafe.Field:
                     var field = (FieldInfo)member;
                     return field.IsStatic;
 
-                case PlatformSafeMemberTypes.Method:
+                case MemberTypes_PlatformSafe.Method:
                     var method = (MethodInfo)member;
                     return method.IsStatic;
 
-                case PlatformSafeMemberTypes.Property:
+                case MemberTypes_PlatformSafe.Property:
                     var property = (PropertyInfo)member;
                     MethodInfo getterOrSetter = property.GetGetMethod(nonPublic: true) ?? property.GetSetMethod(nonPublic: true);
                     return getterOrSetter.IsStatic;

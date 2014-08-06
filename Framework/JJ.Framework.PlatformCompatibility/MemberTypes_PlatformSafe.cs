@@ -1,7 +1,7 @@
 ﻿
 namespace JJ.Framework.PlatformCompatibility
 {
-    public enum PlatformSafeMemberTypes
+    public enum MemberTypes_PlatformSafe
     {
         // Summary:
         //     Specifies that the member is a constructor, representing a System.Reflection.ConstructorInfo

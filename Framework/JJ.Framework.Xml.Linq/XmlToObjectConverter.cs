@@ -7,7 +7,6 @@ using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using JJ.Framework.Common;
-using JJ.Framework.Net45;
 using JJ.Framework.Reflection;
 using JJ.Framework.Xml.Linq.Internal;
 using JJ.Framework.PlatformCompatibility;
@@ -210,7 +209,7 @@ namespace JJ.Framework.Xml.Linq
         {
             Type destPropertyType = destProperty.PropertyType;
             object destPropertyValue = ConvertElement(sourceElement, destPropertyType);
-            destProperty.SetValue(destParentObject, destPropertyValue);
+            destProperty.SetValue_PlatformSupport(destParentObject, destPropertyValue);
         }
 
         /// <summary>
@@ -294,7 +293,7 @@ namespace JJ.Framework.Xml.Linq
                 throw new Exception(String.Format("XML node '{0}' does not specify the required attribute '{1}'.", sourceParentElement.Name, sourceXmlAttributeName));
             }
 
-            destProperty.SetValue(destParentObject, destPropertyValue);
+            destProperty.SetValue_PlatformSupport(destParentObject, destPropertyValue);
         }
 
         /// <summary>
@@ -365,7 +364,7 @@ namespace JJ.Framework.Xml.Linq
             if (isArray)
             {
                 IList destCollection = ConvertXmlArrayItemsToArray(sourceXmlArrayItems, destCollectionType);
-                destCollectionProperty.SetValue(destParentObject, destCollection);
+                destCollectionProperty.SetValue_PlatformSupport(destParentObject, destCollection);
                 return;
             }
 
@@ -373,7 +372,7 @@ namespace JJ.Framework.Xml.Linq
             if (isSupportedGenericCollection)
             {
                 IList destCollection = ConvertXmlArrayItemsToList(sourceXmlArrayItems, destCollectionType);
-                destCollectionProperty.SetValue(destParentObject, destCollection);
+                destCollectionProperty.SetValue_PlatformSupport(destParentObject, destCollection);
                 return;
             }
 

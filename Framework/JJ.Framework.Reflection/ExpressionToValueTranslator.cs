@@ -103,14 +103,14 @@ namespace JJ.Framework.Reflection
 
             // Then process 'child' node.
 
-            PlatformSafeMemberTypes memberType = node.Member.MemberType_PlatformSafe();
+            MemberTypes_PlatformSafe memberType = node.Member.MemberType_PlatformSafe();
             switch (memberType)
             {
-                case PlatformSafeMemberTypes.Field:
+                case MemberTypes_PlatformSafe.Field:
                     VisitField(node);
                     return;
 
-                case PlatformSafeMemberTypes.Property:
+                case MemberTypes_PlatformSafe.Property:
                     VisitProperty(node);
                     return;
 

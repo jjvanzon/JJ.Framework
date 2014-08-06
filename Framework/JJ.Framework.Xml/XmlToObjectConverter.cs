@@ -7,7 +7,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using JJ.Framework.Common;
-using JJ.Framework.Net45;
+using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 using JJ.Framework.Xml.Internal;
 
@@ -174,10 +174,10 @@ namespace JJ.Framework.Xml
             // Actually, much is called even when it might not be needed and the only reason it is all called,
             // is to check for conflicting annotations, but it might harm performance considerably.
 
-            bool hasXmlAttributeAttribute = destProperty.GetCustomAttribute<XmlAttributeAttribute>() != null;
-            bool hasXmlElementAttribute = destProperty.GetCustomAttribute<XmlElementAttribute>() != null;
-            bool hasXmlArrayAttribute = destProperty.GetCustomAttribute<XmlArrayAttribute>() != null;
-            bool hasXmlArrayItemAttribute = destProperty.GetCustomAttribute<XmlArrayItemAttribute>() != null;
+            bool hasXmlAttributeAttribute = destProperty.GetCustomAttribute_PlatformSupport<XmlAttributeAttribute>() != null;
+            bool hasXmlElementAttribute = destProperty.GetCustomAttribute_PlatformSupport<XmlElementAttribute>() != null;
+            bool hasXmlArrayAttribute = destProperty.GetCustomAttribute_PlatformSupport<XmlArrayAttribute>() != null;
+            bool hasXmlArrayItemAttribute = destProperty.GetCustomAttribute_PlatformSupport<XmlArrayItemAttribute>() != null;
             bool isCollectionType = IsSupportedCollectionType(destProperty.PropertyType);
 
             if (isCollectionType)
@@ -253,7 +253,7 @@ namespace JJ.Framework.Xml
         {
             Type destPropertyType = destProperty.PropertyType;
             object destPropertyValue = ConvertElement(sourceElement, destPropertyType);
-            destProperty.SetValue(destParentObject, destPropertyValue);
+            destProperty.SetValue_PlatformSupport(destParentObject, destPropertyValue);
         }
 
         /// <summary>
@@ -335,7 +335,7 @@ namespace JJ.Framework.Xml
         /// </summary>
         private string TryGetXmlElementNameFromAttribute(PropertyInfo destProperty)
         {
-            XmlElementAttribute xmlElementAttribute = destProperty.GetCustomAttribute<XmlElementAttribute>();
+            XmlElementAttribute xmlElementAttribute = destProperty.GetCustomAttribute_PlatformSupport<XmlElementAttribute>();
             if (xmlElementAttribute != null)
             {
                 return xmlElementAttribute.ElementName;
@@ -374,7 +374,7 @@ namespace JJ.Framework.Xml
                 throw new Exception(String.Format("XML node '{0}' does not specify the required attribute '{1}'.", sourceParentElement.Name, sourceXmlAttributeName));
             }
 
-            destProperty.SetValue(destParentObject, destPropertyValue);
+            destProperty.SetValue_PlatformSupport(destParentObject, destPropertyValue);
         }
 
         /// <summary>
@@ -428,7 +428,7 @@ namespace JJ.Framework.Xml
         /// </summary>
         private string TryGetAttributeNameFromAttribute(PropertyInfo destProperty)
         {
-            XmlAttributeAttribute xmlAttributeAttribute = destProperty.GetCustomAttribute<XmlAttributeAttribute>();
+            XmlAttributeAttribute xmlAttributeAttribute = destProperty.GetCustomAttribute_PlatformSupport<XmlAttributeAttribute>();
             if (xmlAttributeAttribute != null)
             {
                 return xmlAttributeAttribute.AttributeName;
@@ -503,7 +503,7 @@ namespace JJ.Framework.Xml
             if (isArray)
             {
                 IList destCollection = ConvertXmlArrayItemsToArray(sourceXmlArrayItems, destCollectionType);
-                destCollectionProperty.SetValue(destParentObject, destCollection);
+                destCollectionProperty.SetValue_PlatformSupport(destParentObject, destCollection);
                 return;
             }
 
@@ -511,7 +511,7 @@ namespace JJ.Framework.Xml
             if (isSupportedGenericCollection)
             {
                 IList destCollection = ConvertXmlArrayItemsToList(sourceXmlArrayItems, destCollectionType);
-                destCollectionProperty.SetValue(destParentObject, destCollection);
+                destCollectionProperty.SetValue_PlatformSupport(destParentObject, destCollection);
                 return;
             }
 
@@ -631,7 +631,7 @@ namespace JJ.Framework.Xml
         /// </summary>
         private string TryGetXmlArrayNameFromAttribute(PropertyInfo destCollectionProperty)
         {
-            XmlArrayAttribute xmlArrayAttribute = destCollectionProperty.GetCustomAttribute<XmlArrayAttribute>();
+            XmlArrayAttribute xmlArrayAttribute = destCollectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayAttribute>();
             if (xmlArrayAttribute != null)
             {
                 return xmlArrayAttribute.ElementName;
@@ -668,7 +668,7 @@ namespace JJ.Framework.Xml
         /// </summary>
         private static string TryGetXmlArrayItemNameFromAttribute(PropertyInfo collectionProperty)
         {
-            XmlArrayItemAttribute xmlArrayItemAttribute = collectionProperty.GetCustomAttribute<XmlArrayItemAttribute>();
+            XmlArrayItemAttribute xmlArrayItemAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayItemAttribute>();
             if (xmlArrayItemAttribute != null)
             {
                 return xmlArrayItemAttribute.ElementName;

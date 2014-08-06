@@ -20,33 +20,33 @@ namespace JJ.Framework.PlatformCompatibility
         /// "Method not found: 'System.Reflection.MemberTypes".
         /// Use 'is PropertyInfo' and such or call this method instead.
         /// </summary>
-        public static PlatformSafeMemberTypes PlatformSafe_MemberType(MemberInfo memberInfo)
+        public static MemberTypes_PlatformSafe MemberInfo_MemberType_PlatformSafe(MemberInfo memberInfo)
         {
             if (memberInfo == null) throw new ArgumentNullException("memberInfo");
 
             if (memberInfo is PropertyInfo)
             {
-                return PlatformSafeMemberTypes.Property;
+                return MemberTypes_PlatformSafe.Property;
             }
 
             if (memberInfo is FieldInfo)
             {
-                return PlatformSafeMemberTypes.Field;
+                return MemberTypes_PlatformSafe.Field;
             }
 
             if (memberInfo is MethodBase)
             {
-                return PlatformSafeMemberTypes.Method;
+                return MemberTypes_PlatformSafe.Method;
             }
 
             if (memberInfo is EventInfo)
             {
-                return PlatformSafeMemberTypes.Event;
+                return MemberTypes_PlatformSafe.Event;
             }
 
             if (memberInfo is Type)
             {
-                return PlatformSafeMemberTypes.TypeInfo;
+                return MemberTypes_PlatformSafe.TypeInfo;
             }
 
             throw new Exception(String.Format("memberInfo has the unsupported type: '{0}'", memberInfo.GetType()));
@@ -56,11 +56,11 @@ namespace JJ.Framework.PlatformCompatibility
         /// iOS compatibility: PropertyInfo.GetValue in Mono on a generic type may cause JIT compilation, which is not supported by iOS.
         /// Use 'PropertyInfo.GetGetMethod().Invoke(object obj, params object[] parameters)' or call this method instead.
         /// </summary>
-        public static object PlatformSafe_PropertyInfo_GetValue(PropertyInfo propertyInfo, object obj, params object[] parameters)
+        public static object PropertyInfo_GetValue_PlatformSafe(PropertyInfo propertyInfo, object obj, object[] index)
         {
             if (propertyInfo == null) throw new ArgumentNullException("propertyInfo");
 
-            return propertyInfo.GetGetMethod().Invoke(obj, parameters);
+            return propertyInfo.GetGetMethod().Invoke(obj, index);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// CultureInfo.GetCultureInfo(string name) is not supported on Windows Phone 8.
         /// Use 'new CultureInfo(string name)' or call this method instead.
         /// </summary>
-        public static CultureInfo PlatformSafe_CultureInfo_GetCultureInfo(string name)
+        public static CultureInfo CultureInfo_GetCultureInfo_PlatformSafe(string name)
         {
             return new CultureInfo(name);
         }
@@ -78,7 +78,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// Type.GetInterface(string name) is not supported on Windows Phone 8.
         /// Use the overload 'Type.GetInterface(string name, bool ingoreCase)' or call this method instead.
         /// </summary>
-        public static Type PlatformSafe_Type_GetInterface(Type type, string name)
+        public static Type Type_GetInterface_PlatformSafe(Type type, string name)
         {
             return type.GetInterface(name, ignoreCase: false);
         }
@@ -90,9 +90,9 @@ namespace JJ.Framework.PlatformCompatibility
         /// Beware that this overload simply saves the root node
         /// and does not the features unique to XDocument.
         /// </summary>
-        public static void PlatformSafe_XDocument_Save(XDocument doc, string fileName)
+        public static void XDocument_Save_PlatformSafe(XDocument doc, string fileName)
         {
-            PlatformSafe_XElement_Save(doc.Root, fileName);
+            XElement_Save_PlatformSafe(doc.Root, fileName);
         }
 
         /// <summary>
@@ -100,11 +100,11 @@ namespace JJ.Framework.PlatformCompatibility
         /// XElement.Save(string fileName) does not exist on Windows Phone 8.
         /// Use 'XElement.Save(TextWriter)' or call this method instead.
         /// </summary>
-        public static void PlatformSafe_XElement_Save(XElement element, string fileName)
+        public static void XElement_Save_PlatformSafe(XElement element, string fileName)
         {
             using (FileStream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                PlatformSafe_XElement_Save(element, stream);
+                XElement_Save_PlatformSafe(element, stream);
             }
         }
 
@@ -112,12 +112,81 @@ namespace JJ.Framework.PlatformCompatibility
         /// XElement.Save(Stream) exists on Windows Phone 8, but not in .NET 3.5.
         /// Use 'XElement.Save(TextWriter)' or call this method instead.
         /// </summary>
-        public static void PlatformSafe_XElement_Save(XElement element, Stream stream)
+        public static void XElement_Save_PlatformSafe(XElement element, Stream stream)
         {
             using (TextWriter writer = new StreamWriter(stream))
             {
                 element.Save(writer);
             }
+        }
+
+        /// <summary>
+        /// .Net 4 substitute
+        /// </summary>
+        public static string String_Join_PlatformSupport<T>(string separator, IEnumerable<T> values)
+        {
+            return String.Join(separator, values.Select(x => x.ToString()).ToArray());
+        }
+
+        /// <summary>
+        /// .Net 4 substitute
+        /// </summary>
+        public static void Stream_CopyTo_PlatformSupport(Stream source, Stream dest, int bufferSize)
+        {
+            int bytesRead;
+            byte[] buffer = new byte[bufferSize];
+            while ((bytesRead = source.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                dest.Write(buffer, 0, bytesRead);
+            }
+        }
+
+        /// <summary>
+        /// .Net 4 substitute
+        /// </summary>
+        public static bool String_IsNullOrWhiteSpace_PlatformSupport(string value)
+        {
+            if (value == null)
+            {
+                return true;
+            }
+
+            if (value == "")
+            {
+                return true;
+            }
+
+            if (value.Trim() == "")
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// .Net 4.5 substitute
+        /// </summary>
+        public static TAttribute PropertyInfo_GetCustomAttribute_PlatformSupport<TAttribute>(PropertyInfo propertyInfo)
+            where TAttribute : Attribute
+        {
+            return (TAttribute)Attribute.GetCustomAttribute(propertyInfo, typeof(TAttribute));
+        }
+
+        /// <summary>
+        /// .Net 4.5 substitute
+        /// </summary>
+        public static void PropertyInfo_SetValue_PlatformSupport(PropertyInfo propertyInfo, object obj, object value)
+        {
+            propertyInfo.SetValue(obj, value, null);
+        }
+
+        /// <summary>
+        /// .Net 4.5 substitute
+        /// </summary>
+        public static object PropertyInfo_GetValue_PlatformSupport(PropertyInfo propertyInfo, object obj)
+        {
+            return propertyInfo.GetValue(obj, null);
         }
     }
 }

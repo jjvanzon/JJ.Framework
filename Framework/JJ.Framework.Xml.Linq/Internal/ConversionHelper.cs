@@ -7,7 +7,6 @@ using System.Reflection;
 using System.Xml.Serialization;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
-using JJ.Framework.Net45;
 using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Xml.Linq.Internal
@@ -82,10 +81,10 @@ namespace JJ.Framework.Xml.Linq.Internal
             // The only reason everything is called might be to check for conflicting .NET attributes,
             // but at a large performance cost.
 
-            bool hasXmlAttributeAttribute = property.GetCustomAttribute<XmlAttributeAttribute>() != null;
-            bool hasXmlElementAttribute = property.GetCustomAttribute<XmlElementAttribute>() != null;
-            bool hasXmlArrayAttribute = property.GetCustomAttribute<XmlArrayAttribute>() != null;
-            bool hasXmlArrayItemAttribute = property.GetCustomAttribute<XmlArrayItemAttribute>() != null;
+            bool hasXmlAttributeAttribute = property.GetCustomAttribute_PlatformSupport<XmlAttributeAttribute>() != null;
+            bool hasXmlElementAttribute = property.GetCustomAttribute_PlatformSupport<XmlElementAttribute>() != null;
+            bool hasXmlArrayAttribute = property.GetCustomAttribute_PlatformSupport<XmlArrayAttribute>() != null;
+            bool hasXmlArrayItemAttribute = property.GetCustomAttribute_PlatformSupport<XmlArrayItemAttribute>() != null;
             bool isCollectionType = IsSupportedCollectionType(property.PropertyType);
 
             if (isCollectionType)
@@ -228,7 +227,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         /// </summary>
         private static string TryGetXmlElementNameFromAttribute(PropertyInfo property)
         {
-            XmlElementAttribute xmlElementAttribute = property.GetCustomAttribute<XmlElementAttribute>();
+            XmlElementAttribute xmlElementAttribute = property.GetCustomAttribute_PlatformSupport<XmlElementAttribute>();
             if (xmlElementAttribute != null)
             {
                 return xmlElementAttribute.ElementName;
@@ -265,7 +264,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         /// </summary>
         private static string TryGetAttributeNameFromAttribute(PropertyInfo property)
         {
-            XmlAttributeAttribute xmlAttributeAttribute = property.GetCustomAttribute<XmlAttributeAttribute>();
+            XmlAttributeAttribute xmlAttributeAttribute = property.GetCustomAttribute_PlatformSupport<XmlAttributeAttribute>();
             if (xmlAttributeAttribute != null)
             {
                 return xmlAttributeAttribute.AttributeName;
@@ -302,7 +301,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         /// </summary>
         private static string TryGetXmlArrayNameFromAttribute(PropertyInfo collectionProperty)
         {
-            XmlArrayAttribute xmlArrayAttribute = collectionProperty.GetCustomAttribute<XmlArrayAttribute>();
+            XmlArrayAttribute xmlArrayAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayAttribute>();
             if (xmlArrayAttribute != null)
             {
                 return xmlArrayAttribute.ElementName;
@@ -339,7 +338,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         /// </summary>
         private static string TryGetXmlArrayItemNameFromAttribute(PropertyInfo collectionProperty)
         {
-            XmlArrayItemAttribute xmlArrayItemAttribute = collectionProperty.GetCustomAttribute<XmlArrayItemAttribute>();
+            XmlArrayItemAttribute xmlArrayItemAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayItemAttribute>();
             if (xmlArrayItemAttribute != null)
             {
                 return xmlArrayItemAttribute.ElementName;

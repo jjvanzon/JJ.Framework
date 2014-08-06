@@ -18,7 +18,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static CultureInfo GetCultureInfo(string name)
         {
-            return PlatformHelper.PlatformSafe_CultureInfo_GetCultureInfo(name);
+            return PlatformHelper.CultureInfo_GetCultureInfo_PlatformSafe(name);
         }
     }
 }

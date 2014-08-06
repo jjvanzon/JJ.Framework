@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Net4;
+﻿using JJ.Framework.PlatformCompatibility;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -42,7 +42,7 @@ namespace JJ.Framework.Common
             {
                 using (var stream2 = new MemoryStream())
                 {
-                    Streams.CopyTo(stream, stream2);
+                    Stream_PlatformSupport.CopyTo(stream, stream2);
                     return stream2.ToArray();
                 }
             }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using JJ.Framework.Common;
-using JJ.Framework.Net4;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Validation
 {
@@ -91,7 +91,7 @@ namespace JJ.Framework.Validation
         {
             string value = Convert.ToString(_value);
 
-            if (Strings.IsNullOrWhiteSpace(value))
+            if (String_PlatformSupport.IsNullOrWhiteSpace(value))
             {
                 ValidationMessages.Add(_propertyKey, FormattedMessages.IsNullOrWhiteSpace(_propertyDisplayName));
             }

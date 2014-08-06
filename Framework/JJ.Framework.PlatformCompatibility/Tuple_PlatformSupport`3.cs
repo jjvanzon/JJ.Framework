@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Net4
+namespace JJ.Framework.PlatformCompatibility
 {
-    public struct Tuple<T1, T2, T3>
+    // TODO: Is the original Tuple type faster as a dictionary key?
+
+    /// <summary>
+    /// Net4 substitute
+    /// </summary>
+    public struct Tuple_PlatformSupport<T1, T2, T3>
     {
         private T1 _item1;
         private T2 _item2;
@@ -15,7 +20,10 @@ namespace JJ.Framework.Net4
         public T2 Item2 { get { return _item2; } }
         public T3 Item3 { get { return _item3; } }
 
-        public Tuple(T1 item1, T2 item2, T3 item3)
+        /// <summary>
+        /// Net4 substitute
+        /// </summary>
+        public Tuple_PlatformSupport(T1 item1, T2 item2, T3 item3)
         {
             _item1 = item1;
             _item2 = item2;

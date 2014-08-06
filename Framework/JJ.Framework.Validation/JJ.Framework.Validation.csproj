@@ -61,9 +61,9 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Net4\JJ.Framework.Net4.csproj">
-      <Project>{be8a8bae-8eb6-4f54-89e6-ca44aaceceb6}</Project>
-      <Name>JJ.Framework.Net4</Name>
+    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
+      <Project>{59622a6e-a9ae-438c-a164-05dea2fcf8cf}</Project>
+      <Name>JJ.Framework.PlatformCompatibility</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
