@@ -55,6 +55,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Apps\JJ.Apps.SetText.AppService.Interface\JJ.Apps.SetText.AppService.Interface.csproj">
+      <Project>{4a052265-9896-4d0b-a9b0-14d052bc95d0}</Project>
+      <Name>JJ.Apps.SetText.AppService.Interface</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Apps\JJ.Apps.SetText.Interface\JJ.Apps.SetText.Interface.csproj">
       <Project>{f074226b-734d-4308-b1c5-30350a228d8b}</Project>
       <Name>JJ.Apps.SetText.Interface</Name>

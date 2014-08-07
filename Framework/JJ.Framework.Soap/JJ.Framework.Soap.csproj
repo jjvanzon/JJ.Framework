@@ -42,6 +42,7 @@
     <Compile Include="WcfSoapClient.cs" />
     <Compile Include="SoapNamespaceMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WcfSoapClientT.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
@@ -51,6 +52,10 @@
     <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.csproj">
       <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
       <Name>JJ.Framework.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
+      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
+      <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj">
       <Project>{8dcbf3f3-b30f-4c11-8957-bea7f43ee173}</Project>

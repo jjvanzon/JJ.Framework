@@ -5,6 +5,7 @@ using System.Text;
 using JJ.Apps.SetText.Interface.ViewModels;
 using System.Collections.Generic;
 using JJ.Framework.Testing;
+using System.Net;
 
 namespace JJ.Framework.Soap.Tests
 {
@@ -19,7 +20,7 @@ namespace JJ.Framework.Soap.Tests
             SoapClient client = new SoapClient(url, Encoding.UTF8);
 
             SetTextViewModel viewModel = CreateViewModel();
-            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel));
+            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
 
             if (viewModel2.ValidationMessages != null)
             {
@@ -33,7 +34,7 @@ namespace JJ.Framework.Soap.Tests
         {
             var namespaceMappings = new List<SoapNamespaceMapping>
             {
-                new SoapNamespaceMapping(SoapNamespaceMapping.WCF_SOAP_NAMESPACE_HEADER + "JJ.Apps.SetText.ViewModels", "http://blahblahblah.com"),
+                new SoapNamespaceMapping(SoapNamespaceMapping.WCF_SOAP_NAMESPACE_HEADER + "JJ.Apps.SetText.Interface.ViewModels", "http://blahblahblah.com"),
             };
 
             string url = "http://localhost:6371/settextappservice.svc";
@@ -41,7 +42,7 @@ namespace JJ.Framework.Soap.Tests
             SoapClient client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
 
             SetTextViewModel viewModel = CreateViewModel();
-            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel));
+            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
 
             // WCF will accept the message, just will not bind the data, 
             // so the sevice will return a validation message.
@@ -51,6 +52,7 @@ namespace JJ.Framework.Soap.Tests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(WebException))]
         public void Test_SoapClient_WithNamespaceMapping_ThatReplacesDefaultNamespace()
         {
             var namespaceMappings = new List<SoapNamespaceMapping>
@@ -63,14 +65,9 @@ namespace JJ.Framework.Soap.Tests
             SoapClient client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
 
             SetTextViewModel viewModel = CreateViewModel();
-            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel));
-
-            // WCF will accept the message, just will not bind the data, 
-            // so the sevice will return a validation message.
-            AssertHelper.IsNotNull(() => viewModel2.ValidationMessages);
-            AssertHelper.AreEqual(1, () => viewModel2.ValidationMessages.Count);
-            AssertHelper.AreEqual("Text", () => viewModel2.ValidationMessages[0].PropertyKey);
+            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
         }
+
         private SetTextViewModel CreateViewModel()
         {
             return new SetTextViewModel

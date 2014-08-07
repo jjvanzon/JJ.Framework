@@ -128,5 +128,37 @@ namespace JJ.Framework.Reflection
         {
             return GetText((LambdaExpression)expression, showIndexerValues);
         }
+
+        // GetMethodCallInfo
+
+        public static MethodCallInfo GetMethodCallInfo(LambdaExpression expression)
+        {
+            if (expression == null) throw new ArgumentNullException("expression");
+
+            switch (expression.Body.NodeType)
+            {
+                case ExpressionType.Call:
+                    var methodCallExpression = (MethodCallExpression)expression.Body;
+                    var methodCallInfo = new MethodCallInfo(methodCallExpression.Method.Name);
+
+                    IList<ParameterInfo> parameters = methodCallExpression.Method.GetParameters();
+
+                    for (int i = 0; i < parameters.Count; i++)
+                    {
+                        ParameterInfo parameter = parameters[i];
+                        Expression argumentExpression = methodCallExpression.Arguments[i];
+
+                        object value = ExpressionHelper.GetValue(argumentExpression);
+
+                        var methodCallParameterInfo = new MethodCallParameterInfo(parameter.Name, value);
+                        methodCallInfo.Parameters.Add(methodCallParameterInfo);
+                    }
+
+                    return methodCallInfo;
+
+                default:
+                    throw new NotSupportedException(String.Format("MethodCallInfo cannot be retrieved from NodeType {0}.", expression.Body.NodeType));
+            }
+        }
     }
 }

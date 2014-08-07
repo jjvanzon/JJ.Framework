@@ -5,6 +5,7 @@ using System.Text;
 using JJ.Apps.SetText.Interface.ViewModels;
 using JJ.Models.Canonical;
 using System.Collections.Generic;
+using JJ.Apps.SetText.AppService.Interface;
 
 namespace JJ.Framework.Soap.Tests
 {
@@ -12,11 +13,19 @@ namespace JJ.Framework.Soap.Tests
     public class WcfSoapClientTests
     {
         [TestMethod]
+        public void Test_WcfSoapClient()
+        {
+            string url = "http://localhost:6371/settextappservice.svc";
+            var client = new WcfSoapClient<ISetTextAppService>(url);
+            SetTextViewModel viewModel = CreateViewModel();
+            SetTextViewModel viewModel2 = client.Invoke(x => x.Save(viewModel, "nl-NL"));
+        }
+
+        [TestMethod]
         public void Test_WcfSoapClient_WithCollections()
         {
             string url = "http://localhost:6371/settextappservice.svc";
-            string serviceInterfaceName = "ISetTextAppService";
-            var client = new WcfSoapClient(url, serviceInterfaceName);
+            var client = new WcfSoapClient<ISetTextAppService>(url);
             SetTextViewModel viewModel = CreateViewModel();
 
             // Test collection items sent back and forth by abusing the ValidationMessages collection.
@@ -26,7 +35,7 @@ namespace JJ.Framework.Soap.Tests
             viewModel.ValidationMessages.Add(new ValidationMessage { PropertyKey = "Dummy", Text = "This is a dummy." });
             viewModel.ValidationMessages.Add(new ValidationMessage { PropertyKey = "Dummy", Text = "This is a dummy." });
 
-            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>("Save", new SoapParameter("viewModel", viewModel));
+            SetTextViewModel viewModel2 = client.Invoke(x => x.Save(viewModel, "nl-NL"));
         }
 
         private SetTextViewModel CreateViewModel()
