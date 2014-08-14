@@ -12,15 +12,26 @@ namespace JJ.Framework.Xml.Linq.Internal
     {
         private HashSet<string> _xmlNamespaceStrings = new HashSet<string>();
 
+        /// <summary>
+        /// Adds an extra XML namespace on top of the ones generated on-the-fly.
+        /// </summary>
+        public void AddXmlNamespaceString(string xmlNamespaceString)
+        {
+            if (!_xmlNamespaceStrings.Contains(xmlNamespaceString))
+            {
+                _xmlNamespaceStrings.Add(xmlNamespaceString);
+            }
+        }
+
         public IEnumerable<XAttribute> GetNamespaceDeclarationAttributes()
         {
             int i = 0;
 
-            foreach (string mapping in _xmlNamespaceStrings)
+            foreach (string xmlNamespaceString in _xmlNamespaceStrings)
             {
                 string namespacePrefix = NumberingSystems.ToLetterSequence(i, 'a', 'z');
 
-                yield return new XAttribute(XNamespace.Xmlns + namespacePrefix, mapping);
+                yield return new XAttribute(XNamespace.Xmlns + namespacePrefix, xmlNamespaceString);
 
                 i++;
             }

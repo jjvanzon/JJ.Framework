@@ -86,7 +86,7 @@ namespace JJ.Framework.Reflection
         {
             if (collectionType == null) throw new ArgumentNullException("collectionType");
 
-            // The later code does not work for when collectionType is IEnumerable<T> itself,
+            // The code after this block does not work for when collectionType is IEnumerable<T> itself,
             // only if collectionType implements IEnumerable<T>.
             if (collectionType.IsGenericType)
             {
@@ -176,6 +176,7 @@ namespace JJ.Framework.Reflection
 
                 case MemberTypes_PlatformSafe.Property:
                     var property = (PropertyInfo)member;
+                    // TODO: Check if this will work for public members.
                     MethodInfo getterOrSetter = property.GetGetMethod(nonPublic: true) ?? property.GetSetMethod(nonPublic: true);
                     return getterOrSetter.IsStatic;
 

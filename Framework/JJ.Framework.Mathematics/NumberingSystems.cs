@@ -43,33 +43,33 @@ namespace JJ.Framework.Mathematics
             'X', 'Y', 'Z'
         };
 
-        // To Base-N Number
+        // To Base
 
         /// <summary>
-        /// Calculates an array of digit values that represent a number in a base-n numbering system.
+        /// Calculates an array of digit values that represent a number in a base-b numbering system.
         /// </summary>
-        private static int[] GetDigitValues(int number, int n)
+        private static int[] GetDigitValues(int number, int b)
         {
             if (number < 0) throw new ArgumentException("number must be larger than 0.");
-            if (n < 2) throw new ArgumentException("n must be 2 or higher.");
+            if (b < 2) throw new ArgumentException("b must be 2 or higher.");
 
-            int digitCount = GetDigitCount(number, n);
+            int digitCount = GetDigitCount(number, b);
             int[] digits = new int[digitCount];
 
             for (int i = digitCount - 1; i >= 0; i--)
             {
                 checked
                 {
-                    int digit = number % n;
+                    int digit = number % b;
                     digits[i] = digit;
-                    number /= n;
+                    number /= b;
                 }
             }
 
             return digits;
         }
 
-        private static int GetDigitCount(int number, int n)
+        private static int GetDigitCount(int number, int b)
         {
             if (number == 0)
             {
@@ -83,47 +83,47 @@ namespace JJ.Framework.Mathematics
 
             checked
             {
-                int toTheHowManieth = Maths.Log(number, n);
+                int toTheHowManieth = Maths.Log(number, b);
                 int digitCount = toTheHowManieth + 1;
                 return digitCount;
             }
         }
 
         /// <summary>
-        /// Produces a string that represents the number in a base-n numbering system.
+        /// Produces a string that represents the number in a base-b numbering system.
         /// The digit characters are specified explicitly in an array.
         /// </summary>
-        public static string ToBaseNNumber(int number, char[] digitChars)
+        public static string ToBase(int number, char[] digitChars)
         {
             if (digitChars == null) throw new ArgumentNullException("digitChars");
-            int n = digitChars.Length;
-            string result = ToBaseNNumber(number, n, digitChars);
+            int b = digitChars.Length;
+            string result = ToBase(number, b, digitChars);
             return result;
         }
 
         /// <summary>
-        /// Produces a string that represents the number in a base-n numbering system.
+        /// Produces a string that represents the number in a base-b numbering system.
         /// The digit characters are specified explicitly in an array.
         /// </summary>
-        public static string ToBaseNNumber(int number, int n, char[] digitChars)
+        public static string ToBase(int number, int b, char[] digitChars)
         {
             if (digitChars == null) throw new ArgumentNullException("digitChars");
-            if (digitChars.Length < n) throw new ArgumentException("digitChars.Length must have at least n elements.");
+            if (digitChars.Length < b) throw new ArgumentException("digitChars.Length must have at least b elements.");
 
-            int[] digitValues = GetDigitValues(number, n);
+            int[] digitValues = GetDigitValues(number, b);
             char[] digits = digitValues.Select(x => DigitValueToChar(x, digitChars)).ToArray();
             string result = new String(digits);
             return result;
         }
 
         /// <summary>
-        /// Produces a string that represents the number in a base-n numbering system.
+        /// Produces a string that represents the number in a base-b numbering system.
         /// The first digit is a specific character value.
         /// That way the digits can only be a consecutive character range.
         /// </summary>
-        public static string ToBaseNNumber(int number, int n, char firstChar)
+        public static string ToBase(int number, int b, char firstChar)
         {
-            int[] digitValues = GetDigitValues(number, n);
+            int[] digitValues = GetDigitValues(number, b);
             char[] digits = digitValues.Select(x => DigitValueToChar(x, firstChar)).ToArray();
             string result = new String(digits);
             return result;
@@ -134,28 +134,28 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static string ToHex(int input)
         {
-            return ToBaseNNumber(input, 16, _digitChars);
+            return ToBase(input, 16, _digitChars);
         }
 
         /// <summary>
-        /// Produces a string that represents the number in a base-n numbering system.
+        /// Produces a string that represents the number in a base-b numbering system.
         /// The digits are 0-9 and then A-Z. Higher digits are not allowed.
         /// </summary>
-        public static string ToBaseNNumber(int number, int n)
+        public static string ToBase(int number, int b)
         {
-            return ToBaseNNumber(number, n, _digitChars);
+            return ToBase(number, b, _digitChars);
         }
 
-        // From Base-N Number
+        // From Base
 
         /// <summary>
-        /// Converts a base-n number to an integer.
+        /// Converts a base-b number to an integer.
         /// A delegate is passed to this method that derives the digit value from the character value.
         /// </summary>
-        private static int FromBaseNNumber(string input, int n, Func<char, int> charToDigitValue)
+        private static int FromBase(string input, int b, Func<char, int> charToDigitValue)
         {
             if (String.IsNullOrEmpty(input)) throw new ArgumentException("input cannot be null or empty.");
-            if (n < 2) throw new ArgumentException("n must be 2 or higher.");
+            if (b < 2) throw new ArgumentException("b must be 2 or higher.");
             if (charToDigitValue == null) throw new ArgumentNullException("charToDigitValue");
 
             int result = 0;
@@ -171,7 +171,7 @@ namespace JJ.Framework.Mathematics
 
                     if (i > 0) // Prevent overflow
                     {
-                        pow *= n;
+                        pow *= b;
                     }
                 }
             }
@@ -184,49 +184,49 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static int FromHex(string hex)
         {
-            return FromBaseNNumber(hex, 16);
+            return FromBase(hex, 16);
         }
 
         /// <summary>
-        /// Converts a base-n number to an int.
+        /// Converts a base-b number to an int.
         /// The digits are 0-9 and then A-Z. Higher digits are not allowed.
         /// </summary>
-        public static int FromBaseNNumber(string input, int n)
+        public static int FromBase(string input, int b)
         {
-            int result = FromBaseNNumber(input, n, chr => CharToDigitValue(chr));
+            int result = FromBase(input, b, chr => CharToDigitValue(chr));
             return result;
         }
 
         /// <summary>
-        /// Converts a base-n number to an integer.
+        /// Converts a base-b number to an integer.
         /// The digits are specified explicitly in an array of characters.
         /// </summary>
-        public static int FromBaseNNumber(string input, int n, char[] digitChars)
+        public static int FromBase(string input, int b, char[] digitChars)
         {
-            int result = FromBaseNNumber(input, n, chr => CharToDigitValue(chr, digitChars));
+            int result = FromBase(input, b, chr => CharToDigitValue(chr, digitChars));
             return result;
         }
 
         /// <summary>
-        /// Converts a base-n number to an integer.
+        /// Converts a base-b number to an integer.
         /// The first digit is a specific character value.
         /// The digits can only be a consecutive character range.
         /// </summary>
-        public static int FromBaseNNumber(string input, int n, char firstChar)
+        public static int FromBase(string input, int b, char firstChar)
         {
-            int result = FromBaseNNumber(input, n, chr => CharToDigitValue(chr, firstChar));
+            int result = FromBase(input, b, chr => CharToDigitValue(chr, firstChar));
             return result;
         }
 
         /// <summary>
-        /// Converts a base-n number to an integer.
+        /// Converts a base-b number to an integer.
         /// The first and last digit characters are specified.
         /// The digits can only be a consecutive character range.
         /// </summary>
-        public static int FromBaseNNumber(string input, char firstChar, char lastChar)
+        public static int FromBase(string input, char firstChar, char lastChar)
         {
-            int n = lastChar - firstChar + 1;
-            int result = FromBaseNNumber(input, n, firstChar);
+            int b = lastChar - firstChar + 1;
+            int result = FromBase(input, b, firstChar);
             return result;
         }
 
@@ -291,8 +291,8 @@ namespace JJ.Framework.Mathematics
         /// <param name="value">0 is the first letter</param>
         public static string ToLetterSequence(int value, char firstChar = 'A', char lastChar = 'Z')
         {
-            int n = lastChar - firstChar + 1;
-            string result = ToLetterSequence(value, n, firstChar);
+            int b = lastChar - firstChar + 1;
+            string result = ToLetterSequence(value, b, firstChar);
             return result;
         }
 
@@ -305,9 +305,9 @@ namespace JJ.Framework.Mathematics
         /// but you get 26 for free.
         /// </summary>
         /// <param name="temp">0 is the first letter</param>
-        public static string ToLetterSequence(int value, int n, char firstChar = 'A')
+        public static string ToLetterSequence(int value, int b, char firstChar = 'A')
         {
-            int ceiling = n;
+            int ceiling = b;
             int i = 1;
             string result;
             int temp = value;
@@ -316,7 +316,7 @@ namespace JJ.Framework.Mathematics
             {
                 if (temp < ceiling)
                 {
-                    result = ToBaseNNumber(temp, n, firstChar);
+                    result = ToBase(temp, b, firstChar);
                     result = result.PadLeft(i, firstChar);
                     return result;
                 }
@@ -325,11 +325,10 @@ namespace JJ.Framework.Mathematics
                 temp -= ceiling;
                 checked
                 {
-                    ceiling *= n;
+                    ceiling *= b;
                 }
             }
         }
-
         
         /// <summary>
         /// Converts a spread-sheet-style letter sequence to a number.
@@ -342,8 +341,8 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static int FromLetterSequence(string input, char firstChar = 'A', char lastChar = 'Z')
         {
-            int n = lastChar - firstChar + 1;
-            int result = FromLetterSequence(input, n, firstChar);
+            int b = lastChar - firstChar + 1;
+            int result = FromLetterSequence(input, b, firstChar);
             return result;
         }
 
@@ -356,18 +355,18 @@ namespace JJ.Framework.Mathematics
         /// so you basically start counting at 0 again,
         /// but you get 26 for free.
         /// </summary>
-        public static int FromLetterSequence(string input, int n, char firstChar = 'A')
+        public static int FromLetterSequence(string input, int b, char firstChar = 'A')
         {
             if (String.IsNullOrEmpty(input)) throw new ArgumentNullException("input");
 
-            int value = FromBaseNNumber(input, n, firstChar);
+            int value = FromBase(input, b, firstChar);
 
             // Calculate the part you get for free (see summary).
             int extra = 0;
             int pow = 1;
             for (int i = 0; i < input.Length - 1; i++)
             {
-                pow *= n;
+                pow *= b;
                 extra += pow;
             }
 

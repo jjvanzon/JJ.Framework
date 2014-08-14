@@ -18,7 +18,6 @@ namespace JJ.Framework.Soap
     public class SoapClient
     {
         private const string HTTP_METHOD_POST = "POST";
-
         private const string SOAP_ENVELOPE_NAMESPACE_NAME = "http://schemas.xmlsoap.org/soap/envelope/";
         private const string DEFAULT_NAMESPACE_NAME = "http://tempuri.org/";
 
@@ -108,6 +107,7 @@ namespace JJ.Framework.Soap
                 (
                     XmlCasingEnum.UnmodifiedCase,
                     mustGenerateNamespaces: true,
+                    mustGenerateNilAttributes: true,
                     rootElementName: parameter.Name
                 );
 
@@ -146,8 +146,8 @@ namespace JJ.Framework.Soap
 
                     // Replace the xmlns's
                     IList<XAttribute> xmlnsAttributes = element.Attributes()
-                                                            .Where(x => x.Name.Namespace == XNamespace.Xmlns)
-                                                            .ToArray();
+                                                               .Where(x => x.Name.Namespace == XNamespace.Xmlns)
+                                                               .ToArray();
 
                     foreach (XAttribute xmlnsAttribute in xmlnsAttributes)
                     {

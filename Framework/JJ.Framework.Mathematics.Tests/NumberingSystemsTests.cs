@@ -12,13 +12,13 @@ namespace JJ.Framework.Mathematics.Tests
         public void Test_NumberingSystems_ToBaseNNumber_Base26_RandomNumber()
         {
             int number = Randomizer.GetInt32(Int32.MaxValue - 1);
-            string output = NumberingSystems.ToBaseNNumber(number, 26, 'a');
+            string output = NumberingSystems.ToBase(number, 26, 'a');
         }
 
         [TestMethod]
         public void Test_NumberingSystems_ToBaseNNumber_DecimalSystem_1234()
         {
-            string output = NumberingSystems.ToBaseNNumber(1234, 10);
+            string output = NumberingSystems.ToBase(1234, 10);
             Assert.AreEqual("1234", output);
         }
 
@@ -27,7 +27,7 @@ namespace JJ.Framework.Mathematics.Tests
         {
             for (int i = 0; i <= 100; i++)
             {
-                string output = NumberingSystems.ToBaseNNumber(i, 10);
+                string output = NumberingSystems.ToBase(i, 10);
                 Assert.AreEqual(i.ToString(), output);
             }
         }
@@ -97,7 +97,7 @@ namespace JJ.Framework.Mathematics.Tests
             {
                 char expectedChar = (char)('a' + i);
                 string expected = expectedChar.ToString();
-                string actual = NumberingSystems.ToBaseNNumber(i, 26, 'a');
+                string actual = NumberingSystems.ToBase(i, 26, 'a');
                 Assert.AreEqual(expected, actual);
             }
 
@@ -112,7 +112,7 @@ namespace JJ.Framework.Mathematics.Tests
                 // So Excel column numerals do not map nicely to a base-n numbering system after all.
                 
                 string expected = new String(new char[] { 'b', expectedSecondChar });
-                string actual = NumberingSystems.ToBaseNNumber(i, 26, 'a');
+                string actual = NumberingSystems.ToBase(i, 26, 'a');
                 Assert.AreEqual(expected, actual);
             }
         }
@@ -121,7 +121,7 @@ namespace JJ.Framework.Mathematics.Tests
         public void Test_NumberingSystems_FromBaseNNumber_DecimalSystem_1234()
         {
             string input = "1234";
-            int output = NumberingSystems.FromBaseNNumber(input, 10);
+            int output = NumberingSystems.FromBase(input, 10);
             Assert.AreEqual(1234, output);
         }
 

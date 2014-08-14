@@ -102,7 +102,6 @@ namespace JJ.Framework.Reflection
             }
 
             // Then process 'child' node.
-
             MemberTypes_PlatformSafe memberType = node.Member.MemberType_PlatformSafe();
             switch (memberType)
             {

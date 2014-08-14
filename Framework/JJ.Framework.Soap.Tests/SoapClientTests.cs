@@ -2,10 +2,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Xml.Linq;
 using System.Text;
-using JJ.Apps.SetText.Interface.ViewModels;
 using System.Collections.Generic;
 using JJ.Framework.Testing;
 using System.Net;
+using JJ.Framework.Configuration;
+using JJ.Framework.Soap.Tests.ServiceInterface;
+using JJ.Framework.Soap.Tests.Helpers;
 
 namespace JJ.Framework.Soap.Tests
 {
@@ -15,18 +17,16 @@ namespace JJ.Framework.Soap.Tests
         [TestMethod]
         public void Test_SoapClient()
         {
-            string url = "http://localhost:6371/settextappservice.svc";
-            string soapAction = "http://tempuri.org/ISetTextAppService/Save";
-            SoapClient client = new SoapClient(url, Encoding.UTF8);
+            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            string methodName = "SendAndGetCompositeObject";
+            string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
+            var client = new SoapClient(url, Encoding.UTF8);
+            CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
+            CompositeType obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
 
-            SetTextViewModel viewModel = CreateViewModel();
-            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
-
-            if (viewModel2.ValidationMessages != null)
-            {
-                AssertHelper.AreEqual(0, () => viewModel2.ValidationMessages.Count);
-            }
-            AssertHelper.IsTrue(() => viewModel2.TextWasSavedMessageVisible);
+            AssertHelper.IsNotNull(() => obj2);
+            AssertHelper.IsTrue(() => obj2.BoolValue);
+            AssertHelper.AreEqual(obj1.StringValue + " to you too!", () => obj2.StringValue);
         }
 
         [TestMethod]
@@ -34,21 +34,20 @@ namespace JJ.Framework.Soap.Tests
         {
             var namespaceMappings = new List<SoapNamespaceMapping>
             {
-                new SoapNamespaceMapping(SoapNamespaceMapping.WCF_SOAP_NAMESPACE_HEADER + "JJ.Apps.SetText.Interface.ViewModels", "http://blahblahblah.com"),
+                new SoapNamespaceMapping(SoapNamespaceMapping.WCF_SOAP_NAMESPACE_HEADER + typeof(CompositeType).Namespace, "http://blahblahblah.com"),
             };
 
-            string url = "http://localhost:6371/settextappservice.svc";
-            string soapAction = "http://tempuri.org/ISetTextAppService/Save";
-            SoapClient client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
+            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            string methodName = "SendAndGetCompositeObject";
+            string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
+            var client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
+            CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
+            CompositeType obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
 
-            SetTextViewModel viewModel = CreateViewModel();
-            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
-
-            // WCF will accept the message, just will not bind the data, 
-            // so the sevice will return a validation message.
-            AssertHelper.IsNotNull(() => viewModel2.ValidationMessages);
-            AssertHelper.AreEqual(1, () => viewModel2.ValidationMessages.Count);
-            AssertHelper.AreEqual("Text", () => viewModel2.ValidationMessages[0].PropertyKey);
+            // WCF will accept the message, just will not bind the data sent to the server.
+            AssertHelper.IsNotNull(() => obj2);
+            AssertHelper.IsTrue(() => obj2.BoolValue);
+            AssertHelper.AreEqual("Hello world!", () => obj2.StringValue);
         }
 
         [TestMethod]
@@ -60,20 +59,12 @@ namespace JJ.Framework.Soap.Tests
                 new SoapNamespaceMapping("http://tempuri.org/", "http://blahblahblah.org"),
             };
 
-            string url = "http://localhost:6371/settextappservice.svc";
-            string soapAction = "http://tempuri.org/ISetTextAppService/Save";
-            SoapClient client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
-
-            SetTextViewModel viewModel = CreateViewModel();
-            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
-        }
-
-        private SetTextViewModel CreateViewModel()
-        {
-            return new SetTextViewModel
-            {
-                Text = "Hi!",
-            };
+            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            string methodName = "SendAndGetCompositeObject";
+            string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
+            var client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
+            CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
+            CompositeType obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
         }
     }
 }

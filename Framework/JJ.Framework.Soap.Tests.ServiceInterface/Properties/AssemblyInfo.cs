@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JJ.Framework.Soap.Tests")]
+[assembly: AssemblyTitle("JJ.Framework.Soap.Tests.ServiceInterface")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JJ.Framework.Soap.Tests")]
+[assembly: AssemblyProduct("JJ.Framework.Soap.Tests.ServiceInterface")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("360e2d35-c34b-4bf5-9437-d5832eaf153f")]
+[assembly: Guid("78eedbc2-c2a7-4582-8ba7-f621976453dd")]
 
 // Version information for an assembly consists of the following four values:
 //

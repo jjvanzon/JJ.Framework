@@ -23,11 +23,15 @@ namespace JJ.Framework.Xml.Linq
     /// </summary>
     public class ObjectToXmlConverter
     {
+        private const string NIL_XML_NAMESPACE = "http://www.w3.org/2001/XMLSchema-instance";
+        private const string NIL_ATTRIBUTE_NAME = "nil";
+
         private string _rootElementName;
         private XmlCasingEnum _casing;
         private bool _mustGenerateNamespaces;
+        private bool _mustGenerateNilAttributes;
         private NamespaceResolver _namespaceResolver;
-
+        
         /// <summary>
         /// Under certain platforms standard XML serialization may not be available 
         /// or may not be the best option. That is why this class exists.
@@ -40,13 +44,26 @@ namespace JJ.Framework.Xml.Linq
         /// The XML namespace will have the format "http://schemas.datacontract.org/2004/07/" followed by the .NET namespace.
         /// The namespace prefixes will be 'alphabetically numbered', starting with 'a', then 'b' and so on.
         /// </param>
-        public ObjectToXmlConverter(XmlCasingEnum casing = XmlCasingEnum.CamelCase, bool mustGenerateNamespaces = false, string rootElementName = "root")
+        /// <param name="mustGenerateNilAttributes">
+        /// If set to false, properties that hold no object or value
+        /// will not get an XML element.
+        /// If set to true, properties that hold no object or value
+        /// will be included with an XML attribute nil="true".
+        /// This wil also include an extra namespace that defines the nil attribute:
+        /// "http://www.w3.org/2001/XMLSchema-instance".
+        /// </param>
+        public ObjectToXmlConverter(
+            XmlCasingEnum casing = XmlCasingEnum.CamelCase, 
+            bool mustGenerateNamespaces = false, 
+            bool mustGenerateNilAttributes = false,
+            string rootElementName = "root")
         {
             if (rootElementName == null) throw new ArgumentNullException("rootElementName");
 
             _casing = casing;
             _mustGenerateNamespaces = mustGenerateNamespaces;
             _rootElementName = rootElementName;
+            _mustGenerateNilAttributes = mustGenerateNilAttributes;
 
             _namespaceResolver = new NamespaceResolver();
         }
@@ -102,12 +119,15 @@ namespace JJ.Framework.Xml.Linq
         {
             XElement rootElement = new XElement(_rootElementName);
 
-            if (_mustGenerateNamespaces)
+            // Add extra nil namespace to the namespace resolver.
+            if (_mustGenerateNilAttributes)
             {
-                foreach (XAttribute namespaceDeclarationAttribute in _namespaceResolver.GetNamespaceDeclarationAttributes())
-                {
-                    rootElement.Add(namespaceDeclarationAttribute);
-                }
+                _namespaceResolver.AddXmlNamespaceString(NIL_XML_NAMESPACE);
+            }
+
+            foreach (XAttribute namespaceDeclarationAttribute in _namespaceResolver.GetNamespaceDeclarationAttributes())
+            {
+                rootElement.Add(namespaceDeclarationAttribute);
             }
 
             return rootElement;
@@ -136,6 +156,7 @@ namespace JJ.Framework.Xml.Linq
         /// Converts a property of an object to XML.
         /// It might become an element that holds a value, a composite element, an attribute or an XML array.
         /// Null is returned if the source value is null.
+        /// Except when _mustGenerateNilAttributes is true.
         /// </summary>
         private XObject TryConvertProperty(object sourceObject, PropertyInfo sourceProperty)
         {
@@ -169,6 +190,11 @@ namespace JJ.Framework.Xml.Linq
         {
             object sourceObject = sourceProperty.GetValue_PlatformSafe(sourceParentObject);
 
+            if (_mustGenerateNilAttributes)
+            {
+                return ConvertToElement_WithNillAttribute(sourceObject, sourceProperty);
+            }
+
             if (sourceObject == null)
             {
                 return null;
@@ -178,6 +204,30 @@ namespace JJ.Framework.Xml.Linq
             XName destXName = GetXName(destName, sourceProperty);
 
             XElement destElement = ConvertToElement(sourceObject, destXName);
+            return destElement;
+        }
+
+        private XElement ConvertToElement_WithNillAttribute(object sourceObject, PropertyInfo sourceProperty)
+        {
+            string destName = ConversionHelper.GetElementNameForProperty(sourceProperty, _casing);
+            XName destXName = GetXName(destName, sourceProperty);
+
+            if (sourceObject == null)
+            {
+                XElement destNilElement = CreateNilElement(destXName);
+                return destNilElement;
+            }
+
+            XElement destElement = ConvertToElement(sourceObject, destXName);
+            return destElement;
+        }
+
+        private XElement CreateNilElement(XName destXName)
+        {
+            XElement destElement = new XElement(destXName, null);
+            XNamespace xnamespace = NIL_XML_NAMESPACE;
+            XAttribute nilAttribute = new XAttribute(xnamespace + NIL_ATTRIBUTE_NAME, true);
+            destElement.Add(nilAttribute);
             return destElement;
         }
 
@@ -298,6 +348,7 @@ namespace JJ.Framework.Xml.Linq
             XName destXName = GetXName(destName, sourceItemType);
 
             // Recursive call
+            // TODO: Call TryConvertToElement to support empty array elements?
             XElement destXmlArrayItem = ConvertToElement(sourceItem, destXName);
             return destXmlArrayItem;
         }

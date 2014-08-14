@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="JJ.Framework.Soap.Tests" resourceRoot="" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="BasicHttpBinding_ITestService" type="wsdl" bindingName="{http://tempuri.org/}BasicHttpBinding_ITestService" soapVersion="1_1" anonymous="optional" definition="http://localhost:61285/TestService.svc?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:61285/TestService.svc?wsdl"><con:part><con:url>http://localhost:61285/TestService.svc?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="TestService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:61285/TestService.svc?xsd=xsd0" namespace="http://tempuri.org/"/>
+      <xsd:import schemaLocation="http://localhost:61285/TestService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="http://localhost:61285/TestService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+      <xsd:import schemaLocation="http://localhost:61285/TestService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xsd:import schemaLocation="http://localhost:61285/TestService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ITestService_GetCompositeObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompositeObject"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_GetCompositeObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCompositeObjectResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_GetObjectWithCollection_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectWithCollection"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_GetObjectWithCollection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetObjectWithCollectionResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendCompositeObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendCompositeObject"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendCompositeObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendCompositeObjectResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendObjectWithCollection_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendObjectWithCollection"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendObjectWithCollection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendObjectWithCollectionResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendAndGetCompositeObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAndGetCompositeObject"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendAndGetCompositeObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAndGetCompositeObjectResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendAndGetObjectWithCollection_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAndGetObjectWithCollection"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendAndGetObjectWithCollection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAndGetObjectWithCollectionResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendStringValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendStringValue"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendStringValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendStringValueResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_GetStringValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStringValue"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_GetStringValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStringValueResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendAndGetStringValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAndGetStringValue"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendAndGetStringValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAndGetStringValueResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendAndGetComplicatedObject_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendAndGetComplicatedObject"/>
+  </wsdl:message>
+  <wsdl:message name="ITestService_SendAndGetComplicatedObject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendAndGetComplicatedObjectResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ITestService">
+    <wsdl:operation name="GetCompositeObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestService/GetCompositeObject" message="tns:ITestService_GetCompositeObject_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestService/GetCompositeObjectResponse" message="tns:ITestService_GetCompositeObject_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectWithCollection">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestService/GetObjectWithCollection" message="tns:ITestService_GetObjectWithCollection_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestService/GetObjectWithCollectionResponse" message="tns:ITestService_GetObjectWithCollection_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendCompositeObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestService/SendCompositeObject" message="tns:ITestService_SendCompositeObject_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestService/SendCompositeObjectResponse" message="tns:ITestService_SendCompositeObject_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendObjectWithCollection">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestService/SendObjectWithCollection" message="tns:ITestService_SendObjectWithCollection_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestService/SendObjectWithCollectionResponse" message="tns:ITestService_SendObjectWithCollection_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendAndGetCompositeObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestService/SendAndGetCompositeObject" message="tns:ITestService_SendAndGetCompositeObject_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestService/SendAndGetCompositeObjectResponse" message="tns:ITestService_SendAndGetCompositeObject_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendAndGetObjectWithCollection">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestService/SendAndGetObjectWithCollection" message="tns:ITestService_SendAndGetObjectWithCollection_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestService/SendAndGetObjectWithCollectionResponse" message="tns:ITestService_SendAndGetObjectWithCollection_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendStringValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestService/SendStringValue" message="tns:ITestService_SendStringValue_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestService/SendStringValueResponse" message="tns:ITestService_SendStringValue_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetStringValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestService/GetStringValue" message="tns:ITestService_GetStringValue_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestService/GetStringValueResponse" message="tns:ITestService_GetStringValue_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendAndGetStringValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestService/SendAndGetStringValue" message="tns:ITestService_SendAndGetStringValue_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestService/SendAndGetStringValueResponse" message="tns:ITestService_SendAndGetStringValue_OutputMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="SendAndGetComplicatedObject">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITestService/SendAndGetComplicatedObject" message="tns:ITestService_SendAndGetComplicatedObject_InputMessage"/>
+      <wsdl:output wsaw:Action="http://tempuri.org/ITestService/SendAndGetComplicatedObjectResponse" message="tns:ITestService_SendAndGetComplicatedObject_OutputMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ITestService" type="tns:ITestService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetCompositeObject">
+      <soap:operation soapAction="http://tempuri.org/ITestService/GetCompositeObject" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectWithCollection">
+      <soap:operation soapAction="http://tempuri.org/ITestService/GetObjectWithCollection" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendCompositeObject">
+      <soap:operation soapAction="http://tempuri.org/ITestService/SendCompositeObject" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendObjectWithCollection">
+      <soap:operation soapAction="http://tempuri.org/ITestService/SendObjectWithCollection" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendAndGetCompositeObject">
+      <soap:operation soapAction="http://tempuri.org/ITestService/SendAndGetCompositeObject" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendAndGetObjectWithCollection">
+      <soap:operation soapAction="http://tempuri.org/ITestService/SendAndGetObjectWithCollection" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendStringValue">
+      <soap:operation soapAction="http://tempuri.org/ITestService/SendStringValue" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStringValue">
+      <soap:operation soapAction="http://tempuri.org/ITestService/GetStringValue" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendAndGetStringValue">
+      <soap:operation soapAction="http://tempuri.org/ITestService/SendAndGetStringValue" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendAndGetComplicatedObject">
+      <soap:operation soapAction="http://tempuri.org/ITestService/SendAndGetComplicatedObject" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TestService">
+    <wsdl:port name="BasicHttpBinding_ITestService" binding="tns:BasicHttpBinding_ITestService">
+      <soap:address location="http://localhost:61285/TestService.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:61285/TestService.svc?xsd=xsd0</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/">
+  <xs:import schemaLocation="http://localhost:61285/TestService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+  <xs:element name="GetCompositeObject">
+    <xs:complexType>
+      <xs:sequence/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCompositeObjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCompositeObjectResult" nillable="true" type="q1:CompositeType" xmlns:q1="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetObjectWithCollection">
+    <xs:complexType>
+      <xs:sequence/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetObjectWithCollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetObjectWithCollectionResult" nillable="true" type="q2:TypeWithCollection" xmlns:q2="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendCompositeObject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compositeObject" nillable="true" type="q3:CompositeType" xmlns:q3="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendCompositeObjectResponse">
+    <xs:complexType>
+      <xs:sequence/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendObjectWithCollection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="objectWithCollection" nillable="true" type="q4:TypeWithCollection" xmlns:q4="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendObjectWithCollectionResponse">
+    <xs:complexType>
+      <xs:sequence/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendAndGetCompositeObject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="compositeObject" nillable="true" type="q5:CompositeType" xmlns:q5="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendAndGetCompositeObjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SendAndGetCompositeObjectResult" nillable="true" type="q6:CompositeType" xmlns:q6="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendAndGetObjectWithCollection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="objectWithCollection" nillable="true" type="q7:TypeWithCollection" xmlns:q7="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendAndGetObjectWithCollectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SendAndGetObjectWithCollectionResult" nillable="true" type="q8:TypeWithCollection" xmlns:q8="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendStringValue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stringValue" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendStringValueResponse">
+    <xs:complexType>
+      <xs:sequence/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStringValue">
+    <xs:complexType>
+      <xs:sequence/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStringValueResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetStringValueResult" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendAndGetStringValue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="stringValue" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendAndGetStringValueResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SendAndGetStringValueResult" nillable="true" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendAndGetComplicatedObject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="complicatedObject" nillable="true" type="q9:ComplicatedType" xmlns:q9="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendAndGetComplicatedObjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SendAndGetComplicatedObjectResult" nillable="true" type="q10:ComplicatedType" xmlns:q10="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:61285/TestService.svc?xsd=xsd2</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface">
+  <xs:import schemaLocation="http://localhost:61285/TestService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+  <xs:import schemaLocation="http://localhost:61285/TestService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System"/>
+  <xs:import schemaLocation="http://localhost:61285/TestService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+  <xs:complexType name="CompositeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BoolValue" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="StringValue" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompositeType" nillable="true" type="tns:CompositeType"/>
+  <xs:complexType name="TypeWithCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StringList" nillable="true" type="q1:ArrayOfstring" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TypeWithCollection" nillable="true" type="tns:TypeWithCollection"/>
+  <xs:complexType name="ComplicatedType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Array" nillable="true" type="q2:ArrayOfint" xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfBoolean" nillable="true" type="q3:ArrayOfboolean" xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfByte" nillable="true" type="xs:base64Binary"/>
+      <xs:element minOccurs="0" name="ArrayOfChar" nillable="true" type="q4:ArrayOfchar" xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfDateTime" nillable="true" type="q5:ArrayOfdateTime" xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfDouble" nillable="true" type="q6:ArrayOfdouble" xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfEnumType" nillable="true" type="tns:ArrayOfEnumType"/>
+      <xs:element minOccurs="0" name="ArrayOfGuid" nillable="true" type="q7:ArrayOfguid" xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfInt16" nillable="true" type="q8:ArrayOfshort" xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfInt32" nillable="true" type="q9:ArrayOfint" xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfInt64" nillable="true" type="q10:ArrayOflong" xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfNullableBoolean" nillable="true" type="q11:ArrayOfNullableOfboolean" xmlns:q11="http://schemas.datacontract.org/2004/07/System"/>
+      <xs:element minOccurs="0" name="ArrayOfSByte" nillable="true" type="q12:ArrayOfbyte" xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfSingle" nillable="true" type="q13:ArrayOffloat" xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfString" nillable="true" type="q14:ArrayOfstring" xmlns:q14="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfTimeSpan" nillable="true" type="q15:ArrayOfduration" xmlns:q15="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfUInt16" nillable="true" type="q16:ArrayOfunsignedShort" xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfUInt32" nillable="true" type="q17:ArrayOfunsignedInt" xmlns:q17="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="ArrayOfUInt64" nillable="true" type="q18:ArrayOfunsignedLong" xmlns:q18="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="Boolean" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="Byte" type="xs:unsignedByte"/>
+      <xs:element minOccurs="0" name="Char" type="ser:char"/>
+      <xs:element minOccurs="0" name="CompositeObject" nillable="true" type="tns:CompositeType"/>
+      <xs:element minOccurs="0" name="DateTime" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="Double" type="xs:double"/>
+      <xs:element minOccurs="0" name="EnumType" type="tns:EnumType"/>
+      <xs:element minOccurs="0" name="Guid" type="ser:guid"/>
+      <xs:element minOccurs="0" name="ICollectionOfT" nillable="true" type="q19:ArrayOfint" xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="IEnumerableOfT" nillable="true" type="q20:ArrayOfint" xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="IListOfT" nillable="true" type="q21:ArrayOfint" xmlns:q21="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="Int16" type="xs:short"/>
+      <xs:element minOccurs="0" name="Int32" type="xs:int"/>
+      <xs:element minOccurs="0" name="Int64" type="xs:long"/>
+      <xs:element minOccurs="0" name="ListOfCompositeObjects" nillable="true" type="tns:ArrayOfCompositeType"/>
+      <xs:element minOccurs="0" name="ListOfT" nillable="true" type="q22:ArrayOfint" xmlns:q22="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+      <xs:element minOccurs="0" name="NullableBoolean" nillable="true" type="xs:boolean"/>
+      <xs:element minOccurs="0" name="NullableByte" nillable="true" type="xs:unsignedByte"/>
+      <xs:element minOccurs="0" name="NullableChar" nillable="true" type="ser:char"/>
+      <xs:element minOccurs="0" name="NullableDateTime" nillable="true" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="NullableDouble" nillable="true" type="xs:double"/>
+      <xs:element minOccurs="0" name="NullableEnumType" nillable="true" type="tns:EnumType"/>
+      <xs:element minOccurs="0" name="NullableGuid" nillable="true" type="ser:guid"/>
+      <xs:element minOccurs="0" name="NullableInt16" nillable="true" type="xs:short"/>
+      <xs:element minOccurs="0" name="NullableInt32" nillable="true" type="xs:int"/>
+      <xs:element minOccurs="0" name="NullableInt64" nillable="true" type="xs:long"/>
+      <xs:element minOccurs="0" name="NullableSByte" nillable="true" type="xs:byte"/>
+      <xs:element minOccurs="0" name="NullableSingle" nillable="true" type="xs:float"/>
+      <xs:element minOccurs="0" name="NullableTimeSpan" nillable="true" type="ser:duration"/>
+      <xs:element minOccurs="0" name="NullableUInt16" nillable="true" type="xs:unsignedShort"/>
+      <xs:element minOccurs="0" name="NullableUInt32" nillable="true" type="xs:unsignedInt"/>
+      <xs:element minOccurs="0" name="NullableUInt64" nillable="true" type="xs:unsignedLong"/>
+      <xs:element minOccurs="0" name="RecursiveObject" nillable="true" type="tns:RecursiveType"/>
+      <xs:element minOccurs="0" name="SByte" type="xs:byte"/>
+      <xs:element minOccurs="0" name="Single" type="xs:float"/>
+      <xs:element minOccurs="0" name="String" nillable="true" type="xs:string"/>
+      <xs:element minOccurs="0" name="TimeSpan" type="ser:duration"/>
+      <xs:element minOccurs="0" name="UInt16" type="xs:unsignedShort"/>
+      <xs:element minOccurs="0" name="UInt32" type="xs:unsignedInt"/>
+      <xs:element minOccurs="0" name="UInt64" type="xs:unsignedLong"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ComplicatedType" nillable="true" type="tns:ComplicatedType"/>
+  <xs:complexType name="ArrayOfEnumType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EnumType" type="tns:EnumType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEnumType" nillable="true" type="tns:ArrayOfEnumType"/>
+  <xs:simpleType name="EnumType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EnumMember0"/>
+      <xs:enumeration value="EnumMember1"/>
+      <xs:enumeration value="EnumMember2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="EnumType" nillable="true" type="tns:EnumType"/>
+  <xs:complexType name="ArrayOfCompositeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CompositeType" nillable="true" type="tns:CompositeType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompositeType" nillable="true" type="tns:ArrayOfCompositeType"/>
+  <xs:complexType name="RecursiveType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RecursiveObject" nillable="true" type="tns:RecursiveType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RecursiveType" nillable="true" type="tns:RecursiveType"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:61285/TestService.svc?xsd=xsd3</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+  <xs:import schemaLocation="http://localhost:61285/TestService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+  <xs:complexType name="ArrayOfstring">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring"/>
+  <xs:complexType name="ArrayOfint">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint"/>
+  <xs:complexType name="ArrayOfboolean">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="boolean" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfboolean" nillable="true" type="tns:ArrayOfboolean"/>
+  <xs:complexType name="ArrayOfchar">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="char" type="ser:char"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfchar" nillable="true" type="tns:ArrayOfchar"/>
+  <xs:complexType name="ArrayOfdateTime">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dateTime" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdateTime" nillable="true" type="tns:ArrayOfdateTime"/>
+  <xs:complexType name="ArrayOfdouble">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="double" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfdouble" nillable="true" type="tns:ArrayOfdouble"/>
+  <xs:complexType name="ArrayOfguid">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="guid" type="ser:guid"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfguid" nillable="true" type="tns:ArrayOfguid"/>
+  <xs:complexType name="ArrayOfshort">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="short" type="xs:short"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfshort" nillable="true" type="tns:ArrayOfshort"/>
+  <xs:complexType name="ArrayOflong">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="long" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOflong" nillable="true" type="tns:ArrayOflong"/>
+  <xs:complexType name="ArrayOfbyte">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="byte" type="xs:byte"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfbyte" nillable="true" type="tns:ArrayOfbyte"/>
+  <xs:complexType name="ArrayOffloat">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="float" type="xs:float"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOffloat" nillable="true" type="tns:ArrayOffloat"/>
+  <xs:complexType name="ArrayOfduration">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="duration" type="ser:duration"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfduration" nillable="true" type="tns:ArrayOfduration"/>
+  <xs:complexType name="ArrayOfunsignedShort">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="unsignedShort" type="xs:unsignedShort"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfunsignedShort" nillable="true" type="tns:ArrayOfunsignedShort"/>
+  <xs:complexType name="ArrayOfunsignedInt">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="unsignedInt" type="xs:unsignedInt"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfunsignedInt" nillable="true" type="tns:ArrayOfunsignedInt"/>
+  <xs:complexType name="ArrayOfunsignedLong">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="unsignedLong" type="xs:unsignedLong"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfunsignedLong" nillable="true" type="tns:ArrayOfunsignedLong"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:61285/TestService.svc?xsd=xsd1</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+  <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+  <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+  <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+  <xs:element name="byte" nillable="true" type="xs:byte"/>
+  <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+  <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+  <xs:element name="double" nillable="true" type="xs:double"/>
+  <xs:element name="float" nillable="true" type="xs:float"/>
+  <xs:element name="int" nillable="true" type="xs:int"/>
+  <xs:element name="long" nillable="true" type="xs:long"/>
+  <xs:element name="QName" nillable="true" type="xs:QName"/>
+  <xs:element name="short" nillable="true" type="xs:short"/>
+  <xs:element name="string" nillable="true" type="xs:string"/>
+  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+  <xs:element name="char" nillable="true" type="tns:char"/>
+  <xs:simpleType name="char">
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:element name="duration" nillable="true" type="tns:duration"/>
+  <xs:simpleType name="duration">
+    <xs:restriction base="xs:duration">
+      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+      <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+      <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="guid" nillable="true" type="tns:guid"/>
+  <xs:simpleType name="guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="FactoryType" type="xs:QName"/>
+  <xs:attribute name="Id" type="xs:ID"/>
+  <xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:61285/TestService.svc?xsd=xsd4</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.datacontract.org/2004/07/System">
+  <xs:complexType name="ArrayOfNullableOfboolean">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="boolean" nillable="true" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNullableOfboolean" nillable="true" type="tns:ArrayOfNullableOfboolean"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://tempuri.org/ITestService/GetCompositeObject" name="GetCompositeObject" bindingOperationName="GetCompositeObject" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:GetCompositeObject/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/GetCompositeObject"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/ITestService/GetObjectWithCollection" name="GetObjectWithCollection" bindingOperationName="GetObjectWithCollection" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:GetObjectWithCollection/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/GetObjectWithCollection"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/ITestService/GetStringValue" name="GetStringValue" bindingOperationName="GetStringValue" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:GetStringValue/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/GetStringValue"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/ITestService/SendAndGetCompositeObject" name="SendAndGetCompositeObject" bindingOperationName="SendAndGetCompositeObject" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:jj="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:SendAndGetCompositeObject>
+         <!--Optional:-->
+         <tem:compositeObject>
+            <!--Optional:-->
+            <jj:BoolValue>true</jj:BoolValue>
+            <!--Optional:-->
+            <jj:StringValue>qerw</jj:StringValue>
+         </tem:compositeObject>
+      </tem:SendAndGetCompositeObject>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/SendAndGetCompositeObject"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/ITestService/SendAndGetObjectWithCollection" name="SendAndGetObjectWithCollection" bindingOperationName="SendAndGetObjectWithCollection" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope 
+xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+xmlns:tem="http://tempuri.org/" 
+xmlns:jj="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface" 
+xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:SendAndGetObjectWithCollection>
+         <!--Optional:-->
+         <tem:objectWithCollection>
+            <!--Optional:-->
+            <jj:StringList>
+               <!--Zero or more repetitions:-->
+               <arr:string>?</arr:string>
+            </jj:StringList>
+         </tem:objectWithCollection>
+      </tem:SendAndGetObjectWithCollection>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/SendAndGetObjectWithCollection"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:o="http://tempuri.org/">
+  <s:Header />
+  <s:Body>
+    <o:SendAndGetObjectWithCollection>
+      <o:objectWithCollection 
+      	xmlns:a="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface" 
+      	xmlns:b="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+        <a:StringList>
+          <b:string>Hi</b:string>
+          <b:string>there</b:string>
+          <b:string>!</b:string>
+        </a:StringList>
+      </o:objectWithCollection>
+    </o:SendAndGetObjectWithCollection>
+  </s:Body>
+</s:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/SendAndGetObjectWithCollection"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/ITestService/SendAndGetStringValue" name="SendAndGetStringValue" bindingOperationName="SendAndGetStringValue" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:SendAndGetStringValue>
+         <!--Optional:-->
+         <tem:stringValue>?</tem:stringValue>
+      </tem:SendAndGetStringValue>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/SendAndGetStringValue"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/ITestService/SendCompositeObject" name="SendCompositeObject" bindingOperationName="SendCompositeObject" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:jj="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:SendCompositeObject>
+         <!--Optional:-->
+         <tem:compositeObject>
+            <!--Optional:-->
+            <jj:BoolValue>?</jj:BoolValue>
+            <!--Optional:-->
+            <jj:StringValue>?</jj:StringValue>
+         </tem:compositeObject>
+      </tem:SendCompositeObject>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/SendCompositeObject"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/ITestService/SendObjectWithCollection" name="SendObjectWithCollection" bindingOperationName="SendObjectWithCollection" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/" xmlns:jj="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface" xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:SendObjectWithCollection>
+         <!--Optional:-->
+         <tem:objectWithCollection>
+            <!--Optional:-->
+            <jj:StringList>
+               <!--Zero or more repetitions:-->
+               <arr:string>?</arr:string>
+            </jj:StringList>
+         </tem:objectWithCollection>
+      </tem:SendObjectWithCollection>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/SendObjectWithCollection"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/ITestService/SendStringValue" name="SendStringValue" bindingOperationName="SendStringValue" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:SendStringValue>
+         <!--Optional:-->
+         <tem:stringValue>?</tem:stringValue>
+      </tem:SendStringValue>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/SendStringValue"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://tempuri.org/ITestService/SendAndGetComplicatedObject" name="SendAndGetComplicatedObject" bindingOperationName="SendAndGetComplicatedObject" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Wcf ClientBase Request"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+  <s:Header>
+  </s:Header>
+  <s:Body>
+    <SendAndGetComplicatedObject xmlns="http://tempuri.org/">
+      <complicatedObject xmlns:serv="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface" 
+       				xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+       				
+        <serv:Array xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:int>2</arr:int>
+          <arr:int>2</arr:int>
+        </serv:Array>
+        
+        <serv:ArrayOfBoolean xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:boolean>true</arr:boolean>
+          <arr:boolean>false</arr:boolean>
+        </serv:ArrayOfBoolean>
+        
+        <serv:ArrayOfByte>ECA=</serv:ArrayOfByte>
+        
+        <serv:ArrayOfChar xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:char>97</arr:char>
+          <arr:char>98</arr:char>
+        </serv:ArrayOfChar>
+        
+        <serv:ArrayOfDateTime xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:dateTime>2001-02-03T04:05:00</arr:dateTime>
+          <arr:dateTime>2006-07-08T09:10:00</arr:dateTime>
+        </serv:ArrayOfDateTime>
+        
+        <serv:ArrayOfDouble xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:double>12300</arr:double>
+          <arr:double>234000</arr:double>
+        </serv:ArrayOfDouble>
+        
+        <serv:ArrayOfEnumType>
+          <serv:EnumType>EnumMember1</serv:EnumType>
+          <serv:EnumType>EnumMember2</serv:EnumType>
+        </serv:ArrayOfEnumType>
+        
+        <serv:ArrayOfGuid xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:guid>da1b2fe3-f4f7-4e0b-a209-cf74ae065d89</arr:guid>
+          <arr:guid>889f99bc-11d9-4fcc-bc44-e8c1e7ffbd70</arr:guid>
+        </serv:ArrayOfGuid>
+        
+        <serv:ArrayOfInt16 xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:short>-2</arr:short>
+          <arr:short>2</arr:short>
+        </serv:ArrayOfInt16>
+        
+        <serv:ArrayOfInt32 xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:int>-2</arr:int>
+          <arr:int>2</arr:int>
+        </serv:ArrayOfInt32>
+        
+        <serv:ArrayOfInt64 xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:long>-2</arr:long>
+          <arr:long>2</arr:long>
+        </serv:ArrayOfInt64>
+        
+        <serv:ArrayOfSByte xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:byte>-2</arr:byte>
+          <arr:byte>2</arr:byte>
+        </serv:ArrayOfSByte>
+        
+        <serv:ArrayOfSingle xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:float>12300</arr:float>
+          <arr:float>234000</arr:float>
+        </serv:ArrayOfSingle>
+        
+        <serv:ArrayOfString xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:string>Hello</arr:string>
+          <arr:string>world</arr:string>
+          <arr:string>!</arr:string>
+        </serv:ArrayOfString>
+        
+        <serv:ArrayOfTimeSpan xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:duration>PT1H</arr:duration>
+          <arr:duration>PT2H</arr:duration>
+        </serv:ArrayOfTimeSpan>
+        
+        <serv:ArrayOfUInt16 xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:unsignedShort>1</arr:unsignedShort>
+          <arr:unsignedShort>2</arr:unsignedShort>
+        </serv:ArrayOfUInt16>
+        
+        <serv:ArrayOfUInt32 xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:unsignedInt>1</arr:unsignedInt>
+          <arr:unsignedInt>2</arr:unsignedInt>
+        </serv:ArrayOfUInt32>
+        
+        <serv:ArrayOfUInt64 xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:unsignedLong>1</arr:unsignedLong>
+          <arr:unsignedLong>2</arr:unsignedLong>
+        </serv:ArrayOfUInt64>
+        
+        <serv:Boolean>true</serv:Boolean>
+        <serv:Byte>2</serv:Byte>
+        <serv:Char>97</serv:Char>
+        <serv:CompositeObject>
+          <serv:BoolValue>true</serv:BoolValue>
+          <serv:StringValue>Hello</serv:StringValue>
+        </serv:CompositeObject>
+        <serv:DateTime>2001-02-03T04:56:00</serv:DateTime>
+        <serv:Double>12300</serv:Double>
+        <serv:EnumType>EnumMember2</serv:EnumType>
+        <serv:Guid>ebac0ca5-b89d-4e54-ac01-19351261f004</serv:Guid>
+        
+        <serv:ICollectionOfT xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:int>2</arr:int>
+          <arr:int>2</arr:int>
+        </serv:ICollectionOfT>
+        
+        <serv:IEnumerableOfT xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:int>2</arr:int>
+          <arr:int>2</arr:int>
+        </serv:IEnumerableOfT>
+        
+        <serv:IListOfT xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:int>2</arr:int>
+          <arr:int>2</arr:int>
+        </serv:IListOfT>
+        
+        <serv:Int16>-2</serv:Int16>
+        <serv:Int32>-2</serv:Int32>
+        <serv:Int64>-2</serv:Int64>
+        
+        <serv:ListOfCompositeObjects>
+          <serv:CompositeType>
+            <serv:BoolValue>false</serv:BoolValue>
+            <serv:StringValue i:nil="true" />
+          </serv:CompositeType>
+          <serv:CompositeType>
+            <serv:BoolValue>false</serv:BoolValue>
+            <serv:StringValue>Hello</serv:StringValue>
+          </serv:CompositeType>
+          <serv:CompositeType>
+            <serv:BoolValue>true</serv:BoolValue>
+            <serv:StringValue i:nil="true" />
+          </serv:CompositeType>
+          <serv:CompositeType>
+            <serv:BoolValue>true</serv:BoolValue>
+            <serv:StringValue>Hello</serv:StringValue>
+          </serv:CompositeType>
+        </serv:ListOfCompositeObjects>
+        
+        <serv:ListOfT xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+          <arr:int>2</arr:int>
+          <arr:int>2</arr:int>
+        </serv:ListOfT>
+        
+        <serv:NullableBoolean>true</serv:NullableBoolean>
+        <serv:NullableByte i:nil="true" />
+        <serv:NullableChar>97</serv:NullableChar>
+        <serv:NullableDateTime i:nil="true" />
+        <serv:NullableDouble i:nil="true" />
+        <serv:NullableEnumType>EnumMember2</serv:NullableEnumType>
+        <serv:NullableGuid i:nil="true" />
+        <serv:NullableInt16 i:nil="true" />
+        <serv:NullableInt32 i:nil="true" />
+        <serv:NullableInt64 i:nil="true" />
+        <serv:NullableSByte>-2</serv:NullableSByte>
+        <serv:NullableSingle>12300</serv:NullableSingle>
+        <serv:NullableTimeSpan>PT1H23M</serv:NullableTimeSpan>
+        <serv:NullableUInt16>2</serv:NullableUInt16>
+        <serv:NullableUInt32>2</serv:NullableUInt32>
+        <serv:NullableUInt64>2</serv:NullableUInt64>
+        
+        <serv:RecursiveObject>
+          <serv:RecursiveObject>
+            <serv:RecursiveObject>
+              <serv:RecursiveObject i:nil="true" />
+            </serv:RecursiveObject>
+          </serv:RecursiveObject>
+        </serv:RecursiveObject>
+        
+        <serv:SByte>-2</serv:SByte>
+        <serv:Single>12300</serv:Single>
+        <serv:String>Hello</serv:String>
+        <serv:TimeSpan>PT1H23M</serv:TimeSpan>
+        <serv:UInt16>2</serv:UInt16>
+        <serv:UInt32>2</serv:UInt32>
+        <serv:UInt64>2</serv:UInt64>
+      </complicatedObject>
+    </SendAndGetComplicatedObject>
+  </s:Body>
+</s:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/SendAndGetComplicatedObject"/><con:wsrmConfig version="1.2"/></con:call><con:call name="JJ.Framework.Soap Request"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:o="http://tempuri.org/">
+  <s:Header />
+  <s:Body>
+    <o:SendAndGetComplicatedObject>
+      <o:complicatedObject 
+      	xmlns:a="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface" 
+      	xmlns:b="http://schemas.datacontract.org/2004/07/System" 
+      	xmlns:c="http://www.w3.org/2001/XMLSchema-instance">
+        <a:Boolean>true</a:Boolean>
+        <a:Byte>2</a:Byte>
+        <a:SByte>-2</a:SByte>
+        <a:Int16>-2</a:Int16>
+        <a:UInt16>2</a:UInt16>
+        <a:Int32>-2</a:Int32>
+        <a:UInt32>2</a:UInt32>
+        <a:Int64>-2</a:Int64>
+        <a:UInt64>2</a:UInt64>
+        <a:Char>a</a:Char>
+        <a:Double>12300</a:Double>
+        <a:Single>12300</a:Single>
+        <a:String>Hello</a:String>
+        <a:Guid>ebac0ca5-b89d-4e54-ac01-19351261f004</a:Guid>
+        <a:TimeSpan>PT1H23M</a:TimeSpan>
+        <a:DateTime>2001-02-03T04:56:00</a:DateTime>
+        <a:EnumType>EnumMember2</a:EnumType>
+        <a:NullableBoolean>true</a:NullableBoolean>
+        <a:NullableByte c:nil="true" />
+        <a:NullableSByte>-2</a:NullableSByte>
+        <a:NullableInt16 c:nil="true" />
+        <a:NullableUInt16>2</a:NullableUInt16>
+        <a:NullableInt32 c:nil="true" />
+        <a:NullableUInt32>2</a:NullableUInt32>
+        <a:NullableInt64 c:nil="true" />
+        <a:NullableUInt64>2</a:NullableUInt64>
+        <a:NullableChar>a</a:NullableChar>
+        <a:NullableDouble c:nil="true" />
+        <a:NullableSingle>12300</a:NullableSingle>
+        <a:NullableGuid c:nil="true" />
+        <a:NullableTimeSpan>PT1H23M</a:NullableTimeSpan>
+        <a:NullableDateTime c:nil="true" />
+        <a:NullableEnumType>EnumMember2</a:NullableEnumType>
+        <a:Array>
+          <b:Int32>2</b:Int32>
+          <b:Int32>2</b:Int32>
+        </a:Array>
+        <a:ListOfT>
+          <b:Int32>2</b:Int32>
+          <b:Int32>2</b:Int32>
+        </a:ListOfT>
+        <a:IListOfT>
+          <b:Int32>2</b:Int32>
+          <b:Int32>2</b:Int32>
+        </a:IListOfT>
+        <a:ICollectionOfT>
+          <b:Int32>2</b:Int32>
+          <b:Int32>2</b:Int32>
+        </a:ICollectionOfT>
+        <a:IEnumerableOfT>
+          <b:Int32>2</b:Int32>
+          <b:Int32>2</b:Int32>
+        </a:IEnumerableOfT>
+        <a:RecursiveObject>
+          <a:RecursiveObject>
+            <a:RecursiveObject>
+              <a:RecursiveObject c:nil="true" />
+            </a:RecursiveObject>
+          </a:RecursiveObject>
+        </a:RecursiveObject>
+        <a:CompositeObject>
+          <a:BoolValue>true</a:BoolValue>
+          <a:StringValue>Hello</a:StringValue>
+        </a:CompositeObject>
+        <a:ListOfCompositeObjects>
+          <a:CompositeType>
+            <a:BoolValue>false</a:BoolValue>
+            <a:StringValue c:nil="true" />
+          </a:CompositeType>
+          <a:CompositeType>
+            <a:BoolValue>false</a:BoolValue>
+            <a:StringValue>Hello</a:StringValue>
+          </a:CompositeType>
+          <a:CompositeType>
+            <a:BoolValue>true</a:BoolValue>
+            <a:StringValue c:nil="true" />
+          </a:CompositeType>
+          <a:CompositeType>
+            <a:BoolValue>true</a:BoolValue>
+            <a:StringValue>Hello</a:StringValue>
+          </a:CompositeType>
+        </a:ListOfCompositeObjects>
+        <a:ArrayOfBoolean>
+          <b:Boolean>true</b:Boolean>
+          <b:Boolean>false</b:Boolean>
+        </a:ArrayOfBoolean>
+        <a:ArrayOfByte>
+          <b:Byte>16</b:Byte>
+          <b:Byte>32</b:Byte>
+        </a:ArrayOfByte>
+        <a:ArrayOfSByte>
+          <b:SByte>-2</b:SByte>
+          <b:SByte>2</b:SByte>
+        </a:ArrayOfSByte>
+        <a:ArrayOfInt16>
+          <b:Int16>-2</b:Int16>
+          <b:Int16>2</b:Int16>
+        </a:ArrayOfInt16>
+        <a:ArrayOfUInt16>
+          <b:UInt16>1</b:UInt16>
+          <b:UInt16>2</b:UInt16>
+        </a:ArrayOfUInt16>
+        <a:ArrayOfInt32>
+          <b:Int32>-2</b:Int32>
+          <b:Int32>2</b:Int32>
+        </a:ArrayOfInt32>
+        <a:ArrayOfUInt32>
+          <b:UInt32>1</b:UInt32>
+          <b:UInt32>2</b:UInt32>
+        </a:ArrayOfUInt32>
+        <a:ArrayOfInt64>
+          <b:Int64>-2</b:Int64>
+          <b:Int64>2</b:Int64>
+        </a:ArrayOfInt64>
+        <a:ArrayOfUInt64>
+          <b:UInt64>1</b:UInt64>
+          <b:UInt64>2</b:UInt64>
+        </a:ArrayOfUInt64>
+        <a:ArrayOfChar>
+          <b:Char>a</b:Char>
+          <b:Char>b</b:Char>
+        </a:ArrayOfChar>
+        <a:ArrayOfDouble>
+          <b:Double>12300</b:Double>
+          <b:Double>234000</b:Double>
+        </a:ArrayOfDouble>
+        <a:ArrayOfSingle>
+          <b:Single>12300</b:Single>
+          <b:Single>234000</b:Single>
+        </a:ArrayOfSingle>
+        <a:ArrayOfString>
+          <b:String>Hello</b:String>
+          <b:String>world</b:String>
+          <b:String>!</b:String>
+        </a:ArrayOfString>
+        <a:ArrayOfGuid>
+          <b:Guid>7fce105d-e526-47b9-8c52-4114325f1c00</b:Guid>
+          <b:Guid>3ab6a560-2b8f-4dda-91e5-d25d1183f759</b:Guid>
+        </a:ArrayOfGuid>
+        <a:ArrayOfTimeSpan>
+          <b:TimeSpan>PT1H</b:TimeSpan>
+          <b:TimeSpan>PT2H</b:TimeSpan>
+        </a:ArrayOfTimeSpan>
+        <a:ArrayOfDateTime>
+          <b:DateTime>2001-02-03T04:05:00</b:DateTime>
+          <b:DateTime>2006-07-08T09:10:00</b:DateTime>
+        </a:ArrayOfDateTime>
+        <a:ArrayOfEnumType>
+          <a:EnumType>EnumMember1</a:EnumType>
+          <a:EnumType>EnumMember2</a:EnumType>
+        </a:ArrayOfEnumType>
+      </o:complicatedObject>
+    </o:SendAndGetComplicatedObject>
+  </s:Body>
+</s:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/SendAndGetComplicatedObject"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

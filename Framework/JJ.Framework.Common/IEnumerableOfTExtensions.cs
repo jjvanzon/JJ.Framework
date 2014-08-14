@@ -18,11 +18,36 @@ namespace JJ.Framework.Common
 
         public static IEnumerable<T> SelectRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
         {
+            // TODO: Beware: nested enumerators.
+
             if (collection == null) { throw new ArgumentNullException("collection"); }
             if (selector == null) { throw new ArgumentNullException("selector"); }
 
             foreach (T item in collection)
             {
+                yield return item;
+
+                if (item != null)
+                {
+                    foreach (T item2 in selector(item).SelectRecursive(selector))
+                    {
+                        yield return item2;
+                    }
+                }
+            }
+        }
+
+        public static IEnumerable<T> SelectRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
+        {
+            // TODO: Beware: nested enumerators.
+
+            if (collection == null) { throw new ArgumentNullException("collection"); }
+            if (selector == null) { throw new ArgumentNullException("selector"); }
+
+            for (int i = 0; i < collection.Count; i++)
+            {
+                T item = collection[i];
+
                 yield return item;
 
                 if (item != null)

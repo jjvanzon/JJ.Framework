@@ -3,9 +3,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Xml.Linq;
 using System.Text;
 using JJ.Apps.SetText.Interface.ViewModels;
-using JJ.Models.Canonical;
 using System.Collections.Generic;
 using JJ.Apps.SetText.AppService.Interface;
+using JJ.Framework.Configuration;
+using JJ.Framework.Soap.Tests.ServiceInterface;
+using JJ.Framework.Soap.Tests.Helpers;
 
 namespace JJ.Framework.Soap.Tests
 {
@@ -13,38 +15,30 @@ namespace JJ.Framework.Soap.Tests
     public class WcfSoapClientTests
     {
         [TestMethod]
-        public void Test_WcfSoapClient()
+        public void Test_WcfSoapClient_SendAndGetCompositeObject()
         {
-            string url = "http://localhost:6371/settextappservice.svc";
-            var client = new WcfSoapClient<ISetTextAppService>(url);
-            SetTextViewModel viewModel = CreateViewModel();
-            SetTextViewModel viewModel2 = client.Invoke(x => x.Save(viewModel, "nl-NL"));
+            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            var client = new WcfSoapClient<ITestService>(url);
+            CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
+            CompositeType obj2 = client.Invoke(x => x.SendAndGetCompositeObject(obj1));
         }
 
         [TestMethod]
-        public void Test_WcfSoapClient_WithCollections()
+        public void Test_WcfSoapClient_SendAndGetObjectWithCollection()
         {
-            string url = "http://localhost:6371/settextappservice.svc";
-            var client = new WcfSoapClient<ISetTextAppService>(url);
-            SetTextViewModel viewModel = CreateViewModel();
-
-            // Test collection items sent back and forth by abusing the ValidationMessages collection.
-            // Back (no text generates validation messages)
-            viewModel.Text = "";
-            // Forth
-            viewModel.ValidationMessages.Add(new ValidationMessage { PropertyKey = "Dummy", Text = "This is a dummy." });
-            viewModel.ValidationMessages.Add(new ValidationMessage { PropertyKey = "Dummy", Text = "This is a dummy." });
-
-            SetTextViewModel viewModel2 = client.Invoke(x => x.Save(viewModel, "nl-NL"));
+            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            var client = new WcfSoapClient<ITestService>(url);
+            TypeWithCollection obj1 = new TypeWithCollection { StringList = new string[] { "Hi", "there", "!" } };
+            TypeWithCollection obj2 = client.Invoke(x => x.SendAndGetObjectWithCollection(obj1));
         }
 
-        private SetTextViewModel CreateViewModel()
+        [TestMethod]
+        public void Test_WcfSoapClient_SendAndGetComplicatedObject()
         {
-            return new SetTextViewModel
-            {
-                Text = "Hi!",
-                ValidationMessages = new List<ValidationMessage>()
-            };
+            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            var client = new WcfSoapClient<ITestService>(url);
+            ComplicatedType obj1 = TestHelper.CreateComplicatedObject();
+            ComplicatedType obj2 = client.Invoke(x => x.SendAndGetComplicatedObject(obj1));
         }
     }
 }
