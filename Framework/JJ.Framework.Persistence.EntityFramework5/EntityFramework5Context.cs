@@ -12,8 +12,8 @@ namespace JJ.Framework.Persistence.EntityFramework5
     {
         public DbContext Context { get; private set; }
 
-        public EntityFramework5Context(string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly)
-            : base(persistenceLocation, modelAssembly, mappingAssembly)
+        public EntityFramework5Context(string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
+            : base(persistenceLocation, modelAssembly, mappingAssembly, dialect)
         {
             Context = UnderlyingEntityFramework5ContextFactory.CreateContext(persistenceLocation, modelAssembly, mappingAssembly);
         }

@@ -8,14 +8,92 @@ using System.Xml.Serialization;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 using JJ.Framework.PlatformCompatibility;
+using System.Xml.Linq;
+using System.Xml;
 
 namespace JJ.Framework.Xml.Linq.Internal
 {
     internal static class ConversionHelper
     {
-        private static CultureInfo _culture = CultureInfo_PlatformSafe.GetCultureInfo("en-US");
+        /// <param name="cultureInfo">
+        /// Nullable. When null, standard XML / SOAP formatting will be used.
+        /// </param>
+        public static object ParseValue(string input, Type type, CultureInfo cultureInfo)
+        {
+            if (cultureInfo == null)
+            {
+                return ParseValueWithStandardXmlFormatting(input, type);
+            }
+            else
+            {
+                if (type.IsNullableType())
+                {
+                    if (String.IsNullOrEmpty(input))
+                    {
+                        return null;
+                    }
 
-        public static object ParseValue(string input, Type type)
+                    type = type.GetUnderlyingNullableType();
+                }
+
+                if (type.IsEnum)
+                {
+                    return Enum.Parse(type, input);
+                }
+
+                if (type == typeof(TimeSpan))
+                {
+                    return TimeSpan.Parse(input);
+                }
+
+                if (type == typeof(Guid))
+                {
+                    return new Guid(input);
+                }
+
+                if (type == typeof(IntPtr))
+                {
+                    int number = Int32.Parse(input);
+                    return new IntPtr(number);
+                }
+
+                if (type == typeof(UIntPtr))
+                {
+                    uint number = UInt32.Parse(input);
+                    return new UIntPtr(number);
+                }
+
+                return Convert.ChangeType(input, type, cultureInfo);
+            }
+        }
+
+        // TODO: Not sure how well XmlConvert is supported on different (mobile) platforms.
+
+        private static Dictionary<Type, Func<string, object>> _xmlConvertFuncDictionary = new Dictionary<Type, Func<string, object>>
+        {
+            { typeof(Boolean),        x => XmlConvert.ToBoolean(x) },
+            { typeof(Byte),           x => XmlConvert.ToByte(x) },
+            { typeof(Char),           x => XmlConvert.ToChar(x) },
+            { typeof(Decimal),        x => XmlConvert.ToDecimal(x) },
+            { typeof(Double),         x => XmlConvert.ToDouble(x) },
+            { typeof(Guid),           x => XmlConvert.ToGuid(x) },
+            { typeof(Int16),          x => XmlConvert.ToInt16(x) },
+            { typeof(Int32),          x => XmlConvert.ToInt32(x) },
+            { typeof(Int64),          x => XmlConvert.ToInt64(x) },
+            { typeof(SByte),          x => XmlConvert.ToSByte(x) },
+            { typeof(Single),         x => XmlConvert.ToSingle(x) },
+            { typeof(TimeSpan),       x => XmlConvert.ToTimeSpan(x) },
+            { typeof(UInt16),         x => XmlConvert.ToUInt16(x) },
+            { typeof(UInt32),         x => XmlConvert.ToUInt32(x) },
+            { typeof(UInt64),         x => XmlConvert.ToUInt64(x) },
+            { typeof(String),         x => x },
+
+            // XML supports customization of the date time format, but here we only support the default format.
+            { typeof(DateTime),       x => XmlConvert.ToDateTime(x, XmlDateTimeSerializationMode.Local) },
+            { typeof(DateTimeOffset), x => XmlConvert.ToDateTimeOffset(x) }
+        };
+
+        private static object ParseValueWithStandardXmlFormatting(string input, Type type)
         {
             if (type.IsNullableType())
             {
@@ -32,29 +110,27 @@ namespace JJ.Framework.Xml.Linq.Internal
                 return Enum.Parse(type, input);
             }
 
-            if (type == typeof(TimeSpan))
+            Func<string, object> func;
+            if (_xmlConvertFuncDictionary.TryGetValue(type, out func))
             {
-                return TimeSpan.Parse(input);
+                return func(input);
             }
 
-            if (type == typeof(Guid))
+            throw new Exception(String.Format("Value '{0}' could not be converted to type '{1}' .", input, type.Name)); 
+        }
+
+        /// <param name="cultureInfo">
+        /// Nullable. When null, standard XML / SOAP formatting will be used.
+        /// </param>
+        public static object FormatValue(object input, CultureInfo cultureInfo = null)
+        {
+            if (cultureInfo != null)
             {
-                return new Guid(input);
+                return Convert.ToString(input, cultureInfo);
             }
 
-            if (type == typeof(IntPtr))
-            {
-                int number = Int32.Parse(input);
-                return new IntPtr(number);
-            }
-
-            if (type == typeof(UIntPtr))
-            {
-                uint number = UInt32.Parse(input);
-                return new UIntPtr(number);
-            }
-
-            return Convert.ChangeType(input, type, _culture);
+            // System.Linq.Xml will take care of standard XML formatting formatting.
+            return input;
         }
 
         /// <summary>
@@ -80,6 +156,7 @@ namespace JJ.Framework.Xml.Linq.Internal
             // Even things that do not need to be called (e.g. IsSupportedCollectionType).
             // The only reason everything is called might be to check for conflicting .NET attributes,
             // but at a large performance cost.
+            // TODO: Simply cache things to get rid of this performance problem?
 
             bool hasXmlAttributeAttribute = property.GetCustomAttribute_PlatformSupport<XmlAttributeAttribute>() != null;
             bool hasXmlElementAttribute = property.GetCustomAttribute_PlatformSupport<XmlElementAttribute>() != null;

@@ -12,6 +12,7 @@ using JJ.Framework.Reflection;
 using JJ.Framework.IO;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Xml.Linq.Internal;
+using System.Globalization;
 
 namespace JJ.Framework.Xml.Linq
 {
@@ -23,14 +24,17 @@ namespace JJ.Framework.Xml.Linq
     /// </summary>
     public class ObjectToXmlConverter
     {
-        private const string NIL_XML_NAMESPACE = "http://www.w3.org/2001/XMLSchema-instance";
-        private const string NIL_ATTRIBUTE_NAME = "nil";
-
         private string _rootElementName;
         private XmlCasingEnum _casing;
         private bool _mustGenerateNamespaces;
         private bool _mustGenerateNilAttributes;
         private NamespaceResolver _namespaceResolver;
+
+        /// <summary>
+        /// When null, standard XML / SOAP formatting of values is applied.
+        /// When filled in, values will be formatter in accordance to the provided culture.
+        /// </summary>
+        private CultureInfo _cultureInfo;
         
         /// <summary>
         /// Under certain platforms standard XML serialization may not be available 
@@ -42,7 +46,9 @@ namespace JJ.Framework.Xml.Linq
         /// If set to true, ObjectToXmlConverter will generate an XML namespace for each .NET namespace,
         /// in a way that conforms to WCF.
         /// The XML namespace will have the format "http://schemas.datacontract.org/2004/07/" followed by the .NET namespace.
-        /// The namespace prefixes will be 'alphabetically numbered', starting with 'a', then 'b' and so on.
+        /// The namespace prefixes will be 'alphabetically numbered' spread-sheet style, but in lower case
+        /// starting with 'a', then 'b' and so on.
+        /// If you need different namespaces, you must translate the namespace yourself.
         /// </param>
         /// <param name="mustGenerateNilAttributes">
         /// If set to false, properties that hold no object or value
@@ -52,10 +58,15 @@ namespace JJ.Framework.Xml.Linq
         /// This wil also include an extra namespace that defines the nil attribute:
         /// "http://www.w3.org/2001/XMLSchema-instance".
         /// </param>
+        /// <param name="cultureInfo">
+        /// If null, standard XML / SOAP formatting of values is applied.
+        /// When filled in, values will be formatted in accordance with the provided culture.
+        /// </param>
         public ObjectToXmlConverter(
             XmlCasingEnum casing = XmlCasingEnum.CamelCase, 
             bool mustGenerateNamespaces = false, 
             bool mustGenerateNilAttributes = false,
+            CultureInfo cultureInfo = null,
             string rootElementName = "root")
         {
             if (rootElementName == null) throw new ArgumentNullException("rootElementName");
@@ -64,6 +75,7 @@ namespace JJ.Framework.Xml.Linq
             _mustGenerateNamespaces = mustGenerateNamespaces;
             _rootElementName = rootElementName;
             _mustGenerateNilAttributes = mustGenerateNilAttributes;
+            _cultureInfo = cultureInfo;
 
             _namespaceResolver = new NamespaceResolver();
         }
@@ -122,7 +134,7 @@ namespace JJ.Framework.Xml.Linq
             // Add extra nil namespace to the namespace resolver.
             if (_mustGenerateNilAttributes)
             {
-                _namespaceResolver.AddXmlNamespaceString(NIL_XML_NAMESPACE);
+                _namespaceResolver.AddXmlNamespaceString(NilHelper.NIL_XML_NAMESPACE_NAME);
             }
 
             foreach (XAttribute namespaceDeclarationAttribute in _namespaceResolver.GetNamespaceDeclarationAttributes())
@@ -185,6 +197,7 @@ namespace JJ.Framework.Xml.Linq
         /// <summary>
         /// Converts a property of an object to either an XML element that holds a value or a composite element.
         /// Null is returned if the source value is null.
+        /// Except when _mustGenerateNilAttributes is true.
         /// </summary>
         private XElement TryConvertToElement(object sourceParentObject, PropertyInfo sourceProperty)
         {
@@ -214,7 +227,7 @@ namespace JJ.Framework.Xml.Linq
 
             if (sourceObject == null)
             {
-                XElement destNilElement = CreateNilElement(destXName);
+                XElement destNilElement = NilHelper.CreateNilElement(destXName);
                 return destNilElement;
             }
 
@@ -222,14 +235,6 @@ namespace JJ.Framework.Xml.Linq
             return destElement;
         }
 
-        private XElement CreateNilElement(XName destXName)
-        {
-            XElement destElement = new XElement(destXName, null);
-            XNamespace xnamespace = NIL_XML_NAMESPACE;
-            XAttribute nilAttribute = new XAttribute(xnamespace + NIL_ATTRIBUTE_NAME, true);
-            destElement.Add(nilAttribute);
-            return destElement;
-        }
 
         /// <summary>
         /// Converts an object to an XML element with the provided name.
@@ -255,7 +260,8 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XElement ConvertToLeafElement(object sourceValue, XName destXName)
         {
-            var destElement = new XElement(destXName, sourceValue);
+            object destValue = ConversionHelper.FormatValue(sourceValue, _cultureInfo);
+            XElement destElement = new XElement(destXName, destValue);
             return destElement;
         }
 
@@ -287,7 +293,8 @@ namespace JJ.Framework.Xml.Linq
 
             string destName = ConversionHelper.GetAttributeNameForProperty(sourceProperty, _casing);
             XName destXName = GetXName(destName, sourceProperty);
-            var destAttribute = new XAttribute(destXName, sourceValue);
+            object destValue = ConversionHelper.FormatValue(sourceValue, _cultureInfo);
+            var destAttribute = new XAttribute(destXName, destValue);
             return destAttribute;
         }
 

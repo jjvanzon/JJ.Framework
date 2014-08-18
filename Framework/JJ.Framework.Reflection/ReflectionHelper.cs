@@ -19,6 +19,9 @@ namespace JJ.Framework.Reflection
 
         // GetImplementation
 
+        private static object _implementationsDictionaryLock = new object();
+        private static Dictionary<string, Type[]> _implementationsDictionary = new Dictionary<string, Type[]>();
+
         public static Type GetImplementation(Assembly assembly, Type baseType)
         {
             Type type = TryGetImplementation(assembly, baseType);
@@ -48,23 +51,40 @@ namespace JJ.Framework.Reflection
             return types[0];
         }
 
-        public static Type[] GetImplementations(Assembly assembly, Type baseType)
-        {
-            // TODO: Caching please.
-            Type[] types = assembly.GetTypes();
-
-            return Enumerable.Union(types.Where(x => x.BaseType == baseType),
-                                    types.Where(x => x.GetInterface_PlatformSafe(baseType.Name) != null)).ToArray();
-        }
-
         public static Type[] GetImplementations(IEnumerable<Assembly> assemblies, Type baseType)
         {
             return assemblies.SelectMany(x => GetImplementations(x, baseType)).ToArray();
         }
 
-        // GetItemType
+        public static Type[] GetImplementations(Assembly assembly, Type baseType)
+        {
+            if (assembly == null) throw new ArgumentNullException("assembly");
+            if (baseType == null) throw new ArgumentNullException("baseType");
 
-        // TODO: ItemTypes are used a lot. Perhaps this should be cached.
+            lock (_implementationsDictionaryLock)
+            {
+                string key = GetImplementationsDictionaryKey(assembly, baseType);
+                Type[] types;
+                if (!_implementationsDictionary.TryGetValue(key, out types))
+                {
+                    types = assembly.GetTypes();
+                    types = Enumerable.Union(types.Where(x => x.BaseType == baseType),
+                                             types.Where(x => x.GetInterface_PlatformSafe(baseType.Name) != null)).ToArray();
+
+                    _implementationsDictionary.Add(key, types);
+                }
+
+                return types;
+            }
+        }
+
+        private static string GetImplementationsDictionaryKey(Assembly assembly, Type baseType)
+        {
+            // TODO: Is it not a bad plan to hash a large string?
+            return assembly.FullName + "$" + baseType.FullName + "$" + baseType.Assembly.FullName;
+        }
+
+        // GetItemType
 
         public static Type GetItemType(object collection)
         {
@@ -82,29 +102,40 @@ namespace JJ.Framework.Reflection
             return itemType;
         }
 
+        private static object _itemTypeDictionaryLock = new object ();
+        private static Dictionary<Type, Type> _itemTypeDictionary = new Dictionary<Type, Type>();
+
         public static Type TryGetItemType(Type collectionType)
         {
             if (collectionType == null) throw new ArgumentNullException("collectionType");
 
-            // The code after this block does not work for when collectionType is IEnumerable<T> itself,
-            // only if collectionType implements IEnumerable<T>.
-            if (collectionType.IsGenericType)
+            lock (_itemTypeDictionaryLock)
             {
-                Type openGenericCollectionType = collectionType.GetGenericTypeDefinition();
-                if (openGenericCollectionType == typeof(IEnumerable<>))
+                Type itemType;
+                if (!_itemTypeDictionary.TryGetValue(collectionType, out itemType))
                 {
-                    return collectionType.GetGenericArguments()[0];
-                }
-            }
+                    // This works for IEnumerable<T> itself.
+                    if (collectionType.IsGenericType)
+                    {
+                        Type openGenericCollectionType = collectionType.GetGenericTypeDefinition();
+                        if (openGenericCollectionType == typeof(IEnumerable<>))
+                        {
+                            itemType = collectionType.GetGenericArguments()[0];
+                        }
+                    }
 
-            Type enumerableInterface = collectionType.GetInterface_PlatformSafe(typeof(IEnumerable<>).FullName);
-            if (enumerableInterface != null)
-            {
-                Type itemType = enumerableInterface.GetGenericArguments()[0];
+                    // This works for types that implement IEnumerable<T> / have IEnumerable<T> as a base.
+                    Type enumerableInterface = collectionType.GetInterface_PlatformSafe(typeof(IEnumerable<>).FullName);
+                    if (enumerableInterface != null)
+                    {
+                        itemType = enumerableInterface.GetGenericArguments()[0];
+                    }
+
+                    _itemTypeDictionary.Add(collectionType, itemType);
+                }
+
                 return itemType;
             }
-
-            return null;
         }
 
         // Other

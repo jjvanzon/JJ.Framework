@@ -37,7 +37,6 @@ namespace JJ.Framework.Persistence.Xml.Internal
             {
                 AutoCreateXmlFile();
 
-                // TODO: Use lock() to prevent simultaneous reads and writes.
                 Document = new XmlDocument();
                 Document.Load(_filePath);
             }

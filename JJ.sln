@@ -144,6 +144,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.SetText.AppService.Interface", "Apps\JJ.Apps.SetText.AppService.Interface\JJ.Apps.SetText.AppService.Interface.csproj", "{4A052265-9896-4D0B-A9B0-14D052BC95D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.SetText.WinForms.Online.GeneratedServiceClient", "Apps\JJ.Apps.SetText.WinForms.Online.GeneratedServiceClient\JJ.Apps.SetText.WinForms.Online.GeneratedServiceClient.csproj", "{79CE5669-81DD-4E92-890A-2F518D7E41D4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0F59DBC8-E641-496D-9DA6-059E4EFE01EF} = {0F59DBC8-E641-496D-9DA6-059E4EFE01EF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Xml.Linq", "Framework\JJ.Framework.Persistence.Xml.Linq\JJ.Framework.Persistence.Xml.Linq.csproj", "{BA423767-A57E-4278-BBA8-5C01F3E8D555}"
 EndProject

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using JJ.Framework.Xml.Linq.Tests.Helpers;
 
 namespace JJ.Framework.Xml.Linq.Tests
 {
@@ -18,7 +19,7 @@ namespace JJ.Framework.Xml.Linq.Tests
         public void Test_XmlToObjectConverter_ComplicatedExample()
         {
             string xml = EmbeddedResourceHelper.GetEmbeddedResourceText(Assembly.GetExecutingAssembly(), "TestResources", "ComplicatedExample.xml"); ;
-            var converter = new XmlToObjectConverter<ComplicatedElement>();
+            var converter = new XmlToObjectConverter<ComplicatedElement>(cultureInfo: TestHelper.FormattingCulture);
             ComplicatedElement destObject = converter.Convert(xml);
         }
     }

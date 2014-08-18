@@ -16,10 +16,10 @@ namespace JJ.Framework.Persistence.NHibernate
         private HashSet<object> _entitiesToSave = new HashSet<object>();
         private HashSet<object> _entitiesToDelete = new HashSet<object>();
 
-        public NHibernateContext(string connectionString, Assembly modelAssembly, Assembly mappingAssembly)
-            : base(connectionString, modelAssembly, mappingAssembly)
+        public NHibernateContext(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
+            : base(connectionString, modelAssembly, mappingAssembly, dialect)
         {
-            ISessionFactory sessionFactory = NHibernateSessionFactoryCache.GetSessionFactory(connectionString, modelAssembly, mappingAssembly);
+            ISessionFactory sessionFactory = NHibernateSessionFactoryCache.GetSessionFactory(connectionString, modelAssembly, mappingAssembly, dialect);
             Session = sessionFactory.OpenSession();
             //_transaction = _session.BeginTransaction();
         }
@@ -76,9 +76,9 @@ namespace JJ.Framework.Persistence.NHibernate
                 Session.Save(entity);
             }
 
-            //_transaction.Commit();
-
             Session.Flush();
+
+            //_transaction.Commit();
 
             _entitiesToDelete.Clear();
             _entitiesToSave.Clear();

@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="ContextBase.cs" />
     <Compile Include="ContextFactory.cs" />
+    <Compile Include="DialectNames.cs" />
     <Compile Include="PersistenceConfiguration.cs" />
     <Compile Include="IContext.cs" />
     <Compile Include="PersistenceConfigurationHelper.cs" />

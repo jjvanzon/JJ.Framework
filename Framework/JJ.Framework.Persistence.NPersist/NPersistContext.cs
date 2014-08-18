@@ -11,8 +11,8 @@ namespace JJ.Framework.Persistence.NPersist
     {
         public Puzzle.NPersist.Framework.Context Context { get; private set; }
 
-        public NPersistContext(string location, Assembly modelAssembly, Assembly mappingAssembly)
-            : base(location, modelAssembly, mappingAssembly)
+        public NPersistContext(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
+            : base(location, modelAssembly, mappingAssembly, dialect)
         {
             Context = UnderlyingNPersistContextFactory.CreateContext(location, modelAssembly, mappingAssembly);
         }

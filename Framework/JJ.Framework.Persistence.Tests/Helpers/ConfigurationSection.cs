@@ -20,5 +20,8 @@ namespace JJ.Framework.Persistence.Tests
 
         [XmlAttribute("entityFramework5ContextType")]
         public string EntityFramework5ContextType { get; set; }
+
+        [XmlAttribute]
+        public string Dialect { get; set; }
     }
 }

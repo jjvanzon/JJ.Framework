@@ -14,37 +14,46 @@ namespace JJ.Framework.Persistence.NHibernate
     {
         private static readonly object _lock = new object();
         private static readonly Dictionary<string, ISessionFactory> _dictionary = new Dictionary<string, ISessionFactory>();
-        private static readonly string _separator = "a3ac31a9-708b-41da-b497-b451b9582fd8";
+        private static readonly string _separator = "$$";
 
-        public static ISessionFactory GetSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly)
+        public static ISessionFactory GetSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
         {
             lock (_lock)
             {
-                string key = GetKey(connectionString, modelAssembly, mappingAssembly);
+                string key = GetKey(connectionString, modelAssembly, mappingAssembly, dialect);
 
                 if (_dictionary.ContainsKey(key))
                 {
                     return _dictionary[key];
                 }
 
-                _dictionary[key] = CreateSessionFactory(connectionString, modelAssembly, mappingAssembly);
+                _dictionary[key] = CreateSessionFactory(connectionString, modelAssembly, mappingAssembly, dialect);
 
                 return _dictionary[key];
             }
         }
 
-        private static string GetKey(string connectionString, Assembly modelAssembly, Assembly mappingAssembly)
+        private static string GetKey(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
         {
-            return connectionString + _separator + modelAssembly.FullName + _separator + mappingAssembly.FullName;
+            return connectionString + _separator + modelAssembly.FullName + _separator + mappingAssembly.FullName + _separator + dialect;
         }
 
-        private static ISessionFactory CreateSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly)
+        private static ISessionFactory CreateSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
         {
-            // TODO: This dependency on specifically SQL Server 2008 is not appropriate here.
+            if (String.IsNullOrEmpty(dialect)) throw new ArgumentException("dialect cannot be null or empty.");
 
             var config = new global::NHibernate.Cfg.Configuration();
 
-            var fluentConfig = Fluently.Configure(config).Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).Dialect<MsSql2008Dialect>());
+            FluentConfiguration fluentConfig;
+
+            if (dialect == DialectNames.SqlServer2008)
+            {
+                fluentConfig = Fluently.Configure(config).Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).Dialect<MsSql2008Dialect>());
+            }
+            else
+            {
+                throw new NotSupportedException(String.Format("Dialect '{0}' not supported.", dialect));
+            }
 
             fluentConfig = fluentConfig.Mappings(x => x.FluentMappings.AddFromAssembly(modelAssembly));
             fluentConfig = fluentConfig.Mappings(x => x.FluentMappings.AddFromAssembly(mappingAssembly));

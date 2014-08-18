@@ -3,6 +3,7 @@ using JJ.Framework.Xml.Linq.Tests.Mocks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -11,6 +12,13 @@ namespace JJ.Framework.Xml.Linq.Tests.Helpers
 {
     internal static class TestHelper
     {
+        private static CultureInfo _formattingCulture = new CultureInfo("en-US");
+
+        public static CultureInfo FormattingCulture
+        {
+            get { return _formattingCulture; }
+        }
+
         public static void Test_XmlToObjectConverter_SimpleElement_WithChildValue<T>(string textValue, T value)
         {
             string xml = @"
@@ -18,7 +26,7 @@ namespace JJ.Framework.Xml.Linq.Tests.Helpers
                 <simpleType>" + textValue + @"</simpleType>
             </root>";
 
-            var converter = new XmlToObjectConverter<Element_WithChildElement_OfSimpleType<T>>();
+            var converter = new XmlToObjectConverter<Element_WithChildElement_OfSimpleType<T>>(cultureInfo: FormattingCulture);
             Element_WithChildElement_OfSimpleType<T> destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);
@@ -39,7 +47,7 @@ namespace JJ.Framework.Xml.Linq.Tests.Helpers
                 </collection>
             </root>";
 
-            var converter = new XmlToObjectConverter<Element_WithCollection<TCollection>>();
+            var converter = new XmlToObjectConverter<Element_WithCollection<TCollection>>(cultureInfo: FormattingCulture);
             Element_WithCollection<TCollection> destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);

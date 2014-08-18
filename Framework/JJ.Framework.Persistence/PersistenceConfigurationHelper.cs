@@ -19,7 +19,7 @@ namespace JJ.Framework.Persistence
         //    return CustomConfigurationManager.GetSection<PersistenceConfiguration>();
         //}
 
-        private const string JJ_FRAMEWORK_CONFIGURATION_ASSEMBLY_STRING = "JJ.Framework.Configuration"; // TODO: Include version info?
+        private const string JJ_FRAMEWORK_CONFIGURATION_ASSEMBLY_STRING = "JJ.Framework.Configuration";
         private const string CUSTOM_CONFIGURATION_MANAGER_TYPE_STRING = "JJ.Framework.Configuration.CustomConfigurationManager";
         private const string GET_SECTION_METHOD_NAME = "GetSection";
 

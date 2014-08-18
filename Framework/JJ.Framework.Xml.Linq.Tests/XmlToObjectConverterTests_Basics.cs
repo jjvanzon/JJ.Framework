@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Xml.Linq.Tests.Helpers;
 
 namespace JJ.Framework.Xml.Linq.Tests
 {
@@ -19,7 +20,7 @@ namespace JJ.Framework.Xml.Linq.Tests
                 <simpleElement>2</simpleElement>
             </root>";
 
-            var converter = new XmlToObjectConverter<Element_WithSimpleChildElement>();
+            var converter = new XmlToObjectConverter<Element_WithSimpleChildElement>(cultureInfo: TestHelper.FormattingCulture);
             Element_WithSimpleChildElement destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);
@@ -34,7 +35,7 @@ namespace JJ.Framework.Xml.Linq.Tests
                 <element_WithExplicitAnnotation>2</element_WithExplicitAnnotation>
             </root>";
 
-            var converter = new XmlToObjectConverter<Element_WithChildElement_WithExplicitAnnotation>();
+            var converter = new XmlToObjectConverter<Element_WithChildElement_WithExplicitAnnotation>(cultureInfo: TestHelper.FormattingCulture);
             Element_WithChildElement_WithExplicitAnnotation destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);
@@ -46,7 +47,7 @@ namespace JJ.Framework.Xml.Linq.Tests
         {
             string xml = @"<root attribute=""2"" />";
 
-            var converter = new XmlToObjectConverter<Element_WithAttribute<int>>();
+            var converter = new XmlToObjectConverter<Element_WithAttribute<int>>(cultureInfo: TestHelper.FormattingCulture);
             Element_WithAttribute<int> destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);

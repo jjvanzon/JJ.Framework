@@ -11,16 +11,18 @@ namespace JJ.Framework.Persistence
         public string Location { get; private set; }
         protected Assembly ModelAssembly { get; private set; }
         protected Assembly MappingAssembly { get; private set; }
+        protected string Dialect { get; private set; }
 
         /// <param name="modelAssembly">not nullable</param>
         /// <param name="mappingAssembly">nullable</param>
-        public ContextBase(string location, Assembly modelAssembly, Assembly mappingAssembly)
+        public ContextBase(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
         {
             if (modelAssembly == null) throw new ArgumentNullException("modelAssembly");
 
             Location = location;
             ModelAssembly = modelAssembly;
             MappingAssembly = mappingAssembly;
+            Dialect = dialect;
         }
 
         public virtual TEntity Get<TEntity>(object id) where TEntity : class, new()

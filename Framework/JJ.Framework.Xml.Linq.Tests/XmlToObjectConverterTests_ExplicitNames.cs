@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Xml.Linq.Tests.Helpers;
 
 namespace JJ.Framework.Xml.Linq.Tests
 {
@@ -19,7 +20,7 @@ namespace JJ.Framework.Xml.Linq.Tests
                 <Element_WithExplicitName>2</Element_WithExplicitName>
             </root>";
 
-            var converter = new XmlToObjectConverter<Element_WithChildElement_WithExplicitName>();
+            var converter = new XmlToObjectConverter<Element_WithChildElement_WithExplicitName>(cultureInfo: TestHelper.FormattingCulture);
             Element_WithChildElement_WithExplicitName destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);
@@ -31,7 +32,7 @@ namespace JJ.Framework.Xml.Linq.Tests
         {
             string xml = @"<root Attribute_WithExplicitName=""2"" />";
 
-            var converter = new XmlToObjectConverter<Element_WithAttribute_WithExplicitName>();
+            var converter = new XmlToObjectConverter<Element_WithAttribute_WithExplicitName>(cultureInfo: TestHelper.FormattingCulture);
             Element_WithAttribute_WithExplicitName destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);
@@ -49,7 +50,7 @@ namespace JJ.Framework.Xml.Linq.Tests
                 </Array_WithExplicitName>
             </root>";
 
-            var converter = new XmlToObjectConverter<Element_WithArray_WithExplicitName>();
+            var converter = new XmlToObjectConverter<Element_WithArray_WithExplicitName>(cultureInfo: TestHelper.FormattingCulture);
             Element_WithArray_WithExplicitName destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);

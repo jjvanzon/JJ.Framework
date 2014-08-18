@@ -22,5 +22,8 @@ namespace JJ.Framework.Persistence
 
         [XmlArrayItem("repositoryAssembly")]
         public string[] RepositoryAssemblies { get; set; }
+
+        [XmlAttribute]
+        public string Dialect { get; set; }
     }
 }

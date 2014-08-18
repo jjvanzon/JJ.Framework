@@ -28,8 +28,6 @@ namespace JJ.Framework.Reflection
             return !type.IsValueType;
         }
 
-        // TODO: ItemTypes are used a lot. Perhaps this should be cached.
-
         public static Type GetItemType(this object collection)
         {
             return ReflectionHelper.GetItemType(collection);

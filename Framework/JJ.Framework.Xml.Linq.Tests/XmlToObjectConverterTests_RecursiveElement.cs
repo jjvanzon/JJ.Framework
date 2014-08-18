@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Xml.Linq.Tests.Helpers;
 
 namespace JJ.Framework.Xml.Linq.Tests
 {
@@ -21,7 +22,7 @@ namespace JJ.Framework.Xml.Linq.Tests
                 </element>
             </root>";
 
-            var converter = new XmlToObjectConverter<RecursiveElement>();
+            var converter = new XmlToObjectConverter<RecursiveElement>(cultureInfo: TestHelper.FormattingCulture);
             RecursiveElement destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);

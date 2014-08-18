@@ -11,8 +11,8 @@ namespace JJ.Framework.Persistence.Xml
 {
     public class XmlContext : ContextBase
     {
-        public XmlContext(string folderPath, Assembly modelAssembly, Assembly mappingAssembly)
-            : base(folderPath, modelAssembly, mappingAssembly)
+        public XmlContext(string folderPath, Assembly modelAssembly, Assembly mappingAssembly, string dialect = null)
+            : base(folderPath, modelAssembly, mappingAssembly, dialect)
         {
             if (mappingAssembly == null) throw new ArgumentNullException("mappingAssembly");
         }

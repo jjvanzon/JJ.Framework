@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Internal\NamespaceResolver.cs" />
+    <Compile Include="Internal\NilHelper.cs" />
     <Compile Include="ObjectToXmlConverter.cs" />
     <Compile Include="Internal\ConversionHelper.cs" />
     <Compile Include="Internal\NodeTypeEnum.cs" />

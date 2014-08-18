@@ -24,7 +24,8 @@ namespace JJ.Framework.Persistence.Tests
                 contextType,
                 configuration.Location,
                 modelAssemblyName,
-                mappingAssemblyName);
+                mappingAssemblyName,
+                configuration.Dialect);
         }
     }
 }

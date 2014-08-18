@@ -54,7 +54,7 @@ namespace JJ.Framework.Xml.Linq.Tests
                 </array_WithExplicitAnnotation>
             </root>";
 
-            var converter = new XmlToObjectConverter<Element_Array_WithExplicitAnnotation>();
+            var converter = new XmlToObjectConverter<Element_Array_WithExplicitAnnotation>(cultureInfo: TestHelper.FormattingCulture);
             Element_Array_WithExplicitAnnotation destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);
@@ -69,7 +69,7 @@ namespace JJ.Framework.Xml.Linq.Tests
         {
             string xml = @"<root />";
 
-            var converter = new XmlToObjectConverter<Element_WithCollection<int[]>>();
+            var converter = new XmlToObjectConverter<Element_WithCollection<int[]>>(cultureInfo: TestHelper.FormattingCulture);
             Element_WithCollection<int[]> destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);
@@ -87,7 +87,7 @@ namespace JJ.Framework.Xml.Linq.Tests
                 </collection>
             </root>";
 
-            var converter = new XmlToObjectConverter<Element_WithCollection_WithoutExplicitItemName>();
+            var converter = new XmlToObjectConverter<Element_WithCollection_WithoutExplicitItemName>(cultureInfo: TestHelper.FormattingCulture);
             Element_WithCollection_WithoutExplicitItemName destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);

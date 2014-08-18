@@ -28,14 +28,15 @@ namespace JJ.Framework.Persistence
                 persistenceConfiguration.ContextType,
                 persistenceConfiguration.Location,
                 persistenceConfiguration.ModelAssembly,
-                persistenceConfiguration.MappingAssembly);
+                persistenceConfiguration.MappingAssembly,
+                persistenceConfiguration.Dialect);
         }
 
         /// <param name="contextTypeName">
         /// Can be a fully qualified type name, or the name of the assembly that holds the type, 
         /// or if the assembly name starts with 'JJ.Framework.Persistence' you can omit the 'JJ.Framework.Persistence.' from the name.
         /// </param>
-        public static IContext CreateContext(string contextTypeName, string location, string modelAssemblyName, string mappingAssemblyName)
+        public static IContext CreateContext(string contextTypeName, string location, string modelAssemblyName, string mappingAssemblyName, string dialect)
         {
             Type persistenceContextType = ResolveContextType(contextTypeName);
 
@@ -51,12 +52,12 @@ namespace JJ.Framework.Persistence
                 mappingAssembly = Assembly.Load(mappingAssemblyName);
             }
 
-            return ContextFactory.CreateContext(persistenceContextType, location, modelAssembly, mappingAssembly);
+            return ContextFactory.CreateContext(persistenceContextType, location, modelAssembly, mappingAssembly, dialect);
         }
 
-        public static IContext CreateContext(Type persistenceContextType, string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly)
+        public static IContext CreateContext(Type persistenceContextType, string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
         {
-            return (IContext)Activator.CreateInstance(persistenceContextType, persistenceLocation, modelAssembly, mappingAssembly);
+            return (IContext)Activator.CreateInstance(persistenceContextType, persistenceLocation, modelAssembly, mappingAssembly, dialect);
         }
 
         private static object _contextTypeDictionaryLock = new object();

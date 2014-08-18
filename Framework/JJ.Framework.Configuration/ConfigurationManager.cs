@@ -26,38 +26,44 @@ namespace JJ.Framework.Configuration
             return GetSection<T>(sectionName);
         }
 
-        // Cache the objects, but allow RefreshSection to refresh the configuration
-        // by using XmlElement as the cache key instead of e.g. the sectionName.
-        // (The solution below, however, keeps the old object in memory though.)
-        // TODO: Make sure you get rid of old objects.
-        // TODO: You do not need to support RefeshSection. The symmetrical thing to do is give this class its own RefreshSection method.
-
         private static object _sectionDictionaryLock = new object();
-        private static Dictionary<XmlNode, object> _sectionDictionary = new Dictionary<XmlNode, object>();
+        private static Dictionary<string, object> _sectionDictionary = new Dictionary<string, object>();
 
         public static T GetSection<T>(string sectionName)
             where T : new()
         {
-            XmlElement sourceXmlElement = (XmlElement)ConfigurationManager.GetSection(sectionName);
-            if (sourceXmlElement == null)
-            {
-                throw new Exception(String.Format("Configuration section '{0}' not found.", sectionName));
-            }
-
             lock (_sectionDictionaryLock)
             {
-                if (_sectionDictionary.ContainsKey(sourceXmlElement))
+                object section;
+                if (!_sectionDictionary.TryGetValue(sectionName, out section))
                 {
-                    return (T)_sectionDictionary[sourceXmlElement];
+                    XmlElement sourceXmlElement = (XmlElement)ConfigurationManager.GetSection(sectionName);
+                    if (sourceXmlElement == null)
+                    {
+                        throw new Exception(String.Format("Configuration section '{0}' not found.", sectionName));
+                    }
+
+                    var converter = new XmlToObjectConverter<T>();
+                    section = converter.Convert(sourceXmlElement);
+
+                    _sectionDictionary[sectionName] = section;
                 }
-                
-                var converter = new XmlToObjectConverter<T>();
-                T destObject = converter.Convert(sourceXmlElement);
 
-                _sectionDictionary[sourceXmlElement] = destObject;
-
-                return destObject;
+                return (T)section;
             }
+        }
+
+        public static void RefreshSection(string sectionName)
+        {
+            lock (_sectionDictionary)
+            {
+                if (_sectionDictionary.ContainsKey(sectionName))
+                {
+                    _sectionDictionary.Remove(sectionName);
+                }
+            }
+
+            ConfigurationManager.RefreshSection(sectionName);
         }
     }
 }

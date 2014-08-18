@@ -10,8 +10,8 @@ namespace JJ.Framework.Persistence.Memory
     public class MemoryContext : ContextBase
     {
         /// <param name="location">nullable</param>
-        public MemoryContext(string location, Assembly modelAssembly, Assembly mappingAssembly)
-            : base(location, modelAssembly, mappingAssembly)
+        public MemoryContext(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect = null)
+            : base(location, modelAssembly, mappingAssembly, dialect)
         {
             if (mappingAssembly == null) throw new ArgumentNullException("mappingAssembly");
         }

@@ -10,6 +10,7 @@ using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 using JJ.Framework.Xml.Linq.Internal;
 using JJ.Framework.PlatformCompatibility;
+using System.Globalization;
 
 namespace JJ.Framework.Xml.Linq
 {
@@ -52,6 +53,14 @@ namespace JJ.Framework.Xml.Linq
 
         private XmlCasingEnum _casing;
 
+        private bool _mustParseNilAttributes;
+
+        /// <summary>
+        /// When null, standard XML / SOAP formatting of values is applied.
+        /// When filled in, values will be formatter in accordance to the provided culture.
+        /// </summary>
+        private CultureInfo _cultureInfo;
+
         /// <summary>
         /// Converts an XML structure to an object tree.
         /// 
@@ -83,9 +92,18 @@ namespace JJ.Framework.Xml.Linq
         /// 
         /// The composite types in the object structure must have parameterless constructors.
         /// </summary>
-        public XmlToObjectConverter(XmlCasingEnum casing = XmlCasingEnum.CamelCase)
+        /// <param name="cultureInfo">
+        /// If null, standard XML / SOAP formatting of values is applied.
+        /// When filled in, values will be formatter in accordance to the provided culture.
+        /// </param>
+        public XmlToObjectConverter(
+            XmlCasingEnum casing = XmlCasingEnum.CamelCase, 
+            bool mustParseNilAttributes = false,
+            CultureInfo cultureInfo = null)
         {
             _casing = casing;
+            _cultureInfo = cultureInfo;
+            _mustParseNilAttributes = mustParseNilAttributes;
         }
 
         public TDestObject Convert(byte[] data)
@@ -143,15 +161,15 @@ namespace JJ.Framework.Xml.Linq
             switch (nodeType)
             {
                 case NodeTypeEnum.Element:
-                    ConvertElementFromParent(sourceParentElement, destParentObject, destChildProperty);
+                    TryConvertElementFromParent(sourceParentElement, destParentObject, destChildProperty);
                     break;
 
                 case NodeTypeEnum.Attribute:
-                    ConvertAttributeFromParent(sourceParentElement, destParentObject, destChildProperty);
+                    TryConvertAttributeFromParent(sourceParentElement, destParentObject, destChildProperty);
                     break;
 
                 case NodeTypeEnum.Array:
-                    ConvertXmlArrayFromParent(sourceParentElement, destParentObject, destChildProperty);
+                    TryConvertXmlArrayFromParent(sourceParentElement, destParentObject, destChildProperty);
                     break;
 
                 default:
@@ -165,30 +183,13 @@ namespace JJ.Framework.Xml.Linq
         /// Gets a child element from the parent element and converts it to a property of an object.
         /// Recursive calls might be made. Nullability is checked.
         /// </summary>
-        private void ConvertElementFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destChildProperty)
+        private void TryConvertElementFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destChildProperty)
         {
             string sourceChildElementName = ConversionHelper.GetElementNameForProperty(destChildProperty, _casing);
 
             XElement sourceChildElement = XmlHelper.TryGetElement(sourceParentElement, sourceChildElementName);
 
-            // If element not null, convert the element.
-            if (sourceChildElement != null)
-            {
-                ConvertElement(sourceChildElement, destParentObject, destChildProperty);
-            }
-
-            // Check nullability
-            if (sourceChildElement == null)
-            {
-                if (IsNullable(destChildProperty.PropertyType))
-                {
-                    // If nullable and element is null, leave property's default value in tact.
-                    return;
-                }
-
-                // If not nullable and element is null, throw an exception.
-                throw new Exception(String.Format("XML node '{0}' does not have the required child element '{1}'.", sourceParentElement.Name, sourceChildElementName));
-            }
+            TryConvertElement(sourceChildElement, destParentObject, destChildProperty);
         }
 
         /// <summary>
@@ -198,13 +199,40 @@ namespace JJ.Framework.Xml.Linq
         /// and a recursive call to ConvertProperties is made to convert each property of the composite type.
         /// sourceElement is not nullable.
         /// </summary>
-        /// <param name="sourceElement">not nullable</param>
-        private void ConvertElement(XElement sourceElement, object destParentObject, PropertyInfo destProperty)
+        /// <param name="sourceElement">Nullable and can be element with nil attribute.</param>
+        private void TryConvertElement(XElement sourceElement, object destParentObject, PropertyInfo destProperty)
         {
-            Type destPropertyType = destProperty.PropertyType;
-            object destPropertyValue = ConvertElement(sourceElement, destPropertyType);
-            destProperty.SetValue_PlatformSupport(destParentObject, destPropertyValue);
+            // Resolve nil attribute.
+            if (sourceElement != null)
+            {
+                if (NilHelper.HasNilAttribute(sourceElement))
+                {
+                    sourceElement = null;
+                }
+            }
+
+            // Check nullability
+            if (sourceElement == null)
+            {
+                if (IsNullable(destProperty.PropertyType))
+                {
+                    // If nullable and element is null, leave property's default value in tact.
+                    return;
+                }
+
+                // If not nullable and element is null, throw an exception.
+                throw new Exception(String.Format("No XML node found for the required property '{0}'.", destProperty.Name));
+            }
+
+            // If element not null, convert the element.
+            if (sourceElement != null)
+            {
+                Type destPropertyType = destProperty.PropertyType;
+                object destPropertyValue = ConvertElement(sourceElement, destPropertyType);
+                destProperty.SetValue_PlatformSupport(destParentObject, destPropertyValue);
+            }
         }
+
 
         /// <summary>
         /// Converts an element to a value or composite type.
@@ -236,7 +264,7 @@ namespace JJ.Framework.Xml.Linq
         private object ConvertLeafElement(XElement sourceElement, Type destType)
         {
             string sourceValue = sourceElement.Value;
-            object destValue = ConversionHelper.ParseValue(sourceValue, destType);
+            object destValue = ConversionHelper.ParseValue(sourceValue, destType, _cultureInfo);
             return destValue;
         }
 
@@ -266,13 +294,13 @@ namespace JJ.Framework.Xml.Linq
         /// If it is a nullable type or a reference type, an XML attribute can be omitted or its value left blank.
         /// Otherwise, the omission of the attribute causes an exception.
         /// </summary>
-        private void ConvertAttributeFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destProperty)
+        private void TryConvertAttributeFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destProperty)
         {
             string sourceXmlAttributeName = ConversionHelper.GetAttributeNameForProperty(destProperty, _casing);
             XAttribute sourceXmlAttribute = XmlHelper.TryGetAttribute(sourceParentElement, sourceXmlAttributeName);
 
             Type destPropertyType = destProperty.PropertyType;
-            object destPropertyValue = ConvertAttribute(sourceXmlAttribute, destProperty.PropertyType);
+            object destPropertyValue = TryConvertAttribute(sourceXmlAttribute, destProperty.PropertyType);
 
             // Check nullability
             if (destPropertyValue == null)
@@ -295,21 +323,21 @@ namespace JJ.Framework.Xml.Linq
         /// Will return null if the attribute does not exist or if its value is blank.
         /// </summary>
         /// <param name="sourceXmlAttribute">nullable</param>
-        private object ConvertAttribute(XAttribute sourceXmlAttribute, Type destType)
+        private object TryConvertAttribute(XAttribute sourceXmlAttribute, Type destType)
         {
             if (sourceXmlAttribute == null)
             {
                 return null;
             }
 
-            string sourceAttributeValue = sourceXmlAttribute.Value;
+            string sourceValue = sourceXmlAttribute.Value;
 
-            if (String.IsNullOrEmpty(sourceAttributeValue))
+            if (String.IsNullOrEmpty(sourceValue))
             {
                 return null;
             }
 
-            object destValue = ConversionHelper.ParseValue(sourceAttributeValue, destType);
+            object destValue = ConversionHelper.ParseValue(sourceValue, destType, _cultureInfo);
             return destValue;
         }
 
@@ -327,7 +355,7 @@ namespace JJ.Framework.Xml.Linq
         /// and a recursive call to ConvertProperties is made to convert each property of the composite type.
         /// </summary>
         /// <param name="sourceParentElement">The parent of the XML Array element.</param>
-        private void ConvertXmlArrayFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destCollectionProperty)
+        private void TryConvertXmlArrayFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destCollectionProperty)
         {
             XElement sourceArrayXmlElement = TryGetSourceArrayXmlElement(sourceParentElement, destCollectionProperty);
             if (sourceArrayXmlElement == null)
@@ -413,7 +441,7 @@ namespace JJ.Framework.Xml.Linq
             int count = sourceXmlArrayItems.Count;
 
             // Determine concrete type.
-            // For List&lt;T&gt;, IList&lt;T&gt;, ICollection&lt;T&gt; and IEnumerable&lt;T&gt; it is List&ltT&gt.
+            // For List<T>, IList<T>, ICollection<T> and IEnumerable<T> it is List<T>.
 
             Type destItemType = destCollectionType.GetItemType();
             Type destConcreteCollectionType = typeof(List<>).MakeGenericType(destItemType);

@@ -235,7 +235,7 @@ namespace JJ.Framework.Xml.Linq.Tests
         {
             string xml = @"<root />";
 
-            var converter = new XmlToObjectConverter<Element_WithAttribute<int?>>();
+            var converter = new XmlToObjectConverter<Element_WithAttribute<int?>>(cultureInfo: TestHelper.FormattingCulture);
             Element_WithAttribute<int?> destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);
@@ -247,7 +247,7 @@ namespace JJ.Framework.Xml.Linq.Tests
         {
             string xml = @"<root attribute="""" />";
 
-            var converter = new XmlToObjectConverter<Element_WithAttribute<int?>>();
+            var converter = new XmlToObjectConverter<Element_WithAttribute<int?>>(cultureInfo: TestHelper.FormattingCulture);
             Element_WithAttribute<int?> destObject = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => destObject);
