@@ -23,8 +23,6 @@ namespace JJ.Framework.Soap.Tests.Helpers
                 UInt32 = 2,
                 Int64 = -2,
                 UInt64 = 2,
-                //IntPtr = new IntPtr(-2),
-                //UIntPtr = new UIntPtr(2),
                 Char = 'a',
                 Double = 1.23E4,
                 Single = 1.23E4f,
@@ -44,8 +42,6 @@ namespace JJ.Framework.Soap.Tests.Helpers
                 NullableUInt32 = 2,
                 NullableInt64 = null,
                 NullableUInt64 = 2,
-                //NullableIntPtr = new IntPtr(-2),
-                //NullableUIntPtr = null,
                 NullableChar = 'a',
                 NullableDouble = null,
                 NullableSingle = 1.23E4f,
@@ -86,7 +82,7 @@ namespace JJ.Framework.Soap.Tests.Helpers
                 },
 
                 ArrayOfBoolean = new bool[] { true, false },
-                ArrayOfByte = new byte[] { 0x10, 0x20 },
+                //ArrayOfByte = new byte[] { 0x10, 0x20 },
                 ArrayOfSByte = new sbyte[] { -2, 2 },
                 ArrayOfInt16 = new Int16[] { -2, 2 },
                 ArrayOfUInt16 = new UInt16[] { 1, 2 },
@@ -94,8 +90,6 @@ namespace JJ.Framework.Soap.Tests.Helpers
                 ArrayOfUInt32 = new UInt32[] { 1, 2 },
                 ArrayOfInt64 = new Int64[] { -2, 2 },
                 ArrayOfUInt64 = new UInt64[] { 1, 2 },
-                //ArrayOfIntPtr = new IntPtr[] { new IntPtr(-2), new IntPtr(2) },
-                //ArrayOfUIntPtr = new UIntPtr[] { new UIntPtr(1), new UIntPtr(2) },
                 ArrayOfChar = new char[] { 'a', 'b' },
                 ArrayOfDouble = new double[] { 1.23E4, 2.34E5 },
                 ArrayOfSingle = new float[] { 1.23E4f, 2.34E5f },
@@ -104,6 +98,7 @@ namespace JJ.Framework.Soap.Tests.Helpers
                 ArrayOfTimeSpan = new TimeSpan[] { TimeSpan.Parse("01:00"), TimeSpan.Parse("02:00") },
                 ArrayOfDateTime = new DateTime[] { DateTime.Parse("2001-02-03 04:05"), DateTime.Parse("2006-07-08 09:10") },
                 ArrayOfEnumType = new EnumType[] { EnumType.EnumMember1, EnumType.EnumMember2 },
+                
 
                 //ArrayOfNullableBoolean = new bool?[] { null, true, false },
                 //ArrayOfNullableByte = new byte?[] { null, 0x10, 0x20 },

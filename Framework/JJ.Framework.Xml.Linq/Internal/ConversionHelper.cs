@@ -73,7 +73,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         {
             { typeof(Boolean),        x => XmlConvert.ToBoolean(x) },
             { typeof(Byte),           x => XmlConvert.ToByte(x) },
-            { typeof(Char),           x => XmlConvert.ToChar(x) },
+            { typeof(Char),           x => (char)Convert.ToInt32(x) }, // WCF expects chars to be numbers...
             { typeof(Decimal),        x => XmlConvert.ToDecimal(x) },
             { typeof(Double),         x => XmlConvert.ToDouble(x) },
             { typeof(Guid),           x => XmlConvert.ToGuid(x) },
@@ -129,7 +129,18 @@ namespace JJ.Framework.Xml.Linq.Internal
                 return Convert.ToString(input, cultureInfo);
             }
 
-            // System.Linq.Xml will take care of standard XML formatting formatting.
+            if (input == null)
+            {
+                return null;
+            }
+
+            // System.Linq.Xml will not format char as an int, even though WCF expects it.
+            if (input.GetType() == typeof(char))
+            {
+                return (int)(char)input;
+            }
+
+            // System.Linq.Xml will take care of other standard XML formatting.
             return input;
         }
 

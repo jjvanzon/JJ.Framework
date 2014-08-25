@@ -37,6 +37,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomArrayItemNameMapping.cs" />
     <Compile Include="Internal\NamespaceResolver.cs" />
     <Compile Include="Internal\NilHelper.cs" />
     <Compile Include="ObjectToXmlConverter.cs" />

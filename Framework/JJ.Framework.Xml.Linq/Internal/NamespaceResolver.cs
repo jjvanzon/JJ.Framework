@@ -8,6 +8,13 @@ using System.Xml.Linq;
 
 namespace JJ.Framework.Xml.Linq.Internal
 {
+    /// <summary>
+    /// Allows you to register XML namespaces on the fly,
+    /// and when you are done, you can get XML namespace declarations
+    /// with automatically 'numbered' XML namespace prefixes,
+    /// starting at 'a', then 'b' and so on in spread-sheet style
+    /// column 'numerals' but then in lower case.
+    /// </summary>
     internal class NamespaceResolver
     {
         private HashSet<string> _xmlNamespaceStrings = new HashSet<string>();

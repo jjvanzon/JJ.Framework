@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Soap.Tests.Helpers
 {
-    internal class WcfClient : ClientBase<ITestService>, ITestService
+    internal class NativeWcfClient : ClientBase<ITestService>, ITestService
     {
-        public WcfClient(string url)
+        public NativeWcfClient(string url)
             : base(new BasicHttpBinding(), new EndpointAddress(url))
         {
-            Endpoint.EndpointBehaviors.Add(new WcfClientMessageInspector());
+            Endpoint.EndpointBehaviors.Add(new NativeWcfClientMessageInspector());
         }
 
         public ComplicatedType SendAndGetComplicatedObject(ComplicatedType complicatedObject)

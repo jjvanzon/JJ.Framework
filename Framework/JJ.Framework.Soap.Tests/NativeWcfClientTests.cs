@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 namespace JJ.Framework.Soap.Tests
 {
     [TestClass]
-    public class WcfClientTests
+    public class NativeWcfClientTests
     {
         [TestMethod]
-        public void Test_WcfClient_SendAndGetComplicatedObject()
+        public void Test_NativeWcfClient_SendAndGetComplicatedObject()
         { 
             string url = AppSettings<IAppSettings>.Get(x => x.Url);
-            var client = new WcfClient(url);
+            var client = new NativeWcfClient(url);
             ComplicatedType obj1 = TestHelper.CreateComplicatedObject();
             ComplicatedType obj2 = client.SendAndGetComplicatedObject(obj1);
         }

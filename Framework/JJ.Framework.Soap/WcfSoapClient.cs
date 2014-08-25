@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Xml.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +33,9 @@ namespace JJ.Framework.Soap
             if (String.IsNullOrEmpty(serviceInterfaceName)) throw new ArgumentException("serviceInterfaceName is null");
 
             _serviceInterfaceName = serviceInterfaceName;
-            _client = new SoapClient(url, encoding);
+
+            IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = GetCustomArrayItemNameMappings();
+            _client = new SoapClient(url, encoding, customArrayItemNameMappings: customArrayItemNameMappings);
         }
 
         public TResult Invoke<TResult>(string operationName, params SoapParameter[] parameters)
@@ -43,5 +46,27 @@ namespace JJ.Framework.Soap
         }
 
         // TODO: A method like Invoke but then returns void.
+
+        private IEnumerable<CustomArrayItemNameMapping> GetCustomArrayItemNameMappings()
+        {
+            return new CustomArrayItemNameMapping[]
+            {
+                new CustomArrayItemNameMapping(typeof(bool), "boolean"),
+                new CustomArrayItemNameMapping(typeof(char), "char"),
+                new CustomArrayItemNameMapping(typeof(DateTime), "dateTime"),
+                new CustomArrayItemNameMapping(typeof(double), "double"),
+                new CustomArrayItemNameMapping(typeof(Guid), "guid"),
+                new CustomArrayItemNameMapping(typeof(short), "short"),
+                new CustomArrayItemNameMapping(typeof(int), "int"),
+                new CustomArrayItemNameMapping(typeof(long), "long"),
+                new CustomArrayItemNameMapping(typeof(SByte), "byte"),
+                new CustomArrayItemNameMapping(typeof(float), "float"),
+                new CustomArrayItemNameMapping(typeof(string), "string"),
+                new CustomArrayItemNameMapping(typeof(TimeSpan), "duration"),
+                new CustomArrayItemNameMapping(typeof(UInt16), "unsignedShort"),
+                new CustomArrayItemNameMapping(typeof(UInt32), "unsignedInt"),
+                new CustomArrayItemNameMapping(typeof(UInt64), "unsignedLong")
+            };
+        }
     }
 }

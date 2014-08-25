@@ -53,9 +53,9 @@
   <ItemGroup>
     <Compile Include="Helpers\IAppSettings.cs" />
     <Compile Include="Helpers\TestHelper.cs" />
-    <Compile Include="Helpers\WcfClient.cs" />
-    <Compile Include="Helpers\WcfClientMessageInspector.cs" />
-    <Compile Include="WcfClientTests.cs" />
+    <Compile Include="Helpers\NativeWcfClient.cs" />
+    <Compile Include="Helpers\NativeWcfClientMessageInspector.cs" />
+    <Compile Include="NativeWcfClientTests.cs" />
     <Compile Include="WcfSoapClientTests_Old.cs" />
     <Compile Include="SoapClientTests_Old.cs" />
     <Compile Include="WcfSoapClientTests.cs" />

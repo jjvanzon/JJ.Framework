@@ -27,6 +27,9 @@ namespace JJ.Framework.Soap
         /// <summary> nullable </summary>
         private Dictionary<string, string> _namespaceDictionary;
 
+        /// <summary> nullable </summary>
+        private IEnumerable<CustomArrayItemNameMapping> _customArrayItemNameMappings;
+
         /// <summary>
         /// This class exists because some mobile platforms running on Mono
         /// do not fully support System.ServiceModel or System.Web.Services.
@@ -37,13 +40,15 @@ namespace JJ.Framework.Soap
         /// </param>
         public SoapClient(
             string url, Encoding encoding, 
-            IEnumerable<SoapNamespaceMapping> namespaceMappings = null)
+            IEnumerable<SoapNamespaceMapping> namespaceMappings = null,
+            IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null)
         {
             if (String.IsNullOrEmpty(url)) throw new ArgumentException("url cannot be null or empty");
             if (encoding == null) throw new ArgumentNullException("encoding");
 
             _url = url;
             _encoding = encoding;
+            _customArrayItemNameMappings = customArrayItemNameMappings;
 
             InitializeNamespaceMappings(namespaceMappings);
         }
@@ -108,7 +113,9 @@ namespace JJ.Framework.Soap
                     XmlCasingEnum.UnmodifiedCase,
                     mustGenerateNamespaces: true,
                     mustGenerateNilAttributes: true,
-                    rootElementName: parameter.Name
+                    mustSortElementsByName: true,
+                    rootElementName: parameter.Name,
+                    customArrayItemNameMappings: _customArrayItemNameMappings
                 );
 
                 XElement parameterElement = converter.ConvertObjectToXElement(parameter.Value);

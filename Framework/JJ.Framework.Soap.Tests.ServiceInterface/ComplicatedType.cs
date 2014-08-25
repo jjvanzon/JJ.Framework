@@ -114,8 +114,8 @@ namespace JJ.Framework.Soap.Tests.ServiceInterface
 
         [DataMember]
         public bool[] ArrayOfBoolean { get; set; }
-        [DataMember]
-        public byte[] ArrayOfByte { get; set; }
+        //[DataMember]
+        //public byte[] ArrayOfByte { get; set; }
         [DataMember]
         public sbyte[] ArrayOfSByte { get; set; }
         [DataMember]

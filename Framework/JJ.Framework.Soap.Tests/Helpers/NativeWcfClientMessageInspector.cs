@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Soap.Tests.Helpers
 {
-    internal class WcfClientMessageInspector : IEndpointBehavior, IClientMessageInspector
+    internal class NativeWcfClientMessageInspector : IEndpointBehavior, IClientMessageInspector
     {
         public void AddBindingParameters(ServiceEndpoint endpoint, BindingParameterCollection bindingParameters)
         {
