@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace JJ.Framework.Reflection
@@ -26,6 +27,11 @@ namespace JJ.Framework.Reflection
         public static bool IsReferenceType(this Type type)
         {
             return !type.IsValueType;
+        }
+
+        public static Type GetItemType(this PropertyInfo collectionProperty)
+        {
+            return ReflectionHelper.GetItemType(collectionProperty);
         }
 
         public static Type GetItemType(this object collection)

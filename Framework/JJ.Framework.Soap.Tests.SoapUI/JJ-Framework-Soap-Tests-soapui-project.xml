@@ -1348,4 +1348,159 @@ xmlns:arr="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
       </complicatedObject>
     </SendAndGetComplicatedObject>
   </s:Body>
+</s:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/SendAndGetComplicatedObject"/><con:wsrmConfig version="1.2"/></con:call><con:call name="JJ.Framework.Soap Request 3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:61285/TestService.svc</con:endpoint><con:request><![CDATA[<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:o="http://tempuri.org/">
+  <s:Header />
+  <s:Body>
+    <o:SendAndGetComplicatedObject>
+      <o:complicatedObject xmlns:a="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:b="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://schemas.datacontract.org/2004/07/JJ.Framework.Soap.Tests.ServiceInterface">
+        <c:Array>
+          <a:int>2</a:int>
+          <a:int>2</a:int>
+        </c:Array>
+        <c:ArrayOfBoolean>
+          <a:boolean>true</a:boolean>
+          <a:boolean>false</a:boolean>
+        </c:ArrayOfBoolean>
+        <c:ArrayOfChar>
+          <a:char>97</a:char>
+          <a:char>98</a:char>
+        </c:ArrayOfChar>
+        <c:ArrayOfDateTime>
+          <a:dateTime>2001-02-03T04:05:00</a:dateTime>
+          <a:dateTime>2006-07-08T09:10:00</a:dateTime>
+        </c:ArrayOfDateTime>
+        <c:ArrayOfDouble>
+          <a:double>12300</a:double>
+          <a:double>234000</a:double>
+        </c:ArrayOfDouble>
+        <c:ArrayOfEnumType>
+          <c:EnumType>EnumMember1</c:EnumType>
+          <c:EnumType>EnumMember2</c:EnumType>
+        </c:ArrayOfEnumType>
+        <c:ArrayOfGuid>
+          <a:guid>06a8a252-6254-4fb1-a8f0-6bc3a356798a</a:guid>
+          <a:guid>e2d9cb2a-0857-430e-b60c-f871994c7910</a:guid>
+        </c:ArrayOfGuid>
+        <c:ArrayOfInt16>
+          <a:short>-2</a:short>
+          <a:short>2</a:short>
+        </c:ArrayOfInt16>
+        <c:ArrayOfInt32>
+          <a:int>-2</a:int>
+          <a:int>2</a:int>
+        </c:ArrayOfInt32>
+        <c:ArrayOfInt64>
+          <a:long>-2</a:long>
+          <a:long>2</a:long>
+        </c:ArrayOfInt64>
+        <c:ArrayOfSByte>
+          <a:byte>-2</a:byte>
+          <a:byte>2</a:byte>
+        </c:ArrayOfSByte>
+        <c:ArrayOfSingle>
+          <a:float>12300</a:float>
+          <a:float>234000</a:float>
+        </c:ArrayOfSingle>
+        <c:ArrayOfString>
+          <a:string>Hello</a:string>
+          <a:string>world</a:string>
+          <a:string>!</a:string>
+        </c:ArrayOfString>
+        <c:ArrayOfTimeSpan>
+          <a:duration>PT1H</a:duration>
+          <a:duration>PT2H</a:duration>
+        </c:ArrayOfTimeSpan>
+        <c:ArrayOfUInt16>
+          <a:unsignedShort>1</a:unsignedShort>
+          <a:unsignedShort>2</a:unsignedShort>
+        </c:ArrayOfUInt16>
+        <c:ArrayOfUInt32>
+          <a:unsignedInt>1</a:unsignedInt>
+          <a:unsignedInt>2</a:unsignedInt>
+        </c:ArrayOfUInt32>
+        <c:ArrayOfUInt64>
+          <a:unsignedLong>1</a:unsignedLong>
+          <a:unsignedLong>2</a:unsignedLong>
+        </c:ArrayOfUInt64>
+        <c:Boolean>true</c:Boolean>
+        <c:Byte>2</c:Byte>
+        <c:Char>97</c:Char>
+        <c:CompositeObject>
+          <c:BoolValue>true</c:BoolValue>
+          <c:StringValue>Hello</c:StringValue>
+        </c:CompositeObject>
+        <c:DateTime>2001-02-03T04:56:00</c:DateTime>
+        <c:Double>12300</c:Double>
+        <c:EnumType>EnumMember2</c:EnumType>
+        <c:Guid>ebac0ca5-b89d-4e54-ac01-19351261f004</c:Guid>
+        <c:ICollectionOfT>
+          <a:int>2</a:int>
+          <a:int>2</a:int>
+        </c:ICollectionOfT>
+        <c:IEnumerableOfT>
+          <a:int>2</a:int>
+          <a:int>2</a:int>
+        </c:IEnumerableOfT>
+        <c:IListOfT>
+          <a:int>2</a:int>
+          <a:int>2</a:int>
+        </c:IListOfT>
+        <c:Int16>-2</c:Int16>
+        <c:Int32>-2</c:Int32>
+        <c:Int64>-2</c:Int64>
+        <c:ListOfCompositeObjects>
+          <c:CompositeType>
+            <c:BoolValue>false</c:BoolValue>
+            <c:StringValue b:nil="true" />
+          </c:CompositeType>
+          <c:CompositeType>
+            <c:BoolValue>false</c:BoolValue>
+            <c:StringValue>Hello</c:StringValue>
+          </c:CompositeType>
+          <c:CompositeType>
+            <c:BoolValue>true</c:BoolValue>
+            <c:StringValue b:nil="true" />
+          </c:CompositeType>
+          <c:CompositeType>
+            <c:BoolValue>true</c:BoolValue>
+            <c:StringValue>Hello</c:StringValue>
+          </c:CompositeType>
+        </c:ListOfCompositeObjects>
+        <c:ListOfT>
+          <a:int>2</a:int>
+          <a:int>2</a:int>
+        </c:ListOfT>
+        <c:NullableBoolean>true</c:NullableBoolean>
+        <c:NullableByte b:nil="true" />
+        <c:NullableChar>97</c:NullableChar>
+        <c:NullableDateTime b:nil="true" />
+        <c:NullableDouble b:nil="true" />
+        <c:NullableEnumType>EnumMember2</c:NullableEnumType>
+        <c:NullableGuid b:nil="true" />
+        <c:NullableInt16 b:nil="true" />
+        <c:NullableInt32 b:nil="true" />
+        <c:NullableInt64 b:nil="true" />
+        <c:NullableSByte>-2</c:NullableSByte>
+        <c:NullableSingle>12300</c:NullableSingle>
+        <c:NullableTimeSpan>PT1H23M</c:NullableTimeSpan>
+        <c:NullableUInt16>2</c:NullableUInt16>
+        <c:NullableUInt32>2</c:NullableUInt32>
+        <c:NullableUInt64>2</c:NullableUInt64>
+        <c:RecursiveObject>
+          <c:RecursiveObject>
+            <c:RecursiveObject>
+              <c:RecursiveObject b:nil="true" />
+            </c:RecursiveObject>
+          </c:RecursiveObject>
+        </c:RecursiveObject>
+        <c:SByte>-2</c:SByte>
+        <c:Single>12300</c:Single>
+        <c:String>Hello</c:String>
+        <c:TimeSpan>PT1H23M</c:TimeSpan>
+        <c:UInt16>2</c:UInt16>
+        <c:UInt32>2</c:UInt32>
+        <c:UInt64>2</c:UInt64>
+      </o:complicatedObject>
+    </o:SendAndGetComplicatedObject>
+  </s:Body>
 </s:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://tempuri.org/ITestService/SendAndGetComplicatedObject"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

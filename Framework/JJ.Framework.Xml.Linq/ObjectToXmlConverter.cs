@@ -25,22 +25,10 @@ namespace JJ.Framework.Xml.Linq
     public class ObjectToXmlConverter
     {
         private string _rootElementName;
-        private XmlCasingEnum _casing;
-        private bool _mustGenerateNamespaces;
         private bool _mustGenerateNilAttributes;
         private bool _mustSortElementsByName;
-        private NamespaceResolver _namespaceResolver;
 
-        /// <summary> 
-        /// Nullable.
-        /// These mappings define alternative element names for array items.
-        /// It maps dot net types to these alternative XML array item names.
-        /// This is a feature required for various SOAP implementations.
-        /// The names will be put in an XML namespace that WCF expects:
-        /// "http://schemas.microsoft.com/2003/10/Serialization/Arrays".
-        /// If you need a different namespace, you must translate the namespace youself.
-        /// </summary>
-        private Dictionary<Type, string> _customArrayItemNameDictionary;
+        private NameManager _nameManager;
 
         /// <summary>
         /// If null, standard XML / SOAP formatting of values is applied.
@@ -98,43 +86,12 @@ namespace JJ.Framework.Xml.Linq
         {
             if (rootElementName == null) throw new ArgumentNullException("rootElementName");
 
-            _casing = casing;
-            _mustGenerateNamespaces = mustGenerateNamespaces;
             _rootElementName = rootElementName;
             _mustGenerateNilAttributes = mustGenerateNilAttributes;
             _mustSortElementsByName = mustSortElementsByName;
             _cultureInfo = cultureInfo;
 
-            InitializeCustomArrayItemNameMappings(customArrayItemNameMappings);
-            InitializeNamespaceResolver();
-        }
-
-        private void InitializeCustomArrayItemNameMappings(IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings)
-        {
-            if (customArrayItemNameMappings != null)
-            {
-                _customArrayItemNameDictionary = customArrayItemNameMappings.ToDictionary(x => x.DotNetItemType, x => x.XmlArrayItemName);
-            }
-        }
-
-        /// <summary>
-        /// Creates the _namespaceResolver conditionally initializing it with 
-        /// some standard namespaces: one for the nil attribute and one for XML array item names.
-        /// </summary>
-        private void InitializeNamespaceResolver()
-        {
-            _namespaceResolver = new NamespaceResolver();
-
-            // Add extra nil namespace to the namespace resolver.
-            if (_mustGenerateNilAttributes)
-            {
-                _namespaceResolver.AddXmlNamespaceString(NilHelper.NIL_XML_NAMESPACE_NAME);
-            }
-
-            if (_customArrayItemNameDictionary != null)
-            {
-                _namespaceResolver.AddXmlNamespaceString(CustomArrayItemNameMapping.DEFAULT_XML_ARRAY_ITEM_NAMESPACE_STRING);
-            }
+            _nameManager = new NameManager(casing, mustGenerateNamespaces, mustGenerateNilAttributes, customArrayItemNameMappings);
         }
 
         public byte[] ConvertToBytes(object sourceObject)
@@ -188,7 +145,7 @@ namespace JJ.Framework.Xml.Linq
         {
             XElement rootElement = new XElement(_rootElementName);
 
-            foreach (XAttribute namespaceDeclarationAttribute in _namespaceResolver.GetNamespaceDeclarationAttributes())
+            foreach (XAttribute namespaceDeclarationAttribute in _nameManager.GetNamespaceDeclarationAttributes())
             {
                 rootElement.Add(namespaceDeclarationAttribute);
             }
@@ -272,17 +229,14 @@ namespace JJ.Framework.Xml.Linq
                 return null;
             }
 
-            string destName = ConversionHelper.GetElementNameForProperty(sourceProperty, _casing);
-            XName destXName = GetXName(destName, sourceProperty);
-
+            XName destXName = _nameManager.GetElementXName(sourceProperty);
             XElement destElement = ConvertToElement(sourceObject, destXName);
             return destElement;
         }
 
         private XElement ConvertToElement_WithNillAttribute(object sourceObject, PropertyInfo sourceProperty)
         {
-            string destName = ConversionHelper.GetElementNameForProperty(sourceProperty, _casing);
-            XName destXName = GetXName(destName, sourceProperty);
+            XName destXName = _nameManager.GetElementXName(sourceProperty);
 
             if (sourceObject == null)
             {
@@ -350,8 +304,7 @@ namespace JJ.Framework.Xml.Linq
                 return null;
             }
 
-            string destName = ConversionHelper.GetAttributeNameForProperty(sourceProperty, _casing);
-            XName destXName = GetXName(destName, sourceProperty);
+            XName destXName = _nameManager.GetAttributeXName(sourceProperty);
             object destValue = ConversionHelper.FormatValue(sourceValue, _cultureInfo);
             var destAttribute = new XAttribute(destXName, destValue);
             return destAttribute;
@@ -385,8 +338,7 @@ namespace JJ.Framework.Xml.Linq
 
             IList sourceCollection = (IList)sourceCollectionObject;
 
-            string destName = ConversionHelper.GetXmlArrayNameForCollectionProperty(sourceCollectionProperty, _casing);
-            XName destXName = GetXName(destName, sourceCollectionProperty);
+            XName destXName = _nameManager.GetXmlArrayXName(sourceCollectionProperty);
 
             var destXmlArray = new XElement(destXName);
 
@@ -408,70 +360,12 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XElement ConvertToXmlArrayItem(object sourceItem, Type sourceItemType, PropertyInfo sourceCollectionProperty)
         {
-            // First try getting the name from the custom XML array item name mappings.
-            // This is a feature required for various SOAP implementations.
-            XName destXName = TryGetCustomArrayItemXName(sourceItemType);
-
-            if (destXName == null)
-            {
-                // For collection items, it is the .NET namespace of the item type that determines the XML namespace of the XML element.
-                string destName = ConversionHelper.GetXmlArrayItemNameForCollectionProperty(sourceCollectionProperty, _casing);
-                destXName = GetXName(destName, sourceItemType);
-            }
+            XName destXName = _nameManager.GetXmlArrayItemXName(sourceItemType, sourceCollectionProperty);
 
             // Recursive call
             // TODO: Call TryConvertToElement to support empty array elements?
             XElement destXmlArrayItem = ConvertToElement(sourceItem, destXName);
             return destXmlArrayItem;
-        }
-
-        private XName TryGetCustomArrayItemXName(Type sourceItemType)
-        {
-            if (_customArrayItemNameDictionary == null)
-            {
-                return null;
-            }
-
-            string destName;
-            if (_customArrayItemNameDictionary.TryGetValue(sourceItemType, out destName))
-            {
-                XNamespace arrayNamespace = CustomArrayItemNameMapping.DEFAULT_XML_ARRAY_ITEM_NAMESPACE_STRING;
-                return arrayNamespace + destName;
-            }
-
-            return null;
-        }
-
-        // Helpers
-
-        /// <summary>
-        /// Will conditionally generate a namespace.
-        /// </summary>
-        public XName GetXName(string name, PropertyInfo property)
-        {
-            if (_mustGenerateNamespaces)
-            {
-                return _namespaceResolver.GetXName(name, property);
-            }
-            else
-            {
-                return name;
-            }
-        }
-
-        /// <summary>
-        /// Will conditionally generate a namespace.
-        /// </summary>
-        private XName GetXName(string name, Type type)
-        {
-            if (_mustGenerateNamespaces)
-            {
-                return _namespaceResolver.GetXName(name, type);
-            }
-            else
-            {
-                return name;
-            }
         }
     }
 }

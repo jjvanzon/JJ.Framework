@@ -92,6 +92,12 @@ namespace JJ.Framework.Reflection
             return GetItemType(collection.GetType());
         }
 
+        public static Type GetItemType(PropertyInfo collectionProperty)
+        {
+            if (collectionProperty == null) throw new ArgumentNullException("collectionProperty");
+            return GetItemType(collectionProperty.PropertyType);
+        }
+
         public static Type GetItemType(Type collectionType)
         {
             Type itemType = TryGetItemType(collectionType);
@@ -130,6 +136,7 @@ namespace JJ.Framework.Reflection
                     {
                         itemType = enumerableInterface.GetGenericArguments()[0];
                     }
+
 
                     _itemTypeDictionary.Add(collectionType, itemType);
                 }

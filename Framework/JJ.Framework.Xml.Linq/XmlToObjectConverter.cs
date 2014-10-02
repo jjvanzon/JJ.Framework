@@ -51,9 +51,9 @@ namespace JJ.Framework.Xml.Linq
         // This class does not work with XML namespaces (yet). 
         // It simply ignores them which may however have a performance penalty.
 
-        private XmlCasingEnum _casing;
-
         private bool _mustParseNilAttributes;
+
+        private NameManager _nameManager;
 
         /// <summary>
         /// When null, standard XML / SOAP formatting of values is applied.
@@ -97,13 +97,14 @@ namespace JJ.Framework.Xml.Linq
         /// When filled in, values will be formatter in accordance to the provided culture.
         /// </param>
         public XmlToObjectConverter(
-            XmlCasingEnum casing = XmlCasingEnum.CamelCase, 
+            XmlCasingEnum casing = XmlCasingEnum.CamelCase,
             bool mustParseNilAttributes = false,
+            IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null,
             CultureInfo cultureInfo = null)
         {
-            _casing = casing;
             _cultureInfo = cultureInfo;
             _mustParseNilAttributes = mustParseNilAttributes;
+            _nameManager = new NameManager(casing, customArrayItemNameMappings: customArrayItemNameMappings);
         }
 
         public TDestObject Convert(byte[] data)
@@ -185,7 +186,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private void TryConvertElementFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destChildProperty)
         {
-            string sourceChildElementName = ConversionHelper.GetElementNameForProperty(destChildProperty, _casing);
+            string sourceChildElementName = _nameManager.GetElementName(destChildProperty);
 
             XElement sourceChildElement = XmlHelper.TryGetElement(sourceParentElement, sourceChildElementName);
 
@@ -205,7 +206,7 @@ namespace JJ.Framework.Xml.Linq
             // Resolve nil attribute.
             if (sourceElement != null)
             {
-                if (NilHelper.HasNilAttribute(sourceElement))
+                if (_mustParseNilAttributes && NilHelper.HasNilAttribute(sourceElement))
                 {
                     sourceElement = null;
                 }
@@ -296,7 +297,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private void TryConvertAttributeFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destProperty)
         {
-            string sourceXmlAttributeName = ConversionHelper.GetAttributeNameForProperty(destProperty, _casing);
+            string sourceXmlAttributeName = _nameManager.GetAttributeName(destProperty);
             XAttribute sourceXmlAttribute = XmlHelper.TryGetAttribute(sourceParentElement, sourceXmlAttributeName);
 
             Type destPropertyType = destProperty.PropertyType;
@@ -363,7 +364,8 @@ namespace JJ.Framework.Xml.Linq
                 return;
             }
 
-            IList<XElement> sourceXmlArrayItems = GetSourceXmlArrayItems(sourceArrayXmlElement, destCollectionProperty);
+            Type itemType = destCollectionProperty.GetItemType();
+            IList<XElement> sourceXmlArrayItems = GetSourceXmlArrayItems(sourceArrayXmlElement, itemType, destCollectionProperty);
             ConvertXmlArrayItems(sourceXmlArrayItems, destParentObject, destCollectionProperty);
         }
 
@@ -472,7 +474,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XElement TryGetSourceArrayXmlElement(XElement sourceParentElement, PropertyInfo destCollectionProperty)
         {
-            string sourceArrayXmlElementName = ConversionHelper.GetXmlArrayNameForCollectionProperty(destCollectionProperty, _casing);
+            string sourceArrayXmlElementName = _nameManager.GetXmlArrayName(destCollectionProperty);
             XElement sourceArrayXmlElement = XmlHelper.TryGetElement(sourceParentElement, sourceArrayXmlElementName);
             return sourceArrayXmlElement;
         }
@@ -484,9 +486,9 @@ namespace JJ.Framework.Xml.Linq
         /// to indicate what the name of the array item XML elements should be.
         /// </summary>
         /// <param name="destCollectionProperty">Is used to get the expected XML array item element name.</param>
-        private IList<XElement> GetSourceXmlArrayItems(XElement sourceXmlArray, PropertyInfo destCollectionProperty)
+        private IList<XElement> GetSourceXmlArrayItems(XElement sourceXmlArray, Type destItemType, PropertyInfo destCollectionProperty)
         {
-            string sourceXmlArrayItemName = ConversionHelper.GetXmlArrayItemNameForCollectionProperty(destCollectionProperty, _casing);
+            string sourceXmlArrayItemName = _nameManager.GetXmlArrayItemName(destItemType, destCollectionProperty);
             IList<XElement> sourceXmlArrayItems = XmlHelper.GetElements(sourceXmlArray, sourceXmlArrayItemName);
             return sourceXmlArrayItems;
         }

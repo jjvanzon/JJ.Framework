@@ -67,7 +67,7 @@ namespace JJ.Framework.Soap
         {
             byte[] dataToSend = GetDataToSend(operationName, parameters);
             HttpWebRequest request = CreateSoapRequest(_url, soapAction, dataToSend);
-
+            
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             {
                 using (Stream responseStream = response.GetResponseStream())
@@ -198,7 +198,11 @@ namespace JJ.Framework.Soap
             // Ignoring namespaces should not be a problem,
             // because the converter looks at the property names,
             // which should match with the XML element names.
-            var converter = new XmlToObjectConverter<TResult>(XmlCasingEnum.UnmodifiedCase);
+            var converter = new XmlToObjectConverter<TResult>(
+                XmlCasingEnum.UnmodifiedCase,
+                mustParseNilAttributes: true,
+                customArrayItemNameMappings: _customArrayItemNameMappings);
+
             TResult result = converter.Convert(saveResult);
             return result;
         }

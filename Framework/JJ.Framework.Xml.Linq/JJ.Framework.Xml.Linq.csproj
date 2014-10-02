@@ -38,7 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomArrayItemNameMapping.cs" />
-    <Compile Include="Internal\NamespaceResolver.cs" />
+    <Compile Include="Internal\NameManager.cs" />
     <Compile Include="Internal\NilHelper.cs" />
     <Compile Include="ObjectToXmlConverter.cs" />
     <Compile Include="Internal\ConversionHelper.cs" />

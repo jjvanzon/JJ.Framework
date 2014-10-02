@@ -176,8 +176,8 @@ namespace JJ.Framework.Soap.Tests.Server
                     },
                     CompositeObject = new CompositeType
                     {
-                        BoolValue = complicatedObject.CompositeObject.BoolValue,
-                        StringValue = complicatedObject.CompositeObject.StringValue + " too"
+                        BoolValue = complicatedObject.CompositeObject != null ? complicatedObject.CompositeObject.BoolValue : false,
+                        StringValue = complicatedObject.CompositeObject != null ? complicatedObject.CompositeObject.StringValue + " too" : null
                     },
 
                     // Collections of Different Types
