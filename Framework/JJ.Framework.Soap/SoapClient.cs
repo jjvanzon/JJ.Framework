@@ -24,11 +24,34 @@ namespace JJ.Framework.Soap
         private string _url;
         private Encoding _encoding;
 
+        /// <summary>
+        /// First parameter of the delegate is soapAction, second parameter is SOAP message as an XML string,
+        /// return value should be text received.
+        /// </summary>
+        private Func<string, string, string> _sendMessageDelegate;
+
         /// <summary> nullable </summary>
         private Dictionary<string, string> _namespaceDictionary;
 
         /// <summary> nullable </summary>
         private IEnumerable<CustomArrayItemNameMapping> _customArrayItemNameMappings;
+
+        
+        /// <summary>
+        /// This class exists because some mobile platforms running on Mono
+        /// do not fully support System.ServiceModel or System.Web.Services.
+        /// UTF-8 encoding is assumed. Use the other overload to specify encoding explicitly.
+        /// </summary>
+        /// <param name="namespaceMappings">
+        /// If set to null, standard WCF namespaces are generated. Otherwise the provided namespaces are used.
+        /// If a namespace mapping is missing, it will remain unchanged.
+        /// </param>
+        public SoapClient(
+            string url,
+            IEnumerable<SoapNamespaceMapping> namespaceMappings = null,
+            IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null)
+            : this(url, Encoding.UTF8, namespaceMappings, customArrayItemNameMappings)
+        { }
 
         /// <summary>
         /// This class exists because some mobile platforms running on Mono
@@ -39,7 +62,7 @@ namespace JJ.Framework.Soap
         /// If a namespace mapping is missing, it will remain unchanged.
         /// </param>
         public SoapClient(
-            string url, Encoding encoding, 
+            string url, Encoding encoding,
             IEnumerable<SoapNamespaceMapping> namespaceMappings = null,
             IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null)
         {
@@ -48,6 +71,37 @@ namespace JJ.Framework.Soap
 
             _url = url;
             _encoding = encoding;
+            _customArrayItemNameMappings = customArrayItemNameMappings;
+
+            _sendMessageDelegate = SendMessage;
+
+            InitializeNamespaceMappings(namespaceMappings);
+        }
+
+        /// <summary>
+        /// This class exists because some mobile platforms running on Mono
+        /// do not fully support System.ServiceModel or System.Web.Services.
+        /// </summary>
+        /// <param name="namespaceMappings">
+        /// If set to null, standard WCF namespaces are generated. Otherwise the provided namespaces are used.
+        /// If a namespace mapping is missing, it will remain unchanged.
+        /// </param>
+        /// <param name="sendMessageDelegate">
+        /// You can handle the sending of the SOAP message and the receiving of the response yourself
+        /// by passing this sendMessageDelegate. This is for environments that do not support HttpWebRequest.
+        /// First parameter of the delegate is SOAP action, second parameter is SOAP message as an XML string,
+        /// return value should be text received.
+        /// </param>
+        public SoapClient(
+            string url, Func<string, string, string> sendMessageDelegate,
+            IEnumerable<SoapNamespaceMapping> namespaceMappings = null,
+            IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null)
+        {
+            if (String.IsNullOrEmpty(url)) throw new ArgumentException("url cannot be null or empty");
+            if (sendMessageDelegate == null) throw new ArgumentNullException("sendMessageDelegate");
+
+            _url = url;
+            _sendMessageDelegate = sendMessageDelegate;
             _customArrayItemNameMappings = customArrayItemNameMappings;
 
             InitializeNamespaceMappings(namespaceMappings);
@@ -65,29 +119,44 @@ namespace JJ.Framework.Soap
         public TResult Invoke<TResult>(string soapAction, string operationName, params SoapParameter[] parameters)
             where TResult : class, new()
         {
-            byte[] dataToSend = GetDataToSend(operationName, parameters);
-            HttpWebRequest request = CreateSoapRequest(_url, soapAction, dataToSend);
-            
+            string textToSend = GetTextToSend(operationName, parameters);
+            string textReceived = _sendMessageDelegate(soapAction, textToSend);
+            TResult result = ParseReceivedData<TResult>(operationName, textReceived);
+            return result;
+        }
+
+        private string SendMessage(string soapAction, string textToSend)
+        {
+            byte[] bytesToSend = StreamHelper.StringToBytes(textToSend, _encoding);
+
+            HttpWebRequest request = CreateSoapRequest(_url, soapAction, bytesToSend);
+
             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
             {
                 using (Stream responseStream = response.GetResponseStream())
                 {
                     using (StreamReader reader = new StreamReader(responseStream, _encoding))
                     {
-                        string dataReceived = reader.ReadToEnd();
-                        TResult result = ParseReceivedData<TResult>(operationName, dataReceived);
-                        return result;
+                        string textReceived = reader.ReadToEnd();
+                        return textReceived;
                     }
                 }
             }
         }
 
-        private byte[] GetDataToSend(string operationName, SoapParameter[] parameters)
+        private byte[] GetBytesToSend(string operationName, SoapParameter[] parameters)
         {
             XElement element = CreateSoapXElement(operationName, parameters);
             string text = element.ToString();
             byte[] dataToSend = StreamHelper.StringToBytes(text, _encoding);
             return dataToSend;
+        }
+
+        private string GetTextToSend(string operationName, SoapParameter[] parameters)
+        {
+            XElement element = CreateSoapXElement(operationName, parameters);
+            string text = element.ToString();
+            return text;
         }
 
         private XElement CreateSoapXElement(string operationName, SoapParameter[] parameters)
@@ -174,6 +243,7 @@ namespace JJ.Framework.Soap
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = HTTP_METHOD_POST;
             request.ContentLength = content.Length;
+            // TODO: The charset should actually vary with the encoding.
             request.ContentType = @"text/xml;charset=""utf-8""";
             request.Accept = "text/xml";
             request.Headers.Add("SOAPAction", soapAction);

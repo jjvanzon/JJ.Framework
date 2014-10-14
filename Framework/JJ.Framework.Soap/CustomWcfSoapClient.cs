@@ -10,7 +10,7 @@ namespace JJ.Framework.Soap
     /// This class exists because some mobile platforms running on Mono
     /// do not fully support System.ServiceModel or System.Web.Services.
     /// </summary>
-    internal class WcfSoapClient
+    internal class CustomWcfSoapClient
     {
         private string _serviceInterfaceName;
         private SoapClient _client;
@@ -20,7 +20,10 @@ namespace JJ.Framework.Soap
         /// do not fully support System.ServiceModel or System.Web.Services.
         /// UTF-8 encoding is assumed. Use the other overload to specify encoding explicitly.
         /// </summary>
-        public WcfSoapClient(string url, string serviceInterfaceName)
+        /// <param name="serviceInterfaceName">
+        /// The short name of the interface. So without the namespace in front of it, e.g. "ITestService".
+        /// </param>
+        public CustomWcfSoapClient(string url, string serviceInterfaceName)
             : this(url, serviceInterfaceName, Encoding.UTF8)
         { }
 
@@ -28,14 +31,42 @@ namespace JJ.Framework.Soap
         /// This class exists because some mobile platforms running on Mono
         /// do not fully support System.ServiceModel or System.Web.Services.
         /// </summary>
-        public WcfSoapClient(string url, string serviceInterfaceName, Encoding encoding)
+        /// <param name="serviceInterfaceName">
+        /// The short name of the interface. So without the namespace in front of it, e.g. "ITestService".
+        /// </param>
+        public CustomWcfSoapClient(string url, string serviceInterfaceName, Encoding encoding)
         {
-            if (String.IsNullOrEmpty(serviceInterfaceName)) throw new ArgumentException("serviceInterfaceName is null");
+            if (String.IsNullOrEmpty(serviceInterfaceName)) throw new ArgumentException("serviceInterfaceName cannot be null or empty.");
 
             _serviceInterfaceName = serviceInterfaceName;
 
             IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = GetCustomArrayItemNameMappings();
+
             _client = new SoapClient(url, encoding, customArrayItemNameMappings: customArrayItemNameMappings);
+        }
+
+        /// <summary>
+        /// This class exists because some mobile platforms running on Mono
+        /// do not fully support System.ServiceModel or System.Web.Services.
+        /// </summary>
+        /// <param name="serviceInterfaceName">
+        /// The short name of the interface. So without the namespace in front of it, e.g. "ITestService".
+        /// </param>
+        /// <param name="sendMessageDelegate">
+        /// You can handle the sending of the SOAP message and the receiving of the response yourself
+        /// by passing this sendMessageDelegate. This is for environments that do not support HttpWebRequest.
+        /// First parameter of the delegate is SOAP action, second parameter is SOAP message as an XML string,
+        /// return value should be text received.
+        /// </param>
+        public CustomWcfSoapClient(string url, string serviceInterfaceName, Func<string, string, string> sendMessageDelegate)
+        {
+            if (String.IsNullOrEmpty(serviceInterfaceName)) throw new ArgumentException("serviceInterfaceName cannot be null or empty.");
+
+            _serviceInterfaceName = serviceInterfaceName;
+
+            IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = GetCustomArrayItemNameMappings();
+
+            _client = new SoapClient(url, sendMessageDelegate, customArrayItemNameMappings: customArrayItemNameMappings);
         }
 
         public TResult Invoke<TResult>(string operationName, params SoapParameter[] parameters)

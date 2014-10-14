@@ -39,10 +39,10 @@
   <ItemGroup>
     <Compile Include="SoapParameter.cs" />
     <Compile Include="SoapClient.cs" />
-    <Compile Include="WcfSoapClient.cs" />
+    <Compile Include="CustomWcfSoapClient.cs" />
     <Compile Include="SoapNamespaceMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WcfSoapClientT.cs" />
+    <Compile Include="CustomWcfSoapClientT.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
