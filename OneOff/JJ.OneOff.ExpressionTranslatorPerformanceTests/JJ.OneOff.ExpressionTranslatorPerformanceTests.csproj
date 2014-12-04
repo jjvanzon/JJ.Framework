@@ -85,6 +85,10 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Logging.Diagnostics\JJ.Framework.Logging.Diagnostics.csproj">
+      <Project>{3673e148-26f4-4ddd-870d-adc0486be39c}</Project>
+      <Name>JJ.Framework.Logging.Diagnostics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Logging\JJ.Framework.Logging.csproj">
       <Project>{ceeb755d-de12-4e70-816e-546c429b44b7}</Project>
       <Name>JJ.Framework.Logging</Name>

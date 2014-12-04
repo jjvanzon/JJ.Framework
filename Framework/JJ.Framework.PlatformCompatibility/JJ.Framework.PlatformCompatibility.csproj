@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CultureInfo_PlatformSafe.cs" />
+    <Compile Include="Encoding_PlatformSafe.cs" />
     <Compile Include="PlatformHelper.cs" />
     <Compile Include="PlatformExtensions.cs" />
     <Compile Include="MemberTypes_PlatformSafe.cs" />

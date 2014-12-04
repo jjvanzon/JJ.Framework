@@ -19,8 +19,6 @@ namespace JJ.Framework.Xml.Linq
     /// <summary>
     /// Under certain platforms standard XML serialization may not be available 
     /// or may not be the best option. That is why this class exists.
-    /// Limitation: only formats values in a standard XML way, 
-    /// which may not be suitable in all situations.
     /// </summary>
     public class ObjectToXmlConverter
     {

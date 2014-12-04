@@ -280,7 +280,7 @@ namespace JJ.Framework.Mathematics
 
         // Letter Sequences
 
-            /// <summary>
+        /// <summary>
         /// Returns spread-sheet-style letter sequences.
         /// This is not the same as a base-26 numbering system.
         /// After the range A-Z is depleted, the next value is 'AA',

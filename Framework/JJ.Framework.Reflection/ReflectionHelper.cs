@@ -137,7 +137,6 @@ namespace JJ.Framework.Reflection
                         itemType = enumerableInterface.GetGenericArguments()[0];
                     }
 
-
                     _itemTypeDictionary.Add(collectionType, itemType);
                 }
 

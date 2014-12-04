@@ -1,16 +1,14 @@
-﻿using JJ.Framework.PlatformCompatibility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.IO
 {
     public static class StreamHelper
     {
-        // TODO: These might not be the best ways to convert.
-
         public static byte[] StreamToBytes(Stream stream, int bufferSize = 8192)
         {
             if (stream == null) throw new ArgumentNullException("stream");
@@ -28,6 +26,14 @@ namespace JJ.Framework.IO
             return new MemoryStream(bytes);
         }
 
+        public static string StreamToString(Stream stream, Encoding encoding)
+        {
+            if (encoding == null) throw new ArgumentNullException("encoding");
+            byte[] bytes = StreamToBytes(stream);
+            string text = encoding.GetString_PlatformSafe(bytes);
+            return text;
+        }
+
         public static Stream StringToStream(string text, Encoding encoding)
         {
             byte[] bytes = StringToBytes(text, encoding);
@@ -35,18 +41,16 @@ namespace JJ.Framework.IO
             return stream;
         }
 
-        public static string StreamToString(Stream stream, Encoding encoding)
-        {
-            if (encoding == null) throw new ArgumentNullException("encoding");
-            byte[] bytes = StreamToBytes(stream);
-            string text = encoding.GetString(bytes);
-            return text;
-        }
-
         public static byte[] StringToBytes(string text, Encoding encoding)
         {
             if (encoding == null) throw new ArgumentNullException("encoding");
             return encoding.GetBytes(text);
+        }
+
+        public static string BytesToString(byte[] bytes, Encoding encoding)
+        {
+            if (encoding == null) throw new ArgumentNullException("encoding");
+            return encoding.GetString_PlatformSafe(bytes);
         }
     }
 }
