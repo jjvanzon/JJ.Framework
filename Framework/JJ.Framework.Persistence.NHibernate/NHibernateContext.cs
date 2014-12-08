@@ -84,6 +84,11 @@ namespace JJ.Framework.Persistence.NHibernate
             _entitiesToSave.Clear();
         }
 
+        public override void Flush()
+        {
+            Session.Flush();
+        }
+
         public override void Dispose()
         {
             if (Session != null)

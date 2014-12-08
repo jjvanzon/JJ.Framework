@@ -29,15 +29,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common", "Framework\JJ.Framework.Common\JJ.Framework.Common.csproj", "{44FD9133-5FE7-4824-BD35-27273706D127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Persistence.Tests", "Models\JJ.Models.QuestionAndAnswer.Persistence.Tests\JJ.Models.QuestionAndAnswer.Persistence.Tests.csproj", "{7E76AD3A-2418-46EF-A48E-056C9EEF6738}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Tests", "Models\JJ.Models.QuestionAndAnswer.Tests\JJ.Models.QuestionAndAnswer.Tests.csproj", "{7E76AD3A-2418-46EF-A48E-056C9EEF6738}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Persistence.NHibernate", "Models\JJ.Models.QuestionAndAnswer.Persistence.NHibernate\JJ.Models.QuestionAndAnswer.Persistence.NHibernate.csproj", "{4507BFDD-1C21-4BA8-9486-4819D3B6AFCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.NHibernate", "Models\JJ.Models.QuestionAndAnswer.NHibernate\JJ.Models.QuestionAndAnswer.NHibernate.csproj", "{4507BFDD-1C21-4BA8-9486-4819D3B6AFCA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Tests", "Framework\JJ.Framework.Configuration.Tests\JJ.Framework.Configuration.Tests.csproj", "{2E520035-5328-4518-BC08-B57D7D3A70C2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.NPersist", "Framework\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.NPersist.csproj", "{35FC288E-5A6F-4DB9-AE54-1B721735ED7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Persistence.NPersist", "Models\JJ.Models.QuestionAndAnswer.Persistence.NPersist\JJ.Models.QuestionAndAnswer.Persistence.NPersist.csproj", "{B38FEC53-B020-449F-AA97-E67D31B6D701}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.NPersist", "Models\JJ.Models.QuestionAndAnswer.NPersist\JJ.Models.QuestionAndAnswer.NPersist.csproj", "{B38FEC53-B020-449F-AA97-E67D31B6D701}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Components", "External Components", "{E3DC759D-B004-4E6C-8381-D5D5C74A5B92}"
 EndProject
@@ -51,7 +51,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPath.Framework.NET 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPersist.Framework.NET 3.5", "External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj", "{E6C03D2A-D150-4473-9439-D300746A1390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5", "Models\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5\JJ.Models.QuestionAndAnswer.Persistence.EntityFramework5.csproj", "{FFE345E3-1F70-40E8-BB12-9CB377EF7EB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.EntityFramework5", "Models\JJ.Models.QuestionAndAnswer.EntityFramework5\JJ.Models.QuestionAndAnswer.EntityFramework5.csproj", "{FFE345E3-1F70-40E8-BB12-9CB377EF7EB5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Tests", "Framework\JJ.Framework.Persistence.Tests\JJ.Framework.Persistence.Tests.csproj", "{30F1DFB1-BB06-42EA-AE91-56144B56DF45}"
 EndProject
@@ -109,11 +109,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText", "Models
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText.Persistence", "Models\JJ.Models.SetText.Persistence\JJ.Models.SetText.Persistence.csproj", "{06443309-668F-42FE-8996-D2C3FFA637F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText.Persistence.NHibernate", "Models\JJ.Models.SetText.Persistence.NHibernate\JJ.Models.SetText.Persistence.NHibernate.csproj", "{48145ED7-5BB1-4ECB-9FB0-0DBD35B80EA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText.NHibernate", "Models\JJ.Models.SetText.NHibernate\JJ.Models.SetText.NHibernate.csproj", "{48145ED7-5BB1-4ECB-9FB0-0DBD35B80EA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText.Persistence.EntityFramework5", "Models\JJ.Models.SetText.Persistence.EntityFramework5\JJ.Models.SetText.Persistence.EntityFramework5.csproj", "{77AB85CE-6402-4AA3-A9A9-83121D5D9C6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText.EntityFramework5", "Models\JJ.Models.SetText.EntityFramework5\JJ.Models.SetText.EntityFramework5.csproj", "{77AB85CE-6402-4AA3-A9A9-83121D5D9C6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText.Persistence.Xml", "Models\JJ.Models.SetText.Persistence.Xml\JJ.Models.SetText.Persistence.Xml.csproj", "{292046BB-5667-4231-B8AA-BAD57CD1B481}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText.Xml", "Models\JJ.Models.SetText.Xml\JJ.Models.SetText.Xml.csproj", "{292046BB-5667-4231-B8AA-BAD57CD1B481}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.SetText", "Apps\JJ.Apps.SetText\JJ.Apps.SetText.csproj", "{44B139AB-BDF0-414A-AA01-4B7E62ADCF57}"
 EndProject
@@ -129,7 +129,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Xm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgmlReaderDll", "External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj", "{499527FF-AE52-450F-B3E3-4AD53E1712AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText.Persistence.Memory", "Models\JJ.Models.SetText.Persistence.Memory\JJ.Models.SetText.Persistence.Memory.csproj", "{BECFECBE-8EC2-485E-921E-2FB6FE048AAC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText.Memory", "Models\JJ.Models.SetText.Memory\JJ.Models.SetText.Memory.csproj", "{BECFECBE-8EC2-485E-921E-2FB6FE048AAC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Memory", "Framework\JJ.Framework.Persistence.Memory\JJ.Framework.Persistence.Memory.csproj", "{86348B50-ECA9-4849-A221-73F0ED31713B}"
 EndProject
@@ -150,7 +150,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.SetText.WinForms.On
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Xml.Linq", "Framework\JJ.Framework.Persistence.Xml.Linq\JJ.Framework.Persistence.Xml.Linq.csproj", "{BA423767-A57E-4278-BBA8-5C01F3E8D555}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText.Persistence.Xml.Linq", "Models\JJ.Models.SetText.Persistence.Xml.Linq\JJ.Models.SetText.Persistence.Xml.Linq.csproj", "{6B54E0E9-FF92-4DD9-93A4-262544E74163}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.SetText.Xml.Linq", "Models\JJ.Models.SetText.Xml.Linq\JJ.Models.SetText.Xml.Linq.csproj", "{6B54E0E9-FF92-4DD9-93A4-262544E74163}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Apps.SetText.AppService.Tests", "Apps\JJ.Apps.SetText.AppService.Tests\JJ.Apps.SetText.AppService.Tests.csproj", "{80473C02-D43B-483F-9D00-21C64FCCC342}"
 EndProject

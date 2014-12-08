@@ -96,7 +96,7 @@
   <ItemGroup>
     <ProjectReference Include="..\JJ.Demos.ReflectionCache\JJ.Demos.ReflectionCache.csproj">
       <Project>{5DAB690D-BF45-4980-93F4-14B5CF872A43}</Project>
-      <Name>ReflectionCacheDemo</Name>
+      <Name>JJ.Demos.ReflectionCache</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

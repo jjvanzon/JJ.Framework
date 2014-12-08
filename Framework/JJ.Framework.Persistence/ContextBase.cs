@@ -45,6 +45,7 @@ namespace JJ.Framework.Persistence
         public abstract void Delete<TEntity>(TEntity entity) where TEntity : class, new();
         public abstract IEnumerable<TEntity> Query<TEntity>() where TEntity : class, new();
         public abstract void Commit();
+        public abstract void Flush();
         public abstract void Dispose();
     }
 }

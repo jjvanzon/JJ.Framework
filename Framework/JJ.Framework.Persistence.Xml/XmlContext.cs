@@ -107,6 +107,11 @@ namespace JJ.Framework.Persistence.Xml
             }
         }
 
+        public override void Flush()
+        {
+            // No code required.
+        }
+
         public override void Dispose()
         {
             // No code required.

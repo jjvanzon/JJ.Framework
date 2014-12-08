@@ -85,6 +85,11 @@ namespace JJ.Framework.Persistence.Memory
             // No code required.
         }
 
+        public override void Flush()
+        {
+            // No code required.
+        }
+
         public override void Dispose()
         {
             // No code required.

@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace JJ.Framework.Persistence
+{
+    public interface IRepository<TEntity, TID>
+    {
+        TEntity TryGet(TID id);
+        TEntity Get(TID id);
+        IEnumerable<TEntity> GetAll();
+        TEntity Create();
+        void Delete(TEntity entity);
+        void Update(TEntity entity);
+
+        /// <summary>
+        /// Sends pending statements to the data store but does not yet commit the transaction.
+        /// This may fill in data store generated data you might require, such as ID's.
+        /// </summary>
+        void Flush();
+        void Commit();
+    }
+}

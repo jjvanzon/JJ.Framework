@@ -20,6 +20,7 @@ namespace JJ.Framework.Persistence
         IEnumerable<TEntity> Query<TEntity>() where TEntity : class, new();
 
         void Commit();
+        void Flush();
 
         string Location { get; }
     }

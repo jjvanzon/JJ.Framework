@@ -63,6 +63,11 @@ namespace JJ.Framework.Persistence.EntityFramework5
             Context.SaveChanges();
         }
 
+        public override void Flush()
+        {
+            // TODO: Is there an EntityFramework5 equivalent of an NHibernate Flush()?
+        }
+
         public override void Dispose()
         {
             if (Context != null)

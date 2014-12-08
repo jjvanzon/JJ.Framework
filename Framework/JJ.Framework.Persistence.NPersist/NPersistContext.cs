@@ -57,6 +57,11 @@ namespace JJ.Framework.Persistence.NPersist
             Context.Commit();
         }
 
+        public override void Flush()
+        {
+            // TODO: Is There an NPersist equivalent of an NHibernate Flush()?
+        }
+
         public override void Dispose()
         {
             if (Context != null)
@@ -64,10 +69,5 @@ namespace JJ.Framework.Persistence.NPersist
                 Context.Dispose();
             }
         }
-
-        /*public override IEnumerable<TEntity> QueryUncommitted<TEntity>()
-        {
-            throw new NotImplementedException();
-        }*/
     }
 }
