@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Reflection;
 using JJ.Framework.Xml;
 using System;
 using System.Collections.Generic;
@@ -117,7 +118,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         public XmlElement CreateElement(IEnumerable<string> attributeNames)
         {
-            if (attributeNames == null) throw new ArgumentNullException("attributeNames");
+            if (attributeNames == null) throw new NullException(() => attributeNames);
 
             XmlElement root = GetRoot(Document);
 

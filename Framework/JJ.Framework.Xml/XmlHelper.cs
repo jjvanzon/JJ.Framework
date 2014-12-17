@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace JJ.Framework.Xml
         /// </summary>
         public static XmlNode TrySelectNode(XmlNode parentNode, string xpath)
         {
-            if (parentNode == null) throw new ArgumentNullException("parentNode");
+            if (parentNode == null) throw new NullException(() => parentNode);
 
             XmlNodeList nodes = parentNode.SelectNodes(xpath);
 
@@ -91,7 +92,7 @@ namespace JJ.Framework.Xml
         /// </summary>
         public static IList<XmlElement> GetElements(XmlElement parentElement, string childElementName)
         {
-            if (parentElement == null) throw new ArgumentNullException("parentElement");
+            if (parentElement == null) throw new NullException(() => parentElement);
             if (String.IsNullOrEmpty(childElementName)) throw new ArgumentException("childElementName cannot be null or white space.");
 
             // The outcommented line below selected descendents, not children.

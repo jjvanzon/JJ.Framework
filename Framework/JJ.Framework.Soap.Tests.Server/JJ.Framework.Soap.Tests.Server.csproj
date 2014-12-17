@@ -77,6 +77,10 @@
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
+      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
+      <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Soap.Tests.ServiceInterface\JJ.Framework.Soap.Tests.ServiceInterface.csproj">
       <Project>{9f0128b1-b662-474d-9b73-3fd8e9783b40}</Project>
       <Name>JJ.Framework.Soap.Tests.ServiceInterface</Name>

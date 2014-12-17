@@ -76,7 +76,7 @@ namespace JJ.Framework.Presentation.Mvc
                 return null;
             }
 
-            if (namesAndValues.Count % 2 != 0) { throw new Exception("namesAndValues.Count must be a multiple of 2."); }
+            if (namesAndValues.Count % 2 != 0) throw new Exception("namesAndValues.Count must be a multiple of 2.");
 
             var keyValuePairs = new List<KeyValuePair<string, object>>();
 
@@ -85,8 +85,8 @@ namespace JJ.Framework.Presentation.Mvc
                 object name = namesAndValues[i];
                 object value = namesAndValues[i + 1];
 
-                if (name == null) { throw new Exception("Names in namesAndValues cannot contain nulls."); }
-                if (name.GetType() != typeof(string)) { throw new Exception("Names in namesAndValues must be strings."); }
+                if (name == null) throw new Exception("Names in namesAndValues cannot contain nulls.");
+                if (name.GetType() != typeof(string)) throw new Exception("Names in namesAndValues must be strings.");
 
                 keyValuePairs.Add(new KeyValuePair<string, object>((string)name, value));
             }

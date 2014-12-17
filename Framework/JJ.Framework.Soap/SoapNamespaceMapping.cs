@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +15,8 @@ namespace JJ.Framework.Xml.Linq
 
         public SoapNamespaceMapping(string sourceXmlNamespace, string destXmlNamespace)
         {
-            if (String.IsNullOrEmpty(sourceXmlNamespace)) throw new ArgumentNullException("sourceXmlNamespace");
-            if (String.IsNullOrEmpty(destXmlNamespace)) throw new ArgumentNullException("destXmlNamespace");
+            if (String.IsNullOrEmpty(sourceXmlNamespace)) throw new NullException(() => sourceXmlNamespace);
+            if (String.IsNullOrEmpty(destXmlNamespace)) throw new NullException(() => destXmlNamespace);
 
             SourceXmlNamespace = sourceXmlNamespace;
             DestXmlNamespace = destXmlNamespace;

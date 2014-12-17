@@ -65,11 +65,11 @@ namespace JJ.Framework.Validation
         {
             if (propertyKey == null)
             {
-                throw new ArgumentNullException("propertyKey");
+                throw new NullException(() => propertyKey);
             }
             if (propertyDisplayName == null)
             {
-                throw new ArgumentNullException("propertyDisplayName");
+                throw new NullException(() => propertyDisplayName);
             }
 
             _value = value;

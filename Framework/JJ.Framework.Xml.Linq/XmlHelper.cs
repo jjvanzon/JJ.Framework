@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,7 +52,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         public static IList<XElement> GetElements(XElement parentElement, string childElementName)
         {
-            if (parentElement == null) throw new ArgumentNullException("parentElement");
+            if (parentElement == null) throw new NullException(() => parentElement);
             if (String.IsNullOrEmpty(childElementName)) throw new ArgumentException("childElementName cannot be null or white space.");
 
             // Ignore namespaces (might not be fast)

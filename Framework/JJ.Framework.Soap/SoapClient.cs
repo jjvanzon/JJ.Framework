@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Xml.Linq;
 using JJ.Framework.Common;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Soap
 {
@@ -61,7 +62,7 @@ namespace JJ.Framework.Soap
             IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null)
         {
             if (String.IsNullOrEmpty(url)) throw new ArgumentException("url cannot be null or empty");
-            if (encoding == null) throw new ArgumentNullException("encoding");
+            if (encoding == null) throw new NullException(() => encoding);
 
             _url = url;
             _encoding = encoding;
@@ -90,7 +91,7 @@ namespace JJ.Framework.Soap
             IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null)
         {
             if (String.IsNullOrEmpty(url)) throw new ArgumentException("url cannot be null or empty");
-            if (sendMessageDelegate == null) throw new ArgumentNullException("sendMessageDelegate");
+            if (sendMessageDelegate == null) throw new NullException(() => sendMessageDelegate);
 
             _url = url;
             _sendMessageDelegate = sendMessageDelegate;

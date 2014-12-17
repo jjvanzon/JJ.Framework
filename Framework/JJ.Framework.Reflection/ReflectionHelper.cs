@@ -58,8 +58,8 @@ namespace JJ.Framework.Reflection
 
         public static Type[] GetImplementations(Assembly assembly, Type baseType)
         {
-            if (assembly == null) throw new ArgumentNullException("assembly");
-            if (baseType == null) throw new ArgumentNullException("baseType");
+            if (assembly == null) throw new NullException(() => assembly);
+            if (baseType == null) throw new NullException(() => baseType);
 
             lock (_implementationsDictionaryLock)
             {
@@ -88,13 +88,13 @@ namespace JJ.Framework.Reflection
 
         public static Type GetItemType(object collection)
         {
-            if (collection == null) throw new ArgumentNullException("collection");
+            if (collection == null) throw new NullException(() => collection);
             return GetItemType(collection.GetType());
         }
 
         public static Type GetItemType(PropertyInfo collectionProperty)
         {
-            if (collectionProperty == null) throw new ArgumentNullException("collectionProperty");
+            if (collectionProperty == null) throw new NullException(() => collectionProperty);
             return GetItemType(collectionProperty.PropertyType);
         }
 
@@ -113,7 +113,7 @@ namespace JJ.Framework.Reflection
 
         public static Type TryGetItemType(Type collectionType)
         {
-            if (collectionType == null) throw new ArgumentNullException("collectionType");
+            if (collectionType == null) throw new NullException(() => collectionType);
 
             lock (_itemTypeDictionaryLock)
             {
@@ -197,7 +197,7 @@ namespace JJ.Framework.Reflection
 
         public static bool IsStatic(MemberInfo member)
         {
-            if (member == null) throw new ArgumentNullException("member");
+            if (member == null) throw new NullException(() => member);
 
             MemberTypes_PlatformSafe memberType = member.MemberType_PlatformSafe();
 

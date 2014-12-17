@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Persistence.Memory.Internal;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Persistence.Memory
 {
@@ -13,7 +14,7 @@ namespace JJ.Framework.Persistence.Memory
         public MemoryContext(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect = null)
             : base(location, modelAssembly, mappingAssembly, dialect)
         {
-            if (mappingAssembly == null) throw new ArgumentNullException("mappingAssembly");
+            if (mappingAssembly == null) throw new NullException(() => mappingAssembly);
         }
 
         private object _lock = new object();

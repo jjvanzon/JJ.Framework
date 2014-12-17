@@ -20,8 +20,8 @@ namespace JJ.Framework.Common
         {
             // TODO: Beware: nested enumerators.
 
-            if (collection == null) { throw new ArgumentNullException("collection"); }
-            if (selector == null) { throw new ArgumentNullException("selector"); }
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (selector == null) throw new ArgumentNullException("selector");
 
             foreach (T item in collection)
             {
@@ -41,8 +41,8 @@ namespace JJ.Framework.Common
         {
             // TODO: Beware: nested enumerators.
 
-            if (collection == null) { throw new ArgumentNullException("collection"); }
-            if (selector == null) { throw new ArgumentNullException("selector"); }
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (selector == null) throw new ArgumentNullException("selector");
 
             for (int i = 0; i < collection.Count; i++)
             {

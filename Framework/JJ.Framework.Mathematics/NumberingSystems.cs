@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -95,7 +96,7 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static string ToBase(int number, char[] digitChars)
         {
-            if (digitChars == null) throw new ArgumentNullException("digitChars");
+            if (digitChars == null) throw new NullException(() => digitChars);
             int b = digitChars.Length;
             string result = ToBase(number, b, digitChars);
             return result;
@@ -107,7 +108,7 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static string ToBase(int number, int b, char[] digitChars)
         {
-            if (digitChars == null) throw new ArgumentNullException("digitChars");
+            if (digitChars == null) throw new NullException(() => digitChars);
             if (digitChars.Length < b) throw new ArgumentException("digitChars.Length must have at least b elements.");
 
             int[] digitValues = GetDigitValues(number, b);
@@ -156,7 +157,7 @@ namespace JJ.Framework.Mathematics
         {
             if (String.IsNullOrEmpty(input)) throw new ArgumentException("input cannot be null or empty.");
             if (b < 2) throw new ArgumentException("b must be 2 or higher.");
-            if (charToDigitValue == null) throw new ArgumentNullException("charToDigitValue");
+            if (charToDigitValue == null) throw new NullException(() => charToDigitValue);
 
             int result = 0;
             int pow = 1;
@@ -357,7 +358,7 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static int FromLetterSequence(string input, int b, char firstChar = 'A')
         {
-            if (String.IsNullOrEmpty(input)) throw new ArgumentNullException("input");
+            if (String.IsNullOrEmpty(input)) throw new NullException(() => input);
 
             int value = FromBase(input, b, firstChar);
 

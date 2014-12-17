@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace JJ.Framework.Persistence
 
         public RepositoryBase(IContext context)
         {
-            if (context == null) throw new ArgumentNullException("context");
+            if (context == null) throw new NullException(() => context);
             _context = context;
         }
 

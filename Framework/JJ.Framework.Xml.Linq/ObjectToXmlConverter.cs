@@ -82,7 +82,7 @@ namespace JJ.Framework.Xml.Linq
             string rootElementName = "root",
             IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null)
         {
-            if (rootElementName == null) throw new ArgumentNullException("rootElementName");
+            if (rootElementName == null) throw new NullException(() => rootElementName);
 
             _rootElementName = rootElementName;
             _mustGenerateNilAttributes = mustGenerateNilAttributes;
@@ -119,7 +119,7 @@ namespace JJ.Framework.Xml.Linq
 
         public XElement ConvertObjectToXElement(object sourceObject)
         {
-            if (sourceObject == null) throw new ArgumentNullException("sourceObject");
+            if (sourceObject == null) throw new NullException(() => sourceObject);
 
             if (ConversionHelper.IsLeafType(sourceObject.GetType()))
             {

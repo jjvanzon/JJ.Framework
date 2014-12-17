@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -17,7 +18,7 @@ namespace JJ.Framework.Persistence
         /// <param name="mappingAssembly">nullable</param>
         public ContextBase(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
         {
-            if (modelAssembly == null) throw new ArgumentNullException("modelAssembly");
+            if (modelAssembly == null) throw new NullException(() => modelAssembly);
 
             Location = location;
             ModelAssembly = modelAssembly;

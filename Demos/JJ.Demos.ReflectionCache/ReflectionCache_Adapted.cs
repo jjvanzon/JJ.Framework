@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -143,7 +144,7 @@ namespace JJ.Demos.ReflectionCache
 
         public PropertyInfo TryGetIndexer(Type type, params Type[] parameterTypes)
         {
-            if (parameterTypes == null) throw new ArgumentNullException("parameterTypes");
+            if (parameterTypes == null) throw new NullException(() => parameterTypes);
             if (parameterTypes.Length == 0) throw new ArgumentException("parameterTypes cannot be empty.");
 
             string parameterTypesKey = CreateKey(parameterTypes);
@@ -204,7 +205,7 @@ namespace JJ.Demos.ReflectionCache
 
         public MethodInfo TryGetMethod(Type type, string name, params Type[] parameterTypes)
         {
-            if (parameterTypes == null) throw new ArgumentNullException("parameterTypes");
+            if (parameterTypes == null) throw new NullException(() => parameterTypes);
 
             string parameterTypesKey = CreateKey(parameterTypes);
 

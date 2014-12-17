@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace JJ.Framework.Xml.Linq
 
         public CustomArrayItemNameMapping(Type dotNetItemType, string xmlArrayItemName)
         {
-            if (dotNetItemType == null) throw new ArgumentNullException("dotNetItemType");
+            if (dotNetItemType == null) throw new NullException(() => dotNetItemType);
             if (String.IsNullOrEmpty(xmlArrayItemName)) throw new ArgumentException("xmlArrayItemName cannot be null or empty.");
 
             DotNetItemType = dotNetItemType;

@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Soap.Tests.ServiceInterface;
+﻿using JJ.Framework.Reflection;
+using JJ.Framework.Soap.Tests.ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,27 +95,27 @@ namespace JJ.Framework.Soap.Tests.Server
 
         public ComplicatedType SendAndGetComplicatedObject(ComplicatedType complicatedObject)
         {
-            if (complicatedObject.Array == null) throw new ArgumentNullException("complicatedObject.Array");
-            if (complicatedObject.ListOfT == null) throw new ArgumentNullException("complicatedObject.ListOfT");
-            if (complicatedObject.IListOfT == null) throw new ArgumentNullException("complicatedObject.IListOfT");
-            if (complicatedObject.ICollectionOfT == null) throw new ArgumentNullException("complicatedObject.ICollectionOfT");
-            if (complicatedObject.IEnumerableOfT == null) throw new ArgumentNullException("complicatedObject.IEnumerableOfT");
-            if (complicatedObject.ArrayOfBoolean == null) throw new ArgumentNullException("complicatedObject.ArrayOfBoolean");
-            if (complicatedObject.ArrayOfSByte == null) throw new ArgumentNullException("complicatedObject.ArrayOfSByte");
-            if (complicatedObject.ArrayOfInt16 == null) throw new ArgumentNullException("complicatedObject.ArrayOfInt16");
-            if (complicatedObject.ArrayOfUInt16 == null) throw new ArgumentNullException("complicatedObject.ArrayOfUInt16");
-            if (complicatedObject.ArrayOfInt32 == null) throw new ArgumentNullException("complicatedObject.ArrayOfInt32");
-            if (complicatedObject.ArrayOfUInt32 == null) throw new ArgumentNullException("complicatedObject.ArrayOfUInt32");
-            if (complicatedObject.ArrayOfInt64 == null) throw new ArgumentNullException("complicatedObject.ArrayOfInt64");
-            if (complicatedObject.ArrayOfUInt64 == null) throw new ArgumentNullException("complicatedObject.ArrayOfUInt64");
-            if (complicatedObject.ArrayOfChar == null) throw new ArgumentNullException("complicatedObject.ArrayOfChar");
-            if (complicatedObject.ArrayOfDouble == null) throw new ArgumentNullException("complicatedObject.ArrayOfDouble");
-            if (complicatedObject.ArrayOfSingle == null) throw new ArgumentNullException("complicatedObject.ArrayOfSingle");
-            if (complicatedObject.ArrayOfString == null) throw new ArgumentNullException("complicatedObject.ArrayOfString");
-            if (complicatedObject.ArrayOfGuid == null) throw new ArgumentNullException("complicatedObject.ArrayOfGuid");
-            if (complicatedObject.ArrayOfTimeSpan == null) throw new ArgumentNullException("complicatedObject.ArrayOfTimeSpan");
-            if (complicatedObject.ArrayOfDateTime == null) throw new ArgumentNullException("complicatedObject.ArrayOfDateTime");
-            if (complicatedObject.ArrayOfEnumType == null) throw new ArgumentNullException("complicatedObject.ArrayOfEnumType");
+            if (complicatedObject.Array == null) throw new NullException(() => complicatedObject.Array);
+            if (complicatedObject.ListOfT == null) throw new NullException(() => complicatedObject.ListOfT);
+            if (complicatedObject.IListOfT == null) throw new NullException(() => complicatedObject.IListOfT);
+            if (complicatedObject.ICollectionOfT == null) throw new NullException(() => complicatedObject.ICollectionOfT);
+            if (complicatedObject.IEnumerableOfT == null) throw new NullException(() => complicatedObject.IEnumerableOfT);
+            if (complicatedObject.ArrayOfBoolean == null) throw new NullException(() => complicatedObject.ArrayOfBoolean);
+            if (complicatedObject.ArrayOfSByte == null) throw new NullException(() => complicatedObject.ArrayOfSByte);
+            if (complicatedObject.ArrayOfInt16 == null) throw new NullException(() => complicatedObject.ArrayOfInt16);
+            if (complicatedObject.ArrayOfUInt16 == null) throw new NullException(() => complicatedObject.ArrayOfUInt16);
+            if (complicatedObject.ArrayOfInt32 == null) throw new NullException(() => complicatedObject.ArrayOfInt32);
+            if (complicatedObject.ArrayOfUInt32 == null) throw new NullException(() => complicatedObject.ArrayOfUInt32);
+            if (complicatedObject.ArrayOfInt64 == null) throw new NullException(() => complicatedObject.ArrayOfInt64);
+            if (complicatedObject.ArrayOfUInt64 == null) throw new NullException(() => complicatedObject.ArrayOfUInt64);
+            if (complicatedObject.ArrayOfChar == null) throw new NullException(() => complicatedObject.ArrayOfChar);
+            if (complicatedObject.ArrayOfDouble == null) throw new NullException(() => complicatedObject.ArrayOfDouble);
+            if (complicatedObject.ArrayOfSingle == null) throw new NullException(() => complicatedObject.ArrayOfSingle);
+            if (complicatedObject.ArrayOfString == null) throw new NullException(() => complicatedObject.ArrayOfString);
+            if (complicatedObject.ArrayOfGuid == null) throw new NullException(() => complicatedObject.ArrayOfGuid);
+            if (complicatedObject.ArrayOfTimeSpan == null) throw new NullException(() => complicatedObject.ArrayOfTimeSpan);
+            if (complicatedObject.ArrayOfDateTime == null) throw new NullException(() => complicatedObject.ArrayOfDateTime);
+            if (complicatedObject.ArrayOfEnumType == null) throw new NullException(() => complicatedObject.ArrayOfEnumType);
 
             checked
             {

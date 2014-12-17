@@ -22,7 +22,7 @@ namespace JJ.Framework.Persistence
 
         public static IContext CreateContextFromConfiguration(PersistenceConfiguration persistenceConfiguration)
         {
-            if (persistenceConfiguration == null) throw new ArgumentNullException("persistenceConfiguration");
+            if (persistenceConfiguration == null) throw new NullException(() => persistenceConfiguration);
 
             return ContextFactory.CreateContext(
                 persistenceConfiguration.ContextType,
@@ -65,7 +65,7 @@ namespace JJ.Framework.Persistence
 
         private static Type ResolveContextType(string contextTypeName)
         {
-            if (contextTypeName == null) throw new ArgumentNullException("contextTypeName");
+            if (contextTypeName == null) throw new NullException(() => contextTypeName);
 
             lock (_contextTypeDictionaryLock)
             {

@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Common;
+using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace JJ.Framework.Persistence.Memory.Internal
 
         public EntityStore(IMemoryMapping mapping)
         {
-            if (mapping == null) throw new ArgumentNullException("mapping");
+            if (mapping == null) throw new NullException(() => mapping);
             _mapping = mapping;
         }
 
@@ -41,7 +42,7 @@ namespace JJ.Framework.Persistence.Memory.Internal
 
         public void Insert(TEntity entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
+            if (entity == null) throw new NullException(() => entity);
 
             lock (_lock)
             {
@@ -52,7 +53,7 @@ namespace JJ.Framework.Persistence.Memory.Internal
 
         public void Delete(TEntity entity)
         {
-            if (entity == null) throw new ArgumentNullException("entity");
+            if (entity == null) throw new NullException(() => entity);
 
             lock (_lock)
             {

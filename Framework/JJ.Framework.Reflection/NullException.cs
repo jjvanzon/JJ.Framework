@@ -8,8 +8,10 @@ namespace JJ.Framework.Reflection
 {
     public class NullException : Exception
     {
+        private const string MESSAGE = "{0} cannot be null.";
+
         public NullException(Expression<Func<object>> expression)
-            : base(ExpressionHelper.GetText(expression))
+            : base(String.Format(MESSAGE, ExpressionHelper.GetText(expression)))
         { }
     }
 }

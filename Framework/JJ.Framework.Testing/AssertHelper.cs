@@ -19,7 +19,7 @@ namespace JJ.Framework.Testing
     {
         public static void ThrowsException(Action action)
         {
-            if (action == null) throw new ArgumentNullException("action");
+            if (action == null) throw new NullException(() => action);
 
             try
             {

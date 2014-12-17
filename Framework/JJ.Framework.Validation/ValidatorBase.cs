@@ -130,7 +130,7 @@ namespace JJ.Framework.Validation
         /// <param name="messagePrefix"> A message prefix can identify the parent object so that validation messages indicate what specific part of the object structure they are about. </param>
         public void Execute(IValidator validator, string propertyKeyPrefix, string messagePrefix)
         {
-            if (validator == null) { throw new ArgumentNullException("validator"); }
+            if (validator == null) throw new NullException(() => validator);
 
             foreach (ValidationMessage validationMessage in validator.ValidationMessages)
             {

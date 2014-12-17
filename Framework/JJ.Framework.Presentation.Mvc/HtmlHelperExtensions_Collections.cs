@@ -155,7 +155,7 @@ namespace JJ.Framework.Presentation.Mvc
                 if (_nodes.Count == 0)
                 {
                     // TODO: _originalHtmlHelper is not always the HtmlHelper you get after closing the last using, even if you only use one view and no partials.
-                    _originalHtmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = _originalHtmlFieldPrefix;
+                    _originalHtmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = "";
                 }
             }
         }

@@ -17,7 +17,7 @@ namespace JJ.Framework.Persistence.Xml.Linq
 
         internal XmlToEntityConverter(XmlElementAccessor accessor)
         {
-            if (accessor == null) throw new ArgumentNullException("accessor");
+            if (accessor == null) throw new NullException(() => accessor);
             _accessor = accessor;
         }
 
@@ -30,8 +30,8 @@ namespace JJ.Framework.Persistence.Xml.Linq
 
         public void ConvertXmlElementToEntity(XElement sourceElement, TEntity destEntity)
         {
-            if (sourceElement == null) throw new ArgumentNullException("sourceElement");
-            if (destEntity == null) throw new ArgumentNullException("destEntity");
+            if (sourceElement == null) throw new NullException(() => sourceElement);
+            if (destEntity == null) throw new NullException(() => destEntity);
 
             foreach (PropertyInfo destProperty in ReflectionCache.GetProperties(typeof(TEntity)))
             {

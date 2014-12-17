@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Common;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Persistence.NPersist
 {
@@ -28,7 +29,7 @@ namespace JJ.Framework.Persistence.NPersist
 
         private static DomainModelInfo GetDomainModelInfo(Assembly mappingAssembly)
         {
-            if (mappingAssembly == null) throw new ArgumentNullException("mappingAssembly");
+            if (mappingAssembly == null) throw new NullException(() => mappingAssembly);
             
             foreach (string resourceName in mappingAssembly.GetManifestResourceNames())
             {

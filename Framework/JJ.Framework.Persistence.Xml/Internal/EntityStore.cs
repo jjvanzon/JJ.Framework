@@ -21,7 +21,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         public EntityStore(string filePath, IXmlMapping mapping)
         {
-            if (mapping == null) throw new ArgumentNullException("mapping");
+            if (mapping == null) throw new NullException(() => mapping);
             _mapping = mapping;
 
             Accessor = new XmlElementAccessor(filePath, ROOT_ELEMENT_NAME, _mapping.ElementName);
@@ -63,7 +63,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         public void Insert(TEntity sourceEntity)
         {
-            if (sourceEntity == null) throw new ArgumentNullException("sourceEntity");
+            if (sourceEntity == null) throw new NullException(() => sourceEntity);
 
             IEnumerable<string> attributeNames = GetEntityPropertyNames();
             XmlElement destXmlElement = Accessor.CreateElement(attributeNames);
@@ -72,7 +72,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         public void Update(TEntity sourceEntity)
         {
-            if (sourceEntity == null) throw new ArgumentNullException("sourceEntity");
+            if (sourceEntity == null) throw new NullException(() => sourceEntity);
             object id = GetIDFromEntity(sourceEntity);
             XmlElement destXmlElement = Accessor.GetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
             Converter.ConvertEntityToXmlElement(sourceEntity, destXmlElement);
@@ -80,7 +80,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         public void Delete(TEntity sourceEntity)
         {
-            if (sourceEntity == null) throw new ArgumentNullException("sourceEntity");
+            if (sourceEntity == null) throw new NullException(() => sourceEntity);
             object id = GetIDFromEntity(sourceEntity);
             XmlElement destXmlElement = Accessor.GetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
             Accessor.DeleteElement(destXmlElement);

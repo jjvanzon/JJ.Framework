@@ -33,7 +33,7 @@ namespace JJ.Framework.Persistence
         /// <typeparam name="TRepositoryInterface">The repository interface type.</typeparam>
         public static TRepositoryInterface CreateRepository<TRepositoryInterface>(IContext context, params string[] repositoryAssemblyNames)
         {
-            if (repositoryAssemblyNames == null) throw new ArgumentNullException("repositoryAssemblyNames");
+            if (repositoryAssemblyNames == null) throw new NullException(() => repositoryAssemblyNames);
 
             Assembly[] repositoryAssemblies = repositoryAssemblyNames.Select(x => Assembly.Load(x)).ToArray();
 
@@ -48,7 +48,7 @@ namespace JJ.Framework.Persistence
         /// <typeparam name="TRepositoryInterface">The repository interface type.</typeparam>
         public static TRepositoryInterface CreateRepository<TRepositoryInterface>(IContext context, params Assembly[] repositoryAssemblies)
         {
-            if (repositoryAssemblies == null) throw new ArgumentNullException("repositoryAssemblies");
+            if (repositoryAssemblies == null) throw new NullException(() => repositoryAssemblies);
 
             foreach (Assembly repositoryAssembly in repositoryAssemblies)
             {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
 using System.Reflection;
+using JJ.Framework.Reflection;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {
@@ -20,7 +21,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
         {
             if (expression == null)
             {
-                throw new ArgumentNullException("expression");
+                throw new NullException(() => expression);
             }
 
             return (T)GetValueFromExpressionOfFunc(expression);

@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml.Linq;
 using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Persistence.Xml.Linq.Internal
 {
@@ -101,7 +102,7 @@ namespace JJ.Framework.Persistence.Xml.Linq.Internal
 
         public XElement CreateElement(IEnumerable<string> attributeNames)
         {
-            if (attributeNames == null) throw new ArgumentNullException("attributeNames");
+            if (attributeNames == null) throw new NullException(() => attributeNames);
 
             XElement root = GetRoot();
             XElement element = new XElement(_elementName);

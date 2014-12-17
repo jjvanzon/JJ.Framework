@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Persistence.Xml.Linq.Internal;
+using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +15,7 @@ namespace JJ.Framework.Persistence.Xml.Linq
         public XmlContext(string folderPath, Assembly modelAssembly, Assembly mappingAssembly, string dialect = null)
             : base(folderPath, modelAssembly, mappingAssembly, dialect)
         {
-            if (mappingAssembly == null) throw new ArgumentNullException("mappingAssembly");
+            if (mappingAssembly == null) throw new NullException(() => mappingAssembly);
         }
 
         private object _lock = new object();

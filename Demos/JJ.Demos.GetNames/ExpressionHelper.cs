@@ -16,10 +16,7 @@ namespace JJ.Demos.GetNames
 
         public static string GetName(LambdaExpression expression)
         {
-            if (expression == null)
-            {
-                throw new ArgumentNullException("expression");
-            }
+            if (expression == null) throw new ArgumentNullException("expression");
 
             var translator = new NameTranslator();
             translator.Visit(expression);

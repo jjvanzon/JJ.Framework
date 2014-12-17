@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using JJ.Framework.Common;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.IO
 {
@@ -17,7 +18,7 @@ namespace JJ.Framework.IO
 
         public CsvReader(Stream stream)
         {
-            if (stream == null) throw new ArgumentNullException("stream");
+            if (stream == null) throw new NullException(() => stream);
 
             _stream = stream;
             _reader = new StreamReader(stream);

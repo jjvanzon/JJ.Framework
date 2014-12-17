@@ -39,7 +39,7 @@ namespace JJ.Framework.Reflection
         {
             if (expression == null)
             {
-                throw new ArgumentNullException("expression");
+                throw new NullException(() => expression);
             }
 
             switch (expression.Body.NodeType)
@@ -71,7 +71,7 @@ namespace JJ.Framework.Reflection
         {
             if (expression == null)
             {
-                throw new ArgumentNullException("expression");
+                throw new NullException(() => expression);
             }
 
             var translator = new ExpressionToValueTranslator();
@@ -108,7 +108,7 @@ namespace JJ.Framework.Reflection
         {
             if (expression == null)
             {
-                throw new ArgumentNullException("expression");
+                throw new NullException(() => expression);
             }
 
             var translator = new ExpressionToTextTranslator();
@@ -133,7 +133,7 @@ namespace JJ.Framework.Reflection
 
         public static MethodCallInfo GetMethodCallInfo(LambdaExpression expression)
         {
-            if (expression == null) throw new ArgumentNullException("expression");
+            if (expression == null) throw new NullException(() => expression);
 
             switch (expression.Body.NodeType)
             {

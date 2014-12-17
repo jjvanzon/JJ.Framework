@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.NHibernate", "Framework\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj", "{DB783ED9-FDE6-458F-A094-457B7F4283A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Persistence", "Models\JJ.Models.QuestionAndAnswer.Persistence\JJ.Models.QuestionAndAnswer.Persistence.csproj", "{B1408E4F-4A1C-4CD6-B818-0FF37A40E2FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.Repositories", "Models\JJ.Models.QuestionAndAnswer.Repositories\JJ.Models.QuestionAndAnswer.Repositories.csproj", "{B1408E4F-4A1C-4CD6-B818-0FF37A40E2FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration", "Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj", "{805A8237-05ED-40AE-8D1A-9288373EA5E0}"
 EndProject
@@ -201,6 +201,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Diagnostics", "Framework\JJ.Framework.Logging.Diagnostics\JJ.Framework.Logging.Diagnostics.csproj", "{3673E148-26F4-4DDD-870D-ADC0486BE39C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Resources", "Framework\JJ.Framework.Presentation.Resources\JJ.Framework.Presentation.Resources.csproj", "{40A53175-8048-4F2D-93CA-383074C0267E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Models.QuestionAndAnswer.SqlClient", "Models\JJ.Models.QuestionAndAnswer.SqlClient\JJ.Models.QuestionAndAnswer.SqlClient.csproj", "{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1886,6 +1888,24 @@ Global
 		{40A53175-8048-4F2D-93CA-383074C0267E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{40A53175-8048-4F2D-93CA-383074C0267E}.Release|x64.ActiveCfg = Release|Any CPU
 		{40A53175-8048-4F2D-93CA-383074C0267E}.Release|x86.ActiveCfg = Release|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Release|x64.ActiveCfg = Release|Any CPU
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1934,6 +1954,7 @@ Global
 		{292046BB-5667-4231-B8AA-BAD57CD1B481} = {789E68E5-3620-489E-9932-DCD3C0DEC974}
 		{BECFECBE-8EC2-485E-921E-2FB6FE048AAC} = {789E68E5-3620-489E-9932-DCD3C0DEC974}
 		{6B54E0E9-FF92-4DD9-93A4-262544E74163} = {789E68E5-3620-489E-9932-DCD3C0DEC974}
+		{9CF32856-6431-4366-8DEA-A6CA2F27B5C6} = {789E68E5-3620-489E-9932-DCD3C0DEC974}
 		{7ADEDDCE-6903-4A58-94F5-D0B39B21330F} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{DB783ED9-FDE6-458F-A094-457B7F4283A0} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{805A8237-05ED-40AE-8D1A-9288373EA5E0} = {72857B67-3003-486C-9BB3-34AF5748BE95}
