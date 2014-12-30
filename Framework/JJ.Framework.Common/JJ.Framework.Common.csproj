@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="EmbeddedResourceHelper.cs" />
     <Compile Include="IListExtensions.cs" />
+    <Compile Include="ISideEffect.cs" />
     <Compile Include="KeyHelper.cs" />
     <Compile Include="StringExtensions_Casing.cs" />
     <Compile Include="ValueNotSupportedException.cs" />
