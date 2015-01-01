@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Reflection.Tests.Items
 {
-    [DebuggerDisplay("Item {Name} [{Index}] = {Value}")]
+    [DebuggerDisplay("Item {Name} [{Index}]")]
     public class ComplexItem
     {
         public string Name;

@@ -9,7 +9,7 @@ using JJ.Framework.Reflection.Tests.Items;
 namespace JJ.Framework.Reflection.Tests
 {
     [TestClass]
-    public class ExpressionHelpersGetStringSimpleTests
+    public class ExpressionHelperGetTextSimpleTests
     {
         // There are separate test classes for the simple tests,
         // because in the past these tests were used to test multiple
@@ -17,35 +17,35 @@ namespace JJ.Framework.Reflection.Tests
         // that did not support the full set of features.
 
         [TestMethod]
-        public void Test_ExpressionHelpers_GetName_LocalVariable()
+        public void Test_ExpressionHelpers_GetText_LocalVariable()
         {
             int variable = 1;
             Assert.AreEqual("variable", ExpressionHelper.GetText(() => variable));
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_GetName_Field()
+        public void Test_ExpressionHelpers_GetText_Field()
         {
             Item item = new Item { Field = 1 };
             Assert.AreEqual("item.Field", ExpressionHelper.GetText(() => item.Field));
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_GetName_Property()
+        public void Test_ExpressionHelpers_GetText_Property()
         {
             Item item = new Item { Property = 1 };
             Assert.AreEqual("item.Property", ExpressionHelper.GetText(() => item.Property));
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_GetName_ArrayLength()
+        public void Test_ExpressionHelpers_GetText_ArrayLength()
         {
             Item[] items = { null, null, null };
             Assert.AreEqual("items.Length", ExpressionHelper.GetText(() => items.Length));
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_GetName_WithQualifier()
+        public void Test_ExpressionHelpers_GetText_WithQualifier()
         {
             Item grandParentItem = new Item { Index = 10 };
             Item parentItem = new Item { Parent = grandParentItem };

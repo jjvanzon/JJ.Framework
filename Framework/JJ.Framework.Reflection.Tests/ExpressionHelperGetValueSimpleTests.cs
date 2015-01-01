@@ -9,7 +9,7 @@ using JJ.Framework.Reflection.Tests.Items;
 namespace JJ.Framework.Reflection.Tests
 {
     [TestClass]
-    public class ExpressionHelpersGetValueSimpleTests
+    public class ExpressionHelperGetValueSimpleTests
     {
         // There are separate test classes for the simple tests,
         // because in the past these tests were used to test multiple

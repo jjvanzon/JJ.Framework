@@ -10,26 +10,24 @@ namespace JJ.Framework.Reflection
 {
     internal class ExpressionToValueTranslator
     {
-        // Not using the ExpressionVisitor base class performs better.
+        private Stack<object> _stack = new Stack<object>();
 
-        private Stack<object> Stack = new Stack<object>();
-
-        public object Result
+        public IList<object> GetValues(Expression expression)
         {
-            get { return Stack.Peek(); }
+            // TODO: Indexer methods will result in 2 values, 
+            // which you would not expect when you use this functionality.
+
+            Visit(expression);
+            return _stack.Reverse().ToArray();
         }
 
-        public void Visit<T>(Expression<Func<T>> expression)
+        public object GetValue(Expression expression)
         {
-            Visit((LambdaExpression)expression);
+            Visit(expression);
+            return _stack.Peek();;
         }
 
-        public void Visit(LambdaExpression expression)
-        {
-            Visit(expression.Body);
-        }
-
-        public void Visit(Expression node)
+        protected virtual void Visit(Expression node)
         {
             switch (node.NodeType)
             {
@@ -65,7 +63,7 @@ namespace JJ.Framework.Reflection
                 case ExpressionType.Constant:
                 {
                     var constantExpression = (ConstantExpression)node;
-                    Stack.Push(constantExpression.Value);
+                    _stack.Push(constantExpression.Value);
                     return;
                 }
 
@@ -87,13 +85,13 @@ namespace JJ.Framework.Reflection
             throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", node.NodeType));
         }
 
-        private void VisitConstant(UnaryExpression unaryExpression)
+        protected virtual void VisitConstant(UnaryExpression unaryExpression)
         {
             var constantExpression = (ConstantExpression)unaryExpression.Operand;
-            Stack.Push(constantExpression.Value);
+            _stack.Push(constantExpression.Value);
         }
 
-        private void VisitMember(MemberExpression node)
+        protected virtual void VisitMember(MemberExpression node)
         {
             // First process 'parent' node.
             if (node.Expression != null)
@@ -118,32 +116,34 @@ namespace JJ.Framework.Reflection
             }
         }
 
-        private void VisitField(MemberExpression node)
+        protected virtual void VisitField(MemberExpression node)
         {
             var field = (FieldInfo)node.Member;
             object obj = null;
             if (!field.IsStatic)
             {
-                obj = Stack.Pop();
+                // CHANGED!!!
+                obj = _stack.Peek();
             }
             object value = field.GetValue(obj);
-            Stack.Push(value);
+            _stack.Push(value);
         }
 
-        private void VisitProperty(MemberExpression node)
+        protected virtual void VisitProperty(MemberExpression node)
         {
             var property = (PropertyInfo)node.Member;
             object obj = null;
             MethodInfo getterOrSetter = property.GetGetMethod() ?? property.GetSetMethod();
             if (!getterOrSetter.IsStatic)
             {
-                obj = Stack.Pop();
+                // CHANGED!!!
+                obj = _stack.Peek();
             }
             object value = property.GetValue(obj, null);
-            Stack.Push(value);
+            _stack.Push(value);
         }
 
-        private void VisitMethodCall(MethodCallExpression node)
+        protected virtual void VisitMethodCall(MethodCallExpression node)
         {
             if (!node.Method.IsStatic)
             {
@@ -151,7 +151,7 @@ namespace JJ.Framework.Reflection
             }
             else
             {
-                Stack.Push(null);
+                _stack.Push(null);
             }
 
             for (int i = 0; i < node.Arguments.Count; i++)
@@ -161,15 +161,16 @@ namespace JJ.Framework.Reflection
             object[] arguments = new object[node.Arguments.Count];
             for (int i = node.Arguments.Count - 1; i >= 0; i--)
             {
-                arguments[i] = Stack.Pop();
+                arguments[i] = _stack.Pop();
             }
 
-            object obj = Stack.Pop();
+            // CHANGED!!!
+            object obj = _stack.Peek();
             object value = node.Method.Invoke(obj, arguments);
-            Stack.Push(value);
+            _stack.Push(value);
         }
 
-        private void VisitConvert(UnaryExpression node)
+        protected virtual void VisitConvert(UnaryExpression node)
         {
             switch (node.Operand.NodeType)
             {
@@ -194,40 +195,41 @@ namespace JJ.Framework.Reflection
                 default:
                     throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.Operand.NodeType));
             }
-            object obj = Stack.Pop();
+
+            object obj = _stack.Pop();
             if (obj is IConvertible)
             {
                 obj = Convert.ChangeType(obj, node.Type);
             }
-            Stack.Push(obj);
+            _stack.Push(obj);
         }
 
-        private void VisitArrayLength(UnaryExpression node)
+        protected virtual void VisitArrayLength(UnaryExpression node)
         {
             if (node.Operand.NodeType == ExpressionType.MemberAccess)
             {
                 var memberExpression = (MemberExpression)node.Operand;
                 VisitMember(memberExpression);
-                Array array = (Array)Stack.Pop();
-                Stack.Push(array.Length);
+                Array array = (Array)_stack.Pop();
+                _stack.Push(array.Length);
                 return;
             }
 
             throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.Operand.NodeType));
         }
 
-        private void VisitArrayIndex(BinaryExpression node)
+        protected virtual void VisitArrayIndex(BinaryExpression node)
         {
             var memberExpression = (MemberExpression)node.Left;
             VisitMember(memberExpression);
-            var array = (Array)Stack.Pop();
+            var array = (Array)_stack.Pop();
 
             switch (node.Right.NodeType)
             {
                 case ExpressionType.Constant:
                     var constantExpression = (ConstantExpression)node.Right;
                     int index = (int)constantExpression.Value;
-                    Stack.Push(array.GetValue(index));
+                    _stack.Push(array.GetValue(index));
                     break;
 
                 case ExpressionType.MemberAccess:
@@ -237,19 +239,21 @@ namespace JJ.Framework.Reflection
             }
         }
 
-        private void VisitNewArray(NewArrayExpression node)
+        protected virtual void VisitNewArray(NewArrayExpression node)
         {
             for (int i = 0; i < node.Expressions.Count; i++)
             {
                 Visit(node.Expressions[i]);
             }
+
             Array array = (Array)Activator.CreateInstance(node.Type, node.Expressions.Count);
             for (int i = node.Expressions.Count - 1; i >= 0; i--)
             {
-                object item = Stack.Pop();
+                object item = _stack.Pop();
                 array.SetValue(item, i);
             }
-            Stack.Push(array);
+
+            _stack.Push(array);
         }
     }
 }

@@ -7,38 +7,27 @@ using System.Linq.Expressions;
 
 namespace JJ.Framework.Reflection
 {
-    internal class ExpressionToTextTranslator 
+    internal class ExpressionToTextTranslator
     {
-        // Not using the ExpressionVisitor base class performs better.
+        private StringBuilder _sb = new StringBuilder();
 
-        /// <summary> If you set this to true, an expression like MyArray[i] will translate to e.g. "MyArray[2]", instead of "MyArray[i]". </summary>
+        /// <summary> 
+        /// If you set this to true, an expression like MyArray[i] will translate to e.g. 
+        /// "MyArray[2]" instead of "MyArray[i]". </summary>
         public bool ShowIndexerValues { get; set; }
 
-        private StringBuilder sb = new StringBuilder();
-
-        public string Result
+        public string Execute(Expression expression)
         {
-            get
-            {
-                return sb
-                    .ToString()
-                    .CutLeft(".")
-                    .Replace("(.", "(")
-                    .Replace("[.", "[");
-            }
+            Visit(expression);
+
+            string result = _sb.ToString()
+                               .CutLeft(".")
+                               .Replace("(.", "(")
+                               .Replace("[.", "[");
+            return result;
         }
 
-        public void Visit<T>(Expression<Func<T>> expression)
-        {
-            Visit((LambdaExpression)expression);
-        }
-
-        public void Visit(LambdaExpression expression)
-        {
-            Visit(expression.Body);
-        }
-
-        public void Visit(Expression node)
+        protected virtual void Visit(Expression node)
         {
             switch (node.NodeType)
             {
@@ -96,7 +85,7 @@ namespace JJ.Framework.Reflection
             throw new ArgumentException(String.Format("Name cannot be obtained from {0}.", node.NodeType));
         }
 
-        private void VisitConvert(UnaryExpression node)
+        protected virtual void VisitConvert(UnaryExpression node)
         {
             switch (node.Operand.NodeType)
             {
@@ -134,25 +123,25 @@ namespace JJ.Framework.Reflection
             }
         }
 
-        private void VisitConstant(ConstantExpression node)
+        protected virtual void VisitConstant(ConstantExpression node)
         {
             if (node.Type.IsPrimitive)
             {
-                sb.Append(node.Value.ToString());
+                _sb.Append(node.Value.ToString());
             }
             else if (node.Type == typeof(string))
             {
-                sb.Append(@"""");
+                _sb.Append(@"""");
 
-                sb.Append((string)node.Value);
+                _sb.Append((string)node.Value);
 
-                sb.Append(@"""");
+                _sb.Append(@"""");
             }
 
             // Otherwise: ignore.
         }
 
-        private void VisitMember(MemberExpression node)
+        protected virtual void VisitMember(MemberExpression node)
         {
             // First process 'parent' node.
             if (node.Expression != null)
@@ -162,19 +151,19 @@ namespace JJ.Framework.Reflection
 
             if (ReflectionHelper.IsStatic(node.Member))
             {
-                sb.Append(node.Member.DeclaringType.Name);
+                _sb.Append(node.Member.DeclaringType.Name);
             }
 
             // Then process 'child' node.
-            sb.Append(".");
-            sb.Append(node.Member.Name);
+            _sb.Append(".");
+            _sb.Append(node.Member.Name);
         }
 
-        private void VisitMethodCall(MethodCallExpression node)
+        protected virtual void VisitMethodCall(MethodCallExpression node)
         {
             if (node.Method.IsStatic)
             {
-                sb.Append(node.Method.DeclaringType.Name);
+                _sb.Append(node.Method.DeclaringType.Name);
             }
             else
             {
@@ -183,59 +172,59 @@ namespace JJ.Framework.Reflection
 
             if (ReflectionHelper.IsIndexerMethod(node.Method))
             {
-                sb.Append("[");
+                _sb.Append("[");
                 for (int i = 0; i < node.Arguments.Count - 1; i++)
                 {
                     VisitIndexerValue(node.Arguments[i]);
-                    sb.Append(", ");
+                    _sb.Append(", ");
                 }
 
                 VisitIndexerValue(node.Arguments[node.Arguments.Count - 1]);
-                sb.Append("]");
+                _sb.Append("]");
             }
             else
             {
-                sb.Append(".");
-                sb.Append(node.Method.Name);
-                sb.Append("(");
+                _sb.Append(".");
+                _sb.Append(node.Method.Name);
+                _sb.Append("(");
                 for (int i = 0; i < node.Arguments.Count - 1; i++)
                 {
                     Visit(node.Arguments[i]);
-                    sb.Append(", ");
+                    _sb.Append(", ");
                 }
                 Visit(node.Arguments[node.Arguments.Count - 1]);
-                sb.Append(")");
+                _sb.Append(")");
             }
         }
 
-        private void VisitArrayLength(UnaryExpression node)
+        protected virtual void VisitArrayLength(UnaryExpression node)
         {
             if (node.Operand.NodeType == ExpressionType.MemberAccess)
             {
                 var memberExpression = (MemberExpression)node.Operand;
                 VisitMember(memberExpression);
 
-                sb.Append(".");
-                sb.Append("Length");
+                _sb.Append(".");
+                _sb.Append("Length");
                 return;
             }
 
             throw new ArgumentException(String.Format("Name cannot be obtained from NodeType {0}.", node.Operand.NodeType));
         }
 
-        private void VisitArrayIndex(BinaryExpression node)
+        protected virtual void VisitArrayIndex(BinaryExpression node)
         {
             var memberExpression = (MemberExpression)node.Left;
             VisitMember(memberExpression);
 
-            sb.Append("[");
+            _sb.Append("[");
 
             switch (node.Right.NodeType)
             {
                 case ExpressionType.Constant:
                     var constantExpression = (ConstantExpression)node.Right;
                     int index = (int)constantExpression.Value;
-                    sb.Append(index);
+                    _sb.Append(index);
                     break;
 
                 case ExpressionType.MemberAccess:
@@ -244,7 +233,7 @@ namespace JJ.Framework.Reflection
                     break;
             }
 
-            sb.Append("]");
+            _sb.Append("]");
         }
 
         /// <summary>
@@ -252,12 +241,12 @@ namespace JJ.Framework.Reflection
         /// If ShowIndexerValues is set to true, indexers are translated to their value, e.g. [2].
         /// To translate to their value, the work is delegated to ExpressionToValueTranslator.
         /// </summary>
-        private void VisitIndexerValue(Expression node)
+        protected virtual void VisitIndexerValue(Expression node)
         {
             if (ShowIndexerValues)
             {
                 object value = ExpressionHelper.GetValue(node);
-                sb.Append(value);
+                _sb.Append(value);
             }
             else
             {
@@ -265,12 +254,12 @@ namespace JJ.Framework.Reflection
             }
         }
 
-        private void VisitNewArray(NewArrayExpression node)
+        protected virtual void VisitNewArray(NewArrayExpression node)
         {
             for (int i = 0; i < node.Expressions.Count - 1; i++)
             {
                 Visit(node.Expressions[i]);
-                sb.Append(", ");
+                _sb.Append(", ");
             }
             Visit(node.Expressions[node.Expressions.Count - 1]);
         }

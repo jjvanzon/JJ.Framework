@@ -9,45 +9,45 @@ using JJ.Framework.Reflection.Tests.Items;
 namespace JJ.Framework.Reflection.Tests
 {
     [TestClass]
-    public class ExpressionHelpersExtensiveTests
+    public class ExpressionHelperExtensiveTests
     {
         [TestMethod]
-        public void Test_ExpressionHelpers_GetName_Field_Static()
+        public void Test_ExpressionHelpers_Field_Static()
         {
             Assert.AreEqual("StaticClass.Field", ExpressionHelper.GetText(() => StaticClass.Field));
             Assert.AreEqual("FieldResult", ExpressionHelper.GetValue(() => StaticClass.Field));
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_GetName_Field_Static_Generic()
+        public void Test_ExpressionHelpers_Field_Static_Generic()
         {
             Assert.AreEqual("StaticClass`1.Field", ExpressionHelper.GetText(() => StaticClass<Item>.Field));
             Assert.AreEqual("FieldResult", ExpressionHelper.GetValue(() => StaticClass<Item>.Field));
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_GetName_Property_Static()
+        public void Test_ExpressionHelpers_Property_Static()
         {
             Assert.AreEqual("StaticClass.Property", ExpressionHelper.GetText(() => StaticClass.Property));
             Assert.AreEqual("PropertyResult", ExpressionHelper.GetValue(() => StaticClass.Property));
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_GetName_Property_Static_Generic()
+        public void Test_ExpressionHelpers_Property_Static_Generic()
         {
             Assert.AreEqual("StaticClass`1.Property", ExpressionHelper.GetText(() => StaticClass<Item>.Property));
             Assert.AreEqual("PropertyResult", ExpressionHelper.GetValue(() => StaticClass<Item>.Property));
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_GetName_ArrayLength_Static()
+        public void Test_ExpressionHelpers_ArrayLength_Static()
         {
             Assert.AreEqual("StaticClass.Array.Length", ExpressionHelper.GetText(() => StaticClass.Array.Length));
             Assert.AreEqual(3, ExpressionHelper.GetValue(() => StaticClass.Array.Length));
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_GetName_ArrayLength_Static_Generic()
+        public void Test_ExpressionHelpers_ArrayLength_Static_Generic()
         {
             Assert.AreEqual("StaticClass`1.Array.Length", ExpressionHelper.GetText(() => StaticClass<Item>.Array.Length));
             Assert.AreEqual(3, ExpressionHelper.GetValue(() => StaticClass<Item>.Array.Length));

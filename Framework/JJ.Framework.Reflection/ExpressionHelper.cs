@@ -37,10 +37,7 @@ namespace JJ.Framework.Reflection
 
         public static MemberInfo GetMember(LambdaExpression expression)
         {
-            if (expression == null)
-            {
-                throw new NullException(() => expression);
-            }
+            if (expression == null) throw new NullException(() => expression);
 
             switch (expression.Body.NodeType)
             {
@@ -67,16 +64,9 @@ namespace JJ.Framework.Reflection
         /// indexers, array lengths, conversion expressions, params (variable amount of arguments),
         /// and both static and instance member access.
         /// </summary>
-        public static object GetValue(Expression expression)
+        public static T GetValue<T>(Expression<Func<T>> expression)
         {
-            if (expression == null)
-            {
-                throw new NullException(() => expression);
-            }
-
-            var translator = new ExpressionToValueTranslator();
-            translator.Visit(expression);
-            return translator.Result;
+            return (T)GetValue((LambdaExpression)expression);
         }
 
         /// <summary>
@@ -96,37 +86,68 @@ namespace JJ.Framework.Reflection
         /// indexers, array lengths, conversion expressions, params (variable amount of arguments),
         /// and both static and instance member access.
         /// </summary>
-        public static T GetValue<T>(Expression<Func<T>> expression)
+        public static object GetValue(Expression expression)
         {
-            return (T)GetValue((LambdaExpression)expression);
+            if (expression == null) throw new NullException(() => expression);
+
+            var translator = new ExpressionToValueTranslator();
+            object result = translator.GetValue(expression);
+            return result;
+        }
+
+        // GetValues
+
+        public static IList<object> GetValues<T>(Expression<Func<T>> expression)
+        {
+            return GetValues((LambdaExpression)expression);
+        }
+
+        public static IList<object> GetValues(LambdaExpression expression)
+        {
+            return GetValues(expression.Body);
+        }
+
+        public static IList<object> GetValues(Expression expression)
+        {
+            if (expression == null) throw new NullException(() => expression);
+
+            var translator = new ExpressionToValueTranslator();
+            IList<object> result = translator.GetValues(expression);
+            return result;
         }
 
         // GetText
 
-        /// <param name="showIndexerValues"> If you set this to true, an expression like MyArray[i] will translate to e.g. "MyArray[2]", instead of "MyArray[i]". </param>
-        public static string GetText(Expression expression, bool showIndexerValues = false)
+        /// <param name="showIndexerValues">
+        /// If you set this to true, an expression like MyArray[i] will translate to e.g.
+        /// "MyArray[2]" instead of "MyArray[i]".
+        /// </param>
+        public static string GetText<T>(Expression<Func<T>> expression, bool showIndexerValues = false)
         {
-            if (expression == null)
-            {
-                throw new NullException(() => expression);
-            }
-
-            var translator = new ExpressionToTextTranslator();
-            translator.ShowIndexerValues = showIndexerValues;
-            translator.Visit(expression);
-            return translator.Result;
+            return GetText((LambdaExpression)expression, showIndexerValues);
         }
 
-        /// <param name="showIndexerValues"> If you set this to true, an expression like MyArray[i] will translate to e.g. "MyArray[2]", instead of "MyArray[i]". </param>
+        /// <param name="showIndexerValues">
+        /// If you set this to true, an expression like MyArray[i] will translate to e.g.
+        /// "MyArray[2]" instead of "MyArray[i]".
+        /// </param>
         public static string GetText(LambdaExpression expression, bool showIndexerValues = false)
         {
             return GetText(expression.Body, showIndexerValues);
         }
 
-        /// <param name="showIndexerValues"> If you set this to true, an expression like MyArray[i] will translate to e.g. "MyArray[2]", instead of "MyArray[i]". </param>
-        public static string GetText<T>(Expression<Func<T>> expression, bool showIndexerValues = false)
+        /// <param name="showIndexerValues">
+        /// If you set this to true, an expression like MyArray[i] will translate to e.g.
+        /// "MyArray[2]" instead of "MyArray[i]".
+        /// </param>
+        public static string GetText(Expression expression, bool showIndexerValues = false)
         {
-            return GetText((LambdaExpression)expression, showIndexerValues);
+            if (expression == null) throw new NullException(() => expression);
+
+            var translator = new ExpressionToTextTranslator();
+            translator.ShowIndexerValues = showIndexerValues;
+            string result = translator.Execute(expression);
+            return result;
         }
 
         // GetMethodCallInfo
