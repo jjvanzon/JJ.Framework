@@ -1,0 +1,42 @@
+
+        private class QualifierWithFieldPrefixAssignment : Qualifier
+        {
+            private HtmlHelper _htmlHelper;
+            private string _originalHtmlFieldPrefix;
+
+            public QualifierWithFieldPrefixAssignment(HtmlHelper htmlHelper)
+            {
+                _htmlHelper = htmlHelper;
+                _originalHtmlFieldPrefix = _htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix;
+            }
+
+            public override void Dispose() // This is not really a dispose. It is called multiple times.
+            {
+                base.Dispose();
+
+                // If qualifier has no parts anymore, revert to original HtmlFieldPrefix.
+                if (String.IsNullOrEmpty(Text))
+                {
+                    _htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = _originalHtmlFieldPrefix;
+                }
+            }
+
+            public override void AddPart(string identifier)
+            {
+                base.AddPart(identifier);
+            }
+
+            public override void IncrementIndex()
+            {
+                base.IncrementIndex();
+
+                _htmlHelper.HiddenForIndex(this);
+
+                SetPrefix(Text);
+            }
+
+            private void SetPrefix(string text)
+            {
+                _htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = text;
+            }
+        }

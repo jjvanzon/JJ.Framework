@@ -1,0 +1,446 @@
+﻿using JJ.Framework.Common;
+using JJ.Framework.Reflection;
+using JJ.Framework.Xml.Linq.Internal;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Xml.Linq;
+using JJ.Framework.Net45;
+using System.Xml.Serialization;
+
+namespace JJ.Framework.Xml.Linq
+{
+    /// <summary>
+    /// Converts an XML structure to an object tree.
+    /// 
+    /// By default properties are mapped to XML elements.
+    /// 
+    /// To map to XML attributes, mark a property with the XmlAttribute attribute.
+    /// 
+    /// If a property is an Array type, a parent XML element is expected,
+    /// and a child element for each position in the array.
+    /// That single Array property maps to both this parent element and the child elements.
+    /// You have to specify the child element name with the Array property using the XmlArrayItem attribute
+    /// e.g. [XmlArrayItem("myArrayItem")], because this name cannot be derived from the property itself.
+    /// 
+    /// By default the names in the XML are the camel-case version of the property names.
+    /// To diverge from this standard, you can specify the node name explicitly with the .NET attributes 
+    /// XmlElement, XmlAttribute and XmlArray.
+    /// 
+    /// Reference types are always optional. Value types are only optional if they are nullable.
+    /// 
+    /// Recognized values are the .NET primitive types Boolean, Char, Byte, the numeric types and the signed and unsigned variations,
+    /// String, Guid, DateTime and TimeSpan. 
+    /// 
+    /// The composite types in the object structure must have parameterless constructors.
+    /// </summary>
+    public class XmlToObjectConverter<TDestObject>
+        where TDestObject : new()
+    {
+        /// <summary>
+        /// Converts an XML structure to an object tree.
+        /// 
+        /// By default properties are mapped to XML elements.
+        /// 
+        /// To map to XML attributes, mark a property with the XmlAttribute attribute.
+        /// 
+        /// If a property is an Array type, a parent XML element is expected,
+        /// and a child element for each position in the array.
+        /// That single Array property maps to both this parent element and the child elements.
+        /// You have to specify the child element name with the Array property using the XmlArrayItem attribute
+        /// e.g. [XmlArrayItem("myArrayItem")], because this name cannot be derived from the property itself.
+        /// 
+        /// By default the names in the XML are the camel-case version of the property names.
+        /// To diverge from this standard, you can specify the node name explicitly with the .NET attributes 
+        /// XmlElement, XmlAttribute and XmlArray.
+        /// 
+        /// Reference types are always optional. Value types are only optional if they are nullable.
+        /// 
+        /// Recognized values are the .NET primitive types Boolean, Char, Byte, the numeric types and the signed and unsigned variations,
+        /// String, Guid, DateTime and TimeSpan. 
+        /// 
+        /// The composite types in the object structure must have parameterless constructors.
+        /// </summary>
+        public XmlToObjectConverter()
+        { }
+
+        public TDestObject Convert(byte[] data)
+        {
+            string text = Encoding.UTF8.GetString(data);
+            return Convert(text);
+        }
+
+        public TDestObject Convert(string text)
+        {
+            XElement element = XElement.Parse(text);
+            return Convert(element);
+        }
+
+        public TDestObject Convert(XElement sourceElement)
+        {
+            TDestObject destObject = new TDestObject();
+            ConvertProperties(sourceElement, destObject);
+            return destObject;
+        }
+
+        /// <summary>
+        /// Goes through all the properties of the destObject's type, tries to look up
+        /// the corresponding child nodes out of the sourceParentNode and reads out values from them
+        /// to fill in the property values.
+        /// </summary>
+        private void ConvertProperties(XElement sourceParentElement, object destObject)
+        {
+            foreach (PropertyInfo destProperty in ReflectionCache.GetProperties(destObject.GetType()))
+            {
+                ConvertProperty(sourceParentElement, destObject, destProperty);
+            }
+        }
+
+        private void ConvertProperty(XElement sourceParentElement, object destParentObject, PropertyInfo destChildProperty)
+        {
+            NodeTypeEnum childNodeType = GetNodeType(destChildProperty);
+            switch (childNodeType)
+            {
+                case NodeTypeEnum.Element:
+                    ConvertElementFromParent(sourceParentElement, destParentObject, destChildProperty);
+                    break;
+
+                case NodeTypeEnum.Attribute:
+                    throw new NotImplementedException();
+                    ConvertAttributeFromParent(sourceParentElement, destParentObject, destChildProperty);
+                    break;
+
+                case NodeTypeEnum.Array:
+                    throw new NotImplementedException();
+                    //ConvertArrayFromParent(sourceParentElement, destParentObject, destChildProperty);
+                    break;
+
+                default:
+                    throw new InvalidValueException(childNodeType);
+            }
+        }
+
+        // TODO: Correct the summary so that it reflects which collection types are supported.
+
+        /// <summary>
+        /// Examines the type and attributes of destProperty 
+        /// to determine what type of XML node is expected for it 
+        /// (element, attribute or array).
+        /// Also verifies that a property is not marked with conflicting attributes.
+        /// 
+        /// By default a property maps to an element.
+        /// You can optionally mark it with the XmlElement attribute to make that extra clear.
+        /// 
+        /// To map to an XML attribute, mark the property with the XmlAttribute attribute.
+        /// 
+        /// To map to an array, the property must be of an Array type,
+        /// and the XML needs both a parent element that represents the array,
+        /// and child elements that represent the array items.
+        /// 
+        /// If a property is an array type, it cannot also map to a property,
+        /// or be marked with the XmlElement attribute.
+        /// </summary>
+        private NodeTypeEnum GetNodeType(PropertyInfo destProperty)
+        {
+            // TODO: XmlAttributeAttribute and others are part of System.Xml. Check if this will cause platform compatiblity issues.
+            bool hasXmlAttributeAttribute = destProperty.GetCustomAttribute<XmlAttributeAttribute>() != null;
+            bool hasXmlElementAttribute = destProperty.GetCustomAttribute<XmlElementAttribute>() != null;
+            bool hasXmlArrayAttribute = destProperty.GetCustomAttribute<XmlArrayAttribute>() != null;
+            bool hasXmlArrayItemAttribute = destProperty.GetCustomAttribute<XmlArrayItemAttribute>() != null;
+            bool isCollectionType = IsCollectionType(destProperty.PropertyType);
+
+            if (isCollectionType)
+            {
+                bool isValid = !hasXmlAttributeAttribute && !hasXmlElementAttribute;
+                if (!isValid)
+                {
+                    throw new Exception(String.Format("Property '{0}' is a collection type and therefore cannot be marked with XmlAttribute or XmlElement. Use XmlArray and XmlArrayItem instead.", destProperty.Name));
+                }
+                return NodeTypeEnum.Array;
+            }
+
+            else if (hasXmlAttributeAttribute)
+            {
+                bool isValid = !hasXmlElementAttribute && !hasXmlArrayAttribute && !hasXmlArrayItemAttribute;
+                if (!isValid)
+                {
+                    throw new Exception(String.Format("Property '{0}' is an XML attribute and therefore cannot be marked with XmlElement, XmlArray or XmlArrayItem.", destProperty.Name));
+                }
+                return NodeTypeEnum.Attribute;
+            }
+
+            else
+            {
+                // If it is not an array or attribute, then it is an element by default.
+                bool isValidElement = !hasXmlAttributeAttribute && !hasXmlArrayAttribute && !hasXmlArrayItemAttribute;
+                if (!isValidElement)
+                {
+                    throw new Exception(String.Format("Property '{0}' is an XML element and therefore cannot be marked with XmlAttribute, XmlArray or XmlArrayItem.", destProperty.Name));
+                }
+                return NodeTypeEnum.Element;
+            }
+        }
+
+        /// <summary>
+        /// Returns whether the type should be handled as an XML Array.
+        /// For now this means whether it is IList&lt;T&gt;.
+        /// </summary>
+        private bool IsCollectionType(Type type)
+        {
+            // Allowing IEnumerable<> would make String be interpreted as an array type 
+            // (and perhaps other types too).
+            // So for now, stay on the safe side, and only support IList
+
+            // TODO: Does <> work?
+            if (type.IsAssignableTo(typeof(IList<>)))
+            {
+                return true;
+            }
+
+            // TODO: What about non-generic collection types?
+
+            return false;
+        }
+
+        // XML Elements
+
+        /// <summary>
+        /// Gets a child element from the parent element, that maps to the a property of the object.
+        /// Converts the child element to the property value.
+        /// 
+        /// For loose values this means a property's value is assigned.
+        /// For composite types this means that a new object is created,
+        /// and a recursive call to ConvertProperties is made to convert each property of the composite type.
+        /// 
+        /// Nullability is checked.
+        /// An XML element can be omitted if the value type is nullable or if it is a reference type.
+        /// Otherwise, the omission of an element results in an exception.
+        /// </summary>
+        private void ConvertElementFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destChildProperty)
+        {
+            string sourceChildElementName = GetElementNameForProperty(destChildProperty);
+
+            XElement sourceChildElement = XmlHelper.TryGetElement(sourceParentElement, sourceChildElementName);
+
+            // If element not null, convert the element.
+            if (sourceChildElement != null)
+            {
+                ConvertElement(sourceChildElement, destParentObject, destChildProperty);
+            }
+
+            // Check nullability
+            if (sourceChildElement == null)
+            {
+                if (IsNullable(destChildProperty.PropertyType))
+                {
+                    // If nullable and element is null, leave property's default value in tact.
+                    return;
+                }
+
+                // If not nullable and element is null, throw an exception.
+                throw new Exception(String.Format("XML node '{0}' does not have the required child element '{1}'.", sourceParentElement.Name, sourceChildElementName));
+            }
+        }
+
+        /// <summary>
+        /// Gets the expected XML element name for a property.
+        /// By default this is the property name converted to camel case 
+        /// e.g. MyProperty -&gt; myProperty.
+        /// You can also specify the expected XML element name explicity,
+        /// by marking the property with the XmlElement attribute and specifying the
+        /// name in it e.g. [XmlElement("myProp")].
+        /// </summary>
+        private string GetElementNameForProperty(PropertyInfo destProperty)
+        {
+            // Try get element name from XmlElement attribute.
+            string name = TryGetXmlElementNameFromAttribute(destProperty);
+            if (!String.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
+            // Otherwise the property name converted to camel-case.
+            name = destProperty.Name.StartWithLowerCase();
+            return name;
+        }
+
+        /// <summary>
+        /// Tries to get the name from the XmlElement attribute that the property is marked with,
+        /// e.g. [XmlElement("theName")]. If no name is specified there, returns null or empty string.
+        /// </summary>
+        private string TryGetXmlElementNameFromAttribute(PropertyInfo destProperty)
+        {
+            XmlElementAttribute xmlElementAttribute = destProperty.GetCustomAttribute<XmlElementAttribute>();
+            if (xmlElementAttribute != null)
+            {
+                return xmlElementAttribute.ElementName;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Converts an element to the object's property value.
+        /// For loose values this means a property's value is assigned.
+        /// For composite types this means that a new object is created,
+        /// and a recursive call to ConvertProperties is made to convert each property of the composite type.
+        /// sourceElement is not nullable.
+        /// </summary>
+        /// <param name="sourceElement">not nullable</param>
+        private void ConvertElement(XElement sourceElement, object destParentObject, PropertyInfo destProperty)
+        {
+            Type destPropertyType = destProperty.PropertyType;
+            if (IsLeafType(destPropertyType))
+            {
+                ConvertLeafElement(sourceElement, destParentObject, destProperty);
+            }
+            else
+            {
+                ConvertCompositeElement(sourceElement, destParentObject, destProperty);
+            }
+        }
+
+        /// <summary>
+        /// Converts the element's value to a property value of the object.
+        /// sourceElement is not nullable.
+        /// </summary>
+        /// <param name="sourceElement">not nullable</param>
+        private void ConvertLeafElement(XElement sourceElement, object destParentObject, PropertyInfo destProperty)
+        {
+            // Convert to a value and assign to property.
+            string sourceValue = sourceElement.Value;
+            Type destPropertyType = destProperty.PropertyType;
+            object destPropertyValue = ConversionHelper.ConvertValue(sourceValue, destPropertyType);
+            destProperty.SetValue(destParentObject, destPropertyValue);
+        }
+
+        /// <summary>
+        /// Assigns a new object to the object's property
+        /// and does a recursive call to ConvertProperties
+        /// to convert each of the composite type's properties.
+        /// sourceElement is not nullable.
+        /// </summary>
+        /// <param name="sourceElement">not nullable</param>
+        private void ConvertCompositeElement(XElement sourceElement, object destParentObject, PropertyInfo destProperty)
+        {
+            // Create new object and assign to property.
+            Type destPropertyType = destProperty.PropertyType;
+            object destPropertyValue = Activator.CreateInstance(destPropertyType);
+            destProperty.SetValue(destParentObject, destPropertyValue);
+
+            // Recursive call.
+            ConvertProperties(sourceElement, destPropertyValue);
+        }
+
+        // XML Attributes
+
+
+        /// <summary>
+        /// Gets an attribute from the given element and converts it to a property of an object.
+        /// 
+        /// Nullability is checked.
+        /// If it is a nullable type or a reference type, an XML attribute can be omitted or its value left blank.
+        /// Otherwise, the omission of the attribute results in an exception.
+        /// </summary>
+        private void ConvertAttributeFromParent(XElement sourceParentElement, object destParentObject, PropertyInfo destProperty)
+        {
+            string sourceAttributeName = GetAttributeNameForProperty(destProperty);
+
+            string sourceAttributeValue = XmlHelper.TryGetAttributeValue(sourceParentElement, sourceAttributeName);
+
+            // If attribute filled in, convert the attribute value.
+            if (!String.IsNullOrEmpty(sourceAttributeValue))
+            {
+                Type destPropertyType = destProperty.PropertyType;
+                object destPropertyValue = ConversionHelper.ConvertValue(sourceAttributeValue, destPropertyType);
+                destProperty.SetValue(destParentObject, destPropertyValue);
+                return;
+            }
+
+            // Check nullability
+            if (String.IsNullOrEmpty(sourceAttributeValue))
+            {
+                Type type = destProperty.PropertyType;
+                if (IsNullable(type))
+                {
+                    // If nullable and attribute is null or empty, leave property's default value in tact.
+                    return;
+                }
+
+                // If not nullable and attribute is null or empty, throw an exception.
+                throw new Exception(String.Format("XML node '{0}' does not specify the required attribute '{1}'.", sourceParentElement.Name, sourceAttributeName));
+            }
+        }
+
+        /// <summary>
+        /// Gets the XML attribute name for a property.
+        /// By default this is the property name converted to camel case 
+        /// e.g. MyProperty -&gt; myProperty.
+        /// You can also specify the expected XML element name explicity,
+        /// by marking the property with the XmlAttribute attribute and specifying the
+        /// name with it it e.g. [XmlAttribute("myAttribute")].
+        /// </summary>
+        private string GetAttributeNameForProperty(PropertyInfo destProperty)
+        {
+            // Try get attribute name from XmlAttribute attribute.
+            string name = TryGetAttributeNameFromAttribute(destProperty);
+            if (!String.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
+            // Otherwise the property name converted to camel-case.
+            return destProperty.Name.StartWithLowerCase();
+        }
+
+        /// <summary>
+        /// Get the XML attribute name from the XmlAttribute attribute that the property is marked with,
+        /// e.g. [XmlAttribute("myAttribute")]. If no name is specified there, returns null or empty string.
+        /// </summary>
+        private string TryGetAttributeNameFromAttribute(PropertyInfo destProperty)
+        {
+            XmlAttributeAttribute xmlAttributeAttribute = destProperty.GetCustomAttribute<XmlAttributeAttribute>();
+            if (xmlAttributeAttribute != null)
+            {
+                return xmlAttributeAttribute.AttributeName;
+            }
+
+            return null;
+        }
+
+        // XML Arrays
+
+        //private void ConvertArrayOfParent(XElement sourceParentElement, object destParentObject, PropertyInfo destProperty)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        // Helpers
+
+        /// <summary>
+        /// Returns whether the type is considered nullable in general.
+        /// Concretely this currently means any reference type and any Nullable&lt;T&gt; 
+        /// </summary>
+        private bool IsNullable(Type type)
+        {
+            return type.IsReferenceType() || type.IsNullableType();
+        }
+
+        /// <summary>
+        /// Determines whether a type is considered a single value without any child data members. 
+        /// This includes the primitive types (Boolean, Char, Byte, the numeric types and their signed and unsigned variations),
+        /// and other types such as String, Guid, DateTime and TimeSpan.
+        /// </summary>
+        private bool IsLeafType(Type type)
+        {
+            return type.IsPrimitive ||
+                   type == typeof(string) ||
+                   type == typeof(Guid) ||
+                   type == typeof(DateTime) ||
+                   type == typeof(TimeSpan);
+        }
+    }
+}
