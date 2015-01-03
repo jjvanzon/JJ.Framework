@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
@@ -14,8 +15,10 @@ namespace JJ.Framework.Persistence
         protected Assembly MappingAssembly { get; private set; }
         protected string Dialect { get; private set; }
 
+        /// <param name="location">can be null or empty</param>
         /// <param name="modelAssembly">not nullable</param>
         /// <param name="mappingAssembly">nullable</param>
+        /// <param name="dialect">can be null or empty</param>
         public ContextBase(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
         {
             if (modelAssembly == null) throw new NullException(() => modelAssembly);

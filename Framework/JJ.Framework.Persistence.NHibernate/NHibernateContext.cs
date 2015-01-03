@@ -39,6 +39,7 @@ namespace JJ.Framework.Persistence.NHibernate
             {
                 _entitiesToSave.Add(entity);
             }
+
             return entity;
         }
 

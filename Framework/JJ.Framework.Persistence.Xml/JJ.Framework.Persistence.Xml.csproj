@@ -36,6 +36,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Internal\IEntityStore.cs" />
     <Compile Include="Internal\XmlMappingResolver.cs" />
     <Compile Include="Internal\EntityStore.cs" />
     <Compile Include="IXmlMapping.cs" />

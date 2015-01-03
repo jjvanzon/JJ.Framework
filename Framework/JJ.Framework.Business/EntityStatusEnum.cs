@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Framework.Business
 {
-    public enum EntityStatusEnum
+    internal enum EntityStatusEnum
     {
         Clean,
         New,
-        Dirty
+        Dirty,
+        Deleted
     }
 }

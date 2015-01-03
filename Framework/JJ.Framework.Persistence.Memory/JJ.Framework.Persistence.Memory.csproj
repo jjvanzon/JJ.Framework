@@ -38,6 +38,7 @@
     <Compile Include="Internal\EntityStore.cs" />
     <Compile Include="IdentityType.cs" />
     <Compile Include="IMemoryMapping.cs" />
+    <Compile Include="Internal\IEntityStore.cs" />
     <Compile Include="MemoryContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internal\MappingResolver.cs" />

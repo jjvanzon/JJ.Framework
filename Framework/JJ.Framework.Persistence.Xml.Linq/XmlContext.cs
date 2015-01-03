@@ -19,7 +19,7 @@ namespace JJ.Framework.Persistence.Xml.Linq
         }
 
         private object _lock = new object();
-        private Dictionary<Type, EntityStore> _entityStoreDictionary = new Dictionary<Type, EntityStore>();
+        private Dictionary<Type, IEntityStore> _entityStoreDictionary = new Dictionary<Type, IEntityStore>();
 
         // Expose underlying persistence technology for specialized repository.
         public XElement GetDocument<TEntity>()
@@ -33,16 +33,17 @@ namespace JJ.Framework.Persistence.Xml.Linq
             return new XmlToEntityConverter();
         }
 
-        private EntityStore GetEntityStore<TEntity>()
+        private EntityStore<TEntity> GetEntityStore<TEntity>()
+            where TEntity : class, new()
         {
-            return GetEntityStore(typeof(TEntity));
+            return (EntityStore<TEntity>)GetEntityStore(typeof(TEntity));
         }
 
-        private EntityStore GetEntityStore(Type entityType)
+        private IEntityStore GetEntityStore(Type entityType)
         {
             lock (_lock)
             {
-                EntityStore entityStore;
+                IEntityStore entityStore;
 
                 if (!_entityStoreDictionary.TryGetValue(entityType, out entityStore))
                 {
@@ -50,7 +51,8 @@ namespace JJ.Framework.Persistence.Xml.Linq
                     string filePath = Path.Combine(Location, entityName) + ".xml";
                     IXmlMapping xmlMapping = XmlMappingResolver.GetXmlMapping(entityType, MappingAssembly);
 
-                    entityStore = new EntityStore(filePath, xmlMapping);
+                    Type entityStoreType = typeof(EntityStore<>).MakeGenericType(entityType);
+                    entityStore = (IEntityStore)Activator.CreateInstance(entityStoreType, filePath, xmlMapping);
 
                     _entityStoreDictionary[entityType] = entityStore;
                 }
@@ -61,38 +63,38 @@ namespace JJ.Framework.Persistence.Xml.Linq
 
         public override TEntity TryGet<TEntity>(object id)
         {
-            EntityStore entityStore = GetEntityStore<TEntity>();
-            return entityStore.TryGet<TEntity>(id);
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            return entityStore.TryGet(id);
         }
 
         public override TEntity Create<TEntity>()
         {
-            EntityStore entityStore = GetEntityStore<TEntity>();
-            return entityStore.Create<TEntity>();
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            return entityStore.Create();
         }
 
         public override void Insert(object entity)
         {
-            EntityStore entityStore = GetEntityStore(entity.GetType());
+            IEntityStore entityStore = GetEntityStore(entity.GetType());
             entityStore.Insert(entity);
         }
 
         public override void Update(object entity)
         {
-            EntityStore entityStore = GetEntityStore(entity.GetType());
+            IEntityStore entityStore = GetEntityStore(entity.GetType());
             entityStore.Update(entity);
         }
 
         public override void Delete(object entity)
         {
-            EntityStore entityStore = GetEntityStore(entity.GetType());
+            IEntityStore entityStore = GetEntityStore(entity.GetType());
             entityStore.Delete(entity);
         }
 
         public override IEnumerable<TEntity> GetAll<TEntity>()
         {
-            EntityStore entityStore = GetEntityStore<TEntity>();
-            return entityStore.GetAll<TEntity>();
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            return entityStore.GetAll();
         }
 
         public override IEnumerable<TEntity> Query<TEntity>()
@@ -104,7 +106,7 @@ namespace JJ.Framework.Persistence.Xml.Linq
         {
             lock (_lock)
             {
-                foreach (EntityStore entityStore in _entityStoreDictionary.Values)
+                foreach (IEntityStore entityStore in _entityStoreDictionary.Values)
                 {
                     entityStore.Commit();
                 }

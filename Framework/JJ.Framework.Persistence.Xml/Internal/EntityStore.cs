@@ -13,7 +13,8 @@ namespace JJ.Framework.Persistence.Xml.Internal
     /// <summary>
     /// Gives access to a data store for a single entity type.
     /// </summary>
-    internal class EntityStore
+    internal class EntityStore<TEntity> : IEntityStore
+        where TEntity : class, new()
     {
         private const string ROOT_ELEMENT_NAME = "root";
 
@@ -22,7 +23,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         private readonly IXmlMapping _mapping;
 
-        public EntityStore(Type type, string filePath, IXmlMapping mapping)
+        public EntityStore(string filePath, IXmlMapping mapping)
         {
             if (mapping == null) throw new NullException(() => mapping);
             _mapping = mapping;
@@ -31,16 +32,14 @@ namespace JJ.Framework.Persistence.Xml.Internal
             Converter = new XmlToEntityConverter();
         }
 
-        public IEnumerable<TEntity> GetAll<TEntity>()
-            where TEntity: new()
+        public IEnumerable<TEntity> GetAll()
         {
             IList<XmlElement> sourceXmlElements = Accessor.GetAllElements(_mapping.ElementName);
             IList<TEntity> destEntities = sourceXmlElements.Select(x => Converter.ConvertXmlElementToEntity<TEntity>(x)).ToArray();
             return destEntities;
         }
 
-        public TEntity TryGet<TEntity>(object id)
-            where TEntity: class, new()
+        public TEntity TryGet(object id)
         {
             XmlElement sourceXmlElement = Accessor.TryGetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
             if (sourceXmlElement == null)
@@ -51,11 +50,10 @@ namespace JJ.Framework.Persistence.Xml.Internal
             return destEntity;
         }
 
-        public TEntity Create<TEntity>()
-            where TEntity: new()
+        public TEntity Create()
         {
             // Create XML element
-            IEnumerable<string> attributeNames = GetEntityPropertyNames(typeof(TEntity));
+            IEnumerable<string> attributeNames = GetEntityPropertyNames();
             XmlElement xmlElement = Accessor.CreateElement(attributeNames);
 
             // Set identity
@@ -67,16 +65,16 @@ namespace JJ.Framework.Persistence.Xml.Internal
             return entity;
         }
 
-        public void Insert(object sourceEntity)
+        public void Insert(TEntity sourceEntity)
         {
             if (sourceEntity == null) throw new NullException(() => sourceEntity);
 
-            IEnumerable<string> attributeNames = GetEntityPropertyNames(sourceEntity.GetType());
+            IEnumerable<string> attributeNames = GetEntityPropertyNames();
             XmlElement destXmlElement = Accessor.CreateElement(attributeNames);
             Converter.ConvertEntityToXmlElement(sourceEntity, destXmlElement);
         }
 
-        public void Update(object sourceEntity)
+        public void Update(TEntity sourceEntity)
         {
             if (sourceEntity == null) throw new NullException(() => sourceEntity);
             object id = GetIDFromEntity(sourceEntity);
@@ -84,7 +82,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
             Converter.ConvertEntityToXmlElement(sourceEntity, destXmlElement);
         }
 
-        public void Delete(object sourceEntity)
+        public void Delete(TEntity sourceEntity)
         {
             if (sourceEntity == null) throw new NullException(() => sourceEntity);
             object id = GetIDFromEntity(sourceEntity);
@@ -119,10 +117,10 @@ namespace JJ.Framework.Persistence.Xml.Internal
             property.SetValue(entity, id, null);
         }
 
-        private IEnumerable<string> GetEntityPropertyNames(Type entityType)
+        private IEnumerable<string> GetEntityPropertyNames()
         {
             var list = new List<string>();
-            foreach (PropertyInfo property in ReflectionCache.GetProperties(entityType))
+            foreach (PropertyInfo property in ReflectionCache.GetProperties(typeof(TEntity)))
             {
                 list.Add(property.Name);
             }
@@ -167,6 +165,28 @@ namespace JJ.Framework.Persistence.Xml.Internal
             }
 
             return _maxID;
+        }
+
+        // IEntityStore
+
+        void IEntityStore.Commit()
+        {
+            Commit();
+        }
+
+        void IEntityStore.Insert(object entity)
+        {
+            Insert((TEntity)entity);
+        }
+
+        void IEntityStore.Update(object entity)
+        {
+            Update((TEntity)entity);
+        }
+
+        void IEntityStore.Delete(object entity)
+        {
+            Delete((TEntity)entity);
         }
     }
 }

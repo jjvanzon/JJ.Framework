@@ -11,30 +11,30 @@ namespace JJ.Framework.Persistence.Memory.Internal
     /// <summary>
     /// Gives access to a data store for a single entity type.
     /// </summary>
-    internal class EntityStore
+    internal class EntityStore<TEntity> : IEntityStore
+        where TEntity : class, new()
     {
         private IMemoryMapping _mapping;
 
-        private Dictionary<object, object> _dictionary = new Dictionary<object, object>();
+        private Dictionary<object, TEntity> _dictionary = new Dictionary<object, TEntity>();
         private object _lock = new object();
 
-        public EntityStore(Type entityType, IMemoryMapping mapping)
+        public EntityStore(IMemoryMapping mapping)
         {
             if (mapping == null) throw new NullException(() => mapping);
             _mapping = mapping;
         }
 
-        public object TryGet(object id)
+        public TEntity TryGet(object id)
         {
-            object entity;
+            TEntity entity;
             _dictionary.TryGetValue(id, out entity);
             return entity;
         }
 
-        public TEntity Create<TEntity>()
-            where TEntity : class, new()
+        public TEntity Create()
         {
-            var entity = new TEntity();
+            TEntity entity = new TEntity();
             object id = GetNewIdentity();
             SetIDOfEntity(entity, id);
 
@@ -43,7 +43,7 @@ namespace JJ.Framework.Persistence.Memory.Internal
             return entity;
         }
 
-        public void Insert(object entity)
+        public void Insert(TEntity entity)
         {
             if (entity == null) throw new NullException(() => entity);
 
@@ -54,7 +54,7 @@ namespace JJ.Framework.Persistence.Memory.Internal
             }
         }
 
-        public void Delete(object entity)
+        public void Delete(TEntity entity)
         {
             if (entity == null) throw new NullException(() => entity);
 
@@ -65,7 +65,7 @@ namespace JJ.Framework.Persistence.Memory.Internal
             }
         }
 
-        public IEnumerable<TEntity> GetAll<TEntity>()
+        public IEnumerable<TEntity> GetAll()
         {
             return _dictionary.Values.OfType<TEntity>();
         }
@@ -74,7 +74,7 @@ namespace JJ.Framework.Persistence.Memory.Internal
 
         private int _maxID = 0;
 
-        private object GetIDFromEntity(object entity)
+        private object GetIDFromEntity(TEntity entity)
         {
             Type entityType = entity.GetType();
             PropertyInfo property = entityType.GetProperty(_mapping.IdentityPropertyName);
@@ -85,7 +85,7 @@ namespace JJ.Framework.Persistence.Memory.Internal
             return property.GetValue(entity, null);
         }
 
-        private void SetIDOfEntity(object entity, object id)
+        private void SetIDOfEntity(TEntity entity, object id)
         {
             Type entityType = entity.GetType();
 
@@ -108,6 +108,18 @@ namespace JJ.Framework.Persistence.Memory.Internal
                 default:
                     throw new ValueNotSupportedException(_mapping.IdentityType);
             }
+        }
+
+        // IEntityStore
+
+        void IEntityStore.Insert(object entity)
+        {
+            Insert((TEntity)entity);
+        }
+
+        void IEntityStore.Delete(object entity)
+        {
+            Delete((TEntity)entity);
         }
     }
 }

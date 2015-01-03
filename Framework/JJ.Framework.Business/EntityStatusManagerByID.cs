@@ -1,10 +1,10 @@
-﻿using JJ.Framework.Reflection;
+﻿using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Framework.Business
 {
@@ -13,18 +13,16 @@ namespace JJ.Framework.Business
         // TODO: Tuples as keys might not be fast.
         // TODO: Tuple has bad platform compatibility.
 
-        private IDictionary<Tuple<Type, object>, EntityStatusEnum> _entityStatuses = new Dictionary<Tuple<Type, object>, EntityStatusEnum>();
-        private IDictionary<Tuple<Type, object, string>, EntityStatusEnum> _propertyStatuses = new Dictionary<Tuple<Type, object, string>, EntityStatusEnum>();
+        private IDictionary<Tuple_PlatformSupport<Type, object>, EntityStatusEnum> _entityStatuses = new Dictionary<Tuple_PlatformSupport<Type, object>, EntityStatusEnum>();
+        private IDictionary<Tuple_PlatformSupport<Type, object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple_PlatformSupport<Type, object, string>, PropertyStatusEnum>();
 
         // IsDirty
 
-        /// <summary> For entities. </summary>
         public bool IsDirty<TEntity>(object id)
         {
             return IsDirty(typeof(TEntity), id);
         }
 
-        /// <summary> For entities. </summary>
         public bool IsDirty(Type entityType, object id)
         {
             return GetStatus(entityType, id) == EntityStatusEnum.Dirty;
@@ -33,18 +31,16 @@ namespace JJ.Framework.Business
         /// <summary> For properties. </summary>
         public bool IsDirty<T>(object id, Expression<Func<T>> propertyExpression)
         {
-            return GetStatus(id, propertyExpression) == EntityStatusEnum.Dirty;
+            return GetStatus(id, propertyExpression) == PropertyStatusEnum.Dirty;
         }
 
         // SetIsDirty
 
-        /// <summary> For entities. </summary>
         public void SetIsDirty<TEntity>(object id)
         {
             SetIsDirty(typeof(TEntity), id);
         }
 
-        /// <summary> For entities. </summary>
         public void SetIsDirty(Type entityType, object id)
         {
             SetStatus(entityType, id,  EntityStatusEnum.Dirty);
@@ -53,47 +49,55 @@ namespace JJ.Framework.Business
         /// <summary> For properties. </summary>
         public void SetIsDirty<T>(object id, Expression<Func<T>> propertyExpression)
         {
-            SetStatus(id, propertyExpression, EntityStatusEnum.Dirty);
+            SetStatus(id, propertyExpression, PropertyStatusEnum.Dirty);
         }
 
         // IsNew
 
-        /// <summary> For entities. </summary>
         public bool IsNew<TEntity>(object id)
         {
             return IsNew(typeof(TEntity), id);
         }
 
-        /// <summary> For entities. </summary>
         public bool IsNew(Type entityType, object id)
         {
             return GetStatus(entityType, id) == EntityStatusEnum.New;
         }
 
-        /// <summary> For properties. </summary>
-        public bool IsNew<T>(object id, Expression<Func<T>> propertyExpression)
-        {
-            return GetStatus(id, propertyExpression) == EntityStatusEnum.New;
-        }
-
         // SetIsNew
 
-        /// <summary> For entities. </summary>
         public void SetIsNew<TEntity>(object id)
         {
             SetIsNew(typeof(TEntity), id);
         }
 
-        /// <summary> For entities. </summary>
         public void SetIsNew(Type entityType, object id)
         {
             SetStatus(entityType, id, EntityStatusEnum.Dirty);
         }
 
-        /// <summary> For properties. </summary>
-        public void SetIsNew<T>(object id, Expression<Func<T>> propertyExpression)
+        // IsDeleted
+
+        public bool IsDeleted<TEntity>(object id)
         {
-            SetStatus(id, propertyExpression, EntityStatusEnum.New);
+            return IsDeleted(typeof(TEntity), id);
+        }
+
+        public bool IsDeleted(Type entityType, object id)
+        {
+            return GetStatus(entityType, id) == EntityStatusEnum.Deleted;
+        }
+
+        // SetIsDeleted
+
+        public void SetIsDeleted<TEntity>(object id)
+        {
+            SetIsDeleted(typeof(TEntity), id);
+        }
+
+        public void SetIsDeleted(Type entityType, object id)
+        {
+            SetStatus(entityType, id, EntityStatusEnum.Dirty);
         }
 
         // Generalized methods
@@ -103,17 +107,15 @@ namespace JJ.Framework.Business
         // because it tries to optimize performance by saving some handling of ConvertExpressions.
         // But interface-wise I do not like it, and then performance gain might be trivial.
 
-        /// <summary> For entities. </summary>
         private EntityStatusEnum GetStatus(Type entityType, object id)
         {
-            var key = new Tuple<Type, object>(entityType, id);
+            var key = new Tuple_PlatformSupport<Type, object>(entityType, id);
             EntityStatusEnum entityStatus;
             _entityStatuses.TryGetValue(key, out entityStatus);
             return entityStatus;
         }
 
-        /// <summary> For properties. </summary>
-        private EntityStatusEnum GetStatus<T>(object id, Expression<Func<T>> propertyExpression)
+        private PropertyStatusEnum GetStatus<T>(object id, Expression<Func<T>> propertyExpression)
         {
             if (propertyExpression == null) throw new NullException(() => propertyExpression);
 
@@ -125,21 +127,20 @@ namespace JJ.Framework.Business
 
             object entity = values[values.Count - 2];
             string propertyName = ExpressionHelper.GetName(propertyExpression);
-            var key = new Tuple<Type, object, string>(entity.GetType(), id, propertyName);
-            EntityStatusEnum entityStatus;
-            _propertyStatuses.TryGetValue(key, out entityStatus);
-            return entityStatus;
+            var key = new Tuple_PlatformSupport<Type, object, string>(entity.GetType(), id, propertyName);
+            PropertyStatusEnum propertyStatus;
+            _propertyStatuses.TryGetValue(key, out propertyStatus);
+            return propertyStatus;
         }
 
-        /// <summary> For entities. </summary>
         private void SetStatus(Type entityType, object id, EntityStatusEnum entityStatus)
         {
-            var key = new Tuple<Type, object>(entityType, id);
+            var key = new Tuple_PlatformSupport<Type, object>(entityType, id);
             _entityStatuses[key] = entityStatus;
         }
 
         /// <summary> For properties. </summary>
-        private void SetStatus<T>(object id, Expression<Func<T>> expression, EntityStatusEnum entityStatus)
+        private void SetStatus<T>(object id, Expression<Func<T>> expression, PropertyStatusEnum entityStatus)
         {
             if (expression == null) throw new NullException(() => expression);
 
@@ -152,7 +153,7 @@ namespace JJ.Framework.Business
             // PropertyStatus
             object entity = values[values.Count - 2];
             string propertyName = ExpressionHelper.GetName(expression);
-            var key = new Tuple<Type, object, string>(entity.GetType(), id, propertyName);
+            var key = new Tuple_PlatformSupport<Type, object, string>(entity.GetType(), id, propertyName);
             _propertyStatuses[key] = entityStatus;
         }
     }

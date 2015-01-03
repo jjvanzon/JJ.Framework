@@ -24,11 +24,5 @@ namespace JJ.Framework.Persistence
         void Flush();
 
         string Location { get; }
-
-        // Object Status
-        //bool IsDirty(object entity);
-        //bool IsNew(object entity);
-        //bool IsDeleted(object entity);
-        //bool PropertyIsDirty<T>(Expression<Func<T>> propertyExpression);
     }
 }

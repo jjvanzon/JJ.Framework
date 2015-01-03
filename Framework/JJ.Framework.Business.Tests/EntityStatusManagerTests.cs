@@ -31,15 +31,13 @@ namespace JJ.Framework.Business.Tests
             isDirty = statusManagerByID.IsDirty<Entity>(entity.ID);
             isDirty = statusManagerByID.IsDirty(entity.ID, () => entity.Name);
         }
-        
+
         private bool MustSetLastModifiedByUser(Entity entity, EntityStatusManager statusManager)
         {
             return statusManager.IsDirty(entity) ||
                    statusManager.IsNew(entity) ||
                    statusManager.IsDirty(() => entity.QuestionType) ||
-                   statusManager.IsNew(() => entity.QuestionType) ||
                    statusManager.IsDirty(() => entity.QuestionSource) ||
-                   statusManager.IsNew(() => entity.QuestionSource) ||
                    statusManager.IsDirty(() => entity.QuestionCategories) ||
                    entity.QuestionCategories.Any(x => statusManager.IsDirty(x)) ||
                    statusManager.IsDirty(() => entity.QuestionLinks) ||

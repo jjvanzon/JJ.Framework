@@ -18,24 +18,27 @@ namespace JJ.Framework.Persistence.Memory
         }
 
         private object _lock = new object();
-        private Dictionary<Type, EntityStore> _entityStoreDictionary = new Dictionary<Type, EntityStore>();
+        private Dictionary<Type, IEntityStore> _entityStoreDictionary = new Dictionary<Type, IEntityStore>();
 
-        private EntityStore GetEntityStore<TEntity>()
+        private EntityStore<TEntity> GetEntityStore<TEntity>()
+            where TEntity : class, new()
         {
-            return GetEntityStore(typeof(TEntity));
+            return (EntityStore<TEntity>)GetEntityStore(typeof(TEntity));
         }
 
-        private EntityStore GetEntityStore(Type entityType)
+        private IEntityStore GetEntityStore(Type entityType)
         {
             lock (_lock)
             {
-                EntityStore entityStore;
+                IEntityStore entityStore;
 
                 if (!_entityStoreDictionary.TryGetValue(entityType, out entityStore))
                 {
                     string entityName = entityType.Name;
                     IMemoryMapping mapping = MappingResolver.GetMapping(entityType, MappingAssembly);
-                    entityStore = new EntityStore(entityType, mapping);
+
+                    Type entityStoreType = typeof(EntityStore<>).MakeGenericType(entityType);
+                    entityStore = (IEntityStore)Activator.CreateInstance(entityStoreType, mapping);
 
                     _entityStoreDictionary[entityType] = entityStore;
                 }
@@ -46,20 +49,20 @@ namespace JJ.Framework.Persistence.Memory
 
         public override TEntity TryGet<TEntity>(object id)
         {
-            EntityStore entityStore = GetEntityStore<TEntity>();
-            return (TEntity)entityStore.TryGet(id);
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            return entityStore.TryGet(id);
         }
 
         public override TEntity Create<TEntity>()
         {
-            EntityStore entityStore = GetEntityStore<TEntity>();
-            return entityStore.Create<TEntity>();
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            return entityStore.Create();
         }
 
         public override void Insert(object entity)
         {
             if (entity == null) throw new NullException(() => entity);
-            EntityStore entityStore = GetEntityStore(entity.GetType());
+            IEntityStore entityStore = GetEntityStore(entity.GetType());
             entityStore.Insert(entity);
         }
 
@@ -71,14 +74,14 @@ namespace JJ.Framework.Persistence.Memory
         public override void Delete(object entity)
         {
             if (entity == null) throw new NullException(() => entity);
-            EntityStore entityStore = GetEntityStore(entity.GetType());
+            IEntityStore entityStore = GetEntityStore(entity.GetType());
             entityStore.Delete(entity);
         }
 
         public override IEnumerable<TEntity> GetAll<TEntity>()
         {
-            EntityStore entityStore = GetEntityStore(typeof(TEntity));
-            return entityStore.GetAll<TEntity>();
+            EntityStore<TEntity> entityStore = GetEntityStore < TEntity>();
+            return entityStore.GetAll();
         }
 
         public override IEnumerable<TEntity> Query<TEntity>()
