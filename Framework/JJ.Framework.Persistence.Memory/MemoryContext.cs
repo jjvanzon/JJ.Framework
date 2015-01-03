@@ -18,62 +18,67 @@ namespace JJ.Framework.Persistence.Memory
         }
 
         private object _lock = new object();
-        private Dictionary<Type, object> _entityStoreDictionary = new Dictionary<Type, object>();
+        private Dictionary<Type, EntityStore> _entityStoreDictionary = new Dictionary<Type, EntityStore>();
 
-        private EntityStore<TEntity> GetEntityStore<TEntity>()
-            where TEntity : class, new()
+        private EntityStore GetEntityStore<TEntity>()
+        {
+            return GetEntityStore(typeof(TEntity));
+        }
+
+        private EntityStore GetEntityStore(Type entityType)
         {
             lock (_lock)
             {
-                object entityStore;
-                Type entityType = typeof(TEntity);
+                EntityStore entityStore;
 
                 if (!_entityStoreDictionary.TryGetValue(entityType, out entityStore))
                 {
                     string entityName = entityType.Name;
                     IMemoryMapping mapping = MappingResolver.GetMapping(entityType, MappingAssembly);
-                    entityStore = new EntityStore<TEntity>(mapping);
+                    entityStore = new EntityStore(entityType, mapping);
 
                     _entityStoreDictionary[entityType] = entityStore;
                 }
 
-                return (EntityStore<TEntity>)entityStore;
+                return entityStore;
             }
         }
 
         public override TEntity TryGet<TEntity>(object id)
         {
-            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
-            return entityStore.TryGet(id);
+            EntityStore entityStore = GetEntityStore<TEntity>();
+            return (TEntity)entityStore.TryGet(id);
         }
 
         public override TEntity Create<TEntity>()
         {
-            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
-            return entityStore.Create();
+            EntityStore entityStore = GetEntityStore<TEntity>();
+            return entityStore.Create<TEntity>();
         }
 
-        public override void Insert<TEntity>(TEntity entity)
+        public override void Insert(object entity)
         {
-            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            if (entity == null) throw new NullException(() => entity);
+            EntityStore entityStore = GetEntityStore(entity.GetType());
             entityStore.Insert(entity);
         }
 
-        public override void Update<TEntity>(TEntity entity)
+        public override void Update(object entity)
         {
             // No code required.
         }
 
-        public override void Delete<TEntity>(TEntity entity)
+        public override void Delete(object entity)
         {
-            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
+            if (entity == null) throw new NullException(() => entity);
+            EntityStore entityStore = GetEntityStore(entity.GetType());
             entityStore.Delete(entity);
         }
 
         public override IEnumerable<TEntity> GetAll<TEntity>()
         {
-            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
-            return entityStore.GetAll();
+            EntityStore entityStore = GetEntityStore(typeof(TEntity));
+            return entityStore.GetAll<TEntity>();
         }
 
         public override IEnumerable<TEntity> Query<TEntity>()

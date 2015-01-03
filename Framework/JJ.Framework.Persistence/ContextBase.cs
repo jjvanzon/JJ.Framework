@@ -41,9 +41,9 @@ namespace JJ.Framework.Persistence
         public abstract TEntity TryGet<TEntity>(object id) where TEntity : class, new();
         public abstract IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class, new();
         public abstract TEntity Create<TEntity>() where TEntity : class, new();
-        public abstract void Insert<TEntity>(TEntity entity) where TEntity : class, new();
-        public abstract void Update<TEntity>(TEntity entity) where TEntity : class, new();
-        public abstract void Delete<TEntity>(TEntity entity) where TEntity : class, new();
+        public abstract void Insert(object entity);
+        public abstract void Update(object entity);
+        public abstract void Delete(object entity);
         public abstract IEnumerable<TEntity> Query<TEntity>() where TEntity : class, new();
         public abstract void Commit();
         public abstract void Flush();

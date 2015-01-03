@@ -112,5 +112,15 @@ namespace JJ.Framework.Xml.Linq
             XAttribute attribute = TryGetAttribute(element, attributeName);
             return attribute != null ? attribute.Value : null;
         }
+
+        public static void SetAttributeValue(XElement element, string attributeName, string value)
+        {
+            XAttribute attribute = element.Attribute(attributeName);
+            if (attribute == null)
+            {
+                throw new Exception(String.Format("Attribute '{0}' does not exist in element '{1}'.", attributeName, element.Name.LocalName));
+            }
+            attribute.Value = value;
+        }
     }
 }

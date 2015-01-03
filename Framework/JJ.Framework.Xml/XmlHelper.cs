@@ -150,5 +150,14 @@ namespace JJ.Framework.Xml
             string attributeValue = element.GetAttribute(attributeName);
             return attributeValue;
         }
+
+        public static void SetAttributeValue(XmlElement element, string attributeName, string value)
+        {
+            // TODO: Optimize performance by using attributes directly rather than through XPath.
+            string xpath = "@" + attributeName;
+            XmlAttribute xmlAttribute = (XmlAttribute)XmlHelper.SelectNode(element, xpath);
+            xmlAttribute.Value = value;
+        }
+
     }
 }

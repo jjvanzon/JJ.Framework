@@ -134,20 +134,6 @@ namespace JJ.Framework.Persistence.Xml.Internal
             return element;
         }
 
-        public string GetAttributeValue(XmlElement element, string attributeName)
-        {
-            string xpath = "@" + attributeName;
-            XmlAttribute xmlAttribute = (XmlAttribute)XmlHelper.SelectNode(element, xpath);
-            return xmlAttribute.Value;
-        }
-
-        public void SetAttributeValue(XmlElement element, string attributeName, string value)
-        {
-            string xpath = "@" + attributeName;
-            XmlAttribute xmlAttribute = (XmlAttribute)XmlHelper.SelectNode(element, xpath);
-            xmlAttribute.Value = value;
-        }
-
         /// <summary>
         /// Returns null if there are no elements.
         /// </summary>
@@ -157,7 +143,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
             XmlElement elementWithMaxID = (XmlElement)XmlHelper.TrySelectNode(Document, xpath);
             if (elementWithMaxID != null)
             {
-                return GetAttributeValue(elementWithMaxID, attributeName);
+                return XmlHelper.GetAttributeValue(elementWithMaxID, attributeName);
             }
 
             return null;

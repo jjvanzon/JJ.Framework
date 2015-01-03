@@ -8,28 +8,31 @@ using System.Text;
 
 namespace JJ.Framework.Persistence.Memory.Internal
 {
-    internal class EntityStore<TEntity>
-        where TEntity : class, new()
+    /// <summary>
+    /// Gives access to a data store for a single entity type.
+    /// </summary>
+    internal class EntityStore
     {
         private IMemoryMapping _mapping;
 
-        private Dictionary<object, TEntity> _dictionary = new Dictionary<object, TEntity>();
+        private Dictionary<object, object> _dictionary = new Dictionary<object, object>();
         private object _lock = new object();
 
-        public EntityStore(IMemoryMapping mapping)
+        public EntityStore(Type entityType, IMemoryMapping mapping)
         {
             if (mapping == null) throw new NullException(() => mapping);
             _mapping = mapping;
         }
 
-        public TEntity TryGet(object id)
+        public object TryGet(object id)
         {
-            TEntity entity;
+            object entity;
             _dictionary.TryGetValue(id, out entity);
             return entity;
         }
 
-        public TEntity Create()
+        public TEntity Create<TEntity>()
+            where TEntity : class, new()
         {
             var entity = new TEntity();
             object id = GetNewIdentity();
@@ -40,7 +43,7 @@ namespace JJ.Framework.Persistence.Memory.Internal
             return entity;
         }
 
-        public void Insert(TEntity entity)
+        public void Insert(object entity)
         {
             if (entity == null) throw new NullException(() => entity);
 
@@ -51,7 +54,7 @@ namespace JJ.Framework.Persistence.Memory.Internal
             }
         }
 
-        public void Delete(TEntity entity)
+        public void Delete(object entity)
         {
             if (entity == null) throw new NullException(() => entity);
 
@@ -62,29 +65,34 @@ namespace JJ.Framework.Persistence.Memory.Internal
             }
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> GetAll<TEntity>()
         {
-            return _dictionary.Values;
+            return _dictionary.Values.OfType<TEntity>();
         }
 
         // Identity
 
-        private object GetIDFromEntity(TEntity entity)
+        private int _maxID = 0;
+
+        private object GetIDFromEntity(object entity)
         {
-            PropertyInfo property = typeof(TEntity).GetProperty(_mapping.IdentityPropertyName);
+            Type entityType = entity.GetType();
+            PropertyInfo property = entityType.GetProperty(_mapping.IdentityPropertyName);
             if (property == null)
             {
-                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, typeof(TEntity).Name));
+                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entityType.Name));
             }
             return property.GetValue(entity, null);
         }
 
-        private void SetIDOfEntity(TEntity entity, object id)
+        private void SetIDOfEntity(object entity, object id)
         {
-            PropertyInfo property = typeof(TEntity).GetProperty(_mapping.IdentityPropertyName);
+            Type entityType = entity.GetType();
+
+            PropertyInfo property = entityType.GetProperty(_mapping.IdentityPropertyName);
             if (property == null)
             {
-                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, typeof(TEntity).Name));
+                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entityType.Name));
             }
             property.SetValue(entity, id, null);
         }
@@ -101,7 +109,5 @@ namespace JJ.Framework.Persistence.Memory.Internal
                     throw new ValueNotSupportedException(_mapping.IdentityType);
             }
         }
-
-        private int _maxID = 0;
     }
 }

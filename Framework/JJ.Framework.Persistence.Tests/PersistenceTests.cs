@@ -217,7 +217,7 @@ namespace JJ.Framework.Persistence.Tests
             using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
             {
                 Thing entity = new Thing { Name = "Thing was inserted" };
-                context.Insert<Thing>(entity);
+                context.Insert(entity);
                 context.Commit();
             }
         }
@@ -251,7 +251,7 @@ namespace JJ.Framework.Persistence.Tests
             {
                 Thing entity = context.Get<Thing>(1);
                 entity.Name += "Thing was updated";
-                context.Update<Thing>(entity);
+                context.Update(entity);
             }
         }
 

@@ -123,26 +123,6 @@ namespace JJ.Framework.Persistence.Xml.Linq.Internal
             //return Document.Elements().Single();
             return Document;
         }
-        
-        public string GetAttributeValue(XElement element, string attributeName)
-        {
-            XAttribute attribute = element.Attribute(attributeName);
-            if (attribute == null)
-            {
-                throw new Exception(String.Format("Attribute '{0}' does not exist in element '{1}'.", attributeName, element.Name.LocalName));
-            }
-            return attribute.Value;
-        }
-
-        public void SetAttributeValue(XElement element, string attributeName, string value)
-        {
-            XAttribute attribute = element.Attribute(attributeName);
-            if (attribute == null)
-            {
-                throw new Exception(String.Format("Attribute '{0}' does not exist in element '{1}'.", attributeName, element.Name.LocalName));
-            }
-            attribute.Value = value;
-        }
 
         /// <summary>
         /// Returns null if there are no elements.

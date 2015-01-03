@@ -7,35 +7,31 @@ using System.Xml.Linq;
 using JJ.Framework.Reflection;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Persistence.Xml.Linq.Internal;
+using JJ.Framework.Xml.Linq;
 
 namespace JJ.Framework.Persistence.Xml.Linq
 {
-    public class XmlToEntityConverter<TEntity>
-        where TEntity : class, new()
+    public class XmlToEntityConverter
     {
-        private readonly XmlElementAccessor _accessor;
+        internal XmlToEntityConverter()
+        { }
 
-        internal XmlToEntityConverter(XmlElementAccessor accessor)
-        {
-            if (accessor == null) throw new NullException(() => accessor);
-            _accessor = accessor;
-        }
-
-        public TEntity ConvertXmlElementToEntity(XElement sourceElement)
+        public TEntity ConvertXmlElementToEntity<TEntity>(XElement sourceElement)
+            where TEntity : new()
         {
             TEntity destEntity = new TEntity();
             ConvertXmlElementToEntity(sourceElement, destEntity);
             return destEntity;
         }
 
-        public void ConvertXmlElementToEntity(XElement sourceElement, TEntity destEntity)
+        public void ConvertXmlElementToEntity(XElement sourceElement, object destEntity)
         {
             if (sourceElement == null) throw new NullException(() => sourceElement);
             if (destEntity == null) throw new NullException(() => destEntity);
 
-            foreach (PropertyInfo destProperty in ReflectionCache.GetProperties(typeof(TEntity)))
+            foreach (PropertyInfo destProperty in ReflectionCache.GetProperties(destEntity.GetType()))
             {
-                string sourceValue = _accessor.GetAttributeValue(sourceElement, destProperty.Name);
+                string sourceValue = XmlHelper.GetAttributeValue(sourceElement, destProperty.Name);
                 object destValue = ConvertValue(sourceValue, destProperty.PropertyType);
                 destProperty.SetValue(destEntity, destValue, null);
             }
@@ -43,11 +39,11 @@ namespace JJ.Framework.Persistence.Xml.Linq
 
         public void ConvertEntityToXmlElement(object sourceEntity, XElement destElement)
         {
-            foreach (PropertyInfo sourceProperty in ReflectionCache.GetProperties(typeof(TEntity)))
+            foreach (PropertyInfo sourceProperty in ReflectionCache.GetProperties(sourceEntity.GetType()))
             {
                 object sourceValue = sourceProperty.GetValue_PlatformSafe(sourceEntity);
                 string destValue = Convert.ToString(sourceValue);
-                _accessor.SetAttributeValue(destElement, sourceProperty.Name, destValue);
+                XmlHelper.SetAttributeValue(destElement, sourceProperty.Name, destValue);
             }
         }
 

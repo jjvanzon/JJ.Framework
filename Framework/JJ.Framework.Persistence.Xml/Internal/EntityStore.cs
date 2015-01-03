@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Common;
 using JJ.Framework.Reflection;
+using JJ.Framework.Xml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,68 +10,73 @@ using System.Xml;
 
 namespace JJ.Framework.Persistence.Xml.Internal
 {
-    internal class EntityStore<TEntity> : IEntityStore
-        where TEntity : class, new()
+    /// <summary>
+    /// Gives access to a data store for a single entity type.
+    /// </summary>
+    internal class EntityStore
     {
         private const string ROOT_ELEMENT_NAME = "root";
 
         public XmlElementAccessor Accessor { get; private set; }
-        public XmlToEntityConverter<TEntity> Converter { get; private set; }
+        public XmlToEntityConverter Converter { get; private set; }
 
         private readonly IXmlMapping _mapping;
 
-        public EntityStore(string filePath, IXmlMapping mapping)
+        public EntityStore(Type type, string filePath, IXmlMapping mapping)
         {
             if (mapping == null) throw new NullException(() => mapping);
             _mapping = mapping;
 
             Accessor = new XmlElementAccessor(filePath, ROOT_ELEMENT_NAME, _mapping.ElementName);
-            Converter = new XmlToEntityConverter<TEntity>(Accessor);
+            Converter = new XmlToEntityConverter();
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> GetAll<TEntity>()
+            where TEntity: new()
         {
             IList<XmlElement> sourceXmlElements = Accessor.GetAllElements(_mapping.ElementName);
-            IList<TEntity> destEntities = sourceXmlElements.Select(x => Converter.ConvertXmlElementToEntity(x)).ToArray();
+            IList<TEntity> destEntities = sourceXmlElements.Select(x => Converter.ConvertXmlElementToEntity<TEntity>(x)).ToArray();
             return destEntities;
         }
 
-        public TEntity TryGet(object id)
+        public TEntity TryGet<TEntity>(object id)
+            where TEntity: class, new()
         {
             XmlElement sourceXmlElement = Accessor.TryGetElementByAttributeValue(_mapping.IdentityPropertyName, Convert.ToString(id));
             if (sourceXmlElement == null)
             {
                 return null;
             }
-            TEntity destEntity = Converter.ConvertXmlElementToEntity(sourceXmlElement);
+            TEntity destEntity = Converter.ConvertXmlElementToEntity<TEntity>(sourceXmlElement);
             return destEntity;
         }
 
-        public TEntity Create()
+        public TEntity Create<TEntity>()
+            where TEntity: new()
         {
             // Create XML element
-            IEnumerable<string> attributeNames = GetEntityPropertyNames();
+            IEnumerable<string> attributeNames = GetEntityPropertyNames(typeof(TEntity));
             XmlElement xmlElement = Accessor.CreateElement(attributeNames);
 
             // Set identity
             object id = GetNewIdentity();
-            Accessor.SetAttributeValue(xmlElement, _mapping.IdentityPropertyName, Convert.ToString(id));
+            XmlHelper.SetAttributeValue(xmlElement, _mapping.IdentityPropertyName, Convert.ToString(id));
 
             TEntity entity = new TEntity();
             SetIDOfEntity(entity, id);
             return entity;
         }
 
-        public void Insert(TEntity sourceEntity)
+        public void Insert(object sourceEntity)
         {
             if (sourceEntity == null) throw new NullException(() => sourceEntity);
 
-            IEnumerable<string> attributeNames = GetEntityPropertyNames();
+            IEnumerable<string> attributeNames = GetEntityPropertyNames(sourceEntity.GetType());
             XmlElement destXmlElement = Accessor.CreateElement(attributeNames);
             Converter.ConvertEntityToXmlElement(sourceEntity, destXmlElement);
         }
 
-        public void Update(TEntity sourceEntity)
+        public void Update(object sourceEntity)
         {
             if (sourceEntity == null) throw new NullException(() => sourceEntity);
             object id = GetIDFromEntity(sourceEntity);
@@ -78,7 +84,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
             Converter.ConvertEntityToXmlElement(sourceEntity, destXmlElement);
         }
 
-        public void Delete(TEntity sourceEntity)
+        public void Delete(object sourceEntity)
         {
             if (sourceEntity == null) throw new NullException(() => sourceEntity);
             object id = GetIDFromEntity(sourceEntity);
@@ -93,30 +99,30 @@ namespace JJ.Framework.Persistence.Xml.Internal
 
         // Helpers
 
-        private object GetIDFromEntity(TEntity entity)
+        private object GetIDFromEntity(object entity)
         {
-            PropertyInfo property = typeof(TEntity).GetProperty(_mapping.IdentityPropertyName);
+            PropertyInfo property = entity.GetType().GetProperty(_mapping.IdentityPropertyName);
             if (property == null)
             {
-                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, typeof(TEntity).Name));
+                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entity.GetType().Name));
             }
             return property.GetValue(entity, null);
         }
 
-        private void SetIDOfEntity(TEntity entity, object id)
+        private void SetIDOfEntity(object entity, object id)
         {
-            PropertyInfo property = typeof(TEntity).GetProperty(_mapping.IdentityPropertyName);
+            PropertyInfo property = entity.GetType().GetProperty(_mapping.IdentityPropertyName);
             if (property == null)
             {
-                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, typeof(TEntity).Name));
+                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entity.GetType().Name));
             }
             property.SetValue(entity, id, null);
         }
 
-        private IEnumerable<string> GetEntityPropertyNames()
+        private IEnumerable<string> GetEntityPropertyNames(Type entityType)
         {
             var list = new List<string>();
-            foreach (PropertyInfo property in ReflectionCache.GetProperties(typeof(TEntity)))
+            foreach (PropertyInfo property in ReflectionCache.GetProperties(entityType))
             {
                 list.Add(property.Name);
             }

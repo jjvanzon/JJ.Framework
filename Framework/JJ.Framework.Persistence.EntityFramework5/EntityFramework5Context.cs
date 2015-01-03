@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -35,27 +36,27 @@ namespace JJ.Framework.Persistence.EntityFramework5
             return entity;
         }
 
-        public override void Insert<TEntity>(TEntity entity)
+        public override void Insert(object entity)
         {
-            Context.Set<TEntity>().Add(entity);
+            if (entity == null) throw new NullException(() => entity);
+            Context.Set(entity.GetType()).Add(entity);
         }
 
-        public override void Update<TEntity>(TEntity entity)
+        public override void Update(object entity)
         {
-            Context.Entry<TEntity>(entity).State = EntityState.Modified;
+            if (entity == null) throw new NullException(() => entity);
+            Context.Entry(entity.GetType()).State = EntityState.Modified;
         }
 
-        public override void Delete<TEntity>(TEntity entity)
+        public override void Delete(object entity)
         {
-            Context.Set<TEntity>().Remove(entity);
+            if (entity == null) throw new NullException(() => entity);
+            Context.Set(entity.GetType()).Remove(entity);
         }
 
         public override IEnumerable<TEntity> Query<TEntity>()
         {
-            // TODO: Consider if you want to be able to query the uncommitted entities. It might perform badly...
-            return Enumerable.Union(
-                    Context.ChangeTracker.Entries<TEntity>().Select(x => x.Entity),
-                    Context.Set<TEntity>()).Distinct();
+            return Context.Set<TEntity>();
         }
 
         public override void Commit()

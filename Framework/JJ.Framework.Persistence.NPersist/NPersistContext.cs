@@ -32,17 +32,17 @@ namespace JJ.Framework.Persistence.NPersist
             return Context.GetObjects<TEntity>();
         }
 
-        public override void Insert<TEntity>(TEntity entity)
+        public override void Insert(object entity)
         {
             Context.AttachObject(entity);
         }
 
-        public override void Update<TEntity>(TEntity entity)
+        public override void Update(object entity)
         {
             Context.AttachObject(entity);
         }
 
-        public override void Delete<TEntity>(TEntity entity)
+        public override void Delete(object entity)
         {
             Context.DeleteObject(entity);
         }

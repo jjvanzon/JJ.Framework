@@ -11,7 +11,6 @@ namespace JJ.Framework.Persistence.NHibernate
     public class NHibernateContext : ContextBase
     {
         public ISession Session { get; private set; }
-        //private ITransaction _transaction;
 
         private HashSet<object> _entitiesToSave = new HashSet<object>();
         private HashSet<object> _entitiesToDelete = new HashSet<object>();
@@ -21,7 +20,6 @@ namespace JJ.Framework.Persistence.NHibernate
         {
             ISessionFactory sessionFactory = NHibernateSessionFactoryCache.GetSessionFactory(connectionString, modelAssembly, mappingAssembly, dialect);
             Session = sessionFactory.OpenSession();
-            //_transaction = _session.BeginTransaction();
         }
 
         public override TEntity TryGet<TEntity>(object id)
@@ -44,17 +42,17 @@ namespace JJ.Framework.Persistence.NHibernate
             return entity;
         }
 
-        public override void Insert<TEntity>(TEntity entity)
+        public override void Insert(object entity)
         {
             Session.Save(entity);
         }
 
-        public override void Update<TEntity>(TEntity entity)
+        public override void Update(object entity)
         {
             Session.Update(entity);
         }
 
-        public override void Delete<TEntity>(TEntity entity)
+        public override void Delete(object entity)
         {
             Session.Delete(entity);
         }
@@ -76,9 +74,10 @@ namespace JJ.Framework.Persistence.NHibernate
                 Session.Save(entity);
             }
 
-            Session.Flush();
-
-            //_transaction.Commit();
+            if (Session.Transaction.IsActive)
+            {
+                Session.Transaction.Commit();
+            }
 
             _entitiesToDelete.Clear();
             _entitiesToSave.Clear();

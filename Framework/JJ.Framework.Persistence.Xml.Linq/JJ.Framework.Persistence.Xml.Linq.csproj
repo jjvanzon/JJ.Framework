@@ -37,7 +37,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Internal\IEntityStore.cs" />
     <Compile Include="Internal\XmlMappingResolver.cs" />
     <Compile Include="Internal\EntityStore.cs" />
     <Compile Include="IXmlMapping.cs" />
@@ -64,6 +63,10 @@
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj">
+      <Project>{8dcbf3f3-b30f-4c11-8957-bea7f43ee173}</Project>
+      <Name>JJ.Framework.Xml.Linq</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
