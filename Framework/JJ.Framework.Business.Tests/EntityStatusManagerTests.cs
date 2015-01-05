@@ -37,7 +37,7 @@ namespace JJ.Framework.Business.Tests
             return statusManager.IsDirty(entity) ||
                    statusManager.IsNew(entity) ||
                    statusManager.IsDirty(() => entity.QuestionType) ||
-                   statusManager.IsDirty(() => entity.QuestionSource) ||
+                   statusManager.IsDirty(() => entity.Source) ||
                    statusManager.IsDirty(() => entity.QuestionCategories) ||
                    entity.QuestionCategories.Any(x => statusManager.IsDirty(x)) ||
                    statusManager.IsDirty(() => entity.QuestionLinks) ||

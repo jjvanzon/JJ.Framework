@@ -14,7 +14,7 @@ namespace JJ.Framework.Business.Tests.Helpers
         public Entity RelatedEntity { get; set; }
 
         public Entity QuestionType { get; set; }
-        public Entity QuestionSource { get; set; }
+        public Entity Source { get; set; }
         public IList<Entity> QuestionCategories { get; set; }
         public IList<Entity> QuestionLinks { get; set; }
         public IList<Entity> QuestionFlags { get; set; }
