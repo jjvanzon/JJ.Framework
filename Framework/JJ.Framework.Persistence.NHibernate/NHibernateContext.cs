@@ -65,15 +65,7 @@ namespace JJ.Framework.Persistence.NHibernate
 
         public override void Commit()
         {
-            foreach (object entity in _entitiesToDelete)
-            {
-                Session.Delete(entity);
-            }
-
-            foreach (object entity in _entitiesToSave)
-            {
-                Session.Save(entity);
-            }
+            Flush();
 
             if (Session.Transaction.IsActive)
             {
@@ -86,6 +78,16 @@ namespace JJ.Framework.Persistence.NHibernate
 
         public override void Flush()
         {
+            foreach (object entity in _entitiesToDelete)
+            {
+                Session.Delete(entity);
+            }
+
+            foreach (object entity in _entitiesToSave)
+            {
+                Session.Save(entity);
+            }
+
             Session.Flush();
         }
 
