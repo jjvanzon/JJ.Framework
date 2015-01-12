@@ -19,7 +19,8 @@ namespace JJ.Framework.Persistence.EntityFramework5
             string modelName = GetEntityFrameworkModelName(mappingAssembly);
             string specialConnectionString = GetSpecialConnectionString(connectionString, modelName);
 
-            return (DbContext)Activator.CreateInstance(dbContextType, specialConnectionString);
+            DbContext dbContext = (DbContext)Activator.CreateInstance(dbContextType, specialConnectionString);
+            return dbContext;
         }
 
         private static string GetEntityFrameworkModelName(Assembly mappingAssembly)

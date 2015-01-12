@@ -6,21 +6,41 @@ using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Transactions;
 
 namespace JJ.Framework.Persistence.EntityFramework5
 {
     public class EntityFramework5Context : ContextBase
     {
+        private TransactionScope _transactionScope;
+        //private IDbTransaction _transaction;
+
         public DbContext Context { get; private set; }
 
         public EntityFramework5Context(string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
             : base(persistenceLocation, modelAssembly, mappingAssembly, dialect)
         {
+            _transactionScope = new TransactionScope();
             Context = UnderlyingEntityFramework5ContextFactory.CreateContext(persistenceLocation, modelAssembly, mappingAssembly);
+            Context.Database.Connection.Open();
+            //_transaction = Context.Database.Connection.BeginTransaction();
         }
 
         public override TEntity TryGet<TEntity>(object id)
         {
+            // EntityFramework will return an entity with ID 0 
+            // if there is an uncommitted, non-flushed object,
+            // which is inconsistent with other ORM's.
+            // You would expect null to be returned.
+            // TODO: Performance penalty?
+            // TODO: I am not sure this is the right fix for this.
+            if (id == null) throw new NullException(() => id);
+            object defaultID = Activator.CreateInstance(id.GetType());
+            if (Equals(id, defaultID))
+            {
+                return null;
+            }
+
             return Context.Set<TEntity>().Find(id);
         }
 
@@ -62,11 +82,14 @@ namespace JJ.Framework.Persistence.EntityFramework5
         public override void Commit()
         {
             Context.SaveChanges();
+
+            //_transaction.Commit();
+            _transactionScope.Complete();
         }
 
         public override void Flush()
         {
-            // TODO: Is there an EntityFramework5 equivalent of an NHibernate Flush()?
+            Context.SaveChanges();
         }
 
         public override void Dispose()
@@ -74,6 +97,16 @@ namespace JJ.Framework.Persistence.EntityFramework5
             if (Context != null)
             {
                 Context.Dispose();
+            }
+
+            //if (_transaction != null)
+            //{
+            //    _transaction.Rollback();
+            //}
+
+            if (_transactionScope != null)
+            {
+                _transactionScope.Dispose();
             }
         }
     }
