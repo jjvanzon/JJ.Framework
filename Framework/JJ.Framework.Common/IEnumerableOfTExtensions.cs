@@ -16,6 +16,9 @@ namespace JJ.Framework.Common
             _nullGuid = Guid.NewGuid().ToString();
         }
 
+        /// <summary>
+        /// Does not include the collection it is executed upon in the result.
+        /// </summary>
         public static IEnumerable<T> SelectRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
         {
             // TODO: Beware: nested enumerators.
@@ -37,6 +40,28 @@ namespace JJ.Framework.Common
             }
         }
 
+        /// <summary>
+        /// Includes the collection it is executed upon in the result.
+        /// </summary>
+        public static IEnumerable<T> AndRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
+        {
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (selector == null) throw new ArgumentNullException("selector");
+
+            foreach (T item in collection)
+            {
+                yield return item;
+            }
+
+            foreach (T item in collection.SelectRecursive(selector))
+            {
+                yield return item;
+            }
+        }
+
+        /// <summary>
+        /// Does not include the collection it is executed upon in the result.
+        /// </summary>
         public static IEnumerable<T> SelectRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
         {
             // TODO: Beware: nested enumerators.
@@ -57,6 +82,26 @@ namespace JJ.Framework.Common
                         yield return item2;
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Includes the collection it is executed upon in the result.
+        /// </summary>
+        public static IEnumerable<T> AndRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
+        {
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (selector == null) throw new ArgumentNullException("selector");
+
+            for (int i = 0; i < collection.Count; i++)
+            {
+                T item = collection[i];
+                yield return item;
+            }
+
+            foreach (T item in collection.SelectRecursive(selector))
+            {
+                yield return item;
             }
         }
 
