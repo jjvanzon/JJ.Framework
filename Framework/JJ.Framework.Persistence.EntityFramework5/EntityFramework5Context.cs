@@ -84,7 +84,10 @@ namespace JJ.Framework.Persistence.EntityFramework5
             Context.SaveChanges();
 
             //_transaction.Commit();
+
             _transactionScope.Complete();
+            _transactionScope.Dispose();
+            _transactionScope = new TransactionScope();
         }
 
         public override void Flush()
