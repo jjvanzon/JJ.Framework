@@ -43,7 +43,7 @@ namespace JJ.Framework.Common
         /// <summary>
         /// Includes the collection it is executed upon in the result.
         /// </summary>
-        public static IEnumerable<T> AndRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
+        public static IEnumerable<T> UnionRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
         {
             if (collection == null) throw new ArgumentNullException("collection");
             if (selector == null) throw new ArgumentNullException("selector");
@@ -88,7 +88,7 @@ namespace JJ.Framework.Common
         /// <summary>
         /// Includes the collection it is executed upon in the result.
         /// </summary>
-        public static IEnumerable<T> AndRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
+        public static IEnumerable<T> UnionRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
         {
             if (collection == null) throw new ArgumentNullException("collection");
             if (selector == null) throw new ArgumentNullException("selector");
