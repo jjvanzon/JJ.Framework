@@ -12,7 +12,7 @@ namespace JJ.Framework.Presentation.Mvc
     {
         public static IDisposable BeginItem(this HtmlHelper htmlHelper, Expression<Func<object>> expression)
         {
-            Qualifier qualifier = GetCurrentQualifier(htmlHelper);
+            Qualifier qualifier = GetQualifierForCurrentThread();
 
             string identifier = ExpressionHelper.GetExpressionText(expression);
 
@@ -23,11 +23,11 @@ namespace JJ.Framework.Presentation.Mvc
 
         public static IDisposable BeginCollection(this HtmlHelper htmlHelper, Expression<Func<object>> expression)
         {
-            Qualifier qualifier = GetCurrentQualifier(htmlHelper);
+            Qualifier qualifier = GetQualifierForCurrentThread();
 
             string identifier = ExpressionHelper.GetExpressionText(expression);
 
-            qualifier.AddCollectionNode(htmlHelper, identifier);
+            qualifier.AddCollectionNode(identifier);
 
             return qualifier;
         }
@@ -36,7 +36,7 @@ namespace JJ.Framework.Presentation.Mvc
 
         public static IDisposable BeginCollectionItem(this HtmlHelper htmlHelper)
         {
-            Qualifier qualifier = GetCurrentQualifier(htmlHelper);
+            Qualifier qualifier = GetQualifierForCurrentThread();
 
             qualifier.IncrementIndex(htmlHelper);
 
@@ -44,10 +44,9 @@ namespace JJ.Framework.Presentation.Mvc
         }
 
         private static object _qualifierDictionaryLock = new object();
-
         private static Dictionary<object, Qualifier> _qualifierDictionary = new Dictionary<object, Qualifier>();
 
-        private static Qualifier GetCurrentQualifier(HtmlHelper htmlHelper)
+        private static Qualifier GetQualifierForCurrentThread()
         {
             lock (_qualifierDictionaryLock)
             {
@@ -55,10 +54,23 @@ namespace JJ.Framework.Presentation.Mvc
 
                 if (!_qualifierDictionary.ContainsKey(key))
                 {
-                    _qualifierDictionary[key] = new Qualifier(htmlHelper);
+                    _qualifierDictionary[key] = new Qualifier();
                 }
 
                 return _qualifierDictionary[key];
+            }
+        }
+
+        internal static void RemoveQualifierForCurrentThread()
+        {
+            lock (_qualifierDictionary)
+            {
+                object key = Thread.CurrentThread.ManagedThreadId;
+
+                if (_qualifierDictionary.ContainsKey(key))
+                {
+                    _qualifierDictionary.Remove(key);
+                }
             }
         }
 
@@ -70,32 +82,34 @@ namespace JJ.Framework.Presentation.Mvc
         /// </summary>
         private class Qualifier : IDisposable
         {
-            private readonly HtmlHelper _originalHtmlHelper;
-            private readonly string _originalHtmlFieldPrefix;
+            // You cannot use the HtmlHelper in the constructor,
+            // because the HtmlHelper can change when you go from one partial view to another.
+            private readonly IList<HtmlHelper> _htmlHelpers = new List<HtmlHelper>();
             private readonly Stack<Node> _nodes = new Stack<Node>();
-
-            public Qualifier(HtmlHelper htmlHelper)
-            {
-                _originalHtmlHelper = htmlHelper;
-                _originalHtmlFieldPrefix = _originalHtmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix;
-            }
 
             public void AddItemNode(HtmlHelper htmlHelper, string identifier)
             {
+                if (!_htmlHelpers.Contains(htmlHelper))
+                {
+                    _htmlHelpers.Add(htmlHelper);
+                }
+
                 _nodes.Push(new ItemNode(identifier));
 
                 htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = FormatText();
             }
 
-            public void AddCollectionNode(HtmlHelper htmlHelper, string identifier)
+            public void AddCollectionNode(string identifier)
             {
                 _nodes.Push(new CollectionNode(identifier));
             }
 
             public void IncrementIndex(HtmlHelper htmlHelper)
             {
-                // You cannot use the HtmlHelper from the constructor,
-                // because the HtmlHelper can change when you go from one partial view to another.
+                if (!_htmlHelpers.Contains(htmlHelper))
+                {
+                    _htmlHelpers.Add(htmlHelper);
+                }
 
                 var node = _nodes.Peek() as CollectionNode;
                 if (node == null)
@@ -154,8 +168,20 @@ namespace JJ.Framework.Presentation.Mvc
                 
                 if (_nodes.Count == 0)
                 {
-                    // TODO: _originalHtmlHelper is not always the HtmlHelper you get after closing the last using, even if you only use one view and no partials.
-                    _originalHtmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = "";
+                    // We cannot restore the original HtmlFieldPrefix,
+                    // because the _originalHtmlHelper is not always the HtmlHelper you get after closing the last using, 
+                    // even if you only use one view and no partials.
+                    // So we just clear the HtmlFieldPrefix of each HtmlHelper we encountered.
+                    // TODO: Find a solution to actually restore the previous HtmlHelper prefixes.
+
+                    for (int i = 0; i < _htmlHelpers.Count; i++)
+			        {
+			            HtmlHelper htmlHelper = _htmlHelpers[i];
+                        htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = "";
+			        }
+
+                    // Make sure the next time the thread is reused, we start with a fresh qualifier.
+                    HtmlHelperExtensions_Collections.RemoveQualifierForCurrentThread();
                 }
             }
         }
