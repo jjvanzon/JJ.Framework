@@ -147,6 +147,9 @@
   <data name="None" xml:space="preserve">
     <value>None</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>Not Authorized</value>
+  </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
   </data>

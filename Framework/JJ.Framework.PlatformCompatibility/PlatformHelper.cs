@@ -151,12 +151,12 @@ namespace JJ.Framework.PlatformCompatibility
                 return true;
             }
 
-            if (value == "")
+            if (String.Equals(value, ""))
             {
                 return true;
             }
 
-            if (value.Trim() == "")
+            if (String.Equals(value.Trim(), ""))
             {
                 return true;
             }

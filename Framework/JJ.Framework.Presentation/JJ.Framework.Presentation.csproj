@@ -37,7 +37,7 @@
   <ItemGroup>
     <Compile Include="ActionDescriptor.cs" />
     <Compile Include="ActionDescriptorHelper.cs" />
-    <Compile Include="NotAuthenticatedViewModel.cs" />
+    <Compile Include="NotAuthorizedViewModel.cs" />
     <Compile Include="ParameterDescriptor.cs" />
     <Compile Include="PreviousViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

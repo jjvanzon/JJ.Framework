@@ -42,10 +42,11 @@ namespace JJ.Framework.Persistence.Xml
 
         private IEntityStore GetEntityStore(Type entityType)
         {
+            if (entityType == null) throw new NullException(() => entityType);
+            IEntityStore entityStore;
+
             lock (_lock)
             {
-                IEntityStore entityStore;
-
                 if (!_entityStoreDictionary.TryGetValue(entityType, out entityStore))
                 {
                     string entityName = entityType.Name;
@@ -57,9 +58,9 @@ namespace JJ.Framework.Persistence.Xml
 
                     _entityStoreDictionary[entityType] = entityStore;
                 }
-
-                return entityStore;
             }
+
+            return entityStore;
         }
 
         public override TEntity TryGet<TEntity>(object id)

@@ -5,6 +5,6 @@ using System.Text;
 
 namespace JJ.Framework.Presentation
 {
-    public sealed class NotAuthenticatedViewModel
+    public sealed class NotAuthorizedViewModel
     { }
 }
