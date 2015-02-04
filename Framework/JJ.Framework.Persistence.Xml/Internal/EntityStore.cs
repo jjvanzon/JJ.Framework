@@ -16,6 +16,9 @@ namespace JJ.Framework.Persistence.Xml.Internal
     internal class EntityStore<TEntity> : IEntityStore
         where TEntity : class, new()
     {
+        // TODO: Reuse a central reflection cache.
+        private readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
+
         private const string ROOT_ELEMENT_NAME = "root";
 
         public XmlElementAccessor Accessor { get; private set; }
@@ -120,7 +123,7 @@ namespace JJ.Framework.Persistence.Xml.Internal
         private IEnumerable<string> GetEntityPropertyNames()
         {
             var list = new List<string>();
-            foreach (PropertyInfo property in ReflectionCache.GetProperties(typeof(TEntity)))
+            foreach (PropertyInfo property in _reflectionCache.GetProperties(typeof(TEntity)))
             {
                 list.Add(property.Name);
             }

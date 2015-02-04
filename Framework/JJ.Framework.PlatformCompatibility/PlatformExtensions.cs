@@ -23,16 +23,6 @@ namespace JJ.Framework.PlatformCompatibility
         }
 
         /// <summary>
-        /// iOS compatibility: PropertyInfo.GetValue in Mono on a generic type may cause JIT compilation, which is not supported by iOS.
-        /// Use 'PropertyInfo.GetGetMethod().Invoke(object obj, params object[] parameters)' or call this method instead.
-        /// </summary>
-        public static object GetValue_PlatformSafe(this PropertyInfo propertyInfo, object obj, params object[] parameters)
-        {
-            // TODO: Is the original GetValue not without params. Why make a substitute different than what it substitutes?
-            return PlatformHelper.PropertyInfo_GetValue_PlatformSafe(propertyInfo, obj, parameters);
-        }
-
-        /// <summary>
         /// Windows Phone 8 compatibility:
         /// Type.GetInterface(string name) is not supported on Windows Phone 8.
         /// Use the overload 'Type.GetInterface(string name, bool ingoreCase)' or call this method instead.
@@ -92,11 +82,14 @@ namespace JJ.Framework.PlatformCompatibility
         }
 
         /// <summary>
-        /// .Net 4.5 substitute
+        /// .NET 4.5 substitute and for iOS compatibility: PropertyInfo.GetValue in Mono on a generic type may cause JIT compilation, which is not supported by iOS.
+        /// Use 'PropertyInfo.GetGetMethod().Invoke(object obj, params object[] parameters)' or call this method instead.
         /// </summary>
-        public static object GetValue_PlatformSupport(this PropertyInfo propertyInfo, object obj)
+        public static object GetValue_PlatformSafe(this PropertyInfo propertyInfo, object obj, params object[] parameters)
         {
-            return PlatformHelper.PropertyInfo_GetValue_PlatformSupport(propertyInfo, obj);
+            // TODO: Is the original GetValue not without params. Why make a substitute different than what it substitutes?
+            return PlatformHelper.PropertyInfo_GetValue_PlatformSafe(propertyInfo, obj, parameters);
         }
+
     }
 }

@@ -114,7 +114,7 @@ namespace JJ.Framework.Xml
         /// </summary>
         private void ConvertProperties(XmlElement sourceParentElement, object destParentObject)
         {
-            foreach (PropertyInfo destProperty in ReflectionCache.GetProperties(destParentObject.GetType()))
+            foreach (PropertyInfo destProperty in StaticReflectionCache.GetProperties(destParentObject.GetType()))
             {
                 ConvertProperty(sourceParentElement, destParentObject, destProperty);
             }

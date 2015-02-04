@@ -53,17 +53,6 @@ namespace JJ.Framework.PlatformCompatibility
         }
 
         /// <summary>
-        /// iOS compatibility: PropertyInfo.GetValue in Mono on a generic type may cause JIT compilation, which is not supported by iOS.
-        /// Use 'PropertyInfo.GetGetMethod().Invoke(object obj, params object[] parameters)' or call this method instead.
-        /// </summary>
-        public static object PropertyInfo_GetValue_PlatformSafe(PropertyInfo propertyInfo, object obj, object[] index)
-        {
-            if (propertyInfo == null) throw new ArgumentNullException("propertyInfo");
-
-            return propertyInfo.GetGetMethod().Invoke(obj, index);
-        }
-
-        /// <summary>
         /// Windows Phone 8 compatibility:
         /// CultureInfo.GetCultureInfo(string name) is not supported on Windows Phone 8.
         /// Use 'new CultureInfo(string name)' or call this method instead.
@@ -182,11 +171,14 @@ namespace JJ.Framework.PlatformCompatibility
         }
 
         /// <summary>
-        /// .Net 4.5 substitute
+        /// .Net 4.5 substitute and for iOS compatibility: PropertyInfo.GetValue in Mono on a generic type may cause JIT compilation, which is not supported by iOS.
+        /// Use 'PropertyInfo.GetGetMethod().Invoke(object obj, params object[] parameters)' or call this method instead.
         /// </summary>
-        public static object PropertyInfo_GetValue_PlatformSupport(PropertyInfo propertyInfo, object obj)
+        public static object PropertyInfo_GetValue_PlatformSafe(PropertyInfo propertyInfo, object obj, object[] index)
         {
-            return propertyInfo.GetValue(obj, null);
+            if (propertyInfo == null) throw new ArgumentNullException("propertyInfo");
+
+            return propertyInfo.GetGetMethod().Invoke(obj, index);
         }
     }
 }

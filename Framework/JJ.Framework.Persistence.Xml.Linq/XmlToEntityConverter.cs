@@ -29,7 +29,7 @@ namespace JJ.Framework.Persistence.Xml.Linq
             if (sourceElement == null) throw new NullException(() => sourceElement);
             if (destEntity == null) throw new NullException(() => destEntity);
 
-            foreach (PropertyInfo destProperty in ReflectionCache.GetProperties(destEntity.GetType()))
+            foreach (PropertyInfo destProperty in ReflectionCacheWrapper.ReflectionCache.GetProperties(destEntity.GetType()))
             {
                 string sourceValue = XmlHelper.GetAttributeValue(sourceElement, destProperty.Name);
                 object destValue = ConvertValue(sourceValue, destProperty.PropertyType);
@@ -39,7 +39,7 @@ namespace JJ.Framework.Persistence.Xml.Linq
 
         public void ConvertEntityToXmlElement(object sourceEntity, XElement destElement)
         {
-            foreach (PropertyInfo sourceProperty in ReflectionCache.GetProperties(sourceEntity.GetType()))
+            foreach (PropertyInfo sourceProperty in ReflectionCacheWrapper.ReflectionCache.GetProperties(sourceEntity.GetType()))
             {
                 object sourceValue = sourceProperty.GetValue_PlatformSafe(sourceEntity);
                 string destValue = Convert.ToString(sourceValue);

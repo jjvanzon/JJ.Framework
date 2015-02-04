@@ -12,6 +12,9 @@ namespace JJ.Framework.Persistence.Xml
 {
     public class XmlToEntityConverter
     {
+        // TODO: Reuse a central reflection cache.
+        private readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
+
         internal XmlToEntityConverter()
         { }
 
@@ -28,7 +31,7 @@ namespace JJ.Framework.Persistence.Xml
             if (sourceElement == null) throw new NullException(() => sourceElement);
             if (destEntity == null) throw new NullException(() => destEntity);
 
-            foreach (PropertyInfo destProperty in ReflectionCache.GetProperties(destEntity.GetType()))
+            foreach (PropertyInfo destProperty in _reflectionCache.GetProperties(destEntity.GetType()))
             {
                 string sourceValue = XmlHelper.GetAttributeValue(sourceElement, destProperty.Name);
                 object destValue = ConvertValue(sourceValue, destProperty.PropertyType);
@@ -38,7 +41,7 @@ namespace JJ.Framework.Persistence.Xml
 
         public void ConvertEntityToXmlElement(object sourceEntity, XmlElement destXmlElement)
         {
-            foreach (PropertyInfo sourceProperty in ReflectionCache.GetProperties(sourceEntity.GetType()))
+            foreach (PropertyInfo sourceProperty in ReflectionCacheWrapper.ReflectionCache.GetProperties(sourceEntity.GetType()))
             {
                 object sourceValue = sourceProperty.GetValue(sourceEntity, null);
                 string destValue = Convert.ToString(sourceValue);

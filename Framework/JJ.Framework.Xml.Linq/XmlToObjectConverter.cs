@@ -51,6 +51,8 @@ namespace JJ.Framework.Xml.Linq
         // This class does not work with XML namespaces (yet). 
         // It simply ignores them which may however have a performance penalty.
 
+        private readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
+
         private bool _mustParseNilAttributes;
 
         private NameManager _nameManager;
@@ -141,7 +143,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private void ConvertProperties(XElement sourceParentElement, object destParentObject)
         {
-            foreach (PropertyInfo destProperty in ReflectionCache.GetProperties(destParentObject.GetType()))
+            foreach (PropertyInfo destProperty in _reflectionCache.GetProperties(destParentObject.GetType()))
             {
                 ConvertProperty(sourceParentElement, destParentObject, destProperty);
             }

@@ -122,7 +122,7 @@ namespace JJ.Framework.Persistence.Xml.Linq.Internal
         private IEnumerable<string> GetEntityPropertyNames()
         {
             var list = new List<string>();
-            foreach (PropertyInfo property in ReflectionCache.GetProperties(typeof(TEntity)))
+            foreach (PropertyInfo property in ReflectionCacheWrapper.ReflectionCache.GetProperties(typeof(TEntity)))
             {
                 list.Add(property.Name);
             }

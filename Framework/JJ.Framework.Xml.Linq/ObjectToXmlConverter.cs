@@ -22,6 +22,8 @@ namespace JJ.Framework.Xml.Linq
     /// </summary>
     public class ObjectToXmlConverter
     {
+        private readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
+
         private string _rootElementName;
         private bool _mustGenerateNilAttributes;
         private bool _mustSortElementsByName;
@@ -159,7 +161,7 @@ namespace JJ.Framework.Xml.Linq
         {
             IList<XObject> destObjects = new List<XObject>();
 
-            PropertyInfo[] sourceProperties = ReflectionCache.GetProperties(sourceObject.GetType());
+            PropertyInfo[] sourceProperties = _reflectionCache.GetProperties(sourceObject.GetType());
 
             if (_mustSortElementsByName)
             {

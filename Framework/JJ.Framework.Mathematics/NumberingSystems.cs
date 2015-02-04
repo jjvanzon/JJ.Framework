@@ -33,7 +33,7 @@ namespace JJ.Framework.Mathematics
         //     digit[2] = 6437 / 100 % 10 = 64 % 10 = 4
         //     digit[3] = 6437 / 1000 % 10 = 6 % 10 = 6
 
-        private static char[] _digitChars = new char[]
+        private static char[] DEFAULT_DIGIT_CHARS = new char[]
         {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 
@@ -135,7 +135,7 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static string ToHex(int input)
         {
-            return ToBase(input, 16, _digitChars);
+            return ToBase(input, 16, DEFAULT_DIGIT_CHARS);
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static string ToBase(int number, int b)
         {
-            return ToBase(number, b, _digitChars);
+            return ToBase(number, b, DEFAULT_DIGIT_CHARS);
         }
 
         // From Base
@@ -153,11 +153,11 @@ namespace JJ.Framework.Mathematics
         /// Converts a base-b number to an integer.
         /// A delegate is passed to this method that derives the digit value from the character value.
         /// </summary>
-        private static int FromBase(string input, int b, Func<char, int> charToDigitValue)
+        private static int FromBase(string input, int b, Func<char, int> charToDigitValueDelegate)
         {
             if (String.IsNullOrEmpty(input)) throw new ArgumentException("input cannot be null or empty.");
             if (b < 2) throw new ArgumentException("b must be 2 or higher.");
-            if (charToDigitValue == null) throw new NullException(() => charToDigitValue);
+            if (charToDigitValueDelegate == null) throw new NullException(() => charToDigitValueDelegate);
 
             int result = 0;
             int pow = 1;
@@ -166,7 +166,7 @@ namespace JJ.Framework.Mathematics
                 checked
                 {
                     char chr = input[i];
-                    int digitValue = charToDigitValue(chr);
+                    int digitValue = charToDigitValueDelegate(chr);
 
                     result += digitValue * pow;
 
