@@ -8,11 +8,31 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using JJ.Framework.Reflection;
+using JJ.Framework.Common;
+using System.Web.Routing;
 
 namespace JJ.Framework.Presentation.Mvc
 {
     public static partial class HtmlHelperExtensions
     {
+        public static MvcHtmlString ActionLinkWithCollection<T>(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName, string parameterName, IEnumerable<T> collection)
+        {
+            // First HTML-encode all elements of the url, for safety.
+            linkText = htmlHelper.Encode(linkText);
+
+            // Build the <a> tag.
+            string url = UrlHelpers.ActionWithCollectionParameter(actionName, controllerName, parameterName, collection);
+            string html = @"<a href=""" + url + @""">" + linkText + "</a>";
+
+            return new MvcHtmlString(html);
+        }
+
+        public static MvcHtmlString ActionLinkWithParams(this HtmlHelper htmlHelper, string actionName, string controllerName, params object[] parameterNamesAndValues)
+        {
+            IDictionary<string, object> dictionary = KeyValuePairHelper.ConvertNamesAndValuesListToDictionary(parameterNamesAndValues);
+            return htmlHelper.ActionLink(actionName, controllerName, new RouteValueDictionary(dictionary));
+        }
+
         /// <summary>
         /// Adds a hidden input element for every model property (to keep the view model in tact between posts).
         /// </summary>
@@ -76,18 +96,6 @@ Or rather:
             string fullID = htmlHelper.ViewData.TemplateInfo.GetFullHtmlFieldId(name);
 
             string html = String.Format(@"<input name=""{0}"" id=""{1}"" type=""hidden"" value=""{2}"" autocomplete=""off""/>", htmlHelper.Encode(fullName), htmlHelper.Encode(fullID), htmlHelper.Encode(value));
-            return new MvcHtmlString(html);
-        }
-
-        public static MvcHtmlString ActionLinkWithCollection<T>(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName, string parameterName, IEnumerable<T> collection)
-        {
-            // First HTML-encode all elements of the url, for safety.
-            linkText = htmlHelper.Encode(linkText);
-
-            // Build the <a> tag.
-            string url = UrlHelpers.ActionWithCollectionParameter(actionName, controllerName, parameterName, collection);
-            string html = @"<a href=""" + url + @""">" + linkText + "</a>";
-
             return new MvcHtmlString(html);
         }
     }

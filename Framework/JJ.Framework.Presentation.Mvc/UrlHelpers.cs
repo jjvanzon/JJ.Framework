@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Common;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -47,7 +48,7 @@ namespace JJ.Framework.Presentation.Mvc
 
             // Build the URL parameter string.
             string parametersString = "";
-            ICollection<KeyValuePair<string, object>> parameters = ConvertNamesAndValuesListToKeyValuePairs(parameterNamesAndValues);
+            IList<KeyValuePair<string, object>> parameters = KeyValuePairHelper.ConvertNamesAndValuesListToKeyValuePairs(parameterNamesAndValues);
             if (parameters != null && parameters.Count != 0)
             {
                 var list = new List<string>();
@@ -66,32 +67,6 @@ namespace JJ.Framework.Presentation.Mvc
             string url = "/" + controllerName + "/" + actionName + parametersString;
 
             return url;
-        }
-
-        private static ICollection<KeyValuePair<string, object>> ConvertNamesAndValuesListToKeyValuePairs(IList<object> namesAndValues)
-        {
-            // Allow converting null to null.
-            if (namesAndValues == null)
-            {
-                return null;
-            }
-
-            if (namesAndValues.Count % 2 != 0) throw new Exception("namesAndValues.Count must be a multiple of 2.");
-
-            var keyValuePairs = new List<KeyValuePair<string, object>>();
-
-            for (int i = 0; i < namesAndValues.Count; i += 2)
-            {
-                object name = namesAndValues[i];
-                object value = namesAndValues[i + 1];
-
-                if (name == null) throw new Exception("Names in namesAndValues cannot contain nulls.");
-                if (name.GetType() != typeof(string)) throw new Exception("Names in namesAndValues must be strings.");
-
-                keyValuePairs.Add(new KeyValuePair<string, object>((string)name, value));
-            }
-
-            return keyValuePairs;
         }
     }
 }
