@@ -26,12 +26,22 @@ namespace JJ.Framework.Persistence.SqlClient
 
         public int ExecuteNonQuery(object sqlEnum, object parameters = null)
         {
+            if (_connection.State == ConnectionState.Closed)
+            {
+                _connection.Open();
+            }
+
             SqlCommand sqlCommand = SqlCommandHelper.CreateSqlCommand(_connection, sqlEnum, parameters);
             return sqlCommand.ExecuteNonQuery();
         }
 
         public object ExecuteScalar(object sqlEnum, object parameters = null)
         {
+            if (_connection.State == ConnectionState.Closed)
+            {
+                _connection.Open();
+            }
+
             SqlCommand sqlCommand = SqlCommandHelper.CreateSqlCommand(_connection, sqlEnum, parameters);
             return sqlCommand.ExecuteScalar();
         }
@@ -39,6 +49,11 @@ namespace JJ.Framework.Persistence.SqlClient
         public IEnumerable<T> ExecuteReader<T>(object sqlEnum, object parameters = null)
             where T : new()
         {
+            if (_connection.State == ConnectionState.Closed)
+            {
+                _connection.Open();
+            }
+
             SqlCommand sqlCommand = SqlCommandHelper.CreateSqlCommand(_connection, sqlEnum, parameters);
             return SqlCommandHelper.ExecuteReader<T>(sqlCommand);
         }
