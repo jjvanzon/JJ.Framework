@@ -113,14 +113,7 @@ namespace JJ.Framework.Persistence.SqlClient
                         throw new Exception(String.Format("Embedded resource with name '{0}' not found. The sql file should be an embedded resource that resides in the same namespace\\subfolder as the sqlEnum type.", embeddedResourceName));
                     }
                     stream.Position = 0;
-
-                    // For some reason StreamHelper gets me a string that gives me an error.
-                    // TODO: Specify the error.
-                    //sql = StreamHelper.StreamToString(stream, Encoding.UTF8);
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
-                        sql = reader.ReadToEnd();
-                    }
+                    sql = StreamHelper.StreamToString(stream, Encoding.UTF8);
 
                     _sqlDictionary.Add(sqlEnum, sql);
                 }

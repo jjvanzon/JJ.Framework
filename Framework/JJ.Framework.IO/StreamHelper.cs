@@ -30,9 +30,13 @@ namespace JJ.Framework.IO
         public static string StreamToString(Stream stream, Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);
-            byte[] bytes = StreamToBytes(stream);
-            string text = encoding.GetString_PlatformSafe(bytes);
-            return text;
+
+            // Do not use Encoding.GetString, because it does not process the byte order mark correctly. StreamReader does.
+            using (var reader = new StreamReader(stream, encoding))
+            {
+                string text = reader.ReadToEnd();
+                return text;
+            }
         }
 
         public static Stream StringToStream(string text, Encoding encoding)
@@ -51,7 +55,12 @@ namespace JJ.Framework.IO
         public static string BytesToString(byte[] bytes, Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);
-            return encoding.GetString_PlatformSafe(bytes);
+
+            // Do not use Encoding.GetString, because it does not process the byte order mark correctly. 
+            // StreamReader (used by StreamToString) does.
+            Stream stream = BytesToStream(bytes);
+            string text = StreamToString(stream, encoding);
+            return text;
         }
     }
 }
