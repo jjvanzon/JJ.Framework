@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Reflection;
+using JJ.Framework.Reflection;
 using JJ.Framework.Validation.Resources;
 using System;
 using System.Collections.Generic;
@@ -23,6 +23,13 @@ namespace JJ.Framework.Validation
         /// <summary>
         /// Indicate which property value we are going to validate.
         /// </summary>
+        /// <param name="propertyKey">
+        /// A technical key of the property we are going to validate.
+        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
+        /// </param>
+        /// <param name="propertyDisplayName">
+        /// Used in messages to indicate what property the validation message is about.
+        /// </param>
         /// <param name="propertyExpression">
         /// Used to extract both the value and a property key.
         /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
@@ -48,6 +55,11 @@ namespace JJ.Framework.Validation
         /// </param>
         /// <param name="propertyDisplayName">
         /// Used in messages to indicate what property the validation message is about.
+        /// </param>
+        /// <param name="propertyExpression">
+        /// Used to extract both the value and a property key.
+        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
+        /// The root of the expression is excluded from the property key, e.g. "() => MyObject.MyProperty" produces the property key "MyProperty".
         /// </param>
         public FluentValidator<TRootObject> For(object value, string propertyKey, string propertyDisplayName)
         {
