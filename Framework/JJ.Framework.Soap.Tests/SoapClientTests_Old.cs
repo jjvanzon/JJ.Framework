@@ -2,7 +2,7 @@
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 //using JJ.Framework.Xml.Linq;
 //using System.Text;
-//using JJ.Apps.SetText.Interface.ViewModels;
+//using JJ.Presentation.SetText.Interface.ViewModels;
 //using System.Collections.Generic;
 //using JJ.Framework.Testing;
 //using System.Net;
@@ -34,7 +34,7 @@
 //        {
 //            var namespaceMappings = new List<SoapNamespaceMapping>
 //            {
-//                new SoapNamespaceMapping(SoapNamespaceMapping.WCF_SOAP_NAMESPACE_HEADER + "JJ.Apps.SetText.Interface.ViewModels", "http://blahblahblah.com"),
+//                new SoapNamespaceMapping(SoapNamespaceMapping.WCF_SOAP_NAMESPACE_HEADER + "JJ.Presentation.SetText.Interface.ViewModels", "http://blahblahblah.com"),
 //            };
 
 //            string url = "http://localhost:6371/settextappservice.svc";

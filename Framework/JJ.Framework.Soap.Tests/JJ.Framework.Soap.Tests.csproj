@@ -63,17 +63,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Apps\JJ.Apps.SetText.AppService.Interface\JJ.Apps.SetText.AppService.Interface.csproj">
+    <ProjectReference Include="..\..\Presentation\JJ.Presentation.SetText.AppService.Interface\JJ.Presentation.SetText.AppService.Interface.csproj">
       <Project>{4a052265-9896-4d0b-a9b0-14d052bc95d0}</Project>
-      <Name>JJ.Apps.SetText.AppService.Interface</Name>
+      <Name>JJ.Presentation.SetText.AppService.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Apps\JJ.Apps.SetText.Interface\JJ.Apps.SetText.Interface.csproj">
+    <ProjectReference Include="..\..\Presentation\JJ.Presentation.SetText.Interface\JJ.Presentation.SetText.Interface.csproj">
       <Project>{f074226b-734d-4308-b1c5-30350a228d8b}</Project>
-      <Name>JJ.Apps.SetText.Interface</Name>
+      <Name>JJ.Presentation.SetText.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Models\JJ.Models.Canonical\JJ.Models.Canonical.csproj">
+    <ProjectReference Include="..\..\Business\JJ.Business.CanonicalModel\JJ.Business.CanonicalModel.csproj">
       <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
-      <Name>JJ.Models.Canonical</Name>
+      <Name>JJ.Business.CanonicalModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj">
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>

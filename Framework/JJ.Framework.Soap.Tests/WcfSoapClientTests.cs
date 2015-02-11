@@ -2,9 +2,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Xml.Linq;
 using System.Text;
-using JJ.Apps.SetText.Interface.ViewModels;
+using JJ.Presentation.SetText.Interface.ViewModels;
 using System.Collections.Generic;
-using JJ.Apps.SetText.AppService.Interface;
+using JJ.Presentation.SetText.AppService.Interface;
 using JJ.Framework.Configuration;
 using JJ.Framework.Soap.Tests.ServiceInterface;
 using JJ.Framework.Soap.Tests.Helpers;
