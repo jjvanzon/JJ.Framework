@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Validation.Resources
 {
-    public static class FormattedMessages
+    public static class MessageFormatter
     {
         public static string IsNull(string propertyDisplayName)
         {

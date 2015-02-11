@@ -36,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FluentValidator.cs" />
-    <Compile Include="Resources\FormattedMessages.cs" />
+    <Compile Include="Resources\MessageFormatter.cs" />
     <Compile Include="Resources\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

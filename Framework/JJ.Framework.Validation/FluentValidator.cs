@@ -71,7 +71,7 @@ namespace JJ.Framework.Validation
         {
             if (_value == null)
             {
-                ValidationMessages.Add(_propertyKey, FormattedMessages.IsNull(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, MessageFormatter.IsNull(_propertyDisplayName));
             }
         }
 
@@ -81,7 +81,7 @@ namespace JJ.Framework.Validation
 
             if (String_PlatformSupport.IsNullOrWhiteSpace(value))
             {
-                ValidationMessages.Add(_propertyKey, FormattedMessages.IsNullOrWhiteSpace(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, MessageFormatter.IsNullOrWhiteSpace(_propertyDisplayName));
             }
         }
 
@@ -89,7 +89,7 @@ namespace JJ.Framework.Validation
         {
             if (!Equals(_value, value))
             {
-                ValidationMessages.Add(_propertyKey, FormattedMessages.NotIsValue(_propertyDisplayName, value));
+                ValidationMessages.Add(_propertyKey, MessageFormatter.NotIsValue(_propertyDisplayName, value));
             }
         }
 
@@ -105,7 +105,7 @@ namespace JJ.Framework.Validation
 
             if (value.CompareTo(min) > 0)
             {
-                ValidationMessages.Add(_propertyKey, FormattedMessages.NotAbove(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, MessageFormatter.NotAbove(_propertyDisplayName));
             }
         }
 
@@ -113,7 +113,7 @@ namespace JJ.Framework.Validation
         {
             if (Equals(_value, 0))
             {
-                ValidationMessages.Add(_propertyKey, FormattedMessages.IsZero(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, MessageFormatter.IsZero(_propertyDisplayName));
             }
         }
     }
