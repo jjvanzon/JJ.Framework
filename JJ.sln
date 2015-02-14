@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Web
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.Mvc", "Presentation\JJ.Presentation.QuestionAndAnswer.Mvc\JJ.Presentation.QuestionAndAnswer.Mvc.csproj", "{38BD84DD-AFD8-42FE-B8F8-4FC374EEBF23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer.MvcAspx", "Presentation\JJ.Presentation.QuestionAndAnswer.MvcAspx\JJ.Presentation.QuestionAndAnswer.MvcAspx.csproj", "{38BD84DD-AFD8-42FE-B8F8-4FC374EEBF23}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAndAnswer", "Presentation\JJ.Presentation.QuestionAndAnswer\JJ.Presentation.QuestionAndAnswer.csproj", "{680C0600-E384-4F3D-9C2A-38ECC1FDB1CB}"
 EndProject
