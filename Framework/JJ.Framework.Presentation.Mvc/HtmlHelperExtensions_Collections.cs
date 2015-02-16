@@ -14,7 +14,7 @@ namespace JJ.Framework.Presentation.Mvc
         {
             Qualifier qualifier = GetQualifierForCurrentThread();
 
-            string identifier = ExpressionHelper.GetExpressionText(expression);
+            string identifier = JJ.Framework.Reflection.ExpressionHelper.GetName(expression);
 
             qualifier.AddItemNode(htmlHelper, identifier);
 
@@ -25,7 +25,7 @@ namespace JJ.Framework.Presentation.Mvc
         {
             Qualifier qualifier = GetQualifierForCurrentThread();
 
-            string identifier = ExpressionHelper.GetExpressionText(expression);
+            string identifier = JJ.Framework.Reflection.ExpressionHelper.GetName(expression);
 
             qualifier.AddCollectionNode(identifier);
 
@@ -78,7 +78,7 @@ namespace JJ.Framework.Presentation.Mvc
         /// A qualifier to which you can add item nodes, collection nodes and indexes.
         /// Automatically assigns the HtmlFieldPrefix and adds hidden input elements that store the indexes.
         /// When Dispose is called, the last node of the qualifier is removed.
-        /// If no nodes are left, Dispose restores the original HtmlFieldPrefix.
+        /// If no nodes are left, Dispose resets the original HtmlFieldPrefix.
         /// </summary>
         private class Qualifier : IDisposable
         {

@@ -12,16 +12,31 @@ namespace JJ.Framework.Reflection
     {
         // GetName
 
+        /// <summary>
+        /// Gets the member name from the expression.
+        /// If the expression contains more than one member,
+        /// the last member name is returned.
+        /// </summary>
         public static string GetName<T>(Expression<Func<T>> expression)
         {
             return GetName((LambdaExpression)expression);
         }
 
+        /// <summary>
+        /// Gets the member name from the expression.
+        /// If the expression contains more than one member,
+        /// the last member name is returned.
+        /// </summary>
         public static string GetName(Expression<Action> expression)
         {
             return GetName((LambdaExpression)expression);
         }
 
+        /// <summary>
+        /// Gets the member name from the expression.
+        /// If the expression contains more than one member,
+        /// the last member is returned.
+        /// </summary>
         public static string GetName(LambdaExpression expression)
         {
             MemberInfo member = GetMember(expression);
@@ -30,11 +45,21 @@ namespace JJ.Framework.Reflection
 
         // GetMember
 
+        /// <summary>
+        /// Gets the MemberInfo from the expression.
+        /// If the expression contains more than one member access,
+        /// the last member is returned.
+        /// </summary>
         public static MemberInfo GetMember<T>(Expression<Func<T>> expression)
         {
             return GetMember((LambdaExpression)expression);
         }
 
+        /// <summary>
+        /// Gets the MemberInfo from the expression.
+        /// If the expression contains more than one member access,
+        /// the last member is returned.
+        /// </summary>
         public static MemberInfo GetMember(LambdaExpression expression)
         {
             if (expression == null) throw new NullException(() => expression);
