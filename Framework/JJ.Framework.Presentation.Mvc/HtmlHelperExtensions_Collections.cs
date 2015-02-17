@@ -78,25 +78,25 @@ namespace JJ.Framework.Presentation.Mvc
         /// A qualifier to which you can add item nodes, collection nodes and indexes.
         /// Automatically assigns the HtmlFieldPrefix and adds hidden input elements that store the indexes.
         /// When Dispose is called, the last node of the qualifier is removed.
-        /// If no nodes are left, Dispose resets the original HtmlFieldPrefix.
+        /// If no nodes are left, Dispose restores the original HtmlFieldPrefix.
         /// </summary>
         private class Qualifier : IDisposable
         {
             // You cannot use the HtmlHelper in the constructor,
             // because the HtmlHelper can change when you go from one partial view to another.
-            private readonly IList<HtmlHelper> _htmlHelpers = new List<HtmlHelper>();
+            private readonly IDictionary<HtmlHelper, string> _htmlHelpersAndOriginalFieldPrefixes = new Dictionary<HtmlHelper, string>();
             private readonly Stack<Node> _nodes = new Stack<Node>();
 
             public void AddItemNode(HtmlHelper htmlHelper, string identifier)
             {
-                if (!_htmlHelpers.Contains(htmlHelper))
+                if (!_htmlHelpersAndOriginalFieldPrefixes.ContainsKey(htmlHelper))
                 {
-                    _htmlHelpers.Add(htmlHelper);
+                    _htmlHelpersAndOriginalFieldPrefixes.Add(htmlHelper, htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix);
                 }
 
                 _nodes.Push(new ItemNode(identifier));
 
-                htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = FormatText();
+                htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = FormatHtmlFieldPrefix();
             }
 
             public void AddCollectionNode(string identifier)
@@ -106,9 +106,9 @@ namespace JJ.Framework.Presentation.Mvc
 
             public void IncrementIndex(HtmlHelper htmlHelper)
             {
-                if (!_htmlHelpers.Contains(htmlHelper))
+                if (!_htmlHelpersAndOriginalFieldPrefixes.ContainsKey(htmlHelper))
                 {
-                    _htmlHelpers.Add(htmlHelper);
+                    _htmlHelpersAndOriginalFieldPrefixes.Add(htmlHelper, htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix);
                 }
 
                 var node = _nodes.Peek() as CollectionNode;
@@ -121,7 +121,7 @@ namespace JJ.Framework.Presentation.Mvc
 
                 WriteHiddenIndexField(htmlHelper, node.Index);
 
-                htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = FormatText();
+                htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = FormatHtmlFieldPrefix();
             }
 
             private void WriteHiddenIndexField(HtmlHelper htmlHelper, int index)
@@ -130,8 +130,8 @@ namespace JJ.Framework.Presentation.Mvc
 
                 TextWriter writer = htmlHelper.ViewContext.Writer;
 
-                string formattedText = FormatText();
-                string collectionName = CutOffIndex(formattedText);
+                string htmlFieldPrefix = FormatHtmlFieldPrefix();
+                string collectionName = CutOffIndex(htmlFieldPrefix);
                 string indexFieldName = String.Format("{0}.index", collectionName);
 
                 // Tip from original BeginCollectionItem author:
@@ -142,7 +142,9 @@ namespace JJ.Framework.Presentation.Mvc
                 // You cannot use HtmlHelper.Hidden, because it will use the wrong name prefix, and also generate a bad ID field with the wrong prefix.
                 string html = String.Format(@"<input type=""hidden"" name=""{0}"" value=""{1}"" autocomplete=""off""/>", htmlHelper.Encode(indexFieldName), htmlHelper.Encode(index));
 
-                // TODO: Check if you have already added the hidden field with this name and value. You can get duplicates if you do not use straightforeward nested loops.
+                // TODO: Check if you have already added the hidden field with this name and value. 
+                // You can get duplicates if you do not use straightforeward nested loops.
+                // It might be to expensive to do this, though.
 
                 writer.Write(html);
             }
@@ -154,7 +156,7 @@ namespace JJ.Framework.Presentation.Mvc
                 return output;
             }
 
-            public string FormatText()
+            public string FormatHtmlFieldPrefix()
             {
                 return String.Join(".", _nodes.Select(x => x.FormatText()).Reverse());
             }
@@ -164,20 +166,24 @@ namespace JJ.Framework.Presentation.Mvc
                 if (_nodes.Count > 0)
                 {
                     _nodes.Pop();
+
+                    // Set the HtmlFieldPrefix so the next piece of view code is not stuck with a prefix like
+                    // Item.MyCollection[4], even though the collection ended.
+                    string text = FormatHtmlFieldPrefix();
+                    foreach (HtmlHelper htmlHelper in _htmlHelpersAndOriginalFieldPrefixes.Keys)
+                    {
+                        htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = text;
+                    }
                 }
                 
                 if (_nodes.Count == 0)
                 {
-                    // We cannot restore the original HtmlFieldPrefix,
-                    // because the _originalHtmlHelper is not always the HtmlHelper you get after closing the last using, 
-                    // even if you only use one view and no partials.
-                    // So we just clear the HtmlFieldPrefix of each HtmlHelper we encountered.
-                    // TODO: Find a solution to actually restore the previous HtmlHelper prefixes.
-
-                    for (int i = 0; i < _htmlHelpers.Count; i++)
+                    // Restore the original HtmlFieldPrefixes.
+                    foreach (var entry in _htmlHelpersAndOriginalFieldPrefixes)
 			        {
-			            HtmlHelper htmlHelper = _htmlHelpers[i];
-                        htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = "";
+                        HtmlHelper htmlHelper = entry.Key;
+                        string originalHtmlFieldPrefix = entry.Value;
+                        htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = originalHtmlFieldPrefix;
 			        }
 
                     // Make sure the next time the thread is reused, we start with a fresh qualifier.
