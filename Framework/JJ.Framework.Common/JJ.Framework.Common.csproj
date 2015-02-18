@@ -35,6 +35,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="EmbeddedResourceHelper.cs" />
     <Compile Include="IListExtensions.cs" />
     <Compile Include="KeyHelper.cs" />
