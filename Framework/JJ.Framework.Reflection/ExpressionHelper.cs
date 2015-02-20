@@ -196,7 +196,7 @@ namespace JJ.Framework.Reflection
 
                         object value = ExpressionHelper.GetValue(argumentExpression);
 
-                        var methodCallParameterInfo = new MethodCallParameterInfo(parameter.Name, value);
+                        var methodCallParameterInfo = new MethodCallParameterInfo(parameter.ParameterType, parameter.Name, value);
                         methodCallInfo.Parameters.Add(methodCallParameterInfo);
                     }
 
