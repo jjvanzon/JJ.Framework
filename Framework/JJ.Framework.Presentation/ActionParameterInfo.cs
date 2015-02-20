@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation
 {
-    public sealed class ParameterDescriptor
+    public sealed class ActionParameterInfo
     {
         public string Name { get; set; }
         public string Value { get; set; }
