@@ -1,0 +1,67 @@
+﻿using JJ.Demos.ReturnActions.Helpers;
+using JJ.Demos.ReturnActions.ViewModels;
+using JJ.Framework.Presentation;
+using JJ.Framework.Reflection;
+using JJ.Demos.ReturnActions.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JJ.Demos.ReturnActions.Presenters
+{
+    public class EditPresenter
+    {
+        private string _authenticatedUserName;
+        private static ActionInfo _defaultReturnAction;
+
+        static EditPresenter()
+        {
+            _defaultReturnAction = ActionHelper.CreateActionInfo<ListPresenter>(x => x.Show());
+        }
+
+        /// <param name="authenticatedUserName">nullable</param>
+        public EditPresenter(string authenticatedUserName)
+        {
+            _authenticatedUserName = authenticatedUserName;
+        }
+
+        public object Show(int id, ActionInfo returnAction = null)
+        {
+            if (String.IsNullOrEmpty(_authenticatedUserName))
+            {
+                var presenter2 = new LoginPresenter();
+                object viewModel = presenter2.Show(ActionHelper.CreateActionInfo<EditPresenter>(x => x.Show(id, returnAction)));
+                return viewModel;
+            }
+
+            return new EditViewModel
+            {
+                Entity = ViewModelFactory.CreateEntityViewModel(id),
+                ReturnAction = returnAction ?? _defaultReturnAction
+            };
+        }
+
+        public object Save(EditViewModel viewModel)
+        {
+            if (viewModel == null) throw new NullException(() => viewModel);
+            if (viewModel.ReturnAction == null) throw new NullException(() => viewModel.ReturnAction);
+
+            viewModel.NullCoalesce();
+
+            if (String.IsNullOrEmpty(_authenticatedUserName))
+            {
+                return new NotAuthorizedViewModel();
+            }
+
+            return ActionDispatcher.GetViewModel(viewModel.ReturnAction, _authenticatedUserName);
+        }
+
+        public LoginViewModel Logout()
+        {
+            var presenter2 = new LoginPresenter();
+            return presenter2.Show();
+        }
+    }
+}

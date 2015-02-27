@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace JJ.Demos.ReturnActions.MvcPostData.Names
+{
+    public static class ViewNames
+    {
+        public const string Edit = "Edit";
+        public const string Details = "Details";
+        public const string Index = "Index";
+        public const string _ActionInfo = "_ActionInfo";
+        public const string _ActionParameterInfo = "_ActionParameterInfo";
+        public const string NotAuthorized = "NotAuthorized";
+    }
+}

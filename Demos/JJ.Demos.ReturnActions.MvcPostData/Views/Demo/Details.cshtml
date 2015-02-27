@@ -1,0 +1,23 @@
+﻿@model DetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Details</legend>
+    <p>
+        <strong>ID: </strong> @Model.Entity.ID
+    </p>
+    <p>
+        <strong>Name: </strong> @Model.Entity.Name
+    </p>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", ActionNames.EditFromDetails, new { id = Model.Entity.ID }) |
+    @Html.ActionLink("Back to List", ActionNames.Index)
+    @Html.ActionLink("Logout", ActionNames.Logout)
+</p>
