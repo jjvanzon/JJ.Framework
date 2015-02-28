@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Demos.ReturnActions.MvcPostData.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,8 @@ namespace JJ.Demos.ReturnActions.MvcPostData
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            DispatcherConfig.AddMappings();
         }
     }
 }

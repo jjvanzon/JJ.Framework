@@ -36,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionInfo.cs" />
-    <Compile Include="ActionHelper.cs" />
+    <Compile Include="ActionDispatcher.cs" />
     <Compile Include="NotAuthorizedViewModel.cs" />
     <Compile Include="ActionParameterInfo.cs" />
     <Compile Include="PreviousViewModel.cs" />

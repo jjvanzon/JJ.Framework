@@ -16,7 +16,7 @@ namespace JJ.Demos.ReturnActions.Presenters
 
         public LoginPresenter()
         {
-            _defaultReturnAction = ActionHelper.CreateActionInfo<ListPresenter>(x => x.Show());
+            _defaultReturnAction = ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show());
         }
 
         public object Logout()
@@ -47,7 +47,7 @@ namespace JJ.Demos.ReturnActions.Presenters
                 return Show();
             }
 
-            return ActionDispatcher.GetViewModel(viewModel.ReturnAction, viewModel.UserName);
+            return ActionDispatcherHelper.GetViewModel(viewModel.ReturnAction, viewModel.UserName);
         }
     }
 }

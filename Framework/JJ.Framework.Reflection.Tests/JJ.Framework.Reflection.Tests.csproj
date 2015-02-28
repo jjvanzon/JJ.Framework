@@ -50,21 +50,35 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AccessorTestHelpers\MyClass.cs" />
+    <Compile Include="AccessorTestHelpers\MyClassAccessor_UsingExpressions.cs" />
+    <Compile Include="AccessorTestHelpers\MyClassAccessor_UsingStrings.cs" />
+    <Compile Include="AccessorTestHelpers\MyClassWithNamedIndexer.cs" />
+    <Compile Include="AccessorTestHelpers\MyClassWithNamedIndexerAccessor_UsingStrings.cs" />
+    <Compile Include="AccessorTestHelpers\MyDerivedClass.cs" />
+    <Compile Include="AccessorTestHelpers\MyDerivedClassAccessor_UsingExpressions.cs" />
+    <Compile Include="AccessorTestHelpers\MyDerivedClassAccessor_UsingStrings.cs" />
+    <Compile Include="AccessorTests_UsingExpressions.cs" />
+    <Compile Include="AccessorTests_UsingStrings.cs" />
     <Compile Include="ExpressionHelperGetValuesTests.cs" />
     <Compile Include="ExpressionHelperExtensiveTests.cs" />
     <Compile Include="ExpressionHelperGetTextSimpleTests.cs" />
     <Compile Include="ExpressionHelperGetValueSimpleTests.cs" />
-    <Compile Include="Items\ComplexItem.cs" />
-    <Compile Include="Items\IItem.cs" />
-    <Compile Include="Items\Item.cs" />
-    <Compile Include="Items\StaticClass.cs" />
-    <Compile Include="Items\StaticClassT.cs" />
+    <Compile Include="ExpressionHelperTestHelpers\ComplexItem.cs" />
+    <Compile Include="ExpressionHelperTestHelpers\IItem.cs" />
+    <Compile Include="ExpressionHelperTestHelpers\Item.cs" />
+    <Compile Include="ExpressionHelperTestHelpers\StaticClass.cs" />
+    <Compile Include="ExpressionHelperTestHelpers\StaticClassT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
+      <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
+      <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

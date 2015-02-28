@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Runtime.CompilerServices;
+
+namespace JJ.Framework.Reflection.Tests.AccessorTestHelpers
+{
+    public class MyClassWithNamedIndexer
+    {
+        private Dictionary<int, int> _intDictionary = new Dictionary<int, int>();
+
+        [IndexerName("Indexer")]
+        private int this[int index]
+        {
+            get { return _intDictionary[index]; }
+            set { _intDictionary[index] = value; }
+        }
+    }
+}

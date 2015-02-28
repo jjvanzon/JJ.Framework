@@ -1,6 +1,7 @@
 ﻿using JJ.Demos.ReturnActions.MvcPostData.Names;
 using JJ.Demos.ReturnActions.Presenters;
 using JJ.Demos.ReturnActions.ViewModels;
+using JJ.Framework.Presentation.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
                 viewModel = presenter.Show();
             }
 
-            return GetActionResult(ActionNames.Index, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel);
         }
 
         [HttpPost]
@@ -35,7 +36,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
                 SetAuthenticatedUserName(viewModel.UserName);
             }
 
-            return GetActionResult(ActionNames.Index, viewModel2);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel2);
         }
     }
 }

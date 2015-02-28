@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JJ.Framework.Reflection.Tests.Items;
+using JJ.Framework.Reflection.Tests.ExpressionHelperTestHelpers;
 
 namespace JJ.Framework.Reflection.Tests
 {

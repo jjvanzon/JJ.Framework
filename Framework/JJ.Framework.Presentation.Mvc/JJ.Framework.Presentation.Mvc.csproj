@@ -39,9 +39,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerAccessor.cs" />
     <Compile Include="IDictionaryOfStringAndModelStateExtensions.cs" />
     <Compile Include="HtmlHelperExtensions_Collections.cs" />
+    <Compile Include="ActionDispatcher.cs" />
+    <Compile Include="ActionDispatcherMapping.cs" />
     <Compile Include="ReturnUrlHelper.cs" />
+    <Compile Include="TempDataKeys.cs" />
     <Compile Include="UrlHelperExtensions.cs" />
     <Compile Include="HtmlHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

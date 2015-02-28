@@ -9,12 +9,51 @@ using System.Text;
 
 namespace JJ.Framework.Presentation
 {
-    public static class ActionHelper
+    /// <summary>
+    /// This is the platform-independent action dispatcher.
+    /// (For MVC you may need the one in Framework.Presentation.Mvc instead.)
+    /// </summary>
+    public static class ActionDispatcher
     {
         /// <summary>
         /// Gets a view model dynamically from the described presenter and action.
         /// Overloaded action methods are not supported.
-        /// Also: only simple parameter types are supported.
+        /// Also: only simple action metod parameter types are supported + 1 return action parameter of type ActionInfo.
+        /// The presenter name is a type name that should only be present once in the app domain.
+        /// If it does not you should use the overload that takes a presenter instance
+        /// and you should program something to instantiate the presenter yourself.
+        /// The presenter should have only one constructor into which are filled in 
+        /// the constructor arguments passed as an object (typically an anonymous type) 
+        /// whose property names should exactly match those constructor arguments.
+        /// </summary>
+        public static object DispatchAction(ActionInfo actionInfo, object constructorArguments)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static Type GetTypeByShortName(string typeName)
+        {
+            // TODO: Go through app domain assemblies.
+            // Find all types that have this type name.
+            // It there are duplicates, throw an exception.
+            // Cache the found type.
+            throw new NotImplementedException();
+        }
+
+        private static object CreateInstance(object constructorArguments)
+        {
+            // TODO: Get constructorArguments properties from property cache.
+            // Get the constructor, insist on only one constructor.
+            // Create an object[] for the constructor arguments
+            // and try to fill in values from the constructorArguments array.
+            // Then instantiate and return.
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets a view model dynamically from the described presenter and action.
+        /// Overloaded action methods are not supported.
+        /// Also: only simple parameter types are supported + 1 return action parameter of type ActionInfo.
         /// </summary>
         public static object DispatchAction(object presenter, ActionInfo actionInfo)
         {

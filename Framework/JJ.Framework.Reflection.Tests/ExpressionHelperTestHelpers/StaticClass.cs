@@ -6,9 +6,9 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace JJ.Framework.Reflection.Tests.Items
+namespace JJ.Framework.Reflection.Tests.ExpressionHelperTestHelpers
 {
-    public static class StaticClass<T>
+    public static class StaticClass
     {
         public static string Name;
         public static int Index;

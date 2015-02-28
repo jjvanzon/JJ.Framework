@@ -33,7 +33,7 @@ namespace JJ.Demos.ReturnActions.Presenters
         public object Edit(int id, string authenticatedUserName)
         {
             var presenter = new EditPresenter(authenticatedUserName);
-            return presenter.Show(id, returnAction: ActionHelper.CreateActionInfo<ListPresenter>(x => x.Show()));
+            return presenter.Show(id, returnAction: ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show()));
         }
 
         public LoginViewModel Logout()

@@ -1,7 +1,7 @@
 ﻿using JJ.Demos.ReturnActions.MvcPostData.Names;
 using JJ.Demos.ReturnActions.Presenters;
 using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Framework.Presentation;
+using JJ.Framework.Presentation.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
                 viewModel = presenter.Show();
             }
 
-            return GetActionResult(ActionNames.Index, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel);
         }
 
         public ActionResult Details(int id)
@@ -33,7 +33,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
                 viewModel = presenter.Show(id);
             }
 
-            return GetActionResult(ActionNames.Details, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Details, viewModel);
         }
 
         public ActionResult Edit(int id)
@@ -45,7 +45,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
                 viewModel = presenter.Show(id);
             }
 
-            return GetActionResult(ActionNames.Edit, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Edit, viewModel);
         }
 
         [HttpPost]
@@ -53,7 +53,8 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
         {
             var presenter = new EditPresenter(GetAuthenticatedUserName());
             object viewModel2 = presenter.Save(viewModel);
-            return GetActionResult(ActionNames.Edit, viewModel2);
+
+            return ActionDispatcher.DispatchAction(this, ActionNames.Edit, viewModel2);
         }
 
         public ActionResult Logout()
@@ -67,7 +68,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
 
             SetAuthenticatedUserName(null);
 
-            return GetActionResult(ActionNames.Logout, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Logout, viewModel);
         }
 
         // These methods are hacks necessary to make multi-level return actions
@@ -83,7 +84,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
                 viewModel = presenter.Edit(id, GetAuthenticatedUserName());
             }
 
-            return GetActionResult(ActionNames.Edit, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Edit, viewModel);
         }
 
         [HttpPost]
@@ -91,7 +92,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
         {
             var presenter = new EditPresenter(GetAuthenticatedUserName());
             object viewModel2 = presenter.Save(viewModel);
-            return GetActionResult(ActionNames.Edit, viewModel2);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Edit, viewModel2);
         }
 
         public ActionResult EditFromDetails(int id)
@@ -103,7 +104,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
                 viewModel = presenter.Edit(id, GetAuthenticatedUserName());
             }
 
-            return GetActionResult(ActionNames.Edit, viewModel);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Edit, viewModel);
         }
 
         [HttpPost]
@@ -111,8 +112,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
         {
             var presenter = new EditPresenter(GetAuthenticatedUserName());
             object viewModel2 = presenter.Save(viewModel);
-            return GetActionResult(ActionNames.Edit, viewModel2);
+            return ActionDispatcher.DispatchAction(this, ActionNames.Edit, viewModel2);
         }
-
     }
 }

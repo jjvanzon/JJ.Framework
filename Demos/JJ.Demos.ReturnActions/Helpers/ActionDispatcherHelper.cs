@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Demos.ReturnActions.Helpers
 {
-    internal static class ActionDispatcher
+    internal static class ActionDispatcherHelper
     {
         /// <summary>
         /// Gets a view model dynamically from the described presenter and action.
@@ -23,7 +23,7 @@ namespace JJ.Demos.ReturnActions.Helpers
             if (actionInfo == null) throw new NullException(() => actionInfo);
 
             object presenter = CreatePresenter(actionInfo.PresenterName, authenticatedUserName);
-            object viewModel = ActionHelper.DispatchAction(presenter, actionInfo);
+            object viewModel = ActionDispatcher.DispatchAction(presenter, actionInfo);
             return viewModel;
         }
 

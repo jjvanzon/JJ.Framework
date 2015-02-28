@@ -18,7 +18,7 @@ namespace JJ.Demos.ReturnActions.Presenters
 
         static EditPresenter()
         {
-            _defaultReturnAction = ActionHelper.CreateActionInfo<ListPresenter>(x => x.Show());
+            _defaultReturnAction = ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show());
         }
 
         /// <param name="authenticatedUserName">nullable</param>
@@ -32,7 +32,7 @@ namespace JJ.Demos.ReturnActions.Presenters
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter();
-                object viewModel = presenter2.Show(ActionHelper.CreateActionInfo<EditPresenter>(x => x.Show(id, returnAction)));
+                object viewModel = presenter2.Show(ActionDispatcher.CreateActionInfo<EditPresenter>(x => x.Show(id, returnAction)));
                 return viewModel;
             }
 
@@ -55,7 +55,7 @@ namespace JJ.Demos.ReturnActions.Presenters
                 return new NotAuthorizedViewModel();
             }
 
-            return ActionDispatcher.GetViewModel(viewModel.ReturnAction, _authenticatedUserName);
+            return ActionDispatcherHelper.GetViewModel(viewModel.ReturnAction, _authenticatedUserName);
         }
 
         public LoginViewModel Logout()

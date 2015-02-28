@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace JJ.Framework.Reflection.Tests.Items
+namespace JJ.Framework.Reflection.Tests.ExpressionHelperTestHelpers
 {
     public interface IItem
     {
