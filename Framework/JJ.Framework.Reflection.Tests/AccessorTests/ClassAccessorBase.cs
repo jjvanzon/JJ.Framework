@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
-    internal abstract class MyClassAccessorBase : IMyClassAccessor
+    internal abstract class ClassAccessorBase : IClassAccessor
     {
         protected Accessor _accessor;
 
-        public MyClassAccessorBase(MyClass obj)
+        public ClassAccessorBase(Class obj)
         {
             _accessor = new Accessor(obj);
         }
 
-        public MyClassAccessorBase(MyClass obj, Type type)
+        public ClassAccessorBase(Class obj, Type type)
         {
             _accessor = new Accessor(obj, type);
         }

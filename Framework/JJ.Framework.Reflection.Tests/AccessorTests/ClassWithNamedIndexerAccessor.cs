@@ -6,11 +6,11 @@ using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
-    internal class MyClassWithNamedIndexerAccessor
+    internal class ClassWithNamedIndexerAccessor
     {
         private Accessor _accessor;
 
-        public MyClassWithNamedIndexerAccessor(MyClassWithNamedIndexer obj)
+        public ClassWithNamedIndexerAccessor(ClassWithNamedIndexer obj)
         {
             _accessor = new Accessor(obj);
         }

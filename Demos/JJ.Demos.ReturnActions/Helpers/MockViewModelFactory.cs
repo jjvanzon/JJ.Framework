@@ -10,7 +10,7 @@ namespace JJ.Demos.ReturnActions.Helpers
     /// <summary>
     /// For creating mock view models.
     /// </summary>
-    internal static class ViewModelFactory
+    internal static class MockViewModelFactory
     {
         private const int DEFAULT_ID = 1;
         private const int DEFAULT_ID_2 = 2;
@@ -37,7 +37,7 @@ namespace JJ.Demos.ReturnActions.Helpers
             var viewModel = new EntityViewModel
             {
                 ID = DEFAULT_ID,
-                Name = ViewModelFactory.DEFAULT_NAME
+                Name = MockViewModelFactory.DEFAULT_NAME
             };
             return viewModel;
         }
@@ -47,7 +47,7 @@ namespace JJ.Demos.ReturnActions.Helpers
             var viewModel = new EntityViewModel
             {
                 ID = DEFAULT_ID_2,
-                Name = ViewModelFactory.DEFAULT_NAME_2
+                Name = MockViewModelFactory.DEFAULT_NAME_2
             };
             return viewModel;
         }

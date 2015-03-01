@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
-    internal abstract class MyDerivedClassAccessorBase : IMyDerivedClassAccessor
+    internal abstract class DerivedClassAccessorBase : IDerivedClassAccessor
     {
         protected readonly Accessor _accessor;
         protected readonly Accessor _baseAccessor;
 
-        public MyDerivedClassAccessorBase(MyDerivedClass obj)
+        public DerivedClassAccessorBase(DerivedClass obj)
         {
             _accessor = new Accessor(obj);
-            _baseAccessor = new Accessor(obj, typeof(MyClass));
+            _baseAccessor = new Accessor(obj, typeof(Class));
         }
 
         public abstract int MemberToHide { get; set; }

@@ -16,7 +16,7 @@ namespace JJ.Demos.ReturnActions.Presenters
         {
             return new DetailsViewModel
             {
-                Entity = ViewModelFactory.CreateEntityViewModel(id)
+                Entity = MockViewModelFactory.CreateEntityViewModel(id)
             };
         }
 

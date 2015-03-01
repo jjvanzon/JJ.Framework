@@ -18,8 +18,8 @@ namespace JJ.Demos.ReturnActions.Presenters
             {
                 List = new EntityViewModel[]
                 {
-                    ViewModelFactory.CreateEntityViewModel(),
-                    ViewModelFactory.CreateEntityViewModel2()
+                    MockViewModelFactory.CreateEntityViewModel(),
+                    MockViewModelFactory.CreateEntityViewModel2()
                 }
             };
         }
@@ -33,6 +33,7 @@ namespace JJ.Demos.ReturnActions.Presenters
         public object Edit(int id, string authenticatedUserName)
         {
             var presenter = new EditPresenter(authenticatedUserName);
+
             return presenter.Show(id, returnAction: ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show()));
         }
 

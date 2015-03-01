@@ -10,48 +10,48 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
     [TestClass]
     public class AccessorTests_UsingExpressions : AccessorTestsBase
     {
-        protected override IMyClassAccessor CreateMyClassAccessor(MyClass obj)
+        protected override IClassAccessor CreateClassAccessor(Class obj)
         {
-            var accessor = new MyClassAccessor_UsingExpressions(obj);
+            var accessor = new ClassAccessor_UsingExpressions(obj);
             return accessor;
         }
 
-        protected override IMyDerivedClassAccessor CreateMyDerivedClassAccessor(MyDerivedClass obj)
+        protected override IDerivedClassAccessor CreateDerivedClassAccessor(DerivedClass obj)
         {
-            var accessor = new MyDerivedClassAccessor_UsingExpressions(obj);
+            var accessor = new DerivedClassAccessor_UsingExpressions(obj);
             return accessor;
         }
 
-        protected override IMyClassAccessor CreateBaseAccessor(MyDerivedClass obj)
+        protected override IClassAccessor CreateBaseAccessor(DerivedClass obj)
         {
-            var accessor = new MyClassAccessor_UsingExpressions(obj, typeof(MyClass));
+            var accessor = new ClassAccessor_UsingExpressions(obj, typeof(Class));
             return accessor;
         }
 
         [TestMethod]
         public void Test_Accessor_UsingExpressions_StaticField()
         {
-            MyClassAccessor_UsingExpressions.StaticField = 1;
-            AssertHelper.AreEqual(1, () => MyClassAccessor_UsingExpressions.StaticField);
+            ClassAccessor_UsingExpressions.StaticField = 1;
+            AssertHelper.AreEqual(1, () => ClassAccessor_UsingExpressions.StaticField);
 
-            MyClassAccessor_UsingExpressions.StaticField = 2;
-            AssertHelper.AreEqual(2, () => MyClassAccessor_UsingExpressions.StaticField);
+            ClassAccessor_UsingExpressions.StaticField = 2;
+            AssertHelper.AreEqual(2, () => ClassAccessor_UsingExpressions.StaticField);
         }
 
         [TestMethod]
         public void Test_Accessor_UsingExpressions_StaticProperty()
         {
-            MyClassAccessor_UsingExpressions.StaticProperty = 1;
-            AssertHelper.AreEqual(1, () => MyClassAccessor_UsingExpressions.StaticProperty);
+            ClassAccessor_UsingExpressions.StaticProperty = 1;
+            AssertHelper.AreEqual(1, () => ClassAccessor_UsingExpressions.StaticProperty);
 
-            MyClassAccessor_UsingExpressions.StaticProperty = 2;
-            AssertHelper.AreEqual(2, () => MyClassAccessor_UsingExpressions.StaticProperty);
+            ClassAccessor_UsingExpressions.StaticProperty = 2;
+            AssertHelper.AreEqual(2, () => ClassAccessor_UsingExpressions.StaticProperty);
         }
 
         [TestMethod]
         public void Test_Accessor_UsingExpressions_StaticMethod()
         {
-            AssertHelper.AreEqual(1, () => MyClassAccessor_UsingExpressions.StaticMethod(1));
+            AssertHelper.AreEqual(1, () => ClassAccessor_UsingExpressions.StaticMethod(1));
         }
 
         [TestMethod]

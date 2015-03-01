@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
-    public class MyClass
+    public class Class
     {
         private int _field;
 

@@ -6,21 +6,21 @@ using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
-    internal class MyClassAccessor_UsingStrings : MyClassAccessorBase
+    internal class ClassAccessor_UsingStrings : ClassAccessorBase
     {
         private static Accessor _staticAccessor;
 
-        public MyClassAccessor_UsingStrings(MyClass obj)
+        public ClassAccessor_UsingStrings(Class obj)
             : base(obj)
         { }
 
-        public MyClassAccessor_UsingStrings(MyClass obj, Type type)
+        public ClassAccessor_UsingStrings(Class obj, Type type)
             : base(obj, type)
         { }
 
-        static MyClassAccessor_UsingStrings()
+        static ClassAccessor_UsingStrings()
         {
-            _staticAccessor = new Accessor(typeof(MyClass));
+            _staticAccessor = new Accessor(typeof(Class));
         }
 
         public override int _field

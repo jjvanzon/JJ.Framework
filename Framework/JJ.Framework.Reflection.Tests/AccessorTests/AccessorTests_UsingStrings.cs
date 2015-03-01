@@ -11,48 +11,48 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
     [TestClass]
     public class AccessorTests_UsingStrings : AccessorTestsBase
     {
-        protected override IMyClassAccessor CreateMyClassAccessor(MyClass obj)
+        protected override IClassAccessor CreateClassAccessor(Class obj)
         {
-            var accessor = new MyClassAccessor_UsingStrings(obj);
+            var accessor = new ClassAccessor_UsingStrings(obj);
             return accessor;
         }
 
-        protected override IMyDerivedClassAccessor CreateMyDerivedClassAccessor(MyDerivedClass obj)
+        protected override IDerivedClassAccessor CreateDerivedClassAccessor(DerivedClass obj)
         {
-            var accessor = new MyDerivedClassAccessor_UsingStrings(obj);
+            var accessor = new DerivedClassAccessor_UsingStrings(obj);
             return accessor;
         }
 
-        protected override IMyClassAccessor CreateBaseAccessor(MyDerivedClass obj)
+        protected override IClassAccessor CreateBaseAccessor(DerivedClass obj)
         {
-            var accessor = new MyClassAccessor_UsingStrings(obj, typeof(MyClass));
+            var accessor = new ClassAccessor_UsingStrings(obj, typeof(Class));
             return accessor;
         }
 
         [TestMethod]
         public void Test_Accessor_UsingStrings_StaticField()
         {
-            MyClassAccessor_UsingStrings.StaticField = 1;
-            AssertHelper.AreEqual(1, () => MyClassAccessor_UsingStrings.StaticField);
+            ClassAccessor_UsingStrings.StaticField = 1;
+            AssertHelper.AreEqual(1, () => ClassAccessor_UsingStrings.StaticField);
 
-            MyClassAccessor_UsingStrings.StaticField = 2;
-            AssertHelper.AreEqual(2, () => MyClassAccessor_UsingStrings.StaticField);
+            ClassAccessor_UsingStrings.StaticField = 2;
+            AssertHelper.AreEqual(2, () => ClassAccessor_UsingStrings.StaticField);
         }
 
         [TestMethod]
         public void Test_Accessor_UsingStrings_StaticProperty()
         {
-            MyClassAccessor_UsingStrings.StaticProperty = 1;
-            AssertHelper.AreEqual(1, () => MyClassAccessor_UsingStrings.StaticProperty);
+            ClassAccessor_UsingStrings.StaticProperty = 1;
+            AssertHelper.AreEqual(1, () => ClassAccessor_UsingStrings.StaticProperty);
 
-            MyClassAccessor_UsingStrings.StaticProperty = 2;
-            AssertHelper.AreEqual(2, () => MyClassAccessor_UsingStrings.StaticProperty);
+            ClassAccessor_UsingStrings.StaticProperty = 2;
+            AssertHelper.AreEqual(2, () => ClassAccessor_UsingStrings.StaticProperty);
         }
 
         [TestMethod]
         public void Test_Accessor_UsingStrings_StaticMethod()
         {
-            AssertHelper.AreEqual(1, () => MyClassAccessor_UsingStrings.StaticMethod(1));
+            AssertHelper.AreEqual(1, () => ClassAccessor_UsingStrings.StaticMethod(1));
         }
 
         [TestMethod]

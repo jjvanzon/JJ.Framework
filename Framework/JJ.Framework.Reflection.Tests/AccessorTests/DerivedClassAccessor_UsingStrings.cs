@@ -5,9 +5,9 @@ using System.Text;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
-    internal class MyDerivedClassAccessor_UsingStrings : MyDerivedClassAccessorBase
+    internal class DerivedClassAccessor_UsingStrings : DerivedClassAccessorBase
     {
-        public MyDerivedClassAccessor_UsingStrings(MyDerivedClass obj)
+        public DerivedClassAccessor_UsingStrings(DerivedClass obj)
             : base(obj)
         { }
 

@@ -11,7 +11,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
     /// a single interface, so we can execute the same test code on them.
     /// Only works for instance members, not status ones.
     /// </summary>
-    public interface IMyClassAccessor
+    public interface IClassAccessor
     {
         int _field { get; set; }
         int Property { get; set; }

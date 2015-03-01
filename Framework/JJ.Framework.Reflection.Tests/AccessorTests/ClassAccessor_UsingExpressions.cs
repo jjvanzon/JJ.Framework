@@ -7,21 +7,21 @@ using System.Linq.Expressions;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
-    internal class MyClassAccessor_UsingExpressions : MyClassAccessorBase
+    internal class ClassAccessor_UsingExpressions : ClassAccessorBase
     {
         private static Accessor _staticAccessor;
 
-        public MyClassAccessor_UsingExpressions(MyClass obj)
+        public ClassAccessor_UsingExpressions(Class obj)
             : base(obj)
         { }
 
-        public MyClassAccessor_UsingExpressions(MyClass obj, Type type)
+        public ClassAccessor_UsingExpressions(Class obj, Type type)
             : base(obj, type)
         { }
 
-        static MyClassAccessor_UsingExpressions()
+        static ClassAccessor_UsingExpressions()
         {
-            _staticAccessor = new Accessor(typeof(MyClass));
+            _staticAccessor = new Accessor(typeof(Class));
         }
 
         public override int _field

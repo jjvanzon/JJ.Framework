@@ -38,7 +38,7 @@ namespace JJ.Demos.ReturnActions.Presenters
 
             return new EditViewModel
             {
-                Entity = ViewModelFactory.CreateEntityViewModel(id),
+                Entity = MockViewModelFactory.CreateEntityViewModel(id),
                 ReturnAction = returnAction ?? _defaultReturnAction
             };
         }
@@ -55,7 +55,7 @@ namespace JJ.Demos.ReturnActions.Presenters
                 return new NotAuthorizedViewModel();
             }
 
-            return ActionDispatcherHelper.GetViewModel(viewModel.ReturnAction, _authenticatedUserName);
+            return ActionDispatcher.DispatchAction(viewModel.ReturnAction, new { authenticatedUserName = _authenticatedUserName });
         }
 
         public LoginViewModel Logout()

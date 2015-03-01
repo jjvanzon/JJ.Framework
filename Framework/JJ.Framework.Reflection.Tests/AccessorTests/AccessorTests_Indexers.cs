@@ -14,8 +14,8 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         [TestMethod]
         public void Test_Accessor_UsingStrings_Indexer_Int()
         {
-            var obj = new MyClass();
-            var accessor = new MyClassAccessor_UsingStrings(obj);
+            var obj = new Class();
+            var accessor = new ClassAccessor_UsingStrings(obj);
             accessor[1] = 1;
             accessor[2] = 2;
             AssertHelper.AreEqual(1, () => accessor[1]);
@@ -25,8 +25,8 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         [TestMethod]
         public void Test_Accessor_UsingStrings_Indexer_String()
         {
-            var obj = new MyClass();
-            var accessor = new MyClassAccessor_UsingStrings(obj);
+            var obj = new Class();
+            var accessor = new ClassAccessor_UsingStrings(obj);
             accessor["A"] = "1";
             accessor["B"] = "2";
             AssertHelper.AreEqual("1", () => accessor["A"]);
@@ -36,8 +36,8 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         [TestMethod]
         public void Test_Accessor_UsingStrings_Indexer_InBaseClass()
         {
-            var obj = new MyDerivedClass();
-            var accessor = new MyClassAccessor_UsingStrings(obj, typeof(MyClass));
+            var obj = new DerivedClass();
+            var accessor = new ClassAccessor_UsingStrings(obj, typeof(Class));
             accessor[1] = 1;
             accessor[2] = 2;
             AssertHelper.AreEqual(1, () => accessor[1]);
@@ -47,8 +47,8 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         [TestMethod]
         public void Test_Accessor_UsingStrings_Indexer_Named()
         {
-            var obj = new MyClassWithNamedIndexer();
-            var accessor = new MyClassWithNamedIndexerAccessor(obj);
+            var obj = new ClassWithNamedIndexer();
+            var accessor = new ClassWithNamedIndexerAccessor(obj);
             accessor[1] = 1;
             accessor[2] = 2;
             AssertHelper.AreEqual(1, () => accessor[1]);
