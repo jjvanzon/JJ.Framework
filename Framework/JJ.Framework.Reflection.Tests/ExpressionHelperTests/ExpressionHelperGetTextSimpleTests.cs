@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JJ.Framework.Reflection.Tests.ExpressionHelperTestHelpers;
 
-namespace JJ.Framework.Reflection.Tests
+namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {
     [TestClass]
     public class ExpressionHelperGetTextSimpleTests
@@ -26,8 +25,8 @@ namespace JJ.Framework.Reflection.Tests
         [TestMethod]
         public void Test_ExpressionHelpers_GetText_Field()
         {
-            Item item = new Item { Field = 1 };
-            Assert.AreEqual("item.Field", ExpressionHelper.GetText(() => item.Field));
+            Item item = new Item { _field = 1 };
+            Assert.AreEqual("item._field", ExpressionHelper.GetText(() => item._field));
         }
 
         [TestMethod]

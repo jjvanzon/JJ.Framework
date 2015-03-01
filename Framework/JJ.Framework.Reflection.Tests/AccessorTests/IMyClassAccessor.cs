@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Runtime.CompilerServices;
+
+namespace JJ.Framework.Reflection.Tests.AccessorTests
+{
+    /// <summary>
+    /// Gives the two accessors (using strings and using expressions)
+    /// a single interface, so we can execute the same test code on them.
+    /// Only works for instance members, not status ones.
+    /// </summary>
+    public interface IMyClassAccessor
+    {
+        int _field { get; set; }
+        int Property { get; set; }
+        void VoidMethod();
+        void VoidMethodInt(int parameter);
+        void VoidMethodIntInt(int parameter1, int parameter2);
+        int IntMethod();
+        int IntMethodInt(int parameter);
+        int IntMethodIntInt(int parameter1, int parameter2);
+        int this[int index]  { get; set; }
+        string this[string key] { get; set; }
+    }
+}

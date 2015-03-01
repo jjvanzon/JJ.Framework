@@ -15,7 +15,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
         public ActionResult Index()
         {
             object viewModel;
-            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
             {
                 var presenter = new ListPresenter();
                 viewModel = presenter.Show();
@@ -27,7 +27,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
         public ActionResult Details(int id)
         {
             object viewModel;
-            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
             {
                 var presenter = new DetailsPresenter();
                 viewModel = presenter.Show(id);
@@ -39,7 +39,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
         public ActionResult Edit(int id)
         {
             object viewModel;
-            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
             {
                 var presenter = new EditPresenter(GetAuthenticatedUserName());
                 viewModel = presenter.Show(id);
@@ -60,7 +60,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
         public ActionResult Logout()
         {
             object viewModel;
-            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
             {
                 var presenter = new LoginPresenter();
                 viewModel = presenter.Logout();
@@ -78,7 +78,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
         public ActionResult EditFromIndex(int id)
         {
             object viewModel;
-            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
             {
                 var presenter = new ListPresenter();
                 viewModel = presenter.Edit(id, GetAuthenticatedUserName());
@@ -98,7 +98,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
         public ActionResult EditFromDetails(int id)
         {
             object viewModel;
-            if (!TempData.TryGetValue(TempDataKeys.ViewModel, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
             {
                 var presenter = new DetailsPresenter();
                 viewModel = presenter.Edit(id, GetAuthenticatedUserName());

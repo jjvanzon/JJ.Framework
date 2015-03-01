@@ -10,26 +10,28 @@ namespace JJ.Framework.Presentation.Mvc
 {
     /// <summary>
     /// Used for mapping view models to MVC actions,
-    /// so we can dynamically redirect a view model to a controller action
+    /// so we can dynamically redirect a view model to a controller action.
     /// </summary>
     public static class ActionDispatcher
     {
         // No locking. For now you must not change the mappings after one-time initialization.
         private static IDictionary<Type, IList<ActionDispatcherMapping>> _mappings = new Dictionary<Type, IList<ActionDispatcherMapping>>();
 
+        public static string TEMP_DATA_KEY = "viewmodel-157f5ba4-51fb-4510-b5b9-20e1e86a12d8";
+
         /// <summary>Not thread-safe.</summary>
         /// <param name="controllerName">nullable</param>
         /// <param name="actionName">nullable</param>
         /// <param name="viewName"></param>
         /// <param name="predicate">nullable</param>
-        /// <param name="getValidationMesssagesDelegate">nullable</param>
-        /// <param name="getActionParametersDelegate">nullable</param>
+        /// <param name="validationMesssagesDelegate">nullable</param>
+        /// <param name="routeValuesDelegate">nullable</param>
         public static void Map<TViewModel>(
             string controllerName, string actionName, string viewName,
-            Func<TViewModel, object> getActionParametersDelegate = null,
-            Func<TViewModel, ICollection<KeyValuePair<string, string>>> getValidationMesssagesDelegate = null)
+            Func<TViewModel, object> routeValuesDelegate = null,
+            Func<TViewModel, IList<KeyValuePair<string, string>>> validationMesssagesDelegate = null)
         {
-            Map(null, controllerName, actionName, viewName, getActionParametersDelegate, getValidationMesssagesDelegate);
+            Map(null, controllerName, actionName, viewName, routeValuesDelegate, validationMesssagesDelegate);
         }
 
         /// <summary>Not thread-safe.</summary>
@@ -37,13 +39,13 @@ namespace JJ.Framework.Presentation.Mvc
         /// <param name="actionName">nullable</param>
         /// <param name="viewName"></param>
         /// <param name="predicate">nullable</param>
-        /// <param name="getValidationMesssagesDelegate">nullable</param>
-        /// <param name="getActionParametersDelegate">nullable</param>
+        /// <param name="validationMesssagesDelegate">nullable</param>
+        /// <param name="routeValuesDelegate">nullable</param>
         public static void Map<TViewModel>(
             Func<TViewModel, bool> predicate,
             string controllerName, string actionName, string viewName,
-            Func<TViewModel, object> getActionParametersDelegate = null,
-            Func<TViewModel, ICollection<KeyValuePair<string, string>>> getValidationMesssagesDelegate = null)
+            Func<TViewModel, object> routeValuesDelegate = null,
+            Func<TViewModel, IList<KeyValuePair<string, string>>> validationMesssagesDelegate = null)
         {
             if (String.IsNullOrEmpty(viewName)) throw new Exception("viewName cannot be null or empty.");
 
@@ -62,24 +64,24 @@ namespace JJ.Framework.Presentation.Mvc
                 predicate2 = x => predicate((TViewModel)x);
             }
 
-            Func<object, ICollection<KeyValuePair<string, string>>> getValidationMesssagesDelegate2 = null;
-            if (getValidationMesssagesDelegate != null)
+            Func<object, IList<KeyValuePair<string, string>>> validationMesssagesDelegate2 = null;
+            if (validationMesssagesDelegate != null)
             {
-                getValidationMesssagesDelegate2 = x => getValidationMesssagesDelegate((TViewModel)x);
+                validationMesssagesDelegate2 = x => validationMesssagesDelegate((TViewModel)x);
             }
 
-            Func<object, object> getActionParametersDelegate2 = null;
-            if (getActionParametersDelegate != null)
+            Func<object, object> routeValuesDelegate2 = null;
+            if (routeValuesDelegate != null)
             {
-                getActionParametersDelegate2 = x => getActionParametersDelegate((TViewModel)x);
+                routeValuesDelegate2 = x => routeValuesDelegate((TViewModel)x);
             }
 
             var mapping = new ActionDispatcherMapping(
                 controllerName,
                 actionName,
                 viewName,
-                getActionParametersDelegate2,
-                getValidationMesssagesDelegate2,
+                routeValuesDelegate2,
+                validationMesssagesDelegate2,
                 predicate2);
 
             mappings.Add(mapping);
@@ -91,9 +93,8 @@ namespace JJ.Framework.Presentation.Mvc
             if (String.IsNullOrEmpty(sourceActionName)) throw new Exception("sourceActionName cannot be null or empty.");
             if (viewModel == null) throw new NullException(() => viewModel);
 
-            var sourceControllerAccessor = new ControllerAccessor(sourceController);
-
             ActionDispatcherMapping destMapping = GetMapping(viewModel);
+            ControllerAccessor sourceControllerAccessor = new ControllerAccessor(sourceController);
 
             string sourceControllerName = GetControllerName(sourceController);
 
@@ -123,7 +124,7 @@ namespace JJ.Framework.Presentation.Mvc
             }
             else
             {
-                sourceController.TempData[TempDataKeys.ViewModel] = viewModel;
+                sourceController.TempData[TEMP_DATA_KEY] = viewModel;
 
                 if (destMapping.GetActionParametersDelegate == null)
                 {
@@ -157,10 +158,10 @@ namespace JJ.Framework.Presentation.Mvc
                         return mappings2[0];
 
                     case 0:
-                        throw new Exception(String.Format("viewModel of type '{0}' has multiple mappings and the predicate results in 0 mappings.", viewModel.GetType().FullName));
+                        throw new Exception(String.Format("viewModel of type '{0}' has multiple mappings and applying the predicate results in 0 mappings.", viewModel.GetType().FullName));
 
                     default:
-                        throw new Exception(String.Format("viewModel of type '{0}' has multiple mappings and the predicate results in multiple mappings.", viewModel.GetType().FullName));
+                        throw new Exception(String.Format("viewModel of type '{0}' has multiple mappings and applying the predicate results in multiple mappings.", viewModel.GetType().FullName));
                 }
             }
         }

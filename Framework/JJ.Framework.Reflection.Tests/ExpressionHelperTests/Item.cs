@@ -6,17 +6,18 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace JJ.Framework.Reflection.Tests.ExpressionHelperTestHelpers
+namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {
     [DebuggerDisplay("Item {Name} [{Index}]")]
-    public class Item : IItem
+    internal class Item : IItem
     {
-        public string Name;
-        public int Index;
+        public string Name { get; set; }
+        public int Index { get; set; }
 
-        public Item Parent;
+        public Item Parent { get; set; }
 
-        public int Field;
+        public int _field;
+
         public int Property { get; set; }
 
         [IndexerName("Indexer")]

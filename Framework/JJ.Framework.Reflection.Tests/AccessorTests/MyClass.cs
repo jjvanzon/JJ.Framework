@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Runtime.CompilerServices;
 
-namespace JJ.Framework.Reflection.Tests.AccessorTestHelpers
+namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
     public class MyClass
     {
-        private int Field;
+        private int _field;
 
         private int Property { get; set; }
 
@@ -61,6 +61,6 @@ namespace JJ.Framework.Reflection.Tests.AccessorTestHelpers
             return 1;
         }
 
-        public virtual int MemberToHide { get; set; }
+        public int MemberToHide { get; set; }
     }
 }

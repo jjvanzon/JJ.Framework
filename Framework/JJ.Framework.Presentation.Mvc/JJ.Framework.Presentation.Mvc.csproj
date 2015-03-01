@@ -45,7 +45,6 @@
     <Compile Include="ActionDispatcher.cs" />
     <Compile Include="ActionDispatcherMapping.cs" />
     <Compile Include="ReturnUrlHelper.cs" />
-    <Compile Include="TempDataKeys.cs" />
     <Compile Include="UrlHelperExtensions.cs" />
     <Compile Include="HtmlHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -18,7 +18,7 @@ namespace JJ.Framework.Presentation
         /// <summary>
         /// Gets a view model dynamically from the described presenter and action.
         /// Overloaded action methods are not supported.
-        /// Also: only simple action metod parameter types are supported + 1 return action parameter of type ActionInfo.
+        /// Also: only simple action method parameter types are supported + 1 return action parameter of type ActionInfo.
         /// The presenter name is a type name that should only be present once in the app domain.
         /// If it does not you should use the overload that takes a presenter instance
         /// and you should program something to instantiate the presenter yourself.

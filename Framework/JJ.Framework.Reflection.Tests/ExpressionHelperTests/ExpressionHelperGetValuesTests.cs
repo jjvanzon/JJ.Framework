@@ -1,12 +1,11 @@
-﻿using JJ.Framework.Reflection.Tests.ExpressionHelperTestHelpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace JJ.Framework.Reflection.Tests
+namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {
     [TestClass]
     public class ExpressionHelperGetValuesTests
@@ -22,7 +21,7 @@ namespace JJ.Framework.Reflection.Tests
                     .Property
                     .Method(1)
                     .MethodWithParams(1, 2, 3)[4]
-                    .Field;
+                    ._field;
 
             IList<object> values = ExpressionHelper.GetValues(expression);
         }

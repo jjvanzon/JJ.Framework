@@ -50,25 +50,31 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AccessorTestHelpers\MyClass.cs" />
-    <Compile Include="AccessorTestHelpers\MyClassAccessor_UsingExpressions.cs" />
-    <Compile Include="AccessorTestHelpers\MyClassAccessor_UsingStrings.cs" />
-    <Compile Include="AccessorTestHelpers\MyClassWithNamedIndexer.cs" />
-    <Compile Include="AccessorTestHelpers\MyClassWithNamedIndexerAccessor_UsingStrings.cs" />
-    <Compile Include="AccessorTestHelpers\MyDerivedClass.cs" />
-    <Compile Include="AccessorTestHelpers\MyDerivedClassAccessor_UsingExpressions.cs" />
-    <Compile Include="AccessorTestHelpers\MyDerivedClassAccessor_UsingStrings.cs" />
-    <Compile Include="AccessorTests_UsingExpressions.cs" />
-    <Compile Include="AccessorTests_UsingStrings.cs" />
-    <Compile Include="ExpressionHelperGetValuesTests.cs" />
-    <Compile Include="ExpressionHelperExtensiveTests.cs" />
-    <Compile Include="ExpressionHelperGetTextSimpleTests.cs" />
-    <Compile Include="ExpressionHelperGetValueSimpleTests.cs" />
-    <Compile Include="ExpressionHelperTestHelpers\ComplexItem.cs" />
-    <Compile Include="ExpressionHelperTestHelpers\IItem.cs" />
-    <Compile Include="ExpressionHelperTestHelpers\Item.cs" />
-    <Compile Include="ExpressionHelperTestHelpers\StaticClass.cs" />
-    <Compile Include="ExpressionHelperTestHelpers\StaticClassT.cs" />
+    <Compile Include="AccessorTests\AccessorTests_Indexers.cs" />
+    <Compile Include="AccessorTests\AccessorTests_UsingStrings.cs" />
+    <Compile Include="AccessorTests\IMyClassAccessor.cs" />
+    <Compile Include="AccessorTests\IMyDerivedClassAccessor.cs" />
+    <Compile Include="AccessorTests\MyClass.cs" />
+    <Compile Include="AccessorTests\MyClassAccessorBase.cs" />
+    <Compile Include="AccessorTests\MyClassAccessor_UsingExpressions.cs" />
+    <Compile Include="AccessorTests\MyClassAccessor_UsingStrings.cs" />
+    <Compile Include="AccessorTests\MyClassWithNamedIndexer.cs" />
+    <Compile Include="AccessorTests\MyClassWithNamedIndexerAccessor.cs" />
+    <Compile Include="AccessorTests\MyDerivedClass.cs" />
+    <Compile Include="AccessorTests\MyDerivedClassAccessorBase.cs" />
+    <Compile Include="AccessorTests\MyDerivedClassAccessor_UsingExpressions.cs" />
+    <Compile Include="AccessorTests\MyDerivedClassAccessor_UsingStrings.cs" />
+    <Compile Include="AccessorTests\AccessorTests_UsingExpressions.cs" />
+    <Compile Include="AccessorTests\AccessorTestsBase.cs" />
+    <Compile Include="ExpressionHelperTests\ExpressionHelperGetValuesTests.cs" />
+    <Compile Include="ExpressionHelperTests\ExpressionHelperExtensiveTests.cs" />
+    <Compile Include="ExpressionHelperTests\ExpressionHelperGetTextSimpleTests.cs" />
+    <Compile Include="ExpressionHelperTests\ExpressionHelperGetValueSimpleTests.cs" />
+    <Compile Include="ExpressionHelperTests\ComplexItem.cs" />
+    <Compile Include="ExpressionHelperTests\IItem.cs" />
+    <Compile Include="ExpressionHelperTests\Item.cs" />
+    <Compile Include="ExpressionHelperTests\StaticClass.cs" />
+    <Compile Include="ExpressionHelperTests\StaticClassT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

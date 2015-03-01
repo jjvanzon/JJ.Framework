@@ -126,7 +126,6 @@
     <Compile Include="Names\ActionNames.cs" />
     <Compile Include="Names\ControllerNames.cs" />
     <Compile Include="Names\SessionKeys.cs" />
-    <Compile Include="Names\TempDataKeys.cs" />
     <Compile Include="Names\ViewNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -6,15 +6,15 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace JJ.Framework.Reflection.Tests.ExpressionHelperTestHelpers
+namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {
     [DebuggerDisplay("Item {Name} [{Index}]")]
-    public class ComplexItem
+    internal class ComplexItem
     {
         public string Name;
         public int Index;
 
-        public string Field = "FieldResult";
+        public string _field = "FieldResult";
 
         public ComplexItem Property
         {

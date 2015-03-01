@@ -6,9 +6,9 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace JJ.Framework.Reflection.Tests.ExpressionHelperTestHelpers
+namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {
-    public interface IItem
+    internal interface IItem
     {
         int Property { get; set; }
         [IndexerName("Indexer")]

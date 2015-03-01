@@ -1,11 +1,10 @@
-﻿using JJ.Framework.Reflection.Tests.AccessorTestHelpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Reflection.Tests
+namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
     [TestClass]
     public class AccessorTests_UsingExpressions
