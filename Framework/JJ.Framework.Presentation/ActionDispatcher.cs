@@ -27,15 +27,15 @@ namespace JJ.Framework.Presentation
         /// the constructor arguments passed as an object (typically an anonymous type) 
         /// whose property names should match those constructor arguments.
         /// You are allowed to pass constructor arguments that are not present in the presenter's constructor.
-        /// You can ommit constructor arguments that are nullable in the presenter's constructor.
+        /// You are allowed to omit constructor arguments that are nullable in the presenter's constructor.
         /// </summary>
-        /// <param name="constructorArguments">nullable</param>
-        public static object DispatchAction(ActionInfo actionInfo, object constructorArguments)
+        /// <param name="presenterConstructorArguments">nullable</param>
+        public static object DispatchAction(ActionInfo actionInfo, object presenterConstructorArguments)
         {
             if (actionInfo == null) throw new NullException(() => actionInfo);
 
             Type presenterType = GetTypeByShortName(actionInfo.PresenterName);
-            object presenter = CreateInstance(presenterType, constructorArguments);
+            object presenter = CreateInstance(presenterType, presenterConstructorArguments);
             object viewModel = DispatchAction(presenter, actionInfo);
             return viewModel;
         }
