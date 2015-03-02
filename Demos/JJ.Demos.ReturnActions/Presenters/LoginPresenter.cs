@@ -37,9 +37,10 @@ namespace JJ.Demos.ReturnActions.Presenters
         public object Login(LoginViewModel viewModel)
         {
             if (viewModel == null) throw new NullException(() => viewModel);
-            if (viewModel.ReturnAction == null) throw new NullException(() => viewModel.ReturnAction);
 
             viewModel.NullCoalesce();
+
+            viewModel.ReturnAction = viewModel.ReturnAction ?? _defaultReturnAction;
 
             // Fake authentication
             if (String.IsNullOrEmpty(viewModel.UserName))

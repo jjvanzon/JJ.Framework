@@ -17,7 +17,7 @@ namespace JJ.Framework.Presentation.Mvc
         // No locking. For now you must not change the mappings after one-time initialization.
         private static IDictionary<Type, IList<ActionDispatcherMapping>> _mappings = new Dictionary<Type, IList<ActionDispatcherMapping>>();
 
-        public static string TEMP_DATA_KEY = "viewmodel-157f5ba4-51fb-4510-b5b9-20e1e86a12d8";
+        public static string VIEW_MODEL_TEMP_DATA_KEY = "viewmodel-157f5ba4-51fb-4510-b5b9-20e1e86a12d8";
 
         /// <summary>Not thread-safe.</summary>
         /// <param name="controllerName">nullable</param>
@@ -95,7 +95,6 @@ namespace JJ.Framework.Presentation.Mvc
 
             ActionDispatcherMapping destMapping = GetMapping(viewModel);
             ControllerAccessor sourceControllerAccessor = new ControllerAccessor(sourceController);
-
             string sourceControllerName = GetControllerName(sourceController);
 
             bool hasActionName = !String.IsNullOrEmpty(destMapping.ActionName);
@@ -106,9 +105,7 @@ namespace JJ.Framework.Presentation.Mvc
 
             bool isSameControllerAndAction = String.Equals(destMapping.ControllerName, sourceControllerName) &&
                                              String.Equals(destMapping.ActionName, sourceActionName);
-
             bool mustReturnView = isSameControllerAndAction;
-
             if (mustReturnView)
             {
                 if (destMapping.GetValidationMesssagesDelegate != null)
@@ -124,7 +121,7 @@ namespace JJ.Framework.Presentation.Mvc
             }
             else
             {
-                sourceController.TempData[TEMP_DATA_KEY] = viewModel;
+                sourceController.TempData[VIEW_MODEL_TEMP_DATA_KEY] = viewModel;
 
                 if (destMapping.GetActionParametersDelegate == null)
                 {

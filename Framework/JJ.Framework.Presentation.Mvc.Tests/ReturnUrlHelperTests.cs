@@ -11,7 +11,7 @@ namespace JJ.Framework.Presentation.Mvc.Tests
         {
             ActionInfo actionInfo = JJ.Framework.Presentation.ActionDispatcher.CreateActionInfo("Questions", "Details", "id", 1);
 
-            string url = ReturnUrlHelper.ConvertActionInfoToReturnUrl(actionInfo);
+            string url = UrlHelpers.GetReturnUrl(actionInfo);
             
             Assert.AreEqual("Questions\\Details?id=1", url);
         }
@@ -23,7 +23,10 @@ namespace JJ.Framework.Presentation.Mvc.Tests
             ActionInfo actionInfo2 = JJ.Framework.Presentation.ActionDispatcher.CreateActionInfo("Questions", "Edit", "id", 1);
             ActionInfo actionInfo3 = JJ.Framework.Presentation.ActionDispatcher.CreateActionInfo("Login", "Index");
 
-            string url = ReturnUrlHelper.ConvertActionInfosToReturnUrl("ret", actionInfo1, actionInfo2, actionInfo3);
+            actionInfo1.ReturnAction = actionInfo2;
+            actionInfo2.ReturnAction = actionInfo3;
+
+            string url = UrlHelpers.GetReturnUrl(actionInfo1, "ret");
         }
     }
 }

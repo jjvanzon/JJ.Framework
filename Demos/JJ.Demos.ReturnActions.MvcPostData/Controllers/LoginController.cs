@@ -15,7 +15,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
         public ActionResult Index()
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
             {
                 var presenter = new LoginPresenter();
                 viewModel = presenter.Show();

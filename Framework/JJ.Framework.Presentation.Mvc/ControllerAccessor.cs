@@ -16,7 +16,6 @@ namespace JJ.Framework.Presentation.Mvc
         private static MethodInfo _redirectToAction_MethodInfo_With3Parameters;
 
         private Controller _controller;
-        private Accessor _accessor;
 
         static ControllerAccessor()
         {

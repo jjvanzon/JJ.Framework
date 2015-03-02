@@ -46,9 +46,10 @@ namespace JJ.Demos.ReturnActions.Presenters
         public object Save(EditViewModel viewModel)
         {
             if (viewModel == null) throw new NullException(() => viewModel);
-            if (viewModel.ReturnAction == null) throw new NullException(() => viewModel.ReturnAction);
 
             viewModel.NullCoalesce();
+
+            viewModel.ReturnAction = viewModel.ReturnAction ?? _defaultReturnAction;
 
             if (String.IsNullOrEmpty(_authenticatedUserName))
             {

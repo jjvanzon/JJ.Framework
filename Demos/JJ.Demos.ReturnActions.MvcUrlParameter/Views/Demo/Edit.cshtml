@@ -1,0 +1,41 @@
+﻿@model EditViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+
+    <h2>Edit</h2>
+
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Edit</legend>
+        <p>
+            <strong>ID: </strong> @Model.Entity.ID 
+            @Html.HiddenFor(x => x.Entity.ID)
+        </p>
+        <p>
+            <strong>Name: </strong> @Html.TextBoxFor(x => x.Entity.Name)
+        </p>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+
+    <div>
+        @Html.ActionLink("Back to List", ActionNames.Index)
+        @Html.ActionLink("Logout", ActionNames.Logout)
+    </div>
+
+    /*using (Html.BeginItem(() => Model.ReturnAction))
+    {
+        @Html.Partial(ViewNames._ActionInfo, Model.ReturnAction);
+    }*/
+}
