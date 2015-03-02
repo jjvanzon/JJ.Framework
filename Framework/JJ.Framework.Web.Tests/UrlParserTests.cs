@@ -105,17 +105,42 @@ namespace JJ.Framework.Web.Tests
         }
 
         [TestMethod]
-        public void Test_UrlParser_ParameterDecoding()
+        public void Test_UrlParser_UrlDecoding()
         {
-            string input = "www.jj.com?param1=%26";
+            string input = "http%26://www.jj.com%26/doc%26?param1%26=1%26&param2%26=2%26";
 
             var urlParser = new UrlParser();
             UrlInfo urlInfo = urlParser.Parse(input);
 
-            AssertHelper.AreEqual(1, () => urlInfo.Parameters.Count);
-            AssertHelper.AreEqual("param1", () => urlInfo.Parameters[0].Name);
-            AssertHelper.AreEqual("&", () => urlInfo.Parameters[0].Value);
+            AssertHelper.IsNotNull(() => urlInfo.Protocol);
+            AssertHelper.AreEqual("http&", () => urlInfo.Protocol);
+
+            AssertHelper.AreEqual(2, () => urlInfo.PathElements.Count);
+            AssertHelper.AreEqual("www.jj.com&", () => urlInfo.PathElements[0]);
+            AssertHelper.AreEqual("doc&", () => urlInfo.PathElements[1]);
+
+            AssertHelper.AreEqual(2, () => urlInfo.Parameters.Count);
+            AssertHelper.AreEqual("param1&", () => urlInfo.Parameters[0].Name);
+            AssertHelper.AreEqual("1&", () => urlInfo.Parameters[0].Value);
+            AssertHelper.AreEqual("param2&", () => urlInfo.Parameters[1].Name);
+            AssertHelper.AreEqual("2&", () => urlInfo.Parameters[1].Value);
         }
+
+        [TestMethod]
+        public void Test_UrlParser_NoException_RepeatedAmpersands()
+        {
+            var urlParser = new UrlParser();
+            string input = "www.jj.com?param1=1&&param2=2&&";
+            UrlInfo urlInfo = urlParser.Parse(input);
+
+            AssertHelper.AreEqual(2, () => urlInfo.Parameters.Count);
+            AssertHelper.AreEqual("param1", () => urlInfo.Parameters[0].Name);
+            AssertHelper.AreEqual("1", () => urlInfo.Parameters[0].Value);
+            AssertHelper.AreEqual("param2", () => urlInfo.Parameters[1].Name);
+            AssertHelper.AreEqual("2", () => urlInfo.Parameters[1].Value);
+        }
+
+        // Exception tests
 
         [TestMethod]
         public void Test_UrlParser_Exception_UrlNullOrEmpty()
@@ -139,20 +164,6 @@ namespace JJ.Framework.Web.Tests
             var urlParser = new UrlParser();
             string input = "www.jj.com?param1=1?param2=2";
             AssertHelper.ThrowsException(() => urlParser.Parse(input));
-        }
-
-        [TestMethod]
-        public void Test_UrlParser_NoException_RepeatedAmpersands()
-        {
-            var urlParser = new UrlParser();
-            string input = "www.jj.com?param1=1&&param2=2&&";
-            UrlInfo urlInfo = urlParser.Parse(input);
-
-            AssertHelper.AreEqual(2, () => urlInfo.Parameters.Count);
-            AssertHelper.AreEqual("param1", () => urlInfo.Parameters[0].Name);
-            AssertHelper.AreEqual("1", () => urlInfo.Parameters[0].Value);
-            AssertHelper.AreEqual("param2", () => urlInfo.Parameters[1].Name);
-            AssertHelper.AreEqual("2", () => urlInfo.Parameters[1].Value);
         }
 
         [TestMethod]

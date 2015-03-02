@@ -32,7 +32,7 @@ namespace JJ.Framework.Web
                 case 2:
                     {
                         UrlInfo urlInfo = ParseUrlWithoutProtocol(split[1]);
-                        urlInfo.Protocol = split[0];
+                        urlInfo.Protocol = HttpUtility.UrlDecode(split[0]);
                         return urlInfo;
                     }
 
@@ -56,7 +56,7 @@ namespace JJ.Framework.Web
                 case 2:
                     {
                         UrlInfo urlInfo = ParseUrlWithoutProtocolWithoutParmeters(split[0]);
-                        urlInfo.Parameters = ParseUrlParameters(split[1]);
+                        urlInfo.Parameters = ParseQueryString(split[1]);
                         return urlInfo;
                     }
 
@@ -69,11 +69,19 @@ namespace JJ.Framework.Web
         {
             string[] split = urlWithoutProtocolWithoutParameters.Split('/', StringSplitOptions.RemoveEmptyEntries);
             var urlInfo = new UrlInfo();
-            urlInfo.PathElements.AddRange(split);
+
+            urlInfo.PathElements = new List<string>(split.Length);
+
+            for (int i = 0; i < split.Length; i++)
+			{
+			    string pathElement = HttpUtility.UrlDecode(split[i]);
+                urlInfo.PathElements.Add(pathElement);
+			}
+
             return urlInfo;
         }
 
-        private IList<UrlParameterInfo> ParseUrlParameters(string queryString)
+        public IList<UrlParameterInfo> ParseQueryString(string queryString)
         {
             var list = new List<UrlParameterInfo>();
 
@@ -102,7 +110,7 @@ namespace JJ.Framework.Web
 
             var urlParameterInfo = new UrlParameterInfo
             {
-                Name = name,
+                Name = HttpUtility.UrlDecode(name),
                 Value = HttpUtility.UrlDecode(value)
             };
 

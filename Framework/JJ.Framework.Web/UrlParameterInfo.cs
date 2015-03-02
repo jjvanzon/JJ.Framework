@@ -13,11 +13,11 @@ namespace JJ.Framework.Web
         public string Name { get; set; }
         public string Value { get; set; }
 
-        internal string DebuggerDisplay
+        private string DebuggerDisplay
         {
             get
             {
-                return String.Format(String.Format("{0}={1}", Name, HttpUtility.UrlEncode(Value)));
+                return UrlBuilder.BuildParameter(this);
             }
         }
     }

@@ -248,7 +248,6 @@ namespace JJ.Framework.Presentation.Mvc
                     destActionInfo.ReturnAction = GetReturnAction(sourceUrlParameterInfo.Value, returnUrlParameterName);
                 }
             }
-            
 
             return destActionInfo;
         }

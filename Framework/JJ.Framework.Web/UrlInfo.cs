@@ -51,35 +51,7 @@ namespace JJ.Framework.Web
         {
             get
             {
-                var sb = new StringBuilder();
-
-                if (!String.IsNullOrEmpty(Protocol))
-                {
-                    sb.Append(Protocol);
-                    sb.Append("//");
-                }
-
-                foreach (string pathElement in PathElements)
-                {
-                    sb.Append(pathElement);
-                    if (pathElement != PathElements.Last())
-                    {
-                        sb.Append('/');
-                    }
-                }
-
-                sb.Append('?');
-
-                foreach (UrlParameterInfo parameter in Parameters)
-                {
-                    sb.Append(parameter.DebuggerDisplay);
-                    if (parameter != Parameters.Last())
-                    {
-                        sb.Append('&');
-                    }
-                }
-
-                return sb.ToString();
+                return UrlBuilder.BuildUrl(this);
             }
         }
     }
