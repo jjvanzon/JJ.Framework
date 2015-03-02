@@ -7,78 +7,98 @@ using System.Web;
 
 namespace JJ.Framework.Web
 {
-    public static class UrlParser
+    public class UrlParser
     {
-        public static UrlInfo Parse(string url)
+        /// <summary>
+        /// Used in exception messages throughout the parser.
+        /// </summary>
+        private string _fullUrl;
+
+        public UrlInfo Parse(string url)
         {
             if (String.IsNullOrEmpty(url)) throw new Exception("url cannot be null or empty.");
 
-            var urlInfo = new UrlInfo();
+            _fullUrl = url;
 
             string[] split = url.Split(':');
             switch (split.Length)
             {
                 case 1:
-                    ParseUrlWithoutProtocol(urlInfo, url);           
-                    return urlInfo;
+                    {
+                        UrlInfo urlInfo = ParseUrlWithoutProtocol(url);
+                        return urlInfo;
+                    }
 
                 case 2:
-                    urlInfo.Protocol = split[0];
-                    ParseUrlWithoutProtocol(urlInfo, split[1]);
-                    return urlInfo;
+                    {
+                        UrlInfo urlInfo = ParseUrlWithoutProtocol(split[1]);
+                        urlInfo.Protocol = split[0];
+                        return urlInfo;
+                    }
 
                 default:
                     throw new Exception(String.Format("url cannot contain more than one ':'. url = '{0}'.", url));
             }
         }
 
-        private static void ParseUrlWithoutProtocol(UrlInfo destUrlInfo, string urlWithoutProcol)
+        private UrlInfo ParseUrlWithoutProtocol(string urlWithoutProcol)
         {
             string[] split = urlWithoutProcol.Split('?');
 
             switch (split.Length)
             {
                 case 1:
-                    ParseUrlWithoutProtocolWithoutQueryString(destUrlInfo, split[0]);
-                    return;
+                    {
+                        UrlInfo urlInfo = ParseUrlWithoutProtocolWithoutParmeters(split[0]);
+                        return urlInfo;
+                    }
 
                 case 2:
-                    ParseUrlWithoutProtocolWithoutQueryString(destUrlInfo, split[0]);
-                    ParseQueryString(destUrlInfo, split[1]);
-                    return;
-                    
+                    {
+                        UrlInfo urlInfo = ParseUrlWithoutProtocolWithoutParmeters(split[0]);
+                        urlInfo.Parameters = ParseUrlParameters(split[1]);
+                        return urlInfo;
+                    }
+
                 default:
-                    throw new Exception(String.Format("urlWithoutProcol cannot contain more than one '?'. urlWithoutProcol = '{0}'.", urlWithoutProcol));
+                    throw new Exception(String.Format("urlWithoutProcol cannot contain more than one '?'. urlWithoutProcol = '{0}'. fullUrl = '{1}'.", urlWithoutProcol, _fullUrl));
             }
         }
 
-        private static void ParseUrlWithoutProtocolWithoutQueryString(UrlInfo urlInfo, string urlWithoutProtocolWithoutQueryString)
+        private UrlInfo ParseUrlWithoutProtocolWithoutParmeters(string urlWithoutProtocolWithoutParameters)
         {
-            string[] split = urlWithoutProtocolWithoutQueryString.Split('/', StringSplitOptions.RemoveEmptyEntries);
+            string[] split = urlWithoutProtocolWithoutParameters.Split('/', StringSplitOptions.RemoveEmptyEntries);
+            var urlInfo = new UrlInfo();
             urlInfo.PathElements.AddRange(split);
+            return urlInfo;
         }
 
-        private static void ParseQueryString(UrlInfo urlInfo, string queryString)
+        private IList<UrlParameterInfo> ParseUrlParameters(string queryString)
         {
+            var list = new List<UrlParameterInfo>();
+
             string[] split = queryString.Split('&', StringSplitOptions.RemoveEmptyEntries);
             foreach (string parameter in split)
             {
-                ParseUrlParameter(urlInfo, parameter);
+                UrlParameterInfo urlParameterInfo = ParseUrlParameter(parameter);
+                list.Add(urlParameterInfo);
             }
+
+            return list;
         }
 
-        private static void ParseUrlParameter(UrlInfo urlInfo, string urlParameter)
+        private UrlParameterInfo ParseUrlParameter(string urlParameter)
         {
             string[] split = urlParameter.Split('=');
             if (split.Length != 2)
             {
-                throw new Exception(String.Format("urlParameter '{0}' must contain exactly one '=' character.", urlParameter));
+                throw new Exception(String.Format("urlParameter '{0}' must contain exactly one '=' character. fullUrl = '{1}'.", urlParameter, _fullUrl));
             }
 
             string name = split[0];
             string value = split[1];
 
-            if (String.IsNullOrWhiteSpace(name)) throw new Exception("name in urlParameter '{0}' cannot be null or white space.");
+            if (String.IsNullOrWhiteSpace(name)) throw new Exception(String.Format("name in urlParameter '{0}' cannot be null or white space. fullUrl = '{1}'.", urlParameter, _fullUrl));
 
             var urlParameterInfo = new UrlParameterInfo
             {
@@ -86,7 +106,7 @@ namespace JJ.Framework.Web
                 Value = HttpUtility.UrlDecode(value)
             };
 
-            urlInfo.Parameters.Add(urlParameterInfo);
+            return urlParameterInfo;
         }
     }
 }

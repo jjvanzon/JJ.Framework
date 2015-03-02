@@ -17,7 +17,7 @@ namespace JJ.Framework.Presentation.Mvc
         // No locking. For now you must not change the mappings after one-time initialization.
         private static IDictionary<Type, IList<ActionDispatcherMapping>> _mappings = new Dictionary<Type, IList<ActionDispatcherMapping>>();
 
-        private static string _tempDataKey ="viewmodel-157f5ba4-51fb-4510-b5b9-20e1e86a12d8";
+        private static string _tempDataKey ="vm-b5b9-20e1e86a12d8";
         public static string TempDataKey { get { return _tempDataKey; } }
 
         /// <summary>Not thread-safe.</summary>

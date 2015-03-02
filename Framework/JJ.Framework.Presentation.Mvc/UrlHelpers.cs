@@ -214,7 +214,8 @@ namespace JJ.Framework.Presentation.Mvc
                 return null;
             }
 
-            UrlInfo sourceUrlInfo = UrlParser.Parse(returnUrl);
+            var urlParser = new UrlParser();
+            UrlInfo sourceUrlInfo = urlParser.Parse(returnUrl);
             if (sourceUrlInfo.PathElements.Count != 2)
             {
                 throw new Exception(String.Format("returnUrl must have 2 path elements. returnUrl = '{0}'.", returnUrl));
@@ -223,7 +224,7 @@ namespace JJ.Framework.Presentation.Mvc
             var destActionInfo = new ActionInfo
             {
                 PresenterName = sourceUrlInfo.PathElements[0],
-                ActionName = sourceUrlInfo.PathElements[1],
+                ActionName = sourceUrlInfo.PathElements[1]
             };
 
             destActionInfo.Parameters = new List<ActionParameterInfo>(sourceUrlInfo.Parameters.Count);
