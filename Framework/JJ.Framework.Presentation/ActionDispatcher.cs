@@ -30,13 +30,13 @@ namespace JJ.Framework.Presentation
         /// You are allowed to omit constructor arguments that are nullable in the presenter's constructor.
         /// </summary>
         /// <param name="presenterConstructorArguments">nullable</param>
-        public static object DispatchAction(ActionInfo actionInfo, object presenterConstructorArguments)
+        public static object Dispatch(ActionInfo actionInfo, object presenterConstructorArguments)
         {
             if (actionInfo == null) throw new NullException(() => actionInfo);
 
             Type presenterType = GetTypeByShortName(actionInfo.PresenterName);
             object presenter = CreateInstance(presenterType, presenterConstructorArguments);
-            object viewModel = DispatchAction(presenter, actionInfo);
+            object viewModel = Dispatch(presenter, actionInfo);
             return viewModel;
         }
 
@@ -172,7 +172,7 @@ namespace JJ.Framework.Presentation
         /// Overloaded action methods are not supported.
         /// Also: only simple parameter types are supported + 1 return action parameter of type ActionInfo.
         /// </summary>
-        public static object DispatchAction(object presenter, ActionInfo actionInfo)
+        public static object Dispatch(object presenter, ActionInfo actionInfo)
         {
             if (presenter == null) throw new NullException(() => presenter);
             if (actionInfo == null) throw new NullException(() => actionInfo);

@@ -56,7 +56,7 @@ namespace JJ.Demos.ReturnActions.Presenters
                 return new NotAuthorizedViewModel();
             }
 
-            return ActionDispatcher.DispatchAction(viewModel.ReturnAction, new { authenticatedUserName = _authenticatedUserName });
+            return ActionDispatcher.Dispatch(viewModel.ReturnAction, new { authenticatedUserName = _authenticatedUserName });
         }
 
         public LoginViewModel Logout()

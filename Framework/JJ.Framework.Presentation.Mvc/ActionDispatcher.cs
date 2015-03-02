@@ -17,7 +17,8 @@ namespace JJ.Framework.Presentation.Mvc
         // No locking. For now you must not change the mappings after one-time initialization.
         private static IDictionary<Type, IList<ActionDispatcherMapping>> _mappings = new Dictionary<Type, IList<ActionDispatcherMapping>>();
 
-        public static string VIEW_MODEL_TEMP_DATA_KEY = "viewmodel-157f5ba4-51fb-4510-b5b9-20e1e86a12d8";
+        private static string _tempDataKey ="viewmodel-157f5ba4-51fb-4510-b5b9-20e1e86a12d8";
+        public static string TempDataKey { get { return _tempDataKey; } }
 
         /// <summary>Not thread-safe.</summary>
         /// <param name="controllerName">nullable</param>
@@ -87,7 +88,7 @@ namespace JJ.Framework.Presentation.Mvc
             mappings.Add(mapping);
         }
 
-        public static ActionResult DispatchAction(Controller sourceController, string sourceActionName, object viewModel)
+        public static ActionResult Dispatch(Controller sourceController, string sourceActionName, object viewModel)
         {
             if (sourceController == null) throw new NullException(() => sourceController);
             if (String.IsNullOrEmpty(sourceActionName)) throw new Exception("sourceActionName cannot be null or empty.");
@@ -105,6 +106,7 @@ namespace JJ.Framework.Presentation.Mvc
 
             bool isSameControllerAndAction = String.Equals(destMapping.ControllerName, sourceControllerName) &&
                                              String.Equals(destMapping.ActionName, sourceActionName);
+
             bool mustReturnView = isSameControllerAndAction;
             if (mustReturnView)
             {
@@ -121,7 +123,7 @@ namespace JJ.Framework.Presentation.Mvc
             }
             else
             {
-                sourceController.TempData[VIEW_MODEL_TEMP_DATA_KEY] = viewModel;
+                sourceController.TempData[TempDataKey] = viewModel;
 
                 if (destMapping.GetActionParametersDelegate == null)
                 {
@@ -129,7 +131,8 @@ namespace JJ.Framework.Presentation.Mvc
                 }
                 else
                 {
-                    return sourceControllerAccessor.RedirectToAction(destMapping.ActionName, destMapping.ControllerName, destMapping.GetActionParametersDelegate(viewModel));
+                    object parameters = destMapping.GetActionParametersDelegate(viewModel);
+                    return sourceControllerAccessor.RedirectToAction(destMapping.ActionName, destMapping.ControllerName, parameters);
                 }
             }
         }

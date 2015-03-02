@@ -17,22 +17,21 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
         public ActionResult Index(string ret = null)
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
             {
                 var presenter = new LoginPresenter();
                 ActionInfo returnAction = UrlHelpers.GetReturnAction(ret);
                 viewModel = presenter.Show(returnAction);
             }
 
-            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel);
+            return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel);
         }
 
         [HttpPost]
         public ActionResult Index(LoginViewModel viewModel, string ret = null)
         {
-            viewModel.ReturnAction = UrlHelpers.GetReturnAction(ret);
-
             var presenter = new LoginPresenter();
+            viewModel.ReturnAction = UrlHelpers.GetReturnAction(ret);
             object viewModel2 = presenter.Login(viewModel);
 
             // TODO: This is dirty.
@@ -41,7 +40,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
                 SetAuthenticatedUserName(viewModel.UserName);
             }
 
-            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel2);
+            return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel2);
         }
     }
 }

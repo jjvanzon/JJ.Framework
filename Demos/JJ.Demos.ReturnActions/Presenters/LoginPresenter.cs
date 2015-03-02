@@ -48,7 +48,7 @@ namespace JJ.Demos.ReturnActions.Presenters
                 return Show();
             }
 
-            return ActionDispatcher.DispatchAction(viewModel.ReturnAction, new { authenticatedUserName = viewModel.UserName });
+            return ActionDispatcher.Dispatch(viewModel.ReturnAction, new { authenticatedUserName = viewModel.UserName });
         }
     }
 }

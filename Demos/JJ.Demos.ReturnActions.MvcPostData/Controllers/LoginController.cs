@@ -15,13 +15,13 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
         public ActionResult Index()
         {
             object viewModel;
-            if (!TempData.TryGetValue(ActionDispatcher.VIEW_MODEL_TEMP_DATA_KEY, out viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
             {
                 var presenter = new LoginPresenter();
                 viewModel = presenter.Show();
             }
 
-            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel);
+            return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel);
         }
 
         [HttpPost]
@@ -36,7 +36,7 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
                 SetAuthenticatedUserName(viewModel.UserName);
             }
 
-            return ActionDispatcher.DispatchAction(this, ActionNames.Index, viewModel2);
+            return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel2);
         }
     }
 }

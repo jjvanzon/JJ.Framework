@@ -77,6 +77,12 @@ namespace JJ.Framework.Presentation.Mvc
             return url;
         }
 
+        /// <summary>
+        /// Stacks up return URL parameters as follows:
+        /// Questions/Details?id=1
+        /// Questions/Edit?id=1&amp;ret=Questions%2FDetails%3Fid%3D1
+        /// Login/Index&amp;ret=Questions%2FEdit%3Fid%3D1%26ret%3DQuestions%252FDetails%253Fid%253D1
+        /// </summary>
         public static string GetReturnUrl(string presenterName, string presenterActionName, object parameters = null)
         {
             var actionInfo = new ActionInfo
@@ -105,11 +111,11 @@ namespace JJ.Framework.Presentation.Mvc
         }
 
         /// <summary>
-        /// Returns null if actionInfo is null.
         /// Stacks up return URL parameters as follows:
         /// Questions/Details?id=1
         /// Questions/Edit?id=1&amp;ret=Questions%2FDetails%3Fid%3D1
         /// Login/Index&amp;ret=Questions%2FEdit%3Fid%3D1%26ret%3DQuestions%252FDetails%253Fid%253D1
+        /// Returns null if actionInfo is null.
         /// </summary>
         public static string GetReturnUrl(ActionInfo actionInfo, string returnUrlParameterName = "ret")
         {
@@ -117,13 +123,6 @@ namespace JJ.Framework.Presentation.Mvc
             {
                 return null;
             }
-
-            return GetReturnUrl_Recursive(actionInfo, returnUrlParameterName);
-        }
-
-        private static string GetReturnUrl_Recursive(ActionInfo actionInfo, string returnUrlParameterName)
-        {
-            if (actionInfo == null) throw new NullException(() => actionInfo);
 
             IList<ActionInfo> actionInfos = new List<ActionInfo>();
             actionInfos.Add(actionInfo);
@@ -143,9 +142,6 @@ namespace JJ.Framework.Presentation.Mvc
         private static string GetReturnUrl_ByList(IList<ActionInfo> actionInfos, string returnUrlParameterName)
         {
             // TODO: Performance of these string operations is not great.
-
-            if (actionInfos == null) throw new NullException(() => actionInfos);
-            if (actionInfos.Count == 0) throw new Exception("actionInfos.Count cannot be 0.");
             if (String.IsNullOrWhiteSpace(returnUrlParameterName)) throw new Exception("returnUrlParameterName cannot be null or white space.");
 
             ActionInfo actionInfo = actionInfos[0];
@@ -203,13 +199,13 @@ namespace JJ.Framework.Presentation.Mvc
         }
 
         /// <summary>
-        /// Returns null if returnUrl is null or empty.
         /// Accepts return URL's stacked up as follows:
         /// Questions/Details?id=1
         /// Questions/Edit?id=1&amp;ret=Questions%2FDetails%3Fid%3D1
         /// Login/Index&amp;ret=Questions%2FEdit%3Fid%3D1%26ret%3DQuestions%252FDetails%253Fid%253D1
         /// Converts it to an ActionInfo object with possibly its ReturnAction assigned,
         /// with possibly its ReturnAction assigned, etcetera.
+        /// Returns null if returnUrl is null or empty.
         /// </summary>
         public static ActionInfo GetReturnAction(string returnUrl, string returnUrlParameterName = "ret")
         {
