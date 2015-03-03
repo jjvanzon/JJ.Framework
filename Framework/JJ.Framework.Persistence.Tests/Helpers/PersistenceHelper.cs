@@ -8,6 +8,7 @@ using JJ.Framework.Configuration;
 using JJ.Framework.Persistence;
 using JJ.Framework.Persistence.Tests.Model;
 using JJ.Framework.Persistence.Tests.NHibernate;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Persistence.Tests
 {
@@ -20,12 +21,20 @@ namespace JJ.Framework.Persistence.Tests
             string modelAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
             string mappingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
 
-            return ContextFactory.CreateContext(
-                contextType,
-                configuration.Location,
-                modelAssemblyName,
-                mappingAssemblyName,
-                configuration.Dialect);
-        }
+            try
+            {
+                return ContextFactory.CreateContext(
+                    contextType,
+                    configuration.Location,
+                    modelAssemblyName,
+                    mappingAssemblyName,
+                    configuration.Dialect);
+            }
+            catch (Exception ex)
+            {
+				Assert.Inconclusive($"Database connection failed. Exception:{Environment.NewLine}{ex}");
+                throw;
+			}
+		}
     }
 }
