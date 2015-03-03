@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Xml.Linq.Tests.Mocks;
 using JJ.Framework.Common;
-using JJ.Framework.Soap;
 
 namespace JJ.Framework.Xml.Linq.Tests
 {

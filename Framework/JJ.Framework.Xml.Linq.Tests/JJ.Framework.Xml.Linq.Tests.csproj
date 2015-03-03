@@ -83,10 +83,6 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Soap\JJ.Framework.Soap.csproj">
-      <Project>{2b86213c-a758-4db9-bd37-5e7d2f4d7c4d}</Project>
-      <Name>JJ.Framework.Soap</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
       <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
       <Name>JJ.Framework.Testing</Name>
