@@ -1,0 +1,1 @@
+Adding CodeAnalysisTestCode.sln dummy to suppress its build failure.
