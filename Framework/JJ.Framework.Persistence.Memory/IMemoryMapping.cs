@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Persistence.Memory
 {
-    public interface IMemoryMapping
+    internal interface IMemoryMapping
     {
         IdentityType IdentityType { get; }
         string IdentityPropertyName { get; }

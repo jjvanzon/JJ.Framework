@@ -97,15 +97,6 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Count.
-        /// </summary>
-        public static string EntityCount {
-            get {
-                return ResourceManager.GetString("EntityCount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -165,6 +156,15 @@ namespace JJ.Framework.Presentation.Resources {
         public static string NotAuthorized {
             get {
                 return ResourceManager.GetString("NotAuthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of {0}.
+        /// </summary>
+        public static string NumberOfEntities {
+            get {
+                return ResourceManager.GetString("NumberOfEntities", resourceCulture);
             }
         }
         

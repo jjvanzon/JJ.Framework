@@ -129,9 +129,6 @@
   <data name="Edit" xml:space="preserve">
     <value>Bewerken</value>
   </data>
-  <data name="EntityCount" xml:space="preserve">
-    <value>Aantal {0}</value>
-  </data>
   <data name="Language" xml:space="preserve">
     <value>Taal</value>
   </data>
@@ -152,6 +149,9 @@
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>Niet gemachtigd</value>
+  </data>
+  <data name="NumberOfEntities" xml:space="preserve">
+    <value>Aantal {0}</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Verwijderen</value>

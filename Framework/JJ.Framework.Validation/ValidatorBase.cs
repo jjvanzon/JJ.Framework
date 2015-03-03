@@ -10,11 +10,18 @@ namespace JJ.Framework.Validation
 {
     public abstract class ValidatorBase<TRootObject> : IValidator
     {
-        public ValidatorBase(TRootObject obj)
+        /// <param name="postponeExecute">
+        /// When set to true, you can do initializations in your constructor
+        /// before Execute goes off. Then you have to call Execute from your own constructor.
+        /// </param>
+        public ValidatorBase(TRootObject obj, bool postponeExecute = false)
         {
             Object = obj;
 
-            Execute();
+            if (!postponeExecute)
+            {
+                Execute();
+            }
         }
 
         public TRootObject Object { get; private set; }

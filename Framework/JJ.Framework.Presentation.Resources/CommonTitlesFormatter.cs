@@ -9,7 +9,7 @@ namespace JJ.Framework.Presentation.Resources
     {
         public static string EntityCount(string entityNamePlural)
         {
-            return String.Format(CommonTitles.EntityCount, entityNamePlural);
+            return String.Format(CommonTitles.NumberOfEntities, entityNamePlural);
         }
     }
 }

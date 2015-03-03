@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Validation.Resources
 {
-    public static class MessageFormatter
+    internal static class MessageFormatter
     {
         public static string IsNull(string propertyDisplayName)
         {
@@ -17,19 +17,24 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(Messages.NotIsValue, propertyDisplayName, value);
         }
 
-        internal static string NotAbove(string propertyDisplayName)
+        public static string NotAbove(string propertyDisplayName)
         {
             return String.Format(Messages.NotAbove, propertyDisplayName);
         }
 
-        internal static string IsNullOrWhiteSpace(string propertyDisplayName)
+        public static string IsNullOrWhiteSpace(string propertyDisplayName)
         {
             return String.Format(Messages.IsNullOrWhiteSpace, propertyDisplayName);
         }
 
-        internal static string IsZero(string propertyDisplayName)
+        public static string IsZero(string propertyDisplayName)
         {
             return String.Format(Messages.IsZero, propertyDisplayName);
+        }
+
+        public static string IsInteger(string propertyDisplayName)
+        {
+            return String.Format(Messages.IsInteger, propertyDisplayName);
         }
     }
 }
