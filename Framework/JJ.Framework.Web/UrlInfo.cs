@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,9 +10,20 @@ namespace JJ.Framework.Web
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class UrlInfo
     {
+        public UrlInfo()
+        {
+            _pathElements = new List<string>();
+        }
+
+        public UrlInfo(params string[] pathElements)
+        {
+            if (pathElements == null) throw new NullException(() => pathElements);
+            _pathElements = pathElements;
+        }
+
         public string Protocol { get; set; }
 
-        private IList<string> _pathElements = new List<string>();
+        private IList<string> _pathElements;
 
         /// <summary>
         /// auto-instantiated, not nullable

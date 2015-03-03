@@ -16,6 +16,8 @@ namespace JJ.Framework.Presentation
     /// </summary>
     public static class ActionDispatcher
     {
+        private static ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
+
         /// <summary>
         /// Gets a view model dynamically from the described presenter and action.
         /// Overloaded action methods are not supported.
@@ -34,71 +36,44 @@ namespace JJ.Framework.Presentation
         {
             if (actionInfo == null) throw new NullException(() => actionInfo);
 
-            Type presenterType = GetTypeByShortName(actionInfo.PresenterName);
+            Type presenterType = GetPresenterType(actionInfo.PresenterName);
             object presenter = CreateInstance(presenterType, presenterConstructorArguments);
             object viewModel = Dispatch(presenter, actionInfo);
             return viewModel;
         }
 
-        private static IDictionary<string, Type> _typeByShortNameDictionary = new Dictionary<string, Type>();
-        private static object _typeByShortNameDictionaryLock = new object();
-
-        private static Type GetTypeByShortName(string shortTypeName)
+        private static Type GetPresenterType(string shortTypeName)
         {
-            lock (_typeByShortNameDictionaryLock)
+            IList<Type> types = _reflectionCache.GetTypesByShortName(shortTypeName);
+            switch (types.Count)
             {
-                Type type;
-                if (_typeByShortNameDictionary.TryGetValue(shortTypeName, out type))
-                {
-                    return type;
-                }
+                case 1:
+                    return types[0];
 
-                List<Type> types = new List<Type>();
-                foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
-                {
-                    try
-                    {
-                        types.AddRange(assembly.GetTypes().Where(x => String.Equals(x.Name, shortTypeName)));
-                    }
-                    catch (ReflectionTypeLoadException)
-                    {
-                        // Ignore.
-                        // TODO: Learn why types of some assemblies cannot be retrieved,
-                        // and why it says the assembly cannot be loaded (file not found),
-                        // while it clearly is part of the app domain.
-                    }
-                }
+                case 0:
+                    throw new Exception(String.Format("Type with short name '{0}' not found in the AppDomain's assemblies.", shortTypeName));
 
-                switch (types.Count)
-                {
-                    case 1:
-                        _typeByShortNameDictionary.Add(shortTypeName, types[0]);
-                        return types[0];
-
-                    case 0:
-                        throw new Exception(String.Format("Type with short name '{0}' not found in the AppDomain's assemblies.", shortTypeName));
-
-                    default:
-                        throw new Exception(String.Format("Type with short name '{0}' found multiple times in the AppDomain's assemblies. " +
-                                                          "Presenters must have unique class names within the AppDomain. " +
-                                                          "If that is not possible you must program the instantiation of the presenter yourself and use the other overload of DispatchAction. " +
-                                                          "Found types:{1}{2}",
-                                                          shortTypeName, Environment.NewLine, String_PlatformSupport.Join(Environment.NewLine, types.Select(x => x.FullName))));
-                }
+                default:
+                    throw new Exception(String.Format(
+                        "Type with short name '{0}' found multiple times in the AppDomain's assemblies. " +
+                        "Presenters must have unique class names within the AppDomain. " +
+                        "If that is not possible you must program the instantiation of the presenter yourself and use the other overload of DispatchAction. " +
+                        "Found types:{1}{2}",
+                        shortTypeName, Environment.NewLine, String_PlatformSupport.Join(Environment.NewLine, types.Select(x => x.FullName))));
             }
         }
 
         /// <param name="constructorArguments">nullable</param>
         private static object CreateInstance(Type type, object constructorArguments)
         {
-            ConstructorInfo constructor = GetConstructor(type);
+            ConstructorInfo constructor = _reflectionCache.GetConstructor(type);
 
             if (constructorArguments == null)
             {
                 return constructor.Invoke(null);
             }
 
-            IDictionary<string, PropertyInfo> constructorArgumentPropertyDictionary = GetPropertyDictionary(constructorArguments.GetType());
+            IDictionary<string, PropertyInfo> propertyDictionary = _reflectionCache.GetPropertyDictionary(constructorArguments.GetType());
 
             IList<ParameterInfo> parameters = constructor.GetParameters();
             object[] parameterValues = new object[parameters.Count];
@@ -106,65 +81,18 @@ namespace JJ.Framework.Presentation
             {
                 ParameterInfo parameter = parameters[i];
 
-                PropertyInfo constructorArgumentProperty;
-                constructorArgumentPropertyDictionary.TryGetValue(parameter.Name, out constructorArgumentProperty);
+                PropertyInfo property;
+                propertyDictionary.TryGetValue(parameter.Name, out property);
 
-                if (constructorArgumentProperty != null)
+                if (property != null)
                 {
-                    object parameterValue = constructorArgumentProperty.GetValue_PlatformSafe(constructorArguments);
-                    parameterValues[i] = parameterValue;
+                    object propertyValue = property.GetValue_PlatformSafe(constructorArguments);
+                    parameterValues[i] = propertyValue;
                 }
             }
 
             object obj = constructor.Invoke(parameterValues);
             return obj;
-        }
-
-        private static IDictionary<Type, IDictionary<string, PropertyInfo>> _propertyDictionaryDictionary = new Dictionary<Type, IDictionary<string, PropertyInfo>>();
-        private static object _propertyDictionaryDictionaryLock = new object();
-
-        private static IDictionary<string, PropertyInfo> GetPropertyDictionary(Type type)
-        {
-            lock (_propertyDictionaryDictionaryLock)
-            {
-                IDictionary<string, PropertyInfo> propertyDictionary;
-                if (!_propertyDictionaryDictionary.TryGetValue(type, out propertyDictionary))
-                {
-                    propertyDictionary = type.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToDictionary(x => x.Name);
-                    _propertyDictionaryDictionary.Add(type, propertyDictionary);
-                }
-                return propertyDictionary;
-            }
-        }
-
-        private static IDictionary<Type, ConstructorInfo> _constructorDictionary = new Dictionary<Type, ConstructorInfo>();
-        private static object _constructorDictionaryLock = new object();
-
-        private static ConstructorInfo GetConstructor(Type type)
-        {
-            lock (_constructorDictionary)
-            {
-                ConstructorInfo constructor;
-                if (_constructorDictionary.TryGetValue(type, out constructor))
-                {
-                    return constructor;
-                }
-
-                // TODO: Consider if you need to pass BindingFlags.
-                IList<ConstructorInfo> constructors = type.GetConstructors();
-                switch (constructors.Count)
-                {
-                    case 1:
-                        _constructorDictionary.Add(type, constructors[0]);
-                        return constructors[0];
-
-                    case 0:
-                        throw new Exception(String.Format("No constructor found for type '{0}'.", type.FullName));
-
-                    default:
-                        throw new Exception(String.Format("Multiple constructors found on type '{0}'.", type.FullName));
-                }
-            }
         }
 
         /// <summary>
@@ -188,26 +116,41 @@ namespace JJ.Framework.Presentation
             }
 
             // Convert parameter values.
-            IList<ParameterInfo> parameterInfos = method.GetParameters();
+            IList<ParameterInfo> parameters = method.GetParameters();
+            object[] parameterValues = new object[parameters.Count];
 
-            object[] parameterValues = new object[parameterInfos.Count];
-            for (int i = 0; i < parameterInfos.Count; i++)
+            for (int i = 0; i < parameters.Count; i++)
             {
-                ParameterInfo parameterInfo = parameterInfos[i];
+                ParameterInfo parameter = parameters[i];
 
                 // Handle the return action parameter.
-                if (parameterInfo.ParameterType == typeof(ActionInfo))
+                if (parameter.ParameterType == typeof(ActionInfo))
                 {
                     parameterValues[i] = actionInfo.ReturnAction;
                     continue;
                 }
 
                 // Handle normal parameter.
-                ActionParameterInfo actionParameterInfo = actionInfo.Parameters
-                                                                    .Where(x => String.Equals(x.Name, parameterInfo.Name))
-                                                                    .Single();
+                ActionParameterInfo actionParameterInfo;
+                IList<ActionParameterInfo> matchingActionParameterInfos = actionInfo.Parameters.Where(x => String.Equals(x.Name, parameter.Name)).ToArray();
+                switch (matchingActionParameterInfos.Count)
+                {
+                    case 1:
+                        actionParameterInfo = matchingActionParameterInfos[0];
+                        break;
 
-                object parameterValue = ConvertValue(actionParameterInfo.Value, parameterInfo.ParameterType);
+                    case 0:
+                        throw new Exception(String.Format(
+                            "Parameter '{0}' for method '{1}' of type '{2}' not found in ActionInfo. Permitted parameters: {3}. ActionInfo parameters: {4}.",
+                            parameter.Name, method.Name, type.Name,
+                            String_PlatformSupport.Join(", ", parameters.Select(x => x.Name)),
+                            String_PlatformSupport.Join(", ", actionInfo.Parameters.Select(x => x.Name))));
+
+                    default:
+                        throw new Exception(String.Format("Parameter '{0}' for method '{1}' of type '{2}' found multiple times in ActionInfo.", parameter.Name, method.Name, type.Name));
+                }
+
+                object parameterValue = ConvertValue(actionParameterInfo.Value, parameter.ParameterType);
                 parameterValues[i] = parameterValue;
             }
 

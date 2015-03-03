@@ -12,7 +12,7 @@ namespace JJ.Framework.Web
 {
     public static class CultureWebHelper
     {
-        private const string CUTURE_NAME_COOKIE_KEY = "cultureName70bba865-c3b8-407e-a405-1a3eb014253d";
+        private const string CUTURE_NAME_COOKIE_KEY = "cultureName70bba865c3b8407ea405-1a3eb014253d";
         private const string ACCEPT_LANGUAGE_HEADER_KEY = "Accept-Language";
 
         public static void SetThreadCultureByHttpHeaderOrCookie(HttpContextBase httpContext, string defaultCultureName = "en-US")

@@ -22,59 +22,43 @@ namespace JJ.Framework.Presentation.Mvc
 
         public static string ActionWithCollectionParameter<T>(string actionName, string controllerName, string parameterName, IEnumerable<T> collection)
         {
-            // First URL-encode everything.
-            actionName = HttpUtility.UrlEncode(actionName);
-            controllerName = HttpUtility.UrlEncode(controllerName);
-            parameterName = HttpUtility.UrlEncode(parameterName);
+            if (collection == null) throw new NullException(() => collection);
 
-            var values = new List<string>();
-            foreach (var x in collection)
+            var urlInfo = new UrlInfo(controllerName, actionName);
+
+            foreach (T value in collection)
             {
-                string str = Convert.ToString(x);
-                string value = HttpUtility.UrlEncode(str);
-                values.Add(value);
+                var parameter = new UrlParameterInfo
+                {
+                    Name = parameterName, 
+                    Value = Convert.ToString(value)
+                };
+                urlInfo.Parameters.Add(parameter);
             }
 
-            // Build the URL parameter string.
-            string parameterString = "";
-            if (collection.Count() != 0)
-            {
-                parameterString = "?" + parameterName + "=" + String.Join("&" + parameterName + "=", values);
-            }
-
-            // Build the URL.
-            string url = "/" + controllerName + "/" + actionName + parameterString;
-
+            string url = '/' + UrlBuilder.BuildUrl(urlInfo);
             return url;
         }
 
         public static string ActionWithParams(string actionName, string controllerName, params object[] parameterNamesAndValues)
         {
-            // First HTML-encode all elements of the url, for safety.
-            actionName = HttpUtility.HtmlEncode(actionName);
-            controllerName = HttpUtility.HtmlEncode(controllerName);
+            if (parameterNamesAndValues == null) throw new NullException(() => parameterNamesAndValues);
 
-            // Build the URL parameter string.
-            string parametersString = "";
-            IList<KeyValuePair<string, object>> parameters = KeyValuePairHelper.ConvertNamesAndValuesListToKeyValuePairs(parameterNamesAndValues);
-            if (parameters != null && parameters.Count != 0)
+            var urlInfo = new UrlInfo(controllerName, actionName);
+
+            IList<KeyValuePair<string, object>> keyValuePairs = KeyValuePairHelper.ConvertNamesAndValuesListToKeyValuePairs(parameterNamesAndValues);
+            foreach (var entry in keyValuePairs)
             {
-                var list = new List<string>();
-                foreach (var entry in parameters)
+                var parameter = new UrlParameterInfo
                 {
-                    string name = HttpUtility.UrlEncode(entry.Key);
-                    string value = HttpUtility.UrlEncode(Convert.ToString(entry.Value));
-                    string str = name + "=" + value;
-                    list.Add(str);
-                }
-
-                parametersString = "?" + String.Join("&", list);
+                    Name = entry.Key,
+                    Value = Convert.ToString(entry.Value)
+                };
+                urlInfo.Parameters.Add(parameter);
             }
 
-            // Build the URL.
-            string url = "/" + controllerName + "/" + actionName + parametersString;
-
-            return url;
+            string url = UrlBuilder.BuildUrl(urlInfo);
+            return '/' + url;
         }
 
         /// <summary>
@@ -88,7 +72,7 @@ namespace JJ.Framework.Presentation.Mvc
             var actionInfo = new ActionInfo
             {
                 PresenterName = presenterName,
-                ActionName = presenterActionName,
+                ActionName = presenterActionName
             };
 
             if (parameters == null)
@@ -169,33 +153,11 @@ namespace JJ.Framework.Presentation.Mvc
             if (String.IsNullOrEmpty(actionInfo.PresenterName)) throw new Exception("actionInfo.PresenterName cannot be null or empty.");
             if (String.IsNullOrEmpty(actionInfo.ActionName)) throw new Exception("actionInfo.PresenterName cannot be null or empty.");
 
-            var sb = new StringBuilder();
+            var urlInfo = new UrlInfo(actionInfo.PresenterName, actionInfo.ActionName);
+            urlInfo.Parameters = actionInfo.Parameters.Select(x => new UrlParameterInfo(x.Name, x.Value)).ToArray();
 
-            sb.Append(actionInfo.PresenterName);
-            sb.Append("/");
-            sb.Append(actionInfo.ActionName);
-
-            if (actionInfo.Parameters.Count > 0)
-            {
-                sb.Append("?");
-
-                for (int i = 0; i < actionInfo.Parameters.Count; i++)
-                {
-                    ActionParameterInfo parameter = actionInfo.Parameters[i];
-                    if (String.IsNullOrEmpty(parameter.Name)) throw new Exception(String.Format("{0} cannot be null or empty.", JJ.Framework.Reflection.ExpressionHelper.GetText(() => actionInfo.Parameters[i], true)));
-
-                    sb.Append(parameter.Name);
-                    sb.Append("=");
-                    sb.Append(HttpUtility.UrlEncode(parameter.Value));
-
-                    if (i != actionInfo.Parameters.Count - 1)
-                    {
-                        sb.Append("&");
-                    }
-                }
-            }
-
-            return sb.ToString();
+            string url = UrlBuilder.BuildUrl(urlInfo);
+            return url;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -42,6 +43,8 @@ namespace JJ.Framework.Web
 
         public static string BuildQueryString(IList<UrlParameterInfo> parameters)
         {
+            if (parameters == null) throw new NullException(() => parameters);
+
             var sb = new StringBuilder();
             BuildQueryString(sb, parameters);
             return sb.ToString();
