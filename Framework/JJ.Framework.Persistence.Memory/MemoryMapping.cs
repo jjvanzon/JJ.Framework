@@ -9,5 +9,17 @@ namespace JJ.Framework.Persistence.Memory
     {
         public IdentityType IdentityType { get; protected set; }
         public string IdentityPropertyName { get; protected set; }
+
+        // IMemoryMapping
+
+        IdentityType IMemoryMapping.IdentityType 
+        {
+            get { return this.IdentityType; } 
+        }
+
+        string IMemoryMapping.IdentityPropertyName 
+        {
+            get { return this.IdentityPropertyName; } 
+        }
     }
 }

@@ -76,6 +76,11 @@ namespace JJ.Framework.Persistence.Memory.Internal
 
         private object GetIDFromEntity(TEntity entity)
         {
+            if (_mapping.IdentityType == IdentityType.NoIDs)
+            {
+                return null;
+            }
+
             Type entityType = entity.GetType();
             PropertyInfo property = entityType.GetProperty(_mapping.IdentityPropertyName);
             if (property == null)
@@ -87,6 +92,11 @@ namespace JJ.Framework.Persistence.Memory.Internal
 
         private void SetIDOfEntity(TEntity entity, object id)
         {
+            if (_mapping.IdentityType == IdentityType.NoIDs)
+            {
+                return;
+            }
+
             Type entityType = entity.GetType();
 
             PropertyInfo property = entityType.GetProperty(_mapping.IdentityPropertyName);
@@ -102,6 +112,11 @@ namespace JJ.Framework.Persistence.Memory.Internal
             switch (_mapping.IdentityType)
             {
                 case IdentityType.AutoIncrement:
+                    _maxID++;
+                    return _maxID;
+
+                case IdentityType.NoIDs:
+                    // Auto-increment anyway, otherwise the entity dictionaries will not work.
                     _maxID++;
                     return _maxID;
 

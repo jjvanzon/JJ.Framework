@@ -12,8 +12,12 @@ namespace JJ.Framework.Validation
 {
     public abstract class FluentValidator<TRootObject> : ValidatorBase<TRootObject>
     {
-        public FluentValidator(TRootObject obj)
-            : base(obj)
+        /// <param name="postponeExecute">
+        /// When set to true, you can do initializations in your constructor
+        /// before Execute goes off. If so, then you have to call Execute in your own constructor.
+        /// </param>
+        public FluentValidator(TRootObject obj, bool postponeExecute = false)
+            : base(obj, postponeExecute)
         { }
 
         private object _value;
@@ -67,15 +71,17 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public void NotNull()
+        public FluentValidator<TRootObject> NotNull()
         {
             if (_value == null)
             {
                 ValidationMessages.Add(_propertyKey, MessageFormatter.IsNull(_propertyDisplayName));
             }
+
+            return this;
         }
 
-        public void NotNullOrWhiteSpace()
+        public FluentValidator<TRootObject> NotNullOrWhiteSpace()
         {
             string value = Convert.ToString(_value);
 
@@ -83,22 +89,26 @@ namespace JJ.Framework.Validation
             {
                 ValidationMessages.Add(_propertyKey, MessageFormatter.IsNullOrWhiteSpace(_propertyDisplayName));
             }
+
+            return this;
         }
 
-        public void IsValue<TValue>(TValue value)
+        public FluentValidator<TRootObject>  IsValue<TValue>(TValue value)
         {
             if (!Equals(_value, value))
             {
                 ValidationMessages.Add(_propertyKey, MessageFormatter.NotIsValue(_propertyDisplayName, value));
             }
+
+            return this;
         }
 
-        public void Above<TValue>(TValue min)
+        public FluentValidator<TRootObject> Above<TValue>(TValue min)
             where TValue : IComparable
         {
             if (_value == null)
             {
-                return;
+                return this;
             }
 
             IComparable value = (IComparable)_value;
@@ -107,19 +117,36 @@ namespace JJ.Framework.Validation
             {
                 ValidationMessages.Add(_propertyKey, MessageFormatter.NotAbove(_propertyDisplayName));
             }
+
+            return this;
         }
 
-        public void NotZero()
+        public FluentValidator<TRootObject> NotZero()
         {
             if (Equals(_value, 0))
             {
                 ValidationMessages.Add(_propertyKey, MessageFormatter.IsZero(_propertyDisplayName));
             }
+
+            return this;
         }
 
-        public void NotInteger()
+        public FluentValidator<TRootObject> NotInteger()
         {
-            throw new NotImplementedException();
+            string value = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(value))
+            {
+                return this;
+            }
+
+            int convertedValue;
+            if (Int32.TryParse(value, out convertedValue))
+            {
+                ValidationMessages.Add(_propertyKey, MessageFormatter.IsInteger(_propertyDisplayName));
+            }
+
+            return this;
         }
     }
 }

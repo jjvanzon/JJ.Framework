@@ -129,10 +129,6 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="EntityCount" xml:space="preserve">
-    <value>{0} Count</value>
-    <comment>{0} = object name plural</comment>
-  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
@@ -153,6 +149,10 @@
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>NotAuthorized</value>
+  </data>
+  <data name="NumberOfEntities" xml:space="preserve">
+    <value>Number of {0}</value>
+    <comment>{0} = object name plural</comment>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
