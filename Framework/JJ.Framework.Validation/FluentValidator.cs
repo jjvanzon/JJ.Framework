@@ -116,5 +116,10 @@ namespace JJ.Framework.Validation
                 ValidationMessages.Add(_propertyKey, MessageFormatter.IsZero(_propertyDisplayName));
             }
         }
+
+        public void NotInteger()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
