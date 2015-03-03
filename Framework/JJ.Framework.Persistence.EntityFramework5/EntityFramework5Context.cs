@@ -65,7 +65,7 @@ namespace JJ.Framework.Persistence.EntityFramework5
         public override void Update(object entity)
         {
             if (entity == null) throw new NullException(() => entity);
-            Context.Entry(entity.GetType()).State = EntityState.Modified;
+            Context.Entry(entity).State = EntityState.Modified;
         }
 
         public override void Delete(object entity)
