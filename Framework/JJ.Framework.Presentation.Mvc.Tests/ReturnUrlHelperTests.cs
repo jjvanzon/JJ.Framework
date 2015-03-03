@@ -13,7 +13,7 @@ namespace JJ.Framework.Presentation.Mvc.Tests
 
             string url = UrlHelpers.GetReturnUrl(actionInfo);
             
-            Assert.AreEqual("Questions\\Details?id=1", url);
+            Assert.AreEqual("Questions/Details?id=1", url);
         }
 
         [TestMethod]
