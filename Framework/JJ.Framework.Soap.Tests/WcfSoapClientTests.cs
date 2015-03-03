@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using JJ.Framework.Configuration;
 using JJ.Framework.Soap.Tests.ServiceInterface;
 using JJ.Framework.Soap.Tests.Helpers;
+using System.Net;
 
 namespace JJ.Framework.Soap.Tests
 {
@@ -18,7 +19,15 @@ namespace JJ.Framework.Soap.Tests
             string url = AppSettings<IAppSettings>.Get(x => x.Url);
             var client = new CustomWcfSoapClient<ITestService>(url);
             ComplicatedType obj1 = TestHelper.CreateComplicatedObject();
-            ComplicatedType obj2 = client.Invoke(x => x.SendAndGetComplicatedObject(obj1));
+
+            try
+            {
+                ComplicatedType obj2 = client.Invoke(x => x.SendAndGetComplicatedObject(obj1));
+            }
+			catch (WebException ex)
+			{
+                TestHelper.AssertServiceConnectionFailed(ex);
+            }
         }
 
         [TestMethod]
@@ -27,7 +36,15 @@ namespace JJ.Framework.Soap.Tests
             string url = AppSettings<IAppSettings>.Get(x => x.Url);
             var client = new CustomWcfSoapClient<ITestService>(url);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
-            CompositeType obj2 = client.Invoke(x => x.SendAndGetCompositeObject(obj1));
+
+            try
+            {
+                CompositeType obj2 = client.Invoke(x => x.SendAndGetCompositeObject(obj1));
+            }
+			catch (WebException ex)
+			{
+                TestHelper.AssertServiceConnectionFailed(ex);
+            }
         }
 
         [TestMethod]
@@ -36,7 +53,15 @@ namespace JJ.Framework.Soap.Tests
             string url = AppSettings<IAppSettings>.Get(x => x.Url);
             var client = new CustomWcfSoapClient<ITestService>(url);
             TypeWithCollection obj1 = new TypeWithCollection { StringList = new string[] { "Hi", "there", "!" } };
-            TypeWithCollection obj2 = client.Invoke(x => x.SendAndGetObjectWithCollection(obj1));
+
+            try
+            {
+                TypeWithCollection obj2 = client.Invoke(x => x.SendAndGetObjectWithCollection(obj1));
+            }
+			catch (WebException ex)
+			{
+                TestHelper.AssertServiceConnectionFailed(ex);
+            }
         }
     }
 }

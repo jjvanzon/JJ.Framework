@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Soap.Tests.ServiceInterface;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -122,5 +123,9 @@ namespace JJ.Framework.Soap.Tests.Helpers
 
             return complicatedObject;
         }
-    }
+
+		public static void AssertServiceConnectionFailed(Exception ex) 
+            => Assert.Inconclusive(
+                string.Format($"Service connection failed. Exception:{Environment.NewLine}{ex}"));
+	}
 }

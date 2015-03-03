@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,11 +16,19 @@ namespace JJ.Framework.Soap.Tests
     {
         [TestMethod]
         public void Test_NativeWcfClient_SendAndGetComplicatedObject()
-        { 
+        {
             string url = AppSettings<IAppSettings>.Get(x => x.Url);
             var client = new NativeWcfClient(url);
             ComplicatedType obj1 = TestHelper.CreateComplicatedObject();
-            ComplicatedType obj2 = client.SendAndGetComplicatedObject(obj1);
+            
+            try
+            {
+                ComplicatedType obj2 = client.SendAndGetComplicatedObject(obj1);
+            }
+			catch (EndpointNotFoundException ex)
+			{
+                TestHelper.AssertServiceConnectionFailed(ex);
+            }
         }
     }
 }

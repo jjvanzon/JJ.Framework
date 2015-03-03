@@ -22,9 +22,18 @@ namespace JJ.Framework.Soap.Tests
             string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
             var client = new SoapClient(url, Encoding.UTF8);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
-            CompositeType obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
 
-            AssertHelper.IsNotNull(() => obj2);
+            CompositeType obj2 = null;
+			try
+			{
+				obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
+			}
+			catch (WebException ex)
+			{
+				TestHelper.AssertServiceConnectionFailed(ex);
+			}
+
+			AssertHelper.IsNotNull(() => obj2);
             AssertHelper.IsTrue(() => obj2.BoolValue);
             AssertHelper.AreEqual(obj1.StringValue + " to you too!", () => obj2.StringValue);
         }
@@ -42,10 +51,19 @@ namespace JJ.Framework.Soap.Tests
             string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
             var client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
-            CompositeType obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
 
-            // WCF will accept the message, just will not bind the data sent to the server.
-            AssertHelper.IsNotNull(() => obj2);
+            CompositeType obj2 = null;
+			try
+			{
+				obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
+			}
+			catch (WebException ex)
+			{
+				TestHelper.AssertServiceConnectionFailed(ex);
+			}
+
+			// WCF will accept the message, just will not bind the data sent to the server.
+			AssertHelper.IsNotNull(() => obj2);
             AssertHelper.IsTrue(() => obj2.BoolValue);
             AssertHelper.AreEqual("Hello world!", () => obj2.StringValue);
         }
@@ -65,6 +83,6 @@ namespace JJ.Framework.Soap.Tests
             var client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
             CompositeType obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
-        }
-    }
+		}
+	}
 }
