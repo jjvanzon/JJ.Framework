@@ -55,6 +55,30 @@ namespace JJ.Framework.Validation
             Execute(validator, null);
         }
 
+        /// <summary> 
+        /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
+        /// This overload only works when the sub-validator takes the same object as the parent validator,
+        /// and if the sub-validator has no additional constructor parameters.
+        /// </summary>
+        protected void Execute<TValidator>()
+            where TValidator : ValidatorBase<TRootObject>
+        {
+            IValidator validator = (IValidator)Activator.CreateInstance(typeof(TValidator), new object[] { Object });
+            Execute(validator, null);
+        }
+
+        /// <summary> 
+        /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
+        /// This overload only works when the sub-validator takes the same object as the parent validator,
+        /// and if the sub-validator has no additional constructor parameters.
+        /// </summary>
+        protected void Execute<TValidator>(string messagePrefix)
+            where TValidator : ValidatorBase<TRootObject>
+        {
+            IValidator validator = (IValidator)Activator.CreateInstance(typeof(TValidator), new object[] { Object });
+            Execute(validator, messagePrefix);
+        }
+
         /// <summary>
         /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
         /// </summary>
