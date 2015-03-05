@@ -117,8 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AtLeast" xml:space="preserve">
+    <value>{0} must be at least {1}.</value>
+    <comment>{0} = property name, {1} = minimum value</comment>
+  </data>
+  <data name="CannotBe" xml:space="preserve">
+    <value>{0} cannot be {1}.</value>
+    <comment>{0} = property name, {1} = value</comment>
+  </data>
   <data name="IsInteger" xml:space="preserve">
     <value>{0} is integer.</value>
+    <comment>{0} = property name</comment>
+  </data>
+  <data name="IsNot" xml:space="preserve">
+    <value>{0} is not {1}.</value>
+    <comment>{0} = property name, {1} = specific value</comment>
+  </data>
+  <data name="IsNotValidEnumValue" xml:space="preserve">
+    <value>{0} does not have a valid value.</value>
     <comment>{0} = property name</comment>
   </data>
   <data name="IsNull" xml:space="preserve">
@@ -136,9 +152,5 @@
   <data name="NotAbove" xml:space="preserve">
     <value>{0} is not above {1}.</value>
     <comment>{0} = property name, {1} = minimum value</comment>
-  </data>
-  <data name="NotIsValue" xml:space="preserve">
-    <value>{0} is not {1}.</value>
-    <comment>{0} = property name, {1} = specific value</comment>
   </data>
 </root>

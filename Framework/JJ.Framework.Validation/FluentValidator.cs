@@ -91,11 +91,37 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator<TRootObject>  IsValue<TValue>(TValue value)
+        public FluentValidator<TRootObject> Is<TValue>(TValue value)
         {
+            // TODO: The conversion to string seems weird here.
+            string convertedValue = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(convertedValue))
+            {
+                return this;
+            }
+
             if (!Equals(_value, value))
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.NotIsValue(_propertyDisplayName, value));
+                ValidationMessages.Add(_propertyKey, MessageFormatter.IsNot(_propertyDisplayName, value));
+            }
+
+            return this;
+        }
+
+        public FluentValidator<TRootObject> IsNot<TValue>(TValue value)
+        {
+            // TODO: The conversion to string seems weird here.
+            string convertedValue = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(convertedValue))
+            {
+                return this;
+            }
+
+            if (Equals(_value, value))
+            {
+                ValidationMessages.Add(_propertyKey, MessageFormatter.CannotBe(_propertyDisplayName, value));
             }
 
             return this;
@@ -114,6 +140,24 @@ namespace JJ.Framework.Validation
             if (value.CompareTo(min) > 0)
             {
                 ValidationMessages.Add(_propertyKey, MessageFormatter.NotAbove(_propertyDisplayName));
+            }
+
+            return this;
+        }
+
+        public FluentValidator<TRootObject> AtLeast<TValue>(TValue min)
+            where TValue : IComparable
+        {
+            if (_value == null)
+            {
+                return this;
+            }
+
+            IComparable value = (IComparable)_value;
+
+            if (value.CompareTo(min) < 0)
+            {
+                ValidationMessages.Add(_propertyKey, MessageFormatter.AtLeast(_propertyDisplayName, min));
             }
 
             return this;
@@ -142,6 +186,35 @@ namespace JJ.Framework.Validation
             if (Int32.TryParse(value, out convertedValue))
             {
                 ValidationMessages.Add(_propertyKey, MessageFormatter.IsInteger(_propertyDisplayName));
+            }
+
+            return this;
+        }
+
+        public FluentValidator<TRootObject> IsEnumValue<T>()
+            where T : struct
+        {
+            // TODO: This does seem to evaluate numerical strings and enum member name strings correctly.
+
+            // TODO: Can I build generic null-tollerance without converting to string?
+            string str = Convert.ToString(_value);
+            if (String.IsNullOrEmpty(str))
+            {
+                return this;
+            }
+
+            T[] enumValues = (T[])Enum.GetValues(typeof(T));
+
+            // Convert to a canonical form.
+            // "Every enumeration type has an underlying type, which can be any integral type except char."
+            // (https://msdn.microsoft.com/en-us/library/sbbt4032.aspx)
+            decimal[] underlyingValues = enumValues.Select(x => (decimal)Convert.ChangeType(x, typeof(decimal))).ToArray();
+            decimal underlyingValue = (decimal)Convert.ChangeType(_value, typeof(decimal));
+
+            bool isEnum = underlyingValues.Contains(underlyingValue);
+            if (!isEnum)
+            {
+                ValidationMessages.Add(_propertyKey, MessageFormatter.IsNotValidEnumValue(_propertyDisplayName));
             }
 
             return this;

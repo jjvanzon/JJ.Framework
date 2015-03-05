@@ -61,11 +61,47 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} must be at least {1}..
+        /// </summary>
+        internal static string AtLeast {
+            get {
+                return ResourceManager.GetString("AtLeast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} cannot be {1}..
+        /// </summary>
+        internal static string CannotBe {
+            get {
+                return ResourceManager.GetString("CannotBe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is integer..
         /// </summary>
         internal static string IsInteger {
             get {
                 return ResourceManager.GetString("IsInteger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not {1}..
+        /// </summary>
+        internal static string IsNot {
+            get {
+                return ResourceManager.GetString("IsNot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not have a valid value..
+        /// </summary>
+        internal static string IsNotValidEnumValue {
+            get {
+                return ResourceManager.GetString("IsNotValidEnumValue", resourceCulture);
             }
         }
         
@@ -102,15 +138,6 @@ namespace JJ.Framework.Validation.Resources {
         internal static string NotAbove {
             get {
                 return ResourceManager.GetString("NotAbove", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is not {1}..
-        /// </summary>
-        internal static string NotIsValue {
-            get {
-                return ResourceManager.GetString("NotIsValue", resourceCulture);
             }
         }
     }

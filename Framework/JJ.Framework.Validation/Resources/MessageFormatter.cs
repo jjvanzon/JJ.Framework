@@ -12,9 +12,9 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(Messages.IsNull, propertyDisplayName);
         }
 
-        public static string NotIsValue(string propertyDisplayName, object value)
+        public static string IsNot(string propertyDisplayName, object value)
         {
-            return String.Format(Messages.NotIsValue, propertyDisplayName, value);
+            return String.Format(Messages.IsNot, propertyDisplayName, value);
         }
 
         public static string NotAbove(string propertyDisplayName)
@@ -35,6 +35,21 @@ namespace JJ.Framework.Validation.Resources
         public static string IsInteger(string propertyDisplayName)
         {
             return String.Format(Messages.IsInteger, propertyDisplayName);
+        }
+
+        public static string AtLeast(string propertyDisplayName, object min)
+        {
+            return String.Format(Messages.AtLeast, propertyDisplayName, min);
+        }
+
+        public static string IsNotValidEnumValue(string propertyDisplayName)
+        {
+            return String.Format(Messages.IsNotValidEnumValue, propertyDisplayName);
+        }
+
+        public static string CannotBe(string propertyDisplayName, object value)
+        {
+            return String.Format(Messages.CannotBe, propertyDisplayName, value);
         }
     }
 }
