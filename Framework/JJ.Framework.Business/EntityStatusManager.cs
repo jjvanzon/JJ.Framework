@@ -58,7 +58,7 @@ namespace JJ.Framework.Business
         /// <summary> For properties. </summary>
         public void SetIsDirty<T>(Expression<Func<T>> propertyExpression)
         {
-            SetStatus(propertyExpression, EntityStatusEnum.Dirty);
+            SetStatus(propertyExpression, PropertyStatusEnum.Dirty);
         }
 
         // TODO: I am not happy about type argument T.

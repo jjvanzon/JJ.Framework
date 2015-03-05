@@ -138,7 +138,7 @@
     <comment>{0} = property name, {1} = minimum value</comment>
   </data>
   <data name="NotIsValue" xml:space="preserve">
-    <value>{0} is not {1}.</value>
-    <comment>{0} = property name, {1} = specific value</comment>
+    <value>{0} should be {1}.</value>
+    <comment>{0} = property name, {1} = value</comment>
   </data>
 </root>

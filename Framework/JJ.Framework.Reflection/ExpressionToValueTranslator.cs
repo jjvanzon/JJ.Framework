@@ -10,19 +10,20 @@ namespace JJ.Framework.Reflection
 {
     internal class ExpressionToValueTranslator
     {
-        private Stack<object> _stack = new Stack<object>();
+        private IList<object> _list;
+        private Stack<object> _stack;
 
         public IList<object> GetValues(Expression expression)
         {
-            // TODO: Indexer methods will result in 2 values, 
-            // which you would not expect when you use this functionality.
+            GetValue(expression);
 
-            Visit(expression);
-            return _stack.Reverse().ToArray();
+            return _list;
         }
 
         public object GetValue(Expression expression)
         {
+            _list = new List<object>();
+            _stack = new Stack<object>();
             Visit(expression);
             return _stack.Peek();;
         }
@@ -122,11 +123,12 @@ namespace JJ.Framework.Reflection
             object obj = null;
             if (!field.IsStatic)
             {
-                // CHANGED!!!
-                obj = _stack.Peek();
+                obj = _stack.Pop();
             }
             object value = field.GetValue(obj);
             _stack.Push(value);
+
+            _list.Add(value);
         }
 
         protected virtual void VisitProperty(MemberExpression node)
@@ -136,11 +138,12 @@ namespace JJ.Framework.Reflection
             MethodInfo getterOrSetter = property.GetGetMethod() ?? property.GetSetMethod();
             if (!getterOrSetter.IsStatic)
             {
-                // CHANGED!!!
-                obj = _stack.Peek();
+                obj = _stack.Pop();
             }
             object value = property.GetValue(obj, null);
             _stack.Push(value);
+
+            _list.Add(value);
         }
 
         protected virtual void VisitMethodCall(MethodCallExpression node)
@@ -164,10 +167,11 @@ namespace JJ.Framework.Reflection
                 arguments[i] = _stack.Pop();
             }
 
-            // CHANGED!!!
-            object obj = _stack.Peek();
+            object obj = _stack.Pop();
             object value = node.Method.Invoke(obj, arguments);
             _stack.Push(value);
+
+            _list.Add(value);
         }
 
         protected virtual void VisitConvert(UnaryExpression node)
@@ -220,23 +224,36 @@ namespace JJ.Framework.Reflection
 
         protected virtual void VisitArrayIndex(BinaryExpression node)
         {
+            // An ArrayIndex expression is items[i], not just [i],
+            // so the full access to the array element.
+            // so the result must be the array element.
+
             var memberExpression = (MemberExpression)node.Left;
             VisitMember(memberExpression);
             var array = (Array)_stack.Pop();
 
+            int index;
             switch (node.Right.NodeType)
             {
                 case ExpressionType.Constant:
+                {
                     var constantExpression = (ConstantExpression)node.Right;
-                    int index = (int)constantExpression.Value;
-                    _stack.Push(array.GetValue(index));
+                    index = (int)constantExpression.Value;
                     break;
+                }
 
                 case ExpressionType.MemberAccess:
                     var memberExpression2 = (MemberExpression)node.Right;
                     VisitMember(memberExpression2);
+                    index = (int)_stack.Pop();
                     break;
+
+                default:
+                    throw new Exception(String.Format("ArrayIndex right side of NodeType '{0}' is not supported.", node.Right.NodeType));
             }
+
+            object arrayElement = array.GetValue(index);
+            _stack.Push(arrayElement);
         }
 
         protected virtual void VisitNewArray(NewArrayExpression node)

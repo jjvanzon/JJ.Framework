@@ -27,7 +27,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
             get { return "PropertyResult"; }
         }
 
-        private static int[] _array = { 0, 1, 2 };
+        private static int[] _array = { 10, 11, 12 };
         public static int[] Array
         {
             get { return _array; }

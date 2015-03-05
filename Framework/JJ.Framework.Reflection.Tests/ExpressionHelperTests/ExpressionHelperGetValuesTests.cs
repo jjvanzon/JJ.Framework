@@ -15,13 +15,16 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         {
             ComplexItem item = new ComplexItem();
             Expression<Func<string>> expression = () =>
-                item.Property
-                    .Method(1)
-                    .MethodWithParams(1, 2, 3)[4]
-                    .Property
-                    .Method(1)
-                    .MethodWithParams(1, 2, 3)[4]
-                    ._field;
+                item
+                .Property
+                .Method(1)
+                .MethodWithParams(1, 2, 3)
+                [4]
+                .Property
+                .Method(1)
+                .MethodWithParams(1, 2, 3)
+                [4]
+                ._field;
 
             IList<object> values = ExpressionHelper.GetValues(expression);
         }
