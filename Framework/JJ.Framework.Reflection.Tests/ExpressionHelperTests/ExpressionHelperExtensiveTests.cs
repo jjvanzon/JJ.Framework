@@ -120,39 +120,39 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         [TestMethod]
         public void Test_ExpressionHelpers_ArrayIndex()
         {
-            int[] array = { 0, 1, 2, 3 };
+            int[] array = { 10, 11, 12, 13 };
 
             Assert.AreEqual("array[2]", ExpressionHelper.GetText(() => array[2]));
-            Assert.AreEqual(2, ExpressionHelper.GetValue(() => array[2]));
+            Assert.AreEqual(12, ExpressionHelper.GetValue(() => array[2]));
         }
 
         [TestMethod]
         public void Test_ExpressionHelpers_ArrayIndex_Static()
         {
             Assert.AreEqual("StaticClass.Array[1]", ExpressionHelper.GetText(() => StaticClass.Array[1]));
-            Assert.AreEqual(1, ExpressionHelper.GetValue(() => StaticClass.Array[1]));
+            Assert.AreEqual(11, ExpressionHelper.GetValue(() => StaticClass.Array[1]));
         }
 
         [TestMethod]
         public void Test_ExpressionHelpers_ArrayIndex_Static_Generic()
         {
             Assert.AreEqual("StaticClass`1.Array[1]", ExpressionHelper.GetText(() => StaticClass<Item>.Array[1]));
-            Assert.AreEqual(1, ExpressionHelper.GetValue(() => StaticClass<Item>.Array[1]));
+            Assert.AreEqual(11, ExpressionHelper.GetValue(() => StaticClass<Item>.Array[1]));
         }
 
         [TestMethod]
         public void Test_ExpressionHelpers_ArrayIndex_Variable()
         {
-            int[] array = { 0, 1, 2 };
+            int[] array = { 10, 11, 12 };
             int i = 2;
             Assert.AreEqual("array[i]", ExpressionHelper.GetText(() => array[i]));
-            Assert.AreEqual(2, ExpressionHelper.GetValue(() => array[i]));
+            Assert.AreEqual(12, ExpressionHelper.GetValue(() => array[i]));
         }
 
         [TestMethod]
         public void Test_ExpressionHelpers_ArrayIndex_Variable_ShowIndexerValues()
         {
-            int[] array = { 0, 1, 2 };
+            int[] array = { 10, 11, 12 };
             int i = 2;
             Assert.AreEqual("array[2]", ExpressionHelper.GetText(() => array[i], true));
         }
@@ -160,7 +160,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         [TestMethod]
         public void Test_ExpressionHelpers_Indexer_ShowIndexerValues()
         {
-            var list = new List<int> { 0, 1, 2 };
+            var list = new List<int> { 10, 11, 12 };
             int i = 2;
             Assert.AreEqual("list[2]", ExpressionHelper.GetText(() => list[i], true));
         }
@@ -217,6 +217,41 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 
             Assert.AreEqual("StaticClass`1.ComplexItem.Property.Method(1).MethodWithParams(1, 2, 3)[4].Property.Method(1).MethodWithParams(1, 2, 3)[4]._field", ExpressionHelper.GetText(expression));
             Assert.AreEqual("FieldResult", ExpressionHelper.GetValue(expression));
+        }
+
+        // Newer (2015-03-05)
+
+        public int ArrayIndex { get; set; }
+
+        [TestMethod]
+        public void Test_ExpressionHelpers_ArrayIndex_Property()
+        {
+            int[] array = { 0, 1, 2 };
+            ArrayIndex = 2;
+            Assert.AreEqual("array[ArrayIndex]", ExpressionHelper.GetText(() => array[ArrayIndex]));
+            Assert.AreEqual(2, ExpressionHelper.GetValue(() => array[ArrayIndex]));
+        }
+
+        [TestMethod]
+        public void Bug_ExpressionHelpers_GetValue_Crash_Property_AfterArrayIndex()
+        {
+            Item[] items = 
+            { 
+                new Item { Name = "Item1" }, 
+                new Item { Name = "Item2" }, 
+                new Item { Name = "Item3" }, 
+            };
+
+            int i = 1;
+            Assert.AreEqual("Item2", ExpressionHelper.GetValue(() => items[i].Name));
+        }
+
+        [TestMethod]
+        public void Bug_ExpressionHelpers_GetValue_Crash_Property_AfterIndexerCall()
+        {
+            var complexItem = new ComplexItem();
+            int i = 0;
+            ExpressionHelper.GetValue(() => complexItem[i].Name);
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using JJ.Framework.Reflection;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace JJ.Framework.Validation
@@ -9,6 +11,17 @@ namespace JJ.Framework.Validation
     public class ValidationMessages : IEnumerable<ValidationMessage>
     {
         private readonly List<ValidationMessage> _list = new List<ValidationMessage>();
+
+        /// <param name="propertyKeyExpression">
+        /// Used to extract the property key.
+        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
+        /// The root of the expression is excluded from the property key, e.g. "() => MyObject.MyProperty" produces the property key "MyProperty".
+        /// </param>
+        public void Add(Expression<Func<object>> propertyKeyExpression, string message)
+        {
+            string propertyKey = PropertyKeyHelper.GetPropertyKeyFromExpression(propertyKeyExpression);
+            Add(propertyKey, message);
+        }
 
         public void Add(string propertyKey, string message)
         {
