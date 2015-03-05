@@ -1,13 +1,16 @@
 ﻿using JJ.Framework.Reflection;
+using JJ.Framework.PlatformCompatibility;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
 namespace JJ.Framework.Validation
 {
+    [DebuggerDisplay("{DebuggerDisplay}")]
     public class ValidationMessages : IEnumerable<ValidationMessage>
     {
         private readonly List<ValidationMessage> _list = new List<ValidationMessage>();
@@ -51,6 +54,14 @@ namespace JJ.Framework.Validation
         public void AddRange(IEnumerable<ValidationMessage> validationMessages)
         {
             _list.AddRange(validationMessages);
+        }
+
+        private string DebuggerDisplay
+        {
+            get
+            {
+                return String_PlatformSupport.Join(Environment.NewLine, _list.Select(x => String.Format("{0}: {1}", x.PropertyKey, x.Text)));
+            }
         }
     }
 }

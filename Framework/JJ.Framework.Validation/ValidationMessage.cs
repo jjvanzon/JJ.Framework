@@ -1,11 +1,13 @@
 ﻿using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 namespace JJ.Framework.Validation
 {
+    [DebuggerDisplay("{DebuggerDisplay}")]
     public class ValidationMessage
     {
         public string PropertyKey { get; private set; }
@@ -18,6 +20,14 @@ namespace JJ.Framework.Validation
 
             PropertyKey = propertyKey;
             Text = text;
+        }
+
+        private string DebuggerDisplay
+        {
+            get
+            {
+                return String.Format("{0}: {1}", PropertyKey, Text);
+            }
         }
     }
 }
