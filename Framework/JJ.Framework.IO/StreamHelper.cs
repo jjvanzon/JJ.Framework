@@ -17,7 +17,7 @@ namespace JJ.Framework.IO
             // Use memory stream as an intermediate, because not all Stream types support the Length property.
             using (var stream2 = new MemoryStream())
             {
-                Stream_PlatformSupport.CopyTo(stream, stream2);
+                Stream_PlatformSupport.CopyTo(stream, stream2, bufferSize);
                 return stream2.ToArray();
             }
         }
