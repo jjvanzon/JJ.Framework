@@ -17,32 +17,32 @@ namespace JJ.Framework.Persistence
             _context = context;
         }
 
-        public TEntity TryGet(TID id)
+        public virtual TEntity TryGet(TID id)
         {
             return _context.TryGet<TEntity>(id);
         }
 
-        public TEntity Get(TID id)
+        public virtual TEntity Get(TID id)
         {
             return _context.Get<TEntity>(id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return _context.GetAll<TEntity>();
         }
 
-        public TEntity Create()
+        public virtual TEntity Create()
         {
             return _context.Create<TEntity>();
         }
 
-        public void Delete(TEntity entity)
+        public virtual void Delete(TEntity entity)
         {
             _context.Delete(entity);
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             _context.Update(entity);
         }
@@ -51,12 +51,12 @@ namespace JJ.Framework.Persistence
         /// Sends pending statements to the data store but does not yet commit the transaction.
         /// This may fill in data store generated data you might require, such as ID's.
         /// </summary>
-        public void Flush()
+        public virtual void Flush()
         {
             _context.Flush();
         }
 
-        public void Commit()
+        public virtual void Commit()
         {
             _context.Commit();
         }

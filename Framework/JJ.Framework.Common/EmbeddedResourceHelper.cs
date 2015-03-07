@@ -49,7 +49,7 @@ namespace JJ.Framework.Common
         }
 
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
-        private static Stream GetEmbeddedResourceStream(Assembly assembly, string subNamespace, string fileName)
+        public static Stream GetEmbeddedResourceStream(Assembly assembly, string subNamespace, string fileName)
         {
             string resourceName = GetEmbeddedResourceName(assembly, subNamespace, fileName);
             Stream stream = assembly.GetManifestResourceStream(resourceName);

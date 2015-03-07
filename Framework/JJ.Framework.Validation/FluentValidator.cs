@@ -137,9 +137,9 @@ namespace JJ.Framework.Validation
 
             IComparable value = (IComparable)_value;
 
-            if (value.CompareTo(min) > 0)
+            if (value.CompareTo(min) < 0)
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.NotAbove(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, MessageFormatter.NotAbove(_propertyDisplayName, min));
             }
 
             return this;

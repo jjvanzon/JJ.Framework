@@ -17,9 +17,9 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(Messages.IsNot, propertyDisplayName, value);
         }
 
-        public static string NotAbove(string propertyDisplayName)
+        public static string NotAbove(string propertyDisplayName, object min)
         {
-            return String.Format(Messages.NotAbove, propertyDisplayName);
+            return String.Format(Messages.NotAbove, propertyDisplayName, min);
         }
 
         public static string IsNullOrWhiteSpace(string propertyDisplayName)
