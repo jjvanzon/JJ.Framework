@@ -43,7 +43,8 @@ namespace JJ.Framework.Validation
         {
             if (ValidationMessages.Count > 0)
             {
-                throw new Exception(ValidationMessages[0].Text);
+                string formattedMessages = String.Join(Environment.NewLine, ValidationMessages.Select(x => x.Text).ToArray());
+                throw new Exception(formattedMessages);
             }
         }
 
