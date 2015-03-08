@@ -26,6 +26,7 @@ namespace JJ.Framework.Validation
 
         /// <summary>
         /// Indicate which property value we are going to validate.
+        /// This name is used in validation messages and can best be set to a localized resource.
         /// </summary>
         /// <param name="propertyExpression">
         /// Used to extract both the value and a property key.
@@ -43,6 +44,7 @@ namespace JJ.Framework.Validation
 
         /// <summary>
         /// Indicate which property value we are going to validate.
+        /// This name is used in validation messages and can best be set to a localized resource.
         /// </summary>
         /// <param name="propertyKey">
         /// A technical key of the property we are going to validate.
