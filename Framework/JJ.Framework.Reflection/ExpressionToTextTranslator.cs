@@ -116,6 +116,14 @@ namespace JJ.Framework.Reflection
                         break;
                     }
 
+                case ExpressionType.Convert:
+                case ExpressionType.ConvertChecked:
+                    {
+                        var convertExpression2 = (UnaryExpression)node.Operand;
+                        VisitConvert(convertExpression2);
+                        break;
+                    }
+
                 default:
                     {
                         throw new ArgumentException(String.Format("Name cannot be obtained from NodeType {0}.", node.Operand.NodeType));
