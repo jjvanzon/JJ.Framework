@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.PlatformCompatibility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,9 +38,9 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(Messages.IsInteger, propertyDisplayName);
         }
 
-        public static string AtLeast(string propertyDisplayName, object min)
+        public static string Min(string propertyDisplayName, object min)
         {
-            return String.Format(Messages.AtLeast, propertyDisplayName, min);
+            return String.Format(Messages.Min, propertyDisplayName, min);
         }
 
         public static string IsNotValidEnumValue(string propertyDisplayName)
@@ -50,6 +51,18 @@ namespace JJ.Framework.Validation.Resources
         public static string CannotBe(string propertyDisplayName, object value)
         {
             return String.Format(Messages.CannotBe, propertyDisplayName, value);
+        }
+
+        public static string Max(string propertyDisplayName, object max)
+        {
+            return String.Format(Messages.Max, propertyDisplayName, max);
+        }
+
+        public static string NotIn(string propertyDisplayName, object value, object[] possibleValues)
+        {
+            string joined = String_PlatformSupport.Join(", ", possibleValues);
+            string message = String.Format(Messages.NotIn, propertyDisplayName, joined);
+            return message;
         }
     }
 }

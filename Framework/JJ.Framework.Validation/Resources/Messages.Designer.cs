@@ -61,15 +61,6 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} must be at least {1}..
-        /// </summary>
-        internal static string AtLeast {
-            get {
-                return ResourceManager.GetString("AtLeast", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} cannot be {1}..
         /// </summary>
         internal static string CannotBe {
@@ -133,11 +124,49 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} can be at most {1}..
+        /// </summary>
+        internal static string Max {
+            get {
+                return ResourceManager.GetString("Max", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} must be at least {1}..
+        /// </summary>
+        internal static string Min {
+            get {
+                return ResourceManager.GetString("Min", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not above {1}..
         /// </summary>
         internal static string NotAbove {
             get {
                 return ResourceManager.GetString("NotAbove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not in {1}..
+        /// </summary>
+        internal static string NotIn {
+            get {
+                return ResourceManager.GetString("NotIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to THIS IS NOT A RESOURCE TEXT, but an instruction to programmers.
+        ///The default language is not &quot;en-US&quot;, but something you could call &quot;en-US-tech&quot;.
+        ///These messages are more technical, but more exact too, and might be something you want to use for exception messages..
+        /// </summary>
+        internal static string README {
+            get {
+                return ResourceManager.GetString("README", resourceCulture);
             }
         }
     }

@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AtLeast" xml:space="preserve">
-    <value>{0} must be at least {1}.</value>
-    <comment>{0} = property name, {1} = minimum value</comment>
-  </data>
   <data name="CannotBe" xml:space="preserve">
     <value>{0} cannot be {1}.</value>
     <comment>{0} = property name, {1} = value</comment>
@@ -149,8 +145,20 @@
     <value>{0} is required.</value>
     <comment>{0} = property name</comment>
   </data>
+  <data name="Max" xml:space="preserve">
+    <value>{0} can be at most {1}.</value>
+    <comment>{0} = property name, {1} = minimum value</comment>
+  </data>
+  <data name="Min" xml:space="preserve">
+    <value>{0} must be at least {1}.</value>
+    <comment>{0} = property name, {1} = minimum value</comment>
+  </data>
   <data name="NotAbove" xml:space="preserve">
     <value>{0} is not above {1}.</value>
     <comment>{0} = property name, {1} = minimum value</comment>
+  </data>
+  <data name="NotIn" xml:space="preserve">
+    <value>{0} should have one of the values: {1}.</value>
+    <comment>{0} = property name, {1} = allowed values</comment>
   </data>
 </root>

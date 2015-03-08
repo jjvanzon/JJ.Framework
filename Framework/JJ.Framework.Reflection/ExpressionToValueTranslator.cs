@@ -193,7 +193,14 @@ namespace JJ.Framework.Reflection
                     break;
 
                 case ExpressionType.Constant:
+                    // TODO: Looks wrong. Should this not be node.Operand?
                     VisitConstant(node);
+                    break;
+
+                case ExpressionType.Convert:
+                case ExpressionType.ConvertChecked:
+                    var convertExpression2 = (UnaryExpression)node.Operand;
+                    VisitConvert(convertExpression2);
                     break;
 
                 default:

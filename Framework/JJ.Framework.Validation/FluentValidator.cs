@@ -71,6 +71,8 @@ namespace JJ.Framework.Validation
             return this;
         }
 
+        // Nullability
+
         public FluentValidator<TRootObject> NotNull()
         {
             if (_value == null)
@@ -93,9 +95,31 @@ namespace JJ.Framework.Validation
             return this;
         }
 
+        // Equation
+
+        public FluentValidator<TRootObject> In(params object[] possibleValues)
+        {
+            if (possibleValues == null) throw new NullException(() => possibleValues);
+
+            string convertedValue = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(convertedValue))
+            {
+                return this;
+            }
+
+            bool isAllowed = possibleValues.Where(x => Equals(x, _value)).Any();
+
+            if (!isAllowed)
+            {
+                ValidationMessages.Add(_propertyKey, MessageFormatter.NotIn(_propertyDisplayName, _value, possibleValues));
+            }
+
+            return this;
+        }
+
         public FluentValidator<TRootObject> Is<TValue>(TValue value)
         {
-            // TODO: The conversion to string seems weird here.
             string convertedValue = Convert.ToString(_value);
 
             if (String.IsNullOrEmpty(convertedValue))
@@ -129,6 +153,18 @@ namespace JJ.Framework.Validation
             return this;
         }
 
+        public FluentValidator<TRootObject> NotZero()
+        {
+            if (Equals(_value, 0))
+            {
+                ValidationMessages.Add(_propertyKey, MessageFormatter.IsZero(_propertyDisplayName));
+            }
+
+            return this;
+        }
+
+        // Comparison
+
         public FluentValidator<TRootObject> Above<TValue>(TValue min)
             where TValue : IComparable
         {
@@ -139,7 +175,7 @@ namespace JJ.Framework.Validation
 
             IComparable value = (IComparable)_value;
 
-            if (value.CompareTo(min) < 0)
+            if (value.CompareTo(min) <= 0)
             {
                 ValidationMessages.Add(_propertyKey, MessageFormatter.NotAbove(_propertyDisplayName, min));
             }
@@ -147,7 +183,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator<TRootObject> AtLeast<TValue>(TValue min)
+        public FluentValidator<TRootObject> Min<TValue>(TValue min)
             where TValue : IComparable
         {
             if (_value == null)
@@ -159,21 +195,31 @@ namespace JJ.Framework.Validation
 
             if (value.CompareTo(min) < 0)
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.AtLeast(_propertyDisplayName, min));
+                ValidationMessages.Add(_propertyKey, MessageFormatter.Min(_propertyDisplayName, min));
             }
 
             return this;
         }
 
-        public FluentValidator<TRootObject> NotZero()
+        public FluentValidator<TRootObject> Max<TValue>(TValue max)
+            where TValue : IComparable
         {
-            if (Equals(_value, 0))
+            if (_value == null)
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.IsZero(_propertyDisplayName));
+                return this;
+            }
+
+            IComparable value = (IComparable)_value;
+
+            if (value.CompareTo(max) > 0)
+            {
+                ValidationMessages.Add(_propertyKey, MessageFormatter.Max(_propertyDisplayName, max));
             }
 
             return this;
         }
+
+        // Type checks
 
         public FluentValidator<TRootObject> NotInteger()
         {
