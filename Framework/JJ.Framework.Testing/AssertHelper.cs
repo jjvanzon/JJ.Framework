@@ -1,5 +1,4 @@
 ﻿using JJ.Framework.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +43,7 @@ namespace JJ.Framework.Testing
                 string name = ExpressionHelper.GetText(bExpresion);
                 string message = TestHelper.FormatTestedPropertyMessage(name);
                 string fullMessage = GetNotEqualFailedMessage(a, b, message);
-                throw new AssertFailedException(fullMessage);
+                throw new Exception(fullMessage);
             }
         }
 
@@ -107,11 +106,11 @@ namespace JJ.Framework.Testing
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(expectedMessage, ex.Message);
+                AreEqual(expectedMessage, () => ex.Message);
                 return;
             }
 
-            Assert.Fail("An exception should have been raised.");
+            throw new Exception("An exception should have been raised.");
         }
 
         public static void ThrowsException(Action statement, Type exceptionType)
@@ -122,11 +121,11 @@ namespace JJ.Framework.Testing
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(exceptionType, ex.GetType());
+                AreEqual(exceptionType, () => ex.GetType());
                 return;
             }
 
-            Assert.Fail("An exception should have been raised.");
+            throw new Exception("An exception should have been raised.");
         }
 
         public static void ThrowsException(Action statement, Type exceptionType, string expectedMessage)
@@ -137,12 +136,12 @@ namespace JJ.Framework.Testing
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(exceptionType, ex.GetType());
-                Assert.AreEqual(expectedMessage, ex.Message);
+                AreEqual(exceptionType, () => ex.GetType());
+                AreEqual(expectedMessage, () => ex.Message);
                 return;
             }
 
-            Assert.Fail("An exception should have been raised.");
+            throw new Exception("An exception should have been raised.");
         }
 
         public static void ThrowsException<ExceptionType>(Action statement)
@@ -177,7 +176,7 @@ namespace JJ.Framework.Testing
 
             if (!exceptionWasThrown)
             {
-                Assert.Fail("An exception should have been raised.");
+                throw new Exception("An exception should have been raised.");
             }
         }
 
@@ -188,7 +187,7 @@ namespace JJ.Framework.Testing
             if (!condition)
             {
                 string fullMessage = GetExpectedActualMessage(methodName, expected, actual, message);
-                throw new AssertFailedException(fullMessage);
+                throw new Exception(fullMessage);
             }
         }
 
@@ -200,7 +199,7 @@ namespace JJ.Framework.Testing
                 string name = ExpressionHelper.GetText(actualExpression);
                 string message = TestHelper.FormatTestedPropertyMessage(name);
                 string fullMessage = GetExpectedActualMessage(methodName, expected, actual, message);
-                throw new AssertFailedException(fullMessage);
+                throw new Exception(fullMessage);
             }
         }
 
@@ -209,7 +208,7 @@ namespace JJ.Framework.Testing
             if (!condition)
             {
                 string fullMessage = GetFailureMessage(methodName, message);
-                throw new AssertFailedException(fullMessage);
+                throw new Exception(fullMessage);
             }
         }
 
@@ -221,7 +220,7 @@ namespace JJ.Framework.Testing
                 string name = ExpressionHelper.GetText(expression);
                 string message = TestHelper.FormatTestedPropertyMessage(name);
                 string fullMessage = GetFailureMessage(methodName, message);
-                throw new AssertFailedException(fullMessage);
+                throw new Exception(fullMessage);
             }
         }
 
