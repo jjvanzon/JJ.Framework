@@ -35,11 +35,13 @@ namespace JJ.Framework.Persistence.Memory.Internal
         public TEntity Create()
         {
             TEntity entity = new TEntity();
-            object id = GetNewIdentity();
-            SetIDOfEntity(entity, id);
+            lock (_lock)
+            {
+                object id = GetNewIdentity();
+                SetIDOfEntity(entity, id);
 
-            _dictionary.Add(id, entity);
-
+                _dictionary.Add(id, entity);
+            }
             return entity;
         }
 
