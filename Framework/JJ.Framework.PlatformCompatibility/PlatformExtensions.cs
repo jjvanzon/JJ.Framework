@@ -9,11 +9,17 @@ using System.Xml.Linq;
 
 namespace JJ.Framework.PlatformCompatibility
 {
+    /// <summary>
+    /// This class provides various alternatives to parts of .NET that do not work on certain platforms.
+    /// It exists as extension methods that become visible in intellisense if you try to access
+    /// a platform-unsafe member.
+    /// It also exists as a helper to get immediate overview over various platform compatibility issues.
+    /// </summary>
     public static class PlatformExtensions
     {
         /// <summary>
         /// Windows Phone / Unity compatibility:
-        /// Don't switch on MemberInfo.MemberType. It produced a strange exception when deployed to Windows Phone using Unity:
+        /// Don't switch on MemberInfo.MemberType. It produced a strange exception when deployed to Windows Phone 8 using Unity 4.3.4:
         /// "Method not found: 'System.Reflection.MemberTypes".
         /// Use 'is PropertyInfo' and such or call this method instead.
         /// </summary>

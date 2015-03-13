@@ -11,6 +11,9 @@ namespace JJ.Framework.PlatformCompatibility
 {
     /// <summary>
     /// This class provides various alternatives to parts of .NET that do not work on certain platforms.
+    /// It exists as a helper to get immediate overview over various platform compatibility issues.
+    /// It also exists as extension methods that become visible in intellisense if you try to access
+    /// a platform-unsafe member.
     /// </summary>
     public static class PlatformHelper
     {
