@@ -88,6 +88,15 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is not null..
+        /// </summary>
+        internal static string IsNotNull {
+            get {
+                return ResourceManager.GetString("IsNotNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} does not have a valid value..
         /// </summary>
         internal static string IsNotValidEnumValue {

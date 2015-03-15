@@ -13,6 +13,11 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(Messages.IsNull, propertyDisplayName);
         }
 
+        internal static string IsNotNull(string propertyDisplayName)
+        {
+            return String.Format(Messages.IsNotNull, propertyDisplayName);
+        }
+
         public static string IsNot(string propertyDisplayName, object value)
         {
             return String.Format(Messages.IsNot, propertyDisplayName, value);

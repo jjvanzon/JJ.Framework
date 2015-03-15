@@ -95,6 +95,16 @@ namespace JJ.Framework.Validation
             return this;
         }
 
+        public FluentValidator<TRootObject> IsNull()
+        {
+            if (_value != null)
+            {
+                ValidationMessages.Add(_propertyKey, MessageFormatter.IsNotNull(_propertyDisplayName));
+            }
+
+            return this;
+        }
+
         // Equation
 
         public FluentValidator<TRootObject> In(params object[] possibleValues)

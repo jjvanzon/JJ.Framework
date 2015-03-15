@@ -129,6 +129,10 @@
     <value>{0} is not {1}.</value>
     <comment>{0} = property name, {1} = specific value</comment>
   </data>
+  <data name="IsNotNull" xml:space="preserve">
+    <value>{0} is not null.</value>
+    <comment>{0} = property name</comment>
+  </data>
   <data name="IsNotValidEnumValue" xml:space="preserve">
     <value>{0} does not have a valid value.</value>
     <comment>{0} = property name</comment>
