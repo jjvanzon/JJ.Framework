@@ -18,6 +18,19 @@ namespace JJ.Framework.Persistence
         /// The repository implementation must have a constructor that takes a single paramter of type IContext.
         /// </summary>
         /// <typeparam name="TRepositoryInterface">The repository interface type.</typeparam>
+        public static TRepositoryInterface CreateRepositoryFromConfiguration<TRepositoryInterface>(IContext context, PersistenceConfiguration configuration)
+        {
+            if (configuration == null) throw new NullException(() => configuration);
+            return RepositoryFactory.CreateRepository<TRepositoryInterface>(context, configuration.RepositoryAssemblies);
+        }
+
+        /// <summary>
+        /// Creates a context using the values out of the config file.
+        /// A configuration example can be found in your bin directory.
+        /// The repository implementation should be present in one of the repository assemblies mentioned in the config file.
+        /// The repository implementation must have a constructor that takes a single paramter of type IContext.
+        /// </summary>
+        /// <typeparam name="TRepositoryInterface">The repository interface type.</typeparam>
         public static TRepositoryInterface CreateRepositoryFromConfiguration<TRepositoryInterface>(IContext context)
         {
             PersistenceConfiguration configuration = PersistenceConfigurationHelper.GetPersistenceConfiguration();
