@@ -10,12 +10,6 @@ namespace JJ.Framework.IO
 {
     public static class BinaryWriterExtensions
     {
-        /// <summary>
-        /// In other languages / environments I used to be able to write a struct directly to a file.
-        /// And in C# I can't. It is just a set of freaking bytes
-        /// litterly stored in memory and it needs to be streamed to a file. 
-        /// Why are things like that not possible using a BinaryWriter?!?
-        /// </summary>
         public static void WriteStruct<T>(this BinaryWriter writer, T strct)
             where T : struct
         {
@@ -28,11 +22,6 @@ namespace JJ.Framework.IO
         }
         
         /// <summary>
-        /// In other languages / environments I used to be able to write a struct directly to a file.
-        /// And in C# I can't. It is just a set of freaking bytes
-        /// litterly stored in memory and it needs to be streamed to a file. 
-        /// Why are things like that not possible using a BinaryWriter?!?
-        /// 
         /// Beware that the performance might not be better than reading the values one by one.
         /// </summary>
         public static T ReadStruct<T>(this BinaryReader reader)
