@@ -7,7 +7,7 @@ namespace JJ.Framework.Persistence
 {
     /// <summary>
     /// Provides some constants for different dialects,
-    /// even though it is a free and each implementation of 
+    /// even though it is a free text and each implementation of 
     /// IContext can have use its own dialect string values.
     /// </summary>
     public class DialectNames

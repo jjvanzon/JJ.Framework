@@ -13,6 +13,7 @@ namespace JJ.Framework.Presentation.Mvc
             IList<KeyValuePair<string, ModelState>> entriesToRemove = modelStateDictionary.Where(x => x.Value.Errors.Count > 0).ToArray();
             foreach (KeyValuePair<string, ModelState> entryToRemove in entriesToRemove)
             {
+                // TODO: Should I just remove the error, or the whole entry like this?
                 modelStateDictionary.Remove(entryToRemove);
             }
         }
