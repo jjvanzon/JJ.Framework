@@ -158,6 +158,5 @@ namespace JJ.Framework.Xml
             XmlAttribute xmlAttribute = (XmlAttribute)XmlHelper.SelectNode(element, xpath);
             xmlAttribute.Value = value;
         }
-
     }
 }

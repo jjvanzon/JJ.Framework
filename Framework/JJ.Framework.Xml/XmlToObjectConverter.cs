@@ -47,6 +47,9 @@ namespace JJ.Framework.Xml
     public class XmlToObjectConverter<TDestObject>
         where TDestObject: new()
     {
+
+        private static ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
+
         /// <summary>
         /// Converts an XML structure to an object tree.
         /// 
@@ -114,7 +117,7 @@ namespace JJ.Framework.Xml
         /// </summary>
         private void ConvertProperties(XmlElement sourceParentElement, object destParentObject)
         {
-            foreach (PropertyInfo destProperty in StaticReflectionCache.GetProperties(destParentObject.GetType()))
+            foreach (PropertyInfo destProperty in _reflectionCache.GetProperties(destParentObject.GetType()))
             {
                 ConvertProperty(sourceParentElement, destParentObject, destProperty);
             }
