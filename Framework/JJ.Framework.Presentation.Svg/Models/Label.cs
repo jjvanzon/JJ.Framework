@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Presentation.Svg.Models
 {
-    public class Label
+    public class Label : ElementBase
     {
         public HorizontalAlignmentEnum HorizontalAlignment { get; set; }
         public VerticalAlignmentEnum VerticalAlignment { get; set; }
@@ -25,7 +25,7 @@ namespace JJ.Framework.Presentation.Svg.Models
             }
         }
 
-        public Font _font = new Font();
+        private Font _font = new Font();
         public Font Font
         {
             get { return _font; }
@@ -34,6 +34,16 @@ namespace JJ.Framework.Presentation.Svg.Models
                 if (value == null) throw new NullException(() => value);
                 _font = value;
             }
+        }
+
+        public override float CenterX
+        {
+            get { return _rectangle.CenterX; }
+        }
+
+        public override float CenterY
+        {
+            get { return _rectangle.CenterY; }
         }
     }
 }

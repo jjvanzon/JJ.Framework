@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Presentation.WinForms.TestForms
 {
-    partial class TestForm
+    partial class HelloWorldTestForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,14 +39,13 @@
             this.diagramControl1.Size = new System.Drawing.Size(519, 423);
             this.diagramControl1.TabIndex = 0;
             // 
-            // TestForm
+            // HelloWorldTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(519, 423);
             this.Controls.Add(this.diagramControl1);
-            this.Name = "TestForm";
-            this.Text = "JJ.Framework.Presentation.WinForms.TestForms.TestForm";
+            this.Name = "HelloWorldTestForm";
             this.Shown += new System.EventHandler(this.TestForm_Shown);
             this.Resize += new System.EventHandler(this.TestForm_Resize);
             this.ResumeLayout(false);

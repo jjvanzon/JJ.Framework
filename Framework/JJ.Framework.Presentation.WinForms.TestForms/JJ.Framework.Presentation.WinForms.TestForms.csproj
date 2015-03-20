@@ -38,14 +38,23 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestForm.cs">
+    <Compile Include="HierarchyTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestForm.Designer.cs">
-      <DependentUpon>TestForm.cs</DependentUpon>
+    <Compile Include="HierarchyTestForm.Designer.cs">
+      <DependentUpon>HierarchyTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HelloWorldTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelloWorldTestForm.Designer.cs">
+      <DependentUpon>HelloWorldTestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="HierarchyTestForm.resx">
+      <DependentUpon>HierarchyTestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -55,8 +64,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TestForm.resx">
-      <DependentUpon>TestForm.cs</DependentUpon>
+    <EmbeddedResource Include="HelloWorldTestForm.resx">
+      <DependentUpon>HelloWorldTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

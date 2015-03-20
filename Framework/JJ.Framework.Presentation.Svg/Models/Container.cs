@@ -6,21 +6,18 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Presentation.Svg.Models
 {
-    public class Rectangle : ElementBase
+    public class Container : ElementBase
     {
-        public float X { get; set; }
-        public float Y { get; set; }
-        public float Width { get; set; }
-        public float Height { get; set; }
+        // TODO: Return something other than 0 for the Center coordinates?
 
         public override float CenterX
         {
-            get { return X + Width / 2; }
+            get { return 0; }
         }
 
         public override float CenterY
         {
-            get { return Y + Height / 2; }
+            get { return 0; }
         }
     }
 }

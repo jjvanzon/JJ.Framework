@@ -10,11 +10,11 @@ using SvgModels = JJ.Framework.Presentation.Svg.Models;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {
-    public partial class TestForm : Form
+    public partial class HelloWorldTestForm : Form
     {
-        SvgModel _svgModel;
+        ElementBase _svgModel;
 
-        public TestForm()
+        public HelloWorldTestForm()
         {
             InitializeComponent();
             Initialize();
@@ -22,18 +22,25 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
         private void Initialize()
         {
-            _svgModel = new SvgModel();
-            _svgModel.Labels.Add(new SvgModels.Label
-            { 
-                Text = "Hello World!",
-                Rectangle = new Rectangle 
-                { 
-                    X = 10, 
-                    Y = 20, 
-                    Width = 500, 
-                    Height = 100
+            Text = this.GetType().FullName;
+
+            _svgModel = new SvgModels.Container
+            {
+                ChildLabels = new SvgModels.Label[]
+                {
+                    new SvgModels.Label
+                    { 
+                        Text = "Hello World!",
+                        Rectangle = new Rectangle 
+                        { 
+                            X = 10,
+                            Y = 20,
+                            Width = 500,
+                            Height = 100
+                        }
+                    }
                 }
-            });
+            };
         }
 
         private void TestForm_Resize(object sender, EventArgs e)
