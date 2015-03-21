@@ -12,10 +12,19 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     /// </summary>
     public abstract class ElementBase
     {
+        public ElementBase()
+        {
+            Visible = true;
+        }
+
         public abstract float X { get; set; }
         public abstract float Y { get; set; }
 
+        public bool Visible { get; set; }
+
         private IList<Point> _childPoints = new List<Point>();
+
+        /// <summary> not nullable, auto-instantiated </summary>
         public IList<Point> ChildPoints
         {
             get { return _childPoints; }
@@ -27,6 +36,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private IList<Line> _childLines = new List<Line>();
+
+        /// <summary> not nullable, auto-instantiated </summary>
         public IList<Line> ChildLines
         {
             get { return _childLines; }
@@ -38,6 +49,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private IList<Rectangle> _childRectangles = new List<Rectangle>();
+
+        /// <summary> not nullable, auto-instantiated </summary>
         public IList<Rectangle> ChildRectangles
         {
             get { return _childRectangles; }
@@ -49,6 +62,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private IList<Label> _childLabels = new List<Label>();
+
+        /// <summary> not nullable, auto-instantiated </summary>
         public IList<Label> ChildLabels
         {
             get { return _childLabels; }

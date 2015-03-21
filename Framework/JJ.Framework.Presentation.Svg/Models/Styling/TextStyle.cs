@@ -25,6 +25,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Styling
         public VerticalAlignmentEnum VerticalAlignmentEnum { get; set; }
 
         private Font _font = new Font();
+        /// <summary>
+        /// not nullable, auto-instantiated
+        /// </summary>
         public Font Font
         {
             get { return _font; }

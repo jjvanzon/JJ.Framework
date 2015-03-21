@@ -47,7 +47,8 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawBackground(SvgElements.Container sourceContainer, Graphics destGraphics)
         {
-            if (sourceContainer.BackStyle.Visible)
+            if (sourceContainer.Visible &&
+                sourceContainer.BackStyle.Visible)
             {
                 Color destBackColor = sourceContainer.BackStyle.Color.ToSystemDrawing();
                 destGraphics.Clear(destBackColor);
@@ -56,7 +57,8 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawPoint(SvgElements.Point sourcePoint, Graphics destGraphics)
         {
-            if (sourcePoint.PointStyle.Visible)
+            if (sourcePoint.Visible &&
+                sourcePoint.PointStyle.Visible)
             {
                 RectangleF destRectangle = sourcePoint.ToSystemDrawingRectangleF();
                 Brush destBrush = sourcePoint.PointStyle.ToSystemDrawingBrush();
@@ -67,7 +69,8 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawLine(SvgElements.Line sourceLine, Graphics destGraphics)
         {
-            if (sourceLine.LineStyle.Visible)
+            if (sourceLine.Visible &&
+                sourceLine.LineStyle.Visible)
             {
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destPen, sourceLine.PointA.X, sourceLine.PointA.Y, sourceLine.PointB.X, sourceLine.PointB.Y);
@@ -76,6 +79,11 @@ namespace JJ.Framework.Presentation.Drawing
         
         private static void DrawRectangle(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
+            if (!sourceRectangle.Visible)
+            {
+                return;
+            }
+
             // Draw Back
             if (sourceRectangle.BackStyle.Visible)
             {
@@ -129,6 +137,11 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawLabel(SvgElements.Label sourceLabel, Graphics destGraphics)
         {
+            if (!sourceLabel.Visible)
+            {
+                return;
+            }
+
             StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
             System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
             RectangleF destRectangle = new RectangleF(sourceLabel.Rectangle.X, sourceLabel.Rectangle.Y, sourceLabel.Rectangle.Width, sourceLabel.Rectangle.Height);

@@ -28,9 +28,6 @@ namespace JJ.Framework.Presentation.WinForms
         {
             SvgDrawer.Draw(svgContainer, _graphicsBuffer.Graphics);
             _graphicsBuffer.DrawBuffer();
-
-            // Temporary (2015-03-21) for debugging.
-            //SvgDrawer.Draw(svgContainer, this.CreateGraphics());
         }
     }
 }

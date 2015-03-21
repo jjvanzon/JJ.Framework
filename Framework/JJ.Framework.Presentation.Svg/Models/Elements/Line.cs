@@ -11,6 +11,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     {
         private Point _pointA = new Point();
         /// <summary>
+        /// Not nullable, auto-instantiated.
         /// Coordinates of the point are related to the Label's parent.
         /// </summary>
         public Point PointA 
@@ -25,6 +26,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         private Point _pointB = new Point();
         /// <summary>
+        /// Not nullable, auto-instantiated.
         /// Coordinates of the point are related to the Label's parent.
         /// </summary>
         public Point PointB
@@ -38,6 +40,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private LineStyle _lineStyle = new LineStyle();
+        /// <summary> not nullable, auto-instantiated </summary>
         public LineStyle LineStyle
         {
             get { return _lineStyle; }

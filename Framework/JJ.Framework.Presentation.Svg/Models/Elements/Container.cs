@@ -24,6 +24,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private BackStyle _backStyle = new BackStyle();
+        /// <summary> not nullable, auto-instantiated </summary>
         public BackStyle BackStyle
         {
             get { return _backStyle; }

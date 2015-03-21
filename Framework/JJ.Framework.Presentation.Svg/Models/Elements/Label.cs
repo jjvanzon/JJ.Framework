@@ -13,6 +13,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         public string Text { get; set; }
 
         private Rectangle _rectangle = new Rectangle();
+        /// <summary> not nullable, auto-instantiated </summary>
         public Rectangle Rectangle
         {
             get { return _rectangle; }
@@ -24,6 +25,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private TextStyle _textStyle = new TextStyle();
+        /// <summary> not nullable, auto-instantiated </summary>
         public TextStyle TextStyle
         {
             get { return _textStyle; }

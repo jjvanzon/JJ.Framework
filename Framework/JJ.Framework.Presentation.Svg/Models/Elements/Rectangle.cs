@@ -15,6 +15,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         public float Height { get; set; }
 
         private BackStyle _backStyle = new BackStyle();
+        /// <summary> not nullable, auto-instantiated </summary>
         public BackStyle BackStyle
         {
             get { return _backStyle; }
@@ -26,6 +27,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private LineStyle _topLineStyle = new LineStyle();
+        /// <summary> not nullable, auto-instantiated </summary>
         public LineStyle TopLineStyle
         {
             get { return _topLineStyle; }
@@ -37,6 +39,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private LineStyle _rightLineStyle = new LineStyle();
+        /// <summary> not nullable, auto-instantiated </summary>
         public LineStyle RightLineStyle
         {
             get { return _rightLineStyle; }
@@ -48,6 +51,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private LineStyle _bottomLineStyle = new LineStyle();
+        /// <summary> not nullable, auto-instantiated </summary>
         public LineStyle BottomLineStyle
         {
             get { return _bottomLineStyle; }
@@ -59,6 +63,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private LineStyle _leftLineStyle = new LineStyle();
+        /// <summary> not nullable, auto-instantiated </summary>
         public LineStyle LeftLineStyle
         {
             get { return _leftLineStyle; }
@@ -72,7 +77,6 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// <summary>
         /// Sets the style of all 4 lines at the same time.
         /// </summary>
-        /// <param name="lineStyle"></param>
         public void SetLineStyle(LineStyle lineStyle)
         {
             TopLineStyle = lineStyle;
@@ -84,7 +88,6 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// <summary>
         /// Return a single LineStyle in case all border lines have the same style.
         /// </summary>
-        /// <returns></returns>
         public LineStyle TryGetLineStyle()
         {
             if (TopLineStyle == RightLineStyle &&
