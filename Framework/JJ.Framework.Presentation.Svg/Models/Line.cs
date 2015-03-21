@@ -37,14 +37,26 @@ namespace JJ.Framework.Presentation.Svg.Models
             }
         }
 
-        public override float CenterX
+        public override float X
         {
-            get { return (_pointA.X + _pointB.X) / 2; }
+            get { return Math.Min(_pointA.X, _pointB.X); }
+            set
+            {
+                float dx = _pointB.X - _pointA.X;
+                _pointA.X = value;
+                _pointB.X = _pointA.X + dx;
+            }
         }
 
-        public override float CenterY
+        public override float Y
         {
-            get { return (_pointA.Y + _pointB.Y) / 2; }
+            get { return Math.Min(_pointA.Y, _pointB.Y); }
+            set
+            {
+                float dy = _pointB.Y - _pointA.Y;
+                _pointA.Y = value;
+                _pointB.Y = _pointA.Y + dy;
+            }
         }
     }
 }

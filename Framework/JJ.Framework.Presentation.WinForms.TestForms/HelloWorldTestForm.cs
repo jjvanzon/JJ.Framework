@@ -43,12 +43,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             };
         }
 
-        private void TestForm_Resize(object sender, EventArgs e)
-        {
-            diagramControl1.Draw(_svgModel);
-        }
-
-        private void TestForm_Shown(object sender, EventArgs e)
+        private void HelloWorldTestForm_Paint(object sender, PaintEventArgs e)
         {
             diagramControl1.Draw(_svgModel);
         }

@@ -10,14 +10,16 @@ namespace JJ.Framework.Presentation.Svg.Models
     {
         // TODO: Return something other than 0 for the Center coordinates?
 
-        public override float CenterX
+        public override float X
         {
             get { return 0; }
+            set { throw new NotSupportedException(); }
         }
 
-        public override float CenterY
+        public override float Y
         {
             get { return 0; }
+            set { throw new NotSupportedException(); }
         }
     }
 }

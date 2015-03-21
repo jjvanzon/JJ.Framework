@@ -39,13 +39,13 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
         protected override void VisitChildren(ElementBase parentElement)
         {
-            _currentParentCenterX += parentElement.CenterX;
-            _currentParentCenterY += parentElement.CenterY;
+            _currentParentCenterX += parentElement.X;
+            _currentParentCenterY += parentElement.Y;
 
             base.VisitChildren(parentElement);
 
-            _currentParentCenterX -= parentElement.CenterX;
-            _currentParentCenterY -= parentElement.CenterY;
+            _currentParentCenterX -= parentElement.X;
+            _currentParentCenterY -= parentElement.Y;
         }
 
         protected override void VisitPoint(Point point)
@@ -124,8 +124,8 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             destRectangle = new Rectangle
             {
-                X = sourceRectangle.CenterX + _currentParentCenterX,
-                Y = sourceRectangle.CenterY + _currentParentCenterY,
+                X = sourceRectangle.X + _currentParentCenterX,
+                Y = sourceRectangle.Y + _currentParentCenterY,
                 Width = sourceRectangle.Width,
                 Height = sourceRectangle.Height
             };

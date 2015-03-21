@@ -13,8 +13,8 @@ namespace JJ.Framework.Presentation.Svg.Models
     /// </summary>
     public abstract class ElementBase
     {
-        public abstract float CenterX { get; }
-        public abstract float CenterY { get; }
+        public abstract float X { get; set; }
+        public abstract float Y { get; set; }
 
         private IList<Point> _childPoints = new List<Point>();
         public IList<Point> ChildPoints

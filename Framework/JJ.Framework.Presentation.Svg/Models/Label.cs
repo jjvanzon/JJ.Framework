@@ -36,14 +36,16 @@ namespace JJ.Framework.Presentation.Svg.Models
             }
         }
 
-        public override float CenterX
+        public override float X
         {
-            get { return _rectangle.CenterX; }
+            get { return _rectangle.X; }
+            set { _rectangle.X = value; }
         }
 
-        public override float CenterY
+        public override float Y
         {
-            get { return _rectangle.CenterY; }
+            get { return _rectangle.Y; }
+            set { _rectangle.Y = value; }
         }
     }
 }

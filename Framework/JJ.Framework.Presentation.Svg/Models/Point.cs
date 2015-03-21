@@ -10,18 +10,8 @@ namespace JJ.Framework.Presentation.Svg.Models
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Point : ElementBase
     {
-        public float X { get; set; }
-        public float Y { get; set; }
-
-        public override float CenterX
-        {
-            get { return X; }
-        }
-
-        public override float CenterY
-        {
-            get { return Y; }
-        }
+        public override float X { get; set; }
+        public override float Y { get; set; }
 
         private string DebuggerDisplay
         {

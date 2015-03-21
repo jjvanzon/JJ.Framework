@@ -39,7 +39,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                         {
                             new SvgModel.Label
                             {
-                                Rectangle = new Rectangle { X = -150, Y = -30, Width = 300, Height = 60 },
+                                Rectangle = new Rectangle { Width = 300, Height = 60 },
                                 Text = "Block 1",
                                 HorizontalAlignment = HorizontalAlignmentEnum.Center,
                                 VerticalAlignment = VerticalAlignmentEnum.Center
@@ -56,7 +56,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                         {
                             new SvgModel.Label
                             {
-                                Rectangle = new Rectangle { X = -150, Y = -30, Width = 300, Height = 60 },
+                                Rectangle = new Rectangle { Width = 300, Height = 60 },
                                 Text = "Block 2",
                                 HorizontalAlignment = HorizontalAlignmentEnum.Center,
                                 VerticalAlignment = VerticalAlignmentEnum.Center
@@ -65,16 +65,6 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                     }
                 }
             };
-        }
-
-        private void TestForm_Resize(object sender, EventArgs e)
-        {
-            //diagramControl1.Draw(_svgModel);
-        }
-
-        private void TestForm_Shown(object sender, EventArgs e)
-        {
-            //diagramControl1.Draw(_svgModel);
         }
 
         private void HierarchyTestForm_Paint(object sender, PaintEventArgs e)

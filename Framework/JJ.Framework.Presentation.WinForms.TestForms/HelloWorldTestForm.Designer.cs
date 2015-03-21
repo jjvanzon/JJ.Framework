@@ -46,8 +46,7 @@
             this.ClientSize = new System.Drawing.Size(519, 423);
             this.Controls.Add(this.diagramControl1);
             this.Name = "HelloWorldTestForm";
-            this.Shown += new System.EventHandler(this.TestForm_Shown);
-            this.Resize += new System.EventHandler(this.TestForm_Resize);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.HelloWorldTestForm_Paint);
             this.ResumeLayout(false);
 
         }
