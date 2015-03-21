@@ -1,5 +1,7 @@
 ﻿using JJ.Framework.Presentation.Svg.Enums;
 using JJ.Framework.Presentation.Svg.Models;
+using JJ.Framework.Presentation.Svg.Models.Styling;
+using JJ.Framework.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,13 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SvgModel = JJ.Framework.Presentation.Svg.Models;
+using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {
     public partial class HierarchyTestForm : Form
     {
-        ElementBase _svgModel;
+        SvgElements.Container _svgModel;
 
         public HierarchyTestForm()
         {
@@ -25,51 +27,76 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Text = this.GetType().FullName;
 
-            _svgModel = new SvgModel.Container
+            _svgModel = new SvgElements.Container
             {
-                ChildRectangles = new SvgModel.Rectangle[]
+                ChildRectangles = new SvgElements.Rectangle[]
                 {
-                    new SvgModel.Rectangle
+                    //CreateRectangle(200, 10, "Block 1")
+                    new SvgElements.Rectangle
                     {
                         X = 200,
                         Y = 10,
                         Width = 300,
                         Height = 60,
-                        ChildLabels = new SvgModel.Label[]
+                        ChildLabels = new SvgElements.Label[]
                         {
-                            new SvgModel.Label
+                            new SvgElements.Label
                             {
-                                Rectangle = new Rectangle { Width = 300, Height = 60 },
+                                Rectangle = new SvgElements.Rectangle { Width = 300, Height = 60 },
                                 Text = "Block 1",
-                                HorizontalAlignment = HorizontalAlignmentEnum.Center,
-                                VerticalAlignment = VerticalAlignmentEnum.Center
+                                TextStyle = SvgHelper.DefaultTextStyle
                             }
                         }
                     },
-                    new SvgModel.Rectangle
+                    new SvgElements.Rectangle
                     {
                         X = 10,
                         Y = 200,
                         Width = 300,
                         Height = 60,
-                        ChildLabels = new SvgModel.Label[]
+                        ChildLabels = new SvgElements.Label[]
                         {
-                            new SvgModel.Label
+                            new SvgElements.Label
                             {
-                                Rectangle = new Rectangle { Width = 300, Height = 60 },
+                                Rectangle = new SvgElements.Rectangle { Width = 300, Height = 60 },
                                 Text = "Block 2",
-                                HorizontalAlignment = HorizontalAlignmentEnum.Center,
-                                VerticalAlignment = VerticalAlignmentEnum.Center
+                                TextStyle = SvgHelper.DefaultTextStyle
                             }
                         }
                     }
                 }
             };
+
+            _svgModel.ChildRectangles.ForEach(x => x.SetLineStyle(SvgHelper.DefaultLineStyle));
         }
 
         private void HierarchyTestForm_Paint(object sender, PaintEventArgs e)
         {
             diagramControl1.Draw(_svgModel);
+        }
+
+        private SvgElements.Rectangle CreateRectangle(float x, float y, string text)
+        {
+            var rectangle = new SvgElements.Rectangle
+            {
+                X = x,
+                Y = y,
+                Width = 300,
+                Height = 60,
+                ChildLabels = new SvgElements.Label[]
+                {
+                    new SvgElements.Label
+                    {
+                        Rectangle = new SvgElements.Rectangle { Width = 300, Height = 60 },
+                        Text = text,
+                        TextStyle = SvgHelper.DefaultTextStyle
+                    }
+                }
+            };
+
+            rectangle.SetLineStyle(SvgHelper.DefaultLineStyle);
+
+            return rectangle;
         }
     }
 }

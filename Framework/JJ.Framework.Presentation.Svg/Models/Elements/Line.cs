@@ -1,11 +1,11 @@
-﻿using JJ.Framework.Reflection;
+﻿using JJ.Framework.Presentation.Svg.Models.Styling;
+using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace JJ.Framework.Presentation.Svg.Models
+namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
     public class Line : ElementBase
     {
@@ -34,6 +34,17 @@ namespace JJ.Framework.Presentation.Svg.Models
             {
                 if (value == null) throw new NullException(() => value);
                 _pointB = value;
+            }
+        }
+
+        private LineStyle _lineStyle = new LineStyle();
+        public LineStyle LineStyle
+        {
+            get { return _lineStyle; }
+            set
+            {
+                if (value == null) throw new NullException(() => value);
+                _lineStyle = value;
             }
         }
 

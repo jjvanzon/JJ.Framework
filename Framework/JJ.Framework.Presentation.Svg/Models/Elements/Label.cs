@@ -1,17 +1,15 @@
 ﻿using JJ.Framework.Presentation.Svg.Enums;
+using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace JJ.Framework.Presentation.Svg.Models
+namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
     public class Label : ElementBase
     {
-        public HorizontalAlignmentEnum HorizontalAlignment { get; set; }
-        public VerticalAlignmentEnum VerticalAlignment { get; set; }
         public string Text { get; set; }
 
         private Rectangle _rectangle = new Rectangle();
@@ -25,14 +23,14 @@ namespace JJ.Framework.Presentation.Svg.Models
             }
         }
 
-        private Font _font = new Font();
-        public Font Font
+        private TextStyle _textStyle = new TextStyle();
+        public TextStyle TextStyle
         {
-            get { return _font; }
+            get { return _textStyle; }
             set
             {
                 if (value == null) throw new NullException(() => value);
-                _font = value;
+                _textStyle = value;
             }
         }
 

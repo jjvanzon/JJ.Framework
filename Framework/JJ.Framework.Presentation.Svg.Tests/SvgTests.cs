@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Presentation.Svg.Models;
 using JJ.Framework.Presentation.Svg.Visitors;
 using JJ.Framework.Testing;
+using JJ.Framework.Presentation.Svg.Models.Elements;
 
 namespace JJ.Framework.Presentation.Svg.Tests
 {

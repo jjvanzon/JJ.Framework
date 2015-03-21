@@ -8,15 +8,13 @@ using System.Threading;
 using System.Drawing;
 using JJ.Framework.Presentation.Svg.Models;
 using JJ.Framework.Presentation.Svg.Visitors;
-using JJ.Framework.Presentation.Drawing.Extensions;
-using SvgModels = JJ.Framework.Presentation.Svg.Models;
+using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Drawing;
 
 namespace JJ.Framework.Presentation.WinForms
 {
     public partial class DiagramControl : UserControl
     {
-
         ControlGraphicsBuffer _graphicsBuffer;
 
         public DiagramControl()
@@ -26,10 +24,13 @@ namespace JJ.Framework.Presentation.WinForms
             _graphicsBuffer = new ControlGraphicsBuffer(this);
         }
 
-        public void Draw(SvgModels.ElementBase element)
+        public void Draw(SvgElements.Container svgContainer)
         {
-            SvgDrawer.Draw(element, _graphicsBuffer.Graphics);
-            _graphicsBuffer.DrawBuffer();   
+            SvgDrawer.Draw(svgContainer, _graphicsBuffer.Graphics);
+            _graphicsBuffer.DrawBuffer();
+
+            // Temporary (2015-03-21) for debugging.
+            //SvgDrawer.Draw(svgContainer, this.CreateGraphics());
         }
     }
 }

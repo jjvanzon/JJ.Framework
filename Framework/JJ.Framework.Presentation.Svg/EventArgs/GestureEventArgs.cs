@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.EventArgs
 {
-    public class GestureEventArgs
+    public class GestureEventArgs : System.EventArgs
     {
     }
 }

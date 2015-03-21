@@ -1,10 +1,11 @@
-﻿using System;
+﻿using JJ.Framework.Presentation.Svg.Models.Styling;
+using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace JJ.Framework.Presentation.Svg.Models
+namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
     public class Container : ElementBase
     {
@@ -20,6 +21,17 @@ namespace JJ.Framework.Presentation.Svg.Models
         {
             get { return 0; }
             set { throw new NotSupportedException(); }
+        }
+
+        private BackStyle _backStyle = new BackStyle();
+        public BackStyle BackStyle
+        {
+            get { return _backStyle; }
+            set
+            {
+                if (value == null) throw new NullException(() => value);
+                _backStyle = value;
+            }
         }
     }
 }

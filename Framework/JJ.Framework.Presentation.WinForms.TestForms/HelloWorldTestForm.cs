@@ -6,13 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SvgModels = JJ.Framework.Presentation.Svg.Models;
+using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
+using SvgStyling = JJ.Framework.Presentation.Svg.Models.Styling;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {
     public partial class HelloWorldTestForm : Form
     {
-        ElementBase _svgModel;
+        SvgElements.Container _svgContainer;
 
         public HelloWorldTestForm()
         {
@@ -24,14 +25,14 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Text = this.GetType().FullName;
 
-            _svgModel = new SvgModels.Container
+            _svgContainer = new SvgElements.Container
             {
-                ChildLabels = new SvgModels.Label[]
+                ChildLabels = new SvgElements.Label[]
                 {
-                    new SvgModels.Label
+                    new SvgElements.Label
                     { 
                         Text = "Hello World!",
-                        Rectangle = new Rectangle 
+                        Rectangle = new SvgElements.Rectangle 
                         { 
                             X = 10,
                             Y = 20,
@@ -45,7 +46,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
         private void HelloWorldTestForm_Paint(object sender, PaintEventArgs e)
         {
-            diagramControl1.Draw(_svgModel);
+            diagramControl1.Draw(_svgContainer);
         }
     }
 }

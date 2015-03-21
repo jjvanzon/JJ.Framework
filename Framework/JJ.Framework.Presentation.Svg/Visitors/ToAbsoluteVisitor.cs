@@ -1,10 +1,10 @@
 ﻿using JJ.Framework.Presentation.Svg.Models;
+using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Framework.Presentation.Svg.Visitors
 {
@@ -15,6 +15,8 @@ namespace JJ.Framework.Presentation.Svg.Visitors
     /// </summary>
     public class ToAbsoluteVisitor : ElementVisitorBase
     {
+        // TODO: Give this class a more specific name?
+
         private Container _destContainer;
         private float _currentParentCenterX;
         private float _currentParentCenterY;
@@ -85,9 +87,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             {
                 Rectangle = ConvertRectangle(label.Rectangle),
                 Text = label.Text,
-                Font = label.Font,
-                HorizontalAlignment = label.HorizontalAlignment,
-                VerticalAlignment = label.VerticalAlignment
+                TextStyle = label.TextStyle,
             };
 
             _destContainer.ChildLabels.Add(destLabel);

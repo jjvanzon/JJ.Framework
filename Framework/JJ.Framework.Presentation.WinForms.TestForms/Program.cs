@@ -16,6 +16,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new HelloWorldTestForm());
             Application.Run(new HierarchyTestForm());
         }
     }

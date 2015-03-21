@@ -52,6 +52,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SvgHelper.cs" />
     <EmbeddedResource Include="HierarchyTestForm.resx">
       <DependentUpon>HierarchyTestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,6 +82,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
+      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Presentation.Drawing\JJ.Framework.Presentation.Drawing.csproj">
       <Project>{21802a52-f4f7-4366-b61d-06e1fb337b86}</Project>
       <Name>JJ.Framework.Presentation.Drawing</Name>
