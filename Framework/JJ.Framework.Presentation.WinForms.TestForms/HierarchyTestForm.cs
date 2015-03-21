@@ -31,43 +31,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             {
                 ChildRectangles = new SvgElements.Rectangle[]
                 {
-                    //CreateRectangle(200, 10, "Block 1")
-                    new SvgElements.Rectangle
-                    {
-                        X = 200,
-                        Y = 10,
-                        Width = 300,
-                        Height = 60,
-                        ChildLabels = new SvgElements.Label[]
-                        {
-                            new SvgElements.Label
-                            {
-                                Rectangle = new SvgElements.Rectangle { Width = 300, Height = 60 },
-                                Text = "Block 1",
-                                TextStyle = SvgHelper.DefaultTextStyle
-                            }
-                        }
-                    },
-                    new SvgElements.Rectangle
-                    {
-                        X = 10,
-                        Y = 200,
-                        Width = 300,
-                        Height = 60,
-                        ChildLabels = new SvgElements.Label[]
-                        {
-                            new SvgElements.Label
-                            {
-                                Rectangle = new SvgElements.Rectangle { Width = 300, Height = 60 },
-                                Text = "Block 2",
-                                TextStyle = SvgHelper.DefaultTextStyle
-                            }
-                        }
-                    }
+                    CreateRectangle(200, 10, "Block 1"),
+                    CreateRectangle(10, 200, "Block 2")
                 }
             };
-
-            _svgModel.ChildRectangles.ForEach(x => x.SetLineStyle(SvgHelper.DefaultLineStyle));
         }
 
         private void HierarchyTestForm_Paint(object sender, PaintEventArgs e)

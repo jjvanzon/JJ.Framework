@@ -23,6 +23,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 VerticalAlignmentEnum = VerticalAlignmentEnum.Center
             };
             DefaultTextStyle.Font.Bold = true;
+            DefaultTextStyle.Font.Name = "Verdana";
+            DefaultTextStyle.Font.Size = 13;
         }
 
         public static LineStyle DefaultLineStyle { get; private set; }

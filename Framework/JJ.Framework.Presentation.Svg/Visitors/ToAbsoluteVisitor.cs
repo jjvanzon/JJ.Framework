@@ -65,6 +65,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             {
                 PointA = ConvertPoint(line.PointA),
                 PointB = ConvertPoint(line.PointB),
+                LineStyle = line.LineStyle,
             };
             
             _destContainer.ChildLines.Add(destLine);
@@ -87,7 +88,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             {
                 Rectangle = ConvertRectangle(label.Rectangle),
                 Text = label.Text,
-                TextStyle = label.TextStyle,
+                TextStyle = label.TextStyle
             };
 
             _destContainer.ChildLabels.Add(destLabel);
@@ -106,7 +107,8 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             destPoint = new Point
             {
                 X = sourcePoint.X + _currentParentCenterX,
-                Y = sourcePoint.Y + _currentParentCenterY
+                Y = sourcePoint.Y + _currentParentCenterY,
+                PointStyle = sourcePoint.PointStyle
             };
 
             _convertedPoints.Add(sourcePoint, destPoint);
@@ -127,7 +129,12 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 X = sourceRectangle.X + _currentParentCenterX,
                 Y = sourceRectangle.Y + _currentParentCenterY,
                 Width = sourceRectangle.Width,
-                Height = sourceRectangle.Height
+                Height = sourceRectangle.Height,
+                BackStyle = sourceRectangle.BackStyle,
+                BottomLineStyle = sourceRectangle.BottomLineStyle,
+                LeftLineStyle = sourceRectangle.LeftLineStyle,
+                RightLineStyle = sourceRectangle.RightLineStyle,
+                TopLineStyle = sourceRectangle.TopLineStyle
             };
 
             _convertedRectangles.Add(sourceRectangle, destRectangle);
