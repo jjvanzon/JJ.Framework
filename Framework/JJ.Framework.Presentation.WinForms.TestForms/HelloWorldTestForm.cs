@@ -13,7 +13,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 {
     public partial class HelloWorldTestForm : Form
     {
-        SvgElements.Container _svgContainer;
+        SvgElements.Rectangle _rootSvgRectangle;
 
         public HelloWorldTestForm()
         {
@@ -25,7 +25,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Text = this.GetType().FullName;
 
-            _svgContainer = new SvgElements.Container
+            _rootSvgRectangle = new SvgElements.Rectangle
             {
                 ChildLabels = new SvgElements.Label[]
                 {
@@ -46,7 +46,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
         private void HelloWorldTestForm_Paint(object sender, PaintEventArgs e)
         {
-            diagramControl1.Draw(_svgContainer);
+            diagramControl1.Draw(_rootSvgRectangle);
         }
     }
 }

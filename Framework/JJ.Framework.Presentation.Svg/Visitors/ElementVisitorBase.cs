@@ -39,13 +39,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 return;
             }
 
-            var container = element as Container;
-            if (container != null)
-            {
-                VisitContainer(container);
-                return;
-            }
-
             throw new Exception(String.Format("Unexpected ElementBase type '{0}'", element.GetType().FullName));
         }
 
@@ -67,11 +60,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         protected virtual void VisitLabel(Label label)
         {
             VisitChildren(label);
-        }
-
-        protected virtual void VisitContainer(Container container)
-        {
-            VisitChildren(container);
         }
 
         protected virtual void VisitChildren(ElementBase parentElement)

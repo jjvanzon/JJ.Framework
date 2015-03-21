@@ -17,18 +17,18 @@ namespace JJ.Framework.Presentation.Svg.Visitors
     {
         // TODO: Give this class a more specific name?
 
-        private Container _destContainer;
+        private Rectangle _destRootRectangle;
         private float _currentParentCenterX;
         private float _currentParentCenterY;
 
         private Dictionary<Point, Point> _convertedPoints;
         private Dictionary<Rectangle, Rectangle> _convertedRectangles;
 
-        public Container Execute(ElementBase element)
+        public Rectangle Execute(ElementBase element)
         {
             if (element == null) throw new NullException(() => element);
 
-            _destContainer = new Container();
+            _destRootRectangle = new Rectangle();
             _convertedPoints = new Dictionary<Point, Point>();
             _convertedRectangles = new Dictionary<Rectangle, Rectangle>();
             _currentParentCenterX = 0;
@@ -36,7 +36,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             VisitPolymorphic(element);
 
-            return _destContainer;
+            return _destRootRectangle;
         }
 
         protected override void VisitChildren(ElementBase parentElement)
@@ -54,7 +54,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         {
             Point destPoint = ConvertPoint(point);
 
-            _destContainer.ChildPoints.Add(destPoint);
+            _destRootRectangle.ChildPoints.Add(destPoint);
 
             base.VisitPoint(point);
         }
@@ -68,7 +68,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 LineStyle = line.LineStyle,
             };
             
-            _destContainer.ChildLines.Add(destLine);
+            _destRootRectangle.ChildLines.Add(destLine);
 
             base.VisitLine(line);
         }
@@ -77,7 +77,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         {
             var destRectangle = ConvertRectangle(rectangle);
 
-            _destContainer.ChildRectangles.Add(destRectangle);
+            _destRootRectangle.ChildRectangles.Add(destRectangle);
 
             base.VisitRectangle(rectangle);
         }
@@ -91,7 +91,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 TextStyle = label.TextStyle
             };
 
-            _destContainer.ChildLabels.Add(destLabel);
+            _destRootRectangle.ChildLabels.Add(destLabel);
 
             base.VisitLabel(label);
         }

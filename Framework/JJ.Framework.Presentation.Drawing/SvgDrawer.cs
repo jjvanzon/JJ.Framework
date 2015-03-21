@@ -14,43 +14,43 @@ namespace JJ.Framework.Presentation.Drawing
 {
     public static class SvgDrawer
     {
-        public static void Draw(SvgElements.Container sourceContainer, Graphics destGraphics)
+        public static void Draw(SvgElements.Rectangle sourceRootRectangle, Graphics destGraphics)
         {
-            if (sourceContainer == null) throw new NullException(() => sourceContainer);
+            if (sourceRootRectangle == null) throw new NullException(() => sourceRootRectangle);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
             var visitor = new ToAbsoluteVisitor();
-            var destContainer = visitor.Execute(sourceContainer);
+            var destRootRectangle = visitor.Execute(sourceRootRectangle);
 
-            DrawBackground(sourceContainer, destGraphics);
+            DrawBackground(sourceRootRectangle, destGraphics);
 
-            foreach (SvgElements.Point sourcePoint in destContainer.ChildPoints)
+            foreach (SvgElements.Point sourcePoint in destRootRectangle.ChildPoints)
             {
                 DrawPoint(sourcePoint, destGraphics);
             }
 
-            foreach (SvgElements.Line sourceLine in destContainer.ChildLines)
+            foreach (SvgElements.Line sourceLine in destRootRectangle.ChildLines)
             {
                 DrawLine(sourceLine, destGraphics);
             }
 
-            foreach (SvgElements.Rectangle sourceRectangle in destContainer.ChildRectangles)
+            foreach (SvgElements.Rectangle sourceRectangle in destRootRectangle.ChildRectangles)
             {
                 DrawRectangle(sourceRectangle, destGraphics);
             }
 
-            foreach (SvgElements.Label sourceLabel in destContainer.ChildLabels)
+            foreach (SvgElements.Label sourceLabel in destRootRectangle.ChildLabels)
             {
                 DrawLabel(sourceLabel, destGraphics);
             }
         }
 
-        private static void DrawBackground(SvgElements.Container sourceContainer, Graphics destGraphics)
+        private static void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
-            if (sourceContainer.Visible &&
-                sourceContainer.BackStyle.Visible)
+            if (sourceRectangle.Visible &&
+                sourceRectangle.BackStyle.Visible)
             {
-                Color destBackColor = sourceContainer.BackStyle.Color.ToSystemDrawing();
+                Color destBackColor = sourceRectangle.BackStyle.Color.ToSystemDrawing();
                 destGraphics.Clear(destBackColor);
             }
         }

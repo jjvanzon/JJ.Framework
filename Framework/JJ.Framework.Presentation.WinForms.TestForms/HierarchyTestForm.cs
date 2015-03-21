@@ -15,7 +15,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 {
     public partial class HierarchyTestForm : Form
     {
-        SvgElements.Container _svgModel;
+        SvgElements.Rectangle _rootSvgRectangle;
 
         public HierarchyTestForm()
         {
@@ -27,7 +27,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Text = this.GetType().FullName;
 
-            _svgModel = new SvgElements.Container
+            _rootSvgRectangle = new SvgElements.Rectangle
             {
                 ChildRectangles = new SvgElements.Rectangle[]
                 {
@@ -39,7 +39,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
         private void HierarchyTestForm_Paint(object sender, PaintEventArgs e)
         {
-            diagramControl1.Draw(_svgModel);
+            diagramControl1.Draw(_rootSvgRectangle);
         }
 
         private SvgElements.Rectangle CreateRectangle(float x, float y, string text)

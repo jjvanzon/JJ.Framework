@@ -24,9 +24,9 @@ namespace JJ.Framework.Presentation.WinForms
             _graphicsBuffer = new ControlGraphicsBuffer(this);
         }
 
-        public void Draw(SvgElements.Container svgContainer)
+        public void Draw(SvgElements.Rectangle svgRectangle)
         {
-            SvgDrawer.Draw(svgContainer, _graphicsBuffer.Graphics);
+            SvgDrawer.Draw(svgRectangle, _graphicsBuffer.Graphics);
             _graphicsBuffer.DrawBuffer();
         }
     }
