@@ -55,7 +55,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
         {
             Point destPoint = ConvertPoint(point);
 
-            _destRootRectangle.ChildPoints.Add(destPoint);
+            _destRootRectangle.Children.Add(destPoint);
 
             base.VisitPoint(point);
         }
@@ -69,7 +69,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
                 LineStyle = line.LineStyle,
             };
             
-            _destRootRectangle.ChildLines.Add(destLine);
+            _destRootRectangle.Children.Add(destLine);
 
             base.VisitLine(line);
         }
@@ -78,7 +78,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
         {
             var destRectangle = ConvertRectangle(rectangle);
 
-            _destRootRectangle.ChildRectangles.Add(destRectangle);
+            _destRootRectangle.Children.Add(destRectangle);
 
             base.VisitRectangle(rectangle);
         }
@@ -92,7 +92,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
                 TextStyle = label.TextStyle
             };
 
-            _destRootRectangle.ChildLabels.Add(destLabel);
+            _destRootRectangle.Children.Add(destLabel);
 
             base.VisitLabel(label);
         }

@@ -15,13 +15,13 @@ namespace JJ.Framework.Presentation.Svg.Tests
         {
             var rootRectangle = new Rectangle
             {
-                ChildPoints = new Point[]
+                Children = new Point[]
                 {
                     new Point
                     {
                         X = 1,
                         Y = 2,
-                        ChildPoints = new Point[]
+                        Children = new Point[]
                         {
                             new Point { X = 10, Y = 20 },
                             new Point { X = 12, Y = 22 }
@@ -33,13 +33,13 @@ namespace JJ.Framework.Presentation.Svg.Tests
             var visitor = new ToAbsoluteVisitor();
             Rectangle destRectangle = visitor.Execute(rootRectangle);
 
-            AssertHelper.AreEqual(3, () => destRectangle.ChildPoints.Count);
-            AssertHelper.AreEqual(1, () => destRectangle.ChildPoints[0].X);
-            AssertHelper.AreEqual(2, () => destRectangle.ChildPoints[0].Y);
-            AssertHelper.AreEqual(11, () => destRectangle.ChildPoints[1].X);
-            AssertHelper.AreEqual(22, () => destRectangle.ChildPoints[1].Y);
-            AssertHelper.AreEqual(13, () => destRectangle.ChildPoints[2].X);
-            AssertHelper.AreEqual(24, () => destRectangle.ChildPoints[2].Y);
+            AssertHelper.AreEqual(3, () => destRectangle.Children.Count);
+            AssertHelper.AreEqual(1, () => destRectangle.Children[0].X);
+            AssertHelper.AreEqual(2, () => destRectangle.Children[0].Y);
+            AssertHelper.AreEqual(11, () => destRectangle.Children[1].X);
+            AssertHelper.AreEqual(22, () => destRectangle.Children[1].Y);
+            AssertHelper.AreEqual(13, () => destRectangle.Children[2].X);
+            AssertHelper.AreEqual(24, () => destRectangle.Children[2].Y);
         }
     }
 }

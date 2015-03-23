@@ -17,58 +17,59 @@ namespace JJ.Framework.Presentation.Svg.Visitors
     {
         // TODO: Give this class a more specific name?
 
-        private Rectangle _destRootRectangle;
-        private float _currentParentCenterX;
-        private float _currentParentCenterY;
-
+        private IList<ElementBase> _destElements;
         private Dictionary<Point, Point> _convertedPoints;
         private Dictionary<Rectangle, Rectangle> _convertedRectangles;
+        private float _currentParentCenterX;
+        private float _currentParentCenterY;
+        private int _layer;
 
-        public Rectangle Execute(ElementBase element)
+        public IList<ElementBase> Execute(ElementBase element)
         {
             if (element == null) throw new NullException(() => element);
 
-            _destRootRectangle = new Rectangle();
+            _destElements = new List<ElementBase>();
             _convertedPoints = new Dictionary<Point, Point>();
             _convertedRectangles = new Dictionary<Rectangle, Rectangle>();
             _currentParentCenterX = 0;
             _currentParentCenterY = 0;
+            _layer = 0;
 
             VisitPolymorphic(element);
 
-            return _destRootRectangle;
+            _destElements = _destElements.OrderBy(x => x.ZIndex)
+                                         .ThenBy(x => x.Layer)
+                                         .ToArray();
+            return _destElements;
         }
 
         protected override void VisitChildren(ElementBase parentElement)
         {
             _currentParentCenterX += parentElement.X;
             _currentParentCenterY += parentElement.Y;
+            _layer++;
 
             base.VisitChildren(parentElement);
 
             _currentParentCenterX -= parentElement.X;
             _currentParentCenterY -= parentElement.Y;
+            _layer--;
         }
 
         protected override void VisitPoint(Point point)
         {
             Point destPoint = ConvertPoint(point);
 
-            _destRootRectangle.ChildPoints.Add(destPoint);
+            _destElements.Add(destPoint);
 
             base.VisitPoint(point);
         }
 
         protected override void VisitLine(Line line)
         {
-            var destLine = new Line
-            {
-                PointA = ConvertPoint(line.PointA),
-                PointB = ConvertPoint(line.PointB),
-                LineStyle = line.LineStyle,
-            };
-            
-            _destRootRectangle.ChildLines.Add(destLine);
+            Line destLine = ConvertLine(line);
+
+            _destElements.Add(destLine);
 
             base.VisitLine(line);
         }
@@ -77,21 +78,16 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         {
             var destRectangle = ConvertRectangle(rectangle);
 
-            _destRootRectangle.ChildRectangles.Add(destRectangle);
+            _destElements.Add(destRectangle);
 
             base.VisitRectangle(rectangle);
         }
 
         protected override void VisitLabel(Label label)
         {
-            var destLabel = new Label
-            {
-                Rectangle = ConvertRectangle(label.Rectangle),
-                Text = label.Text,
-                TextStyle = label.TextStyle
-            };
+            Label destLabel = ConvertLabel(label);
 
-            _destRootRectangle.ChildLabels.Add(destLabel);
+            _destElements.Add(destLabel);
 
             base.VisitLabel(label);
         }
@@ -108,12 +104,30 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             {
                 X = sourcePoint.X + _currentParentCenterX,
                 Y = sourcePoint.Y + _currentParentCenterY,
-                PointStyle = sourcePoint.PointStyle
+                ZIndex = sourcePoint.ZIndex,
+                PointStyle = sourcePoint.PointStyle,
+                Layer = _layer
             };
 
             _convertedPoints.Add(sourcePoint, destPoint);
 
             return destPoint;
+        }
+
+        private Line ConvertLine(Line sourceLine)
+        {
+            var destLine = new Line
+            {
+                // TODO: These points should not be converted here.
+                // They should be converted by the container, and then used here.
+                // However, you cannot guarantee the order in which the points are converted.
+                PointA = ConvertPoint(sourceLine.PointA),
+                PointB = ConvertPoint(sourceLine.PointB),
+                LineStyle = sourceLine.LineStyle,
+                ZIndex = sourceLine.ZIndex,
+                Layer = _layer
+            };
+            return destLine;
         }
         
         private Rectangle ConvertRectangle(Rectangle sourceRectangle)
@@ -130,16 +144,31 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 Y = sourceRectangle.Y + _currentParentCenterY,
                 Width = sourceRectangle.Width,
                 Height = sourceRectangle.Height,
+                ZIndex = sourceRectangle.ZIndex,
                 BackStyle = sourceRectangle.BackStyle,
                 BottomLineStyle = sourceRectangle.BottomLineStyle,
                 LeftLineStyle = sourceRectangle.LeftLineStyle,
                 RightLineStyle = sourceRectangle.RightLineStyle,
-                TopLineStyle = sourceRectangle.TopLineStyle
+                TopLineStyle = sourceRectangle.TopLineStyle,
+                Layer = _layer
             };
 
             _convertedRectangles.Add(sourceRectangle, destRectangle);
 
             return destRectangle;
+        }
+
+        private Label ConvertLabel(Label sourceLabel)
+        {
+            var destLabel = new Label
+            {
+                Rectangle = ConvertRectangle(sourceLabel.Rectangle),
+                Text = sourceLabel.Text,
+                TextStyle = sourceLabel.TextStyle,
+                ZIndex = sourceLabel.ZIndex,
+                Layer = _layer
+            };
+            return destLabel;
         }
     }
 }

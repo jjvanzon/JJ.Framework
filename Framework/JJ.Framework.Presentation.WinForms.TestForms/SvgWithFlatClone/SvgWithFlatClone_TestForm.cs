@@ -39,7 +39,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
                 Y = 30,
                 PointStyle = SvgHelper.InvisiblePointStyle
             };
-            rectangle1.ChildPoints.Add(point1);
+            rectangle1.Children.Add(point1);
 
             var point2 = new SvgElements.Point 
             {
@@ -47,7 +47,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
                 Y = 30,
                 PointStyle = SvgHelper.InvisiblePointStyle
             };
-            rectangle2.ChildPoints.Add(point2);
+            rectangle2.Children.Add(point2);
 
             var line = new SvgElements.Line 
             {
@@ -56,9 +56,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
                 LineStyle = SvgHelper.DefaultLineStyle
             };
 
-            _rootSvgRectangle.ChildLines.Add(line);
-            _rootSvgRectangle.ChildRectangles.Add(rectangle1);
-            _rootSvgRectangle.ChildRectangles.Add(rectangle2);
+            _rootSvgRectangle.Children.Add(line);
+            _rootSvgRectangle.Children.Add(rectangle1);
+            _rootSvgRectangle.Children.Add(rectangle2);
         }
 
         private void HierarchyTestForm_Paint(object sender, PaintEventArgs e)
@@ -77,7 +77,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
                 Y = y,
                 Width = 300,
                 Height = 60,
-                ChildLabels = new SvgElements.Label[]
+                Children = new List<SvgElements.ElementBase>
                 {
                     new SvgElements.Label
                     {

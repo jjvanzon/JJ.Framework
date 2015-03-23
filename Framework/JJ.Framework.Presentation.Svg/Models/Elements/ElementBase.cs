@@ -20,61 +20,34 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         public abstract float X { get; set; }
         public abstract float Y { get; set; }
 
-        internal float AbsoluteX { get; set; }
-        internal float AbsoluteY { get; set; }
-
         public bool Visible { get; set; }
 
-        private IList<Point> _childPoints = new List<Point>();
+        public int ZIndex { get; set; }
+        internal int Layer { get; set; }
+
+        private IList<ElementBase> _children = new List<ElementBase>();
 
         /// <summary> not nullable, auto-instantiated </summary>
-        public IList<Point> ChildPoints
+        public IList<ElementBase> Children
         {
-            get { return _childPoints; }
+            get { return _children; }
             set 
             {
                 if (value == null) throw new NullException(() => value);
-                _childPoints = value;
+                _children = value;
             }
         }
 
-        private IList<Line> _childLines = new List<Line>();
-
-        /// <summary> not nullable, auto-instantiated </summary>
-        public IList<Line> ChildLines
-        {
-            get { return _childLines; }
-            set
-            {
-                if (value == null) throw new NullException(() => value);
-                _childLines = value;
-            }
-        }
-
-        private IList<Rectangle> _childRectangles = new List<Rectangle>();
-
-        /// <summary> not nullable, auto-instantiated </summary>
-        public IList<Rectangle> ChildRectangles
-        {
-            get { return _childRectangles; }
-            set
-            {
-                if (value == null) throw new NullException(() => value);
-                _childRectangles = value;
-            }
-        }
-
-        private IList<Label> _childLabels = new List<Label>();
-
-        /// <summary> not nullable, auto-instantiated </summary>
-        public IList<Label> ChildLabels
-        {
-            get { return _childLabels; }
-            set
-            {
-                if (value == null) throw new NullException(() => value);
-                _childLabels = value;
-            }
-        }
+        /// <summary>
+        /// Only used for the clone-free test for now.
+        /// Can be removed when it proves that is definitely not the way to go.
+        /// </summary>
+        /// 
+        private float AbsoluteX { get; set; }
+        /// <summary>
+        /// Only used for the clone-free test for now.
+        /// Can be removed when it proves that is definitely not the way to go.
+        /// </summary>
+        private float AbsoluteY { get; set; }
     }
 }

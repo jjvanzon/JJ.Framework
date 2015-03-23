@@ -20,32 +20,45 @@ namespace JJ.Framework.Presentation.Drawing
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
             var visitor = new ToAbsoluteVisitor();
-            var destRootRectangle = visitor.Execute(sourceRootRectangle);
+            IList<SvgElements.ElementBase> elements = visitor.Execute(sourceRootRectangle);
 
-            DrawBackground(sourceRootRectangle, destGraphics);
-
-            foreach (SvgElements.Point sourcePoint in destRootRectangle.ChildPoints)
+            foreach (SvgElements.ElementBase element in elements)
             {
-                DrawPoint(sourcePoint, destGraphics);
+                DrawPolymorphic(element, destGraphics);
+            }
+        }
+        
+        private void DrawPolymorphic(SvgElements.ElementBase sourceElement, Graphics destGraphics)
+        {
+            var destPoint = sourceElement as SvgElements.Point;
+            if (destPoint != null)
+            {
+                DrawPoint(destPoint, destGraphics);
+                return;
             }
 
-            foreach (SvgElements.Rectangle sourceRectangle in destRootRectangle.ChildRectangles)
+            var destLine = sourceElement as SvgElements.Line;
+            if (destLine != null)
             {
-                DrawRectangle(sourceRectangle, destGraphics);
+                DrawLine(destLine, destGraphics);
+                return;
             }
 
-            // To see the line in our test we are forced to put this loop,
-            // before the one handling Rectangles, otherwise the background rectangle is drawn right
-            // over the line, because there is nothing handling or ZIndex.
-            foreach (SvgElements.Line sourceLine in destRootRectangle.ChildLines)
+            var destRectangle = sourceElement as SvgElements.Rectangle;
+            if (destRectangle != null)
             {
-                DrawLine(sourceLine, destGraphics);
+                DrawRectangle(destRectangle, destGraphics);
+                return;
             }
 
-            foreach (SvgElements.Label sourceLabel in destRootRectangle.ChildLabels)
+            var destLabel = sourceElement as SvgElements.Label;
+            if (destLabel != null)
             {
-                DrawLabel(sourceLabel, destGraphics);
+                DrawLabel(destLabel, destGraphics);
+                return;
             }
+
+            throw new Exception(String.Format("Unexpected ElementBase type '{0}'", sourceElement.GetType().FullName));
         }
 
         private void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)

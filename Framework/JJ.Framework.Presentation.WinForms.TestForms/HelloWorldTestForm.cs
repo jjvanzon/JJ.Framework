@@ -27,7 +27,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
             _rootSvgRectangle = new SvgElements.Rectangle
             {
-                ChildLabels = new SvgElements.Label[]
+                Children = new SvgElements.ElementBase[]
                 {
                     new SvgElements.Label
                     { 

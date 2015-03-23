@@ -26,13 +26,8 @@ namespace JJ.Framework.Presentation.WinForms
 
         public void Draw(SvgElements.Rectangle svgRectangle)
         {
-            //var drawer = new SvgDrawer();
-            //drawer.Draw(svgRectangle, _graphicsBuffer.Graphics);
-            //_graphicsBuffer.DrawBuffer();
-            //return;
-
-            var drawer2 = new SvgDrawer();
-            drawer2.Draw(svgRectangle, _graphicsBuffer.Graphics);
+            var drawer = new SvgDrawer();
+            drawer.Draw(svgRectangle, _graphicsBuffer.Graphics);
             _graphicsBuffer.DrawBuffer();
         }
     }
