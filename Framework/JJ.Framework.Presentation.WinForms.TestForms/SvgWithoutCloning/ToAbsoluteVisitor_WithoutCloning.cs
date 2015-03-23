@@ -1,6 +1,7 @@
 ﻿using JJ.Framework.Presentation.Svg.Models;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Svg.Visitors;
+using JJ.Framework.Presentation.WinForms.TestForms.Accessors;
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
@@ -84,8 +85,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
                 return;
             }
 
-            point.AbsoluteX = point.X + _currentParentCenterX;
-            point.AbsoluteY = point.Y + _currentParentCenterY;
+            var point_Accessor = new ElementBase_Accessor(point);
+
+            point_Accessor.AbsoluteX = point.X + _currentParentCenterX;
+            point_Accessor.AbsoluteY = point.Y + _currentParentCenterY;
 
             _convertedPoints.Add(point);
         }
@@ -97,8 +100,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
                 return;
             }
 
-            rectangle.AbsoluteX = rectangle.X + _currentParentCenterX;
-            rectangle.AbsoluteY = rectangle.Y + _currentParentCenterY;
+            var rectangle_Accessor = new ElementBase_Accessor(rectangle);
+
+            rectangle_Accessor.AbsoluteX = rectangle.X + _currentParentCenterX;
+            rectangle_Accessor.AbsoluteY = rectangle.Y + _currentParentCenterY;
 
             _convertedRectangles.Add(rectangle);
         }

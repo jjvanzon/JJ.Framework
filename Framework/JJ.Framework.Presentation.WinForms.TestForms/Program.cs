@@ -20,8 +20,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new HelloWorldTestForm());
-            //Application.Run(new HierarchyTestForm());
-            Application.Run(new SvgWithFlatClone_TestForm());
+            Application.Run(new HierarchyTestForm());
+            //Application.Run(new SvgWithFlatClone_TestForm());
             //Application.Run(new SvgWithoutCloning_TestForm());
         }
     }

@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Presentation.Svg.Visitors;
+using JJ.Framework.Presentation.WinForms.TestForms.Accessors;
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             if (rootRectangle == null) throw new NullException(() => rootRectangle);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
-            var visitor2 = new ToAbsoluteVisitor2();
+            var visitor2 = new ToAbsoluteVisitor_WithoutCloning();
             visitor2.Execute(rootRectangle);
 
             _destGraphic = destGraphics;
@@ -70,16 +71,21 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
         private static void DrawLine(SvgElements.Line sourceLine, Graphics destGraphics)
         {
+            var sourceLine_PointA_Accessor = new ElementBase_Accessor(sourceLine.PointA);
+            var sourceLine_PointB_Accessor = new ElementBase_Accessor(sourceLine.PointB);
+
             if (sourceLine.Visible &&
                 sourceLine.LineStyle.Visible)
             {
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
-                destGraphics.DrawLine(destPen, sourceLine.PointA.AbsoluteX, sourceLine.PointA.AbsoluteY, sourceLine.PointB.AbsoluteX, sourceLine.PointB.AbsoluteY);
+                destGraphics.DrawLine(destPen, sourceLine_PointA_Accessor.AbsoluteX, sourceLine_PointA_Accessor.AbsoluteY, sourceLine_PointB_Accessor.AbsoluteX, sourceLine_PointB_Accessor.AbsoluteY);
             }
         }
 
         private static void DrawRectangle(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
+            var sourceRectangle_Accessor = new ElementBase_Accessor(sourceRectangle);
+
             if (!sourceRectangle.Visible)
             {
                 return;
@@ -103,8 +109,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
                     Pen destPen = lineStyle.ToSystemDrawing();
                     destGraphics.DrawRectangle(
                         destPen,
-                        sourceRectangle.AbsoluteX,
-                        sourceRectangle.AbsoluteY,
+                        sourceRectangle_Accessor.AbsoluteX,
+                        sourceRectangle_Accessor.AbsoluteY,
                         sourceRectangle.Width,
                         sourceRectangle.Height);
                 }
@@ -114,13 +120,13 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
                 // Draw 4 Border Lines (with different styles)
 
                 // TODO: Consider giving Rectangle some instance helper methods for this and name X and Y differently.
-                float right = sourceRectangle.AbsoluteX + sourceRectangle.Width;
-                float bottom = sourceRectangle.AbsoluteY + sourceRectangle.Height;
+                float right = sourceRectangle_Accessor.AbsoluteX + sourceRectangle.Width;
+                float bottom = sourceRectangle_Accessor.AbsoluteY + sourceRectangle.Height;
 
-                PointF destTopLeftPointF = new PointF(sourceRectangle.AbsoluteX, sourceRectangle.AbsoluteY);
-                PointF destTopRightPointF = new PointF(right, sourceRectangle.AbsoluteY);
+                PointF destTopLeftPointF = new PointF(sourceRectangle_Accessor.AbsoluteX, sourceRectangle_Accessor.AbsoluteY);
+                PointF destTopRightPointF = new PointF(right, sourceRectangle_Accessor.AbsoluteY);
                 PointF destBottomRightPointF = new PointF(right, bottom);
-                PointF destBottomLeftPointF = new PointF(sourceRectangle.AbsoluteX, bottom);
+                PointF destBottomLeftPointF = new PointF(sourceRectangle_Accessor.AbsoluteX, bottom);
 
                 Pen destTopPen = sourceRectangle.TopLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
@@ -138,6 +144,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
         private static void DrawLabel(SvgElements.Label sourceLabel, Graphics destGraphics)
         {
+            var sourceLabel_Rectangle_Accessor = new ElementBase_Accessor(sourceLabel.Rectangle);
+
             if (!sourceLabel.Visible)
             {
                 return;
@@ -145,7 +153,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
             StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
             System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
-            RectangleF destRectangle = new RectangleF(sourceLabel.Rectangle.AbsoluteX, sourceLabel.Rectangle.AbsoluteY, sourceLabel.Rectangle.Width, sourceLabel.Rectangle.Height);
+            RectangleF destRectangle = new RectangleF(sourceLabel_Rectangle_Accessor.AbsoluteX, sourceLabel_Rectangle_Accessor.AbsoluteY, sourceLabel.Rectangle.Width, sourceLabel.Rectangle.Height);
             Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 
             destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);

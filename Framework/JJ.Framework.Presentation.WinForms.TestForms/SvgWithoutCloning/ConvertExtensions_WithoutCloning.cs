@@ -2,6 +2,7 @@
 using JJ.Framework.Presentation.Svg.Enums;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Svg.Models.Styling;
+using JJ.Framework.Presentation.WinForms.TestForms.Accessors;
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
@@ -37,10 +38,12 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
         public static RectangleF ToSystemDrawingRectangleF(this SvgElements.Point sourcePoint)
         {
+            var sourcePoint_Accessor = new ElementBase_Accessor(sourcePoint);
+
             float pointWidth = sourcePoint.PointStyle.Width;
             var destRectangleF = new RectangleF(
-                x: sourcePoint.AbsoluteX - pointWidth / 2,
-                y: sourcePoint.AbsoluteY - pointWidth / 2,
+                x: sourcePoint_Accessor.AbsoluteX - pointWidth / 2,
+                y: sourcePoint_Accessor.AbsoluteY - pointWidth / 2,
                 width: pointWidth,
                 height: pointWidth);
 
@@ -53,9 +56,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
         {
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
+            var sourceRectangle_Accessor = new ElementBase_Accessor(sourceRectangle);
+
             var destRectangleF = new RectangleF(
-                sourceRectangle.AbsoluteX,
-                sourceRectangle.AbsoluteY,
+                sourceRectangle_Accessor.AbsoluteX,
+                sourceRectangle_Accessor.AbsoluteY,
                 sourceRectangle.Width,
                 sourceRectangle.Height);
 
@@ -66,9 +71,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
         {
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
+            var sourceRectangle_Accessor = new ElementBase_Accessor(sourceRectangle);
+
             var destRectangle = new System.Drawing.Rectangle(
-                (int)sourceRectangle.AbsoluteX,
-                (int)sourceRectangle.AbsoluteY,
+                (int)sourceRectangle_Accessor.AbsoluteX,
+                (int)sourceRectangle_Accessor.AbsoluteY,
                 (int)sourceRectangle.Width,
                 (int)sourceRectangle.Height);
 

@@ -31,7 +31,7 @@ namespace JJ.Framework.Presentation.WinForms
             //_graphicsBuffer.DrawBuffer();
             //return;
 
-            var drawer2 = new SvgDrawer2();
+            var drawer2 = new SvgDrawer();
             drawer2.Draw(svgRectangle, _graphicsBuffer.Graphics);
             _graphicsBuffer.DrawBuffer();
         }
