@@ -10,16 +10,16 @@ using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Reflection;
 using JJ.Framework.Presentation.Svg.Models.Styling;
 
-namespace JJ.Framework.Presentation.Drawing
+namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 {
-    public class SvgDrawer
+    internal class SvgDrawer_WithFlatClone
     {
         public void Draw(SvgElements.Rectangle sourceRootRectangle, Graphics destGraphics)
         {
             if (sourceRootRectangle == null) throw new NullException(() => sourceRootRectangle);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
-            var visitor = new ToAbsoluteVisitor();
+            var visitor = new ToAbsoluteVisitor_WithFlatClone();
             var destRootRectangle = visitor.Execute(sourceRootRectangle);
 
             DrawBackground(sourceRootRectangle, destGraphics);
@@ -29,14 +29,17 @@ namespace JJ.Framework.Presentation.Drawing
                 DrawPoint(sourcePoint, destGraphics);
             }
 
-            foreach (SvgElements.Line sourceLine in destRootRectangle.ChildLines)
-            {
-                DrawLine(sourceLine, destGraphics);
-            }
-
             foreach (SvgElements.Rectangle sourceRectangle in destRootRectangle.ChildRectangles)
             {
                 DrawRectangle(sourceRectangle, destGraphics);
+            }
+
+            // To see the line in our test we are forced to put this loop,
+            // before the one handling Rectangles, otherwise the background rectangle is drawn right
+            // over the line, because there is nothing handling or ZIndex.
+            foreach (SvgElements.Line sourceLine in destRootRectangle.ChildLines)
+            {
+                DrawLine(sourceLine, destGraphics);
             }
 
             foreach (SvgElements.Label sourceLabel in destRootRectangle.ChildLabels)

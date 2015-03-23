@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms
+namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 {
-    public partial class HierarchyTestForm : Form
+    public partial class SvgWithFlatClone_TestForm : Form
     {
         SvgElements.Rectangle _rootSvgRectangle;
 
-        public HierarchyTestForm()
+        public SvgWithFlatClone_TestForm()
         {
             InitializeComponent();
             Initialize();

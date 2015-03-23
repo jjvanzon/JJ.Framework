@@ -11,28 +11,23 @@ using JJ.Framework.Presentation.Svg.Visitors;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Drawing;
 
-namespace JJ.Framework.Presentation.WinForms
+namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 {
-    public partial class DiagramControl : UserControl
+    internal partial class DiagramControl_WithoutCloning : UserControl
     {
         ControlGraphicsBuffer _graphicsBuffer;
 
-        public DiagramControl()
+        public DiagramControl_WithoutCloning()
         {
             InitializeComponent();
 
             _graphicsBuffer = new ControlGraphicsBuffer(this);
         }
-
+        
         public void Draw(SvgElements.Rectangle svgRectangle)
         {
-            //var drawer = new SvgDrawer();
-            //drawer.Draw(svgRectangle, _graphicsBuffer.Graphics);
-            //_graphicsBuffer.DrawBuffer();
-            //return;
-
-            var drawer2 = new SvgDrawer2();
-            drawer2.Draw(svgRectangle, _graphicsBuffer.Graphics);
+            var drawer = new SvgDrawer_WithoutCloning();
+            drawer.Draw(svgRectangle, _graphicsBuffer.Graphics);
             _graphicsBuffer.DrawBuffer();
         }
     }

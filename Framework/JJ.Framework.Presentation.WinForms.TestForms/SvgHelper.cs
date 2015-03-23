@@ -12,6 +12,13 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
     {
         static SvgHelper()
         {
+            DefaultFont = new Font
+            {
+                Bold = true,
+                Name = "Verdana",
+                Size = 13
+            };
+
             DefaultLineStyle = new LineStyle
             {
                 Width = 2
@@ -20,14 +27,19 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             DefaultTextStyle = new TextStyle
             {
                 HorizontalAlignmentEnum = HorizontalAlignmentEnum.Center,
-                VerticalAlignmentEnum = VerticalAlignmentEnum.Center
+                VerticalAlignmentEnum = VerticalAlignmentEnum.Center,
+                Font = DefaultFont
             };
-            DefaultTextStyle.Font.Bold = true;
-            DefaultTextStyle.Font.Name = "Verdana";
-            DefaultTextStyle.Font.Size = 13;
+
+            InvisiblePointStyle = new PointStyle
+            {
+                Visible = false
+            };
         }
 
+        private static Font DefaultFont { get; set; }
         public static LineStyle DefaultLineStyle { get; private set; }
         public static TextStyle DefaultTextStyle { get; private set; }
+        public static PointStyle InvisiblePointStyle { get; private set; }
     }
 }

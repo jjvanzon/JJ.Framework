@@ -69,14 +69,15 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 VisitPolymorphic(point);
             }
 
-            foreach (Line line in parentElement.ChildLines)
-            {
-                VisitPolymorphic(line);
-            }
-
             foreach (Rectangle rectangle in parentElement.ChildRectangles)
             {
                 VisitPolymorphic(rectangle);
+            }
+
+            // Force Z-Index problem in our test by drawing rectangles before lines.
+            foreach (Line line in parentElement.ChildLines)
+            {
+                VisitPolymorphic(line);
             }
 
             foreach (Label label in parentElement.ChildLabels)

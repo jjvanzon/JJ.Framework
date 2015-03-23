@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone;
+using JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +20,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new HelloWorldTestForm());
-            Application.Run(new HierarchyTestForm());
+            //Application.Run(new HierarchyTestForm());
+            Application.Run(new SvgWithFlatClone_TestForm());
+            //Application.Run(new SvgWithoutCloning_TestForm());
         }
     }
 }

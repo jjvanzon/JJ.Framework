@@ -46,6 +46,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
         private void HelloWorldTestForm_Paint(object sender, PaintEventArgs e)
         {
+            _rootSvgRectangle.Width = this.ClientSize.Width;
+            _rootSvgRectangle.Height = this.ClientSize.Height;
+
             diagramControl1.Draw(_rootSvgRectangle);
         }
     }

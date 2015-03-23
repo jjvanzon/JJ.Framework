@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using SvgStyling = JJ.Framework.Presentation.Svg.Models.Styling;
 
-namespace JJ.Framework.Presentation.Drawing
+namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 {
-    public static class ConvertExtensions
+    internal static class ConvertExtensions_WithFlatClone
     {
         // Point
 
@@ -39,8 +39,8 @@ namespace JJ.Framework.Presentation.Drawing
         {
             float pointWidth = sourcePoint.PointStyle.Width;
             var destRectangleF = new RectangleF(
-                x: sourcePoint.AbsoluteX - pointWidth / 2,
-                y: sourcePoint.AbsoluteY - pointWidth / 2,
+                x: sourcePoint.X - pointWidth / 2,
+                y: sourcePoint.Y - pointWidth / 2,
                 width: pointWidth,
                 height: pointWidth);
 
@@ -54,8 +54,8 @@ namespace JJ.Framework.Presentation.Drawing
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
             var destRectangleF = new RectangleF(
-                sourceRectangle.AbsoluteX,
-                sourceRectangle.AbsoluteY,
+                sourceRectangle.X,
+                sourceRectangle.Y,
                 sourceRectangle.Width,
                 sourceRectangle.Height);
 
@@ -67,8 +67,8 @@ namespace JJ.Framework.Presentation.Drawing
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
             var destRectangle = new System.Drawing.Rectangle(
-                (int)sourceRectangle.AbsoluteX,
-                (int)sourceRectangle.AbsoluteY,
+                (int)sourceRectangle.X,
+                (int)sourceRectangle.Y,
                 (int)sourceRectangle.Width,
                 (int)sourceRectangle.Height);
 

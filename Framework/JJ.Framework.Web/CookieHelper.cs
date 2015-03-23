@@ -10,9 +10,9 @@ namespace JJ.Framework.Web
 {
     public static class CookieHelper
     {
-        private const int COOKIE_EXPERIATION_YEARS = 20;
+        private const int DEFAULT_COOKIE_EXPERIATION_YEARS = 20;
 
-        public static string GetCookieValue(HttpRequestBase request, string cookieName)
+        public static string TryGetCookieValue(HttpRequestBase request, string cookieName)
         {
             if (request == null) throw new NullException(() => request);
 
@@ -30,7 +30,7 @@ namespace JJ.Framework.Web
 
             response.Cookies.Remove(cookieName);
             var cookie = new HttpCookie(cookieName, value);
-            cookie.Expires = DateTime.Now.AddYears(COOKIE_EXPERIATION_YEARS);
+            cookie.Expires = DateTime.Now.AddYears(DEFAULT_COOKIE_EXPERIATION_YEARS);
             response.Cookies.Add(cookie);
         }
     }

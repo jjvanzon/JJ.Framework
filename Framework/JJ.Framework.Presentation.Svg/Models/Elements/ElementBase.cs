@@ -20,6 +20,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         public abstract float X { get; set; }
         public abstract float Y { get; set; }
 
+        public float AbsoluteX { get; set; }
+        public float AbsoluteY { get; set; }
+
         public bool Visible { get; set; }
 
         private IList<Point> _childPoints = new List<Point>();

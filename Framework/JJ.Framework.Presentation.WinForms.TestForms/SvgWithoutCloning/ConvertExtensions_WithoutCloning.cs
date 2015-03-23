@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using SvgStyling = JJ.Framework.Presentation.Svg.Models.Styling;
 
-namespace JJ.Framework.Presentation.Drawing
+namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 {
-    public static class ConvertExtensions
+    internal static class ConvertExtensions_WithoutCloning
     {
         // Point
 

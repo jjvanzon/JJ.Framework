@@ -19,7 +19,7 @@ namespace JJ.Framework.Web
         {
             if (httpContext == null) throw new NullException(() => httpContext);
 
-            string cultureName = CookieHelper.GetCookieValue(httpContext.Request, CUTURE_NAME_COOKIE_KEY);
+            string cultureName = CookieHelper.TryGetCookieValue(httpContext.Request, CUTURE_NAME_COOKIE_KEY);
             if (String.IsNullOrEmpty(cultureName))
             {
                 string header = httpContext.Request.Headers[ACCEPT_LANGUAGE_HEADER_KEY];

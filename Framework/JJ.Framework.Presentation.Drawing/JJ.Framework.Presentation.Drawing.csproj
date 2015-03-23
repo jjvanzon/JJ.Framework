@@ -39,6 +39,7 @@
     <Compile Include="GraphicsBuffer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SvgDrawer.cs" />
+    <Compile Include="SvgDrawer2.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
