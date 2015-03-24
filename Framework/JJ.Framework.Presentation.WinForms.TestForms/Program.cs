@@ -19,10 +19,17 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Application.ThreadException += Application_ThreadException;
+
             //Application.Run(new HelloWorldTestForm());
             Application.Run(new HierarchyTestForm());
             //Application.Run(new SvgWithFlatClone_TestForm());
             //Application.Run(new SvgWithoutCloning_TestForm());
+        }
+
+        static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
         }
     }
 }

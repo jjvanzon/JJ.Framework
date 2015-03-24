@@ -30,7 +30,7 @@ namespace JJ.Framework.Presentation.Svg.Tests
                 }
             };
 
-            var visitor = new ToAbsoluteVisitor();
+            var visitor = new StylerVisitor();
             Rectangle destRectangle = visitor.Execute(rootRectangle);
 
             AssertHelper.AreEqual(3, () => destRectangle.Children.Count);

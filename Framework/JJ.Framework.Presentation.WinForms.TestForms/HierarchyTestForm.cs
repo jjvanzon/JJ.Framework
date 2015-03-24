@@ -60,7 +60,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             _rootSvgRectangle.Children.Add(rectangle1);
             _rootSvgRectangle.Children.Add(rectangle2);
 
-            line.ZIndex = 1;
+            _rootSvgRectangle.ZIndex = -2;
+            line.ZIndex = -1;
         }
 
         private void HierarchyTestForm_Paint(object sender, PaintEventArgs e)

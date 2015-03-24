@@ -19,7 +19,7 @@ namespace JJ.Framework.Presentation.Drawing
             if (sourceRootRectangle == null) throw new NullException(() => sourceRootRectangle);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
-            var visitor = new ToAbsoluteVisitor();
+            var visitor = new StylerVisitor();
             IList<SvgElements.ElementBase> elements = visitor.Execute(sourceRootRectangle);
 
             foreach (SvgElements.ElementBase element in elements)

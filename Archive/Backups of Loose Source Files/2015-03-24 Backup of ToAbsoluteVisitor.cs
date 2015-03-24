@@ -18,8 +18,8 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         // TODO: Give this class a more specific name?
 
         private IList<ElementBase> _destElements;
-        private Dictionary<Point, Point> _convertedPoints;
-        private Dictionary<Rectangle, Rectangle> _convertedRectangles;
+        private Dictionary<ElementBase, ElementBase> _convertedElements;
+
         private float _currentParentCenterX;
         private float _currentParentCenterY;
         private int _layer;
@@ -29,8 +29,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             if (element == null) throw new NullException(() => element);
 
             _destElements = new List<ElementBase>();
-            _convertedPoints = new Dictionary<Point, Point>();
-            _convertedRectangles = new Dictionary<Rectangle, Rectangle>();
+            _convertedElements = new Dictionary<ElementBase, ElementBase>();
             _currentParentCenterX = 0;
             _currentParentCenterY = 0;
             _layer = 0;
@@ -94,13 +93,13 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
         private Point ConvertPoint(Point sourcePoint)
         {
-            Point destPoint;
-            if (_convertedPoints.TryGetValue(sourcePoint, out destPoint))
+            ElementBase destElement;
+            if (_convertedElements.TryGetValue(sourcePoint, out destElement))
             {
-                return destPoint;
+                return (Point)destElement;
             }
 
-            destPoint = new Point
+            Point destPoint = new Point
             {
                 X = sourcePoint.X + _currentParentCenterX,
                 Y = sourcePoint.Y + _currentParentCenterY,
@@ -109,13 +108,19 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 Layer = _layer
             };
 
-            _convertedPoints.Add(sourcePoint, destPoint);
+            _convertedElements.Add(sourcePoint, destPoint);
 
             return destPoint;
         }
 
         private Line ConvertLine(Line sourceLine)
         {
+            ElementBase destElement;
+            if (_convertedElements.TryGetValue(sourceLine, out destElement))
+            {
+                return (Line)destElement;
+            }
+
             var destLine = new Line
             {
                 // TODO: These points should not be converted here.
@@ -127,18 +132,21 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 ZIndex = sourceLine.ZIndex,
                 Layer = _layer
             };
+
+            _convertedElements.Add(sourceLine, destLine);
+
             return destLine;
         }
         
         private Rectangle ConvertRectangle(Rectangle sourceRectangle)
         {
-            Rectangle destRectangle;
-            if (_convertedRectangles.TryGetValue(sourceRectangle, out destRectangle))
+            ElementBase destElement;
+            if (_convertedElements.TryGetValue(sourceRectangle, out destElement))
             {
-                return destRectangle;
+                return (Rectangle)destElement;
             }
 
-            destRectangle = new Rectangle
+            var destRectangle = new Rectangle
             {
                 X = sourceRectangle.X + _currentParentCenterX,
                 Y = sourceRectangle.Y + _currentParentCenterY,
@@ -153,13 +161,19 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 Layer = _layer
             };
 
-            _convertedRectangles.Add(sourceRectangle, destRectangle);
+            _convertedElements.Add(sourceRectangle, destRectangle);
 
             return destRectangle;
         }
 
         private Label ConvertLabel(Label sourceLabel)
         {
+            ElementBase destElement;
+            if (_convertedElements.TryGetValue(sourceLabel, out destElement))
+            {
+                return (Label)destElement;
+            }
+
             var destLabel = new Label
             {
                 Rectangle = ConvertRectangle(sourceLabel.Rectangle),
@@ -168,6 +182,9 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 ZIndex = sourceLabel.ZIndex,
                 Layer = _layer
             };
+
+            _convertedElements.Add(sourceLabel, destLabel);
+
             return destLabel;
         }
     }
