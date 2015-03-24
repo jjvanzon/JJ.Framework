@@ -30,31 +30,31 @@ namespace JJ.Framework.Presentation.Drawing
         
         private void DrawPolymorphic(SvgElements.ElementBase sourceElement, Graphics destGraphics)
         {
-            var destPoint = sourceElement as SvgElements.Point;
-            if (destPoint != null)
+            var sourcePoint = sourceElement as SvgElements.Point;
+            if (sourcePoint != null)
             {
-                DrawPoint(destPoint, destGraphics);
+                DrawPoint(sourcePoint, destGraphics);
                 return;
             }
 
-            var destLine = sourceElement as SvgElements.Line;
-            if (destLine != null)
+            var sourceLine = sourceElement as SvgElements.Line;
+            if (sourceLine != null)
             {
-                DrawLine(destLine, destGraphics);
+                DrawLine(sourceLine, destGraphics);
                 return;
             }
 
-            var destRectangle = sourceElement as SvgElements.Rectangle;
-            if (destRectangle != null)
+            var sourceRectangle = sourceElement as SvgElements.Rectangle;
+            if (sourceRectangle != null)
             {
-                DrawRectangle(destRectangle, destGraphics);
+                DrawRectangle(sourceRectangle, destGraphics);
                 return;
             }
 
-            var destLabel = sourceElement as SvgElements.Label;
-            if (destLabel != null)
+            var sourceLabel = sourceElement as SvgElements.Label;
+            if (sourceLabel != null)
             {
-                DrawLabel(destLabel, destGraphics);
+                DrawLabel(sourceLabel, destGraphics);
                 return;
             }
 
@@ -63,8 +63,7 @@ namespace JJ.Framework.Presentation.Drawing
 
         private void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
-            if (sourceRectangle.Visible &&
-                sourceRectangle.BackStyle.Visible)
+            if (sourceRectangle.Visible && sourceRectangle.BackStyle.Visible)
             {
                 Color destBackColor = sourceRectangle.BackStyle.Color.ToSystemDrawing();
                 destGraphics.Clear(destBackColor);
@@ -73,8 +72,7 @@ namespace JJ.Framework.Presentation.Drawing
 
         private void DrawPoint(SvgElements.Point sourcePoint, Graphics destGraphics)
         {
-            if (sourcePoint.Visible &&
-                sourcePoint.PointStyle.Visible)
+            if (sourcePoint.Visible && sourcePoint.PointStyle.Visible)
             {
                 RectangleF destRectangle = sourcePoint.ToSystemDrawingRectangleF();
                 Brush destBrush = sourcePoint.PointStyle.ToSystemDrawingBrush();
@@ -85,8 +83,7 @@ namespace JJ.Framework.Presentation.Drawing
 
         private void DrawLine(SvgElements.Line sourceLine, Graphics destGraphics)
         {
-            if (sourceLine.Visible &&
-                sourceLine.LineStyle.Visible)
+            if (sourceLine.Visible && sourceLine.LineStyle.Visible)
             {
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destPen, sourceLine.PointA.X, sourceLine.PointA.Y, sourceLine.PointB.X, sourceLine.PointB.Y);

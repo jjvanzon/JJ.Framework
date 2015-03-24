@@ -15,8 +15,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
     /// </summary>
     public class StylerVisitor : ElementVisitorBase
     {
-        // TODO: Give this class a more specific name.
-
         private Dictionary<ElementBase, ElementBase> _convertedElementDictionary;
         private float _currentParentCenterX;
         private float _currentParentCenterY;

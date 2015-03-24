@@ -15,7 +15,9 @@ namespace JJ.Framework.Presentation.WinForms
 {
     public partial class DiagramControl : UserControl
     {
-        ControlGraphicsBuffer _graphicsBuffer;
+        public SvgElements.Rectangle RootSvgRectangle { get; set; }
+
+        private ControlGraphicsBuffer _graphicsBuffer;
 
         public DiagramControl()
         {
@@ -24,10 +26,18 @@ namespace JJ.Framework.Presentation.WinForms
             _graphicsBuffer = new ControlGraphicsBuffer(this);
         }
 
-        public void Draw(SvgElements.Rectangle svgRectangle)
+        private void DiagramControl_Paint(object sender, PaintEventArgs e)
         {
+            if (RootSvgRectangle == null)
+            {
+                return;
+            }
+
+            RootSvgRectangle.Width = Width;
+            RootSvgRectangle.Height = Height;
+
             var drawer = new SvgDrawer();
-            drawer.Draw(svgRectangle, _graphicsBuffer.Graphics);
+            drawer.Draw(RootSvgRectangle, _graphicsBuffer.Graphics);
             _graphicsBuffer.DrawBuffer();
         }
     }

@@ -52,6 +52,8 @@
     <Compile Include="Infos\MouseDownInfo.cs" />
     <Compile Include="Infos\MouseMoveInfo.cs" />
     <Compile Include="Infos\MouseUpInfo.cs" />
+    <Compile Include="LinkTo\LinkToExtensions.cs" />
+    <Compile Include="Models\Elements\Children.cs" />
     <Compile Include="Models\Styling\BackStyle.cs" />
     <Compile Include="Models\Styling\Font.cs" />
     <Compile Include="Enums\HorizontalAlignmentEnum.cs" />

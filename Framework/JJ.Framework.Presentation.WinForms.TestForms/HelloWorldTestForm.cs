@@ -13,8 +13,6 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 {
     public partial class HelloWorldTestForm : Form
     {
-        SvgElements.Rectangle _rootSvgRectangle;
-
         public HelloWorldTestForm()
         {
             InitializeComponent();
@@ -25,7 +23,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Text = this.GetType().FullName;
 
-            _rootSvgRectangle = new SvgElements.Rectangle
+            diagramControl1.RootSvgRectangle = new SvgElements.Rectangle
             {
                 Children = new SvgElements.ElementBase[]
                 {
@@ -42,14 +40,6 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                     }
                 }
             };
-        }
-
-        private void HelloWorldTestForm_Paint(object sender, PaintEventArgs e)
-        {
-            _rootSvgRectangle.Width = this.ClientSize.Width;
-            _rootSvgRectangle.Height = this.ClientSize.Height;
-
-            diagramControl1.Draw(_rootSvgRectangle);
         }
     }
 }

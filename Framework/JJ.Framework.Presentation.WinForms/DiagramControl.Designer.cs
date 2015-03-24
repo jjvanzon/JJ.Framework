@@ -36,6 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "DiagramControl";
             this.Size = new System.Drawing.Size(506, 255);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DiagramControl_Paint);
             this.ResumeLayout(false);
 
         }

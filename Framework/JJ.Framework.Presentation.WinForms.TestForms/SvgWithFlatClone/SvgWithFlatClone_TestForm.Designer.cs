@@ -46,7 +46,6 @@
             this.ClientSize = new System.Drawing.Size(519, 423);
             this.Controls.Add(this.diagramControl1);
             this.Name = "HierarchyTestForm";
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.HierarchyTestForm_Paint);
             this.ResumeLayout(false);
 
         }

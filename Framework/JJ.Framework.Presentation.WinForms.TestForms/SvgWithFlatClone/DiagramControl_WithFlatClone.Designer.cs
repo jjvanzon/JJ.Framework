@@ -30,12 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // DiagramControl
+            // DiagramControl_WithFlatClone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "DiagramControl";
+            this.Name = "DiagramControl_WithFlatClone";
             this.Size = new System.Drawing.Size(506, 255);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DiagramControl_WithFlatClone_Paint);
             this.ResumeLayout(false);
 
         }

@@ -15,7 +15,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 {
     internal partial class DiagramControl_WithoutCloning : UserControl
     {
-        ControlGraphicsBuffer _graphicsBuffer;
+        private ControlGraphicsBuffer _graphicsBuffer;
+
+        public SvgElements.Rectangle RootSvgRectangle { get; set; }
 
         public DiagramControl_WithoutCloning()
         {
@@ -23,11 +25,19 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
             _graphicsBuffer = new ControlGraphicsBuffer(this);
         }
-        
-        public void Draw(SvgElements.Rectangle svgRectangle)
+
+        private void DiagramControl_WithoutCloning_Paint(object sender, PaintEventArgs e)
         {
+            if (RootSvgRectangle == null)
+            {
+                return;
+            }
+
+            RootSvgRectangle.Width = Width;
+            RootSvgRectangle.Height = Height;
+
             var drawer = new SvgDrawer_WithoutCloning();
-            drawer.Draw(svgRectangle, _graphicsBuffer.Graphics);
+            drawer.Draw(RootSvgRectangle, _graphicsBuffer.Graphics);
             _graphicsBuffer.DrawBuffer();
         }
     }

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessors\ElementBase_Accessor.cs" />
+    <Compile Include="SvgFactory.cs" />
     <Compile Include="SvgWithoutCloning\SvgWithoutCloning_TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
