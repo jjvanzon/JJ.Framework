@@ -42,7 +42,6 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// Only used for the clone-free test for now.
         /// Can be removed when it proves that is definitely not the way to go.
         /// </summary>
-        /// 
         private float AbsoluteX { get; set; }
         /// <summary>
         /// Only used for the clone-free test for now.

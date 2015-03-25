@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\DashStyleEnum.cs" />
+    <Compile Include="Enums\MouseButtonEnum.cs" />
     <Compile Include="EventArgs\GestureEventArgs.cs" />
     <Compile Include="GestureHandler.cs" />
     <Compile Include="Gestures\ClickClosestGesture.cs" />
@@ -52,7 +53,6 @@
     <Compile Include="Infos\MouseDownInfo.cs" />
     <Compile Include="Infos\MouseMoveInfo.cs" />
     <Compile Include="Infos\MouseUpInfo.cs" />
-    <Compile Include="LinkTo\LinkToExtensions.cs" />
     <Compile Include="Models\Elements\Children.cs" />
     <Compile Include="Models\Styling\BackStyle.cs" />
     <Compile Include="Models\Styling\Font.cs" />
@@ -74,6 +74,10 @@
     <Compile Include="Visitors\ElementVisitorBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Mathematics\JJ.Framework.Mathematics.csproj">
+      <Project>{810b90b9-f501-4b91-b019-2ad5aad63304}</Project>
+      <Name>JJ.Framework.Mathematics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>

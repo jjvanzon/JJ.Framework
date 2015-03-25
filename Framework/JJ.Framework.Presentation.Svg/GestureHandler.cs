@@ -8,28 +8,42 @@ using System.Linq;
 using System.Text;
 using JJ.Framework.Presentation.Svg.Models;
 using JJ.Framework.Presentation.Svg.Models.Elements;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Presentation.Svg
 {
     public class GestureHandler
     {
         private IList<IGesture> _gestures;
+        private ElementBase _rootElement;
 
         public event EventHandler<GestureEventArgs> OnGesture;
 
-        // TODO: Some sort of wrapper model instead of a bunch of collections?
-        public GestureHandler(
-            IList<Rectangle> rectangles, IList<Line> lines, IList<Point> points, 
-            IList<IGesture> gestures)
+        public GestureHandler(ElementBase rootElement, IList<IGesture> gestures)
         {
-            _gestures = gestures;
+            if (rootElement == null) throw new NullException(() => rootElement);
+            if (gestures == null) throw new NullException(() => gestures);
 
-            throw new NotImplementedException();
+            _rootElement = rootElement;
+            _gestures = gestures;
         }
 
         public void MouseDown(MouseDownInfo info)
         {
-            throw new NotImplementedException();
+            ElementBase hitElement = HitTester.TryGetHitElement(_rootElement, info.X, info.Y);
+            if (hitElement != null)
+            {
+                if (OnGesture != null)
+                {
+                    OnGesture(hitElement, new GestureEventArgs(null, hitElement));
+                }
+            }
+
+            // TODO: I do not have a Parent property!
+            //if (hitElement.EventBubblingEnabled)
+            //{
+            //    hitElement.Parent
+            //}
         }
 
         public void MouseMove(MouseMoveInfo info)
