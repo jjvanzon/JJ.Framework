@@ -14,25 +14,22 @@ namespace JJ.Framework.Presentation.Svg.Tests
         [TestMethod]
         public void Test_Svg_RelativeCoordinate_ToAbsoluteVisitor()
         {
-            var rootRectangle = new Rectangle
-            {
-                Children = new Point[]
-                {
-                    new Point
-                    {
-                        X = 1,
-                        Y = 2,
-                        Children = new Point[]
-                        {
-                            new Point { X = 10, Y = 20 },
-                            new Point { X = 12, Y = 22 }
-                        }
-                    }
-                }
-            };
+            var svgManager = new SvgManager();
 
-            var visitor = new StylerVisitor();
-            IList<ElementBase> destElements = visitor.Execute(rootRectangle);
+            Point point = svgManager.CreatePoint(svgManager.RootRectangle);
+            point.X = 1;
+            point.Y = 2;
+
+            Point childPoint1 = svgManager.CreatePoint(point);
+            childPoint1.X = 10;
+            childPoint1.Y = 20;
+
+            Point childPoint2 = svgManager.CreatePoint(point);
+            childPoint2.X = 12;
+            childPoint2.Y = 22;
+
+            var visitor = new CalculationVisitor();
+            IList<ElementBase> destElements = visitor.Execute(svgManager.RootRectangle);
 
             AssertHelper.AreEqual(3, () => destElements.Count);
             AssertHelper.AreEqual(1, () => destElements[0].X);

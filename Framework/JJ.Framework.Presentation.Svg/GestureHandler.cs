@@ -9,10 +9,11 @@ using System.Text;
 using JJ.Framework.Presentation.Svg.Models;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Reflection;
+using JJ.Framework.Common;
 
 namespace JJ.Framework.Presentation.Svg
 {
-    public class GestureHandler
+    internal class GestureHandler
     {
         private IList<IGesture> _gestures;
         private ElementBase _rootElement;
@@ -30,20 +31,30 @@ namespace JJ.Framework.Presentation.Svg
 
         public void MouseDown(MouseDownInfo info)
         {
-            ElementBase hitElement = HitTester.TryGetHitElement(_rootElement, info.X, info.Y);
-            if (hitElement != null)
+            if (OnGesture == null)
             {
-                if (OnGesture != null)
-                {
-                    OnGesture(hitElement, new GestureEventArgs(null, hitElement));
-                }
+                return;
             }
 
-            // TODO: I do not have a Parent property!
-            //if (hitElement.EventBubblingEnabled)
-            //{
-            //    hitElement.Parent
-            //}
+            // ZOrdered list should not be recalculated for each gesture.
+            IList<ElementBase> zOrdereredElements = _rootElement.Children
+                                                                .UnionRecursive(x => x.Children)
+                                                                .OrderBy(x => x.CalculatedZIndex).ToArray();
+
+            ElementBase hitElement = HitTester.TryGetHitElement(zOrdereredElements, info.X, info.Y);
+            if (hitElement != null)
+            {
+                OnGesture(hitElement, new GestureEventArgs(null, hitElement));
+            }
+
+            // Event bubbling
+            ElementBase parent = hitElement.Parent;
+            while (parent != null && parent.EventBubblingEnabled)
+            {
+                OnGesture(hitElement, new GestureEventArgs(null, hitElement));
+
+                parent = parent.Parent;
+            }
         }
 
         public void MouseMove(MouseMoveInfo info)

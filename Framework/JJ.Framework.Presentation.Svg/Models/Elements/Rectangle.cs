@@ -9,6 +9,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
     public class Rectangle : ElementBase
     {
+        internal Rectangle()
+        { }
+
         public override float X { get; set; }
         public override float Y { get; set; }
         public float Width { get; set; }

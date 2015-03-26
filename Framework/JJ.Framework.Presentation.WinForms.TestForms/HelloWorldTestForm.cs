@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Presentation.Svg.Models;
+﻿using JJ.Framework.Presentation.Svg;
+using JJ.Framework.Presentation.Svg.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,23 +24,15 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Text = this.GetType().FullName;
 
-            diagramControl1.RootSvgRectangle = new SvgElements.Rectangle
-            {
-                Children = new SvgElements.ElementBase[]
-                {
-                    new SvgElements.Label
-                    { 
-                        Text = "Hello World!",
-                        Rectangle = new SvgElements.Rectangle 
-                        { 
-                            X = 10,
-                            Y = 20,
-                            Width = 500,
-                            Height = 100
-                        }
-                    }
-                }
-            };
+            var svgManager = new SvgManager();
+            SvgElements.Label label = svgManager.CreateLabel(svgManager.RootRectangle);
+            label.Text = "Hello World!";
+            label.Rectangle.X = 10;
+            label.Rectangle.Y = 20;
+            label.Rectangle.Width = 500;
+            label.Rectangle.Height = 100;
+
+            diagramControl1.SvgManager = svgManager;
         }
     }
 }

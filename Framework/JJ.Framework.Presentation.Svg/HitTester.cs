@@ -10,15 +10,11 @@ namespace JJ.Framework.Presentation.Svg
 {
     internal static class HitTester
     {
-        public static ElementBase TryGetHitElement(ElementBase parent, float pointerX, float pointerY)
+        public static ElementBase TryGetHitElement(IList<ElementBase> zOrderedElements, float pointerX, float pointerY)
         {
-            // TODO: Recalculating all the time might make it slower.
-            var visitor = new StylerVisitor();
-            IList<ElementBase> elements = visitor.Execute(parent);
-
-            for (int i = 0; i < elements.Count; i++)
+            for (int i = 0; i < zOrderedElements.Count; i++)
             {
-                ElementBase element = elements[i];
+                ElementBase element = zOrderedElements[i];
 
                 var rectangle = element as Rectangle;
                 if (rectangle != null)

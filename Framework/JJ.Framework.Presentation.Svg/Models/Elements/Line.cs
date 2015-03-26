@@ -9,6 +9,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
     public class Line : ElementBase
     {
+        internal Line()
+        { }
+
         private Point _pointA = new Point();
         /// <summary>
         /// Not nullable, auto-instantiated.

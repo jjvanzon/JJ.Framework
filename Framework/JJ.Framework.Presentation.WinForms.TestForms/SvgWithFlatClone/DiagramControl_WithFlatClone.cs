@@ -15,8 +15,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 {
     internal partial class DiagramControl_WithFlatClone : UserControl
     {
-        private ControlGraphicsBuffer _graphicsBuffer;
         public SvgElements.Rectangle RootSvgRectangle { get; set; }
+
+        private ControlGraphicsBuffer _graphicsBuffer;
 
         public DiagramControl_WithFlatClone()
         {
@@ -37,7 +38,6 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 
             var drawer = new SvgDrawer_WithFlatClone();
             drawer.Draw(RootSvgRectangle, _graphicsBuffer.Graphics);
-
             _graphicsBuffer.DrawBuffer();
         }
     }

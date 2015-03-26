@@ -15,7 +15,7 @@ using SvgStyling = JJ.Framework.Presentation.Svg.Models.Styling;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 {
-    internal static class ConvertExtensions_WithFlatClone
+    internal static class ConvertExtensions
     {
         // Point
 

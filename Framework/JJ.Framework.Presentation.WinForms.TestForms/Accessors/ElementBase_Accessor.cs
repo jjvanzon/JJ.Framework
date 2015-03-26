@@ -17,16 +17,16 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Accessors
             _accessor = new Accessor(elementBase, typeof(ElementBase));
         }
 
-        public float AbsoluteX
+        public float CalculatedX
         {
-            get { return _accessor.GetPropertyValue(() => AbsoluteX); }
-            set { _accessor.SetPropertyValue(() => AbsoluteX, value); }
+            get { return _accessor.GetPropertyValue(() => CalculatedX); }
+            set { _accessor.SetPropertyValue(() => CalculatedX, value); }
         }
 
-        public float AbsoluteY
+        public float CalculatedY
         {
-            get { return _accessor.GetPropertyValue(() => AbsoluteY); }
-            set { _accessor.SetPropertyValue(() => AbsoluteY, value); }
+            get { return _accessor.GetPropertyValue(() => CalculatedY); }
+            set { _accessor.SetPropertyValue(() => CalculatedY, value); }
         }
     }
 }

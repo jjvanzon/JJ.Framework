@@ -19,14 +19,12 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
             if (sourceRootRectangle == null) throw new NullException(() => sourceRootRectangle);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
-            var visitor = new ToAbsoluteVisitor_WithFlatClone();
-            var destRootRectangle = visitor.Execute(sourceRootRectangle);
+            var visitor = new CalculationVisitor();
+            IList<SvgElements.ElementBase> elements = visitor.Execute(sourceRootRectangle);
 
-            DrawBackground(sourceRootRectangle, destGraphics);
-
-            foreach (SvgElements.ElementBase child in destRootRectangle.Children)
+            foreach (SvgElements.ElementBase element in elements)
             {
-                DrawPolymorphic(child, destGraphics);
+                DrawPolymorphic(element, destGraphics);
             }
         }
 
@@ -39,24 +37,24 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
                 return;
             }
 
-            var destLine = sourceElement as SvgElements.Line;
-            if (destLine != null)
+            var sourceLine = sourceElement as SvgElements.Line;
+            if (sourceLine != null)
             {
-                DrawLine(destLine, destGraphics);
+                DrawLine(sourceLine, destGraphics);
                 return;
             }
 
-            var destRectangle = sourceElement as SvgElements.Rectangle;
-            if (destRectangle != null)
+            var sourceRectangle = sourceElement as SvgElements.Rectangle;
+            if (sourceRectangle != null)
             {
-                DrawRectangle(destRectangle, destGraphics);
+                DrawRectangle(sourceRectangle, destGraphics);
                 return;
             }
 
-            var destLabel = sourceElement as SvgElements.Label;
-            if (destLabel != null)
+            var sourceLabel = sourceElement as SvgElements.Label;
+            if (sourceLabel != null)
             {
-                DrawLabel(destLabel, destGraphics);
+                DrawLabel(sourceLabel, destGraphics);
                 return;
             }
 
@@ -65,8 +63,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 
         private void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
-            if (sourceRectangle.Visible &&
-                sourceRectangle.BackStyle.Visible)
+            if (sourceRectangle.Visible && sourceRectangle.BackStyle.Visible)
             {
                 Color destBackColor = sourceRectangle.BackStyle.Color.ToSystemDrawing();
                 destGraphics.Clear(destBackColor);
@@ -75,8 +72,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 
         private void DrawPoint(SvgElements.Point sourcePoint, Graphics destGraphics)
         {
-            if (sourcePoint.Visible &&
-                sourcePoint.PointStyle.Visible)
+            if (sourcePoint.Visible && sourcePoint.PointStyle.Visible)
             {
                 RectangleF destRectangle = sourcePoint.ToSystemDrawingRectangleF();
                 Brush destBrush = sourcePoint.PointStyle.ToSystemDrawingBrush();
@@ -87,14 +83,13 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 
         private void DrawLine(SvgElements.Line sourceLine, Graphics destGraphics)
         {
-            if (sourceLine.Visible &&
-                sourceLine.LineStyle.Visible)
+            if (sourceLine.Visible && sourceLine.LineStyle.Visible)
             {
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destPen, sourceLine.PointA.X, sourceLine.PointA.Y, sourceLine.PointB.X, sourceLine.PointB.Y);
             }
         }
-        
+
         private void DrawRectangle(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
             if (!sourceRectangle.Visible)
@@ -138,7 +133,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
                 PointF destTopRightPointF = new PointF(right, sourceRectangle.Y);
                 PointF destBottomRightPointF = new PointF(right, bottom);
                 PointF destBottomLeftPointF = new PointF(sourceRectangle.X, bottom);
-                
+
                 Pen destTopPen = sourceRectangle.TopLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
 

@@ -21,7 +21,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             if (rootRectangle == null) throw new NullException(() => rootRectangle);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
-            var visitor2 = new ToAbsoluteVisitor_WithoutCloning();
+            var visitor2 = new CalculationVisitor_WithoutCloning();
             visitor2.Execute(rootRectangle);
 
             _destGraphic = destGraphics;
@@ -78,7 +78,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
                 sourceLine.LineStyle.Visible)
             {
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
-                destGraphics.DrawLine(destPen, sourceLine_PointA_Accessor.AbsoluteX, sourceLine_PointA_Accessor.AbsoluteY, sourceLine_PointB_Accessor.AbsoluteX, sourceLine_PointB_Accessor.AbsoluteY);
+                destGraphics.DrawLine(destPen, sourceLine_PointA_Accessor.CalculatedX, sourceLine_PointA_Accessor.CalculatedY, sourceLine_PointB_Accessor.CalculatedX, sourceLine_PointB_Accessor.CalculatedY);
             }
         }
 
@@ -109,8 +109,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
                     Pen destPen = lineStyle.ToSystemDrawing();
                     destGraphics.DrawRectangle(
                         destPen,
-                        sourceRectangle_Accessor.AbsoluteX,
-                        sourceRectangle_Accessor.AbsoluteY,
+                        sourceRectangle_Accessor.CalculatedX,
+                        sourceRectangle_Accessor.CalculatedY,
                         sourceRectangle.Width,
                         sourceRectangle.Height);
                 }
@@ -120,13 +120,13 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
                 // Draw 4 Border Lines (with different styles)
 
                 // TODO: Consider giving Rectangle some instance helper methods for this and name X and Y differently.
-                float right = sourceRectangle_Accessor.AbsoluteX + sourceRectangle.Width;
-                float bottom = sourceRectangle_Accessor.AbsoluteY + sourceRectangle.Height;
+                float right = sourceRectangle_Accessor.CalculatedX + sourceRectangle.Width;
+                float bottom = sourceRectangle_Accessor.CalculatedY + sourceRectangle.Height;
 
-                PointF destTopLeftPointF = new PointF(sourceRectangle_Accessor.AbsoluteX, sourceRectangle_Accessor.AbsoluteY);
-                PointF destTopRightPointF = new PointF(right, sourceRectangle_Accessor.AbsoluteY);
+                PointF destTopLeftPointF = new PointF(sourceRectangle_Accessor.CalculatedX, sourceRectangle_Accessor.CalculatedY);
+                PointF destTopRightPointF = new PointF(right, sourceRectangle_Accessor.CalculatedY);
                 PointF destBottomRightPointF = new PointF(right, bottom);
-                PointF destBottomLeftPointF = new PointF(sourceRectangle_Accessor.AbsoluteX, bottom);
+                PointF destBottomLeftPointF = new PointF(sourceRectangle_Accessor.CalculatedX, bottom);
 
                 Pen destTopPen = sourceRectangle.TopLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
@@ -153,7 +153,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
             StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
             System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
-            RectangleF destRectangle = new RectangleF(sourceLabel_Rectangle_Accessor.AbsoluteX, sourceLabel_Rectangle_Accessor.AbsoluteY, sourceLabel.Rectangle.Width, sourceLabel.Rectangle.Height);
+            RectangleF destRectangle = new RectangleF(sourceLabel_Rectangle_Accessor.CalculatedX, sourceLabel_Rectangle_Accessor.CalculatedY, sourceLabel.Rectangle.Width, sourceLabel.Rectangle.Height);
             Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 
             destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);

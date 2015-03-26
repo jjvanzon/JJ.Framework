@@ -23,7 +23,7 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
-            var destPointF = new PointF(sourcePoint.X, sourcePoint.Y);
+            var destPointF = new PointF(sourcePoint.CalculatedX, sourcePoint.CalculatedY);
             return destPointF;
         }
 
@@ -31,7 +31,7 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
-            var destPoint = new System.Drawing.Point((int)sourcePoint.X, (int)sourcePoint.Y);
+            var destPoint = new System.Drawing.Point((int)sourcePoint.CalculatedX, (int)sourcePoint.CalculatedY);
             return destPoint;
         }
 
@@ -39,8 +39,8 @@ namespace JJ.Framework.Presentation.Drawing
         {
             float pointWidth = sourcePoint.PointStyle.Width;
             var destRectangleF = new RectangleF(
-                x: sourcePoint.X - pointWidth / 2,
-                y: sourcePoint.Y - pointWidth / 2,
+                x: sourcePoint.CalculatedX - pointWidth / 2,
+                y: sourcePoint.CalculatedY - pointWidth / 2,
                 width: pointWidth,
                 height: pointWidth);
 
@@ -54,8 +54,8 @@ namespace JJ.Framework.Presentation.Drawing
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
             var destRectangleF = new RectangleF(
-                sourceRectangle.X,
-                sourceRectangle.Y,
+                sourceRectangle.CalculatedX,
+                sourceRectangle.CalculatedY,
                 sourceRectangle.Width,
                 sourceRectangle.Height);
 
@@ -67,8 +67,8 @@ namespace JJ.Framework.Presentation.Drawing
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
             var destRectangle = new System.Drawing.Rectangle(
-                (int)sourceRectangle.X,
-                (int)sourceRectangle.Y,
+                (int)sourceRectangle.CalculatedX,
+                (int)sourceRectangle.CalculatedY,
                 (int)sourceRectangle.Width,
                 (int)sourceRectangle.Height);
 

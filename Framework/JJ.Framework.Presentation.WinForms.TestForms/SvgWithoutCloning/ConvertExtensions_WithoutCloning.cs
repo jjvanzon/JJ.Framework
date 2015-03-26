@@ -42,8 +42,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
             float pointWidth = sourcePoint.PointStyle.Width;
             var destRectangleF = new RectangleF(
-                x: sourcePoint_Accessor.AbsoluteX - pointWidth / 2,
-                y: sourcePoint_Accessor.AbsoluteY - pointWidth / 2,
+                x: sourcePoint_Accessor.CalculatedX - pointWidth / 2,
+                y: sourcePoint_Accessor.CalculatedY - pointWidth / 2,
                 width: pointWidth,
                 height: pointWidth);
 
@@ -59,8 +59,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             var sourceRectangle_Accessor = new ElementBase_Accessor(sourceRectangle);
 
             var destRectangleF = new RectangleF(
-                sourceRectangle_Accessor.AbsoluteX,
-                sourceRectangle_Accessor.AbsoluteY,
+                sourceRectangle_Accessor.CalculatedX,
+                sourceRectangle_Accessor.CalculatedY,
                 sourceRectangle.Width,
                 sourceRectangle.Height);
 
@@ -74,8 +74,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             var sourceRectangle_Accessor = new ElementBase_Accessor(sourceRectangle);
 
             var destRectangle = new System.Drawing.Rectangle(
-                (int)sourceRectangle_Accessor.AbsoluteX,
-                (int)sourceRectangle_Accessor.AbsoluteY,
+                (int)sourceRectangle_Accessor.CalculatedX,
+                (int)sourceRectangle_Accessor.CalculatedY,
                 (int)sourceRectangle.Width,
                 (int)sourceRectangle.Height);
 

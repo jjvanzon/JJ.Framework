@@ -41,6 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessors\ElementBase_Accessor.cs" />
+    <Compile Include="PickATestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PickATestForm.Designer.cs">
+      <DependentUpon>PickATestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SvgFactory.cs" />
     <Compile Include="SvgWithoutCloning\SvgWithoutCloning_TestForm.cs">
       <SubType>Form</SubType>
@@ -77,7 +83,7 @@
       <DependentUpon>DiagramControl_WithFlatClone.cs</DependentUpon>
     </Compile>
     <Compile Include="SvgWithFlatClone\SvgDrawer_WithFlatClone.cs" />
-    <Compile Include="SvgWithFlatClone\ToAbsoluteVisitor_WithFlatClone.cs" />
+    <Compile Include="SvgWithFlatClone\CalculationVisitor_WithFlatClone.cs" />
     <Compile Include="SvgWithoutCloning\ConvertExtensions_WithoutCloning.cs" />
     <Compile Include="SvgWithoutCloning\DiagramControl_WithoutCloning.cs">
       <SubType>UserControl</SubType>
@@ -86,7 +92,10 @@
       <DependentUpon>DiagramControl_WithoutCloning.cs</DependentUpon>
     </Compile>
     <Compile Include="SvgWithoutCloning\SvgDrawer_WithoutCloning.cs" />
-    <Compile Include="SvgWithoutCloning\ToAbsoluteVisitor_WithoutCloning.cs" />
+    <Compile Include="SvgWithoutCloning\CalculationVisitor_WithoutCloning.cs" />
+    <EmbeddedResource Include="PickATestForm.resx">
+      <DependentUpon>PickATestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SvgWithoutCloning\SvgWithoutCloning_TestForm.resx">
       <DependentUpon>SvgWithoutCloning_TestForm.cs</DependentUpon>
     </EmbeddedResource>

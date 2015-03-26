@@ -7,6 +7,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Visitors
 {
+    // public for use in tests.
     public abstract class ElementVisitorBase
     {
         protected virtual void VisitPolymorphic(ElementBase element)

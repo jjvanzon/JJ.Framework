@@ -14,10 +14,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
     /// Takes a set of SVG elements that can have a hierarchy of child elements
     /// with relative positions and fills in the absolute positions.
     /// </summary>
-    internal class ToAbsoluteVisitor_WithoutCloning : ElementVisitorBase
+    internal class CalculationVisitor_WithoutCloning : ElementVisitorBase
     {
-        // TODO: Give this class a more specific name?
-
         private float _currentParentCenterX;
         private float _currentParentCenterY;
 
@@ -87,8 +85,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
             var point_Accessor = new ElementBase_Accessor(point);
 
-            point_Accessor.AbsoluteX = point.X + _currentParentCenterX;
-            point_Accessor.AbsoluteY = point.Y + _currentParentCenterY;
+            point_Accessor.CalculatedX = point.X + _currentParentCenterX;
+            point_Accessor.CalculatedY = point.Y + _currentParentCenterY;
 
             _convertedPoints.Add(point);
         }
@@ -102,8 +100,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
             var rectangle_Accessor = new ElementBase_Accessor(rectangle);
 
-            rectangle_Accessor.AbsoluteX = rectangle.X + _currentParentCenterX;
-            rectangle_Accessor.AbsoluteY = rectangle.Y + _currentParentCenterY;
+            rectangle_Accessor.CalculatedX = rectangle.X + _currentParentCenterX;
+            rectangle_Accessor.CalculatedY = rectangle.Y + _currentParentCenterY;
 
             _convertedRectangles.Add(rectangle);
         }

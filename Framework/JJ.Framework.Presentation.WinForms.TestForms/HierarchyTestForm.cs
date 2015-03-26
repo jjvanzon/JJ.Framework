@@ -25,7 +25,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Text = this.GetType().FullName;
 
-            diagramControl1.RootSvgRectangle = SvgFactory.CreateTestSvgModel();
+            diagramControl1.SvgManager = SvgFactory.CreateTestSvgModel();
         }
     }
 }

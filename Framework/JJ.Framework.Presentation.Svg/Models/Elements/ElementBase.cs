@@ -12,41 +12,49 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     /// </summary>
     public abstract class ElementBase
     {
-        public ElementBase()
+        internal ElementBase()
         {
+            Children = new Children(parent: this);
             Visible = true;
         }
 
+        /// <summary>
+        /// X-coordinate relative to the parent.
+        /// </summary>
         public abstract float X { get; set; }
+
+        /// <summary>
+        /// X-coordinate relative to the parent.
+        /// </summary>
         public abstract float Y { get; set; }
 
         public bool Visible { get; set; }
-
         public int ZIndex { get; set; }
-        internal int Layer { get; set; }
 
-        private IList<ElementBase> _children = new List<ElementBase>();
+        public ElementBase Parent { get; internal set;}
+        public Children Children { get; private set; }
 
-        /// <summary> not nullable, auto-instantiated </summary>
-        public IList<ElementBase> Children
-        {
-            get { return _children; }
-            set 
-            {
-                if (value == null) throw new NullException(() => value);
-                _children = value;
-            }
-        }
+        public bool EventBubblingEnabled { get; set; }
 
         /// <summary>
-        /// Only used for the clone-free test for now.
-        /// Can be removed when it proves that is definitely not the way to go.
+        /// The calculated ZIndex, which is derived from both
+        /// the ZIndex and the containment structure.
         /// </summary>
-        private float AbsoluteX { get; set; }
+        public int CalculatedZIndex { get; internal set; }
+
         /// <summary>
-        /// Only used for the clone-free test for now.
-        /// Can be removed when it proves that is definitely not the way to go.
+        /// In the flat clone solution this was internal.
         /// </summary>
-        private float AbsoluteY { get; set; }
+        public int CalculatedLayer { get; internal set; }
+
+        /// <summary>
+        /// Calculated, absolute X coordinate.
+        /// </summary>
+        public float CalculatedX { get; internal set; }
+
+        /// <summary>
+        /// Calculated, absolute Y coordinate.
+        /// </summary>
+        public float CalculatedY { get; internal set; }
     }
 }

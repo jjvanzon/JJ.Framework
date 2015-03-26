@@ -10,6 +10,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
     public class Label : ElementBase
     {
+        internal Label()
+        { }
+
         public string Text { get; set; }
 
         private Rectangle _rectangle = new Rectangle();

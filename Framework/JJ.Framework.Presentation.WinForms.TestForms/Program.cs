@@ -22,14 +22,12 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
             Application.ThreadException += Application_ThreadException;
 
-            //Application.Run(new HelloWorldTestForm());
-            Application.Run(new HierarchyTestForm());
-            //Application.Run(new SvgWithFlatClone_TestForm());
-            //Application.Run(new SvgWithoutCloning_TestForm());
+            Application.Run(new PickATestForm());
         }
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
+            // Just the fact that I have this handler makes my dev environment stop at thread exceptions (with VS Express 2012 for Web).
         }
     }
 }

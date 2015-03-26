@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Presentation.Svg;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,67 +10,51 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 {
     internal static class SvgFactory
     {
-        public static SvgElements.Rectangle CreateTestSvgModel()
+        public static SvgManager CreateTestSvgModel()
         {
-            var rootRectangle = new SvgElements.Rectangle();
+            var svgManager = new SvgManager();
 
-            SvgElements.Rectangle rectangle1 = CreateRectangle(200, 10, "Block 1");
+            SvgElements.Rectangle rootRectangle = svgManager.RootRectangle;
 
-            SvgElements.Rectangle rectangle2 = CreateRectangle(10, 200, "Block 2");
+            SvgElements.Rectangle rectangle1 = CreateRectangle(svgManager, 200, 10, "Block 1");
 
-            var point1 = new SvgElements.Point
-            {
-                X = 150,
-                Y = 30,
-                PointStyle = SvgHelper.InvisiblePointStyle
-            };
-            rectangle1.Children.Add(point1);
+            SvgElements.Rectangle rectangle2 = CreateRectangle(svgManager, 10, 200, "Block 2");
 
-            var point2 = new SvgElements.Point
-            {
-                X = 150,
-                Y = 30,
-                PointStyle = SvgHelper.InvisiblePointStyle
-            };
-            rectangle2.Children.Add(point2);
+            SvgElements.Point point1 = svgManager.CreatePoint(rectangle1);
+            point1.X = 150;
+            point1.Y = 30;
+            point1.PointStyle = SvgHelper.InvisiblePointStyle;
 
-            var line = new SvgElements.Line
-            {
-                PointA = point1,
-                PointB = point2,
-                LineStyle = SvgHelper.DefaultLineStyle
-            };
+            SvgElements.Point point2 = svgManager.CreatePoint(rectangle2);
+            point2.X = 150;
+            point2.Y = 30;
+            point2.PointStyle = SvgHelper.InvisiblePointStyle;
 
-            rootRectangle.Children.Add(line);
-            rootRectangle.Children.Add(rectangle1);
-            rootRectangle.Children.Add(rectangle2);
+            SvgElements.Line line = svgManager.CreateLine(rootRectangle);
+            line.PointA = point1;
+            line.PointB = point2;
+            line.LineStyle = SvgHelper.DefaultLineStyle;
 
             rootRectangle.ZIndex = -2;
             line.ZIndex = -1;
 
-            return rootRectangle;
+            return svgManager;
         }
 
-        private static SvgElements.Rectangle CreateRectangle(float x, float y, string text)
+        private static SvgElements.Rectangle CreateRectangle(SvgManager svgManager, float x, float y, string text)
         {
-            var rectangle = new SvgElements.Rectangle
-            {
-                X = x,
-                Y = y,
-                Width = 300,
-                Height = 60,
-                Children = new List<SvgElements.ElementBase>
-                {
-                    new SvgElements.Label
-                    {
-                        Rectangle = new SvgElements.Rectangle { Width = 300, Height = 60 },
-                        Text = text,
-                        TextStyle = SvgHelper.DefaultTextStyle
-                    }
-                }
-            };
-
+            SvgElements.Rectangle rectangle = svgManager.CreateRectangle(svgManager.RootRectangle);
+            rectangle.X = x;
+            rectangle.Y = y;
+            rectangle.Width = 300;
+            rectangle.Height = 60;
             rectangle.SetLineStyle(SvgHelper.DefaultLineStyle);
+
+            SvgElements.Label label = svgManager.CreateLabel(rectangle);
+            label.Rectangle.Width = 300;
+            label.Rectangle.Height = 60;
+            label.Text = text;
+            label.TextStyle = SvgHelper.DefaultTextStyle;
 
             return rectangle;
         }

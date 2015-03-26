@@ -10,12 +10,13 @@ using JJ.Framework.Presentation.Svg.Models;
 using JJ.Framework.Presentation.Svg.Visitors;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Drawing;
+using JJ.Framework.Presentation.Svg;
 
 namespace JJ.Framework.Presentation.WinForms
 {
     public partial class DiagramControl : UserControl
     {
-        public SvgElements.Rectangle RootSvgRectangle { get; set; }
+        public SvgManager SvgManager { get; set; }
 
         private ControlGraphicsBuffer _graphicsBuffer;
 
@@ -28,16 +29,18 @@ namespace JJ.Framework.Presentation.WinForms
 
         private void DiagramControl_Paint(object sender, PaintEventArgs e)
         {
-            if (RootSvgRectangle == null)
+            if (SvgManager == null)
             {
                 return;
             }
 
-            RootSvgRectangle.Width = Width;
-            RootSvgRectangle.Height = Height;
+            SvgManager.RootRectangle.Width = Width;
+            SvgManager.RootRectangle.Height = Height;
 
-            var drawer = new SvgDrawer();
-            drawer.Draw(RootSvgRectangle, _graphicsBuffer.Graphics);
+            SvgManager.Recalculate();
+
+            SvgDrawer.Draw(SvgManager, _graphicsBuffer.Graphics);
+
             _graphicsBuffer.DrawBuffer();
         }
     }

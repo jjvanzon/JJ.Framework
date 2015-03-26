@@ -9,26 +9,24 @@ using System.Threading.Tasks;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Reflection;
 using JJ.Framework.Presentation.Svg.Models.Styling;
+using JJ.Framework.Presentation.Svg;
 
 namespace JJ.Framework.Presentation.Drawing
 {
-    public class SvgDrawer
+    public static class SvgDrawer
     {
-        public void Draw(SvgElements.Rectangle sourceRootRectangle, Graphics destGraphics)
+        public static void Draw(SvgManager svgManager, Graphics destGraphics)
         {
-            if (sourceRootRectangle == null) throw new NullException(() => sourceRootRectangle);
+            if (svgManager == null) throw new NullException(() => svgManager);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
-            var visitor = new StylerVisitor();
-            IList<SvgElements.ElementBase> elements = visitor.Execute(sourceRootRectangle);
-
-            foreach (SvgElements.ElementBase element in elements)
+            foreach (SvgElements.ElementBase element in svgManager.EnumerateElementsByZIndex())
             {
                 DrawPolymorphic(element, destGraphics);
             }
         }
-        
-        private void DrawPolymorphic(SvgElements.ElementBase sourceElement, Graphics destGraphics)
+
+        private static void DrawPolymorphic(SvgElements.ElementBase sourceElement, Graphics destGraphics)
         {
             var sourcePoint = sourceElement as SvgElements.Point;
             if (sourcePoint != null)
@@ -61,7 +59,7 @@ namespace JJ.Framework.Presentation.Drawing
             throw new Exception(String.Format("Unexpected ElementBase type '{0}'", sourceElement.GetType().FullName));
         }
 
-        private void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
+        private static void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
             if (sourceRectangle.Visible && sourceRectangle.BackStyle.Visible)
             {
@@ -70,7 +68,7 @@ namespace JJ.Framework.Presentation.Drawing
             }
         }
 
-        private void DrawPoint(SvgElements.Point sourcePoint, Graphics destGraphics)
+        private static void DrawPoint(SvgElements.Point sourcePoint, Graphics destGraphics)
         {
             if (sourcePoint.Visible && sourcePoint.PointStyle.Visible)
             {
@@ -81,16 +79,16 @@ namespace JJ.Framework.Presentation.Drawing
             }
         }
 
-        private void DrawLine(SvgElements.Line sourceLine, Graphics destGraphics)
+        private static void DrawLine(SvgElements.Line sourceLine, Graphics destGraphics)
         {
             if (sourceLine.Visible && sourceLine.LineStyle.Visible)
             {
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
-                destGraphics.DrawLine(destPen, sourceLine.PointA.X, sourceLine.PointA.Y, sourceLine.PointB.X, sourceLine.PointB.Y);
+                destGraphics.DrawLine(destPen, sourceLine.PointA.CalculatedX, sourceLine.PointA.CalculatedY, sourceLine.PointB.CalculatedX, sourceLine.PointB.CalculatedY);
             }
         }
-        
-        private void DrawRectangle(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
+
+        private static void DrawRectangle(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
             if (!sourceRectangle.Visible)
             {
@@ -115,8 +113,8 @@ namespace JJ.Framework.Presentation.Drawing
                     Pen destPen = lineStyle.ToSystemDrawing();
                     destGraphics.DrawRectangle(
                         destPen,
-                        sourceRectangle.X,
-                        sourceRectangle.Y,
+                        sourceRectangle.CalculatedX,
+                        sourceRectangle.CalculatedY,
                         sourceRectangle.Width,
                         sourceRectangle.Height);
                 }
@@ -126,13 +124,13 @@ namespace JJ.Framework.Presentation.Drawing
                 // Draw 4 Border Lines (with different styles)
 
                 // TODO: Consider giving Rectangle some instance helper methods for this and name X and Y differently.
-                float right = sourceRectangle.X + sourceRectangle.Width;
-                float bottom = sourceRectangle.Y + sourceRectangle.Height;
+                float right = sourceRectangle.CalculatedX + sourceRectangle.Width;
+                float bottom = sourceRectangle.CalculatedY + sourceRectangle.Height;
 
-                PointF destTopLeftPointF = new PointF(sourceRectangle.X, sourceRectangle.Y);
-                PointF destTopRightPointF = new PointF(right, sourceRectangle.Y);
+                PointF destTopLeftPointF = new PointF(sourceRectangle.CalculatedX, sourceRectangle.CalculatedY);
+                PointF destTopRightPointF = new PointF(right, sourceRectangle.CalculatedY);
                 PointF destBottomRightPointF = new PointF(right, bottom);
-                PointF destBottomLeftPointF = new PointF(sourceRectangle.X, bottom);
+                PointF destBottomLeftPointF = new PointF(sourceRectangle.CalculatedX, bottom);
                 
                 Pen destTopPen = sourceRectangle.TopLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
@@ -148,7 +146,7 @@ namespace JJ.Framework.Presentation.Drawing
             }
         }
 
-        private void DrawLabel(SvgElements.Label sourceLabel, Graphics destGraphics)
+        private static void DrawLabel(SvgElements.Label sourceLabel, Graphics destGraphics)
         {
             if (!sourceLabel.Visible)
             {
@@ -157,7 +155,7 @@ namespace JJ.Framework.Presentation.Drawing
 
             StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
             System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
-            RectangleF destRectangle = new RectangleF(sourceLabel.Rectangle.X, sourceLabel.Rectangle.Y, sourceLabel.Rectangle.Width, sourceLabel.Rectangle.Height);
+            RectangleF destRectangle = new RectangleF(sourceLabel.Rectangle.CalculatedX, sourceLabel.Rectangle.CalculatedY, sourceLabel.Rectangle.Width, sourceLabel.Rectangle.Height);
             Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 
             destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);
