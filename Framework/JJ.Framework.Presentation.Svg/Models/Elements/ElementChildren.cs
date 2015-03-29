@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using JJ.Framework.Presentation.Svg.Business;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
@@ -28,6 +29,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             {
                 throw new Exception("To add a child the parent must be part of a diagram.");
             }
+
+            //var relationshipHandler = new ParentToChildrenHandler2();
+            //relationshipHandler.AddChild(_parent, child);
 
             if (_list.Contains(child)) return;
 

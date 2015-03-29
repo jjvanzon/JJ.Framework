@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Business
 {
-    internal class ElementToDiagramRelationshipHandler
+    internal class DiagramToElementHandler
     {
     }
 }

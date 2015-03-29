@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using JJ.Framework.Presentation.Svg.EventArg;
+using JJ.Framework.Presentation.Svg.Business;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
@@ -109,6 +110,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                         }
                     }
                 }
+
+                //var relationshipHandler = new ParentToChildrenHandler2();
+                //relationshipHandler.SetParent(this, _parent, value);
 
                 if (_parent == value) return;
 
