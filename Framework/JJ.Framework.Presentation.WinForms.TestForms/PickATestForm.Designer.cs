@@ -44,7 +44,7 @@
             this.diagramControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.diagramControl1.Name = "diagramControl1";
             this.diagramControl1.Size = new System.Drawing.Size(315, 271);
-            this.diagramControl1.SvgManager = null;
+            this.diagramControl1.Diagram = null;
             this.diagramControl1.TabIndex = 0;
             // 
             // buttonShowHierarchyTestForm

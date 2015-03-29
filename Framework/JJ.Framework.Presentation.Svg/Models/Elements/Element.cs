@@ -78,7 +78,29 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             get { return _parent; }
             set 
             {
-                if (_diagram == null) throw new Exception("To assign a parent to a child, the child must be part of a diagram.");
+                // Side-effect: equate parent's and child's diagram.
+                if (value != null)
+                {
+                    if (value.Diagram == null && this.Diagram == null)
+                    {
+                        throw new Exception("To assign a parent to a child, one of them must be part of a diagram.");
+                    }
+                    else if (value.Diagram == null && this.Diagram != null)
+                    {
+                        value.Diagram = this.Diagram;
+                    }
+                    else if (value.Diagram != null && this.Diagram == null)
+                    {
+                        this.Diagram = value.Diagram;
+                    }
+                    else if (value.Diagram != null && this.Diagram != null)
+                    {
+                        if (value.Diagram != this.Diagram)
+                        {
+                            throw new Exception("Diagram of parent and child must be the same.");
+                        }
+                    }
+                }
 
                 if (_parent == value) return;
 

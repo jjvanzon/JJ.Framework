@@ -12,53 +12,64 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
     {
         public static Diagram CreateTestSvgModel()
         {
-            var model = new Diagram();
+            var diagram = new Diagram();
 
-            SvgElements.Rectangle rootRectangle = model.RootRectangle;
+            SvgElements.Rectangle rootRectangle = diagram.RootRectangle;
 
-            SvgElements.Rectangle rectangle1 = CreateRectangle(model, 200, 10, "Block 1");
+            SvgElements.Rectangle rectangle1 = CreateRectangle(diagram, 200, 10, "Block 1");
 
-            SvgElements.Rectangle rectangle2 = CreateRectangle(model, 10, 200, "Block 2");
+            SvgElements.Rectangle rectangle2 = CreateRectangle(diagram, 10, 200, "Block 2");
 
-            //SvgElements.Point point1 = model.CreatePoint(rectangle1);
-            SvgElements.Point point1 = new SvgElements.Point();
-            model.Elements.Add(point1);
-            point1.Parent = rectangle1;
+            var point1 = new SvgElements.Point
+            {
+                Parent = rectangle1,
+                X = 150,
+                Y = 30,
+                PointStyle = SvgHelper.InvisiblePointStyle
+            };
 
-            point1.X = 150;
-            point1.Y = 30;
-            point1.PointStyle = SvgHelper.InvisiblePointStyle;
+            var point2 = new SvgElements.Point  
+            {
+                Parent = rectangle2,
+                X = 150,
+                Y = 30,
+                PointStyle = SvgHelper.InvisiblePointStyle
+            };
 
-            SvgElements.Point point2 = model.CreatePoint(rectangle2);
-            point2.X = 150;
-            point2.Y = 30;
-            point2.PointStyle = SvgHelper.InvisiblePointStyle;
-
-            SvgElements.Line line = model.CreateLine(rootRectangle);
-            line.PointA = point1;
-            line.PointB = point2;
-            line.LineStyle = SvgHelper.DefaultLineStyle;
+            var line = new SvgElements.Line
+            {
+                Diagram = diagram,
+                PointA = point1,
+                PointB = point2,
+                LineStyle = SvgHelper.DefaultLineStyle
+            };
 
             rootRectangle.ZIndex = -2;
             line.ZIndex = -1;
 
-            return model;
+            return diagram;
         }
 
-        private static SvgElements.Rectangle CreateRectangle(Diagram svgManager, float x, float y, string text)
+        private static SvgElements.Rectangle CreateRectangle(Diagram diagram, float x, float y, string text)
         {
-            SvgElements.Rectangle rectangle = svgManager.CreateRectangle(svgManager.RootRectangle);
-            rectangle.X = x;
-            rectangle.Y = y;
-            rectangle.Width = 300;
-            rectangle.Height = 60;
+            var rectangle = new SvgElements.Rectangle 
+            {
+                Diagram = diagram,
+                X = x,
+                Y = y,
+                Width = 300,
+                Height = 60
+            };
             rectangle.SetLineStyle(SvgHelper.DefaultLineStyle);
 
-            SvgElements.Label label = svgManager.CreateLabel(rectangle);
-            label.Width = 300;
-            label.Height = 60;
-            label.Text = text;
-            label.TextStyle = SvgHelper.DefaultTextStyle;
+            var label = new SvgElements.Label 
+            {
+                Parent = rectangle,
+                Width = 300,
+                Height = 60,
+                Text = text,
+                TextStyle = SvgHelper.DefaultTextStyle
+            };
 
             return rectangle;
         }

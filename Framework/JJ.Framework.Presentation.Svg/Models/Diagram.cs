@@ -47,56 +47,56 @@ namespace JJ.Framework.Presentation.Svg
             }
         }
 
-        public Point CreatePoint(Element parent)
-        {
-            if (parent == null) throw new NullException(() => parent);
+        //public Point CreatePoint(Element parent)
+        //{
+        //    if (parent == null) throw new NullException(() => parent);
 
-            var child = new Point();
-            child.Diagram = this;
+        //    var child = new Point();
+        //    child.Diagram = this;
 
-            parent.Children.Add(child);
-            child.Parent = parent;
+        //    parent.Children.Add(child);
+        //    child.Parent = parent;
 
-            return child;
-        }
+        //    return child;
+        //}
 
-        public Line CreateLine(Element parent)
-        {
-            if (parent == null) throw new NullException(() => parent);
+        //public Line CreateLine(Element parent)
+        //{
+        //    if (parent == null) throw new NullException(() => parent);
 
-            var child = new Line();
-            child.Diagram = this;
+        //    var child = new Line();
+        //    child.Diagram = this;
 
-            parent.Children.Add(child);
-            child.Parent = parent;
+        //    parent.Children.Add(child);
+        //    child.Parent = parent;
 
-            return child;
-        }
+        //    return child;
+        //}
 
-        public Rectangle CreateRectangle(Element parent)
-        {
-            if (parent == null) throw new NullException(() => parent);
+        //public Rectangle CreateRectangle(Element parent)
+        //{
+        //    if (parent == null) throw new NullException(() => parent);
 
-            var child = new Rectangle();
-            child.Diagram = this;
+        //    var child = new Rectangle();
+        //    child.Diagram = this;
 
-            parent.Children.Add(child);
-            child.Parent = parent;
+        //    parent.Children.Add(child);
+        //    child.Parent = parent;
 
-            return child;
-        }
+        //    return child;
+        //}
 
-        public Label CreateLabel(Element parent)
-        {
-            if (parent == null) throw new NullException(() => parent);
+        //public Label CreateLabel(Element parent)
+        //{
+        //    if (parent == null) throw new NullException(() => parent);
 
-            var child = new Label();
-            child.Diagram = this;
+        //    var child = new Label();
+        //    child.Diagram = this;
 
-            parent.Children.Add(child);
-            child.Parent = parent;
+        //    parent.Children.Add(child);
+        //    child.Parent = parent;
 
-            return child;
-        }
+        //    return child;
+        //}
     }
 }

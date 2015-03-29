@@ -16,7 +16,7 @@ namespace JJ.Framework.Presentation.WinForms
 {
     public partial class DiagramControl : UserControl
     {
-        public Diagram SvgManager { get; set; }
+        public Diagram Diagram { get; set; }
 
         private ControlGraphicsBuffer _graphicsBuffer;
 
@@ -29,17 +29,17 @@ namespace JJ.Framework.Presentation.WinForms
 
         private void DiagramControl_Paint(object sender, PaintEventArgs e)
         {
-            if (SvgManager == null)
+            if (Diagram == null)
             {
                 return;
             }
 
-            SvgManager.RootRectangle.Width = Width;
-            SvgManager.RootRectangle.Height = Height;
+            Diagram.RootRectangle.Width = Width;
+            Diagram.RootRectangle.Height = Height;
 
-            SvgManager.Recalculate();
+            Diagram.Recalculate();
 
-            SvgDrawer.Draw(SvgManager, _graphicsBuffer.Graphics);
+            SvgDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
 
             _graphicsBuffer.DrawBuffer();
         }

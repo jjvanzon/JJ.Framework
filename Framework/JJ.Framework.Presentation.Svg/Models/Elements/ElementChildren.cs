@@ -23,7 +23,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
             if (child == null) throw new NullException(() => child);
 
-            // Side- effect
+            // Side-effect
             if (_parent.Diagram == null)
             {
                 throw new Exception("To add a child the parent must be part of a diagram.");

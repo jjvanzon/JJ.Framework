@@ -15,12 +15,12 @@ namespace JJ.Framework.Presentation.Drawing
 {
     public static class SvgDrawer
     {
-        public static void Draw(Diagram svgManager, Graphics destGraphics)
+        public static void Draw(Diagram diagram, Graphics destGraphics)
         {
-            if (svgManager == null) throw new NullException(() => svgManager);
+            if (diagram == null) throw new NullException(() => diagram);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
-            foreach (SvgElements.Element element in svgManager.EnumerateElementsByZIndex())
+            foreach (SvgElements.Element element in diagram.EnumerateElementsByZIndex())
             {
                 DrawPolymorphic(element, destGraphics);
             }
