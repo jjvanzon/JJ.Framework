@@ -41,12 +41,15 @@ namespace JJ.Framework.Presentation.Svg.Helpers
 
             int color = 0;
             color |= alpha;
-            color = color << 8;
-            color |= blue;
+
             color = color << 8;
             color |= red;
+
             color = color << 8;
             color |= green;
+
+            color = color << 8;
+            color |= blue;
 
             return color;
         }

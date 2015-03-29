@@ -27,7 +27,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// Not nullable, auto-instantiated.
         /// Coordinates of the point are related to the Label's parent.
         /// </summary>
-        public Point PointA 
+        public Point PointA
         {
             get { return _pointA; }
             set
@@ -84,6 +84,18 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                 _pointA.Y = value;
                 _pointB.Y = _pointA.Y + dy;
             }
+        }
+
+        public override float Width
+        {
+            get { return 0; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public override float Height
+        {
+            get { return 0; }
+            set { throw new NotSupportedException(); }
         }
     }
 }

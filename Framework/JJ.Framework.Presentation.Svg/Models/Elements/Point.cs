@@ -17,6 +17,18 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         public override float X { get; set; }
         public override float Y { get; set; }
 
+        public override float Width
+        {
+            get { return 0; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public override float Height
+        {
+            get { return 0; }
+            set { throw new NotSupportedException(); }
+        }
+
         private PointStyle _pointStyle = new PointStyle();
         /// <summary> not nullable, auto-instantiated </summary>
         public PointStyle PointStyle

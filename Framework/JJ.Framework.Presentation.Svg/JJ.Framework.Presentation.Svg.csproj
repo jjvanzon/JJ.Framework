@@ -37,7 +37,7 @@
   <ItemGroup>
     <Compile Include="Enums\DashStyleEnum.cs" />
     <Compile Include="Enums\MouseButtonEnum.cs" />
-    <Compile Include="EventArgs\GestureEventArgs.cs" />
+    <Compile Include="EventArg\GestureEventArgs.cs" />
     <Compile Include="GestureHandler.cs" />
     <Compile Include="Gestures\ClickClosestGesture.cs" />
     <Compile Include="Gestures\ClickGesture.cs" />
@@ -49,10 +49,9 @@
     <Compile Include="Gestures\MouseUpGesture.cs" />
     <Compile Include="Gestures\MoveGesture.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
-    <Compile Include="HitTester.cs" />
-    <Compile Include="Infos\MouseDownInfo.cs" />
-    <Compile Include="Infos\MouseMoveInfo.cs" />
-    <Compile Include="Infos\MouseUpInfo.cs" />
+    <Compile Include="EventArg\MouseEventArgs.cs" />
+    <Compile Include="EventArg\~MouseMoveEventArgs.cs" />
+    <Compile Include="EventArg\~MouseUpEventArgs.cs" />
     <Compile Include="Models\Elements\ElementChildren.cs" />
     <Compile Include="Models\Styling\BackStyle.cs" />
     <Compile Include="Models\Styling\Font.cs" />

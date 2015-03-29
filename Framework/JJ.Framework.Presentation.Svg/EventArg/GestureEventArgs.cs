@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Presentation.Svg.EventArgs
+namespace JJ.Framework.Presentation.Svg.EventArg
 {
-    public class GestureEventArgs : System.EventArgs
+    public class GestureEventArgs : EventArgs
     {
         public GestureEventArgs(IGesture gesture, Element element)
         {

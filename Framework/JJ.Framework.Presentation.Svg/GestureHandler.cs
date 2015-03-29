@@ -1,6 +1,5 @@
-﻿using JJ.Framework.Presentation.Svg.EventArgs;
+﻿using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Presentation.Svg.Gestures;
-using JJ.Framework.Presentation.Svg.Infos;
 using JJ.Framework.Presentation.Svg;
 using System;
 using System.Collections.Generic;
@@ -10,61 +9,119 @@ using JJ.Framework.Presentation.Svg.Models;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Reflection;
 using JJ.Framework.Common;
+using JJ.Framework.Mathematics;
 
 namespace JJ.Framework.Presentation.Svg
 {
     internal class GestureHandler
     {
-        private IList<IGesture> _gestures;
-        private Element _rootElement;
+        private Diagram _diagram;
 
-        public event EventHandler<GestureEventArgs> OnGesture;
+        //private IList<IGesture> _gestures;
+        //public event EventHandler<GestureEventArgs> OnGesture;
 
-        public GestureHandler(Element rootElement, IList<IGesture> gestures)
+        public GestureHandler(Diagram diagram)
+            : this(diagram, null)
+        { }
+
+        public GestureHandler(Diagram diagram, IList<IGesture> gestures)
         {
-            if (rootElement == null) throw new NullException(() => rootElement);
-            if (gestures == null) throw new NullException(() => gestures);
+            if (diagram == null) throw new NullException(() => diagram);
+            //if (gestures == null) throw new NullException(() => gestures);
 
-            _rootElement = rootElement;
-            _gestures = gestures;
+            _diagram = diagram;
+            //_gestures = gestures;
         }
 
-        public void MouseDown(MouseDownInfo info)
+        public void MouseDown(MouseEventArgs e)
         {
-            if (OnGesture == null)
-            {
-                return;
-            }
+            IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
 
-            // ZOrdered list should not be recalculated for each gesture.
-            IList<Element> zOrdereredElements = _rootElement.Children
-                                                                .UnionRecursive(x => x.Children)
-                                                                .OrderBy(x => x.CalculatedZIndex).ToArray();
+            Element hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
 
-            Element hitElement = HitTester.TryGetHitElement(zOrdereredElements, info.X, info.Y);
             if (hitElement != null)
             {
-                OnGesture(hitElement, new GestureEventArgs(null, hitElement));
-            }
+                hitElement.MouseDown(hitElement, e);
 
-            // Event bubbling
-            Element parent = hitElement.Parent;
-            while (parent != null && parent.EventBubblingEnabled)
+                //if (OnGesture != null)
+                //{
+                //    OnGesture(hitElement, new GestureEventArgs(null, hitElement));
+                //}
+
+                // Event bubbling
+                Element parent = hitElement.Parent;
+                while (parent != null && parent.EventBubblingEnabled)
+                {
+                    parent.MouseDown(hitElement, e);
+
+                    //if (OnGesture != null)
+                    //{
+                    //    OnGesture(parent, new GestureEventArgs(null, hitElement));
+                    //}
+
+                    parent = parent.Parent;
+                }
+            }
+        }
+
+        public void MouseMove(MouseEventArgs e)
+        {
+            IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
+            Element hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
+            if (hitElement != null)
             {
-                OnGesture(hitElement, new GestureEventArgs(null, hitElement));
+                hitElement.MouseMove(hitElement, e);
 
-                parent = parent.Parent;
+                // Event bubbling
+                Element parent = hitElement.Parent;
+                while (parent != null && parent.EventBubblingEnabled)
+                {
+                    parent.MouseMove(hitElement, e);
+
+                    parent = parent.Parent;
+                }
             }
         }
 
-        public void MouseMove(MouseMoveInfo info)
+        public void MouseUp(MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
+            Element hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
+            if (hitElement != null)
+            {
+                hitElement.MouseUp(hitElement, e);
+
+                // Event bubbling
+                Element parent = hitElement.Parent;
+                while (parent != null && parent.EventBubblingEnabled)
+                {
+                    parent.MouseUp(hitElement, e);
+
+                    parent = parent.Parent;
+                }
+            }
         }
 
-        public void MouseUp(MouseUpInfo info)
+        private static Element TryGetHitElement(IEnumerable<Element> zOrderedElements, float pointerX, float pointerY)
         {
-            throw new NotImplementedException();
+            foreach (Element element in zOrderedElements.Reverse())
+            {
+                if (element != null)
+                {
+                    bool isInRectangle = GeometryCalculations.IsInRectangle(
+                            pointerX, pointerY,
+                            element.CalculatedX, element.CalculatedY,
+                            element.CalculatedX + element.Width, element.CalculatedY + element.Height);
+
+                    if (isInRectangle)
+                    {
+                        return element;
+                    }
+                }
+            }
+
+            return null;
         }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Presentation.Svg.Infos;
+﻿using JJ.Framework.Presentation.Svg.EventArg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,8 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     public interface IGesture
     {
-        void MouseDown(MouseDownInfo info);
-        void MouseMove(MouseDownInfo info);
-        void MouseUp(MouseDownInfo info);
+        void MouseDown(MouseEventArgs e);
+        void MouseMove(MouseEventArgs e);
+        void MouseUp(MouseEventArgs e);
     }
 }

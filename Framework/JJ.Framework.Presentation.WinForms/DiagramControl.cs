@@ -16,6 +16,7 @@ namespace JJ.Framework.Presentation.WinForms
 {
     public partial class DiagramControl : UserControl
     {
+        /// <summary> nullable </summary>
         public Diagram Diagram { get; set; }
 
         private ControlGraphicsBuffer _graphicsBuffer;
@@ -25,6 +26,48 @@ namespace JJ.Framework.Presentation.WinForms
             InitializeComponent();
 
             _graphicsBuffer = new ControlGraphicsBuffer(this);
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            if (Diagram != null)
+            {
+                Diagram.MouseDown(e.ToSvg());
+            }
+
+            base.OnMouseDown(e);
+
+            Refresh();
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            if (Diagram != null)
+            {
+                Diagram.MouseMove(e.ToSvg());
+            }
+
+            base.OnMouseMove(e);
+
+            Refresh();
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            if (Diagram != null)
+            {
+                Diagram.MouseUp(e.ToSvg());
+            }
+
+            base.OnMouseUp(e);
+
+            Refresh();
+        }
+
+        public override void Refresh()
+        {
+            SvgDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
+            _graphicsBuffer.DrawBuffer();
         }
 
         private void DiagramControl_Paint(object sender, PaintEventArgs e)

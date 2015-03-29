@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Presentation.Svg.Models.Elements;
+﻿using JJ.Framework.Presentation.Svg.EventArg;
+using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Svg.Visitors;
 using JJ.Framework.Reflection;
 using System;
@@ -13,16 +14,16 @@ namespace JJ.Framework.Presentation.Svg
     {
         public Diagram()
         {
-            Elements = new DiagramElements(diagram: this);
+            Elements = new DiagramElements(this);
 
             _rootRectangle = new Rectangle();
             _rootRectangle.Diagram = this;
+
+            _gestureHandler = new GestureHandler(this);
         }
 
         private Rectangle _rootRectangle;
-        /// <summary>
-        /// read-only
-        /// </summary>
+        /// <summary> read-only </summary>
         [DebuggerHidden]
         public Rectangle RootRectangle
         {
@@ -38,7 +39,6 @@ namespace JJ.Framework.Presentation.Svg
         }
 
         private IList<Element> _elementsOrderByZIndex = new Element[0];
-
         public IEnumerable<Element> EnumerateElementsByZIndex()
         {
             for (int i = 0; i < _elementsOrderByZIndex.Count; i++)
@@ -47,56 +47,21 @@ namespace JJ.Framework.Presentation.Svg
             }
         }
 
-        //public Point CreatePoint(Element parent)
-        //{
-        //    if (parent == null) throw new NullException(() => parent);
+        private readonly GestureHandler _gestureHandler;
 
-        //    var child = new Point();
-        //    child.Diagram = this;
+        public void MouseDown(MouseEventArgs e)
+        {
+            _gestureHandler.MouseDown(e);
+        }
 
-        //    parent.Children.Add(child);
-        //    child.Parent = parent;
+        public void MouseMove(MouseEventArgs e)
+        {
+            _gestureHandler.MouseMove(e);
+        }
 
-        //    return child;
-        //}
-
-        //public Line CreateLine(Element parent)
-        //{
-        //    if (parent == null) throw new NullException(() => parent);
-
-        //    var child = new Line();
-        //    child.Diagram = this;
-
-        //    parent.Children.Add(child);
-        //    child.Parent = parent;
-
-        //    return child;
-        //}
-
-        //public Rectangle CreateRectangle(Element parent)
-        //{
-        //    if (parent == null) throw new NullException(() => parent);
-
-        //    var child = new Rectangle();
-        //    child.Diagram = this;
-
-        //    parent.Children.Add(child);
-        //    child.Parent = parent;
-
-        //    return child;
-        //}
-
-        //public Label CreateLabel(Element parent)
-        //{
-        //    if (parent == null) throw new NullException(() => parent);
-
-        //    var child = new Label();
-        //    child.Diagram = this;
-
-        //    parent.Children.Add(child);
-        //    child.Parent = parent;
-
-        //    return child;
-        //}
+        public void MouseUp(MouseEventArgs e)
+        {
+            _gestureHandler.MouseUp(e);
+        }
     }
 }

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Presentation.Svg.Infos
+namespace JJ.Framework.Presentation.Svg.EventArg
 {
-    public class MouseDownInfo
+    public class MouseEventArgs : EventArgs
     {
         public float X { get; set; }
         public float Y { get; set; }

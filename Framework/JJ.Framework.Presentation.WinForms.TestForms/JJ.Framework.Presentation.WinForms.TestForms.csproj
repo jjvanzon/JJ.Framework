@@ -41,6 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessors\Element_Accessor.cs" />
+    <Compile Include="GesturesTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GesturesTestForm.Designer.cs">
+      <DependentUpon>GesturesTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PickATestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </Compile>
     <Compile Include="SvgWithoutCloning\SvgDrawer_WithoutCloning.cs" />
     <Compile Include="SvgWithoutCloning\CalculationVisitor_WithoutCloning.cs" />
+    <EmbeddedResource Include="GesturesTestForm.resx">
+      <DependentUpon>GesturesTestForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PickATestForm.resx">
       <DependentUpon>PickATestForm.cs</DependentUpon>
     </EmbeddedResource>

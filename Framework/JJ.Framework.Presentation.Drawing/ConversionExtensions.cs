@@ -15,7 +15,7 @@ using SvgStyling = JJ.Framework.Presentation.Svg.Models.Styling;
 
 namespace JJ.Framework.Presentation.Drawing
 {
-    public static class ConvertExtensions
+    public static class ConversionExtensions
     {
         // Point
 

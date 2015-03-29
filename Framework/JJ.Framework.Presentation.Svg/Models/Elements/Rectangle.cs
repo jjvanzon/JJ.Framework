@@ -24,8 +24,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         public override float X { get; set; }
         public override float Y { get; set; }
-        public float Width { get; set; }
-        public float Height { get; set; }
+        public override float Width { get; set; }
+        public override float Height { get; set; }
 
         private BackStyle _backStyle = new BackStyle();
         /// <summary> not nullable, auto-instantiated </summary>
@@ -86,6 +86,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                 _leftLineStyle = value;
             }
         }
+
+        // TODO: Syntactically the SetLineStyle is ugly now, because you can initialize most things with an object initializer,
+        // except for the line style. So maybe you should make it a magic property.
 
         /// <summary>
         /// Sets the style of all 4 lines at the same time.

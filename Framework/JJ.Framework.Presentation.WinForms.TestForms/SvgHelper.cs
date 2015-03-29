@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Presentation.Svg.Enums;
+using JJ.Framework.Presentation.Svg.Helpers;
 using JJ.Framework.Presentation.Svg.Models.Styling;
 using System;
 using System.Collections.Generic;
@@ -35,11 +36,18 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             {
                 Visible = false
             };
+
+            BlueBackStyle = new BackStyle
+            {
+                Visible = true,
+                Color = ColorHelper.GetColor(64, 128, 255)
+            };
         }
 
         private static Font DefaultFont { get; set; }
         public static LineStyle DefaultLineStyle { get; private set; }
         public static TextStyle DefaultTextStyle { get; private set; }
         public static PointStyle InvisiblePointStyle { get; private set; }
+        public static BackStyle BlueBackStyle { get; private set; }
     }
 }

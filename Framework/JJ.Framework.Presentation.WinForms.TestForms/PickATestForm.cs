@@ -45,5 +45,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             new SvgWithoutCloning_TestForm().Show();
         }
+
+        private void buttonShowGestureTestForm_Click(object sender, EventArgs e)
+        {
+            new GesturesTestForm().Show();
+        }
     }
 }

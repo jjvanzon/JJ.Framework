@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using JJ.Framework.Presentation.Svg.EventArg;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
@@ -19,6 +20,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             Visible = true;
         }
 
+        // Values
+
         /// <summary>
         /// X-coordinate relative to the parent.
         /// </summary>
@@ -29,8 +32,13 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// </summary>
         public abstract float Y { get; set; }
 
+        public abstract float Width { get; set; }
+        public abstract float Height { get; set; }
+
         public bool Visible { get; set; }
         public int ZIndex { get; set; }
+
+        // Related Objects
 
         private Diagram _diagram;
         public Diagram Diagram
@@ -72,7 +80,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private Element _parent;
-        public Element Parent 
+        public Element Parent
         {
             [DebuggerHidden]
             get { return _parent; }
@@ -135,7 +143,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         public ElementChildren Children { get; private set; }
 
-        public bool EventBubblingEnabled { get; set; }
+        // Calculated Values
 
         /// <summary>
         /// The calculated ZIndex, which is derived from both
@@ -157,5 +165,28 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// Calculated, absolute Y coordinate.
         /// </summary>
         public float CalculatedY { get; internal set; }
+
+        // Events
+
+        public bool EventBubblingEnabled { get; set; }
+
+        public event EventHandler<MouseEventArgs> OnMouseDown;
+        public event EventHandler<MouseEventArgs> OnMouseMove;
+        public event EventHandler<MouseEventArgs> OnMouseUp;
+
+        internal void MouseDown(object sender, MouseEventArgs e)
+        {
+            if (OnMouseDown != null) OnMouseDown(sender, e);
+        }
+
+        internal void MouseUp(object sender, MouseEventArgs e)
+        {
+            if (OnMouseUp != null) OnMouseUp(sender, e);
+        }
+
+        internal void MouseMove(object sender, MouseEventArgs e)
+        {
+            if (OnMouseMove != null) OnMouseMove(sender, e);
+        }
     }
 }

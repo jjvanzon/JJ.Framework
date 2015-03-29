@@ -40,7 +40,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         public override float X { get; set; }
         public override float Y { get; set; }
 
-        public float Width { get; set; }
-        public float Height { get; set; }
+        public override float Width { get; set; }
+        public override float Height { get; set; }
     }
 }
