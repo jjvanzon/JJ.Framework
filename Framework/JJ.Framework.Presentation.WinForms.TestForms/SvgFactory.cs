@@ -10,9 +10,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 {
     internal static class SvgFactory
     {
-        public static SvgModel CreateTestSvgModel()
+        public static Diagram CreateTestSvgModel()
         {
-            var model = new SvgModel();
+            var model = new Diagram();
 
             SvgElements.Rectangle rootRectangle = model.RootRectangle;
 
@@ -45,7 +45,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             return model;
         }
 
-        private static SvgElements.Rectangle CreateRectangle(SvgModel svgManager, float x, float y, string text)
+        private static SvgElements.Rectangle CreateRectangle(Diagram svgManager, float x, float y, string text)
         {
             SvgElements.Rectangle rectangle = svgManager.CreateRectangle(svgManager.RootRectangle);
             rectangle.X = x;

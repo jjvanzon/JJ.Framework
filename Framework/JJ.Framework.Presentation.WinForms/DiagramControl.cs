@@ -16,7 +16,7 @@ namespace JJ.Framework.Presentation.WinForms
 {
     public partial class DiagramControl : UserControl
     {
-        public SvgModel SvgManager { get; set; }
+        public Diagram SvgManager { get; set; }
 
         private ControlGraphicsBuffer _graphicsBuffer;
 

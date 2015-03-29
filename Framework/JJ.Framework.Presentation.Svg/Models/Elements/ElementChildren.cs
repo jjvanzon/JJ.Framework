@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Presentation.Svg.LinkTo;
 using System.Diagnostics;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
@@ -20,14 +19,14 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             _parent = parent;
         }
 
-        internal void Add(Element child)
+        public void Add(Element child)
         {
             if (child == null) throw new NullException(() => child);
 
             // Side- effect
-            if (_parent.SvgModel == null)
+            if (_parent.Diagram == null)
             {
-                throw new Exception("To add a child the parent must be part of an SVG model.");
+                throw new Exception("To add a child the parent must be part of a diagram.");
             }
 
             if (_list.Contains(child)) return;
@@ -44,11 +43,11 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
             child.Parent = _parent;
 
-            // Side-effect: added children are made part of the same SvgModel as the parent.
-            child.SvgModel = _parent.SvgModel;
+            // Side-effect: added children are made part of the same Diagram as the parent.
+            child.Diagram = _parent.Diagram;
         }
 
-        internal void Remove(Element child)
+        public void Remove(Element child)
         {
             if (child == null) throw new NullException(() => child);
 
@@ -58,15 +57,15 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
             child.Parent = null;
 
-            // Side-effect: orphaned children are added to the SvgModel's root rectangle.
-            if (child != child.SvgModel.RootRectangle)
+            // Side-effect: orphaned children are added to the Diagram's root rectangle.
+            if (child != child.Diagram.RootRectangle)
             {
-                child.SvgModel.RootRectangle.Children.Add(child);
+                child.Diagram.RootRectangle.Children.Add(child);
             }
         }
 
         [DebuggerHidden]
-        internal bool Contains(Element child)
+        public bool Contains(Element child)
         {
             return _list.Contains(child);
         }

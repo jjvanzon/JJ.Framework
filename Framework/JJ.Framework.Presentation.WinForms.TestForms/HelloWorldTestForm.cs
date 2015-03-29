@@ -24,7 +24,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Text = this.GetType().FullName;
 
-            var svgManager = new SvgModel();
+            var svgManager = new Diagram();
             SvgElements.Label label = svgManager.CreateLabel(svgManager.RootRectangle);
             label.Text = "Hello World!";
             label.X = 10;

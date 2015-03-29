@@ -9,76 +9,27 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg
 {
-    public class SvgModel
+    public class Diagram
     {
-        public SvgModel()
+        public Diagram()
         {
-            Elements = new SvgModelElements(model: this);
+            Elements = new DiagramElements(diagram: this);
 
             _rootRectangle = new Rectangle();
-            _rootRectangle.SvgModel = this;
+            _rootRectangle.Diagram = this;
         }
 
         private Rectangle _rootRectangle;
+        /// <summary>
+        /// read-only
+        /// </summary>
         [DebuggerHidden]
         public Rectangle RootRectangle
         {
             get { return _rootRectangle; }
         }
 
-        public SvgModelElements Elements { get; private set; }
-
-        public Point CreatePoint(Element parent)
-        {
-            if (parent == null) throw new NullException(() => parent);
-
-            var child = new Point();
-            child.SvgModel = this;
-
-            parent.Children.Add(child);
-            child.Parent = parent;
-
-            return child;
-        }
-
-        public Line CreateLine(Element parent)
-        {
-            if (parent == null) throw new NullException(() => parent);
-
-            var child = new Line();
-            child.SvgModel = this;
-
-            parent.Children.Add(child);
-            child.Parent = parent;
-            
-            return child;
-        }
-
-        public Rectangle CreateRectangle(Element parent)
-        {
-            if (parent == null) throw new NullException(() => parent);
-
-            var child = new Rectangle();
-            child.SvgModel = this;
-
-            parent.Children.Add(child);
-            child.Parent = parent;
-            
-            return child;
-        }
-
-        public Label CreateLabel(Element parent)
-        {
-            if (parent == null) throw new NullException(() => parent);
-
-            var child = new Label();
-            child.SvgModel = this;
-            
-            parent.Children.Add(child);
-            child.Parent = parent;
-            
-            return child;
-        }
+        public DiagramElements Elements { get; private set; }
 
         public void Recalculate()
         {
@@ -94,6 +45,58 @@ namespace JJ.Framework.Presentation.Svg
             {
                 yield return _elementsOrderByZIndex[i];
             }
+        }
+
+        public Point CreatePoint(Element parent)
+        {
+            if (parent == null) throw new NullException(() => parent);
+
+            var child = new Point();
+            child.Diagram = this;
+
+            parent.Children.Add(child);
+            child.Parent = parent;
+
+            return child;
+        }
+
+        public Line CreateLine(Element parent)
+        {
+            if (parent == null) throw new NullException(() => parent);
+
+            var child = new Line();
+            child.Diagram = this;
+
+            parent.Children.Add(child);
+            child.Parent = parent;
+
+            return child;
+        }
+
+        public Rectangle CreateRectangle(Element parent)
+        {
+            if (parent == null) throw new NullException(() => parent);
+
+            var child = new Rectangle();
+            child.Diagram = this;
+
+            parent.Children.Add(child);
+            child.Parent = parent;
+
+            return child;
+        }
+
+        public Label CreateLabel(Element parent)
+        {
+            if (parent == null) throw new NullException(() => parent);
+
+            var child = new Label();
+            child.Diagram = this;
+
+            parent.Children.Add(child);
+            child.Parent = parent;
+
+            return child;
         }
     }
 }

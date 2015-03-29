@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Presentation.Svg.LinkTo;
 using System.Diagnostics;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
@@ -33,43 +32,42 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         public bool Visible { get; set; }
         public int ZIndex { get; set; }
 
-        private SvgModel _svgModel;
-        public SvgModel SvgModel 
+        private Diagram _diagram;
+        public Diagram Diagram
         {
             [DebuggerHidden]
-            get { return _svgModel; }
-            internal set
+            get { return _diagram; }
+            set
             {
-                // TODO: Also remove relationship between parent and child.
+                if (_diagram == value) return;
 
-                if (_svgModel == value) return;
-
-                if (_svgModel != null)
+                // Side-effect: when removed from Diagram, also remove relationship between parent and child.
+                if (value == null)
                 {
-                    if (_svgModel.Elements.Contains(this))
+                    // TODO: This would go wrong if this side effect was executed at the end of this
+                    // property setter, because after the Diagram has been nullified, 
+                    // you cannot manage parent-child relations at all anymore.
+                    // This order-dependence stinks.
+                    Parent = null;
+                }
+
+                if (_diagram != null)
+                {
+                    if (_diagram.Elements.Contains(this))
                     {
-                        _svgModel.Elements.Remove(this);
+                        _diagram.Elements.Remove(this);
                     }
                 }
 
-                _svgModel = value;
+                _diagram = value;
 
-                if (_svgModel != null)
+                if (_diagram != null)
                 {
-                    if (!_svgModel.Elements.Contains(this))
+                    if (!_diagram.Elements.Contains(this))
                     {
-                        _svgModel.Elements.Add(this);
+                        _diagram.Elements.Add(this);
                     }
                 }
-
-
-                //this.LinkTo(_svgModel);
-
-                //if (_svgModel != null) _svgModel.Elements.Remove(this);
-
-                //_svgModel = value;
-
-                //if (_svgModel != null) _svgModel.Elements.Add(this);
             }
         }
 
@@ -80,7 +78,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             get { return _parent; }
             set 
             {
-                if (_svgModel == null) throw new Exception("To assign a parent to a child, the child must be part of an SVG model.");
+                if (_diagram == null) throw new Exception("To assign a parent to a child, the child must be part of a diagram.");
 
                 if (_parent == value) return;
 
@@ -102,12 +100,12 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                     }
                 }
 
-                // Side-Effect
+                // Side-Effect: add orphans to root rectangle of Diagram.
                 if (_parent == null)
                 {
-                    if (this != _svgModel.RootRectangle)
+                    if (this != _diagram.RootRectangle)
                     {
-                        _svgModel.RootRectangle.Children.Add(this);
+                        _diagram.RootRectangle.Children.Add(this);
                     }
                 }
             }

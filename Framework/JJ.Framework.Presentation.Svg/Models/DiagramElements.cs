@@ -1,6 +1,5 @@
 ﻿using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Reflection;
-using JJ.Framework.Presentation.Svg.LinkTo;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,16 +9,16 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg
 {
-    public class SvgModelElements : IEnumerable<Element>
+    public class DiagramElements : IEnumerable<Element>
     {
-        private SvgModel _model;
+        private Diagram _diagram;
 
         private IList<Element> _list = new List<Element>();
 
-        internal SvgModelElements(SvgModel model)
+        internal DiagramElements(Diagram diagram)
         {
-            if (model == null) throw new NullException(() => model);
-            _model = model;
+            if (diagram == null) throw new NullException(() => diagram);
+            _diagram = diagram;
         }
 
         public void Add(Element element)
@@ -28,24 +27,24 @@ namespace JJ.Framework.Presentation.Svg
 
             if (_list.Contains(element)) return;
 
-            if (element.SvgModel != null)
+            if (element.Diagram != null)
             {
-                if (element.SvgModel.Elements.Contains(element))
+                if (element.Diagram.Elements.Contains(element))
                 {
-                    element.SvgModel.Elements.Remove(element);
+                    element.Diagram.Elements.Remove(element);
                 }
             }
 
             _list.Add(element);
 
-            element.SvgModel = _model;
+            element.Diagram = _diagram;
 
             // Side-effect: When added to the model, it is added as a child of the root rectangle.
             if (element.Parent == null)
             {
-                if (element != _model.RootRectangle)
+                if (element != _diagram.RootRectangle)
                 {
-                    element.Parent = _model.RootRectangle;
+                    element.Parent = _diagram.RootRectangle;
                 }
             }
         }
@@ -58,13 +57,11 @@ namespace JJ.Framework.Presentation.Svg
 
             _list.Remove(element);
 
-            element.SvgModel = null;
-
-            //element.UnlinkSvgModel();
+            element.Diagram = null;
         }
 
         [DebuggerHidden]
-        internal bool Contains(Element child)
+        public bool Contains(Element child)
         {
             return _list.Contains(child);
         }

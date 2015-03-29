@@ -15,7 +15,7 @@ namespace JJ.Framework.Presentation.Drawing
 {
     public static class SvgDrawer
     {
-        public static void Draw(SvgModel svgManager, Graphics destGraphics)
+        public static void Draw(Diagram svgManager, Graphics destGraphics)
         {
             if (svgManager == null) throw new NullException(() => svgManager);
             if (destGraphics == null) throw new NullException(() => destGraphics);

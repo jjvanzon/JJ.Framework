@@ -14,9 +14,9 @@ namespace JJ.Framework.Presentation.Svg.Tests
         [TestMethod]
         public void Test_Svg_RelativeCoordinate_ToAbsoluteVisitor()
         {
-            var svgManager = new SvgModel();
+            var svgManager = new Diagram();
 
-            Point point = svgManager.CreatePoint(svgManager.RootRectangle);
+            Point point = new svgManager.CreatePoint(svgManager.RootRectangle);
             point.X = 1;
             point.Y = 2;
 
