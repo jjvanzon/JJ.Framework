@@ -40,6 +40,8 @@
     <Compile Include="EntityStatusManager.cs" />
     <Compile Include="EntityStatusManagerByID.cs" />
     <Compile Include="ISideEffect.cs" />
+    <Compile Include="ManyToOneRelationshipHandler.cs" />
+    <Compile Include="OneToManyRelationshipHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyStatusEnum.cs" />
   </ItemGroup>

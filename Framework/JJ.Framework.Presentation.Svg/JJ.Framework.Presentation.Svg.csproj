@@ -35,10 +35,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\ChildToParentRelationshipHandler.cs" />
+    <Compile Include="Business\DiagramToElementsRelationshipHandler.cs" />
+    <Compile Include="Business\ElementToDiagramRelationshipHandler.cs" />
+    <Compile Include="Business\ParentToChildrenRelationshipHandler.cs" />
     <Compile Include="Enums\DashStyleEnum.cs" />
     <Compile Include="Enums\MouseButtonEnum.cs" />
     <Compile Include="EventArg\GestureEventArgs.cs" />
-    <Compile Include="GestureHandler.cs" />
+    <Compile Include="Business\GestureHandler.cs" />
     <Compile Include="Gestures\ClickClosestGesture.cs" />
     <Compile Include="Gestures\ClickGesture.cs" />
     <Compile Include="Gestures\DoubleClickGesture.cs" />
@@ -75,6 +79,10 @@
     <Compile Include="Visitors\ElementVisitorBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Business\JJ.Framework.Business.csproj">
+      <Project>{f44d03e8-feec-40d4-b866-a87799185b4c}</Project>
+      <Name>JJ.Framework.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>

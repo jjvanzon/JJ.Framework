@@ -11,7 +11,7 @@ using JJ.Framework.Reflection;
 using JJ.Framework.Common;
 using JJ.Framework.Mathematics;
 
-namespace JJ.Framework.Presentation.Svg
+namespace JJ.Framework.Presentation.Svg.Business
 {
     internal class GestureHandler
     {
