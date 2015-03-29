@@ -16,18 +16,18 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
     /// </summary>
     internal class CalculationVisitor_WithFlatClone : ElementVisitorBase
     {
-        private Dictionary<ElementBase, ElementBase> _convertedElementDictionary;
-        private float _currentParentCenterX;
-        private float _currentParentCenterY;
-        private int _layer;
+        //private Dictionary<Element, Element> _convertedElementDictionary;
+        //private float _currentParentCenterX;
+        //private float _currentParentCenterY;
+        //private int _layer;
 
-        public IList<ElementBase> Execute(ElementBase element)
+        public IList<Element> Execute(Element element)
         {
             if (element == null) throw new NullException(() => element);
 
-            return new ElementBase[0];
+            return new Element[0];
 
-            //_convertedElementDictionary = new Dictionary<ElementBase, ElementBase>();
+            //_convertedElementDictionary = new Dictionary<Element, Element>();
             //_currentParentCenterX = 0;
             //_currentParentCenterY = 0;
             //_layer = 0;
@@ -42,14 +42,14 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
             //}
 
             //// Apply z-index.
-            //IList<ElementBase> destElements = _convertedElementDictionary.Values
-            //                                                             .OrderBy(x => x.ZIndex)
-            //                                                             .ThenBy(x => x.CalculatedLayer)
-            //                                                             .ToArray();
+            //IList<Element> destElements = _convertedElementDictionary.Values
+            //                                                         .OrderBy(x => x.ZIndex)
+            //                                                         .ThenBy(x => x.CalculatedLayer)
+            //                                                         .ToArray();
             //return destElements;
         }
 
-        //protected override void VisitChildren(ElementBase parentElement)
+        //protected override void VisitChildren(Element parentElement)
         //{
         //    _currentParentCenterX += parentElement.X;
         //    _currentParentCenterY += parentElement.Y;
@@ -115,7 +115,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 
         //private Point ConvertPoint(Point sourcePoint)
         //{
-        //    ElementBase destElement;
+        //    Element destElement;
         //    if (_convertedElementDictionary.TryGetValue(sourcePoint, out destElement))
         //    {
         //        return (Point)destElement;
@@ -137,7 +137,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 
         //private Line ConvertLine(Line sourceLine)
         //{
-        //    ElementBase destElement;
+        //    Element destElement;
         //    if (_convertedElementDictionary.TryGetValue(sourceLine, out destElement))
         //    {
         //        return (Line)destElement;
@@ -157,7 +157,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 
         //private Rectangle ConvertRectangle(Rectangle sourceRectangle)
         //{
-        //    ElementBase destElement;
+        //    Element destElement;
         //    if (_convertedElementDictionary.TryGetValue(sourceRectangle, out destElement))
         //    {
         //        return (Rectangle)destElement;
@@ -185,7 +185,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 
         //private Label ConvertLabel(Label sourceLabel)
         //{
-        //    ElementBase destElement;
+        //    Element destElement;
         //    if (_convertedElementDictionary.TryGetValue(sourceLabel, out destElement))
         //    {
         //        return (Label)destElement;
@@ -205,7 +205,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
         //    return destLabel;
         //}
 
-        //private void ConvertReferencesPolymorphic(ElementBase sourceElement, ElementBase destElement)
+        //private void ConvertReferencesPolymorphic(Element sourceElement, Element destElement)
         //{
         //    var sourceLine = sourceElement as Line;
         //    if (sourceLine != null)

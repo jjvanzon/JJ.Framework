@@ -22,7 +22,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
         private HashSet<Point> _convertedPoints;
         private HashSet<Rectangle> _convertedRectangles;
 
-        public void Execute(ElementBase element)
+        public void Execute(Element element)
         {
             if (element == null) throw new NullException(() => element);
 
@@ -34,7 +34,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             VisitPolymorphic(element);
         }
 
-        protected override void VisitChildren(ElementBase parentElement)
+        protected override void VisitChildren(Element parentElement)
         {
             _currentParentCenterX += parentElement.X;
             _currentParentCenterY += parentElement.Y;
@@ -71,7 +71,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
         protected override void VisitLabel(Label label)
         {
-            ConvertRectangle(label.Rectangle);
+            var label_Accessor = new Element_Accessor(label);
+
+            label_Accessor.CalculatedX = label.X + _currentParentCenterX;
+            label_Accessor.CalculatedY = label.Y + _currentParentCenterY;
 
             base.VisitLabel(label);
         }
@@ -83,7 +86,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
                 return;
             }
 
-            var point_Accessor = new ElementBase_Accessor(point);
+            var point_Accessor = new Element_Accessor(point);
 
             point_Accessor.CalculatedX = point.X + _currentParentCenterX;
             point_Accessor.CalculatedY = point.Y + _currentParentCenterY;
@@ -98,7 +101,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
                 return;
             }
 
-            var rectangle_Accessor = new ElementBase_Accessor(rectangle);
+            var rectangle_Accessor = new Element_Accessor(rectangle);
 
             rectangle_Accessor.CalculatedX = rectangle.X + _currentParentCenterX;
             rectangle_Accessor.CalculatedY = rectangle.Y + _currentParentCenterY;

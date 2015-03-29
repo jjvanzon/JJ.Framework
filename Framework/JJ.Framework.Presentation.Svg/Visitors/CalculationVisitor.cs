@@ -17,7 +17,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
     {
         // Public for tests.
 
-        private HashSet<ElementBase> _calculatedElements;
+        private HashSet<Element> _calculatedElements;
         private float _currentParentX;
         private float _currentParentY;
         private int _layer;
@@ -25,28 +25,26 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         /// <summary>
         /// Returns elements ordered by calculated Z-Index.
         /// </summary>
-        public IList<ElementBase> Execute(ElementBase element)
+        public IList<Element> Execute(Element element)
         {
             if (element == null) throw new NullException(() => element);
 
-            _calculatedElements = new HashSet<ElementBase>();
+            _calculatedElements = new HashSet<Element>();
             _currentParentX = 0;
             _currentParentY = 0;
             _layer = 0;
 
             VisitPolymorphic(element);
 
-
             // Apply z-index.
-            IList<ElementBase> orderedElements = _calculatedElements.OrderBy(x => x.ZIndex).ThenBy(x => x.CalculatedLayer).ToArray();
+            IList<Element> orderedElements = _calculatedElements.OrderBy(x => x.ZIndex).ThenBy(x => x.CalculatedLayer).ToArray();
             for (int i = 0; i < orderedElements.Count; i++)
 			{
-                ElementBase element2 = orderedElements[i];
-
-                // Also: calculate references. Why loop twice?
-                CalculateReferencesPolymorphic(element2);
-
+                Element element2 = orderedElements[i];
                 element2.CalculatedZIndex = i;
+
+                // Calculate references.
+                CalculateReferencesPolymorphic(element2);
 			}
 
             return orderedElements;
@@ -54,7 +52,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
         // Visit
 
-        protected override void VisitChildren(ElementBase parentElement)
+        protected override void VisitChildren(Element parentElement)
         {
             _currentParentX += parentElement.X;
             _currentParentY += parentElement.Y;
@@ -163,7 +161,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 return;
             }
 
-            // TODO: Strange: there is ambiguity about label.X and label.Y and the label's rectangle X and Y.
             label.CalculatedX = label.X + _currentParentX;
             label.CalculatedY = label.Y + _currentParentY;
             label.CalculatedLayer = _layer;
@@ -173,18 +170,12 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
         // CalculateReferences
 
-        private void CalculateReferencesPolymorphic(ElementBase element)
+        private void CalculateReferencesPolymorphic(Element element)
         {
             var line = element as Line;
             if (line != null)
             {
                 CalculateReferencesForLine(line);
-            }
-
-            var label = element as Label;
-            if (label != null)
-            {
-                CalculateReferencesForLabel(label);
             }
 
             // No more object with references to convert (yet).
@@ -204,19 +195,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             {
                 line.PointB.CalculatedX = line.PointB.X + line.CalculatedX;
                 line.PointB.CalculatedY = line.PointB.Y + line.CalculatedY;
-            }
-        }
-
-        private void CalculateReferencesForLabel(Label label)
-        {
-            // Calculate, do not just get, in case the label has a rectangel that is not owned by another container.
-            //CalculateRectangle(label.Rectangle);
-
-            if (label.Rectangle.Parent == null)
-            {
-                // TODO: Strange: there is ambiguity about label.X and label.Y and the label's rectangle X and Y.
-                label.Rectangle.CalculatedX = label.Rectangle.X + label.CalculatedX;
-                label.Rectangle.CalculatedY = label.Rectangle.Y + label.CalculatedY;
             }
         }
     }

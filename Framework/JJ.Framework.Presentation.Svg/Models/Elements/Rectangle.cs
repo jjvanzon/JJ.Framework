@@ -2,14 +2,24 @@
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
-    public class Rectangle : ElementBase
+    [DebuggerDisplay("{DebuggerDisplay}")]
+    public class Rectangle : Element
     {
-        internal Rectangle()
+        private string DebuggerDisplay
+        {
+            get
+            {
+                return String.Format("{{{0}}} X={1}, Y={2}, Width={3}, Height={4} (HashCode={5})", GetType().Name, X, Y, Width, Height, GetHashCode());
+            }
+        }
+
+        public Rectangle()
         { }
 
         public override float X { get; set; }

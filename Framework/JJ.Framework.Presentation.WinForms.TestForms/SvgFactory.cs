@@ -10,27 +10,31 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 {
     internal static class SvgFactory
     {
-        public static SvgManager CreateTestSvgModel()
+        public static SvgModel CreateTestSvgModel()
         {
-            var svgManager = new SvgManager();
+            var model = new SvgModel();
 
-            SvgElements.Rectangle rootRectangle = svgManager.RootRectangle;
+            SvgElements.Rectangle rootRectangle = model.RootRectangle;
 
-            SvgElements.Rectangle rectangle1 = CreateRectangle(svgManager, 200, 10, "Block 1");
+            SvgElements.Rectangle rectangle1 = CreateRectangle(model, 200, 10, "Block 1");
 
-            SvgElements.Rectangle rectangle2 = CreateRectangle(svgManager, 10, 200, "Block 2");
+            SvgElements.Rectangle rectangle2 = CreateRectangle(model, 10, 200, "Block 2");
 
-            SvgElements.Point point1 = svgManager.CreatePoint(rectangle1);
+            //SvgElements.Point point1 = model.CreatePoint(rectangle1);
+            SvgElements.Point point1 = new SvgElements.Point();
+            model.Elements.Add(point1);
+            point1.Parent = rectangle1;
+
             point1.X = 150;
             point1.Y = 30;
             point1.PointStyle = SvgHelper.InvisiblePointStyle;
 
-            SvgElements.Point point2 = svgManager.CreatePoint(rectangle2);
+            SvgElements.Point point2 = model.CreatePoint(rectangle2);
             point2.X = 150;
             point2.Y = 30;
             point2.PointStyle = SvgHelper.InvisiblePointStyle;
 
-            SvgElements.Line line = svgManager.CreateLine(rootRectangle);
+            SvgElements.Line line = model.CreateLine(rootRectangle);
             line.PointA = point1;
             line.PointB = point2;
             line.LineStyle = SvgHelper.DefaultLineStyle;
@@ -38,10 +42,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             rootRectangle.ZIndex = -2;
             line.ZIndex = -1;
 
-            return svgManager;
+            return model;
         }
 
-        private static SvgElements.Rectangle CreateRectangle(SvgManager svgManager, float x, float y, string text)
+        private static SvgElements.Rectangle CreateRectangle(SvgModel svgManager, float x, float y, string text)
         {
             SvgElements.Rectangle rectangle = svgManager.CreateRectangle(svgManager.RootRectangle);
             rectangle.X = x;
@@ -51,8 +55,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             rectangle.SetLineStyle(SvgHelper.DefaultLineStyle);
 
             SvgElements.Label label = svgManager.CreateLabel(rectangle);
-            label.Rectangle.Width = 300;
-            label.Rectangle.Height = 60;
+            label.Width = 300;
+            label.Height = 60;
             label.Text = text;
             label.TextStyle = SvgHelper.DefaultTextStyle;
 

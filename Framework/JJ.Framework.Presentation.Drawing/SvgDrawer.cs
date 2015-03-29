@@ -15,18 +15,18 @@ namespace JJ.Framework.Presentation.Drawing
 {
     public static class SvgDrawer
     {
-        public static void Draw(SvgManager svgManager, Graphics destGraphics)
+        public static void Draw(SvgModel svgManager, Graphics destGraphics)
         {
             if (svgManager == null) throw new NullException(() => svgManager);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
-            foreach (SvgElements.ElementBase element in svgManager.EnumerateElementsByZIndex())
+            foreach (SvgElements.Element element in svgManager.EnumerateElementsByZIndex())
             {
                 DrawPolymorphic(element, destGraphics);
             }
         }
 
-        private static void DrawPolymorphic(SvgElements.ElementBase sourceElement, Graphics destGraphics)
+        private static void DrawPolymorphic(SvgElements.Element sourceElement, Graphics destGraphics)
         {
             var sourcePoint = sourceElement as SvgElements.Point;
             if (sourcePoint != null)
@@ -56,7 +56,7 @@ namespace JJ.Framework.Presentation.Drawing
                 return;
             }
 
-            throw new Exception(String.Format("Unexpected ElementBase type '{0}'", sourceElement.GetType().FullName));
+            throw new Exception(String.Format("Unexpected Element type '{0}'", sourceElement.GetType().FullName));
         }
 
         private static void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
@@ -155,7 +155,7 @@ namespace JJ.Framework.Presentation.Drawing
 
             StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
             System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
-            RectangleF destRectangle = new RectangleF(sourceLabel.Rectangle.CalculatedX, sourceLabel.Rectangle.CalculatedY, sourceLabel.Rectangle.Width, sourceLabel.Rectangle.Height);
+            RectangleF destRectangle = new RectangleF(sourceLabel.CalculatedX, sourceLabel.CalculatedY, sourceLabel.Width, sourceLabel.Height);
             Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 
             destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);

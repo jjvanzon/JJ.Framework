@@ -3,58 +3,80 @@ using JJ.Framework.Presentation.Svg.Visitors;
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 namespace JJ.Framework.Presentation.Svg
 {
-    public class SvgManager
+    public class SvgModel
     {
-        private Rectangle _rootRectangle = new Rectangle();
+        public SvgModel()
+        {
+            Elements = new SvgModelElements(model: this);
+
+            _rootRectangle = new Rectangle();
+            _rootRectangle.SvgModel = this;
+        }
+
+        private Rectangle _rootRectangle;
+        [DebuggerHidden]
         public Rectangle RootRectangle
         {
             get { return _rootRectangle; }
         }
 
-        private IList<ElementBase> _elementsOrderByZIndex = new ElementBase[0];
+        public SvgModelElements Elements { get; private set; }
 
-        public Point CreatePoint(ElementBase parent)
+        public Point CreatePoint(Element parent)
         {
             if (parent == null) throw new NullException(() => parent);
 
             var child = new Point();
+            child.SvgModel = this;
+
             parent.Children.Add(child);
             child.Parent = parent;
+
             return child;
         }
 
-        public Line CreateLine(ElementBase parent)
+        public Line CreateLine(Element parent)
         {
             if (parent == null) throw new NullException(() => parent);
 
             var child = new Line();
+            child.SvgModel = this;
+
             parent.Children.Add(child);
             child.Parent = parent;
+            
             return child;
         }
 
-        public Rectangle CreateRectangle(ElementBase parent)
+        public Rectangle CreateRectangle(Element parent)
         {
             if (parent == null) throw new NullException(() => parent);
 
             var child = new Rectangle();
+            child.SvgModel = this;
+
             parent.Children.Add(child);
             child.Parent = parent;
+            
             return child;
         }
 
-        public Label CreateLabel(ElementBase parent)
+        public Label CreateLabel(Element parent)
         {
             if (parent == null) throw new NullException(() => parent);
 
             var child = new Label();
+            child.SvgModel = this;
+            
             parent.Children.Add(child);
             child.Parent = parent;
+            
             return child;
         }
 
@@ -64,7 +86,9 @@ namespace JJ.Framework.Presentation.Svg
              _elementsOrderByZIndex = visitor.Execute(_rootRectangle);
         }
 
-        public IEnumerable<ElementBase> EnumerateElementsByZIndex()
+        private IList<Element> _elementsOrderByZIndex = new Element[0];
+
+        public IEnumerable<Element> EnumerateElementsByZIndex()
         {
             for (int i = 0; i < _elementsOrderByZIndex.Count; i++)
             {

@@ -10,11 +10,11 @@ namespace JJ.Framework.Presentation.Svg
 {
     internal static class HitTester
     {
-        public static ElementBase TryGetHitElement(IList<ElementBase> zOrderedElements, float pointerX, float pointerY)
+        public static Element TryGetHitElement(IList<Element> zOrderedElements, float pointerX, float pointerY)
         {
             for (int i = 0; i < zOrderedElements.Count; i++)
             {
-                ElementBase element = zOrderedElements[i];
+                Element element = zOrderedElements[i];
 
                 var rectangle = element as Rectangle;
                 if (rectangle != null)

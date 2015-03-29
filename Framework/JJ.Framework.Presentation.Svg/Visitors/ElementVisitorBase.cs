@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
     // public for use in tests.
     public abstract class ElementVisitorBase
     {
-        protected virtual void VisitPolymorphic(ElementBase element)
+        protected virtual void VisitPolymorphic(Element element)
         {
             var point = element as Point;
             if (point != null)
@@ -40,7 +40,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 return;
             }
 
-            throw new Exception(String.Format("Unexpected ElementBase type '{0}'", element.GetType().FullName));
+            throw new Exception(String.Format("Unexpected Element type '{0}'", element.GetType().FullName));
         }
 
         protected virtual void VisitPoint(Point point)
@@ -63,9 +63,9 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             VisitChildren(label);
         }
 
-        protected virtual void VisitChildren(ElementBase parentElement)
+        protected virtual void VisitChildren(Element parentElement)
         {
-            foreach (ElementBase child in parentElement.Children)
+            foreach (Element child in parentElement.Children)
             {
                 VisitPolymorphic(child);
             }

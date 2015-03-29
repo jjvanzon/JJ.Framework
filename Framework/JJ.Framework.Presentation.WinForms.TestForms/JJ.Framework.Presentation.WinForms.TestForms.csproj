@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accessors\ElementBase_Accessor.cs" />
+    <Compile Include="Accessors\Element_Accessor.cs" />
     <Compile Include="PickATestForm.cs">
       <SubType>Form</SubType>
     </Compile>

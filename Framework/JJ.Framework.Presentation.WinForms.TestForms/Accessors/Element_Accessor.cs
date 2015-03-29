@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.Accessors
 {
-    internal class ElementBase_Accessor
+    internal class Element_Accessor
     {
         private Accessor _accessor;
 
-        public ElementBase_Accessor(ElementBase elementBase)
+        public Element_Accessor(Element element)
         {
-            _accessor = new Accessor(elementBase, typeof(ElementBase));
+            _accessor = new Accessor(element, typeof(Element));
         }
 
         public float CalculatedX

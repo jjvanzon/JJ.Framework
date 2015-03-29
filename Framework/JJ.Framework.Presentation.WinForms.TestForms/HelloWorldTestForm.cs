@@ -24,13 +24,13 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Text = this.GetType().FullName;
 
-            var svgManager = new SvgManager();
+            var svgManager = new SvgModel();
             SvgElements.Label label = svgManager.CreateLabel(svgManager.RootRectangle);
             label.Text = "Hello World!";
-            label.Rectangle.X = 10;
-            label.Rectangle.Y = 20;
-            label.Rectangle.Width = 500;
-            label.Rectangle.Height = 100;
+            label.X = 10;
+            label.Y = 20;
+            label.Width = 500;
+            label.Height = 100;
 
             diagramControl1.SvgManager = svgManager;
         }

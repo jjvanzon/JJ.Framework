@@ -71,8 +71,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
         private static void DrawLine(SvgElements.Line sourceLine, Graphics destGraphics)
         {
-            var sourceLine_PointA_Accessor = new ElementBase_Accessor(sourceLine.PointA);
-            var sourceLine_PointB_Accessor = new ElementBase_Accessor(sourceLine.PointB);
+            var sourceLine_PointA_Accessor = new Element_Accessor(sourceLine.PointA);
+            var sourceLine_PointB_Accessor = new Element_Accessor(sourceLine.PointB);
 
             if (sourceLine.Visible &&
                 sourceLine.LineStyle.Visible)
@@ -84,7 +84,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
         private static void DrawRectangle(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
-            var sourceRectangle_Accessor = new ElementBase_Accessor(sourceRectangle);
+            var sourceRectangle_Accessor = new Element_Accessor(sourceRectangle);
 
             if (!sourceRectangle.Visible)
             {
@@ -144,7 +144,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
         private static void DrawLabel(SvgElements.Label sourceLabel, Graphics destGraphics)
         {
-            var sourceLabel_Rectangle_Accessor = new ElementBase_Accessor(sourceLabel.Rectangle);
+            var sourceLabel_Accessor = new Element_Accessor(sourceLabel);
 
             if (!sourceLabel.Visible)
             {
@@ -153,7 +153,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
             StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
             System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
-            RectangleF destRectangle = new RectangleF(sourceLabel_Rectangle_Accessor.CalculatedX, sourceLabel_Rectangle_Accessor.CalculatedY, sourceLabel.Rectangle.Width, sourceLabel.Rectangle.Height);
+            RectangleF destRectangle = new RectangleF(sourceLabel_Accessor.CalculatedX, sourceLabel_Accessor.CalculatedY, sourceLabel.Width, sourceLabel.Height);
             Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 
             destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);

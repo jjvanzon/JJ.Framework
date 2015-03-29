@@ -2,14 +2,24 @@
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
-    public class Line : ElementBase
+    [DebuggerDisplay("{DebuggerDisplay}")]
+    public class Line : Element
     {
-        internal Line()
+        private string DebuggerDisplay
+        {
+            get
+            {
+                return String.Format("{{{0}}} ({1}, {2}) - ({3}, {4}) (HashCode={5})", GetType().Name, PointA.X, PointA.Y, PointB.X, PointB.Y, GetHashCode());
+            }
+        }
+
+        public Line()
         { }
 
         private Point _pointA = new Point();

@@ -16,11 +16,11 @@ namespace JJ.Framework.Presentation.Svg
     internal class GestureHandler
     {
         private IList<IGesture> _gestures;
-        private ElementBase _rootElement;
+        private Element _rootElement;
 
         public event EventHandler<GestureEventArgs> OnGesture;
 
-        public GestureHandler(ElementBase rootElement, IList<IGesture> gestures)
+        public GestureHandler(Element rootElement, IList<IGesture> gestures)
         {
             if (rootElement == null) throw new NullException(() => rootElement);
             if (gestures == null) throw new NullException(() => gestures);
@@ -37,18 +37,18 @@ namespace JJ.Framework.Presentation.Svg
             }
 
             // ZOrdered list should not be recalculated for each gesture.
-            IList<ElementBase> zOrdereredElements = _rootElement.Children
+            IList<Element> zOrdereredElements = _rootElement.Children
                                                                 .UnionRecursive(x => x.Children)
                                                                 .OrderBy(x => x.CalculatedZIndex).ToArray();
 
-            ElementBase hitElement = HitTester.TryGetHitElement(zOrdereredElements, info.X, info.Y);
+            Element hitElement = HitTester.TryGetHitElement(zOrdereredElements, info.X, info.Y);
             if (hitElement != null)
             {
                 OnGesture(hitElement, new GestureEventArgs(null, hitElement));
             }
 
             // Event bubbling
-            ElementBase parent = hitElement.Parent;
+            Element parent = hitElement.Parent;
             while (parent != null && parent.EventBubblingEnabled)
             {
                 OnGesture(hitElement, new GestureEventArgs(null, hitElement));

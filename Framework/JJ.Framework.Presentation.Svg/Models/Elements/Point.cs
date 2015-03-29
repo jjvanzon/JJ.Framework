@@ -9,9 +9,9 @@ using System.Text;
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
     [DebuggerDisplay("{DebuggerDisplay}")]
-    public class Point : ElementBase
+    public class Point : Element
     {
-        internal Point()
+        public Point()
         { }
 
         public override float X { get; set; }
@@ -33,7 +33,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
             get
             {
-                return String.Format("({0}, {1}) {{{2}}}", X, Y, GetType().Name);
+                return String.Format("{{{0}}} ({1}, {2}) (HashCode={3})", GetType().Name, X, Y, GetHashCode());
             }
         }
     }

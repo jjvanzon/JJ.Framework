@@ -3,29 +3,27 @@ using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
-    public class Label : ElementBase
+    [DebuggerDisplay("{DebuggerDisplay}")]
+    public class Label : Element
     {
-        internal Label()
+        private string DebuggerDisplay
+        {
+            get
+            {
+                return String.Format("{{{0}}} '{1}', X={2}, Y={3} (HashCode={4})", GetType().Name, Text, X, Y, GetHashCode());
+            }
+        }
+
+        public Label()
         { }
 
         public string Text { get; set; }
-
-        private Rectangle _rectangle = new Rectangle();
-        /// <summary> not nullable, auto-instantiated </summary>
-        public Rectangle Rectangle
-        {
-            get { return _rectangle; }
-            set
-            {
-                if (value == null) throw new NullException(() => value);
-                _rectangle = value;
-            }
-        }
 
         private TextStyle _textStyle = new TextStyle();
         /// <summary> not nullable, auto-instantiated </summary>
@@ -39,16 +37,10 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             }
         }
 
-        public override float X
-        {
-            get { return _rectangle.X; }
-            set { _rectangle.X = value; }
-        }
+        public override float X { get; set; }
+        public override float Y { get; set; }
 
-        public override float Y
-        {
-            get { return _rectangle.Y; }
-            set { _rectangle.Y = value; }
-        }
+        public float Width { get; set; }
+        public float Height { get; set; }
     }
 }

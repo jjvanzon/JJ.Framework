@@ -53,7 +53,9 @@
     <Compile Include="Infos\MouseDownInfo.cs" />
     <Compile Include="Infos\MouseMoveInfo.cs" />
     <Compile Include="Infos\MouseUpInfo.cs" />
-    <Compile Include="Models\Elements\Children.cs" />
+    <Compile Include="LinkTo\LinkToExtensions.cs" />
+    <Compile Include="LinkTo\UnlinkExtensions.cs" />
+    <Compile Include="Models\Elements\ElementChildren.cs" />
     <Compile Include="Models\Styling\BackStyle.cs" />
     <Compile Include="Models\Styling\Font.cs" />
     <Compile Include="Enums\HorizontalAlignmentEnum.cs" />
@@ -62,12 +64,13 @@
     <Compile Include="Models\Elements\Point.cs" />
     <Compile Include="Models\Elements\Rectangle.cs" />
     <Compile Include="Enums\VerticalAlignmentEnum.cs" />
-    <Compile Include="Models\Elements\ElementBase.cs" />
+    <Compile Include="Models\Elements\Element.cs" />
     <Compile Include="Models\Styling\LineStyle.cs" />
     <Compile Include="Models\Styling\PointStyle.cs" />
     <Compile Include="Models\Styling\TextStyle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SvgManager.cs" />
+    <Compile Include="Models\SvgModel.cs" />
+    <Compile Include="Models\SvgModelElements.cs" />
     <Compile Include="Visitors\CalculationVisitor.cs" />
     <Compile Include="Transformation\ITransformer.cs" />
     <Compile Include="Transformation\RotateTransformer.cs" />

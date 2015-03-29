@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.Svg.EventArgs
 {
     public class GestureEventArgs : System.EventArgs
     {
-        public GestureEventArgs(IGesture gesture, ElementBase element)
+        public GestureEventArgs(IGesture gesture, Element element)
         {
             // TODO: Enable null check again.
             //if (gesture == null) throw new NullException(() => gesture);
@@ -21,6 +21,6 @@ namespace JJ.Framework.Presentation.Svg.EventArgs
         }
 
         public IGesture Gesture { get; private set; }
-        public ElementBase Element { get; private set; }
+        public Element Element { get; private set; }
     }
 }

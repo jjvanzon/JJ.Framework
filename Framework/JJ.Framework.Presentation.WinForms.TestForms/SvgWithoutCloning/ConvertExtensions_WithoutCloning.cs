@@ -38,7 +38,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
         public static RectangleF ToSystemDrawingRectangleF(this SvgElements.Point sourcePoint)
         {
-            var sourcePoint_Accessor = new ElementBase_Accessor(sourcePoint);
+            var sourcePoint_Accessor = new Element_Accessor(sourcePoint);
 
             float pointWidth = sourcePoint.PointStyle.Width;
             var destRectangleF = new RectangleF(
@@ -56,7 +56,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
         {
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
-            var sourceRectangle_Accessor = new ElementBase_Accessor(sourceRectangle);
+            var sourceRectangle_Accessor = new Element_Accessor(sourceRectangle);
 
             var destRectangleF = new RectangleF(
                 sourceRectangle_Accessor.CalculatedX,
@@ -71,7 +71,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
         {
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
-            var sourceRectangle_Accessor = new ElementBase_Accessor(sourceRectangle);
+            var sourceRectangle_Accessor = new Element_Accessor(sourceRectangle);
 
             var destRectangle = new System.Drawing.Rectangle(
                 (int)sourceRectangle_Accessor.CalculatedX,
