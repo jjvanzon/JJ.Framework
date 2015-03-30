@@ -35,11 +35,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\ChildToParentHandler.cs" />
-    <Compile Include="Business\ParentToChildrenHandler2.cs" />
+    <Compile Include="Business\ChildToParentRelationship.cs" />
     <Compile Include="Business\DiagramToElementHandler.cs" />
     <Compile Include="Business\ElementToDiagramHandler.cs" />
-    <Compile Include="Business\ParentToChildHandler.cs" />
+    <Compile Include="Business\ParentToChildrenRelationship.cs" />
     <Compile Include="Enums\DashStyleEnum.cs" />
     <Compile Include="Enums\MouseButtonEnum.cs" />
     <Compile Include="EventArg\GestureEventArgs.cs" />

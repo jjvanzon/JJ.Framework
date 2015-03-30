@@ -12,12 +12,18 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     public class ElementChildren : IEnumerable<Element>
     {
         private Element _parent;
-        private IList<Element> _list = new List<Element>();
+        private IList<Element> _list;
+
+        private ParentToChildrenRelationship _parentToChildRelationship;
 
         internal ElementChildren(Element parent)
         {
             if (parent == null) throw new NullException(() => parent);
+
             _parent = parent;
+            _list = new List<Element>();
+
+            _parentToChildRelationship = new ParentToChildrenRelationship(_parent, _list);
         }
 
         public void Add(Element child)
@@ -29,6 +35,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             {
                 throw new Exception("To add a child the parent must be part of a diagram.");
             }
+
+            _parentToChildRelationship.AddChild(child);
 
             //var relationshipHandler = new ParentToChildrenHandler2();
             //relationshipHandler.AddChild(_parent, child);

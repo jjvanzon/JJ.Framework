@@ -6,25 +6,37 @@ using System.Text;
 
 namespace JJ.Framework.Business
 {
-    public abstract class ManyToOneHandler<TParent>
+    public abstract class ManyToOneHandler<TChild, TParent>
     {
-        public void SetParent(TParent oldParent, TParent newParent)
-        {
-            if (ReferenceEquals(oldParent, newParent)) return;
+        public TParent Parent { get; private set; }
 
-            if (oldParent != null)
+        protected TChild _child;
+
+        public ManyToOneHandler(TChild child)
+        {
+            if (child == null) throw new NullException(() => child);
+            _child = child;
+        }
+
+        public void SetParent(TParent value)
+        {
+            if (ReferenceEquals(Parent, value)) return;
+
+            if (Parent != null)
             {
-                if (Contains(oldParent))
+                if (Contains(Parent))
                 {
-                    Remove(oldParent);
+                    Remove(Parent);
                 }
             }
 
-            if (newParent != null)
+            Parent = value;
+
+            if (Parent != null)
             {
-                if (!Contains(newParent))
+                if (!Contains(Parent))
                 {
-                    Add(newParent);
+                    Add(Parent);
                 }
             }
         }

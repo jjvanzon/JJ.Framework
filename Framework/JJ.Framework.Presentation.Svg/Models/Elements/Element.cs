@@ -7,6 +7,7 @@ using System.Text;
 using System.Diagnostics;
 using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Presentation.Svg.Business;
+using JJ.Framework.Business;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
@@ -17,6 +18,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     {
         internal Element()
         {
+            _childToParentRelationship = new ChildToParentRelationship(this);
+
             Children = new ElementChildren(parent: this);
             Visible = true;
         }
@@ -80,11 +83,14 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             }
         }
 
-        private Element _parent;
+        private ChildToParentRelationship _childToParentRelationship;
+
+        //private Element _parent;
+
         public Element Parent
         {
-            [DebuggerHidden]
-            get { return _parent; }
+            //[DebuggerHidden]
+            get { return _childToParentRelationship.Parent; }
             set 
             {
                 // Side-effect: equate parent's and child's diagram.
@@ -114,28 +120,30 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                 //var relationshipHandler = new ParentToChildrenHandler2();
                 //relationshipHandler.SetParent(this, _parent, value);
 
-                if (_parent == value) return;
+                _childToParentRelationship.SetParent(value);
 
-                if (_parent != null)
-                {
-                    if (_parent.Children.Contains(this))
-                    {
-                        _parent.Children.Remove(this);
-                    }
-                }
+                //if (_parent == value) return;
 
-                _parent = value;
+                //if (_parent != null)
+                //{
+                //    if (_parent.Children.Contains(this))
+                //    {
+                //        _parent.Children.Remove(this);
+                //    }
+                //}
 
-                if (_parent != null)
-                {
-                    if (!_parent.Children.Contains(this))
-                    {
-                        _parent.Children.Add(this);
-                    }
-                }
+                //_parent = value;
+
+                //if (_parent != null)
+                //{
+                //    if (!_parent.Children.Contains(this))
+                //    {
+                //        _parent.Children.Add(this);
+                //    }
+                //}
 
                 // Side-Effect: add orphans to root rectangle of Diagram.
-                if (_parent == null)
+                if (_childToParentRelationship.Parent == null)
                 {
                     if (this != _diagram.RootRectangle)
                     {

@@ -7,22 +7,22 @@ using System.Text;
 namespace JJ.Framework.Business
 {
     public abstract class OneToManyHandler<TChild>
+        where TChild : class
     {
-        protected abstract void SetParent(TChild child);
-        protected abstract void NullifyParent(TChild child);
+        protected abstract void OnSetParent(TChild child);
 
         public void AddChild(TChild child)
         {
             if (child == null) throw new NullException(() => child);
 
-            SetParent(child);
+            OnSetParent(child);
         }
 
         public void RemoveChild(TChild child)
         {
             if (child == null) throw new NullException(() => child);
 
-            NullifyParent(child);
+            OnSetParent(null);
         }
     }
 }

@@ -8,16 +8,11 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Business
 {
-    internal class ChildToParentHandler : ManyToOneHandler<Element>
+    internal class ChildToParentRelationship : ManyToOneHandler<Element, Element>
     {
-        private Element _child;
-
-        public ChildToParentHandler(Element child)
-        {
-            if (child == null) throw new NullException(() => child);
-
-            _child = child;
-        }
+        public ChildToParentRelationship(Element child)
+            : base(child)
+        { }
 
         protected override bool Contains(Element parent)
         {

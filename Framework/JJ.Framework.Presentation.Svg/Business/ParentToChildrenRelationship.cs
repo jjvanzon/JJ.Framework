@@ -8,25 +8,23 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Business
 {
-    internal class ParentToChildHandler : OneToManyHandler<Element>
+    internal class ParentToChildrenRelationship : OneToManyHandler<Element>
     {
         private Element _parent;
+        private IList<Element> _children;
 
-        public ParentToChildHandler(Element parent)
+        public ParentToChildrenRelationship(Element parent, IList<Element> children)
         {
             if (parent == null) throw new NullException(() => parent);
+            if (children == null) throw new NullException(() => children);
 
             _parent = parent;
+            _children = children;
         }
 
-        protected override void SetParent(Element child)
+        protected override void OnSetParent(Element child)
         {
             child.Parent = _parent;
-        }
-
-        protected override void NullifyParent(Element child)
-        {
-            child.Parent = null;
         }
     }
 }
