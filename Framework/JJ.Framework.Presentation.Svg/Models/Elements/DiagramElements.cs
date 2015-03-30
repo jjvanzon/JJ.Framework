@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Presentation.Svg
+namespace JJ.Framework.Presentation.Svg.Elements
 {
     public class DiagramElements : IEnumerable<Element>
     {
@@ -21,13 +21,14 @@ namespace JJ.Framework.Presentation.Svg
         internal DiagramElements(Diagram diagram)
         {
             if (diagram == null) throw new NullException(() => diagram);
+
             _diagram = diagram;
             _relationship = new DiagramToElementsRelationship(diagram, _elements);
         }
 
         public void Add(Element element)
         {
-            _relationship.AddChild(element);
+            _relationship.Add(element);
 
             // Side-effect: When added to the model, it is added as a child of the root rectangle.
             if (element.Parent == null)
@@ -41,7 +42,7 @@ namespace JJ.Framework.Presentation.Svg
 
         public void Remove(Element element)
         {
-            _relationship.RemoveChild(element);
+            _relationship.Remove(element);
         }
 
         [DebuggerHidden]

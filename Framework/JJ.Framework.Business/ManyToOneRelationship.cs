@@ -8,13 +8,14 @@ using System.Text;
 namespace JJ.Framework.Business
 {
     /// <summary>
-    /// Don't forget to use _child in your method implementations.
+    /// Don't forget to use _children in your method implementations.
     /// </summary>
     public abstract class ManyToOneRelationship<TChild, TParent>
     {
         protected TChild _child;
         private TParent _parent;
 
+        [DebuggerHidden]
         public ManyToOneRelationship(TChild child)
         {
             if (child == null) throw new NullException(() => child);

@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Presentation.Svg
+namespace JJ.Framework.Presentation.Svg.Elements
 {
     public class Diagram
     {

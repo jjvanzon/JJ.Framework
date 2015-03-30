@@ -70,8 +70,8 @@
     <Compile Include="Models\Styling\PointStyle.cs" />
     <Compile Include="Models\Styling\TextStyle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Diagram.cs" />
-    <Compile Include="Models\DiagramElements.cs" />
+    <Compile Include="Models\Elements\Diagram.cs" />
+    <Compile Include="Models\Elements\DiagramElements.cs" />
     <Compile Include="Visitors\CalculationVisitor.cs" />
     <Compile Include="Transformation\ITransformer.cs" />
     <Compile Include="Transformation\RotateTransformer.cs" />

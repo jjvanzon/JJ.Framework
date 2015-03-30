@@ -10,6 +10,7 @@ using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Reflection;
 using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Presentation.Svg;
+using JJ.Framework.Presentation.Svg.Elements;
 
 namespace JJ.Framework.Presentation.Drawing
 {

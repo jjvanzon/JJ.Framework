@@ -11,6 +11,7 @@ using JJ.Framework.Presentation.Svg.Visitors;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Drawing;
 using JJ.Framework.Presentation.Svg;
+using JJ.Framework.Presentation.Svg.Elements;
 
 namespace JJ.Framework.Presentation.WinForms
 {

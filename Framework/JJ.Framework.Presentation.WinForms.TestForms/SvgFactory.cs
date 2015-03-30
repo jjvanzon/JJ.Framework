@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Presentation.Svg;
+using JJ.Framework.Presentation.Svg.Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;

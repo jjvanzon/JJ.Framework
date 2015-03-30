@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Business;
+using JJ.Framework.Presentation.Svg.Elements;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using System;
 using System.Collections.Generic;

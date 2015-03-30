@@ -15,7 +15,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         private Element _parent;
         private IList<Element> _list;
 
-        private ParentToChildrenRelationship _parentToChildRelationship;
+        private ParentToChildrenRelationship _childrenRelationship;
 
         internal ElementChildren(Element parent)
         {
@@ -24,7 +24,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             _parent = parent;
             _list = new List<Element>();
 
-            _parentToChildRelationship = new ParentToChildrenRelationship(_parent, _list);
+            _childrenRelationship = new ParentToChildrenRelationship(_parent, _list);
         }
 
         public void Add(Element child)
@@ -37,7 +37,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                 throw new Exception("To add a child the parent must be part of a diagram.");
             }
 
-            _parentToChildRelationship.AddChild(child);
+            _childrenRelationship.Add(child);
 
             // Side-effect: added children are made part of the same Diagram as the parent.
             child.Diagram = _parent.Diagram;
@@ -45,7 +45,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         public void Remove(Element child)
         {
-            _parentToChildRelationship.RemoveChild(child);
+            _childrenRelationship.Remove(child);
 
             // Side-effect: orphaned children are added to the Diagram's root rectangle.
             if (child != child.Diagram.RootRectangle)

@@ -1,6 +1,7 @@
 ﻿using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -15,6 +16,7 @@ namespace JJ.Framework.Business
         protected TParent _parent;
         private ICollection<TChild> _children;
 
+        [DebuggerHidden]
         public OneToManyRelationship(TParent parent, ICollection<TChild> children)
         {
             if (parent == null) throw new NullException(() => parent);
@@ -27,7 +29,7 @@ namespace JJ.Framework.Business
         protected abstract void SetParent(TChild child);
         protected abstract void NullifyParent(TChild child);
 
-        public void AddChild(TChild child)
+        public void Add(TChild child)
         {
             if (child == null) throw new NullException(() => child);
 
@@ -38,7 +40,7 @@ namespace JJ.Framework.Business
             SetParent(child);
         }
 
-        public void RemoveChild(TChild child)
+        public void Remove(TChild child)
         {
             if (child == null) throw new NullException(() => child);
 

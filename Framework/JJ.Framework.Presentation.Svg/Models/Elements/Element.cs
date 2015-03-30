@@ -9,6 +9,7 @@ using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Presentation.Svg.Business;
 using JJ.Framework.Business;
 using JJ.Framework.Presentation.Svg.Relationships;
+using JJ.Framework.Presentation.Svg.Elements;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
@@ -19,8 +20,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     {
         internal Element()
         {
-            _childToParentRelationship = new ChildToParentRelationship(this);
-            _elementToDiagramRelationship = new ElementToDiagramRelationship(this);
+            _parentRelationship = new ChildToParentRelationship(this);
+            _diagramRelationship = new ElementToDiagramRelationship(this);
 
             Children = new ElementChildren(parent: this);
             Visible = true;
@@ -46,12 +47,12 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         // Related Objects
 
-        private ElementToDiagramRelationship _elementToDiagramRelationship;
+        private ElementToDiagramRelationship _diagramRelationship;
 
         public Diagram Diagram
         {
             [DebuggerHidden]
-            get { return _elementToDiagramRelationship.Parent; }
+            get { return _diagramRelationship.Parent; }
             set
             {
                 // Side-effect: when removed from Diagram, also remove relationship between parent and child.
@@ -64,15 +65,15 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                     Parent = null;
                 }
 
-                _elementToDiagramRelationship.Parent = value;
+                _diagramRelationship.Parent = value;
             }
         }
 
-        private ChildToParentRelationship _childToParentRelationship;
+        private ChildToParentRelationship _parentRelationship;
 
         public Element Parent
         {
-            get { return _childToParentRelationship.Parent; }
+            get { return _parentRelationship.Parent; }
             set 
             {
                 // Side-effect: equate parent's and child's diagram.
@@ -99,10 +100,10 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                     }
                 }
 
-                _childToParentRelationship.Parent = value;
+                _parentRelationship.Parent = value;
 
                 // Side-Effect: add orphans to root rectangle of Diagram.
-                if (_childToParentRelationship.Parent == null)
+                if (Parent == null)
                 {
                     if (this != Diagram.RootRectangle)
                     {

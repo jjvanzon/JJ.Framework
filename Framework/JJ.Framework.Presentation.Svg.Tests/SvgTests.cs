@@ -5,6 +5,7 @@ using JJ.Framework.Presentation.Svg.Visitors;
 using JJ.Framework.Testing;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using System.Collections.Generic;
+using JJ.Framework.Presentation.Svg.Elements;
 
 namespace JJ.Framework.Presentation.Svg.Tests
 {
