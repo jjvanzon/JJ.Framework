@@ -7,6 +7,9 @@ using System.Text;
 
 namespace JJ.Framework.Business
 {
+    /// <summary>
+    /// Don't forget to use _child in your method implementations.
+    /// </summary>
     public abstract class ManyToOneRelationship<TChild, TParent>
     {
         protected TChild _child;

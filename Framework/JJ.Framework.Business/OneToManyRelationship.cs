@@ -6,6 +6,9 @@ using System.Text;
 
 namespace JJ.Framework.Business
 {
+    /// <summary>
+    /// Don't forget to use _parent in your method implementations.
+    /// </summary>
     public abstract class OneToManyRelationship<TParent, TChild>
         where TChild : class
     {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Presentation.Svg.Business
+namespace JJ.Framework.Presentation.Svg.Relationships
 {
     internal class ChildToParentRelationship : ManyToOneRelationship<Element, Element>
     {

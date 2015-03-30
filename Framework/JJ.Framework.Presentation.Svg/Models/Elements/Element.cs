@@ -8,6 +8,7 @@ using System.Diagnostics;
 using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Presentation.Svg.Business;
 using JJ.Framework.Business;
+using JJ.Framework.Presentation.Svg.Relationships;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
@@ -19,6 +20,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         internal Element()
         {
             _childToParentRelationship = new ChildToParentRelationship(this);
+            _elementToDiagramRelationship = new ElementToDiagramRelationship(this);
 
             Children = new ElementChildren(parent: this);
             Visible = true;
@@ -44,15 +46,14 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         // Related Objects
 
-        private Diagram _diagram;
+        private ElementToDiagramRelationship _elementToDiagramRelationship;
+
         public Diagram Diagram
         {
             [DebuggerHidden]
-            get { return _diagram; }
+            get { return _elementToDiagramRelationship.Parent; }
             set
             {
-                if (_diagram == value) return;
-
                 // Side-effect: when removed from Diagram, also remove relationship between parent and child.
                 if (value == null)
                 {
@@ -63,23 +64,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                     Parent = null;
                 }
 
-                if (_diagram != null)
-                {
-                    if (_diagram.Elements.Contains(this))
-                    {
-                        _diagram.Elements.Remove(this);
-                    }
-                }
-
-                _diagram = value;
-
-                if (_diagram != null)
-                {
-                    if (!_diagram.Elements.Contains(this))
-                    {
-                        _diagram.Elements.Add(this);
-                    }
-                }
+                _elementToDiagramRelationship.Parent = value;
             }
         }
 
@@ -119,9 +104,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                 // Side-Effect: add orphans to root rectangle of Diagram.
                 if (_childToParentRelationship.Parent == null)
                 {
-                    if (this != _diagram.RootRectangle)
+                    if (this != Diagram.RootRectangle)
                     {
-                        _diagram.RootRectangle.Children.Add(this);
+                        Diagram.RootRectangle.Children.Add(this);
                     }
                 }
             }

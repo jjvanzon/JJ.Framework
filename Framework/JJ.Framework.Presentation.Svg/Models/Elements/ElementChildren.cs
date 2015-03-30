@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using JJ.Framework.Presentation.Svg.Business;
+using JJ.Framework.Presentation.Svg.Relationships;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
