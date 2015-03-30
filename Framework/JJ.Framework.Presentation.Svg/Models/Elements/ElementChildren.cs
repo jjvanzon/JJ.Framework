@@ -38,36 +38,13 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
             _parentToChildRelationship.AddChild(child);
 
-            //var relationshipHandler = new ParentToChildrenHandler2();
-            //relationshipHandler.AddChild(_parent, child);
-
-            if (_list.Contains(child)) return;
-
-            if (child.Parent != null)
-            {
-                if (child.Parent.Children.Contains(child))
-                {
-                    child.Parent.Children.Remove(child);
-                }
-            }
-
-            _list.Add(child);
-
-            child.Parent = _parent;
-
             // Side-effect: added children are made part of the same Diagram as the parent.
             child.Diagram = _parent.Diagram;
         }
 
         public void Remove(Element child)
         {
-            if (child == null) throw new NullException(() => child);
-
-            if (!_list.Contains(child)) return;
-
-            _list.Remove(child);
-
-            child.Parent = null;
+            _parentToChildRelationship.RemoveChild(child);
 
             // Side-effect: orphaned children are added to the Diagram's root rectangle.
             if (child != child.Diagram.RootRectangle)

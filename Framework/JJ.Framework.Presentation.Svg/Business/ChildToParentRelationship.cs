@@ -8,7 +8,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Business
 {
-    internal class ChildToParentRelationship : ManyToOneHandler<Element, Element>
+    internal class ChildToParentRelationship : ManyToOneRelationship<Element, Element>
     {
         public ChildToParentRelationship(Element child)
             : base(child)

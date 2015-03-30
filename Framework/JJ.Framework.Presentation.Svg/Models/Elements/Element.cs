@@ -85,11 +85,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         private ChildToParentRelationship _childToParentRelationship;
 
-        //private Element _parent;
-
         public Element Parent
         {
-            //[DebuggerHidden]
             get { return _childToParentRelationship.Parent; }
             set 
             {
@@ -117,30 +114,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                     }
                 }
 
-                //var relationshipHandler = new ParentToChildrenHandler2();
-                //relationshipHandler.SetParent(this, _parent, value);
-
-                _childToParentRelationship.SetParent(value);
-
-                //if (_parent == value) return;
-
-                //if (_parent != null)
-                //{
-                //    if (_parent.Children.Contains(this))
-                //    {
-                //        _parent.Children.Remove(this);
-                //    }
-                //}
-
-                //_parent = value;
-
-                //if (_parent != null)
-                //{
-                //    if (!_parent.Children.Contains(this))
-                //    {
-                //        _parent.Children.Add(this);
-                //    }
-                //}
+                _childToParentRelationship.Parent = value;
 
                 // Side-Effect: add orphans to root rectangle of Diagram.
                 if (_childToParentRelationship.Parent == null)
