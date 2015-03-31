@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Presentation.Svg.Enums;
+using JJ.Framework.Presentation.Svg.Gestures;
 using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Reflection;
 using System;
@@ -12,15 +13,12 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Label : Element
     {
-        private string DebuggerDisplay
-        {
-            get
-            {
-                return String.Format("{{{0}}} '{1}', X={2}, Y={3} (HashCode={4})", GetType().Name, Text, X, Y, GetHashCode());
-            }
-        }
+        public Label(params IGesture[] gestures)
+            : this((IList<IGesture>)gestures)
+        { }
 
-        public Label()
+        public Label(IList<IGesture> gestures)
+            : base(gestures)
         { }
 
         public string Text { get; set; }
@@ -42,5 +40,13 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         public override float Width { get; set; }
         public override float Height { get; set; }
+
+        private string DebuggerDisplay
+        {
+            get
+            {
+                return String.Format("{{{0}}} '{1}', X={2}, Y={3} (HashCode={4})", GetType().Name, Text, X, Y, GetHashCode());
+            }
+        }
     }
 }

@@ -38,20 +38,24 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
         private void InitializeDiagramAndElements()
         {
-            var diagram = new Diagram(new MoveGesture());
+            var diagram = new Diagram();
+
+            var dragDropGesture = new DragDropGesture();
+            dragDropGesture.OnDragDrop += dragDropGesture_OnDragDrop;
 
             float spacing = 10;
             float blockWidth = 200;
             float blockHeight = 60;
 
-            var rectangle1 = new SvgElements.Rectangle
+            var rectangle1 = new SvgElements.Rectangle(new MoveGesture(), dragDropGesture)
             {
                 X = spacing,
                 Y = spacing,
                 Width = blockWidth,
                 Height = blockHeight,
                 BackStyle = SvgHelper.BlueBackStyle,
-                Diagram = diagram
+                Diagram = diagram,
+                MouseCaptureEnabled = true
             };
             rectangle1.SetLineStyle(SvgHelper.DefaultLineStyle);
 
@@ -66,14 +70,15 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 Parent = rectangle1
             };
 
-            var rectangle2 = new SvgElements.Rectangle
+            var rectangle2 = new SvgElements.Rectangle(new MoveGesture(), dragDropGesture)
             {
                 X = rectangle1.X + blockWidth + spacing,
                 Y = spacing,
                 Width = blockWidth,
                 Height = blockHeight,
                 BackStyle = SvgHelper.BlueBackStyle,
-                Diagram = diagram
+                Diagram = diagram,
+                MouseCaptureEnabled = true
             };
             rectangle2.SetLineStyle(SvgHelper.DefaultLineStyle);
 
@@ -89,6 +94,15 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             };
 
             diagramControl1.Diagram = diagram;
+        }
+
+        void dragDropGesture_OnDragDrop(object sender, Svg.EventArg.DragDropEventArgs e)
+        {
+            SvgElements.Label label = e.DraggedElement.Children.OfType<SvgElements.Label>().First();
+            label.Text = "Dragged";
+
+            SvgElements.Label label2 = e.DroppedOnElement.Children.OfType<SvgElements.Label>().First();
+            label2.Text = "Dropped On";
         }
 
         void _label1_OnMouseDown(object sender, Svg.EventArg.MouseEventArgs e)

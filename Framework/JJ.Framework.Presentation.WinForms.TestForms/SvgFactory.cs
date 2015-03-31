@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Presentation.Svg;
 using JJ.Framework.Presentation.Svg.Elements;
+using JJ.Framework.Presentation.Svg.Gestures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
         private static SvgElements.Rectangle CreateRectangle(Diagram diagram, float x, float y, string text)
         {
-            var rectangle = new SvgElements.Rectangle 
+            var rectangle = new SvgElements.Rectangle(new MoveGesture())
             {
                 Diagram = diagram,
                 X = x,

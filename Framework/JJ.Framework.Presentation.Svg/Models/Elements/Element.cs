@@ -9,6 +9,7 @@ using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Business;
 using JJ.Framework.Presentation.Svg.Relationships;
 using JJ.Framework.Presentation.Svg.Elements;
+using JJ.Framework.Presentation.Svg.Gestures;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
@@ -17,13 +18,18 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     /// </summary>
     public abstract class Element
     {
-        internal Element()
+        internal Element(IList<IGesture> gestures)
         {
+            if (gestures == null) throw new NullException(() => gestures);
+
+            Gestures = gestures;
+
             _parentRelationship = new ChildToParentRelationship(this);
             _diagramRelationship = new ElementToDiagramRelationship(this);
 
             Children = new ElementChildren(parent: this);
             Visible = true;
+            Bubble = true;
         }
 
         // Values
@@ -137,9 +143,22 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// </summary>
         public float CalculatedY { get; internal set; }
 
-        // Events
+        // Gestures
 
-        public bool EventBubblingEnabled { get; set; }
+        internal IList<IGesture> Gestures { get; private set; }
+
+        /// <summary>
+        /// When true, events that go off on a child element
+        /// also go off on a parent element.
+        /// </summary>
+        public bool Bubble { get; set; }
+
+        /// <summary>
+        /// Tells if mouse down makes the control receive all mouse events
+        /// until mouse up. This prevents mouse events from
+        /// reaching other elements, even when going outside the capturing element rectangle.
+        /// </summary>
+        public bool MouseCaptureEnabled { get; set; }
 
         public event EventHandler<MouseEventArgs> OnMouseDown;
         public event EventHandler<MouseEventArgs> OnMouseMove;

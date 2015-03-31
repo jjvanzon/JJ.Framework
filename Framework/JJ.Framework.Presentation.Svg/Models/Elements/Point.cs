@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Presentation.Svg.Models.Styling;
+﻿using JJ.Framework.Presentation.Svg.Gestures;
+using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,12 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Point : Element
     {
-        public Point()
+        public Point(params IGesture[] gestures)
+            : this((IList<IGesture>)gestures)
+        { }
+
+        public Point(IList<IGesture> gestures)
+            : base(gestures)
         { }
 
         public override float X { get; set; }

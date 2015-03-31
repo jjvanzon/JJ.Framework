@@ -16,17 +16,15 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     internal class GestureHandler
     {
+        private Element _pointerCapturingElement;
+
         private Diagram _diagram;
 
-        private IList<IGesture> _gestures;
-        //public event EventHandler<GestureEventArgs> OnGesture;
-
-        public GestureHandler(Diagram diagram, IList<IGesture> gestures = null)
+        public GestureHandler(Diagram diagram)
         {
             if (diagram == null) throw new NullException(() => diagram);
 
             _diagram = diagram;
-            _gestures = gestures ?? new IGesture[0];
         }
 
         public void MouseDown(MouseEventArgs e)
@@ -39,33 +37,33 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 hitElement.MouseDown(hitElement, e);
 
-                foreach (IGesture gesture in _gestures)
+                foreach (IGesture gesture in hitElement.Gestures)
                 {
                     gesture.MouseDown(hitElement, e);
                 }
 
-                //if (OnGesture != null)
-                //{
-                //    OnGesture(hitElement, new GestureEventArgs(null, hitElement));
-                //}
-
                 // Event bubbling
                 Element parent = hitElement.Parent;
-                while (parent != null && parent.EventBubblingEnabled)
+                while (parent != null && parent.Bubble)
                 {
                     parent.MouseDown(hitElement, e);
 
-                    foreach (IGesture gesture in _gestures)
+                    foreach (IGesture gesture in parent.Gestures)
                     {
                         gesture.MouseDown(parent, e);
                     }
 
-                    //if (OnGesture != null)
-                    //{
-                    //    OnGesture(parent, new GestureEventArgs(null, hitElement));
-                    //}
+                    if (parent.MouseCaptureEnabled)
+                    {
+                        _pointerCapturingElement = hitElement;
+                    }
 
                     parent = parent.Parent;
+                }
+
+                if (hitElement.MouseCaptureEnabled)
+                {
+                    _pointerCapturingElement = hitElement;
                 }
             }
         }
@@ -73,23 +71,29 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         public void MouseMove(MouseEventArgs e)
         {
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
-            Element hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
+
+            Element hitElement = _pointerCapturingElement;
+            if (hitElement == null)
+            {
+                hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
+            }
+
             if (hitElement != null)
             {
                 hitElement.MouseMove(hitElement, e);
 
-                foreach (IGesture gesture in _gestures)
+                foreach (IGesture gesture in hitElement.Gestures)
                 {
                     gesture.MouseMove(hitElement, e);
                 }
 
                 // Event bubbling
                 Element parent = hitElement.Parent;
-                while (parent != null && parent.EventBubblingEnabled)
+                while (parent != null && parent.Bubble)
                 {
                     parent.MouseMove(hitElement, e);
 
-                    foreach (IGesture gesture in _gestures)
+                    foreach (IGesture gesture in parent.Gestures)
                     {
                         gesture.MouseMove(parent, e);
                     }
@@ -102,23 +106,29 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         public void MouseUp(MouseEventArgs e)
         {
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
-            Element hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
+
+            Element hitElement = _pointerCapturingElement;
+            if (hitElement == null)
+            {
+                hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
+            }
+
             if (hitElement != null)
             {
                 hitElement.MouseUp(hitElement, e);
 
-                foreach (IGesture gesture in _gestures)
+                foreach (IGesture gesture in hitElement.Gestures)
                 {
                     gesture.MouseUp(hitElement, e);
                 }
 
                 // Event bubbling
                 Element parent = hitElement.Parent;
-                while (parent != null && parent.EventBubblingEnabled)
+                while (parent != null && parent.Bubble)
                 {
                     parent.MouseUp(hitElement, e);
 
-                    foreach (IGesture gesture in _gestures)
+                    foreach (IGesture gesture in parent.Gestures)
                     {
                         gesture.MouseUp(parent, e);
                     }
@@ -148,6 +158,5 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
             return null;
         }
-
     }
 }

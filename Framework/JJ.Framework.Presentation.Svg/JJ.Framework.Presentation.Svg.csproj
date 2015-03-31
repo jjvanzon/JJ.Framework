@@ -35,6 +35,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventArg\DragDropEventArgs.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />
     <Compile Include="Relationships\DiagramToElementsRelationship.cs" />
     <Compile Include="Relationships\ElementToDiagramRelationship.cs" />
@@ -54,8 +55,6 @@
     <Compile Include="Gestures\MoveGesture.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="EventArg\MouseEventArgs.cs" />
-    <Compile Include="EventArg\~MouseMoveEventArgs.cs" />
-    <Compile Include="EventArg\~MouseUpEventArgs.cs" />
     <Compile Include="Models\Elements\ElementChildren.cs" />
     <Compile Include="Models\Styling\BackStyle.cs" />
     <Compile Include="Models\Styling\Font.cs" />
@@ -96,9 +95,7 @@
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Business\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

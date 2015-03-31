@@ -13,20 +13,14 @@ namespace JJ.Framework.Presentation.Svg.Elements
 {
     public class Diagram
     {
-        public Diagram(params IGesture[] gestures)
-            : this((IList<IGesture>)gestures)
-        { }
-
-        public Diagram(IList<IGesture> gestures)
+        public Diagram()
         {
-            if (gestures == null) throw new NullException(() => gestures);
-
             Elements = new DiagramElements(this);
 
             _rootRectangle = new Rectangle();
             _rootRectangle.Diagram = this;
 
-            _gestureHandler = new GestureHandler(this, gestures);
+            _gestureHandler = new GestureHandler(this);
         }
 
         private Rectangle _rootRectangle;

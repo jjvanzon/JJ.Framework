@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Presentation.Svg.Models.Styling;
+﻿using JJ.Framework.Presentation.Svg.Gestures;
+using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,12 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Line : Element
     {
-        private string DebuggerDisplay
-        {
-            get
-            {
-                return String.Format("{{{0}}} ({1}, {2}) - ({3}, {4}) (HashCode={5})", GetType().Name, PointA.X, PointA.Y, PointB.X, PointB.Y, GetHashCode());
-            }
-        }
+        public Line(params IGesture[] gestures)
+            : this((IList<IGesture>)gestures)
+        { }
 
-        public Line()
+        public Line(IList<IGesture> gestures)
+            : base(gestures)
         { }
 
         private Point _pointA = new Point();
@@ -96,6 +94,14 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
             get { return 0; }
             set { throw new NotSupportedException(); }
+        }
+
+        private string DebuggerDisplay
+        {
+            get
+            {
+                return String.Format("{{{0}}} ({1}, {2}) - ({3}, {4}) (HashCode={5})", GetType().Name, PointA.X, PointA.Y, PointB.X, PointB.Y, GetHashCode());
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Presentation.Svg.Models.Styling;
+﻿using JJ.Framework.Presentation.Svg.Gestures;
+using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
@@ -11,15 +12,12 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Rectangle : Element
     {
-        private string DebuggerDisplay
-        {
-            get
-            {
-                return String.Format("{{{0}}} X={1}, Y={2}, Width={3}, Height={4} (HashCode={5})", GetType().Name, X, Y, Width, Height, GetHashCode());
-            }
-        }
+        public Rectangle(params IGesture[] gestures)
+            : this((IList<IGesture>)gestures)
+        { }
 
-        public Rectangle()
+        public Rectangle(IList<IGesture> gestures)
+            : base(gestures)
         { }
 
         public override float X { get; set; }
@@ -114,6 +112,14 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             }
 
             return null;
+        }
+
+        private string DebuggerDisplay
+        {
+            get
+            {
+                return String.Format("{{{0}}} X={1}, Y={2}, Width={3}, Height={4} (HashCode={5})", GetType().Name, X, Y, Width, Height, GetHashCode());
+            }
         }
     }
 }
