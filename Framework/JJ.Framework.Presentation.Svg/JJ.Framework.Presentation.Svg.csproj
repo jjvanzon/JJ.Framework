@@ -42,7 +42,7 @@
     <Compile Include="Enums\DashStyleEnum.cs" />
     <Compile Include="Enums\MouseButtonEnum.cs" />
     <Compile Include="EventArg\GestureEventArgs.cs" />
-    <Compile Include="Business\GestureHandler.cs" />
+    <Compile Include="Gestures\GestureHandler.cs" />
     <Compile Include="Gestures\ClickClosestGesture.cs" />
     <Compile Include="Gestures\ClickGesture.cs" />
     <Compile Include="Gestures\DoubleClickGesture.cs" />
@@ -96,7 +96,9 @@
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Business\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

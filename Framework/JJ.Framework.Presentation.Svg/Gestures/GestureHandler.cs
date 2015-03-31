@@ -12,26 +12,21 @@ using JJ.Framework.Common;
 using JJ.Framework.Mathematics;
 using JJ.Framework.Presentation.Svg.Elements;
 
-namespace JJ.Framework.Presentation.Svg.Business
+namespace JJ.Framework.Presentation.Svg.Gestures
 {
     internal class GestureHandler
     {
         private Diagram _diagram;
 
-        //private IList<IGesture> _gestures;
+        private IList<IGesture> _gestures;
         //public event EventHandler<GestureEventArgs> OnGesture;
 
-        public GestureHandler(Diagram diagram)
-            : this(diagram, null)
-        { }
-
-        public GestureHandler(Diagram diagram, IList<IGesture> gestures)
+        public GestureHandler(Diagram diagram, IList<IGesture> gestures = null)
         {
             if (diagram == null) throw new NullException(() => diagram);
-            //if (gestures == null) throw new NullException(() => gestures);
 
             _diagram = diagram;
-            //_gestures = gestures;
+            _gestures = gestures ?? new IGesture[0];
         }
 
         public void MouseDown(MouseEventArgs e)
@@ -44,6 +39,11 @@ namespace JJ.Framework.Presentation.Svg.Business
             {
                 hitElement.MouseDown(hitElement, e);
 
+                foreach (IGesture gesture in _gestures)
+                {
+                    gesture.MouseDown(hitElement, e);
+                }
+
                 //if (OnGesture != null)
                 //{
                 //    OnGesture(hitElement, new GestureEventArgs(null, hitElement));
@@ -54,6 +54,11 @@ namespace JJ.Framework.Presentation.Svg.Business
                 while (parent != null && parent.EventBubblingEnabled)
                 {
                     parent.MouseDown(hitElement, e);
+
+                    foreach (IGesture gesture in _gestures)
+                    {
+                        gesture.MouseDown(parent, e);
+                    }
 
                     //if (OnGesture != null)
                     //{
@@ -73,11 +78,21 @@ namespace JJ.Framework.Presentation.Svg.Business
             {
                 hitElement.MouseMove(hitElement, e);
 
+                foreach (IGesture gesture in _gestures)
+                {
+                    gesture.MouseMove(hitElement, e);
+                }
+
                 // Event bubbling
                 Element parent = hitElement.Parent;
                 while (parent != null && parent.EventBubblingEnabled)
                 {
                     parent.MouseMove(hitElement, e);
+
+                    foreach (IGesture gesture in _gestures)
+                    {
+                        gesture.MouseMove(parent, e);
+                    }
 
                     parent = parent.Parent;
                 }
@@ -92,11 +107,21 @@ namespace JJ.Framework.Presentation.Svg.Business
             {
                 hitElement.MouseUp(hitElement, e);
 
+                foreach (IGesture gesture in _gestures)
+                {
+                    gesture.MouseUp(hitElement, e);
+                }
+
                 // Event bubbling
                 Element parent = hitElement.Parent;
                 while (parent != null && parent.EventBubblingEnabled)
                 {
                     parent.MouseUp(hitElement, e);
+
+                    foreach (IGesture gesture in _gestures)
+                    {
+                        gesture.MouseUp(parent, e);
+                    }
 
                     parent = parent.Parent;
                 }

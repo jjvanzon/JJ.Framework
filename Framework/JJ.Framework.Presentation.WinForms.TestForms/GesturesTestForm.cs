@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Presentation.Svg;
 using JJ.Framework.Presentation.Svg.Elements;
+using JJ.Framework.Presentation.Svg.Gestures;
 using JJ.Framework.Presentation.Svg.Models;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
         private void InitializeDiagramAndElements()
         {
-            var diagram = new Diagram();
+            var diagram = new Diagram(new MoveGesture());
 
             float spacing = 10;
             float blockWidth = 200;

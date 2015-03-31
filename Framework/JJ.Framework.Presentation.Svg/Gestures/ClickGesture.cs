@@ -8,17 +8,17 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     public class ClickGesture : IGesture
     {
-        public void MouseDown(MouseEventArgs e)
+        public void MouseDown(object sender, MouseEventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        public void MouseMove(MouseEventArgs e)
+        public void MouseMove(object sender, MouseEventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        public void MouseUp(MouseEventArgs e)
+        public void MouseUp(object sender, MouseEventArgs e)
         {
             throw new NotImplementedException();
         }

@@ -8,6 +8,7 @@ using System.Text;
 namespace JJ.Framework.Business
 {
     /// <summary>
+    /// Manages the inverse property in a one to n relation ship.
     /// Don't forget to use _parent in your method implementations.
     /// </summary>
     public abstract class OneToManyRelationship<TParent, TChild>

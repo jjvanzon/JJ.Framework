@@ -8,8 +8,8 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     public interface IGesture
     {
-        void MouseDown(MouseEventArgs e);
-        void MouseMove(MouseEventArgs e);
-        void MouseUp(MouseEventArgs e);
+        void MouseDown(object sender, MouseEventArgs e);
+        void MouseMove(object sender, MouseEventArgs e);
+        void MouseUp(object sender, MouseEventArgs e);
     }
 }

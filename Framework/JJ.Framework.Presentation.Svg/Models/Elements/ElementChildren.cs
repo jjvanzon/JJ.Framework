@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
-using JJ.Framework.Presentation.Svg.Business;
 using JJ.Framework.Presentation.Svg.Relationships;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
@@ -34,7 +33,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             // Side-effect
             if (_parent.Diagram == null)
             {
-                throw new Exception("To add a child the parent must be part of a diagram.");
+                throw new Exception("To add a child, the parent must be part of a diagram.");
             }
 
             _childrenRelationship.Add(child);
