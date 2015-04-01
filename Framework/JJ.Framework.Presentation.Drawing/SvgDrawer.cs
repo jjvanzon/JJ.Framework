@@ -10,7 +10,7 @@ using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Reflection;
 using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Presentation.Svg;
-using JJ.Framework.Presentation.Svg.Elements;
+using JJ.Framework.Presentation.Svg.Models.Elements;
 
 namespace JJ.Framework.Presentation.Drawing
 {
@@ -106,7 +106,7 @@ namespace JJ.Framework.Presentation.Drawing
             }
 
             // Draw Rectangle
-            LineStyle lineStyle = sourceRectangle.TryGetLineStyle();
+            LineStyle lineStyle = sourceRectangle.LineStyle;
             if (lineStyle != null)
             {
                 if (lineStyle.Visible)

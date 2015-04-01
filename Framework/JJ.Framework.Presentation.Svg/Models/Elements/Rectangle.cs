@@ -90,28 +90,29 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         /// <summary>
         /// Sets the style of all 4 lines at the same time.
+        /// Returns a single LineStyle in case all border lines have the same style.
+        /// Otherwise returns null.
         /// </summary>
-        public void SetLineStyle(LineStyle lineStyle)
+        public LineStyle LineStyle
         {
-            TopLineStyle = lineStyle;
-            RightLineStyle = lineStyle;
-            BottomLineStyle = lineStyle;
-            LeftLineStyle = lineStyle;
-        }
-
-        /// <summary>
-        /// Return a single LineStyle in case all border lines have the same style.
-        /// </summary>
-        public LineStyle TryGetLineStyle()
-        {
-            if (TopLineStyle == RightLineStyle &&
-                RightLineStyle == BottomLineStyle &&
-                BottomLineStyle == LeftLineStyle)
+            get
             {
-                return TopLineStyle;
-            }
+                if (TopLineStyle == RightLineStyle &&
+                    RightLineStyle == BottomLineStyle &&
+                    BottomLineStyle == LeftLineStyle)
+                {
+                    return TopLineStyle;
+                }
 
-            return null;
+                return null;
+            }
+            set
+            {
+                TopLineStyle = value;
+                RightLineStyle = value;
+                BottomLineStyle = value;
+                LeftLineStyle = value;
+            }
         }
 
         private string DebuggerDisplay

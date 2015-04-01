@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Presentation.Svg.Elements
+namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
     public class DiagramElements : IEnumerable<Element>
     {

@@ -8,7 +8,6 @@ using System.Diagnostics;
 using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Business;
 using JJ.Framework.Presentation.Svg.Relationships;
-using JJ.Framework.Presentation.Svg.Elements;
 using JJ.Framework.Presentation.Svg.Gestures;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements

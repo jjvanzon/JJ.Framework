@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Presentation.Svg;
-using JJ.Framework.Presentation.Svg.Elements;
 using JJ.Framework.Presentation.Svg.Gestures;
+using JJ.Framework.Presentation.Svg.Models.Elements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,9 +60,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 X = x,
                 Y = y,
                 Width = 300,
-                Height = 60
+                Height = 60,
+                LineStyle = SvgHelper.DefaultLineStyle
             };
-            rectangle.SetLineStyle(SvgHelper.DefaultLineStyle);
 
             var label = new SvgElements.Label 
             {

@@ -10,7 +10,6 @@ using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Reflection;
 using JJ.Framework.Common;
 using JJ.Framework.Mathematics;
-using JJ.Framework.Presentation.Svg.Elements;
 
 namespace JJ.Framework.Presentation.Svg.Gestures
 {

@@ -107,7 +107,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
             }
 
             // Draw Rectangle
-            LineStyle lineStyle = sourceRectangle.TryGetLineStyle();
+            LineStyle lineStyle = sourceRectangle.LineStyle;
             if (lineStyle != null)
             {
                 if (lineStyle.Visible)
