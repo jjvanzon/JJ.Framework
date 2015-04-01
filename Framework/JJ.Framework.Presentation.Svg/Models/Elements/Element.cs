@@ -22,7 +22,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
             if (gestures == null) throw new NullException(() => gestures);
 
-            Gestures = gestures;
+            Gestures = gestures.ToList();
 
             _parentRelationship = new ChildToParentRelationship(this);
             _diagramRelationship = new ElementToDiagramRelationship(this);
@@ -145,7 +145,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         // Gestures
 
-        internal IList<IGesture> Gestures { get; private set; }
+        public IList<IGesture> Gestures { get; private set; }
 
         /// <summary>
         /// When true, events that go off on a child element
@@ -153,15 +153,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// </summary>
         public bool Bubble { get; set; }
 
-        /// <summary>
-        /// Tells if mouse down makes the control receive all mouse events
-        /// until mouse up. This prevents mouse events from
-        /// reaching other elements, even when going outside the capturing element rectangle.
-        /// </summary>
-        public bool MouseCaptureEnabled { get; set; }
-
         public event EventHandler<MouseEventArgs> OnMouseDown;
-        public event EventHandler<MouseEventArgs> OnMouseMove;
         public event EventHandler<MouseEventArgs> OnMouseUp;
 
         internal void MouseDown(object sender, MouseEventArgs e)
@@ -172,11 +164,6 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         internal void MouseUp(object sender, MouseEventArgs e)
         {
             if (OnMouseUp != null) OnMouseUp(sender, e);
-        }
-
-        internal void MouseMove(object sender, MouseEventArgs e)
-        {
-            if (OnMouseMove != null) OnMouseMove(sender, e);
         }
     }
 }

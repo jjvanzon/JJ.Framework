@@ -18,14 +18,6 @@
                 components.Dispose();
             }
 
-            _label1.OnMouseDown -= _label1_OnMouseDown;
-            _label1.OnMouseMove -= _label1_OnMouseMove;
-            _label1.OnMouseUp -= _label1_OnMouseUp;
-
-            _label2.OnMouseDown -= _label2_OnMouseDown;
-            _label2.OnMouseMove -= _label2_OnMouseMove;
-            _label2.OnMouseUp -= _label2_OnMouseUp;
-
             base.Dispose(disposing);
         }
 

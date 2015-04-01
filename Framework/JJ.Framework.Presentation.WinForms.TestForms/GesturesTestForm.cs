@@ -16,8 +16,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 {
     public partial class GesturesTestForm : Form
     {
-        private SvgElements.Label _label1;
-        private SvgElements.Label _label2;
+        private const float BLOCK_WIDTH = 200;
+        private const float BLOCK_HEIGHT = 60;
+        private const float SPACING = 10;
 
         public GesturesTestForm()
         {
@@ -26,113 +27,129 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             Text = GetType().FullName;
 
             InitializeDiagramAndElements();
-
-            _label1.OnMouseDown += _label1_OnMouseDown;
-            _label1.OnMouseMove += _label1_OnMouseMove;
-            _label1.OnMouseUp += _label1_OnMouseUp;
-
-            _label2.OnMouseDown += _label2_OnMouseDown;
-            _label2.OnMouseMove += _label2_OnMouseMove;
-            _label2.OnMouseUp += _label2_OnMouseUp;
         }
 
         private void InitializeDiagramAndElements()
         {
             var diagram = new Diagram();
 
-            var dragDropGesture = new DragDropGesture();
+            DragDropGesture dragDropGesture = new DragDropGesture();
             dragDropGesture.OnDragDrop += dragDropGesture_OnDragDrop;
 
-            float spacing = 10;
-            float blockWidth = 200;
-            float blockHeight = 60;
+            MouseMoveGesture mouseMoveGesture = new MouseMoveGesture();
+            mouseMoveGesture.MouseMove += mouseMoveGesture_MouseMove;
 
-            var rectangle1 = new SvgElements.Rectangle(new MoveGesture(), dragDropGesture)
-            {
-                X = spacing,
-                Y = spacing,
-                Width = blockWidth,
-                Height = blockHeight,
-                BackStyle = SvgHelper.BlueBackStyle,
-                Diagram = diagram,
-                MouseCaptureEnabled = true
-            };
-            rectangle1.SetLineStyle(SvgHelper.DefaultLineStyle);
+            ClickGesture clickGesture = new ClickGesture();
+            clickGesture.Click += clickGesture_Click;
 
-            _label1 = new SvgElements.Label
-            {
-                Text = "Label 1",
-                X = 0,
-                Y = 0,
-                Width = blockWidth,
-                Height = blockHeight,
-                TextStyle = SvgHelper.DefaultTextStyle,
-                Parent = rectangle1
-            };
+            SvgElements.Rectangle rectangle;
 
-            var rectangle2 = new SvgElements.Rectangle(new MoveGesture(), dragDropGesture)
-            {
-                X = rectangle1.X + blockWidth + spacing,
-                Y = spacing,
-                Width = blockWidth,
-                Height = blockHeight,
-                BackStyle = SvgHelper.BlueBackStyle,
-                Diagram = diagram,
-                MouseCaptureEnabled = true
-            };
-            rectangle2.SetLineStyle(SvgHelper.DefaultLineStyle);
+            float currentY = SPACING;
 
-            _label2 = new SvgElements.Label
-            {
-                Text = "Label 2",
-                X = 0,
-                Y = 0,
-                Width = blockWidth,
-                Height = blockHeight,
-                TextStyle = SvgHelper.DefaultTextStyle,
-                Parent = rectangle2
-            };
+            rectangle = CreateRectangle(diagram, "Click Me");
+            rectangle.Y = currentY;
+            rectangle.OnMouseDown += rectangle_OnMouseDown;
+            rectangle.OnMouseUp += rectangle_OnMouseUp;
+            rectangle.Gestures.Add(mouseMoveGesture);
+
+            currentY += BLOCK_HEIGHT + SPACING;
+
+            rectangle = CreateRectangle(diagram, "Click Me Too");
+            rectangle.Y = currentY;
+            rectangle.OnMouseDown += rectangle_OnMouseDown;
+            rectangle.Gestures.Add(mouseMoveGesture);
+            rectangle.Gestures.Add(clickGesture);
+
+            currentY += BLOCK_HEIGHT + SPACING;
+
+            rectangle = CreateRectangle(diagram, "Move Me");
+            rectangle.Y = currentY;
+            rectangle.Gestures.Add(new MoveGesture());
+
+            currentY += BLOCK_HEIGHT + SPACING;
+
+            rectangle = CreateRectangle(diagram, "Drag & Drop Me");
+            rectangle.Y = currentY;
+            rectangle.Gestures.Add(dragDropGesture);
+
+            currentY += BLOCK_HEIGHT + SPACING;
+
+            rectangle = CreateRectangle(diagram, "Drop & Drop Me");
+            rectangle.Y = currentY;
+            rectangle.Gestures.Add(dragDropGesture);
 
             diagramControl1.Diagram = diagram;
         }
 
-        void dragDropGesture_OnDragDrop(object sender, Svg.EventArg.DragDropEventArgs e)
+        private SvgElements.Rectangle CreateRectangle(Diagram diagram, string text)
         {
-            SvgElements.Label label = e.DraggedElement.Children.OfType<SvgElements.Label>().First();
-            label.Text = "Dragged";
+            var rectangle = new SvgElements.Rectangle()
+            {
+                X = SPACING,
+                Y = SPACING,
+                Width = BLOCK_WIDTH,
+                Height = BLOCK_HEIGHT,
+                BackStyle = SvgHelper.BlueBackStyle,
+                Diagram = diagram
+            };
+            rectangle.SetLineStyle(SvgHelper.DefaultLineStyle);
 
-            SvgElements.Label label2 = e.DroppedOnElement.Children.OfType<SvgElements.Label>().First();
-            label2.Text = "Dropped On";
+            var label2 = new SvgElements.Label
+            {
+                Text = text,
+                X = 0,
+                Y = 0,
+                Width = BLOCK_WIDTH,
+                Height = BLOCK_HEIGHT,
+                TextStyle = SvgHelper.DefaultTextStyle,
+                Parent = rectangle
+            };
+
+            return rectangle;
         }
 
-        void _label1_OnMouseDown(object sender, Svg.EventArg.MouseEventArgs e)
+        private void dragDropGesture_OnDragDrop(object sender, Svg.EventArg.DragDropEventArgs e)
         {
-            _label1.Text = "MouseDown";
+            TrySetElementText(e.DraggedElement, "Dragged");
+            TrySetElementText(e.DroppedOnElement, "Dropped On");
         }
 
-        void _label1_OnMouseMove(object sender, Svg.EventArg.MouseEventArgs e)
+        private void mouseMoveGesture_MouseMove(object sender, Svg.EventArg.MouseEventArgs e)
         {
-            _label1.Text = "MouseMove";
+            TrySetElementText(sender, "MouseMove");
         }
 
-        private void _label1_OnMouseUp(object sender, Svg.EventArg.MouseEventArgs e)
+        private void rectangle_OnMouseDown(object sender, Svg.EventArg.MouseEventArgs e)
         {
-            _label1.Text = "MouseUp";
+            TrySetElementText(sender, "MouseDown");
         }
 
-        void _label2_OnMouseDown(object sender, Svg.EventArg.MouseEventArgs e)
+        private void rectangle_OnMouseUp(object sender, Svg.EventArg.MouseEventArgs e)
         {
-            _label2.Text = "MouseDown";
+            TrySetElementText(sender, "MouseUp");
         }
 
-        void _label2_OnMouseMove(object sender, Svg.EventArg.MouseEventArgs e)
+        private void clickGesture_Click(object sender, EventArgs e)
         {
-            _label2.Text = "MouseMove";
+            TrySetElementText(sender, "Clicked");
         }
 
-        private void _label2_OnMouseUp(object sender, Svg.EventArg.MouseEventArgs e)
+        private void TrySetElementText(object element, string text)
         {
-            _label2.Text = "MouseUp";
+            var label = element as SvgElements.Label;
+            if (label == null)
+            {
+                var rectangle = element as SvgElements.Rectangle;
+                if (rectangle != null)
+                {
+                    label = rectangle.Children.OfType<SvgElements.Label>().First();
+                }
+            }
+
+            if (label != null)
+            {
+                label.Text = text;
+            }
         }
     }
 }

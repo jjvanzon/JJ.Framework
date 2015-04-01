@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Gestures
 {
-    class DoubleClickGesture
-    {
-    }
+    //class DoubleClickGesture
+    //{
+    //}
 }

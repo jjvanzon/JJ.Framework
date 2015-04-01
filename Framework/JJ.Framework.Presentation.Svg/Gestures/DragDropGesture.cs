@@ -13,6 +13,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         private Element _draggedElement;
 
+        bool IGesture.MouseCaptureRequired
+        {
+            get { return false; }
+        }
+
         void IGesture.MouseDown(object sender, EventArg.MouseEventArgs e)
         {
             if (OnDragDrop == null)

@@ -47,5 +47,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         {
             _element = null;
         }
+
+
+        bool IGesture.MouseCaptureRequired
+        {
+            get { return true; }
+        }
     }
 }

@@ -33,6 +33,9 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
             Element hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
 
+            // TODO: Make thie recursive. This prevents code repetition, prevents you from using the wrong variable
+            // and makes you able to choose the mouse capture priority based on parent-child relationships
+            // using a depth-first approach.
             if (hitElement != null)
             {
                 hitElement.MouseDown(hitElement, e);
@@ -53,7 +56,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                         gesture.MouseDown(parent, e);
                     }
 
-                    if (parent.MouseCaptureEnabled)
+                    if (parent.Gestures.Any(x => x.MouseCaptureRequired))
                     {
                         _pointerCapturingElement = hitElement;
                     }
@@ -61,7 +64,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                     parent = parent.Parent;
                 }
 
-                if (hitElement.MouseCaptureEnabled)
+                if (hitElement.Gestures.Any(x => x.MouseCaptureRequired))
                 {
                     _pointerCapturingElement = hitElement;
                 }
@@ -80,8 +83,6 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
             if (hitElement != null)
             {
-                hitElement.MouseMove(hitElement, e);
-
                 foreach (IGesture gesture in hitElement.Gestures)
                 {
                     gesture.MouseMove(hitElement, e);
@@ -91,8 +92,6 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                 Element parent = hitElement.Parent;
                 while (parent != null && parent.Bubble)
                 {
-                    parent.MouseMove(hitElement, e);
-
                     foreach (IGesture gesture in parent.Gestures)
                     {
                         gesture.MouseMove(parent, e);
@@ -136,6 +135,8 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                     parent = parent.Parent;
                 }
             }
+
+            _pointerCapturingElement = null;
         }
 
         private static Element TryGetHitElement(IEnumerable<Element> zOrderedElements, float pointerX, float pointerY)
