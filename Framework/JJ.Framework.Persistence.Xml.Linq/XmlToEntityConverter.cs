@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Persistence.Xml.Linq.Internal;
 using JJ.Framework.Xml.Linq;

@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Reflection;
+﻿using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Soap.Tests.ServiceInterface;
 using System;
 using System.Collections.Generic;

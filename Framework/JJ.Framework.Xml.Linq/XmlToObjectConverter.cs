@@ -7,10 +7,11 @@ using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using JJ.Framework.Common;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Xml.Linq.Internal;
 using JJ.Framework.PlatformCompatibility;
 using System.Globalization;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Xml.Linq
 {

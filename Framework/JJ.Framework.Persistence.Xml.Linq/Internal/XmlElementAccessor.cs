@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml.Linq;
 using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Persistence.Xml.Linq.Internal
 {

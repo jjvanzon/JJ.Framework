@@ -42,7 +42,6 @@
     <Compile Include="Relationships\ParentToChildrenRelationship.cs" />
     <Compile Include="Enums\DashStyleEnum.cs" />
     <Compile Include="Enums\MouseButtonEnum.cs" />
-    <Compile Include="EventArg\GestureEventArgs.cs" />
     <Compile Include="Gestures\GestureHandler.cs" />
     <Compile Include="Gestures\ClickClosestGesture.cs" />
     <Compile Include="Gestures\ClickGesture.cs" />

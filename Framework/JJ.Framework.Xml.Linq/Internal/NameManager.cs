@@ -8,6 +8,7 @@ using System.Xml.Serialization;
 using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Mathematics;
 
 namespace JJ.Framework.Xml.Linq.Internal

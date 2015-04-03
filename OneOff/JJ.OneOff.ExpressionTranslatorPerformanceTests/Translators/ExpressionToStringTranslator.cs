@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
 using System.Reflection;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Common;
+using JJ.Framework.Reflection;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Demos.ReflectionCache
 {

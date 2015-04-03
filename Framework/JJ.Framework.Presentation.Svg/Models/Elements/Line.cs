@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Presentation.Svg.Gestures;
 using JJ.Framework.Presentation.Svg.Models.Styling;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,7 +23,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         private Point _pointA = new Point();
         /// <summary>
         /// Not nullable, auto-instantiated.
-        /// Coordinates of the point are related to the Label's parent.
+        /// Coordinates of the point are related to the Point's parent.
         /// </summary>
         public Point PointA
         {
@@ -38,7 +38,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         private Point _pointB = new Point();
         /// <summary>
         /// Not nullable, auto-instantiated.
-        /// Coordinates of the point are related to the Label's parent.
+        /// Coordinates of the point are related to the Point's parent.
         /// </summary>
         public Point PointB
         {

@@ -3,7 +3,7 @@ using JJ.Framework.Presentation.Svg.Enums;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Presentation.WinForms.TestForms.Accessors;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

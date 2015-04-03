@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Presentation.Svg.Models.Styling;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone

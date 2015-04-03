@@ -2,7 +2,7 @@
 using JJ.Framework.Presentation.Svg.Gestures;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Svg.Visitors;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,6 +19,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
             _rootRectangle = new Rectangle();
             _rootRectangle.Diagram = this;
+            _rootRectangle.ZIndex = Int32.MinValue;
 
             _gestureHandler = new GestureHandler(this);
         }

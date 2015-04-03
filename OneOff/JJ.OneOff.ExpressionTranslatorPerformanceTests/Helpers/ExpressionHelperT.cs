@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
 using JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Helpers
 {

@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Reflection;
+﻿using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -9,6 +9,9 @@ using JJ.Framework.PlatformCompatibility;
 using System.Data;
 using System.IO;
 using JJ.Framework.IO;
+using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Persistence.SqlClient
 {

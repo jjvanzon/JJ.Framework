@@ -1,7 +1,7 @@
 ﻿using JJ.Framework.Presentation.Svg.Enums;
 using JJ.Framework.Presentation.Svg.Gestures;
 using JJ.Framework.Presentation.Svg.Models.Styling;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

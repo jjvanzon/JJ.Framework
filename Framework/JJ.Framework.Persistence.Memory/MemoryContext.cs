@@ -4,7 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Persistence.Memory.Internal;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Persistence.Memory
 {

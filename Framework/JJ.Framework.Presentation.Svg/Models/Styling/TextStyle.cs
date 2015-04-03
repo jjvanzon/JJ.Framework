@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Presentation.Svg.Enums;
 using JJ.Framework.Presentation.Svg.Helpers;
-using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
