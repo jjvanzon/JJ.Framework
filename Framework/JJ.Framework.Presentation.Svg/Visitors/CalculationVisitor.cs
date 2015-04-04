@@ -20,7 +20,10 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         private HashSet<Element> _calculatedElements;
         private float _currentParentX;
         private float _currentParentY;
-        private int _layer;
+        //private int _layer;
+
+        private int _currentZIndex;
+        private int _diagramElementsCount;
 
         /// <summary>
         /// Returns elements ordered by calculated Z-Index.
@@ -32,20 +35,31 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             _calculatedElements = new HashSet<Element>();
             _currentParentX = 0;
             _currentParentY = 0;
-            _layer = 0;
+            //_layer = 0;
+            _currentZIndex = 0;
+
+            // TODO: Make the parameter a Diagram instead of an element?
+
+            if (element.Diagram == null)
+            {
+                throw new NullException(() => element.Diagram);
+            }
+            _diagramElementsCount = element.Diagram.Elements.Count;
 
             VisitPolymorphic(element);
 
             // Apply z-index.
-            IList<Element> orderedElements = _calculatedElements.OrderBy(x => x.ZIndex).ThenBy(x => x.CalculatedLayer).ToArray();
-            for (int i = 0; i < orderedElements.Count; i++)
-			{
-                Element element2 = orderedElements[i];
-                element2.CalculatedZIndex = i;
+            //IList<Element> orderedElements = _calculatedElements.OrderBy(x => x.ZIndex).ThenBy(x => x.CalculatedLayer).ToArray();
+            //for (int i = 0; i < orderedElements.Count; i++)
+            //{
+            //    Element element2 = orderedElements[i];
+            //    element2.CalculatedZIndex = i;
 
-                // Calculate references.
-                CalculateReferencesPolymorphic(element2);
-			}
+            //    // Calculate references.
+            //    CalculateReferencesPolymorphic(element2);
+            //}
+
+            IList<Element> orderedElements = _calculatedElements.OrderBy(x => x.CalculatedZIndex).ToArray();
 
             return orderedElements;
         }
@@ -56,13 +70,22 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         {
             _currentParentX += parentElement.X;
             _currentParentY += parentElement.Y;
-            _layer++;
+            //_layer++;
 
             base.VisitChildren(parentElement);
 
             _currentParentX -= parentElement.X;
             _currentParentY -= parentElement.Y;
-            _layer--;
+            //_layer--;
+        }
+
+        protected override void VisitPolymorphic(Element element)
+        {
+            // The explicit ZIndex has the highest significance, 
+            // while the parent-child and subbling structure has secondary significance.
+            element.CalculatedZIndex = _diagramElementsCount * element.ZIndex + _currentZIndex++;
+
+            base.VisitPolymorphic(element);
         }
 
         protected override void VisitPoint(Point sourcePoint)
@@ -123,7 +146,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             point.CalculatedX = point.X + _currentParentX;
             point.CalculatedY = point.Y + _currentParentY;
-            point.CalculatedLayer = _layer;
+            //point.CalculatedLayer = _layer;
 
             _calculatedElements.Add(point);
         }
@@ -135,7 +158,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 return;
             }
 
-            line.CalculatedLayer = _layer;
+            //line.CalculatedLayer = _layer;
 
             _calculatedElements.Add(line);
         }
@@ -149,7 +172,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             rectangle.CalculatedX = rectangle.X + _currentParentX;
             rectangle.CalculatedY = rectangle.Y + _currentParentY;
-            rectangle.CalculatedLayer = _layer;
+            //rectangle.CalculatedLayer = _layer;
 
             _calculatedElements.Add(rectangle);
         }
@@ -163,7 +186,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             label.CalculatedX = label.X + _currentParentX;
             label.CalculatedY = label.Y + _currentParentY;
-            label.CalculatedLayer = _layer;
+            //label.CalculatedLayer = _layer;
 
             _calculatedElements.Add(label);
         }

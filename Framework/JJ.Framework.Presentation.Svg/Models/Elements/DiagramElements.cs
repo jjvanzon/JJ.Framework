@@ -26,6 +26,11 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             _relationship = new DiagramToElementsRelationship(diagram, _elements);
         }
 
+        public int Count
+        {
+            get { return _elements.Count; }
+        }
+
         public void Add(Element element)
         {
             _relationship.Add(element);
