@@ -17,8 +17,17 @@ namespace JJ.Framework.Presentation.WinForms
 {
     public partial class DiagramControl : UserControl
     {
+        private Diagram _diagram;
         /// <summary> nullable </summary>
-        public Diagram Diagram { get; set; }
+        public Diagram Diagram 
+        {
+            get { return _diagram; }
+            set
+            {
+                _diagram = value;
+                Refresh();
+            }
+        }
 
         private ControlGraphicsBuffer _graphicsBuffer;
 
@@ -67,6 +76,11 @@ namespace JJ.Framework.Presentation.WinForms
 
         public override void Refresh()
         {
+            if (Diagram == null)
+            {
+                return;
+            }
+
             SvgDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
             _graphicsBuffer.DrawBuffer();
         }
