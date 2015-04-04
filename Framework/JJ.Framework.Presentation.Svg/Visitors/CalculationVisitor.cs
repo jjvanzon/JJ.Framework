@@ -41,7 +41,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             VisitPolymorphic(diagram.RootRectangle);
 
-            ApplyExplicitZIndex(diagram);
+            IList<Element> orderedElements = ApplyExplicitZIndex(diagram);
 
             // Calculate references.
             // TODO: This will probably become obsolete at one point (see rework in TODO document for Synthesizer project 2015-03).
@@ -50,8 +50,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 CalculateReferencesPolymorphic(element);
             }
 
-            IList<Element> orderedElements = _calculatedElements.OrderBy(x => x.CalculatedZIndex).ToArray();
-
             return orderedElements;
         }
 
@@ -59,24 +57,18 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         /// In the recursion the CalculatedZIndex is simply incremented as the parent-child structure is traversed.
         /// This method corrects this CalculatedZIndex making the explicit ZIndex more significant than the parent-child relationships.
         /// </summary>
-        private void ApplyExplicitZIndex(Diagram diagram)
+        private IList<Element> ApplyExplicitZIndex(Diagram diagram)
         {
-            int lowestZIndex = diagram.Elements.Where(x => x != _diagram.RootRectangle)
-                                               .Min(x => x.ZIndex);
-
-            foreach (Element element in diagram.Elements)
+            IList<Element> orderedElements = diagram.Elements.OrderBy(x => x.ZIndex)
+                                                             .ThenBy(x => x.CalculatedZIndex)
+                                                             .ToArray();
+            int i = 1;
+            foreach (Element element in orderedElements)
             {
-                if (element == _diagram.RootRectangle)
-                {
-                    continue;
-                }
-
-                // Take away the sign of the explicit index, by adding the lowest found ZIndex (which might be negative).
-                // Then multiply by the element count, making it more significant than the parent-child relationships.
-                int signFreeZIndex = element.ZIndex - lowestZIndex;
-                element.CalculatedZIndex += signFreeZIndex * diagram.Elements.Count;
-
+                element.CalculatedZIndex = i++;
             }
+
+            return orderedElements;
         }
 
         // Visit

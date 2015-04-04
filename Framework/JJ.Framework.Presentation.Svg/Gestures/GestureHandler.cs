@@ -32,9 +32,6 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
             Element hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
 
-            // TODO: Make thie recursive. This prevents code repetition, prevents you from using the wrong variable
-            // and makes you able to choose the mouse capture priority based on parent-child relationships
-            // using a depth-first approach.
             if (hitElement != null)
             {
                 hitElement.MouseDown(hitElement, e);
@@ -44,29 +41,41 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                     gesture.MouseDown(hitElement, e);
                 }
 
-                // Event bubbling
-                Element parent = hitElement.Parent;
-                while (parent != null && parent.Bubble)
-                {
-                    parent.MouseDown(hitElement, e);
-
-                    foreach (IGesture gesture in parent.Gestures)
-                    {
-                        gesture.MouseDown(parent, e);
-                    }
-
-                    if (parent.Gestures.Any(x => x.MouseCaptureRequired))
-                    {
-                        _pointerCapturingElement = hitElement;
-                    }
-
-                    parent = parent.Parent;
-                }
+                TryBubbleMouseDown(hitElement, hitElement, e);
 
                 if (hitElement.Gestures.Any(x => x.MouseCaptureRequired))
                 {
                     _pointerCapturingElement = hitElement;
                 }
+            }
+        }
+
+        private void TryBubbleMouseDown(Element sender, Element child, MouseEventArgs e)
+        {
+            if (!child.Bubble)
+            {
+                return;
+            }
+
+            if (child.Parent == null)
+            {
+                return;
+            }
+
+            Element parent = child.Parent;
+
+            parent.MouseDown(sender, e);
+
+            foreach (IGesture gesture in parent.Gestures)
+            {
+                gesture.MouseDown(parent, e);
+            }
+
+            TryBubbleMouseDown(sender, parent, e);
+
+            if (parent.Gestures.Any(x => x.MouseCaptureRequired))
+            {
+                _pointerCapturingElement = child;
             }
         }
 
@@ -87,18 +96,30 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                     gesture.MouseMove(hitElement, e);
                 }
 
-                // Event bubbling
-                Element parent = hitElement.Parent;
-                while (parent != null && parent.Bubble)
-                {
-                    foreach (IGesture gesture in parent.Gestures)
-                    {
-                        gesture.MouseMove(parent, e);
-                    }
-
-                    parent = parent.Parent;
-                }
+                TryBubbleMouseMove(hitElement, e);
             }
+        }
+
+        private void TryBubbleMouseMove(Element child, MouseEventArgs e)
+        {
+            if (!child.Bubble)
+            {
+                return;
+            }
+
+            if (child.Parent == null)
+            {
+                return;
+            }
+
+            Element parent = child.Parent;
+
+            foreach (IGesture gesture in parent.Gestures)
+            {
+                gesture.MouseMove(parent, e);
+            }
+
+            TryBubbleMouseMove(parent, e);
         }
 
         public void MouseUp(MouseEventArgs e)
@@ -120,22 +141,34 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                     gesture.MouseUp(hitElement, e);
                 }
 
-                // Event bubbling
-                Element parent = hitElement.Parent;
-                while (parent != null && parent.Bubble)
-                {
-                    parent.MouseUp(hitElement, e);
-
-                    foreach (IGesture gesture in parent.Gestures)
-                    {
-                        gesture.MouseUp(parent, e);
-                    }
-
-                    parent = parent.Parent;
-                }
+                TryBubbleMouseUp(hitElement, hitElement, e);
             }
 
             _pointerCapturingElement = null;
+        }
+
+        private void TryBubbleMouseUp(Element sender, Element child, MouseEventArgs e)
+        {
+            if (!child.Bubble)
+            {
+                return;
+            }
+
+            if (child.Parent == null)
+            {
+                return;
+            }
+
+            Element parent = child.Parent;
+
+            parent.MouseUp(sender, e);
+
+            foreach (IGesture gesture in parent.Gestures)
+            {
+                gesture.MouseUp(parent, e);
+            }
+
+            TryBubbleMouseUp(sender, parent, e);
         }
 
         private static Element TryGetHitElement(IEnumerable<Element> zOrderedElements, float pointerX, float pointerY)
