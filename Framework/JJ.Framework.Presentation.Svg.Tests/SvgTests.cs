@@ -38,7 +38,7 @@ namespace JJ.Framework.Presentation.Svg.Tests
             };
 
             var visitor = new CalculationVisitor();
-            IList<Element> elements = visitor.Execute(diagram.RootRectangle);
+            IList<Element> elements = visitor.Execute(diagram);
 
             AssertHelper.AreEqual(3, () => elements.Count);
             AssertHelper.AreEqual(1, () => elements[0].X);

@@ -20,72 +20,81 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         private HashSet<Element> _calculatedElements;
         private float _currentParentX;
         private float _currentParentY;
-        //private int _layer;
 
+        private Diagram _diagram;
         private int _currentZIndex;
-        private int _diagramElementsCount;
+        private int _currentLayer;
 
         /// <summary>
         /// Returns elements ordered by calculated Z-Index.
         /// </summary>
-        public IList<Element> Execute(Element element)
+        public IList<Element> Execute(Diagram diagram)
         {
-            if (element == null) throw new NullException(() => element);
+            if (diagram == null) throw new NullException(() => diagram);
 
+            _diagram = diagram;
             _calculatedElements = new HashSet<Element>();
             _currentParentX = 0;
             _currentParentY = 0;
-            //_layer = 0;
             _currentZIndex = 0;
+            _currentLayer = 0;
 
-            // TODO: Make the parameter a Diagram instead of an element?
+            VisitPolymorphic(diagram.RootRectangle);
 
-            if (element.Diagram == null)
+            ApplyExplicitZIndex(diagram);
+
+            // Calculate references.
+            // TODO: This will probably become obsolete at one point (see rework in TODO document for Synthesizer project 2015-03).
+            foreach (Element element in diagram.Elements)
             {
-                throw new NullException(() => element.Diagram);
+                CalculateReferencesPolymorphic(element);
             }
-            _diagramElementsCount = element.Diagram.Elements.Count;
-
-            VisitPolymorphic(element);
-
-            // Apply z-index.
-            //IList<Element> orderedElements = _calculatedElements.OrderBy(x => x.ZIndex).ThenBy(x => x.CalculatedLayer).ToArray();
-            //for (int i = 0; i < orderedElements.Count; i++)
-            //{
-            //    Element element2 = orderedElements[i];
-            //    element2.CalculatedZIndex = i;
-
-            //    // Calculate references.
-            //    CalculateReferencesPolymorphic(element2);
-            //}
 
             IList<Element> orderedElements = _calculatedElements.OrderBy(x => x.CalculatedZIndex).ToArray();
 
             return orderedElements;
         }
 
+        /// <summary>
+        /// In the recursion the CalculatedZIndex is simply incremented as the parent-child structure is traversed.
+        /// This method corrects this CalculatedZIndex making the explicit ZIndex more significant than the parent-child relationships.
+        /// </summary>
+        private void ApplyExplicitZIndex(Diagram diagram)
+        {
+            int lowestZIndex = diagram.Elements.Where(x => x != _diagram.RootRectangle)
+                                               .Min(x => x.ZIndex);
+
+            foreach (Element element in diagram.Elements)
+            {
+                if (element == _diagram.RootRectangle)
+                {
+                    continue;
+                }
+
+                // Take away the sign of the explicit index, by adding the lowest found ZIndex (which might be negative).
+                // Then multiply by the element count, making it more significant than the parent-child relationships.
+                int signFreeZIndex = element.ZIndex - lowestZIndex;
+                element.CalculatedZIndex += signFreeZIndex * diagram.Elements.Count;
+
+            }
+        }
+
         // Visit
+
+        // Beware that VisitPolymorphic can visit the same object multiple times.
+        // That is why some repeated code cannot be put in VisitPolymorphic.
 
         protected override void VisitChildren(Element parentElement)
         {
             _currentParentX += parentElement.X;
             _currentParentY += parentElement.Y;
-            //_layer++;
+            _currentLayer++;
 
             base.VisitChildren(parentElement);
 
             _currentParentX -= parentElement.X;
             _currentParentY -= parentElement.Y;
-            //_layer--;
-        }
-
-        protected override void VisitPolymorphic(Element element)
-        {
-            // The explicit ZIndex has the highest significance, 
-            // while the parent-child and subbling structure has secondary significance.
-            element.CalculatedZIndex = _diagramElementsCount * element.ZIndex + _currentZIndex++;
-
-            base.VisitPolymorphic(element);
+            _currentLayer--;
         }
 
         protected override void VisitPoint(Point sourcePoint)
@@ -146,7 +155,8 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             point.CalculatedX = point.X + _currentParentX;
             point.CalculatedY = point.Y + _currentParentY;
-            //point.CalculatedLayer = _layer;
+            point.CalculatedLayer = _currentLayer;
+            point.CalculatedZIndex = _currentZIndex++;
 
             _calculatedElements.Add(point);
         }
@@ -158,7 +168,8 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 return;
             }
 
-            //line.CalculatedLayer = _layer;
+            line.CalculatedLayer = _currentLayer;
+            line.CalculatedZIndex = _currentZIndex++;
 
             _calculatedElements.Add(line);
         }
@@ -172,7 +183,8 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             rectangle.CalculatedX = rectangle.X + _currentParentX;
             rectangle.CalculatedY = rectangle.Y + _currentParentY;
-            //rectangle.CalculatedLayer = _layer;
+            rectangle.CalculatedLayer = _currentLayer;
+            rectangle.CalculatedZIndex = _currentZIndex++;
 
             _calculatedElements.Add(rectangle);
         }
@@ -186,12 +198,15 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             label.CalculatedX = label.X + _currentParentX;
             label.CalculatedY = label.Y + _currentParentY;
-            //label.CalculatedLayer = _layer;
+            label.CalculatedLayer = _currentLayer;
+            label.CalculatedZIndex = _currentZIndex++;
 
             _calculatedElements.Add(label);
         }
 
         // CalculateReferences
+
+        // TODO: This will probably become obsolete at one point (see rework in TODO document for Synthesizer project 2015-03).
 
         private void CalculateReferencesPolymorphic(Element element)
         {

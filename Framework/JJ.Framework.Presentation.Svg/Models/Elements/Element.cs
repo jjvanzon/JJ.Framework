@@ -127,10 +127,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// </summary>
         public int CalculatedZIndex { get; internal set; }
 
-        ///// <summary>
-        ///// In the flat clone solution this was internal.
-        ///// </summary>
-        //public int CalculatedLayer { get; internal set; }
+        public int CalculatedLayer { get; internal set; }
 
         /// <summary>
         /// Calculated, absolute X coordinate.

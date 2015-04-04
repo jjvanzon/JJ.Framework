@@ -20,7 +20,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
             var visitor = new CalculationVisitor();
-            IList<SvgElements.Element> elements = visitor.Execute(sourceRootRectangle);
+            IList<SvgElements.Element> elements = visitor.Execute(sourceRootRectangle.Diagram);
 
             foreach (SvgElements.Element element in elements)
             {

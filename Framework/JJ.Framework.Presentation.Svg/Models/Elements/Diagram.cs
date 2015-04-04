@@ -37,7 +37,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         public void Recalculate()
         {
              var visitor = new CalculationVisitor();
-             _elementsOrderByZIndex = visitor.Execute(_rootRectangle);
+             _elementsOrderByZIndex = visitor.Execute(this);
         }
 
         private IList<Element> _elementsOrderByZIndex = new Element[0];
