@@ -119,7 +119,6 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             {
                 // Draw 4 Border Lines (with different styles)
 
-                // TODO: Consider giving Rectangle some instance helper methods for this and name X and Y differently.
                 float right = sourceRectangle_Accessor.CalculatedX + sourceRectangle.Width;
                 float bottom = sourceRectangle_Accessor.CalculatedY + sourceRectangle.Height;
 

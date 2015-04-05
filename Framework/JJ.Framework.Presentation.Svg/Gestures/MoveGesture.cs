@@ -9,6 +9,9 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     public class MoveGesture : IGesture
     {
+        public event EventHandler<MoveEventArgs> Moving;
+        public event EventHandler<MoveEventArgs> Moved;
+
         private float _mouseDownElementX;
         private float _mouseDownElementY;
         private float _mouseDownPointerX;
@@ -16,12 +19,16 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         private Element _element;
 
+        bool IGesture.MouseCaptureRequired
+        {
+            get { return true; }
+        }
+
         void IGesture.MouseDown(object sender, MouseEventArgs e)
         {
-            var element = sender as Element;
-            if (element != null)
+            if (e.Element != null)
             {
-                _element = element;
+                _element = e.Element;
 
                 _mouseDownElementX = _element.X;
                 _mouseDownElementY = _element.Y;
@@ -40,18 +47,30 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
                 _element.X = _mouseDownElementX + deltaX;
                 _element.Y = _mouseDownElementY + deltaY;
+
+                if (Moving != null)
+                {
+                    Moving(sender, new MoveEventArgs(_element));
+                }
             }
         }
 
         void IGesture.MouseUp(object sender, MouseEventArgs e)
         {
+            // TODO: I don't know for sure why _element could be null, but it was at one point. 
+            // I suspect this happens when you are clicking around very fast and get a race condition,
+            // since it is one gesture object for multiple elements.
+            if (_element == null)
+            {
+                return;
+            }
+
+            if (Moved != null)
+            {
+                Moved(sender, new MoveEventArgs(_element));
+            }
+
             _element = null;
-        }
-
-
-        bool IGesture.MouseCaptureRequired
-        {
-            get { return true; }
         }
     }
 }

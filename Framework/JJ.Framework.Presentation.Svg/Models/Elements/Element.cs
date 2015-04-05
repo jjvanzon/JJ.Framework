@@ -150,18 +150,5 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// also go off on a parent element.
         /// </summary>
         public bool Bubble { get; set; }
-
-        public event EventHandler<MouseEventArgs> OnMouseDown;
-        public event EventHandler<MouseEventArgs> OnMouseUp;
-
-        internal void MouseDown(object sender, MouseEventArgs e)
-        {
-            if (OnMouseDown != null) OnMouseDown(sender, e);
-        }
-
-        internal void MouseUp(object sender, MouseEventArgs e)
-        {
-            if (OnMouseUp != null) OnMouseUp(sender, e);
-        }
     }
 }

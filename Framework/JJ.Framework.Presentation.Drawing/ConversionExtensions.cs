@@ -120,18 +120,6 @@ namespace JJ.Framework.Presentation.Drawing
 
         // Style Objects
 
-        /// <summary>
-        /// TODO: Is this method even used? 
-        /// </summary>
-        public static Pen ToSystemDrawingPen(this PointStyle sourcePointStyle)
-        {
-            if (sourcePointStyle == null) throw new NullException(() => sourcePointStyle);
-
-            Color destColor = sourcePointStyle.Color.ToSystemDrawing();
-            var destPen = new Pen(destColor, sourcePointStyle.Width);
-            return destPen;
-        }
-
         public static Brush ToSystemDrawingBrush(this PointStyle sourcePointStyle)
         {
             if (sourcePointStyle == null) throw new NullException(() => sourcePointStyle);

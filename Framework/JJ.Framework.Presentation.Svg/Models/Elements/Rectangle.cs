@@ -85,9 +85,6 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             }
         }
 
-        // TODO: Syntactically the SetLineStyle is ugly now, because you can initialize most things with an object initializer,
-        // except for the line style. So maybe you should make it a magic property.
-
         /// <summary>
         /// Sets the style of all 4 lines at the same time.
         /// Returns a single LineStyle in case all border lines have the same style.

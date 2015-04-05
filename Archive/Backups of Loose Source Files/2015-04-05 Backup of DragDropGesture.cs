@@ -7,6 +7,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Gestures
 {
+    [Obsolete("Use DragGesture and DropGesture instead.")]
     public class DragDropGesture : IGesture
     {
         public event EventHandler<DragDropEventArgs> OnDragDrop;

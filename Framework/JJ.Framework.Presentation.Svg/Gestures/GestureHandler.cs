@@ -15,7 +15,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     internal class GestureHandler
     {
-        private Element _pointerCapturingElement;
+        private Element _mouseCapturingElement;
 
         private Diagram _diagram;
 
@@ -34,18 +34,18 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
             if (hitElement != null)
             {
-                hitElement.MouseDown(hitElement, e);
+                var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
 
                 foreach (IGesture gesture in hitElement.Gestures)
                 {
-                    gesture.MouseDown(hitElement, e);
+                    gesture.MouseDown(hitElement, e2);
                 }
 
                 TryBubbleMouseDown(hitElement, hitElement, e);
 
                 if (hitElement.Gestures.Any(x => x.MouseCaptureRequired))
                 {
-                    _pointerCapturingElement = hitElement;
+                    _mouseCapturingElement = hitElement;
                 }
             }
         }
@@ -64,18 +64,18 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
             Element parent = child.Parent;
 
-            parent.MouseDown(sender, e);
+            var e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
 
             foreach (IGesture gesture in parent.Gestures)
             {
-                gesture.MouseDown(parent, e);
+                gesture.MouseDown(sender, e2);
             }
 
             TryBubbleMouseDown(sender, parent, e);
 
             if (parent.Gestures.Any(x => x.MouseCaptureRequired))
             {
-                _pointerCapturingElement = child;
+                _mouseCapturingElement = child;
             }
         }
 
@@ -83,7 +83,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         {
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
 
-            Element hitElement = _pointerCapturingElement;
+            Element hitElement = _mouseCapturingElement;
             if (hitElement == null)
             {
                 hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
@@ -91,16 +91,18 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
             if (hitElement != null)
             {
+                var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
+
                 foreach (IGesture gesture in hitElement.Gestures)
                 {
-                    gesture.MouseMove(hitElement, e);
+                    gesture.MouseMove(hitElement, e2);
                 }
 
-                TryBubbleMouseMove(hitElement, e);
+                TryBubbleMouseMove(hitElement, hitElement, e);
             }
         }
 
-        private void TryBubbleMouseMove(Element child, MouseEventArgs e)
+        private void TryBubbleMouseMove(object sender, Element child, MouseEventArgs e)
         {
             if (!child.Bubble)
             {
@@ -114,19 +116,21 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
             Element parent = child.Parent;
 
+            var e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
+
             foreach (IGesture gesture in parent.Gestures)
             {
-                gesture.MouseMove(parent, e);
+                gesture.MouseMove(sender, e2);
             }
 
-            TryBubbleMouseMove(parent, e);
+            TryBubbleMouseMove(sender, parent, e);
         }
 
         public void MouseUp(MouseEventArgs e)
         {
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
 
-            Element hitElement = _pointerCapturingElement;
+            Element hitElement = _mouseCapturingElement;
             if (hitElement == null)
             {
                 hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
@@ -134,17 +138,17 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
             if (hitElement != null)
             {
-                hitElement.MouseUp(hitElement, e);
+                var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
 
                 foreach (IGesture gesture in hitElement.Gestures)
                 {
-                    gesture.MouseUp(hitElement, e);
+                    gesture.MouseUp(hitElement, e2);
                 }
 
                 TryBubbleMouseUp(hitElement, hitElement, e);
             }
 
-            _pointerCapturingElement = null;
+            _mouseCapturingElement = null;
         }
 
         private void TryBubbleMouseUp(Element sender, Element child, MouseEventArgs e)
@@ -161,11 +165,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
             Element parent = child.Parent;
 
-            parent.MouseUp(sender, e);
+            var e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
 
             foreach (IGesture gesture in parent.Gestures)
             {
-                gesture.MouseUp(parent, e);
+                gesture.MouseUp(sender, e2);
             }
 
             TryBubbleMouseUp(sender, parent, e);

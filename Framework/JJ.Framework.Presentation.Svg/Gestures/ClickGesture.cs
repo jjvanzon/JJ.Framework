@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     public class ClickGesture : IGesture
     {
-        public event EventHandler Click;
+        public event EventHandler<ClickEventArgs> Click;
 
         private Element _mouseDownElement;
 
@@ -46,7 +46,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                     _mouseDownElement.CalculatedX + _mouseDownElement.Width,
                     _mouseDownElement.CalculatedY + _mouseDownElement.Height);
 
-                Click(_mouseDownElement, EventArgs.Empty);
+                Click(sender, new ClickEventArgs(e.Element));
             }
         }
     }

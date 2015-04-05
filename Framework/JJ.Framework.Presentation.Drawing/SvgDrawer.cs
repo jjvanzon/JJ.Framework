@@ -124,7 +124,6 @@ namespace JJ.Framework.Presentation.Drawing
             {
                 // Draw 4 Border Lines (with different styles)
 
-                // TODO: Consider giving Rectangle some instance helper methods for this and name X and Y differently.
                 float right = sourceRectangle.CalculatedX + sourceRectangle.Width;
                 float bottom = sourceRectangle.CalculatedY + sourceRectangle.Height;
 

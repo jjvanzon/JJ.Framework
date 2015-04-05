@@ -1,4 +1,6 @@
 ﻿using JJ.Framework.Presentation.Svg.Enums;
+using JJ.Framework.Presentation.Svg.Models.Elements;
+using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +10,19 @@ namespace JJ.Framework.Presentation.Svg.EventArg
 {
     public class MouseEventArgs : EventArgs
     {
-        public float X { get; set; }
-        public float Y { get; set; }
-        public MouseButtonEnum MouseButtonEnum { get; set; }
+        public Element Element { get; private set; }
+
+        public float X { get; private set; }
+        public float Y { get; private set; }
+        public MouseButtonEnum MouseButtonEnum { get; private set; }
+
+        /// <param name="element">nullable</param>
+        public MouseEventArgs(Element element, float x, float y, MouseButtonEnum mouseButtonEnum)
+        {
+            Element = element;
+            X = x;
+            Y = y;
+            MouseButtonEnum = mouseButtonEnum;
+        }
     }
 }

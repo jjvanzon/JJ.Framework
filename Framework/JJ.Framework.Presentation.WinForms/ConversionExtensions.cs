@@ -14,12 +14,7 @@ namespace JJ.Framework.Presentation.WinForms
         {
             if (source == null) throw new NullException(() => source);
 
-            var dest = new JJ.Framework.Presentation.Svg.EventArg.MouseEventArgs
-            {
-                X = source.X,
-                Y = source.Y,
-                MouseButtonEnum = source.Button.ToSvg()
-            };
+            var dest = new JJ.Framework.Presentation.Svg.EventArg.MouseEventArgs(null, source.X, source.Y, source.Button.ToSvg());
 
             return dest;
         }

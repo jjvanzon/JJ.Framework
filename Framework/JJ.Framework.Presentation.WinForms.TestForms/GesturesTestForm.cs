@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Presentation.Svg;
+using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Presentation.Svg.Gestures;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using System;
@@ -32,14 +33,23 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             var diagram = new Diagram();
 
-            DragDropGesture dragDropGesture = new DragDropGesture();
-            dragDropGesture.OnDragDrop += dragDropGesture_OnDragDrop;
+            MouseDownGesture mouseDownGesture = new MouseDownGesture();
+            mouseDownGesture.OnMouseDown += mouseDownGesture_OnMouseDown;
 
             MouseMoveGesture mouseMoveGesture = new MouseMoveGesture();
             mouseMoveGesture.MouseMove += mouseMoveGesture_MouseMove;
 
+            MouseUpGesture mouseUpGesture = new MouseUpGesture();
+            mouseUpGesture.OnMouseUp += mouseUpGesture_OnMouseUp;
+
             ClickGesture clickGesture = new ClickGesture();
             clickGesture.Click += clickGesture_Click;
+
+            DragGesture dragGesture = new DragGesture();
+            dragGesture.OnDragging += dragGesture_OnDragging;
+
+            DropGesture dropGesture = new DropGesture(dragGesture);
+            dropGesture.OnDrop += dropGesture_OnDrop;
 
             SvgElements.Rectangle rectangle;
 
@@ -47,15 +57,15 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
             rectangle = CreateRectangle(diagram, "Click Me");
             rectangle.Y = currentY;
-            rectangle.OnMouseDown += rectangle_OnMouseDown;
-            rectangle.OnMouseUp += rectangle_OnMouseUp;
+            rectangle.Gestures.Add(mouseDownGesture);
             rectangle.Gestures.Add(mouseMoveGesture);
+            rectangle.Gestures.Add(mouseUpGesture);
 
             currentY += BLOCK_HEIGHT + SPACING;
 
             rectangle = CreateRectangle(diagram, "Click Me Too");
             rectangle.Y = currentY;
-            rectangle.OnMouseDown += rectangle_OnMouseDown;
+            rectangle.Gestures.Add(mouseDownGesture);
             rectangle.Gestures.Add(mouseMoveGesture);
             rectangle.Gestures.Add(clickGesture);
 
@@ -69,13 +79,15 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
             rectangle = CreateRectangle(diagram, "Drag & Drop Me");
             rectangle.Y = currentY;
-            rectangle.Gestures.Add(dragDropGesture);
+            rectangle.Gestures.Add(dropGesture);
+            rectangle.Gestures.Add(dragGesture);
 
             currentY += BLOCK_HEIGHT + SPACING;
 
             rectangle = CreateRectangle(diagram, "Drop & Drop Me");
             rectangle.Y = currentY;
-            rectangle.Gestures.Add(dragDropGesture);
+            rectangle.Gestures.Add(dropGesture);
+            rectangle.Gestures.Add(dragGesture);
 
             diagramControl1.Diagram = diagram;
         }
@@ -107,33 +119,38 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             return rectangle;
         }
 
-        private void dragDropGesture_OnDragDrop(object sender, Svg.EventArg.DragDropEventArgs e)
+        private void mouseDownGesture_OnMouseDown(object sender, Svg.EventArg.MouseEventArgs e)
+        {
+            TrySetElementText(e.Element, "MouseDown");
+        }
+
+        private void mouseMoveGesture_MouseMove(object sender, Svg.EventArg.MouseEventArgs e)
+        {
+            TrySetElementText(e.Element, "MouseMove");
+        }
+
+        private void mouseUpGesture_OnMouseUp(object sender, Svg.EventArg.MouseEventArgs e)
+        {
+            TrySetElementText(e.Element, "MouseUp");
+        }
+
+        private void clickGesture_Click(object sender, ClickEventArgs e)
+        {
+            TrySetElementText(e.Element, "Clicked");
+        }
+
+        private void dragGesture_OnDragging(object sender, DraggingEventArgs e)
+        {
+            TrySetElementText(e.ElementBeingDragged, "Dragging");
+        }
+
+        private void dropGesture_OnDrop(object sender, DropEventArgs e)
         {
             TrySetElementText(e.DraggedElement, "Dragged");
             TrySetElementText(e.DroppedOnElement, "Dropped On");
         }
 
-        private void mouseMoveGesture_MouseMove(object sender, Svg.EventArg.MouseEventArgs e)
-        {
-            TrySetElementText(sender, "MouseMove");
-        }
-
-        private void rectangle_OnMouseDown(object sender, Svg.EventArg.MouseEventArgs e)
-        {
-            TrySetElementText(sender, "MouseDown");
-        }
-
-        private void rectangle_OnMouseUp(object sender, Svg.EventArg.MouseEventArgs e)
-        {
-            TrySetElementText(sender, "MouseUp");
-        }
-
-        private void clickGesture_Click(object sender, EventArgs e)
-        {
-            TrySetElementText(sender, "Clicked");
-        }
-
-        private void TrySetElementText(object element, string text)
+        private void TrySetElementText(Element element, string text)
         {
             var label = element as SvgElements.Label;
             if (label == null)

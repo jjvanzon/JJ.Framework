@@ -24,6 +24,7 @@ namespace JJ.Framework.Presentation.WinForms
             get { return _diagram; }
             set
             {
+                if (_diagram == value) return;
                 _diagram = value;
                 Refresh();
             }
@@ -78,10 +79,18 @@ namespace JJ.Framework.Presentation.WinForms
         {
             if (Diagram == null)
             {
+                _graphicsBuffer.Graphics.Clear(BackColor);
+                _graphicsBuffer.DrawBuffer();
                 return;
             }
 
+            Diagram.RootRectangle.Width = Width;
+            Diagram.RootRectangle.Height = Height;
+
+            Diagram.Recalculate();
+            
             SvgDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
+
             _graphicsBuffer.DrawBuffer();
         }
 
