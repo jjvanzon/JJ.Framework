@@ -7,18 +7,18 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Gestures
 {
-    public class DragGesture : IGesture
+    public class DragGesture : GestureBase
     {
+        public DragGesture()
+        {
+            //MustBubble = false;
+        }
+
         public event EventHandler<DraggingEventArgs> OnDragging;
 
         public Element DraggedElement { get; private set; }
 
-        bool IGesture.MouseCaptureRequired
-        {
-            get { return false; }
-        }
-
-        void IGesture.MouseDown(object sender, MouseEventArgs e)
+        public override void FireMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Element != null)
             {
@@ -32,7 +32,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             }
         }
 
-        void IGesture.MouseMove(object sender, MouseEventArgs e)
+        public override void FireMouseMove(object sender, MouseEventArgs e)
         {
             if (DraggedElement != null)
             {
@@ -43,7 +43,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             }
         }
 
-        void IGesture.MouseUp(object sender, MouseEventArgs e)
+        public override void FireMouseUp(object sender, MouseEventArgs e)
         {
             DraggedElement = null;
         }

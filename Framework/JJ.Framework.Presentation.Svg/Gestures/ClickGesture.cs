@@ -8,18 +8,18 @@ using JJ.Framework.Mathematics;
 
 namespace JJ.Framework.Presentation.Svg.Gestures
 {
-    public class ClickGesture : IGesture
+    public class ClickGesture : GestureBase
     {
         public event EventHandler<ClickEventArgs> Click;
 
         private Element _mouseDownElement;
 
-        bool IGesture.MouseCaptureRequired
+        public override bool MouseCaptureRequired
         {
             get { return true; }
         }
 
-        void IGesture.MouseDown(object sender, MouseEventArgs e)
+        public override void FireMouseDown(object sender, MouseEventArgs e)
         {
             if (Click == null) return;
 
@@ -30,10 +30,10 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             }
         }
 
-        void IGesture.MouseMove(object sender, MouseEventArgs e)
+        public override void FireMouseMove(object sender, MouseEventArgs e)
         { }
 
-        void IGesture.MouseUp(object sender, MouseEventArgs e)
+        public override void FireMouseUp(object sender, MouseEventArgs e)
         {
             if (Click == null) return;
 

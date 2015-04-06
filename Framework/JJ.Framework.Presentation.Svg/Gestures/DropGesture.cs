@@ -8,7 +8,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Gestures
 {
-    public class DropGesture : IGesture
+    public class DropGesture : GestureBase
     {
         public event EventHandler<DropEventArgs> OnDrop;
 
@@ -21,21 +21,19 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         public DropGesture(IList<DragGesture> dragGestures)
         {
             if (dragGestures == null) throw new NullException(() => dragGestures);
+
             _dragGestures = dragGestures;
+
+            // MustBubble = false;
         }
 
-        bool IGesture.MouseCaptureRequired
-        {
-            get { return false; }
-        }
-
-        void IGesture.MouseDown(object sender, MouseEventArgs e)
+        public override void FireMouseDown(object sender, MouseEventArgs e)
         { }
 
-        void IGesture.MouseMove(object sender, MouseEventArgs e)
+        public override void FireMouseMove(object sender, MouseEventArgs e)
         { }
 
-        void IGesture.MouseUp(object sender, MouseEventArgs e)
+        public override void FireMouseUp(object sender, MouseEventArgs e)
         {
             foreach (DragGesture dragGesture in _dragGestures)
             {

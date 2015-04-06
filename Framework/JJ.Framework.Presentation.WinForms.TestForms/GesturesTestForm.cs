@@ -57,37 +57,37 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
             rectangle = CreateRectangle(diagram, "Click Me");
             rectangle.Y = currentY;
-            rectangle.Gestures.Add(mouseDownGesture);
-            rectangle.Gestures.Add(mouseMoveGesture);
-            rectangle.Gestures.Add(mouseUpGesture);
+            rectangle.ElementGestures.Add(mouseDownGesture);
+            rectangle.ElementGestures.Add(mouseMoveGesture);
+            rectangle.ElementGestures.Add(mouseUpGesture);
 
             currentY += BLOCK_HEIGHT + SPACING;
 
             rectangle = CreateRectangle(diagram, "Click Me Too");
             rectangle.Y = currentY;
-            rectangle.Gestures.Add(mouseDownGesture);
-            rectangle.Gestures.Add(mouseMoveGesture);
-            rectangle.Gestures.Add(clickGesture);
+            rectangle.ElementGestures.Add(mouseDownGesture);
+            rectangle.ElementGestures.Add(mouseMoveGesture);
+            rectangle.ElementGestures.Add(clickGesture);
 
             currentY += BLOCK_HEIGHT + SPACING;
 
             rectangle = CreateRectangle(diagram, "Move Me");
             rectangle.Y = currentY;
-            rectangle.Gestures.Add(new MoveGesture());
+            rectangle.ElementGestures.Add(new MoveGesture());
 
             currentY += BLOCK_HEIGHT + SPACING;
 
             rectangle = CreateRectangle(diagram, "Drag & Drop Me");
             rectangle.Y = currentY;
-            rectangle.Gestures.Add(dropGesture);
-            rectangle.Gestures.Add(dragGesture);
+            rectangle.ElementGestures.Add(dropGesture);
+            rectangle.ElementGestures.Add(dragGesture);
 
             currentY += BLOCK_HEIGHT + SPACING;
 
             rectangle = CreateRectangle(diagram, "Drop & Drop Me");
             rectangle.Y = currentY;
-            rectangle.Gestures.Add(dropGesture);
-            rectangle.Gestures.Add(dragGesture);
+            rectangle.ElementGestures.Add(dropGesture);
+            rectangle.ElementGestures.Add(dragGesture);
 
             diagramControl1.Diagram = diagram;
         }

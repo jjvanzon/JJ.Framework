@@ -41,6 +41,9 @@
     <Compile Include="EventArg\MoveEventArgs.cs" />
     <Compile Include="Gestures\DragGesture.cs" />
     <Compile Include="Gestures\DropGesture.cs" />
+    <Compile Include="Gestures\GestureBase.cs" />
+    <Compile Include="Models\Elements\ElementGesture.cs" />
+    <Compile Include="Models\Elements\ElementGestures.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />
     <Compile Include="Relationships\DiagramToElementsRelationship.cs" />
     <Compile Include="Relationships\ElementToDiagramRelationship.cs" />

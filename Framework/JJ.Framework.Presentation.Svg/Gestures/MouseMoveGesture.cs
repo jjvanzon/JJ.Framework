@@ -13,25 +13,20 @@ namespace JJ.Framework.Presentation.Svg.Gestures
     /// This gesture will block that and only send
     /// a mouse move event when you actually moved the mouse.
     /// </summary>
-    public class MouseMoveGesture : IGesture
+    public class MouseMoveGesture : GestureBase
     {
         public event EventHandler<MouseEventArgs> MouseMove;
 
         private float _previousPointerX;
         private float _previousPointerY;
 
-        bool IGesture.MouseCaptureRequired
-        {
-            get { return false; }
-        }
-
-        void IGesture.MouseDown(object sender, MouseEventArgs e)
+        public override void FireMouseDown(object sender, MouseEventArgs e)
         {
             _previousPointerX = e.X;
             _previousPointerY = e.Y;
         }
 
-        void IGesture.MouseMove(object sender, MouseEventArgs e)
+        public override void FireMouseMove(object sender, MouseEventArgs e)
         {
             if (MouseMove == null)
             {
@@ -48,7 +43,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             _previousPointerY = e.Y;
         }
 
-        void IGesture.MouseUp(object sender, MouseEventArgs e)
+        public override void FireMouseUp(object sender, MouseEventArgs e)
         { }
     }
 }
