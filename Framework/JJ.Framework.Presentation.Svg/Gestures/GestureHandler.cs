@@ -15,19 +15,28 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     internal class GestureHandler
     {
-        private Element _mouseCapturingElement;
-
         private Diagram _diagram;
+
+        private Element _mouseCapturingElement;
 
         public GestureHandler(Diagram diagram)
         {
             if (diagram == null) throw new NullException(() => diagram);
 
             _diagram = diagram;
+
+            InitializeMouseMoveGesture();
+        }
+
+        ~GestureHandler()
+        {
+            FinalizeMouseMoveGesture();
         }
 
         public void MouseDown(MouseEventArgs e)
         {
+            _mouseMoveGesture.MouseDown(this, e);
+
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
 
             Element hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
@@ -79,7 +88,34 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             }
         }
 
+        /// <summary>
+        /// In WinForms a mouse move will go off upon mouse down, even though you did not even move the mouse at all
+        /// All gestures have trouble with this if you do not solve it at this level.
+        /// </summary>
+        private IGesture _mouseMoveGesture;
+
+        private void InitializeMouseMoveGesture()
+        {
+            MouseMoveGesture mouseMoveGesture = new MouseMoveGesture();
+            mouseMoveGesture.MouseMove += mouseMoveGesture_MouseMove;
+            _mouseMoveGesture = mouseMoveGesture;
+        }
+
+        private void FinalizeMouseMoveGesture()
+        {
+            if (_mouseMoveGesture != null)
+            {
+                MouseMoveGesture mouseMoveGesture = (MouseMoveGesture)_mouseMoveGesture;
+                mouseMoveGesture.MouseMove -= mouseMoveGesture_MouseMove;
+            }
+        }
+
         public void MouseMove(MouseEventArgs e)
+        {
+            _mouseMoveGesture.MouseMove(this, e);
+        }
+
+        private void mouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
         {
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
 
@@ -128,6 +164,8 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         public void MouseUp(MouseEventArgs e)
         {
+            _mouseMoveGesture.MouseUp(this, e);
+
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
 
             Element hitElement = _mouseCapturingElement;

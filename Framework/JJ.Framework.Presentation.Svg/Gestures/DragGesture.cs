@@ -24,10 +24,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 DraggedElement = e.Element;
 
-                if (OnDragging != null)
-                {
-                    OnDragging(sender, new DraggingEventArgs(DraggedElement, e.X, e.Y));
-                }
+                // TODO: Remove outcommented code if it proves they are not necessary.
+                //if (OnDragging != null)
+                //{
+                //    OnDragging(sender, new DraggingEventArgs(DraggedElement, e.X, e.Y));
+                //}
             }
         }
 

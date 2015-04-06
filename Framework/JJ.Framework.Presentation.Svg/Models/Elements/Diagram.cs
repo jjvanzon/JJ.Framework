@@ -49,6 +49,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             }
         }
 
+        // Gestures
+
         private readonly GestureHandler _gestureHandler;
 
         public void MouseDown(MouseEventArgs e)
