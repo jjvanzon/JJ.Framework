@@ -8,13 +8,13 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     public class MouseDownGesture : GestureBase
     {
-        public event EventHandler<MouseEventArgs> OnMouseDown;
+        public event EventHandler<MouseEventArgs> MouseDown;
 
         public override void FireMouseDown(object sender, MouseEventArgs e)
         {
-            if (OnMouseDown != null)
+            if (MouseDown != null)
             {
-                OnMouseDown(sender, e);
+                MouseDown(sender, e);
             }
         }
 

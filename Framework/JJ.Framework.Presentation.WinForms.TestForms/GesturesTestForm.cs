@@ -34,22 +34,22 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var diagram = new Diagram();
 
             MouseDownGesture mouseDownGesture = new MouseDownGesture();
-            mouseDownGesture.OnMouseDown += mouseDownGesture_OnMouseDown;
+            mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
 
             MouseMoveGesture mouseMoveGesture = new MouseMoveGesture();
             mouseMoveGesture.MouseMove += mouseMoveGesture_MouseMove;
 
             MouseUpGesture mouseUpGesture = new MouseUpGesture();
-            mouseUpGesture.OnMouseUp += mouseUpGesture_OnMouseUp;
+            mouseUpGesture.MouseUp += mouseUpGesture_MouseUp;
 
             ClickGesture clickGesture = new ClickGesture();
             clickGesture.Click += clickGesture_Click;
 
             DragGesture dragGesture = new DragGesture();
-            dragGesture.Dragging += dragGesture_OnDragging;
+            dragGesture.Dragging += dragGesture_Dragging;
 
             DropGesture dropGesture = new DropGesture(dragGesture);
-            dropGesture.Dropped += dropGesture_OnDrop;
+            dropGesture.Dropped += dropGesture_Dropped;
 
             SvgElements.Rectangle rectangle;
 
@@ -119,7 +119,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             return rectangle;
         }
 
-        private void mouseDownGesture_OnMouseDown(object sender, Svg.EventArg.MouseEventArgs e)
+        private void mouseDownGesture_MouseDown(object sender, Svg.EventArg.MouseEventArgs e)
         {
             TrySetElementText(e.Element, "MouseDown");
         }
@@ -129,7 +129,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             TrySetElementText(e.Element, "MouseMove");
         }
 
-        private void mouseUpGesture_OnMouseUp(object sender, Svg.EventArg.MouseEventArgs e)
+        private void mouseUpGesture_MouseUp(object sender, Svg.EventArg.MouseEventArgs e)
         {
             TrySetElementText(e.Element, "MouseUp");
         }
@@ -139,12 +139,12 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             TrySetElementText(e.Element, "Clicked");
         }
 
-        private void dragGesture_OnDragging(object sender, DraggingEventArgs e)
+        private void dragGesture_Dragging(object sender, DraggingEventArgs e)
         {
             TrySetElementText(e.ElementBeingDragged, "Dragging");
         }
 
-        private void dropGesture_OnDrop(object sender, DropEventArgs e)
+        private void dropGesture_Dropped(object sender, DroppedEventArgs e)
         {
             TrySetElementText(e.DraggedElement, "Dragged");
             TrySetElementText(e.DroppedOnElement, "Dropped On");

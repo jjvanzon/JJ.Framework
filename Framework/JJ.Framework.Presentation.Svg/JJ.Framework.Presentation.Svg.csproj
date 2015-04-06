@@ -36,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventArg\ClickEventArgs.cs" />
-    <Compile Include="EventArg\DropEventArgs.cs" />
+    <Compile Include="EventArg\DroppedEventArgs.cs" />
     <Compile Include="EventArg\DraggingEventArgs.cs" />
     <Compile Include="EventArg\MoveEventArgs.cs" />
     <Compile Include="Gestures\DragGesture.cs" />

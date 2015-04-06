@@ -8,7 +8,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     public class MouseUpGesture : GestureBase
     {
-        public event EventHandler<MouseEventArgs> OnMouseUp;
+        public event EventHandler<MouseEventArgs> MouseUp;
 
         public override void FireMouseDown(object sender, MouseEventArgs e)
         { }
@@ -18,9 +18,9 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         public override void FireMouseUp(object sender, MouseEventArgs e)
         {
-            if (OnMouseUp != null)
+            if (MouseUp != null)
             {
-                OnMouseUp(sender, e);
+                MouseUp(sender, e);
             }
         }
     }

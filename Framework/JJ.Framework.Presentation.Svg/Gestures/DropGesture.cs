@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     public class DropGesture : GestureBase
     {
-        public event EventHandler<DropEventArgs> Dropped;
+        public event EventHandler<DroppedEventArgs> Dropped;
 
         private IList<DragGesture> _dragGestures;
 
@@ -41,7 +41,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                     {
                         if (Dropped != null)
                         {
-                            Dropped(sender, new DropEventArgs(dragGesture.DraggedElement, e.Element));
+                            Dropped(sender, new DroppedEventArgs(dragGesture.DraggedElement, e.Element));
                         }
                     }
                 }
