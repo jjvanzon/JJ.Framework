@@ -11,7 +11,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Styling
         public PointStyle()
         {
             Visible = true;
-            Width = 2;
+            Width = 1;
             Color = ColorHelper.Black;
         }
 

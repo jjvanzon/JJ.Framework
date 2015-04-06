@@ -12,8 +12,18 @@ namespace JJ.Framework.Presentation.Svg.EventArg
     {
         public Element Element { get; private set; }
 
+        /// <summary>
+        /// The X-coordinate of the mouse pointer.
+        /// It is the absolute position within a diagram.
+        /// </summary>
         public float X { get; private set; }
+
+        /// <summary>
+        /// The Y-coordinate of the mouse pointer.
+        /// It is the absolute position within a diagram.
+        /// </summary>
         public float Y { get; private set; }
+
         public MouseButtonEnum MouseButtonEnum { get; private set; }
 
         /// <param name="element">nullable</param>

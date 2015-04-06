@@ -84,6 +84,11 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourceLine.Visible && sourceLine.LineStyle.Visible)
             {
+                if (!String.IsNullOrEmpty(sourceLine.Tag))
+                {
+                    int i = 0;
+                }
+
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destPen, sourceLine.PointA.CalculatedX, sourceLine.PointA.CalculatedY, sourceLine.PointB.CalculatedX, sourceLine.PointB.CalculatedY);
             }
