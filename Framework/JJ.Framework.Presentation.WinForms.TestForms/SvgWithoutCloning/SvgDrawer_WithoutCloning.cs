@@ -16,17 +16,17 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
     {
         private Graphics _destGraphic;
 
-        public void Draw(SvgElements.Rectangle rootRectangle, Graphics destGraphics)
+        public void Draw(SvgElements.Rectangle canvas, Graphics destGraphics)
         {
-            if (rootRectangle == null) throw new NullException(() => rootRectangle);
+            if (canvas == null) throw new NullException(() => canvas);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
             var visitor2 = new CalculationVisitor_WithoutCloning();
-            visitor2.Execute(rootRectangle);
+            visitor2.Execute(canvas);
 
             _destGraphic = destGraphics;
 
-            VisitRectangle(rootRectangle);
+            VisitRectangle(canvas);
         }
 
         protected override void VisitPoint(SvgElements.Point point)

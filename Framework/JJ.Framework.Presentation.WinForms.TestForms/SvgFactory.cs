@@ -16,7 +16,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             var diagram = new Diagram();
 
-            SvgElements.Rectangle rootRectangle = diagram.RootRectangle;
+            SvgElements.Rectangle canvas = diagram.Canvas;
 
             SvgElements.Rectangle rectangle1 = CreateRectangle(diagram, 200, 10, "Block 1");
 
@@ -46,7 +46,6 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 LineStyle = SvgHelper.DefaultLineStyle
             };
 
-            rootRectangle.ZIndex = -2;
             line.ZIndex = -1;
 
             return diagram;

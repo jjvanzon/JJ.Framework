@@ -87,8 +87,8 @@ namespace JJ.Framework.Presentation.WinForms
                 return;
             }
 
-            Diagram.RootRectangle.Width = Width;
-            Diagram.RootRectangle.Height = Height;
+            Diagram.Canvas.Width = Width;
+            Diagram.Canvas.Height = Height;
 
             Diagram.Recalculate();
             
@@ -104,8 +104,8 @@ namespace JJ.Framework.Presentation.WinForms
                 return;
             }
 
-            Diagram.RootRectangle.Width = Width;
-            Diagram.RootRectangle.Height = Height;
+            Diagram.Canvas.Width = Width;
+            Diagram.Canvas.Height = Height;
 
             Diagram.Recalculate();
 

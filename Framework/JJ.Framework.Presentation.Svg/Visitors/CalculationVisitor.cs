@@ -39,7 +39,7 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             _currentZIndex = 0;
             _currentLayer = 0;
 
-            VisitPolymorphic(diagram.RootRectangle);
+            VisitPolymorphic(diagram.Canvas);
 
             IList<Element> orderedElements = ApplyExplicitZIndex(diagram);
 

@@ -38,9 +38,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             // Side-effect: When added to the model, it is added as a child of the root rectangle.
             if (element.Parent == null)
             {
-                if (element != _diagram.RootRectangle)
+                if (element != _diagram.Canvas)
                 {
-                    element.Parent = _diagram.RootRectangle;
+                    element.Parent = _diagram.Canvas;
                 }
             }
         }

@@ -52,9 +52,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             _childrenRelationship.Remove(child);
 
             // Side-effect: orphaned children are added to the Diagram's root rectangle.
-            if (child != child.Diagram.RootRectangle)
+            if (child != child.Diagram.Canvas)
             {
-                child.Diagram.RootRectangle.Children.Add(child);
+                child.Diagram.Canvas.Children.Add(child);
             }
         }
 

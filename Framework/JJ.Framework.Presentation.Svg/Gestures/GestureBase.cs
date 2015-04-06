@@ -14,11 +14,6 @@ namespace JJ.Framework.Presentation.Svg.Gestures
     /// </summary>
     public abstract class GestureBase : IGesture
     {
-        public GestureBase()
-        {
-            //MustBubble = true;
-        }
-
         public abstract void FireMouseDown(object sender, MouseEventArgs e);
         public abstract void FireMouseMove(object sender, MouseEventArgs e);
         public abstract void FireMouseUp(object sender, MouseEventArgs e);
@@ -27,12 +22,5 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         {
             get { return false; }
         }
-
-        /// <summary>
-        /// When true, events that go off on a child element
-        /// also go off on a parent element.
-        /// Default is true.
-        /// </summary>
-        //public bool MustBubble { get; set; }
     }
 }

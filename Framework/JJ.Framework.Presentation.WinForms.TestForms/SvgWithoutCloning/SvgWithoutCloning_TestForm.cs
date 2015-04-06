@@ -25,7 +25,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
         {
             Text = this.GetType().FullName;
 
-            diagramControl1.RootSvgRectangle = SvgFactory.CreateTestSvgModel().RootRectangle;
+            diagramControl1.RootSvgRectangle = SvgFactory.CreateTestSvgModel().Canvas;
         }
     }
 }

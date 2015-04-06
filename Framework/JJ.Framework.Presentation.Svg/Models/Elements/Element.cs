@@ -114,9 +114,9 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                 // Side-Effect: add orphans to root rectangle of Diagram.
                 if (Parent == null)
                 {
-                    if (this != Diagram.RootRectangle)
+                    if (this != Diagram.Canvas)
                     {
-                        Diagram.RootRectangle.Children.Add(this);
+                        Diagram.Canvas.Children.Add(this);
                     }
                 }
             }

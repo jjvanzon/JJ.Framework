@@ -18,19 +18,19 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
             Elements = new DiagramElements(this);
 
-            _rootRectangle = new Rectangle();
-            _rootRectangle.Diagram = this;
-            _rootRectangle.ZIndex = Int32.MinValue;
+            _canvas = new Rectangle();
+            _canvas.Diagram = this;
+            _canvas.ZIndex = Int32.MinValue;
 
             _gestureHandler = new GestureHandler(this);
         }
 
-        private Rectangle _rootRectangle;
+        private Rectangle _canvas;
         /// <summary> read-only. TODO: Rename to Canvas? </summary>
         [DebuggerHidden]
-        public Rectangle RootRectangle
+        public Rectangle Canvas
         {
-            get { return _rootRectangle; }
+            get { return _canvas; }
         }
 
         public DiagramElements Elements { get; private set; }

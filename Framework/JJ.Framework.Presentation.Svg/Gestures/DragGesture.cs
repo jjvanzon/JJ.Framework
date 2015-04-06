@@ -9,14 +9,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     public class DragGesture : GestureBase
     {
-        public DragGesture()
-        {
-            //MustBubble = false;
-        }
-
-        public event EventHandler<DraggingEventArgs> OnDragging;
+        public event EventHandler<DraggingEventArgs> Dragging;
 
         public Element DraggedElement { get; private set; }
+
+        private Diagram _diagram;
 
         public override void FireMouseDown(object sender, MouseEventArgs e)
         {
@@ -24,11 +21,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 DraggedElement = e.Element;
 
-                // TODO: Remove outcommented code if it proves they are not necessary.
-                //if (OnDragging != null)
-                //{
-                //    OnDragging(sender, new DraggingEventArgs(DraggedElement, e.X, e.Y));
-                //}
+                _diagram = DraggedElement.Diagram;
+                if (_diagram != null)
+                {
+
+                }
             }
         }
 
@@ -36,9 +33,9 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         {
             if (DraggedElement != null)
             {
-                if (OnDragging != null)
+                if (Dragging != null)
                 {
-                    OnDragging(sender, new DraggingEventArgs(DraggedElement, e.X, e.Y));
+                    Dragging(sender, new DraggingEventArgs(DraggedElement, e.X, e.Y));
                 }
             }
         }

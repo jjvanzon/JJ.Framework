@@ -14,39 +14,44 @@ namespace JJ.Framework.Presentation.Svg.Tests
         [TestMethod]
         public void Test_Svg_RelativeCoordinate_ToAbsoluteVisitor()
         {
+            int zindex = 1;
+
             var diagram = new Diagram();
 
-            //Point point = diagram.CreatePoint(diagram.RootRectangle)
-            var point = new Point();
-            point.X = 1;
-            point.Y = 2;
-
-            //Point childPoint1 = diagram.CreatePoint(point);
-            var childPoint1 = new Point 
+            var point = new Point
             {
                 Diagram = diagram,
-                X = 10, 
-                Y = 20
+                X = 1,
+                Y = 2,
+                ZIndex = zindex++
             };
 
-            //Point childPoint2 = diagram.CreatePoint(point);
+            var childPoint1 = new Point 
+            {
+                Parent = point,
+                X = 10, 
+                Y = 20,
+                ZIndex = zindex++
+            };
+
             var childPoint2 = new Point
             { 
-                Diagram = diagram,
+                Parent = point,
                 X = 12, 
-                Y = 22
+                Y = 22,
+                ZIndex = zindex++
             };
 
             var visitor = new CalculationVisitor();
             IList<Element> elements = visitor.Execute(diagram);
 
-            AssertHelper.AreEqual(3, () => elements.Count);
-            AssertHelper.AreEqual(1, () => elements[0].X);
-            AssertHelper.AreEqual(2, () => elements[0].Y);
-            AssertHelper.AreEqual(11, () => elements[1].X);
-            AssertHelper.AreEqual(22, () => elements[1].Y);
-            AssertHelper.AreEqual(13, () => elements[2].X);
-            AssertHelper.AreEqual(24, () => elements[2].Y);
+            AssertHelper.AreEqual(4, () => elements.Count);
+            AssertHelper.AreEqual(1, () => elements[1].CalculatedX);
+            AssertHelper.AreEqual(2, () => elements[1].CalculatedY);
+            AssertHelper.AreEqual(11, () => elements[2].CalculatedX);
+            AssertHelper.AreEqual(22, () => elements[2].CalculatedY);
+            AssertHelper.AreEqual(13, () => elements[3].CalculatedX);
+            AssertHelper.AreEqual(24, () => elements[3].CalculatedY);
         }
     }
 }

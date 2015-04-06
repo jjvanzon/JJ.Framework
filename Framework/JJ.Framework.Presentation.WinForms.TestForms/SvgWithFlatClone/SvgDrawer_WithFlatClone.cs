@@ -14,13 +14,13 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 {
     internal class SvgDrawer_WithFlatClone
     {
-        public void Draw(SvgElements.Rectangle sourceRootRectangle, Graphics destGraphics)
+        public void Draw(SvgElements.Rectangle sourceCanvas, Graphics destGraphics)
         {
-            if (sourceRootRectangle == null) throw new NullException(() => sourceRootRectangle);
+            if (sourceCanvas == null) throw new NullException(() => sourceCanvas);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
             var visitor = new CalculationVisitor();
-            IList<SvgElements.Element> elements = visitor.Execute(sourceRootRectangle.Diagram);
+            IList<SvgElements.Element> elements = visitor.Execute(sourceCanvas.Diagram);
 
             foreach (SvgElements.Element element in elements)
             {

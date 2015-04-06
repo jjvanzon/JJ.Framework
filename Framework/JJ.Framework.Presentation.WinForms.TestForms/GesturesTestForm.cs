@@ -46,10 +46,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             clickGesture.Click += clickGesture_Click;
 
             DragGesture dragGesture = new DragGesture();
-            dragGesture.OnDragging += dragGesture_OnDragging;
+            dragGesture.Dragging += dragGesture_OnDragging;
 
             DropGesture dropGesture = new DropGesture(dragGesture);
-            dropGesture.OnDrop += dropGesture_OnDrop;
+            dropGesture.Dropped += dropGesture_OnDrop;
 
             SvgElements.Rectangle rectangle;
 

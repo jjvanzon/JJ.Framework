@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     public class DropGesture : GestureBase
     {
-        public event EventHandler<DropEventArgs> OnDrop;
+        public event EventHandler<DropEventArgs> Dropped;
 
         private IList<DragGesture> _dragGestures;
 
@@ -23,8 +23,6 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             if (dragGestures == null) throw new NullException(() => dragGestures);
 
             _dragGestures = dragGestures;
-
-            // MustBubble = false;
         }
 
         public override void FireMouseDown(object sender, MouseEventArgs e)
@@ -41,9 +39,9 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                 {
                     if (e.Element != null)
                     {
-                        if (OnDrop != null)
+                        if (Dropped != null)
                         {
-                            OnDrop(sender, new DropEventArgs(dragGesture.DraggedElement, e.Element));
+                            Dropped(sender, new DropEventArgs(dragGesture.DraggedElement, e.Element));
                         }
                     }
                 }
