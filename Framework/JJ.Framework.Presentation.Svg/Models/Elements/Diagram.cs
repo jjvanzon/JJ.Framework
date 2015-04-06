@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Presentation.Svg.EventArg;
+﻿using JJ.Framework.Presentation.Svg.Enums;
+using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Presentation.Svg.Gestures;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Svg.Visitors;
@@ -64,7 +65,10 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
             _gestureHandler.MouseMove(e);
 
-            Recalculate();
+            if (e.MouseButtonEnum != MouseButtonEnum.None)
+            {
+                Recalculate();
+            }
         }
 
         public void MouseUp(MouseEventArgs e)
