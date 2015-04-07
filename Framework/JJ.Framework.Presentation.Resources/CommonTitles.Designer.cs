@@ -88,11 +88,29 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete {0}.
+        /// </summary>
+        public static string DeleteObject {
+            get {
+                return ResourceManager.GetString("DeleteObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit {0}.
+        /// </summary>
+        public static string EditObject {
+            get {
+                return ResourceManager.GetString("EditObject", resourceCulture);
             }
         }
         
@@ -124,7 +142,7 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LogIn.
+        ///   Looks up a localized string similar to Log In.
         /// </summary>
         public static string LogIn {
             get {
@@ -133,7 +151,7 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to LogOut.
+        ///   Looks up a localized string similar to Log Out.
         /// </summary>
         public static string LogOut {
             get {
@@ -169,11 +187,20 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to NotAuthorized.
+        ///   Looks up a localized string similar to Not Authorized.
         /// </summary>
         public static string NotAuthorized {
             get {
                 return ResourceManager.GetString("NotAuthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Details.
+        /// </summary>
+        public static string ObjectDetails {
+            get {
+                return ResourceManager.GetString("ObjectDetails", resourceCulture);
             }
         }
         

@@ -20,6 +20,10 @@ namespace JJ.Framework.Persistence.NHibernate
         {
             ISessionFactory sessionFactory = NHibernateSessionFactoryCache.GetSessionFactory(connectionString, modelAssembly, mappingAssembly, dialect);
             Session = sessionFactory.OpenSession();
+            // If you do not set flush mode and call BeginTransaction, 
+            // data will be committed upon disposing the session.
+            Session.FlushMode = FlushMode.Commit; 
+            Session.BeginTransaction();
         }
 
         public override TEntity TryGet<TEntity>(object id)
@@ -71,9 +75,6 @@ namespace JJ.Framework.Persistence.NHibernate
             {
                 Session.Transaction.Commit();
             }
-
-            _entitiesToDelete.Clear();
-            _entitiesToSave.Clear();
         }
 
         public override void Flush()
@@ -89,6 +90,9 @@ namespace JJ.Framework.Persistence.NHibernate
             }
 
             Session.Flush();
+
+            _entitiesToDelete.Clear();
+            _entitiesToSave.Clear();
         }
 
         public override void Dispose()

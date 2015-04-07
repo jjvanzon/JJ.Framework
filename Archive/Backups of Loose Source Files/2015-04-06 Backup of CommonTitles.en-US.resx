@@ -126,8 +126,16 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DeleteObject" xml:space="preserve">
+    <value>Delete {0}</value>
+    <comment>{0} = type of object, singular</comment>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="EditObject" xml:space="preserve">
+    <value>Edit {0}</value>
+    <comment>{0} = type of object, singular</comment>
   </data>
   <data name="EntityCount" xml:space="preserve">
     <value>Number of {0}</value>
@@ -156,6 +164,10 @@
   </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>Not Authorized</value>
+  </data>
+  <data name="ObjectDetails" xml:space="preserve">
+    <value>{0} Details</value>
+    <comment>{0} = type of object, singular</comment>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>

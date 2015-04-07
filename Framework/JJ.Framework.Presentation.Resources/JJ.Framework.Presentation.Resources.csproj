@@ -44,7 +44,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CommonTitles.en-US.resx" />
     <EmbeddedResource Include="CommonTitles.nl-NL.resx" />
     <EmbeddedResource Include="CommonTitles.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

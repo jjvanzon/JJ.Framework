@@ -11,5 +11,20 @@ namespace JJ.Framework.Presentation.Resources
         {
             return String.Format(CommonTitles.EntityCount, entityNamePlural);
         }
+
+        public static String DeleteObject(string objectTypeName)
+        {
+            return String.Format(CommonTitles.DeleteObject, objectTypeName);
+        }
+
+        public static String EditObject(string objectTypeName)
+        {
+            return String.Format(CommonTitles.EditObject, objectTypeName);
+        }
+
+        public static String ObjectDetails(string objectTypeName)
+        {
+            return String.Format(CommonTitles.ObjectDetails, objectTypeName);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Presentation.Svg.EventArg;
+﻿using JJ.Framework.Presentation.Svg.Enums;
+using JJ.Framework.Presentation.Svg.EventArg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +34,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                 return;
             }
 
-            if (_previousPointerX != e.X &&
+            if (_previousPointerX != e.X ||
                 _previousPointerY != e.Y)
             {
                 MouseMove(sender, e);

@@ -83,7 +83,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         public override void FireMouseUp(object sender, MouseEventArgs e)
         {
-            // TODO: Should this not cause a DragCancelled.
+            // TODO: Should this not cause a DragCancelled?
             DraggedElement = null;
         }
 
