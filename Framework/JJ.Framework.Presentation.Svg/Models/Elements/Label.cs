@@ -14,7 +14,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     public class Label : Element
     {
         public Label(params IGesture[] gestures)
-            : this((IList<IGesture>)gestures)
+            : this((IList<IGesture>)gestures.ToList())
         { }
 
         public Label(IList<IGesture> gestures)

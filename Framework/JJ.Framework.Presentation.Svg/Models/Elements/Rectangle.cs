@@ -13,7 +13,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     public class Rectangle : Element
     {
         public Rectangle(params IGesture[] gestures)
-            : this((IList<IGesture>)gestures)
+            : this((IList<IGesture>)gestures.ToList())
         { }
 
         public Rectangle(IList<IGesture> gestures)

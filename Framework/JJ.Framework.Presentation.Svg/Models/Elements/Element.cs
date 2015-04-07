@@ -21,17 +21,14 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
             if (gestures == null) throw new NullException(() => gestures);
 
-            ElementGestures = new ElementGestures(this);
-            foreach (IGesture gesture in gestures)
-            {
-                ElementGestures.Add(gesture);
-            }
+            Gestures = gestures;
 
             _parentRelationship = new ChildToParentRelationship(this);
             _diagramRelationship = new ElementToDiagramRelationship(this);
 
             Children = new ElementChildren(parent: this);
             Visible = true;
+            MustBubble = true;
         }
 
         // Values
@@ -146,6 +143,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         // Gestures
 
-        public ElementGestures ElementGestures { get; private set;}
+        public IList<IGesture> Gestures { get; private set; }
+
+        public bool MustBubble { get; set; }
     }
 }

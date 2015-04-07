@@ -15,7 +15,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 if (_diagram != null)
                 {
-                    _diagram.Canvas.ElementGestures.Remove(_canvasMouseMoveGesture);
+                    _diagram.Canvas.Gestures.Remove(_canvasMouseMoveGesture);
                 }
                 _canvasMouseMoveGesture.MouseMove -= _canvas_MouseMove;
             }
@@ -24,7 +24,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 if (_diagram != null)
                 {
-                    _diagram.Canvas.ElementGestures.Remove(_canvasMouseUpGesture);
+                    _diagram.Canvas.Gestures.Remove(_canvasMouseUpGesture);
                 }
                 _canvasMouseUpGesture.MouseUp -= _canvas_MouseUp;
             }
@@ -50,11 +50,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                 {
                     _canvasMouseMoveGesture = new MouseMoveGesture();
                     _canvasMouseMoveGesture.MouseMove += _canvas_MouseMove;
-                    _diagram.Canvas.ElementGestures.Add(_canvasMouseMoveGesture);
+                    _diagram.Canvas.Gestures.Add(_canvasMouseMoveGesture);
 
                     _canvasMouseUpGesture = new MouseUpGesture();
                     _canvasMouseUpGesture.MouseUp += _canvas_MouseUp;
-                    _diagram.Canvas.ElementGestures.Add(_canvasMouseUpGesture);
+                    _diagram.Canvas.Gestures.Add(_canvasMouseUpGesture);
                 }
             }
         }

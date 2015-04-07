@@ -45,14 +45,14 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
 
-                foreach (ElementGesture elementGesture in hitElement.ElementGestures)
+                foreach (IGesture gesture in hitElement.Gestures)
                 {
-                    elementGesture.Gesture.FireMouseDown(hitElement, e2);
+                    gesture.FireMouseDown(hitElement, e2);
                 }
 
                 TryBubbleMouseDown(hitElement, hitElement, e);
 
-                if (hitElement.ElementGestures.Any(x => x.Gesture.MouseCaptureRequired))
+                if (hitElement.Gestures.Any(x => x.MouseCaptureRequired))
                 {
                     _mouseCapturingElement = hitElement;
                 }
@@ -69,20 +69,19 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             Element parent = child.Parent;
             var e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
 
-            bool mustBubble = child.ElementGestures.All(x => x.MustBubble);
-            if (!mustBubble)
+            if (!child.MustBubble)
             {
                 return;
             }
 
-            foreach (ElementGesture elementGesture in parent.ElementGestures)
+            foreach (IGesture gesture in parent.Gestures)
             {
-                elementGesture.Gesture.FireMouseDown(sender, e2);
+                gesture.FireMouseDown(sender, e2);
             }
 
             TryBubbleMouseDown(sender, parent, e);
 
-            if (parent.ElementGestures.Any(x => x.Gesture.MouseCaptureRequired))
+            if (parent.Gestures.Any(x => x.MouseCaptureRequired))
             {
                 _mouseCapturingElement = child;
             }
@@ -129,9 +128,9 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
 
-                foreach (ElementGesture elementGesture in hitElement.ElementGestures)
+                foreach (IGesture gesture in hitElement.Gestures)
                 {
-                    elementGesture.Gesture.FireMouseMove(hitElement, e2);
+                    gesture.FireMouseMove(hitElement, e2);
                 }
 
                 TryBubbleMouseMove(hitElement, hitElement, e);
@@ -145,8 +144,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                 return;
             }
 
-            bool mustBubble = child.ElementGestures.All(x => x.MustBubble);
-            if (!mustBubble)
+            if (!child.MustBubble)
             {
                 return;
             }
@@ -154,9 +152,9 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             Element parent = child.Parent;
             MouseEventArgs e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
 
-            foreach (ElementGesture elementGesture in parent.ElementGestures)
+            foreach (IGesture gesture in parent.Gestures)
             {
-                elementGesture.Gesture.FireMouseMove(sender, e2);
+                gesture.FireMouseMove(sender, e2);
             }
 
             TryBubbleMouseMove(sender, parent, e);
@@ -178,9 +176,9 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
 
-                foreach (ElementGesture elementGesture in hitElement.ElementGestures)
+                foreach (IGesture gesture in hitElement.Gestures)
                 {
-                    elementGesture.Gesture.FireMouseUp(hitElement, e2);
+                    gesture.FireMouseUp(hitElement, e2);
                 }
 
                 TryBubbleMouseUp(hitElement, hitElement, e);
@@ -196,8 +194,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                 return;
             }
 
-            bool mustBubble = child.ElementGestures.All(x => x.MustBubble);
-            if (!mustBubble)
+            if (!child.MustBubble)
             {
                 return;
             }
@@ -205,9 +202,9 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             Element parent = child.Parent;
             MouseEventArgs e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
 
-            foreach (ElementGesture elementGesture in parent.ElementGestures)
+            foreach (IGesture gesture in parent.Gestures)
             {
-                elementGesture.Gesture.FireMouseUp(sender, e2);
+                gesture.FireMouseUp(sender, e2);
             }
 
             TryBubbleMouseUp(sender, parent, e);

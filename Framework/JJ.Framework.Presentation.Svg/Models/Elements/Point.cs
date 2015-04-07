@@ -13,7 +13,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     public class Point : Element
     {
         public Point(params IGesture[] gestures)
-            : this((IList<IGesture>)gestures)
+            : this((IList<IGesture>)gestures.ToList())
         { }
 
         public Point(IList<IGesture> gestures)

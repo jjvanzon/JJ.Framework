@@ -13,7 +13,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
     public class Line : Element
     {
         public Line(params IGesture[] gestures)
-            : this((IList<IGesture>)gestures)
+            : this((IList<IGesture>)gestures.ToList())
         { }
 
         public Line(IList<IGesture> gestures)
