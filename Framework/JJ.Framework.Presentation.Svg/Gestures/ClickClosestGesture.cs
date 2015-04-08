@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Gestures
 {
-    public class ClickClosestGesture
+    public class ClickClosestGesture : GestureBase
     {
     }
 }

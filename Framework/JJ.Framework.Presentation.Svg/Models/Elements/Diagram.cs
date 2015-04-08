@@ -54,16 +54,16 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         private readonly GestureHandler _gestureHandler;
 
-        public void MouseDown(MouseEventArgs e)
+        public void HandleMouseDown(MouseEventArgs e)
         {
-            _gestureHandler.MouseDown(e);
+            _gestureHandler.HandleMouseDown(e);
 
             Recalculate();
         }
 
-        public void MouseMove(MouseEventArgs e)
+        public void HandleMouseMove(MouseEventArgs e)
         {
-            _gestureHandler.MouseMove(e);
+            _gestureHandler.HandleMouseMove(e);
 
             if (e.MouseButtonEnum != MouseButtonEnum.None)
             {
@@ -71,11 +71,21 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             }
         }
 
-        public void MouseUp(MouseEventArgs e)
+        public void HandleMouseUp(MouseEventArgs e)
         {
-            _gestureHandler.MouseUp(e);
+            _gestureHandler.HandleMouseUp(e);
 
             Recalculate();
+        }
+
+        public void HandleKeyDown(KeyEventArgs keyEventArgs)
+        {
+            _gestureHandler.HandleKeyDown(keyEventArgs);
+        }
+
+        public void HandleKeyUp(KeyEventArgs keyEventArgs)
+        {
+            _gestureHandler.HandleKeyUp(keyEventArgs);
         }
     }
 }

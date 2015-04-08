@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Common;
+using JJ.Framework.Presentation.Svg.Enums;
 using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,30 @@ namespace JJ.Framework.Presentation.WinForms
 {
     public static class ConversionExtensions
     {
-        public static JJ.Framework.Presentation.Svg.EventArg.MouseEventArgs ToSvg(this System.Windows.Forms.MouseEventArgs source)
+        public static JJ.Framework.Presentation.Svg.EventArg.KeyEventArgs ToSvg(this System.Windows.Forms.KeyEventArgs sourceEventArgs)
         {
-            if (source == null) throw new NullException(() => source);
+            if (sourceEventArgs == null) throw new NullException(() => sourceEventArgs);
 
-            var dest = new JJ.Framework.Presentation.Svg.EventArg.MouseEventArgs(null, source.X, source.Y, source.Button.ToSvg());
+            var destEventArgs = new JJ.Framework.Presentation.Svg.EventArg.KeyEventArgs(
+                (KeyCodeEnum)sourceEventArgs.KeyValue, 
+                sourceEventArgs.Shift,
+                sourceEventArgs.Control,
+                sourceEventArgs.Alt);
 
-            return dest;
+            return destEventArgs;
+        }
+
+        public static JJ.Framework.Presentation.Svg.EventArg.MouseEventArgs ToSvg(this System.Windows.Forms.MouseEventArgs sourceEventArgs)
+        {
+            if (sourceEventArgs == null) throw new NullException(() => sourceEventArgs);
+
+            var destEventArgs = new JJ.Framework.Presentation.Svg.EventArg.MouseEventArgs(
+                null, 
+                sourceEventArgs.X, 
+                sourceEventArgs.Y, 
+                sourceEventArgs.Button.ToSvg());
+
+            return destEventArgs;
         }
 
         public static JJ.Framework.Presentation.Svg.Enums.MouseButtonEnum ToSvg(this System.Windows.Forms.MouseButtons source)

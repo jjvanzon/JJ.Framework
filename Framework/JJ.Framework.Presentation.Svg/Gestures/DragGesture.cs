@@ -39,7 +39,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         private MouseMoveGesture _canvasMouseMoveGesture;
         private MouseUpGesture _canvasMouseUpGesture;
 
-        public override void FireMouseDown(object sender, MouseEventArgs e)
+        public override void HandleMouseDown(object sender, MouseEventArgs e)
         {
             if (e.Element != null)
             {
@@ -59,7 +59,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             }
         }
 
-        public override void FireMouseMove(object sender, MouseEventArgs e)
+        public override void HandleMouseMove(object sender, MouseEventArgs e)
         {
             if (DraggedElement != null)
             {
@@ -81,7 +81,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             }
         }
 
-        public override void FireMouseUp(object sender, MouseEventArgs e)
+        public override void HandleMouseUp(object sender, MouseEventArgs e)
         {
             // TODO: Should this not cause a DragCancelled?
             DraggedElement = null;

@@ -21,13 +21,13 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         private float _previousPointerX;
         private float _previousPointerY;
 
-        public override void FireMouseDown(object sender, MouseEventArgs e)
+        public override void HandleMouseDown(object sender, MouseEventArgs e)
         {
             _previousPointerX = e.X;
             _previousPointerY = e.Y;
         }
 
-        public override void FireMouseMove(object sender, MouseEventArgs e)
+        public override void HandleMouseMove(object sender, MouseEventArgs e)
         {
             if (MouseMove == null)
             {
@@ -43,8 +43,5 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             _previousPointerX = e.X;
             _previousPointerY = e.Y;
         }
-
-        public override void FireMouseUp(object sender, MouseEventArgs e)
-        { }
     }
 }

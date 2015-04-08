@@ -6,15 +6,15 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Gestures
 {
-    public class MouseUpGesture : GestureBase
+    public class KeyDownGesture : GestureBase
     {
-        public event EventHandler<MouseEventArgs> MouseUp;
+        public EventHandler<KeyEventArgs> KeyDown;
 
-        public override void HandleMouseUp(object sender, MouseEventArgs e)
+        public override void HandleKeyDown(object sender, EventArg.KeyEventArgs e)
         {
-            if (MouseUp != null)
+            if (KeyDown != null)
             {
-                MouseUp(sender, e);
+                KeyDown(sender, e);
             }
         }
     }

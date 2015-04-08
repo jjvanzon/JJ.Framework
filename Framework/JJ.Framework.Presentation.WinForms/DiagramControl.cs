@@ -43,7 +43,7 @@ namespace JJ.Framework.Presentation.WinForms
         {
             if (Diagram != null)
             {
-                Diagram.MouseDown(e.ToSvg());
+                Diagram.HandleMouseDown(e.ToSvg());
             }
 
             base.OnMouseDown(e);
@@ -55,7 +55,7 @@ namespace JJ.Framework.Presentation.WinForms
         {
             if (Diagram != null)
             {
-                Diagram.MouseMove(e.ToSvg());
+                Diagram.HandleMouseMove(e.ToSvg());
             }
 
             base.OnMouseMove(e);
@@ -70,12 +70,32 @@ namespace JJ.Framework.Presentation.WinForms
         {
             if (Diagram != null)
             {
-                Diagram.MouseUp(e.ToSvg());
+                Diagram.HandleMouseUp(e.ToSvg());
             }
 
             base.OnMouseUp(e);
 
             Refresh();
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (Diagram != null)
+            {
+                Diagram.HandleKeyDown(e.ToSvg());
+            }
+
+            base.OnKeyDown(e);
+        }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            if (Diagram != null)
+            {
+                Diagram.HandleKeyUp(e.ToSvg());
+            }
+
+            base.OnKeyUp(e);
         }
 
         public override void Refresh()

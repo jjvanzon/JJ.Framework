@@ -14,9 +14,35 @@ namespace JJ.Framework.Presentation.Svg.Gestures
     /// </summary>
     public abstract class GestureBase : IGesture
     {
-        public abstract void FireMouseDown(object sender, MouseEventArgs e);
-        public abstract void FireMouseMove(object sender, MouseEventArgs e);
-        public abstract void FireMouseUp(object sender, MouseEventArgs e);
+        /// <summary>
+        /// Does nothing.
+        /// </summary>
+        public virtual void HandleMouseDown(object sender, MouseEventArgs e)
+        { }
+
+        /// <summary>
+        /// Base member does nothing.
+        /// </summary>
+        public virtual void HandleMouseMove(object sender, MouseEventArgs e)
+        { }
+
+        /// <summary>
+        /// Base member does nothing.
+        /// </summary>
+        public virtual void HandleMouseUp(object sender, MouseEventArgs e)
+        { }
+
+        /// <summary>
+        /// Base member does nothing.
+        /// </summary>
+        public virtual void HandleKeyDown(object sender, KeyEventArgs e)
+        { }
+
+        /// <summary>
+        /// Base member does nothing.
+        /// </summary>
+        public virtual void HandleKeyUp(object sender, KeyEventArgs e)
+        { }
 
         public virtual bool MouseCaptureRequired
         {

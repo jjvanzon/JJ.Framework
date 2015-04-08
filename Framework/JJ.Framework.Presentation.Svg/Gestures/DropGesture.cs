@@ -25,13 +25,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             _dragGestures = dragGestures;
         }
 
-        public override void FireMouseDown(object sender, MouseEventArgs e)
-        { }
-
-        public override void FireMouseMove(object sender, MouseEventArgs e)
-        { }
-
-        public override void FireMouseUp(object sender, MouseEventArgs e)
+        public override void HandleMouseUp(object sender, MouseEventArgs e)
         {
             foreach (DragGesture dragGesture in _dragGestures)
             {

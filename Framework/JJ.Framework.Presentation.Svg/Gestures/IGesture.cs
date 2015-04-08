@@ -8,9 +8,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 {
     public interface IGesture
     {
-        void FireMouseDown(object sender, MouseEventArgs e);
-        void FireMouseMove(object sender, MouseEventArgs e);
-        void FireMouseUp(object sender, MouseEventArgs e);
+        void HandleMouseDown(object sender, MouseEventArgs e);
+        void HandleMouseMove(object sender, MouseEventArgs e);
+        void HandleMouseUp(object sender, MouseEventArgs e);
+        void HandleKeyDown(object sender, KeyEventArgs e);
+        void HandleKeyUp(object sender, KeyEventArgs e);
 
         /// <summary>
         /// Tells if mouse down makes the control receive all mouse events
@@ -18,11 +20,5 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         /// reaching other elements, even when going outside the capturing element's rectangle.
         /// </summary>
         bool MouseCaptureRequired { get; }
-
-        /// <summary>
-        /// When true, events that go off on a child element
-        /// also go off on a parent element.
-        /// </summary>
-        //bool MustBubble { get; set; }
     }
 }
