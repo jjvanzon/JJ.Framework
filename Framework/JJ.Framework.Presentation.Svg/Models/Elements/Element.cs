@@ -49,7 +49,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         public bool Visible { get; set; }
         public int ZIndex { get; set; }
 
-        public string Tag { get; set; }
+        public object Tag { get; set; }
 
         // Related Objects
 
