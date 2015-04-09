@@ -22,7 +22,7 @@ namespace JJ.Framework.Logging
             return sb.ToString();
         }
 
-        private static string FormatException(Exception ex, bool includeStackTrace)
+        public static string FormatException(Exception ex, bool includeStackTrace)
         {
             string message = ex.Message;
             if (includeStackTrace)
