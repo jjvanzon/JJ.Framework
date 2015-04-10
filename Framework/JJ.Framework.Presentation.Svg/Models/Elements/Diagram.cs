@@ -14,6 +14,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
     public class Diagram
     {
+        public event EventHandler PaintRequested;
+
         public Diagram()
         {
             Elements = new DiagramElements(this);
@@ -21,6 +23,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             _canvas = new Rectangle();
             _canvas.Diagram = this;
             _canvas.ZIndex = Int32.MinValue;
+            _canvas.Tag = "Canvas";
 
             _gestureHandler = new GestureHandler(this);
         }
@@ -39,6 +42,11 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
              var visitor = new CalculationVisitor();
              _elementsOrderByZIndex = visitor.Execute(this);
+
+             //if (PaintRequested != null)
+             //{
+             //    PaintRequested(this, EventArgs.Empty);
+             //}
         }
 
         private IList<Element> _elementsOrderByZIndex = new Element[0];

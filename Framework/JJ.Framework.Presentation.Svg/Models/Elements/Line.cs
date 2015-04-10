@@ -100,7 +100,19 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
             get
             {
-                return String.Format("{{{0}}} ({1}, {2}) - ({3}, {4}) (HashCode={5})", GetType().Name, PointA.X, PointA.Y, PointB.X, PointB.Y, GetHashCode());
+                var sb = new StringBuilder();
+                sb.Append(String.Format("{{{0}}} ({1}, {2}) - ({3}, {4}) ", GetType().Name, PointA.X, PointA.Y, PointB.X, PointB.Y));
+
+                string tag = Convert.ToString(Tag);
+                if (!String.IsNullOrEmpty(tag))
+                {
+                    sb.Append("Tag='");
+                    sb.Append(Tag);
+                    sb.Append("' ");
+                }
+
+                sb.Append(String.Format("(HashCode={0})", GetHashCode()));
+                return sb.ToString();
             }
         }
     }

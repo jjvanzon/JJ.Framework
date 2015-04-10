@@ -25,9 +25,27 @@ namespace JJ.Framework.Presentation.WinForms
             set
             {
                 if (_diagram == value) return;
+
+                if (_diagram != null)
+                {
+                    _diagram.PaintRequested -= Diagram_PaintRequested;
+                }
+
                 _diagram = value;
+
+                if (_diagram != null)
+                {
+                    _diagram.PaintRequested += Diagram_PaintRequested;
+                }
+
                 Refresh();
             }
+        }
+
+        private void Diagram_PaintRequested(object sender, EventArgs e)
+        {
+            
+            throw new NotImplementedException();
         }
 
         private ControlGraphicsBuffer _graphicsBuffer;
@@ -60,10 +78,10 @@ namespace JJ.Framework.Presentation.WinForms
 
             base.OnMouseMove(e);
 
-            if (e.Button != MouseButtons.None)
-            {
+            //if (e.Button != MouseButtons.None)
+            //{
                 Refresh();
-            }
+            //}
         }
 
         protected override void OnMouseUp(MouseEventArgs e)

@@ -232,7 +232,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 if (element != null)
                 {
-                    bool isInRectangle = GeometryCalculations.IsInRectangle(
+                    bool isInRectangle = Geometry.IsInRectangle(
                             pointerX, pointerY,
                             element.CalculatedX, element.CalculatedY,
                             element.CalculatedX + element.Width, element.CalculatedY + element.Height);

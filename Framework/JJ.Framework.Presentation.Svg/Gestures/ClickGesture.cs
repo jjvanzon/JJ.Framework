@@ -36,7 +36,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
             if (_mouseDownElement != null)
             {
-                bool mouseDownElementIsHit = GeometryCalculations.IsInRectangle(
+                bool mouseDownElementIsHit = Geometry.IsInRectangle(
                     e.X, e.Y,
                     _mouseDownElement.CalculatedX,
                     _mouseDownElement.CalculatedY,

@@ -45,7 +45,19 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
             get
             {
-                return String.Format("{{{0}}} '{1}', X={2}, Y={3} (HashCode={4})", GetType().Name, Text, X, Y, GetHashCode());
+                var sb = new StringBuilder();
+                sb.Append(String.Format("{{{0}}} '{1}', X={2}, Y={3} ", GetType().Name, Text, X, Y));
+
+                string tag = Convert.ToString(Tag);
+                if (!String.IsNullOrEmpty(tag))
+                {
+                    sb.Append("Tag='");
+                    sb.Append(Tag);
+                    sb.Append("' ");
+                }
+
+                sb.Append(String.Format("(HashCode={0})", GetHashCode()));
+                return sb.ToString();
             }
         }
     }

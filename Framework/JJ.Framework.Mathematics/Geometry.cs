@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Mathematics
 {
-    public static class GeometryCalculations
+    public static class Geometry
     {
         public static bool IsInRectangle(float x, float y, float x1, float y1, float x2, float y2)
         {
