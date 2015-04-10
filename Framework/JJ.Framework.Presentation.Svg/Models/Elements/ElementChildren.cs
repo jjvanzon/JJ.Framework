@@ -58,6 +58,11 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             }
         }
 
+        public void Clear()
+        {
+            _childrenRelationship.Clear();
+        }
+
         [DebuggerHidden]
         public bool Contains(Element child)
         {

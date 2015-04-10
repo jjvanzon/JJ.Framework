@@ -39,6 +39,7 @@
     <Compile Include="CultureHelper.cs" />
     <Compile Include="EmbeddedResourceHelper.cs" />
     <Compile Include="IListExtensions.cs" />
+    <Compile Include="HashSetExtensions.cs" />
     <Compile Include="KeyHelper.cs" />
     <Compile Include="KeyValuePairHelper.cs" />
     <Compile Include="StringExtensions_Casing.cs" />

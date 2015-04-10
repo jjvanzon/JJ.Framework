@@ -119,11 +119,10 @@ namespace JJ.Framework.Common
         }
 
         /// <summary>
-        /// Original Except from .NET automatically also does a distinct, which is something you do not always want.
+        /// The original Except() method from .NET automatically does a distinct, which is something you do not always want.
         /// </summary>
         public static IEnumerable<T> Except<T>(this IEnumerable<T> source, IEnumerable<T> input, bool distinct)
         {
-            // 
             if (distinct)
             {
                 return source.Except(input);

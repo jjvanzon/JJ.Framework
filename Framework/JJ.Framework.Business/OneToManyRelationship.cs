@@ -52,5 +52,13 @@ namespace JJ.Framework.Business
 
             NullifyParent(child);
         }
+
+        public void Clear()
+        {
+            foreach (TChild child in _children.ToArray())
+            {
+                Remove(child);
+            }
+        }
     }
 }
