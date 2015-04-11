@@ -2,6 +2,7 @@
 using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Presentation.Svg.Gestures;
 using JJ.Framework.Presentation.Svg.Models.Elements;
+using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Presentation.Svg.Visitors;
 using JJ.Framework.Reflection.Exceptions;
 using System;
@@ -21,6 +22,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             Elements = new DiagramElements(this);
 
             _canvas = new Rectangle();
+            _canvas.LineStyle = new LineStyle { Visible = false };
             _canvas.Diagram = this;
             _canvas.ZIndex = Int32.MinValue;
             _canvas.Tag = "Canvas";
