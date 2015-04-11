@@ -109,11 +109,14 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
                 _parentRelationship.Parent = value;
 
                 // Side-Effect: add orphans to root rectangle of Diagram.
-                if (Parent == null)
+                if (Diagram != null)
                 {
-                    if (this != Diagram.Canvas)
+                    if (Parent == null)
                     {
-                        Diagram.Canvas.Children.Add(this);
+                        if (this != Diagram.Canvas)
+                        {
+                            Diagram.Canvas.Children.Add(this);
+                        }
                     }
                 }
             }
