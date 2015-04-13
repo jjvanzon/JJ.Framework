@@ -1,5 +1,7 @@
-﻿using JJ.Framework.Presentation.Svg.Models.Elements;
+﻿using JJ.Framework.Business;
+using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Svg.Relationships;
+using JJ.Framework.Presentation.Svg.SideEffects;
 using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections;
@@ -34,20 +36,17 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         public void Add(Element element)
         {
-            _relationship.Add(element);
+            ISideEffect sideEffect = new SideEffect_VerifyNoParentChildRelationShips_WhenSettingDiagram(element);
+            sideEffect.Execute();
 
-            // Side-effect: When added to the model, it is added as a child of the root rectangle.
-            if (element.Parent == null)
-            {
-                if (element != _diagram.Canvas)
-                {
-                    element.Parent = _diagram.Canvas;
-                }
-            }
+            _relationship.Add(element);
         }
 
         public void Remove(Element element)
         {
+            ISideEffect sideEffect = new SideEffect_VerifyNoParentChildRelationShips_WhenSettingDiagram(element);
+            sideEffect.Execute();
+
             _relationship.Remove(element);
         }
 

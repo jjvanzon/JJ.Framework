@@ -96,24 +96,26 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             var rectangle = new SvgElements.Rectangle()
             {
+                Diagram = diagram,
+                Parent = diagram.Canvas,
                 X = SPACING,
                 Y = SPACING,
                 Width = BLOCK_WIDTH,
                 Height = BLOCK_HEIGHT,
                 BackStyle = SvgHelper.BlueBackStyle,
-                LineStyle = SvgHelper.DefaultLineStyle,
-                Diagram = diagram
+                LineStyle = SvgHelper.DefaultLineStyle
             };
 
             var label2 = new SvgElements.Label
             {
+                Diagram = diagram,
+                Parent = rectangle,
                 Text = text,
                 X = 0,
                 Y = 0,
                 Width = BLOCK_WIDTH,
                 Height = BLOCK_HEIGHT,
-                TextStyle = SvgHelper.DefaultTextStyle,
-                Parent = rectangle
+                TextStyle = SvgHelper.DefaultTextStyle
             };
 
             return rectangle;

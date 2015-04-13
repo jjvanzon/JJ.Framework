@@ -24,6 +24,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
             var point1 = new SvgElements.Point
             {
+                Diagram = diagram,
                 Parent = rectangle1,
                 X = 150,
                 Y = 30,
@@ -32,6 +33,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
             var point2 = new SvgElements.Point  
             {
+                Diagram = diagram,
                 Parent = rectangle2,
                 X = 150,
                 Y = 30,
@@ -41,6 +43,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var line = new SvgElements.Line
             {
                 Diagram = diagram,
+                Parent = diagram.Canvas,
                 PointA = point1,
                 PointB = point2,
                 LineStyle = SvgHelper.DefaultLineStyle
@@ -56,6 +59,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var rectangle = new SvgElements.Rectangle(new MoveGesture())
             {
                 Diagram = diagram,
+                Parent = diagram.Canvas,
                 X = x,
                 Y = y,
                 Width = 300,
@@ -65,6 +69,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
             var label = new SvgElements.Label 
             {
+                Diagram = diagram,
                 Parent = rectangle,
                 Width = 300,
                 Height = 60,

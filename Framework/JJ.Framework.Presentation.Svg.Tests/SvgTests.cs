@@ -12,7 +12,7 @@ namespace JJ.Framework.Presentation.Svg.Tests
     public class SvgTests
     {
         [TestMethod]
-        public void Test_Svg_RelativeCoordinate_ToAbsoluteVisitor()
+        public void Test_Svg_CalculationVisitor_RelativeCoordinate()
         {
             int zindex = 1;
 
@@ -21,6 +21,7 @@ namespace JJ.Framework.Presentation.Svg.Tests
             var point = new Point
             {
                 Diagram = diagram,
+                Parent = diagram.Canvas,
                 X = 1,
                 Y = 2,
                 ZIndex = zindex++
@@ -28,6 +29,7 @@ namespace JJ.Framework.Presentation.Svg.Tests
 
             var childPoint1 = new Point 
             {
+                Diagram = diagram,
                 Parent = point,
                 X = 10, 
                 Y = 20,
@@ -36,6 +38,7 @@ namespace JJ.Framework.Presentation.Svg.Tests
 
             var childPoint2 = new Point
             { 
+                Diagram = diagram,
                 Parent = point,
                 X = 12, 
                 Y = 22,

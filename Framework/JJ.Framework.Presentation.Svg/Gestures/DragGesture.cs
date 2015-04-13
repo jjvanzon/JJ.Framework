@@ -83,7 +83,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         public override void HandleMouseUp(object sender, MouseEventArgs e)
         {
-            // TODO: Should this not cause a DragCancelled?
+            if (DragCancelled != null)
+            {
+                DragCancelled(sender, EventArgs.Empty);
+            }
+
             DraggedElement = null;
         }
 

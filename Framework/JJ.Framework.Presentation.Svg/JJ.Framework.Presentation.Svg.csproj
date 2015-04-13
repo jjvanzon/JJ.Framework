@@ -79,6 +79,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Elements\Diagram.cs" />
     <Compile Include="Models\Elements\DiagramElements.cs" />
+    <Compile Include="SideEffects\SideEffect_VerifyDiagram_WhenSettingParentOrChild.cs" />
+    <Compile Include="SideEffects\SideEffect_VerifyNoParentChildRelationShips_WhenSettingDiagram.cs" />
     <Compile Include="Visitors\CalculationVisitor.cs" />
     <Compile Include="Transformation\ITransformer.cs" />
     <Compile Include="Transformation\RotateTransformer.cs" />

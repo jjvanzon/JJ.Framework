@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using JJ.Framework.Presentation.Svg.Relationships;
+using JJ.Framework.Presentation.Svg.SideEffects;
+using JJ.Framework.Business;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
@@ -36,32 +38,26 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
             if (child == null) throw new NullException(() => child);
 
-            // Side-effect
-            if (_parent.Diagram == null)
-            {
-                throw new Exception("To add a child, the parent must be part of a diagram.");
-            }
+            ISideEffect sideEffect = new SideEffect_VerifyDiagram_WhenSettingParentOrChild(child, _parent);
+            sideEffect.Execute();
 
             _childrenRelationship.Add(child);
-
-            // Side-effect: added children are made part of the same Diagram as the parent.
-            child.Diagram = _parent.Diagram;
         }
 
         public void Remove(Element child)
         {
-            _childrenRelationship.Remove(child);
+            ISideEffect sideEffect = new SideEffect_VerifyDiagram_WhenSettingParentOrChild(child, _parent);
+            sideEffect.Execute();
 
-            // Side-effect: orphaned children are added to the Diagram's root rectangle.
-            if (child != child.Diagram.Canvas)
-            {
-                child.Diagram.Canvas.Children.Add(child);
-            }
+            _childrenRelationship.Remove(child);
         }
 
         public void Clear()
         {
-            _childrenRelationship.Clear();
+            foreach (Element child in this.ToArray())
+            {
+                Remove(child);
+            }
         }
 
         [DebuggerHidden]

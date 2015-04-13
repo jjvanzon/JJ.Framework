@@ -9,6 +9,7 @@ using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Business;
 using JJ.Framework.Presentation.Svg.Relationships;
 using JJ.Framework.Presentation.Svg.Gestures;
+using JJ.Framework.Presentation.Svg.SideEffects;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
@@ -61,15 +62,10 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             get { return _diagramRelationship.Parent; }
             set
             {
-                // Side-effect: when removed from Diagram, also remove relationship between parent and child.
-                if (value == null)
-                {
-                    // TODO: This would go wrong if this side effect was executed at the end of this
-                    // property setter, because after the Diagram has been nullified, 
-                    // you cannot manage parent-child relations at all anymore.
-                    // This order-dependence stinks.
-                    Parent = null;
-                }
+                if (_diagramRelationship.Parent == value) return;
+
+                ISideEffect sideEffect = new SideEffect_VerifyNoParentChildRelationShips_WhenSettingDiagram(this);
+                sideEffect.Execute();
 
                 _diagramRelationship.Parent = value;
             }
@@ -83,43 +79,12 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             get { return _parentRelationship.Parent; }
             set 
             {
-                // Side-effect: equate parent's and child's diagram.
-                if (value != null)
-                {
-                    if (value.Diagram == null && this.Diagram == null)
-                    {
-                        throw new Exception("To assign a parent to a child, one of them must be part of a diagram.");
-                    }
-                    else if (value.Diagram == null && this.Diagram != null)
-                    {
-                        value.Diagram = this.Diagram;
-                    }
-                    else if (value.Diagram != null && this.Diagram == null)
-                    {
-                        this.Diagram = value.Diagram;
-                    }
-                    else if (value.Diagram != null && this.Diagram != null)
-                    {
-                        if (value.Diagram != this.Diagram)
-                        {
-                            throw new Exception("Diagram of parent and child must be the same.");
-                        }
-                    }
-                }
+                if (_parentRelationship.Parent == value) return;
+
+                ISideEffect sideEffect = new SideEffect_VerifyDiagram_WhenSettingParentOrChild(this, value);
+                sideEffect.Execute();
 
                 _parentRelationship.Parent = value;
-
-                // Side-Effect: add orphans to root rectangle of Diagram.
-                if (Diagram != null)
-                {
-                    if (Parent == null)
-                    {
-                        if (this != Diagram.Canvas)
-                        {
-                            Diagram.Canvas.Children.Add(this);
-                        }
-                    }
-                }
             }
         }
 
