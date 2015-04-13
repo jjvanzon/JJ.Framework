@@ -26,26 +26,10 @@ namespace JJ.Framework.Presentation.WinForms
             {
                 if (_diagram == value) return;
 
-                if (_diagram != null)
-                {
-                    _diagram.PaintRequested -= Diagram_PaintRequested;
-                }
-
                 _diagram = value;
-
-                if (_diagram != null)
-                {
-                    _diagram.PaintRequested += Diagram_PaintRequested;
-                }
 
                 Refresh();
             }
-        }
-
-        private void Diagram_PaintRequested(object sender, EventArgs e)
-        {
-            
-            throw new NotImplementedException();
         }
 
         private ControlGraphicsBuffer _graphicsBuffer;
