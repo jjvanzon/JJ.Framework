@@ -31,7 +31,6 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         private Rectangle _canvas;
-        /// <summary> read-only. TODO: Rename to Canvas? </summary>
         [DebuggerHidden]
         public Rectangle Canvas
         {

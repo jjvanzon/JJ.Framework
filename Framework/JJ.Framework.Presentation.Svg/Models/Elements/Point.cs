@@ -39,6 +39,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// <summary> not nullable, auto-instantiated </summary>
         public PointStyle PointStyle
         {
+            [DebuggerHidden]
             get { return _pointStyle; }
             set
             {

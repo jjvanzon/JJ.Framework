@@ -161,8 +161,16 @@
     <value>{0} is not above {1}.</value>
     <comment>{0} = property name, {1} = minimum value</comment>
   </data>
+  <data name="NotDouble" xml:space="preserve">
+    <value>{0} is not a broken number.</value>
+    <comment>{0} = property name</comment>
+  </data>
   <data name="NotIn" xml:space="preserve">
     <value>{0} should have one of the values: {1}.</value>
     <comment>{0} = property name, {1} = allowed values</comment>
+  </data>
+  <data name="NotInteger" xml:space="preserve">
+    <value>{0} is not an integer number.</value>
+    <comment>{0} = property name</comment>
   </data>
 </root>

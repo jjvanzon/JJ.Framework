@@ -122,7 +122,7 @@
     <comment>{0} = property name, {1} = value</comment>
   </data>
   <data name="IsInteger" xml:space="preserve">
-    <value>{0} is integer.</value>
+    <value>{0} is a 32-bit integer number.</value>
     <comment>{0} = property name</comment>
   </data>
   <data name="IsNot" xml:space="preserve">
@@ -161,9 +161,17 @@
     <value>{0} is not above {1}.</value>
     <comment>{0} = property name, {1} = minimum value</comment>
   </data>
+  <data name="NotDouble" xml:space="preserve">
+    <value>{0} is not a 64-bit floating point number.</value>
+    <comment>{0} = property name</comment>
+  </data>
   <data name="NotIn" xml:space="preserve">
     <value>{0} is not in {1}.</value>
     <comment>{0} = property name, {1} = allowed values</comment>
+  </data>
+  <data name="NotInteger" xml:space="preserve">
+    <value>{0} is not a 32-bit integer number.</value>
+    <comment>{0} = property name</comment>
   </data>
   <data name="README" xml:space="preserve">
     <value>THIS IS NOT A RESOURCE TEXT, but an instruction to programmers.

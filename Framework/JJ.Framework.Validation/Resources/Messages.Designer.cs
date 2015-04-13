@@ -70,7 +70,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is integer..
+        ///   Looks up a localized string similar to {0} is a 32-bit integer number..
         /// </summary>
         internal static string IsInteger {
             get {
@@ -160,11 +160,29 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is not a 64-bit floating point number..
+        /// </summary>
+        internal static string NotDouble {
+            get {
+                return ResourceManager.GetString("NotDouble", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not in {1}..
         /// </summary>
         internal static string NotIn {
             get {
                 return ResourceManager.GetString("NotIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not a 32-bit integer number..
+        /// </summary>
+        internal static string NotInteger {
+            get {
+                return ResourceManager.GetString("NotInteger", resourceCulture);
             }
         }
         

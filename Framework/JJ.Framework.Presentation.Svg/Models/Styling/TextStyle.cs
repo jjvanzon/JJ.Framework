@@ -3,6 +3,7 @@ using JJ.Framework.Presentation.Svg.Helpers;
 using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -30,6 +31,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Styling
         /// </summary>
         public Font Font
         {
+            [DebuggerHidden]
             get { return _font; }
             set
             {

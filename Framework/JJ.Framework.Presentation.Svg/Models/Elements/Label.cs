@@ -27,6 +27,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// <summary> not nullable, auto-instantiated </summary>
         public TextStyle TextStyle
         {
+            [DebuggerHidden]
             get { return _textStyle; }
             set
             {

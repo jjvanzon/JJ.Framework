@@ -27,6 +27,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// </summary>
         public Point PointA
         {
+            [DebuggerHidden]
             get { return _pointA; }
             set
             {
@@ -42,6 +43,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// </summary>
         public Point PointB
         {
+            [DebuggerHidden]
             get { return _pointB; }
             set
             {
@@ -54,6 +56,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// <summary> not nullable, auto-instantiated </summary>
         public LineStyle LineStyle
         {
+            [DebuggerHidden]
             get { return _lineStyle; }
             set
             {

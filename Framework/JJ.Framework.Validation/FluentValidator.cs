@@ -252,6 +252,42 @@ namespace JJ.Framework.Validation
             return this;
         }
 
+        public FluentValidator<TRootObject> IsDouble()
+        {
+            string value = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(value))
+            {
+                return this;
+            }
+
+            double convertedValue;
+            if (!Double.TryParse(value, out convertedValue))
+            {
+                ValidationMessages.Add(_propertyKey, MessageFormatter.NotDouble(_propertyDisplayName));
+            }
+
+            return this;
+        }
+
+        public FluentValidator<TRootObject> IsInteger()
+        {
+            string value = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(value))
+            {
+                return this;
+            }
+
+            int convertedValue;
+            if (!Int32.TryParse(value, out convertedValue))
+            {
+                ValidationMessages.Add(_propertyKey, MessageFormatter.NotInteger(_propertyDisplayName));
+            }
+
+            return this;
+        }
+
         public FluentValidator<TRootObject> IsEnumValue<T>()
             where T : struct
         {

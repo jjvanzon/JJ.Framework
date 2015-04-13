@@ -26,6 +26,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             _childrenRelationship = new ParentToChildrenRelationship(_parent, _list);
         }
 
+        [DebuggerHidden]
         public int Count
         {
             get { return _list.Count; }

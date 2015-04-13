@@ -43,6 +43,16 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(Messages.IsInteger, propertyDisplayName);
         }
 
+        internal static string NotInteger(string propertyDisplayName)
+        {
+            return String.Format(Messages.NotInteger, propertyDisplayName);
+        }
+
+        public static string NotDouble(string propertyDisplayName)
+        {
+            return String.Format(Messages.NotDouble, propertyDisplayName);
+        }
+
         public static string Min(string propertyDisplayName, object min)
         {
             return String.Format(Messages.Min, propertyDisplayName, min);

@@ -79,6 +79,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         public Element Parent
         {
+            [DebuggerHidden]
             get { return _parentRelationship.Parent; }
             set 
             {

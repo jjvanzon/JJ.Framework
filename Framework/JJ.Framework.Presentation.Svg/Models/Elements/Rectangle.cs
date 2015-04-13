@@ -29,6 +29,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// <summary> not nullable, auto-instantiated </summary>
         public BackStyle BackStyle
         {
+            [DebuggerHidden]
             get { return _backStyle; }
             set
             {
@@ -41,6 +42,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// <summary> not nullable, auto-instantiated </summary>
         public LineStyle TopLineStyle
         {
+            [DebuggerHidden]
             get { return _topLineStyle; }
             set
             {
@@ -53,6 +55,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// <summary> not nullable, auto-instantiated </summary>
         public LineStyle RightLineStyle
         {
+            [DebuggerHidden]
             get { return _rightLineStyle; }
             set
             {
@@ -65,6 +68,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// <summary> not nullable, auto-instantiated </summary>
         public LineStyle BottomLineStyle
         {
+            [DebuggerHidden]
             get { return _bottomLineStyle; }
             set
             {
@@ -77,6 +81,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// <summary> not nullable, auto-instantiated </summary>
         public LineStyle LeftLineStyle
         {
+            [DebuggerHidden]
             get { return _leftLineStyle; }
             set
             {

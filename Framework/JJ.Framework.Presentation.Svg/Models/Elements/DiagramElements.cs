@@ -26,6 +26,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             _relationship = new DiagramToElementsRelationship(diagram, _elements);
         }
 
+        [DebuggerHidden]
         public int Count
         {
             get { return _elements.Count; }
