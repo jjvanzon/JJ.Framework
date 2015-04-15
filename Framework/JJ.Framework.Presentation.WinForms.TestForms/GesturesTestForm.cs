@@ -42,6 +42,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             MouseUpGesture mouseUpGesture = new MouseUpGesture();
             mouseUpGesture.MouseUp += mouseUpGesture_MouseUp;
 
+            MouseLeaveGesture mouseLeaveGesture = new MouseLeaveGesture();
+            mouseLeaveGesture.MouseLeave += mouseLeaveGesture_MouseLeave;
+
             ClickGesture clickGesture = new ClickGesture();
             clickGesture.Click += clickGesture_Click;
 
@@ -60,13 +63,14 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             rectangle.Gestures.Add(mouseDownGesture);
             rectangle.Gestures.Add(mouseMoveGesture);
             rectangle.Gestures.Add(mouseUpGesture);
+            rectangle.Gestures.Add(mouseLeaveGesture);
 
             currentY += BLOCK_HEIGHT + SPACING;
 
             rectangle = CreateRectangle(diagram, "Click Me Too");
             rectangle.Y = currentY;
-            rectangle.Gestures.Add(mouseDownGesture);
-            rectangle.Gestures.Add(mouseMoveGesture);
+            //rectangle.Gestures.Add(mouseDownGesture);
+            //rectangle.Gestures.Add(mouseMoveGesture);
             rectangle.Gestures.Add(clickGesture);
 
             currentY += BLOCK_HEIGHT + SPACING;
@@ -134,6 +138,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         private void mouseUpGesture_MouseUp(object sender, Svg.EventArg.MouseEventArgs e)
         {
             TrySetElementText(e.Element, "MouseUp");
+        }
+
+        private void mouseLeaveGesture_MouseLeave(object sender, Svg.EventArg.MouseEventArgs e)
+        {
+            TrySetElementText(e.Element, "MouseLeave");
         }
 
         private void clickGesture_Click(object sender, ClickEventArgs e)

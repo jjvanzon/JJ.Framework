@@ -46,6 +46,8 @@
     <Compile Include="Gestures\GestureBase.cs" />
     <Compile Include="Gestures\KeyDownGesture.cs" />
     <Compile Include="Gestures\KeyUpGesture.cs" />
+    <Compile Include="Gestures\MouseLeaveGesture.cs" />
+    <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />
     <Compile Include="Relationships\DiagramToElementsRelationship.cs" />
     <Compile Include="Relationships\ElementToDiagramRelationship.cs" />
