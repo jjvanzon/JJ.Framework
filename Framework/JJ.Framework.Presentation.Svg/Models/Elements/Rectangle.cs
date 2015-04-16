@@ -122,17 +122,18 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             get
             {
                 var sb = new StringBuilder();
-                sb.Append(String.Format("{{{0}}} X={1}, Y={2}, Width={3}, Height={4} ", GetType().Name, X, Y, Width, Height));
+
+                sb.Append(String.Format("{{{0}}} ", GetType().Name));
 
                 string tag = Convert.ToString(Tag);
                 if (!String.IsNullOrEmpty(tag))
                 {
-                    sb.Append("Tag='");
-                    sb.Append(Tag);
-                    sb.Append("' ");
+                    sb.Append(String.Format("Tag='{0}', ", Tag));
                 }
 
+                sb.Append(String.Format("X={0}, Y={1}, Width={2}, Height={3} ", X, Y, Width, Height));
                 sb.Append(String.Format("(HashCode={0})", GetHashCode()));
+
                 return sb.ToString();
             }
         }

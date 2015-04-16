@@ -13,24 +13,24 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         public event EventHandler<MouseEventArgs> MouseLeave;
 
         private Diagram _diagram;
-        private MouseMoveGesture _diagramMouseMoveGesture;
+        private MouseMoveGesture _canvasMouseMoveGesture;
 
         public MouseLeaveGesture()
         {
-            _diagramMouseMoveGesture = new MouseMoveGesture();
-            _diagramMouseMoveGesture.MouseMove += _diagramMouseMoveGesture_MouseMove;
+            _canvasMouseMoveGesture = new MouseMoveGesture();
+            _canvasMouseMoveGesture.MouseMove += _canvasMouseMoveGesture_MouseMove;
         }
 
         ~MouseLeaveGesture()
         { 
             if (_diagram != null)
             {
-                if (_diagramMouseMoveGesture != null)
+                if (_canvasMouseMoveGesture != null)
                 {
-                    _diagramMouseMoveGesture.MouseMove -= _diagramMouseMoveGesture_MouseMove;
-                    if (_diagram.Canvas.Gestures.Contains(_diagramMouseMoveGesture))
+                    _canvasMouseMoveGesture.MouseMove -= _canvasMouseMoveGesture_MouseMove;
+                    if (_diagram.Canvas.Gestures.Contains(_canvasMouseMoveGesture))
                     {
-                        _diagram.Canvas.Gestures.Remove(_diagramMouseMoveGesture);
+                        _diagram.Canvas.Gestures.Remove(_canvasMouseMoveGesture);
                     }
                 }
             }
@@ -52,19 +52,21 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                 if (e.Element.Diagram != null)
                 {
                     _diagram = e.Element.Diagram;
-                    _diagram.Canvas.Gestures.Add(_diagramMouseMoveGesture);
+                    _diagram.Canvas.Gestures.Add(_canvasMouseMoveGesture);
                 }
             }
 
             _previousSender = sender as Element;
         }
 
-        private void _diagramMouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
+        private void _canvasMouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
         {
             if (sender != _previousSender)
             {
                 var e2 = new MouseEventArgs(_previousSender, e.X, e.Y, e.MouseButtonEnum);
                 MouseLeave(sender, e2);
+
+                _previousSender = sender as Element;
             }
         }
     }

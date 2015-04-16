@@ -10,6 +10,7 @@ using JJ.Framework.Business;
 using JJ.Framework.Presentation.Svg.Relationships;
 using JJ.Framework.Presentation.Svg.Gestures;
 using JJ.Framework.Presentation.Svg.SideEffects;
+using JJ.Framework.Presentation.Svg.Visitors;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
@@ -30,6 +31,7 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             Children = new ElementChildren(parent: this);
             Visible = true;
             MustBubble = true;
+            Enabled = true;
         }
 
         // Values
@@ -46,10 +48,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         public abstract float Width { get; set; }
         public abstract float Height { get; set; }
-
         public bool Visible { get; set; }
         public int ZIndex { get; set; }
-
         public object Tag { get; set; }
 
         // Related Objects
@@ -90,6 +90,17 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 
         public ElementChildren Children { get; private set; }
 
+        // Gestures
+
+        public IList<IGesture> Gestures { get; private set; }
+
+        public bool MustBubble { get; set; }
+
+        /// <summary>
+        /// Indicates whether the element will respond to mouse and keyboard gestures.
+        /// </summary>
+        public bool Enabled { get; set; }
+
         // Calculated Values
 
         /// <summary>
@@ -97,8 +108,6 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// the ZIndex and the containment structure.
         /// </summary>
         public int CalculatedZIndex { get; internal set; }
-
-        public int CalculatedLayer { get; internal set; }
 
         /// <summary>
         /// Calculated, absolute X coordinate.
@@ -110,10 +119,8 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         /// </summary>
         public float CalculatedY { get; internal set; }
 
-        // Gestures
-
-        public IList<IGesture> Gestures { get; private set; }
-
-        public bool MustBubble { get; set; }
+        public int CalculatedLayer { get; internal set; }
+        public bool CalculatedVisible { get; internal set; }
+        public bool CalculatedEnabled { get; internal set; }
     }
 }

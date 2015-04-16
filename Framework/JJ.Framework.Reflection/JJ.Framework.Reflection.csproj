@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessor.cs" />
+    <Compile Include="Exceptions\LessThanOrEqualException.cs" />
     <Compile Include="Exceptions\LessThanException.cs" />
     <Compile Include="MethodCallParameterInfo.cs" />
     <Compile Include="ExpressionHelper.cs" />

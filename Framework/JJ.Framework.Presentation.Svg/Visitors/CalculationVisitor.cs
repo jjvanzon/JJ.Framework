@@ -76,6 +76,32 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         // Beware that VisitPolymorphic can visit the same object multiple times.
         // That is why some repeated code cannot be put in VisitPolymorphic.
 
+        protected override void VisitPolymorphic(Element element)
+        {
+            if (String.Equals(element.Tag, "ToolTip Rectangle") &&
+                element.Visible)
+            {
+                int i = 0;
+            }
+
+            // TODO: It seems to coincidental that determining Visible and Enabled work this way.
+            // I would much rather put variables on the call stack or work with a new virtual style
+            // on each stack frame.
+            element.CalculatedVisible = element.Visible;
+            if (element.Parent != null)
+            {
+                element.CalculatedVisible &= element.Parent.CalculatedVisible;
+            }
+
+            element.CalculatedEnabled = element.Enabled;
+            if (element.Parent != null)
+            {
+                element.CalculatedEnabled &= element.Parent.CalculatedEnabled;
+            }
+
+            base.VisitPolymorphic(element);
+        }
+
         protected override void VisitChildren(Element parentElement)
         {
             _currentParentX += parentElement.X;
@@ -102,11 +128,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
         protected override void VisitLine(Line sourceLine)
         {
-            if (!sourceLine.Visible || !sourceLine.LineStyle.Visible)
-            {
-                return;
-            }
-
             CalculateLine(sourceLine);
 
             base.VisitLine(sourceLine);
@@ -114,11 +135,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
         protected override void VisitRectangle(Rectangle sourceRectangle)
         {
-            if (!sourceRectangle.Visible)
-            {
-                return;
-            }
-
             CalculateRectangle(sourceRectangle);
 
             base.VisitRectangle(sourceRectangle);
@@ -126,11 +142,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
         protected override void VisitLabel(Label sourceLabel)
         {
-            if (!sourceLabel.Visible)
-            {
-                return;
-            }
-
             CalculateLabel(sourceLabel);
 
             base.VisitLabel(sourceLabel);

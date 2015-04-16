@@ -62,7 +62,7 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
-            if (sourceRectangle.Visible && sourceRectangle.BackStyle.Visible)
+            if (sourceRectangle.CalculatedVisible && sourceRectangle.BackStyle.Visible)
             {
                 Color destBackColor = sourceRectangle.BackStyle.Color.ToSystemDrawing();
                 destGraphics.Clear(destBackColor);
@@ -71,7 +71,7 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawPoint(SvgElements.Point sourcePoint, Graphics destGraphics)
         {
-            if (sourcePoint.Visible && sourcePoint.PointStyle.Visible)
+            if (sourcePoint.CalculatedVisible && sourcePoint.PointStyle.Visible)
             {
                 RectangleF destRectangle = sourcePoint.ToSystemDrawingRectangleF();
                 Brush destBrush = sourcePoint.PointStyle.ToSystemDrawingBrush();
@@ -82,7 +82,7 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawLine(SvgElements.Line sourceLine, Graphics destGraphics)
         {
-            if (sourceLine.Visible && sourceLine.LineStyle.Visible)
+            if (sourceLine.CalculatedVisible && sourceLine.LineStyle.Visible)
             {
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destPen, sourceLine.PointA.CalculatedX, sourceLine.PointA.CalculatedY, sourceLine.PointB.CalculatedX, sourceLine.PointB.CalculatedY);
@@ -91,7 +91,13 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawRectangle(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
-            if (!sourceRectangle.Visible)
+            if (String.Equals(sourceRectangle.Tag, "ToolTip Rectangle") &&
+                sourceRectangle.Visible)
+            {
+                int i = 0;
+            }
+
+            if (!sourceRectangle.CalculatedVisible)
             {
                 return;
             }
@@ -148,7 +154,7 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawLabel(SvgElements.Label sourceLabel, Graphics destGraphics)
         {
-            if (!sourceLabel.Visible)
+            if (!sourceLabel.CalculatedVisible)
             {
                 return;
             }

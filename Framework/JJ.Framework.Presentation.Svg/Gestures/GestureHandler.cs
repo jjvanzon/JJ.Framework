@@ -16,7 +16,6 @@ namespace JJ.Framework.Presentation.Svg.Gestures
     internal class GestureHandler
     {
         private Diagram _diagram;
-
         private Element _mouseCapturingElement;
 
         public GestureHandler(Diagram diagram)
@@ -61,12 +60,18 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         private void TryBubbleMouseDown(Element sender, Element child, MouseEventArgs e)
         {
-            if (child.Parent == null)
+            Element parent = child.Parent;
+
+            if (parent == null)
             {
                 return;
             }
 
-            Element parent = child.Parent;
+            if (!parent.CalculatedEnabled)
+            {
+                return;
+            }
+
             var e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
 
             if (!child.MustBubble)
@@ -139,17 +144,23 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         private void TryBubbleMouseMove(object sender, Element child, MouseEventArgs e)
         {
-            if (child.Parent == null)
-            {
-                return;
-            }
-
             if (!child.MustBubble)
             {
                 return;
             }
 
             Element parent = child.Parent;
+
+            if (child.Parent == null)
+            {
+                return;
+            }
+
+            if (!child.Parent.CalculatedEnabled)
+            {
+                return;
+            }
+
             MouseEventArgs e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
 
             foreach (IGesture gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
@@ -189,17 +200,23 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         private void TryBubbleMouseUp(Element sender, Element child, MouseEventArgs e)
         {
-            if (child.Parent == null)
-            {
-                return;
-            }
-
             if (!child.MustBubble)
             {
                 return;
             }
 
             Element parent = child.Parent;
+
+            if (parent == null)
+            {
+                return;
+            }
+
+            if (!parent.CalculatedEnabled)
+            {
+                return;
+            }
+
             MouseEventArgs e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
 
             foreach (IGesture gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
@@ -230,17 +247,19 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         {
             foreach (Element element in zOrderedElements.Reverse())
             {
-                if (element != null)
+                if (!element.CalculatedEnabled)
                 {
-                    bool isInRectangle = Geometry.IsInRectangle(
-                            pointerX, pointerY,
-                            element.CalculatedX, element.CalculatedY,
-                            element.CalculatedX + element.Width, element.CalculatedY + element.Height);
+                    continue;
+                }
 
-                    if (isInRectangle)
-                    {
-                        return element;
-                    }
+                bool isInRectangle = Geometry.IsInRectangle(
+                        pointerX, pointerY,
+                        element.CalculatedX, element.CalculatedY,
+                        element.CalculatedX + element.Width, element.CalculatedY + element.Height);
+
+                if (isInRectangle)
+                {
+                    return element;
                 }
             }
 
