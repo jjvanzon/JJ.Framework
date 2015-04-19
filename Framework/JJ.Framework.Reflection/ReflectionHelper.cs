@@ -235,12 +235,12 @@ namespace JJ.Framework.Reflection
             return TryGetImplementation(assembly, typeof(TBaseType));
         }
 
-        public static Type[] GetImplementations<TBaseType>(Assembly assembly)
+        public static IList<Type> GetImplementations<TBaseType>(Assembly assembly)
         {
             return GetImplementations(assembly, typeof(TBaseType));
         }
 
-        public static Type[] GetImplementations<TBaseType>(IEnumerable<Assembly> assemblies)
+        public static IList<Type> GetImplementations<TBaseType>(IEnumerable<Assembly> assemblies)
         {
             return GetImplementations(assemblies, typeof(TBaseType));
         }

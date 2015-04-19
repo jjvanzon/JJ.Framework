@@ -227,6 +227,12 @@ namespace JJ.Framework.Presentation
 
         private static object ConvertValue(string value, Type type)
         {
+            // TODO: Convert more types of values.
+            if (String.IsNullOrEmpty(value))
+            {
+                return null;
+            }
+
             return Convert.ChangeType(value, type);
         }
     }

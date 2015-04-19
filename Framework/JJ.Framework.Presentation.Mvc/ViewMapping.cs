@@ -17,19 +17,21 @@ namespace JJ.Framework.Presentation.Mvc
 
         public ViewMapping(string viewName)
         {
-            if (!String.IsNullOrEmpty(viewName)) throw new Exception("viewName cannot be null or empty.");
+            if (String.IsNullOrEmpty(viewName)) throw new NullOrEmptyException(() => viewName);
 
             ViewName = viewName;
         }
 
+        /// <summary> nullable </summary>
         protected virtual object GetRouteValues(TViewModel viewModel)
         {
             return null;
         }
 
+        /// <summary> not nullable </summary>
         protected virtual ICollection<KeyValuePair<string, string>> GetValidationMesssages(TViewModel viewModel)
         {
-            return null;
+            return new KeyValuePair<string, string>[0];
         }
 
         protected virtual bool Predicate(TViewModel viewModel)
@@ -43,7 +45,7 @@ namespace JJ.Framework.Presentation.Mvc
             return UrlHelpers.GetReturnUrl(actionInfo);
         }
 
-        // IActionMapping
+        // IViewMapping
 
         string IViewMapping.ViewName
         {
@@ -83,6 +85,11 @@ namespace JJ.Framework.Presentation.Mvc
         bool IViewMapping.Predicate(object viewModel)
         {
             return Predicate((TViewModel)viewModel);
+        }
+
+        Type IViewMapping.ViewModelType
+        {
+            get { return typeof(TViewModel); }
         }
     }
 }
