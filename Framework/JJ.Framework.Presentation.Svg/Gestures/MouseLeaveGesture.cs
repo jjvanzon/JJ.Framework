@@ -13,24 +13,24 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         public event EventHandler<MouseEventArgs> MouseLeave;
 
         private Diagram _diagram;
-        private MouseMoveGesture _canvasMouseMoveGesture;
+        private MouseMoveGesture _diagramMouseMoveGesture;
 
         public MouseLeaveGesture()
         {
-            _canvasMouseMoveGesture = new MouseMoveGesture();
-            _canvasMouseMoveGesture.MouseMove += _canvasMouseMoveGesture_MouseMove;
+            _diagramMouseMoveGesture = new MouseMoveGesture();
+            _diagramMouseMoveGesture.MouseMove += _diagramMouseMoveGesture_MouseMove;
         }
 
         ~MouseLeaveGesture()
         { 
             if (_diagram != null)
             {
-                if (_canvasMouseMoveGesture != null)
+                if (_diagramMouseMoveGesture != null)
                 {
-                    _canvasMouseMoveGesture.MouseMove -= _canvasMouseMoveGesture_MouseMove;
-                    if (_diagram.Canvas.Gestures.Contains(_canvasMouseMoveGesture))
+                    _diagramMouseMoveGesture.MouseMove -= _diagramMouseMoveGesture_MouseMove;
+                    if (_diagram.Gestures.Contains(_diagramMouseMoveGesture))
                     {
-                        _diagram.Canvas.Gestures.Remove(_canvasMouseMoveGesture);
+                        _diagram.Gestures.Remove(_diagramMouseMoveGesture);
                     }
                 }
             }
@@ -52,14 +52,14 @@ namespace JJ.Framework.Presentation.Svg.Gestures
                 if (e.Element.Diagram != null)
                 {
                     _diagram = e.Element.Diagram;
-                    _diagram.Canvas.Gestures.Add(_canvasMouseMoveGesture);
+                    _diagram.Gestures.Add(_diagramMouseMoveGesture);
                 }
             }
 
             _previousSender = sender as Element;
         }
 
-        private void _canvasMouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
+        private void _diagramMouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
         {
             if (sender != _previousSender)
             {

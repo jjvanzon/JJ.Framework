@@ -44,6 +44,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
 
+                foreach (IGesture diagramGesture in _diagram.Gestures.ToArray())
+                {
+                    diagramGesture.HandleMouseDown(hitElement, e);
+                }
+
                 foreach (IGesture gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
                 {
                     gesture.HandleMouseDown(hitElement, e2);
@@ -133,6 +138,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
 
+                foreach (IGesture diagramGesture in _diagram.Gestures.ToArray())
+                {
+                    diagramGesture.HandleMouseMove(hitElement, e2);
+                }
+
                 foreach (IGesture gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
                 {
                     gesture.HandleMouseMove(hitElement, e2);
@@ -187,6 +197,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
 
+                foreach (IGesture diagramGesture in _diagram.Gestures.ToArray())
+                {
+                    diagramGesture.HandleMouseUp(hitElement, e2);
+                }
+
                 foreach (IGesture gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
                 {
                     gesture.HandleMouseUp(hitElement, e2);
@@ -229,6 +244,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         public void HandleKeyDown(KeyEventArgs e)
         {
+            foreach (IGesture gesture in _diagram.Gestures.ToArray())
+            {
+                gesture.HandleKeyDown(_diagram, e);
+            }
+
             foreach (IGesture gesture in _diagram.Canvas.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
                 gesture.HandleKeyDown(_diagram.Canvas, e);
@@ -237,6 +257,11 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         public void HandleKeyUp(KeyEventArgs e)
         {
+            foreach (IGesture gesture in _diagram.Gestures.ToArray())
+            {
+                gesture.HandleKeyUp(_diagram, e);
+            }
+
             foreach (IGesture gesture in _diagram.Canvas.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
                 gesture.HandleKeyUp(_diagram.Canvas, e);

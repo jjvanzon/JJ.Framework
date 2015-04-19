@@ -25,10 +25,12 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
             _canvas.ZIndex = Int32.MinValue;
             _canvas.Tag = "Canvas";
 
+            Gestures = new List<IGesture>();
             _gestureHandler = new GestureHandler(this);
         }
 
         private Rectangle _canvas;
+        /// <summary> read-only, not nullable </summary>
         [DebuggerHidden]
         public Rectangle Canvas
         {
@@ -53,6 +55,12 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         }
 
         // Gestures
+
+        /// <summary>
+        /// The gestures on the diagram always go off regardless of bubbling.
+        /// It gives us a means to tap in on events at a more basic level.
+        /// </summary>
+        public IList<IGesture> Gestures { get; private set; }
 
         private readonly GestureHandler _gestureHandler;
 
