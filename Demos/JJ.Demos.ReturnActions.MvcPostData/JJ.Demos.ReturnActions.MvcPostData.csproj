@@ -123,6 +123,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mapping\DetailsMapping.cs" />
+    <Compile Include="Mapping\EditMapping.cs" />
+    <Compile Include="Mapping\ListMapping.cs" />
+    <Compile Include="Mapping\LoginMapping.cs" />
+    <Compile Include="Mapping\NotAuthorizedMapping.cs" />
     <Compile Include="Names\ActionNames.cs" />
     <Compile Include="Names\ControllerNames.cs" />
     <Compile Include="Names\SessionKeys.cs" />

@@ -7,6 +7,7 @@ using JJ.Framework.Presentation;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Demos.ReturnActions.MvcUrlParameter.Names;
 using ActionDispatcher = JJ.Framework.Presentation.Mvc.ActionDispatcher;
+using System.Reflection;
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameter.App_Start
 {
@@ -14,9 +15,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.App_Start
     {
         public static void AddMappings()
         {
-            throw new Exception(
-                "Framework.Presentation.Mvc no longer supports this kind of view mapping. " +
-                "Use ViewMapping<TViewModel> implementations if you want to breathe new life into this demo code.");
+            ActionDispatcher.RegisterAssembly(Assembly.GetExecutingAssembly());
 
             //ActionDispatcher.Map_Old<NotAuthorizedViewModel>(null, null, ViewNames.NotAuthorized);
 

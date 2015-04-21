@@ -5,7 +5,7 @@ Pretty soon the QuestionAndAnswer.Mvc will be changed to put multi-level return 
 This project is here to keep a demo of how the code looks if you put it in post data.
 
 A return action is a piece of data that describes what view to go to when you close the current view.
-It is analogus to return URL's: an URL parameter that encodes the URL to go to after you close the current view.
+It is analogus to return URL's: a URL parameter that encodes the URL to go to, after you close the current view.
 
 Return actions are part of the platform-independent navigation model you program in the form of Presenters.
 That way even the platform-independent presentation code can define the return actions, independent of web or MVC.

@@ -22,7 +22,7 @@ namespace JJ.Framework.Presentation.Mvc
             ViewName = viewName;
         }
 
-        /// <summary> nullable </summary>
+        /// <summary> nullable, base method does nothing </summary>
         protected virtual object GetRouteValues(TViewModel viewModel)
         {
             return null;
@@ -43,6 +43,25 @@ namespace JJ.Framework.Presentation.Mvc
         {
             // TODO: Map presenter names to controller names
             return UrlHelpers.GetReturnUrl(actionInfo);
+        }
+
+
+        /// <summary>
+        /// Syntactic sugar for assigning PresenterName and PresenterActionName.
+        /// </summary>
+        protected void MapPresenter(string presenterName, string presenterActionName)
+        {
+            PresenterName = presenterName;
+            PresenterActionName = presenterActionName;
+        }
+
+        /// <summary>
+        /// Syntactic sugar for assigning ControllerName and ControllerGetActionName.
+        /// </summary>
+        protected void MapController(string controllerName, string controllerGetActionName)
+        {
+            ControllerName = controllerName;
+            ControllerGetActionName = controllerGetActionName;
         }
 
         // IViewMapping
