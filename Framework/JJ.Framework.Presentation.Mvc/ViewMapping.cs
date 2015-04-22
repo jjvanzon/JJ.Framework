@@ -85,7 +85,7 @@ namespace JJ.Framework.Presentation.Mvc
 
         public void MapParameter(string presenterActionParameter, string controllerActionParameter)
         {
-            ActionParameterMappings.Add(new ActionParameterMapping(presenterActionParameter, controllerActionParameter);
+            ActionParameterMappings.Add(new ActionParameterMapping(presenterActionParameter, controllerActionParameter));
         }
 
         // IViewMapping
