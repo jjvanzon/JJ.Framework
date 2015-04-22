@@ -65,6 +65,7 @@ namespace JJ.Framework.Presentation.Mvc
         }
 
         private static string _tempDataKey ="vm-b5b9-20e1e86a12d8";
+
         public static string TempDataKey { get { return _tempDataKey; } }
 
         public static ActionResult Dispatch(Controller sourceController, string sourceActionName, object viewModel)
@@ -73,7 +74,7 @@ namespace JJ.Framework.Presentation.Mvc
             if (String.IsNullOrEmpty(sourceActionName)) throw new NullOrEmptyException(() => sourceActionName);
             if (viewModel == null) throw new NullException(() => viewModel);
 
-            IViewMapping destMapping = GetMapping(viewModel);
+            IViewMapping destMapping = GetViewMapping(viewModel);
             ControllerAccessor sourceControllerAccessor = new ControllerAccessor(sourceController);
             string sourceControllerName = GetControllerName(sourceController);
 
@@ -106,7 +107,7 @@ namespace JJ.Framework.Presentation.Mvc
             }
         }
 
-        private static IViewMapping GetMapping(object viewModel)
+        private static IViewMapping GetViewMapping(object viewModel)
         {
             IList<IViewMapping> mappings;
             if (!_mappings.TryGetValue(viewModel.GetType(), out mappings))
@@ -146,6 +147,13 @@ namespace JJ.Framework.Presentation.Mvc
         {
             string controllerName = (string)sourceController.ControllerContext.RequestContext.RouteData.Values["controller"];
             return controllerName;
+        }
+
+        public static ActionInfo GetReturnAction(string ret)
+        {
+            ActionInfo actionInfo = UrlHelpers.GetReturnAction(ret);
+
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using JJ.Demos.ReturnActions.MvcUrlParameter.Names;
+﻿using JJ.Demos.ReturnActions.MvcPostData.Names;
 using JJ.Demos.ReturnActions.Names;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Presentation.Mvc;
@@ -7,14 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Demos.ReturnActions.MvcUrlParameter.Mapping
+namespace JJ.Demos.ReturnActions.MvcPostData.ViewMapping
 {
-    public class EditMapping : ViewMapping<EditViewModel>
+    public class EditViewMapping : ViewMapping<EditViewModel>
     {
-        public EditMapping()
-            : base(ViewNames.Edit)
+        public EditViewMapping()
         {
-            MapController(ControllerNames.Demo, ActionNames.Edit);
+            MapController(ControllerNames.Demo, ActionNames.Edit, ViewNames.Edit);
             MapPresenter(PresenterNames.EditPresenter, PresenterActionNames.Show);
         }
 

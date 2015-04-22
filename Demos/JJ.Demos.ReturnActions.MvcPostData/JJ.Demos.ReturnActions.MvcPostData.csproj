@@ -123,11 +123,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mapping\DetailsMapping.cs" />
-    <Compile Include="Mapping\EditMapping.cs" />
-    <Compile Include="Mapping\ListMapping.cs" />
-    <Compile Include="Mapping\LoginMapping.cs" />
-    <Compile Include="Mapping\NotAuthorizedMapping.cs" />
+    <Compile Include="ViewMapping\DetailsViewMapping.cs" />
+    <Compile Include="ViewMapping\EditViewMapping.cs" />
+    <Compile Include="ViewMapping\ListViewMapping.cs" />
+    <Compile Include="ViewMapping\LoginViewMapping.cs" />
+    <Compile Include="ViewMapping\NotAuthorizedViewMapping.cs" />
     <Compile Include="Names\ActionNames.cs" />
     <Compile Include="Names\ControllerNames.cs" />
     <Compile Include="Names\SessionKeys.cs" />

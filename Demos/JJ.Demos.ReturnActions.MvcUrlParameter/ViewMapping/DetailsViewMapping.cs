@@ -1,4 +1,4 @@
-﻿using JJ.Demos.ReturnActions.MvcPostData.Names;
+﻿using JJ.Demos.ReturnActions.MvcUrlParameter.Names;
 using JJ.Demos.ReturnActions.Names;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Presentation.Mvc;
@@ -7,14 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Demos.ReturnActions.MvcPostData.Mapping
+namespace JJ.Demos.ReturnActions.MvcUrlParameter.ViewMapping
 {
-    public class DetailsMapping : ViewMapping<DetailsViewModel>
+    public class DetailsViewMapping : ViewMapping<DetailsViewModel>
     {
-        public DetailsMapping()
-            : base(ViewNames.Details)
+        public DetailsViewMapping()
         {
-            MapController(ControllerNames.Demo, ActionNames.Details);
+            MapController(ControllerNames.Demo, ActionNames.Details, ViewNames.Details);
             MapPresenter(PresenterNames.DetailsPresenter, PresenterActionNames.Show);
         }
 

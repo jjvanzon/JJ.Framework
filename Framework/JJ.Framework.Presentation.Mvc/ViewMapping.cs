@@ -9,17 +9,18 @@ namespace JJ.Framework.Presentation.Mvc
 {
     public abstract class ViewMapping<TViewModel> : IViewMapping
     {
-        public string ViewName { get; private set; }
         public string PresenterName { get; protected set; }
         public string PresenterActionName { get; protected set; }
         public string ControllerName { get; protected set; }
         public string ControllerGetActionName { get; protected set; }
+        public string ViewName { get; protected set; }
 
-        public ViewMapping(string viewName)
+        // TODO: Is this enough encapsulation?
+        public IList<ActionParameterMapping> ActionParameterMappings { get; private set; }
+
+        public ViewMapping()
         {
-            if (String.IsNullOrEmpty(viewName)) throw new NullOrEmptyException(() => viewName);
-
-            ViewName = viewName;
+            ActionParameterMappings = new List<ActionParameterMapping>();
         }
 
         /// <summary> nullable, base method does nothing </summary>
@@ -45,23 +46,46 @@ namespace JJ.Framework.Presentation.Mvc
             return UrlHelpers.GetReturnUrl(actionInfo);
         }
 
-
         /// <summary>
         /// Syntactic sugar for assigning PresenterName and PresenterActionName.
         /// </summary>
         protected void MapPresenter(string presenterName, string presenterActionName)
         {
+            if (String.IsNullOrEmpty(presenterName)) throw new NullOrEmptyException(() => presenterName);
+            if (String.IsNullOrEmpty(presenterActionName)) throw new NullOrEmptyException(() => presenterActionName);
+
             PresenterName = presenterName;
             PresenterActionName = presenterActionName;
         }
 
         /// <summary>
-        /// Syntactic sugar for assigning ControllerName and ControllerGetActionName.
+        /// Syntactic sugar for assigning ControllerName, ControllerGetActionName and ViewName.
         /// </summary>
-        protected void MapController(string controllerName, string controllerGetActionName)
+        protected void MapController(string controllerName, string controllerGetActionName, string viewName)
         {
+            if (String.IsNullOrEmpty(controllerName)) throw new NullOrEmptyException(() => controllerName);
+            if (String.IsNullOrEmpty(controllerGetActionName)) throw new NullOrEmptyException(() => controllerGetActionName);
+            if (String.IsNullOrEmpty(viewName)) throw new NullOrEmptyException(() => viewName);
+
             ControllerName = controllerName;
             ControllerGetActionName = controllerGetActionName;
+            ViewName = viewName;
+        }
+
+        /// <summary>
+        /// Syntactic sugar for assigning ControllerName and ViewName.
+        /// </summary>
+        public void MapController(string controllerName, string viewName)
+        {
+            if (String.IsNullOrEmpty(viewName)) throw new NullOrEmptyException(() => viewName);
+
+            ControllerName = controllerName;
+            ViewName = viewName;
+        }
+
+        public void MapParameter(string presenterActionParameter, string controllerActionParameter)
+        {
+            ActionParameterMappings.Add(new ActionParameterMapping(presenterActionParameter, controllerActionParameter);
         }
 
         // IViewMapping

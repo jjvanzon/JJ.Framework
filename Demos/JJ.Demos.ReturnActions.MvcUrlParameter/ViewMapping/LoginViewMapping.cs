@@ -7,14 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Demos.ReturnActions.MvcUrlParameter.Mapping
+namespace JJ.Demos.ReturnActions.MvcUrlParameter.ViewMapping
 {
-    public class LoginMapping : ViewMapping<LoginViewModel>
+    public class LoginViewMapping : ViewMapping<LoginViewModel>
     {
-        public LoginMapping()
-            : base(ViewNames.Index)
+        public LoginViewMapping()
         {
-            MapController(ControllerNames.Login, ActionNames.Index);
+            MapController(ControllerNames.Login, ActionNames.Index, ViewNames.Index);
             MapPresenter(PresenterNames.LoginPresenter, PresenterActionNames.Show);
         }
     }

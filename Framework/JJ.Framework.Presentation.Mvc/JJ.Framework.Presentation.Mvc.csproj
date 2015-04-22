@@ -39,13 +39,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionParameterMapping.cs" />
     <Compile Include="ViewMapping.cs" />
     <Compile Include="ControllerAccessor.cs" />
     <Compile Include="IViewMapping.cs" />
     <Compile Include="IDictionaryOfStringAndModelStateExtensions.cs" />
     <Compile Include="HtmlHelperExtensions_Collections.cs" />
     <Compile Include="ActionDispatcher.cs" />
-    <Compile Include="ActionDispatcherMapping.cs" />
     <Compile Include="UrlHelperExtensions.cs" />
     <Compile Include="HtmlHelperExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

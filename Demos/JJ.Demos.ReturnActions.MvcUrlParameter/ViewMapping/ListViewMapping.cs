@@ -7,14 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace JJ.Demos.ReturnActions.MvcUrlParameter.Mapping
+namespace JJ.Demos.ReturnActions.MvcUrlParameter.ViewMapping
 {
-    public class ListMapping : ViewMapping<ListViewModel>
+    public class ListViewMapping : ViewMapping<ListViewModel>
     {
-        public ListMapping()
-            : base(ViewNames.Index)
+        public ListViewMapping()
         {
-            MapController(ControllerNames.Demo, ActionNames.Index);
+            MapController(ControllerNames.Demo, ActionNames.Index, ViewNames.Index);
             MapPresenter(PresenterNames.ListPresenter, PresenterActionNames.Show);
         }
     }
