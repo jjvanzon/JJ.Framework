@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<domain name="JJ.Framework.Data.Tests" assembly="JJ.Framework.Data.Tests" root="JJ.Framework.Data.Tests.Model" source="PersistenceTests" field-prefix="_" field-strategy="CamelCase">
+  <class name="Thing" table="Thing">
+    <property name="ID" id="true" columns="ID" type="System.Int32" />
+    <property name="Name" columns="Name" type="System.String" />
+  </class>
+  <source name="PersistenceTests" type="MSSqlServer" provider="SqlClient" schema="dbo">
+    <connection-string>Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceTestDB_DEV;User ID=development;Password=development;Persist Security Info=True</connection-string>
+    <table name="Thing">
+      <column name="ID" primary="true" type="Int32" prec="10" length="4" scale="0" auto-inc="true" seed="1" inc="1" />
+      <column name="Name" type="String" prec="255" allow-null="true" length="510" scale="0" />
+    </table>
+  </source>
+</domain>

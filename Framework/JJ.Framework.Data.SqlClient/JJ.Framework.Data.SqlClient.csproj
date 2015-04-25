@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F44D03E8-FEEC-40D4-B866-A87799185B4C}</ProjectGuid>
+    <ProjectGuid>{CEB85F8E-D429-4510-95A5-47CC3069D412}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Business</RootNamespace>
-    <AssemblyName>JJ.Framework.Business</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <RootNamespace>JJ.Framework.Data.SqlClient</RootNamespace>
+    <AssemblyName>JJ.Framework.Data.SqlClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,22 +32,22 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityStatusEnum.cs" />
-    <Compile Include="EntityStatusHelper.cs" />
-    <Compile Include="EntityStatusManager.cs" />
-    <Compile Include="EntityStatusManagerByID.cs" />
-    <Compile Include="ISideEffect.cs" />
-    <Compile Include="ManyToOneRelationship.cs" />
-    <Compile Include="OneToManyRelationship.cs" />
+    <Compile Include="ISqlExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyStatusEnum.cs" />
+    <Compile Include="SqlCommandHelper.cs" />
+    <Compile Include="SqlExecutor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Data\JJ.Framework.Data.csproj">
-      <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
-      <Name>JJ.Framework.Data</Name>
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
+      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.csproj">
+      <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
+      <Name>JJ.Framework.IO</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
       <Project>{59622a6e-a9ae-438c-a164-05dea2fcf8cf}</Project>
