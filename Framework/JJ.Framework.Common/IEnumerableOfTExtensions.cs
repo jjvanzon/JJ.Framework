@@ -184,5 +184,25 @@ namespace JJ.Framework.Common
         {
             return new TItem[] { item };
         }
+
+        public static Dictionary<TKey, IList<TItem>> ToNonUniqueDictionary<TKey, TItem>(this IEnumerable<TItem> sourceCollection, Func<TItem, TKey> keySelector)
+        {
+            var dictionary = new Dictionary<TKey, IList<TItem>>();
+
+            foreach (TItem item in sourceCollection)
+            {
+                TKey key = keySelector(item);
+
+                IList<TItem> itemsUnderKey;
+                if (!dictionary.TryGetValue(key, out itemsUnderKey))
+                {
+                    itemsUnderKey = new List<TItem>();
+                    dictionary.Add(key, itemsUnderKey);
+                }
+                itemsUnderKey.Add(item);
+            }
+
+            return dictionary;
+        }
     }
 }

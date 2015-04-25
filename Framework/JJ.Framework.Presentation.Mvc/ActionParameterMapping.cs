@@ -9,16 +9,16 @@ namespace JJ.Framework.Presentation.Mvc
 {
     public class ActionParameterMapping
     {
-        public string PresenterActionParameter { get; private set; }
-        public string ControllerActionParameter { get; private set; }
+        public string PresenterParameterName { get; private set; }
+        public string ControllerParameterName { get; private set; }
 
-        public ActionParameterMapping(string presenterActionParameter, string controllerActionParameter)
+        public ActionParameterMapping(string presenterParameterName, string controllerParameterName)
         {
-            if (String.IsNullOrEmpty(presenterActionParameter)) throw new NullOrEmptyException(() => presenterActionParameter);
-            if (String.IsNullOrEmpty(controllerActionParameter)) throw new NullOrEmptyException(() => controllerActionParameter);
+            if (String.IsNullOrEmpty(presenterParameterName)) throw new NullOrEmptyException(() => presenterParameterName);
+            if (String.IsNullOrEmpty(controllerParameterName)) throw new NullOrEmptyException(() => controllerParameterName);
 
-            PresenterActionParameter = presenterActionParameter;
-            ControllerActionParameter = controllerActionParameter;
+            PresenterParameterName = presenterParameterName;
+            ControllerParameterName = controllerParameterName;
         }
     }
 }

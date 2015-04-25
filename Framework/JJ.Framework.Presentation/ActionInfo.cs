@@ -11,6 +11,8 @@ namespace JJ.Framework.Presentation
     {
         public string PresenterName { get; set; }
         public string ActionName { get; set; }
+
+        /// <summary> nullable </summary>
         public IList<ActionParameterInfo> Parameters { get; set; }
 
         /// <summary> nullable </summary>

@@ -44,7 +44,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
             if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
             {
                 var presenter = new EditPresenter(GetAuthenticatedUserName());
-                ActionInfo returnAction = UrlHelpers.GetReturnAction(ret);
+                ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
                 viewModel = presenter.Show(id, returnAction);
             }
 
@@ -55,7 +55,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
         public ActionResult Edit(int id, EditViewModel viewModel, string ret = null)
         {
             var presenter = new EditPresenter(GetAuthenticatedUserName());
-            viewModel.ReturnAction = UrlHelpers.GetReturnAction(ret);
+            viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
             object viewModel2 = presenter.Save(viewModel);
 
             return ActionDispatcher.Dispatch(this, ActionNames.Edit, viewModel2);

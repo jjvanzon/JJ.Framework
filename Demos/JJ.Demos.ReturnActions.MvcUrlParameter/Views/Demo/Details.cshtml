@@ -20,7 +20,7 @@
     @Html.ActionLink("Edit", ActionNames.Edit, new
     {
         id = Model.Entity.ID,
-        ret = Url.GetReturnUrl(PresenterNames.DetailsPresenter, PresenterActionNames.Show, new { id = Model.Entity.ID })
+        ret = Url.ReturnAction(ActionNames.Details, ControllerNames.Demo, new { id = Model.Entity.ID })
     }) |
     @Html.ActionLink("Back to List", ActionNames.Index)
     @Html.ActionLink("Logout", ActionNames.Logout)

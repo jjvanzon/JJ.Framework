@@ -132,26 +132,35 @@ namespace JJ.Framework.Presentation
                 }
 
                 // Handle normal parameter.
-                ActionParameterInfo actionParameterInfo;
-                IList<ActionParameterInfo> matchingActionParameterInfos = actionInfo.Parameters.Where(x => String.Equals(x.Name, parameter.Name)).ToArray();
+                object value;
+                IList<ActionParameterInfo> matchingActionParameterInfos = actionInfo.Parameters
+                                                                                    .Where(x => String.Equals(x.Name, parameter.Name))
+                                                                                    .ToArray();
                 switch (matchingActionParameterInfos.Count)
                 {
                     case 1:
-                        actionParameterInfo = matchingActionParameterInfos[0];
+                        ActionParameterInfo actionParameterInfo = matchingActionParameterInfos[0];
+                        value = actionParameterInfo.Value;
                         break;
 
                     case 0:
-                        throw new Exception(String.Format(
-                            "Parameter '{0}' for method '{1}' of type '{2}' not found in ActionInfo. Permitted parameters: {3}. ActionInfo parameters: {4}.",
-                            parameter.Name, method.Name, type.Name,
-                            String_PlatformSupport.Join(", ", parameters.Select(x => x.Name)),
-                            String_PlatformSupport.Join(", ", actionInfo.Parameters.Select(x => x.Name))));
+                        // Permit that there is no specification of the parameter in the action info,
+                        // to accomodate the possibility that the method parameter is optional.
+                        object defaultValue = parameter.DefaultValue;
+                        value = defaultValue;
+                        break;
+
+                        //throw new Exception(String.Format(
+                        //    "Parameter '{0}' for method '{1}' of type '{2}' not found in ActionInfo. Permitted parameters: {3}. ActionInfo parameters: {4}.",
+                        //    parameter.Name, method.Name, type.Name,
+                        //    String_PlatformSupport.Join(", ", parameters.Select(x => x.Name)),
+                        //    String_PlatformSupport.Join(", ", actionInfo.Parameters.Select(x => x.Name))));
 
                     default:
                         throw new Exception(String.Format("Parameter '{0}' for method '{1}' of type '{2}' found multiple times in ActionInfo.", parameter.Name, method.Name, type.Name));
                 }
 
-                object parameterValue = ConvertValue(actionParameterInfo.Value, parameter.ParameterType);
+                object parameterValue = ConvertValue(value, parameter.ParameterType);
                 parameterValues[i] = parameterValue;
             }
 
@@ -225,10 +234,10 @@ namespace JJ.Framework.Presentation
             return actionInfo;
         }
 
-        private static object ConvertValue(string value, Type type)
+        private static object ConvertValue(object value, Type type)
         {
             // TODO: Convert more types of values.
-            if (String.IsNullOrEmpty(value))
+            if (String.IsNullOrEmpty(Convert.ToString(value)))
             {
                 return null;
             }

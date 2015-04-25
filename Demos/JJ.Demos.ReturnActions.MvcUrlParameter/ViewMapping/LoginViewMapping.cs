@@ -16,5 +16,13 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.ViewMapping
             MapController(ControllerNames.Login, ActionNames.Index, ViewNames.Index);
             MapPresenter(PresenterNames.LoginPresenter, PresenterActionNames.Show);
         }
+
+        protected override object GetRouteValues(LoginViewModel viewModel)
+        {
+            return new
+            {
+                ret = TryGetReturnUrl(viewModel.ReturnAction)
+            };
+        }
     }
 }

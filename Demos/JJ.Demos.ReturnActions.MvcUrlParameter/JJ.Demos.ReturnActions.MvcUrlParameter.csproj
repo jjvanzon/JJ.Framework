@@ -223,8 +223,6 @@
     <Content Include="Views\Demo\Edit.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\NotAuthorized.cshtml" />
-    <Content Include="Views\Shared\_ActionInfo.cshtml" />
-    <Content Include="Views\Shared\_ActionParameterInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation.Mvc\JJ.Framework.Presentation.Mvc.csproj">

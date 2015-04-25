@@ -14,6 +14,9 @@ using System.Web.Mvc;
 
 namespace JJ.Framework.Presentation.Mvc
 {
+    // TODO: Make internal after making the Accessor class able to access internal classes,
+    // so internal classes can be used in unit tests.
+
     /// <summary>
     /// Plural to not conflict with 'UrlHelper'.
     /// </summary>
@@ -63,156 +66,57 @@ namespace JJ.Framework.Presentation.Mvc
         }
 
         /// <summary>
-        /// Stacks up return URL parameters as follows:
-        /// Questions/Details?id=1
-        /// Questions/Edit?id=1&amp;ret=Questions%2FDetails%3Fid%3D1
-        /// Login/Index&amp;ret=Questions%2FEdit%3Fid%3D1%26ret%3DQuestions%252FDetails%253Fid%253D1
-        /// </summary>
-        public static string GetReturnUrl(string presenterName, string presenterActionName, object parameters = null)
-        {
-            var actionInfo = new ActionInfo
-            {
-                PresenterName = presenterName,
-                ActionName = presenterActionName
-            };
-
-            if (parameters == null)
-            {
-                actionInfo.Parameters = new ActionParameterInfo[0];
-            }
-            else
-            {
-                actionInfo.Parameters = _reflectionCache.GetProperties(parameters.GetType())
-                                                        .Select(x => new ActionParameterInfo
-                                                        {
-                                                            Name = x.Name,
-                                                            Value = Convert.ToString(x.GetValue(parameters, null))
-                                                        })
-                                                        .ToArray();
-            }
-
-            string returnUrl = GetReturnUrl_NonRecursive(actionInfo);
-            return returnUrl;
-        }
-
-        /// <summary>
+        /// Converts presenter action info to an MVC URL.
         /// Stacks up return URL parameters as follows:
         /// Questions/Details?id=1
         /// Questions/Edit?id=1&amp;ret=Questions%2FDetails%3Fid%3D1
         /// Login/Index&amp;ret=Questions%2FEdit%3Fid%3D1%26ret%3DQuestions%252FDetails%253Fid%253D1
         /// Returns null if actionInfo is null.
         /// </summary>
-        public static string GetReturnUrl(ActionInfo actionInfo, string returnUrlParameterName = "ret")
+        public static string ReturnAction(ActionInfo presenterActionInfo, string returnUrlParameterName = "ret")
         {
-            if (actionInfo == null)
+            if (presenterActionInfo == null)
             {
                 return null;
             }
 
-            IList<ActionInfo> actionInfos = new List<ActionInfo>();
-            actionInfos.Add(actionInfo);
-
-            ActionInfo deeperActionInfo = actionInfo.ReturnAction;
-            while (deeperActionInfo != null)
-            {
-                actionInfos.Add(deeperActionInfo);
-                deeperActionInfo = deeperActionInfo.ReturnAction;
-            }
-            actionInfos = actionInfos.Reverse().ToArray();
-
-            string returnUrl = GetReturnUrl_ByList(actionInfos, returnUrlParameterName);
-            return returnUrl;
-        }
-
-        private static string GetReturnUrl_ByList(IList<ActionInfo> actionInfos, string returnUrlParameterName)
-        {
-            // TODO: Performance of these string operations is not great.
-            if (String.IsNullOrWhiteSpace(returnUrlParameterName)) throw new Exception("returnUrlParameterName cannot be null or white space.");
-
-            ActionInfo actionInfo = actionInfos[0];
-            string url = GetReturnUrl_NonRecursive(actionInfo);
-
-            for (int i = 1; i < actionInfos.Count; i++)
-            {
-                ActionInfo actionInfo2 = actionInfos[i];
-                string url2 = GetReturnUrl_NonRecursive(actionInfo2);
-
-                url = HttpUtility.UrlEncode(url);
-
-                string separator = (!url2.Contains('?') ? "?" : "&");
-
-                url = url2 + separator + returnUrlParameterName + "=" + url;
-            }
-
-            return url;
-        }
-
-        private static string GetReturnUrl_NonRecursive(ActionInfo actionInfo)
-        {
-            if (actionInfo == null) throw new NullException(() => actionInfo);
-            if (actionInfo.Parameters == null) throw new NullException(() => actionInfo.Parameters);
-            if (String.IsNullOrEmpty(actionInfo.PresenterName)) throw new Exception("actionInfo.PresenterName cannot be null or empty.");
-            if (String.IsNullOrEmpty(actionInfo.ActionName)) throw new Exception("actionInfo.PresenterName cannot be null or empty.");
-
-            var urlInfo = new UrlInfo(actionInfo.PresenterName, actionInfo.ActionName);
-            urlInfo.Parameters = actionInfo.Parameters.Select(x => new UrlParameterInfo(x.Name, x.Value)).ToArray();
-
-            string url = UrlBuilder.BuildUrl(urlInfo);
-            return url;
+            return ActionDispatcher.GetUrl(presenterActionInfo, returnUrlParameterName);
         }
 
         /// <summary>
-        /// Accepts return URL's stacked up as follows:
-        /// Questions/Details?id=1
-        /// Questions/Edit?id=1&amp;ret=Questions%2FDetails%3Fid%3D1
-        /// Login/Index&amp;ret=Questions%2FEdit%3Fid%3D1%26ret%3DQuestions%252FDetails%253Fid%253D1
-        /// Converts it to an ActionInfo object with possibly its ReturnAction assigned,
-        /// with possibly its ReturnAction assigned, etcetera.
-        /// Returns null if returnUrl is null or empty.
+        /// The difference with Url.Action is that Url.ReturnAction will produce
+        /// a URL that does not fallback to default actions,
+        /// nor uses parameters as URL path parts,
+        /// but instead returns then as regular URL parameters.
+        /// That kind of URL is better interpretable by the Presentation framework,
+        /// that needs to convert it to presenter information.
         /// </summary>
-        public static ActionInfo GetReturnAction(string returnUrl, string returnUrlParameterName = "ret")
+        public static string ReturnAction(string actionName, string controllerName, object routeValues = null)
         {
-            if (String.IsNullOrEmpty(returnUrl))
+            var actionInfo = new ActionInfo
             {
-                return null;
-            }
-
-            var urlParser = new UrlParser();
-            UrlInfo sourceUrlInfo = urlParser.Parse(returnUrl);
-            if (sourceUrlInfo.PathElements.Count != 2)
-            {
-                throw new Exception(String.Format("returnUrl must have 2 path elements. returnUrl = '{0}'.", returnUrl));
-            }
-
-            var destActionInfo = new ActionInfo
-            {
-                PresenterName = sourceUrlInfo.PathElements[0],
-                ActionName = sourceUrlInfo.PathElements[1]
+                PresenterName = controllerName,
+                ActionName = actionName
             };
 
-            destActionInfo.Parameters = new List<ActionParameterInfo>(sourceUrlInfo.Parameters.Count);
-
-            for (int i = 0; i < sourceUrlInfo.Parameters.Count; i++)
+            if (routeValues == null)
             {
-                UrlParameterInfo sourceUrlParameterInfo = sourceUrlInfo.Parameters[i];
-
-                if (!String.Equals(sourceUrlParameterInfo.Name, returnUrlParameterName))
-                {
-                    var destActionParameterInfo = new ActionParameterInfo
-                    {
-                        Name = sourceUrlParameterInfo.Name,
-                        Value = sourceUrlParameterInfo.Value
-                    };
-                    destActionInfo.Parameters.Add(destActionParameterInfo);
-                }
-                else
-                {
-                    // Recursive call
-                    destActionInfo.ReturnAction = GetReturnAction(sourceUrlParameterInfo.Value, returnUrlParameterName);
-                }
+                actionInfo.Parameters = new ActionParameterInfo[0];
+            }
+            else
+            {
+                actionInfo.Parameters = _reflectionCache.GetProperties(routeValues.GetType())
+                                                        .Select(x => new ActionParameterInfo
+                                                        {
+                                                            Name = x.Name,
+                                                            Value = Convert.ToString(x.GetValue(routeValues, null))
+                                                        })
+                                                        .ToArray();
             }
 
-            return destActionInfo;
+            string returnUrl = ActionInfoToUrlConverter.ConvertActionInfoToUrl(actionInfo, returnUrlParameterName: "ret"); // returnUrlParameterName does not matter here.
+            return returnUrl;
+
         }
     }
 }

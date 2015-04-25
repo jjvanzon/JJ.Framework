@@ -20,7 +20,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
             if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
             {
                 var presenter = new LoginPresenter();
-                ActionInfo returnAction = UrlHelpers.GetReturnAction(ret);
+                ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
                 viewModel = presenter.Show(returnAction);
             }
 
@@ -31,7 +31,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
         public ActionResult Index(LoginViewModel viewModel, string ret = null)
         {
             var presenter = new LoginPresenter();
-            viewModel.ReturnAction = UrlHelpers.GetReturnAction(ret);
+            viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
             object viewModel2 = presenter.Login(viewModel);
 
             // TODO: This is dirty.

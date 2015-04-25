@@ -19,7 +19,11 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.ViewMapping
 
         protected override object GetRouteValues(EditViewModel viewModel)
         {
-            return new { id = viewModel.Entity.ID };
+            return new 
+            { 
+                id = viewModel.Entity.ID, 
+                ret = TryGetReturnUrl(viewModel.ReturnAction) 
+            };
         }
     }
 }

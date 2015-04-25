@@ -59,7 +59,7 @@ namespace JJ.Framework.Presentation.Mvc
             IList<Type> types = ReflectionHelper.GetImplementations<IViewMapping>(assembly);
             IList<IViewMapping> viewMappings = types.Select(x => (IViewMapping)Activator.CreateInstance(x)).ToArray();
             _mappingsByViewModelType = viewMappings.ToNonUniqueDictionary(x => x.ViewModelType);
-            _mappingsByControllerActionKey = viewMappings.ToNonUniqueDictionary(x => GetActionKey(x.ControllerName, x.ControllerGetActionName));
+            _mappingsByControllerActionKey = viewMappings.ToNonUniqueDictionary(x => GetActionKey(x.ControllerGetActionName, x.ControllerGetActionName));
             _mappingsByPresenterActionKey = viewMappings.ToNonUniqueDictionary(x => GetActionKey(x.PresenterName, x.PresenterActionName));
         }
 
@@ -149,21 +149,16 @@ namespace JJ.Framework.Presentation.Mvc
         /// the return URL is translated too and this is done recursively,
         /// because it can yet again have a return URL.
         /// </summary>
-        public static ActionInfo TryGetActionInfo(string mvcUrl, string returnUrlParameterName = "ret")
+        public static ActionInfo GetActionInfo(string mvcUrl, string returnUrlParameterName = "ret")
         {
+            if (String.IsNullOrEmpty(mvcUrl)) throw new NullOrEmptyException(() => mvcUrl);
             if (String.IsNullOrEmpty(returnUrlParameterName)) throw new NullOrEmptyException(() => returnUrlParameterName);
-
-            if (String.IsNullOrEmpty(mvcUrl))
-            {
-                // There must be null-tollerance here, for brevity in calls to the ActionDispatcher.
-                return null;
-            }
 
             // The code line below will convert the URL to action info,
             // but it will still have the MVC-based names.
             ActionInfo controllerActionInfo = ActionInfoToUrlConverter.ConvertUrlToActionInfo(mvcUrl, returnUrlParameterName);
 
-            ActionInfo presenterActionInfo = TranslateActionInfo_FromControllerToPresenter_Recursive(controllerActionInfo, mvcUrl);
+            ActionInfo presenterActionInfo = TranslateActionInfo_FromControllerToPresenter_Recursive(controllerActionInfo);
 
             return presenterActionInfo;
         }
@@ -172,14 +167,13 @@ namespace JJ.Framework.Presentation.Mvc
         /// Translate the MVC-level names in the action info to presenter-level names using ViewMappings. 
         /// If the actionInfo has a return action, the return action is translated too and this is done recursively.
         /// </summary>
-        /// <param name="mvcUrl">for in exception messages only</param>
-        private static ActionInfo TranslateActionInfo_FromControllerToPresenter_Recursive(ActionInfo controllerActionInfo, string mvcUrl)
+        private static ActionInfo TranslateActionInfo_FromControllerToPresenter_Recursive(ActionInfo controllerActionInfo)
         {
-            ActionInfo presenterActionInfo = TranslateActionInfo_FromControllerToPresenter(controllerActionInfo, mvcUrl);
+            ActionInfo presenterActionInfo = TranslateActionInfo_FromControllerToPresenter(controllerActionInfo);
 
             if (controllerActionInfo.ReturnAction != null)
             {
-                presenterActionInfo.ReturnAction = TranslateActionInfo_FromControllerToPresenter_Recursive(controllerActionInfo.ReturnAction, mvcUrl);
+                presenterActionInfo.ReturnAction = TranslateActionInfo_FromControllerToPresenter_Recursive(controllerActionInfo.ReturnAction);
             }
 
             return presenterActionInfo;
@@ -188,8 +182,7 @@ namespace JJ.Framework.Presentation.Mvc
         /// <summary>
         /// Translate the MVC-level names in the action info to presenter-level names using ViewMappings. 
         /// </summary>
-        /// <param name="mvcUrl">for in exception messages only</param>
-        private static ActionInfo TranslateActionInfo_FromControllerToPresenter(ActionInfo controllerActionInfo, string mvcUrl)
+        private static ActionInfo TranslateActionInfo_FromControllerToPresenter(ActionInfo controllerActionInfo)
         {
             IViewMapping viewMapping = GetViewMappingByControllerActionInfo(controllerActionInfo);
 
@@ -197,36 +190,10 @@ namespace JJ.Framework.Presentation.Mvc
             {
                 PresenterName = viewMapping.PresenterName,
                 ActionName = viewMapping.PresenterActionName,
-                Parameters = new List<ActionParameterInfo>(controllerActionInfo.Parameters.Count)
+                Parameters = new List<ActionParameterInfo>()
             };
 
-            // Map unnamed parameters to presenter action parameters
-            // (e.g. in "Question/Details/1234" the third URL path element
-            // is the first parameter.
-            ActionParameterInfo[] unnamedControllerActionParameters = controllerActionInfo.Parameters.Where(x => String.IsNullOrEmpty(x.Name)).ToArray();
-            for (int i = 0; i < unnamedControllerActionParameters.Length; i++)
-            {
-                ActionParameterInfo controllerParameterInfo = unnamedControllerActionParameters[i];
-                ActionParameterMapping parameterMapping = viewMapping.ParameterMappings.ElementAtOrDefault(i);
-                if (parameterMapping == null)
-                {
-                    throw new Exception(String.Format(
-                        "Unnamed controller parameter [{0}] in URL '{1}' cannot be mapped to a presenter parameter. " +
-                        "When a controller parameter can be used as a URL path element it must be mapped in the ViewMapping " +
-                        "using the MapParameter method. The unnamed parameter will be mapped to a presenter parameter in the order " +
-                        "in which you call MapParameter.", i, mvcUrl));
-                }
-
-                var presenterParameterInfo = new ActionParameterInfo
-                {
-                    Name = parameterMapping.PresenterParameterName,
-                    Value = controllerParameterInfo.Value
-                };
-                presenterActionInfo.Parameters.Add(presenterParameterInfo);
-            }
-
-            ActionParameterInfo[] namedControllerActionParameter = controllerActionInfo.Parameters.Except(unnamedControllerActionParameters).ToArray();
-            foreach (ActionParameterInfo controllerParameterInfo in namedControllerActionParameter)
+            foreach (ActionParameterInfo controllerParameterInfo in controllerActionInfo.Parameters)
             {
                 ActionParameterMapping parameterMapping = viewMapping.ParameterMappings
                                                                      .Where(x => String.Equals(x.ControllerParameterName, controllerParameterInfo.Name))
@@ -254,8 +221,10 @@ namespace JJ.Framework.Presentation.Mvc
 
         private static IViewMapping GetViewMappingByControllerActionInfo(ActionInfo controllerActionInfo)
         {
-            // Keep working with a non-unique dictionary, even though you can only have one mapping per key,
-            // otherwise a programmer gets to see an incomprehendable error message.
+            //string key = GetActionKey(controllerActionInfo.PresenterName, controllerActionInfo.ActionName);
+            //IViewMapping mappings = _mappingsByControllerActionKey[key];
+            //return mappings;
+        
             string key = GetActionKey(controllerActionInfo.PresenterName, controllerActionInfo.ActionName);
             IList<IViewMapping> mappings;
             if (!_mappingsByControllerActionKey.TryGetValue(key, out mappings))
@@ -280,11 +249,6 @@ namespace JJ.Framework.Presentation.Mvc
 
         /// <summary>
         /// Takes presenter action info and converts it to an MVC url.
-        /// If the ActionInfo has a return action that possibly also has a return action,
-        /// return URL parameters are stacked up as follows:
-        /// Questions/Details?id=1
-        /// Questions/Edit?id=1&amp;ret=Questions%2FDetails%3Fid%3D1
-        /// Login/Index&amp;ret=Questions%2FEdit%3Fid%3D1%26ret%3DQuestions%252FDetails%253Fid%253D1
         /// </summary>
         public static string GetUrl(ActionInfo presenterActionInfo, string returnUrlParameterName = "ret")
         {
@@ -294,12 +258,14 @@ namespace JJ.Framework.Presentation.Mvc
             ActionInfo controllerActionInfo = TranslateActionInfo_FromPresenterToController_Recursive(presenterActionInfo);
 
             string url = ActionInfoToUrlConverter.ConvertActionInfoToUrl(controllerActionInfo, returnUrlParameterName);
+
             return url;
         }
 
         /// <summary>
-        /// Translate the MVC-level names in the action info to presenter-level names using ViewMappings. 
-        /// If the actionInfo has a return action, the return action is translated too and this is done recursively.
+        /// Translate the MVC-level names in the action info to presenter-level names
+        /// using ViewMappings. If the actionInfo has a return action,
+        /// the return action is translated too and this is done recursively.
         /// </summary>
         private static ActionInfo TranslateActionInfo_FromPresenterToController_Recursive(ActionInfo presenterActionInfo)
         {
@@ -347,7 +313,6 @@ namespace JJ.Framework.Presentation.Mvc
                     Name = controllerParameterName,
                     Value = presenterParameterInfo.Value
                 };
-
                 controllerActionInfo.Parameters.Add(controllerParameterInfo);
             }
 
@@ -356,8 +321,6 @@ namespace JJ.Framework.Presentation.Mvc
 
         private static IViewMapping GetViewMappingByPresenterActionInfo(ActionInfo presenterActionInfo)
         {
-            // Keep working with a non-unique dictionary, even though you can only have one mapping per key,
-            // otherwise a programmer gets to see an incomprehendable error message.
             string key = GetActionKey(presenterActionInfo.PresenterName, presenterActionInfo.ActionName);
             IList<IViewMapping> mappings;
             if (!_mappingsByPresenterActionKey.TryGetValue(key, out mappings))

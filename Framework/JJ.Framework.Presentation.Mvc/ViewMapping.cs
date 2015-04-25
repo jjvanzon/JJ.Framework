@@ -16,11 +16,11 @@ namespace JJ.Framework.Presentation.Mvc
         public string ViewName { get; protected set; }
 
         // TODO: Is this enough encapsulation?
-        public IList<ActionParameterMapping> ActionParameterMappings { get; private set; }
+        public IList<ActionParameterMapping> ParameterMappings { get; private set; }
 
         public ViewMapping()
         {
-            ActionParameterMappings = new List<ActionParameterMapping>();
+            ParameterMappings = new List<ActionParameterMapping>();
         }
 
         /// <summary> nullable, base method does nothing </summary>
@@ -40,10 +40,17 @@ namespace JJ.Framework.Presentation.Mvc
             return true;
         }
 
-        protected string GetReturnUrl(ActionInfo actionInfo)
+        /// <summary>
+        /// Takes presenter action info and converts it to an MVC url.
+        /// </summary>
+        protected string TryGetReturnUrl(ActionInfo actionInfo)
         {
-            // TODO: Map presenter names to controller names
-            return UrlHelpers.GetReturnUrl(actionInfo);
+            if (actionInfo == null)
+            {
+                return null;
+            }
+
+            return ActionDispatcher.GetUrl(actionInfo);
         }
 
         /// <summary>
@@ -85,7 +92,7 @@ namespace JJ.Framework.Presentation.Mvc
 
         public void MapParameter(string presenterActionParameter, string controllerActionParameter)
         {
-            ActionParameterMappings.Add(new ActionParameterMapping(presenterActionParameter, controllerActionParameter));
+            ParameterMappings.Add(new ActionParameterMapping(presenterActionParameter, controllerActionParameter));
         }
 
         // IViewMapping

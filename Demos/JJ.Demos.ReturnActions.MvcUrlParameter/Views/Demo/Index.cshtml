@@ -26,7 +26,7 @@
                 @Html.ActionLink("Edit", ActionNames.Edit, new 
                 {
                     id = item.ID,
-                    ret = Url.GetReturnUrl(PresenterNames.ListPresenter, PresenterActionNames.Show)
+                    ret = Url.ReturnAction(ActionNames.Index, ControllerNames.Demo)
                 }) |
                 @Html.ActionLink("Details", ActionNames.Details, new { id = item.ID })
             </td>
