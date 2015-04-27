@@ -36,8 +36,16 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlExtensions.cs" />
     <Compile Include="ControlGraphicsBuffer.cs" />
     <Compile Include="ConversionExtensions.cs" />
+    <Compile Include="PageNumberEventArgs.cs" />
+    <Compile Include="PagerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PagerControl.Designer.cs">
+      <DependentUpon>PagerControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DiagramControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -60,6 +68,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PagerControl.resx">
+      <DependentUpon>PagerControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DiagramControl.resx">
       <DependentUpon>DiagramControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -82,6 +93,10 @@
     <ProjectReference Include="..\JJ.Framework.Presentation.Svg\JJ.Framework.Presentation.Svg.csproj">
       <Project>{52e03e08-331a-4ca7-8d8f-6f598c94eed4}</Project>
       <Name>JJ.Framework.Presentation.Svg</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj">
+      <Project>{79b0eac3-5159-4fc8-b3d8-53315b205444}</Project>
+      <Name>JJ.Framework.Presentation</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>

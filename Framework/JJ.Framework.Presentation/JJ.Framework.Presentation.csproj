@@ -39,6 +39,8 @@
     <Compile Include="ActionDispatcher.cs" />
     <Compile Include="NotAuthorizedViewModel.cs" />
     <Compile Include="ActionParameterInfo.cs" />
+    <Compile Include="PagerViewModel.cs" />
+    <Compile Include="PagerViewModelFactory.cs" />
     <Compile Include="PreviousViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnexpectedViewModelTypeException.cs" />
