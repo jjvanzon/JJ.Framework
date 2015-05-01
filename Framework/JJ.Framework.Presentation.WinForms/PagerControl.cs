@@ -31,6 +31,23 @@ namespace JJ.Framework.Presentation.WinForms
             InitializeComponent();
         }
 
+        private bool _resizeBusy;
+
+        /// <summary>
+        /// Fix the height to the height of the menu.
+        /// </summary>
+        protected override void OnResize(EventArgs e)
+        {
+            if (_resizeBusy) return;
+            _resizeBusy = true;
+
+            base.OnResize(e);
+
+            Height = linkLabelGoToFirstPage.Height + Padding.Top + Padding.Bottom;
+
+            _resizeBusy = false;
+        }
+
         /// <summary> nullable </summary>
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

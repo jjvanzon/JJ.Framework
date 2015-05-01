@@ -123,6 +123,9 @@
   <data name="Cancel" xml:space="preserve">
     <value>Annuleren</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Verwijderen</value>
   </data>
@@ -151,6 +154,9 @@
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>Uitloggen</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Naam</value>
   </data>
   <data name="New" xml:space="preserve">
     <value>Nieuw</value>
