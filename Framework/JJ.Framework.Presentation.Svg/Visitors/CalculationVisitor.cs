@@ -78,12 +78,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
         protected override void VisitPolymorphic(Element element)
         {
-            if (String.Equals(element.Tag, "ToolTip Rectangle") &&
-                element.Visible)
-            {
-                int i = 0;
-            }
-
             // TODO: It seems to coincidental that determining Visible and Enabled work this way.
             // I would much rather put variables on the call stack or work with a new virtual style
             // on each stack frame.

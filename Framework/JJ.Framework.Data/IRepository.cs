@@ -20,5 +20,6 @@ namespace JJ.Framework.Data
         /// </summary>
         void Flush();
         void Commit();
+        void Rollback();
     }
 }

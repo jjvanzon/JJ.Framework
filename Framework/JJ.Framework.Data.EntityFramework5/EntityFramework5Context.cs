@@ -20,10 +20,7 @@ namespace JJ.Framework.Data.EntityFramework5
         public EntityFramework5Context(string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
             : base(persistenceLocation, modelAssembly, mappingAssembly, dialect)
         {
-            _transactionScope = new TransactionScope();
-            Context = UnderlyingEntityFramework5ContextFactory.CreateContext(persistenceLocation, modelAssembly, mappingAssembly);
-            Context.Database.Connection.Open();
-            //_transaction = Context.Database.Connection.BeginTransaction();
+            Context = OpenContext();
         }
 
         public override TEntity TryGet<TEntity>(object id)
@@ -79,15 +76,48 @@ namespace JJ.Framework.Data.EntityFramework5
             return Context.Set<TEntity>();
         }
 
+        // Transactions
+
+        private DbContext OpenContext()
+        {
+            _transactionScope = new TransactionScope();
+
+            DbContext context = UnderlyingEntityFramework5ContextFactory.CreateContext(Location, ModelAssembly, MappingAssembly);
+            context.Database.Connection.Open();
+            //_transaction = context.Database.Connection.BeginTransaction();
+            return context;
+        }
+
+        private void CloseContext(DbContext underlyingContext)
+        {
+            //if (_transaction != null)
+            //{
+            //    _transaction.Rollback();
+            //}
+
+            if (Context != null)
+            {
+                Context.Dispose();
+            }
+
+            if (_transactionScope != null)
+            {
+                _transactionScope.Dispose();
+            }
+
+            Context = null;
+            _transactionScope = null;
+        }
+
         public override void Commit()
         {
-            Context.SaveChanges();
+            Flush();
 
             //_transaction.Commit();
-
             _transactionScope.Complete();
-            _transactionScope.Dispose();
-            _transactionScope = new TransactionScope();
+
+            CloseContext(Context);
+            Context = OpenContext();
         }
 
         public override void Flush()
@@ -95,21 +125,17 @@ namespace JJ.Framework.Data.EntityFramework5
             Context.SaveChanges();
         }
 
+        public override void Rollback()
+        {
+            CloseContext(Context);
+            Context = OpenContext();
+        }
+
         public override void Dispose()
         {
             if (Context != null)
             {
-                Context.Dispose();
-            }
-
-            //if (_transaction != null)
-            //{
-            //    _transaction.Rollback();
-            //}
-
-            if (_transactionScope != null)
-            {
-                _transactionScope.Dispose();
+                CloseContext(Context);
             }
         }
     }

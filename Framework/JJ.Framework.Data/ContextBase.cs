@@ -52,5 +52,6 @@ namespace JJ.Framework.Data
         public abstract void Commit();
         public abstract void Flush();
         public abstract void Dispose();
+        public abstract void Rollback();
     }
 }

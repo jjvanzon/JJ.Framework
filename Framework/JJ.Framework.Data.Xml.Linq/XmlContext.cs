@@ -124,5 +124,13 @@ namespace JJ.Framework.Data.Xml.Linq
         {
             // No code required.
         }
+
+        public override void Rollback()
+        {
+            lock (_entityStoreDictionary)
+            {
+                _entityStoreDictionary.Clear();
+            }
+        }
     }
 }

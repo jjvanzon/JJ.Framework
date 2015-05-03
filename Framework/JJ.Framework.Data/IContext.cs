@@ -24,5 +24,7 @@ namespace JJ.Framework.Data
         void Flush();
 
         string Location { get; }
+
+        void Rollback();
     }
 }

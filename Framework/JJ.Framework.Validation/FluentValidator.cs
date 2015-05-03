@@ -7,8 +7,6 @@ using System.Linq.Expressions;
 using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Reflection.Exceptions;
-using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Validation
@@ -103,6 +101,25 @@ namespace JJ.Framework.Validation
             if (_value != null)
             {
                 ValidationMessages.Add(_propertyKey, MessageFormatter.IsNotNull(_propertyDisplayName));
+            }
+
+            return this;
+        }
+
+        // Strings
+
+        public FluentValidator<TRootObject> MaxLength(int maxLength)
+        {
+            string str = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(str))
+            {
+                return this;
+            }
+
+            if (str.Length > maxLength)
+            {
+                ValidationMessages.Add(_propertyKey, MessageFormatter.ExceedsLength(_propertyDisplayName, maxLength));
             }
 
             return this;

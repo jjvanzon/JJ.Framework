@@ -121,6 +121,10 @@
     <value>{0} cannot be {1}.</value>
     <comment>{0} = property name, {1} = value</comment>
   </data>
+  <data name="ExceedsLength" xml:space="preserve">
+    <value>{0} exceeds length of {1}.</value>
+    <comment>{0} = property name; {1} = max length</comment>
+  </data>
   <data name="IsInteger" xml:space="preserve">
     <value>{0} is a 32-bit integer number.</value>
     <comment>{0} = property name</comment>
@@ -150,11 +154,11 @@
     <comment>{0} = property name</comment>
   </data>
   <data name="Max" xml:space="preserve">
-    <value>{0} can be at most {1}.</value>
+    <value>{0} is above {1}.</value>
     <comment>{0} = property name, {1} = minimum value</comment>
   </data>
   <data name="Min" xml:space="preserve">
-    <value>{0} must be at least {1}.</value>
+    <value>{0} is below {1}.</value>
     <comment>{0} = property name, {1} = minimum value</comment>
   </data>
   <data name="NotAbove" xml:space="preserve">

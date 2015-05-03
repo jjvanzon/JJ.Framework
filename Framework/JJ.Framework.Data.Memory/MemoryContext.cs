@@ -103,5 +103,10 @@ namespace JJ.Framework.Data.Memory
         {
             // No code required.
         }
+
+        public override void Rollback()
+        {
+            // No code required.
+        }
     }
 }

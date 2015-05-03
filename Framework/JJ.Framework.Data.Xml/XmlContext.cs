@@ -107,6 +107,8 @@ namespace JJ.Framework.Data.Xml
             throw new NotSupportedException("XmlContext does not support Query<TEntity>().");
         }
 
+        // Transactions
+
         public override void Commit()
         {
             lock (_lock)
@@ -126,6 +128,14 @@ namespace JJ.Framework.Data.Xml
         public override void Dispose()
         {
             // No code required.
+        }
+
+        public override void Rollback()
+        {
+            lock (_entityStoreDictionary)
+            {
+                _entityStoreDictionary.Clear();
+            }
         }
     }
 }

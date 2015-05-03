@@ -79,5 +79,10 @@ namespace JJ.Framework.Validation.Resources
             string message = String.Format(Messages.NotIn, propertyDisplayName, joined);
             return message;
         }
+
+        internal static string ExceedsLength(string propertyDisplayName, int maxLength)
+        {
+            return String.Format(Messages.ExceedsLength, propertyDisplayName, maxLength);
+        }
     }
 }

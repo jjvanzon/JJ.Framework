@@ -70,6 +70,15 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} exceeds length of {1}..
+        /// </summary>
+        internal static string ExceedsLength {
+            get {
+                return ResourceManager.GetString("ExceedsLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is a 32-bit integer number..
         /// </summary>
         internal static string IsInteger {
@@ -133,7 +142,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} can be at most {1}..
+        ///   Looks up a localized string similar to {0} is above {1}..
         /// </summary>
         internal static string Max {
             get {
@@ -142,7 +151,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} must be at least {1}..
+        ///   Looks up a localized string similar to {0} is below {1}..
         /// </summary>
         internal static string Min {
             get {

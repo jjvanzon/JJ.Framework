@@ -5,7 +5,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using JJ.Framework.Common;
-using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Validation
 {

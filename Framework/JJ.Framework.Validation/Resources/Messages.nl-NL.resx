@@ -120,6 +120,10 @@
   <data name="CannotBe" xml:space="preserve">
     <value>{0} mag niet {1} zijn.</value>
   </data>
+  <data name="ExceedsLength" xml:space="preserve">
+    <value>{0} is langer dan {1} tekens.</value>
+    <comment>{0} = property name; {1} = max length</comment>
+  </data>
   <data name="IsInteger" xml:space="preserve">
     <value>{0} mag geen geheel getal zijn.</value>
   </data>

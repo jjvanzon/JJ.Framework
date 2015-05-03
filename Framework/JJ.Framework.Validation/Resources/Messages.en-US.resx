@@ -118,11 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CannotBe" xml:space="preserve">
-    <value>{0} cannot be {1}.</value>
+    <value>{0} is {1}.</value>
     <comment>{0} = property name, {1} = value</comment>
   </data>
+  <data name="ExceedsLength" xml:space="preserve">
+    <value>{0} is longer than {1} characters.</value>
+    <comment>{0} = property name; {1} = max length</comment>
+  </data>
   <data name="IsInteger" xml:space="preserve">
-    <value>{0} cannot be an integer number.</value>
+    <value>{0} is not an integer number.</value>
     <comment>{0} = property name</comment>
   </data>
   <data name="IsNot" xml:space="preserve">

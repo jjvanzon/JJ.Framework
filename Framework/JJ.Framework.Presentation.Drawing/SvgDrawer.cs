@@ -91,12 +91,6 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawRectangle(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
-            if (String.Equals(sourceRectangle.Tag, "ToolTip Rectangle") &&
-                sourceRectangle.Visible)
-            {
-                int i = 0;
-            }
-
             if (!sourceRectangle.CalculatedVisible)
             {
                 return;
