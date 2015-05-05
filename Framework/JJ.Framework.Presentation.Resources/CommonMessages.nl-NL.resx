@@ -117,79 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add" xml:space="preserve">
-    <value>Toevoegen</value>
+  <data name="CannotDeleteObjectWithName" xml:space="preserve">
+    <value>{0} '{1}' kan niet worden verwijderd.</value>
+    <comment>{0} = type of object, {2} = name</comment>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Annuleren</value>
+  <data name="ConfirmDeleteObjectWithName" xml:space="preserve">
+    <value>Weet u zeker dat u {0} '{1}' wilt verwijderen?</value>
+    <comment>{0} = type of object, {1} = name</comment>
   </data>
-  <data name="Close" xml:space="preserve">
-    <value>Sluiten</value>
+  <data name="DeleteConfirmed" xml:space="preserve">
+    <value>{0} is verwijderd.</value>
+    <comment>{0} = type of object</comment>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Verwijderen</value>
+  <data name="ObjectNotFound" xml:space="preserve">
+    <value>{0} niet gevonden.</value>
+    <comment>{0} = type of object</comment>
   </data>
-  <data name="DeleteObject" xml:space="preserve">
-    <value>{0} verwijderen</value>
-    <comment>{0} = type of object, singular</comment>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Bewerken</value>
-  </data>
-  <data name="EditObject" xml:space="preserve">
-    <value>{0} bewerken</value>
-    <comment>{0} = type of object, singular</comment>
-  </data>
-  <data name="EntityCount" xml:space="preserve">
-    <value>Aantal {0}</value>
-  </data>
-  <data name="ID" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="Language" xml:space="preserve">
-    <value>Taal</value>
-  </data>
-  <data name="LogIn" xml:space="preserve">
-    <value>Inloggen</value>
-  </data>
-  <data name="LogOut" xml:space="preserve">
-    <value>Uitloggen</value>
-  </data>
-  <data name="Messages" xml:space="preserve">
-    <value>Meldingen</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Naam</value>
-  </data>
-  <data name="New" xml:space="preserve">
-    <value>Nieuw</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>Nee</value>
-  </data>
-  <data name="None" xml:space="preserve">
-    <value>Geen</value>
-  </data>
-  <data name="NotAuthorized" xml:space="preserve">
-    <value>Niet gemachtigd</value>
-  </data>
-  <data name="ObjectDetails" xml:space="preserve">
-    <value>{0} details</value>
-    <comment>{0} = type of object, singular</comment>
-  </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="Remove" xml:space="preserve">
-    <value>Verwijderen</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Opslaan</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Zoeken</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Ja</value>
+  <data name="ObjectNotFoundWithID" xml:space="preserve">
+    <value>{0} met ID {1} niet gevonden.</value>
+    <comment>{0} = type of object, {1} = ID</comment>
   </data>
 </root>

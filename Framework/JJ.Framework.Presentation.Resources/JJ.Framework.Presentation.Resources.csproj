@@ -35,6 +35,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CommonMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CommonMessageFormatter.cs" />
     <Compile Include="CommonTitlesFormatter.cs" />
     <Compile Include="CommonTitles.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -44,6 +50,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CommonMessages.nl-NL.resx" />
+    <EmbeddedResource Include="CommonMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CommonTitles.nl-NL.resx" />
     <EmbeddedResource Include="CommonTitles.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
