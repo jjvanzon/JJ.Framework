@@ -66,15 +66,15 @@ namespace JJ.Framework.Presentation.WinForms
 
         private void ApplyViewModel()
         {
-            //flowLayoutPanel.SuspendLayout();
-            //SuspendLayout();
+            flowLayoutPanel.SuspendLayout();
+            SuspendLayout();
 
             if (_viewModel == null)
             {
                 flowLayoutPanel.Visible = false;
 
-                //flowLayoutPanel.ResumeLayout();
-                //ResumeLayout();
+                flowLayoutPanel.ResumeLayout();
+                ResumeLayout();
 
                 return;
             }
@@ -112,19 +112,32 @@ namespace JJ.Framework.Presentation.WinForms
             }
 
             // Rearrange controls in flowLayoutPanel
+            List<Control> childControls = new List<Control>(_pageNumberLinkLabels.Count + 6);
+            childControls.Add(linkLabelGoToFirstPage);
+            childControls.Add(linkLabelGoToPreviousPage);
+            childControls.Add(labelLeftEllipsis);
+            childControls.AddRange(_pageNumberLinkLabels);
+            childControls.Add(labelRightEllipsis);
+            childControls.Add(linkLabelGoToNextPage);
+            childControls.Add(linkLabelGoToLastPage);
+
             flowLayoutPanel.Controls.Clear();
-            flowLayoutPanel.Controls.Add(linkLabelGoToFirstPage);
-            flowLayoutPanel.Controls.Add(linkLabelGoToPreviousPage);
-            flowLayoutPanel.Controls.Add(labelLeftEllipsis);
-            flowLayoutPanel.Controls.AddRange(_pageNumberLinkLabels.ToArray());
-            flowLayoutPanel.Controls.Add(labelRightEllipsis);
-            flowLayoutPanel.Controls.Add(linkLabelGoToNextPage);
-            flowLayoutPanel.Controls.Add(linkLabelGoToLastPage);
+
+            for (int j = 0; j < childControls.Count; j++)
+            {
+                Control childControl = childControls[j];
+                flowLayoutPanel.Controls.Add(childControl);
+
+                // SetChildIndex is why I cannot just add controls to the flowLayoutPanel:
+                // if you do then most of the times they appear in the right order,
+                // but sometimes you get them arranged in an arbitrary order.
+                flowLayoutPanel.Controls.SetChildIndex(childControl, j + 1);
+            }
 
             flowLayoutPanel.Visible = true;
 
-            //flowLayoutPanel.ResumeLayout();
-            //ResumeLayout();
+            flowLayoutPanel.ResumeLayout();
+            ResumeLayout();
 
             this.AutomaticallyAssignTabIndexes();
         }
