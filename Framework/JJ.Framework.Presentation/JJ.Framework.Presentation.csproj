@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="ActionInfo.cs" />
     <Compile Include="ActionDispatcher.cs" />
+    <Compile Include="NoViewModel.cs" />
     <Compile Include="NotAuthorizedViewModel.cs" />
     <Compile Include="ActionParameterInfo.cs" />
     <Compile Include="PagerViewModel.cs" />

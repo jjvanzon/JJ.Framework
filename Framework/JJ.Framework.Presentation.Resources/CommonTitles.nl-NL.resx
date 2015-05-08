@@ -192,4 +192,11 @@
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>
   </data>
+  <data name="ObjectProperties" xml:space="preserve">
+    <value>{0} eigenschappen</value>
+    <comment>{0} = type of object</comment>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Eigenschappen</value>
+  </data>
 </root>
