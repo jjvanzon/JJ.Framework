@@ -117,15 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AreYouSureYouWishToDeleteWithName" xml:space="preserve">
+    <value>Are you sure you wish to delete {0} '{1}'?</value>
+    <comment>{0} = type of object, {1} = name</comment>
+  </data>
   <data name="CannotDeleteObjectWithName" xml:space="preserve">
     <value>Cannot delete {0} '{1}'.</value>
     <comment>{0} = type of object, {1} = name</comment>
   </data>
-  <data name="ConfirmDeleteObjectWithName" xml:space="preserve">
-    <value>Are you sure you wish to delete {0} '{1}'?</value>
-    <comment>{0} = type of object, {1} = name</comment>
-  </data>
-  <data name="DeleteConfirmed" xml:space="preserve">
+  <data name="ObjectIsDeleted" xml:space="preserve">
     <value>{0} is deleted.</value>
     <comment>{0} = type of object</comment>
   </data>

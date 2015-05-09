@@ -61,6 +61,15 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to delete {0} &apos;{1}&apos;?.
+        /// </summary>
+        internal static string AreYouSureYouWishToDeleteWithName {
+            get {
+                return ResourceManager.GetString("AreYouSureYouWishToDeleteWithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot delete {0} &apos;{1}&apos;..
         /// </summary>
         internal static string CannotDeleteObjectWithName {
@@ -70,20 +79,11 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you wish to delete {0} &apos;{1}&apos;?.
-        /// </summary>
-        internal static string ConfirmDeleteObjectWithName {
-            get {
-                return ResourceManager.GetString("ConfirmDeleteObjectWithName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} is deleted..
         /// </summary>
-        internal static string DeleteConfirmed {
+        internal static string ObjectIsDeleted {
             get {
-                return ResourceManager.GetString("DeleteConfirmed", resourceCulture);
+                return ResourceManager.GetString("ObjectIsDeleted", resourceCulture);
             }
         }
         

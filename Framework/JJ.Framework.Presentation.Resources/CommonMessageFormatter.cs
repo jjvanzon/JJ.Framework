@@ -22,14 +22,14 @@ namespace JJ.Framework.Presentation.Resources
             return String.Format(CommonMessages.CannotDeleteObjectWithName, objectTypeName, objectName);
         }
 
-        public static string ConfirmDeleteObjectWithName(string objectTypeName, string objectName)
+        public static string AreYouSureYouWishToDeleteWithName(string objectTypeName, string objectName)
         {
-            return String.Format(CommonMessages.ConfirmDeleteObjectWithName, objectTypeName, objectName);
+            return String.Format(CommonMessages.AreYouSureYouWishToDeleteWithName, objectTypeName, objectName);
         }
 
-        public static string DeleteConfirmed(string objectTypeName)
+        public static string ObjectIsDeleted(string objectTypeName)
         {
-            return String.Format(CommonMessages.DeleteConfirmed, objectTypeName);
+            return String.Format(CommonMessages.ObjectIsDeleted, objectTypeName);
         }
     }
 }
