@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Resources
 {
-    public static class CommonTitlesFormatter
+    public static class CommonTitleFormatter
     {
         public static string EntityCount(string entityNamePlural)
         {
