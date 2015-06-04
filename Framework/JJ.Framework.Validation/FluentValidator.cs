@@ -78,7 +78,7 @@ namespace JJ.Framework.Validation
         {
             if (_value == null)
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.IsNull(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsNull(_propertyDisplayName));
             }
 
             return this;
@@ -90,7 +90,7 @@ namespace JJ.Framework.Validation
 
             if (String_PlatformSupport.IsNullOrWhiteSpace(value))
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.IsNullOrWhiteSpace(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsNullOrWhiteSpace(_propertyDisplayName));
             }
 
             return this;
@@ -100,7 +100,7 @@ namespace JJ.Framework.Validation
         {
             if (_value != null)
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.IsNotNull(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsNotNull(_propertyDisplayName));
             }
 
             return this;
@@ -119,7 +119,7 @@ namespace JJ.Framework.Validation
 
             if (str.Length > maxLength)
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.ExceedsLength(_propertyDisplayName, maxLength));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.ExceedsLength(_propertyDisplayName, maxLength));
             }
 
             return this;
@@ -142,7 +142,7 @@ namespace JJ.Framework.Validation
 
             if (!isAllowed)
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.NotIn(_propertyDisplayName, _value, possibleValues));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotIn(_propertyDisplayName, _value, possibleValues));
             }
 
             return this;
@@ -159,7 +159,7 @@ namespace JJ.Framework.Validation
 
             if (!Equals(_value, value))
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.IsNot(_propertyDisplayName, value));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsNot(_propertyDisplayName, value));
             }
 
             return this;
@@ -177,7 +177,7 @@ namespace JJ.Framework.Validation
 
             if (Equals(_value, value))
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.CannotBe(_propertyDisplayName, value));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.CannotBe(_propertyDisplayName, value));
             }
 
             return this;
@@ -187,7 +187,7 @@ namespace JJ.Framework.Validation
         {
             if (Equals(_value, 0))
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.IsZero(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsZero(_propertyDisplayName));
             }
 
             return this;
@@ -207,7 +207,7 @@ namespace JJ.Framework.Validation
 
             if (value.CompareTo(min) <= 0)
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.NotAbove(_propertyDisplayName, min));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotAbove(_propertyDisplayName, min));
             }
 
             return this;
@@ -225,7 +225,7 @@ namespace JJ.Framework.Validation
 
             if (value.CompareTo(min) < 0)
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.Min(_propertyDisplayName, min));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.Min(_propertyDisplayName, min));
             }
 
             return this;
@@ -243,7 +243,7 @@ namespace JJ.Framework.Validation
 
             if (value.CompareTo(max) > 0)
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.Max(_propertyDisplayName, max));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.Max(_propertyDisplayName, max));
             }
 
             return this;
@@ -263,7 +263,7 @@ namespace JJ.Framework.Validation
             int convertedValue;
             if (Int32.TryParse(value, out convertedValue))
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.IsInteger(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsInteger(_propertyDisplayName));
             }
 
             return this;
@@ -281,7 +281,7 @@ namespace JJ.Framework.Validation
             double convertedValue;
             if (!Double.TryParse(value, out convertedValue))
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.NotDouble(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotDouble(_propertyDisplayName));
             }
 
             return this;
@@ -299,7 +299,7 @@ namespace JJ.Framework.Validation
             int convertedValue;
             if (!Int32.TryParse(value, out convertedValue))
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.NotInteger(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotInteger(_propertyDisplayName));
             }
 
             return this;
@@ -328,7 +328,7 @@ namespace JJ.Framework.Validation
             bool isEnum = underlyingValues.Contains(underlyingValue);
             if (!isEnum)
             {
-                ValidationMessages.Add(_propertyKey, MessageFormatter.IsNotValidEnumValue(_propertyDisplayName));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsNotValidEnumValue(_propertyDisplayName));
             }
 
             return this;
