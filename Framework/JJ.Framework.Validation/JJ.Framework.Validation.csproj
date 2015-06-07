@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FluentValidator.cs" />
+    <Compile Include="FluentValidator_WithoutConstructorArgumentNullCheck.cs" />
     <Compile Include="PropertyKeyHelper.cs" />
     <Compile Include="Resources\ValidationMessageFormatter.cs" />
     <Compile Include="Resources\ValidationMessages.Designer.cs">
