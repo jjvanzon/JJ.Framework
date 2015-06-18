@@ -199,4 +199,7 @@
   <data name="Properties" xml:space="preserve">
     <value>Eigenschappen</value>
   </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>Bestandspad</value>
+  </data>
 </root>
