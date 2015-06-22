@@ -88,6 +88,15 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close {0}.
+        /// </summary>
+        public static string CloseObject {
+            get {
+                return ResourceManager.GetString("CloseObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Delete {

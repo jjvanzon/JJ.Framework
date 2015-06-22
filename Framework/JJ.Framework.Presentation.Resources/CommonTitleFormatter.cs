@@ -12,6 +12,11 @@ namespace JJ.Framework.Presentation.Resources
             return String.Format(CommonTitles.EntityCount, entityNamePlural);
         }
 
+        public static String CloseObject(string objectTypeName)
+        {
+            return String.Format(CommonTitles.CloseObject, objectTypeName);
+        }
+
         public static String DeleteObject(string objectTypeName)
         {
             return String.Format(CommonTitles.DeleteObject, objectTypeName);

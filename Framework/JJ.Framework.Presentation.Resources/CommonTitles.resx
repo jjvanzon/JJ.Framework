@@ -203,4 +203,8 @@
   <data name="FilePath" xml:space="preserve">
     <value>File Path</value>
   </data>
+  <data name="CloseObject" xml:space="preserve">
+    <value>Close {0}</value>
+    <comment>{0} = type of object, singular</comment>
+  </data>
 </root>

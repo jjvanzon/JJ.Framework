@@ -202,4 +202,8 @@
   <data name="FilePath" xml:space="preserve">
     <value>Bestandspad</value>
   </data>
+  <data name="CloseObject" xml:space="preserve">
+    <value>{0} sluiten</value>
+    <comment>{0} = type of object, singular</comment>
+  </data>
 </root>
