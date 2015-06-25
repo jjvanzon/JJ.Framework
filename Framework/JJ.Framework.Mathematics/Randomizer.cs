@@ -7,7 +7,14 @@ namespace JJ.Framework.Mathematics
 {
     public static class Randomizer
     {
-        private static Random _random = new Random();
+        private static Random _random;
+
+        static Randomizer()
+        {
+            int randomSeed = Guid.NewGuid().GetHashCode();
+
+            _random = new Random(randomSeed);
+        }
 
         /// <summary>
         /// Gets a random Int32 between Int32.MinValue and Int32.MaxValue - 1.
@@ -51,6 +58,23 @@ namespace JJ.Framework.Mathematics
 
             int index = Randomizer.GetInt32(count - 1);
             return collection.ElementAt(index);
+        }
+
+        /// <summary> Returns a random number between 0.0 and 1.0. </summary>
+        /// <param name="min">inclusive</param>
+        /// <param name="max">exclusive</param>
+        public static double GetDouble()
+        {
+            return _random.NextDouble();
+        }
+
+        /// <param name="min">inclusive</param>
+        /// <param name="max">exclusive</param>
+        public static double GetDouble(double min, double max)
+        {
+            double value = GetDouble();
+            value = (value - min) * (max - min);
+            return value;
         }
     }
 }
