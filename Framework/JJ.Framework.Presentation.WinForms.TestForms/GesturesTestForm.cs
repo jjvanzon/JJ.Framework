@@ -14,7 +14,7 @@ using SvgStyling = JJ.Framework.Presentation.Svg.Models.Styling;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {
-    public partial class GesturesTestForm : Form
+    internal partial class GesturesTestForm : Form
     {
         private const float BLOCK_WIDTH = 200;
         private const float BLOCK_HEIGHT = 60;
@@ -169,7 +169,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 var rectangle = element as SvgElements.Rectangle;
                 if (rectangle != null)
                 {
-                    label = rectangle.Children.OfType<SvgElements.Label>().First();
+                    label = rectangle.Children.OfType<SvgElements.Label>().FirstOrDefault();
                 }
             }
 

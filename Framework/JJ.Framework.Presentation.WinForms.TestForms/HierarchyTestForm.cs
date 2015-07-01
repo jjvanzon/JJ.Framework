@@ -13,7 +13,7 @@ using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {
-    public partial class HierarchyTestForm : Form
+    internal partial class HierarchyTestForm : Form
     {
         public HierarchyTestForm()
         {

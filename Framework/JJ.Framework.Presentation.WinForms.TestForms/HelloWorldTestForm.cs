@@ -13,7 +13,7 @@ using SvgStyling = JJ.Framework.Presentation.Svg.Models.Styling;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {
-    public partial class HelloWorldTestForm : Form
+    internal partial class HelloWorldTestForm : Form
     {
         public HelloWorldTestForm()
         {
@@ -30,6 +30,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var label = new SvgElements.Label
             {
                 Diagram = diagram,
+                Parent = diagram.Canvas,
                 Text = "Hello World!",
                 X = 10,
                 Y = 20,

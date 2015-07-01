@@ -13,7 +13,7 @@ using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 {
-    public partial class SvgWithoutCloning_TestForm : Form
+    internal partial class SvgWithoutCloning_TestForm : Form
     {
         public SvgWithoutCloning_TestForm()
         {

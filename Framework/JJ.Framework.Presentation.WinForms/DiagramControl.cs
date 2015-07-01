@@ -62,10 +62,7 @@ namespace JJ.Framework.Presentation.WinForms
 
             base.OnMouseMove(e);
 
-            //if (e.Button != MouseButtons.None)
-            //{
-                Refresh();
-            //}
+            Refresh();
         }
 
         protected override void OnMouseUp(MouseEventArgs e)

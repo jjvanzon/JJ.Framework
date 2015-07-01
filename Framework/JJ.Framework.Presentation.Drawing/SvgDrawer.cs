@@ -57,6 +57,13 @@ namespace JJ.Framework.Presentation.Drawing
                 return;
             }
 
+            var sourceCurve = sourceElement as SvgElements.Curve;
+            if (sourceCurve != null)
+            {
+                DrawCurve(sourceCurve, destGraphics);
+                return;
+            }
+
             throw new Exception(String.Format("Unexpected Element type '{0}'", sourceElement.GetType().FullName));
         }
 
@@ -159,6 +166,14 @@ namespace JJ.Framework.Presentation.Drawing
             Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 
             destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);
+        }
+
+        private static void DrawCurve(Curve sourceCurve, Graphics destGraphics)
+        {
+            foreach (Line calculatedLine in sourceCurve.CalculatedLines)
+            {
+                DrawLine(calculatedLine, destGraphics);
+            }
         }
     }
 }

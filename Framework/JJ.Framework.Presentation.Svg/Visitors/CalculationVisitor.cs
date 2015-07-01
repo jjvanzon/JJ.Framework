@@ -1,5 +1,7 @@
-﻿using JJ.Framework.Presentation.Svg.Models;
+﻿using JJ.Framework.Mathematics;
+using JJ.Framework.Presentation.Svg.Models;
 using JJ.Framework.Presentation.Svg.Models.Elements;
+using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -43,11 +45,9 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             IList<Element> orderedElements = ApplyExplicitZIndex(diagram);
 
-            // Calculate references.
-            // TODO: This will probably become obsolete at one point (see rework in TODO document for Synthesizer project 2015-03).
             foreach (Element element in diagram.Elements)
             {
-                CalculateReferencesPolymorphic(element);
+                PostProcessPolymorphic(element);
             }
 
             return orderedElements;
@@ -93,6 +93,9 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 element.CalculatedEnabled &= element.Parent.CalculatedEnabled;
             }
 
+            element.CalculatedLayer = _currentLayer;
+            element.CalculatedZIndex = _currentZIndex++;
+
             base.VisitPolymorphic(element);
         }
 
@@ -109,37 +112,39 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             _currentLayer--;
         }
 
-        protected override void VisitPoint(Point sourcePoint)
+        protected override void VisitPoint(Point point)
         {
             // Do not check visibility, because invisible point must be recalculated,
             // because it must be absolutely positioned,
             // because it can be referenced by a line.
 
-            CalculatePoint(sourcePoint);
+            CalculatePoint(point);
 
-            base.VisitPoint(sourcePoint);
+            base.VisitPoint(point);
         }
 
-        protected override void VisitLine(Line sourceLine)
+        protected override void VisitLine(Line line)
         {
-            CalculateLine(sourceLine);
+            CalculateLine(line);
 
-            base.VisitLine(sourceLine);
+            base.VisitLine(line);
         }
 
-        protected override void VisitRectangle(Rectangle sourceRectangle)
+        protected override void VisitRectangle(Rectangle rectangle)
         {
-            CalculateRectangle(sourceRectangle);
+            CalculateRectangle(rectangle);
 
-            base.VisitRectangle(sourceRectangle);
+            base.VisitRectangle(rectangle);
         }
 
-        protected override void VisitLabel(Label sourceLabel)
+        protected override void VisitLabel(Label label)
         {
-            CalculateLabel(sourceLabel);
+            CalculateLabel(label);
 
-            base.VisitLabel(sourceLabel);
+            base.VisitLabel(label);
         }
+
+        // NOTE: For Curve there is nothing specific to calculate at this point. Curves are calculated in the post-processing.
 
         // Calculate
 
@@ -152,8 +157,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             point.CalculatedX = point.X + _currentParentX;
             point.CalculatedY = point.Y + _currentParentY;
-            point.CalculatedLayer = _currentLayer;
-            point.CalculatedZIndex = _currentZIndex++;
 
             _calculatedElements.Add(point);
         }
@@ -164,9 +167,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
             {
                 return;
             }
-
-            line.CalculatedLayer = _currentLayer;
-            line.CalculatedZIndex = _currentZIndex++;
 
             _calculatedElements.Add(line);
         }
@@ -180,8 +180,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             rectangle.CalculatedX = rectangle.X + _currentParentX;
             rectangle.CalculatedY = rectangle.Y + _currentParentY;
-            rectangle.CalculatedLayer = _currentLayer;
-            rectangle.CalculatedZIndex = _currentZIndex++;
 
             _calculatedElements.Add(rectangle);
         }
@@ -195,30 +193,35 @@ namespace JJ.Framework.Presentation.Svg.Visitors
 
             label.CalculatedX = label.X + _currentParentX;
             label.CalculatedY = label.Y + _currentParentY;
-            label.CalculatedLayer = _currentLayer;
-            label.CalculatedZIndex = _currentZIndex++;
 
             _calculatedElements.Add(label);
         }
 
-        // CalculateReferences
+        // Post Process
 
-        // TODO: This will probably become obsolete at one point (see rework in TODO document for Synthesizer project 2015-03).
-
-        private void CalculateReferencesPolymorphic(Element element)
+        private void PostProcessPolymorphic(Element element)
         {
             var line = element as Line;
             if (line != null)
             {
-                CalculateReferencesForLine(line);
+                PostProcessLine(line);
+                return;
             }
 
-            // No more object with references to convert (yet).
+            var curve = element as Curve;
+            if (curve != null)
+            {
+                PostProcessCurve(curve);
+                return;
+            }
+
+            // No more objects that require post-processing.
         }
 
-        private void CalculateReferencesForLine(Line line)
+        private void PostProcessLine(Line line)
         {
             // Calculate in case the line has points that are not owned by another container.
+            // TODO: Low priority: This will probably become obsolete at one point (see rework in TODO document for Synthesizer project 2015-03).
 
             if (line.PointA.Parent == null)
             {
@@ -231,6 +234,80 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 line.PointB.CalculatedX = line.PointB.X + line.CalculatedX;
                 line.PointB.CalculatedY = line.PointB.Y + line.CalculatedY;
             }
+        }
+
+        private void PostProcessCurve(Curve sourceCurve)
+        {
+            // Calculate in case the curve has points that are not owned by another container.
+            // TODO: Low priority: This will probably become obsolete at one point (see rework in TODO document for Synthesizer project 2015-03).
+
+            if (sourceCurve.PointA.Parent == null)
+            {
+                sourceCurve.PointA.CalculatedX = sourceCurve.PointA.X + sourceCurve.CalculatedX;
+                sourceCurve.PointA.CalculatedY = sourceCurve.PointA.Y + sourceCurve.CalculatedY;
+            }
+
+            if (sourceCurve.PointB.Parent == null)
+            {
+                sourceCurve.PointB.CalculatedX = sourceCurve.PointB.X + sourceCurve.CalculatedX;
+                sourceCurve.PointB.CalculatedY = sourceCurve.PointB.Y + sourceCurve.CalculatedY;
+            }
+
+            var destPoints = new List<Point>(sourceCurve.LineCount + 1);
+
+            float step = 1f / sourceCurve.LineCount;
+            float t = 0;
+            for (int i = 0; i < sourceCurve.LineCount + 1; i++)
+            {
+                float calculatedX;
+                float calculatedY;
+
+                Interpolator.Interpolate_Cubic_FromT(
+                    sourceCurve.PointA.CalculatedX, sourceCurve.ControlPointA.CalculatedX, sourceCurve.ControlPointB.CalculatedX, sourceCurve.PointB.CalculatedX,
+                    sourceCurve.PointA.CalculatedY, sourceCurve.ControlPointA.CalculatedY, sourceCurve.ControlPointB.CalculatedY, sourceCurve.PointB.CalculatedY,
+                    t, out calculatedX, out calculatedY);
+
+                var destPoint = new Point
+                {
+                    CalculatedX = calculatedX,
+                    CalculatedY = calculatedY,
+                    // Fill in meaningful values for the other properties.
+                    X = calculatedX,
+                    Y = calculatedY,
+                    CalculatedVisible = false,
+                    CalculatedLayer = sourceCurve.CalculatedLayer,
+                    PointStyle = new PointStyle { Visible  = false }
+                };
+
+                destPoints.Add(destPoint);
+
+                t += step;
+            }
+
+            var destLines = new List<Line>(sourceCurve.LineCount);
+
+            for (int i = 0; i < destPoints.Count - 1; i++)
+            {
+                Point destPointA = destPoints[i];
+                Point destPointB = destPoints[i + 1];
+
+                var destLine = new Line
+                {
+                    PointA = destPointA,
+                    PointB = destPointB,
+                    // Fill in meaningful values for the other properties.
+                    CalculatedVisible = true,
+                    CalculatedZIndex = sourceCurve.CalculatedZIndex,
+                    CalculatedLayer = sourceCurve.CalculatedLayer,
+                    LineStyle = sourceCurve.LineStyle
+                };
+
+                destLines.Add(destLine);
+            }
+
+            sourceCurve.CalculatedLines = destLines;
+            
+            // TODO: Low priority: Yield over gesture-related properties from curve to the points and lines?
         }
     }
 }

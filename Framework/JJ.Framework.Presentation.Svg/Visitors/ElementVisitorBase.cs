@@ -40,6 +40,13 @@ namespace JJ.Framework.Presentation.Svg.Visitors
                 return;
             }
 
+            var curve = element as Curve;
+            if (curve != null)
+            {
+                VisitCurve(curve);
+                return;
+            }
+
             throw new Exception(String.Format("Unexpected Element type '{0}'", element.GetType().FullName));
         }
 
@@ -61,6 +68,11 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         protected virtual void VisitLabel(Label label)
         {
             VisitChildren(label);
+        }
+
+        protected virtual void VisitCurve(Curve curve)
+        {
+            VisitChildren(curve);
         }
 
         protected virtual void VisitChildren(Element parentElement)

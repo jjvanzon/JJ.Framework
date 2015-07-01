@@ -13,7 +13,7 @@ using SvgStyling = JJ.Framework.Presentation.Svg.Models.Styling;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {
-    public partial class PickATestForm : Form
+    internal partial class PickATestForm : Form
     {
         public PickATestForm()
         {
@@ -49,6 +49,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         private void buttonShowGestureTestForm_Click(object sender, EventArgs e)
         {
             new GesturesTestForm().Show();
+        }
+
+        private void buttonShowCurveTest_Click(object sender, EventArgs e)
+        {
+            new CurveTestForm().Show();
         }
     }
 }
