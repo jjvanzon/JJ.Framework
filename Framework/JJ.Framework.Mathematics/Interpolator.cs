@@ -24,7 +24,7 @@ namespace JJ.Framework.Mathematics
         /// Derived from the following source:
         /// http://www.virtualdj.com/forums/171269/VirtualDJ_Plugins/_Release__CDJ_Vinyl_Brake_Effect.html
         /// </summary>
-        public static double Interpolate_Cubic_Equidistant_SlightlyBetterThanLinear(double t, double yMinus1, double y0, double y1, double y2)
+        public static double Interpolate_Cubic_Equidistant_SlightlyBetterThanLinear(double yMinus1, double y0, double y1, double y2, double t)
         {
             double y = (y0 / 2 - yMinus1 / 6 - y1 / 2 + y2 / 6) * t * t * t +
                        (yMinus1 / 2 - y0 + y1 / 2) * t * t +
@@ -32,6 +32,44 @@ namespace JJ.Framework.Mathematics
                        y0; // y0 is d
             return y;
         }
+
+        /// <summary>
+        /// Pretty good sound interpolation.
+        /// Source: http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
+        /// </summary>
+        public static float Interpolate_Hermite_4pt3oX(float x0, float x1, float x2, float x3, float t)
+        {
+            float c0 = x1;
+            float c1 = .5F * (x2 - x0);
+            float c2 = x0 - (2.5F * x1) + (2 * x2) - (.5F * x3);
+            float c3 = (.5F * (x3 - x0)) + (1.5F * (x1 - x2));
+            return (((((c3 * t) + c2) * t) + c1) * t) + c0;
+        }
+
+        /// <summary>
+        /// Pretty good sound interpolation.
+        /// Source: http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
+        /// </summary>
+        public static double Interpolate_Hermite_4pt3oX(double x0, double x1, double x2, double x3, double t)
+        {
+            double c0 = x1;
+            double c1 = .5 * (x2 - x0);
+            double c2 = x0 - 2.5 * x1 + 2 * x2 - .5 * x3;
+            double c3 = .5 * (x3 - x0) + 1.5 * (x1 - x2);
+            return ((c3 * t + c2) * t + c1) * t + c0;
+        }
+
+        ///// <summary>
+        ///// Source: http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
+        ///// </summary>
+        //public static float Interpolate_Hermite_4pt3oX_Original(float x0, float x1, float x2, float x3, float t)
+        //{
+        //    float c0 = x1;
+        //    float c1 = .5F * (x2 - x0);
+        //    float c2 = x0 - (2.5F * x1) + (2 * x2) - (.5F * x3);
+        //    float c3 = (.5F * (x3 - x0)) + (1.5F * (x1 - x2));
+        //    return (((((c3 * t) + c2) * t) + c1) * t) + c0;
+        //}
 
         /// <summary>
         /// t values between 0 and 1 trace a curve
