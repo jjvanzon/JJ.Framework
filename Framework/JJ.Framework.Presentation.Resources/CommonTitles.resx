@@ -207,4 +207,12 @@
     <value>Close {0}</value>
     <comment>{0} = type of object, singular</comment>
   </data>
+  <data name="SaveObject" xml:space="preserve">
+    <value>Save {0}</value>
+    <comment>{0} = type of object, singular</comment>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+    <comment>As in the user interface element.</comment>
+  </data>
 </root>

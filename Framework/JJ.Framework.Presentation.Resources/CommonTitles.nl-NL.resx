@@ -206,4 +206,12 @@
     <value>{0} sluiten</value>
     <comment>{0} = type of object, singular</comment>
   </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+    <comment>As in the user interface element.</comment>
+  </data>
+  <data name="SaveObject" xml:space="preserve">
+    <value>{0} opslaan</value>
+    <comment>{0} = type of object, singular</comment>
+  </data>
 </root>

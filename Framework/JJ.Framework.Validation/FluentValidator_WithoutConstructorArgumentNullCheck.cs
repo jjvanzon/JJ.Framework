@@ -96,6 +96,18 @@ namespace JJ.Framework.Validation
             return this;
         }
 
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNullOrEmpty()
+        {
+            string value = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(value))
+            {
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsNullOrEmpty(_propertyDisplayName));
+            }
+
+            return this;
+        }
+
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNull()
         {
             if (_value != null)

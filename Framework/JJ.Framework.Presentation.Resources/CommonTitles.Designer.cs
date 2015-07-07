@@ -187,6 +187,15 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu.
+        /// </summary>
+        public static string Menu {
+            get {
+                return ResourceManager.GetString("Menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Messages.
         /// </summary>
         public static string Messages {
@@ -291,6 +300,15 @@ namespace JJ.Framework.Presentation.Resources {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save {0}.
+        /// </summary>
+        public static string SaveObject {
+            get {
+                return ResourceManager.GetString("SaveObject", resourceCulture);
             }
         }
         

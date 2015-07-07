@@ -38,6 +38,7 @@
     <Compile Include="Accessor.cs" />
     <Compile Include="Exceptions\GreaterThanOrEqualException.cs" />
     <Compile Include="Exceptions\GreaterThanException.cs" />
+    <Compile Include="Exceptions\InvalidIndexException.cs" />
     <Compile Include="Exceptions\NullOrEmptyException.cs" />
     <Compile Include="Exceptions\LessThanOrEqualException.cs" />
     <Compile Include="Exceptions\LessThanException.cs" />

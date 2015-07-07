@@ -140,6 +140,10 @@
   <data name="IsNull" xml:space="preserve">
     <value>{0} is verplicht.</value>
   </data>
+  <data name="IsNullOrEmpty" xml:space="preserve">
+    <value>{0} is verplicht.</value>
+    <comment>{0} = property name</comment>
+  </data>
   <data name="IsNullOrWhiteSpace" xml:space="preserve">
     <value>{0} is verplicht.</value>
   </data>

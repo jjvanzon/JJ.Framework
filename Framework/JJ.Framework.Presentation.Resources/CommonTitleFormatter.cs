@@ -36,5 +36,10 @@ namespace JJ.Framework.Presentation.Resources
         {
             return String.Format(CommonTitles.ObjectProperties, objectTypeName);
         }
+
+        public static String SaveObject(string objectTypeName)
+        {
+            return String.Format(CommonTitles.SaveObject, objectTypeName);
+        }
     }
 }

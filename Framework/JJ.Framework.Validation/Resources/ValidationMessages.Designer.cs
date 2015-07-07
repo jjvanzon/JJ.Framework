@@ -124,6 +124,15 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is null or empty..
+        /// </summary>
+        internal static string IsNullOrEmpty {
+            get {
+                return ResourceManager.GetString("IsNullOrEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is null or white space..
         /// </summary>
         internal static string IsNullOrWhiteSpace {

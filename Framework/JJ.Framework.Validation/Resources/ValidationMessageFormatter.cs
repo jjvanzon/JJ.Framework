@@ -33,6 +33,11 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(ValidationMessages.IsNullOrWhiteSpace, propertyDisplayName);
         }
 
+        internal static string IsNullOrEmpty(string propertyDisplayName)
+        {
+            return String.Format(ValidationMessages.IsNullOrEmpty, propertyDisplayName);
+        }
+
         public static string IsZero(string propertyDisplayName)
         {
             return String.Format(ValidationMessages.IsZero, propertyDisplayName);

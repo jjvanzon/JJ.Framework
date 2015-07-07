@@ -31,5 +31,16 @@ namespace JJ.Framework.Common
                 collection.Add(x);
             }
         }*/
+
+        public static TResult MaxOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+            where TResult : new()
+        {
+            if (!source.Any())
+            {
+                return new TResult();
+            }
+
+            return source.Max(selector);
+        }
     }
 }

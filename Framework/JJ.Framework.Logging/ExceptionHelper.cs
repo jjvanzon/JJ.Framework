@@ -31,5 +31,19 @@ namespace JJ.Framework.Logging
             }
             return message;
         }
+
+        public static Exception GetInnermostException(Exception exception)
+        {
+            int maxIterations = 100;
+
+            int i = 0;
+            while (exception.InnerException != null && i < maxIterations)
+            {
+                exception = exception.InnerException;
+                i++;
+            }
+
+            return exception;
+        }
     }
 }
