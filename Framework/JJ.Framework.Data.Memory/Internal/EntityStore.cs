@@ -8,6 +8,8 @@ using System.Text;
 
 namespace JJ.Framework.Data.Memory.Internal
 {
+    // TODO: It might be simpler if you would create a different EntityStore class for each identity type.
+
     /// <summary>
     /// Gives access to a data store for a single entity type.
     /// </summary>
@@ -17,6 +19,8 @@ namespace JJ.Framework.Data.Memory.Internal
         private IMemoryMapping _mapping;
 
         private Dictionary<object, TEntity> _dictionary = new Dictionary<object, TEntity>();
+        private HashSet<TEntity> _hashSet = new HashSet<TEntity>();
+
         private object _lock = new object();
 
         public EntityStore(IMemoryMapping mapping)
@@ -34,95 +38,121 @@ namespace JJ.Framework.Data.Memory.Internal
 
         public TEntity Create()
         {
-            TEntity entity = new TEntity();
-            object id = GetNewIdentity();
-            SetIDOfEntity(entity, id);
+            var entity = new TEntity();
 
-            _dictionary.Add(id, entity);
+            object id = TryGetNewIdentity();
+            if (id != null)
+            {
+                SetIDOfEntity(entity, id);
+            }
+
+            lock (_lock)
+            {
+                _hashSet.Add(entity);
+                if (id != null)
+                {
+                    _dictionary.Add(id, entity);
+                }
+            }
 
             return entity;
         }
 
+        /// <summary>
+        /// This method might never have been tested. 
+        /// </summary>
         public void Insert(TEntity entity)
         {
             if (entity == null) throw new NullException(() => entity);
 
+            object id = TryGetIDFromEntity(entity);
+
             lock (_lock)
             {
-                object id = GetIDFromEntity(entity);
-                _dictionary.Add(id, entity);
+                _hashSet.Add(entity);
+                if (id != null)
+                {
+                    _dictionary.Add(id, entity);
+                }
             }
         }
 
+        /// <summary>
+        /// This method might never have been tested. 
+        /// </summary>
         public void Delete(TEntity entity)
         {
             if (entity == null) throw new NullException(() => entity);
 
+            object id = TryGetIDFromEntity(entity);
+
             lock (_lock)
             {
-                object id = GetIDFromEntity(entity);
-                _dictionary.Remove(id);
+                _hashSet.Remove(entity);
+                if (id != null)
+                {
+                    _dictionary.Remove(id);
+                }
             }
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _dictionary.Values.OfType<TEntity>();
+            foreach (TEntity entity in _hashSet)
+            {
+                yield return entity;
+            }
         }
 
         // Identity
 
         private int _maxID = 0;
 
-        private object GetIDFromEntity(TEntity entity)
+        /// <summary>
+        /// This method might never have been tested. 
+        /// </summary>
+        private object TryGetIDFromEntity(TEntity entity)
         {
             if (_mapping.IdentityType == IdentityType.NoIDs)
             {
                 return null;
             }
 
-            Type entityType = entity.GetType();
-            PropertyInfo property = entityType.GetProperty(_mapping.IdentityPropertyName);
-            if (property == null)
-            {
-                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entityType.Name));
-            }
+            PropertyInfo property = GetIdentityProperty(entity);
             return property.GetValue(entity, null);
         }
 
         private void SetIDOfEntity(TEntity entity, object id)
         {
-            if (_mapping.IdentityType == IdentityType.NoIDs)
+            if (_mapping.IdentityType != IdentityType.AutoIncrement)
             {
-                return;
+                throw new Exception(String.Format("ID should no be automatically set for IdentityType '{0}'.", _mapping.IdentityType));
             }
 
+            PropertyInfo property = GetIdentityProperty(entity);
+            property.SetValue(entity, id, null);
+        }
+
+        public object TryGetNewIdentity()
+        {
+            if (_mapping.IdentityType != IdentityType.AutoIncrement)
+            {
+                return null;
+            }
+
+            return ++_maxID;
+        }
+
+        private PropertyInfo GetIdentityProperty(TEntity entity)
+        {
             Type entityType = entity.GetType();
 
             PropertyInfo property = entityType.GetProperty(_mapping.IdentityPropertyName);
             if (property == null)
             {
-                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entityType.Name));
+                throw new PropertyNotFoundException(entityType, _mapping.IdentityPropertyName);
             }
-            property.SetValue(entity, id, null);
-        }
-
-        public object GetNewIdentity()
-        {
-            switch (_mapping.IdentityType)
-            {
-                case IdentityType.AutoIncrement:
-                    _maxID++;
-                    return _maxID;
-
-                case IdentityType.NoIDs:
-                    // Auto-increment anyway, otherwise the entity dictionaries will not work.
-                    _maxID++;
-                    return _maxID;
-
-                default:
-                    throw new ValueNotSupportedException(_mapping.IdentityType);
-            }
+            return property;
         }
 
         // IEntityStore

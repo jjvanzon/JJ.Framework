@@ -17,6 +17,13 @@ namespace JJ.Framework.Data.SqlClient
     public class SqlExecutor : ISqlExecutor
     {
         private SqlConnection _connection;
+        private string _connectionString;
+
+        public SqlExecutor(string connectionString)
+        {
+            if (String.IsNullOrEmpty(connectionString)) throw new NullException(() => connectionString);
+            _connectionString = connectionString;
+        }
 
         public SqlExecutor(SqlConnection connection)
         {
@@ -26,22 +33,14 @@ namespace JJ.Framework.Data.SqlClient
 
         public int ExecuteNonQuery(object sqlEnum, object parameters = null)
         {
-            if (_connection.State == ConnectionState.Closed)
-            {
-                _connection.Open();
-            }
-
+            EnsureConnection();
             SqlCommand sqlCommand = SqlCommandHelper.CreateSqlCommand(_connection, sqlEnum, parameters);
             return sqlCommand.ExecuteNonQuery();
         }
 
         public object ExecuteScalar(object sqlEnum, object parameters = null)
         {
-            if (_connection.State == ConnectionState.Closed)
-            {
-                _connection.Open();
-            }
-
+            EnsureConnection();
             SqlCommand sqlCommand = SqlCommandHelper.CreateSqlCommand(_connection, sqlEnum, parameters);
             return sqlCommand.ExecuteScalar();
         }
@@ -49,13 +48,22 @@ namespace JJ.Framework.Data.SqlClient
         public IEnumerable<T> ExecuteReader<T>(object sqlEnum, object parameters = null)
             where T : new()
         {
+            EnsureConnection();
+            SqlCommand sqlCommand = SqlCommandHelper.CreateSqlCommand(_connection, sqlEnum, parameters);
+            return SqlCommandHelper.ExecuteReader<T>(sqlCommand);
+        }
+
+        private void EnsureConnection()
+        {
+            if (_connection == null)
+            {
+                _connection = new SqlConnection(_connectionString);
+            }
+
             if (_connection.State == ConnectionState.Closed)
             {
                 _connection.Open();
             }
-
-            SqlCommand sqlCommand = SqlCommandHelper.CreateSqlCommand(_connection, sqlEnum, parameters);
-            return SqlCommandHelper.ExecuteReader<T>(sqlCommand);
         }
     }
 }

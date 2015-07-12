@@ -4,8 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Reflection.Exceptions;
-using JJ.Framework.Reflection.Exceptions;
-using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Data

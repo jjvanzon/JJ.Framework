@@ -24,23 +24,42 @@ namespace JJ.Framework.Common
             }
         }
 
-        /*public static void Add(this IList collection, params object[] items)
-        {
-            foreach (var x in items)
-            {
-                collection.Add(x);
-            }
-        }*/
 
-        public static TResult MaxOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
-            where TResult : new()
+
+        /// <summary>
+        /// Returns the list index of the first item that matches the predicate.
+        /// </summary>
+        public static int IndexOf<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
-            if (!source.Any())
+            int? indexOf = TryGetIndexOf(collection, predicate);
+
+            if (indexOf.HasValue)
             {
-                return new TResult();
+                return indexOf.Value;
             }
 
-            return source.Max(selector);
+            throw new Exception("No item in the collection matches the predicate.");
+        }
+
+        /// <summary>
+        /// Returns the list index of the first item that matches the predicate.
+        /// </summary>
+        public static int? TryGetIndexOf<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
+        {
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (predicate == null) throw new ArgumentNullException("predicate");
+
+            for (int i = 0; i < collection.Count; i++)
+            {
+                TSource item = collection[i];
+
+                if (predicate(item))
+                {
+                    return i;
+                }
+            }
+
+            return null;
         }
     }
 }

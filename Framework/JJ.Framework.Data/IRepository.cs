@@ -13,6 +13,7 @@ namespace JJ.Framework.Data
         TEntity Create();
         void Delete(TEntity entity);
         void Update(TEntity entity);
+        void Insert(TEntity entity);
 
         /// <summary>
         /// Sends pending statements to the data store but does not yet commit the transaction.

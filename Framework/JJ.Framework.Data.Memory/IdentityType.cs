@@ -3,6 +3,7 @@
     public enum IdentityType
     {
         NoIDs,
-        AutoIncrement
+        AutoIncrement,
+        Assigned
     }
 }

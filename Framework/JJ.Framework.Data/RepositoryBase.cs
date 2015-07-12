@@ -1,5 +1,4 @@
 ﻿using JJ.Framework.Reflection.Exceptions;
-using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +35,11 @@ namespace JJ.Framework.Data
         public virtual TEntity Create()
         {
             return _context.Create<TEntity>();
+        }
+
+        public virtual void Insert(TEntity entity)
+        {
+            _context.Insert(entity);
         }
 
         public virtual void Delete(TEntity entity)
