@@ -215,5 +215,46 @@ namespace JJ.Framework.Common
 
             return source.Max(selector);
         }
+
+
+        /// <summary>
+        /// Returns the list index of the first item that matches the predicate.
+        /// Does not check duplicates, because that would make it slower.
+        /// </summary>
+        public static int IndexOf<TSource>(this IEnumerable<TSource> collection, Func<TSource, bool> predicate)
+        {
+            int? indexOf = TryGetIndexOf(collection, predicate);
+
+            if (indexOf.HasValue)
+            {
+                return indexOf.Value;
+            }
+
+            throw new Exception("No item in the collection matches the predicate.");
+        }
+
+        /// <summary>
+        /// Returns the list index of the first item that matches the predicate.
+        /// Does not check duplicates, because that would make it slower.
+        /// </summary>
+        public static int? TryGetIndexOf<TSource>(this IEnumerable<TSource> collection, Func<TSource, bool> predicate)
+        {
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (predicate == null) throw new ArgumentNullException("predicate");
+
+            int i = 0;
+            foreach (TSource item in collection)
+            {
+                if (predicate(item))
+                {
+                    return i;
+                }
+
+                i++;
+            }
+
+            return null;
+        }
+
     }
 }
