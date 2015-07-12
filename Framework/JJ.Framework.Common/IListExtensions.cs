@@ -24,10 +24,9 @@ namespace JJ.Framework.Common
             }
         }
 
-
-
         /// <summary>
         /// Returns the list index of the first item that matches the predicate.
+        /// Does not check duplicates, because that would make it slower.
         /// </summary>
         public static int IndexOf<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
@@ -43,6 +42,7 @@ namespace JJ.Framework.Common
 
         /// <summary>
         /// Returns the list index of the first item that matches the predicate.
+        /// Does not check duplicates, because that would make it slower.
         /// </summary>
         public static int? TryGetIndexOf<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
