@@ -216,7 +216,6 @@ namespace JJ.Framework.Common
             return source.Max(selector);
         }
 
-
         /// <summary>
         /// Returns the list index of the first item that matches the predicate.
         /// Does not check duplicates, because that would make it slower.
@@ -255,6 +254,5 @@ namespace JJ.Framework.Common
 
             return null;
         }
-
     }
 }
