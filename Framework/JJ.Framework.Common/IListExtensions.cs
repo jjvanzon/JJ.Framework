@@ -30,11 +30,11 @@ namespace JJ.Framework.Common
         /// </summary>
         public static int IndexOf<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
-            int? indexOf = TryGetIndexOf(collection, predicate);
+            int? index = TryGetIndexOf(collection, predicate);
 
-            if (indexOf.HasValue)
+            if (index.HasValue)
             {
-                return indexOf.Value;
+                return index.Value;
             }
 
             throw new Exception("No item in the collection matches the predicate.");
@@ -60,6 +60,16 @@ namespace JJ.Framework.Common
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Removes the first occurrence that matches the predicate.
+        /// Does not check duplicates, which makes it faster if you are sure only one item is in it.
+        /// </summary>
+        public static void RemoveFirst<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
+        {
+            int index = IndexOf(collection, predicate);
+            collection.RemoveAt(index);
         }
     }
 }
