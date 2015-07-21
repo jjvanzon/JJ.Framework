@@ -1,0 +1,128 @@
+﻿using System;
+using System.Data;
+using System.Linq;
+using NUnit.Framework;
+
+namespace NHibernate.Test.Linq.ByMethod
+{
+	[TestFixture]
+	public class GetValueOrDefaultTests : LinqTestCase
+	{
+		[Test]
+		public void CoalesceInWhere()
+		{
+			var orders = db.Orders
+						   .Where(x => (x.Freight ?? 100) > 0)
+						   .ToList();
+
+			Assert.AreEqual(830, orders.Count);
+		}
+
+		[Test]
+		public void GetValueOrDefaultInWhere()
+		{
+			var ordersUnfiltered = db.Orders
+						   //.Where(x => x.Freight.GetValueOrDefault(100) > 0)
+						   .Where(x => x.Freight > 100)
+						   .ToList();
+
+			using (var cmd = session.Connection.CreateCommand())
+			{
+				cmd.CommandText = @"select
+        typeof(@p0),
+        typeof(@p1),
+        typeof(coalesce(order0_.Freight, @p0)),
+        typeof(order0_.Freight),
+        coalesce(order0_.Freight, @p0)>@p1,
+        order0_.Freight >@p1,
+        order0_.OrderId as OrderId55_,
+        order0_.Freight as Freight55_
+    from
+        Orders order0_ ";
+	//where
+	//   coalesce(order0_.Freight, @p0)>@p1;";
+		//order0_.Freight > @p1";
+		
+
+				var p0 = cmd.CreateParameter();
+				p0.ParameterName = "p0";
+				p0.DbType = DbType.Decimal;
+				p0.Value = 100;
+				cmd.Parameters.Add(p0);
+
+				var p1 = cmd.CreateParameter();
+				p1.ParameterName = "p1";
+				p1.DbType = DbType.Decimal;
+				p1.Value = 0;
+				cmd.Parameters.Add(p1);
+				 
+				using (var reader = cmd.ExecuteReader())
+				{
+					int count = 0;
+					while (reader.Read())
+					{
+						Console.WriteLine("{0}  {1}  {2}  {3} {4}", reader.GetString(0),
+						                  reader.GetString(1), reader.GetString(2),
+										  reader.GetString(3),
+										  reader.GetInt32(4), reader.GetInt32(5));
+						count++;
+					}
+
+					Assert.That(count, Is.EqualTo(-4));
+				}
+
+			}
+
+			var orders = db.Orders
+						   .Where(x => x.Freight.GetValueOrDefault(100) > 0)
+						   .ToList();
+
+			Assert.AreEqual(830, orders.Count);
+		}
+
+		[Test]
+		public void GetValueOrDefaultWithSingleArgumentInWhere()
+		{
+			var orders = db.Orders
+						   .Where(x => x.Freight.GetValueOrDefault() > 0)
+						   .ToList();
+
+			Assert.AreEqual(830, orders.Count);
+		}
+
+
+		private void Problematic(IDbConnection connection)
+		{
+			using (var cmd = session.Connection.CreateCommand())
+			{
+				cmd.CommandText = @"select
+                                        order0_.OrderId as OrderId55_,
+                                        order0_.Freight as Freight55_,
+                                    from
+                                        Orders order0_
+				                    where
+				                        coalesce(order0_.Freight, @p0) > @p1";   // ALT 1
+				                     // order0_.Freight > @p1";                  // ALT 2
+
+				var p0 = cmd.CreateParameter();
+				p0.ParameterName = "p0";
+				p0.DbType = DbType.Decimal;
+				p0.Value = 100;
+				cmd.Parameters.Add(p0);
+
+				var p1 = cmd.CreateParameter();
+				p1.ParameterName = "p1";
+				p1.DbType = DbType.Decimal;
+				p1.Value = 0;
+				cmd.Parameters.Add(p1);
+
+				using (var reader = cmd.ExecuteReader())
+				{
+					// ALT 1 above yields 0 result rows.
+					// ALT 2 above yields 830 result rows.
+				}
+
+			}
+		}
+	}
+}

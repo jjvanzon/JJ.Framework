@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+				   assembly="NHibernate.Test"
+                   namespace="NHibernate.Test.NHSpecificTest.NH1835">
+
+	<class name="Document" table="documents_document">
+		<id name="Id">
+			<generator class="guid.comb" />
+		</id>
+		<property name="Contents" type="BinaryBlob(3000)"/>
+	</class>
+</hibernate-mapping>

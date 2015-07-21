@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+				   namespace="NHibernate.Test.NHSpecificTest.ManyToOneFilters20Behaviour"
+				   assembly="NHibernate.Test">
+
+  <class name="Parent">
+    <id name="Id">
+      <generator class="guid.comb" />
+    </id>
+
+    <many-to-one name="Child" class="Child" cascade="all" not-null="true"/>
+    <property name="ParentString"/>
+    <one-to-one name="Address" property-ref="Parent" cascade="all"/>
+    <bag name="Children" cascade="all">
+      <key column="Parent" />
+      <one-to-many class="Child"/>
+      <filter name="active" condition=":active = IsActive"/>
+    </bag>
+  </class>
+
+  <class name="Child">
+    <id name="Id">
+      <generator class="guid.comb" />
+    </id>
+    <property name="IsActive"/>
+    <property name="Always"/>
+    <property name="ChildString"/>
+    <filter name="activeChild" condition=":active = IsActive" />
+    <filter name="active" condition=":active = IsActive" />
+    <filter name="alwaysValid" condition=":always = Always" />
+  </class>
+  
+  <class name="Address">
+    <id name="Id">
+      <generator class="guid.comb"/>
+
+    </id>
+    <property name="IsActive"/>
+    <many-to-one name="Parent" />
+    <filter name="active" condition=":active = IsActive" />
+  </class>
+
+  <filter-def name="activeChild" use-many-to-one="false">
+    <filter-param name="active" type="int"/>
+  </filter-def>
+
+  <filter-def name="active" use-many-to-one="false">
+    <filter-param name="active" type="int"/>
+  </filter-def>
+
+  <filter-def name="alwaysValid">
+    <filter-param name="always" type="int"/>
+  </filter-def>
+</hibernate-mapping>
+

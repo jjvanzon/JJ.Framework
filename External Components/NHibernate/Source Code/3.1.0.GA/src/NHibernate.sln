@@ -1,0 +1,71 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{593DCEA7-C933-46F3-939F-D8172399AB05}"
+	ProjectSection(SolutionItems) = preProject
+		..\default.build = ..\default.build
+		..\releasenotes.txt = ..\releasenotes.txt
+		..\teamcity.build = ..\teamcity.build
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate", "NHibernate\NHibernate.csproj", "{5909BFE7-93CF-4E5F-BE22-6293368AF01D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.DomainModel", "NHibernate.DomainModel\NHibernate.DomainModel.csproj", "{5C649B55-1B3F-4C38-9998-1B043E94A244}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.Test", "NHibernate.Test\NHibernate.Test.csproj", "{7AEE5B37-C552-4E59-9B6F-88755BCB5070}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.ByteCode.LinFu", "NHibernate.ByteCode.LinFu\NHibernate.ByteCode.LinFu.csproj", "{8289D6AD-9714-42D3-A94D-D4D9814D1281}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.ByteCode.LinFu.Tests", "NHibernate.ByteCode.LinFu.Tests\NHibernate.ByteCode.LinFu.Tests.csproj", "{94FDD99B-8275-4E51-8F43-958B2C632120}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.ByteCode.Castle", "NHibernate.ByteCode.Castle\NHibernate.ByteCode.Castle.csproj", "{31C3F0EA-0FED-4A2F-B68D-96CE29844487}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.ByteCode.Castle.Tests", "NHibernate.ByteCode.Castle.Tests\NHibernate.ByteCode.Castle.Tests.csproj", "{4972EE96-2417-4D47-9FF1-3B1D6B1D3191}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.TestDatabaseSetup", "NHibernate.TestDatabaseSetup\NHibernate.TestDatabaseSetup.csproj", "{BEEC1564-6FB6-49F7-BBE5-8EBD2F0F6E8A}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = NHibernate.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5909BFE7-93CF-4E5F-BE22-6293368AF01D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5909BFE7-93CF-4E5F-BE22-6293368AF01D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5909BFE7-93CF-4E5F-BE22-6293368AF01D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5909BFE7-93CF-4E5F-BE22-6293368AF01D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C649B55-1B3F-4C38-9998-1B043E94A244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C649B55-1B3F-4C38-9998-1B043E94A244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C649B55-1B3F-4C38-9998-1B043E94A244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C649B55-1B3F-4C38-9998-1B043E94A244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AEE5B37-C552-4E59-9B6F-88755BCB5070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AEE5B37-C552-4E59-9B6F-88755BCB5070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AEE5B37-C552-4E59-9B6F-88755BCB5070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AEE5B37-C552-4E59-9B6F-88755BCB5070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8289D6AD-9714-42D3-A94D-D4D9814D1281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8289D6AD-9714-42D3-A94D-D4D9814D1281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8289D6AD-9714-42D3-A94D-D4D9814D1281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8289D6AD-9714-42D3-A94D-D4D9814D1281}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94FDD99B-8275-4E51-8F43-958B2C632120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94FDD99B-8275-4E51-8F43-958B2C632120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94FDD99B-8275-4E51-8F43-958B2C632120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94FDD99B-8275-4E51-8F43-958B2C632120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31C3F0EA-0FED-4A2F-B68D-96CE29844487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31C3F0EA-0FED-4A2F-B68D-96CE29844487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31C3F0EA-0FED-4A2F-B68D-96CE29844487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31C3F0EA-0FED-4A2F-B68D-96CE29844487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4972EE96-2417-4D47-9FF1-3B1D6B1D3191}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4972EE96-2417-4D47-9FF1-3B1D6B1D3191}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4972EE96-2417-4D47-9FF1-3B1D6B1D3191}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4972EE96-2417-4D47-9FF1-3B1D6B1D3191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEEC1564-6FB6-49F7-BBE5-8EBD2F0F6E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEEC1564-6FB6-49F7-BBE5-8EBD2F0F6E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEEC1564-6FB6-49F7-BBE5-8EBD2F0F6E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEEC1564-6FB6-49F7-BBE5-8EBD2F0F6E8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
