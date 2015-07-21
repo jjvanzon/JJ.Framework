@@ -5,6 +5,8 @@ using System.Text;
 using NHibernate;
 using NHibernate.Linq;
 using System.Reflection;
+using JJ.Framework.Reflection.Exceptions;
+using NHibernate.Persister.Entity;
 
 namespace JJ.Framework.Data.NHibernate
 {
@@ -14,7 +16,13 @@ namespace JJ.Framework.Data.NHibernate
 
         private ISessionFactory _sessionFactory;
         private HashSet<object> _entitiesToSave = new HashSet<object>();
-        private HashSet<object> _entitiesToDelete = new HashSet<object>();
+
+        /// <summary>
+        /// This EntityDictionary is invented to be able to get uncommitted, non-flushed entities by ID,
+        /// without calling NHibernate 'Save',
+        /// which takes a snapshot of the current state of the entity which ignores subsequent changes to the entity.
+        /// </summary>
+        private EntityDictionary _entityDictionary = new EntityDictionary();
 
         public NHibernateContext(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
             : base(connectionString, modelAssembly, mappingAssembly, dialect)
@@ -25,7 +33,17 @@ namespace JJ.Framework.Data.NHibernate
 
         public override TEntity TryGet<TEntity>(object id)
         {
-            return Session.Get<TEntity>(id);
+            TEntity entity = _entityDictionary.TryGet<TEntity>(id);
+            if (entity != null)
+            {
+                return entity;
+            }
+
+            entity = Session.Get<TEntity>(id);
+
+            _entityDictionary.AddOrReplaceIfNeeded<TEntity>(id, entity);
+
+            return entity;
         }
 
         public override IEnumerable<TEntity> GetAll<TEntity>()
@@ -36,27 +54,45 @@ namespace JJ.Framework.Data.NHibernate
         public override TEntity Create<TEntity>()
         {
             TEntity entity = new TEntity();
+
             if (!_entitiesToSave.Contains(entity))
             {
                 _entitiesToSave.Add(entity);
             }
+
+            object id = GetID(entity);
+            _entityDictionary.AddOrReplaceIfNeeded<TEntity>(id, entity);
 
             return entity;
         }
 
         public override void Insert(object entity)
         {
-            Session.Save(entity);
+            if (!_entitiesToSave.Contains(entity))
+            {
+                _entitiesToSave.Add(entity);
+            }
+
+            object id = GetID(entity);
+            _entityDictionary.AddOrReplaceIfNeeded(id, entity);
         }
 
         public override void Update(object entity)
         {
-            Session.Update(entity);
+            // No code required.
         }
 
         public override void Delete(object entity)
         {
             Session.Delete(entity);
+
+            if (!_entitiesToSave.Contains(entity))
+            {
+                _entitiesToSave.Remove(entity);
+            }
+
+            object id = GetID(entity);
+            _entityDictionary.TryRemove(entity, id);
         }
 
         public override IEnumerable<TEntity> Query<TEntity>()
@@ -98,11 +134,6 @@ namespace JJ.Framework.Data.NHibernate
 
         public override void Flush()
         {
-            foreach (object entity in _entitiesToDelete)
-            {
-                Session.Delete(entity);
-            }
-
             foreach (object entity in _entitiesToSave)
             {
                 Session.Save(entity);
@@ -110,14 +141,14 @@ namespace JJ.Framework.Data.NHibernate
 
             Session.Flush();
 
-            _entitiesToDelete.Clear();
             _entitiesToSave.Clear();
+            _entityDictionary.Clear();
         }
 
         public override void Rollback()
         {
-            _entitiesToDelete.Clear();
             _entitiesToSave.Clear();
+            _entityDictionary.Clear();
 
             CloseSession(Session);
             Session = OpenSession();
@@ -129,6 +160,44 @@ namespace JJ.Framework.Data.NHibernate
             {
                 CloseSession(Session);
             }
+        }
+
+        // Helpers
+
+        private object GetID(object obj)
+        {
+            // TODO: Trying to use what happens here in NHibernte:
+            //
+            //      AbstractEntityTuplizer.GetIdentifier(...
+            //      {
+            //          ... entityMetamodel.IdentifierProperty
+            //      }
+            //
+            // You could get use a PropertyInfo which is probably faster than the code below.
+
+            // By the way: this is kind a hack to get to the Identity property using the mappings consumed by NHibernate. 
+            // The code was based on debugging through NHibernate to see what I could tap into.
+
+            if (obj == null) throw new NullException(() => obj);
+
+            var sessionImplementor = Session as global::NHibernate.Engine.ISessionImplementor;
+            if (sessionImplementor == null)
+            {
+                throw new Exception("Session is not an ISessionImplementor.");
+            }
+            
+            Type entityType = obj.GetType();
+            string entityTypeName = entityType.Name;
+
+            IEntityPersister entityPersister = sessionImplementor.GetEntityPersister(entityType.Name, obj);
+
+            if (entityPersister == null)
+            {
+                throw new Exception("sessionImplementor.GetEntityPersister returned null.");
+            }
+
+            object id = entityPersister.GetIdentifier(obj, EntityMode.Poco);
+            return id;
         }
     }
 }

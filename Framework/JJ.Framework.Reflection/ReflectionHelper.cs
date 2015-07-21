@@ -223,6 +223,20 @@ namespace JJ.Framework.Reflection
             }
         }
 
+        public static bool IsDefault(object value)
+        {
+            if (value == null)
+            {
+                // A little dirty, because you cannot really say that null is the default per se.
+                return true;
+            }
+
+            Type type = value.GetType();
+            object defaultValue = Activator.CreateInstance(type);
+
+            return Equals(value, defaultValue);
+        }
+
         // Generic overloads
 
         public static Type GetImplementation<TBaseType>(Assembly assembly)

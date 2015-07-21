@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Reflection.Exceptions;
+﻿using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,8 +33,9 @@ namespace JJ.Framework.Data.EntityFramework5
             // TODO: Performance penalty?
             // TODO: I am not sure this is the right fix for this.
             if (id == null) throw new NullException(() => id);
-            object defaultID = Activator.CreateInstance(id.GetType());
-            if (Equals(id, defaultID))
+
+            bool isDefault = ReflectionHelper.IsDefault(id);
+            if (isDefault)
             {
                 return null;
             }
