@@ -66,7 +66,6 @@ namespace JJ.Framework.Data
             _context.Commit();
         }
 
-
         public virtual void Rollback()
         {
             _context.Rollback();

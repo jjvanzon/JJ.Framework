@@ -185,11 +185,10 @@ namespace JJ.Framework.Data.NHibernate
             {
                 throw new Exception("Session is not an ISessionImplementor.");
             }
-            
-            Type entityType = obj.GetType();
-            string entityTypeName = entityType.Name;
 
-            IEntityPersister entityPersister = sessionImplementor.GetEntityPersister(entityType.Name, obj);
+            string entityTypeName = GetEntityTypeName(obj);
+
+            IEntityPersister entityPersister = sessionImplementor.GetEntityPersister(entityTypeName, obj);
 
             if (entityPersister == null)
             {
@@ -198,6 +197,21 @@ namespace JJ.Framework.Data.NHibernate
 
             object id = entityPersister.GetIdentifier(obj, EntityMode.Poco);
             return id;
+        }
+
+        private string GetEntityTypeName(object obj)
+        {
+            // All very hacky. Internally NHibernate can resolve this better, 
+            // but the entityName parameter is passed around so much and are determined in places that I find hard to reach / that I do not understand.
+            Type type = obj.GetType();
+
+            bool isProxy = obj is global::NHibernate.Proxy.INHibernateProxy;
+            if (isProxy)
+            {
+                type = type.BaseType;
+            }
+
+            return type.FullName;
         }
     }
 }
