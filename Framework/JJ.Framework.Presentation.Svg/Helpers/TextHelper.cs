@@ -11,7 +11,7 @@ namespace JJ.Framework.Presentation.Svg.Helpers
         /// <summary>
         /// Returns an approximate width of the string according to the specified font.
         /// </summary>
-        public static float GetTextWidth(string str, Font font, float averageAspectRatioOfCharacter = 0.8f)
+        public static float ApproximateTextWidth(string str, Font font, float averageAspectRatioOfCharacter = 0.8f)
         {
             if (String.IsNullOrEmpty(str))
             {
