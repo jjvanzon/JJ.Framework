@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReflectionCache", "JJ.Demos.ReflectionCache\JJ.Demos.ReflectionCache.csproj", "{5DAB690D-BF45-4980-93F4-14B5CF872A43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReflectionCache", "Demos\JJ.Demos.ReflectionCache\JJ.Demos.ReflectionCache.csproj", "{5DAB690D-BF45-4980-93F4-14B5CF872A43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReflectionCache.Tests", "JJ.Demos.ReflectionCache.Tests\JJ.Demos.ReflectionCache.Tests.csproj", "{D157D8E3-26A0-4862-B488-0800AF4FEC9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReflectionCache.Tests", "Demos\JJ.Demos.ReflectionCache.Tests\JJ.Demos.ReflectionCache.Tests.csproj", "{D157D8E3-26A0-4862-B488-0800AF4FEC9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
