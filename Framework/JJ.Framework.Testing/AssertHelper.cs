@@ -34,7 +34,9 @@ namespace JJ.Framework.Testing
             throw new Exception("An exception should have been thrown.");
         }
 
-        // TODO: The code below has not been reviewed (as of 2014-06-11).
+        // TODO: This code was ported out of a code base from 2010 to a code base from 2014, without any refactoring.
+        // By attempting to normalize the methods, a lot of anti-patterns were introduced,
+        // among other things delegitis, parametritis and scattering of cause and effect.
 
         public static void NotEqual<T>(T a, Expression<Func<T>> bExpresion)
         {
