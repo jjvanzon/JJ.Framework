@@ -10,6 +10,9 @@ namespace JJ.Framework.Common
     {
         public static void AddRange<T>(this IList<T> collection, IEnumerable<T> items)
         {
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (items == null) throw new ArgumentNullException("items");
+
             foreach (var x in items)
             {
                 collection.Add(x);
@@ -18,6 +21,9 @@ namespace JJ.Framework.Common
 
         public static void Add<T>(this IList<T> collection, params T[] items)
         {
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (items == null) throw new ArgumentNullException("items");
+
             foreach (var x in items)
             {
                 collection.Add(x);
@@ -30,6 +36,9 @@ namespace JJ.Framework.Common
         /// </summary>
         public static int IndexOf<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (predicate == null) throw new ArgumentNullException("predicate");
+
             int? index = TryGetIndexOf(collection, predicate);
 
             if (index.HasValue)
@@ -64,12 +73,31 @@ namespace JJ.Framework.Common
 
         /// <summary>
         /// Removes the first occurrence that matches the predicate.
+        /// Throws an exception no item matches the predicate.
         /// Does not check duplicates, which makes it faster if you are sure only one item is in it.
         /// </summary>
         public static void RemoveFirst<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
             int index = IndexOf(collection, predicate);
             collection.RemoveAt(index);
+        }
+
+        /// <summary>
+        /// Removes the first occurrence that matches the predicate.
+        /// Does nothing if no item matches the predicate.
+        /// Does not check duplicates, which makes it faster if you are sure only one item is in it.
+        /// Returns whether an item was actually removed from the collection.
+        /// </summary>
+        public static bool TryRemoveFirst<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
+        {
+            int? index = TryGetIndexOf(collection, predicate);
+            if (!index.HasValue)
+            {
+                return false;
+            }
+
+            collection.RemoveAt(index.Value);
+            return true;
         }
     }
 }

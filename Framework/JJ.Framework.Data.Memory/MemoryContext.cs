@@ -86,7 +86,7 @@ namespace JJ.Framework.Data.Memory
 
         public override IEnumerable<TEntity> Query<TEntity>()
         {
-            throw new NotSupportedException("MemoryContext does not support Query<TEntity>().");
+            return GetAll<TEntity>();
         }
 
         public override void Commit()
