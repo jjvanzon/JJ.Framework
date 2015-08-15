@@ -1,0 +1,16 @@
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\nhibernate-mapping.xsd
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\FluentNHibernate.XML
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\FluentNHibernate.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\FluentNHibernate.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\Iesi.Collections.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\NHibernate.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\Antlr3.Runtime.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\Remotion.Linq.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\NHibernate.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\NHibernate.xml
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\Iesi.Collections.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\Iesi.Collections.xml
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\bin\Debug\Remotion.Linq.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\obj\Debug\FluentNHibernate.csprojResolveAssemblyReference.cache
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\obj\Debug\FluentNHibernate.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\obj\Debug\FluentNHibernate.pdb

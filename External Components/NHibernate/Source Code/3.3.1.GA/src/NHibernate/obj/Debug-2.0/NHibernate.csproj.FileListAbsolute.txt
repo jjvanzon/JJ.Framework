@@ -1,0 +1,11 @@
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\bin\Debug-2.0\NHibernate.XML
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\bin\Debug-2.0\NHibernate.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\bin\Debug-2.0\NHibernate.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\bin\Debug-2.0\Antlr3.Runtime.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\bin\Debug-2.0\Iesi.Collections.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\bin\Debug-2.0\Remotion.Linq.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\bin\Debug-2.0\Iesi.Collections.xml
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\bin\Debug-2.0\Remotion.Linq.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\obj\Debug-2.0\NHibernate.csprojResolveAssemblyReference.cache
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\obj\Debug-2.0\NHibernate.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\obj\Debug-2.0\NHibernate.pdb

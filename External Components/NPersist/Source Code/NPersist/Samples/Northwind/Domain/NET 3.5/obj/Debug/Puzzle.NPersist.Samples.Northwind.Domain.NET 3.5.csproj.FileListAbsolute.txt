@@ -1,0 +1,14 @@
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\bin\Debug\Puzzle.NPersist.Samples.Northwind.Domain.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\bin\Debug\Puzzle.NPersist.Samples.Northwind.Domain.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\bin\Debug\Puzzle.NPersist.Framework.NET3.5.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\bin\Debug\Puzzle.NAspect.Framework.NET3.5.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\bin\Debug\Puzzle.NPath.Framework.NET3.5.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\bin\Debug\Puzzle.NCore.Framework.NET3.5.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\bin\Debug\Puzzle.NPersist.Framework.NET3.5.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\bin\Debug\Puzzle.NPersist.Framework.NET3.5.xml
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\bin\Debug\Puzzle.NAspect.Framework.NET3.5.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\bin\Debug\Puzzle.NPath.Framework.NET3.5.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\bin\Debug\Puzzle.NCore.Framework.NET3.5.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\obj\Debug\Puzzle.NPersist.Samples.Northwind.Domain.NET 3.5.csprojResolveAssemblyReference.cache
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\obj\Debug\Puzzle.NPersist.Samples.Northwind.Domain.dll
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\NPersist\Source Code\NPersist\Samples\Northwind\Domain\NET 3.5\obj\Debug\Puzzle.NPersist.Samples.Northwind.Domain.pdb

@@ -1,0 +1,7 @@
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\TestSuite\bin\Debug\TestSuite.exe
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\TestSuite\bin\Debug\TestSuite.pdb
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\TestSuite\bin\Debug\SgmlReaderDll.dll
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\TestSuite\bin\Debug\SgmlReaderDll.pdb
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\TestSuite\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\TestSuite\obj\Debug\TestSuite.exe
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\TestSuite\obj\Debug\TestSuite.pdb

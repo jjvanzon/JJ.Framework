@@ -1,0 +1,9 @@
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\CommandLine\bin\debug\SgmlReader.exe
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\CommandLine\bin\debug\SgmlReader.pdb
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\CommandLine\bin\debug\SgmlReaderDll.dll
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\CommandLine\bin\debug\SgmlReaderDll.pdb
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\CommandLine\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\CommandLine\obj\Debug\SgmlReader.exe
+C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\CommandLine\obj\Debug\SgmlReader.pdb
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\SgmlReader\Source Code\CommandLine\obj\Debug\SgmlReader.exe
+D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\SgmlReader\Source Code\CommandLine\obj\Debug\SgmlReader.pdb
