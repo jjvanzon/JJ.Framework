@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReflectionCache", "Demos\JJ.Demos.ReflectionCache\JJ.Demos.ReflectionCache.csproj", "{5DAB690D-BF45-4980-93F4-14B5CF872A43}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReflectionCache.Tests", "Demos\JJ.Demos.ReflectionCache.Tests\JJ.Demos.ReflectionCache.Tests.csproj", "{D157D8E3-26A0-4862-B488-0800AF4FEC9B}"
@@ -52,5 +54,17 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = Demos\\JJ.Demos.ReflectionCache\\JJ.Demos.ReflectionCache.csproj
+		SccProjectName0 = Demos/JJ.Demos.ReflectionCache
+		SccLocalPath0 = Demos\\JJ.Demos.ReflectionCache
+		SccProjectUniqueName1 = Demos\\JJ.Demos.ReflectionCache.Tests\\JJ.Demos.ReflectionCache.Tests.csproj
+		SccProjectName1 = Demos/JJ.Demos.ReflectionCache.Tests
+		SccLocalPath1 = Demos\\JJ.Demos.ReflectionCache.Tests
+		SccLocalPath2 = .
 	EndGlobalSection
 EndGlobal

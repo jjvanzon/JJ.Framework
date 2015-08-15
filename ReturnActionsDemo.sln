@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Web
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration", "Framework\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj", "{805A8237-05ED-40AE-8D1A-9288373EA5E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection", "Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj", "{1A8E047C-7893-4918-B415-CE3928E815D8}"
@@ -119,14 +121,68 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{805A8237-05ED-40AE-8D1A-9288373EA5E0} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{1A8E047C-7893-4918-B415-CE3928E815D8} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{44FD9133-5FE7-4824-BD35-27273706D127} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
-		{805A8237-05ED-40AE-8D1A-9288373EA5E0} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{40A53175-8048-4F2D-93CA-383074C0267E} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{F6EA0941-40FF-4679-A1A6-EACD5C9BA42B} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{59622A6E-A9AE-438C-A164-05DEA2FCF8CF} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{499527FF-AE52-450F-B3E3-4AD53E1712AD} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{529145D5-6CC3-4016-89B5-826563024AF1} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{5909BFE7-93CF-4E5F-BE22-6293368AF01D} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 14
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = Framework\\JJ.Framework.Reflection\\JJ.Framework.Reflection.csproj
+		SccProjectTopLevelParentUniqueName0 = ReturnActionsDemo.sln
+		SccProjectName0 = Framework/JJ.Framework.Reflection
+		SccLocalPath0 = Framework\\JJ.Framework.Reflection
+		SccProjectUniqueName1 = Framework\\JJ.Framework.Common\\JJ.Framework.Common.csproj
+		SccProjectTopLevelParentUniqueName1 = ReturnActionsDemo.sln
+		SccProjectName1 = Framework/JJ.Framework.Common
+		SccLocalPath1 = Framework\\JJ.Framework.Common
+		SccProjectUniqueName2 = Framework\\JJ.Framework.Configuration\\JJ.Framework.Configuration.csproj
+		SccProjectTopLevelParentUniqueName2 = ReturnActionsDemo.sln
+		SccProjectName2 = Framework/JJ.Framework.Configuration
+		SccLocalPath2 = Framework\\JJ.Framework.Configuration
+		SccProjectUniqueName3 = Framework\\JJ.Framework.Presentation.Mvc\\JJ.Framework.Presentation.Mvc.csproj
+		SccProjectName3 = Framework/JJ.Framework.Presentation.Mvc
+		SccLocalPath3 = Framework\\JJ.Framework.Presentation.Mvc
+		SccProjectUniqueName4 = Framework\\JJ.Framework.Presentation\\JJ.Framework.Presentation.csproj
+		SccProjectName4 = Framework/JJ.Framework.Presentation
+		SccLocalPath4 = Framework\\JJ.Framework.Presentation
+		SccProjectUniqueName5 = Framework\\JJ.Framework.Presentation.Resources\\JJ.Framework.Presentation.Resources.csproj
+		SccProjectTopLevelParentUniqueName5 = ReturnActionsDemo.sln
+		SccProjectName5 = Framework/JJ.Framework.Presentation.Resources
+		SccLocalPath5 = Framework\\JJ.Framework.Presentation.Resources
+		SccProjectUniqueName6 = Demos\\JJ.Demos.ReturnActions\\JJ.Demos.ReturnActions.csproj
+		SccProjectName6 = Demos/JJ.Demos.ReturnActions
+		SccLocalPath6 = Demos\\JJ.Demos.ReturnActions
+		SccProjectUniqueName7 = Demos\\JJ.Demos.ReturnActions.MvcPostData\\JJ.Demos.ReturnActions.MvcPostData.csproj
+		SccProjectName7 = Demos/JJ.Demos.ReturnActions.MvcPostData
+		SccLocalPath7 = Demos\\JJ.Demos.ReturnActions.MvcPostData
+		SccProjectUniqueName8 = Framework\\JJ.Framework.Xml\\JJ.Framework.Xml.csproj
+		SccProjectTopLevelParentUniqueName8 = ReturnActionsDemo.sln
+		SccProjectName8 = Framework/JJ.Framework.Xml
+		SccLocalPath8 = Framework\\JJ.Framework.Xml
+		SccProjectUniqueName9 = Framework\\JJ.Framework.PlatformCompatibility\\JJ.Framework.PlatformCompatibility.csproj
+		SccProjectTopLevelParentUniqueName9 = ReturnActionsDemo.sln
+		SccProjectName9 = Framework/JJ.Framework.PlatformCompatibility
+		SccLocalPath9 = Framework\\JJ.Framework.PlatformCompatibility
+		SccProjectUniqueName10 = External\u0020Components\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll\\SgmlReaderDll.csproj
+		SccProjectTopLevelParentUniqueName10 = ReturnActionsDemo.sln
+		SccProjectName10 = External\u0020Components/SgmlReader/Source\u0020Code\u0020Adapted/sgmlreaderdll
+		SccLocalPath10 = External\u0020Components\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll
+		SccProjectUniqueName11 = External\u0020Components\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate\\FluentNHibernate.csproj
+		SccProjectTopLevelParentUniqueName11 = ReturnActionsDemo.sln
+		SccProjectName11 = External\u0020Components/FluentNHibernate/Source\u0020Code/1.3/src/FluentNHibernate
+		SccLocalPath11 = External\u0020Components\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate
+		SccProjectUniqueName12 = External\u0020Components\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate\\NHibernate.csproj
+		SccProjectTopLevelParentUniqueName12 = ReturnActionsDemo.sln
+		SccProjectName12 = External\u0020Components/NHibernate/Source\u0020Code/3.3.1.GA/src/NHibernate
+		SccLocalPath12 = External\u0020Components\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate
+		SccLocalPath13 = .
 	EndGlobalSection
 EndGlobal
