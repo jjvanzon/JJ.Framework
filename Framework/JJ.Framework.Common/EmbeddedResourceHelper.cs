@@ -37,7 +37,6 @@ namespace JJ.Framework.Common
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
         public static byte[] GetEmbeddedResourceBytes(Assembly assembly, string subNamespace, string fileName)
         {
-            string resourceName = GetEmbeddedResourceName(assembly, subNamespace, fileName);
             using (Stream stream = GetEmbeddedResourceStream(assembly, subNamespace, fileName))
             {
                 using (var stream2 = new MemoryStream())
@@ -63,6 +62,7 @@ namespace JJ.Framework.Common
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
         public static string GetEmbeddedResourceName(Assembly assembly, string subNamespace, string fileName)
         {
+            if (assembly == null) throw new ArgumentNullException("assembly");
             if (String.IsNullOrEmpty(subNamespace))
             {
                 string embeddedResourceName = String.Format("{0}.{1}", assembly.GetName().Name, fileName);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,8 @@ namespace JJ.Framework.Presentation.WinForms
         /// <param name="currentTabIndex">The tab index to start with (optional)</param>
         public static void AutomaticallyAssignTabIndexes(this Control control, int currentTabIndex = 1)
         {
+            if (control == null) throw new NullException(() => control);
+
             control.TabIndex = currentTabIndex++;
 
             var sortedChildren =

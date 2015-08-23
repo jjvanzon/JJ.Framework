@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace JJ.Framework.Logging
 
         public static string FormatException(Exception ex, bool includeStackTrace)
         {
+            if (ex == null) throw new NullException(() => ex);
+
             string message = ex.Message;
             if (includeStackTrace)
             {

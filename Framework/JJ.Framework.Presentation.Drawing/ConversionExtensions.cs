@@ -37,6 +37,8 @@ namespace JJ.Framework.Presentation.Drawing
 
         public static RectangleF ToSystemDrawingRectangleF(this SvgElements.Point sourcePoint)
         {
+            if (sourcePoint == null) throw new NullException(() => sourcePoint);
+
             float pointWidth = sourcePoint.PointStyle.Width;
             var destRectangleF = new RectangleF(
                 x: sourcePoint.CalculatedX - pointWidth / 2,
@@ -202,6 +204,8 @@ namespace JJ.Framework.Presentation.Drawing
 
         public static System.Drawing.Font ToSystemDrawing(this SvgStyling.Font sourceFont)
         {
+            if (sourceFont == null) throw new NullException(() => sourceFont);
+
             FontStyle destFontStyle = 0;
 
             if (sourceFont.Bold)

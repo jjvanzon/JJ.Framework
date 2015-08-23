@@ -10,6 +10,7 @@ namespace JJ.Framework.Common
         public static void AddRange<T>(this HashSet<T> dest, IEnumerable<T> source)
         {
             if (dest == null) throw new ArgumentNullException("dest");
+            if (source == null) throw new ArgumentNullException("source");
 
             foreach (T item in source)
             {

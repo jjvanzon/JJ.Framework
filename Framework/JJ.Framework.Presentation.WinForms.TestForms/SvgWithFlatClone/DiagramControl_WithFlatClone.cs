@@ -17,6 +17,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
     {
         public SvgElements.Rectangle RootSvgRectangle { get; set; }
 
+        // TODO: 
+        // Warning CA2213	'DiagramControl' contains field 'DiagramControl._graphicsBuffer' that is of IDisposable type: 'ControlGraphicsBuffer'. Change the Dispose method on 'DiagramControl' to call Dispose or Close on this field.
         private ControlGraphicsBuffer _graphicsBuffer;
 
         public DiagramControl_WithFlatClone()

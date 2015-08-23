@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Testing
 {
-    internal class TestHelper
+    internal static class TestHelper
     {
         private const string TESTED_PROPERTY_MESSAGE = "Tested property: '{0}'.";
 

@@ -27,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>true</Prefer32Bit>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -101,7 +102,6 @@
       <DependentUpon>DiagramControl_WithFlatClone.cs</DependentUpon>
     </Compile>
     <Compile Include="SvgWithFlatClone\SvgDrawer_WithFlatClone.cs" />
-    <Compile Include="SvgWithFlatClone\CalculationVisitor_WithFlatClone.cs" />
     <Compile Include="SvgWithoutCloning\ConvertExtensions_WithoutCloning.cs" />
     <Compile Include="SvgWithoutCloning\DiagramControl_WithoutCloning.cs">
       <SubType>UserControl</SubType>

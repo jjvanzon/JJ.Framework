@@ -57,6 +57,8 @@ namespace JJ.Framework.Xml
         /// </summary>
         public static XmlElement GetElement(XmlElement parentElement, string childElementName)
         {
+            if (parentElement == null) throw new NullException(() => parentElement);
+
             XmlElement childElement = TryGetElement(parentElement, childElementName);
             if (childElement == null)
             {
@@ -122,6 +124,8 @@ namespace JJ.Framework.Xml
         /// </summary>
         public static XmlAttribute TryGetAttribute(XmlElement element, string attributeName)
         {
+            if (element == null) throw new NullException(() => element);
+
             XmlAttribute attribute = element.GetAttributeNode(attributeName);
             return attribute;
         }
@@ -147,6 +151,8 @@ namespace JJ.Framework.Xml
         /// </summary>
         public static string TryGetAttributeValue(XmlElement element, string attributeName)
         {
+            if (element == null) throw new NullException(() => element);
+
             string attributeValue = element.GetAttribute(attributeName);
             return attributeValue;
         }

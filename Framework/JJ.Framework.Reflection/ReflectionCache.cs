@@ -59,7 +59,7 @@ namespace JJ.Framework.Reflection
         private IDictionary<Type, FieldInfo[]> _fieldsDictionary = new Dictionary<Type, FieldInfo[]>();
         private object _fieldsDictionaryLock = new object();
 
-        public FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
+        public FieldInfo[] GetFields(Type type)
         {
             lock (_fieldsDictionaryLock)
             {
@@ -146,7 +146,7 @@ namespace JJ.Framework.Reflection
 
         public ConstructorInfo GetConstructor(Type type)
         {
-            lock (_constructorDictionary)
+            lock (_constructorDictionaryLock)
             {
                 ConstructorInfo constructor;
                 if (_constructorDictionary.TryGetValue(type, out constructor))

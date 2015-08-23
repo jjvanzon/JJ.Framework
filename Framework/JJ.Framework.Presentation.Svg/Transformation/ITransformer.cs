@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Transformation
 {
-    class ITransformer
+    internal interface ITransformer
     {
     }
 }

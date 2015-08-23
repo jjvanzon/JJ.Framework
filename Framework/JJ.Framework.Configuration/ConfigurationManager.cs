@@ -22,6 +22,8 @@ namespace JJ.Framework.Configuration
         public static T GetSection<T>(Assembly assembly)
             where T : new()
         {
+            if (assembly == null) throw new NullException(() => assembly);
+
             string sectionName = assembly.GetName().Name.ToLower();
             return GetSection<T>(sectionName);
         }

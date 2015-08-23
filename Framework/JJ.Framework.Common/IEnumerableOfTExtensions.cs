@@ -108,6 +108,9 @@ namespace JJ.Framework.Common
 
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
+            if (enumerable == null) throw new ArgumentNullException("enumerable");
+            if (action == null) throw new ArgumentNullException("action");
+
             foreach (var x in enumerable)
             {
                 action(x);
@@ -188,6 +191,9 @@ namespace JJ.Framework.Common
 
         public static Dictionary<TKey, IList<TItem>> ToNonUniqueDictionary<TKey, TItem>(this IEnumerable<TItem> sourceCollection, Func<TItem, TKey> keySelector)
         {
+            if (sourceCollection == null) throw new ArgumentNullException("sourceCollection");
+            if (keySelector == null) throw new ArgumentNullException("keySelector");
+
             var dictionary = new Dictionary<TKey, IList<TItem>>();
 
             foreach (TItem item in sourceCollection)

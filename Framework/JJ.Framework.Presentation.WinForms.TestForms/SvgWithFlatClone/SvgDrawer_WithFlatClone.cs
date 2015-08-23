@@ -61,14 +61,14 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
             throw new Exception(String.Format("Unexpected Element type '{0}'", sourceElement.GetType().FullName));
         }
 
-        private void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
-        {
-            if (sourceRectangle.Visible && sourceRectangle.BackStyle.Visible)
-            {
-                Color destBackColor = sourceRectangle.BackStyle.Color.ToSystemDrawing();
-                destGraphics.Clear(destBackColor);
-            }
-        }
+        //private void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
+        //{
+        //    if (sourceRectangle.Visible && sourceRectangle.BackStyle.Visible)
+        //    {
+        //        Color destBackColor = sourceRectangle.BackStyle.Color.ToSystemDrawing();
+        //        destGraphics.Clear(destBackColor);
+        //    }
+        //}
 
         private void DrawPoint(SvgElements.Point sourcePoint, Graphics destGraphics)
         {

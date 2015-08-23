@@ -1,5 +1,4 @@
 ﻿using JJ.Framework.Business;
-using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Svg.Relationships;
 using JJ.Framework.Presentation.Svg.SideEffects;
 using JJ.Framework.Reflection.Exceptions;
@@ -14,8 +13,6 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
 {
     public class DiagramElements : IEnumerable<Element>
     {
-        private Diagram _diagram;
-
         private IList<Element> _elements = new List<Element>();
 
         private DiagramToElementsRelationship _relationship;
@@ -24,7 +21,6 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         {
             if (diagram == null) throw new NullException(() => diagram);
 
-            _diagram = diagram;
             _relationship = new DiagramToElementsRelationship(diagram, _elements);
         }
 

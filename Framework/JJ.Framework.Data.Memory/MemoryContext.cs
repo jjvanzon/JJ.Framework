@@ -34,7 +34,6 @@ namespace JJ.Framework.Data.Memory
 
                 if (!_entityStoreDictionary.TryGetValue(entityType, out entityStore))
                 {
-                    string entityName = entityType.Name;
                     IMemoryMapping mapping = MappingResolver.GetMapping(entityType, MappingAssembly);
 
                     Type entityStoreType = typeof(EntityStore<>).MakeGenericType(entityType);

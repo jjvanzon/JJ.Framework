@@ -138,12 +138,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static bool String_IsNullOrWhiteSpace_PlatformSupport(string value)
         {
-            if (value == null)
-            {
-                return true;
-            }
-
-            if (String.Equals(value, ""))
+            if (String.IsNullOrEmpty(value))
             {
                 return true;
             }
@@ -159,7 +154,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// <summary>
         /// .Net 4.5 substitute
         /// </summary>
-        public static TAttribute PropertyInfo_GetCustomAttribute_PlatformSupport<TAttribute>(PropertyInfo propertyInfo)
+        public static TAttribute PropertyInfo_GetCustomAttribute_PlatformSupport<TAttribute>(MemberInfo propertyInfo)
             where TAttribute : Attribute
         {
             return (TAttribute)Attribute.GetCustomAttribute(propertyInfo, typeof(TAttribute));

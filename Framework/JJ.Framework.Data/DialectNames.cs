@@ -10,7 +10,7 @@ namespace JJ.Framework.Data
     /// even though it is a free text and each implementation of 
     /// IContext can have use its own dialect string values.
     /// </summary>
-    public class DialectNames
+    public static class DialectNames
     {
         public const string SqlServer2008 = "SqlServer2008";
     }

@@ -86,6 +86,8 @@ namespace JJ.Framework.Data
                     {
                         assembly = Assembly.Load(assumedAssemblyName);
                     }
+                    // TODO:
+                    // Warning CA1031  Modify 'ContextFactory.ResolveContextType(string)' to catch a more specific exception than 'object' or rethrow the exception.
                     catch
                     {
                         // Otherwise assume it is a full assembly name.

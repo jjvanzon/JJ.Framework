@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Presentation.Svg.Models.Elements;
+using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,8 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         public override void HandleMouseDown(object sender, MouseEventArgs e)
         {
+            if (e == null) throw new NullException(() => e);
+
             if (e.Element != null)
             {
                 _element = e.Element;
@@ -44,6 +47,8 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         public override void HandleMouseMove(object sender, MouseEventArgs e)
         {
+            if (e == null) throw new NullException(() => e);
+
             if (_element != null)
             {
                 float deltaX = e.X - _mouseDownPointerX;

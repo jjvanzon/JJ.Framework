@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Presentation.Svg.Enums;
 using JJ.Framework.Presentation.Svg.EventArg;
+using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,16 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         public override void HandleMouseDown(object sender, MouseEventArgs e)
         {
+            if (e == null) throw new NullException(() => e);
+
             _previousPointerX = e.X;
             _previousPointerY = e.Y;
         }
 
         public override void HandleMouseMove(object sender, MouseEventArgs e)
         {
+            if (e == null) throw new NullException(() => e);
+
             if (MouseMove == null)
             {
                 return;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JJ.Framework.Reflection.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace JJ.Framework.IO
         public static void WriteStruct<T>(this BinaryWriter writer, T strct)
             where T : struct
         {
+            if (writer == null) throw new NullException(() => writer);
+
             int size = Marshal.SizeOf(typeof(T));
             byte[] buffer = new byte[size];
             GCHandle gcHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
@@ -27,6 +30,8 @@ namespace JJ.Framework.IO
         public static T ReadStruct<T>(this BinaryReader reader)
             where T : struct
         {
+            if (reader == null) throw new NullException(() => reader);
+
             int size = Marshal.SizeOf(typeof(T));
             byte[] buffer = reader.ReadBytes(size);
             GCHandle gcHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned);

@@ -103,6 +103,8 @@ namespace JJ.Framework.Reflection
         /// </summary>
         public static object GetValue(LambdaExpression expression)
         {
+            if (expression == null) throw new NullException(() => expression);
+
             return GetValue(expression.Body);
         }
 
@@ -130,6 +132,7 @@ namespace JJ.Framework.Reflection
 
         public static IList<object> GetValues(LambdaExpression expression)
         {
+            if (expression == null) throw new NullException(() => expression);
             return GetValues(expression.Body);
         }
 
@@ -159,6 +162,7 @@ namespace JJ.Framework.Reflection
         /// </param>
         public static string GetText(LambdaExpression expression, bool showIndexerValues = false)
         {
+            if (expression == null) throw new NullException(() => expression);
             return GetText(expression.Body, showIndexerValues);
         }
 

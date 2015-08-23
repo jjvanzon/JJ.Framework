@@ -20,21 +20,21 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
     {
         // Point
 
-        public static PointF ToSystemDrawingPointF(this SvgElements.Point sourcePoint)
-        {
-            if (sourcePoint == null) throw new NullException(() => sourcePoint);
+        //public static PointF ToSystemDrawingPointF(this SvgElements.Point sourcePoint)
+        //{
+        //    if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
-            var destPointF = new PointF(sourcePoint.X, sourcePoint.Y);
-            return destPointF;
-        }
+        //    var destPointF = new PointF(sourcePoint.X, sourcePoint.Y);
+        //    return destPointF;
+        //}
 
-        public static System.Drawing.Point ToSystemDrawingPoint(this SvgElements.Point sourcePoint)
-        {
-            if (sourcePoint == null) throw new NullException(() => sourcePoint);
+        //public static System.Drawing.Point ToSystemDrawingPoint(this SvgElements.Point sourcePoint)
+        //{
+        //    if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
-            var destPoint = new System.Drawing.Point((int)sourcePoint.X, (int)sourcePoint.Y);
-            return destPoint;
-        }
+        //    var destPoint = new System.Drawing.Point((int)sourcePoint.X, (int)sourcePoint.Y);
+        //    return destPoint;
+        //}
 
         public static RectangleF ToSystemDrawingRectangleF(this SvgElements.Point sourcePoint)
         {
@@ -67,20 +67,20 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             return destRectangleF;
         }
 
-        public static System.Drawing.Rectangle ToSystemDrawingRectangle(this SvgElements.Rectangle sourceRectangle)
-        {
-            if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
+        //public static System.Drawing.Rectangle ToSystemDrawingRectangle(this SvgElements.Rectangle sourceRectangle)
+        //{
+        //    if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
-            var sourceRectangle_Accessor = new Element_Accessor(sourceRectangle);
+        //    var sourceRectangle_Accessor = new Element_Accessor(sourceRectangle);
 
-            var destRectangle = new System.Drawing.Rectangle(
-                (int)sourceRectangle_Accessor.CalculatedX,
-                (int)sourceRectangle_Accessor.CalculatedY,
-                (int)sourceRectangle.Width,
-                (int)sourceRectangle.Height);
+        //    var destRectangle = new System.Drawing.Rectangle(
+        //        (int)sourceRectangle_Accessor.CalculatedX,
+        //        (int)sourceRectangle_Accessor.CalculatedY,
+        //        (int)sourceRectangle.Width,
+        //        (int)sourceRectangle.Height);
 
-            return destRectangle;
-        }
+        //    return destRectangle;
+        //}
 
         // Style Values
 

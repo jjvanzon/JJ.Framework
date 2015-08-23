@@ -67,6 +67,8 @@ namespace JJ.Framework.Presentation.Drawing
             throw new Exception(String.Format("Unexpected Element type '{0}'", sourceElement.GetType().FullName));
         }
 
+        // TODO:
+        // Warning CA1811	'SvgDrawer.DrawBackground(Rectangle, Graphics)' appears to have no upstream public or protected callers.
         private static void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
             if (sourceRectangle.CalculatedVisible && sourceRectangle.BackStyle.Visible)

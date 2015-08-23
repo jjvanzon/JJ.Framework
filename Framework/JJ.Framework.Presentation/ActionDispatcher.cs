@@ -181,6 +181,8 @@ namespace JJ.Framework.Presentation
 
         public static ActionInfo CreateActionInfo(Type presenterType, LambdaExpression methodCallExpression)
         {
+            if (presenterType == null) throw new NullException(() => presenterType);
+
             MethodCallInfo methodCallInfo = ExpressionHelper.GetMethodCallInfo(methodCallExpression);
 
             MethodCallParameterInfo returnActionParameterInfo =

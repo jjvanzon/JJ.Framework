@@ -14,6 +14,8 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Data.SqlClient
 {
+    // TODO:
+    // MSBUILD : warning CA1001: Microsoft.Design : Implement IDisposable on 'SqlExecutor' because it creates members of the following IDisposable types: 'SqlConnection'. If 'SqlExecutor' has previously shipped, adding new members that implement IDisposable to this type is considered a breaking change to existing consumers.
     public class SqlExecutor : ISqlExecutor
     {
         private SqlConnection _connection;

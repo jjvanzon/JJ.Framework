@@ -15,6 +15,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 {
     internal partial class DiagramControl_WithoutCloning : UserControl
     {
+        // TODO: 
+        // Warning CA2213	'DiagramControl' contains field 'DiagramControl._graphicsBuffer' that is of IDisposable type: 'ControlGraphicsBuffer'. Change the Dispose method on 'DiagramControl' to call Dispose or Close on this field.
         private ControlGraphicsBuffer _graphicsBuffer;
 
         public SvgElements.Rectangle RootSvgRectangle { get; set; }

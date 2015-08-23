@@ -1,5 +1,4 @@
 ﻿using JJ.Framework.Mathematics;
-using JJ.Framework.Presentation.Svg.Models;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Reflection.Exceptions;
@@ -23,7 +22,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         private float _currentParentX;
         private float _currentParentY;
 
-        private Diagram _diagram;
         private int _currentZIndex;
         private int _currentLayer;
 
@@ -34,7 +32,6 @@ namespace JJ.Framework.Presentation.Svg.Visitors
         {
             if (diagram == null) throw new NullException(() => diagram);
 
-            _diagram = diagram;
             _calculatedElements = new HashSet<Element>();
             _currentParentX = 0;
             _currentParentY = 0;

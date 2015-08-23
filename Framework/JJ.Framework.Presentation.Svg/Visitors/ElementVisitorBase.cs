@@ -1,5 +1,5 @@
-﻿using JJ.Framework.Presentation.Svg.Models;
-using JJ.Framework.Presentation.Svg.Models.Elements;
+﻿using JJ.Framework.Presentation.Svg.Models.Elements;
+using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,8 @@ namespace JJ.Framework.Presentation.Svg.Visitors
     {
         protected virtual void VisitPolymorphic(Element element)
         {
+            if (element == null) throw new NullException(() => element);
+
             var point = element as Point;
             if (point != null)
             {

@@ -19,7 +19,7 @@ namespace JJ.Framework.Business
         public static bool GetListIsDirty<TViewModel, TEntity>(
             IList<TViewModel> list1, Func<TViewModel, object> getKey1,
             IList<TEntity> list2, Func<TEntity, object> getKey2,
-            bool ingoreOrder = false)
+            bool ignoreOrder = false)
         {
             if (list1 == null) throw new NullException(() => list1);
             if (getKey1 == null) throw new NullException(() => getKey1);
@@ -32,7 +32,7 @@ namespace JJ.Framework.Business
             }
 
             // If the order does not matter you have to sort the list and compare the sorted lists.
-            if (ingoreOrder)
+            if (ignoreOrder)
             {
                 list1 = list1.OrderBy(getKey1).ToArray();
                 list2 = list2.OrderBy(getKey2).ToArray();

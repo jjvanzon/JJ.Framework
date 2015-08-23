@@ -12,15 +12,11 @@ namespace JJ.Framework.IO
     {
         // TODO: Enforce number of columns.
 
-        private Stream _stream;
         private StreamReader _reader;
         private string[] _values;
 
         public CsvReader(Stream stream)
         {
-            if (stream == null) throw new NullException(() => stream);
-
-            _stream = stream;
             _reader = new StreamReader(stream);
         }
 

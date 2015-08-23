@@ -22,6 +22,8 @@ namespace JJ.Framework.Reflection
 
         public static FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
+            if (type == null) throw new NullException(() => type);
+
             lock (_fieldsIndexLock)
             {
                 var key = new Tuple_PlatformSupport<Type, BindingFlags>(type, bindingFlags);
@@ -53,6 +55,8 @@ namespace JJ.Framework.Reflection
 
         public static FieldInfo TryGetField(Type type, string name)
         {
+            if (type == null) throw new NullException(() => type);
+
             lock (_fieldIndexLock)
             {
                 var key = new Tuple_PlatformSupport<Type, string>(type, name);
@@ -76,6 +80,8 @@ namespace JJ.Framework.Reflection
 
         public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
+            if (type == null) throw new NullException(() => type);
+
             lock (_propertiesIndexLock)
             {
                 var key = new Tuple_PlatformSupport<Type, BindingFlags>(type, bindingFlags);
@@ -107,6 +113,8 @@ namespace JJ.Framework.Reflection
 
         public static PropertyInfo TryGetProperty(Type type, string name)
         {
+            if (type == null) throw new NullException(() => type);
+
             lock (_propertyIndexLock)
             {
                 var key = new Tuple_PlatformSupport<Type, string>(type, name);
@@ -140,8 +148,9 @@ namespace JJ.Framework.Reflection
 
         public static PropertyInfo TryGetIndexer(Type type, params Type[] parameterTypes)
         {
+            if (type == null) throw new NullException(() => type);
             if (parameterTypes == null) throw new NullException(() => parameterTypes);
-            if (parameterTypes.Length == 0) throw new ArgumentException("parameterTypes cannot be empty.");
+            if (parameterTypes.Length == 0) throw new ZeroException(() => parameterTypes.Length);
 
             string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
 
@@ -174,6 +183,8 @@ namespace JJ.Framework.Reflection
 
         public static MethodInfo[] GetMethods(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
+            if (type == null) throw new NullException(() => type);
+
             lock (_methodsIndexLock)
             {
                 var key = new Tuple_PlatformSupport<Type, BindingFlags>(type, bindingFlags);
@@ -205,6 +216,7 @@ namespace JJ.Framework.Reflection
 
         public static MethodInfo TryGetMethod(Type type, string name, params Type[] parameterTypes)
         {
+            if (type == null) throw new NullException(() => type);
             if (parameterTypes == null) throw new NullException(() => parameterTypes);
             
             string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);

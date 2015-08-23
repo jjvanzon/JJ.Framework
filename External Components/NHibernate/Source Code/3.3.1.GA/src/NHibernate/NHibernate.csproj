@@ -50,7 +50,7 @@
     <DocumentationFile>bin\Debug-2.0\NHibernate.XML</DocumentationFile>
     <NoWarn>1591%3b3001%3b3002%3b3003%3b3004%3b3005</NoWarn>
     <WarningsAsErrors>1717;1574</WarningsAsErrors>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>ManagedMinimumRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

@@ -8,9 +8,9 @@ using System.Xml;
 using System.Xml.Serialization;
 using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Xml.Internal;
 using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Xml
 {
@@ -100,6 +100,8 @@ namespace JJ.Framework.Xml
 
         public TDestObject Convert(XmlDocument document)
         {
+            if (document == null) throw new NullException(() => document);
+
             XmlElement rootElement = document.DocumentElement;
             return Convert(rootElement);
         }
@@ -651,7 +653,7 @@ namespace JJ.Framework.Xml
         /// by marking the collection property with the XmlArrayItem attribute and specifying the
         /// name with it e.g. [XmlArrayItem("myElementType")].
         /// </summary>
-        public static string GetXmlArrayItemNameForCollectionProperty(PropertyInfo collectionProperty)
+        private string GetXmlArrayItemNameForCollectionProperty(PropertyInfo collectionProperty)
         {
             // Try get element name from XmlArrayItem attribute.
             string name = TryGetXmlArrayItemNameFromAttribute(collectionProperty);
@@ -670,7 +672,7 @@ namespace JJ.Framework.Xml
         /// Gets an XML element name from the XmlArrayItem attribute that the property is marked with.
         /// e.g. [XmlArrayItem("myItem")]. If no name is specified, null or empty string is returned.
         /// </summary>
-        private static string TryGetXmlArrayItemNameFromAttribute(PropertyInfo collectionProperty)
+        private string TryGetXmlArrayItemNameFromAttribute(PropertyInfo collectionProperty)
         {
             XmlArrayItemAttribute xmlArrayItemAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayItemAttribute>();
             if (xmlArrayItemAttribute != null)
@@ -722,7 +724,7 @@ namespace JJ.Framework.Xml
         /// Returns wheter a generic collection type is supported.
         /// The supported types are List&lt;T&gt;, IList&lt;T&gt;, ICollection&lt;T&gt; and IEnumerable&lt;T&gt;.
         /// </summary>
-        public static bool IsSupportedGenericCollectionType(Type type)
+        private bool IsSupportedGenericCollectionType(Type type)
         {
             if (!type.IsGenericType)
             {

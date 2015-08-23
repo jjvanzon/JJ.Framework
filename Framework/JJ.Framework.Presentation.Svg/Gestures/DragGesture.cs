@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Presentation.Svg.Models.Elements;
+using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,7 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         }
 
         public event EventHandler<DraggingEventArgs> Dragging;
-        public event EventHandler DragCancelled;
+        public event EventHandler DragCanceled;
 
         private Diagram _diagram;
         private MouseMoveGesture _diagramMouseMoveGesture;
@@ -56,6 +57,8 @@ namespace JJ.Framework.Presentation.Svg.Gestures
 
         public override void HandleMouseDown(object sender, MouseEventArgs e)
         {
+            if (e == null) throw new NullException(() => e);
+
             if (e.Element != null)
             {
                 DraggedElement = e.Element;
@@ -98,9 +101,9 @@ namespace JJ.Framework.Presentation.Svg.Gestures
         {
             DraggedElement = null;
 
-            if (DragCancelled != null)
+            if (DragCanceled != null)
             {
-                DragCancelled(sender, EventArgs.Empty);
+                DragCanceled(sender, EventArgs.Empty);
             }
         }
 
@@ -110,9 +113,9 @@ namespace JJ.Framework.Presentation.Svg.Gestures
             {
                 DraggedElement = null;
 
-                if (DragCancelled != null)
+                if (DragCanceled != null)
                 {
-                    DragCancelled(sender, EventArgs.Empty);
+                    DragCanceled(sender, EventArgs.Empty);
                 }
             }
         }

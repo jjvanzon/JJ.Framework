@@ -38,15 +38,15 @@ namespace JJ.Framework.Testing
         // By attempting to normalize the methods, a lot of anti-patterns were introduced,
         // among other things delegitis, parametritis and scattering of cause and effect.
 
-        public static void NotEqual<T>(T a, Expression<Func<T>> bExpresion)
+        public static void NotEqual<T>(T a, Expression<Func<T>> bExpression)
         {
-            T b = ExpressionHelper.GetValue(bExpresion);
+            T b = ExpressionHelper.GetValue(bExpression);
 
             if (Object.Equals(a, b))
             {
-                string name = ExpressionHelper.GetText(bExpresion);
+                string name = ExpressionHelper.GetText(bExpression);
                 string message = TestHelper.FormatTestedPropertyMessage(name);
-                string fullMessage = GetNotEqualFailedMessage(a, b, message);
+                string fullMessage = GetNotEqualFailedMessage(a, message);
                 throw new AssertFailedException(fullMessage);
             }
         }
@@ -104,6 +104,8 @@ namespace JJ.Framework.Testing
 
         public static void ThrowsException(Action statement, string expectedMessage)
         {
+            if (statement == null) throw new NullException(() => statement);
+
             try
             {
                 statement();
@@ -119,6 +121,8 @@ namespace JJ.Framework.Testing
 
         public static void ThrowsException(Action statement, Type exceptionType)
         {
+            if (statement == null) throw new NullException(() => statement);
+
             try
             {
                 statement();
@@ -134,6 +138,9 @@ namespace JJ.Framework.Testing
 
         public static void ThrowsException(Action statement, Type exceptionType, string expectedMessage)
         {
+            if (statement == null) throw new NullException(() => statement);
+            if (exceptionType == null) throw new NullException(() => exceptionType);
+
             try
             {
                 statement();
@@ -148,14 +155,14 @@ namespace JJ.Framework.Testing
             Assert.Fail("An exception should have been raised.");
         }
 
-        public static void ThrowsException<ExceptionType>(Action statement)
+        public static void ThrowsException<TException>(Action statement)
         {
-            ThrowsException(statement, typeof(ExceptionType));
+            ThrowsException(statement, typeof(TException));
         }
 
-        public static void ThrowsException<ExceptionType>(Action statement, string expectedMessage)
+        public static void ThrowsException<TException>(Action statement, string expectedMessage)
         {
-            ThrowsException(statement, typeof(ExceptionType), expectedMessage);
+            ThrowsException(statement, typeof(TException), expectedMessage);
         }
 
         public static void ThrowsExceptionOnOtherThread(Action statement)
@@ -186,15 +193,6 @@ namespace JJ.Framework.Testing
 
         // Normalized Methods
 
-        private static void ExpectedActualCheck<T>(bool condition, string methodName, T expected, T actual, string message = "")
-        {
-            if (!condition)
-            {
-                string fullMessage = GetExpectedActualMessage(methodName, expected, actual, message);
-                throw new AssertFailedException(fullMessage);
-            }
-        }
-
         private static void ExpectedActualCheck<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression)
         {
             T actual = (T)ExpressionHelper.GetValue(actualExpression);
@@ -207,17 +205,10 @@ namespace JJ.Framework.Testing
             }
         }
 
-        private static void Check(bool condition, string methodName, string message)
-        {
-            if (!condition)
-            {
-                string fullMessage = GetFailureMessage(methodName, message);
-                throw new AssertFailedException(fullMessage);
-            }
-        }
-
         public static void Check<T>(Func<T, bool> condition, string methodName, Expression<Func<T>> expression)
         {
+            if (condition == null) throw new NullException(() => condition);
+
             T value = ExpressionHelper.GetValue(expression);
             if (!condition(value))
             {
@@ -230,7 +221,7 @@ namespace JJ.Framework.Testing
 
         // Messages
 
-        private static string GetNotEqualFailedMessage<T>(T a, T b, string message)
+        private static string GetNotEqualFailedMessage<T>(T a, string message)
         {
             return
                 String.Format("Assert.NotEqual failed. Both values are <{0}>.{1}{2}",
@@ -255,14 +246,6 @@ namespace JJ.Framework.Testing
             return
                 String.Format("Assert.{0} failed.{1}{2}",
                     methodName,
-                    !String.IsNullOrEmpty(message) ? " " : "",
-                    message);
-        }
-
-        private static string GetAssertFailFailedMessage(string message)
-        {
-            return
-                String.Format("Assert failed.{0}{1}",
                     !String.IsNullOrEmpty(message) ? " " : "",
                     message);
         }
