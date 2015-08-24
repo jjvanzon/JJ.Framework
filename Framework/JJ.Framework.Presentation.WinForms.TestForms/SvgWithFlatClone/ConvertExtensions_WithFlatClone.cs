@@ -1,6 +1,5 @@
 ﻿using JJ.Framework.Common;
 using JJ.Framework.Presentation.Svg.Enums;
-using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Svg.Models.Styling;
 using JJ.Framework.Reflection.Exceptions;
 using System;
@@ -9,7 +8,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using SvgStyling = JJ.Framework.Presentation.Svg.Models.Styling;
 
@@ -18,23 +16,6 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
     internal static class ConvertExtensions
     {
         // Point
-
-        // TODO: Remove outcommented code.
-        //public static PointF ToSystemDrawingPointF(this SvgElements.Point sourcePoint)
-        //{
-        //    if (sourcePoint == null) throw new NullException(() => sourcePoint);
-
-        //    var destPointF = new PointF(sourcePoint.X, sourcePoint.Y);
-        //    return destPointF;
-        //}
-
-        //public static System.Drawing.Point ToSystemDrawingPoint(this SvgElements.Point sourcePoint)
-        //{
-        //    if (sourcePoint == null) throw new NullException(() => sourcePoint);
-
-        //    var destPoint = new System.Drawing.Point((int)sourcePoint.X, (int)sourcePoint.Y);
-        //    return destPoint;
-        //}
 
         public static RectangleF ToSystemDrawingRectangleF(this SvgElements.Point sourcePoint)
         {
