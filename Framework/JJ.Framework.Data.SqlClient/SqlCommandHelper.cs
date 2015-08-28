@@ -37,7 +37,16 @@ namespace JJ.Framework.Data.SqlClient
                 {
                     PropertyInfo property = properties[i];
 
-                    var sqlParameter = new SqlParameter(property.Name, property.GetValue_PlatformSafe(parameters));
+                    SqlParameter sqlParameter;
+                    object value = property.GetValue_PlatformSafe(parameters);
+                    if (value == null)
+                    {
+                        sqlParameter = CreateNullableSqlParameter(property.Name, value, property.PropertyType);
+                    }
+                    else
+                    {
+                        sqlParameter = new SqlParameter(property.Name, value);
+                    }
                     sqlCommand.Parameters.Add(sqlParameter);
                 }
             }
@@ -64,7 +73,7 @@ namespace JJ.Framework.Data.SqlClient
         private static T ConvertRecordToObject<T>(IDataReader reader)
             where T : new()
         {
-            if (IsValueLikeType(typeof(T)))
+            if (IsSimpleType(typeof(T)))
             {
                 T value = (T)ConvertValue(reader[0], typeof(T));
                 return value;
@@ -84,7 +93,7 @@ namespace JJ.Framework.Data.SqlClient
             return obj;
         }
 
-        private static bool IsValueLikeType(Type type)
+        private static bool IsSimpleType(Type type)
         {
             return type.IsPrimitive ||
                    type.IsEnum ||
@@ -127,6 +136,48 @@ namespace JJ.Framework.Data.SqlClient
         {
             // TODO: Add more conversion types as needed.
             return Convert.ChangeType(value, type);
+        }
+
+        /// <summary>
+        /// SqlClient places a lot of special requirements onto nullability of parameters.
+        /// As soon as you want to pass null, you have to specify all sorts of additional data.
+        /// This method still only handles a select set of types correctly and should be extended in thee future.
+        /// </summary>
+        private static SqlParameter CreateNullableSqlParameter(string name, object value, Type type)
+        {
+            var sqlParameter = new SqlParameter(name, DBNull.Value);
+            sqlParameter.DbType = GetDbType(type);
+            if (sqlParameter.DbType == DbType.Binary)
+            {
+                // To make it varbinary, setting this property like this is required.
+                sqlParameter.Size = -1;
+            }
+            return sqlParameter;
+        }
+
+        private static DbType GetDbType(Type type)
+        {
+            if (type == typeof(String))
+            {
+                return DbType.String;
+            }
+            else if (type == typeof(byte[]))
+            {
+                return DbType.Binary;
+            }
+            else if (type == typeof(Int32))
+            {
+                return DbType.Int32;
+            }
+            else if (type == typeof(Boolean))
+            {
+                return DbType.Boolean;
+            }
+            else
+            {
+                // TODO: Program additional conversion code to support more types.
+                throw new Exception(String.Format("Type '{0}' is not supported.", type.FullName));
+            }
         }
     }
 }

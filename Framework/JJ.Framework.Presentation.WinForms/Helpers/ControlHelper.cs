@@ -20,8 +20,10 @@ namespace JJ.Framework.Presentation.WinForms.Helpers
         }
 
         /// <summary>
-        /// Alternative form Graphics.MeasureString, that uses FontScaling.
-        /// LIMITATION: Only works if the control is placed inside a UserControl.
+        /// Alternative form Graphics.MeasureString that uses Font scaling (behavior similar to Form.AutoScaleMode = Font).
+        /// LIMITATION: Only works if the control is placed inside a UserControl
+        /// and only after the ParentForm has been assigned.
+        /// (In some phases of the UserControl's loading and designer-generated code going off, ParentForm is not assigned yet.)
         /// </summary>
         public static SizeF MeasureStringWithFontScaling(Graphics graphics, Font font, string text, Control control)
         {

@@ -35,6 +35,12 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         // Properties
 
+        public override string Text
+        {
+            get { return FilePath; }
+            set { FilePath = value; }
+        }
+
         public string LabelText
         {
             get { return label.Text; }
