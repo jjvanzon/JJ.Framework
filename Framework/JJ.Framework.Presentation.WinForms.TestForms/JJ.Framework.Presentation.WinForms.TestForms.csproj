@@ -54,6 +54,12 @@
     <Compile Include="CurveTestForm.Designer.cs">
       <DependentUpon>CurveTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FilePathControlTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilePathControlTestForm.Designer.cs">
+      <DependentUpon>FilePathControlTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="GesturesTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     <Compile Include="SvgWithoutCloning\CalculationVisitor_WithoutCloning.cs" />
     <EmbeddedResource Include="CurveTestForm.resx">
       <DependentUpon>CurveTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilePathControlTestForm.resx">
+      <DependentUpon>FilePathControlTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GesturesTestForm.resx">
       <DependentUpon>GesturesTestForm.cs</DependentUpon>

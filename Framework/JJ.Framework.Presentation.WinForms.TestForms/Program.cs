@@ -22,7 +22,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
             Application.ThreadException += Application_ThreadException;
 
-            Application.Run(new PickATestForm());
+            //Application.Run(new PickATestForm());
+            Application.Run(new FilePathControlTestForm());
         }
 
         static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)

@@ -4,10 +4,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 
-namespace JJ.Framework.Presentation.WinForms
+namespace JJ.Framework.Presentation.WinForms.Forms
 {
     public partial class SimpleFileProcessForm : Form
     {

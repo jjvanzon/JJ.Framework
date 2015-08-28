@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.diagramControl1 = new JJ.Framework.Presentation.WinForms.DiagramControl();
+            this.diagramControl1 = new JJ.Framework.Presentation.WinForms.Controls.DiagramControl();
             this.buttonShowHierarchyTestForm = new System.Windows.Forms.Button();
             this.buttonShowSvgWithFlatClone_TestForm = new System.Windows.Forms.Button();
             this.buttonShowSvgWithoutCloning_TestForm = new System.Windows.Forms.Button();
@@ -163,7 +163,7 @@
 
         #endregion
 
-        private DiagramControl diagramControl1;
+        private Controls.DiagramControl diagramControl1;
         private System.Windows.Forms.Button buttonShowHierarchyTestForm;
         private System.Windows.Forms.Button buttonShowSvgWithFlatClone_TestForm;
         private System.Windows.Forms.Button buttonShowSvgWithoutCloning_TestForm;

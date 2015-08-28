@@ -10,6 +10,7 @@ using JJ.Framework.Presentation.Svg.Models;
 using JJ.Framework.Presentation.Svg.Visitors;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Drawing;
+using JJ.Framework.Presentation.WinForms.Helpers;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 {

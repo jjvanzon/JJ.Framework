@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 
-namespace JJ.Framework.Presentation.WinForms
+namespace JJ.Framework.Presentation.WinForms.Controls
 {
     public partial class SimpleFileProcessControl : UserControl
     {

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.diagramControl1 = new JJ.Framework.Presentation.WinForms.DiagramControl();
+            this.diagramControl1 = new JJ.Framework.Presentation.WinForms.Controls.DiagramControl();
             this.SuspendLayout();
             // 
             // diagramControl1
@@ -52,7 +52,7 @@
 
         #endregion
 
-        private DiagramControl diagramControl1;
+        private Controls.DiagramControl diagramControl1;
     }
 }
 

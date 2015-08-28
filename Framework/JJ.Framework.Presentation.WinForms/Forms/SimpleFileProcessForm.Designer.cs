@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Presentation.WinForms
+﻿
+namespace JJ.Framework.Presentation.WinForms.Forms
 {
     partial class SimpleFileProcessForm
     {
@@ -35,7 +36,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.simpleFileProcessControl = new JJ.Framework.Presentation.WinForms.SimpleFileProcessControl();
+            this.simpleFileProcessControl = new JJ.Framework.Presentation.WinForms.Controls.SimpleFileProcessControl();
             this.SuspendLayout();
             // 
             // simpleProcessControl
@@ -63,6 +64,6 @@
 
         #endregion
 
-        private SimpleFileProcessControl simpleFileProcessControl;
+        private JJ.Framework.Presentation.WinForms.Controls.SimpleFileProcessControl simpleFileProcessControl;
     }
 }

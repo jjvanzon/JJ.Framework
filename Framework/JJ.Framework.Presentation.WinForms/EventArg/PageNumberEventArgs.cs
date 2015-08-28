@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace JJ.Framework.Presentation.WinForms
+namespace JJ.Framework.Presentation.WinForms.EventArg
 {
     public class PageNumberEventArgs : EventArgs
     {

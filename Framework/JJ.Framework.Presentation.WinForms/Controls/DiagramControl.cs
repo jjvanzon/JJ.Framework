@@ -2,18 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Threading;
 using System.Drawing;
-using JJ.Framework.Presentation.Svg.Models;
-using JJ.Framework.Presentation.Svg.Visitors;
-using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Presentation.Drawing;
-using JJ.Framework.Presentation.Svg;
 using JJ.Framework.Presentation.Svg.Models.Elements;
+using JJ.Framework.Presentation.WinForms.Helpers;
+using JJ.Framework.Presentation.WinForms.Extensions;
 
-namespace JJ.Framework.Presentation.WinForms
+namespace JJ.Framework.Presentation.WinForms.Controls
 {
     public partial class DiagramControl : UserControl
     {

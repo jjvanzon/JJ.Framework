@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Threading;
 using System.Drawing;
-using JJ.Framework.Presentation.Svg.Models;
-using JJ.Framework.Presentation.Svg.Visitors;
-using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
-using JJ.Framework.Presentation.Drawing;
-using JJ.Framework.Presentation.Svg;
-using JJ.Framework.Presentation.Svg.Models.Elements;
+using JJ.Framework.Presentation.WinForms.EventArg;
+using JJ.Framework.Presentation.WinForms.Extensions;
 
-namespace JJ.Framework.Presentation.WinForms
+namespace JJ.Framework.Presentation.WinForms.Controls
 {
     public partial class PagerControl : UserControl
     {
@@ -34,7 +28,7 @@ namespace JJ.Framework.Presentation.WinForms
         private bool _resizeBusy;
 
         /// <summary>
-        /// Fix the height to the height of the menu.
+        /// Keeps the height of control fixed.
         /// </summary>
         protected override void OnResize(EventArgs e)
         {

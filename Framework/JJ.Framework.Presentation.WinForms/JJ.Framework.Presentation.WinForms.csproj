@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,50 +40,63 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlExtensions.cs" />
-    <Compile Include="ControlGraphicsBuffer.cs" />
-    <Compile Include="ConversionExtensions.cs" />
-    <Compile Include="PageNumberEventArgs.cs" />
-    <Compile Include="PagerControl.cs">
+    <Compile Include="Extensions\ControlExtensions.cs" />
+    <Compile Include="Helpers\ControlGraphicsBuffer.cs" />
+    <Compile Include="Helpers\ControlHelper.cs" />
+    <Compile Include="Extensions\ConversionExtensions.cs" />
+    <Compile Include="EventArg\FilePathEventArgs.cs" />
+    <Compile Include="Helpers\FileBrowseModeEnum.cs" />
+    <Compile Include="Controls\FilePathControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PagerControl.Designer.cs">
+    <Compile Include="Controls\FilePathControl.Designer.cs">
+      <DependentUpon>FilePathControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventArg\PageNumberEventArgs.cs" />
+    <Compile Include="Controls\PagerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PagerControl.Designer.cs">
       <DependentUpon>PagerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="DiagramControl.cs">
+    <Compile Include="Controls\DiagramControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DiagramControl.Designer.cs">
+    <Compile Include="Controls\DiagramControl.Designer.cs">
       <DependentUpon>DiagramControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="OnRunProcessEventArgs.cs" />
+    <Compile Include="EventArg\OnRunProcessEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleFileProcessControl.cs">
+    <Compile Include="Controls\SimpleFileProcessControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SimpleFileProcessControl.Designer.cs">
+    <Compile Include="Controls\SimpleFileProcessControl.Designer.cs">
       <DependentUpon>SimpleFileProcessControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimpleFileProcessForm.cs">
+    <Compile Include="Forms\SimpleFileProcessForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SimpleFileProcessForm.Designer.cs">
+    <Compile Include="Forms\SimpleFileProcessForm.Designer.cs">
       <DependentUpon>SimpleFileProcessForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="PagerControl.resx">
+    <EmbeddedResource Include="Controls\FilePathControl.resx">
+      <DependentUpon>FilePathControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PagerControl.resx">
       <DependentUpon>PagerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DiagramControl.resx">
+    <EmbeddedResource Include="Controls\DiagramControl.resx">
       <DependentUpon>DiagramControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SimpleFileProcessControl.resx">
+    <EmbeddedResource Include="Controls\SimpleFileProcessControl.resx">
       <DependentUpon>SimpleFileProcessControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SimpleFileProcessForm.resx">
+    <EmbeddedResource Include="Forms\SimpleFileProcessForm.resx">
       <DependentUpon>SimpleFileProcessForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -108,6 +122,7 @@
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

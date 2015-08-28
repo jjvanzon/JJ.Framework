@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Presentation.WinForms
+﻿namespace JJ.Framework.Presentation.WinForms.Controls
 {
     partial class PagerControl
     {
