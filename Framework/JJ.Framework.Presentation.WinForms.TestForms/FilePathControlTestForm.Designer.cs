@@ -28,25 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.filePathControl1 = new JJ.Framework.Presentation.WinForms.Controls.FilePathControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.filePathControl2 = new JJ.Framework.Presentation.WinForms.Controls.FilePathControl();
+            this.filePathControl1 = new JJ.Framework.Presentation.WinForms.Controls.FilePathControl();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // filePathControl1
-            // 
-            this.filePathControl1.BrowseMode = JJ.Framework.Presentation.WinForms.Helpers.FileBrowseModeEnum.Open;
-            this.filePathControl1.FilePath = "fadsfs";
-            this.filePathControl1.Font = new System.Drawing.Font("Verdana", 10F);
-            this.filePathControl1.LabelText = "Path";
-            this.filePathControl1.Location = new System.Drawing.Point(84, 74);
-            this.filePathControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.filePathControl1.Name = "filePathControl1";
-            this.filePathControl1.Size = new System.Drawing.Size(263, 77);
-            this.filePathControl1.Spacing = 0;
-            this.filePathControl1.TabIndex = 0;
-            this.filePathControl1.Browsed += new System.EventHandler<JJ.Framework.Presentation.WinForms.EventArg.FilePathEventArgs>(this.filePathControl1_Browsed);
             // 
             // tableLayoutPanel1
             // 
@@ -72,6 +58,20 @@
             this.filePathControl2.Size = new System.Drawing.Size(94, 44);
             this.filePathControl2.Spacing = 0;
             this.filePathControl2.TabIndex = 0;
+            // 
+            // filePathControl1
+            // 
+            this.filePathControl1.BrowseMode = JJ.Framework.Presentation.WinForms.Helpers.FileBrowseModeEnum.Open;
+            this.filePathControl1.FilePath = "fadsfs";
+            this.filePathControl1.Font = new System.Drawing.Font("Verdana", 10F);
+            this.filePathControl1.LabelText = "Path";
+            this.filePathControl1.Location = new System.Drawing.Point(39, 41);
+            this.filePathControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.filePathControl1.Name = "filePathControl1";
+            this.filePathControl1.Size = new System.Drawing.Size(159, 77);
+            this.filePathControl1.Spacing = 0;
+            this.filePathControl1.TabIndex = 0;
+            this.filePathControl1.Browsed += new System.EventHandler<JJ.Framework.Presentation.WinForms.EventArg.FilePathEventArgs>(this.filePathControl1_Browsed);
             // 
             // FilePathControlTestForm
             // 

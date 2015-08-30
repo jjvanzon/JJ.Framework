@@ -12,6 +12,8 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 {
     public partial class FilePathControl : UserControl
     {
+        // TODO: Tooltip only works when TextBoxEnabled = true;
+
         public event EventHandler<FilePathEventArgs> Browsed;
 
         public FilePathControl()
@@ -19,6 +21,14 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             _graphics = CreateGraphics();
 
             InitializeComponent();
+
+            // HACK: To be able to see the file name for long file paths do not fit on screen, we make the text right aligned.
+            // But TextAlign = HorizontalAlignment.Right does not work. It will only right align it if the text fits on screen!
+            // Thank you WinForms.
+            // The only reason I do this, is because the alternative, showing the full path as a tooltip,
+            // does not work if the control is disabled!
+            // Thank you WinForms.
+            textBox.RightToLeft = RightToLeft.Yes;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -77,6 +87,13 @@ namespace JJ.Framework.Presentation.WinForms.Controls
                 _spacing = value;
                 RequestPositionControls();
             }
+        }
+
+        [DefaultValue(true)]
+        public bool TextBoxEnabled
+        {
+            get { return textBox.Enabled; }
+            set { textBox.Enabled = value; }
         }
 
         // Applying
@@ -186,6 +203,11 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             base.OnResize(e);
 
             RequestPositionControls();
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            toolTip.SetToolTip(textBox, textBox.Text);
         }
     }
 }

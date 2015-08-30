@@ -42,6 +42,7 @@
             this.label = new System.Windows.Forms.Label();
             this.textBox = new System.Windows.Forms.TextBox();
             this.timerPositionControls = new System.Windows.Forms.Timer(this.components);
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // buttonBrowse
@@ -70,6 +71,7 @@
             this.textBox.Name = "textBox";
             this.textBox.Size = new System.Drawing.Size(100, 20);
             this.textBox.TabIndex = 2;
+            this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
             // 
             // timerPositionControls
             // 
@@ -97,5 +99,6 @@
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.TextBox textBox;
         private System.Windows.Forms.Timer timerPositionControls;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
