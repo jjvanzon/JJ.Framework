@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using JJ.Framework.Data;
-using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Data
 {

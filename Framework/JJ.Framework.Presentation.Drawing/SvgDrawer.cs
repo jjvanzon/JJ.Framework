@@ -1,15 +1,8 @@
-﻿using JJ.Framework.Presentation.Svg.Visitors;
-using JJ.Framework.Presentation.Drawing;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Presentation.Svg.Models.Styling;
-using JJ.Framework.Presentation.Svg;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 
 namespace JJ.Framework.Presentation.Drawing

@@ -1,10 +1,4 @@
-﻿
-using JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone;
-using JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms

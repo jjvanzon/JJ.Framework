@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection.Exceptions;

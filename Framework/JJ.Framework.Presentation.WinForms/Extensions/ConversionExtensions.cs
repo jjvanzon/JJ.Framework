@@ -1,8 +1,5 @@
 ﻿using JJ.Framework.Presentation.Svg.Enums;
 using JJ.Framework.Reflection.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace JJ.Framework.Presentation.WinForms.Extensions
 {

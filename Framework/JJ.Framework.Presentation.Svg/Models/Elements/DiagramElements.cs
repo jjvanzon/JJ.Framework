@@ -2,12 +2,9 @@
 using JJ.Framework.Presentation.Svg.Relationships;
 using JJ.Framework.Presentation.Svg.SideEffects;
 using JJ.Framework.Reflection.Exceptions;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {

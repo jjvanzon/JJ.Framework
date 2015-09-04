@@ -1,15 +1,7 @@
-﻿using JJ.Framework.Presentation.Svg.Models;
-using JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone;
+﻿using JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone;
 using JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
-using SvgStyling = JJ.Framework.Presentation.Svg.Models.Styling;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {

@@ -2,12 +2,7 @@
 using JJ.Framework.Presentation.Svg.Visitors;
 using JJ.Framework.Presentation.WinForms.TestForms.Accessors;
 using JJ.Framework.Reflection.Exceptions;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning

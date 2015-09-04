@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JJ.Framework.PlatformCompatibility
+﻿namespace JJ.Framework.PlatformCompatibility
 {
     // TODO: Is the original Tuple type faster as a dictionary key?
 

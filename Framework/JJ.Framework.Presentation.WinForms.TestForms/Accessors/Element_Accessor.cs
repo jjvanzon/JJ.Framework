@@ -1,11 +1,5 @@
 ﻿using JJ.Framework.Presentation.Svg.Models.Elements;
 using JJ.Framework.Reflection;
-using JJ.Framework.Reflection.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.Accessors
 {

@@ -1,16 +1,10 @@
-﻿using JJ.Framework.Presentation.Svg;
-using JJ.Framework.Reflection.Exceptions;
-using System;
+﻿using JJ.Framework.Reflection.Exceptions;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
-using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Business;
 using JJ.Framework.Presentation.Svg.Relationships;
 using JJ.Framework.Presentation.Svg.Gestures;
 using JJ.Framework.Presentation.Svg.SideEffects;
-using JJ.Framework.Presentation.Svg.Visitors;
 
 namespace JJ.Framework.Presentation.Svg.Models.Elements
 {

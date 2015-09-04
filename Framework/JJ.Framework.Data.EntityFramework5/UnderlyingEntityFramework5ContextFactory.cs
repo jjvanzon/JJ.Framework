@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using JJ.Framework.Common;
-using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Data.EntityFramework5

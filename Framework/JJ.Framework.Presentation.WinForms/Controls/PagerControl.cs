@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Forms;
-using System.Drawing;
 using JJ.Framework.Presentation.WinForms.EventArg;
 using JJ.Framework.Presentation.WinForms.Extensions;
 

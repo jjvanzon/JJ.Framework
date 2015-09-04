@@ -1,9 +1,7 @@
 ﻿using JJ.Framework.Reflection.Exceptions;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Diagnostics;
 using JJ.Framework.Presentation.Svg.Relationships;
 using JJ.Framework.Presentation.Svg.SideEffects;

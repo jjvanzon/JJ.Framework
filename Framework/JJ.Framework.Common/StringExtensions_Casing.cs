@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JJ.Framework.Common
+﻿namespace JJ.Framework.Common
 {
     public static class StringExtensions_Casing
     {

@@ -2,9 +2,7 @@
 using JJ.Framework.PlatformCompatibility;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Business

@@ -1,10 +1,6 @@
 ﻿using JJ.Framework.Presentation.Svg.EventArg;
 using JJ.Framework.Presentation.Svg.Models.Elements;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using JJ.Framework.Mathematics;
 using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Presentation.Svg.Gestures

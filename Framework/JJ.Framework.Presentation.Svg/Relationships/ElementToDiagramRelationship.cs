@@ -1,9 +1,5 @@
 ﻿using JJ.Framework.Business;
 using JJ.Framework.Presentation.Svg.Models.Elements;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace JJ.Framework.Presentation.Svg.Relationships
 {

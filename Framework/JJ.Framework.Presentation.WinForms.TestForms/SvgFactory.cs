@@ -1,11 +1,5 @@
-﻿using JJ.Framework.Presentation.Svg;
-using JJ.Framework.Presentation.Svg.Gestures;
+﻿using JJ.Framework.Presentation.Svg.Gestures;
 using JJ.Framework.Presentation.Svg.Models.Elements;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
