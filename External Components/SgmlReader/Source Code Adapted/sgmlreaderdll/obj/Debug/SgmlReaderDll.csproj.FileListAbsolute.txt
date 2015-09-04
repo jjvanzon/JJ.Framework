@@ -1,5 +1,0 @@
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\bin\debug\SgmlReaderDll.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\bin\debug\SgmlReaderDll.pdb
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\obj\Debug\SgmlReaderDll.csprojResolveAssemblyReference.cache
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\obj\Debug\SgmlReaderDll.dll
-D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\obj\Debug\SgmlReaderDll.pdb

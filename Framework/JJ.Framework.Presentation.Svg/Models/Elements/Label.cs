@@ -42,6 +42,13 @@ namespace JJ.Framework.Presentation.Svg.Models.Elements
         public override float Width { get; set; }
         public override float Height { get; set; }
 
+        // TODO: Put DebuggerDisplay generation in a separate class DebugHelper and just put this here.
+        // (Do this for the other classes too.)
+        //private string DebuggerDisplay
+        //{
+        //    get { return DebugHelper.GetDebuggerDisplay(this); }
+        //}
+
         private string DebuggerDisplay
         {
             get
