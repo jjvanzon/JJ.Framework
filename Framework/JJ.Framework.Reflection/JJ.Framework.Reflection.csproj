@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Accessor.cs" />
     <Compile Include="Exceptions\NotIntegerException.cs" />
+    <Compile Include="Exceptions\NotNullException.cs" />
     <Compile Include="Exceptions\ZeroException.cs" />
     <Compile Include="Exceptions\EqualException.cs" />
     <Compile Include="Exceptions\NotEqualException.cs" />
