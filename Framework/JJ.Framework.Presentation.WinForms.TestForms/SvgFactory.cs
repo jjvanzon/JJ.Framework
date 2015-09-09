@@ -1,46 +1,46 @@
-﻿using JJ.Framework.Presentation.Svg.Gestures;
-using JJ.Framework.Presentation.Svg.Models.Elements;
-using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
+﻿using JJ.Framework.Presentation.VectorGraphics.Gestures;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {
-    internal static class SvgFactory
+    internal static class VectorGraphicsFactory
     {
-        public static Diagram CreateTestSvgModel()
+        public static Diagram CreateTestVectorGraphicsModel()
         {
             var diagram = new Diagram();
 
-            SvgElements.Rectangle canvas = diagram.Canvas;
+            VectorGraphicsElements.Rectangle canvas = diagram.Canvas;
 
-            SvgElements.Rectangle rectangle1 = CreateRectangle(diagram, 200, 10, "Block 1");
+            VectorGraphicsElements.Rectangle rectangle1 = CreateRectangle(diagram, 200, 10, "Block 1");
 
-            SvgElements.Rectangle rectangle2 = CreateRectangle(diagram, 10, 200, "Block 2");
+            VectorGraphicsElements.Rectangle rectangle2 = CreateRectangle(diagram, 10, 200, "Block 2");
 
-            var point1 = new SvgElements.Point
+            var point1 = new VectorGraphicsElements.Point
             {
                 Diagram = diagram,
                 Parent = rectangle1,
                 X = 150,
                 Y = 30,
-                PointStyle = SvgHelper.InvisiblePointStyle
+                PointStyle = VectorGraphicsHelper.InvisiblePointStyle
             };
 
-            var point2 = new SvgElements.Point  
+            var point2 = new VectorGraphicsElements.Point  
             {
                 Diagram = diagram,
                 Parent = rectangle2,
                 X = 150,
                 Y = 30,
-                PointStyle = SvgHelper.InvisiblePointStyle
+                PointStyle = VectorGraphicsHelper.InvisiblePointStyle
             };
 
-            var line = new SvgElements.Line
+            var line = new VectorGraphicsElements.Line
             {
                 Diagram = diagram,
                 Parent = diagram.Canvas,
                 PointA = point1,
                 PointB = point2,
-                LineStyle = SvgHelper.DefaultLineStyle
+                LineStyle = VectorGraphicsHelper.DefaultLineStyle
             };
 
             line.ZIndex = -1;
@@ -48,9 +48,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             return diagram;
         }
 
-        private static SvgElements.Rectangle CreateRectangle(Diagram diagram, float x, float y, string text)
+        private static VectorGraphicsElements.Rectangle CreateRectangle(Diagram diagram, float x, float y, string text)
         {
-            var rectangle = new SvgElements.Rectangle(new MoveGesture())
+            var rectangle = new VectorGraphicsElements.Rectangle(new MoveGesture())
             {
                 Diagram = diagram,
                 Parent = diagram.Canvas,
@@ -58,17 +58,17 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 Y = y,
                 Width = 300,
                 Height = 60,
-                LineStyle = SvgHelper.DefaultLineStyle
+                LineStyle = VectorGraphicsHelper.DefaultLineStyle
             };
 
-            var label = new SvgElements.Label 
+            var label = new VectorGraphicsElements.Label 
             {
                 Diagram = diagram,
                 Parent = rectangle,
                 Width = 300,
                 Height = 60,
                 Text = text,
-                TextStyle = SvgHelper.DefaultTextStyle
+                TextStyle = VectorGraphicsHelper.DefaultTextStyle
             };
 
             return rectangle;

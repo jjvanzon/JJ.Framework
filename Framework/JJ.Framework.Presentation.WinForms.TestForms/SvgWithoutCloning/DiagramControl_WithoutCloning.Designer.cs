@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
+﻿namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutCloning
 {
     partial class DiagramControl_WithoutCloning
     {

@@ -1,6 +1,6 @@
-﻿namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
+﻿namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutCloning
 {
-    partial class SvgWithoutCloning_TestForm
+    partial class VectorGraphicsWithoutCloning_TestForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.diagramControl1 = new JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning.DiagramControl_WithoutCloning();
+            this.diagramControl1 = new JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutCloning.DiagramControl_WithoutCloning();
             this.SuspendLayout();
             // 
             // diagramControl1
@@ -52,7 +52,7 @@
 
         #endregion
 
-        private JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning.DiagramControl_WithoutCloning diagramControl1;
+        private JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutCloning.DiagramControl_WithoutCloning diagramControl1;
     }
 }
 

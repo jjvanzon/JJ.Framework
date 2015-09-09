@@ -1,20 +1,20 @@
 ﻿using JJ.Framework.Common;
-using JJ.Framework.Presentation.Svg.Enums;
-using JJ.Framework.Presentation.Svg.Models.Styling;
+using JJ.Framework.Presentation.VectorGraphics.Enums;
+using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Presentation.WinForms.TestForms.Accessors;
 using JJ.Framework.Reflection.Exceptions;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
-using SvgStyling = JJ.Framework.Presentation.Svg.Models.Styling;
+using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using VectorGraphicsStyling = JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
+namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutCloning
 {
     internal static class ConvertExtensions_WithoutCloning
     {
         // Point
 
-        //public static PointF ToSystemDrawingPointF(this SvgElements.Point sourcePoint)
+        //public static PointF ToSystemDrawingPointF(this VectorGraphicsElements.Point sourcePoint)
         //{
         //    if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
@@ -22,7 +22,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
         //    return destPointF;
         //}
 
-        //public static System.Drawing.Point ToSystemDrawingPoint(this SvgElements.Point sourcePoint)
+        //public static System.Drawing.Point ToSystemDrawingPoint(this VectorGraphicsElements.Point sourcePoint)
         //{
         //    if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
@@ -30,7 +30,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
         //    return destPoint;
         //}
 
-        public static RectangleF ToSystemDrawingRectangleF(this SvgElements.Point sourcePoint)
+        public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.Point sourcePoint)
         {
             var sourcePoint_Accessor = new Element_Accessor(sourcePoint);
 
@@ -46,7 +46,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
 
         // Rectangle
 
-        public static RectangleF ToSystemDrawingRectangleF(this SvgElements.Rectangle sourceRectangle)
+        public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.Rectangle sourceRectangle)
         {
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
@@ -61,7 +61,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             return destRectangleF;
         }
 
-        //public static System.Drawing.Rectangle ToSystemDrawingRectangle(this SvgElements.Rectangle sourceRectangle)
+        //public static System.Drawing.Rectangle ToSystemDrawingRectangle(this VectorGraphicsElements.Rectangle sourceRectangle)
         //{
         //    if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
@@ -201,7 +201,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             return destBrush;
         }
 
-        public static System.Drawing.Font ToSystemDrawing(this SvgStyling.Font sourceFont)
+        public static System.Drawing.Font ToSystemDrawing(this VectorGraphicsStyling.Font sourceFont)
         {
             FontStyle destFontStyle = 0;
 

@@ -1,10 +1,10 @@
 ﻿using System.Windows.Forms;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
+namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutCloning
 {
-    internal partial class SvgWithoutCloning_TestForm : Form
+    internal partial class VectorGraphicsWithoutCloning_TestForm : Form
     {
-        public SvgWithoutCloning_TestForm()
+        public VectorGraphicsWithoutCloning_TestForm()
         {
             InitializeComponent();
             Initialize();
@@ -14,7 +14,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
         {
             Text = this.GetType().FullName;
 
-            diagramControl1.RootSvgRectangle = SvgFactory.CreateTestSvgModel().Canvas;
+            diagramControl1.RootVectorGraphicsRectangle = VectorGraphicsFactory.CreateTestVectorGraphicsModel().Canvas;
         }
     }
 }

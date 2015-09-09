@@ -178,9 +178,9 @@
       <Project>{21802a52-f4f7-4366-b61d-06e1fb337b86}</Project>
       <Name>JJ.Framework.Presentation.Drawing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Presentation.Svg\JJ.Framework.Presentation.Svg.csproj">
+    <ProjectReference Include="..\JJ.Framework.Presentation.VectorGraphics\JJ.Framework.Presentation.VectorGraphics.csproj">
       <Project>{52e03e08-331a-4ca7-8d8f-6f598c94eed4}</Project>
-      <Name>JJ.Framework.Presentation.Svg</Name>
+      <Name>JJ.Framework.Presentation.VectorGraphics</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Presentation.WinForms\JJ.Framework.Presentation.WinForms.csproj">
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>

@@ -1,13 +1,13 @@
-﻿using JJ.Framework.Presentation.Svg.Models.Elements;
-using JJ.Framework.Presentation.Svg.Visitors;
+﻿using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using JJ.Framework.Presentation.VectorGraphics.Visitors;
 using JJ.Framework.Presentation.WinForms.TestForms.Accessors;
 using JJ.Framework.Reflection.Exceptions;
 using System.Collections.Generic;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
+namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutCloning
 {
     /// <summary>
-    /// Takes a set of SVG elements that can have a hierarchy of child elements
+    /// Takes a set of VectorGraphics elements that can have a hierarchy of child elements
     /// with relative positions and fills in the absolute positions.
     /// </summary>
     internal class CalculationVisitor_WithoutCloning : ElementVisitorBase

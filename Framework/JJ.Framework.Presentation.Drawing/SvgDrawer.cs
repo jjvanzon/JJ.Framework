@@ -1,56 +1,56 @@
 ﻿using System;
 using System.Drawing;
-using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
+using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Reflection.Exceptions;
-using JJ.Framework.Presentation.Svg.Models.Styling;
-using JJ.Framework.Presentation.Svg.Models.Elements;
+using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.Drawing
 {
-    public static class SvgDrawer
+    public static class VectorGraphicsDrawer
     {
         public static void Draw(Diagram diagram, Graphics destGraphics)
         {
             if (diagram == null) throw new NullException(() => diagram);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
-            foreach (SvgElements.Element element in diagram.EnumerateElementsByZIndex())
+            foreach (VectorGraphicsElements.Element element in diagram.EnumerateElementsByZIndex())
             {
                 DrawPolymorphic(element, destGraphics);
             }
         }
 
-        private static void DrawPolymorphic(SvgElements.Element sourceElement, Graphics destGraphics)
+        private static void DrawPolymorphic(VectorGraphicsElements.Element sourceElement, Graphics destGraphics)
         {
-            var sourcePoint = sourceElement as SvgElements.Point;
+            var sourcePoint = sourceElement as VectorGraphicsElements.Point;
             if (sourcePoint != null)
             {
                 DrawPoint(sourcePoint, destGraphics);
                 return;
             }
 
-            var sourceLine = sourceElement as SvgElements.Line;
+            var sourceLine = sourceElement as VectorGraphicsElements.Line;
             if (sourceLine != null)
             {
                 DrawLine(sourceLine, destGraphics);
                 return;
             }
 
-            var sourceRectangle = sourceElement as SvgElements.Rectangle;
+            var sourceRectangle = sourceElement as VectorGraphicsElements.Rectangle;
             if (sourceRectangle != null)
             {
                 DrawRectangle(sourceRectangle, destGraphics);
                 return;
             }
 
-            var sourceLabel = sourceElement as SvgElements.Label;
+            var sourceLabel = sourceElement as VectorGraphicsElements.Label;
             if (sourceLabel != null)
             {
                 DrawLabel(sourceLabel, destGraphics);
                 return;
             }
 
-            var sourceCurve = sourceElement as SvgElements.Curve;
+            var sourceCurve = sourceElement as VectorGraphicsElements.Curve;
             if (sourceCurve != null)
             {
                 DrawCurve(sourceCurve, destGraphics);
@@ -61,8 +61,8 @@ namespace JJ.Framework.Presentation.Drawing
         }
 
         // TODO:
-        // Warning CA1811	'SvgDrawer.DrawBackground(Rectangle, Graphics)' appears to have no upstream public or protected callers.
-        private static void DrawBackground(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
+        // Warning CA1811	'VectorGraphicsDrawer.DrawBackground(Rectangle, Graphics)' appears to have no upstream public or protected callers.
+        private static void DrawBackground(VectorGraphicsElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
             if (sourceRectangle.CalculatedVisible && sourceRectangle.BackStyle.Visible)
             {
@@ -71,7 +71,7 @@ namespace JJ.Framework.Presentation.Drawing
             }
         }
 
-        private static void DrawPoint(SvgElements.Point sourcePoint, Graphics destGraphics)
+        private static void DrawPoint(VectorGraphicsElements.Point sourcePoint, Graphics destGraphics)
         {
             if (sourcePoint.CalculatedVisible && sourcePoint.PointStyle.Visible)
             {
@@ -82,7 +82,7 @@ namespace JJ.Framework.Presentation.Drawing
             }
         }
 
-        private static void DrawLine(SvgElements.Line sourceLine, Graphics destGraphics)
+        private static void DrawLine(VectorGraphicsElements.Line sourceLine, Graphics destGraphics)
         {
             if (sourceLine.CalculatedVisible && sourceLine.LineStyle.Visible)
             {
@@ -91,7 +91,7 @@ namespace JJ.Framework.Presentation.Drawing
             }
         }
 
-        private static void DrawRectangle(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
+        private static void DrawRectangle(VectorGraphicsElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
             if (!sourceRectangle.CalculatedVisible)
             {
@@ -148,7 +148,7 @@ namespace JJ.Framework.Presentation.Drawing
             }
         }
 
-        private static void DrawLabel(SvgElements.Label sourceLabel, Graphics destGraphics)
+        private static void DrawLabel(VectorGraphicsElements.Label sourceLabel, Graphics destGraphics)
         {
             if (!sourceLabel.CalculatedVisible)
             {

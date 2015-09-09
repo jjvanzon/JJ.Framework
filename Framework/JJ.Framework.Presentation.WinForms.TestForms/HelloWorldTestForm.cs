@@ -1,6 +1,6 @@
-﻿using JJ.Framework.Presentation.Svg.Models.Elements;
+﻿using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using System.Windows.Forms;
-using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
+using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {
@@ -18,7 +18,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
             var diagram = new Diagram();
 
-            var label = new SvgElements.Label
+            var label = new VectorGraphicsElements.Label
             {
                 Diagram = diagram,
                 Parent = diagram.Canvas,

@@ -1,6 +1,6 @@
-﻿namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
+﻿namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone
 {
-    partial class SvgWithFlatClone_TestForm
+    partial class VectorGraphicsWithFlatClone_TestForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.diagramControl1 = new JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone.DiagramControl_WithFlatClone();
+            this.diagramControl1 = new JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone.DiagramControl_WithFlatClone();
             this.SuspendLayout();
             // 
             // diagramControl1
@@ -52,7 +52,7 @@
 
         #endregion
 
-        private JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone.DiagramControl_WithFlatClone diagramControl1;
+        private JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone.DiagramControl_WithFlatClone diagramControl1;
     }
 }
 

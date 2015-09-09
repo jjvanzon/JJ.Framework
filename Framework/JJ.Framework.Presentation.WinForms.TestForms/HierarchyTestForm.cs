@@ -14,7 +14,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             Text = this.GetType().FullName;
 
-            diagramControl1.Diagram = SvgFactory.CreateTestSvgModel();
+            diagramControl1.Diagram = VectorGraphicsFactory.CreateTestVectorGraphicsModel();
         }
     }
 }

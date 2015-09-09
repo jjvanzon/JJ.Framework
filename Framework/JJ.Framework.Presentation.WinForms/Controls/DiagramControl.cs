@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 using JJ.Framework.Presentation.Drawing;
-using JJ.Framework.Presentation.Svg.Models.Elements;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Presentation.WinForms.Helpers;
 using JJ.Framework.Presentation.WinForms.Extensions;
 
@@ -38,7 +38,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                Diagram.HandleMouseDown(e.ToSvg());
+                Diagram.HandleMouseDown(e.ToVectorGraphics());
             }
 
             base.OnMouseDown(e);
@@ -50,7 +50,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                Diagram.HandleMouseMove(e.ToSvg());
+                Diagram.HandleMouseMove(e.ToVectorGraphics());
             }
 
             base.OnMouseMove(e);
@@ -62,7 +62,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                Diagram.HandleMouseUp(e.ToSvg());
+                Diagram.HandleMouseUp(e.ToVectorGraphics());
             }
 
             base.OnMouseUp(e);
@@ -74,7 +74,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                Diagram.HandleKeyDown(e.ToSvg());
+                Diagram.HandleKeyDown(e.ToVectorGraphics());
             }
 
             base.OnKeyDown(e);
@@ -84,7 +84,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                Diagram.HandleKeyUp(e.ToSvg());
+                Diagram.HandleKeyUp(e.ToVectorGraphics());
             }
 
             base.OnKeyUp(e);
@@ -104,7 +104,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
             Diagram.Recalculate();
             
-            SvgDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
+            VectorGraphicsDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
 
             _graphicsBuffer.DrawBuffer();
         }
@@ -121,7 +121,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
             Diagram.Recalculate();
 
-            SvgDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
+            VectorGraphicsDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
 
             _graphicsBuffer.DrawBuffer();
         }

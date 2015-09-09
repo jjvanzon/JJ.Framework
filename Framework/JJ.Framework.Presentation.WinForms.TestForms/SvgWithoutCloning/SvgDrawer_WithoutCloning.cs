@@ -1,17 +1,17 @@
-﻿using JJ.Framework.Presentation.Svg.Models.Styling;
-using JJ.Framework.Presentation.Svg.Visitors;
+﻿using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using JJ.Framework.Presentation.VectorGraphics.Visitors;
 using JJ.Framework.Presentation.WinForms.TestForms.Accessors;
 using JJ.Framework.Reflection.Exceptions;
 using System.Drawing;
-using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
+using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
+namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutCloning
 {
-    internal class SvgDrawer_WithoutCloning : ElementVisitorBase
+    internal class VectorGraphicsDrawer_WithoutCloning : ElementVisitorBase
     {
         private Graphics _destGraphic;
 
-        public void Draw(SvgElements.Rectangle canvas, Graphics destGraphics)
+        public void Draw(VectorGraphicsElements.Rectangle canvas, Graphics destGraphics)
         {
             if (canvas == null) throw new NullException(() => canvas);
             if (destGraphics == null) throw new NullException(() => destGraphics);
@@ -24,35 +24,35 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             VisitRectangle(canvas);
         }
 
-        protected override void VisitPoint(SvgElements.Point point)
+        protected override void VisitPoint(VectorGraphicsElements.Point point)
         {
             DrawPoint(point, _destGraphic);
 
             base.VisitPoint(point);
         }
 
-        protected override void VisitLine(SvgElements.Line line)
+        protected override void VisitLine(VectorGraphicsElements.Line line)
         {
             DrawLine(line, _destGraphic);
 
             base.VisitLine(line);
         }
 
-        protected override void VisitRectangle(SvgElements.Rectangle rectangle)
+        protected override void VisitRectangle(VectorGraphicsElements.Rectangle rectangle)
         {
             DrawRectangle(rectangle, _destGraphic);
 
             base.VisitRectangle(rectangle);
         }
 
-        protected override void VisitLabel(SvgElements.Label label)
+        protected override void VisitLabel(VectorGraphicsElements.Label label)
         {
             DrawLabel(label, _destGraphic);
 
             base.VisitLabel(label);
         }
 
-        private static void DrawPoint(SvgElements.Point sourcePoint, Graphics destGraphics)
+        private static void DrawPoint(VectorGraphicsElements.Point sourcePoint, Graphics destGraphics)
         {
             if (sourcePoint.Visible &&
                 sourcePoint.PointStyle.Visible)
@@ -64,7 +64,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             }
         }
 
-        private static void DrawLine(SvgElements.Line sourceLine, Graphics destGraphics)
+        private static void DrawLine(VectorGraphicsElements.Line sourceLine, Graphics destGraphics)
         {
             var sourceLine_PointA_Accessor = new Element_Accessor(sourceLine.PointA);
             var sourceLine_PointB_Accessor = new Element_Accessor(sourceLine.PointB);
@@ -77,7 +77,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             }
         }
 
-        private static void DrawRectangle(SvgElements.Rectangle sourceRectangle, Graphics destGraphics)
+        private static void DrawRectangle(VectorGraphicsElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
             var sourceRectangle_Accessor = new Element_Accessor(sourceRectangle);
 
@@ -136,7 +136,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithoutCloning
             }
         }
 
-        private static void DrawLabel(SvgElements.Label sourceLabel, Graphics destGraphics)
+        private static void DrawLabel(VectorGraphicsElements.Label sourceLabel, Graphics destGraphics)
         {
             var sourceLabel_Accessor = new Element_Accessor(sourceLabel);
 

@@ -1,12 +1,12 @@
 ﻿using System.Windows.Forms;
-using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
+using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Presentation.WinForms.Helpers;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
+namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone
 {
     internal partial class DiagramControl_WithFlatClone : UserControl
     {
-        public SvgElements.Rectangle RootSvgRectangle { get; set; }
+        public VectorGraphicsElements.Rectangle RootVectorGraphicsRectangle { get; set; }
 
         // TODO: 
         // Warning CA2213	'DiagramControl' contains field 'DiagramControl._graphicsBuffer' that is of IDisposable type: 'ControlGraphicsBuffer'. Change the Dispose method on 'DiagramControl' to call Dispose or Close on this field.
@@ -21,16 +21,16 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
 
         private void DiagramControl_WithFlatClone_Paint(object sender, PaintEventArgs e)
         {
-            if (RootSvgRectangle == null)
+            if (RootVectorGraphicsRectangle == null)
             {
                 return;
             }
 
-            RootSvgRectangle.Width = Width;
-            RootSvgRectangle.Height = Height;
+            RootVectorGraphicsRectangle.Width = Width;
+            RootVectorGraphicsRectangle.Height = Height;
 
-            var drawer = new SvgDrawer_WithFlatClone();
-            drawer.Draw(RootSvgRectangle, _graphicsBuffer.Graphics);
+            var drawer = new VectorGraphicsDrawer_WithFlatClone();
+            drawer.Draw(RootVectorGraphicsRectangle, _graphicsBuffer.Graphics);
             _graphicsBuffer.DrawBuffer();
         }
     }

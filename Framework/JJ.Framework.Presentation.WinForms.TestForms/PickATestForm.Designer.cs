@@ -30,8 +30,8 @@
         {
             this.diagramControl1 = new JJ.Framework.Presentation.WinForms.Controls.DiagramControl();
             this.buttonShowHierarchyTestForm = new System.Windows.Forms.Button();
-            this.buttonShowSvgWithFlatClone_TestForm = new System.Windows.Forms.Button();
-            this.buttonShowSvgWithoutCloning_TestForm = new System.Windows.Forms.Button();
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm = new System.Windows.Forms.Button();
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonShowGestureTestForm = new System.Windows.Forms.Button();
             this.buttonShowHelloWorldTestForm = new System.Windows.Forms.Button();
@@ -61,29 +61,29 @@
             this.buttonShowHierarchyTestForm.UseVisualStyleBackColor = true;
             this.buttonShowHierarchyTestForm.Click += new System.EventHandler(this.buttonShowHierarchyTestForm_Click);
             // 
-            // buttonShowSvgWithFlatClone_TestForm
+            // buttonShowVectorGraphicsWithFlatClone_TestForm
             // 
-            this.buttonShowSvgWithFlatClone_TestForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonShowSvgWithFlatClone_TestForm.Location = new System.Drawing.Point(19, 116);
-            this.buttonShowSvgWithFlatClone_TestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonShowSvgWithFlatClone_TestForm.Name = "buttonShowSvgWithFlatClone_TestForm";
-            this.buttonShowSvgWithFlatClone_TestForm.Size = new System.Drawing.Size(277, 38);
-            this.buttonShowSvgWithFlatClone_TestForm.TabIndex = 3;
-            this.buttonShowSvgWithFlatClone_TestForm.Text = "Svg With Flat Clone Test";
-            this.buttonShowSvgWithFlatClone_TestForm.UseVisualStyleBackColor = true;
-            this.buttonShowSvgWithFlatClone_TestForm.Click += new System.EventHandler(this.buttonShowSvgWithFlatClone_TestForm_Click);
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Location = new System.Drawing.Point(19, 116);
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Name = "buttonShowVectorGraphicsWithFlatClone_TestForm";
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Size = new System.Drawing.Size(277, 38);
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.TabIndex = 3;
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Text = "VectorGraphics With Flat Clone Test";
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.UseVisualStyleBackColor = true;
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Click += new System.EventHandler(this.buttonShowVectorGraphicsWithFlatClone_TestForm_Click);
             // 
-            // buttonShowSvgWithoutCloning_TestForm
+            // buttonShowVectorGraphicsWithoutCloning_TestForm
             // 
-            this.buttonShowSvgWithoutCloning_TestForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonShowSvgWithoutCloning_TestForm.Location = new System.Drawing.Point(19, 164);
-            this.buttonShowSvgWithoutCloning_TestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonShowSvgWithoutCloning_TestForm.Name = "buttonShowSvgWithoutCloning_TestForm";
-            this.buttonShowSvgWithoutCloning_TestForm.Size = new System.Drawing.Size(277, 38);
-            this.buttonShowSvgWithoutCloning_TestForm.TabIndex = 4;
-            this.buttonShowSvgWithoutCloning_TestForm.Text = "Svg Without Cloning Test";
-            this.buttonShowSvgWithoutCloning_TestForm.UseVisualStyleBackColor = true;
-            this.buttonShowSvgWithoutCloning_TestForm.Click += new System.EventHandler(this.buttonShowSvgWithoutCloning_TestForm_Click);
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Location = new System.Drawing.Point(19, 164);
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Name = "buttonShowVectorGraphicsWithoutCloning_TestForm";
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Size = new System.Drawing.Size(277, 38);
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.TabIndex = 4;
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Text = "VectorGraphics Without Cloning Test";
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.UseVisualStyleBackColor = true;
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Click += new System.EventHandler(this.buttonShowVectorGraphicsWithoutCloning_TestForm_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -91,10 +91,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.buttonShowCurveTest, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.buttonShowGestureTestForm, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.buttonShowSvgWithoutCloning_TestForm, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.buttonShowVectorGraphicsWithoutCloning_TestForm, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.buttonShowHierarchyTestForm, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonShowHelloWorldTestForm, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonShowSvgWithFlatClone_TestForm, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.buttonShowVectorGraphicsWithFlatClone_TestForm, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
@@ -165,8 +165,8 @@
 
         private Controls.DiagramControl diagramControl1;
         private System.Windows.Forms.Button buttonShowHierarchyTestForm;
-        private System.Windows.Forms.Button buttonShowSvgWithFlatClone_TestForm;
-        private System.Windows.Forms.Button buttonShowSvgWithoutCloning_TestForm;
+        private System.Windows.Forms.Button buttonShowVectorGraphicsWithFlatClone_TestForm;
+        private System.Windows.Forms.Button buttonShowVectorGraphicsWithoutCloning_TestForm;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button buttonShowHelloWorldTestForm;
         private System.Windows.Forms.Button buttonShowGestureTestForm;

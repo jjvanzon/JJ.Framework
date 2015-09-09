@@ -50,9 +50,9 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Presentation.Svg\JJ.Framework.Presentation.Svg.csproj">
+    <ProjectReference Include="..\JJ.Framework.Presentation.VectorGraphics\JJ.Framework.Presentation.VectorGraphics.csproj">
       <Project>{52e03e08-331a-4ca7-8d8f-6f598c94eed4}</Project>
-      <Name>JJ.Framework.Presentation.Svg</Name>
+      <Name>JJ.Framework.Presentation.VectorGraphics</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>

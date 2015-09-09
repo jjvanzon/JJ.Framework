@@ -1,10 +1,10 @@
 ﻿using System.Windows.Forms;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
+namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone
 {
-    internal partial class SvgWithFlatClone_TestForm : Form
+    internal partial class VectorGraphicsWithFlatClone_TestForm : Form
     {
-        public SvgWithFlatClone_TestForm()
+        public VectorGraphicsWithFlatClone_TestForm()
         {
             InitializeComponent();
             Initialize();
@@ -14,7 +14,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.SvgWithFlatClone
         {
             Text = this.GetType().FullName;
 
-            diagramControl1.RootSvgRectangle = SvgFactory.CreateTestSvgModel().Canvas;
+            diagramControl1.RootVectorGraphicsRectangle = VectorGraphicsFactory.CreateTestVectorGraphicsModel().Canvas;
         }
     }
 }

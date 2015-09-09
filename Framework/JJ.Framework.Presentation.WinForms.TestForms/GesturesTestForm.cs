@@ -1,9 +1,9 @@
-﻿using JJ.Framework.Presentation.Svg.EventArg;
-using JJ.Framework.Presentation.Svg.Gestures;
-using JJ.Framework.Presentation.Svg.Models.Elements;
+﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
+using JJ.Framework.Presentation.VectorGraphics.Gestures;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using System.Linq;
 using System.Windows.Forms;
-using SvgElements = JJ.Framework.Presentation.Svg.Models.Elements;
+using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {
@@ -47,7 +47,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             DropGesture dropGesture = new DropGesture(dragGesture);
             dropGesture.Dropped += dropGesture_Dropped;
 
-            SvgElements.Rectangle rectangle;
+            VectorGraphicsElements.Rectangle rectangle;
 
             float currentY = SPACING;
 
@@ -89,9 +89,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             diagramControl1.Diagram = diagram;
         }
 
-        private SvgElements.Rectangle CreateRectangle(Diagram diagram, string text)
+        private VectorGraphicsElements.Rectangle CreateRectangle(Diagram diagram, string text)
         {
-            var rectangle = new SvgElements.Rectangle()
+            var rectangle = new VectorGraphicsElements.Rectangle()
             {
                 Diagram = diagram,
                 Parent = diagram.Canvas,
@@ -99,11 +99,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 Y = SPACING,
                 Width = BLOCK_WIDTH,
                 Height = BLOCK_HEIGHT,
-                BackStyle = SvgHelper.BlueBackStyle,
-                LineStyle = SvgHelper.DefaultLineStyle
+                BackStyle = VectorGraphicsHelper.BlueBackStyle,
+                LineStyle = VectorGraphicsHelper.DefaultLineStyle
             };
 
-            var label2 = new SvgElements.Label
+            var label2 = new VectorGraphicsElements.Label
             {
                 Diagram = diagram,
                 Parent = rectangle,
@@ -112,28 +112,28 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 Y = 0,
                 Width = BLOCK_WIDTH,
                 Height = BLOCK_HEIGHT,
-                TextStyle = SvgHelper.DefaultTextStyle
+                TextStyle = VectorGraphicsHelper.DefaultTextStyle
             };
 
             return rectangle;
         }
 
-        private void mouseDownGesture_MouseDown(object sender, Svg.EventArg.MouseEventArgs e)
+        private void mouseDownGesture_MouseDown(object sender, VectorGraphics.EventArg.MouseEventArgs e)
         {
             TrySetElementText(e.Element, "MouseDown");
         }
 
-        private void mouseMoveGesture_MouseMove(object sender, Svg.EventArg.MouseEventArgs e)
+        private void mouseMoveGesture_MouseMove(object sender, VectorGraphics.EventArg.MouseEventArgs e)
         {
             TrySetElementText(e.Element, "MouseMove");
         }
 
-        private void mouseUpGesture_MouseUp(object sender, Svg.EventArg.MouseEventArgs e)
+        private void mouseUpGesture_MouseUp(object sender, VectorGraphics.EventArg.MouseEventArgs e)
         {
             TrySetElementText(e.Element, "MouseUp");
         }
 
-        private void mouseLeaveGesture_MouseLeave(object sender, Svg.EventArg.MouseEventArgs e)
+        private void mouseLeaveGesture_MouseLeave(object sender, VectorGraphics.EventArg.MouseEventArgs e)
         {
             TrySetElementText(e.Element, "MouseLeave");
         }
@@ -156,13 +156,13 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
         private void TrySetElementText(Element element, string text)
         {
-            var label = element as SvgElements.Label;
+            var label = element as VectorGraphicsElements.Label;
             if (label == null)
             {
-                var rectangle = element as SvgElements.Rectangle;
+                var rectangle = element as VectorGraphicsElements.Rectangle;
                 if (rectangle != null)
                 {
-                    label = rectangle.Children.OfType<SvgElements.Label>().FirstOrDefault();
+                    label = rectangle.Children.OfType<VectorGraphicsElements.Label>().FirstOrDefault();
                 }
             }
 
