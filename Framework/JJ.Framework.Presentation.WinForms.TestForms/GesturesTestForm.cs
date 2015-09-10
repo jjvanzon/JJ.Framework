@@ -1,8 +1,10 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using JJ.Framework.Presentation.VectorGraphics.Gestures;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using JJ.Framework.Presentation.VectorGraphics.EventArg;
+using JJ.Framework.Presentation.VectorGraphics.Gestures;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
@@ -26,30 +28,40 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             var diagram = new Diagram();
 
-            MouseDownGesture mouseDownGesture = new MouseDownGesture();
+            var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
 
-            MouseMoveGesture mouseMoveGesture = new MouseMoveGesture();
+            var mouseMoveGesture = new MouseMoveGesture();
             mouseMoveGesture.MouseMove += mouseMoveGesture_MouseMove;
 
-            MouseUpGesture mouseUpGesture = new MouseUpGesture();
+            var mouseUpGesture = new MouseUpGesture();
             mouseUpGesture.MouseUp += mouseUpGesture_MouseUp;
 
-            MouseLeaveGesture mouseLeaveGesture = new MouseLeaveGesture();
+            var mouseLeaveGesture = new MouseLeaveGesture();
             mouseLeaveGesture.MouseLeave += mouseLeaveGesture_MouseLeave;
 
-            ClickGesture clickGesture = new ClickGesture();
+            var clickGesture = new ClickGesture();
             clickGesture.Click += clickGesture_Click;
 
-            DragGesture dragGesture = new DragGesture();
+            var dragGesture = new DragGesture();
             dragGesture.Dragging += dragGesture_Dragging;
 
-            DropGesture dropGesture = new DropGesture(dragGesture);
+            var dropGesture = new DropGesture(dragGesture);
             dropGesture.Dropped += dropGesture_Dropped;
+
+            DoubleClickGesture doubleClickGesture = diagramControl1.CreateDoubleClickGesture();
+            doubleClickGesture.DoubleClick += DoubleClickGesture_DoubleClick;
 
             VectorGraphicsElements.Rectangle rectangle;
 
             float currentY = SPACING;
+
+            rectangle = CreateRectangle(diagram, "Double Click Me");
+            rectangle.Y = currentY;
+            rectangle.Gestures.Add(doubleClickGesture);
+            //rectangle.Gestures.Add(mouseLeaveGesture);
+
+            currentY += BLOCK_HEIGHT + SPACING;
 
             rectangle = CreateRectangle(diagram, "Click Me");
             rectangle.Y = currentY;
@@ -138,7 +150,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             TrySetElementText(e.Element, "MouseLeave");
         }
 
-        private void clickGesture_Click(object sender, ClickEventArgs e)
+        private void clickGesture_Click(object sender, ElementEventArgs e)
         {
             TrySetElementText(e.Element, "Clicked");
         }
@@ -152,6 +164,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             TrySetElementText(e.DraggedElement, "Dragged");
             TrySetElementText(e.DroppedOnElement, "Dropped On");
+        }
+
+        private void DoubleClickGesture_DoubleClick(object sender, ElementEventArgs e)
+        {
+            TrySetElementText(e.Element, "DoubleClicked");
         }
 
         private void TrySetElementText(Element element, string text)

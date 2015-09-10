@@ -1,6 +1,132 @@
-﻿namespace JJ.Framework.Presentation.VectorGraphics.Gestures
+﻿using System;
+using JJ.Framework.Presentation.VectorGraphics.EventArg;
+using JJ.Framework.Reflection.Exceptions;
+
+namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
-    //class DoubleClickGesture
-    //{
-    //}
+    public class DoubleClickGesture : GestureBase
+    {
+        public event EventHandler<ElementEventArgs> DoubleClick;
+
+        private readonly int _doubleClickSpeedInMilliseconds;
+        /// <summary>
+        /// Do realize that when you start scaling things, 
+        /// there is no 1-to-1 mapping between X and Y coordinates and pixels anymore, 
+        /// so you'd have to adapt this class to that.. 
+        /// </summary>
+        private readonly int _doubleClickDeltaInPixels;
+
+        private bool _isFirstMouseDown = true;
+        private MouseEventArgs _firstMouseDownEventArgs;
+        private DateTime _firstMouseDownDateTime;
+
+        /// <summary>
+        /// To create a DoubleClickGesture that automatically takes on the Windows settings as double click speed and delta,
+        /// use either WinFormsVectorGraphicsHelper.CreateDoubleClickGesture or DiagramControl.CreateDoubleClickGesture instead.
+        /// </summary>
+        public DoubleClickGesture(int doubleClickSpeedInMilliseconds, int doubleClickDeltaInPixels)
+        {
+            if (doubleClickSpeedInMilliseconds < 1) throw new LessThanException(() => doubleClickSpeedInMilliseconds, 1);
+            if (doubleClickDeltaInPixels < 0) throw new LessThanException(() => doubleClickDeltaInPixels, 0);
+
+            _doubleClickSpeedInMilliseconds = doubleClickSpeedInMilliseconds;
+            _doubleClickDeltaInPixels = doubleClickDeltaInPixels;
+        }
+
+        public override bool MouseCaptureRequired
+        {
+            get { return false; }
+        }
+
+        public override void HandleMouseDown(object sender, MouseEventArgs e)
+        {
+            if (_isFirstMouseDown)
+            {
+                HandleFirstMouseDown(e);
+            }
+            else
+            {
+                bool secondMouseDownCompletedTheDoubleClick = HandleSecondMouseDown(sender, e);
+                if (!secondMouseDownCompletedTheDoubleClick)
+                {
+                    // If e.g. the time expired, it should be considered the first mouse down again.
+                    HandleFirstMouseDown(e);
+                }
+            }
+        }
+
+        private void HandleFirstMouseDown(MouseEventArgs e)
+        {
+            _firstMouseDownDateTime = DateTime.Now;
+            _isFirstMouseDown = false;
+            _firstMouseDownEventArgs = e;
+        }
+
+        private bool HandleSecondMouseDown(object sender, MouseEventArgs e)
+        {
+            if (DoubleClick == null)
+            {
+                return true;
+            }
+
+            DateTime secondMouseDownDateTime = DateTime.Now;
+            _isFirstMouseDown = true;
+ 
+            if (_firstMouseDownEventArgs == null)
+            {
+                return false;
+            }
+
+            bool isSameElement = e.Element == _firstMouseDownEventArgs.Element;
+            if (!isSameElement)
+            {
+                return false;
+            }
+
+            bool deltaIsInRange = DeltaIsInRange(_firstMouseDownEventArgs, e);
+            if (!deltaIsInRange)
+            {
+                return false;
+            }
+
+            bool speedIsInRange = secondMouseDownDateTime.Subtract(_firstMouseDownDateTime).Milliseconds <= _doubleClickSpeedInMilliseconds;
+            if (!speedIsInRange)
+            {
+                return false;
+            }
+
+            var e2 = new ElementEventArgs(e.Element);
+            DoubleClick(sender, e2);
+            return true;
+        }
+        
+        private bool DeltaIsInRange(MouseEventArgs mouseDownEventArgs1, MouseEventArgs mouseDownEventArgs2)
+        {
+            float deltaX = mouseDownEventArgs2.X - mouseDownEventArgs1.X;
+
+            if (deltaX > _doubleClickDeltaInPixels)
+            {
+                return false;
+            }
+
+            if (-deltaX > _doubleClickDeltaInPixels) // Probably faster than Math.Abs.
+            {
+                return false;
+            }
+
+            float deltaY = Math.Abs(mouseDownEventArgs2.Y - mouseDownEventArgs1.Y);
+
+            if (deltaY > _doubleClickDeltaInPixels)
+            {
+                return false;
+            }
+
+            if (-deltaY > _doubleClickDeltaInPixels) // Probably faster than Math.Abs.
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
 }

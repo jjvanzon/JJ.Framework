@@ -158,7 +158,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             return rectangle;
         }
 
-        private void pointAGestureRegion_Moving(object sender, VectorGraphics.EventArg.MoveEventArgs e)
+        private void pointAGestureRegion_Moving(object sender, VectorGraphics.EventArg.ElementEventArgs e)
         {
             _curve.PointA.X = e.Element.X + e.Element.Width / 2f;
             _curve.PointA.Y = e.Element.Y + e.Element.Height / 2f;
@@ -166,7 +166,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             //CorrectPointBounds(_curve.PointA);
         }
 
-        private void controlPointAGestureRegion_Moving(object sender, VectorGraphics.EventArg.MoveEventArgs e)
+        private void controlPointAGestureRegion_Moving(object sender, VectorGraphics.EventArg.ElementEventArgs e)
         {
             _curve.ControlPointA.X = e.Element.X + e.Element.Width / 2f;
             _curve.ControlPointA.Y = e.Element.Y + e.Element.Height / 2f;
@@ -174,7 +174,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             //CorrectPointBounds(_curve.ControlPointA);
         }
 
-        private void controlPointBGestureRegion_Moving(object sender, VectorGraphics.EventArg.MoveEventArgs e)
+        private void controlPointBGestureRegion_Moving(object sender, VectorGraphics.EventArg.ElementEventArgs e)
         {
             _curve.ControlPointB.X = e.Element.X + e.Element.Width / 2f;
             _curve.ControlPointB.Y = e.Element.Y + e.Element.Height / 2f;
@@ -182,7 +182,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             //CorrectPointBounds(_curve.ControlPointB);
         }
 
-        private void pointBGestureRegion_Moving(object sender, VectorGraphics.EventArg.MoveEventArgs e)
+        private void pointBGestureRegion_Moving(object sender, VectorGraphics.EventArg.ElementEventArgs e)
         {
             _curve.PointB.X = e.Element.X + e.Element.Width / 2f;
             _curve.PointB.Y = e.Element.Y + e.Element.Height / 2f;

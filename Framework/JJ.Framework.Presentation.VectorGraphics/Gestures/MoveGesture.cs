@@ -7,8 +7,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
     public class MoveGesture : GestureBase
     {
-        public event EventHandler<MoveEventArgs> Moving;
-        public event EventHandler<MoveEventArgs> Moved;
+        public event EventHandler<ElementEventArgs> Moving;
+        public event EventHandler<ElementEventArgs> Moved;
 
         private float _mouseDownElementX;
         private float _mouseDownElementY;
@@ -56,7 +56,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
                 if (Moving != null)
                 {
-                    Moving(sender, new MoveEventArgs(_element));
+                    Moving(sender, new ElementEventArgs(_element));
                 }
 
                 _wasMoved = true;
@@ -80,7 +80,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
             if (Moved != null)
             {
-                Moved(sender, new MoveEventArgs(_element));
+                Moved(sender, new ElementEventArgs(_element));
             }
 
             _element = null;

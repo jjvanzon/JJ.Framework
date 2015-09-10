@@ -4,11 +4,11 @@ using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.EventArg
 {
-    public class ClickEventArgs : EventArgs
+    public class ElementEventArgs : EventArgs
     {
         public Element Element { get; private set; }
 
-        public ClickEventArgs(Element element)
+        public ElementEventArgs(Element element)
         {
             if (element == null) throw new NullException(() => element);
 

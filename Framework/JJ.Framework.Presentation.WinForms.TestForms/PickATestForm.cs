@@ -47,5 +47,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             new CurveTestForm().Show();
         }
+
+        private void buttonShowFilePathControlTest_Click(object sender, EventArgs e)
+        {
+            new FilePathControlTestForm().Show();
+        }
     }
 }

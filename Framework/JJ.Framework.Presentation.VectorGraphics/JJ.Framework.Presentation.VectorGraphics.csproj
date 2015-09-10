@@ -41,11 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\KeyCodeEnum.cs" />
-    <Compile Include="EventArg\ClickEventArgs.cs" />
+    <Compile Include="EventArg\ElementEventArgs.cs" />
     <Compile Include="EventArg\DroppedEventArgs.cs" />
     <Compile Include="EventArg\DraggingEventArgs.cs" />
     <Compile Include="EventArg\KeyEventArgs.cs" />
-    <Compile Include="EventArg\MoveEventArgs.cs" />
     <Compile Include="Gestures\DragGesture.cs" />
     <Compile Include="Gestures\DropGesture.cs" />
     <Compile Include="Gestures\GestureBase.cs" />

@@ -3,6 +3,8 @@ using JJ.Framework.Presentation.Drawing;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Presentation.WinForms.Helpers;
 using JJ.Framework.Presentation.WinForms.Extensions;
+using JJ.Framework.Presentation.VectorGraphics.Gestures;
+using System;
 
 namespace JJ.Framework.Presentation.WinForms.Controls
 {
@@ -124,6 +126,11 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             VectorGraphicsDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
 
             _graphicsBuffer.DrawBuffer();
+        }
+
+        public DoubleClickGesture CreateDoubleClickGesture()
+        {
+            return WinFormsVectorGraphicsHelper.CreateDoubleClickGesture();
         }
     }
 }

@@ -1,16 +1,15 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Reflection.Exceptions;
+﻿using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Presentation.WinForms.Extensions
 {
     public static class ConversionExtensions
     {
-        public static JJ.Framework.Presentation.VectorGraphics.EventArg.KeyEventArgs ToVectorGraphics(this System.Windows.Forms.KeyEventArgs sourceEventArgs)
+        public static VectorGraphics.EventArg.KeyEventArgs ToVectorGraphics(this System.Windows.Forms.KeyEventArgs sourceEventArgs)
         {
             if (sourceEventArgs == null) throw new NullException(() => sourceEventArgs);
 
-            var destEventArgs = new JJ.Framework.Presentation.VectorGraphics.EventArg.KeyEventArgs(
-                (KeyCodeEnum)sourceEventArgs.KeyValue, 
+            var destEventArgs = new VectorGraphics.EventArg.KeyEventArgs(
+                (VectorGraphics.Enums.KeyCodeEnum)sourceEventArgs.KeyValue, 
                 sourceEventArgs.Shift,
                 sourceEventArgs.Control,
                 sourceEventArgs.Alt);
@@ -18,11 +17,11 @@ namespace JJ.Framework.Presentation.WinForms.Extensions
             return destEventArgs;
         }
 
-        public static JJ.Framework.Presentation.VectorGraphics.EventArg.MouseEventArgs ToVectorGraphics(this System.Windows.Forms.MouseEventArgs sourceEventArgs)
+        public static VectorGraphics.EventArg.MouseEventArgs ToVectorGraphics(this System.Windows.Forms.MouseEventArgs sourceEventArgs)
         {
             if (sourceEventArgs == null) throw new NullException(() => sourceEventArgs);
 
-            var destEventArgs = new JJ.Framework.Presentation.VectorGraphics.EventArg.MouseEventArgs(
+            var destEventArgs = new VectorGraphics.EventArg.MouseEventArgs(
                 null, 
                 sourceEventArgs.X, 
                 sourceEventArgs.Y, 
@@ -31,7 +30,7 @@ namespace JJ.Framework.Presentation.WinForms.Extensions
             return destEventArgs;
         }
 
-        public static JJ.Framework.Presentation.VectorGraphics.Enums.MouseButtonEnum ToVectorGraphics(this System.Windows.Forms.MouseButtons source)
+        public static VectorGraphics.Enums.MouseButtonEnum ToVectorGraphics(this System.Windows.Forms.MouseButtons source)
         {
             // Apparently WinForms can pass both the left and right button flags at the same time,
             // but we are not going to handle those situations separately.

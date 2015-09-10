@@ -104,12 +104,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         public int CalculatedZIndex { get; internal set; }
 
         /// <summary>
-        /// Calculated, absolute X coordinate.
+        /// Calculated, absolute x-coordinate.
         /// </summary>
         public float CalculatedX { get; internal set; }
 
         /// <summary>
-        /// Calculated, absolute Y coordinate.
+        /// Calculated, absolute y-coordinate.
         /// </summary>
         public float CalculatedY { get; internal set; }
 

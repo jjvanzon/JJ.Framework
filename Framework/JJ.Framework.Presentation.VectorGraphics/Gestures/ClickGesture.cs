@@ -1,13 +1,14 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using System;
+﻿using System;
 using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Mathematics;
+using JJ.Framework.Presentation.VectorGraphics.EventArg;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
     public class ClickGesture : GestureBase
     {
-        public event EventHandler<ClickEventArgs> Click;
+        public event EventHandler<ElementEventArgs> Click;
 
         private Element _mouseDownElement;
 
@@ -35,17 +36,17 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
             if (_mouseDownElement != null)
             {
-                // TODO:
-                // Warning CA1804  'ClickGesture.HandleMouseUp(object, MouseEventArgs)' declares a variable, 'mouseDownElementIsHit', of type 'bool', which is never used or is only assigned to.
-                // Consider if the variable should actually have been used...
-                //bool mouseDownElementIsHit = Geometry.IsInRectangle(
-                //    e.X, e.Y,
-                //    _mouseDownElement.CalculatedX,
-                //    _mouseDownElement.CalculatedY,
-                //    _mouseDownElement.CalculatedX + _mouseDownElement.Width,
-                //    _mouseDownElement.CalculatedY + _mouseDownElement.Height);
+                bool mouseDownElementIsHit = Geometry.IsInRectangle(
+                    e.X, e.Y,
+                    _mouseDownElement.CalculatedX,
+                    _mouseDownElement.CalculatedY,
+                    _mouseDownElement.CalculatedX + _mouseDownElement.Width,
+                    _mouseDownElement.CalculatedY + _mouseDownElement.Height);
 
-                Click(sender, new ClickEventArgs(e.Element));
+                if (mouseDownElementIsHit)
+                {
+                    Click(sender, new ElementEventArgs(e.Element));
+                }
             }
         }
     }
