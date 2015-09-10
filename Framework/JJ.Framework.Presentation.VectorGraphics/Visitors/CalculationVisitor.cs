@@ -36,7 +36,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
             _currentZIndex = 0;
             _currentLayer = 0;
 
-            VisitPolymorphic(diagram.Canvas);
+            VisitPolymorphic(diagram.Background);
 
             IList<Element> orderedElements = ApplyExplicitZIndex(diagram);
 

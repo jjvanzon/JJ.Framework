@@ -11,17 +11,17 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutClon
     {
         private Graphics _destGraphic;
 
-        public void Draw(VectorGraphicsElements.Rectangle canvas, Graphics destGraphics)
+        public void Draw(VectorGraphicsElements.Rectangle background, Graphics destGraphics)
         {
-            if (canvas == null) throw new NullException(() => canvas);
+            if (background == null) throw new NullException(() => background);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
             var visitor2 = new CalculationVisitor_WithoutCloning();
-            visitor2.Execute(canvas);
+            visitor2.Execute(background);
 
             _destGraphic = destGraphics;
 
-            VisitRectangle(canvas);
+            VisitRectangle(background);
         }
 
         protected override void VisitPoint(VectorGraphicsElements.Point point)

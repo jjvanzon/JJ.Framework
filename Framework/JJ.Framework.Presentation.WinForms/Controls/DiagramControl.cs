@@ -101,8 +101,8 @@ namespace JJ.Framework.Presentation.WinForms.Controls
                 return;
             }
 
-            Diagram.Canvas.Width = Width;
-            Diagram.Canvas.Height = Height;
+            Diagram.Background.Width = Width;
+            Diagram.Background.Height = Height;
 
             Diagram.Recalculate();
             
@@ -118,8 +118,8 @@ namespace JJ.Framework.Presentation.WinForms.Controls
                 return;
             }
 
-            Diagram.Canvas.Width = Width;
-            Diagram.Canvas.Height = Height;
+            Diagram.Background.Width = Width;
+            Diagram.Background.Height = Height;
 
             Diagram.Recalculate();
 

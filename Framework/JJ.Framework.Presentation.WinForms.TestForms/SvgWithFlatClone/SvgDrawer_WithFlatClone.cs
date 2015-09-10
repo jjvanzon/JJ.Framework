@@ -10,13 +10,13 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
 {
     internal class VectorGraphicsDrawer_WithFlatClone
     {
-        public void Draw(VectorGraphicsElements.Rectangle sourceCanvas, Graphics destGraphics)
+        public void Draw(VectorGraphicsElements.Rectangle sourceBackground, Graphics destGraphics)
         {
-            if (sourceCanvas == null) throw new NullException(() => sourceCanvas);
+            if (sourceBackground == null) throw new NullException(() => sourceBackground);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
             var visitor = new CalculationVisitor();
-            IList<VectorGraphicsElements.Element> elements = visitor.Execute(sourceCanvas.Diagram);
+            IList<VectorGraphicsElements.Element> elements = visitor.Execute(sourceBackground.Diagram);
 
             foreach (VectorGraphicsElements.Element element in elements)
             {

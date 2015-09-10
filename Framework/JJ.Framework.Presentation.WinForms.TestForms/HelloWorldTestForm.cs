@@ -21,7 +21,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var label = new VectorGraphicsElements.Label
             {
                 Diagram = diagram,
-                Parent = diagram.Canvas,
+                Parent = diagram.Background,
                 Text = "Hello World!",
                 X = 10,
                 Y = 20,

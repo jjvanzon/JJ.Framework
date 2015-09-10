@@ -33,28 +33,30 @@
             this.buttonShowVectorGraphicsWithFlatClone_TestForm = new System.Windows.Forms.Button();
             this.buttonShowVectorGraphicsWithoutCloning_TestForm = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonShowFilePathControlTest = new System.Windows.Forms.Button();
             this.buttonShowCurveTest = new System.Windows.Forms.Button();
             this.buttonShowGestureTestForm = new System.Windows.Forms.Button();
             this.buttonShowHelloWorldTestForm = new System.Windows.Forms.Button();
-            this.buttonShowFilePathControlTest = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // diagramControl1
             // 
             this.diagramControl1.Diagram = null;
+            this.diagramControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.diagramControl1.Location = new System.Drawing.Point(0, 0);
             this.diagramControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.diagramControl1.Name = "diagramControl1";
-            this.diagramControl1.Size = new System.Drawing.Size(315, 319);
+            this.diagramControl1.Size = new System.Drawing.Size(315, 383);
             this.diagramControl1.TabIndex = 0;
             // 
             // buttonShowHierarchyTestForm
             // 
-            this.buttonShowHierarchyTestForm.Location = new System.Drawing.Point(19, 61);
+            this.buttonShowHierarchyTestForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonShowHierarchyTestForm.Location = new System.Drawing.Point(19, 70);
             this.buttonShowHierarchyTestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonShowHierarchyTestForm.Name = "buttonShowHierarchyTestForm";
-            this.buttonShowHierarchyTestForm.Size = new System.Drawing.Size(277, 31);
+            this.buttonShowHierarchyTestForm.Size = new System.Drawing.Size(277, 40);
             this.buttonShowHierarchyTestForm.TabIndex = 1;
             this.buttonShowHierarchyTestForm.Text = "Hierarchy Test";
             this.buttonShowHierarchyTestForm.UseVisualStyleBackColor = true;
@@ -62,10 +64,11 @@
             // 
             // buttonShowVectorGraphicsWithFlatClone_TestForm
             // 
-            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Location = new System.Drawing.Point(19, 102);
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Location = new System.Drawing.Point(19, 120);
             this.buttonShowVectorGraphicsWithFlatClone_TestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonShowVectorGraphicsWithFlatClone_TestForm.Name = "buttonShowVectorGraphicsWithFlatClone_TestForm";
-            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Size = new System.Drawing.Size(277, 31);
+            this.buttonShowVectorGraphicsWithFlatClone_TestForm.Size = new System.Drawing.Size(277, 40);
             this.buttonShowVectorGraphicsWithFlatClone_TestForm.TabIndex = 3;
             this.buttonShowVectorGraphicsWithFlatClone_TestForm.Text = "VectorGraphics With Flat Clone Test";
             this.buttonShowVectorGraphicsWithFlatClone_TestForm.UseVisualStyleBackColor = true;
@@ -73,10 +76,11 @@
             // 
             // buttonShowVectorGraphicsWithoutCloning_TestForm
             // 
-            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Location = new System.Drawing.Point(19, 143);
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Location = new System.Drawing.Point(19, 170);
             this.buttonShowVectorGraphicsWithoutCloning_TestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonShowVectorGraphicsWithoutCloning_TestForm.Name = "buttonShowVectorGraphicsWithoutCloning_TestForm";
-            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Size = new System.Drawing.Size(277, 31);
+            this.buttonShowVectorGraphicsWithoutCloning_TestForm.Size = new System.Drawing.Size(277, 40);
             this.buttonShowVectorGraphicsWithoutCloning_TestForm.TabIndex = 4;
             this.buttonShowVectorGraphicsWithoutCloning_TestForm.Text = "VectorGraphics Without Cloning Test";
             this.buttonShowVectorGraphicsWithoutCloning_TestForm.UseVisualStyleBackColor = true;
@@ -93,6 +97,7 @@
             this.tableLayoutPanel1.Controls.Add(this.buttonShowHierarchyTestForm, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonShowHelloWorldTestForm, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonShowVectorGraphicsWithFlatClone_TestForm, 0, 2);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -105,15 +110,28 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28531F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28531F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28816F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(315, 319);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(315, 383);
             this.tableLayoutPanel1.TabIndex = 5;
+            // 
+            // buttonShowFilePathControlTest
+            // 
+            this.buttonShowFilePathControlTest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonShowFilePathControlTest.Location = new System.Drawing.Point(19, 320);
+            this.buttonShowFilePathControlTest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonShowFilePathControlTest.Name = "buttonShowFilePathControlTest";
+            this.buttonShowFilePathControlTest.Size = new System.Drawing.Size(277, 43);
+            this.buttonShowFilePathControlTest.TabIndex = 7;
+            this.buttonShowFilePathControlTest.Text = "FilePathControl Test";
+            this.buttonShowFilePathControlTest.UseVisualStyleBackColor = true;
+            this.buttonShowFilePathControlTest.Click += new System.EventHandler(this.buttonShowFilePathControlTest_Click);
             // 
             // buttonShowCurveTest
             // 
-            this.buttonShowCurveTest.Location = new System.Drawing.Point(19, 225);
+            this.buttonShowCurveTest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonShowCurveTest.Location = new System.Drawing.Point(19, 270);
             this.buttonShowCurveTest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonShowCurveTest.Name = "buttonShowCurveTest";
-            this.buttonShowCurveTest.Size = new System.Drawing.Size(277, 31);
+            this.buttonShowCurveTest.Size = new System.Drawing.Size(277, 40);
             this.buttonShowCurveTest.TabIndex = 6;
             this.buttonShowCurveTest.Text = "Curve Test";
             this.buttonShowCurveTest.UseVisualStyleBackColor = true;
@@ -121,10 +139,11 @@
             // 
             // buttonShowGestureTestForm
             // 
-            this.buttonShowGestureTestForm.Location = new System.Drawing.Point(19, 184);
+            this.buttonShowGestureTestForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonShowGestureTestForm.Location = new System.Drawing.Point(19, 220);
             this.buttonShowGestureTestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonShowGestureTestForm.Name = "buttonShowGestureTestForm";
-            this.buttonShowGestureTestForm.Size = new System.Drawing.Size(277, 31);
+            this.buttonShowGestureTestForm.Size = new System.Drawing.Size(277, 40);
             this.buttonShowGestureTestForm.TabIndex = 5;
             this.buttonShowGestureTestForm.Text = "Gesture Test";
             this.buttonShowGestureTestForm.UseVisualStyleBackColor = true;
@@ -132,31 +151,21 @@
             // 
             // buttonShowHelloWorldTestForm
             // 
+            this.buttonShowHelloWorldTestForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonShowHelloWorldTestForm.Location = new System.Drawing.Point(19, 20);
             this.buttonShowHelloWorldTestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonShowHelloWorldTestForm.Name = "buttonShowHelloWorldTestForm";
-            this.buttonShowHelloWorldTestForm.Size = new System.Drawing.Size(277, 31);
+            this.buttonShowHelloWorldTestForm.Size = new System.Drawing.Size(277, 40);
             this.buttonShowHelloWorldTestForm.TabIndex = 2;
             this.buttonShowHelloWorldTestForm.Text = "Hello World Test";
             this.buttonShowHelloWorldTestForm.UseVisualStyleBackColor = true;
             this.buttonShowHelloWorldTestForm.Click += new System.EventHandler(this.buttonShowHelloWorldTestForm_Click);
             // 
-            // buttonShowFilePathControlTest
-            // 
-            this.buttonShowFilePathControlTest.Location = new System.Drawing.Point(19, 266);
-            this.buttonShowFilePathControlTest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonShowFilePathControlTest.Name = "buttonShowFilePathControlTest";
-            this.buttonShowFilePathControlTest.Size = new System.Drawing.Size(277, 33);
-            this.buttonShowFilePathControlTest.TabIndex = 7;
-            this.buttonShowFilePathControlTest.Text = "FilePathControl Test";
-            this.buttonShowFilePathControlTest.UseVisualStyleBackColor = true;
-            this.buttonShowFilePathControlTest.Click += new System.EventHandler(this.buttonShowFilePathControlTest_Click);
-            // 
             // PickATestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(315, 319);
+            this.ClientSize = new System.Drawing.Size(315, 383);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.diagramControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             var diagram = new Diagram();
 
-            VectorGraphicsElements.Rectangle canvas = diagram.Canvas;
+            VectorGraphicsElements.Rectangle background = diagram.Background;
 
             VectorGraphicsElements.Rectangle rectangle1 = CreateRectangle(diagram, 200, 10, "Block 1");
 
@@ -37,7 +37,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var line = new VectorGraphicsElements.Line
             {
                 Diagram = diagram,
-                Parent = diagram.Canvas,
+                Parent = diagram.Background,
                 PointA = point1,
                 PointB = point2,
                 LineStyle = VectorGraphicsHelper.DefaultLineStyle
@@ -53,7 +53,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var rectangle = new VectorGraphicsElements.Rectangle(new MoveGesture())
             {
                 Diagram = diagram,
-                Parent = diagram.Canvas,
+                Parent = diagram.Background,
                 X = x,
                 Y = y,
                 Width = 300,

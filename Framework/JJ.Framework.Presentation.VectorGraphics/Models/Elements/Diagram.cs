@@ -16,22 +16,22 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             Elements = new DiagramElements(this);
 
-            _canvas = new Rectangle();
-            _canvas.LineStyle = new LineStyle { Visible = false };
-            _canvas.Diagram = this;
-            _canvas.ZIndex = Int32.MinValue;
-            _canvas.Tag = "Canvas";
+            _background = new Rectangle();
+            _background.LineStyle = new LineStyle { Visible = false };
+            _background.Diagram = this;
+            _background.ZIndex = Int32.MinValue;
+            _background.Tag = "Background";
 
             Gestures = new List<IGesture>();
             _gestureHandler = new GestureHandler(this);
         }
 
-        private Rectangle _canvas;
+        private Rectangle _background;
         /// <summary> read-only, not nullable </summary>
         [DebuggerHidden]
-        public Rectangle Canvas
+        public Rectangle Background
         {
-            get { return _canvas; }
+            get { return _background; }
         }
 
         public DiagramElements Elements { get; private set; }

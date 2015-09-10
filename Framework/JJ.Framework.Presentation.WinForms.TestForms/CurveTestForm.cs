@@ -27,7 +27,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var label = new VectorGraphicsElements.Label
             {
                 Diagram = diagram,
-                Parent = diagram.Canvas,
+                Parent = diagram.Background,
                 Text = "Note: You can move around the points.",
                 X = 10,
                 Y = 10,
@@ -46,7 +46,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             _curve = new VectorGraphicsElements.Curve
             {
                 Diagram = diagram,
-                Parent = diagram.Canvas,
+                Parent = diagram.Background,
                 X = 100,
                 Y = 200,
                 LineCount = 100,
@@ -54,7 +54,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 PointA = new VectorGraphicsElements.Point
                 {
                     Diagram = diagram,
-                    Parent = diagram.Canvas,
+                    Parent = diagram.Background,
                     X = 100,
                     Y = 100,
                     Visible = true
@@ -63,7 +63,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 ControlPointA = new VectorGraphicsElements.Point
                 {
                     Diagram = diagram,
-                    Parent = diagram.Canvas,
+                    Parent = diagram.Background,
                     X = 500,
                     Y = 500,
                     Visible = true
@@ -72,7 +72,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 ControlPointB = new VectorGraphicsElements.Point
                 {
                     Diagram = diagram,
-                    Parent = diagram.Canvas,
+                    Parent = diagram.Background,
                     X = 100,
                     Y = 600,
                     Visible = true
@@ -81,7 +81,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 PointB = new VectorGraphicsElements.Point
                 {
                     Diagram = diagram,
-                    Parent = diagram.Canvas,
+                    Parent = diagram.Background,
                     X = 1000,
                     Y = 600,
                     Visible = true
@@ -103,7 +103,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var demoLine1 = new VectorGraphicsElements.Line
             {
                 Diagram = diagram,
-                Parent = diagram.Canvas,
+                Parent = diagram.Background,
                 PointA = _curve.PointA,
                 PointB = _curve.ControlPointA,
                 LineStyle = demoLineStyle
@@ -112,7 +112,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var demoLine2 = new VectorGraphicsElements.Line
             {
                 Diagram = diagram,
-                Parent = diagram.Canvas,
+                Parent = diagram.Background,
                 PointA = _curve.PointB,
                 PointB = _curve.ControlPointB,
                 LineStyle = demoLineStyle
@@ -147,7 +147,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var rectangle = new Rectangle
             {
                 Diagram = diagram,
-                Parent = diagram.Canvas,
+                Parent = diagram.Background,
                 Visible = false,
                 X = point.X - 20,
                 Y = point.Y - 20,
@@ -195,8 +195,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         //    if (point.X < 0) point.X = 0;
         //    if (point.Y < 0) point.Y = 0;
 
-        //    if (point.X > diagramControl1.Diagram.Canvas.Width) point.X = diagramControl1.Diagram.Canvas.Width;
-        //    if (point.Y > diagramControl1.Diagram.Canvas.Height) point.Y = diagramControl1.Diagram.Canvas.Height;
+        //    if (point.X > diagramControl1.Diagram.Background.Width) point.X = diagramControl1.Diagram.Background.Width;
+        //    if (point.Y > diagramControl1.Diagram.Background.Height) point.Y = diagramControl1.Diagram.Background.Height;
         //}
 
         //private void CorrectRectangleBounds(Rectangle rectangle)
@@ -204,8 +204,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         //    if (rectangle.X < 0) rectangle.X = 0;
         //    if (rectangle.Y < 0) rectangle.Y = 0;
 
-        //    if (rectangle.X + rectangle.Width > diagramControl1.Diagram.Canvas.Width) rectangle.X = diagramControl1.Diagram.Canvas.Width;
-        //    if (rectangle.Y > diagramControl1.Diagram.Canvas.Height) rectangle.Y = diagramControl1.Diagram.Canvas.Height;
+        //    if (rectangle.X + rectangle.Width > diagramControl1.Diagram.Background.Width) rectangle.X = diagramControl1.Diagram.Background.Width;
+        //    if (rectangle.Y > diagramControl1.Diagram.Background.Height) rectangle.Y = diagramControl1.Diagram.Background.Height;
         //}
     }
 }

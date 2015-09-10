@@ -19,7 +19,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             var point = new Point
             {
                 Diagram = diagram,
-                Parent = diagram.Canvas,
+                Parent = diagram.Background,
                 X = 1,
                 Y = 2,
                 ZIndex = zindex++

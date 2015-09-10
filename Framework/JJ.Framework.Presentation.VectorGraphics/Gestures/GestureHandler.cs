@@ -243,9 +243,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 gesture.HandleKeyDown(_diagram, e);
             }
 
-            foreach (IGesture gesture in _diagram.Canvas.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+            foreach (IGesture gesture in _diagram.Background.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
-                gesture.HandleKeyDown(_diagram.Canvas, e);
+                gesture.HandleKeyDown(_diagram.Background, e);
             }
         }
 
@@ -256,9 +256,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 gesture.HandleKeyUp(_diagram, e);
             }
 
-            foreach (IGesture gesture in _diagram.Canvas.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+            foreach (IGesture gesture in _diagram.Background.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
-                gesture.HandleKeyUp(_diagram.Canvas, e);
+                gesture.HandleKeyUp(_diagram.Background, e);
             }
         }
 

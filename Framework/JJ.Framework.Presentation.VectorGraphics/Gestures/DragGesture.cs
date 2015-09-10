@@ -12,8 +12,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             _diagramMouseMoveGesture = new MouseMoveGesture();
             _diagramMouseMoveGesture.MouseMove += _diagram_MouseMove;
 
-            _canvasMouseUpGesture = new MouseUpGesture();
-            _canvasMouseUpGesture.MouseUp += _canvas_MouseUp;
+            _backgroundMouseUpGesture = new MouseUpGesture();
+            _backgroundMouseUpGesture.MouseUp += _background_MouseUp;
         }
 
         ~DragGesture()
@@ -30,16 +30,16 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 _diagramMouseMoveGesture.MouseMove -= _diagram_MouseMove;
             }
 
-            if (_canvasMouseUpGesture != null)
+            if (_backgroundMouseUpGesture != null)
             {
                 if (_diagram != null)
                 {
-                    if (_diagram.Canvas.Gestures.Contains(_canvasMouseUpGesture))
+                    if (_diagram.Background.Gestures.Contains(_backgroundMouseUpGesture))
                     {
-                        _diagram.Canvas.Gestures.Remove(_canvasMouseUpGesture);
+                        _diagram.Background.Gestures.Remove(_backgroundMouseUpGesture);
                     }
                 }
-                _canvasMouseUpGesture.MouseUp -= _canvas_MouseUp;
+                _backgroundMouseUpGesture.MouseUp -= _background_MouseUp;
             }
         }
 
@@ -48,7 +48,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         private Diagram _diagram;
         private MouseMoveGesture _diagramMouseMoveGesture;
-        private MouseUpGesture _canvasMouseUpGesture;
+        private MouseUpGesture _backgroundMouseUpGesture;
 
         internal Element DraggedElement { get; private set; }
 
@@ -66,7 +66,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                     {
                         _diagram = e.Element.Diagram;
                         _diagram.Gestures.Add(_diagramMouseMoveGesture);
-                        _diagram.Canvas.Gestures.Add(_canvasMouseUpGesture);
+                        _diagram.Background.Gestures.Add(_backgroundMouseUpGesture);
                     }
                 }
             }
@@ -104,7 +104,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
         }
 
-        private void _canvas_MouseUp(object sender, MouseEventArgs e)
+        private void _background_MouseUp(object sender, MouseEventArgs e)
         {
             if (DraggedElement != null)
             {

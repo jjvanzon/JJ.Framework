@@ -14,7 +14,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutClon
         {
             Text = this.GetType().FullName;
 
-            diagramControl1.RootVectorGraphicsRectangle = VectorGraphicsFactory.CreateTestVectorGraphicsModel().Canvas;
+            diagramControl1.RootVectorGraphicsRectangle = VectorGraphicsFactory.CreateTestVectorGraphicsModel().Background;
         }
     }
 }

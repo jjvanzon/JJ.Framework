@@ -106,7 +106,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var rectangle = new VectorGraphicsElements.Rectangle()
             {
                 Diagram = diagram,
-                Parent = diagram.Canvas,
+                Parent = diagram.Background,
                 X = SPACING,
                 Y = SPACING,
                 Width = BLOCK_WIDTH,
