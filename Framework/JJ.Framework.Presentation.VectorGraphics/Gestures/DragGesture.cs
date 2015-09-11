@@ -50,12 +50,30 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         private MouseMoveGesture _diagramMouseMoveGesture;
         private MouseUpGesture _backgroundMouseUpGesture;
 
-        internal Element DraggedElement { get; private set; }
+        internal Element DraggedElement { get; set; }
 
         public override void HandleMouseDown(object sender, MouseEventArgs e)
         {
-            if (e == null) throw new NullException(() => e);
+            DoInitializeDiagram(e);
+        }
 
+        private void _diagram_MouseMove(object sender, MouseEventArgs e)
+        {
+            DoDragging(sender, e);
+        }
+
+        public override void HandleMouseUp(object sender, MouseEventArgs e)
+        {
+            DoDragCancelled(sender);
+        }
+
+        private void _background_MouseUp(object sender, MouseEventArgs e)
+        {
+            DoDragCancelled(sender);
+        }
+
+        private void DoInitializeDiagram(MouseEventArgs e)
+        {
             if (e.Element != null)
             {
                 DraggedElement = e.Element;
@@ -72,18 +90,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
         }
 
-        //public override void HandleMouseMove(object sender, MouseEventArgs e)
-        //{
-        //    if (_draggedElement != null)
-        //    {
-        //        if (Dragging != null)
-        //        {
-        //            Dragging(sender, new DraggingEventArgs(_draggedElement, e.X, e.Y));
-        //        }
-        //    }
-        //}
-
-        private void _diagram_MouseMove(object sender, MouseEventArgs e)
+        private void DoDragging(object sender, MouseEventArgs e)
         {
             if (DraggedElement != null)
             {
@@ -94,17 +101,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
         }
 
-        public override void HandleMouseUp(object sender, MouseEventArgs e)
-        {
-            DraggedElement = null;
-
-            if (DragCanceled != null)
-            {
-                DragCanceled(sender, EventArgs.Empty);
-            }
-        }
-
-        private void _background_MouseUp(object sender, MouseEventArgs e)
+        private void DoDragCancelled(object sender)
         {
             if (DraggedElement != null)
             {

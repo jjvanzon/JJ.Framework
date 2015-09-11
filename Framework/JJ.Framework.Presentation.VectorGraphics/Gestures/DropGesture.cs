@@ -37,6 +37,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                             Dropped(sender, new DroppedEventArgs(dragGesture.DraggedElement, e.Element));
                         }
                     }
+
+                    dragGesture.DraggedElement = null;
                 }
             }
         }
