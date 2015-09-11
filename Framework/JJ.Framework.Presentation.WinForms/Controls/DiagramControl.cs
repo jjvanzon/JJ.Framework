@@ -10,7 +10,9 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 {
     public partial class DiagramControl : UserControl
     {
+        private readonly ControlGraphicsBuffer _graphicsBuffer;
         private Diagram _diagram;
+
         /// <summary> nullable </summary>
         public Diagram Diagram 
         {
@@ -19,21 +21,22 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             {
                 if (_diagram == value) return;
 
-                _diagram = value;
-
                 Refresh();
+
+                _diagram = value;
             }
         }
-
-        // TODO: 
-        // Warning CA2213	'DiagramControl' contains field 'DiagramControl._graphicsBuffer' that is of IDisposable type: 'ControlGraphicsBuffer'. Change the Dispose method on 'DiagramControl' to call Dispose or Close on this field.
-        private ControlGraphicsBuffer _graphicsBuffer;
 
         public DiagramControl()
         {
             InitializeComponent();
 
             _graphicsBuffer = new ControlGraphicsBuffer(this);
+        }
+
+        public DoubleClickGesture CreateDoubleClickGesture()
+        {
+            return WinFormsVectorGraphicsHelper.CreateDoubleClickGesture();
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -126,11 +129,6 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             VectorGraphicsDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
 
             _graphicsBuffer.DrawBuffer();
-        }
-
-        public DoubleClickGesture CreateDoubleClickGesture()
-        {
-            return WinFormsVectorGraphicsHelper.CreateDoubleClickGesture();
         }
     }
 }

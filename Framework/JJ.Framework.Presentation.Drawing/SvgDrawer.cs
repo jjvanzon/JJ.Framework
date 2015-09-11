@@ -14,13 +14,13 @@ namespace JJ.Framework.Presentation.Drawing
             if (diagram == null) throw new NullException(() => diagram);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
-            foreach (VectorGraphicsElements.Element element in diagram.EnumerateElementsByZIndex())
+            foreach (Element element in diagram.EnumerateElementsByZIndex())
             {
                 DrawPolymorphic(element, destGraphics);
             }
         }
 
-        private static void DrawPolymorphic(VectorGraphicsElements.Element sourceElement, Graphics destGraphics)
+        private static void DrawPolymorphic(Element sourceElement, Graphics destGraphics)
         {
             var sourcePoint = sourceElement as VectorGraphicsElements.Point;
             if (sourcePoint != null)
@@ -29,7 +29,7 @@ namespace JJ.Framework.Presentation.Drawing
                 return;
             }
 
-            var sourceLine = sourceElement as VectorGraphicsElements.Line;
+            var sourceLine = sourceElement as Line;
             if (sourceLine != null)
             {
                 DrawLine(sourceLine, destGraphics);
@@ -43,14 +43,14 @@ namespace JJ.Framework.Presentation.Drawing
                 return;
             }
 
-            var sourceLabel = sourceElement as VectorGraphicsElements.Label;
+            var sourceLabel = sourceElement as Label;
             if (sourceLabel != null)
             {
                 DrawLabel(sourceLabel, destGraphics);
                 return;
             }
 
-            var sourceCurve = sourceElement as VectorGraphicsElements.Curve;
+            var sourceCurve = sourceElement as Curve;
             if (sourceCurve != null)
             {
                 DrawCurve(sourceCurve, destGraphics);
@@ -82,7 +82,7 @@ namespace JJ.Framework.Presentation.Drawing
             }
         }
 
-        private static void DrawLine(VectorGraphicsElements.Line sourceLine, Graphics destGraphics)
+        private static void DrawLine(Line sourceLine, Graphics destGraphics)
         {
             if (sourceLine.CalculatedVisible && sourceLine.LineStyle.Visible)
             {
@@ -148,7 +148,7 @@ namespace JJ.Framework.Presentation.Drawing
             }
         }
 
-        private static void DrawLabel(VectorGraphicsElements.Label sourceLabel, Graphics destGraphics)
+        private static void DrawLabel(Label sourceLabel, Graphics destGraphics)
         {
             if (!sourceLabel.CalculatedVisible)
             {

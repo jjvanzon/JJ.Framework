@@ -23,9 +23,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
         private int _currentZIndex;
         private int _currentLayer;
 
-        /// <summary>
-        /// Returns elements ordered by calculated Z-Index.
-        /// </summary>
+        /// <summary> Returns elements ordered by calculated Z-Index. </summary>
         public IList<Element> Execute(Diagram diagram)
         {
             if (diagram == null) throw new NullException(() => diagram);
