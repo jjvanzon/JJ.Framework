@@ -19,11 +19,8 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             get { return _diagram; }
             set
             {
-                if (_diagram == value) return;
-
-                Refresh();
-
                 _diagram = value;
+                Refresh();
             }
         }
 
