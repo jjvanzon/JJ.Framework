@@ -1,12 +1,20 @@
 ﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Reflection.Exceptions;
 using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
     public class DragGesture : GestureBase
     {
+        public event EventHandler<DraggingEventArgs> Dragging;
+        public event EventHandler DragCanceled;
+
+        internal Element DraggedElement { get; set; }
+
+        private Diagram _diagram;
+        private MouseMoveGesture _diagramMouseMoveGesture;
+        private MouseUpGesture _backgroundMouseUpGesture;
+
         public DragGesture()
         {
             _diagramMouseMoveGesture = new MouseMoveGesture();
@@ -43,18 +51,11 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
         }
 
-        public event EventHandler<DraggingEventArgs> Dragging;
-        public event EventHandler DragCanceled;
-
-        private Diagram _diagram;
-        private MouseMoveGesture _diagramMouseMoveGesture;
-        private MouseUpGesture _backgroundMouseUpGesture;
-
-        internal Element DraggedElement { get; set; }
-
         public override void HandleMouseDown(object sender, MouseEventArgs e)
         {
             DoInitializeDiagram(e);
+
+            DoStartDrag(e);
         }
 
         private void _diagram_MouseMove(object sender, MouseEventArgs e)
@@ -76,8 +77,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         {
             if (e.Element != null)
             {
-                DraggedElement = e.Element;
-
                 if (_diagram == null)
                 {
                     if (e.Element.Diagram != null)
@@ -87,6 +86,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                         _diagram.Background.Gestures.Add(_backgroundMouseUpGesture);
                     }
                 }
+            }
+        }
+
+        private void DoStartDrag(MouseEventArgs e)
+        {
+            if (e.Element != null)
+            {
+                DraggedElement = e.Element;
             }
         }
 

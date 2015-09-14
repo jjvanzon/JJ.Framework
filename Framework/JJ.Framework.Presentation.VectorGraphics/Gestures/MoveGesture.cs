@@ -1,6 +1,5 @@
 ﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Reflection.Exceptions;
 using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
@@ -15,9 +14,31 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         private float _mouseDownPointerX;
         private float _mouseDownPointerY;
 
-        private Element _element;
-
+        private Diagram _diagram;
+        private MouseMoveGesture _diagramMouseMoveGesture;
+        private Element _elementBeingMoved;
         private bool _wasMoved;
+
+        public MoveGesture()
+        {
+            _diagramMouseMoveGesture = new MouseMoveGesture();
+            _diagramMouseMoveGesture.MouseMove += _diagram_MouseMove;
+        }
+
+        ~MoveGesture()
+        {
+            if (_diagramMouseMoveGesture != null)
+            {
+                if (_diagram != null)
+                {
+                    if (_diagram.Gestures.Contains(_diagramMouseMoveGesture))
+                    {
+                        _diagram.Gestures.Remove(_diagramMouseMoveGesture);
+                    }
+                }
+                _diagramMouseMoveGesture.MouseMove -= _diagram_MouseMove;
+            }
+        }
 
         public override bool MouseCaptureRequired
         {
@@ -26,14 +47,43 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         public override void HandleMouseDown(object sender, MouseEventArgs e)
         {
-            if (e == null) throw new NullException(() => e);
+            DoInitializeDiagram(e);
+            DoMouseDown(e);
+        }
 
+        private void _diagram_MouseMove(object sender, MouseEventArgs e)
+        {
+            DoMouseMove(sender, e);
+        }
+
+        public override void HandleMouseUp(object sender, MouseEventArgs e)
+        {
+            DoMouseUp(sender);
+        }
+
+        private void DoInitializeDiagram(MouseEventArgs e)
+        {
             if (e.Element != null)
             {
-                _element = e.Element;
+                if (_diagram == null)
+                {
+                    if (e.Element.Diagram != null)
+                    {
+                        _diagram = e.Element.Diagram;
+                        _diagram.Gestures.Add(_diagramMouseMoveGesture);
+                    }
+                }
+            }
+        }
 
-                _mouseDownElementX = _element.X;
-                _mouseDownElementY = _element.Y;
+        private void DoMouseDown(MouseEventArgs e)
+        {
+            if (e.Element != null)
+            {
+                _elementBeingMoved = e.Element;
+
+                _mouseDownElementX = _elementBeingMoved.X;
+                _mouseDownElementY = _elementBeingMoved.Y;
 
                 _mouseDownPointerX = e.X;
                 _mouseDownPointerY = e.Y;
@@ -42,33 +92,31 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
         }
 
-        public override void HandleMouseMove(object sender, MouseEventArgs e)
+        private void DoMouseMove(object sender, MouseEventArgs e)
         {
-            if (e == null) throw new NullException(() => e);
-
-            if (_element != null)
+            if (_elementBeingMoved != null)
             {
                 float deltaX = e.X - _mouseDownPointerX;
                 float deltaY = e.Y - _mouseDownPointerY;
 
-                _element.X = _mouseDownElementX + deltaX;
-                _element.Y = _mouseDownElementY + deltaY;
+                _elementBeingMoved.X = _mouseDownElementX + deltaX;
+                _elementBeingMoved.Y = _mouseDownElementY + deltaY;
 
                 if (Moving != null)
                 {
-                    Moving(sender, new ElementEventArgs(_element));
+                    Moving(sender, new ElementEventArgs(_elementBeingMoved));
                 }
 
                 _wasMoved = true;
             }
         }
 
-        public override void HandleMouseUp(object sender, MouseEventArgs e)
+        private void DoMouseUp(object sender)
         {
             // TODO: I don't know for sure why _element could be null, but it was at one point. 
             // I suspect this happens when you are clicking around very fast and get a race condition,
             // since it is one gesture object for multiple elements.
-            if (_element == null)
+            if (_elementBeingMoved == null)
             {
                 return;
             }
@@ -80,10 +128,11 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
             if (Moved != null)
             {
-                Moved(sender, new ElementEventArgs(_element));
+                Moved(sender, new ElementEventArgs(_elementBeingMoved));
             }
 
-            _element = null;
+            _elementBeingMoved = null;
+            _wasMoved = false; // Not really required, but it seems weird not to set it to false.
         }
     }
 }
