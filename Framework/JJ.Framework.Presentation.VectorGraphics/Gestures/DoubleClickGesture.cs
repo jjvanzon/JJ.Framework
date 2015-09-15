@@ -1,4 +1,6 @@
 ﻿using System;
+
+using System.Diagnostics;
 using JJ.Framework.Presentation.VectorGraphics.EventArg;
 using JJ.Framework.Reflection.Exceptions;
 
@@ -18,7 +20,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         private bool _isFirstMouseDown = true;
         private MouseEventArgs _firstMouseDownEventArgs;
-        private DateTime _firstMouseDownDateTime;
+        private Stopwatch _stopWatch = new Stopwatch();
 
         /// <summary>
         /// To create a DoubleClickGesture that automatically takes on the Windows settings as double click speed and delta,
@@ -57,7 +59,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         private void HandleFirstMouseDown(MouseEventArgs e)
         {
-            _firstMouseDownDateTime = DateTime.Now;
+            _stopWatch.Reset();
+            _stopWatch.Start();
+
             _isFirstMouseDown = false;
             _firstMouseDownEventArgs = e;
         }
@@ -69,7 +73,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return true;
             }
 
-            DateTime secondMouseDownDateTime = DateTime.Now;
+            _stopWatch.Stop();
+
             _isFirstMouseDown = true;
  
             if (_firstMouseDownEventArgs == null)
@@ -89,7 +94,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return false;
             }
 
-            bool speedIsInRange = secondMouseDownDateTime.Subtract(_firstMouseDownDateTime).Milliseconds <= _doubleClickSpeedInMilliseconds;
+            bool speedIsInRange = _stopWatch.ElapsedMilliseconds <= _doubleClickSpeedInMilliseconds;
             if (!speedIsInRange)
             {
                 return false;

@@ -70,8 +70,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public void HandleMouseMove(MouseEventArgs e)
         {
-            if (e == null) throw new NullException(() => e);
-
             _gestureHandler.HandleMouseMove(e);
 
             if (e.MouseButtonEnum != MouseButtonEnum.None)

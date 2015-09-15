@@ -30,8 +30,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         public override void HandleMouseUp(object sender, MouseEventArgs e)
         {
-            if (e == null) throw new NullException(() => e);
-
             if (Click == null) return;
 
             if (_mouseDownElement != null)

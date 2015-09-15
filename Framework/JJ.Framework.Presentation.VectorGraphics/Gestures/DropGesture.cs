@@ -24,8 +24,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         public override void HandleMouseUp(object sender, MouseEventArgs e)
         {
-            if (e == null) throw new NullException(() => e);
-
             foreach (DragGesture dragGesture in _dragGestures)
             {
                 if (dragGesture.DraggedElement != null)

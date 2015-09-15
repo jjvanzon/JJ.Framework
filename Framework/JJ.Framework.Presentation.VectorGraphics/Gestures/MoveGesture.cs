@@ -116,19 +116,15 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             // TODO: I don't know for sure why _element could be null, but it was at one point. 
             // I suspect this happens when you are clicking around very fast and get a race condition,
             // since it is one gesture object for multiple elements.
-            if (_elementBeingMoved == null)
+            if (_elementBeingMoved != null)
             {
-                return;
-            }
-
-            if (!_wasMoved)
-            {
-                return;
-            }
-
-            if (Moved != null)
-            {
-                Moved(sender, new ElementEventArgs(_elementBeingMoved));
+                if (_wasMoved)
+                {
+                    if (Moved != null)
+                    {
+                        Moved(sender, new ElementEventArgs(_elementBeingMoved));
+                    }
+                }
             }
 
             _elementBeingMoved = null;

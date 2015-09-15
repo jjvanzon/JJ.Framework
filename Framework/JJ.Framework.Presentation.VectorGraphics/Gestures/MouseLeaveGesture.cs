@@ -37,8 +37,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         public override void HandleMouseMove(object sender, MouseEventArgs e)
         {
-            if (e == null) throw new NullException(() => e);
-
             if (MouseLeave == null)
             {
                 return;
