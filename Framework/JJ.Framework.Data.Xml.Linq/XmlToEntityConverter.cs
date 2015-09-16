@@ -31,7 +31,7 @@ namespace JJ.Framework.Data.Xml.Linq
 
             foreach (PropertyInfo destProperty in ReflectionCacheWrapper.ReflectionCache.GetProperties(destEntity.GetType()))
             {
-                string sourceValue = XmlHelper.GetAttributeValue(sourceElement, destProperty.Name);
+                string sourceValue = XmlHelper.TryGetAttributeValue(sourceElement, destProperty.Name);
                 object destValue = ConvertValue(sourceValue, destProperty.PropertyType);
                 destProperty.SetValue(destEntity, destValue, null);
             }

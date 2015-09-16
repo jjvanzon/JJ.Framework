@@ -98,7 +98,7 @@ namespace JJ.Framework.Xml.Linq
             string attributeValue = TryGetAttributeValue(element, attributeName);
             if (String.IsNullOrEmpty(attributeValue))
             {
-                throw new Exception(String.Format("Element '{0}' does not specify attribute '{1}'.", element.Name, attributeName));
+                throw new Exception(String.Format("Attribute '{0}' of 'Element '{1}' does not have a value.", attributeName, element.Name));
             }
             return attributeValue;
         }
