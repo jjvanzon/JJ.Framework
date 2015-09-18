@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Diagnostics;
 using JJ.Framework.Presentation.VectorGraphics.EventArg;
 using JJ.Framework.Reflection.Exceptions;
