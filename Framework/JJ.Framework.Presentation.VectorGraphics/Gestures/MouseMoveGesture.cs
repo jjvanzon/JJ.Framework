@@ -1,13 +1,12 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using JJ.Framework.Reflection.Exceptions;
-using System;
+﻿using System;
+using JJ.Framework.Presentation.VectorGraphics.EventArg;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
     /// <summary>
     /// WinForms sends a mouse move event,
     /// even when I did not move the mouse,
-    /// when in case of a move up.
+    /// in case of a move up.
     /// This gesture will block that and only send
     /// a mouse move event when you actually moved the mouse.
     /// </summary>

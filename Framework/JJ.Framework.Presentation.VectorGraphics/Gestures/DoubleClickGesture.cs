@@ -61,7 +61,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             _stopWatch.Reset();
             _stopWatch.Start();
 
+            // Flip boolean in preparation of next click.
             _isFirstMouseDown = false;
+
             _firstMouseDownEventArgs = e;
         }
 
@@ -74,6 +76,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
             _stopWatch.Stop();
 
+            // Flip boolean in preparation of next click.
             _isFirstMouseDown = true;
  
             if (_firstMouseDownEventArgs == null)

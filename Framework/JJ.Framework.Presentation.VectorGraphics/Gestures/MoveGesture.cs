@@ -102,12 +102,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 _elementBeingMoved.X = _mouseDownElementX + deltaX;
                 _elementBeingMoved.Y = _mouseDownElementY + deltaY;
 
+                _wasMoved = true;
+
                 if (Moving != null)
                 {
                     Moving(sender, new ElementEventArgs(_elementBeingMoved));
                 }
-
-                _wasMoved = true;
             }
         }
 

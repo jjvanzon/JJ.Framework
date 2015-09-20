@@ -71,12 +71,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return;
             }
 
-            var e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
-
             if (!child.MustBubble)
             {
                 return;
             }
+
+            var e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
 
             foreach (IGesture gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
@@ -272,9 +272,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 }
 
                 bool isInRectangle = Geometry.IsInRectangle(
-                        pointerX, pointerY,
-                        element.CalculatedX, element.CalculatedY,
-                        element.CalculatedX + element.Width, element.CalculatedY + element.Height);
+                    pointerX, pointerY,
+                    element.CalculatedX, element.CalculatedY,
+                    element.CalculatedX + element.Width, element.CalculatedY + element.Height);
 
                 if (isInRectangle)
                 {
