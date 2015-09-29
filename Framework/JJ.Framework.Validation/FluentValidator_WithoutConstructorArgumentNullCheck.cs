@@ -204,7 +204,7 @@ namespace JJ.Framework.Validation
 
             IComparable value = (IComparable)_value;
 
-            if (value.CompareTo(min) <= 0)
+            if (CompareNumbers(value, min) <= 0)
             {
                 ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotAbove(_propertyDisplayName, min));
             }
@@ -222,7 +222,7 @@ namespace JJ.Framework.Validation
 
             IComparable value = (IComparable)_value;
 
-            if (value.CompareTo(min) < 0)
+            if (CompareNumbers(value, min) < 0)
             {
                 ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.Min(_propertyDisplayName, min));
             }
@@ -240,12 +240,23 @@ namespace JJ.Framework.Validation
 
             IComparable value = (IComparable)_value;
 
-            if (value.CompareTo(max) > 0)
+            if (CompareNumbers(value, max) > 0)
             {
                 ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.Max(_propertyDisplayName, max));
             }
 
             return this;
+        }
+
+        /// <summary>
+        /// Converts both value to decimal, so comparisons are number-based,
+        /// and strings are interpreted as numbers.
+        /// </summary>
+        private int CompareNumbers(object a, object b)
+        {
+            decimal decimalA = Convert.ToDecimal(a);
+            decimal decimalB = Convert.ToDecimal(b);
+            return decimalA.CompareTo(decimalB);
         }
 
         // Type checks
