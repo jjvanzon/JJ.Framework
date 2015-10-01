@@ -49,6 +49,7 @@
     <Compile Include="KeyValuePairHelper.cs" />
     <Compile Include="PropertyNotFoundException.cs" />
     <Compile Include="PropertyNotFoundExceptionOfT.cs" />
+    <Compile Include="EnumHelper.cs" />
     <Compile Include="StringExtensions_Casing.cs" />
     <Compile Include="ValueNotSupportedException.cs" />
     <Compile Include="IEnumerableOfTExtensions.cs" />
