@@ -4,104 +4,40 @@ using System.Linq;
 
 namespace JJ.Framework.Common
 {
-    public static class IEnumerableOfTExtensions
+    public static class CollectionExtensions
     {
-        private static string _separatorGuid;
-        private static string _nullGuid;
+        private static string _separatorGuidString = GetSeparatorGuid();
+        private static string _nullGuidString = GetNullGuid();
 
-        static IEnumerableOfTExtensions()
+        private static string GetNullGuid()
         {
-            _separatorGuid = Guid.NewGuid().ToString();
-            _nullGuid = Guid.NewGuid().ToString();
+            return Guid.NewGuid().ToString();
         }
 
-        /// <summary>
-        /// Does not include the collection it is executed upon in the result.
-        /// </summary>
-        public static IEnumerable<T> SelectRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
+        private static string GetSeparatorGuid()
         {
-            // TODO: Beware: nested enumerators.
+            return Guid.NewGuid().ToString();
+        }
 
-            if (collection == null) throw new ArgumentNullException("collection");
-            if (selector == null) throw new ArgumentNullException("selector");
+        public static void AddRange<T>(this HashSet<T> dest, IEnumerable<T> source)
+        {
+            if (dest == null) throw new ArgumentNullException("dest");
+            if (source == null) throw new ArgumentNullException("source");
 
-            foreach (T sourceItem in collection)
+            foreach (T item in source)
             {
-                // TODO: This method should not return source items, just dest items, but check well before you change the behavior.
-                yield return sourceItem;
-
-                if (sourceItem != null)
-                {
-                    foreach (T destItem in selector(sourceItem).SelectRecursive(selector))
-                    {
-                        yield return destItem;
-                    }
-                }
+                dest.Add(item);
             }
         }
 
-        /// <summary>
-        /// Does not include the collection it is executed upon in the result.
-        /// </summary>
-        public static IEnumerable<T> SelectRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
-        {
-            // TODO: Beware: nested enumerators.
-
-            if (collection == null) throw new ArgumentNullException("collection");
-            if (selector == null) throw new ArgumentNullException("selector");
-
-            for (int i = 0; i < collection.Count; i++)
-            {
-                T sourceItem = collection[i];
-
-                // TODO: This method should not return source items, just dest items, but check well before you change the behavior.
-                yield return sourceItem;
-
-                if (sourceItem != null)
-                {
-                    foreach (T destItem in selector(sourceItem).SelectRecursive(selector))
-                    {
-                        yield return destItem;
-                    }
-                }
-            }
-        }
-        /// <summary>
-        /// Includes the collection it is executed upon in the result.
-        /// </summary>
-        public static IEnumerable<T> UnionRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
+        public static void AddRange<T>(this IList<T> collection, IEnumerable<T> items)
         {
             if (collection == null) throw new ArgumentNullException("collection");
-            if (selector == null) throw new ArgumentNullException("selector");
+            if (items == null) throw new ArgumentNullException("items");
 
-            foreach (T item in collection)
+            foreach (var x in items)
             {
-                yield return item;
-            }
-
-            foreach (T item in collection.SelectRecursive(selector))
-            {
-                yield return item;
-            }
-        }
-
-        /// <summary>
-        /// Includes the collection it is executed upon in the result.
-        /// </summary>
-        public static IEnumerable<T> UnionRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
-        {
-            if (collection == null) throw new ArgumentNullException("collection");
-            if (selector == null) throw new ArgumentNullException("selector");
-
-            for (int i = 0; i < collection.Count; i++)
-            {
-                T item = collection[i];
-                yield return item;
-            }
-
-            foreach (T item in collection.SelectRecursive(selector))
-            {
-                yield return item;
+                collection.Add(x);
             }
         }
 
@@ -152,7 +88,7 @@ namespace JJ.Framework.Common
             string separator = "";
             if (keys.Length > 1)
             {
-                separator = _separatorGuid;
+                separator = _separatorGuidString;
             }
 
             var hash = new HashSet<string>();
@@ -165,7 +101,7 @@ namespace JJ.Framework.Common
                     string keyElementString;
                     if (key(x) == null)
                     {
-                        keyElementString = _nullGuid;
+                        keyElementString = _nullGuidString;
                     }
                     else
                     {
@@ -242,6 +178,47 @@ namespace JJ.Framework.Common
         /// Returns the list index of the first item that matches the predicate.
         /// Does not check duplicates, because that would make it slower.
         /// </summary>
+        public static int IndexOf<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
+        {
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (predicate == null) throw new ArgumentNullException("predicate");
+
+            int? index = TryGetIndexOf(collection, predicate);
+
+            if (index.HasValue)
+            {
+                return index.Value;
+            }
+
+            throw new Exception("No item in the collection matches the predicate.");
+        }
+
+        /// <summary>
+        /// Returns the list index of the first item that matches the predicate.
+        /// Does not check duplicates, because that would make it slower.
+        /// </summary>
+        public static int? TryGetIndexOf<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
+        {
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (predicate == null) throw new ArgumentNullException("predicate");
+
+            for (int i = 0; i < collection.Count; i++)
+            {
+                TSource item = collection[i];
+
+                if (predicate(item))
+                {
+                    return i;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Returns the list index of the first item that matches the predicate.
+        /// Does not check duplicates, because that would make it slower.
+        /// </summary>
         public static int? TryGetIndexOf<TSource>(this IEnumerable<TSource> collection, Func<TSource, bool> predicate)
         {
             if (collection == null) throw new ArgumentNullException("collection");
@@ -259,6 +236,51 @@ namespace JJ.Framework.Common
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Removes the first occurrence that matches the predicate.
+        /// Throws an exception no item matches the predicate.
+        /// Does not check duplicates, which makes it faster if you are sure only one item is in it.
+        /// </summary>
+        public static void RemoveFirst<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
+        {
+            int index = IndexOf(collection, predicate);
+            collection.RemoveAt(index);
+        }
+
+        /// <summary>
+        /// Removes the first occurrence that matches the predicate.
+        /// Does nothing if no item matches the predicate.
+        /// Does not check duplicates, which makes it faster if you are sure only one item is in it.
+        /// Returns whether an item was actually removed from the collection.
+        /// </summary>
+        public static bool TryRemoveFirst<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
+        {
+            int? index = TryGetIndexOf(collection, predicate);
+            if (!index.HasValue)
+            {
+                return false;
+            }
+
+            collection.RemoveAt(index.Value);
+            return true;
+        }
+
+        public static string[] TrimAll(this IEnumerable<string> values, params char[] trimChars)
+        {
+            return values.Select(x => x.Trim(trimChars)).ToArray();
+        }
+
+        public static void Add<T>(this IList<T> collection, params T[] items)
+        {
+            if (collection == null) throw new ArgumentNullException("collection");
+            if (items == null) throw new ArgumentNullException("items");
+
+            foreach (var x in items)
+            {
+                collection.Add(x);
+            }
         }
     }
 }
