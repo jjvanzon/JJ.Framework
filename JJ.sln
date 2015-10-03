@@ -264,6 +264,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate", "External Comp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\FluentNHibernate.csproj", "{529145D5-6CC3-4016-89B5-826563024AF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.Synthesizer.Api", "Business\JJ.Business.Synthesizer.Api\JJ.Business.Synthesizer.Api.csproj", "{9451509B-96E7-43A7-87A2-74E5E582C0CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2489,6 +2491,30 @@ Global
 		{529145D5-6CC3-4016-89B5-826563024AF1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{529145D5-6CC3-4016-89B5-826563024AF1}.Release|x64.ActiveCfg = Release|Any CPU
 		{529145D5-6CC3-4016-89B5-826563024AF1}.Release|x86.ActiveCfg = Release|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Debug|x64.Build.0 = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Debug|x86.Build.0 = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Release|x64.ActiveCfg = Release|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Release|x64.Build.0 = Release|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Release|x86.ActiveCfg = Release|Any CPU
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2616,9 +2642,10 @@ Global
 		{DA036CC8-85CC-4A2B-B557-0A222A4486C3} = {DD6A844F-F11D-472A-875B-6C30B4534EDD}
 		{5909BFE7-93CF-4E5F-BE22-6293368AF01D} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{529145D5-6CC3-4016-89B5-826563024AF1} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{9451509B-96E7-43A7-87A2-74E5E582C0CD} = {50495465-0C70-46B2-A1BD-B5F6BD0EA3B2}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 123
+		SccNumberOfProjects = 124
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -3110,5 +3137,9 @@ Global
 		SccProjectTopLevelParentUniqueName122 = JJ.sln
 		SccProjectName122 = Presentation/JJ.Presentation.Synthesizer.VectorGraphics
 		SccLocalPath122 = Presentation\\JJ.Presentation.Synthesizer.VectorGraphics
+		SccProjectUniqueName123 = Business\\JJ.Business.Synthesizer.Api\\JJ.Business.Synthesizer.Api.csproj
+		SccProjectTopLevelParentUniqueName123 = JJ.sln
+		SccProjectName123 = Business/JJ.Business.Synthesizer.Api
+		SccLocalPath123 = Business\\JJ.Business.Synthesizer.Api
 	EndGlobalSection
 EndGlobal

@@ -315,7 +315,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsEnumValue<T>()
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsEnum<T>()
             where T : struct
         {
             // TODO: This does seem to evaluate numerical strings and enum member name strings correctly.
