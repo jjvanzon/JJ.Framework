@@ -147,15 +147,44 @@ namespace JJ.Framework.Common
             return dictionary;
         }
 
-        public static TResult MaxOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
-            where TResult : new()
+        public static TSource MaxOrDefault<TSource>(this IEnumerable<TSource> source)
         {
             if (!source.Any())
             {
-                return new TResult();
+                return default(TSource);
+            }
+
+            return source.Max();
+        }
+
+        public static TResult MaxOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+        {
+            if (!source.Any())
+            {
+                return default(TResult);
             }
 
             return source.Max(selector);
+        }
+
+        public static TSource MinOrDefault<TSource>(this IEnumerable<TSource> source)
+        {
+            if (!source.Any())
+            {
+                return default(TSource);
+            }
+
+            return source.Min();
+        }
+
+        public static TResult MinOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+        {
+            if (!source.Any())
+            {
+                return default(TResult);
+            }
+
+            return source.Min(selector);
         }
 
         /// <summary>

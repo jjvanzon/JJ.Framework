@@ -5,6 +5,7 @@ using JJ.Framework.Presentation.WinForms.Helpers;
 using JJ.Framework.Presentation.WinForms.Extensions;
 using JJ.Framework.Presentation.VectorGraphics.Gestures;
 using System;
+using System.Drawing;
 
 namespace JJ.Framework.Presentation.WinForms.Controls
 {
@@ -103,6 +104,10 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
             Diagram.Background.Width = Width;
             Diagram.Background.Height = Height;
+            if (Diagram.Background.BackStyle.Visible)
+            {
+                BackColor = Color.FromArgb(Diagram.Background.BackStyle.Color);
+            }
 
             Diagram.Recalculate();
             
@@ -120,6 +125,10 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
             Diagram.Background.Width = Width;
             Diagram.Background.Height = Height;
+            if (Diagram.Background.BackStyle.Visible)
+            {
+                BackColor = Color.FromArgb(Diagram.Background.BackStyle.Color);
+            }
 
             Diagram.Recalculate();
 
