@@ -84,7 +84,7 @@ namespace JJ.Framework.Presentation.Mvc
         {
             // You cannot use the HtmlHelper in the constructor,
             // because the HtmlHelper can change when you go from one partial view to another.
-            private readonly IDictionary<HtmlHelper, string> _htmlHelpersAndOriginalFieldPrefixes = new Dictionary<HtmlHelper, string>();
+            private readonly Dictionary<HtmlHelper, string> _htmlHelpersAndOriginalFieldPrefixes = new Dictionary<HtmlHelper, string>();
             private readonly Stack<Node> _nodes = new Stack<Node>();
 
             public void AddItemNode(HtmlHelper htmlHelper, string identifier)
@@ -175,7 +175,7 @@ namespace JJ.Framework.Presentation.Mvc
                         htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = text;
                     }
                 }
-                
+
                 if (_nodes.Count == 0)
                 {
                     // Restore the original HtmlFieldPrefixes.
