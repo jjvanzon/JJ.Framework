@@ -84,14 +84,14 @@ namespace JJ.Framework.Presentation.Mvc
         {
             // You cannot use the HtmlHelper in the constructor,
             // because the HtmlHelper can change when you go from one partial view to another.
-            private readonly Dictionary<HtmlHelper, string> _htmlHelpersAndOriginalFieldPrefixes = new Dictionary<HtmlHelper, string>();
+            private readonly HashSet<HtmlHelper> _htmlHelpers = new HashSet<HtmlHelper>();
             private readonly Stack<Node> _nodes = new Stack<Node>();
 
             public void AddItemNode(HtmlHelper htmlHelper, string identifier)
             {
-                if (!_htmlHelpersAndOriginalFieldPrefixes.ContainsKey(htmlHelper))
+                if (!_htmlHelpers.Contains(htmlHelper))
                 {
-                    _htmlHelpersAndOriginalFieldPrefixes.Add(htmlHelper, htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix);
+                    _htmlHelpers.Add(htmlHelper);
                 }
 
                 _nodes.Push(new ItemNode(identifier));
@@ -106,9 +106,9 @@ namespace JJ.Framework.Presentation.Mvc
 
             public void IncrementIndex(HtmlHelper htmlHelper)
             {
-                if (!_htmlHelpersAndOriginalFieldPrefixes.ContainsKey(htmlHelper))
+                if (!_htmlHelpers.Contains(htmlHelper))
                 {
-                    _htmlHelpersAndOriginalFieldPrefixes.Add(htmlHelper, htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix);
+                    _htmlHelpers.Add(htmlHelper);
                 }
 
                 var node = _nodes.Peek() as CollectionNode;
@@ -170,7 +170,7 @@ namespace JJ.Framework.Presentation.Mvc
                     // Set the HtmlFieldPrefix so the next piece of view code is not stuck with a prefix like
                     // Item.MyCollection[4], even though the collection ended.
                     string text = FormatHtmlFieldPrefix();
-                    foreach (HtmlHelper htmlHelper in _htmlHelpersAndOriginalFieldPrefixes.Keys)
+                    foreach (HtmlHelper htmlHelper in _htmlHelpers)
                     {
                         htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = text;
                     }
@@ -179,15 +179,13 @@ namespace JJ.Framework.Presentation.Mvc
                 if (_nodes.Count == 0)
                 {
                     // Restore the original HtmlFieldPrefixes.
-                    foreach (var entry in _htmlHelpersAndOriginalFieldPrefixes)
+                    foreach (HtmlHelper htmlHelper in _htmlHelpers)
 			        {
-                        HtmlHelper htmlHelper = entry.Key;
-                        string originalHtmlFieldPrefix = entry.Value;
-                        htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = originalHtmlFieldPrefix;
+                        htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = "";
 			        }
 
                     // Make sure the next time the thread is reused, we start with a fresh qualifier.
-                    HtmlHelperExtensions_Collections.RemoveQualifierForCurrentThread();
+                    RemoveQualifierForCurrentThread();
                 }
             }
         }
