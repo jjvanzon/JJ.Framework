@@ -2,10 +2,14 @@
 using JJ.Framework.Presentation.VectorGraphics.Helpers;
 using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms
+namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
 {
     public static class VectorGraphicsHelper
     {
+        public const float BLOCK_WIDTH = 200;
+        public const float BLOCK_HEIGHT = 60;
+        public const float SPACING = 10;
+
         static VectorGraphicsHelper()
         {
             DefaultFont = new Font

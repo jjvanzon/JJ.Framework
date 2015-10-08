@@ -52,5 +52,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             new FilePathControlTestForm().Show();
         }
+
+        private void buttonShowScaleTest_Click(object sender, EventArgs e)
+        {
+            new ScaleTestForm().Show();
+        }
     }
 }

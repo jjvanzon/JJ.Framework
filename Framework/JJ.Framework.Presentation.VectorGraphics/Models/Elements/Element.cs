@@ -124,6 +124,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         /// </summary>
         public float CalculatedY { get; internal set; }
 
+        public float CalculatedWidth { get; internal set; }
+        public float CalculatedHeight { get; internal set; }
+
         public int CalculatedLayer { get; internal set; }
         public bool CalculatedVisible { get; internal set; }
         public bool CalculatedEnabled { get; internal set; }

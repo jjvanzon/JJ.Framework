@@ -1,10 +1,11 @@
 ﻿using System.Windows.Forms;
+using JJ.Framework.Presentation.WinForms.TestForms.Helpers;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone
+namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutCloning
 {
-    internal partial class VectorGraphicsWithFlatClone_TestForm : Form
+    internal partial class VectorGraphicsWithoutCloning_TestForm : Form
     {
-        public VectorGraphicsWithFlatClone_TestForm()
+        public VectorGraphicsWithoutCloning_TestForm()
         {
             InitializeComponent();
             Initialize();

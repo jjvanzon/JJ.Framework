@@ -4,6 +4,7 @@ using System.Linq;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Mathematics;
+using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
@@ -262,8 +263,16 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
         }
 
-        private static Element TryGetHitElement(IEnumerable<Element> zOrderedElements, float pointerX, float pointerY)
+        private Element TryGetHitElement(IEnumerable<Element> zOrderedElements, float pointerX, float pointerY)
         {
+            //float scaledX;
+            //float scaledY;
+            //PointerToDiagram(pointerX, pointerY, out scaledX, out scaledY);
+
+            // HACK for testing
+            float scaledX = pointerX;
+            float scaledY = pointerY;
+
             foreach (Element element in zOrderedElements.Reverse())
             {
                 if (!element.CalculatedEnabled)
@@ -272,9 +281,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 }
 
                 bool isInRectangle = Geometry.IsInRectangle(
-                    pointerX, pointerY,
+                    scaledX, scaledY,
                     element.CalculatedX, element.CalculatedY,
-                    element.CalculatedX + element.Width, element.CalculatedY + element.Height);
+                    element.CalculatedX + element.CalculatedWidth, element.CalculatedY + element.CalculatedHeight);
 
                 if (isInRectangle)
                 {
@@ -283,6 +292,42 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
 
             return null;
+        }
+
+        [Obsolete("Probably obsolete.")]
+        private void PointerToDiagram(float pointerX, float pointerY, out float scaledX, out float scaledY)
+        {
+            scaledX = pointerX;
+
+            if (_diagram.ScaleWidth.HasValue)
+            {
+                if (_diagram.Background.Width != 0)
+                {
+                    float ratioX = _diagram.ScaleWidth.Value / _diagram.Background.Width;
+                    scaledX *= ratioX;
+                }
+            }
+
+            if (_diagram.ScaleX.HasValue)
+            {
+                scaledX += _diagram.ScaleX.Value;
+            }
+
+            scaledY = pointerY;
+
+            if (_diagram.ScaleHeight.HasValue)
+            {
+                if (_diagram.Background.Height != 0)
+                {
+                    float ratioY = _diagram.ScaleHeight.Value / _diagram.Background.Height;
+                    scaledY *= ratioY;
+                }
+            }
+
+            if (_diagram.ScaleY.HasValue)
+            {
+                scaledY += _diagram.ScaleY.Value;
+            }
         }
     }
 }

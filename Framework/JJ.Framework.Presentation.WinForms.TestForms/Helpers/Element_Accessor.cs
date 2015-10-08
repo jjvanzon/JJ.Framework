@@ -1,7 +1,7 @@
 ﻿using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.Accessors
+namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
 {
     internal class Element_Accessor
     {

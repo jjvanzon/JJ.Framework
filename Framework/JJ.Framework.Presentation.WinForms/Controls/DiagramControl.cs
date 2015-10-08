@@ -95,6 +95,27 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         public override void Refresh()
         {
+            Draw();
+        }
+
+        // Unfortunatly Draw might go off twice when making the control bigger,
+        // and once when making the control smaller,
+        // because making it bigger will trigger a Paint event,
+        // while making it smaller does not.
+        // Responding to Resize is important if the diagram scales.
+
+        private void DiagramControl_Resize(object sender, EventArgs e)
+        {
+            Draw();
+        }
+
+        private void DiagramControl_Paint(object sender, PaintEventArgs e)
+        {
+            Draw();
+        }
+
+        private void Draw()
+        {
             if (Diagram == null)
             {
                 _graphicsBuffer.Graphics.Clear(BackColor);
@@ -102,29 +123,45 @@ namespace JJ.Framework.Presentation.WinForms.Controls
                 return;
             }
 
-            Diagram.Background.Width = Width;
-            Diagram.Background.Height = Height;
-            if (Diagram.Background.BackStyle.Visible)
-            {
-                BackColor = Color.FromArgb(Diagram.Background.BackStyle.Color);
-            }
+            // Scale the Width and Height according to the Diagram.ScaleWidth and ScaleHeight.
 
-            Diagram.Recalculate();
-            
-            VectorGraphicsDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
+            // TODO: Fix this mess.
+            //if (Diagram.ScaleHeight.HasValue)
+            //{
+            //    Diagram.Background.Height = Diagram.ScaleHeight.Value;
+            //}
+            //else
+            //{
+                Diagram.Background.Height = Height;
+            //}
 
-            _graphicsBuffer.DrawBuffer();
-        }
+            //if (Diagram.ScaleWidth.HasValue)
+            //{
+            //    Diagram.Background.Width = Diagram.ScaleWidth.Value;
+            //}
+            //else
+            //{
+                Diagram.Background.Width = Width;
+            //}
 
-        private void DiagramControl_Paint(object sender, PaintEventArgs e)
-        {
-            if (Diagram == null)
-            {
-                return;
-            }
+            //if (Diagram.ScaleX.HasValue)
+            //{
+            //    Diagram.Background.X = Diagram.ScaleX.Value;
+            //}
+            //else
+            //{
+            //    Diagram.Background.X = 0;
+            //}
 
-            Diagram.Background.Width = Width;
-            Diagram.Background.Height = Height;
+            //if (Diagram.ScaleY.HasValue)
+            //{
+            //    Diagram.Background.Y = Diagram.ScaleY.Value;
+            //}
+            //else
+            //{
+            //    Diagram.Background.Y = 0;
+            //}
+
             if (Diagram.Background.BackStyle.Visible)
             {
                 BackColor = Color.FromArgb(Diagram.Background.BackStyle.Color);

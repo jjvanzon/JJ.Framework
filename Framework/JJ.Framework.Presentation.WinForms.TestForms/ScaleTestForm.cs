@@ -10,18 +10,18 @@ using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.E
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
 {
-    internal partial class GesturesTestForm : Form
+    internal partial class ScaleTestForm : Form
     {
-        public GesturesTestForm()
+        public ScaleTestForm()
         {
             InitializeComponent();
 
             Text = GetType().FullName;
 
-            InitializeDiagramAndElements();
+            InitializeDiagramAndElements3();
         }
 
-        private void InitializeDiagramAndElements()
+        private void InitializeDiagramAndElements1()
         {
             var diagram = new Diagram();
 
@@ -37,65 +37,84 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             var mouseLeaveGesture = new MouseLeaveGesture();
             mouseLeaveGesture.MouseLeave += mouseLeaveGesture_MouseLeave;
 
-            var clickGesture = new ClickGesture();
-            clickGesture.Click += clickGesture_Click;
-
-            var dragGesture = new DragGesture();
-            dragGesture.Dragging += dragGesture_Dragging;
-
-            var dropGesture = new DropGesture(dragGesture);
-            dropGesture.Dropped += dropGesture_Dropped;
-
             DoubleClickGesture doubleClickGesture = diagramControl1.CreateDoubleClickGesture();
             doubleClickGesture.DoubleClick += DoubleClickGesture_DoubleClick;
 
-            VectorGraphicsElements.Rectangle rectangle;
-
-            float currentY = VectorGraphicsHelper.SPACING;
-
-            rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Double Click Me");
-            rectangle.Y = currentY;
-            rectangle.Gestures.Add(doubleClickGesture);
-            //rectangle.Gestures.Add(mouseLeaveGesture);
-
-            currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;
-
-            rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Click Me");
-            rectangle.Y = currentY;
+            VectorGraphicsElements.Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
             rectangle.Gestures.Add(mouseDownGesture);
             rectangle.Gestures.Add(mouseMoveGesture);
             rectangle.Gestures.Add(mouseUpGesture);
             rectangle.Gestures.Add(mouseLeaveGesture);
-
-            currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;
-
-            rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Click Me Too");
-            rectangle.Y = currentY;
-            //rectangle.Gestures.Add(mouseDownGesture);
-            //rectangle.Gestures.Add(mouseMoveGesture);
-            rectangle.Gestures.Add(clickGesture);
-
-            currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;
-
-            rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Move Me");
-            rectangle.Y = currentY;
+            rectangle.Gestures.Add(doubleClickGesture);
             rectangle.Gestures.Add(new MoveGesture());
 
-            currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;
+            diagramControl1.Diagram = diagram;
+            diagramControl1.Width = 200;
+            diagramControl1.Height = 200;
 
-            rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Drag & Drop Me");
-            rectangle.Y = currentY;
-            rectangle.Gestures.Add(dropGesture);
-            rectangle.Gestures.Add(dragGesture);
+            diagram.ScaleX = 50;
+            diagram.ScaleY = 50;
+            diagram.ScaleWidth = 400;
+            diagram.ScaleHeight = 400;
+        }
 
-            currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;
+        private void InitializeDiagramAndElements2()
+        {
+            var diagram = new Diagram();
 
-            rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Drop & Drop Me");
-            rectangle.Y = currentY;
-            rectangle.Gestures.Add(dropGesture);
-            rectangle.Gestures.Add(dragGesture);
+            var mouseDownGesture = new MouseDownGesture();
+            mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
+
+            VectorGraphicsElements.Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
+            rectangle.Y = 0;
+            rectangle.X = 0;
+            rectangle.Width = 200;
+            rectangle.Height = 200;
+            rectangle.Gestures.Add(mouseDownGesture);
 
             diagramControl1.Diagram = diagram;
+            diagramControl1.Width = 200;
+            diagramControl1.Height = 200;
+
+            diagram.ScaleX = 50;
+            diagram.ScaleY = 50;
+            diagram.ScaleWidth = 400;
+            diagram.ScaleHeight = 400;
+        }
+
+        private void InitializeDiagramAndElements3()
+        {
+            var diagram = new Diagram();
+            diagram.ScaleX = -10;
+            diagram.ScaleY = -10;
+            diagram.ScaleWidth = 30;
+            diagram.ScaleHeight = 30;
+
+            var mouseDownGesture = new MouseDownGesture();
+            mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
+
+            var mouseLeaveGesture = new MouseLeaveGesture();
+            mouseLeaveGesture.MouseLeave += mouseLeaveGesture_MouseLeave;
+
+            VectorGraphicsElements.Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
+            rectangle.Y = 0;
+            rectangle.X = 0;
+            rectangle.Width = 10;
+            rectangle.Height = 10;
+            rectangle.Children.ElementAt(0).Width = 10;
+            rectangle.Children.ElementAt(0).Height = 10;
+            rectangle.Gestures.Add(mouseDownGesture);
+            rectangle.Gestures.Add(mouseLeaveGesture);
+
+            diagramControl1.Diagram = diagram;
+            //diagramControl1.Width = 200;
+            //diagramControl1.Height = 200;
+        }
+
+        private void ScaleTestForm_SizeChanged(object sender, EventArgs e)
+        {
+            diagramControl1.Width = ClientSize.Width;
+            diagramControl1.Height = ClientSize.Height;
         }
 
         private void mouseDownGesture_MouseDown(object sender, VectorGraphics.EventArg.MouseEventArgs e)

@@ -38,8 +38,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                     e.X, e.Y,
                     _mouseDownElement.CalculatedX,
                     _mouseDownElement.CalculatedY,
-                    _mouseDownElement.CalculatedX + _mouseDownElement.Width,
-                    _mouseDownElement.CalculatedY + _mouseDownElement.Height);
+                    _mouseDownElement.CalculatedX + _mouseDownElement.CalculatedWidth,
+                    _mouseDownElement.CalculatedY + _mouseDownElement.CalculatedHeight);
 
                 if (mouseDownElementIsHit)
                 {

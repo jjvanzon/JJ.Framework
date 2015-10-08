@@ -2,7 +2,7 @@
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms
+namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
 {
     internal static class VectorGraphicsFactory
     {
@@ -73,5 +73,35 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
             return rectangle;
         }
+
+        public static VectorGraphicsElements.Rectangle CreateRectangle(Diagram diagram, string text)
+        {
+            var rectangle = new VectorGraphicsElements.Rectangle()
+            {
+                Diagram = diagram,
+                Parent = diagram.Background,
+                X = VectorGraphicsHelper.SPACING,
+                Y = VectorGraphicsHelper.SPACING,
+                Width = VectorGraphicsHelper.BLOCK_WIDTH,
+                Height = VectorGraphicsHelper.BLOCK_HEIGHT,
+                BackStyle = VectorGraphicsHelper.BlueBackStyle,
+                LineStyle = VectorGraphicsHelper.DefaultLineStyle
+            };
+
+            var label = new VectorGraphicsElements.Label
+            {
+                Diagram = diagram,
+                Parent = rectangle,
+                Text = text,
+                X = 0,
+                Y = 0,
+                Width = VectorGraphicsHelper.BLOCK_WIDTH,
+                Height = VectorGraphicsHelper.BLOCK_HEIGHT,
+                TextStyle = VectorGraphicsHelper.DefaultTextStyle
+            };
+
+            return rectangle;
+        }
+
     }
 }

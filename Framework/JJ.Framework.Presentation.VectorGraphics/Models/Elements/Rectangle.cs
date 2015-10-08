@@ -13,7 +13,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     public class Rectangle : Element
     {
         public Rectangle(params IGesture[] gestures)
-            : this((IList<IGesture>)gestures.ToList())
+            : this((IList<IGesture>)gestures.ToList()) // ToList prevents Exception 'collection has fixed size'.
         { }
 
         public Rectangle(IList<IGesture> gestures)

@@ -37,6 +37,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Accessors\Element_Accessor.cs" />
+    <Compile Include="Helpers\Element_Accessor.cs" />
     <Compile Include="CurveTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +60,12 @@
     </Compile>
     <Compile Include="FilePathControlTestForm.Designer.cs">
       <DependentUpon>FilePathControlTestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScaleTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScaleTestForm.Designer.cs">
+      <DependentUpon>ScaleTestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GesturesTestForm.cs">
       <SubType>Form</SubType>
@@ -72,18 +79,18 @@
     <Compile Include="PickATestForm.Designer.cs">
       <DependentUpon>PickATestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SvgFactory.cs" />
-    <Compile Include="SvgWithoutCloning\SvgWithoutCloning_TestForm.cs">
+    <Compile Include="Helpers\VectorGraphicsFactory.cs" />
+    <Compile Include="VectorGraphicsWithoutCloning\VectorGraphicsWithoutCloning_TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SvgWithoutCloning\SvgWithoutCloning_TestForm.Designer.cs">
-      <DependentUpon>SvgWithoutCloning_TestForm.cs</DependentUpon>
+    <Compile Include="VectorGraphicsWithoutCloning\VectorGraphicsWithoutCloning_TestForm.Designer.cs">
+      <DependentUpon>VectorGraphicsWithoutCloning_TestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SvgWithFlatClone\SvgWithFlatClone_TestForm.cs">
+    <Compile Include="VectorGraphicsWithFlatClone\VectorGraphicsWithFlatClone_TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SvgWithFlatClone\SvgWithFlatClone_TestForm.Designer.cs">
-      <DependentUpon>SvgWithFlatClone_TestForm.cs</DependentUpon>
+    <Compile Include="VectorGraphicsWithFlatClone\VectorGraphicsWithFlatClone_TestForm.Designer.cs">
+      <DependentUpon>VectorGraphicsWithFlatClone_TestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HierarchyTestForm.cs">
       <SubType>Form</SubType>
@@ -99,29 +106,32 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SvgHelper.cs" />
-    <Compile Include="SvgWithFlatClone\ConvertExtensions_WithFlatClone.cs" />
-    <Compile Include="SvgWithFlatClone\DiagramControl_WithFlatClone.cs">
+    <Compile Include="Helpers\VectorGraphicsHelper.cs" />
+    <Compile Include="VectorGraphicsWithFlatClone\ConvertExtensions_WithFlatClone.cs" />
+    <Compile Include="VectorGraphicsWithFlatClone\DiagramControl_WithFlatClone.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SvgWithFlatClone\DiagramControl_WithFlatClone.Designer.cs">
+    <Compile Include="VectorGraphicsWithFlatClone\DiagramControl_WithFlatClone.Designer.cs">
       <DependentUpon>DiagramControl_WithFlatClone.cs</DependentUpon>
     </Compile>
-    <Compile Include="SvgWithFlatClone\SvgDrawer_WithFlatClone.cs" />
-    <Compile Include="SvgWithoutCloning\ConvertExtensions_WithoutCloning.cs" />
-    <Compile Include="SvgWithoutCloning\DiagramControl_WithoutCloning.cs">
+    <Compile Include="VectorGraphicsWithFlatClone\VectorGraphicsDrawer_WithFlatClone.cs" />
+    <Compile Include="VectorGraphicsWithoutCloning\ConvertExtensions_WithoutCloning.cs" />
+    <Compile Include="VectorGraphicsWithoutCloning\DiagramControl_WithoutCloning.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SvgWithoutCloning\DiagramControl_WithoutCloning.Designer.cs">
+    <Compile Include="VectorGraphicsWithoutCloning\DiagramControl_WithoutCloning.Designer.cs">
       <DependentUpon>DiagramControl_WithoutCloning.cs</DependentUpon>
     </Compile>
-    <Compile Include="SvgWithoutCloning\SvgDrawer_WithoutCloning.cs" />
-    <Compile Include="SvgWithoutCloning\CalculationVisitor_WithoutCloning.cs" />
+    <Compile Include="VectorGraphicsWithoutCloning\VectorGraphicsDrawer_WithoutCloning.cs" />
+    <Compile Include="VectorGraphicsWithoutCloning\CalculationVisitor_WithoutCloning.cs" />
     <EmbeddedResource Include="CurveTestForm.resx">
       <DependentUpon>CurveTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FilePathControlTestForm.resx">
       <DependentUpon>FilePathControlTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScaleTestForm.resx">
+      <DependentUpon>ScaleTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GesturesTestForm.resx">
       <DependentUpon>GesturesTestForm.cs</DependentUpon>
@@ -129,11 +139,11 @@
     <EmbeddedResource Include="PickATestForm.resx">
       <DependentUpon>PickATestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SvgWithoutCloning\SvgWithoutCloning_TestForm.resx">
-      <DependentUpon>SvgWithoutCloning_TestForm.cs</DependentUpon>
+    <EmbeddedResource Include="VectorGraphicsWithoutCloning\VectorGraphicsWithoutCloning_TestForm.resx">
+      <DependentUpon>VectorGraphicsWithoutCloning_TestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SvgWithFlatClone\SvgWithFlatClone_TestForm.resx">
-      <DependentUpon>SvgWithFlatClone_TestForm.cs</DependentUpon>
+    <EmbeddedResource Include="VectorGraphicsWithFlatClone\VectorGraphicsWithFlatClone_TestForm.resx">
+      <DependentUpon>VectorGraphicsWithFlatClone_TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HierarchyTestForm.resx">
       <DependentUpon>HierarchyTestForm.cs</DependentUpon>
@@ -150,10 +160,10 @@
     <EmbeddedResource Include="HelloWorldTestForm.resx">
       <DependentUpon>HelloWorldTestForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SvgWithFlatClone\DiagramControl_WithFlatClone.resx">
+    <EmbeddedResource Include="VectorGraphicsWithFlatClone\DiagramControl_WithFlatClone.resx">
       <DependentUpon>DiagramControl_WithFlatClone.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SvgWithoutCloning\DiagramControl_WithoutCloning.resx">
+    <EmbeddedResource Include="VectorGraphicsWithoutCloning\DiagramControl_WithoutCloning.resx">
       <DependentUpon>DiagramControl_WithoutCloning.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

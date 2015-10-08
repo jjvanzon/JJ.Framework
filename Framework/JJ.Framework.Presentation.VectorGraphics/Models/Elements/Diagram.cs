@@ -36,6 +36,41 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public DiagramElements Elements { get; private set; }
 
+        public float? ScaleX { get; set; }
+        public float? ScaleY { get; set; }
+
+        private float? _scaleWidth;
+        /// <summary> non-zero </summary>
+        public float? ScaleWidth
+        {
+            get { return _scaleWidth; }
+            set
+            {
+                if (value.HasValue)
+                {
+                    if (value.Value == 0) throw new ZeroException(() => ScaleWidth);
+                }
+
+                _scaleWidth = value;
+            }
+        }
+
+        private float? _scaleHeight;
+        /// <summary> non-zero </summary>
+        public float? ScaleHeight
+        {
+            get { return _scaleHeight; }
+            set
+            {
+                if (value.HasValue)
+                {
+                    if (value.Value == 0) throw new ZeroException(() => ScaleHeight);
+                }
+
+                _scaleHeight = value;
+            }
+        }
+
         public void Recalculate()
         {
              var visitor = new CalculationVisitor();

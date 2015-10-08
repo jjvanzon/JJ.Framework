@@ -17,9 +17,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
         // Public for tests.
 
         private HashSet<Element> _calculatedElements;
+        private Diagram _diagram;
         private float _currentParentX;
         private float _currentParentY;
-
         private int _currentZIndex;
         private int _currentLayer;
 
@@ -28,6 +28,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
         {
             if (diagram == null) throw new NullException(() => diagram);
 
+            _diagram = diagram;
             _calculatedElements = new HashSet<Element>();
             _currentParentX = 0;
             _currentParentY = 0;
@@ -150,6 +151,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             point.CalculatedX = point.X + _currentParentX;
             point.CalculatedY = point.Y + _currentParentY;
+            point.CalculatedWidth = point.Width;
+            point.CalculatedHeight = point.Height;
+
+            ApplyScaling(point);
 
             _calculatedElements.Add(point);
         }
@@ -173,6 +178,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             rectangle.CalculatedX = rectangle.X + _currentParentX;
             rectangle.CalculatedY = rectangle.Y + _currentParentY;
+            rectangle.CalculatedWidth = rectangle.Width;
+            rectangle.CalculatedHeight = rectangle.Height;
+
+            ApplyScaling(rectangle);
 
             _calculatedElements.Add(rectangle);
         }
@@ -186,6 +195,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             label.CalculatedX = label.X + _currentParentX;
             label.CalculatedY = label.Y + _currentParentY;
+            label.CalculatedWidth = label.Width;
+            label.CalculatedHeight = label.Height;
+
+            ApplyScaling(label);
 
             _calculatedElements.Add(label);
         }
@@ -301,6 +314,35 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
             sourceCurve.CalculatedLines = destLines;
             
             // TODO: Low priority: Yield over gesture-related properties from curve to the points and lines?
+        }
+
+        // Helpers
+
+        private void ApplyScaling(Element element)
+        {
+            if (_diagram.ScaleX.HasValue)
+            {
+                element.CalculatedX -= _diagram.ScaleX.Value;
+            }
+
+            if (_diagram.ScaleY.HasValue)
+            {
+                element.CalculatedY -= _diagram.ScaleY.Value;
+            }
+
+            if (_diagram.ScaleWidth.HasValue)
+            {
+                float ratio = _diagram.Background.Width / _diagram.ScaleWidth.Value;
+                element.CalculatedWidth *= ratio;
+                element.CalculatedX *= ratio;
+            }
+
+            if (_diagram.ScaleHeight.HasValue)
+            {
+                float ratio = _diagram.Background.Height / _diagram.ScaleHeight.Value;
+                element.CalculatedHeight *= ratio;
+                element.CalculatedY *= ratio;
+            }
         }
     }
 }

@@ -52,8 +52,8 @@ namespace JJ.Framework.Presentation.Drawing
             var destRectangleF = new RectangleF(
                 sourceRectangle.CalculatedX,
                 sourceRectangle.CalculatedY,
-                sourceRectangle.Width,
-                sourceRectangle.Height);
+                sourceRectangle.CalculatedWidth,
+                sourceRectangle.CalculatedHeight);
 
             return destRectangleF;
         }
@@ -65,8 +65,8 @@ namespace JJ.Framework.Presentation.Drawing
             var destRectangle = new System.Drawing.Rectangle(
                 (int)sourceRectangle.CalculatedX,
                 (int)sourceRectangle.CalculatedY,
-                (int)sourceRectangle.Width,
-                (int)sourceRectangle.Height);
+                (int)sourceRectangle.CalculatedWidth,
+                (int)sourceRectangle.CalculatedHeight);
 
             return destRectangle;
         }

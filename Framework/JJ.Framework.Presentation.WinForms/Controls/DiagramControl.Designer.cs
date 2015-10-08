@@ -37,6 +37,7 @@
             this.Name = "DiagramControl";
             this.Size = new System.Drawing.Size(506, 255);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.DiagramControl_Paint);
+            this.Resize += new System.EventHandler(this.DiagramControl_Resize);
             this.ResumeLayout(false);
 
         }
