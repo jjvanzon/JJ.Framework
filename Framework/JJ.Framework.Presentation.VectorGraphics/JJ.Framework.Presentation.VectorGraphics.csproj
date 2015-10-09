@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\KeyCodeEnum.cs" />
+    <Compile Include="Enums\ScaleModeEnum.cs" />
     <Compile Include="EventArg\ElementEventArgs.cs" />
     <Compile Include="EventArg\DroppedEventArgs.cs" />
     <Compile Include="EventArg\DraggingEventArgs.cs" />

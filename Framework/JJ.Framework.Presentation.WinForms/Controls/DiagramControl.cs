@@ -123,44 +123,8 @@ namespace JJ.Framework.Presentation.WinForms.Controls
                 return;
             }
 
-            // Scale the Width and Height according to the Diagram.ScaleWidth and ScaleHeight.
-
-            // TODO: Fix this mess.
-            //if (Diagram.ScaleHeight.HasValue)
-            //{
-            //    Diagram.Background.Height = Diagram.ScaleHeight.Value;
-            //}
-            //else
-            //{
-                Diagram.Background.Height = Height;
-            //}
-
-            //if (Diagram.ScaleWidth.HasValue)
-            //{
-            //    Diagram.Background.Width = Diagram.ScaleWidth.Value;
-            //}
-            //else
-            //{
-                Diagram.Background.Width = Width;
-            //}
-
-            //if (Diagram.ScaleX.HasValue)
-            //{
-            //    Diagram.Background.X = Diagram.ScaleX.Value;
-            //}
-            //else
-            //{
-            //    Diagram.Background.X = 0;
-            //}
-
-            //if (Diagram.ScaleY.HasValue)
-            //{
-            //    Diagram.Background.Y = Diagram.ScaleY.Value;
-            //}
-            //else
-            //{
-            //    Diagram.Background.Y = 0;
-            //}
+            Diagram.AbsoluteHeight = Height;
+            Diagram.AbsoluteWidth = Width;
 
             if (Diagram.Background.BackStyle.Visible)
             {

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using JJ.Framework.Presentation.VectorGraphics.Enums;
 using JJ.Framework.Presentation.VectorGraphics.EventArg;
 using JJ.Framework.Presentation.VectorGraphics.Gestures;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
@@ -24,6 +25,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         private void InitializeDiagramAndElements1()
         {
             var diagram = new Diagram();
+            diagram.ScaleModeEnum = ScaleModeEnum.ViewPort;
+            diagram.ScaleX = 50;
+            diagram.ScaleY = 50;
+            diagram.ScaleWidth = 400;
+            diagram.ScaleHeight = 400;
 
             var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
@@ -51,16 +57,16 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             diagramControl1.Diagram = diagram;
             diagramControl1.Width = 200;
             diagramControl1.Height = 200;
-
-            diagram.ScaleX = 50;
-            diagram.ScaleY = 50;
-            diagram.ScaleWidth = 400;
-            diagram.ScaleHeight = 400;
         }
 
         private void InitializeDiagramAndElements2()
         {
             var diagram = new Diagram();
+            diagram.ScaleModeEnum = ScaleModeEnum.ViewPort;
+            diagram.ScaleX = 50;
+            diagram.ScaleY = 50;
+            diagram.ScaleWidth = 400;
+            diagram.ScaleHeight = 400;
 
             var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
@@ -75,16 +81,12 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             diagramControl1.Diagram = diagram;
             diagramControl1.Width = 200;
             diagramControl1.Height = 200;
-
-            diagram.ScaleX = 50;
-            diagram.ScaleY = 50;
-            diagram.ScaleWidth = 400;
-            diagram.ScaleHeight = 400;
         }
 
         private void InitializeDiagramAndElements3()
         {
             var diagram = new Diagram();
+            diagram.ScaleModeEnum = ScaleModeEnum.ViewPort;
             diagram.ScaleX = -10;
             diagram.ScaleY = -10;
             diagram.ScaleWidth = 30;
@@ -97,8 +99,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             mouseLeaveGesture.MouseLeave += mouseLeaveGesture_MouseLeave;
 
             VectorGraphicsElements.Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
-            rectangle.Y = 0;
-            rectangle.X = 0;
+            rectangle.Y = 10;
+            rectangle.X = 10;
             rectangle.Width = 10;
             rectangle.Height = 10;
             rectangle.Children.ElementAt(0).Width = 10;
@@ -107,8 +109,6 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             rectangle.Gestures.Add(mouseLeaveGesture);
 
             diagramControl1.Diagram = diagram;
-            //diagramControl1.Width = 200;
-            //diagramControl1.Height = 200;
         }
 
         private void ScaleTestForm_SizeChanged(object sender, EventArgs e)

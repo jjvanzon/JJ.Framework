@@ -4,6 +4,8 @@ using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Reflection.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
+using JJ.Framework.Presentation.VectorGraphics.Enums;
+using JJ.Framework.Common;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 {
@@ -15,6 +17,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
     public class CalculationVisitor : ElementVisitorBase
     {
         // Public for tests.
+        // TODO: Program the Accessor class so it can work with internal classes.
 
         private HashSet<Element> _calculatedElements;
         private Diagram _diagram;
@@ -34,6 +37,27 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
             _currentParentY = 0;
             _currentZIndex = 0;
             _currentLayer = 0;
+
+            switch (diagram.ScaleModeEnum)
+            {
+                case ScaleModeEnum.None:
+                    diagram.Background.X = 0;
+                    diagram.Background.Y = 0;
+                    diagram.Background.Width = diagram.AbsoluteWidth;
+                    diagram.Background.Height = diagram.AbsoluteHeight;
+                    break;
+
+                case ScaleModeEnum.ViewPort:
+                    diagram.Background.X = diagram.ScaleX;
+                    diagram.Background.Y = diagram.ScaleY;
+                    diagram.Background.Width = diagram.ScaleWidth;
+                    diagram.Background.Height = diagram.ScaleHeight;
+                    break;
+
+                default:
+                    throw new ValueNotSupportedException(diagram.ScaleModeEnum);
+
+            }
 
             VisitPolymorphic(diagram.Background);
 
@@ -320,29 +344,29 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
         private void ApplyScaling(Element element)
         {
-            if (_diagram.ScaleX.HasValue)
+            switch (_diagram.ScaleModeEnum)
             {
-                element.CalculatedX -= _diagram.ScaleX.Value;
-            }
+                case ScaleModeEnum.ViewPort:
+                    ApplyScaleModeViewPort(element);
+                    break;
 
-            if (_diagram.ScaleY.HasValue)
-            {
-                element.CalculatedY -= _diagram.ScaleY.Value;
+                case ScaleModeEnum.Zoom:
+                    throw new ValueNotSupportedException(_diagram.ScaleModeEnum);
             }
+        }
 
-            if (_diagram.ScaleWidth.HasValue)
-            {
-                float ratio = _diagram.Background.Width / _diagram.ScaleWidth.Value;
-                element.CalculatedWidth *= ratio;
-                element.CalculatedX *= ratio;
-            }
+        private void ApplyScaleModeViewPort(Element element)
+        {
+            element.CalculatedX -= _diagram.ScaleX;
+            element.CalculatedY -= _diagram.ScaleY;
 
-            if (_diagram.ScaleHeight.HasValue)
-            {
-                float ratio = _diagram.Background.Height / _diagram.ScaleHeight.Value;
-                element.CalculatedHeight *= ratio;
-                element.CalculatedY *= ratio;
-            }
+            float ratioX = _diagram.AbsoluteWidth / _diagram.ScaleWidth;
+            element.CalculatedWidth *= ratioX;
+            element.CalculatedX *= ratioX;
+
+            float ratioY = _diagram.AbsoluteHeight / _diagram.ScaleHeight;
+            element.CalculatedHeight *= ratioY;
+            element.CalculatedY *= ratioY;
         }
     }
 }

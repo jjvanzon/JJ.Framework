@@ -36,37 +36,64 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public DiagramElements Elements { get; private set; }
 
-        public float? ScaleX { get; set; }
-        public float? ScaleY { get; set; }
+        private IList<Element> _elementsOrderByZIndex = new Element[0];
+        public IEnumerable<Element> EnumerateElementsByZIndex()
+        {
+            for (int i = 0; i < _elementsOrderByZIndex.Count; i++)
+            {
+                yield return _elementsOrderByZIndex[i];
+            }
+        }
 
-        private float? _scaleWidth;
+        private float _absoluteWidth = 1;
         /// <summary> non-zero </summary>
-        public float? ScaleWidth
+        public float AbsoluteWidth
+        {
+            get { return _absoluteWidth; }
+            set
+            {
+                if (value == 0) throw new ZeroException(() => AbsoluteWidth);
+                _absoluteWidth = value;
+            }
+        }
+
+        private float _absoluteHeight = 1;
+        /// <summary> non-zero </summary>
+        public float AbsoluteHeight
+        {
+            get { return _absoluteHeight; }
+            set
+            {
+                if (value == 0) throw new ZeroException(() => AbsoluteHeight);
+                _absoluteHeight = value;
+            }
+        }
+
+        public ScaleModeEnum ScaleModeEnum { get; set; }
+
+        public float ScaleX { get; set; }
+        public float ScaleY { get; set; }
+
+        private float _scaleWidth = 1; 
+        /// <summary> non-zero </summary>
+        public float ScaleWidth
         {
             get { return _scaleWidth; }
             set
             {
-                if (value.HasValue)
-                {
-                    if (value.Value == 0) throw new ZeroException(() => ScaleWidth);
-                }
-
+                if (value == 0) throw new ZeroException(() => ScaleWidth);
                 _scaleWidth = value;
             }
         }
 
-        private float? _scaleHeight;
+        private float _scaleHeight = 1;
         /// <summary> non-zero </summary>
-        public float? ScaleHeight
+        public float ScaleHeight
         {
             get { return _scaleHeight; }
             set
             {
-                if (value.HasValue)
-                {
-                    if (value.Value == 0) throw new ZeroException(() => ScaleHeight);
-                }
-
+                if (value == 0) throw new ZeroException(() => ScaleHeight);
                 _scaleHeight = value;
             }
         }
@@ -75,15 +102,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
              var visitor = new CalculationVisitor();
              _elementsOrderByZIndex = visitor.Execute(this);
-        }
-
-        private IList<Element> _elementsOrderByZIndex = new Element[0];
-        public IEnumerable<Element> EnumerateElementsByZIndex()
-        {
-            for (int i = 0; i < _elementsOrderByZIndex.Count; i++)
-            {
-                yield return _elementsOrderByZIndex[i];
-            }
         }
 
         // Gestures
