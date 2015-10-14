@@ -10,33 +10,23 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
     /// </summary>
     public abstract class GestureBase : IGesture
     {
-        /// <summary>
-        /// Does nothing.
-        /// </summary>
+        /// <summary> Does nothing. summary>
         public virtual void HandleMouseDown(object sender, MouseEventArgs e)
         { }
 
-        /// <summary>
-        /// Base member does nothing.
-        /// </summary>
+        /// <summary> Base member does nothing. </summary>
         public virtual void HandleMouseMove(object sender, MouseEventArgs e)
         { }
 
-        /// <summary>
-        /// Base member does nothing.
-        /// </summary>
+        /// <summary> Base member does nothing. </summary>
         public virtual void HandleMouseUp(object sender, MouseEventArgs e)
         { }
 
-        /// <summary>
-        /// Base member does nothing.
-        /// </summary>
+        /// <summary> Base member does nothing. </summary>
         public virtual void HandleKeyDown(object sender, KeyEventArgs e)
         { }
 
-        /// <summary>
-        /// Base member does nothing.
-        /// </summary>
+        /// <summary> Base member does nothing. </summary>
         public virtual void HandleKeyUp(object sender, KeyEventArgs e)
         { }
 

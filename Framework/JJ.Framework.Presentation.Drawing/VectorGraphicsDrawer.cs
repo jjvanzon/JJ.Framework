@@ -87,7 +87,7 @@ namespace JJ.Framework.Presentation.Drawing
             if (sourceLine.CalculatedVisible && sourceLine.LineStyle.Visible)
             {
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
-                destGraphics.DrawLine(destPen, sourceLine.PointA.CalculatedX, sourceLine.PointA.CalculatedY, sourceLine.PointB.CalculatedX, sourceLine.PointB.CalculatedY);
+                destGraphics.DrawLine(destPen, sourceLine.PointA.CalculatedXInPixels, sourceLine.PointA.CalculatedYInPixels, sourceLine.PointB.CalculatedXInPixels, sourceLine.PointB.CalculatedYInPixels);
             }
         }
 
@@ -116,23 +116,23 @@ namespace JJ.Framework.Presentation.Drawing
                     Pen destPen = lineStyle.ToSystemDrawing();
                     destGraphics.DrawRectangle(
                         destPen,
-                        sourceRectangle.CalculatedX,
-                        sourceRectangle.CalculatedY,
-                        sourceRectangle.CalculatedWidth,
-                        sourceRectangle.CalculatedHeight);
+                        sourceRectangle.CalculatedXInPixels,
+                        sourceRectangle.CalculatedYInPixels,
+                        sourceRectangle.CalculatedWidthInPixels,
+                        sourceRectangle.CalculatedHeightInPixels);
                 }
             }
             else
             {
                 // Draw 4 Border Lines (with different styles)
 
-                float right = sourceRectangle.CalculatedX + sourceRectangle.CalculatedWidth;
-                float bottom = sourceRectangle.CalculatedY + sourceRectangle.CalculatedHeight;
+                float right = sourceRectangle.CalculatedXInPixels + sourceRectangle.CalculatedWidthInPixels;
+                float bottom = sourceRectangle.CalculatedYInPixels + sourceRectangle.CalculatedHeightInPixels;
 
-                PointF destTopLeftPointF = new PointF(sourceRectangle.CalculatedX, sourceRectangle.CalculatedY);
-                PointF destTopRightPointF = new PointF(right, sourceRectangle.CalculatedY);
+                PointF destTopLeftPointF = new PointF(sourceRectangle.CalculatedXInPixels, sourceRectangle.CalculatedYInPixels);
+                PointF destTopRightPointF = new PointF(right, sourceRectangle.CalculatedYInPixels);
                 PointF destBottomRightPointF = new PointF(right, bottom);
-                PointF destBottomLeftPointF = new PointF(sourceRectangle.CalculatedX, bottom);
+                PointF destBottomLeftPointF = new PointF(sourceRectangle.CalculatedXInPixels, bottom);
                 
                 Pen destTopPen = sourceRectangle.TopLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
@@ -157,7 +157,7 @@ namespace JJ.Framework.Presentation.Drawing
 
             StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
             System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
-            RectangleF destRectangle = new RectangleF(sourceLabel.CalculatedX, sourceLabel.CalculatedY, sourceLabel.CalculatedWidth, sourceLabel.CalculatedHeight);
+            RectangleF destRectangle = new RectangleF(sourceLabel.CalculatedXInPixels, sourceLabel.CalculatedYInPixels, sourceLabel.CalculatedWidthInPixels, sourceLabel.CalculatedHeightInPixels);
             Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 
             destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);

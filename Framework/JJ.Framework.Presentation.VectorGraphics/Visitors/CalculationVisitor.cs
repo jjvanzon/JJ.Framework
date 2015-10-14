@@ -43,15 +43,15 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 case ScaleModeEnum.None:
                     diagram.Background.X = 0;
                     diagram.Background.Y = 0;
-                    diagram.Background.Width = diagram.AbsoluteWidth;
-                    diagram.Background.Height = diagram.AbsoluteHeight;
+                    diagram.Background.Width = diagram.WidthInPixels;
+                    diagram.Background.Height = diagram.HeightInPixels;
                     break;
 
                 case ScaleModeEnum.ViewPort:
-                    diagram.Background.X = diagram.ScaleX;
-                    diagram.Background.Y = diagram.ScaleY;
-                    diagram.Background.Width = diagram.ScaleWidth;
-                    diagram.Background.Height = diagram.ScaleHeight;
+                    diagram.Background.X = diagram.ScaledX;
+                    diagram.Background.Y = diagram.ScaledY;
+                    diagram.Background.Width = diagram.ScaledWidth;
+                    diagram.Background.Height = diagram.ScaledHeight;
                     break;
 
                 default:
@@ -173,10 +173,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 return;
             }
 
-            point.CalculatedX = point.X + _currentParentX;
-            point.CalculatedY = point.Y + _currentParentY;
-            point.CalculatedWidth = point.Width;
-            point.CalculatedHeight = point.Height;
+            point.CalculatedXInPixels = point.X + _currentParentX;
+            point.CalculatedYInPixels = point.Y + _currentParentY;
+            point.CalculatedWidthInPixels = point.Width;
+            point.CalculatedHeightInPixels = point.Height;
 
             ApplyScaling(point);
 
@@ -200,10 +200,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 return;
             }
 
-            rectangle.CalculatedX = rectangle.X + _currentParentX;
-            rectangle.CalculatedY = rectangle.Y + _currentParentY;
-            rectangle.CalculatedWidth = rectangle.Width;
-            rectangle.CalculatedHeight = rectangle.Height;
+            rectangle.CalculatedXInPixels = rectangle.X + _currentParentX;
+            rectangle.CalculatedYInPixels = rectangle.Y + _currentParentY;
+            rectangle.CalculatedWidthInPixels = rectangle.Width;
+            rectangle.CalculatedHeightInPixels = rectangle.Height;
 
             ApplyScaling(rectangle);
 
@@ -217,10 +217,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 return;
             }
 
-            label.CalculatedX = label.X + _currentParentX;
-            label.CalculatedY = label.Y + _currentParentY;
-            label.CalculatedWidth = label.Width;
-            label.CalculatedHeight = label.Height;
+            label.CalculatedXInPixels = label.X + _currentParentX;
+            label.CalculatedYInPixels = label.Y + _currentParentY;
+            label.CalculatedWidthInPixels = label.Width;
+            label.CalculatedHeightInPixels = label.Height;
 
             ApplyScaling(label);
 
@@ -255,14 +255,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             if (line.PointA.Parent == null)
             {
-                line.PointA.CalculatedX = line.PointA.X + line.CalculatedX;
-                line.PointA.CalculatedY = line.PointA.Y + line.CalculatedY;
+                line.PointA.CalculatedXInPixels = line.PointA.X + line.CalculatedXInPixels;
+                line.PointA.CalculatedYInPixels = line.PointA.Y + line.CalculatedYInPixels;
             }
 
             if (line.PointB.Parent == null)
             {
-                line.PointB.CalculatedX = line.PointB.X + line.CalculatedX;
-                line.PointB.CalculatedY = line.PointB.Y + line.CalculatedY;
+                line.PointB.CalculatedXInPixels = line.PointB.X + line.CalculatedXInPixels;
+                line.PointB.CalculatedYInPixels = line.PointB.Y + line.CalculatedYInPixels;
             }
         }
 
@@ -273,14 +273,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             if (sourceCurve.PointA.Parent == null)
             {
-                sourceCurve.PointA.CalculatedX = sourceCurve.PointA.X + sourceCurve.CalculatedX;
-                sourceCurve.PointA.CalculatedY = sourceCurve.PointA.Y + sourceCurve.CalculatedY;
+                sourceCurve.PointA.CalculatedXInPixels = sourceCurve.PointA.X + sourceCurve.CalculatedXInPixels;
+                sourceCurve.PointA.CalculatedYInPixels = sourceCurve.PointA.Y + sourceCurve.CalculatedYInPixels;
             }
 
             if (sourceCurve.PointB.Parent == null)
             {
-                sourceCurve.PointB.CalculatedX = sourceCurve.PointB.X + sourceCurve.CalculatedX;
-                sourceCurve.PointB.CalculatedY = sourceCurve.PointB.Y + sourceCurve.CalculatedY;
+                sourceCurve.PointB.CalculatedXInPixels = sourceCurve.PointB.X + sourceCurve.CalculatedXInPixels;
+                sourceCurve.PointB.CalculatedYInPixels = sourceCurve.PointB.Y + sourceCurve.CalculatedYInPixels;
             }
 
             var destPoints = new List<Point>(sourceCurve.LineCount + 1);
@@ -293,14 +293,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 float calculatedY;
 
                 Interpolator.Interpolate_Cubic_FromT(
-                    sourceCurve.PointA.CalculatedX, sourceCurve.ControlPointA.CalculatedX, sourceCurve.ControlPointB.CalculatedX, sourceCurve.PointB.CalculatedX,
-                    sourceCurve.PointA.CalculatedY, sourceCurve.ControlPointA.CalculatedY, sourceCurve.ControlPointB.CalculatedY, sourceCurve.PointB.CalculatedY,
+                    sourceCurve.PointA.CalculatedXInPixels, sourceCurve.ControlPointA.CalculatedXInPixels, sourceCurve.ControlPointB.CalculatedXInPixels, sourceCurve.PointB.CalculatedXInPixels,
+                    sourceCurve.PointA.CalculatedYInPixels, sourceCurve.ControlPointA.CalculatedYInPixels, sourceCurve.ControlPointB.CalculatedYInPixels, sourceCurve.PointB.CalculatedYInPixels,
                     t, out calculatedX, out calculatedY);
 
                 var destPoint = new Point
                 {
-                    CalculatedX = calculatedX,
-                    CalculatedY = calculatedY,
+                    CalculatedXInPixels = calculatedX,
+                    CalculatedYInPixels = calculatedY,
                     // Fill in meaningful values for the other properties.
                     X = calculatedX,
                     Y = calculatedY,
@@ -357,13 +357,13 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
         private void ApplyScaleModeViewPort(Element element)
         {
-            float ratioX = _diagram.AbsoluteWidth / _diagram.ScaleWidth;
-            element.CalculatedWidth *= ratioX;
-            element.CalculatedX = (element.CalculatedX - _diagram.ScaleX) * ratioX;
+            float ratioX = _diagram.WidthInPixels / _diagram.ScaledWidth;
+            element.CalculatedWidthInPixels *= ratioX;
+            element.CalculatedXInPixels = (element.CalculatedXInPixels - _diagram.ScaledX) * ratioX;
 
-            float ratioY = _diagram.AbsoluteHeight / _diagram.ScaleHeight;
-            element.CalculatedHeight *= ratioY;
-            element.CalculatedY = (element.CalculatedY - _diagram.ScaleY) * ratioY;
+            float ratioY = _diagram.HeightInPixels / _diagram.ScaledHeight;
+            element.CalculatedHeightInPixels *= ratioY;
+            element.CalculatedYInPixels = (element.CalculatedYInPixels - _diagram.ScaledY) * ratioY;
         }
     }
 }

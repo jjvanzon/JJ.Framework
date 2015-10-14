@@ -4,7 +4,8 @@ namespace JJ.Framework.Presentation.WinForms.Extensions
 {
     public static class ConversionExtensions
     {
-        public static VectorGraphics.EventArg.KeyEventArgs ToVectorGraphics(this System.Windows.Forms.KeyEventArgs sourceEventArgs)
+        public static VectorGraphics.EventArg.KeyEventArgs ToVectorGraphics(
+                 this System.Windows.Forms.KeyEventArgs sourceEventArgs)
         {
             if (sourceEventArgs == null) throw new NullException(() => sourceEventArgs);
 
@@ -17,15 +18,16 @@ namespace JJ.Framework.Presentation.WinForms.Extensions
             return destEventArgs;
         }
 
-        public static VectorGraphics.EventArg.MouseEventArgs ToVectorGraphics(this System.Windows.Forms.MouseEventArgs sourceEventArgs)
+        public static VectorGraphics.EventArg.MouseEventArgs ToVectorGraphics(
+                 this System.Windows.Forms.MouseEventArgs sourceEventArgsInPixels)
         {
-            if (sourceEventArgs == null) throw new NullException(() => sourceEventArgs);
+            if (sourceEventArgsInPixels == null) throw new NullException(() => sourceEventArgsInPixels);
 
             var destEventArgs = new VectorGraphics.EventArg.MouseEventArgs(
-                null, 
-                sourceEventArgs.X, 
-                sourceEventArgs.Y, 
-                sourceEventArgs.Button.ToVectorGraphics());
+                null,
+                sourceEventArgsInPixels.X, 
+                sourceEventArgsInPixels.Y, 
+                sourceEventArgsInPixels.Button.ToVectorGraphics());
 
             return destEventArgs;
         }

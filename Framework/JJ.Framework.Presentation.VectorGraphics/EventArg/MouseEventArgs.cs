@@ -8,6 +8,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.EventArg
     {
         public Element Element { get; private set; }
 
+        // TODO: These summaries might not be accurate anymore.
+
         /// <summary>
         /// The x-coordinate of the mouse pointer.
         /// It is the absolute position within a diagram.

@@ -46,68 +46,68 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        private float _absoluteWidth = 1;
+        private float _widthInPixels = 1;
         /// <summary> non-zero </summary>
-        public float AbsoluteWidth
+        public float WidthInPixels
         {
-            get { return _absoluteWidth; }
+            get { return _widthInPixels; }
             set
             {
-                if (value == 0) throw new ZeroException(() => AbsoluteWidth); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
-                _absoluteWidth = value;
+                if (value == 0) throw new ZeroException(() => WidthInPixels); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
+                _widthInPixels = value;
             }
         }
 
-        private float _absoluteHeight = 1;
+        private float _heightInPixels = 1;
         /// <summary> non-zero </summary>
-        public float AbsoluteHeight
+        public float HeightInPixels
         {
-            get { return _absoluteHeight; }
+            get { return _heightInPixels; }
             set
             {
-                if (value == 0) throw new ZeroException(() => AbsoluteHeight);  // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
-                _absoluteHeight = value;
+                if (value == 0) throw new ZeroException(() => HeightInPixels);  // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
+                _heightInPixels = value;
             }
         }
 
         public ScaleModeEnum ScaleModeEnum { get; set; }
 
-        public float ScaleX { get; set; }
-        public float ScaleY { get; set; }
+        public float ScaledX { get; set; }
+        public float ScaledY { get; set; }
 
-        private float _scaleWidth = 1;
+        private float _scaledWidth = 1;
         /// <summary> non-zero </summary>
-        public float ScaleWidth
+        public float ScaledWidth
         {
-            get { return _scaleWidth; }
+            get { return _scaledWidth; }
             set
             {
-                if (value == 0) throw new ZeroException(() => ScaleWidth); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
-                _scaleWidth = value;
+                if (value == 0) throw new ZeroException(() => ScaledWidth); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
+                _scaledWidth = value;
             }
         }
 
-        private float _scaleHeight = 1;
+        private float _scaledHeight = 1;
         /// <summary> non-zero </summary>
-        public float ScaleHeight
+        public float ScaledHeight
         {
-            get { return _scaleHeight; }
+            get { return _scaledHeight; }
             set
             {
-                if (value == 0) throw new ZeroException(() => ScaleHeight); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
-                _scaleHeight = value;
+                if (value == 0) throw new ZeroException(() => ScaledHeight); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
+                _scaledHeight = value;
             }
         }
 
-        public float AbsoluteToScaledX(float absoluteX)
+        public float PixelsToScaledX(float xInPixels)
         {
             switch (ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
-                    return absoluteX;
+                    return xInPixels;
 
                 case ScaleModeEnum.ViewPort:
-                    float scaledX = ScaleX + absoluteX / AbsoluteWidth * ScaleWidth;
+                    float scaledX = ScaledX + xInPixels / WidthInPixels * ScaledWidth;
                     return scaledX;
 
                 default:
@@ -115,17 +115,50 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        public float AbsoluteToScaledY(float absoluteY)
+        public float PixelsToScaledY(float yInPixels)
         {
             switch (ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
-                    return absoluteY;
+                    return yInPixels;
 
                 case ScaleModeEnum.ViewPort:
-
-                    float scaledY = ScaleY + absoluteY / AbsoluteHeight * ScaleHeight;
+                    float scaledY = ScaledY + yInPixels / HeightInPixels * ScaledHeight;
                     return scaledY;
+
+                default:
+                    throw new ValueNotSupportedException(ScaleModeEnum);
+            }
+        }
+
+        /// <summary> TODO: Confirm that it works. </summary>
+        public float ScaledToPixelsX(float scaledX)
+        {
+            switch (ScaleModeEnum)
+            {
+                case ScaleModeEnum.None:
+                    return scaledX;
+
+                case ScaleModeEnum.ViewPort:
+                    float xInPixels = (scaledX - ScaledX) / ScaledWidth * WidthInPixels;
+                    return xInPixels;
+
+                default:
+                    throw new ValueNotSupportedException(ScaleModeEnum);
+            }
+        }
+
+        /// <summary> TODO: Confirm that it works. </summary>
+        public float ScaledToPixelsY(float scaledY)
+        {
+            switch (ScaleModeEnum)
+            {
+                case ScaleModeEnum.None:
+                    return scaledY;
+
+                case ScaleModeEnum.ViewPort:
+                    float yInPixels = (scaledY - ScaledY) / ScaledHeight * HeightInPixels;
+                    return yInPixels;
 
                 default:
                     throw new ValueNotSupportedException(ScaleModeEnum);

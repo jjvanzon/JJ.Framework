@@ -26,10 +26,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             var diagram = new Diagram();
             diagram.ScaleModeEnum = ScaleModeEnum.ViewPort;
-            diagram.ScaleX = 50;
-            diagram.ScaleY = 50;
-            diagram.ScaleWidth = 400;
-            diagram.ScaleHeight = 400;
+            diagram.ScaledX = 50;
+            diagram.ScaledY = 50;
+            diagram.ScaledWidth = 400;
+            diagram.ScaledHeight = 400;
 
             var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
@@ -63,10 +63,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             var diagram = new Diagram();
             diagram.ScaleModeEnum = ScaleModeEnum.ViewPort;
-            diagram.ScaleX = 50;
-            diagram.ScaleY = 50;
-            diagram.ScaleWidth = 400;
-            diagram.ScaleHeight = 400;
+            diagram.ScaledX = 50;
+            diagram.ScaledY = 50;
+            diagram.ScaledWidth = 400;
+            diagram.ScaledHeight = 400;
 
             var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
@@ -87,10 +87,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         {
             var diagram = new Diagram();
             diagram.ScaleModeEnum = ScaleModeEnum.ViewPort;
-            diagram.ScaleX = -10;
-            diagram.ScaleY = -10;
-            diagram.ScaleWidth = 30;
-            diagram.ScaleHeight = 30;
+            diagram.ScaledX = -10;
+            diagram.ScaledY = -10;
+            diagram.ScaledWidth = 30;
+            diagram.ScaledHeight = 30;
 
             var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;

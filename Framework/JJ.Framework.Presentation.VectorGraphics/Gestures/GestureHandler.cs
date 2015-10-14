@@ -1,10 +1,10 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using System.Collections.Generic;
 using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Mathematics;
-using System;
+using JJ.Framework.Presentation.VectorGraphics.EventArg;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
@@ -26,6 +26,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         {
             FinalizeMouseMoveGesture();
         }
+
+        // MouseDown
 
         public void HandleMouseDown(MouseEventArgs e)
         {
@@ -91,6 +93,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 _mouseCapturingElement = child;
             }
         }
+
+        // MouseMove
 
         /// <summary>
         /// In WinForms a mouse move will go off upon mouse down, even though you did not even move the mouse at all
@@ -176,6 +180,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             TryBubbleMouseMove(sender, parent, e);
         }
 
+        // MouseUp
+
         public void HandleMouseUp(MouseEventArgs e)
         {
             _mouseMoveGesture.HandleMouseUp(this, e);
@@ -237,6 +243,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             TryBubbleMouseUp(sender, parent, e);
         }
 
+        // Key Events
+
         public void HandleKeyDown(KeyEventArgs e)
         {
             foreach (IGesture gesture in _diagram.Gestures.ToArray())
@@ -263,6 +271,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
         }
 
+        // Hit Testing
+
         private Element TryGetHitElement(IEnumerable<Element> zOrderedElements, float pointerX, float pointerY)
         {
             foreach (Element element in zOrderedElements.Reverse())
@@ -274,8 +284,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
                 bool isInRectangle = Geometry.IsInRectangle(
                     pointerX, pointerY,
-                    element.CalculatedX, element.CalculatedY,
-                    element.CalculatedX + element.CalculatedWidth, element.CalculatedY + element.CalculatedHeight);
+                    element.CalculatedXInPixels, element.CalculatedYInPixels,
+                    element.CalculatedXInPixels + element.CalculatedWidthInPixels, element.CalculatedYInPixels + element.CalculatedHeightInPixels);
 
                 if (isInRectangle)
                 {

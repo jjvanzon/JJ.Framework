@@ -9,9 +9,7 @@ using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
-    /// <summary>
-    /// A base class that can contain VectorGraphics child elements.
-    /// </summary>
+    /// <summary> base class that can contain VectorGraphics child elements. </summary>
     public abstract class Element
     {
         internal Element(IList<IGesture> gestures)
@@ -29,16 +27,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             Enabled = true;
         }
 
-        // Values
+        // Coordinates & Values
 
-        /// <summary>
-        /// X-coordinate relative to the parent.
-        /// </summary>
+        /// <summary> X-coordinate relative to the parent. depending on Diagram.ScaleModeEnum. </summary>
         public abstract float X { get; set; }
 
-        /// <summary>
-        /// X-coordinate relative to the parent.
-        /// </summary>
+        /// <summary> Y-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
         public abstract float Y { get; set; }
 
         public abstract float Width { get; set; }
@@ -46,6 +40,66 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         public bool Visible { get; set; }
         public int ZIndex { get; set; }
         public object Tag { get; set; }
+
+        /// <summary> TODO: Confirm that it works. </summary>
+        public float RelativeToAbsoluteX(float relativeX)
+        {
+            float absoluteX = relativeX;
+
+            Element ancestor = Parent;
+            while (ancestor != null)
+            {
+                absoluteX += ancestor.X;
+                ancestor = ancestor.Parent;
+            }
+
+            return absoluteX;
+        }
+
+        /// <summary> TODO: Confirm that it works. </summary>
+        public float RelativeToAbsoluteY(float relativeY)
+        {
+            float absoluteY = relativeY;
+
+            Element ancestor = Parent;
+            while (ancestor != null)
+            {
+                absoluteY += ancestor.Y;
+                ancestor = ancestor.Parent;
+            }
+
+            return absoluteY;
+        }
+
+        /// <summary> TODO: Confirm that it works. </summary>
+        public float AbsoluteRelativeX(float absoluteX)
+        {
+            float relativeX = absoluteX;
+
+            Element ancestor = Parent;
+            while (ancestor != null)
+            {
+                relativeX -= ancestor.X;
+                ancestor = ancestor.Parent;
+            }
+
+            return relativeX;
+        }
+
+        /// <summary> TODO: Confirm that it works. </summary>
+        public float AbsoluteRelativeY(float absoluteY)
+        {
+            float relativeY = absoluteY;
+
+            Element ancestor = Parent;
+            while (ancestor != null)
+            {
+                relativeY -= ancestor.Y;
+                ancestor = ancestor.Parent;
+            }
+
+            return relativeY;
+        }
 
         // Related Objects
 
@@ -101,31 +155,18 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public bool MustBubble { get; set; }
 
-        /// <summary>
-        /// Indicates whether the element will respond to mouse and keyboard gestures.
-        /// </summary>
+        /// <summary> Indicates whether the element will respond to mouse and keyboard gestures. </summary>
         public bool Enabled { get; set; }
 
         // Calculated Values
 
-        /// <summary>
-        /// The calculated ZIndex, which is derived from both
-        /// the ZIndex and the containment structure.
-        /// </summary>
+        /// <summary> The calculated ZIndex, which is derived from both the ZIndex and the containment structure. </summary>
         public int CalculatedZIndex { get; internal set; }
 
-        /// <summary>
-        /// Calculated, absolute x-coordinate.
-        /// </summary>
-        public float CalculatedX { get; internal set; }
-
-        /// <summary>
-        /// Calculated, absolute y-coordinate.
-        /// </summary>
-        public float CalculatedY { get; internal set; }
-
-        public float CalculatedWidth { get; internal set; }
-        public float CalculatedHeight { get; internal set; }
+        public float CalculatedXInPixels { get; internal set; }
+        public float CalculatedYInPixels { get; internal set; }
+        public float CalculatedWidthInPixels { get; internal set; }
+        public float CalculatedHeightInPixels { get; internal set; }
 
         public int CalculatedLayer { get; internal set; }
         public bool CalculatedVisible { get; internal set; }
