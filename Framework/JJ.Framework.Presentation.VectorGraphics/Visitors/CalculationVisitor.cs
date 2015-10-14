@@ -357,16 +357,13 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
         private void ApplyScaleModeViewPort(Element element)
         {
-            element.CalculatedX -= _diagram.ScaleX;
-            element.CalculatedY -= _diagram.ScaleY;
-
             float ratioX = _diagram.AbsoluteWidth / _diagram.ScaleWidth;
             element.CalculatedWidth *= ratioX;
-            element.CalculatedX *= ratioX;
+            element.CalculatedX = (element.CalculatedX - _diagram.ScaleX) * ratioX;
 
             float ratioY = _diagram.AbsoluteHeight / _diagram.ScaleHeight;
             element.CalculatedHeight *= ratioY;
-            element.CalculatedY *= ratioY;
+            element.CalculatedY = (element.CalculatedY - _diagram.ScaleY) * ratioY;
         }
     }
 }

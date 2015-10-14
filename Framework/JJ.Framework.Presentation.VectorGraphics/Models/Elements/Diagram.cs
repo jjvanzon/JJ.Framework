@@ -7,6 +7,7 @@ using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using JJ.Framework.Common;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
@@ -52,7 +53,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             get { return _absoluteWidth; }
             set
             {
-                if (value == 0) throw new ZeroException(() => AbsoluteWidth);
+                if (value == 0) throw new ZeroException(() => AbsoluteWidth); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
                 _absoluteWidth = value;
             }
         }
@@ -64,7 +65,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             get { return _absoluteHeight; }
             set
             {
-                if (value == 0) throw new ZeroException(() => AbsoluteHeight);
+                if (value == 0) throw new ZeroException(() => AbsoluteHeight);  // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
                 _absoluteHeight = value;
             }
         }
@@ -74,14 +75,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         public float ScaleX { get; set; }
         public float ScaleY { get; set; }
 
-        private float _scaleWidth = 1; 
+        private float _scaleWidth = 1;
         /// <summary> non-zero </summary>
         public float ScaleWidth
         {
             get { return _scaleWidth; }
             set
             {
-                if (value == 0) throw new ZeroException(() => ScaleWidth);
+                if (value == 0) throw new ZeroException(() => ScaleWidth); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
                 _scaleWidth = value;
             }
         }
@@ -93,15 +94,48 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             get { return _scaleHeight; }
             set
             {
-                if (value == 0) throw new ZeroException(() => ScaleHeight);
+                if (value == 0) throw new ZeroException(() => ScaleHeight); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
                 _scaleHeight = value;
+            }
+        }
+
+        public float AbsoluteToScaledX(float absoluteX)
+        {
+            switch (ScaleModeEnum)
+            {
+                case ScaleModeEnum.None:
+                    return absoluteX;
+
+                case ScaleModeEnum.ViewPort:
+                    float scaledX = ScaleX + absoluteX / AbsoluteWidth * ScaleWidth;
+                    return scaledX;
+
+                default:
+                    throw new ValueNotSupportedException(ScaleModeEnum);
+            }
+        }
+
+        public float AbsoluteToScaledY(float absoluteY)
+        {
+            switch (ScaleModeEnum)
+            {
+                case ScaleModeEnum.None:
+                    return absoluteY;
+
+                case ScaleModeEnum.ViewPort:
+
+                    float scaledY = ScaleY + absoluteY / AbsoluteHeight * ScaleHeight;
+                    return scaledY;
+
+                default:
+                    throw new ValueNotSupportedException(ScaleModeEnum);
             }
         }
 
         public void Recalculate()
         {
-             var visitor = new CalculationVisitor();
-             _elementsOrderByZIndex = visitor.Execute(this);
+            var visitor = new CalculationVisitor();
+            _elementsOrderByZIndex = visitor.Execute(this);
         }
 
         // Gestures

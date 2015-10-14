@@ -124,7 +124,7 @@ namespace JJ.Framework.Data.Memory.Internal
         {
             if (_mapping.IdentityType != IdentityType.AutoIncrement)
             {
-                throw new Exception(String.Format("ID should no be automatically set for IdentityType '{0}'.", _mapping.IdentityType));
+                throw new Exception(String.Format("ID should not be automatically set for IdentityType '{0}'.", _mapping.IdentityType));
             }
 
             PropertyInfo property = GetIdentityProperty(entity);

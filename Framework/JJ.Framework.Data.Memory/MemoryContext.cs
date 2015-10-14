@@ -77,7 +77,7 @@ namespace JJ.Framework.Data.Memory
 
         public override IEnumerable<TEntity> GetAll<TEntity>()
         {
-            EntityStore<TEntity> entityStore = GetEntityStore < TEntity>();
+            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
             return entityStore.GetAll();
         }
 

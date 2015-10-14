@@ -99,6 +99,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 float deltaX = e.X - _mouseDownPointerX;
                 float deltaY = e.Y - _mouseDownPointerY;
 
+                // TODO: Probably e.X and _mouseDownPointerX should already have been scaled coordinates.
+                deltaX = _diagram.AbsoluteToScaledX(deltaX) - _diagram.Background.X;
+                deltaY = _diagram.AbsoluteToScaledY(deltaY) - _diagram.Background.Y;
+
                 _elementBeingMoved.X = _mouseDownElementX + deltaX;
                 _elementBeingMoved.Y = _mouseDownElementY + deltaY;
 

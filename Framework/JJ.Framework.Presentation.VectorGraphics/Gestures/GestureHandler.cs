@@ -265,7 +265,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         private Element TryGetHitElement(IEnumerable<Element> zOrderedElements, float pointerX, float pointerY)
         {
-
             foreach (Element element in zOrderedElements.Reverse())
             {
                 if (!element.CalculatedEnabled)
