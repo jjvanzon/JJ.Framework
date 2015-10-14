@@ -11,7 +11,7 @@ using JJ.Framework.Common;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
-    public class Diagram
+    public class Diagram : IDiagramGestureHandling
     {
         public Diagram()
         {
@@ -181,14 +181,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         private readonly GestureHandler _gestureHandler;
 
-        public void HandleMouseDown(MouseEventArgs e)
+        void IDiagramGestureHandling.HandleMouseDown(MouseEventArgs e)
         {
             _gestureHandler.HandleMouseDown(e);
 
             Recalculate();
         }
 
-        public void HandleMouseMove(MouseEventArgs e)
+        void IDiagramGestureHandling.HandleMouseMove(MouseEventArgs e)
         {
             _gestureHandler.HandleMouseMove(e);
 
@@ -198,19 +198,19 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        public void HandleMouseUp(MouseEventArgs e)
+        void IDiagramGestureHandling.HandleMouseUp(MouseEventArgs e)
         {
             _gestureHandler.HandleMouseUp(e);
 
             Recalculate();
         }
 
-        public void HandleKeyDown(KeyEventArgs keyEventArgs)
+        void IDiagramGestureHandling.HandleKeyDown(KeyEventArgs keyEventArgs)
         {
             _gestureHandler.HandleKeyDown(keyEventArgs);
         }
 
-        public void HandleKeyUp(KeyEventArgs keyEventArgs)
+        void IDiagramGestureHandling.HandleKeyUp(KeyEventArgs keyEventArgs)
         {
             _gestureHandler.HandleKeyUp(keyEventArgs);
         }

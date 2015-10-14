@@ -41,7 +41,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                Diagram.HandleMouseDown(e.ToVectorGraphics());
+                ((IDiagramGestureHandling)Diagram).HandleMouseDown(e.ToVectorGraphics());
             }
 
             base.OnMouseDown(e);
@@ -53,7 +53,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                Diagram.HandleMouseMove(e.ToVectorGraphics());
+                ((IDiagramGestureHandling)Diagram).HandleMouseMove(e.ToVectorGraphics());
             }
 
             base.OnMouseMove(e);
@@ -65,7 +65,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                Diagram.HandleMouseUp(e.ToVectorGraphics());
+                ((IDiagramGestureHandling)Diagram).HandleMouseUp(e.ToVectorGraphics());
             }
 
             base.OnMouseUp(e);
@@ -77,7 +77,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                Diagram.HandleKeyDown(e.ToVectorGraphics());
+                 ((IDiagramGestureHandling)Diagram).HandleKeyDown(e.ToVectorGraphics());
             }
 
             base.OnKeyDown(e);
@@ -87,7 +87,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                Diagram.HandleKeyUp(e.ToVectorGraphics());
+                ((IDiagramGestureHandling)Diagram).HandleKeyUp(e.ToVectorGraphics());
             }
 
             base.OnKeyUp(e);
