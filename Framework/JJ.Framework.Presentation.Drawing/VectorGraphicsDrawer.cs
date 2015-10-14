@@ -64,7 +64,9 @@ namespace JJ.Framework.Presentation.Drawing
         // Warning CA1811	'VectorGraphicsDrawer.DrawBackground(Rectangle, Graphics)' appears to have no upstream public or protected callers.
         private static void DrawBackground(VectorGraphicsElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
-            if (sourceRectangle.CalculatedVisible && sourceRectangle.BackStyle.Visible)
+            ICalculatedValues calculatedValues = sourceRectangle;
+
+            if (calculatedValues.CalculatedVisible && sourceRectangle.BackStyle.Visible)
             {
                 Color destBackColor = sourceRectangle.BackStyle.Color.ToSystemDrawing();
                 destGraphics.Clear(destBackColor);
@@ -73,7 +75,9 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawPoint(VectorGraphicsElements.Point sourcePoint, Graphics destGraphics)
         {
-            if (sourcePoint.CalculatedVisible && sourcePoint.PointStyle.Visible)
+            ICalculatedValues calculatedValues = sourcePoint;
+
+            if (calculatedValues.CalculatedVisible && sourcePoint.PointStyle.Visible)
             {
                 RectangleF destRectangle = sourcePoint.ToSystemDrawingRectangleF();
                 Brush destBrush = sourcePoint.PointStyle.ToSystemDrawingBrush();
@@ -84,16 +88,26 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawLine(Line sourceLine, Graphics destGraphics)
         {
-            if (sourceLine.CalculatedVisible && sourceLine.LineStyle.Visible)
+            ICalculatedValues sourceLine_CalculatedValues = sourceLine;
+
+            if (sourceLine_CalculatedValues.CalculatedVisible && sourceLine.LineStyle.Visible)
             {
+                ICalculatedValues pointA_CalculatedValues = sourceLine.PointA;
+                ICalculatedValues pointB_CalculatedValues = sourceLine.PointB;
+
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
-                destGraphics.DrawLine(destPen, sourceLine.PointA.CalculatedXInPixels, sourceLine.PointA.CalculatedYInPixels, sourceLine.PointB.CalculatedXInPixels, sourceLine.PointB.CalculatedYInPixels);
+                destGraphics.DrawLine(
+                    destPen, 
+                    pointA_CalculatedValues.CalculatedXInPixels, pointA_CalculatedValues.CalculatedYInPixels,
+                    pointB_CalculatedValues.CalculatedXInPixels, pointB_CalculatedValues.CalculatedYInPixels);
             }
         }
 
         private static void DrawRectangle(VectorGraphicsElements.Rectangle sourceRectangle, Graphics destGraphics)
         {
-            if (!sourceRectangle.CalculatedVisible)
+            ICalculatedValues calculatedValues = sourceRectangle;
+
+            if (!calculatedValues.CalculatedVisible)
             {
                 return;
             }
@@ -116,23 +130,23 @@ namespace JJ.Framework.Presentation.Drawing
                     Pen destPen = lineStyle.ToSystemDrawing();
                     destGraphics.DrawRectangle(
                         destPen,
-                        sourceRectangle.CalculatedXInPixels,
-                        sourceRectangle.CalculatedYInPixels,
-                        sourceRectangle.CalculatedWidthInPixels,
-                        sourceRectangle.CalculatedHeightInPixels);
+                        calculatedValues.CalculatedXInPixels,
+                        calculatedValues.CalculatedYInPixels,
+                        calculatedValues.CalculatedWidthInPixels,
+                        calculatedValues.CalculatedHeightInPixels);
                 }
             }
             else
             {
                 // Draw 4 Border Lines (with different styles)
 
-                float right = sourceRectangle.CalculatedXInPixels + sourceRectangle.CalculatedWidthInPixels;
-                float bottom = sourceRectangle.CalculatedYInPixels + sourceRectangle.CalculatedHeightInPixels;
+                float right = calculatedValues.CalculatedXInPixels + calculatedValues.CalculatedWidthInPixels;
+                float bottom = calculatedValues.CalculatedYInPixels + calculatedValues.CalculatedHeightInPixels;
 
-                PointF destTopLeftPointF = new PointF(sourceRectangle.CalculatedXInPixels, sourceRectangle.CalculatedYInPixels);
-                PointF destTopRightPointF = new PointF(right, sourceRectangle.CalculatedYInPixels);
+                PointF destTopLeftPointF = new PointF(calculatedValues.CalculatedXInPixels, calculatedValues.CalculatedYInPixels);
+                PointF destTopRightPointF = new PointF(right, calculatedValues.CalculatedYInPixels);
                 PointF destBottomRightPointF = new PointF(right, bottom);
-                PointF destBottomLeftPointF = new PointF(sourceRectangle.CalculatedXInPixels, bottom);
+                PointF destBottomLeftPointF = new PointF(calculatedValues.CalculatedXInPixels, bottom);
                 
                 Pen destTopPen = sourceRectangle.TopLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
@@ -150,14 +164,16 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawLabel(Label sourceLabel, Graphics destGraphics)
         {
-            if (!sourceLabel.CalculatedVisible)
+            ICalculatedValues calculatedValues = sourceLabel;
+
+            if (!calculatedValues.CalculatedVisible)
             {
                 return;
             }
 
             StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
             System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
-            RectangleF destRectangle = new RectangleF(sourceLabel.CalculatedXInPixels, sourceLabel.CalculatedYInPixels, sourceLabel.CalculatedWidthInPixels, sourceLabel.CalculatedHeightInPixels);
+            RectangleF destRectangle = new RectangleF(calculatedValues.CalculatedXInPixels, calculatedValues.CalculatedYInPixels, calculatedValues.CalculatedWidthInPixels, calculatedValues.CalculatedHeightInPixels);
             Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 
             destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);

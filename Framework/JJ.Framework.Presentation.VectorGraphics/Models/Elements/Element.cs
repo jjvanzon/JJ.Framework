@@ -10,7 +10,7 @@ using System;
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
     /// <summary> base class that can contain VectorGraphics child elements. </summary>
-    public abstract class Element
+    public abstract class Element : ICalculatedValues
     {
         internal Element(IList<IGesture> gestures)
         {
@@ -72,7 +72,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         }
 
         /// <summary> TODO: Confirm that it works. </summary>
-        public float AbsoluteRelativeX(float absoluteX)
+        public float AbsoluteToRelativeX(float absoluteX)
         {
             float relativeX = absoluteX;
 
@@ -87,7 +87,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         }
 
         /// <summary> TODO: Confirm that it works. </summary>
-        public float AbsoluteRelativeY(float absoluteY)
+        public float AbsoluteToRelativeY(float absoluteY)
         {
             float relativeY = absoluteY;
 
@@ -161,15 +161,25 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         // Calculated Values
 
         /// <summary> The calculated ZIndex, which is derived from both the ZIndex and the containment structure. </summary>
-        public int CalculatedZIndex { get; internal set; }
+        internal int CalculatedZIndex { get; set; }
+        internal float CalculatedXInPixels { get; set; }
+        internal float CalculatedYInPixels { get; set; }
+        internal float CalculatedWidthInPixels { get; set; }
+        internal float CalculatedHeightInPixels { get; set; }
+        internal int CalculatedLayer { get; set; }
+        internal bool CalculatedVisible { get; set; }
+        internal bool CalculatedEnabled { get; set; }
 
-        public float CalculatedXInPixels { get; internal set; }
-        public float CalculatedYInPixels { get; internal set; }
-        public float CalculatedWidthInPixels { get; internal set; }
-        public float CalculatedHeightInPixels { get; internal set; }
+        // Public explicit interface is for accessing calculated values,
+        // so that the main interface is not obscured.
 
-        public int CalculatedLayer { get; internal set; }
-        public bool CalculatedVisible { get; internal set; }
-        public bool CalculatedEnabled { get; internal set; }
+        int ICalculatedValues.CalculatedZIndex { get { return CalculatedZIndex; } }
+        float ICalculatedValues.CalculatedXInPixels { get { return CalculatedXInPixels; } }
+        float ICalculatedValues.CalculatedYInPixels { get { return CalculatedYInPixels; } }
+        float ICalculatedValues.CalculatedWidthInPixels { get { return CalculatedWidthInPixels; } }
+        float ICalculatedValues.CalculatedHeightInPixels { get { return CalculatedHeightInPixels; } }
+        int ICalculatedValues.CalculatedLayer { get { return CalculatedLayer; } }
+        bool ICalculatedValues.CalculatedVisible { get { return CalculatedVisible; } }
+        bool ICalculatedValues.CalculatedEnabled { get { return CalculatedEnabled; } }
     }
 }

@@ -47,12 +47,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             IList<Element> elements = visitor.Execute(diagram);
 
             AssertHelper.AreEqual(4, () => elements.Count);
-            AssertHelper.AreEqual(1, () => elements[1].CalculatedXInPixels);
-            AssertHelper.AreEqual(2, () => elements[1].CalculatedYInPixels);
-            AssertHelper.AreEqual(11, () => elements[2].CalculatedXInPixels);
-            AssertHelper.AreEqual(22, () => elements[2].CalculatedYInPixels);
-            AssertHelper.AreEqual(13, () => elements[3].CalculatedXInPixels);
-            AssertHelper.AreEqual(24, () => elements[3].CalculatedYInPixels);
+            AssertHelper.AreEqual(1, () => ((ICalculatedValues)elements[1]).CalculatedXInPixels);
+            AssertHelper.AreEqual(2, () => ((ICalculatedValues)elements[1]).CalculatedYInPixels);
+            AssertHelper.AreEqual(11, () => ((ICalculatedValues)elements[2]).CalculatedXInPixels);
+            AssertHelper.AreEqual(22, () => ((ICalculatedValues)elements[2]).CalculatedYInPixels);
+            AssertHelper.AreEqual(13, () => ((ICalculatedValues)elements[3]).CalculatedXInPixels);
+            AssertHelper.AreEqual(24, () => ((ICalculatedValues)elements[3]).CalculatedYInPixels);
         }
     }
 }
