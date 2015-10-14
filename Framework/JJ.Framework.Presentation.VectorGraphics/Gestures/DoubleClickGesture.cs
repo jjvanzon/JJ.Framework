@@ -34,12 +34,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             _doubleClickDeltaInPixels = doubleClickDeltaInPixels;
         }
 
-        public override bool MouseCaptureRequired
+        protected override bool MouseCaptureRequired
         {
             get { return false; }
         }
 
-        public override void HandleMouseDown(object sender, MouseEventArgs e)
+        protected override void HandleMouseDown(object sender, MouseEventArgs e)
         {
             if (_isFirstMouseDown)
             {

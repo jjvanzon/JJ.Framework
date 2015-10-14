@@ -22,7 +22,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             _dragGestures = dragGestures;
         }
 
-        public override void HandleMouseUp(object sender, MouseEventArgs e)
+        protected override void HandleMouseUp(object sender, MouseEventArgs e)
         {
             foreach (DragGesture dragGesture in _dragGestures)
             {

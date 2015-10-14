@@ -35,7 +35,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         private Element _previousSender;
 
-        public override void HandleMouseMove(object sender, MouseEventArgs e)
+        protected override void HandleMouseMove(object sender, MouseEventArgs e)
         {
             if (MouseLeave == null)
             {

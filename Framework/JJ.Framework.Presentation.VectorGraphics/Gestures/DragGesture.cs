@@ -51,7 +51,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
         }
 
-        public override void HandleMouseDown(object sender, MouseEventArgs e)
+        protected override void HandleMouseDown(object sender, MouseEventArgs e)
         {
             DoInitializeDiagram(e);
 
@@ -63,7 +63,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             DoDragging(sender, e);
         }
 
-        public override void HandleMouseUp(object sender, MouseEventArgs e)
+        protected override void HandleMouseUp(object sender, MouseEventArgs e)
         {
             DoDragCancelled(sender);
         }

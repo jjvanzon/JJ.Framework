@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
+﻿using System;
+using JJ.Framework.Presentation.VectorGraphics.EventArg;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
@@ -11,28 +12,38 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
     public abstract class GestureBase : IGesture
     {
         /// <summary> Does nothing. summary>
-        public virtual void HandleMouseDown(object sender, MouseEventArgs e)
+        protected virtual void HandleMouseDown(object sender, MouseEventArgs e)
         { }
 
         /// <summary> Base member does nothing. </summary>
-        public virtual void HandleMouseMove(object sender, MouseEventArgs e)
+        protected virtual void HandleMouseMove(object sender, MouseEventArgs e)
         { }
 
         /// <summary> Base member does nothing. </summary>
-        public virtual void HandleMouseUp(object sender, MouseEventArgs e)
+        protected virtual void HandleMouseUp(object sender, MouseEventArgs e)
         { }
 
         /// <summary> Base member does nothing. </summary>
-        public virtual void HandleKeyDown(object sender, KeyEventArgs e)
+        protected virtual void HandleKeyDown(object sender, KeyEventArgs e)
         { }
 
         /// <summary> Base member does nothing. </summary>
-        public virtual void HandleKeyUp(object sender, KeyEventArgs e)
+        protected virtual void HandleKeyUp(object sender, KeyEventArgs e)
         { }
 
-        public virtual bool MouseCaptureRequired
+        protected virtual bool MouseCaptureRequired
         {
             get { return false; }
         }
+
+        // Public explicit interface for exposing the sending of primitive gestures
+        // without obscuring the main interface.
+
+        void IGesture.HandleMouseDown(object sender, MouseEventArgs e) { HandleMouseDown(sender, e); }
+        void IGesture.HandleMouseMove(object sender, MouseEventArgs e) { HandleMouseMove(sender, e); }
+        void IGesture.HandleMouseUp(object sender, MouseEventArgs e) { HandleMouseUp(sender, e); }
+        void IGesture.HandleKeyDown(object sender, KeyEventArgs e) { HandleKeyDown(sender, e); }
+        void IGesture.HandleKeyUp(object sender, KeyEventArgs e) { HandleKeyUp(sender, e); }
+        bool IGesture.MouseCaptureRequired { get { return MouseCaptureRequired; } }
     }
 }

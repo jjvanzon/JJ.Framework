@@ -17,13 +17,13 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         private float _previousPointerX;
         private float _previousPointerY;
 
-        public override void HandleMouseDown(object sender, MouseEventArgs e)
+        protected override void HandleMouseDown(object sender, MouseEventArgs e)
         {
             _previousPointerX = e.X;
             _previousPointerY = e.Y;
         }
 
-        public override void HandleMouseMove(object sender, MouseEventArgs e)
+        protected override void HandleMouseMove(object sender, MouseEventArgs e)
         {
             if (MouseMove == null)
             {

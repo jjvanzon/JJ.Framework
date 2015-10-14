@@ -40,12 +40,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
         }
 
-        public override bool MouseCaptureRequired
+        protected override bool MouseCaptureRequired
         {
             get { return true; }
         }
 
-        public override void HandleMouseDown(object sender, MouseEventArgs e)
+        protected override void HandleMouseDown(object sender, MouseEventArgs e)
         {
             DoInitializeDiagram(e);
             DoMouseDown(e);
@@ -56,7 +56,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             DoMouseMove(sender, e);
         }
 
-        public override void HandleMouseUp(object sender, MouseEventArgs e)
+        protected override void HandleMouseUp(object sender, MouseEventArgs e)
         {
             DoMouseUp(sender);
         }
