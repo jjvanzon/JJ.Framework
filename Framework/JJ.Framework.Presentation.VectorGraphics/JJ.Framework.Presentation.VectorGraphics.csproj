@@ -46,7 +46,7 @@
     <Compile Include="EventArg\DroppedEventArgs.cs" />
     <Compile Include="EventArg\DraggingEventArgs.cs" />
     <Compile Include="EventArg\KeyEventArgs.cs" />
-    <Compile Include="EventArg\MouseEventArgsInPixels.cs" />
+    <Compile Include="EventArg\~MouseEventArgsRelative.cs" />
     <Compile Include="Gestures\DragGesture.cs" />
     <Compile Include="Gestures\DropGesture.cs" />
     <Compile Include="Gestures\GestureBase.cs" />

@@ -19,8 +19,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         protected override void HandleMouseDown(object sender, MouseEventArgs e)
         {
-            _previousPointerX = e.X;
-            _previousPointerY = e.Y;
+            _previousPointerX = e.XInPixels;
+            _previousPointerY = e.YInPixels;
         }
 
         protected override void HandleMouseMove(object sender, MouseEventArgs e)
@@ -30,14 +30,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return;
             }
 
-            if (_previousPointerX != e.X ||
-                _previousPointerY != e.Y)
+            if (_previousPointerX != e.XInPixels ||
+                _previousPointerY != e.YInPixels)
             {
                 MouseMove(sender, e);
             }
 
-            _previousPointerX = e.X;
-            _previousPointerY = e.Y;
+            _previousPointerX = e.XInPixels;
+            _previousPointerY = e.YInPixels;
         }
     }
 }

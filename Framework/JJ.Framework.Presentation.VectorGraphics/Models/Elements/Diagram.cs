@@ -98,7 +98,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
                 _scaledHeight = value;
             }
         }
-
+        
         public float PixelsToScaledX(float xInPixels)
         {
             switch (ScaleModeEnum)

@@ -11,8 +11,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         private float _mouseDownElementX;
         private float _mouseDownElementY;
-        private float _mouseDownPointerX;
-        private float _mouseDownPointerY;
+        private float _mouseDownPointerXInPixels;
+        private float _mouseDownPointerYInPixels;
 
         private Diagram _diagram;
         private MouseMoveGesture _diagramMouseMoveGesture;
@@ -85,8 +85,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 _mouseDownElementX = _elementBeingMoved.X;
                 _mouseDownElementY = _elementBeingMoved.Y;
 
-                _mouseDownPointerX = e.X;
-                _mouseDownPointerY = e.Y;
+                _mouseDownPointerXInPixels = e.XInPixels;
+                _mouseDownPointerYInPixels = e.YInPixels;
 
                 _wasMoved = false;
             }
@@ -96,12 +96,16 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         {
             if (_elementBeingMoved != null)
             {
-                float deltaX = e.X - _mouseDownPointerX;
-                float deltaY = e.Y - _mouseDownPointerY;
+                float deltaXInPixels = e.XInPixels - _mouseDownPointerXInPixels;
+                float deltaYInPixels = e.YInPixels - _mouseDownPointerYInPixels;
 
-                // TODO: Probably e.X and _mouseDownPointerX should already have been scaled coordinates.
-                deltaX = _diagram.PixelsToScaledX(deltaX) - _diagram.Background.X;
-                deltaY = _diagram.PixelsToScaledY(deltaY) - _diagram.Background.Y;
+                // TODO: I do not understand the code like '- Background.X' anymore.
+                // Probably the relativeX...
+                float deltaX = _diagram.PixelsToScaledX(deltaXInPixels) - _diagram.Background.X;
+                float deltaY = _diagram.PixelsToScaledY(deltaYInPixels) - _diagram.Background.Y;
+
+                //deltaX = _diagram.Background.PixelsToRelativeX(deltaXInPixels);
+                //deltaY = _diagram.Background.PixelsToRelativeY(deltaYInPixels);
 
                 _elementBeingMoved.X = _mouseDownElementX + deltaX;
                 _elementBeingMoved.Y = _mouseDownElementY + deltaY;

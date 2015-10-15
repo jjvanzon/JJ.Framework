@@ -2,6 +2,7 @@
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
+    /// <summary> Explicit interface for exposing the sending of primitive gestures without obscuring the main interface. </summary>
     public interface IGesture
     {
         void HandleMouseDown(object sender, MouseEventArgs e);

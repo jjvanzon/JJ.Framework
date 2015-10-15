@@ -36,9 +36,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             get { return false; }
         }
 
-        // Public explicit interface for exposing the sending of primitive gestures
-        // without obscuring the main interface.
-
         void IGesture.HandleMouseDown(object sender, MouseEventArgs e) { HandleMouseDown(sender, e); }
         void IGesture.HandleMouseMove(object sender, MouseEventArgs e) { HandleMouseMove(sender, e); }
         void IGesture.HandleMouseUp(object sender, MouseEventArgs e) { HandleMouseUp(sender, e); }

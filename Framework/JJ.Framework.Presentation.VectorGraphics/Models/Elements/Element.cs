@@ -101,6 +101,30 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             return relativeY;
         }
 
+        /// <summary> TODO: Confirm that it works. </summary>
+        public float PixelsToRelativeX(float xInPixels)
+        {
+            if (Diagram == null)
+            {
+                return xInPixels;
+            }
+
+            float value = AbsoluteToRelativeX(Diagram.PixelsToScaledX(xInPixels));
+            return value;
+        }
+
+        /// <summary> TODO: Confirm that it works. </summary>
+        public float PixelsToRelativeY(float yInPixels)
+        {
+            if (Diagram == null)
+            {
+                return yInPixels;
+            }
+
+            float value = AbsoluteToRelativeY(Diagram.PixelsToScaledY(yInPixels));
+            return value;
+        }
+
         // Related Objects
 
         private ElementToDiagramRelationship _diagramRelationship;

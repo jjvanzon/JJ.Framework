@@ -109,7 +109,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         
         private bool DeltaIsInRange(MouseEventArgs mouseDownEventArgs1, MouseEventArgs mouseDownEventArgs2)
         {
-            float deltaX = mouseDownEventArgs2.X - mouseDownEventArgs1.X;
+            float deltaX = mouseDownEventArgs2.XInPixels - mouseDownEventArgs1.XInPixels;
 
             if (deltaX > _doubleClickDeltaInPixels)
             {
@@ -121,7 +121,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return false;
             }
 
-            float deltaY = Math.Abs(mouseDownEventArgs2.Y - mouseDownEventArgs1.Y);
+            float deltaY = Math.Abs(mouseDownEventArgs2.YInPixels - mouseDownEventArgs1.YInPixels);
 
             if (deltaY > _doubleClickDeltaInPixels)
             {

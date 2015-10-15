@@ -103,7 +103,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             {
                 if (Dragging != null)
                 {
-                    Dragging(sender, new DraggingEventArgs(DraggedElement, e.X, e.Y));
+                    Dragging(sender, new DraggingEventArgs(DraggedElement, e.XInPixels, e.YInPixels));
                 }
             }
         }

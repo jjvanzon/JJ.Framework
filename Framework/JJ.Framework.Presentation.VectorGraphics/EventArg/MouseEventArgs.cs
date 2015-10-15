@@ -7,29 +7,16 @@ namespace JJ.Framework.Presentation.VectorGraphics.EventArg
     public class MouseEventArgs : EventArgs
     {
         public Element Element { get; private set; }
-
-        // TODO: These summaries might not be accurate anymore.
-
-        /// <summary>
-        /// The x-coordinate of the mouse pointer.
-        /// It is the absolute position within a diagram.
-        /// </summary>
-        public float X { get; private set; }
-
-        /// <summary>
-        /// The y-coordinate of the mouse pointer.
-        /// It is the absolute position within a diagram.
-        /// </summary>
-        public float Y { get; private set; }
-
+        public float XInPixels { get; private set; }
+        public float YInPixels { get; private set; }
         public MouseButtonEnum MouseButtonEnum { get; private set; }
 
         /// <param name="element">nullable</param>
-        public MouseEventArgs(Element element, float x, float y, MouseButtonEnum mouseButtonEnum)
+        public MouseEventArgs(Element element, float xInPixels, float yInPixels, MouseButtonEnum mouseButtonEnum)
         {
             Element = element;
-            X = x;
-            Y = y;
+            XInPixels = xInPixels;
+            YInPixels = yInPixels;
             MouseButtonEnum = mouseButtonEnum;
         }
     }

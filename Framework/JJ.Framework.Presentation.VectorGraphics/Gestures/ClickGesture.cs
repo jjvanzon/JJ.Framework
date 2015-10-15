@@ -35,7 +35,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             if (_mouseDownElement != null)
             {
                 bool mouseDownElementIsHit = Geometry.IsInRectangle(
-                    e.X, e.Y,
+                    e.XInPixels, e.YInPixels,
                     _mouseDownElement.CalculatedXInPixels,
                     _mouseDownElement.CalculatedYInPixels,
                     _mouseDownElement.CalculatedXInPixels + _mouseDownElement.CalculatedWidthInPixels,

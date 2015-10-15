@@ -35,11 +35,11 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
 
-            Element hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
+            Element hitElement = TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
 
             if (hitElement != null)
             {
-                var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
+                var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
                 foreach (IGesture diagramGesture in _diagram.Gestures.ToArray())
                 {
@@ -79,7 +79,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return;
             }
 
-            var e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
+            var e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
             foreach (IGesture gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
@@ -130,12 +130,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             Element hitElement = _mouseCapturingElement;
             if (hitElement == null)
             {
-                hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
+                hitElement = TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
             }
 
             if (hitElement != null)
             {
-                var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
+                var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
                 foreach (IGesture diagramGesture in _diagram.Gestures.ToArray())
                 {
@@ -170,7 +170,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return;
             }
 
-            MouseEventArgs e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
+            MouseEventArgs e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
             foreach (IGesture gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
@@ -191,12 +191,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             Element hitElement = _mouseCapturingElement;
             if (hitElement == null)
             {
-                hitElement = TryGetHitElement(zOrdereredElements, e.X, e.Y);
+                hitElement = TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
             }
 
             if (hitElement != null)
             {
-                var e2 = new MouseEventArgs(hitElement, e.X, e.Y, e.MouseButtonEnum);
+                var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
                 foreach (IGesture diagramGesture in _diagram.Gestures.ToArray())
                 {
@@ -233,7 +233,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return;
             }
 
-            MouseEventArgs e2 = new MouseEventArgs(parent, e.X, e.Y, e.MouseButtonEnum);
+            MouseEventArgs e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
             foreach (IGesture gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
@@ -273,7 +273,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         // Hit Testing
 
-        private Element TryGetHitElement(IEnumerable<Element> zOrderedElements, float pointerX, float pointerY)
+        private Element TryGetHitElement(IEnumerable<Element> zOrderedElements, float pointerXInPixels, float pointerYInPixels)
         {
             foreach (Element element in zOrderedElements.Reverse())
             {
@@ -283,7 +283,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 }
 
                 bool isInRectangle = Geometry.IsInRectangle(
-                    pointerX, pointerY,
+                    pointerXInPixels, pointerYInPixels,
                     element.CalculatedXInPixels, element.CalculatedYInPixels,
                     element.CalculatedXInPixels + element.CalculatedWidthInPixels, element.CalculatedYInPixels + element.CalculatedHeightInPixels);
 
