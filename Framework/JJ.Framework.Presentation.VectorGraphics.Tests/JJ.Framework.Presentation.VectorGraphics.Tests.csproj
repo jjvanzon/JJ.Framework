@@ -54,7 +54,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="SvgTests.cs" />
+    <Compile Include="VectorGraphicsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

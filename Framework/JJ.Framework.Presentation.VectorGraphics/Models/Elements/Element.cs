@@ -41,90 +41,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         public int ZIndex { get; set; }
         public object Tag { get; set; }
 
-        /// <summary> TODO: Confirm that it works. </summary>
-        public float RelativeToAbsoluteX(float relativeX)
-        {
-            float absoluteX = relativeX;
-
-            Element ancestor = Parent;
-            while (ancestor != null)
-            {
-                absoluteX += ancestor.X;
-                ancestor = ancestor.Parent;
-            }
-
-            return absoluteX;
-        }
-
-        /// <summary> TODO: Confirm that it works. </summary>
-        public float RelativeToAbsoluteY(float relativeY)
-        {
-            float absoluteY = relativeY;
-
-            Element ancestor = Parent;
-            while (ancestor != null)
-            {
-                absoluteY += ancestor.Y;
-                ancestor = ancestor.Parent;
-            }
-
-            return absoluteY;
-        }
-
-        /// <summary> TODO: Confirm that it works. </summary>
-        public float AbsoluteToRelativeX(float absoluteX)
-        {
-            float relativeX = absoluteX;
-
-            Element ancestor = Parent;
-            while (ancestor != null)
-            {
-                relativeX -= ancestor.X;
-                ancestor = ancestor.Parent;
-            }
-
-            return relativeX;
-        }
-
-        /// <summary> TODO: Confirm that it works. </summary>
-        public float AbsoluteToRelativeY(float absoluteY)
-        {
-            float relativeY = absoluteY;
-
-            Element ancestor = Parent;
-            while (ancestor != null)
-            {
-                relativeY -= ancestor.Y;
-                ancestor = ancestor.Parent;
-            }
-
-            return relativeY;
-        }
-
-        /// <summary> TODO: Confirm that it works. </summary>
-        public float PixelsToRelativeX(float xInPixels)
-        {
-            if (Diagram == null)
-            {
-                return xInPixels;
-            }
-
-            float value = AbsoluteToRelativeX(Diagram.PixelsToScaledX(xInPixels));
-            return value;
-        }
-
-        /// <summary> TODO: Confirm that it works. </summary>
-        public float PixelsToRelativeY(float yInPixels)
-        {
-            if (Diagram == null)
-            {
-                return yInPixels;
-            }
-
-            float value = AbsoluteToRelativeY(Diagram.PixelsToScaledY(yInPixels));
-            return value;
-        }
-
         // Related Objects
 
         private ElementToDiagramRelationship _diagramRelationship;
@@ -182,6 +98,139 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         /// <summary> Indicates whether the element will respond to mouse and keyboard gestures. </summary>
         public bool Enabled { get; set; }
 
+        // Scaling
+
+        public float RelativeToAbsoluteX(float relativeX)
+        {
+            float absoluteX = relativeX;
+
+            Element element = this;
+            while (element != null)
+            {
+                absoluteX += element.X;
+                element = element.Parent;
+            }
+
+            return absoluteX;
+        }
+
+        public float RelativeToAbsoluteY(float relativeY)
+        {
+            float absoluteY = relativeY;
+
+            Element element = this;
+            while (element != null)
+            {
+                absoluteY += element.Y;
+                element = element.Parent;
+            }
+
+            return absoluteY;
+        }
+
+        public float AbsoluteToRelativeX(float absoluteX)
+        {
+            float relativeX = absoluteX;
+
+            Element element = this;
+            while (element != null)
+            {
+                relativeX -= element.X;
+                element = element.Parent;
+            }
+
+            return relativeX;
+        }
+
+        public float AbsoluteToRelativeY(float absoluteY)
+        {
+            float relativeY = absoluteY;
+
+            Element element = this;
+            while (element != null)
+            {
+                relativeY -= element.Y;
+                element = element.Parent;
+            }
+
+            return relativeY;
+        }
+
+        // To and from pixels is derived from the conversions between relative and absolute,
+        // and the diagram's conversions between pixels and scaled.
+
+        public float PixelsToRelativeX(float xInPixels)
+        {
+            if (Diagram == null) throw new NullException(() => Diagram);
+
+            float value = Diagram.PixelsToScaledX(xInPixels);
+            value = AbsoluteToRelativeX(value);
+            return value;
+        }
+
+        public float PixelsToRelativeY(float yInPixels)
+        {
+            if (Diagram == null) throw new NullException(() => Diagram);
+
+            float value = Diagram.PixelsToScaledY(yInPixels);
+            value = AbsoluteToRelativeY(value);
+            return value;
+        }
+
+        public float RelativeToPixelsX(float relativeX)
+        {
+            if (Diagram == null) throw new NullException(() => Diagram);
+
+            float value = RelativeToAbsoluteX(relativeX);
+            value = Diagram.ScaledToPixelsX(value);
+            return value;
+        }
+
+        public float RelativeToPixelsY(float relativeY)
+        {
+            if (Diagram == null) throw new NullException(() => Diagram);
+
+            float value = RelativeToAbsoluteY(relativeY);
+            value = Diagram.ScaledToPixelsY(value);
+            return value;
+        }
+
+        public float PixelsToAbsoluteX(float xInPixels)
+        {
+            if (Diagram == null) throw new NullException(() => Diagram);
+
+            // Just delegates to the Diagram method. These methods are here for syntactic sugar.
+            float value = Diagram.PixelsToScaledX(xInPixels);
+            return value;
+        }
+
+        public float PixelsToAbsoluteY(float yInPixels)
+        {
+            if (Diagram == null) throw new NullException(() => Diagram);
+
+            // Just delegates to the Diagram method. These methods are here for syntactic sugar.
+            float value = Diagram.PixelsToScaledY(yInPixels);
+            return value;
+        }
+
+        public float AbsoluteToPixelsX(float absoluteX)
+        {
+            if (Diagram == null) throw new NullException(() => Diagram);
+
+            // Just delegates to the Diagram method. These methods are here for syntactic sugar.
+            float value = Diagram.ScaledToPixelsX(absoluteX);
+            return value;
+        }
+
+        public float AbsoluteToPixelsY(float absoluteY)
+        {
+            if (Diagram == null) throw new NullException(() => Diagram);
+
+            // Just delegates to the Diagram method. These methods are here for syntactic sugar.
+            float value = Diagram.ScaledToPixelsY(absoluteY);
+            return value;
+        }
+
         // Calculated Values
 
         /// <summary> The calculated ZIndex, which is derived from both the ZIndex and the containment structure. </summary>
@@ -193,9 +242,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         internal int CalculatedLayer { get; set; }
         internal bool CalculatedVisible { get; set; }
         internal bool CalculatedEnabled { get; set; }
-
-        // Public explicit interface is for accessing calculated values,
-        // so that the main interface is not obscured.
 
         int ICalculatedValues.CalculatedZIndex { get { return CalculatedZIndex; } }
         float ICalculatedValues.CalculatedXInPixels { get { return CalculatedXInPixels; } }

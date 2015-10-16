@@ -5,7 +5,10 @@ using System.Text;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
-    /// <summary> read-only calculated values derived from the main properties. summary>
+    /// <summary> 
+    /// Read-only public explicit interface so that the main interface is not obscured
+    /// for accessing calculated values derived from the main properties.
+    ///  <summary>
     public interface ICalculatedValues
     {
         /// <summary> The calculated ZIndex, which is derived from both the ZIndex and the containment structure. </summary>
