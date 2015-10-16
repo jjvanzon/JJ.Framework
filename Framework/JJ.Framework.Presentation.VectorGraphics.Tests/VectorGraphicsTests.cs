@@ -57,10 +57,11 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             AssertHelper.AreEqual(24, () => ((ICalculatedValues)elements[3]).CalculatedYInPixels);
         }
 
-
         [TestMethod]
         public void Test_VectorGraphics_ScaleModeEnum_ViewPort()
         {
+            // A diagram of 4x8 with a child of 2x4 in the middle with a center that is (0, 0)
+            // and pixel values that are 10 times the scaled coordinates.
             var diagram = new Diagram
             {
                 ScaleModeEnum = ScaleModeEnum.ViewPort,
@@ -148,46 +149,13 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
 
             actualPixels = child.AbsoluteToPixelsY(expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
+
+            // Test Properties
+            Assert.AreEqual(10, child.XInPixels);
+            Assert.AreEqual(-1, child.AbsoluteX);
+
+            Assert.AreEqual(20, child.YInPixels);
+            Assert.AreEqual(-2, child.AbsoluteY);
         }
-
-        //[TestMethod]
-        //public void Test_VectorGraphics_ScaleModeEnum_ViewPort_Old()
-        //{
-        //    // TODO: Low priority: 
-        //    // Something feels wrong about exactly centering it. That the test might not be clean.
-        //    // But the clarity of the test is harmed if I do not center it.
-
-        //    var diagram = new Diagram
-        //    {
-        //        ScaleModeEnum = ScaleModeEnum.ViewPort,
-        //        ScaledX = -7, ScaledWidth = 14, WidthInPixels = 140,
-        //        ScaledY = -10.5f, ScaledHeight = 21, HeightInPixels = 210
-        //    };
-
-        //    var child = new Rectangle
-        //    {
-        //        Diagram = diagram,
-        //        Parent = diagram.Background,
-        //        X = 4, Width = 6,
-        //        Y = -4.5f, Height = 9
-        //    };
-
-        //    var grandChild = new Rectangle
-        //    {
-        //        Diagram = diagram,
-        //        Parent = child,
-        //        X = -1, Width = 2,
-        //        Y = -1.5f, Height = 3
-        //    };
-
-        //    float value;
-
-        //    value = grandChild.RelativeToAbsoluteX(0);
-
-        //    // This seems way to complicated.
-
-        //    throw new NotImplementedException();
-        //}
-
     }
 }

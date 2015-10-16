@@ -46,7 +46,6 @@
     <Compile Include="EventArg\DroppedEventArgs.cs" />
     <Compile Include="EventArg\DraggingEventArgs.cs" />
     <Compile Include="EventArg\KeyEventArgs.cs" />
-    <Compile Include="EventArg\~MouseEventArgsRelative.cs" />
     <Compile Include="Gestures\DragGesture.cs" />
     <Compile Include="Gestures\DropGesture.cs" />
     <Compile Include="Gestures\GestureBase.cs" />
@@ -55,6 +54,7 @@
     <Compile Include="Gestures\MouseLeaveGesture.cs" />
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Models\Elements\Curve.cs" />
+    <Compile Include="Models\Elements\Element.Scaling.cs" />
     <Compile Include="Models\Elements\ICalculatedValues.cs" />
     <Compile Include="Models\Elements\IDiagramGestureHandling.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />
