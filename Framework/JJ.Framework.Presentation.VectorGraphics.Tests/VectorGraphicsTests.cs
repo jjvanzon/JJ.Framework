@@ -97,10 +97,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             expectedAbsolute = -0.25f;
             expectedPixels = 17.5f;
 
-            actualAbsolute = diagram.PixelsToScaledX(expectedPixels);
+            actualAbsolute = diagram.PixelsToAbsoluteX(expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = diagram.ScaledToPixelsX(expectedAbsolute);
+            actualPixels = diagram.AbsoluteToPixelsX(expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
             actualAbsolute = child.RelativeToAbsoluteX(expectedRelative);
@@ -126,10 +126,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             expectedAbsolute = -0.25f * 2;
             expectedPixels = 17.5f * 2;
 
-            actualAbsolute = diagram.PixelsToScaledY(expectedPixels);
+            actualAbsolute = diagram.PixelsToAbsoluteY(expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = diagram.ScaledToPixelsY(expectedAbsolute);
+            actualPixels = diagram.AbsoluteToPixelsY(expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
             actualAbsolute = child.RelativeToAbsoluteY(expectedRelative);

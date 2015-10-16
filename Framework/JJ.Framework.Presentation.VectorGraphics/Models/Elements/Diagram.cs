@@ -99,7 +99,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
         
-        public float PixelsToScaledX(float xInPixels)
+        public float PixelsToAbsoluteX(float xInPixels)
         {
             switch (ScaleModeEnum)
             {
@@ -115,7 +115,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        public float PixelsToScaledY(float yInPixels)
+        public float PixelsToAbsoluteY(float yInPixels)
         {
             switch (ScaleModeEnum)
             {
@@ -131,16 +131,15 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        /// <summary> TODO: Confirm that it works. </summary>
-        public float ScaledToPixelsX(float scaledX)
+        public float AbsoluteToPixelsX(float absoluteX)
         {
             switch (ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
-                    return scaledX;
+                    return absoluteX;
 
                 case ScaleModeEnum.ViewPort:
-                    float xInPixels = (scaledX - ScaledX) / ScaledWidth * WidthInPixels;
+                    float xInPixels = (absoluteX - ScaledX) / ScaledWidth * WidthInPixels;
                     return xInPixels;
 
                 default:
@@ -148,21 +147,44 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        /// <summary> TODO: Confirm that it works. </summary>
-        public float ScaledToPixelsY(float scaledY)
+        public float AbsoluteToPixelsY(float absoluteY)
         {
             switch (ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
-                    return scaledY;
+                    return absoluteY;
 
                 case ScaleModeEnum.ViewPort:
-                    float yInPixels = (scaledY - ScaledY) / ScaledHeight * HeightInPixels;
+                    float yInPixels = (absoluteY - ScaledY) / ScaledHeight * HeightInPixels;
                     return yInPixels;
 
                 default:
                     throw new ValueNotSupportedException(ScaleModeEnum);
             }
+        }
+
+        public float PixelsToAbsoluteWidth(float widthInPixels)
+        {
+            float absoluteWidth = widthInPixels / WidthInPixels * ScaledWidth;
+            return absoluteWidth;
+        }
+
+        public float PixelsToAbsoluteHeight(float heightInPixels)
+        {
+            float absoluteHeight = heightInPixels / HeightInPixels * ScaledHeight;
+            return absoluteHeight;
+        }
+
+        public float AbsoluteToPixelsWidth(float absoluteWidth)
+        {
+            float widthInPixels = absoluteWidth / ScaledWidth * WidthInPixels;
+            return WidthInPixels;
+        }
+
+        public float AbsoluteToPixelsHeight(float absoluteHeight)
+        {
+            float heightInPixels = absoluteHeight / ScaledHeight * HeightInPixels;
+            return HeightInPixels;
         }
 
         public void Recalculate()

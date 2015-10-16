@@ -99,10 +99,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 float deltaXInPixels = e.XInPixels - _mouseDownPointerXInPixels;
                 float deltaYInPixels = e.YInPixels - _mouseDownPointerYInPixels;
 
-                // TODO: This again is probably a way of misusing the Background's pixel origin (0px, 0px),
-                // to calculate a 'length' instead of a position.
-                float deltaX = _diagram.Background.PixelsToRelativeX(deltaXInPixels);
-                float deltaY = _diagram.Background.PixelsToRelativeY(deltaYInPixels);
+                float deltaX = _diagram.PixelsToAbsoluteWidth(deltaXInPixels);
+                float deltaY = _diagram.PixelsToAbsoluteHeight(deltaYInPixels);
 
                 _elementBeingMoved.X = _mouseDownElementX + deltaX;
                 _elementBeingMoved.Y = _mouseDownElementY + deltaY;
