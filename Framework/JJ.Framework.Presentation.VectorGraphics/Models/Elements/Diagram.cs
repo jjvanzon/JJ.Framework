@@ -168,7 +168,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             switch (ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
-                    return WidthInPixels;
+                    return widthInPixels;
 
                 case ScaleModeEnum.ViewPort:
                     float result = widthInPixels / WidthInPixels * ScaledWidth;
