@@ -98,8 +98,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
                 _scaledHeight = value;
             }
         }
-        
-        public float PixelsToX(float xInPixels)
+
+        public float PixelsToScaledAbsoluteX(float xInPixels)
         {
             switch (ScaleModeEnum)
             {
@@ -115,7 +115,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        public float PixelsToY(float yInPixels)
+        public float PixelsToScaledAbsoluteY(float yInPixels)
         {
             switch (ScaleModeEnum)
             {
@@ -131,7 +131,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        public float XToPixels(float scaledX)
+        /// <summary> TODO: Confirm that it works. </summary>
+        public float AbsoluteScaledToPixelsX(float scaledX)
         {
             switch (ScaleModeEnum)
             {
@@ -147,7 +148,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        public float YToPixels(float scaledY)
+        /// <summary> TODO: Confirm that it works. </summary>
+        public float AbsoluteScaledToPixelsY(float scaledY)
         {
             switch (ScaleModeEnum)
             {
@@ -161,30 +163,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
                 default:
                     throw new ValueNotSupportedException(ScaleModeEnum);
             }
-        }
-
-        public float PixelsToWidth(float widthInPixels)
-        {
-            float result = widthInPixels / WidthInPixels * ScaledWidth;
-            return result;
-        }
-
-        public float PixelsToHeight(float heightInPixels)
-        {
-            float result = heightInPixels / HeightInPixels * ScaledHeight;
-            return result;
-        }
-
-        public float WidthToPixels(float scaledWidth)
-        {
-            float result = scaledWidth / ScaledWidth * WidthInPixels;
-            return result;
-        }
-
-        public float HeightToPixels(float scaledHeight)
-        {
-            float result = scaledHeight / ScaledHeight * HeightInPixels;
-            return result;
         }
 
         public void Recalculate()

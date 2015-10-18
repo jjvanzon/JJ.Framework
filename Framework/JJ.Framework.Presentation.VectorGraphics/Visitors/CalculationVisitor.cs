@@ -192,7 +192,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             _calculatedElements.Add(line);
         }
-        
+
         private void CalculateRectangle(Rectangle rectangle)
         {
             if (_calculatedElements.Contains(rectangle))
@@ -306,7 +306,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                     Y = calculatedY,
                     CalculatedVisible = false,
                     CalculatedLayer = sourceCurve.CalculatedLayer,
-                    PointStyle = new PointStyle { Visible  = false }
+                    PointStyle = new PointStyle { Visible = false }
                 };
 
                 destPoints.Add(destPoint);
@@ -336,7 +336,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
             }
 
             sourceCurve.CalculatedLines = destLines;
-            
+
             // TODO: Low priority: Yield over gesture-related properties from curve to the points and lines?
         }
 
@@ -344,26 +344,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
         private void ApplyScaling(Element element)
         {
-            switch (_diagram.ScaleModeEnum)
-            {
-                case ScaleModeEnum.ViewPort:
-                    ApplyScaleModeViewPort(element);
-                    break;
-
-                case ScaleModeEnum.Zoom:
-                    throw new ValueNotSupportedException(_diagram.ScaleModeEnum);
-            }
-        }
-
-        private void ApplyScaleModeViewPort(Element element)
-        {
-            float ratioX = _diagram.WidthInPixels / _diagram.ScaledWidth;
-            element.CalculatedWidthInPixels *= ratioX;
-            element.CalculatedXInPixels = (element.CalculatedXInPixels - _diagram.ScaledX) * ratioX;
-
-            float ratioY = _diagram.HeightInPixels / _diagram.ScaledHeight;
-            element.CalculatedHeightInPixels *= ratioY;
-            element.CalculatedYInPixels = (element.CalculatedYInPixels - _diagram.ScaledY) * ratioY;
+            element.CalculatedXInPixels = _diagram.XToPixels(element.CalculatedXInPixels);
+            element.CalculatedYInPixels = _diagram.YToPixels(element.CalculatedYInPixels);
+            element.CalculatedWidthInPixels = _diagram.WidthToPixels(element.CalculatedWidthInPixels);
+            element.CalculatedHeightInPixels = _diagram.HeightToPixels(element.CalculatedHeightInPixels);
         }
     }
 }

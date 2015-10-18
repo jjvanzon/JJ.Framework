@@ -73,7 +73,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             if (Diagram == null) throw new NullException(() => Diagram);
 
-            float value = Diagram.PixelsToAbsoluteX(xInPixels);
+            float value = Diagram.PixelsToX(xInPixels);
             value = AbsoluteToRelativeX(value);
             return value;
         }
@@ -82,7 +82,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             if (Diagram == null) throw new NullException(() => Diagram);
 
-            float value = Diagram.PixelsToAbsoluteY(yInPixels);
+            float value = Diagram.PixelsToY(yInPixels);
             value = AbsoluteToRelativeY(value);
             return value;
         }
@@ -92,7 +92,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             if (Diagram == null) throw new NullException(() => Diagram);
 
             float value = RelativeToAbsoluteX(relativeX);
-            value = Diagram.AbsoluteToPixelsX(value);
+            value = Diagram.XToPixels(value);
             return value;
         }
 
@@ -101,7 +101,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             if (Diagram == null) throw new NullException(() => Diagram);
 
             float value = RelativeToAbsoluteY(relativeY);
-            value = Diagram.AbsoluteToPixelsY(value);
+            value = Diagram.YToPixels(value);
             return value;
         }
 
@@ -110,7 +110,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             if (Diagram == null) throw new NullException(() => Diagram);
 
             // Just delegates to the Diagram method. These methods are here for syntactic sugar.
-            float value = Diagram.PixelsToAbsoluteX(xInPixels);
+            float value = Diagram.PixelsToX(xInPixels);
             return value;
         }
 
@@ -119,7 +119,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             if (Diagram == null) throw new NullException(() => Diagram);
 
             // Just delegates to the Diagram method. These methods are here for syntactic sugar.
-            float value = Diagram.PixelsToAbsoluteY(yInPixels);
+            float value = Diagram.PixelsToY(yInPixels);
             return value;
         }
 
@@ -128,7 +128,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             if (Diagram == null) throw new NullException(() => Diagram);
 
             // Just delegates to the Diagram method. These methods are here for syntactic sugar.
-            float value = Diagram.AbsoluteToPixelsX(absoluteX);
+            float value = Diagram.XToPixels(absoluteX);
             return value;
         }
 
@@ -137,7 +137,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             if (Diagram == null) throw new NullException(() => Diagram);
 
             // Just delegates to the Diagram method. These methods are here for syntactic sugar.
-            float value = Diagram.AbsoluteToPixelsY(absoluteY);
+            float value = Diagram.YToPixels(absoluteY);
             return value;
         }
 

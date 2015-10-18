@@ -11,8 +11,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         private float _mouseDownElementX;
         private float _mouseDownElementY;
-        private float _mouseDownPointerXInPixels;
-        private float _mouseDownPointerYInPixels;
+        private float _mouseDownPointerX;
+        private float _mouseDownPointerY;
 
         private Diagram _diagram;
         private MouseMoveGesture _diagramMouseMoveGesture;
@@ -85,8 +85,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 _mouseDownElementX = _elementBeingMoved.X;
                 _mouseDownElementY = _elementBeingMoved.Y;
 
-                _mouseDownPointerXInPixels = e.XInPixels;
-                _mouseDownPointerYInPixels = e.YInPixels;
+                _mouseDownPointerX = e.X;
+                _mouseDownPointerY = e.Y;
 
                 _wasMoved = false;
             }
@@ -96,11 +96,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         {
             if (_elementBeingMoved != null)
             {
-                float deltaXInPixels = e.XInPixels - _mouseDownPointerXInPixels;
-                float deltaYInPixels = e.YInPixels - _mouseDownPointerYInPixels;
+                float deltaX = e.X - _mouseDownPointerX;
+                float deltaY = e.Y - _mouseDownPointerY;
 
-                float deltaX = _diagram.PixelsToWidth(deltaXInPixels);
-                float deltaY = _diagram.PixelsToHeight(deltaYInPixels);
+                // TODO: Probably e.X and _mouseDownPointerX should already have been scaled coordinates.
+                deltaX = _diagram.PixelsToScaledAbsoluteX(deltaX) - _diagram.Background.X;
+                deltaY = _diagram.PixelsToScaledAbsoluteY(deltaY) - _diagram.Background.Y;
 
                 _elementBeingMoved.X = _mouseDownElementX + deltaX;
                 _elementBeingMoved.Y = _mouseDownElementY + deltaY;

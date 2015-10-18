@@ -97,10 +97,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             expectedAbsolute = -0.25f;
             expectedPixels = 17.5f;
 
-            actualAbsolute = diagram.PixelsToAbsoluteX(expectedPixels);
+            actualAbsolute = diagram.PixelsToX(expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = diagram.AbsoluteToPixelsX(expectedAbsolute);
+            actualPixels = diagram.XToPixels(expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
             actualAbsolute = child.RelativeToAbsoluteX(expectedRelative);
@@ -126,10 +126,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             expectedAbsolute = -0.25f * 2;
             expectedPixels = 17.5f * 2;
 
-            actualAbsolute = diagram.PixelsToAbsoluteY(expectedPixels);
+            actualAbsolute = diagram.PixelsToY(expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = diagram.AbsoluteToPixelsY(expectedAbsolute);
+            actualPixels = diagram.YToPixels(expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
             actualAbsolute = child.RelativeToAbsoluteY(expectedRelative);
@@ -156,6 +156,13 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
 
             Assert.AreEqual(20, child.YInPixels);
             Assert.AreEqual(-2, child.AbsoluteY);
+
+            // Test Width and Height conversions
+            Assert.AreEqual(20, diagram.WidthToPixels(2));
+            Assert.AreEqual(20, diagram.HeightToPixels(2));
+
+            Assert.AreEqual(2, diagram.PixelsToWidth(20));
+            Assert.AreEqual(2, diagram.PixelsToHeight(20));
         }
     }
 }
