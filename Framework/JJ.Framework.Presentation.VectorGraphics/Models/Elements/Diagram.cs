@@ -165,26 +165,66 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public float PixelsToWidth(float widthInPixels)
         {
-            float result = widthInPixels / WidthInPixels * ScaledWidth;
-            return result;
+            switch (ScaleModeEnum)
+            {
+                case ScaleModeEnum.None:
+                    return WidthInPixels;
+
+                case ScaleModeEnum.ViewPort:
+                    float result = widthInPixels / WidthInPixels * ScaledWidth;
+                    return result;
+
+                default:
+                    throw new ValueNotSupportedException(ScaleModeEnum);
+            }
         }
 
         public float PixelsToHeight(float heightInPixels)
         {
-            float result = heightInPixels / HeightInPixels * ScaledHeight;
-            return result;
+            switch (ScaleModeEnum)
+            {
+                case ScaleModeEnum.None:
+                    return heightInPixels;
+
+                case ScaleModeEnum.ViewPort:
+                    float result = heightInPixels / HeightInPixels * ScaledHeight;
+                    return result;
+
+                default:
+                    throw new ValueNotSupportedException(ScaleModeEnum);
+            }
         }
 
         public float WidthToPixels(float scaledWidth)
         {
-            float result = scaledWidth / ScaledWidth * WidthInPixels;
-            return result;
+            switch (ScaleModeEnum)
+            {
+                case ScaleModeEnum.None:
+                    return scaledWidth;
+
+                case ScaleModeEnum.ViewPort:
+                    float result = scaledWidth / ScaledWidth * WidthInPixels;
+                    return result;
+
+                default:
+                    throw new ValueNotSupportedException(ScaleModeEnum);
+            }
         }
 
         public float HeightToPixels(float scaledHeight)
         {
-            float result = scaledHeight / ScaledHeight * HeightInPixels;
-            return result;
+            switch (ScaleModeEnum)
+            {
+                case ScaleModeEnum.None:
+                    return scaledHeight;
+
+                case ScaleModeEnum.ViewPort:
+                    float result = scaledHeight / ScaledHeight * HeightInPixels;
+                    return result;
+
+                default:
+                    throw new ValueNotSupportedException(ScaleModeEnum);
+            }
         }
 
         public void Recalculate()
