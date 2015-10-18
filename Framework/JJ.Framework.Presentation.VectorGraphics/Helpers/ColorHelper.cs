@@ -73,6 +73,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 
             if (max > 255)
             {
+                // TODO: Low priority: This does not look like great performance anymore.
                 float ratio = 255f / max;
                 r = (int)(r * ratio);
                 g = (int)(g * ratio);
