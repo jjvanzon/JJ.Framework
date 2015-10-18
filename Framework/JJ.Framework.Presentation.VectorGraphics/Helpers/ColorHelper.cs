@@ -58,7 +58,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         /// <param name="grade">0 makes it black, 1 keeps it the same color.</param>
         public static int SetBrightness(int color, double grade)
         {
-            // TODO: Inline it for extra speed
             int a = GetAlpha(color);
             int r = GetRed(color);
             int g = GetGreen(color);
@@ -68,6 +67,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             g = (int)(g * grade);
             b = (int)(b * grade);
 
+            // TODO: When clipping like this, reddish can e.g. first changes to orangy and then to white.
+            // Make a better brightness grade when hitting the ceiling.
             if (r > 255) r = 255;
             if (g > 255) g = 255;
             if (b > 255) b = 255;
@@ -77,29 +78,29 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 
         public static int GetAlpha(int color)
         {
-            int value = color >> 24;
+            int value = color >> 24; // Move alpha to the right
+            value = value & 0x000000FF; // NOTE: We use a mask, because a left shift with 1 in the left most bit (sign bit) makes the bit shift fill it up with 1's, not 0's.
             return value;
         }
 
         public static int GetRed(int color)
         {
-            // TODO: Do this with bitshift too.
-            int value = color % 0x01000000; // Remove alpha.
-            value = value >> 16; // Move blue and green out of scope.
+            int value = color >> 16; // Move red to the right.
+            value = value & 0x000000FF; // NOTE: We use a mask, because a left shift with 1 in the left most bit (sign bit) makes the bit shift fill it up with 1's, not 0's.
             return value;
         }
 
         public static int GetGreen(int color)
         {
-            // TODO: Do this with bitshift too.
-            int value = color % 0x00010000; // Remove alpha and red.
-            value = value >> 8; // Move blue out of scope.
+            int value = color >> 8; // Move green to the right.
+            value = value & 0x000000FF; // NOTE: We use a mask, because a left shift with 1 in the left most bit (sign bit) makes the bit shift fill it up with 1's, not 0's.
             return value;
         }
 
         public static int GetBlue(int color)
         {
-            int value = color % 0x00000100; // Remove alpha, red and green
+            int value = color; // Blue is already at the right.
+            value = value & 0x000000FF; // NOTE: We use a mask, because a left shift with 1 in the left most bit (sign bit) makes the bit shift fill it up with 1's, not 0's.
             return value;
         }
     }

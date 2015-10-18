@@ -187,11 +187,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             int expectedDarkerColor = ColorHelper.GetColor(2, 2, 3, 4);
             AssertHelper.AreEqual(expectedDarkerColor, () => darkerColor);
 
-            int hopefullyWhiteColor = ColorHelper.SetBrightness(color, 255);
+            int probablyWhiteColor = ColorHelper.SetBrightness(color, 255);
             int expectedWhiteColor = ColorHelper.GetColor(2, 255, 255, 255);
-            AssertHelper.AreEqual(expectedDarkerColor, () => darkerColor);
+            AssertHelper.AreEqual(expectedWhiteColor, () => probablyWhiteColor);
 
-            // TODO: Test advancing towards white.
+            int whiteWithAlpha = ColorHelper.GetColor(255, 255, 255, 255);
+            int probablyGreyColor = ColorHelper.SetBrightness(whiteWithAlpha, 0.5);
+            int expectedGreyColor = ColorHelper.GetColor(255, 127, 127, 127);
+            AssertHelper.AreEqual(expectedGreyColor, () => probablyGreyColor);
         }
     }
 }
