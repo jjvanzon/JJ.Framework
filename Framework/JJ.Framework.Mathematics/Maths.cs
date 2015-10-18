@@ -1,7 +1,15 @@
-﻿namespace JJ.Framework.Mathematics
+﻿using System;
+
+namespace JJ.Framework.Mathematics
 {
     public static class Maths
     {
+        private static double _sqrt2 = Math.Sqrt(2);
+        public static double Sqrt2 { get { return _sqrt2; } }
+
+        private static float _floatsqrt2 = (float)Math.Sqrt(2);
+        public static float FloatSqrt2 { get { return _floatsqrt2; } }
+
         /// <summary>
         /// Integer variation of the Math.Pow function,
         /// that only works for non-negative exponents.
