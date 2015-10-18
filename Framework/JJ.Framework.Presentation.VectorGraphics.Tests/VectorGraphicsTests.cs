@@ -187,9 +187,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             int expectedDarkerColor = ColorHelper.GetColor(2, 2, 3, 4);
             AssertHelper.AreEqual(expectedDarkerColor, () => darkerColor);
 
-            int probablyWhiteColor = ColorHelper.SetBrightness(color, 255);
-            int expectedWhiteColor = ColorHelper.GetColor(2, 255, 255, 255);
-            AssertHelper.AreEqual(expectedWhiteColor, () => probablyWhiteColor);
+            int actualMaxedOutColor = ColorHelper.SetBrightness(color, 255);
+            int expectedMaxedOutColor = 0x027fbfff;
+            AssertHelper.AreEqual(expectedMaxedOutColor, () => actualMaxedOutColor);
 
             int whiteWithAlpha = ColorHelper.GetColor(255, 255, 255, 255);
             int probablyGreyColor = ColorHelper.SetBrightness(whiteWithAlpha, 0.5);

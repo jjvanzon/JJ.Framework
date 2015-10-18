@@ -52,8 +52,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         }
 
         /// <summary>
-        /// Red, green and blue components will be bound to a max of 255,
-        /// but things do change hue as you overflow component values of 255.
+        /// Red, green and blue components will be bound to a max of 255.
+        /// Once one of the components maxes out brightness will not go any further up.
         /// </summary>
         /// <param name="grade">0 makes it black, 1 keeps it the same color.</param>
         public static int SetBrightness(int color, double grade)
@@ -67,11 +67,22 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             g = (int)(g * grade);
             b = (int)(b * grade);
 
-            // TODO: When clipping like this, reddish can e.g. first changes to orangy and then to white.
-            // Make a better brightness grade when hitting the ceiling.
-            if (r > 255) r = 255;
-            if (g > 255) g = 255;
-            if (b > 255) b = 255;
+            int max = r;
+            if (max < g) max = g;
+            if (max < b) max = b;
+
+            if (max > 255)
+            {
+                float ratio = 255f / max;
+                r = (int)(r * ratio);
+                g = (int)(g * ratio);
+                b = (int)(b * ratio);
+
+                // Fix the odd rounding error.
+                if (r > 255) r = 255;
+                if (g > 255) g = 255;
+                if (b > 255) b = 255;
+            }
 
             return GetColor(a, r, g, b);
         }
