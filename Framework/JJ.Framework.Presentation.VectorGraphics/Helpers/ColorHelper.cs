@@ -50,5 +50,57 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 
             return color;
         }
+
+        /// <summary>
+        /// Red, green and blue components will be bound to a max of 255,
+        /// but things do change hue as you overflow component values of 255.
+        /// </summary>
+        /// <param name="grade">0 makes it black, 1 keeps it the same color.</param>
+        public static int SetBrightness(int color, double grade)
+        {
+            // TODO: Inline it for extra speed
+            int a = GetAlpha(color);
+            int r = GetRed(color);
+            int g = GetGreen(color);
+            int b = GetBlue(color);
+
+            r = (int)(r * grade);
+            g = (int)(g * grade);
+            b = (int)(b * grade);
+
+            if (r > 255) r = 255;
+            if (g > 255) g = 255;
+            if (b > 255) b = 255;
+
+            return GetColor(a, r, g, b);
+        }
+
+        public static int GetAlpha(int color)
+        {
+            int value = color >> 24;
+            return value;
+        }
+
+        public static int GetRed(int color)
+        {
+            // TODO: Do this with bitshift too.
+            int value = color % 0x01000000; // Remove alpha.
+            value = value >> 16; // Move blue and green out of scope.
+            return value;
+        }
+
+        public static int GetGreen(int color)
+        {
+            // TODO: Do this with bitshift too.
+            int value = color % 0x00010000; // Remove alpha and red.
+            value = value >> 8; // Move blue out of scope.
+            return value;
+        }
+
+        public static int GetBlue(int color)
+        {
+            int value = color % 0x00000100; // Remove alpha, red and green
+            return value;
+        }
     }
 }

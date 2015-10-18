@@ -5,6 +5,7 @@ using JJ.Framework.Testing;
 using JJ.Framework.Presentation.VectorGraphics.Visitors;
 using JJ.Framework.Presentation.VectorGraphics.Enums;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Tests
 {
@@ -163,6 +164,34 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
 
             Assert.AreEqual(2, diagram.PixelsToWidth(20));
             Assert.AreEqual(2, diagram.PixelsToHeight(20));
+        }
+
+        [TestMethod]
+        public void Test_ColorHelper_GetAlpha_GetRed_GetGreen_GetBlue_SetBrightness()
+        {
+            int color = ColorHelper.GetColor(2, 4, 6, 8);
+
+            int alpha = ColorHelper.GetAlpha(color);
+            AssertHelper.AreEqual(2, () => alpha);
+
+            int red = ColorHelper.GetRed(color);
+            AssertHelper.AreEqual(4, () => red);
+
+            int green = ColorHelper.GetGreen(color);
+            AssertHelper.AreEqual(6, () => green);
+
+            int blue = ColorHelper.GetBlue(color);
+            AssertHelper.AreEqual(8, () => blue);
+
+            int darkerColor = ColorHelper.SetBrightness(color, 0.5);
+            int expectedDarkerColor = ColorHelper.GetColor(2, 2, 3, 4);
+            AssertHelper.AreEqual(expectedDarkerColor, () => darkerColor);
+
+            int hopefullyWhiteColor = ColorHelper.SetBrightness(color, 255);
+            int expectedWhiteColor = ColorHelper.GetColor(2, 255, 255, 255);
+            AssertHelper.AreEqual(expectedDarkerColor, () => darkerColor);
+
+            // TODO: Test advancing towards white.
         }
     }
 }
