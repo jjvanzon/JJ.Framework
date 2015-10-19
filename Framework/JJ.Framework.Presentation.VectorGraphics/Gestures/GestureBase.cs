@@ -11,7 +11,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
     /// </summary>
     public abstract class GestureBase : IGesture
     {
-        /// <summary> Does nothing. summary>
+        /// <summary> Base member does nothing. </summary>
         protected virtual void HandleMouseDown(object sender, MouseEventArgs e)
         { }
 
