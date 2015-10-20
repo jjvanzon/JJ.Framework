@@ -14,14 +14,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     /// </summary>
     public class Curve : Element
     {
-        public Curve(params IGesture[] gestures)
-            : this((IList<IGesture>)gestures.ToList())
-        { }
-
-        public Curve(IList<IGesture> gestures)
-            : base(gestures)
-        { }
-
         private int _lineCount = 20;
         /// <summary>
         /// Default is 20. Cannot be less than 1.

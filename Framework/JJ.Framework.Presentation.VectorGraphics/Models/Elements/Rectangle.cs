@@ -12,14 +12,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Rectangle : Element
     {
-        public Rectangle(params IGesture[] gestures)
-            : this((IList<IGesture>)gestures.ToList()) // ToList prevents Exception 'collection has fixed size'.
-        { }
-
-        public Rectangle(IList<IGesture> gestures)
-            : base(gestures)
-        { }
-
         public override float X { get; set; }
         public override float Y { get; set; }
         public override float Width { get; set; }

@@ -12,11 +12,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     /// <summary> base class that can contain VectorGraphics child elements. </summary>
     public abstract partial class Element : ICalculatedValues
     {
-        internal Element(IList<IGesture> gestures)
+        internal Element()
         {
-            if (gestures == null) throw new NullException(() => gestures);
-
-            Gestures = gestures;
+            Gestures = new List<IGesture>();
 
             _parentRelationship = new ChildToParentRelationship(this);
             _diagramRelationship = new ElementToDiagramRelationship(this);

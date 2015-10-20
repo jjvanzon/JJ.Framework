@@ -12,14 +12,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Point : Element
     {
-        public Point(params IGesture[] gestures)
-            : this((IList<IGesture>)gestures.ToList())
-        { }
-
-        public Point(IList<IGesture> gestures)
-            : base(gestures)
-        { }
-
         public override float X { get; set; }
         public override float Y { get; set; }
 

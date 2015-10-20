@@ -10,13 +10,13 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
         {
             var diagram = new Diagram();
 
-            VectorGraphicsElements.Rectangle background = diagram.Background;
+            Rectangle background = diagram.Background;
 
-            VectorGraphicsElements.Rectangle rectangle1 = CreateRectangle(diagram, 200, 10, "Block 1");
+            Rectangle rectangle1 = CreateRectangle(diagram, 200, 10, "Block 1");
 
-            VectorGraphicsElements.Rectangle rectangle2 = CreateRectangle(diagram, 10, 200, "Block 2");
+            Rectangle rectangle2 = CreateRectangle(diagram, 10, 200, "Block 2");
 
-            var point1 = new VectorGraphicsElements.Point
+            var point1 = new Point
             {
                 Diagram = diagram,
                 Parent = rectangle1,
@@ -25,7 +25,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
                 PointStyle = VectorGraphicsHelper.InvisiblePointStyle
             };
 
-            var point2 = new VectorGraphicsElements.Point  
+            var point2 = new Point  
             {
                 Diagram = diagram,
                 Parent = rectangle2,
@@ -34,7 +34,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
                 PointStyle = VectorGraphicsHelper.InvisiblePointStyle
             };
 
-            var line = new VectorGraphicsElements.Line
+            var line = new Line
             {
                 Diagram = diagram,
                 Parent = diagram.Background,
@@ -48,9 +48,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
             return diagram;
         }
 
-        private static VectorGraphicsElements.Rectangle CreateRectangle(Diagram diagram, float x, float y, string text)
+        private static Rectangle CreateRectangle(Diagram diagram, float x, float y, string text)
         {
-            var rectangle = new VectorGraphicsElements.Rectangle(new MoveGesture())
+            var rectangle = new Rectangle()
             {
                 Diagram = diagram,
                 Parent = diagram.Background,
@@ -60,8 +60,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
                 Height = 60,
                 LineStyle = VectorGraphicsHelper.DefaultLineStyle
             };
+            rectangle.Gestures.Add(new MoveGesture());
 
-            var label = new VectorGraphicsElements.Label 
+            var label = new Label 
             {
                 Diagram = diagram,
                 Parent = rectangle,
@@ -74,9 +75,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
             return rectangle;
         }
 
-        public static VectorGraphicsElements.Rectangle CreateRectangle(Diagram diagram, string text)
+        public static Rectangle CreateRectangle(Diagram diagram, string text)
         {
-            var rectangle = new VectorGraphicsElements.Rectangle()
+            var rectangle = new Rectangle()
             {
                 Diagram = diagram,
                 Parent = diagram.Background,
@@ -88,7 +89,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
                 LineStyle = VectorGraphicsHelper.DefaultLineStyle
             };
 
-            var label = new VectorGraphicsElements.Label
+            var label = new Label
             {
                 Diagram = diagram,
                 Parent = rectangle,

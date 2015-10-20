@@ -12,14 +12,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Label : Element
     {
-        public Label(params IGesture[] gestures)
-            : this((IList<IGesture>)gestures.ToList())
-        { }
-
-        public Label(IList<IGesture> gestures)
-            : base(gestures)
-        { }
-
         public string Text { get; set; }
 
         private TextStyle _textStyle = new TextStyle();

@@ -12,14 +12,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Line : Element
     {
-        public Line(params IGesture[] gestures)
-            : this((IList<IGesture>)gestures.ToList())
-        { }
-
-        public Line(IList<IGesture> gestures)
-            : base(gestures)
-        { }
-
         private Point _pointA = new Point();
         /// <summary>
         /// Not nullable, auto-instantiated.
