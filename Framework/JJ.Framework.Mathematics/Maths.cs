@@ -4,11 +4,9 @@ namespace JJ.Framework.Mathematics
 {
     public static class Maths
     {
-        private static double _sqrt2 = Math.Sqrt(2);
-        public static double Sqrt2 { get { return _sqrt2; } }
-
-        private static float _floatsqrt2 = (float)Math.Sqrt(2);
-        public static float FloatSqrt2 { get { return _floatsqrt2; } }
+        public const double SQRT_2 = 1.4142135623730950;
+        public const float FLOAT_SQRT_2 = 1.4142136f;
+        public const double TWO_PI = 6.2831853071795865;
 
         /// <summary>
         /// Integer variation of the Math.Pow function,

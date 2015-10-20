@@ -64,7 +64,6 @@
     <Compile Include="Enums\DashStyleEnum.cs" />
     <Compile Include="Enums\MouseButtonEnum.cs" />
     <Compile Include="Gestures\GestureHandler.cs" />
-    <Compile Include="Gestures\ClickClosestGesture.cs" />
     <Compile Include="Gestures\ClickGesture.cs" />
     <Compile Include="Gestures\DoubleClickGesture.cs" />
     <Compile Include="Gestures\IGesture.cs" />
@@ -93,9 +92,6 @@
     <Compile Include="SideEffects\SideEffect_VerifyDiagram_WhenSettingParentOrChild.cs" />
     <Compile Include="SideEffects\SideEffect_VerifyNoParentChildRelationShips_WhenSettingDiagram.cs" />
     <Compile Include="Visitors\CalculationVisitor.cs" />
-    <Compile Include="Transformation\ITransformer.cs" />
-    <Compile Include="Transformation\RotateTransformer.cs" />
-    <Compile Include="Transformation\ScaleTransformer.cs" />
     <Compile Include="Visitors\ElementVisitorBase.cs" />
   </ItemGroup>
   <ItemGroup>
