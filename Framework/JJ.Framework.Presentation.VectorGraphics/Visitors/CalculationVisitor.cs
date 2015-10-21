@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JJ.Framework.Presentation.VectorGraphics.Enums;
 using JJ.Framework.Common;
+using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 {
@@ -344,10 +345,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
         private void ApplyScaling(Element element)
         {
-            element.CalculatedXInPixels = _diagram.XToPixels(element.CalculatedXInPixels);
-            element.CalculatedYInPixels = _diagram.YToPixels(element.CalculatedYInPixels);
-            element.CalculatedWidthInPixels = _diagram.WidthToPixels(element.CalculatedWidthInPixels);
-            element.CalculatedHeightInPixels = _diagram.HeightToPixels(element.CalculatedHeightInPixels);
+            element.CalculatedXInPixels = ScaleHelper.XToPixels(_diagram, element.CalculatedXInPixels);
+            element.CalculatedYInPixels = ScaleHelper.YToPixels(_diagram, element.CalculatedYInPixels);
+            element.CalculatedWidthInPixels = ScaleHelper.WidthToPixels(_diagram, element.CalculatedWidthInPixels);
+            element.CalculatedHeightInPixels = ScaleHelper.HeightToPixels(_diagram, element.CalculatedHeightInPixels);
         }
     }
 }

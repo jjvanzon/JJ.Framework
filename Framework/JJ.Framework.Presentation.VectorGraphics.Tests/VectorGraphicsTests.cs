@@ -98,28 +98,28 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             expectedAbsolute = -0.25f;
             expectedPixels = 17.5f;
 
-            actualAbsolute = diagram.PixelsToX(expectedPixels);
+            actualAbsolute = ScaleHelper.PixelsToX(diagram, expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = diagram.XToPixels(expectedAbsolute);
+            actualPixels = ScaleHelper.XToPixels(diagram, expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
-            actualAbsolute = child.RelativeToAbsoluteX(expectedRelative);
+            actualAbsolute = ScaleHelper.RelativeToAbsoluteX(child, expectedRelative);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualRelative = child.AbsoluteToRelativeX(expectedAbsolute);
+            actualRelative = ScaleHelper.AbsoluteToRelativeX(child, expectedAbsolute);
             Assert.AreEqual(expectedRelative, actualRelative);
 
-            actualRelative = child.PixelsToRelativeX(expectedPixels);
+            actualRelative = ScaleHelper.PixelsToRelativeX(child, expectedPixels);
             Assert.AreEqual(expectedRelative, actualRelative);
 
-            actualPixels = child.RelativeToPixelsX(expectedRelative);
+            actualPixels = ScaleHelper.RelativeToPixelsX(child, expectedRelative);
             Assert.AreEqual(expectedPixels, actualPixels);
 
-            actualAbsolute = child.PixelsToAbsoluteX(expectedPixels);
+            actualAbsolute = ScaleHelper.PixelsToAbsoluteX(child, expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = child.AbsoluteToPixelsX(expectedAbsolute);
+            actualPixels = ScaleHelper.AbsoluteToPixelsX(child, expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
             // Copy-paste-changed code for the Y axis
@@ -127,28 +127,28 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             expectedAbsolute = -0.25f * 2;
             expectedPixels = 17.5f * 2;
 
-            actualAbsolute = diagram.PixelsToY(expectedPixels);
+            actualAbsolute = ScaleHelper.PixelsToY(diagram, expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = diagram.YToPixels(expectedAbsolute);
+            actualPixels = ScaleHelper.YToPixels(diagram, expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
-            actualAbsolute = child.RelativeToAbsoluteY(expectedRelative);
+            actualAbsolute = ScaleHelper.RelativeToAbsoluteY(child, expectedRelative);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualRelative = child.AbsoluteToRelativeY(expectedAbsolute);
+            actualRelative = ScaleHelper.AbsoluteToRelativeY(child, expectedAbsolute);
             Assert.AreEqual(expectedRelative, actualRelative);
 
-            actualRelative = child.PixelsToRelativeY(expectedPixels);
+            actualRelative = ScaleHelper.PixelsToRelativeY(child, expectedPixels);
             Assert.AreEqual(expectedRelative, actualRelative);
 
-            actualPixels = child.RelativeToPixelsY(expectedRelative);
+            actualPixels = ScaleHelper.RelativeToPixelsY(child, expectedRelative);
             Assert.AreEqual(expectedPixels, actualPixels);
 
-            actualAbsolute = child.PixelsToAbsoluteY(expectedPixels);
+            actualAbsolute = ScaleHelper.PixelsToAbsoluteY(child, expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = child.AbsoluteToPixelsY(expectedAbsolute);
+            actualPixels = ScaleHelper.AbsoluteToPixelsY(child, expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
             // Test Properties
@@ -159,11 +159,11 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             Assert.AreEqual(-2, child.AbsoluteY);
 
             // Test Width and Height conversions
-            Assert.AreEqual(20, diagram.WidthToPixels(2));
-            Assert.AreEqual(20, diagram.HeightToPixels(2));
+            Assert.AreEqual(20, ScaleHelper.WidthToPixels(diagram, 2));
+            Assert.AreEqual(20, ScaleHelper.HeightToPixels(diagram, 2));
 
-            Assert.AreEqual(2, diagram.PixelsToWidth(20));
-            Assert.AreEqual(2, diagram.PixelsToHeight(20));
+            Assert.AreEqual(2, ScaleHelper.PixelsToWidth(diagram, 20));
+            Assert.AreEqual(2, ScaleHelper.PixelsToHeight(diagram, 20));
         }
 
         [TestMethod]

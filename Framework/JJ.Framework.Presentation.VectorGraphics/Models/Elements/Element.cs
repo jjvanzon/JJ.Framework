@@ -6,6 +6,7 @@ using JJ.Framework.Presentation.VectorGraphics.Relationships;
 using JJ.Framework.Presentation.VectorGraphics.Gestures;
 using JJ.Framework.Presentation.VectorGraphics.SideEffects;
 using System;
+using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
@@ -95,6 +96,28 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         /// <summary> Indicates whether the element will respond to mouse and keyboard gestures. </summary>
         public bool Enabled { get; set; }
+
+        // Scaling
+
+        public float AbsoluteX
+        {
+            get { return ScaleHelper.RelativeToAbsoluteX(this, 0); }
+        }
+
+        public float AbsoluteY
+        {
+            get { return ScaleHelper.RelativeToAbsoluteY(this, 0); }
+        }
+
+        public float XInPixels
+        {
+            get { return ScaleHelper.RelativeToPixelsX(this, 0); }
+        }
+
+        public float YInPixels
+        {
+            get { return ScaleHelper.RelativeToPixelsY(this, 0); }
+        }
 
         // Calculated Values
 

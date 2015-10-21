@@ -52,9 +52,9 @@
     <Compile Include="Gestures\KeyDownGesture.cs" />
     <Compile Include="Gestures\KeyUpGesture.cs" />
     <Compile Include="Gestures\MouseLeaveGesture.cs" />
+    <Compile Include="Helpers\ScaleHelper.cs" />
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Models\Elements\Curve.cs" />
-    <Compile Include="Models\Elements\Element.Scaling.cs" />
     <Compile Include="Models\Elements\ICalculatedValues.cs" />
     <Compile Include="Models\Elements\IDiagramGestureHandling.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />

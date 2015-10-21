@@ -1,6 +1,7 @@
 ﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using System;
+using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
@@ -99,8 +100,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 float deltaXInPixels = e.XInPixels - _mouseDownPointerXInPixels;
                 float deltaYInPixels = e.YInPixels - _mouseDownPointerYInPixels;
 
-                float deltaX = _diagram.PixelsToWidth(deltaXInPixels);
-                float deltaY = _diagram.PixelsToHeight(deltaYInPixels);
+                float deltaX = ScaleHelper.PixelsToWidth(_diagram, deltaXInPixels);
+                float deltaY = ScaleHelper.PixelsToHeight(_diagram, deltaYInPixels);
 
                 _elementBeingMoved.X = _mouseDownElementX + deltaX;
                 _elementBeingMoved.Y = _mouseDownElementY + deltaY;
