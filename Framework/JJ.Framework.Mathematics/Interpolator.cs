@@ -144,5 +144,35 @@ namespace JJ.Framework.Mathematics
         {
             throw new NotImplementedException();
         }
+
+        // From 1999
+
+        public static double Interpolate_Cubic_Ramses(
+            double xMinus1, double x0, double x1, double x2,
+            double yMinus1, double y0, double y1, double y2,
+            double x)
+        {
+            double incl0 = (y1 - yMinus1) / (x1 - xMinus1);
+            double incl1 = (y2 - y0) / (x2 - x0);
+            double y = Interpolate_Cubic_Ramses(x0, x1, y0, y1, incl0, incl1, x);
+            return y;
+        }
+
+        private static double Interpolate_Cubic_Ramses(
+            double x0, double x1,
+            double y0, double y1, 
+            double incl0, double incl1,
+            double x)
+        {
+            double dx = x1 - x0;
+            double dy = y1 - y0;
+            double ofs = x - x0;
+            double a = incl0;
+            // TODO: Make this faster, by not repeating the same operations.
+            double b = (3 * dy - dx * incl1 - 2 * a * dx) / (dx * dx);
+            double c = (dy - a * dx - b * (dx * dx)) / (dx * dx * dx);
+            double y = (y0 + ofs * (a + (ofs * (b + (c * ofs)))));
+            return y;
+        }
     }
 }
