@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessor.cs" />
-    <Compile Include="Exceptions\InvalidTypeExceptionOfT.cs" />
-    <Compile Include="Exceptions\InvalidTypeException.cs" />
+    <Compile Include="Exceptions\IsTypeException.cs" />
+    <Compile Include="Exceptions\IsTypeExceptionOfT.cs" />
+    <Compile Include="Exceptions\IsNotTypeExceptionOfT.cs" />
+    <Compile Include="Exceptions\IsNotTypeException.cs" />
     <Compile Include="Exceptions\NotDoubleException.cs" />
     <Compile Include="Exceptions\NotIntegerException.cs" />
     <Compile Include="Exceptions\NotNullException.cs" />

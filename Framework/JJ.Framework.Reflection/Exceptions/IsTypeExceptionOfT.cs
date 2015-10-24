@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace JJ.Framework.Reflection.Exceptions
 {
-    public class InvalidTypeException<T> : InvalidTypeException
+    public class IsTypeException<T> : IsTypeException
     {
-        public InvalidTypeException(Expression<Func<object>> expression)
+        public IsTypeException(Expression<Func<object>> expression)
             : base(expression, typeof(T))
         { }
     }
