@@ -9,7 +9,7 @@ namespace JJ.Framework.Common
         // TODO:
         // Warning CA1062  In externally visible method 'InvalidValueException.InvalidValueException(object)', validate parameter 'value' before using it.
         public InvalidValueException(object value)
-            : base(String.Format(MESSAGE, value.GetType(), value))
+            : base(String.Format(MESSAGE, value.GetType().Name, value))
         { }
     }
 }
