@@ -165,13 +165,14 @@ namespace JJ.Framework.Mathematics
             double x)
         {
             double dx = x1 - x0;
+            double dx2 = dx * dx;
+            double dx3 = dx2 * dx;
             double dy = y1 - y0;
             double ofs = x - x0;
             double a = incl0;
-            // TODO: Make this faster, by not repeating the same operations.
-            double b = (3 * dy - dx * incl1 - 2 * a * dx) / (dx * dx);
-            double c = (dy - a * dx - b * (dx * dx)) / (dx * dx * dx);
-            double y = (y0 + ofs * (a + (ofs * (b + (c * ofs)))));
+            double b = (3 * dy - dx * incl1 - 2 * a * dx) / dx2;
+            double c = (dy - a * dx - b * dx2) / dx3;
+            double y = y0 + ofs * (a + (ofs * (b + (c * ofs))));
             return y;
         }
     }
