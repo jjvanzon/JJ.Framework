@@ -3,7 +3,6 @@ using JJ.Framework.Presentation.VectorGraphics.Visitors;
 using JJ.Framework.Presentation.WinForms.TestForms.Helpers;
 using JJ.Framework.Reflection.Exceptions;
 using System.Collections.Generic;
-using JJ.Framework.Presentation.WinForms.TestForms.Helpers;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutCloning
 {

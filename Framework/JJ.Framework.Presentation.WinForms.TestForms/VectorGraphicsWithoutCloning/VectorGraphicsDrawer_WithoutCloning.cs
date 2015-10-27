@@ -4,7 +4,6 @@ using JJ.Framework.Presentation.WinForms.TestForms.Helpers;
 using JJ.Framework.Reflection.Exceptions;
 using System.Drawing;
 using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Presentation.WinForms.TestForms.Helpers;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithoutCloning
 {
