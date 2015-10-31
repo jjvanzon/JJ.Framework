@@ -11,19 +11,31 @@ namespace JJ.Framework.Common
         private static object _sectionsLock = new object();
         private static IDictionary<Type, object> _sections = new Dictionary<Type, object>();
 
+        // TODO: Make the overloads with the explicit section name.
+
         public static T GetSection<T>()
         {
             lock (_sectionsLock)
             {
-                object section;
-                if (!_sections.TryGetValue(typeof(T), out section))
+                object section = TryGetSection<T>();
+                if (section == null)
                 {
                     throw new Exception(String.Format(
-                        "Configuration section of type '{0}' was not set. To allow {1} to use this configuration section, call {2}.SetSection.", 
-                        typeof(T).FullName, 
+                        "Configuration section of type '{0}' was not set. To allow {1} to use this configuration section, call {2}.SetSection.",
+                        typeof(T).FullName,
                         typeof(ConfigurationHelper).Assembly.GetName().Name,
                         typeof(ConfigurationHelper).FullName));
                 }
+                return (T)section;
+            }
+        }
+
+        public static T TryGetSection<T>()
+        {
+            lock (_sectionsLock)
+            {
+                object section;
+                _sections.TryGetValue(typeof(T), out section);
                 return (T)section;
             }
         }
