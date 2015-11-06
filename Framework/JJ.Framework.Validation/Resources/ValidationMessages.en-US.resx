@@ -181,4 +181,8 @@
     <value>{0} is not an integer number.</value>
     <comment>{0} = property name</comment>
   </data>
+  <data name="NotNullOrEmpty" xml:space="preserve">
+    <value>{0} should be empty.</value>
+    <comment>{0} = property name</comment>
+  </data>
 </root>

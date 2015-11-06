@@ -181,6 +181,10 @@
     <value>{0} is not a 32-bit integer number.</value>
     <comment>{0} = property name</comment>
   </data>
+  <data name="NotNullOrEmpty" xml:space="preserve">
+    <value>{0} is not null or empty.</value>
+    <comment>{0} = property name</comment>
+  </data>
   <data name="README" xml:space="preserve">
     <value>THIS IS NOT A RESOURCE TEXT, but an instruction to programmers.
 The default language is not "en-US", but something you could call "en-US-tech".

@@ -171,4 +171,8 @@
     <value>{0} is geen geheel getal.</value>
     <comment>{0} = property name</comment>
   </data>
+  <data name="NotNullOrEmpty" xml:space="preserve">
+    <value>{0} zou leeg moeten zijn.</value>
+    <comment>{0} = property name</comment>
+  </data>
 </root>

@@ -35,6 +35,11 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(ValidationMessages.IsNullOrEmpty, propertyDisplayName);
         }
 
+        internal static string NotNullOrEmpty(string propertyDisplayName)
+        {
+            return String.Format(ValidationMessages.NotNullOrEmpty, propertyDisplayName);
+        }
+
         public static string IsZero(string propertyDisplayName)
         {
             return String.Format(ValidationMessages.IsZero, propertyDisplayName);

@@ -115,6 +115,18 @@ namespace JJ.Framework.Validation
             return this;
         }
 
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNullOrEmpty()
+        {
+            string value = Convert.ToString(_value);
+
+            if (!String.IsNullOrEmpty(value))
+            {
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotNullOrEmpty(_propertyDisplayName));
+            }
+
+            return this;
+        }
+
         // Strings
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> MaxLength(int maxLength)
