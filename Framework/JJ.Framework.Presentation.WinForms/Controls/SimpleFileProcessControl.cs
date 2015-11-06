@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Threading;
+using JJ.Framework.Logging;
 
 namespace JJ.Framework.Presentation.WinForms.Controls
 {
@@ -56,24 +57,25 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             IsRunning = true;
 
             // try-catch outcommented because the Microsoft Visual Studio 2012 Express for Web only breaks on non-user-handled exceptions.
-            /*try
-            {*/
-            if (OnRunProcess != null)
+            try
             {
-                OnRunProcess(this, EventArgs.Empty);
+                if (OnRunProcess != null)
+                {
+                    OnRunProcess(this, EventArgs.Empty);
+                }
             }
-            /*}
             catch (Exception ex)
             {
                 if (MustShowExceptions)
                 {
-                    OnUiThread(() => MessageBox.Show(ex.Message));
+                    string exception = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
+                    OnUiThread(() => MessageBox.Show(exception));
                 }
                 else
                 {
                     throw;
                 }
-            }*/
+            }
 
             IsRunning = false;
         }
@@ -118,13 +120,19 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             set { textBoxFilePath.Text = value; }
         }
 
-        [EditorAttribute(
+        [Editor(
             "System.ComponentModel.Design.MultilineStringEditor, System.Design",
             "System.Drawing.Design.UITypeEditor")]
         public string Description
         {
             get { return labelDescription.Text; ; }
             set { labelDescription.Text = value; }
+        }
+        
+        [DefaultValue(true)]
+        public bool MustShowExceptions
+        {
+            get; set;
         }
 
         // Helpers

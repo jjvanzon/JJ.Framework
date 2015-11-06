@@ -41,13 +41,19 @@ namespace JJ.Framework.Presentation.WinForms.Forms
             set { simpleFileProcessControl.FilePath = value; }
         }
 
-        [EditorAttribute(
+        [Editor(
             "System.ComponentModel.Design.MultilineStringEditor, System.Design",
             "System.Drawing.Design.UITypeEditor")]
         public string Description
         {
             get { return simpleFileProcessControl.Description; ; }
             set { simpleFileProcessControl.Description = value; }
+        }
+
+        public bool MustShowExceptions
+        {
+            get { return simpleFileProcessControl.MustShowExceptions; }
+            set { simpleFileProcessControl.MustShowExceptions = value; }
         }
 
         private void simpleProcessControl_OnRunProcess(object sender, EventArgs e)
