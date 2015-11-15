@@ -12,5 +12,10 @@ namespace JJ.Framework.Common
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
         }
+
+        public static CultureInfo GetCurrentCulture()
+        {
+            return Thread.CurrentThread.CurrentCulture;
+        }
     }
 }

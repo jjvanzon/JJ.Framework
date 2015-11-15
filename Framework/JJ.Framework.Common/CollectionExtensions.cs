@@ -311,5 +311,11 @@ namespace JJ.Framework.Common
                 collection.Add(x);
             }
         }
+
+        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
+        {
+            if (source == null) throw new ArgumentNullException("source");
+            return new HashSet<T>(source);
+        }
     }
 }
