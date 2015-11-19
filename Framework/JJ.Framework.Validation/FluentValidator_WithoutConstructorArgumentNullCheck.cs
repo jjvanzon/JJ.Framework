@@ -206,7 +206,7 @@ namespace JJ.Framework.Validation
 
         // Comparison
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> Above<TValue>(TValue min)
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThan<TValue>(TValue min)
             where TValue : IComparable
         {
             if (_value == null)
@@ -224,7 +224,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> MinValue<TValue>(TValue min)
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThanOrEqual<TValue>(TValue min)
             where TValue : IComparable
         {
             if (_value == null)
@@ -242,7 +242,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> MaxValue<TValue>(TValue max)
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThanOrEqual<TValue>(TValue max)
             where TValue : IComparable
         {
             if (_value == null)
@@ -261,8 +261,7 @@ namespace JJ.Framework.Validation
         }
 
         /// <summary>
-        /// Converts both value to decimal, so comparisons are number-based,
-        /// and strings are interpreted as numbers.
+        /// Converts both values to decimal, so comparisons are number-based, and strings are interpreted as numbers.
         /// </summary>
         private int CompareNumbers(object a, object b)
         {
