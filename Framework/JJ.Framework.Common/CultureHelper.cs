@@ -6,7 +6,7 @@ namespace JJ.Framework.Common
 {
     public static class CultureHelper
     {
-        public static void SetThreadCulture(string cultureName)
+        public static void SetThreadCultureName(string cultureName)
         {
             CultureInfo cultureInfo = CultureInfo_PlatformSafe.GetCultureInfo(cultureName);
             Thread.CurrentThread.CurrentCulture = cultureInfo;
