@@ -140,7 +140,7 @@
     <value>Edit {0}</value>
     <comment>{0} = type of object, singular</comment>
   </data>
-  <data name="EntityCount" xml:space="preserve">
+  <data name="ObjectCount" xml:space="preserve">
     <value>Number of {0}</value>
     <comment>{0} = object name plural</comment>
   </data>

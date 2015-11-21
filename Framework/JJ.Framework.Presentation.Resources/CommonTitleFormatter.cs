@@ -4,37 +4,37 @@ namespace JJ.Framework.Presentation.Resources
 {
     public static class CommonTitleFormatter
     {
-        public static string EntityCount(string entityNamePlural)
+        public static string ObjectCount(string entityNamePlural)
         {
-            return String.Format(CommonTitles.EntityCount, entityNamePlural);
+            return String.Format(CommonTitles.ObjectCount, entityNamePlural);
         }
 
-        public static String CloseObject(string objectTypeName)
+        public static string CloseObject(string objectTypeName)
         {
             return String.Format(CommonTitles.CloseObject, objectTypeName);
         }
 
-        public static String DeleteObject(string objectTypeName)
+        public static string DeleteObject(string objectTypeName)
         {
             return String.Format(CommonTitles.DeleteObject, objectTypeName);
         }
 
-        public static String EditObject(string objectTypeName)
+        public static string EditObject(string objectTypeName)
         {
             return String.Format(CommonTitles.EditObject, objectTypeName);
         }
 
-        public static String ObjectDetails(string objectTypeName)
+        public static string ObjectDetails(string objectTypeName)
         {
             return String.Format(CommonTitles.ObjectDetails, objectTypeName);
         }
 
-        public static String ObjectProperties(string objectTypeName)
+        public static string ObjectProperties(string objectTypeName)
         {
             return String.Format(CommonTitles.ObjectProperties, objectTypeName);
         }
 
-        public static String SaveObject(string objectTypeName)
+        public static string SaveObject(string objectTypeName)
         {
             return String.Format(CommonTitles.SaveObject, objectTypeName);
         }

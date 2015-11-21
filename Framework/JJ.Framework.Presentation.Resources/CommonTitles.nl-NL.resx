@@ -140,7 +140,7 @@
     <value>{0} bewerken</value>
     <comment>{0} = type of object, singular</comment>
   </data>
-  <data name="EntityCount" xml:space="preserve">
+  <data name="ObjectCount" xml:space="preserve">
     <value>Aantal {0}</value>
   </data>
   <data name="ID" xml:space="preserve">
