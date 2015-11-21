@@ -126,7 +126,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             _gestureHandler.HandleMouseMove(e);
 
-            if (e.MouseButtonEnum != MouseButtonEnum.None)
+            //if (e.MouseButtonEnum != MouseButtonEnum.None)
             {
                 Recalculate();
             }
