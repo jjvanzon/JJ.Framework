@@ -116,6 +116,12 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         private void Draw()
         {
+            // TODO: On my laptop it could be null, while on my large desktop PC this does not happen. Strange.
+            if (_graphicsBuffer == null)
+            {
+                return;
+            }
+
             if (Diagram == null)
             {
                 _graphicsBuffer.Graphics.Clear(BackColor);
