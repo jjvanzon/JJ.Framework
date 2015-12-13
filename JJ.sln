@@ -266,6 +266,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "Externa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.Synthesizer.Api", "Business\JJ.Business.Synthesizer.Api\JJ.Business.Synthesizer.Api.csproj", "{9451509B-96E7-43A7-87A2-74E5E582C0CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.OneOff.Synthesizer.DataMigration", "OneOff\JJ.OneOff.Synthesizer.DataMigration\JJ.OneOff.Synthesizer.DataMigration.csproj", "{B06307FD-4319-4C0F-BF01-43900D5B36BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{36344935-BBA0-44BA-864B-1510EBE839E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Infrastructure.Synthesizer", "Infrastructure\JJ.Infrastructure.Synthesizer\JJ.Infrastructure.Synthesizer.csproj", "{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2515,6 +2521,54 @@ Global
 		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Release|x64.Build.0 = Release|Any CPU
 		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Release|x86.ActiveCfg = Release|Any CPU
 		{9451509B-96E7-43A7-87A2-74E5E582C0CD}.Release|x86.Build.0 = Release|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Debug|x64.Build.0 = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Debug|x86.Build.0 = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Release|x64.ActiveCfg = Release|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Release|x64.Build.0 = Release|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Release|x86.ActiveCfg = Release|Any CPU
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB}.Release|x86.Build.0 = Release|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Debug|x64.Build.0 = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Debug|x86.Build.0 = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Release|x64.ActiveCfg = Release|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Release|x64.Build.0 = Release|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Release|x86.ActiveCfg = Release|Any CPU
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2643,9 +2697,11 @@ Global
 		{5909BFE7-93CF-4E5F-BE22-6293368AF01D} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{529145D5-6CC3-4016-89B5-826563024AF1} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{9451509B-96E7-43A7-87A2-74E5E582C0CD} = {50495465-0C70-46B2-A1BD-B5F6BD0EA3B2}
+		{B06307FD-4319-4C0F-BF01-43900D5B36BB} = {8811F001-E852-4533-A212-1050A0153972}
+		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A} = {36344935-BBA0-44BA-864B-1510EBE839E2}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 124
+		SccNumberOfProjects = 126
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -3141,5 +3197,13 @@ Global
 		SccProjectTopLevelParentUniqueName123 = JJ.sln
 		SccProjectName123 = Business/JJ.Business.Synthesizer.Api
 		SccLocalPath123 = Business\\JJ.Business.Synthesizer.Api
+		SccProjectUniqueName124 = OneOff\\JJ.OneOff.Synthesizer.DataMigration\\JJ.OneOff.Synthesizer.DataMigration.csproj
+		SccProjectTopLevelParentUniqueName124 = JJ.sln
+		SccProjectName124 = OneOff/JJ.OneOff.Synthesizer.DataMigration
+		SccLocalPath124 = OneOff\\JJ.OneOff.Synthesizer.DataMigration
+		SccProjectUniqueName125 = Infrastructure\\JJ.Infrastructure.Synthesizer\\JJ.Infrastructure.Synthesizer.csproj
+		SccProjectTopLevelParentUniqueName125 = JJ.sln
+		SccProjectName125 = Infrastructure/JJ.Infrastructure.Synthesizer
+		SccLocalPath125 = Infrastructure\\JJ.Infrastructure.Synthesizer
 	EndGlobalSection
 EndGlobal
