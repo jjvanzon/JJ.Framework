@@ -44,6 +44,8 @@
     <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="CultureHelper.cs" />
     <Compile Include="EmbeddedResourceHelper.cs" />
+    <Compile Include="EntityNotFoundExceptionOfT.cs" />
+    <Compile Include="EntityNotFoundException.cs" />
     <Compile Include="KeyHelper.cs" />
     <Compile Include="KeyValuePairHelper.cs" />
     <Compile Include="PropertyNotFoundException.cs" />

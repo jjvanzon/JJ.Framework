@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using JJ.Framework.Common;
 
 namespace JJ.Framework.Data
 {
@@ -32,7 +33,7 @@ namespace JJ.Framework.Data
 
             if (entity == null)
             {
-                throw new Exception(String.Format("Entity of type '{0}' with ID '{1}' not found.", typeof(TEntity).Name, id));
+                throw new EntityNotFoundException<TEntity>(id);
             }
 
             return entity;
