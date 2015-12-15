@@ -36,7 +36,7 @@ namespace JJ.Framework.Data.Xml.Internal
             Converter = new XmlToEntityConverter();
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IList<TEntity> GetAll()
         {
             IList<XmlElement> sourceXmlElements = Accessor.GetAllElements(_mapping.ElementName);
             IList<TEntity> destEntities = sourceXmlElements.Select(x => Converter.ConvertXmlElementToEntity<TEntity>(x)).ToArray();

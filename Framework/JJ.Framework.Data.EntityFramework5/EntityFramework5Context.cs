@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Reflection;
 using System.Transactions;
+using System.Linq;
 
 namespace JJ.Framework.Data.EntityFramework5
 {
@@ -40,9 +41,9 @@ namespace JJ.Framework.Data.EntityFramework5
             return Context.Set<TEntity>().Find(id);
         }
 
-        public override IEnumerable<TEntity> GetAll<TEntity>()
+        public override IList<TEntity> GetAll<TEntity>()
         {
-            return Context.Set<TEntity>();
+            return Context.Set<TEntity>().ToArray();
         }
 
         public override TEntity Create<TEntity>()

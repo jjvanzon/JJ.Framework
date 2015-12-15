@@ -27,7 +27,7 @@ namespace JJ.Framework.Data.NPersist
             return Context.TryGetObjectById<TEntity>(id);
         }
 
-        public override IEnumerable<TEntity> GetAll<TEntity>()
+        public override IList<TEntity> GetAll<TEntity>()
         {
             return Context.GetObjects<TEntity>();
         }

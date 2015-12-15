@@ -75,7 +75,7 @@ namespace JJ.Framework.Data.Memory
             entityStore.Delete(entity);
         }
 
-        public override IEnumerable<TEntity> GetAll<TEntity>()
+        public override IList<TEntity> GetAll<TEntity>()
         {
             EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
             return entityStore.GetAll();

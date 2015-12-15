@@ -8,7 +8,7 @@ namespace JJ.Framework.Data
         TEntity Get<TEntity>(object id) where TEntity : class, new();
         TEntity TryGet<TEntity>(object id) where TEntity : class, new();
 
-        IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class, new();
+        IList<TEntity> GetAll<TEntity>() where TEntity : class, new();
 
         TEntity Create<TEntity>() where TEntity : class, new();
         void Insert(object entity);

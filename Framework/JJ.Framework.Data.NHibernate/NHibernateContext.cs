@@ -44,9 +44,9 @@ namespace JJ.Framework.Data.NHibernate
             return entity;
         }
 
-        public override IEnumerable<TEntity> GetAll<TEntity>()
+        public override IList<TEntity> GetAll<TEntity>()
         {
-            return Session.Query<TEntity>();
+            return Session.QueryOver<TEntity>().List();
         }
 
         public override TEntity Create<TEntity>()

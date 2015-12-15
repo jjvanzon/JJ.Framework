@@ -3,6 +3,7 @@ using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 namespace JJ.Framework.Data.Memory.Internal
 {
@@ -94,12 +95,9 @@ namespace JJ.Framework.Data.Memory.Internal
             }
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IList<TEntity> GetAll()
         {
-            foreach (TEntity entity in _hashSet)
-            {
-                yield return entity;
-            }
+            return _hashSet.ToArray();
         }
 
         // Identity

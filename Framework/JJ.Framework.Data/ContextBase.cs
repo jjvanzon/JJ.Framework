@@ -40,7 +40,7 @@ namespace JJ.Framework.Data
         }
 
         public abstract TEntity TryGet<TEntity>(object id) where TEntity : class, new();
-        public abstract IEnumerable<TEntity> GetAll<TEntity>() where TEntity : class, new();
+        public abstract IList<TEntity> GetAll<TEntity>() where TEntity : class, new();
         public abstract TEntity Create<TEntity>() where TEntity : class, new();
         public abstract void Insert(object entity);
         public abstract void Update(object entity);

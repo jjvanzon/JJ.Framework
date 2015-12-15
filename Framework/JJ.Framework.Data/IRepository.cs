@@ -6,7 +6,7 @@ namespace JJ.Framework.Data
     {
         TEntity TryGet(TID id);
         TEntity Get(TID id);
-        IEnumerable<TEntity> GetAll();
+        IList<TEntity> GetAll();
         TEntity Create();
         void Delete(TEntity entity);
         void Update(TEntity entity);

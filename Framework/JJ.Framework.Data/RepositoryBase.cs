@@ -24,7 +24,7 @@ namespace JJ.Framework.Data
             return _context.Get<TEntity>(id);
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public virtual IList<TEntity> GetAll()
         {
             return _context.GetAll<TEntity>();
         }
