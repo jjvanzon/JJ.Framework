@@ -6,13 +6,15 @@ namespace JJ.Framework.Mathematics
 {
     public static class Randomizer
     {
-        private static Random _random;
+        private static Random _random = CreateRandom();
 
-        static Randomizer()
+        private static Random CreateRandom()
         {
             int randomSeed = Guid.NewGuid().GetHashCode();
 
-            _random = new Random(randomSeed);
+            var random = new Random(randomSeed);
+
+            return random;
         }
 
         /// <summary>
