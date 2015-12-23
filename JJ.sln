@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{DD6A844F-F11D-472A-875B-6C30B4534EDD}"
 EndProject
@@ -271,6 +271,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{36344935-BBA0-44BA-864B-1510EBE839E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Infrastructure.Synthesizer", "Infrastructure\JJ.Infrastructure.Synthesizer\JJ.Infrastructure.Synthesizer.csproj", "{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio", "External Components\NAudio\Source Code\1.7.2\NAudio\NAudio.csproj", "{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudioDemo", "External Components\NAudio\Source Code\1.7.2\NAudioDemo\NAudioDemo.csproj", "{C37A547B-F31E-45FB-870A-CFA704D06152}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -2569,6 +2573,54 @@ Global
 		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Release|x64.Build.0 = Release|Any CPU
 		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Release|x86.ActiveCfg = Release|Any CPU
 		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}.Release|x86.Build.0 = Release|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Debug|x64.Build.0 = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Debug|x86.Build.0 = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Release|x64.ActiveCfg = Release|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Release|x64.Build.0 = Release|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Release|x86.ActiveCfg = Release|Any CPU
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}.Release|x86.Build.0 = Release|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Debug|x64.Build.0 = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Debug|x86.Build.0 = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Release|x64.ActiveCfg = Release|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Release|x64.Build.0 = Release|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Release|x86.ActiveCfg = Release|Any CPU
+		{C37A547B-F31E-45FB-870A-CFA704D06152}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2699,9 +2751,11 @@ Global
 		{9451509B-96E7-43A7-87A2-74E5E582C0CD} = {50495465-0C70-46B2-A1BD-B5F6BD0EA3B2}
 		{B06307FD-4319-4C0F-BF01-43900D5B36BB} = {8811F001-E852-4533-A212-1050A0153972}
 		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A} = {36344935-BBA0-44BA-864B-1510EBE839E2}
+		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{C37A547B-F31E-45FB-870A-CFA704D06152} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 126
+		SccNumberOfProjects = 128
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -3205,5 +3259,13 @@ Global
 		SccProjectTopLevelParentUniqueName125 = JJ.sln
 		SccProjectName125 = Infrastructure/JJ.Infrastructure.Synthesizer
 		SccLocalPath125 = Infrastructure\\JJ.Infrastructure.Synthesizer
+		SccProjectUniqueName126 = External\u0020Components\\NAudio\\Source\u0020Code\\1.7.2\\NAudio\\NAudio.csproj
+		SccProjectTopLevelParentUniqueName126 = JJ.sln
+		SccProjectName126 = External\u0020Components/NAudio/Source\u0020Code/1.7.2/NAudio
+		SccLocalPath126 = External\u0020Components\\NAudio\\Source\u0020Code\\1.7.2\\NAudio
+		SccProjectUniqueName127 = External\u0020Components\\NAudio\\Source\u0020Code\\1.7.2\\NAudioDemo\\NAudioDemo.csproj
+		SccProjectTopLevelParentUniqueName127 = JJ.sln
+		SccProjectName127 = External\u0020Components/NAudio/Source\u0020Code/1.7.2/NAudioDemo
+		SccLocalPath127 = External\u0020Components\\NAudio\\Source\u0020Code\\1.7.2\\NAudioDemo
 	EndGlobalSection
 EndGlobal
