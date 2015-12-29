@@ -15,6 +15,8 @@ namespace JJ.Framework.Data.SqlClient
     public static class SqlCommandHelper
     {
         private static readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
+        private static IDictionary<object, string> _sqlDictionary = new Dictionary<object, string>();
+        private static object _sqlDictionaryLock = new object();
 
         public static SqlCommand CreateSqlCommand(SqlConnection connection, object sqlEnum, object parameters)
         {
@@ -101,9 +103,6 @@ namespace JJ.Framework.Data.SqlClient
                    type == typeof(TimeSpan) ||
                    type == typeof(Guid);
         }
-
-        private static IDictionary<object, string> _sqlDictionary = new Dictionary<object, string>();
-        private static object _sqlDictionaryLock = new object();
 
         private static string GetSql(object sqlEnum)
         {
