@@ -12,15 +12,17 @@ namespace JJ.Framework.Data.NHibernate
     {
         public ISession Session { get; private set; }
 
-        private ISessionFactory _sessionFactory;
-        private HashSet<object> _entitiesToSave = new HashSet<object>();
+        private readonly ISessionFactory _sessionFactory;
+        private readonly HashSet<object> _entitiesToSave = new HashSet<object>();
 
         /// <summary>
         /// This EntityDictionary is invented to be able to get uncommitted, non-flushed entities by ID,
         /// without calling NHibernate 'Save',
         /// which takes a snapshot of the current state of the entity which ignores subsequent changes to the entity.
         /// </summary>
-        private EntityDictionary _entityDictionary = new EntityDictionary();
+        private readonly EntityDictionary _entityDictionary = new EntityDictionary();
+
+        private readonly Dictionary<Type, object> _getAllCache = new Dictionary<Type, object>();
 
         public NHibernateContext(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
             : base(connectionString, modelAssembly, mappingAssembly, dialect)
@@ -46,7 +48,14 @@ namespace JJ.Framework.Data.NHibernate
 
         public override IList<TEntity> GetAll<TEntity>()
         {
-            return Session.QueryOver<TEntity>().List();
+            object entities;
+            if (!_getAllCache.TryGetValue(typeof(TEntity), out entities))
+            {
+                entities = Session.QueryOver<TEntity>().List();
+                _getAllCache.Add(typeof(TEntity), entities);
+            }
+            
+            return (IList<TEntity>)entities;
         }
 
         public override TEntity Create<TEntity>()
@@ -121,6 +130,8 @@ namespace JJ.Framework.Data.NHibernate
         {
             Flush();
 
+            _getAllCache.Clear();
+
             if (Session.Transaction.IsActive)
             {
                 Session.Transaction.Commit();
@@ -147,6 +158,8 @@ namespace JJ.Framework.Data.NHibernate
         {
             _entitiesToSave.Clear();
             _entityDictionary.Clear();
+
+            _getAllCache.Clear();
 
             CloseSession(Session);
             Session = OpenSession();
