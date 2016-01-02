@@ -26,6 +26,7 @@ namespace JJ.Framework.Validation
 
         public void Add(string propertyKey, string message)
         {
+            // TIP: Add a breakpoint here to debug the where the validation rule is evaluated.
             _list.Add(new ValidationMessage(propertyKey, message));
         }
 
