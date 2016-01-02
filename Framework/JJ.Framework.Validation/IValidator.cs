@@ -4,6 +4,6 @@
     {
         ValidationMessages ValidationMessages { get; }
         bool IsValid { get; }
-        void Verify();
+        void Assert();
     }
 }

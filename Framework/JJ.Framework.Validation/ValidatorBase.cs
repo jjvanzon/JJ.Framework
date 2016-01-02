@@ -35,7 +35,7 @@ namespace JJ.Framework.Validation
         /// <summary>
         /// Throws an exception if IsValid is false.
         /// </summary>
-        public void Verify()
+        public void Assert()
         {
             if (ValidationMessages.Count > 0)
             {
