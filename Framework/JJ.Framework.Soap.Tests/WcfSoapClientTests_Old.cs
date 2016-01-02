@@ -3,7 +3,7 @@
 //using JJ.Framework.Xml.Linq;
 //using System.Text;
 //using JJ.Presentation.SetText.Interface.ViewModels;
-//using JJ.Business.CanonicalModel;
+//using JJ.Data.Canonical;
 //using System.Collections.Generic;
 //using JJ.Presentation.SetText.AppService.Interface;
 
