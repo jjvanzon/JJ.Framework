@@ -276,6 +276,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio", "External Componen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudioDemo", "External Components\NAudio\Source Code\1.7.2\NAudioDemo\NAudioDemo.csproj", "{C37A547B-F31E-45FB-870A-CFA704D06152}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.Canonical", "Business\JJ.Business.Canonical\JJ.Business.Canonical.csproj", "{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2621,6 +2623,30 @@ Global
 		{C37A547B-F31E-45FB-870A-CFA704D06152}.Release|x64.Build.0 = Release|Any CPU
 		{C37A547B-F31E-45FB-870A-CFA704D06152}.Release|x86.ActiveCfg = Release|Any CPU
 		{C37A547B-F31E-45FB-870A-CFA704D06152}.Release|x86.Build.0 = Release|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Debug|x64.Build.0 = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Debug|x86.Build.0 = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Release|x64.ActiveCfg = Release|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Release|x64.Build.0 = Release|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Release|x86.ActiveCfg = Release|Any CPU
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2753,9 +2779,10 @@ Global
 		{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A} = {36344935-BBA0-44BA-864B-1510EBE839E2}
 		{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{C37A547B-F31E-45FB-870A-CFA704D06152} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
+		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1} = {50495465-0C70-46B2-A1BD-B5F6BD0EA3B2}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 128
+		SccNumberOfProjects = 129
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -3267,5 +3294,9 @@ Global
 		SccProjectTopLevelParentUniqueName127 = JJ.sln
 		SccProjectName127 = Data/JJ.Data.Canonical
 		SccLocalPath127 = Data\\JJ.Data.Canonical
+		SccProjectUniqueName128 = Business\\JJ.Business.Canonical\\JJ.Business.Canonical.csproj
+		SccProjectTopLevelParentUniqueName128 = JJ.sln
+		SccProjectName128 = Business/JJ.Business.Canonical
+		SccLocalPath128 = Business\\JJ.Business.Canonical
 	EndGlobalSection
 EndGlobal
