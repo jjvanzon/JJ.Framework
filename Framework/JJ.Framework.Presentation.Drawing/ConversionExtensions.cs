@@ -223,6 +223,10 @@ namespace JJ.Framework.Presentation.Drawing
                 destFontStyle |= FontStyle.Italic;
             }
 
+            float fontSize = sourceFont.Size;
+            
+            // TODO: Get rid of Windows DPI correction
+
             var destFont = new System.Drawing.Font(sourceFont.Name, sourceFont.Size, destFontStyle);
             return destFont;
         }
