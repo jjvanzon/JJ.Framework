@@ -30,6 +30,12 @@ namespace JJ.Framework.Validation
             _list.Add(new ValidationMessage(propertyKey, message));
         }
 
+        public void AddRange(IEnumerable<ValidationMessage> validationMessages)
+        {
+            // TIP: Add a breakpoint here to debug the where the validation rule is evaluated.
+            _list.AddRange(validationMessages);
+        }
+
         public int Count
         {
             get { return _list.Count; }
@@ -48,11 +54,6 @@ namespace JJ.Framework.Validation
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _list.GetEnumerator();
-        }
-
-        public void AddRange(IEnumerable<ValidationMessage> validationMessages)
-        {
-            _list.AddRange(validationMessages);
         }
 
         private string DebuggerDisplay
