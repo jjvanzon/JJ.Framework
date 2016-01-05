@@ -227,11 +227,11 @@ namespace JJ.Framework.Presentation.Drawing
 
             float fontSize = sourceFont.Size;
 
-            // TODO: Get rid of Windows DPI scaling
-            float dpiFactor = DEFAULT_DPI / dpi;
-            fontSize /= dpiFactor;
+            // Get rid of Windows DPI scaling.
+            float antiDpiFactor =  DEFAULT_DPI / dpi;
+            float destFontSize = fontSize * antiDpiFactor;
 
-            var destFont = new System.Drawing.Font(sourceFont.Name, sourceFont.Size, destFontStyle);
+            var destFont = new System.Drawing.Font(sourceFont.Name, destFontSize, destFontStyle);
             return destFont;
         }
     }
