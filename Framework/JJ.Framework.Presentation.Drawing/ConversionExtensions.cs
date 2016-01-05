@@ -12,6 +12,8 @@ namespace JJ.Framework.Presentation.Drawing
 {
     public static class ConversionExtensions
     {
+        private const float DEFAULT_DPI = 96;
+
         // Point
 
         public static PointF ToSystemDrawingPointF(this VectorGraphicsElements.Point sourcePoint)
@@ -207,7 +209,7 @@ namespace JJ.Framework.Presentation.Drawing
             return destBrush;
         }
 
-        public static System.Drawing.Font ToSystemDrawing(this VectorGraphicsStyling.Font sourceFont)
+        public static System.Drawing.Font ToSystemDrawing(this VectorGraphicsStyling.Font sourceFont, float dpi)
         {
             if (sourceFont == null) throw new NullException(() => sourceFont);
 
@@ -224,8 +226,10 @@ namespace JJ.Framework.Presentation.Drawing
             }
 
             float fontSize = sourceFont.Size;
-            
-            // TODO: Get rid of Windows DPI correction
+
+            // TODO: Get rid of Windows DPI scaling
+            float dpiFactor = DEFAULT_DPI / dpi;
+            fontSize /= dpiFactor;
 
             var destFont = new System.Drawing.Font(sourceFont.Name, sourceFont.Size, destFontStyle);
             return destFont;

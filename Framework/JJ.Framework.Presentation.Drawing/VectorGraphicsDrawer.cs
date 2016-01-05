@@ -172,7 +172,7 @@ namespace JJ.Framework.Presentation.Drawing
             }
 
             StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
-            System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
+            System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing(destGraphics.DpiX);
             RectangleF destRectangle = new RectangleF(calculatedValues.CalculatedXInPixels, calculatedValues.CalculatedYInPixels, calculatedValues.CalculatedWidthInPixels, calculatedValues.CalculatedHeightInPixels);
             Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 
