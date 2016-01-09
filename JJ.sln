@@ -270,7 +270,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.OneOff.Synthesizer.DataM
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{36344935-BBA0-44BA-864B-1510EBE839E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Infrastructure.Synthesizer", "Infrastructure\JJ.Infrastructure.Synthesizer\JJ.Infrastructure.Synthesizer.csproj", "{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.Synthesizer.NAudio", "Presentation\JJ.Presentation.Synthesizer.NAudio\JJ.Presentation.Synthesizer.NAudio.csproj", "{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio", "External Components\NAudio\Source Code\1.7.2\NAudio\NAudio.csproj", "{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}"
 EndProject
@@ -3278,10 +3278,10 @@ Global
 		SccProjectTopLevelParentUniqueName123 = JJ.sln
 		SccProjectName123 = OneOff/JJ.OneOff.Synthesizer.DataMigration
 		SccLocalPath123 = OneOff\\JJ.OneOff.Synthesizer.DataMigration
-		SccProjectUniqueName124 = Infrastructure\\JJ.Infrastructure.Synthesizer\\JJ.Infrastructure.Synthesizer.csproj
+		SccProjectUniqueName124 = Presentation\\JJ.Presentation.Synthesizer.NAudio\\JJ.Presentation.Synthesizer.NAudio.csproj
 		SccProjectTopLevelParentUniqueName124 = JJ.sln
-		SccProjectName124 = Infrastructure/JJ.Infrastructure.Synthesizer
-		SccLocalPath124 = Infrastructure\\JJ.Infrastructure.Synthesizer
+		SccProjectName124 = Presentation/JJ.Presentation.Synthesizer.NAudio
+		SccLocalPath124 = Presentation\\JJ.Presentation.Synthesizer.NAudio
 		SccProjectUniqueName125 = External\u0020Components\\NAudio\\Source\u0020Code\\1.7.2\\NAudio\\NAudio.csproj
 		SccProjectTopLevelParentUniqueName125 = JJ.sln
 		SccProjectName125 = External\u0020Components/NAudio/Source\u0020Code/1.7.2/NAudio
