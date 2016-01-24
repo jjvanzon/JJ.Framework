@@ -126,22 +126,33 @@ namespace JJ.Framework.Common
 
         public static Dictionary<TKey, IList<TItem>> ToNonUniqueDictionary<TKey, TItem>(this IEnumerable<TItem> sourceCollection, Func<TItem, TKey> keySelector)
         {
+            return sourceCollection.ToNonUniqueDictionary(keySelector, x => x);
+        }
+
+        public static Dictionary<TKey, IList<TDestItem>> ToNonUniqueDictionary<TKey, TSourceItem, TDestItem>(
+            this IEnumerable<TSourceItem> sourceCollection, 
+            Func<TSourceItem, TKey> keySelector,
+            Func<TSourceItem, TDestItem> elementSelector)
+        {
             if (sourceCollection == null) throw new ArgumentNullException("sourceCollection");
             if (keySelector == null) throw new ArgumentNullException("keySelector");
+            if (elementSelector == null) throw new ArgumentNullException("valueSelector");
 
-            var dictionary = new Dictionary<TKey, IList<TItem>>();
+            var dictionary = new Dictionary<TKey, IList<TDestItem>>();
 
-            foreach (TItem item in sourceCollection)
+            foreach (TSourceItem item in sourceCollection)
             {
                 TKey key = keySelector(item);
 
-                IList<TItem> itemsUnderKey;
-                if (!dictionary.TryGetValue(key, out itemsUnderKey))
+                IList<TDestItem> elementsUnderKey;
+                if (!dictionary.TryGetValue(key, out elementsUnderKey))
                 {
-                    itemsUnderKey = new List<TItem>();
-                    dictionary.Add(key, itemsUnderKey);
+                    elementsUnderKey = new List<TDestItem>();
+                    dictionary.Add(key, elementsUnderKey);
                 }
-                itemsUnderKey.Add(item);
+
+                TDestItem element = elementSelector(item);
+                elementsUnderKey.Add(element);
             }
 
             return dictionary;
