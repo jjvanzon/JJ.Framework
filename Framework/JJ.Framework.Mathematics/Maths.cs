@@ -29,6 +29,7 @@ namespace JJ.Framework.Mathematics
         /// but will prevent rounding erros such as
         /// 1000 log 10 = 2.99999999996
         /// </summary>
+
         public static int Log(int value, int n)
         {
             int temp = value;
@@ -39,6 +40,15 @@ namespace JJ.Framework.Mathematics
                 i++;
             }
             return i;
+        }
+
+        public static bool IsPowerOf2(int x)
+        {
+            // With help of:
+            // http://www.lomont.org/Software/Misc/FFT/LomontFFT.html
+
+            bool isPowerOf2 = (x & (x - 1)) == 0;
+            return isPowerOf2;
         }
     }
 }
