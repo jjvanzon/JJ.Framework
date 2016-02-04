@@ -23,69 +23,6 @@ using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Collections
 {
-    internal enum RedBlackTreeColorEnum
-    {
-        Red,
-        Black
-    }
-
-    internal class RedBlackTreeNode<TKey, TValue>
-        where TKey : IComparable
-    {
-        public TKey Key { get; set; }
-        public TValue Value { get; set; }
-        public RedBlackTreeColorEnum Color { get; set; }
-        public RedBlackTreeNode<TKey, TValue> Left { get; set; }
-        public RedBlackTreeNode<TKey, TValue> Right { get; set; }
-        public RedBlackTreeNode<TKey, TValue> Parent { get; set; }
-
-        public RedBlackTreeNode(
-            TKey key, 
-            TValue value, 
-            RedBlackTreeColorEnum color, 
-            RedBlackTreeNode<TKey, TValue> left, 
-            RedBlackTreeNode<TKey, TValue> right)
-        {
-            Key = key;
-            Value = value;
-            Color = color;
-            Left = left;
-            Right = right;
-
-            if (left != null) left.Parent = this;
-            if (right != null) right.Parent = this;
-        }
-
-        public RedBlackTreeNode<TKey, TValue> GetGrandparent()
-        {
-            if (Parent == null) throw new NullException(() => Parent); // Not the root node
-            if (Parent.Parent == null) throw new NullException(() => Parent.Parent);  // Not child of root
-
-            return Parent.Parent;
-        }
-
-        public RedBlackTreeNode<TKey, TValue> TryGetSibling()
-        {
-            if (Parent == null) throw new NullException(() => Parent);
-
-            if (this == Parent.Left)
-            {
-                return Parent.Right;
-            }
-            else
-            {
-                return Parent.Left;
-            }
-        }
-
-        public RedBlackTreeNode<TKey, TValue> GetUncle()
-        {
-            if (Parent == null) throw new NullException(() => Parent); // Root node has no uncle
-            if (Parent.Parent == null) throw new NullException(() => Parent.Parent); // Children of root have no uncle
-
-            return Parent.TryGetSibling();
-        }
-    }
 
     /// <summary>
     /// Provides insert, delete and lookup operators that all have complexity O(log n).
@@ -121,7 +58,7 @@ namespace JJ.Framework.Collections
 
         public void Insert(TKey key, TValue value)
         {
-            var insertedNode = new RedBlackTreeNode<TKey, TValue>(key, value, RedBlackTreeColorEnum.Red, null, null);
+            var insertedNode = new RedBlackTreeNode<TKey, TValue>(key, value, RedBlackTreeColorEnum.Red);
 
             if (_root == null)
             {
