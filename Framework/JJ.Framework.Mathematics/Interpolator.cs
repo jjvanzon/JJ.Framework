@@ -147,18 +147,18 @@ namespace JJ.Framework.Mathematics
 
         // From 1999
 
-        public static double Interpolate_Cubic_Ramses(
+        public static double Interpolate_Cubic_SmoothInclination(
             double xMinus1, double x0, double x1, double x2,
             double yMinus1, double y0, double y1, double y2,
             double x)
         {
             double incl0 = (y1 - yMinus1) / (x1 - xMinus1);
             double incl1 = (y2 - y0) / (x2 - x0);
-            double y = Interpolate_Cubic_Ramses(x0, x1, y0, y1, incl0, incl1, x);
+            double y = Interpolate_Cubic_SmoothInclination(x0, x1, y0, y1, incl0, incl1, x);
             return y;
         }
 
-        private static double Interpolate_Cubic_Ramses(
+        private static double Interpolate_Cubic_SmoothInclination(
             double x0, double x1,
             double y0, double y1, 
             double incl0, double incl1,

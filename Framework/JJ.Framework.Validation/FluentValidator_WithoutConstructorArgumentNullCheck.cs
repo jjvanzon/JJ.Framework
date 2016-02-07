@@ -5,6 +5,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
+using System.Collections.Generic;
+using JJ.Framework.Common;
 
 namespace JJ.Framework.Validation
 {
@@ -188,7 +190,6 @@ namespace JJ.Framework.Validation
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNot<TValue>(TValue value)
         {
-            // TODO: The conversion to string seems weird here.
             string convertedValue = Convert.ToString(_value);
 
             if (String.IsNullOrEmpty(convertedValue))
@@ -326,8 +327,8 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsEnum<T>()
-            where T : struct
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsEnum<TEnum>()
+            where TEnum : struct
         {
             // TODO: This does seem to evaluate numerical strings and enum member name strings correctly.
 
@@ -338,21 +339,51 @@ namespace JJ.Framework.Validation
                 return this;
             }
 
-            T[] enumValues = (T[])Enum.GetValues(typeof(T));
+            Type sourceType = _value.GetType();
 
-            // Convert to a canonical form.
-            // "Every enumeration type has an underlying type, which can be any integral type except char."
-            // (https://msdn.microsoft.com/en-us/library/sbbt4032.aspx)
-            decimal[] underlyingValues = enumValues.Select(x => (decimal)Convert.ChangeType(x, typeof(decimal))).ToArray();
-            decimal underlyingValue = (decimal)Convert.ChangeType(_value, typeof(decimal));
+            bool isEnum;
+            if (sourceType == typeof(string))
+            {
+                isEnum = IsEnum_WithStringComparison<TEnum>(_value);
+            }
+            else
+            {
+                isEnum = IsEnum_WithNumericComparison<TEnum>(_value);
+            }
 
-            bool isEnum = underlyingValues.Contains(underlyingValue);
             if (!isEnum)
             {
                 ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsNotValidEnumValue(_propertyDisplayName));
             }
 
             return this;
+        }
+
+        private bool IsEnum_WithNumericComparison<TEnum>(object value) 
+            where TEnum : struct
+        {
+            TEnum[] enumValues = (TEnum[])Enum.GetValues(typeof(TEnum));
+
+            // Convert to a canonical form.
+            // "Every enumeration type has an underlying type, which can be any integral type except char."
+            // (https://msdn.microsoft.com/en-us/library/sbbt4032.aspx)
+            decimal[] underlyingValues = enumValues.Select(x => (decimal)Convert.ChangeType(x, typeof(decimal))).ToArray();
+            decimal underlyingValue = (decimal)Convert.ChangeType(value, typeof(decimal));
+
+            bool isEnum = underlyingValues.Contains(underlyingValue);
+            return isEnum;
+        }
+
+        public bool IsEnum_WithStringComparison<TEnum>(object value)
+        {
+            // Not an array, that might result in reference comparison,
+            // but a HashSet, so it does value comparison.
+            HashSet<string> enumNames =  Enum.GetNames(typeof(TEnum)).ToHashSet();
+
+            string valueString = Convert.ToString(value);
+
+            bool isEnum = enumNames.Contains(valueString);
+            return isEnum;
         }
     }
 }
