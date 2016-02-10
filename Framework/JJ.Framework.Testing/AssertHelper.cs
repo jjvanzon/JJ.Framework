@@ -113,7 +113,7 @@ namespace JJ.Framework.Testing
                 return;
             }
 
-            Assert.Fail("An exception should have been raised.");
+            Assert.Fail("An exception should have occurred.");
         }
 
         public static void ThrowsException(Action statement, Type exceptionType)
@@ -130,7 +130,7 @@ namespace JJ.Framework.Testing
                 return;
             }
 
-            Assert.Fail("An exception should have been raised.");
+            Assert.Fail("An exception should have occurred.");
         }
 
         public static void ThrowsException(Action statement, Type exceptionType, string expectedMessage)
@@ -149,7 +149,7 @@ namespace JJ.Framework.Testing
                 return;
             }
 
-            Assert.Fail("An exception should have been raised.");
+            Assert.Fail("An exception should have occurred.");
         }
 
         public static void ThrowsException<TException>(Action statement)
@@ -184,7 +184,7 @@ namespace JJ.Framework.Testing
 
             if (!exceptionWasThrown)
             {
-                Assert.Fail("An exception should have been raised.");
+                Assert.Fail("An exception should have occurred.");
             }
         }
 
