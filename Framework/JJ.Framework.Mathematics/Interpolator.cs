@@ -21,7 +21,7 @@ namespace JJ.Framework.Mathematics
         /// Derived from the following source:
         /// http://www.virtualdj.com/forums/171269/VirtualDJ_Plugins/_Release__CDJ_Vinyl_Brake_Effect.html
         /// </summary>
-        public static double Interpolate_Cubic_Equidistant_SlightlyBetterThanLinear(double yMinus1, double y0, double y1, double y2, double t)
+        public static double Interpolate_Cubic_Equidistant(double yMinus1, double y0, double y1, double y2, double t)
         {
             double y = (y0 / 2 - yMinus1 / 6 - y1 / 2 + y2 / 6) * t * t * t +
                        (yMinus1 / 2 - y0 + y1 / 2) * t * t +
