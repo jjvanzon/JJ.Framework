@@ -118,23 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CannotBe" xml:space="preserve">
-    <value>{0} cannot be {1}.</value>
+    <value>{0} is {1}.</value>
     <comment>{0} = property name, {1} = value</comment>
   </data>
   <data name="ExceedsLength" xml:space="preserve">
-    <value>{0} exceeds length of {1}.</value>
+    <value>{0} is longer than {1} characters.</value>
     <comment>{0} = property name; {1} = max length</comment>
   </data>
+  <data name="IsInfinity" xml:space="preserve">
+    <value>{0} is infinite.</value>
+    <comment>{0} = property name</comment>
+  </data>
   <data name="IsInteger" xml:space="preserve">
-    <value>{0} is a 32-bit integer number.</value>
+    <value>{0} is not an integer number.</value>
+    <comment>{0} = property name</comment>
+  </data>
+  <data name="IsNaN" xml:space="preserve">
+    <value>{0} is not a number.</value>
     <comment>{0} = property name</comment>
   </data>
   <data name="IsNot" xml:space="preserve">
-    <value>{0} is not {1}.</value>
-    <comment>{0} = property name, {1} = specific value</comment>
+    <value>{0} should be {1}.</value>
+    <comment>{0} = property name, {1} = value</comment>
   </data>
   <data name="IsNotNull" xml:space="preserve">
-    <value>{0} is not null.</value>
+    <value>{0} should be empty.</value>
     <comment>{0} = property name</comment>
   </data>
   <data name="IsNotValidEnumValue" xml:space="preserve">
@@ -142,27 +150,27 @@
     <comment>{0} = property name</comment>
   </data>
   <data name="IsNull" xml:space="preserve">
-    <value>{0} is null.</value>
+    <value>{0} is required.</value>
     <comment>{0} = property name</comment>
   </data>
   <data name="IsNullOrEmpty" xml:space="preserve">
-    <value>{0} is null or empty.</value>
+    <value>{0} is required.</value>
     <comment>{0} = property name</comment>
   </data>
   <data name="IsNullOrWhiteSpace" xml:space="preserve">
-    <value>{0} is null or white space.</value>
+    <value>{0} is required.</value>
     <comment>{0} = property name</comment>
   </data>
   <data name="IsZero" xml:space="preserve">
-    <value>{0} is zero.</value>
+    <value>{0} is required.</value>
     <comment>{0} = property name</comment>
   </data>
   <data name="Max" xml:space="preserve">
-    <value>{0} is above {1}.</value>
+    <value>{0} can be at most {1}.</value>
     <comment>{0} = property name, {1} = minimum value</comment>
   </data>
   <data name="Min" xml:space="preserve">
-    <value>{0} is below {1}.</value>
+    <value>{0} must be at least {1}.</value>
     <comment>{0} = property name, {1} = minimum value</comment>
   </data>
   <data name="NotAbove" xml:space="preserve">
@@ -170,24 +178,19 @@
     <comment>{0} = property name, {1} = minimum value</comment>
   </data>
   <data name="NotDouble" xml:space="preserve">
-    <value>{0} is not a 64-bit floating point number.</value>
+    <value>{0} is not a broken number.</value>
     <comment>{0} = property name</comment>
   </data>
   <data name="NotIn" xml:space="preserve">
-    <value>{0} is not in {1}.</value>
+    <value>{0} should have one of the values: {1}.</value>
     <comment>{0} = property name, {1} = allowed values</comment>
   </data>
   <data name="NotInteger" xml:space="preserve">
-    <value>{0} is not a 32-bit integer number.</value>
+    <value>{0} is not an integer number.</value>
     <comment>{0} = property name</comment>
   </data>
   <data name="NotNullOrEmpty" xml:space="preserve">
-    <value>{0} is not null or empty.</value>
+    <value>{0} should be empty.</value>
     <comment>{0} = property name</comment>
-  </data>
-  <data name="README" xml:space="preserve">
-    <value>THIS IS NOT A RESOURCE TEXT, but an instruction to programmers.
-The default language is not "en-US", but something you could call "en-US-tech".
-These messages are more technical, but more exact too, and might be something you want to use for exception messages.</value>
   </data>
 </root>

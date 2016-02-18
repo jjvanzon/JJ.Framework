@@ -56,7 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\ValidationMessages.en-US.resx" />
     <EmbeddedResource Include="Resources\ValidationMessages.nl-NL.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>

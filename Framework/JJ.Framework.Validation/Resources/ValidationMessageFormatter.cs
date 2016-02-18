@@ -80,18 +80,26 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(ValidationMessages.Max, propertyDisplayName, max);
         }
 
-        // TODO:
-        // Warning CA1801  Parameter 'value' of 'ValidationMessageFormatter.NotIn(string, object, object[])' is never used.Remove the parameter or use it in the method body.
-        public static string NotIn(string propertyDisplayName, object value, object[] possibleValues)
+        public static string NotIn(string propertyDisplayName, object[] possibleValues)
         {
             string joined = String_PlatformSupport.Join(", ", possibleValues);
             string message = String.Format(ValidationMessages.NotIn, propertyDisplayName, joined);
             return message;
         }
 
-        internal static string ExceedsLength(string propertyDisplayName, int maxLength)
+        public static string ExceedsLength(string propertyDisplayName, int maxLength)
         {
             return String.Format(ValidationMessages.ExceedsLength, propertyDisplayName, maxLength);
+        }
+
+        public static string IsNaN(string propertyDisplayName)
+        {
+            return String.Format(ValidationMessages.IsNaN, propertyDisplayName);
+        }
+
+        public static string IsInfinity(string propertyDisplayName)
+        {
+            return String.Format(ValidationMessages.IsInfinity, propertyDisplayName);
         }
     }
 }

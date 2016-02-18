@@ -61,7 +61,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} cannot be {1}..
+        ///   Looks up a localized string similar to {0} is {1}..
         /// </summary>
         internal static string CannotBe {
             get {
@@ -70,7 +70,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} exceeds length of {1}..
+        ///   Looks up a localized string similar to {0} is longer than {1} characters..
         /// </summary>
         internal static string ExceedsLength {
             get {
@@ -79,7 +79,16 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is a 32-bit integer number..
+        ///   Looks up a localized string similar to {0} is infinite..
+        /// </summary>
+        internal static string IsInfinity {
+            get {
+                return ResourceManager.GetString("IsInfinity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not an integer number..
         /// </summary>
         internal static string IsInteger {
             get {
@@ -88,7 +97,16 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not {1}..
+        ///   Looks up a localized string similar to {0} is not a number..
+        /// </summary>
+        internal static string IsNaN {
+            get {
+                return ResourceManager.GetString("IsNaN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} should be {1}..
         /// </summary>
         internal static string IsNot {
             get {
@@ -97,7 +115,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not null..
+        ///   Looks up a localized string similar to {0} should be empty..
         /// </summary>
         internal static string IsNotNull {
             get {
@@ -115,7 +133,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is null..
+        ///   Looks up a localized string similar to {0} is required..
         /// </summary>
         internal static string IsNull {
             get {
@@ -124,7 +142,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is null or empty..
+        ///   Looks up a localized string similar to {0} is required..
         /// </summary>
         internal static string IsNullOrEmpty {
             get {
@@ -133,7 +151,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is null or white space..
+        ///   Looks up a localized string similar to {0} is required..
         /// </summary>
         internal static string IsNullOrWhiteSpace {
             get {
@@ -142,7 +160,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is zero..
+        ///   Looks up a localized string similar to {0} is required..
         /// </summary>
         internal static string IsZero {
             get {
@@ -151,7 +169,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is above {1}..
+        ///   Looks up a localized string similar to {0} can be at most {1}..
         /// </summary>
         internal static string Max {
             get {
@@ -160,7 +178,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is below {1}..
+        ///   Looks up a localized string similar to {0} must be at least {1}..
         /// </summary>
         internal static string Min {
             get {
@@ -178,7 +196,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not a 64-bit floating point number..
+        ///   Looks up a localized string similar to {0} is not a broken number..
         /// </summary>
         internal static string NotDouble {
             get {
@@ -187,7 +205,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not in {1}..
+        ///   Looks up a localized string similar to {0} should have one of the values: {1}..
         /// </summary>
         internal static string NotIn {
             get {
@@ -196,7 +214,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not a 32-bit integer number..
+        ///   Looks up a localized string similar to {0} is not an integer number..
         /// </summary>
         internal static string NotInteger {
             get {
@@ -205,22 +223,11 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not null or empty..
+        ///   Looks up a localized string similar to {0} should be empty..
         /// </summary>
         internal static string NotNullOrEmpty {
             get {
                 return ResourceManager.GetString("NotNullOrEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to THIS IS NOT A RESOURCE TEXT, but an instruction to programmers.
-        ///The default language is not &quot;en-US&quot;, but something you could call &quot;en-US-tech&quot;.
-        ///These messages are more technical, but more exact too, and might be something you want to use for exception messages..
-        /// </summary>
-        internal static string README {
-            get {
-                return ResourceManager.GetString("README", resourceCulture);
             }
         }
     }

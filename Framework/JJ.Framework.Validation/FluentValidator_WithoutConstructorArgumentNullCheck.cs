@@ -165,7 +165,7 @@ namespace JJ.Framework.Validation
 
             if (!isAllowed)
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotIn(_propertyDisplayName, _value, possibleValues));
+                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotIn(_propertyDisplayName, possibleValues));
             }
 
             return this;
@@ -304,6 +304,48 @@ namespace JJ.Framework.Validation
             if (!Double.TryParse(value, out convertedValue))
             {
                 ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotDouble(_propertyDisplayName));
+            }
+
+            return this;
+        }
+
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNaN()
+        {
+            string value = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(value))
+            {
+                return this;
+            }
+
+            double convertedValue;
+            if (Double.TryParse(value, out convertedValue))
+            {
+                if (Double.IsNaN(convertedValue))
+                {
+                    ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsNaN(_propertyDisplayName));
+                }
+            }
+
+            return this;
+        }
+
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotInfinity()
+        {
+            string value = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(value))
+            {
+                return this;
+            }
+
+            double convertedValue;
+            if (Double.TryParse(value, out convertedValue))
+            {
+                if (Double.IsInfinity(convertedValue))
+                {
+                    ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsInfinity(_propertyDisplayName));
+                }
             }
 
             return this;

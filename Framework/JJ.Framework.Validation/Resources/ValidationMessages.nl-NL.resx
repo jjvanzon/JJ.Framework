@@ -124,8 +124,16 @@
     <value>{0} is langer dan {1} tekens.</value>
     <comment>{0} = property name; {1} = max length</comment>
   </data>
+  <data name="IsInfinity" xml:space="preserve">
+    <value>{0} is oneindig.</value>
+    <comment>{0} = property name</comment>
+  </data>
   <data name="IsInteger" xml:space="preserve">
     <value>{0} mag geen geheel getal zijn.</value>
+  </data>
+  <data name="IsNaN" xml:space="preserve">
+    <value>{0} is geen getal.</value>
+    <comment>{0} = property name</comment>
   </data>
   <data name="IsNot" xml:space="preserve">
     <value>{0} moet {1} zijn.</value>
