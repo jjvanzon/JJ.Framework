@@ -180,7 +180,9 @@ namespace JJ.Framework.Validation
                 return this;
             }
 
-            if (!Equals(_value, value))
+            string convertedOtherValue = Convert.ToString(value);
+
+            if (!String.Equals(convertedValue, convertedOtherValue))
             {
                 ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsNot(_propertyDisplayName, value));
             }
@@ -197,7 +199,9 @@ namespace JJ.Framework.Validation
                 return this;
             }
 
-            if (Equals(_value, value))
+            string convertedOtherValue = Convert.ToString(value);
+
+            if (String.Equals(convertedValue, convertedOtherValue))
             {
                 ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.CannotBe(_propertyDisplayName, value));
             }
@@ -372,9 +376,6 @@ namespace JJ.Framework.Validation
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsEnum<TEnum>()
             where TEnum : struct
         {
-            // TODO: This does seem to evaluate numerical strings and enum member name strings correctly.
-
-            // TODO: Can I build generic null-tollerance without converting to string?
             string str = Convert.ToString(_value);
             if (String.IsNullOrEmpty(str))
             {
