@@ -15,11 +15,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
     /// with relative positions and converts it to a flat list of objects
     /// with absolute positions and Z-index applied.
     /// </summary>
-    public class CalculationVisitor : ElementVisitorBase
+    internal class CalculationVisitor : ElementVisitorBase
     {
-        // Public for tests.
-        // TODO: Program the Accessor class so it can work with internal classes.
-
         private HashSet<Element> _calculatedElements;
         private Diagram _diagram;
         private float _currentParentX;

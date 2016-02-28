@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Linq.Expressions;
 using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Common;
 
 namespace JJ.Framework.Reflection
 {
@@ -10,11 +11,25 @@ namespace JJ.Framework.Reflection
     /// Allows easy access to members by name, public, private or protected.
     /// Limitation: private base members cannot be accessed.
     /// Use a separate Accessor object to access the private members of the base class.
+    /// To access internal classes, use the GetType / or CreateInstance static methods.
     /// </summary>
     public class Accessor
     {
         private readonly object _object;
         private readonly Type _objectType;
+
+        /// <summary> Use this constructor for to access instance members of internal classes. </summary>
+        public Accessor(string typeName, params object[] args)
+        {
+            _objectType = Type.GetType(typeName);
+
+            if (_objectType == null)
+            {
+                throw new TypeNotFoundException(typeName);
+            }
+
+            _object = Activator.CreateInstance(_objectType, args);
+        }
 
         /// <summary> Use this constructor to access instance members. </summary>
         public Accessor(object obj)

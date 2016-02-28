@@ -4,8 +4,7 @@ using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 {
-    // public for use in tests.
-    public abstract class ElementVisitorBase
+    internal abstract class ElementVisitorBase
     {
         protected virtual void VisitPolymorphic(Element element)
         {

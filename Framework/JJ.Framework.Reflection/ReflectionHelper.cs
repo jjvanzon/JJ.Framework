@@ -236,6 +236,20 @@ namespace JJ.Framework.Reflection
             return Equals(value, defaultValue);
         }
 
+        public static object CreateInstance(string typeName, params object[] args)
+        {
+            Type type = Type.GetType(typeName);
+
+            if (type == null)
+            {
+                throw new TypeNotFoundException(typeName);
+            }
+
+            object obj = Activator.CreateInstance(type, args);
+
+            return obj;
+        }
+
         // Generic overloads
 
         public static Type GetImplementation<TBaseType>(Assembly assembly)

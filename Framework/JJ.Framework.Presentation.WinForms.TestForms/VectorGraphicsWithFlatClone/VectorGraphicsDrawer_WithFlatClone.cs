@@ -5,6 +5,7 @@ using System.Drawing;
 using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using JJ.Framework.Presentation.WinForms.TestForms.Helpers;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone
 {
@@ -15,8 +16,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
             if (sourceBackground == null) throw new NullException(() => sourceBackground);
             if (destGraphics == null) throw new NullException(() => destGraphics);
 
-            var visitor = new CalculationVisitor();
-            IList<VectorGraphicsElements.Element> elements = visitor.Execute(sourceBackground.Diagram);
+            var visitor_Accessor = new CalculationVisitor_Accessor();
+            IList<VectorGraphicsElements.Element> elements = visitor_Accessor.Execute(sourceBackground.Diagram);
 
             foreach (VectorGraphicsElements.Element element in elements)
             {

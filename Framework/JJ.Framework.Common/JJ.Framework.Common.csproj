@@ -52,6 +52,7 @@
     <Compile Include="PropertyNotFoundExceptionOfT.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="StringExtensions_Casing.cs" />
+    <Compile Include="TypeNotFoundException.cs" />
     <Compile Include="ValueNotSupportedException.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="StringExtensions_Split.cs" />

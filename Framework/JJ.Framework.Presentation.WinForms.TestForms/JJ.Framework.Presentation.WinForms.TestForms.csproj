@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\CalculationVisitor_Accessor.cs" />
     <Compile Include="Helpers\Element_Accessor.cs" />
     <Compile Include="CurveTestForm.cs">
       <SubType>Form</SubType>
@@ -80,12 +81,6 @@
       <DependentUpon>PickATestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\VectorGraphicsFactory.cs" />
-    <Compile Include="VectorGraphicsWithoutCloning\VectorGraphicsWithoutCloning_TestForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VectorGraphicsWithoutCloning\VectorGraphicsWithoutCloning_TestForm.Designer.cs">
-      <DependentUpon>VectorGraphicsWithoutCloning_TestForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="VectorGraphicsWithFlatClone\VectorGraphicsWithFlatClone_TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,15 +110,6 @@
       <DependentUpon>DiagramControl_WithFlatClone.cs</DependentUpon>
     </Compile>
     <Compile Include="VectorGraphicsWithFlatClone\VectorGraphicsDrawer_WithFlatClone.cs" />
-    <Compile Include="VectorGraphicsWithoutCloning\ConvertExtensions_WithoutCloning.cs" />
-    <Compile Include="VectorGraphicsWithoutCloning\DiagramControl_WithoutCloning.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="VectorGraphicsWithoutCloning\DiagramControl_WithoutCloning.Designer.cs">
-      <DependentUpon>DiagramControl_WithoutCloning.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VectorGraphicsWithoutCloning\VectorGraphicsDrawer_WithoutCloning.cs" />
-    <Compile Include="VectorGraphicsWithoutCloning\CalculationVisitor_WithoutCloning.cs" />
     <EmbeddedResource Include="CurveTestForm.resx">
       <DependentUpon>CurveTestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,9 +124,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PickATestForm.resx">
       <DependentUpon>PickATestForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VectorGraphicsWithoutCloning\VectorGraphicsWithoutCloning_TestForm.resx">
-      <DependentUpon>VectorGraphicsWithoutCloning_TestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VectorGraphicsWithFlatClone\VectorGraphicsWithFlatClone_TestForm.resx">
       <DependentUpon>VectorGraphicsWithFlatClone_TestForm.cs</DependentUpon>
@@ -162,9 +145,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VectorGraphicsWithFlatClone\DiagramControl_WithFlatClone.resx">
       <DependentUpon>DiagramControl_WithFlatClone.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VectorGraphicsWithoutCloning\DiagramControl_WithoutCloning.resx">
-      <DependentUpon>DiagramControl_WithoutCloning.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -6,6 +6,7 @@ using JJ.Framework.Presentation.VectorGraphics.Visitors;
 using JJ.Framework.Presentation.VectorGraphics.Enums;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Presentation.VectorGraphics.Helpers;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Tests
 {
@@ -46,8 +47,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
                 ZIndex = zindex++
             };
 
-            var visitor = new CalculationVisitor();
-            IList<Element> elements = visitor.Execute(diagram);
+            var visitor_Accessor = new CalculationVisitor_Accessor();
+
+            IList<Element> elements = visitor_Accessor.Execute(diagram);
 
             AssertHelper.AreEqual(4, () => elements.Count);
             AssertHelper.AreEqual(1, () => ((ICalculatedValues)elements[1]).CalculatedXInPixels);
