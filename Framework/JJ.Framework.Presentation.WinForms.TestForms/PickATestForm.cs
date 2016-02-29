@@ -32,13 +32,6 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             new VectorGraphicsWithFlatClone_TestForm().Show();
         }
 
-        // TODO: Remove button
-        private void buttonShowVectorGraphicsWithoutCloning_TestForm_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-            //new VectorGraphicsWithoutCloning_TestForm().Show();
-        }
-
         private void buttonShowGestureTestForm_Click(object sender, EventArgs e)
         {
             new GesturesTestForm().Show();
