@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
+using JJ.Framework.Validation.Resources;
 
 namespace JJ.Framework.Validation
 {
@@ -41,6 +42,11 @@ namespace JJ.Framework.Validation
             get { return _list.Count; }
         }
 
+        public void AddRequiredMessage(string propertyKey, string propertyDisplayName)
+        {
+            Add(propertyKey, ValidationMessageFormatter.NotFilledIn(propertyDisplayName));
+        }
+
         public ValidationMessage this[int i]
         {
             get { return _list[i]; }
@@ -58,10 +64,12 @@ namespace JJ.Framework.Validation
 
         private string DebuggerDisplay
         {
-            get
-            {
-                return String_PlatformSupport.Join(Environment.NewLine, _list.Select(x => String.Format("{0}: {1}", x.PropertyKey, x.Text)));
-            }
+            get { return DebugHelper.GetDebuggerDisplay(this); }
+        }
+
+        public string AddLessThanMessage(string propertyDisplayName, object propertyDisplayName2OrValue)
+        {
+            return ValidationMessageFormatter.LessThanOrEqual(propertyDisplayName, propertyDisplayName2OrValue);
         }
     }
 }

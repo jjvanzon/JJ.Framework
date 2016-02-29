@@ -117,80 +117,139 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CannotBe" xml:space="preserve">
-    <value>{0} is {1}.</value>
-    <comment>{0} = property name, {1} = value</comment>
+  <data name="Contains_WithName_AndValue" xml:space="preserve">
+    <value>{0} contains {1}.</value>
+    <comment>{0} = property, {1} = value</comment>
   </data>
-  <data name="ExceedsLength" xml:space="preserve">
+  <data name="ExceedsLength_WithName_AndLength" xml:space="preserve">
     <value>{0} is longer than {1} characters.</value>
-    <comment>{0} = property name; {1} = max length</comment>
+    <comment>{0} = property, {1} = max length</comment>
   </data>
-  <data name="IsInfinity" xml:space="preserve">
+  <data name="FileAlreadyExists_WithFilePath" xml:space="preserve">
+    <value>File '{0}' already exists.</value>
+    <comment>{0} = file path</comment>
+  </data>
+  <data name="FileNotFound_WithFilePath" xml:space="preserve">
+    <value>File '{0}' not found.</value>
+    <comment>{0} = file path</comment>
+  </data>
+  <data name="FolderAlreadyExists_WithFolderPAth" xml:space="preserve">
+    <value>Folder '{0}' already exists.</value>
+    <comment>{0} = folder path</comment>
+  </data>
+  <data name="FolderNotFound_WithFolderPath" xml:space="preserve">
+    <value>Folder '{0}' not found.</value>
+    <comment>{0} = folder path</comment>
+  </data>
+  <data name="GreaterThanOrEqual_WithName_AndLimit" xml:space="preserve">
+    <value>{0} is minimally {1}.</value>
+    <comment>{0} = property, {1} = limit</comment>
+  </data>
+  <data name="GreaterThan_WithName_AndLimit" xml:space="preserve">
+    <value>{0} is above {1}.</value>
+    <comment>{0} = property, {1} = limit</comment>
+  </data>
+  <data name="HasNulls_WithName" xml:space="preserve">
+    <value>{0} has empty values.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="InvalidIndex_WithName" xml:space="preserve">
+    <value>{0} has an invalid number.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="Invalid_WithName" xml:space="preserve">
+    <value>{0} is invalid.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="IsBrokenNumber_WithName" xml:space="preserve">
+    <value>{0} is a broken number.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="IsEmpty_WithName" xml:space="preserve">
+    <value>{0} is empty.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="IsEqual_WithName_AndValue" xml:space="preserve">
+    <value>{0} is {1}.</value>
+    <comment>{0} = property, {1} = value</comment>
+  </data>
+  <data name="IsFilledIn_WithName" xml:space="preserve">
+    <value>{0} should not be filled in.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="IsInfinity_WithName" xml:space="preserve">
     <value>{0} is infinite.</value>
-    <comment>{0} = property name</comment>
+    <comment>{0} = property</comment>
   </data>
-  <data name="IsInteger" xml:space="preserve">
+  <data name="IsInList_WithName" xml:space="preserve">
+    <value>{0} is in the list of disallowed values.</value>
+  </data>
+  <data name="IsInteger_WithName" xml:space="preserve">
     <value>{0} is not an integer number.</value>
-    <comment>{0} = property name</comment>
+    <comment>{0} = property</comment>
   </data>
-  <data name="IsNaN" xml:space="preserve">
+  <data name="IsNaN_WithName" xml:space="preserve">
     <value>{0} is not a number.</value>
-    <comment>{0} = property name</comment>
+    <comment>{0} = property</comment>
   </data>
-  <data name="IsNot" xml:space="preserve">
+  <data name="IsNot_WithName_AndValue" xml:space="preserve">
     <value>{0} should be {1}.</value>
-    <comment>{0} = property name, {1} = value</comment>
+    <comment>{0} = property, {1} = value</comment>
   </data>
-  <data name="IsNotNull" xml:space="preserve">
-    <value>{0} should be empty.</value>
-    <comment>{0} = property name</comment>
+  <data name="IsOfType_WithName_AndTypeName" xml:space="preserve">
+    <value>{0} is of type {1}.</value>
+    <comment>{0} = property, {1} = type name</comment>
   </data>
-  <data name="IsNotValidEnumValue" xml:space="preserve">
-    <value>{0} does not have a valid value.</value>
-    <comment>{0} = property name</comment>
+  <data name="IsZero_WithName" xml:space="preserve">
+    <value>{0} is zero.</value>
+    <comment>{0} = property</comment>
   </data>
-  <data name="IsNull" xml:space="preserve">
-    <value>{0} is required.</value>
-    <comment>{0} = property name</comment>
+  <data name="LessThanOrEqual_WithName_AndLimit" xml:space="preserve">
+    <value>{0} is maximally {1}.</value>
+    <comment>{0} = property, {1} = limit</comment>
   </data>
-  <data name="IsNullOrEmpty" xml:space="preserve">
-    <value>{0} is required.</value>
-    <comment>{0} = property name</comment>
+  <data name="LessThan_WithName_AndLimit" xml:space="preserve">
+    <value>{0} is below {1}.</value>
+    <comment>{0} = property, {1} = limit</comment>
   </data>
-  <data name="IsNullOrWhiteSpace" xml:space="preserve">
-    <value>{0} is required.</value>
-    <comment>{0} = property name</comment>
-  </data>
-  <data name="IsZero" xml:space="preserve">
-    <value>{0} is required.</value>
-    <comment>{0} = property name</comment>
-  </data>
-  <data name="Max" xml:space="preserve">
-    <value>{0} can be at most {1}.</value>
-    <comment>{0} = property name, {1} = minimum value</comment>
-  </data>
-  <data name="Min" xml:space="preserve">
-    <value>{0} must be at least {1}.</value>
-    <comment>{0} = property name, {1} = minimum value</comment>
-  </data>
-  <data name="NotAbove" xml:space="preserve">
-    <value>{0} is not above {1}.</value>
-    <comment>{0} = property name, {1} = minimum value</comment>
-  </data>
-  <data name="NotDouble" xml:space="preserve">
+  <data name="NotBrokenNumber_WithName" xml:space="preserve">
     <value>{0} is not a broken number.</value>
-    <comment>{0} = property name</comment>
+    <comment>{0} = property</comment>
   </data>
-  <data name="NotIn" xml:space="preserve">
+  <data name="NotContains_WithName_AndValue" xml:space="preserve">
+    <value>{0} does not contain {1}.</value>
+    <comment>{0} = property, {1} = value</comment>
+  </data>
+  <data name="NotEmpty_WithName" xml:space="preserve">
+    <value>{0} is not empty.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="NotEqual_WithName_AndValue" xml:space="preserve">
+    <value>{0} is not {1}.</value>
+    <comment>{0} = property, {1} = value</comment>
+  </data>
+  <data name="NotFilledIn_WithName" xml:space="preserve">
+    <value>{0} is not filled in.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="NotInList_WithName" xml:space="preserve">
+    <value>{0} is not in the list of valid values.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="NotInList_WithName_AndAllowedValues" xml:space="preserve">
     <value>{0} should have one of the values: {1}.</value>
-    <comment>{0} = property name, {1} = allowed values</comment>
+    <comment>{0} = property, {1} = allowed values</comment>
   </data>
-  <data name="NotInteger" xml:space="preserve">
+  <data name="NotInteger_WithName" xml:space="preserve">
     <value>{0} is not an integer number.</value>
-    <comment>{0} = property name</comment>
+    <comment>{0} = property</comment>
   </data>
-  <data name="NotNullOrEmpty" xml:space="preserve">
-    <value>{0} should be empty.</value>
-    <comment>{0} = property name</comment>
+  <data name="NotOfType_WithName_AndTypeName" xml:space="preserve">
+    <value>{0} is not of type {1}.</value>
+    <comment>{0} = property, {1} = type name</comment>
+  </data>
+  <data name="NotUnique_WithName" xml:space="preserve">
+    <value>{0} is not unique.</value>
+    <comment>{0} = property</comment>
   </data>
 </root>

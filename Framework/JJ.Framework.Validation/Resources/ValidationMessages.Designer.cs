@@ -61,173 +61,308 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is {1}..
+        ///   Looks up a localized string similar to {0} contains {1}..
         /// </summary>
-        internal static string CannotBe {
+        internal static string Contains_WithName_AndValue {
             get {
-                return ResourceManager.GetString("CannotBe", resourceCulture);
+                return ResourceManager.GetString("Contains_WithName_AndValue", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0} is longer than {1} characters..
         /// </summary>
-        internal static string ExceedsLength {
+        internal static string ExceedsLength_WithName_AndLength {
             get {
-                return ResourceManager.GetString("ExceedsLength", resourceCulture);
+                return ResourceManager.GetString("ExceedsLength_WithName_AndLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File &apos;{0}&apos; already exists..
+        /// </summary>
+        internal static string FileAlreadyExists_WithFilePath {
+            get {
+                return ResourceManager.GetString("FileAlreadyExists_WithFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File &apos;{0}&apos; not found..
+        /// </summary>
+        internal static string FileNotFound_WithFilePath {
+            get {
+                return ResourceManager.GetString("FileNotFound_WithFilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder &apos;{0}&apos; already exists..
+        /// </summary>
+        internal static string FolderAlreadyExists_WithFolderPAth {
+            get {
+                return ResourceManager.GetString("FolderAlreadyExists_WithFolderPAth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder &apos;{0}&apos; not found..
+        /// </summary>
+        internal static string FolderNotFound_WithFolderPath {
+            get {
+                return ResourceManager.GetString("FolderNotFound_WithFolderPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is above {1}..
+        /// </summary>
+        internal static string GreaterThan_WithName_AndLimit {
+            get {
+                return ResourceManager.GetString("GreaterThan_WithName_AndLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is minimally {1}..
+        /// </summary>
+        internal static string GreaterThanOrEqual_WithName_AndLimit {
+            get {
+                return ResourceManager.GetString("GreaterThanOrEqual_WithName_AndLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} has empty values..
+        /// </summary>
+        internal static string HasNulls_WithName {
+            get {
+                return ResourceManager.GetString("HasNulls_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is invalid..
+        /// </summary>
+        internal static string Invalid_WithName {
+            get {
+                return ResourceManager.GetString("Invalid_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} has an invalid number..
+        /// </summary>
+        internal static string InvalidIndex_WithName {
+            get {
+                return ResourceManager.GetString("InvalidIndex_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is a broken number..
+        /// </summary>
+        internal static string IsBrokenNumber_WithName {
+            get {
+                return ResourceManager.GetString("IsBrokenNumber_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is empty..
+        /// </summary>
+        internal static string IsEmpty_WithName {
+            get {
+                return ResourceManager.GetString("IsEmpty_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is {1}..
+        /// </summary>
+        internal static string IsEqual_WithName_AndValue {
+            get {
+                return ResourceManager.GetString("IsEqual_WithName_AndValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} should not be filled in..
+        /// </summary>
+        internal static string IsFilledIn_WithName {
+            get {
+                return ResourceManager.GetString("IsFilledIn_WithName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0} is infinite..
         /// </summary>
-        internal static string IsInfinity {
+        internal static string IsInfinity_WithName {
             get {
-                return ResourceManager.GetString("IsInfinity", resourceCulture);
+                return ResourceManager.GetString("IsInfinity_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is in the list of disallowed values..
+        /// </summary>
+        internal static string IsInList_WithName {
+            get {
+                return ResourceManager.GetString("IsInList_WithName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0} is not an integer number..
         /// </summary>
-        internal static string IsInteger {
+        internal static string IsInteger_WithName {
             get {
-                return ResourceManager.GetString("IsInteger", resourceCulture);
+                return ResourceManager.GetString("IsInteger_WithName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0} is not a number..
         /// </summary>
-        internal static string IsNaN {
+        internal static string IsNaN_WithName {
             get {
-                return ResourceManager.GetString("IsNaN", resourceCulture);
+                return ResourceManager.GetString("IsNaN_WithName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0} should be {1}..
         /// </summary>
-        internal static string IsNot {
+        internal static string IsNot_WithName_AndValue {
             get {
-                return ResourceManager.GetString("IsNot", resourceCulture);
+                return ResourceManager.GetString("IsNot_WithName_AndValue", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} should be empty..
+        ///   Looks up a localized string similar to {0} is of type {1}..
         /// </summary>
-        internal static string IsNotNull {
+        internal static string IsOfType_WithName_AndTypeName {
             get {
-                return ResourceManager.GetString("IsNotNull", resourceCulture);
+                return ResourceManager.GetString("IsOfType_WithName_AndTypeName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} does not have a valid value..
+        ///   Looks up a localized string similar to {0} is zero..
         /// </summary>
-        internal static string IsNotValidEnumValue {
+        internal static string IsZero_WithName {
             get {
-                return ResourceManager.GetString("IsNotValidEnumValue", resourceCulture);
+                return ResourceManager.GetString("IsZero_WithName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is required..
+        ///   Looks up a localized string similar to {0} is below {1}..
         /// </summary>
-        internal static string IsNull {
+        internal static string LessThan_WithName_AndLimit {
             get {
-                return ResourceManager.GetString("IsNull", resourceCulture);
+                return ResourceManager.GetString("LessThan_WithName_AndLimit", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is required..
+        ///   Looks up a localized string similar to {0} is maximally {1}..
         /// </summary>
-        internal static string IsNullOrEmpty {
+        internal static string LessThanOrEqual_WithName_AndLimit {
             get {
-                return ResourceManager.GetString("IsNullOrEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is required..
-        /// </summary>
-        internal static string IsNullOrWhiteSpace {
-            get {
-                return ResourceManager.GetString("IsNullOrWhiteSpace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is required..
-        /// </summary>
-        internal static string IsZero {
-            get {
-                return ResourceManager.GetString("IsZero", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} can be at most {1}..
-        /// </summary>
-        internal static string Max {
-            get {
-                return ResourceManager.GetString("Max", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} must be at least {1}..
-        /// </summary>
-        internal static string Min {
-            get {
-                return ResourceManager.GetString("Min", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is not above {1}..
-        /// </summary>
-        internal static string NotAbove {
-            get {
-                return ResourceManager.GetString("NotAbove", resourceCulture);
+                return ResourceManager.GetString("LessThanOrEqual_WithName_AndLimit", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0} is not a broken number..
         /// </summary>
-        internal static string NotDouble {
+        internal static string NotBrokenNumber_WithName {
             get {
-                return ResourceManager.GetString("NotDouble", resourceCulture);
+                return ResourceManager.GetString("NotBrokenNumber_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not contain {1}..
+        /// </summary>
+        internal static string NotContains_WithName_AndValue {
+            get {
+                return ResourceManager.GetString("NotContains_WithName_AndValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not empty..
+        /// </summary>
+        internal static string NotEmpty_WithName {
+            get {
+                return ResourceManager.GetString("NotEmpty_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not {1}..
+        /// </summary>
+        internal static string NotEqual_WithName_AndValue {
+            get {
+                return ResourceManager.GetString("NotEqual_WithName_AndValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not filled in..
+        /// </summary>
+        internal static string NotFilledIn_WithName {
+            get {
+                return ResourceManager.GetString("NotFilledIn_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not in the list of valid values..
+        /// </summary>
+        internal static string NotInList_WithName {
+            get {
+                return ResourceManager.GetString("NotInList_WithName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0} should have one of the values: {1}..
         /// </summary>
-        internal static string NotIn {
+        internal static string NotInList_WithName_AndAllowedValues {
             get {
-                return ResourceManager.GetString("NotIn", resourceCulture);
+                return ResourceManager.GetString("NotInList_WithName_AndAllowedValues", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0} is not an integer number..
         /// </summary>
-        internal static string NotInteger {
+        internal static string NotInteger_WithName {
             get {
-                return ResourceManager.GetString("NotInteger", resourceCulture);
+                return ResourceManager.GetString("NotInteger_WithName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} should be empty..
+        ///   Looks up a localized string similar to {0} is not of type {1}..
         /// </summary>
-        internal static string NotNullOrEmpty {
+        internal static string NotOfType_WithName_AndTypeName {
             get {
-                return ResourceManager.GetString("NotNullOrEmpty", resourceCulture);
+                return ResourceManager.GetString("NotOfType_WithName_AndTypeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not unique..
+        /// </summary>
+        internal static string NotUnique_WithName {
+            get {
+                return ResourceManager.GetString("NotUnique_WithName", resourceCulture);
             }
         }
     }

@@ -117,70 +117,139 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CannotBe" xml:space="preserve">
-    <value>{0} mag niet {1} zijn.</value>
+  <data name="Contains_WithName_AndValue" xml:space="preserve">
+    <value>{0} bevat {1}.</value>
+    <comment>{0} = property, {1} = value</comment>
   </data>
-  <data name="ExceedsLength" xml:space="preserve">
+  <data name="ExceedsLength_WithName_AndLength" xml:space="preserve">
     <value>{0} is langer dan {1} tekens.</value>
-    <comment>{0} = property name; {1} = max length</comment>
+    <comment>{0} = property, {1} = max length</comment>
   </data>
-  <data name="IsInfinity" xml:space="preserve">
+  <data name="FileAlreadyExists_WithFilePath" xml:space="preserve">
+    <value>Bestand '{0}' bestaat al.</value>
+    <comment>{0} = file path</comment>
+  </data>
+  <data name="FileNotFound_WithFilePath" xml:space="preserve">
+    <value>Bestand '{0}' bestaat niet.</value>
+    <comment>{0} = file path</comment>
+  </data>
+  <data name="FolderAlreadyExists_WithFolderPAth" xml:space="preserve">
+    <value>Map '{0}' bestaat al.</value>
+    <comment>{0} = folder path</comment>
+  </data>
+  <data name="FolderNotFound_WithFolderPath" xml:space="preserve">
+    <value>Map '{0}' niet gevonden.</value>
+    <comment>{0} = folder path</comment>
+  </data>
+  <data name="GreaterThanOrEqual_WithName_AndLimit" xml:space="preserve">
+    <value>{0} is minimaal {1}.</value>
+    <comment>{0} = property, {1} = limit</comment>
+  </data>
+  <data name="GreaterThan_WithName_AndLimit" xml:space="preserve">
+    <value>{0} ligt boven de {1}.</value>
+    <comment>{0} = property, {1} = limit</comment>
+  </data>
+  <data name="HasNulls_WithName" xml:space="preserve">
+    <value>{0} heeft lege waardes.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="InvalidIndex_WithName" xml:space="preserve">
+    <value>{0} is een ongelding nummer.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="Invalid_WithName" xml:space="preserve">
+    <value>{0} is ongeldig.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="IsBrokenNumber_WithName" xml:space="preserve">
+    <value>{0} is een kommagetal.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="IsEmpty_WithName" xml:space="preserve">
+    <value>{0} is leeg.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="IsEqual_WithName_AndValue" xml:space="preserve">
+    <value>{0} is {1}.</value>
+    <comment>{0} = property, {1} = value</comment>
+  </data>
+  <data name="IsFilledIn_WithName" xml:space="preserve">
+    <value>{0} zou niet ingevuld moeten zijn.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="IsInfinity_WithName" xml:space="preserve">
     <value>{0} is oneindig.</value>
-    <comment>{0} = property name</comment>
+    <comment>{0} = property</comment>
   </data>
-  <data name="IsInteger" xml:space="preserve">
-    <value>{0} mag geen geheel getal zijn.</value>
+  <data name="IsInList_WithName" xml:space="preserve">
+    <value>{0} staat in de lijst met niet-toegestane waardes.</value>
   </data>
-  <data name="IsNaN" xml:space="preserve">
-    <value>{0} is geen getal.</value>
-    <comment>{0} = property name</comment>
-  </data>
-  <data name="IsNot" xml:space="preserve">
-    <value>{0} moet {1} zijn.</value>
-  </data>
-  <data name="IsNotNull" xml:space="preserve">
-    <value>{0} moet leeg zijn.</value>
-    <comment>{0} = property name</comment>
-  </data>
-  <data name="IsNotValidEnumValue" xml:space="preserve">
-    <value>{0} heeft een niet-toegestane waarde.</value>
-  </data>
-  <data name="IsNull" xml:space="preserve">
-    <value>{0} is verplicht.</value>
-  </data>
-  <data name="IsNullOrEmpty" xml:space="preserve">
-    <value>{0} is verplicht.</value>
-    <comment>{0} = property name</comment>
-  </data>
-  <data name="IsNullOrWhiteSpace" xml:space="preserve">
-    <value>{0} is verplicht.</value>
-  </data>
-  <data name="IsZero" xml:space="preserve">
-    <value>{0} is verplicht.</value>
-  </data>
-  <data name="Max" xml:space="preserve">
-    <value>{0} mag maximaal {1} zijn.</value>
-  </data>
-  <data name="Min" xml:space="preserve">
-    <value>{0} moet minimaal {1} zijn.</value>
-  </data>
-  <data name="NotAbove" xml:space="preserve">
-    <value>{0} is niet hoger dan {1}.</value>
-  </data>
-  <data name="NotDouble" xml:space="preserve">
-    <value>{0} is geen gebroken getal.</value>
-    <comment>{0} = property name</comment>
-  </data>
-  <data name="NotIn" xml:space="preserve">
-    <value>{0} moet een van de waardes {1} zijn.</value>
-    <comment>{0} = property name, {1} = allowed values</comment>
-  </data>
-  <data name="NotInteger" xml:space="preserve">
+  <data name="IsInteger_WithName" xml:space="preserve">
     <value>{0} is geen geheel getal.</value>
-    <comment>{0} = property name</comment>
+    <comment>{0} = property</comment>
   </data>
-  <data name="NotNullOrEmpty" xml:space="preserve">
-    <value>{0} zou leeg moeten zijn.</value>
-    <comment>{0} = property name</comment>
+  <data name="IsNaN_WithName" xml:space="preserve">
+    <value>{0} is geen getal.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="IsNot_WithName_AndValue" xml:space="preserve">
+    <value>{0} zou {1} moeten zijn.</value>
+    <comment>{0} = property, {1} = value</comment>
+  </data>
+  <data name="IsOfType_WithName_AndTypeName" xml:space="preserve">
+    <value>{0} is van het soort {1}.</value>
+    <comment>{0} = property, {1} = type name</comment>
+  </data>
+  <data name="IsZero_WithName" xml:space="preserve">
+    <value>{0} is 0.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="LessThanOrEqual_WithName_AndLimit" xml:space="preserve">
+    <value>{0} is maximaal {1}.</value>
+    <comment>{0} = property, {1} = limit</comment>
+  </data>
+  <data name="LessThan_WithName_AndLimit" xml:space="preserve">
+    <value>{0} ligt onder de {1}.</value>
+    <comment>{0} = property, {1} = limit</comment>
+  </data>
+  <data name="NotBrokenNumber_WithName" xml:space="preserve">
+    <value>{0} is geen kommagetal.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="NotContains_WithName_AndValue" xml:space="preserve">
+    <value>{0} bevat geen {1}.</value>
+    <comment>{0} = property, {1} = value</comment>
+  </data>
+  <data name="NotEmpty_WithName" xml:space="preserve">
+    <value>{0} is niet leeg.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="NotEqual_WithName_AndValue" xml:space="preserve">
+    <value>{0} is niet {1}.</value>
+    <comment>{0} = property, {1} = value</comment>
+  </data>
+  <data name="NotFilledIn_WithName" xml:space="preserve">
+    <value>{0} is niet ingevuld.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="NotInList_WithName" xml:space="preserve">
+    <value>{0} staat niet in de lijst van toegestane waardes.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="NotInList_WithName_AndAllowedValues" xml:space="preserve">
+    <value>{0} zou een van de volgende waardes moeten hebben: {1}.</value>
+    <comment>{0} = property, {1} = allowed values</comment>
+  </data>
+  <data name="NotInteger_WithName" xml:space="preserve">
+    <value>{0} is geen geheel getal.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="NotOfType_WithName_AndTypeName" xml:space="preserve">
+    <value>{0} is niet van het soort {1}.</value>
+    <comment>{0} = property, {1} = type name</comment>
+  </data>
+  <data name="NotUnique_WithName" xml:space="preserve">
+    <value>{0} is niet uniek.</value>
+    <comment>{0} = property</comment>
   </data>
 </root>

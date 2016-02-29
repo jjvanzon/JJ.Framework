@@ -40,6 +40,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DebugHelper.cs" />
     <Compile Include="FluentValidator.cs" />
     <Compile Include="FluentValidator_WithoutConstructorArgumentNullCheck.cs" />
     <Compile Include="PropertyKeyHelper.cs" />
