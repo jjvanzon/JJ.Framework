@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml;
+using JJ.Framework.Common.Exceptions;
 
 namespace JJ.Framework.Data.Xml.Internal
 {

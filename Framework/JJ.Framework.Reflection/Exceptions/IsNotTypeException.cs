@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace JJ.Framework.Reflection.Exceptions
 {
     public class IsNotTypeException : Exception
     {
-        private const string MESSAGE_FORMAT = "{0} is not of type {1}.";
+        private const string MESSAGE = "{0} is not of type {1}.";
 
         private string _message;
 
@@ -21,12 +20,12 @@ namespace JJ.Framework.Reflection.Exceptions
         {
             if (type == null) throw new NullException(() => type);
 
-            _message = String.Format(MESSAGE_FORMAT, ExpressionHelper.GetText(expression), type.FullName);
+            _message = String.Format(MESSAGE, ExpressionHelper.GetText(expression), type.FullName);
         }
 
         public IsNotTypeException(Expression<Func<object>> expression, string typeName)
         {
-            _message = String.Format(MESSAGE_FORMAT, ExpressionHelper.GetText(expression), typeName);
+            _message = String.Format(MESSAGE, ExpressionHelper.GetText(expression), typeName);
         }
     }
 }

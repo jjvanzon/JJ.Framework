@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using JJ.Framework.Common;
+using JJ.Framework.Common.Exceptions;
 
 namespace JJ.Framework.Data
 {

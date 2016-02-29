@@ -12,6 +12,7 @@ using JJ.Framework.Xml.Linq.Internal;
 using JJ.Framework.PlatformCompatibility;
 using System.Globalization;
 using JJ.Framework.Reflection;
+using JJ.Framework.Common.Exceptions;
 
 namespace JJ.Framework.Xml.Linq
 {

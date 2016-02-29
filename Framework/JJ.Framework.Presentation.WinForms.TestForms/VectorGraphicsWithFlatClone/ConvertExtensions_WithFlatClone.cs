@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using VectorGraphicsStyling = JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using JJ.Framework.Common.Exceptions;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone
 {

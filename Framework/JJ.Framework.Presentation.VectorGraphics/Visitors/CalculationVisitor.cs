@@ -7,6 +7,7 @@ using System.Linq;
 using JJ.Framework.Presentation.VectorGraphics.Enums;
 using JJ.Framework.Common;
 using JJ.Framework.Presentation.VectorGraphics.Helpers;
+using JJ.Framework.Common.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 {

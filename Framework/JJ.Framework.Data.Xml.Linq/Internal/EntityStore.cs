@@ -8,6 +8,7 @@ using JJ.Framework.Common;
 using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Xml.Linq;
+using JJ.Framework.Common.Exceptions;
 
 namespace JJ.Framework.Data.Xml.Linq.Internal
 {

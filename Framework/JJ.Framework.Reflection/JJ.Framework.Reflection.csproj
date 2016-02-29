@@ -41,15 +41,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessor.cs" />
+    <Compile Include="Exceptions\CollectionNotEmptyException.cs" />
+    <Compile Include="Exceptions\CollectionEmptyException.cs" />
+    <Compile Include="Exceptions\HasNullsException.cs" />
+    <Compile Include="Exceptions\NotInfinityException.cs" />
+    <Compile Include="Exceptions\NotNaNException.cs" />
+    <Compile Include="Exceptions\NotDecimalException.cs" />
+    <Compile Include="Exceptions\IsDecimalException.cs" />
+    <Compile Include="Exceptions\NotContainsException.cs" />
+    <Compile Include="Exceptions\ContainsException.cs" />
     <Compile Include="Exceptions\IsTypeException.cs" />
     <Compile Include="Exceptions\IsTypeExceptionOfT.cs" />
     <Compile Include="Exceptions\IsNotTypeExceptionOfT.cs" />
     <Compile Include="Exceptions\IsNotTypeException.cs" />
     <Compile Include="Exceptions\InfinityException.cs" />
+    <Compile Include="Exceptions\IsDoubleException.cs" />
     <Compile Include="Exceptions\NotDoubleException.cs" />
+    <Compile Include="Exceptions\IsIntegerException.cs" />
     <Compile Include="Exceptions\NotIntegerException.cs" />
     <Compile Include="Exceptions\NotNullException.cs" />
     <Compile Include="Exceptions\NaNException.cs" />
+    <Compile Include="Exceptions\NotNullOrEmptyException.cs" />
+    <Compile Include="Exceptions\InvalidReferenceException.cs" />
+    <Compile Include="Exceptions\NotUniqueException.cs" />
     <Compile Include="Exceptions\ZeroException.cs" />
     <Compile Include="Exceptions\EqualException.cs" />
     <Compile Include="Exceptions\NotEqualException.cs" />

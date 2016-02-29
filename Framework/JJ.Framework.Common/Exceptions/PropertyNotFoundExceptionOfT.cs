@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Common
+﻿namespace JJ.Framework.Common.Exceptions
 {
     public class PropertyNotFoundException<T> : PropertyNotFoundException
     {

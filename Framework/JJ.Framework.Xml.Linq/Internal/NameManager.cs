@@ -10,6 +10,7 @@ using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Mathematics;
+using JJ.Framework.Common.Exceptions;
 
 namespace JJ.Framework.Xml.Linq.Internal
 {

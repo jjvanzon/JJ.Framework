@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using JJ.Framework.Common.Exceptions;
 
 namespace JJ.Framework.Data.Memory.Internal
 {

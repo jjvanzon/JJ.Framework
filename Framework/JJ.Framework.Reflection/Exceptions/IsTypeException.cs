@@ -7,7 +7,7 @@ namespace JJ.Framework.Reflection.Exceptions
 {
     public class IsTypeException : Exception
     {
-        private const string MESSAGE_FORMAT = "{0} cannot be of type {1}.";
+        private const string MESSAGE = "{0} cannot be of type {1}.";
 
         private string _message;
 
@@ -20,12 +20,12 @@ namespace JJ.Framework.Reflection.Exceptions
         {
             if (type == null) throw new NullException(() => type);
 
-            _message = String.Format(MESSAGE_FORMAT, ExpressionHelper.GetText(expression), type.FullName);
+            _message = String.Format(MESSAGE, ExpressionHelper.GetText(expression), type.FullName);
         }
 
         public IsTypeException(Expression<Func<object>> expression, string typeName)
         {
-            _message = String.Format(MESSAGE_FORMAT, ExpressionHelper.GetText(expression), typeName);
+            _message = String.Format(MESSAGE, ExpressionHelper.GetText(expression), typeName);
         }
     }
 }

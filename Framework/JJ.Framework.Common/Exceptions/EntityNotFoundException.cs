@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JJ.Framework.Common
+namespace JJ.Framework.Common.Exceptions
 {
     public class EntityNotFoundException : Exception
     {
