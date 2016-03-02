@@ -1,6 +1,7 @@
 ﻿using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Diagnostics;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Validation
 {
@@ -12,7 +13,7 @@ namespace JJ.Framework.Validation
 
         public ValidationMessage(string propertyKey, string text)
         {
-            if (String.IsNullOrEmpty(propertyKey)) throw new NullException(() => propertyKey);
+            if (String_PlatformSupport.IsNullOrWhiteSpace(propertyKey)) throw new NullOrWhiteSpaceException(() => propertyKey);
             if (String.IsNullOrEmpty(text)) throw new NullException(() => text);
 
             PropertyKey = propertyKey;

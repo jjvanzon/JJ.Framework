@@ -7,6 +7,7 @@ using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 using System.Collections.Generic;
 using JJ.Framework.Common;
+using System.Collections;
 
 namespace JJ.Framework.Validation
 {
@@ -111,7 +112,7 @@ namespace JJ.Framework.Validation
         {
             if (_value != null)
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsFilledIn(_propertyDisplayName));
+                ValidationMessages.AddIsFilledInMessage(_propertyKey, _propertyDisplayName);
             }
 
             return this;
@@ -123,7 +124,7 @@ namespace JJ.Framework.Validation
 
             if (!String.IsNullOrEmpty(value))
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsFilledIn(_propertyDisplayName));
+                ValidationMessages.AddIsFilledInMessage(_propertyKey, _propertyDisplayName);
             }
 
             return this;
@@ -142,13 +143,18 @@ namespace JJ.Framework.Validation
 
             if (str.Length > maxLength)
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.ExceedsLength(_propertyDisplayName, maxLength));
+                ValidationMessages.AddLengthExceededMessage(_propertyKey, _propertyDisplayName, maxLength);
             }
 
             return this;
         }
 
         // Equation
+
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> In(IList<object> possibleValues)
+        {
+            return In((object[])possibleValues);
+        }
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> In(params object[] possibleValues)
         {
@@ -165,7 +171,7 @@ namespace JJ.Framework.Validation
 
             if (!isAllowed)
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotInList(_propertyDisplayName, possibleValues));
+                ValidationMessages.AddNotInListMessage(_propertyKey, _propertyDisplayName, possibleValues);
             }
 
             return this;
@@ -184,7 +190,7 @@ namespace JJ.Framework.Validation
 
             if (!String.Equals(convertedValue, convertedOtherValue))
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsNot(_propertyDisplayName, value));
+                ValidationMessages.AddNotEqualMessage(_propertyKey, _propertyDisplayName, value);
             }
 
             return this;
@@ -203,7 +209,7 @@ namespace JJ.Framework.Validation
 
             if (String.Equals(convertedValue, convertedOtherValue))
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsEqual(_propertyDisplayName, value));
+                ValidationMessages.AddIsEqualMessage(_propertyKey, _propertyDisplayName, value);
             }
 
             return this;
@@ -223,7 +229,7 @@ namespace JJ.Framework.Validation
 
             if (CompareNumbers(value, min) <= 0)
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.LessThanOrEqual(_propertyDisplayName, min));
+                ValidationMessages.AddLessThanOrEqualMessage(_propertyKey, _propertyDisplayName, min);
             }
 
             return this;
@@ -241,7 +247,7 @@ namespace JJ.Framework.Validation
 
             if (CompareNumbers(value, min) < 0)
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.LessThan(_propertyDisplayName, min));
+                ValidationMessages.AddLessThanMessage(_propertyKey, _propertyDisplayName, min);
             }
 
             return this;
@@ -259,7 +265,25 @@ namespace JJ.Framework.Validation
 
             if (CompareNumbers(value, max) > 0)
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.GreaterThan(_propertyDisplayName, max));
+                ValidationMessages.AddGreaterThanMessage(_propertyKey, _propertyDisplayName, max);
+            }
+
+            return this;
+        }
+
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThan<TValue>(TValue max)
+            where TValue : IComparable
+        {
+            if (_value == null)
+            {
+                return this;
+            }
+
+            IComparable value = (IComparable)_value;
+
+            if (CompareNumbers(value, max) >= 0)
+            {
+                ValidationMessages.AddGreaterThanOrEqualMessage(_propertyKey, _propertyDisplayName, max);
             }
 
             return this;
@@ -289,7 +313,7 @@ namespace JJ.Framework.Validation
             int convertedValue;
             if (Int32.TryParse(value, out convertedValue))
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsInteger(_propertyDisplayName));
+                ValidationMessages.AddIsIntegerMessage(_propertyKey, _propertyDisplayName);
             }
 
             return this;
@@ -307,49 +331,7 @@ namespace JJ.Framework.Validation
             double convertedValue;
             if (!Double.TryParse(value, out convertedValue))
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotBrokenNumber(_propertyDisplayName));
-            }
-
-            return this;
-        }
-
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNaN()
-        {
-            string value = Convert.ToString(_value);
-
-            if (String.IsNullOrEmpty(value))
-            {
-                return this;
-            }
-
-            double convertedValue;
-            if (Double.TryParse(value, out convertedValue))
-            {
-                if (Double.IsNaN(convertedValue))
-                {
-                    ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsNaN(_propertyDisplayName));
-                }
-            }
-
-            return this;
-        }
-
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotInfinity()
-        {
-            string value = Convert.ToString(_value);
-
-            if (String.IsNullOrEmpty(value))
-            {
-                return this;
-            }
-
-            double convertedValue;
-            if (Double.TryParse(value, out convertedValue))
-            {
-                if (Double.IsInfinity(convertedValue))
-                {
-                    ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.IsInfinity(_propertyDisplayName));
-                }
+                ValidationMessages.AddNotBrokenNumberMessage(_propertyKey, _propertyDisplayName);
             }
 
             return this;
@@ -367,7 +349,7 @@ namespace JJ.Framework.Validation
             int convertedValue;
             if (!Int32.TryParse(value, out convertedValue))
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.NotInteger(_propertyDisplayName));
+                ValidationMessages.AddNotIntegerMessage(_propertyKey, _propertyDisplayName);
             }
 
             return this;
@@ -396,13 +378,13 @@ namespace JJ.Framework.Validation
 
             if (!isEnum)
             {
-                ValidationMessages.Add(_propertyKey, ValidationMessageFormatter.Invalid(_propertyDisplayName));
+                ValidationMessages.AddIsInvalidMessage(_propertyKey, _propertyDisplayName);
             }
 
             return this;
         }
 
-        private bool IsEnum_WithNumericComparison<TEnum>(object value) 
+        private bool IsEnum_WithNumericComparison<TEnum>(object value)
             where TEnum : struct
         {
             TEnum[] enumValues = (TEnum[])Enum.GetValues(typeof(TEnum));
@@ -421,12 +403,56 @@ namespace JJ.Framework.Validation
         {
             // Not an array, that might result in reference comparison,
             // but a HashSet, so it does value comparison.
-            HashSet<string> enumNames =  Enum.GetNames(typeof(TEnum)).ToHashSet();
+            HashSet<string> enumNames = Enum.GetNames(typeof(TEnum)).ToHashSet();
 
             string valueString = Convert.ToString(value);
 
             bool isEnum = enumNames.Contains(valueString);
             return isEnum;
+        }
+
+        // Other
+
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNaN()
+        {
+            string value = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(value))
+            {
+                return this;
+            }
+
+            double convertedValue;
+            if (Double.TryParse(value, out convertedValue))
+            {
+                if (Double.IsNaN(convertedValue))
+                {
+                    ValidationMessages.AddIsNaNMessage(_propertyKey, _propertyDisplayName);
+                }
+            }
+
+            return this;
+        }
+
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotInfinity()
+        {
+            string value = Convert.ToString(_value);
+
+            if (String.IsNullOrEmpty(value))
+            {
+                return this;
+            }
+
+            double convertedValue;
+            if (Double.TryParse(value, out convertedValue))
+            {
+                if (Double.IsInfinity(convertedValue))
+                {
+                    ValidationMessages.AddIsInfinityMessage(_propertyKey, _propertyDisplayName);
+                }
+            }
+
+            return this;
         }
     }
 }

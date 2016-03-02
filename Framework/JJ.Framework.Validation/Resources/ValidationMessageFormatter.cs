@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.PlatformCompatibility;
 using System;
+using System.Collections.Generic;
 
 namespace JJ.Framework.Validation.Resources
 {
@@ -10,9 +11,9 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(ValidationMessages.Contains_WithName_AndValue, propertyDisplayName, valueOrName);
         }
 
-        public static string ExceedsLength(string propertyDisplayName, int length)
+        public static string LengthExceeded(string propertyDisplayName, int length)
         {
-            return String.Format(ValidationMessages.ExceedsLength_WithName_AndLength, propertyDisplayName, length);
+            return String.Format(ValidationMessages.LengthExceeded_WithName_AndLength, propertyDisplayName, length);
         }
 
         public static string FileAlreadyExists(string filePath)
@@ -100,11 +101,6 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(ValidationMessages.IsNaN_WithName, propertyDisplayName);
         }
 
-        public static string IsNot(string propertyDisplayName, object valueOrName)
-        {
-            return String.Format(ValidationMessages.IsNot_WithName_AndValue, propertyDisplayName, valueOrName);
-        }
-
         public static string IsOfType(string propertyDisplayName, string typeName)
         {
             return String.Format(ValidationMessages.IsOfType_WithName_AndTypeName, propertyDisplayName, typeName);
@@ -155,7 +151,7 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(ValidationMessages.NotInList_WithName, propertyDisplayName);
         }
 
-        public static string NotInList(string propertyDisplayName, object[] possibleValues)
+        public static string NotInList(string propertyDisplayName, IList<object> possibleValues)
         {
             string joined = String_PlatformSupport.Join(", ", possibleValues);
             string message = String.Format(ValidationMessages.NotInList_WithName_AndAllowedValues, propertyDisplayName, joined);

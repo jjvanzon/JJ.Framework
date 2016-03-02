@@ -61,9 +61,11 @@
     <Compile Include="Exceptions\NotIntegerException.cs" />
     <Compile Include="Exceptions\NotNullException.cs" />
     <Compile Include="Exceptions\NaNException.cs" />
+    <Compile Include="Exceptions\NotNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\NotNullOrEmptyException.cs" />
     <Compile Include="Exceptions\InvalidReferenceException.cs" />
     <Compile Include="Exceptions\NotUniqueException.cs" />
+    <Compile Include="Exceptions\NullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\ZeroException.cs" />
     <Compile Include="Exceptions\EqualException.cs" />
     <Compile Include="Exceptions\NotEqualException.cs" />

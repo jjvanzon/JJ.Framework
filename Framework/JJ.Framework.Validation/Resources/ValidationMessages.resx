@@ -121,7 +121,7 @@
     <value>{0} contains {1}.</value>
     <comment>{0} = property, {1} = value</comment>
   </data>
-  <data name="ExceedsLength_WithName_AndLength" xml:space="preserve">
+  <data name="LengthExceeded_WithName_AndLength" xml:space="preserve">
     <value>{0} is longer than {1} characters.</value>
     <comment>{0} = property, {1} = max length</comment>
   </data>
@@ -191,10 +191,6 @@
   <data name="IsNaN_WithName" xml:space="preserve">
     <value>{0} is not a number.</value>
     <comment>{0} = property</comment>
-  </data>
-  <data name="IsNot_WithName_AndValue" xml:space="preserve">
-    <value>{0} should be {1}.</value>
-    <comment>{0} = property, {1} = value</comment>
   </data>
   <data name="IsOfType_WithName_AndTypeName" xml:space="preserve">
     <value>{0} is of type {1}.</value>

@@ -70,15 +70,6 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is longer than {1} characters..
-        /// </summary>
-        internal static string ExceedsLength_WithName_AndLength {
-            get {
-                return ResourceManager.GetString("ExceedsLength_WithName_AndLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to File &apos;{0}&apos; already exists..
         /// </summary>
         internal static string FileAlreadyExists_WithFilePath {
@@ -232,15 +223,6 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} should be {1}..
-        /// </summary>
-        internal static string IsNot_WithName_AndValue {
-            get {
-                return ResourceManager.GetString("IsNot_WithName_AndValue", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} is of type {1}..
         /// </summary>
         internal static string IsOfType_WithName_AndTypeName {
@@ -255,6 +237,15 @@ namespace JJ.Framework.Validation.Resources {
         internal static string IsZero_WithName {
             get {
                 return ResourceManager.GetString("IsZero_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is longer than {1} characters..
+        /// </summary>
+        internal static string LengthExceeded_WithName_AndLength {
+            get {
+                return ResourceManager.GetString("LengthExceeded_WithName_AndLength", resourceCulture);
             }
         }
         
