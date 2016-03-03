@@ -115,7 +115,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is minimally {1}..
+        ///   Looks up a localized string similar to {0} should be less than {1}..
         /// </summary>
         internal static string GreaterThanOrEqual_WithName_AndLimit {
             get {
@@ -259,7 +259,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is maximally {1}..
+        ///   Looks up a localized string similar to {0} should be more than {1}..
         /// </summary>
         internal static string LessThanOrEqual_WithName_AndLimit {
             get {

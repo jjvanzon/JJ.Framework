@@ -142,7 +142,7 @@
     <comment>{0} = folder path</comment>
   </data>
   <data name="GreaterThanOrEqual_WithName_AndLimit" xml:space="preserve">
-    <value>{0} is minimally {1}.</value>
+    <value>{0} should be less than {1}.</value>
     <comment>{0} = property, {1} = limit</comment>
   </data>
   <data name="GreaterThan_WithName_AndLimit" xml:space="preserve">
@@ -201,7 +201,7 @@
     <comment>{0} = property</comment>
   </data>
   <data name="LessThanOrEqual_WithName_AndLimit" xml:space="preserve">
-    <value>{0} is maximally {1}.</value>
+    <value>{0} should be more than {1}.</value>
     <comment>{0} = property, {1} = limit</comment>
   </data>
   <data name="LessThan_WithName_AndLimit" xml:space="preserve">

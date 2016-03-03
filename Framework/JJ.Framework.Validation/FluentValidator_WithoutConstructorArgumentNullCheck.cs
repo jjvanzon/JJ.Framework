@@ -177,7 +177,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> Is<TValue>(TValue value)
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> Is(object value)
         {
             string convertedValue = Convert.ToString(_value);
 
@@ -196,7 +196,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNot<TValue>(TValue value)
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNot(object value)
         {
             string convertedValue = Convert.ToString(_value);
 
