@@ -8,6 +8,7 @@ using JJ.Framework.Reflection;
 using System.Collections.Generic;
 using JJ.Framework.Common;
 using System.Collections;
+using System.Globalization;
 
 namespace JJ.Framework.Validation
 {
@@ -24,6 +25,7 @@ namespace JJ.Framework.Validation
         private object _value;
         private string _propertyKey;
         private string _propertyDisplayName;
+        private IFormatProvider _formatProvider;
 
         /// <summary>
         /// Indicate which property value we are going to validate.
@@ -34,13 +36,16 @@ namespace JJ.Framework.Validation
         /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
         /// The root of the expression is excluded from the property key, e.g. "() => MyObject.MyProperty" produces the property key "MyProperty".
         /// </param>
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> For(Expression<Func<object>> propertyExpression, string propertyDisplayName)
+        /// <param name="formatProvider">
+        /// Use this parameter if the number format is different from the current culture.
+        /// </param>
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> For(Expression<Func<object>> propertyExpression, string propertyDisplayName, IFormatProvider formatProvider = null)
         {
             object value = ExpressionHelper.GetValue(propertyExpression);
 
             string propertyKey = PropertyKeyHelper.GetPropertyKeyFromExpression(propertyExpression);
 
-            return For(value, propertyKey, propertyDisplayName);
+            return For(value, propertyKey, propertyDisplayName, formatProvider);
         }
 
         /// <summary>
@@ -54,7 +59,10 @@ namespace JJ.Framework.Validation
         /// <param name="propertyDisplayName">
         /// Used in messages to indicate what property the validation message is about.
         /// </param>
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> For(object value, string propertyKey, string propertyDisplayName)
+        /// <param name="formatProvider">
+        /// Use this parameter if the number format is different from the current culture.
+        /// </param>
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> For(object value, string propertyKey, string propertyDisplayName, IFormatProvider formatProvider = null)
         {
             if (propertyKey == null)
             {
@@ -68,6 +76,8 @@ namespace JJ.Framework.Validation
             _value = value;
             _propertyKey = propertyKey;
             _propertyDisplayName = propertyDisplayName;
+
+            _formatProvider = formatProvider ?? CultureHelper.GetCurrentCulture();
 
             return this;
         }
@@ -86,9 +96,9 @@ namespace JJ.Framework.Validation
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNullOrWhiteSpace()
         {
-            string value = Convert.ToString(_value);
+            string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String_PlatformSupport.IsNullOrWhiteSpace(value))
+            if (String_PlatformSupport.IsNullOrWhiteSpace(stringValue))
             {
                 ValidationMessages.AddRequiredMessage(_propertyKey, _propertyDisplayName);
             }
@@ -98,9 +108,9 @@ namespace JJ.Framework.Validation
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNullOrEmpty()
         {
-            string value = Convert.ToString(_value);
+            string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(value))
+            if (String.IsNullOrEmpty(stringValue))
             {
                 ValidationMessages.AddRequiredMessage(_propertyKey, _propertyDisplayName);
             }
@@ -120,9 +130,9 @@ namespace JJ.Framework.Validation
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNullOrEmpty()
         {
-            string value = Convert.ToString(_value);
+            string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (!String.IsNullOrEmpty(value))
+            if (!String.IsNullOrEmpty(stringValue))
             {
                 ValidationMessages.AddIsFilledInMessage(_propertyKey, _propertyDisplayName);
             }
@@ -134,14 +144,14 @@ namespace JJ.Framework.Validation
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> MaxLength(int maxLength)
         {
-            string str = Convert.ToString(_value);
+            string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(str))
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
-            if (str.Length > maxLength)
+            if (stringValue.Length > maxLength)
             {
                 ValidationMessages.AddLengthExceededMessage(_propertyKey, _propertyDisplayName, maxLength);
             }
@@ -160,9 +170,9 @@ namespace JJ.Framework.Validation
         {
             if (possibleValues == null) throw new NullException(() => possibleValues);
 
-            string convertedValue = Convert.ToString(_value);
+            string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(convertedValue))
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -179,16 +189,16 @@ namespace JJ.Framework.Validation
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> Is(object value)
         {
-            string convertedValue = Convert.ToString(_value);
+            string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(convertedValue))
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
-            string convertedOtherValue = Convert.ToString(value);
+            string otherStringValue = Convert.ToString(value, _formatProvider);
 
-            if (!String.Equals(convertedValue, convertedOtherValue))
+            if (!String.Equals(stringValue, otherStringValue))
             {
                 ValidationMessages.AddNotEqualMessage(_propertyKey, _propertyDisplayName, value);
             }
@@ -198,16 +208,16 @@ namespace JJ.Framework.Validation
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNot(object value)
         {
-            string convertedValue = Convert.ToString(_value);
+            string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(convertedValue))
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
-            string convertedOtherValue = Convert.ToString(value);
+            string otherStringValue = Convert.ToString(value, _formatProvider);
 
-            if (String.Equals(convertedValue, convertedOtherValue))
+            if (String.Equals(stringValue, otherStringValue))
             {
                 ValidationMessages.AddIsEqualMessage(_propertyKey, _propertyDisplayName, value);
             }
@@ -217,76 +227,120 @@ namespace JJ.Framework.Validation
 
         // Comparison
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThan<TValue>(TValue min)
-            where TValue : IComparable
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThan<TValue>(TValue limit)
         {
-            if (_value == null)
+            string stringValue = Convert.ToString(_value, _formatProvider);
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
-            IComparable value = (IComparable)_value;
-
-            if (CompareNumbers(value, min) <= 0)
+            int comparisonResult;
+            if (limit is DateTime)
             {
-                ValidationMessages.AddLessThanOrEqualMessage(_propertyKey, _propertyDisplayName, min);
+                comparisonResult = CompareDateTimes(_value, limit);
+            }
+            else
+            {
+                comparisonResult = CompareNumbers(_value, limit);
+            }
+
+            bool isValid = comparisonResult > 0;
+            if (!isValid)
+            {
+                ValidationMessages.AddLessThanOrEqualMessage(_propertyKey, _propertyDisplayName, limit);
             }
 
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThanOrEqual<TValue>(TValue min)
-            where TValue : IComparable
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThanOrEqual<TValue>(TValue limit)
         {
-            if (_value == null)
+            string stringValue = Convert.ToString(_value, _formatProvider);
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
-            IComparable value = (IComparable)_value;
-
-            if (CompareNumbers(value, min) < 0)
+            int comparisonResult;
+            if (limit is DateTime)
             {
-                ValidationMessages.AddLessThanMessage(_propertyKey, _propertyDisplayName, min);
+                comparisonResult = CompareDateTimes(_value, limit);
+            }
+            else
+            {
+                comparisonResult = CompareNumbers(_value, limit);
+            }
+
+            bool isValid = comparisonResult >= 0;
+            if (!isValid)
+            {
+                ValidationMessages.AddLessThanMessage(_propertyKey, _propertyDisplayName, limit);
             }
 
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThanOrEqual<TValue>(TValue max)
-            where TValue : IComparable
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThanOrEqual<TValue>(TValue limit)
         {
-            if (_value == null)
+            string stringValue = Convert.ToString(_value, _formatProvider);
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
-            IComparable value = (IComparable)_value;
-
-            if (CompareNumbers(value, max) > 0)
+            int comparisonResult;
+            if (limit is DateTime)
             {
-                ValidationMessages.AddGreaterThanMessage(_propertyKey, _propertyDisplayName, max);
+                comparisonResult = CompareDateTimes(_value, limit);
+            }
+            else
+            {
+                comparisonResult = CompareNumbers(_value, limit);
+            }
+
+            bool isValid = comparisonResult <= 0;
+            if (!isValid)
+            {
+                ValidationMessages.AddGreaterThanMessage(_propertyKey, _propertyDisplayName, limit);
             }
 
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThan<TValue>(TValue max)
-            where TValue : IComparable
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThan<TValue>(TValue limit)
         {
-            if (_value == null)
+            string stringValue = Convert.ToString(_value, _formatProvider);
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
-            IComparable value = (IComparable)_value;
-
-            if (CompareNumbers(value, max) >= 0)
+            int comparisonResult;
+            if (limit is DateTime)
             {
-                ValidationMessages.AddGreaterThanOrEqualMessage(_propertyKey, _propertyDisplayName, max);
+                comparisonResult = CompareDateTimes(_value, limit);
+            }
+            else
+            {
+                comparisonResult = CompareNumbers(_value, limit);
+            }
+
+            bool isValid = comparisonResult < 0;
+            if (!isValid)
+            {
+                ValidationMessages.AddGreaterThanOrEqualMessage(_propertyKey, _propertyDisplayName, limit);
             }
 
             return this;
+        }
+
+        /// <summary> Compares DateTimes, but in a way that either value could also be a string. </summary>
+        private int CompareDateTimes(object a, object b)
+        {
+            DateTime dateTimeA = Convert.ToDateTime(a, _formatProvider);
+            DateTime dateTimeB = Convert.ToDateTime(b, _formatProvider);
+            return dateTimeA.CompareTo(dateTimeB);
         }
 
         /// <summary>
@@ -294,24 +348,42 @@ namespace JJ.Framework.Validation
         /// </summary>
         private int CompareNumbers(object a, object b)
         {
-            decimal decimalA = Convert.ToDecimal(a);
-            decimal decimalB = Convert.ToDecimal(b);
+            decimal decimalA = Convert.ToDecimal(a, _formatProvider);
+            decimal decimalB = Convert.ToDecimal(b, _formatProvider);
             return decimalA.CompareTo(decimalB);
         }
 
         // Type checks
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotInteger()
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsInteger()
         {
-            string value = Convert.ToString(_value);
+            string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(value))
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
             int convertedValue;
-            if (Int32.TryParse(value, out convertedValue))
+            if (!Int32.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out convertedValue))
+            {
+                ValidationMessages.AddNotIntegerMessage(_propertyKey, _propertyDisplayName);
+            }
+
+            return this;
+        }
+
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotInteger()
+        {
+            string stringValue = Convert.ToString(_value, _formatProvider);
+
+            if (String.IsNullOrEmpty(stringValue))
+            {
+                return this;
+            }
+
+            int convertedValue;
+            if (Int32.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out convertedValue))
             {
                 ValidationMessages.AddIsIntegerMessage(_propertyKey, _propertyDisplayName);
             }
@@ -321,35 +393,17 @@ namespace JJ.Framework.Validation
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsDouble()
         {
-            string value = Convert.ToString(_value);
+            string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(value))
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
             double convertedValue;
-            if (!Double.TryParse(value, out convertedValue))
+            if (!Doubles.TryParse(stringValue, _formatProvider, out convertedValue))
             {
                 ValidationMessages.AddNotBrokenNumberMessage(_propertyKey, _propertyDisplayName);
-            }
-
-            return this;
-        }
-
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsInteger()
-        {
-            string value = Convert.ToString(_value);
-
-            if (String.IsNullOrEmpty(value))
-            {
-                return this;
-            }
-
-            int convertedValue;
-            if (!Int32.TryParse(value, out convertedValue))
-            {
-                ValidationMessages.AddNotIntegerMessage(_propertyKey, _propertyDisplayName);
             }
 
             return this;
@@ -358,8 +412,8 @@ namespace JJ.Framework.Validation
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsEnum<TEnum>()
             where TEnum : struct
         {
-            string str = Convert.ToString(_value);
-            if (String.IsNullOrEmpty(str))
+            string stringValue = Convert.ToString(_value, _formatProvider);
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -405,7 +459,7 @@ namespace JJ.Framework.Validation
             // but a HashSet, so it does value comparison.
             HashSet<string> enumNames = Enum.GetNames(typeof(TEnum)).ToHashSet();
 
-            string valueString = Convert.ToString(value);
+            string valueString = Convert.ToString(value, _formatProvider);
 
             bool isEnum = enumNames.Contains(valueString);
             return isEnum;
@@ -415,15 +469,15 @@ namespace JJ.Framework.Validation
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNaN()
         {
-            string value = Convert.ToString(_value);
+            string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(value))
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
             double convertedValue;
-            if (Double.TryParse(value, out convertedValue))
+            if (Doubles.TryParse(stringValue, _formatProvider, out convertedValue))
             {
                 if (Double.IsNaN(convertedValue))
                 {
@@ -436,15 +490,15 @@ namespace JJ.Framework.Validation
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotInfinity()
         {
-            string value = Convert.ToString(_value);
+            string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(value))
+            if (String.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
             double convertedValue;
-            if (Double.TryParse(value, out convertedValue))
+            if (Doubles.TryParse(stringValue, _formatProvider, out convertedValue))
             {
                 if (Double.IsInfinity(convertedValue))
                 {
