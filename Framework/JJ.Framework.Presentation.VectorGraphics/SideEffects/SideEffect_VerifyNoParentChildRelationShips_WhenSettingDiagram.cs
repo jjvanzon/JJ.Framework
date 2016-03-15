@@ -20,12 +20,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
         {
             if (_element.Parent != null)
             {
-                throw new Exception("An Element must have no parent-child relationships when you add or remove it from a Diagram.");
+                throw new Exception("An Element must have no parent-child relationships when you add or remove it from a Diagram. The element still has a parent.");
             }
 
             if (_element.Children.Count != 0)
             {
-                throw new Exception("An Element must have no parent-child relationships when you add or remove it from a Diagram.");
+                throw new Exception("An Element must have no parent-child relationships when you add or remove it from a Diagram. the element still has children.");
             }
         }
     }
