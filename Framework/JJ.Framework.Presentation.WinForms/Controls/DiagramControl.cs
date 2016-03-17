@@ -129,8 +129,8 @@ namespace JJ.Framework.Presentation.WinForms.Controls
                 return;
             }
 
-            Diagram.HeightInPixels = Height;
-            Diagram.WidthInPixels = Width;
+            Diagram.Scaling.HeightInPixels = Height;
+            Diagram.Scaling.WidthInPixels = Width;
 
             if (Diagram.Background.BackStyle.Visible)
             {

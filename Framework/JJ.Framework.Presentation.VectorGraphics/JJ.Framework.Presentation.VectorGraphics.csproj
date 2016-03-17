@@ -55,6 +55,8 @@
     <Compile Include="Helpers\ScaleHelper.cs" />
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Models\Elements\Curve.cs" />
+    <Compile Include="Models\Elements\DiagramScaling.cs" />
+    <Compile Include="Models\Elements\ElementScaling.cs" />
     <Compile Include="Models\Elements\ICalculatedValues.cs" />
     <Compile Include="Models\Elements\IDiagramGestureHandling.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />

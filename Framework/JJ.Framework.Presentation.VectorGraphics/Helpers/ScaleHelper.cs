@@ -10,7 +10,7 @@ using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 {
-    public static class ScaleHelper
+    internal static class ScaleHelper
     {
         // Diagram
 
@@ -18,17 +18,17 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (diagram == null) throw new NullException(() => diagram);
 
-            switch (diagram.ScaleModeEnum)
+            switch (diagram.Scaling.ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
                     return xInPixels;
 
                 case ScaleModeEnum.ViewPort:
-                    float scaledX = diagram.ScaledX + xInPixels / diagram.WidthInPixels * diagram.ScaledWidth;
+                    float scaledX = diagram.Scaling.ScaledX + xInPixels / diagram.Scaling.WidthInPixels * diagram.Scaling.ScaledWidth;
                     return scaledX;
 
                 default:
-                    throw new ValueNotSupportedException(diagram.ScaleModeEnum);
+                    throw new ValueNotSupportedException(diagram.Scaling.ScaleModeEnum);
             }
         }
 
@@ -36,17 +36,17 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (diagram == null) throw new NullException(() => diagram);
 
-            switch (diagram.ScaleModeEnum)
+            switch (diagram.Scaling.ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
                     return yInPixels;
 
                 case ScaleModeEnum.ViewPort:
-                    float scaledY = diagram.ScaledY + yInPixels / diagram.HeightInPixels * diagram.ScaledHeight;
+                    float scaledY = diagram.Scaling.ScaledY + yInPixels / diagram.Scaling.HeightInPixels * diagram.Scaling.ScaledHeight;
                     return scaledY;
 
                 default:
-                    throw new ValueNotSupportedException(diagram.ScaleModeEnum);
+                    throw new ValueNotSupportedException(diagram.Scaling.ScaleModeEnum);
             }
         }
 
@@ -54,17 +54,17 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (diagram == null) throw new NullException(() => diagram);
 
-            switch (diagram.ScaleModeEnum)
+            switch (diagram.Scaling.ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
                     return scaledX;
 
                 case ScaleModeEnum.ViewPort:
-                    float xInPixels = (scaledX - diagram.ScaledX) / diagram.ScaledWidth * diagram.WidthInPixels;
+                    float xInPixels = (scaledX - diagram.Scaling.ScaledX) / diagram.Scaling.ScaledWidth * diagram.Scaling.WidthInPixels;
                     return xInPixels;
 
                 default:
-                    throw new ValueNotSupportedException(diagram.ScaleModeEnum);
+                    throw new ValueNotSupportedException(diagram.Scaling.ScaleModeEnum);
             }
         }
 
@@ -72,17 +72,17 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (diagram == null) throw new NullException(() => diagram);
 
-            switch (diagram.ScaleModeEnum)
+            switch (diagram.Scaling.ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
                     return scaledY;
 
                 case ScaleModeEnum.ViewPort:
-                    float yInPixels = (scaledY - diagram.ScaledY) / diagram.ScaledHeight * diagram.HeightInPixels;
+                    float yInPixels = (scaledY - diagram.Scaling.ScaledY) / diagram.Scaling.ScaledHeight * diagram.Scaling.HeightInPixels;
                     return yInPixels;
 
                 default:
-                    throw new ValueNotSupportedException(diagram.ScaleModeEnum);
+                    throw new ValueNotSupportedException(diagram.Scaling.ScaleModeEnum);
             }
         }
 
@@ -90,17 +90,17 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (diagram == null) throw new NullException(() => diagram);
 
-            switch (diagram.ScaleModeEnum)
+            switch (diagram.Scaling.ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
                     return widthInPixels;
 
                 case ScaleModeEnum.ViewPort:
-                    float result = widthInPixels / diagram.WidthInPixels * diagram.ScaledWidth;
+                    float result = widthInPixels / diagram.Scaling.WidthInPixels * diagram.Scaling.ScaledWidth;
                     return result;
 
                 default:
-                    throw new ValueNotSupportedException(diagram.ScaleModeEnum);
+                    throw new ValueNotSupportedException(diagram.Scaling.ScaleModeEnum);
             }
         }
 
@@ -108,17 +108,17 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (diagram == null) throw new NullException(() => diagram);
 
-            switch (diagram.ScaleModeEnum)
+            switch (diagram.Scaling.ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
                     return heightInPixels;
 
                 case ScaleModeEnum.ViewPort:
-                    float result = heightInPixels / diagram.HeightInPixels * diagram.ScaledHeight;
+                    float result = heightInPixels / diagram.Scaling.HeightInPixels * diagram.Scaling.ScaledHeight;
                     return result;
 
                 default:
-                    throw new ValueNotSupportedException(diagram.ScaleModeEnum);
+                    throw new ValueNotSupportedException(diagram.Scaling.ScaleModeEnum);
             }
         }
 
@@ -126,17 +126,17 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (diagram == null) throw new NullException(() => diagram);
 
-            switch (diagram.ScaleModeEnum)
+            switch (diagram.Scaling.ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
                     return scaledWidth;
 
                 case ScaleModeEnum.ViewPort:
-                    float result = scaledWidth / diagram.ScaledWidth * diagram.WidthInPixels;
+                    float result = scaledWidth / diagram.Scaling.ScaledWidth * diagram.Scaling.WidthInPixels;
                     return result;
 
                 default:
-                    throw new ValueNotSupportedException(diagram.ScaleModeEnum);
+                    throw new ValueNotSupportedException(diagram.Scaling.ScaleModeEnum);
             }
         }
 
@@ -144,17 +144,17 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (diagram == null) throw new NullException(() => diagram);
 
-            switch (diagram.ScaleModeEnum)
+            switch (diagram.Scaling.ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
                     return scaledHeight;
 
                 case ScaleModeEnum.ViewPort:
-                    float result = scaledHeight / diagram.ScaledHeight * diagram.HeightInPixels;
+                    float result = scaledHeight / diagram.Scaling.ScaledHeight * diagram.Scaling.HeightInPixels;
                     return result;
 
                 default:
-                    throw new ValueNotSupportedException(diagram.ScaleModeEnum);
+                    throw new ValueNotSupportedException(diagram.Scaling.ScaleModeEnum);
             }
         }
 
@@ -294,6 +294,5 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             float value = ScaleHelper.YToPixels(element.Diagram, absoluteY);
             return value;
         }
-
     }
 }

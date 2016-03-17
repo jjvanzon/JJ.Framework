@@ -16,6 +16,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         internal Element()
         {
             Gestures = new List<IGesture>();
+            Scaling = new ElementScaling(this);
 
             _parentRelationship = new ChildToParentRelationship(this);
             _diagramRelationship = new ElementToDiagramRelationship(this);
@@ -26,16 +27,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             Enabled = true;
         }
 
-        // Coordinates & Values
-
-        /// <summary> X-coordinate relative to the parent. depending on Diagram.ScaleModeEnum. </summary>
-        public abstract float X { get; set; }
-
-        /// <summary> Y-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
-        public abstract float Y { get; set; }
-
-        public abstract float Width { get; set; }
-        public abstract float Height { get; set; }
         public bool Visible { get; set; }
         public int ZIndex { get; set; }
         public object Tag { get; set; }
@@ -75,7 +66,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             [DebuggerHidden]
             get { return _parentRelationship.Parent; }
-            set 
+            set
             {
                 if (_parentRelationship.Parent == value) return;
 
@@ -99,25 +90,16 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         // Scaling
 
-        public float AbsoluteX
-        {
-            get { return ScaleHelper.RelativeToAbsoluteX(this, 0); }
-        }
+        /// <summary> X-coordinate relative to the parent. depending on Diagram.ScaleModeEnum. </summary>
+        public abstract float X { get; set; }
 
-        public float AbsoluteY
-        {
-            get { return ScaleHelper.RelativeToAbsoluteY(this, 0); }
-        }
+        /// <summary> Y-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
+        public abstract float Y { get; set; }
 
-        public float XInPixels
-        {
-            get { return ScaleHelper.RelativeToPixelsX(this, 0); }
-        }
+        public abstract float Width { get; set; }
+        public abstract float Height { get; set; }
 
-        public float YInPixels
-        {
-            get { return ScaleHelper.RelativeToPixelsY(this, 0); }
-        }
+        public ElementScaling Scaling { get; private set; }
 
         // Calculated Values
 

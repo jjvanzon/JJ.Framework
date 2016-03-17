@@ -37,24 +37,24 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
             _currentZIndex = 0;
             _currentLayer = 0;
 
-            switch (diagram.ScaleModeEnum)
+            switch (diagram.Scaling.ScaleModeEnum)
             {
                 case ScaleModeEnum.None:
                     diagram.Background.X = 0;
                     diagram.Background.Y = 0;
-                    diagram.Background.Width = diagram.WidthInPixels;
-                    diagram.Background.Height = diagram.HeightInPixels;
+                    diagram.Background.Width = diagram.Scaling.WidthInPixels;
+                    diagram.Background.Height = diagram.Scaling.HeightInPixels;
                     break;
 
                 case ScaleModeEnum.ViewPort:
-                    diagram.Background.X = diagram.ScaledX;
-                    diagram.Background.Y = diagram.ScaledY;
-                    diagram.Background.Width = diagram.ScaledWidth;
-                    diagram.Background.Height = diagram.ScaledHeight;
+                    diagram.Background.X = diagram.Scaling.ScaledX;
+                    diagram.Background.Y = diagram.Scaling.ScaledY;
+                    diagram.Background.Width = diagram.Scaling.ScaledWidth;
+                    diagram.Background.Height = diagram.Scaling.ScaledHeight;
                     break;
 
                 default:
-                    throw new ValueNotSupportedException(diagram.ScaleModeEnum);
+                    throw new ValueNotSupportedException(diagram.Scaling.ScaleModeEnum);
 
             }
 

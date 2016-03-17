@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using JJ.Framework.Common;
+using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
@@ -16,6 +17,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         public Diagram()
         {
             Elements = new DiagramElements(this);
+            Scaling = new DiagramScaling(this);
 
             _background = new Rectangle();
             _background.LineStyle = new LineStyle { Visible = false };
@@ -46,58 +48,11 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        private float _widthInPixels = 1;
-        /// <summary> non-zero </summary>
-        public float WidthInPixels
-        {
-            get { return _widthInPixels; }
-            set
-            {
-                if (value == 0) throw new ZeroException(() => WidthInPixels); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
-                _widthInPixels = value;
-            }
-        }
+        // Scaling
 
-        private float _heightInPixels = 1;
-        /// <summary> non-zero </summary>
-        public float HeightInPixels
-        {
-            get { return _heightInPixels; }
-            set
-            {
-                if (value == 0) throw new ZeroException(() => HeightInPixels);  // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
-                _heightInPixels = value;
-            }
-        }
+        public DiagramScaling Scaling { get; private set; }
 
-        public ScaleModeEnum ScaleModeEnum { get; set; }
-
-        public float ScaledX { get; set; }
-        public float ScaledY { get; set; }
-
-        private float _scaledWidth = 1;
-        /// <summary> non-zero </summary>
-        public float ScaledWidth
-        {
-            get { return _scaledWidth; }
-            set
-            {
-                if (value == 0) throw new ZeroException(() => ScaledWidth); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
-                _scaledWidth = value;
-            }
-        }
-
-        private float _scaledHeight = 1;
-        /// <summary> non-zero </summary>
-        public float ScaledHeight
-        {
-            get { return _scaledHeight; }
-            set
-            {
-                if (value == 0) throw new ZeroException(() => ScaledHeight); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
-                _scaledHeight = value;
-            }
-        }
+        // Calculation
 
         public void Recalculate()
         {

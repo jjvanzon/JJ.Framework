@@ -25,11 +25,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         private void InitializeDiagramAndElements1()
         {
             var diagram = new Diagram();
-            diagram.ScaleModeEnum = ScaleModeEnum.ViewPort;
-            diagram.ScaledX = 50;
-            diagram.ScaledY = 50;
-            diagram.ScaledWidth = 400;
-            diagram.ScaledHeight = 400;
+            diagram.Scaling.ScaleModeEnum = ScaleModeEnum.ViewPort;
+            diagram.Scaling.ScaledX = 50;
+            diagram.Scaling.ScaledY = 50;
+            diagram.Scaling.ScaledWidth = 400;
+            diagram.Scaling.ScaledHeight = 400;
 
             var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
@@ -62,11 +62,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         private void InitializeDiagramAndElements2()
         {
             var diagram = new Diagram();
-            diagram.ScaleModeEnum = ScaleModeEnum.ViewPort;
-            diagram.ScaledX = 50;
-            diagram.ScaledY = 50;
-            diagram.ScaledWidth = 400;
-            diagram.ScaledHeight = 400;
+            diagram.Scaling.ScaleModeEnum = ScaleModeEnum.ViewPort;
+            diagram.Scaling.ScaledX = 50;
+            diagram.Scaling.ScaledY = 50;
+            diagram.Scaling.ScaledWidth = 400;
+            diagram.Scaling.ScaledHeight = 400;
 
             var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
@@ -86,11 +86,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         private void InitializeDiagramAndElements3()
         {
             var diagram = new Diagram();
-            diagram.ScaleModeEnum = ScaleModeEnum.ViewPort;
-            diagram.ScaledX = -10;
-            diagram.ScaledY = -10;
-            diagram.ScaledWidth = 30;
-            diagram.ScaledHeight = 30;
+            diagram.Scaling.ScaleModeEnum = ScaleModeEnum.ViewPort;
+            diagram.Scaling.ScaledX = -10;
+            diagram.Scaling.ScaledY = -10;
+            diagram.Scaling.ScaledWidth = 30;
+            diagram.Scaling.ScaledHeight = 30;
 
             var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
