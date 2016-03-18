@@ -96,5 +96,25 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             return ScaleHelper.AbsoluteToPixelsY(_element, absoluteY);
         }
+
+        public float RelativeRight
+        {
+            get { return _element.X + _element.Width; }
+        }
+
+        public float RelativeBottom
+        {
+            get { return _element.Y + _element.Height; }
+        }
+
+        public float AbsoluteRight
+        {
+            get { return AbsoluteX + _element.Width; }
+        }
+
+        public float AbsoluteBottom
+        {
+            get { return AbsoluteY + _element.Height; }
+        }
     }
 }

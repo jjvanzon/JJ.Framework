@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JJ.Framework.Common.Exceptions;
 using JJ.Framework.Presentation.VectorGraphics.Enums;
 using JJ.Framework.Presentation.VectorGraphics.Helpers;
 using JJ.Framework.Reflection.Exceptions;
@@ -44,32 +45,106 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public ScaleModeEnum ScaleModeEnum { get; set; }
 
-        public float ScaledX { get; set; }
-        public float ScaledY { get; set; }
+        private float _scaledX;
+        /// <summary> Note that it might not return what you assign, depending on the ScaleModeEnum. </summary>
+        public float ScaledX
+        {
+            get
+            {
+                switch (ScaleModeEnum)
+                {
+                    case ScaleModeEnum.Pixels:
+                        return 0;
+
+                    case ScaleModeEnum.ViewPort:
+                        return _scaledX;
+
+                    default:
+                        throw new ValueNotSupportedException(ScaleModeEnum);
+                }
+            }
+            set { _scaledX = value; }
+        }
+
+        private float _scaledY;
+        /// <summary> Note that it might not return what you assign, depending on the ScaleModeEnum. </summary>
+        public float ScaledY
+        {
+            get
+            {
+                switch (ScaleModeEnum)
+                {
+                    case ScaleModeEnum.Pixels:
+                        return 0;
+
+                    case ScaleModeEnum.ViewPort:
+                        return _scaledY;
+
+                    default:
+                        throw new ValueNotSupportedException(ScaleModeEnum);
+                }
+            }
+            set { _scaledY = value; }
+        }
 
         private float _scaledWidth = 1;
-        /// <summary> non-zero </summary>
+        /// <summary> Non-zero. Note that it might not return what you assign, depending on the ScaleModeEnum. </summary>
         public float ScaledWidth
         {
-            get { return _scaledWidth; }
+            get
+            {
+                switch (ScaleModeEnum)
+                {
+                    case ScaleModeEnum.Pixels:
+                        return _widthInPixels;
+
+                    case ScaleModeEnum.ViewPort:
+                        return _scaledWidth;
+
+                    default:
+                        throw new ValueNotSupportedException(ScaleModeEnum);
+                }
+            }
             set
             {
-                if (value == 0) throw new ZeroException(() => ScaledWidth); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
+                if (value == 0f) throw new ZeroException(() => ScaledWidth); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
                 _scaledWidth = value;
             }
         }
 
         private float _scaledHeight = 1;
-
-        /// <summary> non-zero </summary>
+        /// <summary> Non-zero. Note that it might not return what you assign, depending on the ScaleModeEnum. </summary>
         public float ScaledHeight
         {
-            get { return _scaledHeight; }
+            get
+            {
+                switch (ScaleModeEnum)
+                {
+                    case ScaleModeEnum.Pixels:
+                        return _heightInPixels;
+
+                    case ScaleModeEnum.ViewPort:
+                        return _scaledHeight;
+
+                    default:
+                        throw new ValueNotSupportedException(ScaleModeEnum);
+                }
+            }
             set
             {
-                if (value == 0) throw new ZeroException(() => ScaledHeight); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
+                if (value == 0f) throw new ZeroException(() => ScaledHeight); // TODO: Float comparison to exactly 0 seems pointless. Figure out what to do.
                 _scaledHeight = value;
             }
+        }
+
+        public float ScaledRight
+        {
+            get { return ScaledX + ScaledWidth; }
+        }
+
+        public float ScaledBottom
+        {
+            get { return ScaledY + ScaledHeight; }
         }
 
         public float PixelsToX(float xInPixels)
@@ -110,6 +185,16 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         public float HeightToPixels(float scaledHeight)
         {
             return ScaleHelper.HeightToPixels(_diagram, scaledHeight);
+        }
+
+        public bool XAxisIsFlipped
+        {
+            get { return ScaledWidth < 0f; }
+        }
+
+        public bool YAxisIsFlipped
+        {
+            get { return ScaledHeight < 0f; }
         }
     }
 }

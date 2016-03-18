@@ -20,7 +20,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 
             switch (diagram.Scaling.ScaleModeEnum)
             {
-                case ScaleModeEnum.None:
+                case ScaleModeEnum.Pixels:
                     return xInPixels;
 
                 case ScaleModeEnum.ViewPort:
@@ -38,7 +38,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 
             switch (diagram.Scaling.ScaleModeEnum)
             {
-                case ScaleModeEnum.None:
+                case ScaleModeEnum.Pixels:
                     return yInPixels;
 
                 case ScaleModeEnum.ViewPort:
@@ -56,7 +56,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 
             switch (diagram.Scaling.ScaleModeEnum)
             {
-                case ScaleModeEnum.None:
+                case ScaleModeEnum.Pixels:
                     return scaledX;
 
                 case ScaleModeEnum.ViewPort:
@@ -74,7 +74,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 
             switch (diagram.Scaling.ScaleModeEnum)
             {
-                case ScaleModeEnum.None:
+                case ScaleModeEnum.Pixels:
                     return scaledY;
 
                 case ScaleModeEnum.ViewPort:
@@ -92,7 +92,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 
             switch (diagram.Scaling.ScaleModeEnum)
             {
-                case ScaleModeEnum.None:
+                case ScaleModeEnum.Pixels:
                     return widthInPixels;
 
                 case ScaleModeEnum.ViewPort:
@@ -110,7 +110,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 
             switch (diagram.Scaling.ScaleModeEnum)
             {
-                case ScaleModeEnum.None:
+                case ScaleModeEnum.Pixels:
                     return heightInPixels;
 
                 case ScaleModeEnum.ViewPort:
@@ -128,7 +128,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 
             switch (diagram.Scaling.ScaleModeEnum)
             {
-                case ScaleModeEnum.None:
+                case ScaleModeEnum.Pixels:
                     return scaledWidth;
 
                 case ScaleModeEnum.ViewPort:
@@ -146,7 +146,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 
             switch (diagram.Scaling.ScaleModeEnum)
             {
-                case ScaleModeEnum.None:
+                case ScaleModeEnum.Pixels:
                     return scaledHeight;
 
                 case ScaleModeEnum.ViewPort:

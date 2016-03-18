@@ -2,8 +2,8 @@
 {
     public enum ScaleModeEnum
     {
-        None,
+        Pixels,
         ViewPort,
-        Zoom
+        //Zoom
     }
 }

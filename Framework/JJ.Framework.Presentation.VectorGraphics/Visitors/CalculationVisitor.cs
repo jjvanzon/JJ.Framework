@@ -39,13 +39,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             switch (diagram.Scaling.ScaleModeEnum)
             {
-                case ScaleModeEnum.None:
-                    diagram.Background.X = 0;
-                    diagram.Background.Y = 0;
-                    diagram.Background.Width = diagram.Scaling.WidthInPixels;
-                    diagram.Background.Height = diagram.Scaling.HeightInPixels;
-                    break;
-
+                case ScaleModeEnum.Pixels:
                 case ScaleModeEnum.ViewPort:
                     diagram.Background.X = diagram.Scaling.ScaledX;
                     diagram.Background.Y = diagram.Scaling.ScaledY;
