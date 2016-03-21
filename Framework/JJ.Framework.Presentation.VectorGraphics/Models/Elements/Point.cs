@@ -6,25 +6,22 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Point : Element
     {
-        public override float X { get; set; }
-        public override float Y { get; set; }
-
-        public override float Width
+        public Point()
         {
-            get { return 0; }
-            set { throw new NotSupportedException(); }
+            _position = new PointPosition(this);
         }
 
-        public override float Height
+        private ElementPosition _position;
+        public override ElementPosition Position
         {
-            get { return 0; }
-            set { throw new NotSupportedException(); }
+            get { return _position; }
         }
 
         private PointStyle _pointStyle = new PointStyle();
@@ -42,23 +39,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         private string DebuggerDisplay
         {
-            get
-            {
-                var sb = new StringBuilder();
-
-                sb.Append(String.Format("{{{0}}} ", GetType().Name));
-
-                string tag = Convert.ToString(Tag);
-                if (!String.IsNullOrEmpty(tag))
-                {
-                    sb.Append(String.Format("Tag='{0}', ", Tag));
-                }
-
-                sb.Append(String.Format("({0}, {1}) ", X, Y));
-
-                sb.Append(String.Format("(HashCode={0})", GetHashCode()));
-                return sb.ToString();
-            }
+            get { return DebugHelper.GetDebuggerDisplay(this); }
         }
     }
 }

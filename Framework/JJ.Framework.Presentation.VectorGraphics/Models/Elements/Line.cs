@@ -4,12 +4,24 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class Line : Element
     {
+        public Line()
+        {
+            _position = new LinePosition(this);
+        }
+
+        private ElementPosition _position;
+        public override ElementPosition Position
+        {
+            get { return _position; }
+        }
+
         private Point _pointA = new Point();
         /// <summary>
         /// Not nullable, auto-instantiated.
@@ -55,59 +67,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        public override float X
-        {
-            get { return Math.Min(_pointA.X, _pointB.X); }
-            set
-            {
-                float dx = _pointB.X - _pointA.X;
-                _pointA.X = value;
-                _pointB.X = _pointA.X + dx;
-            }
-        }
-
-        public override float Y
-        {
-            get { return Math.Min(_pointA.Y, _pointB.Y); }
-            set
-            {
-                float dy = _pointB.Y - _pointA.Y;
-                _pointA.Y = value;
-                _pointB.Y = _pointA.Y + dy;
-            }
-        }
-
-        public override float Width
-        {
-            get { return 0; }
-            set { throw new NotSupportedException(); }
-        }
-
-        public override float Height
-        {
-            get { return 0; }
-            set { throw new NotSupportedException(); }
-        }
-
         private string DebuggerDisplay
         {
-            get
-            {
-                var sb = new StringBuilder();
-
-                sb.Append(String.Format("{{{0}}} ", GetType().Name));
-
-                string tag = Convert.ToString(Tag);
-                if (!String.IsNullOrEmpty(tag))
-                {
-                    sb.Append(String.Format("Tag='{0}', ", Tag));
-                }
-
-                sb.Append(String.Format("({0}, {1}) - ({2}, {3}) ", PointA.X, PointA.Y, PointB.X, PointB.Y));
-                sb.Append(String.Format("(HashCode={0})", GetHashCode()));
-
-                return sb.ToString();
-            }
+            get { return DebugHelper.GetDebuggerDisplay(this); }
         }
     }
 }

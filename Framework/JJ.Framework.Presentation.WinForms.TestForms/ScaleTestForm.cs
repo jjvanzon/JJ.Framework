@@ -25,11 +25,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         private void InitializeDiagramAndElements1()
         {
             var diagram = new Diagram();
-            diagram.Scaling.ScaleModeEnum = ScaleModeEnum.ViewPort;
-            diagram.Scaling.ScaledX = 50;
-            diagram.Scaling.ScaledY = 50;
-            diagram.Scaling.ScaledWidth = 400;
-            diagram.Scaling.ScaledHeight = 400;
+            diagram.Position.ScaleModeEnum = ScaleModeEnum.ViewPort;
+            diagram.Position.ScaledX = 50;
+            diagram.Position.ScaledY = 50;
+            diagram.Position.ScaledWidth = 400;
+            diagram.Position.ScaledHeight = 400;
 
             var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
@@ -62,20 +62,20 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         private void InitializeDiagramAndElements2()
         {
             var diagram = new Diagram();
-            diagram.Scaling.ScaleModeEnum = ScaleModeEnum.ViewPort;
-            diagram.Scaling.ScaledX = 50;
-            diagram.Scaling.ScaledY = 50;
-            diagram.Scaling.ScaledWidth = 400;
-            diagram.Scaling.ScaledHeight = 400;
+            diagram.Position.ScaleModeEnum = ScaleModeEnum.ViewPort;
+            diagram.Position.ScaledX = 50;
+            diagram.Position.ScaledY = 50;
+            diagram.Position.ScaledWidth = 400;
+            diagram.Position.ScaledHeight = 400;
 
             var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
 
             VectorGraphicsElements.Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
-            rectangle.Y = 0;
-            rectangle.X = 0;
-            rectangle.Width = 200;
-            rectangle.Height = 200;
+            rectangle.Position.Y = 0;
+            rectangle.Position.X = 0;
+            rectangle.Position.Width = 200;
+            rectangle.Position.Height = 200;
             rectangle.Gestures.Add(mouseDownGesture);
 
             diagramControl1.Diagram = diagram;
@@ -86,11 +86,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
         private void InitializeDiagramAndElements3()
         {
             var diagram = new Diagram();
-            diagram.Scaling.ScaleModeEnum = ScaleModeEnum.ViewPort;
-            diagram.Scaling.ScaledX = -10;
-            diagram.Scaling.ScaledY = -10;
-            diagram.Scaling.ScaledWidth = 30;
-            diagram.Scaling.ScaledHeight = 30;
+            diagram.Position.ScaleModeEnum = ScaleModeEnum.ViewPort;
+            diagram.Position.ScaledX = -10;
+            diagram.Position.ScaledY = -10;
+            diagram.Position.ScaledWidth = 30;
+            diagram.Position.ScaledHeight = 30;
 
             var mouseDownGesture = new MouseDownGesture();
             mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
@@ -99,12 +99,12 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             mouseLeaveGesture.MouseLeave += mouseLeaveGesture_MouseLeave;
 
             VectorGraphicsElements.Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
-            rectangle.Y = 10;
-            rectangle.X = 10;
-            rectangle.Width = 10;
-            rectangle.Height = 10;
-            rectangle.Children.ElementAt(0).Width = 10;
-            rectangle.Children.ElementAt(0).Height = 10;
+            rectangle.Position.Y = 10;
+            rectangle.Position.X = 10;
+            rectangle.Position.Width = 10;
+            rectangle.Position.Height = 10;
+            rectangle.Children.ElementAt(0).Position.Width = 10;
+            rectangle.Children.ElementAt(0).Position.Height = 10;
             rectangle.Gestures.Add(mouseDownGesture);
             rectangle.Gestures.Add(mouseLeaveGesture);
 

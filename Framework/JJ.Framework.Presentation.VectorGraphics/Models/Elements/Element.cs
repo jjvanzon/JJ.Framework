@@ -16,7 +16,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         internal Element()
         {
             Gestures = new List<IGesture>();
-            Scaling = new ElementScaling(this);
 
             _parentRelationship = new ChildToParentRelationship(this);
             _diagramRelationship = new ElementToDiagramRelationship(this);
@@ -30,6 +29,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         public bool Visible { get; set; }
         public int ZIndex { get; set; }
         public object Tag { get; set; }
+
+        // Position
+
+        public abstract ElementPosition Position { get; }
 
         // Related Objects
 
@@ -87,19 +90,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         /// <summary> Indicates whether the element will respond to mouse and keyboard gestures. </summary>
         public bool Enabled { get; set; }
-
-        // Scaling
-
-        /// <summary> X-coordinate relative to the parent. depending on Diagram.ScaleModeEnum. </summary>
-        public abstract float X { get; set; }
-
-        /// <summary> Y-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
-        public abstract float Y { get; set; }
-
-        public abstract float Width { get; set; }
-        public abstract float Height { get; set; }
-
-        public ElementScaling Scaling { get; private set; }
 
         // Calculated Values
 

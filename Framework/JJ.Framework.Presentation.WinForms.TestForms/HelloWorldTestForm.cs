@@ -23,11 +23,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 Diagram = diagram,
                 Parent = diagram.Background,
                 Text = "Hello World!",
-                X = 10,
-                Y = 20,
-                Width = 500,
-                Height = 100
             };
+            label.Position.X = 10;
+            label.Position.Y = 20;
+            label.Position.Width = 500;
+            label.Position.Height = 100;
 
             diagramControl1.Diagram = diagram;
         }

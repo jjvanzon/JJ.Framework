@@ -29,10 +29,6 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 Diagram = diagram,
                 Parent = diagram.Background,
                 Text = "Note: You can move around the points.",
-                X = 10,
-                Y = 10,
-                Width = 500,
-                Height = 100,
                 TextStyle = new VectorGraphicsStyling.TextStyle
                 {
                     Font = new VectorGraphicsStyling.Font
@@ -43,48 +39,40 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 }
             };
 
+            label.Position.X = 10;
+            label.Position.Y = 10;
+            label.Position.Width = 500;
+            label.Position.Height = 100;
+
             _curve = new VectorGraphicsElements.Curve
             {
                 Diagram = diagram,
                 Parent = diagram.Background,
-                X = 100,
-                Y = 200,
-                LineCount = 100,
+                SegmentCount = 100,
 
                 PointA = new VectorGraphicsElements.Point
                 {
                     Diagram = diagram,
                     Parent = diagram.Background,
-                    X = 100,
-                    Y = 100,
                     Visible = true
                 },
 
                 ControlPointA = new VectorGraphicsElements.Point
                 {
                     Diagram = diagram,
-                    Parent = diagram.Background,
-                    X = 500,
-                    Y = 500,
-                    Visible = true
+                    Parent = diagram.Background
                 },
 
                 ControlPointB = new VectorGraphicsElements.Point
                 {
                     Diagram = diagram,
-                    Parent = diagram.Background,
-                    X = 100,
-                    Y = 600,
-                    Visible = true
+                    Parent = diagram.Background
                 },
 
                 PointB = new VectorGraphicsElements.Point
                 {
                     Diagram = diagram,
-                    Parent = diagram.Background,
-                    X = 1000,
-                    Y = 600,
-                    Visible = true
+                    Parent = diagram.Background
                 },
 
                 LineStyle = new VectorGraphicsStyling.LineStyle
@@ -92,6 +80,21 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                     Width = 3
                 }
             };
+
+            _curve.Position.X = 100;
+            _curve.Position.Y = 200;
+
+            _curve.PointA.Position.X = 100;
+            _curve.PointA.Position.Y = 100;
+
+            _curve.ControlPointA.Position.X = 500;
+            _curve.ControlPointA.Position.Y = 500;
+
+            _curve.ControlPointB.Position.X = 100;
+            _curve.ControlPointB.Position.Y = 600;
+
+            _curve.PointB.Position.X = 1000;
+            _curve.PointB.Position.Y = 600;
 
             var demoLineStyle = new VectorGraphicsStyling.LineStyle
             {
@@ -148,44 +151,45 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             {
                 Diagram = diagram,
                 Parent = diagram.Background,
-                Visible = false,
-                X = point.X - 20,
-                Y = point.Y - 20,
-                Width = 40,
-                Height = 40
+                Visible = false
             };
+
+            rectangle.Position.X = point.Position.X - 20;
+            rectangle.Position.Y = point.Position.Y - 20;
+            rectangle.Position.Width = 40;
+            rectangle.Position.Height = 40;
 
             return rectangle;
         }
 
         private void pointAGestureRegion_Moving(object sender, VectorGraphics.EventArg.ElementEventArgs e)
         {
-            _curve.PointA.X = e.Element.X + e.Element.Width / 2f;
-            _curve.PointA.Y = e.Element.Y + e.Element.Height / 2f;
+            _curve.PointA.Position.X = e.Element.Position.X + e.Element.Position.Width / 2f;
+            _curve.PointA.Position.Y = e.Element.Position.Y + e.Element.Position.Height / 2f;
 
             //CorrectPointBounds(_curve.PointA);
         }
 
         private void controlPointAGestureRegion_Moving(object sender, VectorGraphics.EventArg.ElementEventArgs e)
         {
-            _curve.ControlPointA.X = e.Element.X + e.Element.Width / 2f;
-            _curve.ControlPointA.Y = e.Element.Y + e.Element.Height / 2f;
+            _curve.ControlPointA.Position.X = e.Element.Position.X + e.Element.Position.Width / 2f;
+            _curve.ControlPointA.Position.Y = e.Element.Position.Y + e.Element.Position.Height / 2f;
 
             //CorrectPointBounds(_curve.ControlPointA);
         }
 
         private void controlPointBGestureRegion_Moving(object sender, VectorGraphics.EventArg.ElementEventArgs e)
         {
-            _curve.ControlPointB.X = e.Element.X + e.Element.Width / 2f;
-            _curve.ControlPointB.Y = e.Element.Y + e.Element.Height / 2f;
+            _curve.ControlPointB.Position.X = e.Element.Position.X + e.Element.Position.Width / 2f;
+            _curve.ControlPointB.Position.Y = e.Element.Position.Y + e.Element.Position.Height / 2f;
 
             //CorrectPointBounds(_curve.ControlPointB);
         }
 
         private void pointBGestureRegion_Moving(object sender, VectorGraphics.EventArg.ElementEventArgs e)
         {
-            _curve.PointB.X = e.Element.X + e.Element.Width / 2f;
-            _curve.PointB.Y = e.Element.Y + e.Element.Height / 2f;
+            _curve.PointB.Position.X = e.Element.Position.X + e.Element.Position.Width / 2f;
+            _curve.PointB.Position.Y = e.Element.Position.Y + e.Element.Position.Height / 2f;
 
             //CorrectPointBounds(_curve.PointB);
         }

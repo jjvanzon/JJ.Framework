@@ -8,11 +8,11 @@ using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
-    public class DiagramScaling
+    public class DiagramPosition
     {
         private readonly Diagram _diagram;
 
-        internal DiagramScaling(Diagram diagram)
+        internal DiagramPosition(Diagram diagram)
         {
             if (diagram == null) throw new NullException(() => diagram);
 

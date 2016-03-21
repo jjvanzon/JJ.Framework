@@ -83,7 +83,12 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
             if (sourceLine.Visible && sourceLine.LineStyle.Visible)
             {
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
-                destGraphics.DrawLine(destPen, sourceLine.PointA.X, sourceLine.PointA.Y, sourceLine.PointB.X, sourceLine.PointB.Y);
+                destGraphics.DrawLine(
+                    destPen, 
+                    sourceLine.PointA.Position.X, 
+                    sourceLine.PointA.Position.Y,
+                    sourceLine.PointB.Position.X, 
+                    sourceLine.PointB.Position.Y);
             }
         }
 
@@ -112,23 +117,23 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
                     Pen destPen = lineStyle.ToSystemDrawing();
                     destGraphics.DrawRectangle(
                         destPen,
-                        sourceRectangle.X,
-                        sourceRectangle.Y,
-                        sourceRectangle.Width,
-                        sourceRectangle.Height);
+                        sourceRectangle.Position.X,
+                        sourceRectangle.Position.Y,
+                        sourceRectangle.Position.Width,
+                        sourceRectangle.Position.Height);
                 }
             }
             else
             {
                 // Draw 4 Border Lines (with different styles)
 
-                float right = sourceRectangle.X + sourceRectangle.Width;
-                float bottom = sourceRectangle.Y + sourceRectangle.Height;
+                float right = sourceRectangle.Position.X + sourceRectangle.Position.Width;
+                float bottom = sourceRectangle.Position.Y + sourceRectangle.Position.Height;
 
-                PointF destTopLeftPointF = new PointF(sourceRectangle.X, sourceRectangle.Y);
-                PointF destTopRightPointF = new PointF(right, sourceRectangle.Y);
+                PointF destTopLeftPointF = new PointF(sourceRectangle.Position.X, sourceRectangle.Position.Y);
+                PointF destTopRightPointF = new PointF(right, sourceRectangle.Position.Y);
                 PointF destBottomRightPointF = new PointF(right, bottom);
-                PointF destBottomLeftPointF = new PointF(sourceRectangle.X, bottom);
+                PointF destBottomLeftPointF = new PointF(sourceRectangle.Position.X, bottom);
 
                 Pen destTopPen = sourceRectangle.TopLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
@@ -153,7 +158,11 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
 
             StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
             System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
-            RectangleF destRectangle = new RectangleF(sourceLabel.X, sourceLabel.Y, sourceLabel.Width, sourceLabel.Height);
+            RectangleF destRectangle = new RectangleF(
+                sourceLabel.Position.X, 
+                sourceLabel.Position.Y, 
+                sourceLabel.Position.Width, 
+                sourceLabel.Position.Height);
             Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 
             destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);

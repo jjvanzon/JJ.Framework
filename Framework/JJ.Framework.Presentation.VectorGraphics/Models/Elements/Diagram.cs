@@ -17,7 +17,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         public Diagram()
         {
             Elements = new DiagramElements(this);
-            Scaling = new DiagramScaling(this);
+            Position = new DiagramPosition(this);
 
             _background = new Rectangle();
             _background.LineStyle = new LineStyle { Visible = false };
@@ -50,7 +50,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         // Scaling
 
-        public DiagramScaling Scaling { get; private set; }
+        public DiagramPosition Position { get; private set; }
 
         // Calculation
 

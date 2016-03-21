@@ -20,19 +20,19 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
             {
                 Diagram = diagram,
                 Parent = rectangle1,
-                X = 150,
-                Y = 30,
                 PointStyle = VectorGraphicsHelper.InvisiblePointStyle
             };
+            point1.Position.X = 150;
+            point1.Position.Y = 30;
 
             var point2 = new Point  
             {
                 Diagram = diagram,
                 Parent = rectangle2,
-                X = 150,
-                Y = 30,
                 PointStyle = VectorGraphicsHelper.InvisiblePointStyle
             };
+            point2.Position.X = 150;
+            point2.Position.Y = 30;
 
             var line = new Line
             {
@@ -54,23 +54,25 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
             {
                 Diagram = diagram,
                 Parent = diagram.Background,
-                X = x,
-                Y = y,
-                Width = 300,
-                Height = 60,
                 LineStyle = VectorGraphicsHelper.DefaultLineStyle
             };
+
+            rectangle.Position.X = x;
+            rectangle.Position.Y = y;
+            rectangle.Position.Width = 300;
+            rectangle.Position.Height = 60;
+
             rectangle.Gestures.Add(new MoveGesture());
 
             var label = new Label 
             {
                 Diagram = diagram,
                 Parent = rectangle,
-                Width = 300,
-                Height = 60,
                 Text = text,
                 TextStyle = VectorGraphicsHelper.DefaultTextStyle
             };
+            label.Position.Width = 300;
+            label.Position.Height = 60;
 
             return rectangle;
         }
@@ -81,25 +83,27 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
             {
                 Diagram = diagram,
                 Parent = diagram.Background,
-                X = VectorGraphicsHelper.SPACING,
-                Y = VectorGraphicsHelper.SPACING,
-                Width = VectorGraphicsHelper.BLOCK_WIDTH,
-                Height = VectorGraphicsHelper.BLOCK_HEIGHT,
                 BackStyle = VectorGraphicsHelper.BlueBackStyle,
                 LineStyle = VectorGraphicsHelper.DefaultLineStyle
             };
+
+            rectangle.Position.X = VectorGraphicsHelper.SPACING;
+            rectangle.Position.Y = VectorGraphicsHelper.SPACING;
+            rectangle.Position.Width = VectorGraphicsHelper.BLOCK_WIDTH;
+            rectangle.Position.Height = VectorGraphicsHelper.BLOCK_HEIGHT;
 
             var label = new Label
             {
                 Diagram = diagram,
                 Parent = rectangle,
                 Text = text,
-                X = 0,
-                Y = 0,
-                Width = VectorGraphicsHelper.BLOCK_WIDTH,
-                Height = VectorGraphicsHelper.BLOCK_HEIGHT,
                 TextStyle = VectorGraphicsHelper.DefaultTextStyle
             };
+
+            label.Position.X = 0;
+            label.Position.Y = 0;
+            label.Position.Width = VectorGraphicsHelper.BLOCK_WIDTH;
+            label.Position.Height = VectorGraphicsHelper.BLOCK_HEIGHT;
 
             return rectangle;
         }

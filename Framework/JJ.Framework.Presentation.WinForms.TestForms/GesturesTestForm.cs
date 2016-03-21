@@ -54,14 +54,14 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             float currentY = VectorGraphicsHelper.SPACING;
 
             rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Double Click Me");
-            rectangle.Y = currentY;
+            rectangle.Position.Y = currentY;
             rectangle.Gestures.Add(doubleClickGesture);
             //rectangle.Gestures.Add(mouseLeaveGesture);
 
             currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;
 
             rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Click Me");
-            rectangle.Y = currentY;
+            rectangle.Position.Y = currentY;
             rectangle.Gestures.Add(mouseDownGesture);
             rectangle.Gestures.Add(mouseMoveGesture);
             rectangle.Gestures.Add(mouseUpGesture);
@@ -70,7 +70,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;
 
             rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Click Me Too");
-            rectangle.Y = currentY;
+            rectangle.Position.Y = currentY;
             //rectangle.Gestures.Add(mouseDownGesture);
             //rectangle.Gestures.Add(mouseMoveGesture);
             rectangle.Gestures.Add(clickGesture);
@@ -78,20 +78,20 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;
 
             rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Move Me");
-            rectangle.Y = currentY;
+            rectangle.Position.Y = currentY;
             rectangle.Gestures.Add(new MoveGesture());
 
             currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;
 
             rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Drag & Drop Me");
-            rectangle.Y = currentY;
+            rectangle.Position.Y = currentY;
             rectangle.Gestures.Add(dropGesture);
             rectangle.Gestures.Add(dragGesture);
 
             currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;
 
             rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Drop & Drop Me");
-            rectangle.Y = currentY;
+            rectangle.Position.Y = currentY;
             rectangle.Gestures.Add(dropGesture);
             rectangle.Gestures.Add(dragGesture);
 

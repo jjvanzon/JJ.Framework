@@ -6,16 +6,25 @@ using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
-    public class ElementScaling
+    public abstract class ElementPosition
     {
         private readonly Element _element;
 
-        public ElementScaling(Element element)
+        public ElementPosition(Element element)
         {
             if (element == null) throw new NullException(() => element);
 
             _element = element;
         }
+
+        /// <summary> X-coordinate relative to the parent. depending on Diagram.ScaleModeEnum. </summary>
+        public abstract float X { get; set; }
+
+        /// <summary> Y-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
+        public abstract float Y { get; set; }
+
+        public abstract float Width { get; set; }
+        public abstract float Height { get; set; }
 
         public float AbsoluteX
         {
@@ -99,22 +108,22 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public float RelativeRight
         {
-            get { return _element.X + _element.Width; }
+            get { return _element.Position.X + _element.Position.Width; }
         }
 
         public float RelativeBottom
         {
-            get { return _element.Y + _element.Height; }
+            get { return _element.Position.Y + _element.Position.Height; }
         }
 
         public float AbsoluteRight
         {
-            get { return AbsoluteX + _element.Width; }
+            get { return AbsoluteX + _element.Position.Width; }
         }
 
         public float AbsoluteBottom
         {
-            get { return AbsoluteY + _element.Height; }
+            get { return AbsoluteY + _element.Position.Height; }
         }
     }
 }

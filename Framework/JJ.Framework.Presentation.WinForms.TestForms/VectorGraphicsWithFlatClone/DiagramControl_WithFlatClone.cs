@@ -26,8 +26,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
                 return;
             }
 
-            RootVectorGraphicsRectangle.Width = Width;
-            RootVectorGraphicsRectangle.Height = Height;
+            RootVectorGraphicsRectangle.Position.Width = Width;
+            RootVectorGraphicsRectangle.Position.Height = Height;
 
             var drawer = new VectorGraphicsDrawer_WithFlatClone();
             drawer.Draw(RootVectorGraphicsRectangle, _graphicsBuffer.Graphics);

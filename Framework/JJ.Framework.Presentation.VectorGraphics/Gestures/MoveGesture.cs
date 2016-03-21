@@ -83,8 +83,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             {
                 _elementBeingMoved = e.Element;
 
-                _mouseDownElementX = _elementBeingMoved.X;
-                _mouseDownElementY = _elementBeingMoved.Y;
+                _mouseDownElementX = _elementBeingMoved.Position.X;
+                _mouseDownElementY = _elementBeingMoved.Position.Y;
 
                 _mouseDownPointerXInPixels = e.XInPixels;
                 _mouseDownPointerYInPixels = e.YInPixels;
@@ -103,8 +103,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 float deltaX = ScaleHelper.PixelsToWidth(_diagram, deltaXInPixels);
                 float deltaY = ScaleHelper.PixelsToHeight(_diagram, deltaYInPixels);
 
-                _elementBeingMoved.X = _mouseDownElementX + deltaX;
-                _elementBeingMoved.Y = _mouseDownElementY + deltaY;
+                _elementBeingMoved.Position.X = _mouseDownElementX + deltaX;
+                _elementBeingMoved.Position.Y = _mouseDownElementY + deltaY;
 
                 _wasMoved = true;
 

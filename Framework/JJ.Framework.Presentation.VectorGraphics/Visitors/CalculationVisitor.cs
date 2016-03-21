@@ -37,18 +37,18 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
             _currentZIndex = 0;
             _currentLayer = 0;
 
-            switch (diagram.Scaling.ScaleModeEnum)
+            switch (diagram.Position.ScaleModeEnum)
             {
                 case ScaleModeEnum.Pixels:
                 case ScaleModeEnum.ViewPort:
-                    diagram.Background.X = diagram.Scaling.ScaledX;
-                    diagram.Background.Y = diagram.Scaling.ScaledY;
-                    diagram.Background.Width = diagram.Scaling.ScaledWidth;
-                    diagram.Background.Height = diagram.Scaling.ScaledHeight;
+                    diagram.Background.Position.X = diagram.Position.ScaledX;
+                    diagram.Background.Position.Y = diagram.Position.ScaledY;
+                    diagram.Background.Position.Width = diagram.Position.ScaledWidth;
+                    diagram.Background.Position.Height = diagram.Position.ScaledHeight;
                     break;
 
                 default:
-                    throw new ValueNotSupportedException(diagram.Scaling.ScaleModeEnum);
+                    throw new ValueNotSupportedException(diagram.Position.ScaleModeEnum);
 
             }
 
@@ -112,14 +112,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
         protected override void VisitChildren(Element parentElement)
         {
-            _currentParentX += parentElement.X;
-            _currentParentY += parentElement.Y;
+            _currentParentX += parentElement.Position.X;
+            _currentParentY += parentElement.Position.Y;
             _currentLayer++;
 
             base.VisitChildren(parentElement);
 
-            _currentParentX -= parentElement.X;
-            _currentParentY -= parentElement.Y;
+            _currentParentX -= parentElement.Position.X;
+            _currentParentY -= parentElement.Position.Y;
             _currentLayer--;
         }
 
@@ -166,10 +166,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 return;
             }
 
-            point.CalculatedXInPixels = point.X + _currentParentX;
-            point.CalculatedYInPixels = point.Y + _currentParentY;
-            point.CalculatedWidthInPixels = point.Width;
-            point.CalculatedHeightInPixels = point.Height;
+            point.CalculatedXInPixels = point.Position.X + _currentParentX;
+            point.CalculatedYInPixels = point.Position.Y + _currentParentY;
+            point.CalculatedWidthInPixels = point.Position.Width;
+            point.CalculatedHeightInPixels = point.Position.Height;
 
             ApplyScaling(point);
 
@@ -193,10 +193,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 return;
             }
 
-            rectangle.CalculatedXInPixels = rectangle.X + _currentParentX;
-            rectangle.CalculatedYInPixels = rectangle.Y + _currentParentY;
-            rectangle.CalculatedWidthInPixels = rectangle.Width;
-            rectangle.CalculatedHeightInPixels = rectangle.Height;
+            rectangle.CalculatedXInPixels = rectangle.Position.X + _currentParentX;
+            rectangle.CalculatedYInPixels = rectangle.Position.Y + _currentParentY;
+            rectangle.CalculatedWidthInPixels = rectangle.Position.Width;
+            rectangle.CalculatedHeightInPixels = rectangle.Position.Height;
 
             ApplyScaling(rectangle);
 
@@ -210,10 +210,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 return;
             }
 
-            label.CalculatedXInPixels = label.X + _currentParentX;
-            label.CalculatedYInPixels = label.Y + _currentParentY;
-            label.CalculatedWidthInPixels = label.Width;
-            label.CalculatedHeightInPixels = label.Height;
+            label.CalculatedXInPixels = label.Position.X + _currentParentX;
+            label.CalculatedYInPixels = label.Position.Y + _currentParentY;
+            label.CalculatedWidthInPixels = label.Position.Width;
+            label.CalculatedHeightInPixels = label.Position.Height;
 
             ApplyScaling(label);
 
@@ -248,14 +248,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             if (line.PointA.Parent == null)
             {
-                line.PointA.CalculatedXInPixels = line.PointA.X + line.CalculatedXInPixels;
-                line.PointA.CalculatedYInPixels = line.PointA.Y + line.CalculatedYInPixels;
+                line.PointA.CalculatedXInPixels = line.PointA.Position.X + line.CalculatedXInPixels;
+                line.PointA.CalculatedYInPixels = line.PointA.Position.Y + line.CalculatedYInPixels;
             }
 
             if (line.PointB.Parent == null)
             {
-                line.PointB.CalculatedXInPixels = line.PointB.X + line.CalculatedXInPixels;
-                line.PointB.CalculatedYInPixels = line.PointB.Y + line.CalculatedYInPixels;
+                line.PointB.CalculatedXInPixels = line.PointB.Position.X + line.CalculatedXInPixels;
+                line.PointB.CalculatedYInPixels = line.PointB.Position.Y + line.CalculatedYInPixels;
             }
         }
 
@@ -266,21 +266,21 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             if (sourceCurve.PointA.Parent == null)
             {
-                sourceCurve.PointA.CalculatedXInPixels = sourceCurve.PointA.X + sourceCurve.CalculatedXInPixels;
-                sourceCurve.PointA.CalculatedYInPixels = sourceCurve.PointA.Y + sourceCurve.CalculatedYInPixels;
+                sourceCurve.PointA.CalculatedXInPixels = sourceCurve.PointA.Position.X + sourceCurve.CalculatedXInPixels;
+                sourceCurve.PointA.CalculatedYInPixels = sourceCurve.PointA.Position.Y + sourceCurve.CalculatedYInPixels;
             }
 
             if (sourceCurve.PointB.Parent == null)
             {
-                sourceCurve.PointB.CalculatedXInPixels = sourceCurve.PointB.X + sourceCurve.CalculatedXInPixels;
-                sourceCurve.PointB.CalculatedYInPixels = sourceCurve.PointB.Y + sourceCurve.CalculatedYInPixels;
+                sourceCurve.PointB.CalculatedXInPixels = sourceCurve.PointB.Position.X + sourceCurve.CalculatedXInPixels;
+                sourceCurve.PointB.CalculatedYInPixels = sourceCurve.PointB.Position.Y + sourceCurve.CalculatedYInPixels;
             }
 
-            var destPoints = new List<Point>(sourceCurve.LineCount + 1);
+            var destPoints = new List<Point>(sourceCurve.SegmentCount + 1);
 
-            float step = 1f / sourceCurve.LineCount;
+            float step = 1f / sourceCurve.SegmentCount;
             float t = 0;
-            for (int i = 0; i < sourceCurve.LineCount + 1; i++)
+            for (int i = 0; i < sourceCurve.SegmentCount + 1; i++)
             {
                 float calculatedX;
                 float calculatedY;
@@ -295,19 +295,19 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                     CalculatedXInPixels = calculatedX,
                     CalculatedYInPixels = calculatedY,
                     // Fill in meaningful values for the other properties.
-                    X = calculatedX,
-                    Y = calculatedY,
                     CalculatedVisible = false,
                     CalculatedLayer = sourceCurve.CalculatedLayer,
                     PointStyle = new PointStyle { Visible = false }
                 };
+                destPoint.Position.X = calculatedX;
+                destPoint.Position.Y = calculatedY;
 
                 destPoints.Add(destPoint);
 
                 t += step;
             }
 
-            var destLines = new List<Line>(sourceCurve.LineCount);
+            var destLines = new List<Line>(sourceCurve.SegmentCount);
 
             for (int i = 0; i < destPoints.Count - 1; i++)
             {

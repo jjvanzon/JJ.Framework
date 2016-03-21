@@ -22,28 +22,28 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             {
                 Diagram = diagram,
                 Parent = diagram.Background,
-                X = 1,
-                Y = 2,
                 ZIndex = zindex++
             };
+            point.Position.X = 1;
+            point.Position.Y = 2;
 
-            var childPoint1 = new Point 
+            var childPoint1 = new Point
             {
                 Diagram = diagram,
                 Parent = point,
-                X = 10, 
-                Y = 20,
                 ZIndex = zindex++
             };
+            childPoint1.Position.X = 10;
+            childPoint1.Position.Y = 20;
 
             var childPoint2 = new Point
             { 
                 Diagram = diagram,
                 Parent = point,
-                X = 12, 
-                Y = 22,
                 ZIndex = zindex++
             };
+            childPoint2.Position.X = 12;
+            childPoint2.Position.Y = 22;
 
             var visitor_Accessor = new CalculationVisitor_Accessor();
 
@@ -64,23 +64,24 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             // A diagram of 4x8 with a child of 2x4 in the middle with a center that is (0, 0)
             // and pixel values that are 10 times the scaled coordinates.
             var diagram = new Diagram();
-            diagram.Scaling.WidthInPixels = 40;
-            diagram.Scaling.HeightInPixels = 80;
-            diagram.Scaling.ScaleModeEnum = ScaleModeEnum.ViewPort;
-            diagram.Scaling.ScaledX = -2;
-            diagram.Scaling.ScaledY = -4;
-            diagram.Scaling.ScaledWidth = 4;
-            diagram.Scaling.ScaledHeight = 8;
+            diagram.Position.WidthInPixels = 40;
+            diagram.Position.HeightInPixels = 80;
+            diagram.Position.ScaleModeEnum = ScaleModeEnum.ViewPort;
+            diagram.Position.ScaledX = -2;
+            diagram.Position.ScaledY = -4;
+            diagram.Position.ScaledWidth = 4;
+            diagram.Position.ScaledHeight = 8;
 
             var child = new Rectangle
             {
                 Diagram = diagram,
-                Parent = diagram.Background,
-                X = 1,
-                Y = 2,
-                Width = 2,
-                Height = 4
+                Parent = diagram.Background
             };
+
+            child.Position.X = 1;
+            child.Position.Y = 2;
+            child.Position.Width = 2;
+            child.Position.Height = 4;
 
             diagram.Recalculate();
 
@@ -96,28 +97,28 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             expectedAbsolute = -0.25f;
             expectedPixels = 17.5f;
 
-            actualAbsolute = diagram.Scaling.PixelsToX(expectedPixels);
+            actualAbsolute = diagram.Position.PixelsToX(expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = diagram.Scaling.XToPixels(expectedAbsolute);
+            actualPixels = diagram.Position.XToPixels(expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
-            actualAbsolute = child.Scaling.RelativeToAbsoluteX(expectedRelative);
+            actualAbsolute = child.Position.RelativeToAbsoluteX(expectedRelative);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualRelative = child.Scaling.AbsoluteToRelativeX(expectedAbsolute);
+            actualRelative = child.Position.AbsoluteToRelativeX(expectedAbsolute);
             Assert.AreEqual(expectedRelative, actualRelative);
 
-            actualRelative = child.Scaling.PixelsToRelativeX(expectedPixels);
+            actualRelative = child.Position.PixelsToRelativeX(expectedPixels);
             Assert.AreEqual(expectedRelative, actualRelative);
 
-            actualPixels = child.Scaling.RelativeToPixelsX(expectedRelative);
+            actualPixels = child.Position.RelativeToPixelsX(expectedRelative);
             Assert.AreEqual(expectedPixels, actualPixels);
 
-            actualAbsolute = child.Scaling.PixelsToAbsoluteX(expectedPixels);
+            actualAbsolute = child.Position.PixelsToAbsoluteX(expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = child.Scaling.AbsoluteToPixelsX(expectedAbsolute);
+            actualPixels = child.Position.AbsoluteToPixelsX(expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
             // Copy-paste-changed code for the Y axis
@@ -125,43 +126,43 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             expectedAbsolute = -0.25f * 2;
             expectedPixels = 17.5f * 2;
 
-            actualAbsolute = diagram.Scaling.PixelsToY(expectedPixels);
+            actualAbsolute = diagram.Position.PixelsToY(expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = diagram.Scaling.YToPixels(expectedAbsolute);
+            actualPixels = diagram.Position.YToPixels(expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
-            actualAbsolute = child.Scaling.RelativeToAbsoluteY(expectedRelative);
+            actualAbsolute = child.Position.RelativeToAbsoluteY(expectedRelative);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualRelative = child.Scaling.AbsoluteToRelativeY(expectedAbsolute);
+            actualRelative = child.Position.AbsoluteToRelativeY(expectedAbsolute);
             Assert.AreEqual(expectedRelative, actualRelative);
 
-            actualRelative = child.Scaling.PixelsToRelativeY(expectedPixels);
+            actualRelative = child.Position.PixelsToRelativeY(expectedPixels);
             Assert.AreEqual(expectedRelative, actualRelative);
 
-            actualPixels = child.Scaling.RelativeToPixelsY(expectedRelative);
+            actualPixels = child.Position.RelativeToPixelsY(expectedRelative);
             Assert.AreEqual(expectedPixels, actualPixels);
 
-            actualAbsolute = child.Scaling.PixelsToAbsoluteY(expectedPixels);
+            actualAbsolute = child.Position.PixelsToAbsoluteY(expectedPixels);
             Assert.AreEqual(expectedAbsolute, actualAbsolute);
 
-            actualPixels = child.Scaling.AbsoluteToPixelsY(expectedAbsolute);
+            actualPixels = child.Position.AbsoluteToPixelsY(expectedAbsolute);
             Assert.AreEqual(expectedPixels, actualPixels);
 
             // Test Properties
-            Assert.AreEqual(10, child.Scaling.XInPixels);
-            Assert.AreEqual(-1, child.Scaling.AbsoluteX);
+            Assert.AreEqual(10, child.Position.XInPixels);
+            Assert.AreEqual(-1, child.Position.AbsoluteX);
 
-            Assert.AreEqual(20, child.Scaling.YInPixels);
-            Assert.AreEqual(-2, child.Scaling.AbsoluteY);
+            Assert.AreEqual(20, child.Position.YInPixels);
+            Assert.AreEqual(-2, child.Position.AbsoluteY);
 
             // Test Width and Height conversions
-            Assert.AreEqual(20, diagram.Scaling.WidthToPixels(2));
-            Assert.AreEqual(20, diagram.Scaling.HeightToPixels(2));
+            Assert.AreEqual(20, diagram.Position.WidthToPixels(2));
+            Assert.AreEqual(20, diagram.Position.HeightToPixels(2));
 
-            Assert.AreEqual(2, diagram.Scaling.PixelsToWidth(20));
-            Assert.AreEqual(2, diagram.Scaling.PixelsToHeight(20));
+            Assert.AreEqual(2, diagram.Position.PixelsToWidth(20));
+            Assert.AreEqual(2, diagram.Position.PixelsToHeight(20));
         }
 
         [TestMethod]

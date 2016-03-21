@@ -14,19 +14,26 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     /// </summary>
     public class Curve : Element
     {
-        private int _lineCount = 20;
+        public Curve()
+        {
+            _position = new CurvePosition(this);
+        }
+
+        private int _segmentCount = 20;
+
         /// <summary>
         /// Default is 20. Cannot be less than 1.
         /// The curve is drawn out as a sequence of straight lines.
         /// The line count controls the precision with which the curve is drawn.
         /// </summary>
-        public int LineCount 
-        { 
-            get { return _lineCount; }
+        public int SegmentCount 
+        {
+            [DebuggerHidden]
+            get { return _segmentCount; }
             set
             {
                 if (value < 1) throw new LessThanException(() => value, 1);
-                _lineCount = value;
+                _segmentCount = value;
             }
         }
 
@@ -107,38 +114,11 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        public override float X
+        private ElementPosition _position;
+        public override ElementPosition Position
         {
-            get { return Math.Min(_pointA.X, _pointB.X); }
-            set
-            {
-                float dx = _pointB.X - _pointA.X;
-                _pointA.X = value;
-                _pointB.X = _pointA.X + dx;
-            }
-        }
-
-        public override float Y
-        {
-            get { return Math.Min(_pointA.Y, _pointB.Y); }
-            set
-            {
-                float dy = _pointB.Y - _pointA.Y;
-                _pointA.Y = value;
-                _pointB.Y = _pointA.Y + dy;
-            }
-        }
-
-        public override float Width
-        {
-            get { return 0; }
-            set { throw new NotSupportedException(); }
-        }
-
-        public override float Height
-        {
-            get { return 0; }
-            set { throw new NotSupportedException(); }
+            [DebuggerHidden]
+            get { return _position; }
         }
 
         private IList<Line> _calculatedLines = new List<Line>();

@@ -18,8 +18,8 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
         {
             float pointWidth = sourcePoint.PointStyle.Width;
             var destRectangleF = new RectangleF(
-                x: sourcePoint.X - pointWidth / 2,
-                y: sourcePoint.Y - pointWidth / 2,
+                x: sourcePoint.Position.X - pointWidth / 2,
+                y: sourcePoint.Position.Y - pointWidth / 2,
                 width: pointWidth,
                 height: pointWidth);
 
@@ -33,10 +33,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
             var destRectangleF = new RectangleF(
-                sourceRectangle.X,
-                sourceRectangle.Y,
-                sourceRectangle.Width,
-                sourceRectangle.Height);
+                sourceRectangle.Position.X,
+                sourceRectangle.Position.Y,
+                sourceRectangle.Position.Width,
+                sourceRectangle.Position.Height);
 
             return destRectangleF;
         }
