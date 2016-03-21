@@ -139,7 +139,7 @@ namespace JJ.Framework.Data.SqlClient
         /// <summary>
         /// SqlClient places a lot of special requirements onto nullability of parameters.
         /// As soon as you want to pass null, you have to specify all sorts of additional data.
-        /// This method still only handles a select set of types correctly and should be extended in thee future.
+        /// This method still only handles a select set of types correctly and should be extended in the future.
         /// </summary>
         private static SqlParameter CreateNullableSqlParameter(string name, object value, Type type)
         {
