@@ -71,12 +71,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
         private IList<Element> ApplyExplicitZIndex(Diagram diagram)
         {
             IList<Element> orderedElements = diagram.Elements.OrderBy(x => x.ZIndex)
-                                                             .ThenBy(x => x.CalculatedZIndex)
+                                                             .ThenBy(x => x.CalculatedValues.ZIndex)
                                                              .ToArray();
             int i = 1;
             foreach (Element element in orderedElements)
             {
-                element.CalculatedZIndex = i++;
+                element.CalculatedValues.ZIndex = i++;
             }
 
             return orderedElements;
@@ -92,20 +92,20 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
             // TODO: It seems to coincidental that determining Visible and Enabled work this way.
             // I would much rather put variables on the call stack or work with a new virtual style
             // on each stack frame.
-            element.CalculatedVisible = element.Visible;
+            element.CalculatedValues.Visible = element.Visible;
             if (element.Parent != null)
             {
-                element.CalculatedVisible &= element.Parent.CalculatedVisible;
+                element.CalculatedValues.Visible &= element.Parent.CalculatedValues.Visible;
             }
 
-            element.CalculatedEnabled = element.Enabled;
+            element.CalculatedValues.Enabled = element.Enabled;
             if (element.Parent != null)
             {
-                element.CalculatedEnabled &= element.Parent.CalculatedEnabled;
+                element.CalculatedValues.Enabled &= element.Parent.CalculatedValues.Enabled;
             }
 
-            element.CalculatedLayer = _currentLayer;
-            element.CalculatedZIndex = _currentZIndex++;
+            element.CalculatedValues.Layer = _currentLayer;
+            element.CalculatedValues.ZIndex = _currentZIndex++;
 
             base.VisitPolymorphic(element);
         }
@@ -166,10 +166,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 return;
             }
 
-            point.CalculatedXInPixels = point.Position.X + _currentParentX;
-            point.CalculatedYInPixels = point.Position.Y + _currentParentY;
-            point.CalculatedWidthInPixels = point.Position.Width;
-            point.CalculatedHeightInPixels = point.Position.Height;
+            point.CalculatedValues.XInPixels = point.Position.X + _currentParentX;
+            point.CalculatedValues.YInPixels = point.Position.Y + _currentParentY;
+            point.CalculatedValues.WidthInPixels = point.Position.Width;
+            point.CalculatedValues.HeightInPixels = point.Position.Height;
 
             ApplyScaling(point);
 
@@ -193,10 +193,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 return;
             }
 
-            rectangle.CalculatedXInPixels = rectangle.Position.X + _currentParentX;
-            rectangle.CalculatedYInPixels = rectangle.Position.Y + _currentParentY;
-            rectangle.CalculatedWidthInPixels = rectangle.Position.Width;
-            rectangle.CalculatedHeightInPixels = rectangle.Position.Height;
+            rectangle.CalculatedValues.XInPixels = rectangle.Position.X + _currentParentX;
+            rectangle.CalculatedValues.YInPixels = rectangle.Position.Y + _currentParentY;
+            rectangle.CalculatedValues.WidthInPixels = rectangle.Position.Width;
+            rectangle.CalculatedValues.HeightInPixels = rectangle.Position.Height;
 
             ApplyScaling(rectangle);
 
@@ -210,10 +210,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 return;
             }
 
-            label.CalculatedXInPixels = label.Position.X + _currentParentX;
-            label.CalculatedYInPixels = label.Position.Y + _currentParentY;
-            label.CalculatedWidthInPixels = label.Position.Width;
-            label.CalculatedHeightInPixels = label.Position.Height;
+            label.CalculatedValues.XInPixels = label.Position.X + _currentParentX;
+            label.CalculatedValues.YInPixels = label.Position.Y + _currentParentY;
+            label.CalculatedValues.WidthInPixels = label.Position.Width;
+            label.CalculatedValues.HeightInPixels = label.Position.Height;
 
             ApplyScaling(label);
 
@@ -248,14 +248,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             if (line.PointA.Parent == null)
             {
-                line.PointA.CalculatedXInPixels = line.PointA.Position.X + line.CalculatedXInPixels;
-                line.PointA.CalculatedYInPixels = line.PointA.Position.Y + line.CalculatedYInPixels;
+                line.PointA.CalculatedValues.XInPixels = line.PointA.Position.X + line.CalculatedValues.XInPixels;
+                line.PointA.CalculatedValues.YInPixels = line.PointA.Position.Y + line.CalculatedValues.YInPixels;
             }
 
             if (line.PointB.Parent == null)
             {
-                line.PointB.CalculatedXInPixels = line.PointB.Position.X + line.CalculatedXInPixels;
-                line.PointB.CalculatedYInPixels = line.PointB.Position.Y + line.CalculatedYInPixels;
+                line.PointB.CalculatedValues.XInPixels = line.PointB.Position.X + line.CalculatedValues.XInPixels;
+                line.PointB.CalculatedValues.YInPixels = line.PointB.Position.Y + line.CalculatedValues.YInPixels;
             }
         }
 
@@ -266,14 +266,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             if (sourceCurve.PointA.Parent == null)
             {
-                sourceCurve.PointA.CalculatedXInPixels = sourceCurve.PointA.Position.X + sourceCurve.CalculatedXInPixels;
-                sourceCurve.PointA.CalculatedYInPixels = sourceCurve.PointA.Position.Y + sourceCurve.CalculatedYInPixels;
+                sourceCurve.PointA.CalculatedValues.XInPixels = sourceCurve.PointA.Position.X + sourceCurve.CalculatedValues.XInPixels;
+                sourceCurve.PointA.CalculatedValues.YInPixels = sourceCurve.PointA.Position.Y + sourceCurve.CalculatedValues.YInPixels;
             }
 
             if (sourceCurve.PointB.Parent == null)
             {
-                sourceCurve.PointB.CalculatedXInPixels = sourceCurve.PointB.Position.X + sourceCurve.CalculatedXInPixels;
-                sourceCurve.PointB.CalculatedYInPixels = sourceCurve.PointB.Position.Y + sourceCurve.CalculatedYInPixels;
+                sourceCurve.PointB.CalculatedValues.XInPixels = sourceCurve.PointB.Position.X + sourceCurve.CalculatedValues.XInPixels;
+                sourceCurve.PointB.CalculatedValues.YInPixels = sourceCurve.PointB.Position.Y + sourceCurve.CalculatedValues.YInPixels;
             }
 
             var destPoints = new List<Point>(sourceCurve.SegmentCount + 1);
@@ -286,21 +286,27 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 float calculatedY;
 
                 Interpolator.Interpolate_Cubic_FromT(
-                    sourceCurve.PointA.CalculatedXInPixels, sourceCurve.ControlPointA.CalculatedXInPixels, sourceCurve.ControlPointB.CalculatedXInPixels, sourceCurve.PointB.CalculatedXInPixels,
-                    sourceCurve.PointA.CalculatedYInPixels, sourceCurve.ControlPointA.CalculatedYInPixels, sourceCurve.ControlPointB.CalculatedYInPixels, sourceCurve.PointB.CalculatedYInPixels,
+                    sourceCurve.PointA.CalculatedValues.XInPixels, 
+                    sourceCurve.ControlPointA.CalculatedValues.XInPixels, 
+                    sourceCurve.ControlPointB.CalculatedValues.XInPixels, 
+                    sourceCurve.PointB.CalculatedValues.XInPixels,
+                    sourceCurve.PointA.CalculatedValues.YInPixels, 
+                    sourceCurve.ControlPointA.CalculatedValues.YInPixels, 
+                    sourceCurve.ControlPointB.CalculatedValues.YInPixels,
+                    sourceCurve.PointB.CalculatedValues.YInPixels,
                     t, out calculatedX, out calculatedY);
 
                 var destPoint = new Point
                 {
-                    CalculatedXInPixels = calculatedX,
-                    CalculatedYInPixels = calculatedY,
-                    // Fill in meaningful values for the other properties.
-                    CalculatedVisible = false,
-                    CalculatedLayer = sourceCurve.CalculatedLayer,
                     PointStyle = new PointStyle { Visible = false }
                 };
                 destPoint.Position.X = calculatedX;
                 destPoint.Position.Y = calculatedY;
+                destPoint.CalculatedValues.XInPixels = calculatedX;
+                destPoint.CalculatedValues.YInPixels = calculatedY;
+                // Fill in meaningful values for the other properties.
+                destPoint.CalculatedValues.Visible = false;
+                destPoint.CalculatedValues.Layer = sourceCurve.CalculatedValues.Layer;
 
                 destPoints.Add(destPoint);
 
@@ -318,12 +324,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 {
                     PointA = destPointA,
                     PointB = destPointB,
-                    // Fill in meaningful values for the other properties.
-                    CalculatedVisible = true,
-                    CalculatedZIndex = sourceCurve.CalculatedZIndex,
-                    CalculatedLayer = sourceCurve.CalculatedLayer,
                     LineStyle = sourceCurve.LineStyle
                 };
+                // Fill in meaningful values for the other properties.
+                destLine.CalculatedValues.Visible = true;
+                destLine.CalculatedValues.ZIndex = sourceCurve.CalculatedValues.ZIndex;
+                destLine.CalculatedValues.Layer = sourceCurve.CalculatedValues.Layer;
 
                 destLines.Add(destLine);
             }
@@ -337,10 +343,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
         private void ApplyScaling(Element element)
         {
-            element.CalculatedXInPixels = ScaleHelper.XToPixels(_diagram, element.CalculatedXInPixels);
-            element.CalculatedYInPixels = ScaleHelper.YToPixels(_diagram, element.CalculatedYInPixels);
-            element.CalculatedWidthInPixels = ScaleHelper.WidthToPixels(_diagram, element.CalculatedWidthInPixels);
-            element.CalculatedHeightInPixels = ScaleHelper.HeightToPixels(_diagram, element.CalculatedHeightInPixels);
+            element.CalculatedValues.XInPixels = ScaleHelper.XToPixels(_diagram, element.CalculatedValues.XInPixels);
+            element.CalculatedValues.YInPixels = ScaleHelper.YToPixels(_diagram, element.CalculatedValues.YInPixels);
+            element.CalculatedValues.WidthInPixels = ScaleHelper.WidthToPixels(_diagram, element.CalculatedValues.WidthInPixels);
+            element.CalculatedValues.HeightInPixels = ScaleHelper.HeightToPixels(_diagram, element.CalculatedValues.HeightInPixels);
         }
     }
 }

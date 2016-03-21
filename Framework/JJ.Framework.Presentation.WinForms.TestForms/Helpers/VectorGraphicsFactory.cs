@@ -53,10 +53,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
             var rectangle = new Rectangle()
             {
                 Diagram = diagram,
-                Parent = diagram.Background,
-                LineStyle = VectorGraphicsHelper.DefaultLineStyle
+                Parent = diagram.Background
             };
-
+            rectangle.Style.LineStyle = VectorGraphicsHelper.DefaultLineStyle;
             rectangle.Position.X = x;
             rectangle.Position.Y = y;
             rectangle.Position.Width = 300;
@@ -82,15 +81,15 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
             var rectangle = new Rectangle()
             {
                 Diagram = diagram,
-                Parent = diagram.Background,
-                BackStyle = VectorGraphicsHelper.BlueBackStyle,
-                LineStyle = VectorGraphicsHelper.DefaultLineStyle
+                Parent = diagram.Background
             };
 
             rectangle.Position.X = VectorGraphicsHelper.SPACING;
             rectangle.Position.Y = VectorGraphicsHelper.SPACING;
             rectangle.Position.Width = VectorGraphicsHelper.BLOCK_WIDTH;
             rectangle.Position.Height = VectorGraphicsHelper.BLOCK_HEIGHT;
+            rectangle.Style.BackStyle = VectorGraphicsHelper.BlueBackStyle;
+            rectangle.Style.LineStyle = VectorGraphicsHelper.DefaultLineStyle;
 
             var label = new Label
             {

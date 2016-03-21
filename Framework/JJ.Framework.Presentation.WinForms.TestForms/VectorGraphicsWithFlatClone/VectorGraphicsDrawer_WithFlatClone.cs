@@ -100,16 +100,16 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
             }
 
             // Draw Back
-            if (sourceRectangle.BackStyle.Visible)
+            if (sourceRectangle.Style.BackStyle.Visible)
             {
-                Brush destBrush = sourceRectangle.BackStyle.ToSystemDrawing();
+                Brush destBrush = sourceRectangle.Style.BackStyle.ToSystemDrawing();
                 RectangleF destRectangle = sourceRectangle.ToSystemDrawingRectangleF();
 
                 destGraphics.FillRectangle(destBrush, destRectangle);
             }
 
             // Draw Rectangle
-            LineStyle lineStyle = sourceRectangle.LineStyle;
+            LineStyle lineStyle = sourceRectangle.Style.LineStyle;
             if (lineStyle != null)
             {
                 if (lineStyle.Visible)
@@ -135,16 +135,16 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
                 PointF destBottomRightPointF = new PointF(right, bottom);
                 PointF destBottomLeftPointF = new PointF(sourceRectangle.Position.X, bottom);
 
-                Pen destTopPen = sourceRectangle.TopLineStyle.ToSystemDrawing();
+                Pen destTopPen = sourceRectangle.Style.TopLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
 
-                Pen destRightPen = sourceRectangle.RightLineStyle.ToSystemDrawing();
+                Pen destRightPen = sourceRectangle.Style.RightLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destRightPen, destTopRightPointF, destBottomRightPointF);
 
-                Pen destBottomPen = sourceRectangle.BottomLineStyle.ToSystemDrawing();
+                Pen destBottomPen = sourceRectangle.Style.BottomLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destBottomPen, destBottomRightPointF, destBottomLeftPointF);
 
-                Pen destLeftPen = sourceRectangle.LeftLineStyle.ToSystemDrawing();
+                Pen destLeftPen = sourceRectangle.Style.LeftLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destLeftPen, destBottomLeftPointF, destTopLeftPointF);
             }
         }

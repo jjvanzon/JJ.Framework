@@ -11,11 +11,12 @@ using JJ.Framework.Presentation.VectorGraphics.Helpers;
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
     /// <summary> base class that can contain VectorGraphics child elements. </summary>
-    public abstract partial class Element : ICalculatedValues
+    public abstract partial class Element
     {
         internal Element()
         {
             Gestures = new List<IGesture>();
+            CalculatedValues = new CalculatedValues();
 
             _parentRelationship = new ChildToParentRelationship(this);
             _diagramRelationship = new ElementToDiagramRelationship(this);
@@ -29,10 +30,15 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         public bool Visible { get; set; }
         public int ZIndex { get; set; }
         public object Tag { get; set; }
-
-        // Position
-
         public abstract ElementPosition Position { get; }
+        public CalculatedValues CalculatedValues { get; }
+
+        // Gestures
+
+        public IList<IGesture> Gestures { get; private set; }
+        public bool MustBubble { get; set; }
+        /// <summary> Indicates whether the element will respond to mouse and keyboard gestures. </summary>
+        public bool Enabled { get; set; }
 
         // Related Objects
 
@@ -81,35 +87,5 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         }
 
         public ElementChildren Children { get; private set; }
-
-        // Gestures
-
-        public IList<IGesture> Gestures { get; private set; }
-
-        public bool MustBubble { get; set; }
-
-        /// <summary> Indicates whether the element will respond to mouse and keyboard gestures. </summary>
-        public bool Enabled { get; set; }
-
-        // Calculated Values
-
-        /// <summary> The calculated ZIndex, which is derived from both the ZIndex and the containment structure. </summary>
-        internal int CalculatedZIndex { get; set; }
-        internal float CalculatedXInPixels { get; set; }
-        internal float CalculatedYInPixels { get; set; }
-        internal float CalculatedWidthInPixels { get; set; }
-        internal float CalculatedHeightInPixels { get; set; }
-        internal int CalculatedLayer { get; set; }
-        internal bool CalculatedVisible { get; set; }
-        internal bool CalculatedEnabled { get; set; }
-
-        int ICalculatedValues.CalculatedZIndex { get { return CalculatedZIndex; } }
-        float ICalculatedValues.CalculatedXInPixels { get { return CalculatedXInPixels; } }
-        float ICalculatedValues.CalculatedYInPixels { get { return CalculatedYInPixels; } }
-        float ICalculatedValues.CalculatedWidthInPixels { get { return CalculatedWidthInPixels; } }
-        float ICalculatedValues.CalculatedHeightInPixels { get { return CalculatedHeightInPixels; } }
-        int ICalculatedValues.CalculatedLayer { get { return CalculatedLayer; } }
-        bool ICalculatedValues.CalculatedVisible { get { return CalculatedVisible; } }
-        bool ICalculatedValues.CalculatedEnabled { get { return CalculatedEnabled; } }
     }
 }

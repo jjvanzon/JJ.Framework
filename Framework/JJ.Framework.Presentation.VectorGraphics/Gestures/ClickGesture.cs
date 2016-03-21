@@ -35,11 +35,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             if (_mouseDownElement != null)
             {
                 bool mouseDownElementIsHit = Geometry.IsInRectangle(
-                    e.XInPixels, e.YInPixels,
-                    _mouseDownElement.CalculatedXInPixels,
-                    _mouseDownElement.CalculatedYInPixels,
-                    _mouseDownElement.CalculatedXInPixels + _mouseDownElement.CalculatedWidthInPixels,
-                    _mouseDownElement.CalculatedYInPixels + _mouseDownElement.CalculatedHeightInPixels);
+                    e.XInPixels, 
+                    e.YInPixels,
+                    _mouseDownElement.CalculatedValues.XInPixels,
+                    _mouseDownElement.CalculatedValues.YInPixels,
+                    _mouseDownElement.CalculatedValues.XInPixels + _mouseDownElement.CalculatedValues.WidthInPixels,
+                    _mouseDownElement.CalculatedValues.YInPixels + _mouseDownElement.CalculatedValues.HeightInPixels);
 
                 if (mouseDownElementIsHit)
                 {

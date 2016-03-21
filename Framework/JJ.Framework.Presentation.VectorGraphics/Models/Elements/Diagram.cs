@@ -1,32 +1,26 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using JJ.Framework.Presentation.VectorGraphics.Gestures;
+﻿using JJ.Framework.Presentation.VectorGraphics.Gestures;
 using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Presentation.VectorGraphics.Visitors;
-using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using JJ.Framework.Common;
-using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
-    public class Diagram : IDiagramGestureHandling
+    public class Diagram
     {
         public Diagram()
         {
             Elements = new DiagramElements(this);
             Position = new DiagramPosition(this);
+            Gestures = new List<IGesture>();
+            GestureHandling = new DiagramGestureHandling(this);
 
             _background = new Rectangle();
-            _background.LineStyle = new LineStyle { Visible = false };
+            _background.Style.LineStyle = new LineStyle { Visible = false };
             _background.Diagram = this;
             _background.ZIndex = Int32.MinValue;
             _background.Tag = "Background";
-
-            Gestures = new List<IGesture>();
-            _gestureHandler = new GestureHandler(this);
         }
 
         private Rectangle _background;
@@ -68,40 +62,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         /// </summary>
         public IList<IGesture> Gestures { get; private set; }
 
-        private readonly GestureHandler _gestureHandler;
-
-        void IDiagramGestureHandling.HandleMouseDown(MouseEventArgs e)
-        {
-            _gestureHandler.HandleMouseDown(e);
-
-            Recalculate();
-        }
-
-        void IDiagramGestureHandling.HandleMouseMove(MouseEventArgs e)
-        {
-            _gestureHandler.HandleMouseMove(e);
-
-            //if (e.MouseButtonEnum != MouseButtonEnum.None)
-            {
-                Recalculate();
-            }
-        }
-
-        void IDiagramGestureHandling.HandleMouseUp(MouseEventArgs e)
-        {
-            _gestureHandler.HandleMouseUp(e);
-
-            Recalculate();
-        }
-
-        void IDiagramGestureHandling.HandleKeyDown(KeyEventArgs keyEventArgs)
-        {
-            _gestureHandler.HandleKeyDown(keyEventArgs);
-        }
-
-        void IDiagramGestureHandling.HandleKeyUp(KeyEventArgs keyEventArgs)
-        {
-            _gestureHandler.HandleKeyUp(keyEventArgs);
-        }
+        /// <summary> For when you need to send primitive gestures to the diagram. </summary>
+        public DiagramGestureHandling GestureHandling { get; private set; }
     }
 }

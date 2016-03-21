@@ -21,9 +21,7 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
-            ICalculatedValues calculatedValues = sourcePoint;
-
-            var destPointF = new PointF(calculatedValues.CalculatedXInPixels, calculatedValues.CalculatedYInPixels);
+            var destPointF = new PointF(sourcePoint.CalculatedValues.XInPixels, sourcePoint.CalculatedValues.YInPixels);
             return destPointF;
         }
 
@@ -31,9 +29,7 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
-            ICalculatedValues calculatedValues = sourcePoint;
-
-            var destPoint = new System.Drawing.Point((int)calculatedValues.CalculatedXInPixels, (int)calculatedValues.CalculatedYInPixels);
+            var destPoint = new System.Drawing.Point((int)sourcePoint.CalculatedValues.XInPixels, (int)sourcePoint.CalculatedValues.YInPixels);
             return destPoint;
         }
 
@@ -41,12 +37,10 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
-            ICalculatedValues calculatedValues = sourcePoint;
-
             float pointWidth = sourcePoint.PointStyle.Width;
             var destRectangleF = new RectangleF(
-                x: calculatedValues.CalculatedXInPixels - pointWidth / 2,
-                y: calculatedValues.CalculatedYInPixels - pointWidth / 2,
+                x: sourcePoint.CalculatedValues.XInPixels - pointWidth / 2,
+                y: sourcePoint.CalculatedValues.YInPixels - pointWidth / 2,
                 width: pointWidth,
                 height: pointWidth);
 
@@ -59,13 +53,11 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
-            ICalculatedValues calculatedValues = sourceRectangle; 
-
             var destRectangleF = new RectangleF(
-                calculatedValues.CalculatedXInPixels,
-                calculatedValues.CalculatedYInPixels,
-                calculatedValues.CalculatedWidthInPixels,
-                calculatedValues.CalculatedHeightInPixels);
+                sourceRectangle.CalculatedValues.XInPixels,
+                sourceRectangle.CalculatedValues.YInPixels,
+                sourceRectangle.CalculatedValues.WidthInPixels,
+                sourceRectangle.CalculatedValues.HeightInPixels);
 
             return destRectangleF;
         }
@@ -74,13 +66,11 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
-            ICalculatedValues calculatedValues = sourceRectangle;
-
             var destRectangle = new System.Drawing.Rectangle(
-                (int)calculatedValues.CalculatedXInPixels,
-                (int)calculatedValues.CalculatedYInPixels,
-                (int)calculatedValues.CalculatedWidthInPixels,
-                (int)calculatedValues.CalculatedHeightInPixels);
+                (int)sourceRectangle.CalculatedValues.XInPixels,
+                (int)sourceRectangle.CalculatedValues.YInPixels,
+                (int)sourceRectangle.CalculatedValues.WidthInPixels,
+                (int)sourceRectangle.CalculatedValues.HeightInPixels);
 
             return destRectangle;
         }

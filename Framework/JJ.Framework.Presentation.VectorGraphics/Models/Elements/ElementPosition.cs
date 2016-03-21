@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     {
         private readonly Element _element;
 
-        public ElementPosition(Element element)
+        internal ElementPosition(Element element)
         {
             if (element == null) throw new NullException(() => element);
 

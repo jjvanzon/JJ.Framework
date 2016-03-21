@@ -41,7 +41,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                ((IDiagramGestureHandling)Diagram).HandleMouseDown(e.ToVectorGraphics());
+                Diagram.GestureHandling.HandleMouseDown(e.ToVectorGraphics());
             }
 
             base.OnMouseDown(e);
@@ -53,7 +53,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                ((IDiagramGestureHandling)Diagram).HandleMouseMove(e.ToVectorGraphics());
+                Diagram.GestureHandling.HandleMouseMove(e.ToVectorGraphics());
             }
 
             base.OnMouseMove(e);
@@ -65,7 +65,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                ((IDiagramGestureHandling)Diagram).HandleMouseUp(e.ToVectorGraphics());
+                Diagram.GestureHandling.HandleMouseUp(e.ToVectorGraphics());
             }
 
             base.OnMouseUp(e);
@@ -77,7 +77,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                 ((IDiagramGestureHandling)Diagram).HandleKeyDown(e.ToVectorGraphics());
+                 Diagram.GestureHandling.HandleKeyDown(e.ToVectorGraphics());
             }
 
             base.OnKeyDown(e);
@@ -87,7 +87,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             if (Diagram != null)
             {
-                ((IDiagramGestureHandling)Diagram).HandleKeyUp(e.ToVectorGraphics());
+                Diagram.GestureHandling.HandleKeyUp(e.ToVectorGraphics());
             }
 
             base.OnKeyUp(e);
@@ -132,9 +132,9 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             Diagram.Position.HeightInPixels = Height;
             Diagram.Position.WidthInPixels = Width;
 
-            if (Diagram.Background.BackStyle.Visible)
+            if (Diagram.Background.Style.BackStyle.Visible)
             {
-                BackColor = Color.FromArgb(Diagram.Background.BackStyle.Color);
+                BackColor = Color.FromArgb(Diagram.Background.Style.BackStyle.Color);
             }
 
             Diagram.Recalculate();

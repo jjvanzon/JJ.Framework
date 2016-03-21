@@ -69,7 +69,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return;
             }
 
-            if (!parent.CalculatedEnabled)
+            if (!parent.CalculatedValues.Enabled)
             {
                 return;
             }
@@ -165,7 +165,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return;
             }
 
-            if (!child.Parent.CalculatedEnabled)
+            if (!child.Parent.CalculatedValues.Enabled)
             {
                 return;
             }
@@ -228,7 +228,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return;
             }
 
-            if (!parent.CalculatedEnabled)
+            if (!parent.CalculatedValues.Enabled)
             {
                 return;
             }
@@ -277,15 +277,18 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         {
             foreach (Element element in zOrderedElements.Reverse())
             {
-                if (!element.CalculatedEnabled)
+                if (!element.CalculatedValues.Enabled)
                 {
                     continue;
                 }
 
                 bool isInRectangle = Geometry.IsInRectangle(
-                    pointerXInPixels, pointerYInPixels,
-                    element.CalculatedXInPixels, element.CalculatedYInPixels,
-                    element.CalculatedXInPixels + element.CalculatedWidthInPixels, element.CalculatedYInPixels + element.CalculatedHeightInPixels);
+                    pointerXInPixels, 
+                    pointerYInPixels,
+                    element.CalculatedValues.XInPixels, 
+                    element.CalculatedValues.YInPixels,
+                    element.CalculatedValues.XInPixels + element.CalculatedValues.WidthInPixels, 
+                    element.CalculatedValues.YInPixels + element.CalculatedValues.HeightInPixels);
 
                 if (isInRectangle)
                 {
