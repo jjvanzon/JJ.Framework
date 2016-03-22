@@ -343,10 +343,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
         private void ApplyScaling(Element element)
         {
-            element.CalculatedValues.XInPixels = ScaleHelper.XToPixels(_diagram, element.CalculatedValues.XInPixels);
-            element.CalculatedValues.YInPixels = ScaleHelper.YToPixels(_diagram, element.CalculatedValues.YInPixels);
-            element.CalculatedValues.WidthInPixels = ScaleHelper.WidthToPixels(_diagram, element.CalculatedValues.WidthInPixels);
-            element.CalculatedValues.HeightInPixels = ScaleHelper.HeightToPixels(_diagram, element.CalculatedValues.HeightInPixels);
+            element.CalculatedValues.XInPixels = _diagram.Position.XToPixels(element.CalculatedValues.XInPixels);
+            element.CalculatedValues.YInPixels = _diagram.Position.YToPixels(element.CalculatedValues.YInPixels);
+            element.CalculatedValues.WidthInPixels = _diagram.Position.WidthToPixels(element.CalculatedValues.WidthInPixels);
+            element.CalculatedValues.HeightInPixels = _diagram.Position.HeightToPixels(element.CalculatedValues.HeightInPixels);
         }
     }
 }
