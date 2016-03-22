@@ -224,13 +224,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
         private void PostProcessPolymorphic(Element element)
         {
-            var line = element as Line;
-            if (line != null)
-            {
-                PostProcessLine(line);
-                return;
-            }
-
             var curve = element as Curve;
             if (curve != null)
             {
@@ -241,40 +234,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
             // No more objects that require post-processing.
         }
 
-        private void PostProcessLine(Line line)
-        {
-            // Calculate in case the line has points that are not owned by another container.
-            // TODO: Low priority: This will probably become obsolete at one point (see rework in TODO document for Synthesizer project 2015-03).
-
-            if (line.PointA.Parent == null)
-            {
-                line.PointA.CalculatedValues.XInPixels = line.PointA.Position.X + line.CalculatedValues.XInPixels;
-                line.PointA.CalculatedValues.YInPixels = line.PointA.Position.Y + line.CalculatedValues.YInPixels;
-            }
-
-            if (line.PointB.Parent == null)
-            {
-                line.PointB.CalculatedValues.XInPixels = line.PointB.Position.X + line.CalculatedValues.XInPixels;
-                line.PointB.CalculatedValues.YInPixels = line.PointB.Position.Y + line.CalculatedValues.YInPixels;
-            }
-        }
-
         private void PostProcessCurve(Curve sourceCurve)
         {
-            // Calculate in case the curve has points that are not owned by another container.
-            // TODO: Low priority: This will probably become obsolete at one point (see rework in TODO document for Synthesizer project 2015-03).
-
-            if (sourceCurve.PointA.Parent == null)
-            {
-                sourceCurve.PointA.CalculatedValues.XInPixels = sourceCurve.PointA.Position.X + sourceCurve.CalculatedValues.XInPixels;
-                sourceCurve.PointA.CalculatedValues.YInPixels = sourceCurve.PointA.Position.Y + sourceCurve.CalculatedValues.YInPixels;
-            }
-
-            if (sourceCurve.PointB.Parent == null)
-            {
-                sourceCurve.PointB.CalculatedValues.XInPixels = sourceCurve.PointB.Position.X + sourceCurve.CalculatedValues.XInPixels;
-                sourceCurve.PointB.CalculatedValues.YInPixels = sourceCurve.PointB.Position.Y + sourceCurve.CalculatedValues.YInPixels;
-            }
+            if (sourceCurve.PointA == null) throw new NullException(() => sourceCurve.PointA);
+            if (sourceCurve.PointB == null) throw new NullException(() => sourceCurve.PointB);
+            if (sourceCurve.ControlPointA == null) throw new NullException(() => sourceCurve.ControlPointA);
+            if (sourceCurve.ControlPointB == null) throw new NullException(() => sourceCurve.ControlPointB);
 
             var destPoints = new List<Point>(sourceCurve.SegmentCount + 1);
 

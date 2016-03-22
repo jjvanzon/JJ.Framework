@@ -86,6 +86,9 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourceLine.CalculatedValues.Visible && sourceLine.LineStyle.Visible)
             {
+                if (sourceLine.PointA == null) throw new NullException(() => sourceLine.PointA);
+                if (sourceLine.PointB == null) throw new NullException(() => sourceLine.PointB);
+
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(
                     destPen, 

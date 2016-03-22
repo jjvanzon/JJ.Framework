@@ -37,69 +37,17 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        private Point _pointA = new Point();
-        /// <summary>
-        /// Not nullable, auto-instantiated.
-        /// Coordinates of the Point are related to the Point's parent.
-        /// </summary>
-        public Point PointA
-        {
-            [DebuggerHidden]
-            get { return _pointA; }
-            set
-            {
-                if (value == null) throw new NullException(() => value);
-                _pointA = value;
-            }
-        }
+        /// <summary> Nullable. Coordinates of the point are related to the Point's parent. </summary>
+        public Point PointA { get; set; }
 
-        private Point _controlPointA = new Point();
-        /// <summary>
-        /// Not nullable, auto-instantiated.
-        /// Coordinates of the Point are related to the Point's parent.
-        /// </summary>
-        public Point ControlPointA
-        {
-            [DebuggerHidden]
-            get { return _controlPointA; }
-            set
-            {
-                if (value == null) throw new NullException(() => value);
-                _controlPointA = value;
-            }
-        }
+        /// <summary> Nullable. Coordinates of the point are related to the Point's parent. </summary>
+        public Point PointB { get; set; }
 
-        private Point _pointB = new Point();
-        /// <summary>
-        /// Not nullable, auto-instantiated.
-        /// Coordinates of the Point are related to the Point's parent.
-        /// </summary>
-        public Point PointB
-        {
-            [DebuggerHidden]
-            get { return _pointB; }
-            set
-            {
-                if (value == null) throw new NullException(() => value);
-                _pointB = value;
-            }
-        }
+        /// <summary> Nullable. Coordinates of the point are related to the Point's parent. </summary>
+        public Point ControlPointA { get; set; }
 
-        private Point _controlPointB = new Point();
-        /// <summary>
-        /// Not nullable, auto-instantiated.
-        /// Coordinates of the Point are related to the Point's parent.
-        /// </summary>
-        public Point ControlPointB
-        {
-            [DebuggerHidden]
-            get { return _controlPointB; }
-            set
-            {
-                if (value == null) throw new NullException(() => value);
-                _controlPointB = value;
-            }
-        }
+        /// <summary> Nullable. Coordinates of the point are related to the Point's parent. </summary>
+        public Point ControlPointB { get; set; }
 
         private LineStyle _lineStyle = new LineStyle();
         /// <summary> not nullable, auto-instantiated </summary>

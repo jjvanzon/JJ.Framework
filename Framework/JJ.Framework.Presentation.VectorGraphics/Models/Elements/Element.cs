@@ -1,12 +1,10 @@
-﻿using JJ.Framework.Reflection.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using JJ.Framework.Business;
 using JJ.Framework.Presentation.VectorGraphics.Relationships;
 using JJ.Framework.Presentation.VectorGraphics.Gestures;
 using JJ.Framework.Presentation.VectorGraphics.SideEffects;
 using System;
-using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
@@ -16,9 +17,18 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public override float X
         {
-            get { return Math.Min(_line.PointA.Position.X, _line.PointB.Position.X); }
+            get
+            {
+                if (_line.PointA == null) throw new NullException(() => _line.PointA);
+                if (_line.PointB == null) throw new NullException(() => _line.PointB);
+
+                return Math.Min(_line.PointA.Position.X, _line.PointB.Position.X);
+            }
             set
             {
+                if (_line.PointA == null) throw new NullException(() => _line.PointA);
+                if (_line.PointB == null) throw new NullException(() => _line.PointB);
+
                 float dx = _line.PointB.Position.X - _line.PointA.Position.X;
                 _line.PointA.Position.X = value;
                 _line.PointB.Position.X = _line.PointA.Position.X + dx;
@@ -27,9 +37,18 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public override float Y
         {
-            get { return Math.Min(_line.PointA.Position.Y, _line.PointB.Position.Y); }
+            get
+            {
+                if (_line.PointA == null) throw new NullException(() => _line.PointA);
+                if (_line.PointB == null) throw new NullException(() => _line.PointB);
+
+                return Math.Min(_line.PointA.Position.Y, _line.PointB.Position.Y);
+            }
             set
             {
+                if (_line.PointA == null) throw new NullException(() => _line.PointA);
+                if (_line.PointB == null) throw new NullException(() => _line.PointB);
+
                 float dy = _line.PointB.Position.Y - _line.PointA.Position.Y;
                 _line.PointA.Position.Y = value;
                 _line.PointB.Position.Y = _line.PointA.Position.Y + dy;

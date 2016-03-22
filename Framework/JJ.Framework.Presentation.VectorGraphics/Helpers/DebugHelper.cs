@@ -41,15 +41,28 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             string tag = Convert.ToString(line.Tag);
             if (!String.IsNullOrEmpty(tag))
             {
-                sb.AppendFormat("Tag='{0}', ", line.Tag);
+                sb.AppendFormat("Tag='{0}', ", tag);
             }
 
-            sb.AppendFormat(
-                "({0}, {1}) - ({2}, {3}) ", 
-                line.PointA.Position.X, 
-                line.PointA.Position.Y, 
-                line.PointB.Position.X, 
-                line.PointB.Position.Y);
+            if (line.PointA == null)
+            {
+                sb.Append("<PointA is null> ");
+            }
+
+            if (line.PointB == null)
+            {
+                sb.Append("<PointB is null> ");
+            }
+
+            if (line.PointA != null && line.PointB != null)
+            {
+                sb.AppendFormat(
+                    "({0}, {1}) - ({2}, {3}) ",
+                    line.PointA.Position.X,
+                    line.PointA.Position.Y,
+                    line.PointB.Position.X,
+                    line.PointB.Position.Y);
+            }
 
             sb.AppendFormat("(HashCode={0})", line.GetHashCode());
 

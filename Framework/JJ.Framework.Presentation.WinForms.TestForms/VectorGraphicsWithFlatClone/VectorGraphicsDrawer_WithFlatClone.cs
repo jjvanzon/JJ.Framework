@@ -82,6 +82,9 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
         {
             if (sourceLine.Visible && sourceLine.LineStyle.Visible)
             {
+                if (sourceLine.PointA == null) throw new NullException(() => sourceLine.PointA);
+                if (sourceLine.PointB == null) throw new NullException(() => sourceLine.PointB);
+
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(
                     destPen, 
