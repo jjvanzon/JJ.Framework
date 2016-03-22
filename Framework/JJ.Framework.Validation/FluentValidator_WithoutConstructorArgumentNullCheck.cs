@@ -453,7 +453,7 @@ namespace JJ.Framework.Validation
             return isEnum;
         }
 
-        public bool IsEnum_WithStringComparison<TEnum>(object value)
+        private bool IsEnum_WithStringComparison<TEnum>(object value)
         {
             // Not an array, that might result in reference comparison,
             // but a HashSet, so it does value comparison.

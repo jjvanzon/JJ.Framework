@@ -58,9 +58,6 @@ namespace JJ.Framework.Data.Memory.Internal
             return entity;
         }
 
-        /// <summary>
-        /// This method might never have been tested. 
-        /// </summary>
         public void Insert(TEntity entity)
         {
             if (entity == null) throw new NullException(() => entity);
@@ -77,9 +74,6 @@ namespace JJ.Framework.Data.Memory.Internal
             }
         }
 
-        /// <summary>
-        /// This method might never have been tested. 
-        /// </summary>
         public void Delete(TEntity entity)
         {
             if (entity == null) throw new NullException(() => entity);
@@ -105,9 +99,6 @@ namespace JJ.Framework.Data.Memory.Internal
 
         private int _maxID = 0;
 
-        /// <summary>
-        /// This method might never have been tested. 
-        /// </summary>
         private object TryGetIDFromEntity(TEntity entity)
         {
             if (_mapping.IdentityType == IdentityType.NoIDs)
