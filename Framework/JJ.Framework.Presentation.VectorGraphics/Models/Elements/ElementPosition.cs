@@ -17,7 +17,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             _element = element;
         }
 
-        /// <summary> X-coordinate relative to the parent. depending on Diagram.ScaleModeEnum. </summary>
+        /// <summary> X-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
         public abstract float X { get; set; }
 
         /// <summary> Y-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>

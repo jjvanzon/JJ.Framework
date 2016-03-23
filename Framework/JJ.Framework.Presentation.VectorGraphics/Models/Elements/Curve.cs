@@ -24,7 +24,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         /// <summary>
         /// Default is 20. Cannot be less than 1.
         /// The curve is drawn out as a sequence of straight lines.
-        /// The line count controls the precision with which the curve is drawn.
+        /// The segment count controls the precision with which the curve is drawn.
         /// </summary>
         public int SegmentCount 
         {
