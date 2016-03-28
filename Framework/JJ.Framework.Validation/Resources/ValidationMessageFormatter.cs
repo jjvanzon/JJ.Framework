@@ -101,6 +101,11 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(ValidationMessages.IsNaN_WithName, propertyDisplayName);
         }
 
+        public static string Exists(string propertyDisplayName)
+        {
+            return String.Format(ValidationMessages.Exists_WithName, propertyDisplayName);
+        }
+
         public static string IsOfType(string propertyDisplayName, string typeName)
         {
             return String.Format(ValidationMessages.IsOfType_WithName_AndTypeName, propertyDisplayName, typeName);
@@ -171,6 +176,11 @@ namespace JJ.Framework.Validation.Resources
         public static string NotUnique(string propertyDisplayName)
         {
             return String.Format(ValidationMessages.NotUnique_WithName, propertyDisplayName);
+        }
+
+        public static string NotExists(string propertyDisplayName)
+        {
+            return String.Format(ValidationMessages.NotExists_WithName, propertyDisplayName);
         }
     }
 }

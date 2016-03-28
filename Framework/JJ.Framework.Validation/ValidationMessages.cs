@@ -82,16 +82,16 @@ namespace JJ.Framework.Validation
             AddContainsMessage(propertyKey, propertyDisplayName, itemExpressionText);
         }
 
-        public void AddLengthExceededMessage(string propertyKey, string propertyDisplayName, int length)
-        {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
-            Add(propertyKey, ValidationMessageFormatter.LengthExceeded(propertyDisplayName, length));
-        }
-
-        public void AddLengthExceededMessage(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName, int length)
+        public void AddExistsMessage(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName)
         {
             string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
-            AddLengthExceededMessage(propertyKey, propertyDisplayName, length);
+            AddExistsMessage(propertyKey, propertyDisplayName);
+        }
+
+        public void AddExistsMessage(string propertyKey, string propertyDisplayName)
+        {
+            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            Add(propertyKey, ValidationMessageFormatter.Exists(propertyDisplayName));
         }
 
         public void AddFileAlreadyExistsMessage(string propertyKey, string filePath)
@@ -352,6 +352,18 @@ namespace JJ.Framework.Validation
             AddIsZeroMessage(propertyKey, propertyDisplayName);
         }
 
+        public void AddLengthExceededMessage(string propertyKey, string propertyDisplayName, int length)
+        {
+            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            Add(propertyKey, ValidationMessageFormatter.LengthExceeded(propertyDisplayName, length));
+        }
+
+        public void AddLengthExceededMessage(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName, int length)
+        {
+            string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
+            AddLengthExceededMessage(propertyKey, propertyDisplayName, length);
+        }
+
         public void AddLessThanMessage(string propertyKey, string propertyDisplayName, object limitOrName)
         {
             if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
@@ -450,6 +462,18 @@ namespace JJ.Framework.Validation
             string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
             string valueExpressionText = ExpressionHelper.GetText(valueExpression);
             AddNotEqualMessage(propertyKey, propertyDisplayName, valueExpressionText);
+        }
+
+        public void AddNotExistsMessage(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName)
+        {
+            string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
+            AddNotExistsMessage(propertyKey, propertyDisplayName);
+        }
+
+        public void AddNotExistsMessage(string propertyKey, string propertyDisplayName)
+        {
+            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            Add(propertyKey, ValidationMessageFormatter.NotExists(propertyDisplayName));
         }
 
         public void AddRequiredMessage(string propertyKey, string propertyDisplayName)

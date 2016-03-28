@@ -70,6 +70,15 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} should not exist..
+        /// </summary>
+        internal static string Exists_WithName {
+            get {
+                return ResourceManager.GetString("Exists_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to File &apos;{0}&apos; already exists..
         /// </summary>
         internal static string FileAlreadyExists_WithFilePath {
@@ -300,6 +309,15 @@ namespace JJ.Framework.Validation.Resources {
         internal static string NotEqual_WithName_AndValue {
             get {
                 return ResourceManager.GetString("NotEqual_WithName_AndValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} does not exist..
+        /// </summary>
+        internal static string NotExists_WithName {
+            get {
+                return ResourceManager.GetString("NotExists_WithName", resourceCulture);
             }
         }
         

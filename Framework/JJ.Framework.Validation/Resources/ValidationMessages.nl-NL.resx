@@ -248,4 +248,12 @@
     <value>{0} is niet uniek.</value>
     <comment>{0} = property</comment>
   </data>
+  <data name="Exists_WithName" xml:space="preserve">
+    <value>{0} zou niet moeten bestaan.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="NotExists_WithName" xml:space="preserve">
+    <value>{0} bestaant niet.</value>
+    <comment>{0} = property</comment>
+  </data>
 </root>
