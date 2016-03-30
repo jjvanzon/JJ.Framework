@@ -43,6 +43,7 @@
     <Compile Include="CollectionExtensions_Recursive.cs" />
     <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="CultureHelper.cs" />
+    <Compile Include="Int32s.cs" />
     <Compile Include="Doubles.cs" />
     <Compile Include="EmbeddedResourceHelper.cs" />
     <Compile Include="Exceptions\EntityNotFoundExceptionOfT.cs" />
