@@ -500,6 +500,18 @@ namespace JJ.Framework.Validation
             AddNotInListMessage(propertyKey, propertyDisplayName);
         }
 
+        public void AddNotInListMessage(string propertyKey, string propertyDisplayName, object value)
+        {
+            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            Add(propertyKey, ValidationMessageFormatter.NotInList(propertyDisplayName, value));
+        }
+
+        public void AddNotInListMessage(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName, object value)
+        {
+            string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
+            AddNotInListMessage(propertyKey, propertyDisplayName, value);
+        }
+
         public void AddNotInListMessage(string propertyKey, string propertyDisplayName, IList<object> possibleValues)
         {
             if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
@@ -549,16 +561,28 @@ namespace JJ.Framework.Validation
             AddNotOfTypeMessage(propertyKey, propertyDisplayName, typeName);
         }
 
-        public void AddNotUniqueMessage(string propertyKey, string propertyDisplayName)
+        public void AddNotUniqueMessageSingular(string propertyKey, string propertyDisplayName)
         {
             if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
-            Add(propertyKey, ValidationMessageFormatter.NotUnique(propertyDisplayName));
+            Add(propertyKey, ValidationMessageFormatter.NotUniqueSingular(propertyDisplayName));
         }
 
-        public void AddNotUniqueMessage(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName)
+        public void AddNotUniqueMessageSingular(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName)
         {
             string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
-            AddNotUniqueMessage(propertyKey, propertyDisplayName);
+            AddNotUniqueMessageSingular(propertyKey, propertyDisplayName);
+        }
+
+        public void AddNotUniqueMessagePlural(string propertyKey, string propertyDisplayName)
+        {
+            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            Add(propertyKey, ValidationMessageFormatter.NotUniquePlural(propertyDisplayName));
+        }
+
+        public void AddNotUniqueMessagePlural(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName)
+        {
+            string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
+            AddNotUniqueMessagePlural(propertyKey, propertyDisplayName);
         }
     }
 }

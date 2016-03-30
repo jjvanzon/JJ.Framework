@@ -244,7 +244,7 @@
     <value>{0} is niet van het soort {1}.</value>
     <comment>{0} = property, {1} = type name</comment>
   </data>
-  <data name="NotUnique_WithName" xml:space="preserve">
+  <data name="NotUnique_WithName_Singular" xml:space="preserve">
     <value>{0} is niet uniek.</value>
     <comment>{0} = property</comment>
   </data>
@@ -255,5 +255,13 @@
   <data name="NotExists_WithName" xml:space="preserve">
     <value>{0} bestaant niet.</value>
     <comment>{0} = property</comment>
+  </data>
+  <data name="NotUnique_WithName_Plural" xml:space="preserve">
+    <value>{0} zijn niet uniek.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="NotInList_WithName_AndValue" xml:space="preserve">
+    <value>{0} '{1}' staat niet in de lijst van toegestane waardes.</value>
+    <comment>{0} = property, {1} = value</comment>
   </data>
 </root>

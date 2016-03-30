@@ -163,6 +163,12 @@ namespace JJ.Framework.Validation.Resources
             return message;
         }
 
+        public static string NotInList(string propertyDisplayName, object value)
+        {
+            string message = String.Format(ValidationMessages.NotInList_WithName_AndValue, propertyDisplayName, value);
+            return message;
+        }
+
         public static string NotInteger(string propertyDisplayName)
         {
             return String.Format(ValidationMessages.NotInteger_WithName, propertyDisplayName);
@@ -173,9 +179,14 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(ValidationMessages.NotOfType_WithName_AndTypeName, propertyDisplayName, typeName);
         }
 
-        public static string NotUnique(string propertyDisplayName)
+        public static string NotUniqueSingular(string propertyDisplayNameSingular)
         {
-            return String.Format(ValidationMessages.NotUnique_WithName, propertyDisplayName);
+            return String.Format(ValidationMessages.NotUnique_WithName_Singular, propertyDisplayNameSingular);
+        }
+
+        public static string NotUniquePlural(string propertyDisplayNamePlural)
+        {
+            return String.Format(ValidationMessages.NotUnique_WithName_Plural, propertyDisplayNamePlural);
         }
 
         public static string NotExists(string propertyDisplayName)

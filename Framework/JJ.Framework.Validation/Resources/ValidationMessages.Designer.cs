@@ -331,7 +331,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not in the list of valid values..
+        ///   Looks up a localized string similar to {0} is not one of the allowed values..
         /// </summary>
         internal static string NotInList_WithName {
             get {
@@ -345,6 +345,15 @@ namespace JJ.Framework.Validation.Resources {
         internal static string NotInList_WithName_AndAllowedValues {
             get {
                 return ResourceManager.GetString("NotInList_WithName_AndAllowedValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} &apos;{1}&apos; is not one of the allowed values..
+        /// </summary>
+        internal static string NotInList_WithName_AndValue {
+            get {
+                return ResourceManager.GetString("NotInList_WithName_AndValue", resourceCulture);
             }
         }
         
@@ -367,11 +376,20 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} are not unique..
+        /// </summary>
+        internal static string NotUnique_WithName_Plural {
+            get {
+                return ResourceManager.GetString("NotUnique_WithName_Plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not unique..
         /// </summary>
-        internal static string NotUnique_WithName {
+        internal static string NotUnique_WithName_Singular {
             get {
-                return ResourceManager.GetString("NotUnique_WithName", resourceCulture);
+                return ResourceManager.GetString("NotUnique_WithName_Singular", resourceCulture);
             }
         }
     }
