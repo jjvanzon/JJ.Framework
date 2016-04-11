@@ -401,7 +401,7 @@ namespace JJ.Framework.Validation
             }
 
             double convertedValue;
-            if (!Doubles.TryParse(stringValue, _formatProvider, out convertedValue))
+            if (!DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
             {
                 ValidationMessages.AddNotBrokenNumberMessage(_propertyKey, _propertyDisplayName);
             }
@@ -477,7 +477,7 @@ namespace JJ.Framework.Validation
             }
 
             double convertedValue;
-            if (Doubles.TryParse(stringValue, _formatProvider, out convertedValue))
+            if (DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
             {
                 if (Double.IsNaN(convertedValue))
                 {
@@ -498,7 +498,7 @@ namespace JJ.Framework.Validation
             }
 
             double convertedValue;
-            if (Doubles.TryParse(stringValue, _formatProvider, out convertedValue))
+            if (DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
             {
                 if (Double.IsInfinity(convertedValue))
                 {

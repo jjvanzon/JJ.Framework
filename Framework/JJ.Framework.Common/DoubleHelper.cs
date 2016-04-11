@@ -7,9 +7,9 @@ namespace JJ.Framework.Common
 {
     /// <summary>
     /// Static classes cannot get extension membrers.
-    /// Instead we have the Doubles class for extra static members.
+    /// Instead we have the DoubleHelper class for extra static members.
     /// </summary>
-    public static class Doubles
+    public static class DoubleHelper
     {
         public static bool TryParse(string s, IFormatProvider provider, out double result)
         {
