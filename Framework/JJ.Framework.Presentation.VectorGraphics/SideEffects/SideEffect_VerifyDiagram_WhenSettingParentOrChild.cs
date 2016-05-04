@@ -19,12 +19,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
 
         public void Execute()
         {
-            if (_parent != null && _parent.Diagram == null)
+            if (_parent?.Diagram == null)
             {
                 throw new Exception("Elements must be part of a Diagram to manage Parent-Child relationships.");
             }
 
-            if (_child != null && _child.Diagram == null)
+            if (_child?.Diagram == null)
             {
                 throw new Exception("Elements must be part of a Diagram to manage Parent-Child relationships.");
             }
