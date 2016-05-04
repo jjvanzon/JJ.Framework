@@ -24,7 +24,7 @@ namespace JJ.Framework.Presentation.Mvc
     {
         private static ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
 
-        public static string ActionWithCollectionParameter<T>(string actionName, string controllerName, string parameterName, IEnumerable<T> collection)
+        public static string ActionWithCollection<T>(string actionName, string controllerName, string parameterName, IEnumerable<T> collection)
         {
             if (collection == null) throw new NullException(() => collection);
 

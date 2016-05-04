@@ -22,7 +22,7 @@ namespace JJ.Framework.Presentation.Mvc
             linkText = htmlHelper.Encode(linkText);
 
             // Build the <a> tag.
-            string url = UrlHelpers.ActionWithCollectionParameter(actionName, controllerName, parameterName, collection);
+            string url = UrlHelpers.ActionWithCollection(actionName, controllerName, parameterName, collection);
             string html = @"<a href=""" + url + @""">" + linkText + "</a>";
 
             return new MvcHtmlString(html);

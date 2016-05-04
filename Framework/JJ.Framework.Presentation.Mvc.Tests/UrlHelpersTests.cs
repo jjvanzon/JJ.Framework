@@ -13,10 +13,10 @@ namespace JJ.Framework.Presentation.Mvc.Tests
     public class UrlHelpersTests
     {
         [TestMethod]
-        public void Test_UrlHelpers_ActionWithCollectionParameter()
+        public void Test_UrlHelpers_ActionWithCollection()
         {
             string oldResult = ActionWithCollectionParameter_Old("Action", "Controller", "param", new int[] { 1, 2, 3 });
-            string newResult = UrlHelpers.ActionWithCollectionParameter("Action", "Controller", "param", new int[] { 1, 2, 3 });
+            string newResult = UrlHelpers.ActionWithCollection("Action", "Controller", "param", new int[] { 1, 2, 3 });
             Assert.AreEqual(oldResult, newResult);
         }
 
