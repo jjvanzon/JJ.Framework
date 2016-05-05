@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace JJ.Framework.Data.NHibernate
 {
-    public class EntityDictionary
+    internal class EntityDictionary
     {
         /// <summary>
         /// Dictionary of dictionaries.

@@ -68,7 +68,7 @@ namespace JJ.Framework.Data.NHibernate
             }
 
             object id = GetID(entity);
-            _entityDictionary.AddOrReplaceIfNeeded<TEntity>(id, entity);
+            _entityDictionary.AddOrReplaceIfNeeded(id, entity);
 
             return entity;
         }
