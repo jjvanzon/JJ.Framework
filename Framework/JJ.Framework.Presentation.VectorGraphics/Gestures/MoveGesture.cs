@@ -108,10 +108,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
                 _wasMoved = true;
 
-                if (Moving != null)
-                {
-                    Moving(sender, new ElementEventArgs(_elementBeingMoved));
-                }
+                Moving?.Invoke(sender, new ElementEventArgs(_elementBeingMoved));
             }
         }
 
@@ -124,10 +121,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             {
                 if (_wasMoved)
                 {
-                    if (Moved != null)
-                    {
-                        Moved(sender, new ElementEventArgs(_elementBeingMoved));
-                    }
+                    Moved?.Invoke(sender, new ElementEventArgs(_elementBeingMoved));
                 }
             }
 
