@@ -42,21 +42,27 @@ namespace JJ.Framework.Data.NHibernate
 
             var config = new global::NHibernate.Cfg.Configuration();
 
-            FluentConfiguration fluentConfig;
+            FluentConfiguration fluentConfiguration;
 
             if (dialect == DialectNames.SqlServer2008)
             {
-                fluentConfig = Fluently.Configure(config).Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).Dialect<MsSql2008Dialect>());
+                fluentConfiguration = Fluently.Configure(config).Database(MsSqlConfiguration.MsSql2008.ConnectionString(connectionString).Dialect<MsSql2008Dialect>());
             }
             else
             {
                 throw new NotSupportedException(String.Format("Dialect '{0}' not supported.", dialect));
             }
 
-            fluentConfig = fluentConfig.Mappings(x => x.FluentMappings.AddFromAssembly(modelAssembly));
-            fluentConfig = fluentConfig.Mappings(x => x.FluentMappings.AddFromAssembly(mappingAssembly));
+            fluentConfiguration = fluentConfiguration.Mappings(x => x.FluentMappings.AddFromAssembly(modelAssembly));
+            fluentConfiguration = fluentConfiguration.Mappings(x => x.FluentMappings.AddFromAssembly(mappingAssembly));
 
-            return fluentConfig.BuildSessionFactory();
+            if (SqlLogger.Enabled)
+            {
+                global::NHibernate.Cfg.Configuration configuration = fluentConfiguration.BuildConfiguration();
+                configuration.SetInterceptor(new SqlLogInterceptor());
+            }
+
+            return fluentConfiguration.BuildSessionFactory();
         }
     }
 }
