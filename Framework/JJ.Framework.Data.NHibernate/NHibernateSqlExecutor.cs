@@ -57,8 +57,9 @@ namespace JJ.Framework.Data.NHibernate
                 SqlLogger.WriteLine("");
                 SqlLogger.WriteLine(sql);
 
-                //SqlLogger.WriteLine(String.Format("use [{0}]", command.Connection.Database));
-                //SqlLogger.WriteLine(command.CommandText);
+                Debug.WriteLine("");
+                Debug.WriteLine(String.Format("use [{0}]", command.Connection.Database));
+                Debug.WriteLine(command.CommandText);
             }
 
             return command;
