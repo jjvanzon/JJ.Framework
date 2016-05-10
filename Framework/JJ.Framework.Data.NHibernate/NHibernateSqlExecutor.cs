@@ -4,6 +4,7 @@ using NHibernate;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace JJ.Framework.Data.NHibernate
 {
@@ -49,6 +50,16 @@ namespace JJ.Framework.Data.NHibernate
             }
 
             _session.Transaction.Enlist(command);
+            
+            if (SqlLogger.Enabled)
+            {
+                string sql = SqlCommandToSqlConverter.Convert(command, includeUseStatements: true);
+                SqlLogger.WriteLine("");
+                SqlLogger.WriteLine(sql);
+
+                //SqlLogger.WriteLine(String.Format("use [{0}]", command.Connection.Database));
+                //SqlLogger.WriteLine(command.CommandText);
+            }
 
             return command;
         }

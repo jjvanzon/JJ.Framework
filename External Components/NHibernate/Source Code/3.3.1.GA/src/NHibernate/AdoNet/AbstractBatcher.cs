@@ -71,14 +71,14 @@ namespace NHibernate.AdoNet
 		{
 			SqlString sql = GetSQL(sqlString);
 
-			IDbCommand cmd = _factory.ConnectionProvider.Driver.GenerateCommand(type, sql, parameterTypes);
+            IDbCommand cmd = _factory.ConnectionProvider.Driver.GenerateCommand(type, sql, parameterTypes);
 			LogOpenPreparedCommand();
 			if (Log.IsDebugEnabled)
 			{
 				Log.Debug("Building an IDbCommand object for the SqlString: " + sql);
 			}
 			_commandsToClose.Add(cmd);
-			return cmd;
+            return cmd;
 		}
 
 		/// <summary>
@@ -111,8 +111,12 @@ namespace NHibernate.AdoNet
 
 				_connectionManager.Transaction.Enlist(cmd);
 				Driver.PrepareCommand(cmd);
-			}
-			catch (InvalidOperationException ioe)
+
+                // START OF JJ'S CHANGE
+                _interceptor.OnGenerateCommand(cmd);
+                // END OF JJ'S CHANGE
+            }
+            catch (InvalidOperationException ioe)
 			{
 				throw new ADOException("While preparing " + cmd.CommandText + " an error occurred", ioe);
 			}

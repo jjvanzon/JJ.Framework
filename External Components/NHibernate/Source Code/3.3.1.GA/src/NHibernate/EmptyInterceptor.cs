@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Data;
 using NHibernate.SqlCommand;
 using NHibernate.Type;
 
@@ -94,5 +95,11 @@ namespace NHibernate
 		{
 			return sql;
 		}
-	}
+
+        // START OF JJ's CHANGE
+        public virtual void OnGenerateCommand(IDbCommand dbCommand)
+        {
+        }
+        // END OF JJ'S CHANGE
+    }
 }

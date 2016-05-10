@@ -43,6 +43,7 @@
     <Compile Include="ISqlExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlCommandHelper.cs" />
+    <Compile Include="SqlCommandToSqlConverter.cs" />
     <Compile Include="SqlExecutorWithConnectionString.cs" />
     <Compile Include="SqlExecutorWithSqlConnection.cs" />
     <Compile Include="SqlExecutorFactory.cs" />

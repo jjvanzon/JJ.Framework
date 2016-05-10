@@ -53,13 +53,17 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationSection.cs" />
     <Compile Include="EntityDictionary.cs" />
     <Compile Include="NHibernateContext.cs" />
     <Compile Include="NHibernateSqlExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NHibernateSessionFactoryCache.cs" />
+    <Compile Include="SqlLogger.cs" />
+    <Compile Include="SqlLoggingConfiguration.cs" />
     <Compile Include="SqlLogInterceptor.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +74,10 @@
     <ProjectReference Include="..\..\External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\NHibernate.csproj">
       <Project>{5909bfe7-93cf-4e5f-be22-6293368af01d}</Project>
       <Name>NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj">
+      <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
+      <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Data.SqlClient\JJ.Framework.Data.SqlClient.csproj">
       <Project>{ceb85f8e-d429-4510-95a5-47cc3069d412}</Project>

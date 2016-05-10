@@ -184,19 +184,23 @@ namespace NHibernate
 		/// <returns> original or modified sql </returns>
 		SqlString OnPrepareStatement(SqlString sql);
 
-		#region NH specific
+        // START OF JJ's CHANGE
+        void OnGenerateCommand(IDbCommand dbCommand);
+        // END OF JJ'S CHANGE
 
-		/// <summary>
-		/// Called when a session-scoped (and <b>only</b> session scoped) interceptor is attached
-		/// to a session
-		/// </summary>
-		/// <remarks>
-		/// session-scoped-interceptor is an instance of the interceptor used only for one session.
-		/// The use of singleton-interceptor may cause problems in multi-thread scenario. 
-		/// </remarks>
-		/// <seealso cref="ISessionFactory.OpenSession(IInterceptor)"/>
-		/// <seealso cref="ISessionFactory.OpenSession(IDbConnection,IInterceptor)"/>
-		void SetSession(ISession session);
+        #region NH specific
+
+        /// <summary>
+        /// Called when a session-scoped (and <b>only</b> session scoped) interceptor is attached
+        /// to a session
+        /// </summary>
+        /// <remarks>
+        /// session-scoped-interceptor is an instance of the interceptor used only for one session.
+        /// The use of singleton-interceptor may cause problems in multi-thread scenario. 
+        /// </remarks>
+        /// <seealso cref="ISessionFactory.OpenSession(IInterceptor)"/>
+        /// <seealso cref="ISessionFactory.OpenSession(IDbConnection,IInterceptor)"/>
+        void SetSession(ISession session);
 
 		#endregion
 	}
