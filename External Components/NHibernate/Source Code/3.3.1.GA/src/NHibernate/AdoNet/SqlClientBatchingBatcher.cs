@@ -62,9 +62,14 @@ namespace NHibernate.AdoNet
 			{
 				Log.Debug("Adding to batch:" + lineWithParameters);
 			}
-			_currentBatch.Append((System.Data.SqlClient.SqlCommand) batchUpdate);
 
-			if (_currentBatch.CountOfCommands >= _batchSize)
+            // START OF JJ'S CHANGE
+            _interceptor.OnExecutingCommand(batchUpdate, ConnectionManager.GetConnection());
+            // END OF JJ'S CHANGE
+
+            _currentBatch.Append((System.Data.SqlClient.SqlCommand) batchUpdate);
+
+            if (_currentBatch.CountOfCommands >= _batchSize)
 			{
 				ExecuteBatchWithTiming(batchUpdate);
 			}
@@ -84,7 +89,11 @@ namespace NHibernate.AdoNet
 			int rowsAffected;
 			try
 			{
-				rowsAffected = _currentBatch.ExecuteNonQuery();
+                // START OF JJ'S CHANGE
+                _interceptor.OnExecutingCommand(ps, ConnectionManager.GetConnection());
+                // END OF JJ'S CHANGE
+
+                rowsAffected = _currentBatch.ExecuteNonQuery();
 			}
 			catch (DbException e)
 			{

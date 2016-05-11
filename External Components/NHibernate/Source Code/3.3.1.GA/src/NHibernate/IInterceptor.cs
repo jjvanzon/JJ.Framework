@@ -185,7 +185,7 @@ namespace NHibernate
 		SqlString OnPrepareStatement(SqlString sql);
 
         // START OF JJ's CHANGE
-        void OnGenerateCommand(IDbCommand dbCommand);
+        void OnExecutingCommand(IDbCommand dbCommand, IDbConnection dbConnection);
         // END OF JJ'S CHANGE
 
         #region NH specific

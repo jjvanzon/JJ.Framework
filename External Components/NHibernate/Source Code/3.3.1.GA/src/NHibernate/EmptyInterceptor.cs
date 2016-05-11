@@ -97,7 +97,7 @@ namespace NHibernate
 		}
 
         // START OF JJ's CHANGE
-        public virtual void OnGenerateCommand(IDbCommand dbCommand)
+        public virtual void OnExecutingCommand(IDbCommand dbCommand, IDbConnection dbConnection)
         {
         }
         // END OF JJ'S CHANGE

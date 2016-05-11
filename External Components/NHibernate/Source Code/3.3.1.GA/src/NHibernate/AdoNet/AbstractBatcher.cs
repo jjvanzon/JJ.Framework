@@ -27,12 +27,14 @@ namespace NHibernate.AdoNet
 
 		private readonly ConnectionManager _connectionManager;
 		private readonly ISessionFactoryImplementor _factory;
-		private readonly IInterceptor _interceptor;
+        // START OF JJ'S CHANGE (access modifier)
+        protected readonly IInterceptor _interceptor;
+        // END OF JJ'S CHANGE (access modifier)
 
-		// batchCommand used to be called batchUpdate - that name to me implied that updates
-		// were being sent - however this could be just INSERT/DELETE/SELECT SQL statement not
-		// just update.  However I haven't seen this being used with read statements...
-		private IDbCommand _batchCommand;
+        // batchCommand used to be called batchUpdate - that name to me implied that updates
+        // were being sent - however this could be just INSERT/DELETE/SELECT SQL statement not
+        // just update.  However I haven't seen this being used with read statements...
+        private IDbCommand _batchCommand;
 		private SqlString _batchCommandSql;
 		private SqlType[] _batchCommandParameterTypes;
 		private readonly ISet<IDbCommand> _commandsToClose = new HashedSet<IDbCommand>();
@@ -111,10 +113,6 @@ namespace NHibernate.AdoNet
 
 				_connectionManager.Transaction.Enlist(cmd);
 				Driver.PrepareCommand(cmd);
-
-                // START OF JJ'S CHANGE
-                _interceptor.OnGenerateCommand(cmd);
-                // END OF JJ'S CHANGE
             }
             catch (InvalidOperationException ioe)
 			{
@@ -198,7 +196,11 @@ namespace NHibernate.AdoNet
 				duration = Stopwatch.StartNew();
 			try
 			{
-				return cmd.ExecuteNonQuery();
+                // START OF JJ'S CHANGE
+                _interceptor.OnExecutingCommand(cmd, _connectionManager.GetConnection());
+                // END OF JJ'S CHANGE
+
+                return cmd.ExecuteNonQuery();
 			}
 			catch (Exception e)
 			{
@@ -224,7 +226,11 @@ namespace NHibernate.AdoNet
 			IDataReader reader = null;
 			try
 			{
-				reader = cmd.ExecuteReader();
+                // START OF JJ'S CHANGE
+                _interceptor.OnExecutingCommand(cmd, _connectionManager.GetConnection());
+                // END OF JJ'S CHANGE
+
+                reader = cmd.ExecuteReader();
 			}
 			catch (Exception e)
 			{

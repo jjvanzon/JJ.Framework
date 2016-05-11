@@ -103,7 +103,11 @@ namespace NHibernate.Id
 				qps.CommandType = CommandType.Text;
 				try
 				{
-					IDataReader rs = qps.ExecuteReader();
+                    // START OF JJ'S CHANGE
+                    session.Interceptor.OnExecutingCommand(qps, session.ConnectionManager.GetConnection());
+                    // END OF JJ'S CHANGE
+
+                    IDataReader rs = qps.ExecuteReader();
 					try
 					{
 						if (rs.Read())

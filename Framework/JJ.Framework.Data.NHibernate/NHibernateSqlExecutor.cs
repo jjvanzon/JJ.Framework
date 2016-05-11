@@ -53,7 +53,7 @@ namespace JJ.Framework.Data.NHibernate
             
             if (SqlLogger.Enabled)
             {
-                string sql = SqlCommandToSqlConverter.Convert(command, includeUseStatements: true);
+                string sql = SqlCommandFormatter.Convert(command, command.Connection, includeUseStatements: true);
                 SqlLogger.WriteLine("");
                 SqlLogger.WriteLine(sql);
 
