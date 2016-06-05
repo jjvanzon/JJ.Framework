@@ -44,6 +44,8 @@
     <Compile Include="Exceptions\CollectionNotEmptyException.cs" />
     <Compile Include="Exceptions\CollectionEmptyException.cs" />
     <Compile Include="Exceptions\HasNullsException.cs" />
+    <Compile Include="Exceptions\IsDateTimeException.cs" />
+    <Compile Include="Exceptions\NotDateTimeException.cs" />
     <Compile Include="Exceptions\NotInfinityException.cs" />
     <Compile Include="Exceptions\NotNaNException.cs" />
     <Compile Include="Exceptions\NotDecimalException.cs" />
