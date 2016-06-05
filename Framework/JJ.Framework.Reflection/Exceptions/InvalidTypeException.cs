@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace JJ.Framework.Reflection.Exceptions
 {
-    public class IsNotTypeException : Exception
+    public class InvalidTypeException : Exception
     {
         private const string MESSAGE = "{0} is not of type {1}.";
 
@@ -16,14 +16,14 @@ namespace JJ.Framework.Reflection.Exceptions
             get { return _message; }
         }
 
-        public IsNotTypeException(Expression<Func<object>> expression, Type type)
+        public InvalidTypeException(Expression<Func<object>> expression, Type type)
         {
             if (type == null) throw new NullException(() => type);
 
             _message = String.Format(MESSAGE, ExpressionHelper.GetText(expression), type.FullName);
         }
 
-        public IsNotTypeException(Expression<Func<object>> expression, string typeName)
+        public InvalidTypeException(Expression<Func<object>> expression, string typeName)
         {
             _message = String.Format(MESSAGE, ExpressionHelper.GetText(expression), typeName);
         }
