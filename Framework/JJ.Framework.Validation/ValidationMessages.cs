@@ -512,13 +512,13 @@ namespace JJ.Framework.Validation
             AddNotInListMessage(propertyKey, propertyDisplayName, value);
         }
 
-        public void AddNotInListMessage(string propertyKey, string propertyDisplayName, IList<object> possibleValues)
+        public void AddNotInListMessage<TItem>(string propertyKey, string propertyDisplayName, IEnumerable<TItem> possibleValues)
         {
             if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotInList(propertyDisplayName, possibleValues));
         }
 
-        public void AddNotInListMessage(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName, IList<object> possibleValues)
+        public void AddNotInListMessage<TItem>(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName, IEnumerable<TItem> possibleValues)
         {
             string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
             AddNotInListMessage(propertyKey, propertyDisplayName, possibleValues);

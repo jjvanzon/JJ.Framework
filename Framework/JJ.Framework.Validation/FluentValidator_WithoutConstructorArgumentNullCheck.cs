@@ -161,15 +161,8 @@ namespace JJ.Framework.Validation
 
         // Equation
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> In(IList<object> possibleValues)
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> In<TValue>(IEnumerable<TValue> possibleValues)
         {
-            return In((object[])possibleValues);
-        }
-
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> In(params object[] possibleValues)
-        {
-            if (possibleValues == null) throw new NullException(() => possibleValues);
-
             string stringValue = Convert.ToString(_value, _formatProvider);
 
             if (String.IsNullOrEmpty(stringValue))
@@ -185,6 +178,13 @@ namespace JJ.Framework.Validation
             }
 
             return this;
+        }
+
+        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> In(params object[] possibleValues)
+        {
+            if (possibleValues == null) throw new NullException(() => possibleValues);
+
+            return In((IEnumerable<object>)(object[])possibleValues);
         }
 
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> Is(object value)

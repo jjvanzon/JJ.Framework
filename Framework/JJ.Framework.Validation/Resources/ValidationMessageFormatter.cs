@@ -156,7 +156,7 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(ValidationMessages.NotInList_WithName, propertyDisplayName);
         }
 
-        public static string NotInList(string propertyDisplayName, IList<object> possibleValues)
+        public static string NotInList<TItem>(string propertyDisplayName, IEnumerable<TItem> possibleValues)
         {
             string joined = String_PlatformSupport.Join(", ", possibleValues);
             string message = String.Format(ValidationMessages.NotInList_WithName_AndAllowedValues, propertyDisplayName, joined);
