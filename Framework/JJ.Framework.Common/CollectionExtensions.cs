@@ -323,6 +323,20 @@ namespace JJ.Framework.Common
             }
         }
 
+        public static double Product(this IEnumerable<double> collection)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+
+            double product = collection.FirstOrDefault();
+
+            foreach (double value in collection.Skip(1))
+            {
+                product *= value;
+            }
+
+            return product;
+        }
+
         public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
         {
             if (source == null) throw new ArgumentNullException("source");
