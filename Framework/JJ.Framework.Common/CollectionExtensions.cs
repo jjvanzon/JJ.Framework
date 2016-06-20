@@ -11,7 +11,7 @@ namespace JJ.Framework.Common
 
         private static string GetNullGuid()
         {
-            return Guid.NewGuid().ToString();
+            return Guid.Empty.ToString();
         }
 
         private static string GetSeparatorGuid()
@@ -54,6 +54,8 @@ namespace JJ.Framework.Common
 
         public static IEnumerable<T> Except<T>(this IEnumerable<T> enumerable, T x)
         {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+
             return enumerable.Except(new T[] { x });
         }
 
@@ -62,6 +64,9 @@ namespace JJ.Framework.Common
         /// </summary>
         public static IEnumerable<T> Except<T>(this IEnumerable<T> source, IEnumerable<T> input, bool distinct)
         {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (input == null) throw new ArgumentNullException(nameof(input));
+
             if (distinct)
             {
                 return source.Except(input);
@@ -72,8 +77,18 @@ namespace JJ.Framework.Common
             }
         }
 
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> source, Predicate<T> predicate)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+
+            return source.Where(x => !predicate(x));
+        }
+
         public static IEnumerable<T> Union<T>(this IEnumerable<T> enumerable, T x)
         {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+
             return enumerable.Union(new T[] { x });
         }
 
@@ -85,6 +100,9 @@ namespace JJ.Framework.Common
         // TODO: TKey is strange. You would think that the different elements of the key are not always of the same type.
         public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey>[] keys)
         {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            if (keys == null) throw new ArgumentNullException(nameof(keys));
+
             string separator = "";
             if (keys.Length > 1)
             {
@@ -126,6 +144,9 @@ namespace JJ.Framework.Common
 
         public static Dictionary<TKey, IList<TItem>> ToNonUniqueDictionary<TKey, TItem>(this IEnumerable<TItem> sourceCollection, Func<TItem, TKey> keySelector)
         {
+            if (sourceCollection == null) throw new ArgumentNullException(nameof(sourceCollection));
+            if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
+
             return sourceCollection.ToNonUniqueDictionary(keySelector, x => x);
         }
 
@@ -160,6 +181,8 @@ namespace JJ.Framework.Common
 
         public static TSource MaxOrDefault<TSource>(this IEnumerable<TSource> source)
         {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+
             if (!source.Any())
             {
                 return default(TSource);
@@ -170,6 +193,8 @@ namespace JJ.Framework.Common
 
         public static TResult MaxOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+
             if (!source.Any())
             {
                 return default(TResult);
@@ -180,6 +205,8 @@ namespace JJ.Framework.Common
 
         public static TSource MinOrDefault<TSource>(this IEnumerable<TSource> source)
         {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+
             if (!source.Any())
             {
                 return default(TSource);
@@ -190,6 +217,8 @@ namespace JJ.Framework.Common
 
         public static TResult MinOrDefault<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+
             if (!source.Any())
             {
                 return default(TResult);
@@ -285,6 +314,8 @@ namespace JJ.Framework.Common
         /// </summary>
         public static void RemoveFirst<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+
             int index = IndexOf(collection, predicate);
             collection.RemoveAt(index);
         }
@@ -297,6 +328,8 @@ namespace JJ.Framework.Common
         /// </summary>
         public static bool TryRemoveFirst<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+
             int? index = TryGetIndexOf(collection, predicate);
             if (!index.HasValue)
             {
@@ -309,6 +342,8 @@ namespace JJ.Framework.Common
 
         public static string[] TrimAll(this IEnumerable<string> values, params char[] trimChars)
         {
+            if (values == null) throw new ArgumentNullException(nameof(values));
+
             return values.Select(x => x.Trim(trimChars)).ToArray();
         }
 
