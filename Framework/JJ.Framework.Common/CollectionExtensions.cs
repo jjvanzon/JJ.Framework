@@ -97,6 +97,18 @@ namespace JJ.Framework.Common
             return new T[] { x }.Union(enumerable);
         }
 
+        public static IEnumerable<T> Concat<T>(this IEnumerable<T> enumerable, T x)
+        {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+
+            return enumerable.Concat(new T[] { x });
+        }
+
+        public static IEnumerable<T> Concat<T>(this T x, IEnumerable<T> enumerable)
+        {
+            return new T[] { x }.Concat(enumerable);
+        }
+
         // TODO: TKey is strange. You would think that the different elements of the key are not always of the same type.
         public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey>[] keys)
         {
