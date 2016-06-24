@@ -214,4 +214,7 @@
     <value>{0} opslaan</value>
     <comment>{0} = type of object, singular</comment>
   </data>
+  <data name="Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
 </root>

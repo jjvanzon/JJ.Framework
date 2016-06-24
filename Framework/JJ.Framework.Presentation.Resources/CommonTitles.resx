@@ -215,4 +215,7 @@
     <value>Menu</value>
     <comment>As in the user interface element.</comment>
   </data>
+  <data name="Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
 </root>
