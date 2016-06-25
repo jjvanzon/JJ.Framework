@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Mathematics
 {
@@ -21,6 +22,7 @@ namespace JJ.Framework.Mathematics
         /// Derived from the following source:
         /// http://www.virtualdj.com/forums/171269/VirtualDJ_Plugins/_Release__CDJ_Vinyl_Brake_Effect.html
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Interpolate_Cubic_Equidistant(double yMinus1, double y0, double y1, double y2, double t)
         {
             double y = (y0 / 2 - yMinus1 / 6 - y1 / 2 + y2 / 6) * t * t * t +
@@ -34,6 +36,7 @@ namespace JJ.Framework.Mathematics
         /// Pretty good sound interpolation.
         /// Source: http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Interpolate_Hermite_4pt3oX(float x0, float x1, float x2, float x3, float t)
         {
             float c0 = x1;
@@ -47,6 +50,7 @@ namespace JJ.Framework.Mathematics
         /// Pretty good sound interpolation.
         /// Source: http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Interpolate_Hermite_4pt3oX(double x0, double x1, double x2, double x3, double t)
         {
             double c0 = x1;
@@ -74,6 +78,7 @@ namespace JJ.Framework.Mathematics
         /// It does not go through (x1, y1) and (x2, y2).
         /// Those are merely control points that indicate the direction in which the curve goes.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Interpolate_Cubic_FromT(
             double x0, double x1, double x2, double x3,
             double y0, double y1, double y2, double y3,
@@ -107,6 +112,7 @@ namespace JJ.Framework.Mathematics
         /// It does not go through (x1, y1) and (x2, y2).
         /// Those are merely control points that indicate the direction in which the curve goes.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Interpolate_Cubic_FromT(
             float x0, float x1, float x2, float x3,
             float y0, float y1, float y2, float y3,
@@ -137,6 +143,7 @@ namespace JJ.Framework.Mathematics
         /// <summary>
         /// Not implemented yet.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Interpolate_Cubic_FromX(
             double x0, double x1, double x2, double x3, 
             double y0, double y1, double y2, double y3,
@@ -147,6 +154,7 @@ namespace JJ.Framework.Mathematics
 
         // From 1999
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Interpolate_Cubic_SmoothSlope(
             double xMinus1, double x0, double x1, double x2,
             double yMinus1, double y0, double y1, double y2,
@@ -158,6 +166,7 @@ namespace JJ.Framework.Mathematics
             return y;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static double Interpolate_Cubic_SmoothSlope(
             double x0, double x1,
             double y0, double y1, 
