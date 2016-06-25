@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Mathematics
 {
@@ -12,6 +13,7 @@ namespace JJ.Framework.Mathematics
         /// Integer variation of the Math.Pow function,
         /// that only works for non-negative exponents.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int Pow(int n, int e)
         {
             // I doubt this is actually faster than just using the standard Math.Pow that takes double.
@@ -29,7 +31,7 @@ namespace JJ.Framework.Mathematics
         /// but will prevent rounding erros such as
         /// 1000 log 10 = 2.99999999996
         /// </summary>
-
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int Log(int value, int n)
         {
             int temp = value;
@@ -42,6 +44,7 @@ namespace JJ.Framework.Mathematics
             return i;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsPowerOf2(int x)
         {
             // With help of:
@@ -55,6 +58,7 @@ namespace JJ.Framework.Mathematics
         /// Rounds to multiples of step, with an offset.
         /// It uses Math.Round as a helper, which supports a wide range of values.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double RoundWithStep(double value, double step, double offset)
         {
             double temp = (value - offset) / step;
@@ -65,6 +69,7 @@ namespace JJ.Framework.Mathematics
         /// Rounds to multiples of step, with an offset.
         /// It uses Math.Round as a helper, which supports a wide range of values.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double RoundWithStep(double value, double step)
         {
             double temp = value / step;
@@ -77,6 +82,7 @@ namespace JJ.Framework.Mathematics
         /// which might be faster than Math.Round,
         /// but means you are stuck within the value bounds of long.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double RoundWithStepWithInt64Bounds(double value, double step, double offset)
         {
             double temp = (value - offset) / step;
@@ -94,6 +100,7 @@ namespace JJ.Framework.Mathematics
         /// which might be faster than Math.Round,
         /// but means you are stuck within the value bounds of long.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double RoundWithStepWithInt64Bounds(double value, double step)
         {
             double temp = value / step;
@@ -111,6 +118,7 @@ namespace JJ.Framework.Mathematics
         /// which might be faster than Math.Round,
         /// but means you are stuck within the value bounds of long.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float RoundWithStepWithInt64Bounds(float value, float step, float offset)
         {
             float temp = (value - offset) / step;
@@ -128,6 +136,7 @@ namespace JJ.Framework.Mathematics
         /// which might be faster than Math.Round,
         /// but means you are stuck within the value bounds of long.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float RoundWithStepWithInt64Bounds(float value, float step)
         {
             float temp = value / step;
@@ -138,6 +147,5 @@ namespace JJ.Framework.Mathematics
 
             return (long)temp * step;
         }
-
     }
 }

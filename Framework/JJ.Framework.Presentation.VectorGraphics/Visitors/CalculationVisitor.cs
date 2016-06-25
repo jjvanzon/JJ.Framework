@@ -1,5 +1,4 @@
-﻿using JJ.Framework.Mathematics;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+﻿using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Reflection.Exceptions;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using JJ.Framework.Presentation.VectorGraphics.Enums;
 using JJ.Framework.Common;
 using JJ.Framework.Presentation.VectorGraphics.Helpers;
 using JJ.Framework.Common.Exceptions;
+using JJ.Framework.Mathematics;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 {
