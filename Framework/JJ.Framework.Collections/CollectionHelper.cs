@@ -7,6 +7,12 @@ namespace JJ.Framework.Collections
 {
     public static class CollectionHelper
     {
+        /// <summary>
+        /// This BinarySearch has not been thoroughly (unit) tested.
+        /// It has been used in the development of audio processing, 
+        /// during which it was debugged, and produced expected audio output.
+        /// The biggest concern is what happens with integer roundoff for certain edge cases.
+        /// </summary>            
         /// <param name="sortedArray"> Not checked for null, for performance. </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void BinarySearchInexact(
@@ -26,6 +32,11 @@ namespace JJ.Framework.Collections
         /// <summary>
         /// Overload with more values you supply yourself: halfLength, min and max,
         /// that you could cache yourself for performance.
+        /// 
+        /// This BinarySearch has not been thoroughly (unit) tested.
+        /// It has been used in the development of audio processing, 
+        /// during which it was debugged, and produced expected audio output.
+        /// The biggest concern is what happens with integer roundoff for certain edge cases.
         /// </summary>
         /// <param name="sortedArray"> Not checked for null, for performance. </param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
