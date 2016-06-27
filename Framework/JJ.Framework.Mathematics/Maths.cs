@@ -57,7 +57,7 @@ namespace JJ.Framework.Mathematics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double LogRatio(double x0, double x1, double x)
         {
-            double ratio = Math.Log(x - x0) / Math.Log(x1 - x0);
+            double ratio = Math.Log(x / x0) / Math.Log(x1 / x0);
             return ratio;
         }
 
