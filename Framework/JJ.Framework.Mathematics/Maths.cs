@@ -54,6 +54,13 @@ namespace JJ.Framework.Mathematics
             return isPowerOf2;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double LogRatio(double x0, double x1, double x)
+        {
+            double ratio = Math.Log(x - x0) / Math.Log(x1 - x0);
+            return ratio;
+        }
+
         /// <summary>
         /// Rounds to multiples of step, with an offset.
         /// It uses Math.Round as a helper, which supports a wide range of values.
