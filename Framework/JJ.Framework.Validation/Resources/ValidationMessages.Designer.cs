@@ -322,6 +322,15 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} &apos;{1}&apos; does not exist..
+        /// </summary>
+        internal static string NotExists_WithName_AndValue {
+            get {
+                return ResourceManager.GetString("NotExists_WithName_AndValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not filled in..
         /// </summary>
         internal static string NotFilledIn_WithName {
@@ -354,6 +363,15 @@ namespace JJ.Framework.Validation.Resources {
         internal static string NotInList_WithName_AndValue {
             get {
                 return ResourceManager.GetString("NotInList_WithName_AndValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} &apos;{1}&apos; not allowed. Allowed values: {2}..
+        /// </summary>
+        internal static string NotInList_WithName_AndValue_AndAllowedValues {
+            get {
+                return ResourceManager.GetString("NotInList_WithName_AndValue_AndAllowedValues", resourceCulture);
             }
         }
         

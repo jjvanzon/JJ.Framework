@@ -163,6 +163,13 @@ namespace JJ.Framework.Validation.Resources
             return message;
         }
 
+        public static string NotInList<TItem>(string propertyDisplayName, TItem value, IEnumerable<TItem> possibleValues)
+        {
+            string joinedPossibleValues = String_PlatformSupport.Join(", ", possibleValues);
+            string message = String.Format(ValidationMessages.NotInList_WithName_AndValue_AndAllowedValues, propertyDisplayName, value, joinedPossibleValues);
+            return message;
+        }
+
         public static string NotInList(string propertyDisplayName, object value)
         {
             string message = String.Format(ValidationMessages.NotInList_WithName_AndValue, propertyDisplayName, value);
@@ -192,6 +199,11 @@ namespace JJ.Framework.Validation.Resources
         public static string NotExists(string propertyDisplayName)
         {
             return String.Format(ValidationMessages.NotExists_WithName, propertyDisplayName);
+        }
+
+        public static string NotExists(string propertyDisplayName, object value)
+        {
+            return String.Format(ValidationMessages.NotExists_WithName_AndValue, propertyDisplayName, value);
         }
     }
 }

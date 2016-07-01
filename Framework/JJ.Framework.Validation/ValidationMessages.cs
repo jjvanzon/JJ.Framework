@@ -476,6 +476,18 @@ namespace JJ.Framework.Validation
             Add(propertyKey, ValidationMessageFormatter.NotExists(propertyDisplayName));
         }
 
+        public void AddNotExistsMessage(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName, object value)
+        {
+            string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
+            AddNotExistsMessage(propertyKey, propertyDisplayName, value);
+        }
+
+        public void AddNotExistsMessage(string propertyKey, string propertyDisplayName, object value)
+        {
+            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            Add(propertyKey, ValidationMessageFormatter.NotExists(propertyDisplayName, value));
+        }
+
         public void AddRequiredMessage(string propertyKey, string propertyDisplayName)
         {
             if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
@@ -522,6 +534,18 @@ namespace JJ.Framework.Validation
         {
             string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
             AddNotInListMessage(propertyKey, propertyDisplayName, possibleValues);
+        }
+
+        public void AddNotInListMessage<TItem>(string propertyKey, string propertyDisplayName, TItem value, IEnumerable<TItem> possibleValues)
+        {
+            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            Add(propertyKey, ValidationMessageFormatter.NotInList(propertyDisplayName, value, possibleValues));
+        }
+
+        public void AddNotInListMessage<TItem>(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName, TItem value, IEnumerable<TItem> possibleValues)
+        {
+            string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
+            AddNotInListMessage(propertyKey, propertyDisplayName, value, possibleValues);
         }
 
         public void AddNotIntegerMessage(string propertyKey, string propertyDisplayName)
