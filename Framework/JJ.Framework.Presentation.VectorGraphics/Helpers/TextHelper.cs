@@ -9,7 +9,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         /// <summary>
         /// Returns an approximate width of the string according to the specified font.
         /// </summary>
-        public static float ApproximateTextWidth(string text, Font font, float averageAspectRatioOfCharacter = 0.8f)
+        public static float ApproximateTextWidth(string text, Font font, float averageAspectRatioOfCharacter = 0.85f)
         {
             if (font == null) throw new NullException(() => font);
 
