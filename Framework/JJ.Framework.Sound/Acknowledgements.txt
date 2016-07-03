@@ -1,0 +1,2 @@
+﻿Jan-Joost van Zon, 2016-07-03:
+BiQuadFilter is an adaptation of the class from NAudio.
