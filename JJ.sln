@@ -282,8 +282,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{23
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynthesizerDB", "Database\SynthesizerDB\SynthesizerDB.csproj", "{F9370CA4-AB57-4BC8-BAA5-FDAEA8DB3F3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Sound", "Framework\JJ.Framework.Sound\JJ.Framework.Sound.csproj", "{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2700,30 +2698,6 @@ Global
 		{F9370CA4-AB57-4BC8-BAA5-FDAEA8DB3F3F}.Release|x64.Build.0 = Release|Any CPU
 		{F9370CA4-AB57-4BC8-BAA5-FDAEA8DB3F3F}.Release|x86.ActiveCfg = Release|Any CPU
 		{F9370CA4-AB57-4BC8-BAA5-FDAEA8DB3F3F}.Release|x86.Build.0 = Release|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Debug|x64.Build.0 = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Debug|x86.Build.0 = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.NPDebug|x64.ActiveCfg = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.NPDebug|x64.Build.0 = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.NPDebug|x86.ActiveCfg = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.NPDebug|x86.Build.0 = Debug|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Release|x64.ActiveCfg = Release|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Release|x64.Build.0 = Release|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Release|x86.ActiveCfg = Release|Any CPU
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2859,10 +2833,9 @@ Global
 		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1} = {50495465-0C70-46B2-A1BD-B5F6BD0EA3B2}
 		{5D06A212-5459-47F3-8109-E012C5FC9E3A} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{F9370CA4-AB57-4BC8-BAA5-FDAEA8DB3F3F} = {23450891-1092-41AF-BCDA-616DA0E8418A}
-		{BB8401C0-7742-46A0-9B11-7FFCFC4858DA} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 132
+		SccNumberOfProjects = 131
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -3386,9 +3359,5 @@ Global
 		SccProjectTopLevelParentUniqueName130 = JJ.sln
 		SccProjectName130 = Database/SynthesizerDB
 		SccLocalPath130 = Database\\SynthesizerDB
-		SccProjectUniqueName131 = Framework\\JJ.Framework.Sound\\JJ.Framework.Sound.csproj
-		SccProjectTopLevelParentUniqueName131 = JJ.sln
-		SccProjectName131 = Framework/JJ.Framework.Sound
-		SccLocalPath131 = Framework\\JJ.Framework.Sound
 	EndGlobalSection
 EndGlobal
