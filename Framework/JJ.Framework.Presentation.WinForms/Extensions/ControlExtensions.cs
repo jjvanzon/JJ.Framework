@@ -1,6 +1,8 @@
 ﻿using JJ.Framework.Reflection.Exceptions;
 using System.Linq;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using JJ.Framework.Presentation.WinForms.Helpers;
 
 namespace JJ.Framework.Presentation.WinForms.Extensions
 {
@@ -30,6 +32,16 @@ namespace JJ.Framework.Presentation.WinForms.Extensions
             {
                 AutomaticallyAssignTabIndexes(child, currentTabIndex++);
             }
+        }
+
+        public static IList<TControl> GetDescendantsOfType<TControl>(this Control control)
+        {
+            return ControlHelper.GetDescendantsOfType<TControl>(control);
+        }
+
+        public static UserControl GetAncestorUserControl(this Control control)
+        {
+            return ControlHelper.GetAncestorUserControl(control);
         }
     }
 }
