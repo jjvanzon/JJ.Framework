@@ -4,14 +4,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 {
     public static class ColorHelper
     {
-        static ColorHelper()
-        {
-            Black = GetColor(0, 0, 0);
-            White = GetColor(255, 255, 255);
-        }
-
-        public static int Black { get; private set; }
-        public static int White { get; private set; }
+        public static int Black { get; } = GetColor(0, 0, 0);
+        public static int White { get; } = GetColor(255, 255, 255);
 
         public static int GetColor(uint unsignedInteger)
         {

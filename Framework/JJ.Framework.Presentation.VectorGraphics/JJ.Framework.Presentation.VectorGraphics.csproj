@@ -54,6 +54,7 @@
     <Compile Include="Gestures\KeyDownGesture.cs" />
     <Compile Include="Gestures\KeyUpGesture.cs" />
     <Compile Include="Gestures\MouseLeaveGesture.cs" />
+    <Compile Include="Helpers\CloneExtensions.cs" />
     <Compile Include="Helpers\DebugHelper.cs" />
     <Compile Include="Helpers\ScaleHelper.cs" />
     <Compile Include="Helpers\TextHelper.cs" />
