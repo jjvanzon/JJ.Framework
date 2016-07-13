@@ -47,9 +47,9 @@ namespace JJ.Framework.Validation
         /// <summary> 
         /// Executes a sub-validator and combines the results with the validation messages of the parent validator. 
         /// </summary>
-        protected void Execute(IValidator validator)
+        protected void ExecuteValidator(IValidator validator)
         {
-            Execute(validator, null);
+            ExecuteValidator(validator, null);
         }
 
         /// <summary> 
@@ -57,9 +57,9 @@ namespace JJ.Framework.Validation
         /// This overload only works when the sub-validator takes the same object as the parent validator,
         /// and if the sub-validator has no additional constructor parameters.
         /// </summary>
-        protected void Execute(Type validatorType)
+        protected void ExecuteValidator(Type validatorType)
         {
-            Execute(validatorType, null);
+            ExecuteValidator(validatorType, null);
         }
 
         /// <summary> 
@@ -67,10 +67,10 @@ namespace JJ.Framework.Validation
         /// This overload only works when the sub-validator takes the same object as the parent validator,
         /// and if the sub-validator has no additional constructor parameters.
         /// </summary>
-        protected void Execute(Type validatorType, string messagePrefix)
+        protected void ExecuteValidator(Type validatorType, string messagePrefix)
         {
             IValidator validator = (IValidator)Activator.CreateInstance(validatorType, new object[] { Object });
-            Execute(validator, messagePrefix);
+            ExecuteValidator(validator, messagePrefix);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace JJ.Framework.Validation
         /// A message prefix can identify the parent object so that validation messages indicate 
         /// what specific part of the object structure they are about. 
         /// </param>
-        public void Execute(IValidator validator, string messagePrefix)
+        public void ExecuteValidator(IValidator validator, string messagePrefix)
         {
             if (validator == null) throw new NullException(() => validator);
 
