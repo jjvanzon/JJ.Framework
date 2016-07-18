@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Mathematics
 {
@@ -54,6 +55,22 @@ namespace JJ.Framework.Mathematics
             {
                 distance = -distance;
             }
+            return distance;
+        }
+
+        public static double AbsoluteDistance(double x1, double y1, double x2, double y2)
+        {
+            double dx = x2 - x1;
+            double dy = y2 - y1;
+            double distance = Math.Sqrt(dx * dx + dy * dy);
+            return distance;
+        }
+
+        public static float AbsoluteDistance(float x1, float y1, float x2, float y2)
+        {
+            float dx = x2 - x1;
+            float dy = y2 - y1;
+            float distance = (float)Math.Sqrt(dx * dx + dy * dy);
             return distance;
         }
     }
