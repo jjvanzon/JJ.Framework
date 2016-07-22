@@ -40,6 +40,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoundsHelper.cs" />
     <Compile Include="ConversionExtensions.cs" />
     <Compile Include="GraphicsBuffer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

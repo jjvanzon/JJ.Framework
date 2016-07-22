@@ -1,10 +1,8 @@
-﻿using JJ.Framework.Common;
-using JJ.Framework.Presentation.VectorGraphics.Enums;
+﻿using JJ.Framework.Presentation.VectorGraphics.Enums;
 using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Reflection.Exceptions;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using VectorGraphicsStyling = JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Common.Exceptions;
@@ -21,28 +19,32 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
-            var destPointF = new PointF(sourcePoint.CalculatedValues.XInPixels, sourcePoint.CalculatedValues.YInPixels);
+            float x = BoundsHelper.CorrectCoordinate(sourcePoint.CalculatedValues.XInPixels);
+            float y = BoundsHelper.CorrectCoordinate(sourcePoint.CalculatedValues.YInPixels);
+
+            var destPointF = new PointF(x, y);
+
             return destPointF;
         }
 
-        public static System.Drawing.Point ToSystemDrawingPoint(this VectorGraphicsElements.Point sourcePoint)
-        {
-            if (sourcePoint == null) throw new NullException(() => sourcePoint);
+        // TODO: Remove outcommented code.
+        //public static System.Drawing.Point ToSystemDrawingPoint(this VectorGraphicsElements.Point sourcePoint)
+        //{
+        //    if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
-            var destPoint = new System.Drawing.Point((int)sourcePoint.CalculatedValues.XInPixels, (int)sourcePoint.CalculatedValues.YInPixels);
-            return destPoint;
-        }
+        //    var destPoint = new System.Drawing.Point((int)sourcePoint.CalculatedValues.XInPixels, (int)sourcePoint.CalculatedValues.YInPixels);
+        //    return destPoint;
+        //}
 
         public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.Point sourcePoint)
         {
             if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
-            float pointWidth = sourcePoint.PointStyle.Width;
-            var destRectangleF = new RectangleF(
-                x: sourcePoint.CalculatedValues.XInPixels - pointWidth / 2,
-                y: sourcePoint.CalculatedValues.YInPixels - pointWidth / 2,
-                width: pointWidth,
-                height: pointWidth);
+            float pointWidth = BoundsHelper.CorrectLength(sourcePoint.PointStyle.Width);
+            float x = BoundsHelper.CorrectCoordinate(sourcePoint.CalculatedValues.XInPixels - pointWidth / 2f);
+            float y = BoundsHelper.CorrectCoordinate(sourcePoint.CalculatedValues.YInPixels - pointWidth / 2f);
+
+            var destRectangleF = new RectangleF(x, y, pointWidth, pointWidth);
 
             return destRectangleF;
         }
@@ -53,27 +55,29 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
-            var destRectangleF = new RectangleF(
-                sourceRectangle.CalculatedValues.XInPixels,
-                sourceRectangle.CalculatedValues.YInPixels,
-                sourceRectangle.CalculatedValues.WidthInPixels,
-                sourceRectangle.CalculatedValues.HeightInPixels);
+            float x = BoundsHelper.CorrectCoordinate(sourceRectangle.CalculatedValues.XInPixels);
+            float y = BoundsHelper.CorrectCoordinate(sourceRectangle.CalculatedValues.YInPixels);
+            float width = BoundsHelper.CorrectLength(sourceRectangle.CalculatedValues.WidthInPixels);
+            float height = BoundsHelper.CorrectLength(sourceRectangle.CalculatedValues.HeightInPixels);
+
+            var destRectangleF = new RectangleF(x, y, width, height);
 
             return destRectangleF;
         }
 
-        public static System.Drawing.Rectangle ToSystemDrawingRectangle(this VectorGraphicsElements.Rectangle sourceRectangle)
-        {
-            if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
+        // TODO: Remove outcommented code.
+        //public static System.Drawing.Rectangle ToSystemDrawingRectangle(this VectorGraphicsElements.Rectangle sourceRectangle)
+        //{
+        //    if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
-            var destRectangle = new System.Drawing.Rectangle(
-                (int)sourceRectangle.CalculatedValues.XInPixels,
-                (int)sourceRectangle.CalculatedValues.YInPixels,
-                (int)sourceRectangle.CalculatedValues.WidthInPixels,
-                (int)sourceRectangle.CalculatedValues.HeightInPixels);
+        //    var destRectangle = new System.Drawing.Rectangle(
+        //        (int)sourceRectangle.CalculatedValues.XInPixels,
+        //        (int)sourceRectangle.CalculatedValues.YInPixels,
+        //        (int)sourceRectangle.CalculatedValues.WidthInPixels,
+        //        (int)sourceRectangle.CalculatedValues.HeightInPixels);
 
-            return destRectangle;
-        }
+        //    return destRectangle;
+        //}
 
         // Style Values
 
@@ -133,8 +137,10 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourceLineStyle == null) throw new NullException(() => sourceLineStyle);
 
+            float lineWidth = BoundsHelper.CorrectLength(sourceLineStyle.Width);
+
             Color destColor = sourceLineStyle.Color.ToSystemDrawing();
-            Pen destPen = new Pen(destColor, sourceLineStyle.Width);
+            Pen destPen = new Pen(destColor, lineWidth);
 
             switch (sourceLineStyle.DashStyleEnum)
             {
@@ -216,7 +222,7 @@ namespace JJ.Framework.Presentation.Drawing
                 destFontStyle |= FontStyle.Italic;
             }
 
-            float fontSize = sourceFont.Size;
+            float fontSize = BoundsHelper.CorrectLength(sourceFont.Size);
 
             // Get rid of Windows DPI scaling.
             float antiDpiFactor =  DEFAULT_DPI / dpi;

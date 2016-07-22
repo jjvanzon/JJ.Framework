@@ -71,6 +71,7 @@
     <Compile Include="Exceptions\NotUniqueExceptionOfT.cs" />
     <Compile Include="Exceptions\NotUniqueException.cs" />
     <Compile Include="Exceptions\NullOrWhiteSpaceException.cs" />
+    <Compile Include="Exceptions\UnexpectedTypeException.cs" />
     <Compile Include="Exceptions\ZeroException.cs" />
     <Compile Include="Exceptions\EqualException.cs" />
     <Compile Include="Exceptions\NotEqualException.cs" />

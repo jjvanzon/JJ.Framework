@@ -57,7 +57,7 @@ namespace JJ.Framework.Presentation.Drawing
                 return;
             }
 
-            throw new Exception(String.Format("Unexpected Element type '{0}'", sourceElement.GetType().FullName));
+            throw new UnexpectedTypeException(() => sourceElement);
         }
 
         // TODO:
@@ -90,12 +90,13 @@ namespace JJ.Framework.Presentation.Drawing
                 if (sourceLine.PointB == null) throw new NullException(() => sourceLine.PointB);
 
                 Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
-                destGraphics.DrawLine(
-                    destPen, 
-                    sourceLine.PointA.CalculatedValues.XInPixels, 
-                    sourceLine.PointA.CalculatedValues.YInPixels,
-                    sourceLine.PointB.CalculatedValues.XInPixels,
-                    sourceLine.PointB.CalculatedValues.YInPixels);
+
+                float x1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.XInPixels);
+                float y1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.YInPixels);
+                float x2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.XInPixels);
+                float y2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.YInPixels);
+
+                destGraphics.DrawLine(destPen, x1, y1, x2, y2);
             }
         }
 
@@ -116,32 +117,34 @@ namespace JJ.Framework.Presentation.Drawing
             }
 
             // Draw Rectangle
+            float left = BoundsHelper.CorrectCoordinate(sourceRectangle.CalculatedValues.XInPixels);
+            float top = BoundsHelper.CorrectCoordinate(sourceRectangle.CalculatedValues.YInPixels);
+            float width = BoundsHelper.CorrectLength(sourceRectangle.CalculatedValues.WidthInPixels);
+            float height = BoundsHelper.CorrectLength(sourceRectangle.CalculatedValues.HeightInPixels);
+
             LineStyle lineStyle = sourceRectangle.Style.LineStyle;
             if (lineStyle != null)
             {
                 if (lineStyle.Visible)
                 {
                     Pen destPen = lineStyle.ToSystemDrawing();
-                    destGraphics.DrawRectangle(
-                        destPen,
-                        sourceRectangle.CalculatedValues.XInPixels,
-                        sourceRectangle.CalculatedValues.YInPixels,
-                        sourceRectangle.CalculatedValues.WidthInPixels,
-                        sourceRectangle.CalculatedValues.HeightInPixels);
+
+                    destGraphics.DrawRectangle(destPen, left, top, width, height);
                 }
             }
             else
             {
                 // Draw 4 Border Lines (with different styles)
 
-                float right = sourceRectangle.CalculatedValues.XInPixels + sourceRectangle.CalculatedValues.WidthInPixels;
-                float bottom = sourceRectangle.CalculatedValues.YInPixels + sourceRectangle.CalculatedValues.HeightInPixels;
+                // TODO: You would think that bounds check is unnecessary here.
+                float right = left + width;
+                float bottom = top + height;
 
-                PointF destTopLeftPointF = new PointF(sourceRectangle.CalculatedValues.XInPixels, sourceRectangle.CalculatedValues.YInPixels);
-                PointF destTopRightPointF = new PointF(right, sourceRectangle.CalculatedValues.YInPixels);
+                PointF destTopLeftPointF = new PointF(left, top);
+                PointF destTopRightPointF = new PointF(right, top);
                 PointF destBottomRightPointF = new PointF(right, bottom);
-                PointF destBottomLeftPointF = new PointF(sourceRectangle.CalculatedValues.XInPixels, bottom);
-                
+                PointF destBottomLeftPointF = new PointF(left, bottom);
+
                 Pen destTopPen = sourceRectangle.Style.TopLineStyle.ToSystemDrawing();
                 destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
 
@@ -165,11 +168,14 @@ namespace JJ.Framework.Presentation.Drawing
 
             StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
             System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing(destGraphics.DpiX);
-            RectangleF destRectangle = new RectangleF(
-                sourceLabel.CalculatedValues.XInPixels,
-                sourceLabel.CalculatedValues.YInPixels,
-                sourceLabel.CalculatedValues.WidthInPixels,
-                sourceLabel.CalculatedValues.HeightInPixels);
+
+            float x = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.XInPixels);
+            float y = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.YInPixels);
+            float width = BoundsHelper.CorrectLength(sourceLabel.CalculatedValues.WidthInPixels);
+            float height = BoundsHelper.CorrectLength(sourceLabel.CalculatedValues.HeightInPixels);
+
+            var destRectangle = new RectangleF(x, y, width, height);
+
             Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 
             destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);
