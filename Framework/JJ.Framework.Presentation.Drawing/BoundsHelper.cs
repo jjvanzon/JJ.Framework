@@ -7,9 +7,9 @@ namespace JJ.Framework.Presentation.Drawing
 {
     internal static class BoundsHelper
     {
-        private const float MAX_VALUE = 1E12f;
-        private const float MIN_VALUE = -1E12f;
-        private const float VERY_SMALL_VALUE = 1E-12f;
+        private const float MAX_VALUE = 1E9f;
+        private const float MIN_VALUE = -1E9f;
+        private const float VERY_SMALL_VALUE = 1E-9f;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float CorrectCoordinate(float value)
