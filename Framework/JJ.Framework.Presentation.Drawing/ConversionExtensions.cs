@@ -192,6 +192,10 @@ namespace JJ.Framework.Presentation.Drawing
             {
                 destStringFormat.Trimming = StringTrimming.EllipsisCharacter;
             }
+            else
+            {
+                destStringFormat.Trimming = StringTrimming.None;
+            }
 
             return destStringFormat;
         }

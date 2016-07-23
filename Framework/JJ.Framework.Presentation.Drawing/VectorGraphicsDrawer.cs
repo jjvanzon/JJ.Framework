@@ -171,8 +171,11 @@ namespace JJ.Framework.Presentation.Drawing
 
             float x = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.XInPixels);
             float y = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.YInPixels);
-            float width = BoundsHelper.CorrectLength(sourceLabel.CalculatedValues.WidthInPixels);
-            float height = BoundsHelper.CorrectLength(sourceLabel.CalculatedValues.HeightInPixels);
+
+            // Calling CorrectCoordinate instead of CorrectLength,
+            // because apparently System.Drawing hates it when I correct 0 to 1E-9f.
+            float width = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.WidthInPixels);
+            float height = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.HeightInPixels);
 
             var destRectangle = new RectangleF(x, y, width, height);
 
