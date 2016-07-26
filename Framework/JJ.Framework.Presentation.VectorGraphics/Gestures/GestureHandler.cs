@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
     internal class GestureHandler
     {
-        private Diagram _diagram;
+        private readonly Diagram _diagram;
         private Element _mouseCapturingElement;
 
         public GestureHandler(Diagram diagram)
@@ -31,7 +31,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         public void HandleMouseDown(MouseEventArgs e)
         {
-            _mouseMoveGesture.HandleMouseDown(this, e);
+            _mouseMoveGesture.Internals.HandleMouseDown(this, e);
 
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
 
@@ -41,19 +41,19 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             {
                 var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-                foreach (IGesture diagramGesture in _diagram.Gestures.ToArray())
+                foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
                 {
-                    diagramGesture.HandleMouseDown(hitElement, e);
+                    diagramGesture.Internals.HandleMouseDown(hitElement, e);
                 }
 
-                foreach (IGesture gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+                foreach (GestureBase gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
                 {
-                    gesture.HandleMouseDown(hitElement, e2);
+                    gesture.Internals.HandleMouseDown(hitElement, e2);
                 }
 
                 TryBubbleMouseDown(hitElement, hitElement, e);
 
-                if (hitElement.Gestures.Any(x => x.MouseCaptureRequired))
+                if (hitElement.Gestures.Any(x => x.Internals.MouseCaptureRequired))
                 {
                     _mouseCapturingElement = hitElement;
                 }
@@ -81,14 +81,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
             var e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-            foreach (IGesture gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+            foreach (GestureBase gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
-                gesture.HandleMouseDown(sender, e2);
+                gesture.Internals.HandleMouseDown(sender, e2);
             }
 
             TryBubbleMouseDown(sender, parent, e);
 
-            if (parent.Gestures.Any(x => x.MouseCaptureRequired))
+            if (parent.Gestures.Any(x => x.Internals.MouseCaptureRequired))
             {
                 _mouseCapturingElement = child;
             }
@@ -100,7 +100,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         /// In WinForms a mouse move will go off upon mouse down, even though you did not even move the mouse at all
         /// All gestures have trouble with this if you do not solve it at this level.
         /// </summary>
-        private IGesture _mouseMoveGesture;
+        private GestureBase _mouseMoveGesture;
 
         private void InitializeMouseMoveGesture()
         {
@@ -120,7 +120,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         public void HandleMouseMove(MouseEventArgs e)
         {
-            _mouseMoveGesture.HandleMouseMove(this, e);
+            _mouseMoveGesture.Internals.HandleMouseMove(this, e);
         }
 
         private void mouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
@@ -137,14 +137,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             {
                 var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-                foreach (IGesture diagramGesture in _diagram.Gestures.ToArray())
+                foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
                 {
-                    diagramGesture.HandleMouseMove(hitElement, e2);
+                    diagramGesture.Internals.HandleMouseMove(hitElement, e2);
                 }
 
-                foreach (IGesture gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+                foreach (GestureBase gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
                 {
-                    gesture.HandleMouseMove(hitElement, e2);
+                    gesture.Internals.HandleMouseMove(hitElement, e2);
                 }
 
                 TryBubbleMouseMove(hitElement, hitElement, e);
@@ -172,9 +172,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
             MouseEventArgs e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-            foreach (IGesture gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+            foreach (GestureBase gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
-                gesture.HandleMouseMove(sender, e2);
+                gesture.Internals.HandleMouseMove(sender, e2);
             }
 
             TryBubbleMouseMove(sender, parent, e);
@@ -184,7 +184,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         public void HandleMouseUp(MouseEventArgs e)
         {
-            _mouseMoveGesture.HandleMouseUp(this, e);
+            _mouseMoveGesture.Internals.HandleMouseUp(this, e);
 
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
 
@@ -198,14 +198,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             {
                 var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-                foreach (IGesture diagramGesture in _diagram.Gestures.ToArray())
+                foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
                 {
-                    diagramGesture.HandleMouseUp(hitElement, e2);
+                    diagramGesture.Internals.HandleMouseUp(hitElement, e2);
                 }
 
-                foreach (IGesture gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+                foreach (GestureBase gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
                 {
-                    gesture.HandleMouseUp(hitElement, e2);
+                    gesture.Internals.HandleMouseUp(hitElement, e2);
                 }
 
                 TryBubbleMouseUp(hitElement, hitElement, e);
@@ -235,9 +235,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
             MouseEventArgs e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-            foreach (IGesture gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+            foreach (GestureBase gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
-                gesture.HandleMouseUp(sender, e2);
+                gesture.Internals.HandleMouseUp(sender, e2);
             }
 
             TryBubbleMouseUp(sender, parent, e);
@@ -247,27 +247,27 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         public void HandleKeyDown(KeyEventArgs e)
         {
-            foreach (IGesture gesture in _diagram.Gestures.ToArray())
+            foreach (GestureBase gesture in _diagram.Gestures.ToArray())
             {
-                gesture.HandleKeyDown(_diagram, e);
+                gesture.Internals.HandleKeyDown(_diagram, e);
             }
 
-            foreach (IGesture gesture in _diagram.Background.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+            foreach (GestureBase gesture in _diagram.Background.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
-                gesture.HandleKeyDown(_diagram.Background, e);
+                gesture.Internals.HandleKeyDown(_diagram.Background, e);
             }
         }
 
         public void HandleKeyUp(KeyEventArgs e)
         {
-            foreach (IGesture gesture in _diagram.Gestures.ToArray())
+            foreach (GestureBase gesture in _diagram.Gestures.ToArray())
             {
-                gesture.HandleKeyUp(_diagram, e);
+                gesture.Internals.HandleKeyUp(_diagram, e);
             }
 
-            foreach (IGesture gesture in _diagram.Background.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+            foreach (GestureBase gesture in _diagram.Background.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
             {
-                gesture.HandleKeyUp(_diagram.Background, e);
+                gesture.Internals.HandleKeyUp(_diagram.Background, e);
             }
         }
 

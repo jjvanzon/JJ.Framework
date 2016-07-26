@@ -13,7 +13,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     {
         internal Element()
         {
-            Gestures = new List<IGesture>();
+            Gestures = new List<GestureBase>();
             CalculatedValues = new CalculatedValues();
 
             _parentRelationship = new ChildToParentRelationship(this);
@@ -33,7 +33,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         // Gestures
 
-        public IList<IGesture> Gestures { get; private set; }
+        public IList<GestureBase> Gestures { get; private set; }
         public bool MustBubble { get; set; }
         /// <summary> Indicates whether the element will respond to mouse and keyboard gestures. </summary>
         public bool Enabled { get; set; }

@@ -7,7 +7,7 @@ using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
-    /// <summary> Interface for when you need to send primitive gestures to the diagram. </summary>
+    /// <summary> For when you need to send primitive gestures to the diagram. </summary>
     public class DiagramGestureHandling
     {
         private Diagram _diagram;

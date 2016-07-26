@@ -106,7 +106,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             DoubleClick(sender, e2);
             return true;
         }
-        
+
         private bool DeltaIsInRange(MouseEventArgs mouseDownEventArgs1, MouseEventArgs mouseDownEventArgs2)
         {
             float deltaX = mouseDownEventArgs2.XInPixels - mouseDownEventArgs1.XInPixels;

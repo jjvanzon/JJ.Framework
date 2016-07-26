@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using JJ.Framework.Presentation.VectorGraphics.EventArg;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
-    /// <summary>
-    /// Base class for gestures.
-    /// Apart from what IGesture does, this base class adds
-    /// the MouseCaptureRequired property returning false
-    /// by default.
-    /// </summary>
-    public abstract class GestureBase : IGesture
+    /// <summary> Base class for gestures. </summary>
+    public abstract class GestureBase
     {
+        public GestureBase()
+        {
+            Internals = new GestureInternals(this);
+        }
+
         /// <summary> Base member does nothing. </summary>
         protected virtual void HandleMouseDown(object sender, MouseEventArgs e)
         { }
@@ -31,16 +32,30 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         protected virtual void HandleKeyUp(object sender, KeyEventArgs e)
         { }
 
-        protected virtual bool MouseCaptureRequired
-        {
-            get { return false; }
-        }
+        protected virtual bool MouseCaptureRequired => false;
 
-        void IGesture.HandleMouseDown(object sender, MouseEventArgs e) { HandleMouseDown(sender, e); }
-        void IGesture.HandleMouseMove(object sender, MouseEventArgs e) { HandleMouseMove(sender, e); }
-        void IGesture.HandleMouseUp(object sender, MouseEventArgs e) { HandleMouseUp(sender, e); }
-        void IGesture.HandleKeyDown(object sender, KeyEventArgs e) { HandleKeyDown(sender, e); }
-        void IGesture.HandleKeyUp(object sender, KeyEventArgs e) { HandleKeyUp(sender, e); }
-        bool IGesture.MouseCaptureRequired { get { return MouseCaptureRequired; } }
+        public GestureInternals Internals { get; }
+
+        // These are here for GestureInternals to delegate to, all to make the interface look clean.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal void InternalHandleMouseDown(object sender, MouseEventArgs e) => HandleMouseDown(sender, e);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal void InternalHandleMouseMove(object sender, MouseEventArgs e) => HandleMouseMove(sender, e);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal void InternalHandleMouseUp(object sender, MouseEventArgs e) => HandleMouseUp(sender, e);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal void InternalHandleKeyDown(object sender, KeyEventArgs e) => HandleKeyDown(sender, e);
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal void InternalHandleKeyUp(object sender, KeyEventArgs e) => HandleKeyUp(sender, e);
+
+        internal bool InternalMouseCaptureRequired
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get { return MouseCaptureRequired; }
+        }
     }
 }

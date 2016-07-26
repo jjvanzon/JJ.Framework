@@ -51,6 +51,7 @@
     <Compile Include="Gestures\DragGesture.cs" />
     <Compile Include="Gestures\DropGesture.cs" />
     <Compile Include="Gestures\GestureBase.cs" />
+    <Compile Include="Gestures\GestureInternals.cs" />
     <Compile Include="Gestures\KeyDownGesture.cs" />
     <Compile Include="Gestures\KeyUpGesture.cs" />
     <Compile Include="Gestures\MouseLeaveGesture.cs" />
@@ -78,7 +79,7 @@
     <Compile Include="Gestures\GestureHandler.cs" />
     <Compile Include="Gestures\ClickGesture.cs" />
     <Compile Include="Gestures\DoubleClickGesture.cs" />
-    <Compile Include="Gestures\IGesture.cs" />
+    <Compile Include="Gestures\2016-07-26 Backup of IGesture.cs" />
     <Compile Include="Gestures\MouseDownGesture.cs" />
     <Compile Include="Gestures\MouseMoveGesture.cs" />
     <Compile Include="Gestures\MouseUpGesture.cs" />

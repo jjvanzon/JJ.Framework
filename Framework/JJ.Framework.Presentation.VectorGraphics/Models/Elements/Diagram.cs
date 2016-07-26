@@ -13,7 +13,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             Elements = new DiagramElements(this);
             Position = new DiagramPosition(this);
-            Gestures = new List<IGesture>();
+            Gestures = new List<GestureBase>();
             GestureHandling = new DiagramGestureHandling(this);
 
             _background = new Rectangle();
@@ -60,7 +60,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         /// The gestures on the diagram always go off regardless of bubbling.
         /// It gives us a means to tap in on events at a more basic level.
         /// </summary>
-        public IList<IGesture> Gestures { get; private set; }
+        public IList<GestureBase> Gestures { get; private set; }
 
         /// <summary> For when you need to send primitive gestures to the diagram. </summary>
         public DiagramGestureHandling GestureHandling { get; private set; }
