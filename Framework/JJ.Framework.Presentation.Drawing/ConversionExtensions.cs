@@ -27,15 +27,6 @@ namespace JJ.Framework.Presentation.Drawing
             return destPointF;
         }
 
-        // TODO: Remove outcommented code.
-        //public static System.Drawing.Point ToSystemDrawingPoint(this VectorGraphicsElements.Point sourcePoint)
-        //{
-        //    if (sourcePoint == null) throw new NullException(() => sourcePoint);
-
-        //    var destPoint = new System.Drawing.Point((int)sourcePoint.CalculatedValues.XInPixels, (int)sourcePoint.CalculatedValues.YInPixels);
-        //    return destPoint;
-        //}
-
         public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.Point sourcePoint)
         {
             if (sourcePoint == null) throw new NullException(() => sourcePoint);
@@ -64,20 +55,6 @@ namespace JJ.Framework.Presentation.Drawing
 
             return destRectangleF;
         }
-
-        // TODO: Remove outcommented code.
-        //public static System.Drawing.Rectangle ToSystemDrawingRectangle(this VectorGraphicsElements.Rectangle sourceRectangle)
-        //{
-        //    if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
-
-        //    var destRectangle = new System.Drawing.Rectangle(
-        //        (int)sourceRectangle.CalculatedValues.XInPixels,
-        //        (int)sourceRectangle.CalculatedValues.YInPixels,
-        //        (int)sourceRectangle.CalculatedValues.WidthInPixels,
-        //        (int)sourceRectangle.CalculatedValues.HeightInPixels);
-
-        //    return destRectangle;
-        //}
 
         // Style Values
 
