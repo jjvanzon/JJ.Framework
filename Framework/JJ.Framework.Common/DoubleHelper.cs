@@ -20,7 +20,7 @@ namespace JJ.Framework.Common
 
         /// <summary> Returns true if the value is NaN, PositiveInfinity or NegativeInfinity. </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsSpecialNumber(double value)
+        public static bool IsSpecialValue(double value)
         {
             return Double.IsNaN(value) || Double.IsInfinity(value);
         }
