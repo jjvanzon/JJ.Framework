@@ -218,4 +218,10 @@
   <data name="Item" xml:space="preserve">
     <value>Item</value>
   </data>
+  <data name="False" xml:space="preserve">
+    <value>False</value>
+  </data>
+  <data name="True" xml:space="preserve">
+    <value>True</value>
+  </data>
 </root>

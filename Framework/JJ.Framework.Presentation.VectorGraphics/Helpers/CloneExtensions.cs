@@ -6,7 +6,7 @@ using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 {
-    internal static class CloneExtensions
+    public static class CloneExtensions
     {
         public static BackStyle Clone(this BackStyle source)
         {
@@ -16,6 +16,20 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             {
                 Color = source.Color,
                 Visible = source.Visible
+            };
+
+            return dest;
+        }
+
+        public static PointStyle Clone(this PointStyle source)
+        {
+            if (source == null) throw new NullException(() => source);
+
+            var dest = new PointStyle
+            {
+                Color = source.Color,
+                Visible = source.Visible,
+                Width = source.Width
             };
 
             return dest;
