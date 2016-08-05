@@ -114,6 +114,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         public float RelativeBottom
         {
             get { return _element.Position.Y + _element.Position.Height; }
+            //set { _element.Position.Y = value - _element.Position.Height; }
         }
 
         public float AbsoluteRight
