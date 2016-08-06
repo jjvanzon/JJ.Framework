@@ -36,7 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Analysers\2016-08-07 Backup of PropertyMethodAndClassNamesStartWithUpperCaseAnalyzer.cs" />
     <Compile Include="Analysers\MethodNamesStartWithUpperCaseAnalyzer.cs" />
     <Compile Include="Analysers\PropertyNamesStartWithUpperCaseAnalyzer.cs" />
     <Compile Include="Analysers\FieldNamesStartWithUnderscoreAnalyzer.cs" />

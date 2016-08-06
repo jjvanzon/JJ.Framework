@@ -10,7 +10,7 @@ namespace JJ.Analysis.Analysers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class FieldNamesStartWithUnderscoreAnalyzer : DiagnosticAnalyzer
     {
-        private static DiagnosticDescriptor _rule = new DiagnosticDescriptor(
+        private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
             DiagnosticsIDs.FieldNamesStartWithUnderscore,
             title: DiagnosticsIDs.FieldNamesStartWithUnderscore,
             messageFormat: "Field name '{0}' does not start with underscore.",
@@ -18,7 +18,9 @@ namespace JJ.Analysis.Analysers
             defaultSeverity: DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(_rule);
+        private static readonly ImmutableArray<DiagnosticDescriptor> _supportedDiagnostics = ImmutableArray.Create(_rule);
+
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => _supportedDiagnostics;
 
         public override void Initialize(AnalysisContext context)
         {
