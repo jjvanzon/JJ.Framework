@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JJ.Demos.Analysers.Names
+namespace JJ.Analysis.Names
 {
     internal static class DiagnosticsIDs
     {

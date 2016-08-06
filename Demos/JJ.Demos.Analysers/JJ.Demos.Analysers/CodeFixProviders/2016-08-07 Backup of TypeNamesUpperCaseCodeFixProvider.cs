@@ -11,10 +11,9 @@
 //using Microsoft.CodeAnalysis.CSharp;
 //using Microsoft.CodeAnalysis.CSharp.Syntax;
 //using Microsoft.CodeAnalysis.Rename;
-//using Microsoft.CodeAnalysis.Text;
-//using JJ.Demos.Analysers.Names;
+//using JJ.Analysis.Names;
 
-//namespace JJ.Demos.Analysers.CodeFixProviders
+//namespace JJ.Analysis.CodeFixProviders
 //{
 //    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(TypeNamesUpperCaseCodeFixProvider)), Shared]
 //    public class TypeNamesUpperCaseCodeFixProvider : CodeFixProvider

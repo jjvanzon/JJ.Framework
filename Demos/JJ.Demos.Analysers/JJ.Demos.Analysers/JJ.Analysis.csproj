@@ -8,8 +8,8 @@
     <ProjectGuid>{A7C6E469-8196-4A35-A13F-545557D601DB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Demos.Analysers</RootNamespace>
-    <AssemblyName>JJ.Demos.Analysers</AssemblyName>
+    <RootNamespace>JJ.Analysis</RootNamespace>
+    <AssemblyName>JJ.Analysis</AssemblyName>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkProfile>Profile7</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -39,7 +39,7 @@
     <Compile Include="Analysers\2016-08-06 Backup of FieldNameStartsWithUnderscoreAnalyzer.cs" />
     <Compile Include="Analysers\PropertyNamesStartWithUpperCaseAnalyzer.cs" />
     <Compile Include="Analysers\FieldNamesStartWithUnderscoreAnalyzer.cs" />
-    <Compile Include="CodeFixProviders\TypeNamesUpperCaseCodeFixProvider.cs" />
+    <Compile Include="CodeFixProviders\2016-08-07 Backup of TypeNamesUpperCaseCodeFixProvider.cs" />
     <Compile Include="Names\CategoryNames.cs" />
     <Compile Include="Names\DiagnosticsIDs.cs" />
     <Compile Include="Analysers\TypeNamesUpperCaseAnalyzer.cs" />

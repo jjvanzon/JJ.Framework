@@ -1,4 +1,4 @@
-﻿namespace JJ.Demos.Analysers.Names
+﻿namespace JJ.Analysis.Names
 {
     internal static class CategoryNames
     {

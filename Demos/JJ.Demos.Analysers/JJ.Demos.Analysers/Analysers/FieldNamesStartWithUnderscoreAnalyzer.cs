@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using JJ.Demos.Analysers.Names;
+using JJ.Analysis.Names;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace JJ.Demos.Analysers.Analysers
+namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class FieldNamesStartWithUnderscoreAnalyzer : DiagnosticAnalyzer

@@ -56,9 +56,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Demos.Analysers\JJ.Demos.Analysers.csproj">
+    <ProjectReference Include="..\JJ.Demos.Analysers\JJ.Analysis.csproj">
       <Project>{A7C6E469-8196-4A35-A13F-545557D601DB}</Project>
-      <Name>JJ.Demos.Analysers</Name>
+      <Name>JJ.Analysis</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

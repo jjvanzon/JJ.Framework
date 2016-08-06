@@ -1,19 +1,19 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>JJ.Demos.Analysers</id>
+    <id>JJ.Analysis</id>
     <version>1.0.0.0</version>
-    <title>JJ.Demos.Analysers</title>
+    <title>JJ.Analysis</title>
     <authors>Jan-Joost van Zon</authors>
     <owners>Jan-Joost van Zon</owners>
     <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
     <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
     <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>JJ.Demos.Analysers</description>
+    <description>JJ.Analysis</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
     <copyright>Copyright</copyright>
-    <tags>JJ.Demos.Analysers, analyzers</tags>
+    <tags>JJ.Analysis, analyzers</tags>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
