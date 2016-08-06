@@ -14,10 +14,9 @@ namespace JJ.Analysis.Helpers
             }
 
             char firstChar = value[0];
-            char firstCharToUpper = firstChar.ToString().ToUpper()[0];
+            bool firstCharIsUpper = char.IsUpper(firstChar);
 
-            bool startsWithUpperCase = firstChar == firstCharToUpper;
-            return startsWithUpperCase;
+            return firstCharIsUpper;
         }
     }
 }
