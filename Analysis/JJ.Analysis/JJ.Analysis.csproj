@@ -36,10 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Analysers\2016-08-06 Backup of FieldNameStartsWithUnderscoreAnalyzer.cs" />
     <Compile Include="Analysers\PropertyNamesStartWithUpperCaseAnalyzer.cs" />
     <Compile Include="Analysers\FieldNamesStartWithUnderscoreAnalyzer.cs" />
-    <Compile Include="CodeFixProviders\2016-08-07 Backup of TypeNamesUpperCaseCodeFixProvider.cs" />
     <Compile Include="Names\CategoryNames.cs" />
     <Compile Include="Names\DiagnosticsIDs.cs" />
     <Compile Include="Analysers\TypeNamesUpperCaseAnalyzer.cs" />
@@ -50,9 +48,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="~packages.config.txt">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="tools\install.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -110,6 +105,9 @@
       <HintPath>..\..\packages\System.Reflection.Metadata.1.0.21\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CodeFixProviders\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\v4.6\Microsoft.Portable.CSharp.targets" />
   <Target Name="AfterBuild">
