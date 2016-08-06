@@ -13,10 +13,10 @@ namespace JJ.Analysis.Analysers
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
             DiagnosticsIDs.PropertyNamesStartWithUpperCase,
-            title: DiagnosticsIDs.PropertyNamesStartWithUpperCase,
-            messageFormat: "Property name '{0}' does not start with an upper case letter.",
-            category: CategoryNames.Naming,
-            defaultSeverity: DiagnosticSeverity.Warning,
+            DiagnosticsIDs.PropertyNamesStartWithUpperCase,
+            "Property name '{0}' does not start with an upper case letter.",
+            CategoryNames.Naming,
+            DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
 
         private static readonly ImmutableArray<DiagnosticDescriptor> _supportedDiagnostics = ImmutableArray.Create(_rule);

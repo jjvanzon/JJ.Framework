@@ -12,10 +12,10 @@ namespace JJ.Analysis.Analysers
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
             DiagnosticsIDs.FieldNamesStartWithUnderscore,
-            title: DiagnosticsIDs.FieldNamesStartWithUnderscore,
-            messageFormat: "Field name '{0}' does not start with underscore.",
-            category: CategoryNames.Naming,
-            defaultSeverity: DiagnosticSeverity.Warning,
+            DiagnosticsIDs.FieldNamesStartWithUnderscore,
+            "Field name '{0}' does not start with underscore.",
+            CategoryNames.Naming,
+            DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
 
         private static readonly ImmutableArray<DiagnosticDescriptor> _supportedDiagnostics = ImmutableArray.Create(_rule);

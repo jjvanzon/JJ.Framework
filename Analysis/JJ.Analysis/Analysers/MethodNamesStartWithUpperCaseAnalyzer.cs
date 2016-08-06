@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Runtime.CompilerServices;
 using JJ.Analysis.Helpers;
 using JJ.Analysis.Names;
 using Microsoft.CodeAnalysis;
@@ -14,10 +13,10 @@ namespace JJ.Analysis.Analysers
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
             DiagnosticsIDs.MethodNamesStartWithUpperCase,
-            title: DiagnosticsIDs.MethodNamesStartWithUpperCase,
-            messageFormat: "Method name '{0}' does not start with an upper case letter.",
-            category: CategoryNames.Naming,
-            defaultSeverity: DiagnosticSeverity.Warning,
+            DiagnosticsIDs.MethodNamesStartWithUpperCase,
+            "Method name '{0}' does not start with an upper case letter.",
+            CategoryNames.Naming,
+            DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
 
         private static readonly ImmutableArray<DiagnosticDescriptor> _supportedDiagnostics = ImmutableArray.Create(_rule);
