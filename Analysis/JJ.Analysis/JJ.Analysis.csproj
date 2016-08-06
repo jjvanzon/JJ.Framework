@@ -36,11 +36,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Analysers\2016-08-07 Backup of PropertyMethodAndClassNamesStartWithUpperCaseAnalyzer.cs" />
+    <Compile Include="Analysers\MethodNamesStartWithUpperCaseAnalyzer.cs" />
     <Compile Include="Analysers\PropertyNamesStartWithUpperCaseAnalyzer.cs" />
     <Compile Include="Analysers\FieldNamesStartWithUnderscoreAnalyzer.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Names\CategoryNames.cs" />
     <Compile Include="Names\DiagnosticsIDs.cs" />
-    <Compile Include="Analysers\TypeNamesUpperCaseAnalyzer.cs" />
+    <Compile Include="Analysers\TypeNamesStartWithUpperCaseAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,9 +109,7 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CodeFixProviders\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\v4.6\Microsoft.Portable.CSharp.targets" />
   <Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(OutDir)\$(AssemblyName).dll">

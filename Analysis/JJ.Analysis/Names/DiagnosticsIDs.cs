@@ -8,6 +8,7 @@ namespace JJ.Analysis.Names
     {
         public const string FieldNamesStartWithUnderscore = "FieldNamesStartWithUnderscore";
         public const string PropertyNamesStartWithUpperCase = "PropertyNamesStartWithUpperCase";
-        public const string TypeNamesUpperCase = "TypeNamesUpperCase";
+        public const string TypeNamesStartWithUpperCase = "TypeNamesStartWithUpperCase";
+        public const string MethodNamesStartWithUpperCase = "MethodNamesStartWithUpperCase";
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using JJ.Analysis.Helpers;
 using JJ.Analysis.Names;
 using Microsoft.CodeAnalysis;
@@ -9,12 +10,12 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class PropertyNamesStartWithUpperCaseAnalyzer : DiagnosticAnalyzer
+    public class TypeNamesStartWithUpperCaseAnalyzer : DiagnosticAnalyzer
     {
         private static DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.PropertyNamesStartWithUpperCase,
-            title: DiagnosticsIDs.PropertyNamesStartWithUpperCase,
-            messageFormat: "Property name '{0}' does not start with an upper case letter.",
+            DiagnosticsIDs.TypeNamesStartWithUpperCase,
+            title: DiagnosticsIDs.TypeNamesStartWithUpperCase,
+            messageFormat: "Type name '{0}' does not start with an upper case letter.",
             category: CategoryNames.Naming,
             defaultSeverity: DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -23,7 +24,7 @@ namespace JJ.Analysis.Analysers
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Property);
+            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
         }
 
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
