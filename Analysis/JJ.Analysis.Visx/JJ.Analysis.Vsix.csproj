@@ -54,9 +54,15 @@
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
+    <None Include="tools\install.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="tools\uninstall.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Demos.Analysers\JJ.Analysis.csproj">
+    <ProjectReference Include="..\JJ.Analysis\JJ.Analysis.csproj">
       <Project>{A7C6E469-8196-4A35-A13F-545557D601DB}</Project>
       <Name>JJ.Analysis</Name>
     </ProjectReference>
