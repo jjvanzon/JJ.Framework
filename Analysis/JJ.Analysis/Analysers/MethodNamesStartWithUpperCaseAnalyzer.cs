@@ -32,8 +32,7 @@ namespace JJ.Analysis.Analysers
         {
             var methodSymbol = (IMethodSymbol)context.Symbol;
 
-            bool mustAnalyse = MustAnalyse(methodSymbol);
-            if (!mustAnalyse)
+            if (!AnalysisHelper.IsNormalMethod(methodSymbol))
             {
                 return;
             }
@@ -46,19 +45,6 @@ namespace JJ.Analysis.Analysers
 
             Diagnostic diagnostic = Diagnostic.Create(_rule, methodSymbol.Locations[0], name);
             context.ReportDiagnostic(diagnostic);
-        }
-
-        private static bool MustAnalyse(IMethodSymbol methodSymbol)
-        {
-            switch (methodSymbol.MethodKind)
-            {
-                case MethodKind.DeclareMethod:
-                case MethodKind.Ordinary:
-                case MethodKind.ReducedExtension:
-                    return true;
-            }
-
-            return false;
         }
     }
 }

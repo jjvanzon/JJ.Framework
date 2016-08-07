@@ -10,5 +10,6 @@ namespace JJ.Analysis.Names
         public const string PropertyNamesStartWithUpperCase = "PropertyNamesStartWithUpperCase";
         public const string TypeNamesStartWithUpperCase = "TypeNamesStartWithUpperCase";
         public const string MethodNamesStartWithUpperCase = "MethodNamesStartWithUpperCase";
+        public const string PublicMethodParameterRequiresNullCheck = "PublicMethodParameterRequiresNullCheck";
     }
 }
