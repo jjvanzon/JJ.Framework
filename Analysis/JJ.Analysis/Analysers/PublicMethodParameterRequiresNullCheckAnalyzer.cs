@@ -14,11 +14,6 @@ namespace JJ.Analysis.Analysers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class PublicMethodParameterRequiresNullCheckAnalyzer : DiagnosticAnalyzer
     {
-        public PublicMethodParameterRequiresNullCheckAnalyzer()
-        {
-
-        }
-
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
             DiagnosticsIDs.PublicMethodParameterRequiresNullCheck,
             DiagnosticsIDs.PublicMethodParameterRequiresNullCheck,
@@ -93,9 +88,7 @@ namespace JJ.Analysis.Analysers
             BaseMethodDeclarationSyntax baseMethodDeclarationSyntax,
             ParameterSyntax parameterSyntax)
         {
-            //throw new NotImplementedException();
-
-            if (!HasApplicableParameterType(context, parameterSyntax))
+            if (!HasApplicableType(context, parameterSyntax))
             {
                 return;
             }
@@ -111,13 +104,10 @@ namespace JJ.Analysis.Analysers
             context.ReportDiagnostic(diagnostic);
         }
 
-        private static bool HasApplicableParameterType(
+        private static bool HasApplicableType(
             SyntaxNodeAnalysisContext context,
             ParameterSyntax parameterSyntax)
         {
-            //ITypeSymbol parameterType = parameterSymbol.Type;
-            //TypeSyntax typeSyntax = parameterSyntax.Type;
-
             IParameterSymbol parameterSymbol = context.SemanticModel.GetDeclaredSymbol(parameterSyntax);
             ITypeSymbol parameterTypeSymbol = parameterSymbol.Type;
 
@@ -126,25 +116,13 @@ namespace JJ.Analysis.Analysers
                 return false;
             }
 
-            //string parameterTypeName = parameterTypeSymbol.ToDisplayString();
-            //string stringTypeName = typeof(string).AssemblyQualifiedName;
-
-            // TODO: This is probably not going to work, or even the way to go.
-            //bool isString = String.Equals(parameterTypeName, stringTypeName);
-
             bool isString = IsString(parameterTypeSymbol);
             if (isString)
             {
                 return false;
             }
 
-            //context.SemanticModel.Compilation.GetTypeByMetadataName(stringTypeName);
-            //parameterTypeSymbol.
-            //bool parameterIsApplicableType = parameterType.IsReferenceType &&
-            //                                 parameterType.Name
-
-            return false;
-            throw new NotImplementedException();
+            return true;
         }
 
         private static bool IsString(ITypeSymbol typeSymbol)
@@ -155,17 +133,8 @@ namespace JJ.Analysis.Analysers
                 return false;
             }
 
-            if (String.Equals(namedTypeSymbol.MetadataName, "string"))
-            {
-                return true;
-            }
-
+            // TODO: I feel strange about this. How canonical is this name? What if I declare a type String of my own?
             if (String.Equals(namedTypeSymbol.MetadataName, "String"))
-            {
-                return true;
-            }
-
-            if (String.Equals(namedTypeSymbol.MetadataName, "System.String"))
             {
                 return true;
             }
