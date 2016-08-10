@@ -20,12 +20,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         }
 
         private ElementPosition _position;
-        public override ElementPosition Position
-        {
-            get { return _position; }
-        }
+        public override ElementPosition Position => _position;
 
-        public RectangleStyle Style { get; private set; }
+        public RectangleStyle Style { get; }
 
         private string DebuggerDisplay
         {

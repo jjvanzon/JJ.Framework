@@ -122,6 +122,13 @@ namespace JJ.Framework.Reflection
                         break;
                     }
 
+                case ExpressionType.ArrayLength:
+                    {
+                        var unaryExpression = (UnaryExpression)node.Operand;
+                        VisitArrayLength(unaryExpression);
+                        return;
+                    }
+
                 default:
                     {
                         throw new ArgumentException(String.Format("Name cannot be obtained from NodeType {0}.", node.Operand.NodeType));
