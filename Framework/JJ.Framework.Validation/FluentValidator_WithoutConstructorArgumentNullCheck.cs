@@ -432,7 +432,7 @@ namespace JJ.Framework.Validation
 
             if (!isEnum)
             {
-                ValidationMessages.AddIsInvalidMessage(_propertyKey, _propertyDisplayName);
+                ValidationMessages.AddIsInvalidChoiceMessage(_propertyKey, _propertyDisplayName);
             }
 
             return this;

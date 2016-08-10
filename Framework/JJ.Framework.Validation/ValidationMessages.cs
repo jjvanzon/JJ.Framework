@@ -188,6 +188,19 @@ namespace JJ.Framework.Validation
             AddHasNullsMessage(propertyKey, propertyDisplayName);
         }
 
+        public void AddIsInvalidChoiceMessage(string propertyKey, string propertyDisplayName)
+        {
+            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            Add(propertyKey, ValidationMessageFormatter.InvalidChoice(propertyDisplayName));
+        }
+
+        public void AddIsInvalidChoiceMessage(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName)
+        {
+            string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
+            AddIsInvalidChoiceMessage(propertyKey, propertyDisplayName);
+        }
+
+
         public void AddIsInvalidMessage(string propertyKey, string propertyDisplayName)
         {
             if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);

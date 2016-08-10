@@ -151,6 +151,15 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} is an invalid choice..
+        /// </summary>
+        internal static string InvalidChoice_WithName {
+            get {
+                return ResourceManager.GetString("InvalidChoice_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} has an invalid number..
         /// </summary>
         internal static string InvalidIndex_WithName {

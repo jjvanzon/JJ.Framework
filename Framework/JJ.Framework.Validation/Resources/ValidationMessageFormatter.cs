@@ -56,6 +56,11 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(ValidationMessages.Invalid_WithName, propertyDisplayName);
         }
 
+        public static string InvalidChoice(string propertyDisplayName)
+        {
+            return String.Format(ValidationMessages.InvalidChoice_WithName, propertyDisplayName);
+        }
+
         public static string InvalidIndex(string propertyDisplayName)
         {
             return String.Format(ValidationMessages.InvalidIndex_WithName, propertyDisplayName);
