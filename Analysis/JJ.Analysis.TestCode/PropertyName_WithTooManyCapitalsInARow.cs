@@ -1,6 +1,6 @@
 ﻿namespace JJ.Analysis.TestCode
 {
-    internal class ClassWith_PropertyName_WithTooManyCapitalsInARow
+    internal class PropertyName_WithTooManyCapitalsInARow
     {
         public int PROPerty { get; set; }
     }

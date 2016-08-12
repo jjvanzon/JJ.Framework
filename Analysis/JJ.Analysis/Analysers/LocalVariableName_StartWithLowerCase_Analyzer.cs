@@ -12,11 +12,11 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class LocalVariableNames_StartWithLowerCase_Analyzer : DiagnosticAnalyzer
+    public class LocalVariableName_StartWithLowerCase_Analyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.LocalVariableNamesStartWithLowerCase,
-            DiagnosticsIDs.LocalVariableNamesStartWithLowerCase,
+            DiagnosticsIDs.LocalVariableNameStartWithLowerCase,
+            DiagnosticsIDs.LocalVariableNameStartWithLowerCase,
             "Local variable name '{0}' does not start with a lower case letter.",
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,

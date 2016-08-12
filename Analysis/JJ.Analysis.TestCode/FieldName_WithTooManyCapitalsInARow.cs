@@ -1,6 +1,6 @@
 ﻿namespace JJ.Analysis.TestCode
 {
-    internal class ClassWith_FieldName_WithTooManyCapitalsInARow
+    internal class FieldName_WithTooManyCapitalsInARow
     {
         private int _myFIELd;
     }

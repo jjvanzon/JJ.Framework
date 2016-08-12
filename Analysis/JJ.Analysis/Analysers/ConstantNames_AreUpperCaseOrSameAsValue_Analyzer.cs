@@ -15,8 +15,8 @@ namespace JJ.Analysis.Analysers
     public class ConstantNames_AreUpperCaseOrSameAsValue_Analyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.ConstantNamesAreUpperCaseOrSameAsValue,
-            DiagnosticsIDs.ConstantNamesAreUpperCaseOrSameAsValue,
+            DiagnosticsIDs.ConstantNameUpperCaseOrSameAsValue,
+            DiagnosticsIDs.ConstantNameUpperCaseOrSameAsValue,
             "Constant name '{0}' is not all capitals and also the name does not exactly match its value.",
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,

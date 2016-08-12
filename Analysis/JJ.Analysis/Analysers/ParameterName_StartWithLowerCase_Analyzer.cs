@@ -1,20 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using JJ.Analysis.Helpers;
 using JJ.Analysis.Names;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class FieldNames_AreUnderscoredCamelCase_Analyzer : DiagnosticAnalyzer
+    public class ParameterName_StartWithLowerCase_Analyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.FieldNamesAreUnderscoredCamelCase,
-            DiagnosticsIDs.FieldNamesAreUnderscoredCamelCase,
-            "Field name '{0}' does not start with underscore and then a lower case letter.",
+            DiagnosticsIDs.ParameterNameStartWithLowerCase,
+            DiagnosticsIDs.ParameterNameStartWithLowerCase,
+            "Parameter name '{0}' does not start with a lower case letter.",
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -25,27 +28,20 @@ namespace JJ.Analysis.Analysers
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Field);
+            context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, SyntaxKind.Parameter);
         }
 
-        private static void AnalyzeSymbol(SymbolAnalysisContext context)
+        private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            var castedSymbol = (IFieldSymbol)context.Symbol;
+            var castedSyntaxNode = (ParameterSyntax)context.Node;
 
-            if (castedSymbol.IsConst)
+            string name = castedSyntaxNode.Identifier.Text;
+
+            if (!CaseHelper.StartsWithLowerCase(name))
             {
-                return;
+                Diagnostic diagnostic = Diagnostic.Create(_rule, castedSyntaxNode.GetLocation(), name);
+                context.ReportDiagnostic(diagnostic);
             }
-
-            string name = castedSymbol.Name;
-
-            if (CaseHelper.IsUnderscoredCamelCase(name))
-            {
-                return;
-            }
-
-            Diagnostic diagnostic = Diagnostic.Create(_rule, castedSymbol.Locations[0], name);
-            context.ReportDiagnostic(diagnostic);
         }
     }
 }

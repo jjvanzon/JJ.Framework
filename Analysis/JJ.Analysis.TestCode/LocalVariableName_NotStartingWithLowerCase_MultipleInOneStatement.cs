@@ -1,6 +1,6 @@
 ﻿namespace JJ.Analysis.TestCode
 {
-    internal class ClassWith_LocalVariableName_NotStartingWithLowerCase_MultipleInOneStatement
+    internal class LocalVariableName_NotStartingWithLowerCase_MultipleInOneStatement
     {
         private void Method()
         {

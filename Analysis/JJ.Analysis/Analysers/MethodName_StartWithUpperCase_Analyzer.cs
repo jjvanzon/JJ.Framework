@@ -9,11 +9,11 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class MethodNames_StartWithUpperCase_Analyzer : DiagnosticAnalyzer
+    public class MethodName_StartWithUpperCase_Analyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.MethodNamesStartWithUpperCase,
-            DiagnosticsIDs.MethodNamesStartWithUpperCase,
+            DiagnosticsIDs.MethodNameStartWithUpperCase,
+            DiagnosticsIDs.MethodNameStartWithUpperCase,
             "Method name '{0}' does not start with an upper case letter.",
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,

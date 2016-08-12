@@ -1,6 +1,6 @@
 ﻿namespace JJ.Analysis.TestCode
 {
-    internal class ClassWith_MethodName_WithTooManyCapitalsInARow
+    internal class MethodName_WithTooManyCapitalsInARow
     {
         public void MyMETHodID()
         { }

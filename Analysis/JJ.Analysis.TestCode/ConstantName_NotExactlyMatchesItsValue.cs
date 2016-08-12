@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Analysis.TestCode
 {
-    internal class ClassWith_ConstantName_NotExactlyMatchesItsValue
+    internal class ConstantName_NotExactlyMatchesItsValue
     {
         public const string Not_All_Caps = "Not_All_Capss";
     }

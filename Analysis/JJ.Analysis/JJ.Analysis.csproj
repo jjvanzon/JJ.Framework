@@ -38,16 +38,18 @@
   <ItemGroup>
     <Compile Include="Analysers\2016-08-12 Backup of ConstantNames_AreUpperCaseOrSameAsValue_Analyzer.cs" />
     <Compile Include="Analysers\ConstantNames_AreUpperCaseOrSameAsValue_Analyzer.cs" />
-    <Compile Include="Analysers\ParameterNames_StartWithLowerCase_Analyzer.cs" />
-    <Compile Include="Analysers\LocalVariableNames_StartWithLowerCase_Analyzer.cs" />
+    <Compile Include="Analysers\ParameterName_AbbreviationCasing_Analyzer.cs" />
+    <Compile Include="Analysers\LocalVariableName_AbbreviationCasing_Analyzer.cs" />
+    <Compile Include="Analysers\ParameterName_StartWithLowerCase_Analyzer.cs" />
+    <Compile Include="Analysers\LocalVariableName_StartWithLowerCase_Analyzer.cs" />
     <Compile Include="Analysers\FieldName_AbbreviationCasing_Analyzer.cs" />
     <Compile Include="Analysers\MethodName_AbbreviationCasing_Analyzer.cs" />
-    <Compile Include="Analysers\MethodNames_StartWithUpperCase_Analyzer.cs" />
+    <Compile Include="Analysers\MethodName_StartWithUpperCase_Analyzer.cs" />
     <Compile Include="Analysers\PropertyName_AbbreviationCasing_Analyzer.cs" />
     <Compile Include="Analysers\PublicMethodParameter_RequiresStringIsNullOrEmptyCheck_Analyzer.cs" />
     <Compile Include="Analysers\PublicMethodParameter_RequiresNullCheck_Analyzer.cs" />
-    <Compile Include="Analysers\PropertyNames_StartWithUpperCase_Analyzer.cs" />
-    <Compile Include="Analysers\FieldNames_AreUnderscoredCamelCase_Analyzer.cs" />
+    <Compile Include="Analysers\PropertyName_StartWithUpperCase_Analyzer.cs" />
+    <Compile Include="Analysers\FieldName_UnderscoredCamelCase_Analyzer.cs" />
     <Compile Include="Analysers\InterfaceName_StartsWithI_Analyser.cs" />
     <Compile Include="Analysers\TypeName_AbbreviationCasing_Analyzer.cs" />
     <Compile Include="Helpers\AnalysisHelper.cs" />
@@ -55,7 +57,7 @@
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Names\CategoryNames.cs" />
     <Compile Include="Names\DiagnosticsIDs.cs" />
-    <Compile Include="Analysers\TypeNames_StartWithUpperCase_Analyzer.cs" />
+    <Compile Include="Analysers\TypeName_StartWithUpperCase_Analyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

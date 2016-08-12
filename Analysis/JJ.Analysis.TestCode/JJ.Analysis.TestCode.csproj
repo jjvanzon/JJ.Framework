@@ -38,27 +38,29 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassWith_LocalVariableName_NotStartingWithLowerCase_MultipleInOneStatement.cs" />
-    <Compile Include="ClassWith_LocalVariableName_NotStartingWithLowerCase.cs" />
-    <Compile Include="ClassWith_ParameterName_NotStartingWithLowerCase.cs" />
+    <Compile Include="LocalVariableName_TooManyCapitalsInARow.cs" />
+    <Compile Include="LocalVariableName_NotStartingWithLowerCase_MultipleInOneStatement.cs" />
+    <Compile Include="LocalVariableName_NotStartingWithLowerCase.cs" />
+    <Compile Include="ParameterName_TooManyCapitalsInARow.cs" />
+    <Compile Include="ParameterName_NotStartingWithLowerCase.cs" />
     <Compile Include="PartialClassWithNameError2.cs" />
     <Compile Include="PartialClassWithNameError1.cs" />
-    <Compile Include="ClassWith_ConstantName_NotExactlyMatchesItsValue.cs" />
-    <Compile Include="ClassWith_ConstantName_NotAllCapitals.cs" />
+    <Compile Include="ConstantName_NotExactlyMatchesItsValue.cs" />
+    <Compile Include="ConstantName_NotAllCapitals.cs" />
     <Compile Include="TInterfaceWith_InterfaceName_NotStartingWithI.cs" />
     <Compile Include="IINTErfaceWith_InterfaceName_WithTooManyCapitalsInARow.cs" />
-    <Compile Include="ClassWith_ClassName_WithTooManyCapitalsAtTheEND.cs" />
-    <Compile Include="ClassWith_ClassName_WithTooManyCAPItalsInARow.cs" />
-    <Compile Include="ClassWith_FieldName_WithTooManyCapitalsInARow.cs" />
-    <Compile Include="ClassWith_MethodName_WithTooManyCapitalsInARow.cs" />
-    <Compile Include="ClassWith_PropertyName_WithTooManyCapitalsInARow.cs" />
-    <Compile Include="ClassWith_PublicMethod_WithReferenceParameter.cs" />
-    <Compile Include="ClassWith_PublicMethod_WithStringParameter.cs" />
-    <Compile Include="ClassWith_FieldName_NotUnderscoredCamelCase.cs" />
-    <Compile Include="classWith_ClassName_NotStartingWithUpperCase.cs" />
-    <Compile Include="ClassWith_MethodName_NotStartingWithUpperCase.cs" />
-    <Compile Include="ClassWith_PublicMethod_WithValueParameter.cs" />
-    <Compile Include="ClassWith_PropertyName_NotStartingWithUpperCase.cs" />
+    <Compile Include="ClassName_WithTooManyCapitalsAtTheEND.cs" />
+    <Compile Include="ClassName_WithTooManyCAPItalsInARow.cs" />
+    <Compile Include="FieldName_WithTooManyCapitalsInARow.cs" />
+    <Compile Include="MethodName_WithTooManyCapitalsInARow.cs" />
+    <Compile Include="PropertyName_WithTooManyCapitalsInARow.cs" />
+    <Compile Include="PublicMethod_WithReferenceParameter.cs" />
+    <Compile Include="PublicMethod_WithStringParameter.cs" />
+    <Compile Include="FieldName_NotUnderscoredCamelCase.cs" />
+    <Compile Include="className_NotStartingWithUpperCase.cs" />
+    <Compile Include="MethodName_NotStartingWithUpperCase.cs" />
+    <Compile Include="PublicMethod_WithValueParameter.cs" />
+    <Compile Include="PropertyName_NotStartingWithUpperCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
