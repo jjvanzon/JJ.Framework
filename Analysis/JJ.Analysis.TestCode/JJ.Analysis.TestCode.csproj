@@ -38,10 +38,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IINTErfaceWith_InterfaceName_WithTooManyCapitalsInARow.cs" />
+    <Compile Include="ClassWith_ClassName_WithTooManyCapitalsAtTheEND.cs" />
+    <Compile Include="ClassWith_ClassName_WithTooManyCAPItalsInARow.cs" />
+    <Compile Include="ClassWith_FieldName_WithTooManyCapitalsInARow.cs" />
+    <Compile Include="ClassWith_MethodName_WithTooManyCapitalsInARow.cs" />
+    <Compile Include="ClassWith_PropertyName_WithTooManyCapitalsInARow.cs" />
     <Compile Include="ClassWith_PublicMethod_WithReferenceParameter.cs" />
     <Compile Include="ClassWith_PublicMethod_WithStringParameter.cs" />
     <Compile Include="ClassWith_FieldName_NotUnderscoredCamelCase.cs" />
-    <Compile Include="ClassWith_ClassName_NotStartingWithUpperCase.cs" />
+    <Compile Include="classWith_ClassName_NotStartingWithUpperCase.cs" />
     <Compile Include="ClassWith_MethodName_NotStartingWithUpperCase.cs" />
     <Compile Include="ClassWith_PublicMethod_WithValueParameter.cs" />
     <Compile Include="ClassWith_PropertyName_NotStartingWithUpperCase.cs" />

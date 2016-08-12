@@ -1,6 +1,6 @@
 ﻿namespace JJ.Analysis.TestCode
 {
-    public class ClassWith_MethodName_NotStartingWithUpperCase
+    internal class ClassWith_MethodName_NotStartingWithUpperCase
     {
         public void _MyMethodID()
         { }

@@ -14,7 +14,7 @@ namespace JJ.Analysis.Analysers
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
             DiagnosticsIDs.FieldNameAbbreviationCasing,
             DiagnosticsIDs.FieldNameAbbreviationCasing,
-            "Field name '{0}': " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
+            "Field name '{0}': Field names should be underscored camel case. " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);

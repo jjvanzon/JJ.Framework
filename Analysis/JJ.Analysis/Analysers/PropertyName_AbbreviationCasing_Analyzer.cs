@@ -14,7 +14,7 @@ namespace JJ.Analysis.Analysers
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
             DiagnosticsIDs.PropertyNameAbbreviationCasing,
             DiagnosticsIDs.PropertyNameAbbreviationCasing,
-            "Property name '{0}': " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
+            "Property name '{0}': Property names should be pascal case. " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);

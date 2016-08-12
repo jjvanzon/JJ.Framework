@@ -38,7 +38,7 @@ namespace JJ.Analysis.Helpers
             return true;
         }
 
-        public static bool ExceedsMaxCapitalizedAbbreviationLength(string name, int maxAbbreviationLength)
+        public static bool ExceedsMaxCapitalizedAbbreviationLength(string name, int maxAbbreviationLength, int firstIndex = 0)
         {
             // Abbreviation is followed by another capital,
             // for the next word, so maxCapitalsInARow is 1 more than maxAbbreviationLength.
@@ -46,7 +46,7 @@ namespace JJ.Analysis.Helpers
 
             int capitalsInARow = 0;
 
-            for (int i = 0; i < name.Length; i++)
+            for (int i = firstIndex; i < name.Length; i++)
             {
                 char chr = name[i];
 

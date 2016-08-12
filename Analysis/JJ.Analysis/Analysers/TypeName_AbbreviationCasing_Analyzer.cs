@@ -14,7 +14,7 @@ namespace JJ.Analysis.Analysers
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
             DiagnosticsIDs.TypeNameAbreviationCasing,
             DiagnosticsIDs.TypeNameAbreviationCasing,
-            "Type name '{0}': " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
+            "Type name '{0}': Type names should be pascal case. " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -32,7 +32,14 @@ namespace JJ.Analysis.Analysers
         {
             string name = context.Symbol.Name;
 
-            if (CaseHelper.ExceedsMaxCapitalizedAbbreviationLength(name, 2))
+            // TODO: Any other way to detect, that it is an interface?
+            int firstIndex = 0;
+            if (name.StartsWith("I"))
+            {
+                firstIndex = 1;
+            }
+
+            if (CaseHelper.ExceedsMaxCapitalizedAbbreviationLength(name, 2, firstIndex))
             {
                 Diagnostic diagnostic = Diagnostic.Create(_rule, context.Symbol.Locations[0], name);
                 context.ReportDiagnostic(diagnostic);

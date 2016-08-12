@@ -14,7 +14,7 @@ namespace JJ.Analysis.Analysers
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
             DiagnosticsIDs.MethodNameAbbreviationCasing,
             DiagnosticsIDs.MethodNameAbbreviationCasing,
-            "Method name '{0}': " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
+            "Method name '{0}': Method names should be pascal case. " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);

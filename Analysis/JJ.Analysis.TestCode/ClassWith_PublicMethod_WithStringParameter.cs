@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace JJ.Analysis.TestCode
 {
-    public class ClassWith_PublicMethod_WithStringParameter
+    internal class ClassWith_PublicMethod_WithStringParameter
     {
         public void PublicMethodWithStringParameter_string(string parameter)
         { }

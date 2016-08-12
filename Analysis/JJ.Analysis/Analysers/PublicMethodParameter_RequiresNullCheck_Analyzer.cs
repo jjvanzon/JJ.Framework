@@ -12,7 +12,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class PublicMethod_ParameterRequiresNullCheck_Analyzer : DiagnosticAnalyzer
+    public class PublicMethodParameter_RequiresNullCheck_Analyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
             DiagnosticsIDs.PublicMethodParameterRequiresNullCheck,
