@@ -38,13 +38,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassWithPublicMethodWithReferenceParameter.cs" />
-    <Compile Include="ClassWithPublicMethodWithStringParameter.cs" />
-    <Compile Include="ClassWithWrongFieldName.cs" />
-    <Compile Include="ClassWithWrongClassName.cs" />
-    <Compile Include="ClassWithWrongMethodName.cs" />
-    <Compile Include="ClassWithPublicMethodWithValueParameter.cs" />
-    <Compile Include="ClassWithWrongPropertyName.cs" />
+    <Compile Include="ClassWith_PublicMethod_WithReferenceParameter.cs" />
+    <Compile Include="ClassWith_PublicMethod_WithStringParameter.cs" />
+    <Compile Include="ClassWith_FieldName_NotUnderscoredCamelCase.cs" />
+    <Compile Include="ClassWith_ClassName_NotStartingWithUpperCase.cs" />
+    <Compile Include="ClassWith_MethodName_NotStartingWithUpperCase.cs" />
+    <Compile Include="ClassWith_PublicMethod_WithValueParameter.cs" />
+    <Compile Include="ClassWith_PropertyName_NotStartingWithUpperCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

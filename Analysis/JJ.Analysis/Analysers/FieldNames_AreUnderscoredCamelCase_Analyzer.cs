@@ -9,12 +9,12 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class MethodNameAbbreviationCasingAnalyzer : DiagnosticAnalyzer
+    public class FieldNames_AreUnderscoredCamelCase_Analyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.MethodNameAbbreviationCasing,
-            DiagnosticsIDs.MethodNameAbbreviationCasing,
-            "Method name '{0}': " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
+            DiagnosticsIDs.FieldNamesAreUnderscoredCamelCase,
+            DiagnosticsIDs.FieldNamesAreUnderscoredCamelCase,
+            "Field name '{0}' does not start with underscore and then a lower case letter.",
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -25,26 +25,21 @@ namespace JJ.Analysis.Analysers
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);
+            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Field);
         }
 
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
         {
-            var methodSymbol = (IMethodSymbol)context.Symbol;
+            var castedSymbol = (IFieldSymbol)context.Symbol;
 
-            if (!AnalysisHelper.IsNormalMethod(methodSymbol))
+            string name = castedSymbol.Name;
+
+            if (CaseHelper.IsUnderscoredCamelCase(name))
             {
                 return;
             }
 
-            string name = methodSymbol.Name;
-
-            if (!CaseHelper.HasTooManyUpperCharsInARow(name, 3))
-            {
-                return;
-            }
-
-            Diagnostic diagnostic = Diagnostic.Create(_rule, methodSymbol.Locations[0], name);
+            Diagnostic diagnostic = Diagnostic.Create(_rule, castedSymbol.Locations[0], name);
             context.ReportDiagnostic(diagnostic);
         }
     }

@@ -9,8 +9,7 @@ namespace JJ.Analysis.Helpers
     {
         public const string ABBREVIATION_CASING_EXPLANATION =
             "Abbreviations with 2 letters should be in capitals, " +
-            "abbreviations with 3 letters or more should only start with a capital, " +
-            "but there are more than 3 capitals in a row.";
+            "abbreviations with 3 letters or more should only start with a capital.";
 
         public static bool IsNormalMethod(IMethodSymbol methodSymbol)
         {

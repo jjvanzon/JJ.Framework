@@ -9,7 +9,7 @@
 //namespace JJ.Analysis.Analysers
 //{
 //    [DiagnosticAnalyzer(LanguageNames.CSharp)]
-//    public class PublicMethodParameterRequiresStringIsNullOrEmptyCheckAnalyzer : DiagnosticAnalyzer
+//    public class PublicMethodParameter_RequiresStringIsNullOrEmptyCheck_Analyzer : DiagnosticAnalyzer
 //    {
 //        private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
 //            DiagnosticsIDs.PropertyNamesStartWithUpperCase,

@@ -8,11 +8,12 @@ namespace JJ.Analysis.Names
     {
         public const string FieldNamesAreUnderscoredCamelCase = "FieldNamesStartWithUnderscore";
         public const string FieldNameAbbreviationCasing = "FieldNameAbbreviationCasing";
-        public const string PropertyNamesStartWithUpperCase = "PropertyNamesStartWithUpperCase";
-        public const string PropertyNameAbbreviationCasing = "PropertyNameAbbreviationCasing";
-        public const string TypeNamesStartWithUpperCase = "TypeNamesStartWithUpperCase";
         public const string MethodNameAbbreviationCasing = "MethodNameAbbreviationCasing";
         public const string MethodNamesStartWithUpperCase = "MethodNamesStartWithUpperCase";
+        public const string PropertyNamesStartWithUpperCase = "PropertyNamesStartWithUpperCase";
+        public const string PropertyNameAbbreviationCasing = "PropertyNameAbbreviationCasing";
         public const string PublicMethodParameterRequiresNullCheck = "PublicMethodParameterRequiresNullCheck";
+        public const string TypeNameAbreviationCasing = "TypeNameAbreviationCasing";
+        public const string TypeNamesStartWithUpperCase = "TypeNamesStartWithUpperCase";
     }
 }

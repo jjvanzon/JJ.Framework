@@ -38,9 +38,13 @@ namespace JJ.Analysis.Helpers
             return true;
         }
 
-        public static bool HasTooManyUpperCharsInARow(string name, int max)
+        public static bool ExceedsMaxCapitalizedAbbreviationLength(string name, int maxAbbreviationLength)
         {
-            int upperCharsInARow = 0;
+            // Abbreviation is followed by another capital,
+            // for the next word, so maxCapitalsInARow is 1 more than maxAbbreviationLength.
+            int maxCapitalsInARow = maxAbbreviationLength + 1;
+
+            int capitalsInARow = 0;
 
             for (int i = 0; i < name.Length; i++)
             {
@@ -48,18 +52,29 @@ namespace JJ.Analysis.Helpers
 
                 if (char.IsUpper(chr))
                 {
-                    upperCharsInARow++;
+                    capitalsInARow++;
                 }
                 else
                 {
-                    upperCharsInARow = 0;
+                    capitalsInARow = 0;
                 }
 
-                if (upperCharsInARow > max)
+                if (capitalsInARow > maxCapitalsInARow)
                 {
                     return true;
                 }
             }
+
+            // Abbreviation casing is correct if e.g. 3 capitals in a row,
+            // but not if it is the end of the string,
+            // because then last cap cannot be a next word.
+            if (capitalsInARow == maxCapitalsInARow)
+            {
+                return true;
+            }
+
+            // NOTE: two 2-letter abbreviations in a row are not allowed by this method,
+            // but those are rare and badly readable anyway.
 
             return false;
         }

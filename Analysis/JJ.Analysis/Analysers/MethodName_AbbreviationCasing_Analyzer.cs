@@ -9,12 +9,12 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class FieldNamesAreUnderscoredCamelCaseAnalyzer : DiagnosticAnalyzer
+    public class MethodName_AbbreviationCasing_Analyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.FieldNamesAreUnderscoredCamelCase,
-            DiagnosticsIDs.FieldNamesAreUnderscoredCamelCase,
-            "Field name '{0}' does not start with underscore and then a lower case letter.",
+            DiagnosticsIDs.MethodNameAbbreviationCasing,
+            DiagnosticsIDs.MethodNameAbbreviationCasing,
+            "Method name '{0}': " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -25,22 +25,25 @@ namespace JJ.Analysis.Analysers
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Field);
+            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);
         }
 
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
         {
-            var castedSymbol = (IFieldSymbol)context.Symbol;
+            var methodSymbol = (IMethodSymbol)context.Symbol;
 
-            string name = castedSymbol.Name;
-
-            if (CaseHelper.IsUnderscoredCamelCase(name))
+            if (!AnalysisHelper.IsNormalMethod(methodSymbol))
             {
                 return;
             }
 
-            Diagnostic diagnostic = Diagnostic.Create(_rule, castedSymbol.Locations[0], name);
-            context.ReportDiagnostic(diagnostic);
+            string name = methodSymbol.Name;
+
+            if (CaseHelper.ExceedsMaxCapitalizedAbbreviationLength(name, 2))
+            {
+                Diagnostic diagnostic = Diagnostic.Create(_rule, methodSymbol.Locations[0], name);
+                context.ReportDiagnostic(diagnostic);
+            }
         }
     }
 }

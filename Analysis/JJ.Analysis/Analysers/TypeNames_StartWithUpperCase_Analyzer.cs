@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using JJ.Analysis.Helpers;
 using JJ.Analysis.Names;
 using Microsoft.CodeAnalysis;
@@ -9,12 +10,12 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class FieldNameAbbreviationCasingAnalyzer : DiagnosticAnalyzer
+    public class TypeNames_StartWithUpperCase_Analyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.FieldNameAbbreviationCasing,
-            DiagnosticsIDs.FieldNameAbbreviationCasing,
-            "Field name '{0}': " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
+            DiagnosticsIDs.TypeNamesStartWithUpperCase,
+            DiagnosticsIDs.TypeNamesStartWithUpperCase,
+            "Type name '{0}' does not start with an upper case letter.",
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -25,21 +26,19 @@ namespace JJ.Analysis.Analysers
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Field);
+            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
         }
 
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
         {
-            var castedSymbol = (IFieldSymbol)context.Symbol;
+            string name = context.Symbol.Name;
 
-            string name = castedSymbol.Name;
-
-            if (!CaseHelper.HasTooManyUpperCharsInARow(name, 3))
+            if (CaseHelper.StartsWithUpperCase(name))
             {
                 return;
             }
 
-            Diagnostic diagnostic = Diagnostic.Create(_rule, castedSymbol.Locations[0], name);
+            Diagnostic diagnostic = Diagnostic.Create(_rule, context.Symbol.Locations[0], name);
             context.ReportDiagnostic(diagnostic);
         }
     }
