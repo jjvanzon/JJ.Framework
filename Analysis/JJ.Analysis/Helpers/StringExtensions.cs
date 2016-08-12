@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace JJ.Analysis.Helpers
 {
-    internal class StringHelper
+    internal static class StringExtensions
     {
-        public static bool StartsWithUpperCase(string value)
+        public static bool StartsWith(this string value, char chr)
         {
-            if (String.IsNullOrEmpty(value))
+            if (value.Length == 0)
             {
                 return false;
             }
 
             char firstChar = value[0];
-            bool firstCharIsUpper = char.IsUpper(firstChar);
 
-            return firstCharIsUpper;
+            return firstChar == chr;
         }
     }
 }

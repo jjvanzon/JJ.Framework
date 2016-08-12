@@ -38,7 +38,8 @@ namespace JJ.Analysis.Analysers
             }
 
             string name = methodSymbol.Name;
-            if (StringHelper.StartsWithUpperCase(name))
+
+            if (CaseHelper.StartsWithUpperCase(name))
             {
                 return;
             }

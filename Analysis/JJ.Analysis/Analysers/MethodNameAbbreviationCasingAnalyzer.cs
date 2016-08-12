@@ -9,12 +9,12 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class PropertyNamesStartWithUpperCaseAnalyzer : DiagnosticAnalyzer
+    public class MethodNameAbbreviationCasingAnalyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.PropertyNamesStartWithUpperCase,
-            DiagnosticsIDs.PropertyNamesStartWithUpperCase,
-            "Property name '{0}' does not start with an upper case letter.",
+            DiagnosticsIDs.MethodNameAbbreviationCasing,
+            DiagnosticsIDs.MethodNameAbbreviationCasing,
+            "Method name '{0}': " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -25,19 +25,26 @@ namespace JJ.Analysis.Analysers
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Property);
+            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);
         }
 
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
         {
-            string name = context.Symbol.Name;
+            var methodSymbol = (IMethodSymbol)context.Symbol;
 
-            if (CaseHelper.StartsWithUpperCase(name))
+            if (!AnalysisHelper.IsNormalMethod(methodSymbol))
             {
                 return;
             }
 
-            Diagnostic diagnostic = Diagnostic.Create(_rule, context.Symbol.Locations[0], name);
+            string name = methodSymbol.Name;
+
+            if (!CaseHelper.HasTooManyUpperCharsInARow(name, 3))
+            {
+                return;
+            }
+
+            Diagnostic diagnostic = Diagnostic.Create(_rule, methodSymbol.Locations[0], name);
             context.ReportDiagnostic(diagnostic);
         }
     }

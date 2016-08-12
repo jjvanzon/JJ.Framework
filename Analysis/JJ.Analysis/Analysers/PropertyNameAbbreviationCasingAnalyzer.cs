@@ -9,12 +9,12 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class PropertyNamesStartWithUpperCaseAnalyzer : DiagnosticAnalyzer
+    public class PropertyNameAbbreviationCasingAnalyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.PropertyNamesStartWithUpperCase,
-            DiagnosticsIDs.PropertyNamesStartWithUpperCase,
-            "Property name '{0}' does not start with an upper case letter.",
+            DiagnosticsIDs.PropertyNameAbbreviationCasing,
+            DiagnosticsIDs.PropertyNameAbbreviationCasing,
+            "Property name '{0}': " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -32,7 +32,7 @@ namespace JJ.Analysis.Analysers
         {
             string name = context.Symbol.Name;
 
-            if (CaseHelper.StartsWithUpperCase(name))
+            if (!CaseHelper.HasTooManyUpperCharsInARow(name, 3))
             {
                 return;
             }

@@ -33,7 +33,7 @@ namespace JJ.Analysis.Analysers
         {
             string name = context.Symbol.Name;
 
-            if (StringHelper.StartsWithUpperCase(name))
+            if (CaseHelper.StartsWithUpperCase(name))
             {
                 return;
             }

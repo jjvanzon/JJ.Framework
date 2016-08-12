@@ -36,14 +36,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Analysers\2016-08-11 Backup of SingleRuleAnalyserBase.cs" />
+    <Compile Include="Analysers\FieldNameAbbreviationCasingAnalyzer.cs" />
+    <Compile Include="Analysers\MethodNameAbbreviationCasingAnalyzer.cs" />
     <Compile Include="Analysers\MethodNamesStartWithUpperCaseAnalyzer.cs" />
     <Compile Include="Analysers\2016-08-07 Backup of PublicMethodParameterRequiresNullCheckAnalyzer.cs" />
+    <Compile Include="Analysers\PropertyNameAbbreviationCasingAnalyzer.cs" />
     <Compile Include="Analysers\PublicMethodParameterRequiresStringIsNullOrEmptyCheckAnalyzer.cs" />
     <Compile Include="Analysers\PublicMethodParameterRequiresNullCheckAnalyzer.cs" />
     <Compile Include="Analysers\PropertyNamesStartWithUpperCaseAnalyzer.cs" />
-    <Compile Include="Analysers\FieldNamesStartWithUnderscoreAnalyzer.cs" />
+    <Compile Include="Analysers\FieldNamesAreUnderscoredCamelCaseAnalyzer.cs" />
     <Compile Include="Helpers\AnalysisHelper.cs" />
-    <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Helpers\2016-08-10 Backup of CaseHelper %281%29.cs" />
+    <Compile Include="Helpers\2016-08-10 Backup of CaseHelper %282%29.cs" />
+    <Compile Include="Helpers\CaseHelper.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Names\CategoryNames.cs" />
     <Compile Include="Names\DiagnosticsIDs.cs" />
     <Compile Include="Analysers\TypeNamesStartWithUpperCaseAnalyzer.cs" />

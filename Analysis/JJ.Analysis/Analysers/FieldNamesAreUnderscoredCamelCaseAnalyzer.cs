@@ -9,12 +9,12 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class PropertyNamesStartWithUpperCaseAnalyzer : DiagnosticAnalyzer
+    public class FieldNamesAreUnderscoredCamelCaseAnalyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.PropertyNamesStartWithUpperCase,
-            DiagnosticsIDs.PropertyNamesStartWithUpperCase,
-            "Property name '{0}' does not start with an upper case letter.",
+            DiagnosticsIDs.FieldNamesAreUnderscoredCamelCase,
+            DiagnosticsIDs.FieldNamesAreUnderscoredCamelCase,
+            "Field name '{0}' does not start with underscore and then a lower case letter.",
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -25,19 +25,21 @@ namespace JJ.Analysis.Analysers
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Property);
+            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Field);
         }
 
         private static void AnalyzeSymbol(SymbolAnalysisContext context)
         {
-            string name = context.Symbol.Name;
+            var castedSymbol = (IFieldSymbol)context.Symbol;
 
-            if (CaseHelper.StartsWithUpperCase(name))
+            string name = castedSymbol.Name;
+
+            if (CaseHelper.IsUnderscoredCamelCase(name))
             {
                 return;
             }
 
-            Diagnostic diagnostic = Diagnostic.Create(_rule, context.Symbol.Locations[0], name);
+            Diagnostic diagnostic = Diagnostic.Create(_rule, castedSymbol.Locations[0], name);
             context.ReportDiagnostic(diagnostic);
         }
     }
