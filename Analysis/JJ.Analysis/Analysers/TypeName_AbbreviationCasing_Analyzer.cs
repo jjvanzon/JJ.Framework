@@ -42,8 +42,11 @@ namespace JJ.Analysis.Analysers
 
             if (CaseHelper.ExceedsMaxCapitalizedAbbreviationLength(name, 2, firstIndex))
             {
-                Diagnostic diagnostic = Diagnostic.Create(_rule, castedSymbol.Locations[0], name);
-                context.ReportDiagnostic(diagnostic);
+                foreach (Location location in castedSymbol.Locations)
+                {
+                    Diagnostic diagnostic = Diagnostic.Create(_rule, location, name);
+                    context.ReportDiagnostic(diagnostic);
+                }
             }
         }
     }

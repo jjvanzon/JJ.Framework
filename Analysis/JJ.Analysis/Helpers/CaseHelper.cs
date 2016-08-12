@@ -88,9 +88,9 @@ namespace JJ.Analysis.Helpers
 
             char chr = name[index];
 
-            bool isUpper = char.IsUpper(chr);
+            bool isLower = char.IsLower(chr);
 
-            return isUpper;
+            return isLower;
         }
 
         private static bool IsUpper(string name, int index)
@@ -102,9 +102,9 @@ namespace JJ.Analysis.Helpers
 
             char chr = name[index];
 
-            bool isLower = char.IsUpper(chr);
+            bool isUpper = char.IsUpper(chr);
 
-            return isLower;
+            return isUpper;
         }
     }
 }

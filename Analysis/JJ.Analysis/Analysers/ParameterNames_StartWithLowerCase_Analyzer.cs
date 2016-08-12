@@ -5,17 +5,19 @@ using System.Linq;
 using JJ.Analysis.Helpers;
 using JJ.Analysis.Names;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class TypeNames_StartWithUpperCase_Analyzer : DiagnosticAnalyzer
+    public class ParameterNames_StartWithLowerCase_Analyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.TypeNamesStartWithUpperCase,
-            DiagnosticsIDs.TypeNamesStartWithUpperCase,
-            "Type name '{0}' does not start with an upper case letter.",
+            DiagnosticsIDs.ParameterNamesStartWithLowerCase,
+            DiagnosticsIDs.ParameterNamesStartWithLowerCase,
+            "Parameter name '{0}' does not start with a lower case letter.",
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -26,21 +28,18 @@ namespace JJ.Analysis.Analysers
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
+            context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, SyntaxKind.Parameter);
         }
 
-        private static void AnalyzeSymbol(SymbolAnalysisContext context)
+        private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            string name = context.Symbol.Name;
+            var castedSyntaxNode = (ParameterSyntax)context.Node;
 
-            if (CaseHelper.StartsWithUpperCase(name))
-            {
-                return;
-            }
+            string name = castedSyntaxNode.Identifier.Text;
 
-            foreach (Location location in context.Symbol.Locations)
+            if (!CaseHelper.StartsWithLowerCase(name))
             {
-                Diagnostic diagnostic = Diagnostic.Create(_rule, location, name);
+                Diagnostic diagnostic = Diagnostic.Create(_rule, castedSyntaxNode.GetLocation(), name);
                 context.ReportDiagnostic(diagnostic);
             }
         }

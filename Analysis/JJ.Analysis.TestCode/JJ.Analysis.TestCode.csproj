@@ -38,6 +38,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassWith_LocalVariableName_NotStartingWithLowerCase_MultipleInOneStatement.cs" />
+    <Compile Include="ClassWith_LocalVariableName_NotStartingWithLowerCase.cs" />
+    <Compile Include="ClassWith_ParameterName_NotStartingWithLowerCase.cs" />
+    <Compile Include="PartialClassWithNameError2.cs" />
+    <Compile Include="PartialClassWithNameError1.cs" />
     <Compile Include="ClassWith_ConstantName_NotExactlyMatchesItsValue.cs" />
     <Compile Include="ClassWith_ConstantName_NotAllCapitals.cs" />
     <Compile Include="TInterfaceWith_InterfaceName_NotStartingWithI.cs" />
