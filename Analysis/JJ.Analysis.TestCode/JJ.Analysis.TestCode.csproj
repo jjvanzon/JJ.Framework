@@ -38,6 +38,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TInterfaceWith_InterfaceName_NotStartingWithI.cs" />
     <Compile Include="IINTErfaceWith_InterfaceName_WithTooManyCapitalsInARow.cs" />
     <Compile Include="ClassWith_ClassName_WithTooManyCapitalsAtTheEND.cs" />
     <Compile Include="ClassWith_ClassName_WithTooManyCAPItalsInARow.cs" />

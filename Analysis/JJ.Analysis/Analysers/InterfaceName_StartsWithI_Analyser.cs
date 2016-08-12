@@ -9,12 +9,12 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class TypeName_AbbreviationCasing_Analyzer : DiagnosticAnalyzer
+    public class InterfaceName_StartsWithI_Analyser : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
             DiagnosticsIDs.TypeNameAbreviationCasing,
             DiagnosticsIDs.TypeNameAbreviationCasing,
-            "Type name '{0}': Type names should be pascal case. " + AnalysisHelper.ABBREVIATION_CASING_EXPLANATION,
+            "Interface name '{0}' does not start with I.",
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -32,19 +32,20 @@ namespace JJ.Analysis.Analysers
         {
             var castedSymbol = (INamedTypeSymbol)context.Symbol;
 
+            if (castedSymbol.TypeKind != TypeKind.Interface)
+            {
+                return;
+            }
+
             string name = castedSymbol.Name;
 
-            int firstIndex = 0;
-            if (castedSymbol.TypeKind == TypeKind.Interface)
+            if (name.StartsWith("I"))
             {
-                firstIndex = 1;
+                return;
             }
 
-            if (CaseHelper.ExceedsMaxCapitalizedAbbreviationLength(name, 2, firstIndex))
-            {
-                Diagnostic diagnostic = Diagnostic.Create(_rule, castedSymbol.Locations[0], name);
-                context.ReportDiagnostic(diagnostic);
-            }
+            Diagnostic diagnostic = Diagnostic.Create(_rule, castedSymbol.Locations[0], name);
+            context.ReportDiagnostic(diagnostic);
         }
     }
 }

@@ -44,6 +44,7 @@
     <Compile Include="Analysers\PublicMethodParameter_RequiresNullCheck_Analyzer.cs" />
     <Compile Include="Analysers\PropertyNames_StartWithUpperCase_Analyzer.cs" />
     <Compile Include="Analysers\FieldNames_AreUnderscoredCamelCase_Analyzer.cs" />
+    <Compile Include="Analysers\InterfaceName_StartsWithI_Analyser.cs" />
     <Compile Include="Analysers\TypeName_AbbreviationCasing_Analyzer.cs" />
     <Compile Include="Helpers\AnalysisHelper.cs" />
     <Compile Include="Helpers\CaseHelper.cs" />
