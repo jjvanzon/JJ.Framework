@@ -6,6 +6,7 @@ namespace JJ.Analysis.Names
 {
     internal static class DiagnosticsIDs
     {
+        public const string ConstantNamesAreUpperCaseOrSameAsValue = "ConstantNamesAreUpperCaseOrSameAsValue";
         public const string FieldNamesAreUnderscoredCamelCase = "FieldNamesStartWithUnderscore";
         public const string FieldNameAbbreviationCasing = "FieldNameAbbreviationCasing";
         public const string MethodNameAbbreviationCasing = "MethodNameAbbreviationCasing";

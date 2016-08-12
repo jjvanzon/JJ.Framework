@@ -32,6 +32,11 @@ namespace JJ.Analysis.Analysers
         {
             var castedSymbol = (IFieldSymbol)context.Symbol;
 
+            if (castedSymbol.IsConst)
+            {
+                return;
+            }
+
             string name = castedSymbol.Name;
 
             if (CaseHelper.ExceedsMaxCapitalizedAbbreviationLength(name, 2))

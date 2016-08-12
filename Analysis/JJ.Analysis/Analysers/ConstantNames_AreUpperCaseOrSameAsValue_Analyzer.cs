@@ -1,20 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using JJ.Analysis.Helpers;
 using JJ.Analysis.Names;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace JJ.Analysis.Analysers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class FieldNames_AreUnderscoredCamelCase_Analyzer : DiagnosticAnalyzer
+    public class ConstantNames_AreUpperCaseOrSameAsValue_Analyzer : DiagnosticAnalyzer
     {
         private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-            DiagnosticsIDs.FieldNamesAreUnderscoredCamelCase,
-            DiagnosticsIDs.FieldNamesAreUnderscoredCamelCase,
-            "Field name '{0}' does not start with underscore and then a lower case letter.",
+            DiagnosticsIDs.ConstantNamesAreUpperCaseOrSameAsValue,
+            DiagnosticsIDs.ConstantNamesAreUpperCaseOrSameAsValue,
+            "Constant name '{0}' is not all capitals and also the name does not exactly match its value.",
             CategoryNames.Naming,
             DiagnosticSeverity.Warning,
             isEnabledByDefault: true);
@@ -32,14 +35,22 @@ namespace JJ.Analysis.Analysers
         {
             var castedSymbol = (IFieldSymbol)context.Symbol;
 
-            if (castedSymbol.IsConst)
+            if (!castedSymbol.IsConst)
             {
                 return;
             }
 
             string name = castedSymbol.Name;
+            string value = Convert.ToString(castedSymbol.ConstantValue);
 
-            if (CaseHelper.IsUnderscoredCamelCase(name))
+            bool valueEqualsName = String.Equals(value, name);
+            if (valueEqualsName)
+            {
+                return;
+            }
+
+            bool isUpperCase = String.Equals(name, name.ToUpper());
+            if (isUpperCase)
             {
                 return;
             }

@@ -7,8 +7,8 @@
     <ProjectGuid>{0AF3635C-D14B-496A-A1BC-40EB3DD5DFDA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClassLibrary1</RootNamespace>
-    <AssemblyName>ClassLibrary1</AssemblyName>
+    <RootNamespace>JJ.Analysis.TestCode</RootNamespace>
+    <AssemblyName>JJ.Analysis.TestCode</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -38,6 +38,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassWith_ConstantName_NotExactlyMatchesItsValue.cs" />
+    <Compile Include="ClassWith_ConstantName_NotAllCapitals.cs" />
     <Compile Include="TInterfaceWith_InterfaceName_NotStartingWithI.cs" />
     <Compile Include="IINTErfaceWith_InterfaceName_WithTooManyCapitalsInARow.cs" />
     <Compile Include="ClassWith_ClassName_WithTooManyCapitalsAtTheEND.cs" />

@@ -36,6 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Analysers\2016-08-12 Backup of ConstantNames_AreUpperCaseOrSameAsValue_Analyzer.cs" />
+    <Compile Include="Analysers\ConstantNames_AreUpperCaseOrSameAsValue_Analyzer.cs" />
     <Compile Include="Analysers\FieldName_AbbreviationCasing_Analyzer.cs" />
     <Compile Include="Analysers\MethodName_AbbreviationCasing_Analyzer.cs" />
     <Compile Include="Analysers\MethodNames_StartWithUpperCase_Analyzer.cs" />
