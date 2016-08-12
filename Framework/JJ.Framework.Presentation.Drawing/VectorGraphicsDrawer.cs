@@ -76,9 +76,10 @@ namespace JJ.Framework.Presentation.Drawing
             if (sourcePoint.CalculatedValues.Visible && sourcePoint.PointStyle.Visible)
             {
                 RectangleF destRectangle = sourcePoint.ToSystemDrawingRectangleF();
-                Brush destBrush = sourcePoint.PointStyle.ToSystemDrawingBrush();
-
-                destGraphics.FillEllipse(destBrush, destRectangle);
+                using (Brush destBrush = sourcePoint.PointStyle.ToSystemDrawingBrush())
+                {
+                    destGraphics.FillEllipse(destBrush, destRectangle);
+                }
             }
         }
 
@@ -89,14 +90,15 @@ namespace JJ.Framework.Presentation.Drawing
                 if (sourceLine.PointA == null) throw new NullException(() => sourceLine.PointA);
                 if (sourceLine.PointB == null) throw new NullException(() => sourceLine.PointB);
 
-                Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
-
                 float x1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.XInPixels);
                 float y1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.YInPixels);
                 float x2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.XInPixels);
                 float y2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.YInPixels);
 
-                destGraphics.DrawLine(destPen, x1, y1, x2, y2);
+                using (Pen destPen = sourceLine.LineStyle.ToSystemDrawing())
+                {
+                    destGraphics.DrawLine(destPen, x1, y1, x2, y2);
+                }
             }
         }
 
@@ -110,10 +112,12 @@ namespace JJ.Framework.Presentation.Drawing
             // Draw Back
             if (sourceRectangle.Style.BackStyle.Visible)
             {
-                Brush destBrush = sourceRectangle.Style.BackStyle.ToSystemDrawing();
                 RectangleF destRectangle = sourceRectangle.ToSystemDrawingRectangleF();
 
-                destGraphics.FillRectangle(destBrush, destRectangle);
+                using (Brush destBrush = sourceRectangle.Style.BackStyle.ToSystemDrawing())
+                {
+                    destGraphics.FillRectangle(destBrush, destRectangle);
+                }
             }
 
             // Draw Rectangle
@@ -127,9 +131,10 @@ namespace JJ.Framework.Presentation.Drawing
             {
                 if (lineStyle.Visible)
                 {
-                    Pen destPen = lineStyle.ToSystemDrawing();
-
-                    destGraphics.DrawRectangle(destPen, left, top, width, height);
+                    using (Pen destPen = lineStyle.ToSystemDrawing())
+                    {
+                        destGraphics.DrawRectangle(destPen, left, top, width, height);
+                    }
                 }
             }
             else
@@ -140,22 +145,30 @@ namespace JJ.Framework.Presentation.Drawing
                 float right = left + width;
                 float bottom = top + height;
 
-                PointF destTopLeftPointF = new PointF(left, top);
-                PointF destTopRightPointF = new PointF(right, top);
-                PointF destBottomRightPointF = new PointF(right, bottom);
-                PointF destBottomLeftPointF = new PointF(left, bottom);
+                var destTopLeftPointF = new PointF(left, top);
+                var destTopRightPointF = new PointF(right, top);
+                var destBottomRightPointF = new PointF(right, bottom);
+                var destBottomLeftPointF = new PointF(left, bottom);
 
-                Pen destTopPen = sourceRectangle.Style.TopLineStyle.ToSystemDrawing();
-                destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
+                using (Pen destTopPen = sourceRectangle.Style.TopLineStyle.ToSystemDrawing())
+                {
+                    destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
+                }
 
-                Pen destRightPen = sourceRectangle.Style.RightLineStyle.ToSystemDrawing();
-                destGraphics.DrawLine(destRightPen, destTopRightPointF, destBottomRightPointF);
+                using (Pen destRightPen = sourceRectangle.Style.RightLineStyle.ToSystemDrawing())
+                {
+                    destGraphics.DrawLine(destRightPen, destTopRightPointF, destBottomRightPointF);
+                }
 
-                Pen destBottomPen = sourceRectangle.Style.BottomLineStyle.ToSystemDrawing();
-                destGraphics.DrawLine(destBottomPen, destBottomRightPointF, destBottomLeftPointF);
+                using (Pen destBottomPen = sourceRectangle.Style.BottomLineStyle.ToSystemDrawing())
+                {
+                    destGraphics.DrawLine(destBottomPen, destBottomRightPointF, destBottomLeftPointF);
+                }
 
-                Pen destLeftPen = sourceRectangle.Style.LeftLineStyle.ToSystemDrawing();
-                destGraphics.DrawLine(destLeftPen, destBottomLeftPointF, destTopLeftPointF);
+                using (Pen destLeftPen = sourceRectangle.Style.LeftLineStyle.ToSystemDrawing())
+                {
+                    destGraphics.DrawLine(destLeftPen, destBottomLeftPointF, destTopLeftPointF);
+                }
             }
         }
 
@@ -165,9 +178,6 @@ namespace JJ.Framework.Presentation.Drawing
             {
                 return;
             }
-
-            StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
-            System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing(destGraphics.DpiX);
 
             float x = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.XInPixels);
             float y = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.YInPixels);
@@ -179,9 +189,16 @@ namespace JJ.Framework.Presentation.Drawing
 
             var destRectangle = new RectangleF(x, y, width, height);
 
-            Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
-
-            destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);
+            using (System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing(destGraphics.DpiX))
+            {
+                using (Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush())
+                {
+                    using (StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat())
+                    {
+                        destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);
+                    }
+                }
+            }
         }
 
         private static void DrawCurve(Curve sourceCurve, Graphics destGraphics)
