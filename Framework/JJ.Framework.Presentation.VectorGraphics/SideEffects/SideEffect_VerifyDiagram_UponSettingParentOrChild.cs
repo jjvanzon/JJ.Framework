@@ -4,14 +4,14 @@ using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
 {
-    internal class SideEffect_VerifyDiagram_WhenSettingParentOrChild : ISideEffect
+    internal class SideEffect_VerifyDiagram_UponSettingParentOrChild : ISideEffect
     {
-        private Element _child;
-        private Element _parent;
+        private readonly Element _child;
+        private readonly Element _parent;
 
         /// <param name="child">nullable</param>
         /// <param name="parent">nullable</param>
-        public SideEffect_VerifyDiagram_WhenSettingParentOrChild(Element child, Element parent)
+        public SideEffect_VerifyDiagram_UponSettingParentOrChild(Element child, Element parent)
         {
             _child = child;
             _parent = parent;

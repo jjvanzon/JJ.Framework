@@ -101,8 +101,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Elements\Diagram.cs" />
     <Compile Include="Models\Elements\DiagramElements.cs" />
-    <Compile Include="SideEffects\SideEffect_VerifyDiagram_WhenSettingParentOrChild.cs" />
-    <Compile Include="SideEffects\SideEffect_VerifyNoParentChildRelationShips_WhenSettingDiagram.cs" />
+    <Compile Include="SideEffects\SideEffect_PreventCircularity.cs" />
+    <Compile Include="SideEffects\2016-08-14 Backup of SideEffect_PreventCircularity_UponAddingChild.cs" />
+    <Compile Include="SideEffects\2016-08-14 Backup of SideEffect_PreventCircularity_UponSettingParent.cs" />
+    <Compile Include="SideEffects\SideEffect_VerifyDiagram_UponSettingParentOrChild.cs" />
+    <Compile Include="SideEffects\SideEffect_VerifyNoParentChildRelationShips_UponSettingDiagram.cs" />
     <Compile Include="Visitors\CalculationVisitor.cs" />
     <Compile Include="Visitors\ElementVisitorBase.cs" />
   </ItemGroup>

@@ -60,7 +60,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
                     }
                 }
 
-                ISideEffect sideEffect = new SideEffect_VerifyNoParentChildRelationShips_WhenSettingDiagram(this);
+                ISideEffect sideEffect = new SideEffect_VerifyNoParentChildRelationShips_UponSettingDiagram(this);
                 sideEffect.Execute();
 
                 _diagramRelationship.Parent = value;
@@ -77,8 +77,11 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             {
                 if (_parentRelationship.Parent == value) return;
 
-                ISideEffect sideEffect = new SideEffect_VerifyDiagram_WhenSettingParentOrChild(this, value);
-                sideEffect.Execute();
+                ISideEffect sideEffect1 = new SideEffect_VerifyDiagram_UponSettingParentOrChild(this, value);
+                sideEffect1.Execute();
+
+                ISideEffect sideEffect2 = new SideEffect_PreventCircularity(this, value);
+                sideEffect2.Execute();
 
                 _parentRelationship.Parent = value;
             }

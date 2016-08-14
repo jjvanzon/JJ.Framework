@@ -4,8 +4,6 @@ using JJ.Framework.Reflection.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
 using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Common;
-using JJ.Framework.Presentation.VectorGraphics.Helpers;
 using JJ.Framework.Common.Exceptions;
 using JJ.Framework.Mathematics;
 
@@ -18,7 +16,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
     /// </summary>
     internal class CalculationVisitor : ElementVisitorBase
     {
-        private HashSet<Element> _calculatedElements;
         private Diagram _diagram;
         private float _currentParentX;
         private float _currentParentY;
@@ -31,7 +28,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
             if (diagram == null) throw new NullException(() => diagram);
 
             _diagram = diagram;
-            _calculatedElements = new HashSet<Element>();
             _currentParentX = 0;
             _currentParentY = 0;
             _currentZIndex = 0;
@@ -84,12 +80,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
         // Visit
 
-        // Beware that VisitPolymorphic can visit the same object multiple times.
-        // That is why some repeated code cannot be put in VisitPolymorphic.
-
         protected override void VisitPolymorphic(Element element)
         {
-            // TODO: It seems to coincidental that determining Visible and Enabled work this way.
+            // TODO: It seems too coincidental that determining Visible and Enabled works this way.
             // I would much rather put variables on the call stack or work with a new virtual style
             // on each stack frame.
             element.CalculatedValues.Visible = element.Visible;
@@ -129,43 +122,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
             // because it must be absolutely positioned,
             // because it can be referenced by a line.
 
-            CalculatePoint(point);
-
-            base.VisitPoint(point);
-        }
-
-        protected override void VisitLine(Line line)
-        {
-            CalculateLine(line);
-
-            base.VisitLine(line);
-        }
-
-        protected override void VisitRectangle(Rectangle rectangle)
-        {
-            CalculateRectangle(rectangle);
-
-            base.VisitRectangle(rectangle);
-        }
-
-        protected override void VisitLabel(Label label)
-        {
-            CalculateLabel(label);
-
-            base.VisitLabel(label);
-        }
-
-        // NOTE: For Curve there is nothing specific to calculate at this point. Curves are calculated in the post-processing.
-
-        // Calculate
-
-        private void CalculatePoint(Point point)
-        {
-            if (_calculatedElements.Contains(point))
-            {
-                return;
-            }
-
             point.CalculatedValues.XInPixels = point.Position.X + _currentParentX;
             point.CalculatedValues.YInPixels = point.Position.Y + _currentParentY;
             point.CalculatedValues.WidthInPixels = point.Position.Width;
@@ -173,26 +129,11 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             ApplyScaling(point);
 
-            _calculatedElements.Add(point);
+            base.VisitPoint(point);
         }
 
-        private void CalculateLine(Line line)
+        protected override void VisitRectangle(Rectangle rectangle)
         {
-            if (_calculatedElements.Contains(line))
-            {
-                return;
-            }
-
-            _calculatedElements.Add(line);
-        }
-
-        private void CalculateRectangle(Rectangle rectangle)
-        {
-            if (_calculatedElements.Contains(rectangle))
-            {
-                return;
-            }
-
             rectangle.CalculatedValues.XInPixels = rectangle.Position.X + _currentParentX;
             rectangle.CalculatedValues.YInPixels = rectangle.Position.Y + _currentParentY;
             rectangle.CalculatedValues.WidthInPixels = rectangle.Position.Width;
@@ -200,16 +141,11 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             ApplyScaling(rectangle);
 
-            _calculatedElements.Add(rectangle);
+            base.VisitRectangle(rectangle);
         }
 
-        private void CalculateLabel(Label label)
+        protected override void VisitLabel(Label label)
         {
-            if (_calculatedElements.Contains(label))
-            {
-                return;
-            }
-
             label.CalculatedValues.XInPixels = label.Position.X + _currentParentX;
             label.CalculatedValues.YInPixels = label.Position.Y + _currentParentY;
             label.CalculatedValues.WidthInPixels = label.Position.Width;
@@ -217,7 +153,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
             ApplyScaling(label);
 
-            _calculatedElements.Add(label);
+            base.VisitLabel(label);
         }
 
         // Post Process
@@ -230,8 +166,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 PostProcessCurve(curve);
                 return;
             }
-
-            // No more objects that require post-processing.
         }
 
         private void PostProcessCurve(Curve sourceCurve)
@@ -251,12 +185,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 float calculatedY;
 
                 Interpolator.Interpolate_Cubic_FromT(
-                    sourceCurve.PointA.CalculatedValues.XInPixels, 
-                    sourceCurve.ControlPointA.CalculatedValues.XInPixels, 
-                    sourceCurve.ControlPointB.CalculatedValues.XInPixels, 
+                    sourceCurve.PointA.CalculatedValues.XInPixels,
+                    sourceCurve.ControlPointA.CalculatedValues.XInPixels,
+                    sourceCurve.ControlPointB.CalculatedValues.XInPixels,
                     sourceCurve.PointB.CalculatedValues.XInPixels,
-                    sourceCurve.PointA.CalculatedValues.YInPixels, 
-                    sourceCurve.ControlPointA.CalculatedValues.YInPixels, 
+                    sourceCurve.PointA.CalculatedValues.YInPixels,
+                    sourceCurve.ControlPointA.CalculatedValues.YInPixels,
                     sourceCurve.ControlPointB.CalculatedValues.YInPixels,
                     sourceCurve.PointB.CalculatedValues.YInPixels,
                     t, out calculatedX, out calculatedY);

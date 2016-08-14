@@ -45,7 +45,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
                 return;
             }
 
-            throw new Exception(String.Format("Unexpected Element type '{0}'", element.GetType().FullName));
+            throw new UnexpectedTypeException(() => element);
         }
 
         protected virtual void VisitPoint(Point point)

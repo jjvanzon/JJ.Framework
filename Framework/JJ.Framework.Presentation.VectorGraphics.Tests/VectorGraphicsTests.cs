@@ -195,5 +195,65 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             int expectedGreyColor = ColorHelper.GetColor(255, 127, 127, 127);
             AssertHelper.AreEqual(expectedGreyColor, () => probablyGreyColor);
         }
+
+        [TestMethod]
+        public void Test_VectorGraphics_CircularityCheck_SetParent()
+        {
+            var diagram = new Diagram();
+
+            var parent = new Point
+            {
+                Diagram = diagram,
+                Parent = diagram.Background,
+            };
+
+            var child = new Point
+            {
+                Diagram = diagram,
+                Parent = parent
+            };
+
+            var grandChild = new Point
+            {
+                Diagram = diagram,
+                Parent = child
+            };
+
+            AssertHelper.ThrowsException(() =>
+            {
+                parent.Parent = grandChild;
+            },
+            "Child cannot be added or parent cannot set, because it would cause a circular reference.");
+        }
+
+        [TestMethod]
+        public void Test_VectorGraphics_CircularityCheck_AddChild()
+        {
+            var diagram = new Diagram();
+
+            var parent = new Point
+            {
+                Diagram = diagram,
+                Parent = diagram.Background,
+            };
+
+            var child = new Point
+            {
+                Diagram = diagram,
+                Parent = parent
+            };
+
+            var grandChild = new Point
+            {
+                Diagram = diagram,
+                Parent = child
+            };
+
+            AssertHelper.ThrowsException(() =>
+            {
+                grandChild.Children.Add(parent);
+            },
+            "Child cannot be added or parent cannot set, because it would cause a circular reference.");
+        }
     }
 }

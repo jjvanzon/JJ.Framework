@@ -34,7 +34,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public void Add(Element element)
         {
-            ISideEffect sideEffect = new SideEffect_VerifyNoParentChildRelationShips_WhenSettingDiagram(element);
+            ISideEffect sideEffect = new SideEffect_VerifyNoParentChildRelationShips_UponSettingDiagram(element);
             sideEffect.Execute();
 
             _relationship.Add(element);
@@ -47,7 +47,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
                 throw new Exception("Cannot remove Background Element from Diagram.");
             }
 
-            ISideEffect sideEffect = new SideEffect_VerifyNoParentChildRelationShips_WhenSettingDiagram(element);
+            ISideEffect sideEffect = new SideEffect_VerifyNoParentChildRelationShips_UponSettingDiagram(element);
             sideEffect.Execute();
 
             _relationship.Remove(element);
