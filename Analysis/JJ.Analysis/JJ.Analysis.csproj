@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Analysers\2016-08-12 Backup of ConstantNames_AreUpperCaseOrSameAsValue_Analyzer.cs" />
     <Compile Include="Analysers\ConstantNames_AreUpperCaseOrSameAsValue_Analyzer.cs" />
+    <Compile Include="Analysers\Fields_MustBePrivateOrProtected_Analyser.cs" />
     <Compile Include="Analysers\ParameterName_AbbreviationCasing_Analyzer.cs" />
     <Compile Include="Analysers\LocalVariableName_AbbreviationCasing_Analyzer.cs" />
     <Compile Include="Analysers\ParameterName_StartWithLowerCase_Analyzer.cs" />

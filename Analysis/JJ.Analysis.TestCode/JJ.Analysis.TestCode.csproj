@@ -38,6 +38,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fields_ThatAreNotPrivate.cs" />
     <Compile Include="LocalVariableName_TooManyCapitalsInARow.cs" />
     <Compile Include="LocalVariableName_NotStartingWithLowerCase_MultipleInOneStatement.cs" />
     <Compile Include="LocalVariableName_NotStartingWithLowerCase.cs" />
