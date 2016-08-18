@@ -109,42 +109,20 @@ namespace JJ.Framework.Common
             return new T[] { x }.Concat(enumerable);
         }
 
-        // TODO: TKey is strange. You would think that the different elements of the key are not always of the same type.
-        public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey>[] keys)
+        public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey> keySelector)
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
-            if (keys == null) throw new ArgumentNullException(nameof(keys));
+            if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
 
-            string separator = "";
-            if (keys.Length > 1)
+            var hashSet = new HashSet<TKey>();
+
+            foreach (TItem item in enumerable)
             {
-                separator = _separatorGuidString;
-            }
+                TKey key = keySelector(item);
 
-            var hash = new HashSet<string>();
-
-            foreach (var x in enumerable)
-            {
-                string keyString = "";
-                foreach (var key in keys)
+                if (hashSet.Add(key))
                 {
-                    string keyElementString;
-                    if (key(x) == null)
-                    {
-                        keyElementString = _nullGuidString;
-                    }
-                    else
-                    {
-                        keyElementString = key(x).ToString();
-                    }
-
-                    keyString += keyElementString + separator;
-                }
-
-                if (!hash.Contains(keyString))
-                {
-                    yield return x;
-                    hash.Add(keyString);
+                    yield return item;
                 }
             }
         }
