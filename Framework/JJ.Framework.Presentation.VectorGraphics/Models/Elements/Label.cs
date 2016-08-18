@@ -1,11 +1,9 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Gestures;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+﻿using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Reflection.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
@@ -15,14 +13,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     {
         public Label()
         {
-            _position = new LabelPosition(this);
+            Position = new LabelPosition(this);
         }
 
-        private ElementPosition _position;
-        public override ElementPosition Position
-        {
-            get { return _position; }
-        }
+        public override ElementPosition Position { get; }
 
         public string Text { get; set; }
 
@@ -39,9 +33,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        private string DebuggerDisplay
-        {
-            get { return DebugHelper.GetDebuggerDisplay(this); }
-        }
+        private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
     }
 }

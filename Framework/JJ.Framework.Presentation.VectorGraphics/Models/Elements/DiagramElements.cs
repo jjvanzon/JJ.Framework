@@ -27,14 +27,11 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         }
 
         [DebuggerHidden]
-        public int Count
-        {
-            get { return _elements.Count; }
-        }
+        public int Count => _elements.Count;
 
         public void Add(Element element)
         {
-            ISideEffect sideEffect = new SideEffect_VerifyNoParentChildRelationShips_UponSettingDiagram(element);
+            ISideEffect sideEffect = new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element);
             sideEffect.Execute();
 
             _relationship.Add(element);
@@ -42,22 +39,17 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public void Remove(Element element)
         {
-            if (element == _diagram.Background)
-            {
-                throw new Exception("Cannot remove Background Element from Diagram.");
-            }
+            ISideEffect sideEffect1 = new SideEffect_AssertCannotRemoveBackgroundFromDiagram(element);
+            sideEffect1.Execute();
 
-            ISideEffect sideEffect = new SideEffect_VerifyNoParentChildRelationShips_UponSettingDiagram(element);
-            sideEffect.Execute();
+            ISideEffect sideEffect2 = new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element);
+            sideEffect2.Execute();
 
             _relationship.Remove(element);
         }
 
         [DebuggerHidden]
-        public bool Contains(Element element)
-        {
-            return _elements.Contains(element);
-        }
+        public bool Contains(Element element) => _elements.Contains(element);
 
         public void Clear()
         {
@@ -75,15 +67,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         // IEnumerable
 
         [DebuggerHidden]
-        public IEnumerator<Element> GetEnumerator()
-        {
-            return _elements.GetEnumerator();
-        }
+        public IEnumerator<Element> GetEnumerator() => _elements.GetEnumerator();
 
         [DebuggerHidden]
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _elements.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => _elements.GetEnumerator();
     }
 }

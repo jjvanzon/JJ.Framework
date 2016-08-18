@@ -5,11 +5,11 @@ using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
 {
-    internal class SideEffect_VerifyNoParentChildRelationShips_UponSettingDiagram : ISideEffect
+    internal class SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram : ISideEffect
     {
         private Element _element;
 
-        public SideEffect_VerifyNoParentChildRelationShips_UponSettingDiagram(Element element)
+        public SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(Element element)
         {
             if (element == null) throw new NullException(() => element);
 

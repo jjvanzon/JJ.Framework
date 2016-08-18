@@ -16,22 +16,19 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             Gestures = new List<GestureBase>();
             GestureHandling = new DiagramGestureHandling(this);
 
-            _background = new Rectangle();
-            _background.Style.LineStyle = new LineStyle { Visible = false };
-            _background.Diagram = this;
-            _background.ZIndex = Int32.MinValue;
-            _background.Tag = "Background";
+            Background = new Rectangle
+            {
+                Diagram = this,
+                ZIndex = Int32.MinValue,
+                Tag = "Background"
+            };
+            Background.Style.LineStyle = new LineStyle { Visible = false };
         }
 
-        private Rectangle _background;
         /// <summary> read-only, not nullable </summary>
-        [DebuggerHidden]
-        public Rectangle Background
-        {
-            get { return _background; }
-        }
+        public Rectangle Background { get; }
 
-        public DiagramElements Elements { get; private set; }
+        public DiagramElements Elements { get; }
 
         private IList<Element> _elementsOrderByZIndex = new Element[0];
         public IEnumerable<Element> EnumerateElementsByZIndex()
@@ -44,7 +41,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         // Scaling
 
-        public DiagramPosition Position { get; private set; }
+        public DiagramPosition Position { get; }
 
         // Calculation
 
@@ -60,9 +57,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         /// The gestures on the diagram always go off regardless of bubbling.
         /// It gives us a means to tap in on events at a more basic level.
         /// </summary>
-        public IList<GestureBase> Gestures { get; private set; }
+        public IList<GestureBase> Gestures { get; }
 
         /// <summary> For when you need to send primitive gestures to the diagram. </summary>
-        public DiagramGestureHandling GestureHandling { get; private set; }
+        public DiagramGestureHandling GestureHandling { get; }
     }
 }

@@ -16,7 +16,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     {
         public Curve()
         {
-            _position = new CurvePosition(this);
+            Position = new CurvePosition(this);
         }
 
         private int _segmentCount = 20;
@@ -62,12 +62,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        private ElementPosition _position;
-        public override ElementPosition Position
-        {
-            [DebuggerHidden]
-            get { return _position; }
-        }
+        public override ElementPosition Position { get; }
 
         private IList<Line> _calculatedLines = new List<Line>();
         /// <summary>
@@ -77,7 +72,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             [DebuggerHidden]
             get { return _calculatedLines; }
-            internal set 
+            internal set
             {
                 if (value == null) throw new NullException(() => value);
                 _calculatedLines = value;

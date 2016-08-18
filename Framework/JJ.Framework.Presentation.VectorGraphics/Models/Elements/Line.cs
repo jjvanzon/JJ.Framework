@@ -13,14 +13,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     {
         public Line()
         {
-            _position = new LinePosition(this);
+            Position = new LinePosition(this);
         }
 
-        private ElementPosition _position;
-        public override ElementPosition Position
-        {
-            get { return _position; }
-        }
+        public override ElementPosition Position { get; }
 
         /// <summary> Nullable. Coordinates of the point are related to the Point's parent. </summary>
         public Point PointA { get; set; }
@@ -41,9 +37,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        private string DebuggerDisplay
-        {
-            get { return DebugHelper.GetDebuggerDisplay(this); }
-        }
+        private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
     }
 }

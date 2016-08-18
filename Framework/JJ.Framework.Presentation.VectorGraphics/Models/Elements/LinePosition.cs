@@ -7,7 +7,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
     public class LinePosition : ElementPosition
     {
-        private Line _line;
+        private readonly Line _line;
 
         internal LinePosition(Line line)
             : base(line)

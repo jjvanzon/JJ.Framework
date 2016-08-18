@@ -11,10 +11,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
     public class ElementChildren : IEnumerable<Element>
     {
-        private Element _parent;
-        private IList<Element> _list;
-
-        private ParentToChildrenRelationship _childrenRelationship;
+        private readonly Element _parent;
+        private readonly IList<Element> _list;
+        private readonly ParentToChildrenRelationship _childrenRelationship;
 
         internal ElementChildren(Element parent)
         {
@@ -27,16 +26,13 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         }
 
         [DebuggerHidden]
-        public int Count
-        {
-            get { return _list.Count; }
-        }
+        public int Count => _list.Count;
 
         public void Add(Element child)
         {
             if (child == null) throw new NullException(() => child);
 
-            ISideEffect sideEffect1 = new SideEffect_VerifyDiagram_UponSettingParentOrChild(child, _parent);
+            ISideEffect sideEffect1 = new SideEffect_AssertDiagram_UponSettingParentOrChild(child, _parent);
             sideEffect1.Execute();
 
             ISideEffect sideEffect2 = new SideEffect_PreventCircularity(child, _parent);
@@ -47,7 +43,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public void Remove(Element child)
         {
-            ISideEffect sideEffect = new SideEffect_VerifyDiagram_UponSettingParentOrChild(child, _parent);
+            ISideEffect sideEffect = new SideEffect_AssertDiagram_UponSettingParentOrChild(child, _parent);
             sideEffect.Execute();
 
             _childrenRelationship.Remove(child);
@@ -62,23 +58,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         }
 
         [DebuggerHidden]
-        public bool Contains(Element child)
-        {
-            return _list.Contains(child);
-        }
+        public bool Contains(Element child) => _list.Contains(child);
 
         // IEnumerable
 
         [DebuggerHidden]
-        public IEnumerator<Element> GetEnumerator()
-        {
-            return _list.GetEnumerator();
-        }
+        public IEnumerator<Element> GetEnumerator() => _list.GetEnumerator();
 
         [DebuggerHidden]
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _list.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => _list.GetEnumerator();
     }
 }

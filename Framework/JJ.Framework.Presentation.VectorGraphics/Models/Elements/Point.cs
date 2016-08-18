@@ -14,14 +14,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     {
         public Point()
         {
-            _position = new PointPosition(this);
+            Position = new PointPosition(this);
         }
 
-        private ElementPosition _position;
-        public override ElementPosition Position
-        {
-            get { return _position; }
-        }
+        public override ElementPosition Position { get; }
 
         private PointStyle _pointStyle = new PointStyle();
         /// <summary> not nullable, auto-instantiated </summary>
@@ -36,9 +32,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        private string DebuggerDisplay
-        {
-            get { return DebugHelper.GetDebuggerDisplay(this); }
-        }
+        private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
     }
 }
