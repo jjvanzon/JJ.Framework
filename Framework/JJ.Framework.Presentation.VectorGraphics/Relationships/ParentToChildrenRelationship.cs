@@ -10,14 +10,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Relationships
             : base(parent, children)
         { }
 
-        protected override void SetParent(Element child)
-        {
-            child.Parent = _parent;
-        }
-
-        protected override void NullifyParent(Element child)
-        {
-            child.Parent = null;
-        }
+        protected override void SetParent(Element child) => child.Parent = _parent;
+        protected override void NullifyParent(Element child) => child.Parent = null;
     }
 }

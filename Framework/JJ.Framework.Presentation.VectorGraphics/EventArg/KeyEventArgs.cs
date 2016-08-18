@@ -13,9 +13,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.EventArg
             Alt = alt;
         }
 
-        public KeyCodeEnum KeyCode { get; set; }
-        public bool Shift { get; set; }
-        public bool Ctrl { get; set; }
-        public bool Alt { get; set; }
+        public KeyCodeEnum KeyCode { get; }
+        public bool Shift { get; }
+        public bool Ctrl { get; }
+        public bool Alt { get; }
     }
 }

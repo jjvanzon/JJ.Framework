@@ -9,8 +9,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
     {
         public event EventHandler<MouseEventArgs> MouseLeave;
 
+        private readonly MouseMoveGesture _diagramMouseMoveGesture;
         private Diagram _diagram;
-        private MouseMoveGesture _diagramMouseMoveGesture;
 
         public MouseLeaveGesture()
         {
@@ -19,7 +19,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         }
 
         ~MouseLeaveGesture()
-        { 
+        {
             if (_diagram != null)
             {
                 if (_diagramMouseMoveGesture != null)

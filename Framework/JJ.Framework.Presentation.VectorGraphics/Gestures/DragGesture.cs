@@ -9,11 +9,12 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         public event EventHandler<DraggingEventArgs> Dragging;
         public event EventHandler DragCanceled;
 
+        private readonly MouseMoveGesture _diagramMouseMoveGesture;
+        private readonly MouseUpGesture _backgroundMouseUpGesture;
+
         internal Element DraggedElement { get; set; }
 
         private Diagram _diagram;
-        private MouseMoveGesture _diagramMouseMoveGesture;
-        private MouseUpGesture _backgroundMouseUpGesture;
 
         public DragGesture()
         {
@@ -101,10 +102,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         {
             if (DraggedElement != null)
             {
-                if (Dragging != null)
-                {
-                    Dragging(sender, new DraggingEventArgs(DraggedElement, e.XInPixels, e.YInPixels));
-                }
+                Dragging?.Invoke(sender, new DraggingEventArgs(DraggedElement, e.XInPixels, e.YInPixels));
             }
         }
 
@@ -114,10 +112,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             {
                 DraggedElement = null;
 
-                if (DragCanceled != null)
-                {
-                    DragCanceled(sender, EventArgs.Empty);
-                }
+                DragCanceled?.Invoke(sender, EventArgs.Empty);
             }
         }
     }

@@ -9,19 +9,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Relationships
             : base(child)
         { }
 
-        protected override bool Contains(Element parent)
-        {
-            return parent.Children.Contains(_child);
-        }
-
-        protected override void Add(Element parent)
-        {
-            parent.Children.Add(_child);
-        }
-
-        protected override void Remove(Element parent)
-        {
-            parent.Children.Remove(_child);
-        }
+        protected override bool Contains(Element parent) => parent.Children.Contains(_child);
+        protected override void Add(Element parent) => parent.Children.Add(_child);
+        protected override void Remove(Element parent) => parent.Children.Remove(_child);
     }
 }

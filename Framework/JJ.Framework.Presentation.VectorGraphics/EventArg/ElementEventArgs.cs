@@ -6,7 +6,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.EventArg
 {
     public class ElementEventArgs : EventArgs
     {
-        public Element Element { get; private set; }
+        public Element Element { get; }
 
         public ElementEventArgs(Element element)
         {

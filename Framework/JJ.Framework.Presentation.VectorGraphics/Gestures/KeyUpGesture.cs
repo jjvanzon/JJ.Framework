@@ -9,10 +9,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         protected override void HandleKeyUp(object sender, EventArg.KeyEventArgs e)
         {
-            if (KeyUp != null)
-            {
-                KeyUp(sender, e);
-            }
+            KeyUp?.Invoke(sender, e);
         }
     }
 }

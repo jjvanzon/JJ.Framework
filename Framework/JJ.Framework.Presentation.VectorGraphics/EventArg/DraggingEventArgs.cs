@@ -6,9 +6,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.EventArg
 {
     public class DraggingEventArgs : EventArgs
     {
-        public Element ElementBeingDragged { get; private set; }
-        public float X { get; set; }
-        public float Y { get; set; }
+        public Element ElementBeingDragged { get; }
+        public float X { get; }
+        public float Y { get; }
 
         public DraggingEventArgs(Element elementBeingDragged, float x, float y)
         {

@@ -6,10 +6,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.EventArg
 {
     public class MouseEventArgs : EventArgs
     {
-        public Element Element { get; private set; }
-        public float XInPixels { get; private set; }
-        public float YInPixels { get; private set; }
-        public MouseButtonEnum MouseButtonEnum { get; private set; }
+        public Element Element { get; }
+        public float XInPixels { get; }
+        public float YInPixels { get; }
+        public MouseButtonEnum MouseButtonEnum { get; }
 
         /// <param name="element">nullable</param>
         public MouseEventArgs(Element element, float xInPixels, float yInPixels, MouseButtonEnum mouseButtonEnum)

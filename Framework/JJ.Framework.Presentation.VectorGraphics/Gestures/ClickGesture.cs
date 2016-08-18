@@ -12,10 +12,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         private Element _mouseDownElement;
 
-        protected override bool MouseCaptureRequired
-        {
-            get { return true; }
-        }
+        protected override bool MouseCaptureRequired => true;
 
         protected override void HandleMouseDown(object sender, MouseEventArgs e)
         {

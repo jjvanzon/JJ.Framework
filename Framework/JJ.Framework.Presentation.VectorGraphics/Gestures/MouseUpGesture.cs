@@ -9,10 +9,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         protected override void HandleMouseUp(object sender, MouseEventArgs e)
         {
-            if (MouseUp != null)
-            {
-                MouseUp(sender, e);
-            }
+            MouseUp?.Invoke(sender, e);
         }
     }
 }

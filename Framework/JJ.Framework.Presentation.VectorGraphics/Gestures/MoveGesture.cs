@@ -10,13 +10,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         public event EventHandler<ElementEventArgs> Moving;
         public event EventHandler<ElementEventArgs> Moved;
 
+        private readonly MouseMoveGesture _diagramMouseMoveGesture;
+
         private float _mouseDownElementX;
         private float _mouseDownElementY;
         private float _mouseDownPointerXInPixels;
         private float _mouseDownPointerYInPixels;
 
         private Diagram _diagram;
-        private MouseMoveGesture _diagramMouseMoveGesture;
         private Element _elementBeingMoved;
         private bool _wasMoved;
 
@@ -41,10 +42,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
         }
 
-        protected override bool MouseCaptureRequired
-        {
-            get { return true; }
-        }
+        protected override bool MouseCaptureRequired => true;
 
         protected override void HandleMouseDown(object sender, MouseEventArgs e)
         {

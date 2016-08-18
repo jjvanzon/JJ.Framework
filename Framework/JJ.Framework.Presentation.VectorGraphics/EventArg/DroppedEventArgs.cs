@@ -6,8 +6,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.EventArg
 {
     public class DroppedEventArgs : EventArgs
     {
-        public Element DraggedElement { get; private set; }
-        public Element DroppedOnElement { get; private set; }
+        public Element DraggedElement { get; }
+        public Element DroppedOnElement { get; }
 
         public DroppedEventArgs(Element draggedElement, Element droppedOnElement)
         {

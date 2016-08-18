@@ -16,10 +16,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         /// so you'd have to adapt this class to that.. 
         /// </summary>
         private readonly int _doubleClickDeltaInPixels;
+        private readonly Stopwatch _stopWatch = new Stopwatch();
 
         private bool _isFirstMouseDown = true;
         private MouseEventArgs _firstMouseDownEventArgs;
-        private Stopwatch _stopWatch = new Stopwatch();
 
         /// <summary>
         /// To create a DoubleClickGesture that automatically takes on the Windows settings as double click speed and delta,
@@ -34,10 +34,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             _doubleClickDeltaInPixels = doubleClickDeltaInPixels;
         }
 
-        protected override bool MouseCaptureRequired
-        {
-            get { return false; }
-        }
+        protected override bool MouseCaptureRequired => false;
 
         protected override void HandleMouseDown(object sender, MouseEventArgs e)
         {

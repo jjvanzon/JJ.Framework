@@ -9,7 +9,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
     {
         public event EventHandler<DroppedEventArgs> Dropped;
 
-        private IList<DragGesture> _dragGestures;
+        private readonly IList<DragGesture> _dragGestures;
 
         public DropGesture(params DragGesture[] dragGestures)
             : this((IList<DragGesture>)dragGestures)
@@ -30,10 +30,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 {
                     if (e.Element != null)
                     {
-                        if (Dropped != null)
-                        {
-                            Dropped(sender, new DroppedEventArgs(dragGesture.DraggedElement, e.Element));
-                        }
+                        Dropped?.Invoke(sender, new DroppedEventArgs(dragGesture.DraggedElement, e.Element));
                     }
 
                     dragGesture.DraggedElement = null;

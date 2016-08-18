@@ -9,10 +9,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
         protected override void HandleKeyDown(object sender, EventArg.KeyEventArgs e)
         {
-            if (KeyDown != null)
-            {
-                KeyDown(sender, e);
-            }
+            KeyDown?.Invoke(sender, e);
         }
     }
 }
