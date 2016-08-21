@@ -1,0 +1,7 @@
+/tmp/litprog2065446/rbtree.c: In function 'rbtree_delete':
+/tmp/litprog2065446/rbtree.c:289:45: error: expected expression before '/' token
+/tmp/litprog2065446/rbtree.c: At top level:
+/tmp/litprog2065446/rbtree.c:82:6: warning: 'verify_property_1' defined but not used [-Wunused-function]
+/tmp/litprog2065446/rbtree.c:88:6: warning: 'verify_property_2' defined but not used [-Wunused-function]
+/tmp/litprog2065446/rbtree.c:94:6: warning: 'verify_property_4' defined but not used [-Wunused-function]
+/tmp/litprog2065446/rbtree.c:104:6: warning: 'verify_property_5' defined but not used [-Wunused-function]
