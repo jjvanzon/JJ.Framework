@@ -34,7 +34,7 @@ namespace JJ.Framework.Data
 
             if (entity == null)
             {
-                throw new EntityNotFoundException<TEntity>(id);
+                throw new NotFoundException<TEntity>(id);
             }
 
             return entity;

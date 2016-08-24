@@ -48,8 +48,8 @@
     <Compile Include="Int32Helper.cs" />
     <Compile Include="DoubleHelper.cs" />
     <Compile Include="EmbeddedResourceHelper.cs" />
-    <Compile Include="Exceptions\EntityNotFoundExceptionOfT.cs" />
-    <Compile Include="Exceptions\EntityNotFoundException.cs" />
+    <Compile Include="Exceptions\NotFoundExceptionOfT.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Exceptions\FileAlreadyExistException.cs" />
     <Compile Include="Exceptions\FolderAlreadyExistsException.cs" />
     <Compile Include="Exceptions\FolderDoesNotExistException.cs" />
