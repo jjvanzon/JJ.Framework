@@ -268,4 +268,8 @@
     <value>{0} is een ongeldige keuze.</value>
     <comment>{0} = property</comment>
   </data>
+  <data name="NotBoth_WithTwoNames" xml:space="preserve">
+    <value>{0} of {1} kunnen worden ingevuld, maar niet beide tegelijk.</value>
+    <comment>{0} = first property, {1} = second property</comment>
+  </data>
 </root>

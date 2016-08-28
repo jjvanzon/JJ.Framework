@@ -276,4 +276,8 @@
     <value>{0} is an invalid choice.</value>
     <comment>{0} = property</comment>
   </data>
+  <data name="NotBoth_WithTwoNames" xml:space="preserve">
+    <value>{0} or {1} can be filled in, but not both at the same time.</value>
+    <comment>{0} = first property, {1} = second property</comment>
+  </data>
 </root>

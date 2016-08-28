@@ -131,6 +131,11 @@ namespace JJ.Framework.Validation.Resources
             return String.Format(ValidationMessages.LessThanOrEqual_WithName_AndLimit, propertyDisplayName, limitOrName);
         }
 
+        public static string NotBoth(string propertyDisplayName1, string propertyDisplayName2)
+        {
+            return String.Format(ValidationMessages.NotBoth_WithTwoNames, propertyDisplayName1, propertyDisplayName2);
+        }
+
         public static string NotBrokenNumber(string propertyDisplayName)
         {
             return String.Format(ValidationMessages.NotBrokenNumber_WithName, propertyDisplayName);

@@ -200,7 +200,6 @@ namespace JJ.Framework.Validation
             AddIsInvalidChoiceMessage(propertyKey, propertyDisplayName);
         }
 
-
         public void AddIsInvalidMessage(string propertyKey, string propertyDisplayName)
         {
             if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
@@ -413,6 +412,20 @@ namespace JJ.Framework.Validation
             string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
             string limitExpressionText = ExpressionHelper.GetText(limitExpression);
             AddLessThanOrEqualMessage(propertyKey, propertyDisplayName, limitExpressionText);
+        }
+
+        public void AddNotBothValidationMessage(Expression<Func<object>> propertyKeyExpression, string propertyDisplayName1, string propertyDisplayName2)
+        {
+            string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
+            AddNotBothValidationMessage(propertyKey, propertyDisplayName1, propertyDisplayName2);
+        }
+
+        public void AddNotBothValidationMessage(string propertyKey, string propertyDisplayName1, string propertyDisplayName2)
+        {
+            if (String.IsNullOrEmpty(propertyDisplayName1)) throw new NullOrEmptyException(() => propertyDisplayName1);
+            if (String.IsNullOrEmpty(propertyDisplayName2)) throw new NullOrEmptyException(() => propertyDisplayName2);
+
+            Add(propertyKey, ValidationMessageFormatter.NotBoth(propertyDisplayName1, propertyDisplayName2));
         }
 
         public void AddNotBrokenNumberMessage(string propertyKey, string propertyDisplayName)

@@ -286,6 +286,15 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} or {1} can be filled in, but not both at the same time..
+        /// </summary>
+        internal static string NotBoth_WithTwoNames {
+            get {
+                return ResourceManager.GetString("NotBoth_WithTwoNames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not a broken number..
         /// </summary>
         internal static string NotBrokenNumber_WithName {
