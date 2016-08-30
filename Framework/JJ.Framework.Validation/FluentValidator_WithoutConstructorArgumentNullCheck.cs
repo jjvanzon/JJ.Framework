@@ -64,14 +64,8 @@ namespace JJ.Framework.Validation
         /// </param>
         public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> For(object value, string propertyKey, string propertyDisplayName, IFormatProvider formatProvider = null)
         {
-            if (propertyKey == null)
-            {
-                throw new NullException(() => propertyKey);
-            }
-            if (propertyDisplayName == null)
-            {
-                throw new NullException(() => propertyDisplayName);
-            }
+            if (propertyKey == null) throw new NullException(() => propertyKey);
+            if (propertyDisplayName == null) throw new NullException(() => propertyDisplayName);
 
             _value = value;
             _propertyKey = propertyKey;
