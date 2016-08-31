@@ -83,7 +83,7 @@ namespace JJ.Framework.Mathematics
 
             checked
             {
-                int toTheHowManieth = Maths.Log(number, b);
+                int toTheHowManieth = MathHelper.Log(number, b);
                 int digitCount = toTheHowManieth + 1;
                 return digitCount;
             }

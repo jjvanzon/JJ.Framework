@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Mathematics
 {
-    public static class Maths
+    public static class MathHelper
     {
         public const double SQRT_2 = 1.4142135623730950;
-        public const float FLOAT_SQRT_2 = 1.4142136f;
+        public const float SQRT_2_SINGLE = 1.4142136f;
         public const double TWO_PI = 6.2831853071795865;
 
         /// <summary>
@@ -160,6 +163,67 @@ namespace JJ.Framework.Mathematics
             else temp -= 0.5f;
 
             return (long)temp * step;
+        }
+
+        /// <summary> Equally spreads out a number indices over a different number of indices. </summary>
+        public static Dictionary<int, int> Spread(int sourceCount, int destCount)
+        {
+            if (sourceCount == 0) throw new ZeroException(() => sourceCount);
+
+            double step = (double)destCount / (double)sourceCount;
+
+            var dictionary = new Dictionary<int, int>(sourceCount);
+            for (int sourceIndex = 0; sourceIndex < sourceCount; sourceIndex++)
+            {
+                double destIndexDouble = Math.Round(sourceIndex * step, 0, MidpointRounding.AwayFromZero);
+                int destIndex = (int)destIndexDouble;
+
+                dictionary.Add(sourceIndex, destIndex);
+            }
+
+            return dictionary;
+        }
+
+        /// <summary> Equally spreads out a number indices over a different number of indices. </summary>
+        public static Dictionary<int, int> Spread(int sourceIndex1, int sourceIndex2, int destIndex1, int destIndex2)
+        {
+            // TODO: There seem to be a lot of repeated principes here, compared to the overload that takes 2 int's.
+            if (sourceIndex2 <= sourceIndex1) throw new LessThanOrEqualException(() => sourceIndex2, () => sourceIndex1);
+            if (destIndex2 < destIndex1) throw new LessThanOrEqualException(() => destIndex2, () => destIndex1);
+
+            int sourceSpan = sourceIndex2 - sourceIndex1;
+            int destSpan = destIndex2 - destIndex2;
+
+            var dictionary = new Dictionary<int, int>(sourceSpan);
+
+            double step = (double)destSpan / (double)sourceSpan;
+
+            double destIndexDouble = destIndex1;
+
+            for (int sourceIndex = 0; sourceIndex < sourceSpan; sourceIndex++)
+            {
+                destIndexDouble += step;
+
+                int destIndex = (int)Math.Round(destIndexDouble, 0, MidpointRounding.AwayFromZero);
+
+                dictionary.Add(sourceIndex, destIndex);
+            }
+
+            return dictionary;
+        }
+
+        /// <summary> Equally spreads out items over another set of items. </summary>
+        public static Dictionary<TSource, TDest> Spread<TSource, TDest>(IList<TSource> sourceList, IList<TDest> destList)
+        {
+            if (sourceList == null) throw new NullException(() => sourceList);
+            if (destList == null) throw new NullException(() => destList);
+
+            // TODO: This unncessarily created an intermediate dictionary, but at least it reuses code.
+            Dictionary<int, int> intDictionary = Spread(sourceList.Count, destList.Count);
+
+            Dictionary<TSource, TDest> destDictionary = intDictionary.ToDictionary(x => sourceList[x.Key], x => destList[x.Value]);
+
+            return destDictionary;
         }
     }
 }

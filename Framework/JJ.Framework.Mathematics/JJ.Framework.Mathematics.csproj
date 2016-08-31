@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="Geometry.cs" />
     <Compile Include="Interpolator.cs" />
-    <Compile Include="Maths.cs" />
+    <Compile Include="MathHelper.cs" />
     <Compile Include="NumberingSystems.cs" />
     <Compile Include="Randomizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
