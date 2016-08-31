@@ -166,56 +166,16 @@ namespace JJ.Framework.Mathematics
         }
 
         /// <summary> Equally spreads out a number indices over a different number of indices. </summary>
-        public static Dictionary<int, int> Spread(int sourceCount, int destCount)
-        {
-            if (sourceCount == 0)
-            {
-                return new Dictionary<int, int>(0);
-            }
-
-            double step = (double)destCount / (double)sourceCount;
-
-            var dictionary = new Dictionary<int, int>(sourceCount);
-            for (int sourceIndex = 0; sourceIndex < sourceCount; sourceIndex++)
-            {
-                double destIndexDouble = Math.Round(sourceIndex * step, 0, MidpointRounding.AwayFromZero);
-                int destIndex = (int)destIndexDouble;
-
-                dictionary.Add(sourceIndex, destIndex);
-            }
-
-            return dictionary;
-        }
-
-        /// <summary> Equally spreads out a number indices over a different number of indices. </summary>
         public static Dictionary<int, int> Spread(int sourceIndex1, int sourceIndex2, int destIndex1, int destIndex2)
         {
             // TODO: There seem to be a lot of repeated principes here, compared to the overload that takes 2 int's.
             if (sourceIndex2 < sourceIndex1) throw new LessThanOrEqualException(() => sourceIndex2, () => sourceIndex1);
             if (destIndex2 < destIndex1) throw new LessThanOrEqualException(() => destIndex2, () => destIndex1);
 
-            int sourceSpan = sourceIndex2 - sourceIndex1;
-            int destSpan = destIndex2 - destIndex2;
+            IList<int> sourceRange = Enumerable.Range(sourceIndex1, sourceIndex2).ToArray();
+            IList<int> destRange = Enumerable.Range(destIndex1, destIndex2).ToArray();
 
-            if (sourceSpan == 0)
-            {
-                return new Dictionary<int, int>(0);
-            }
-
-            var dictionary = new Dictionary<int, int>(sourceSpan);
-
-            double step = (double)destSpan / (double)sourceSpan;
-
-            double destIndexDouble = destIndex1;
-
-            for (int sourceIndex = 0; sourceIndex < sourceSpan; sourceIndex++)
-            {
-                destIndexDouble += step;
-
-                int destIndex = (int)Math.Round(destIndexDouble, 0, MidpointRounding.AwayFromZero);
-
-                dictionary.Add(sourceIndex, destIndex);
-            }
+            Dictionary<int, int> dictionary =  Spread(sourceRange, destRange);
 
             return dictionary;
         }
@@ -228,10 +188,43 @@ namespace JJ.Framework.Mathematics
 
             // TODO: This unncessarily created an intermediate dictionary, but at least it reuses code.
             Dictionary<int, int> intDictionary = Spread(sourceList.Count, destList.Count);
-
+            
             Dictionary<TSource, TDest> destDictionary = intDictionary.ToDictionary(x => sourceList[x.Key], x => destList[x.Value]);
 
             return destDictionary;
+        }
+
+        /// <summary> Equally spreads out a number indices over a different number of indices. </summary>
+        public static Dictionary<int, int> Spread(int sourceCount, int destCount)
+        {
+            if (sourceCount == 0 || destCount == 0)
+            {
+                return new Dictionary<int, int>(0);
+            }
+
+            int sourceMaxIndex = sourceCount - 1;
+            if (sourceMaxIndex == 0)
+            {
+                return new Dictionary<int, int> { { 0, 0 } };
+            }
+
+            int destMaxIndex = destCount - 1;
+
+            double step = (double)destMaxIndex / (double)sourceMaxIndex;
+
+            double destIndexDouble = 0;
+
+            var dictionary = new Dictionary<int, int>(sourceCount);
+            for (int sourceIndex = 0; sourceIndex < sourceCount; sourceIndex++)
+            {
+                int destIndex = (int)Math.Round(destIndexDouble, 0, MidpointRounding.AwayFromZero);
+
+                dictionary.Add(sourceIndex, destIndex);
+
+                destIndexDouble += step;
+            }
+
+            return dictionary;
         }
     }
 }
