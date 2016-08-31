@@ -168,7 +168,10 @@ namespace JJ.Framework.Mathematics
         /// <summary> Equally spreads out a number indices over a different number of indices. </summary>
         public static Dictionary<int, int> Spread(int sourceCount, int destCount)
         {
-            if (sourceCount == 0) throw new ZeroException(() => sourceCount);
+            if (sourceCount == 0)
+            {
+                return new Dictionary<int, int>(0);
+            }
 
             double step = (double)destCount / (double)sourceCount;
 
@@ -188,11 +191,16 @@ namespace JJ.Framework.Mathematics
         public static Dictionary<int, int> Spread(int sourceIndex1, int sourceIndex2, int destIndex1, int destIndex2)
         {
             // TODO: There seem to be a lot of repeated principes here, compared to the overload that takes 2 int's.
-            if (sourceIndex2 <= sourceIndex1) throw new LessThanOrEqualException(() => sourceIndex2, () => sourceIndex1);
+            if (sourceIndex2 < sourceIndex1) throw new LessThanOrEqualException(() => sourceIndex2, () => sourceIndex1);
             if (destIndex2 < destIndex1) throw new LessThanOrEqualException(() => destIndex2, () => destIndex1);
 
             int sourceSpan = sourceIndex2 - sourceIndex1;
             int destSpan = destIndex2 - destIndex2;
+
+            if (sourceSpan == 0)
+            {
+                return new Dictionary<int, int>(0);
+            }
 
             var dictionary = new Dictionary<int, int>(sourceSpan);
 
