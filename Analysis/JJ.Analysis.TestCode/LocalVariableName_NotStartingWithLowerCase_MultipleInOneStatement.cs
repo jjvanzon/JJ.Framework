@@ -4,7 +4,7 @@
     {
         private void Method()
         {
-            int I J;
+            int I, J;
         }
     }
 }
