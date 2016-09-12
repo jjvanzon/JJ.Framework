@@ -17,11 +17,11 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
             Expression<Func<string>> expression = () =>
                 item
                 .Property
-                .Method(1)
+                .MethodWithParameter(1)
                 .MethodWithParams(1, 2, 3)
                 [4]
                 .Property
-                .Method(1)
+                .MethodWithParameter(1)
                 .MethodWithParams(1, 2, 3)
                 [4]
                 ._field;

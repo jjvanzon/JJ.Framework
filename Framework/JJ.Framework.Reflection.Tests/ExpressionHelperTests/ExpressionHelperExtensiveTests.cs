@@ -86,26 +86,49 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_MethodCall()
+        public void Test_ExpressionHelpers_MethodCall_WithoutParameter()
         {
             Item item = new Item();
 
-            Assert.AreEqual("item.Method(1)", ExpressionHelper.GetText(() => item.Method(1)));
-            Assert.AreEqual("MethodResult", ExpressionHelper.GetValue(() => item.Method(1)));
+            Assert.AreEqual("item.MethodWithoutParameter()", ExpressionHelper.GetText(() => item.MethodWithoutParameter()));
+            Assert.AreEqual("MethodWithoutParameterResult", ExpressionHelper.GetValue(() => item.MethodWithoutParameter()));
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_MethodCall_Static()
+        public void Test_ExpressionHelpers_MethodCall_WithoutParameter_Static()
         {
-            Assert.AreEqual("StaticClass.Method(1)", ExpressionHelper.GetText(() => StaticClass.Method(1)));
-            Assert.AreEqual("MethodResult", ExpressionHelper.GetValue(() => StaticClass.Method(1)));
+            Assert.AreEqual("StaticClass.MethodWithoutParameter()", ExpressionHelper.GetText(() => StaticClass.MethodWithoutParameter()));
+            Assert.AreEqual("MethodWithoutParameterResult", ExpressionHelper.GetValue(() => StaticClass.MethodWithoutParameter()));
         }
 
         [TestMethod]
-        public void Test_ExpressionHelpers_MethodCall_Static_Generic()
+        public void Test_ExpressionHelpers_MethodCall_WithoutParameter_Static_Generic()
         {
-            Assert.AreEqual("StaticClass`1.Method(1)", ExpressionHelper.GetText(() => StaticClass<Item>.Method(1)));
-            Assert.AreEqual("MethodResult", ExpressionHelper.GetValue(() => StaticClass<Item>.Method(1)));
+            Assert.AreEqual("StaticClass`1.MethodWithoutParameter()", ExpressionHelper.GetText(() => StaticClass<Item>.MethodWithoutParameter()));
+            Assert.AreEqual("MethodWithoutParameterResult", ExpressionHelper.GetValue(() => StaticClass<Item>.MethodWithoutParameter()));
+        }
+
+        [TestMethod]
+        public void Test_ExpressionHelpers_MethodCall_WithParameter()
+        {
+            Item item = new Item();
+
+            Assert.AreEqual("item.MethodWithParameter(1)", ExpressionHelper.GetText(() => item.MethodWithParameter(1)));
+            Assert.AreEqual("MethodWithParameterResult", ExpressionHelper.GetValue(() => item.MethodWithParameter(1)));
+        }
+
+        [TestMethod]
+        public void Test_ExpressionHelpers_MethodCall_WithParameter_Static()
+        {
+            Assert.AreEqual("StaticClass.MethodWithParameter(1)", ExpressionHelper.GetText(() => StaticClass.MethodWithParameter(1)));
+            Assert.AreEqual("MethodWithParameterResult", ExpressionHelper.GetValue(() => StaticClass.MethodWithParameter(1)));
+        }
+
+        [TestMethod]
+        public void Test_ExpressionHelpers_MethodCall_WithParameter_Static_Generic()
+        {
+            Assert.AreEqual("StaticClass`1.MethodWithParameter(1)", ExpressionHelper.GetText(() => StaticClass<Item>.MethodWithParameter(1)));
+            Assert.AreEqual("MethodWithParameterResult", ExpressionHelper.GetValue(() => StaticClass<Item>.MethodWithParameter(1)));
         }
 
         [TestMethod]
@@ -193,9 +216,9 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         {
             ComplexItem item = new ComplexItem();
             Expression<Func<string>> expression = () =>
-                item.Property.Method(1).MethodWithParams(1, 2, 3)[4].Property.Method(1).MethodWithParams(1, 2, 3)[4]._field;
+                item.Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4].Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4]._field;
 
-            Assert.AreEqual("item.Property.Method(1).MethodWithParams(1, 2, 3)[4].Property.Method(1).MethodWithParams(1, 2, 3)[4]._field", ExpressionHelper.GetText(expression));
+            Assert.AreEqual("item.Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4].Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4]._field", ExpressionHelper.GetText(expression));
             Assert.AreEqual("FieldResult", ExpressionHelper.GetValue(expression));
         }
 
@@ -203,9 +226,9 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         public void Test_ExpressionHelpers_ComplexExample_Static()
         {
             Expression<Func<string>> expression = () =>
-                StaticClass.ComplexItem.Property.Method(1).MethodWithParams(1, 2, 3)[4].Property.Method(1).MethodWithParams(1, 2, 3)[4]._field;
+                StaticClass.ComplexItem.Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4].Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4]._field;
 
-            Assert.AreEqual("StaticClass.ComplexItem.Property.Method(1).MethodWithParams(1, 2, 3)[4].Property.Method(1).MethodWithParams(1, 2, 3)[4]._field", ExpressionHelper.GetText(expression));
+            Assert.AreEqual("StaticClass.ComplexItem.Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4].Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4]._field", ExpressionHelper.GetText(expression));
             Assert.AreEqual("FieldResult", ExpressionHelper.GetValue(expression));
         }
 
@@ -213,9 +236,9 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         public void Test_ExpressionHelpers_ComplexExample_Static_Generic()
         {
             Expression<Func<string>> expression = () =>
-                StaticClass<Item>.ComplexItem.Property.Method(1).MethodWithParams(1, 2, 3)[4].Property.Method(1).MethodWithParams(1, 2, 3)[4]._field;
+                StaticClass<Item>.ComplexItem.Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4].Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4]._field;
 
-            Assert.AreEqual("StaticClass`1.ComplexItem.Property.Method(1).MethodWithParams(1, 2, 3)[4].Property.Method(1).MethodWithParams(1, 2, 3)[4]._field", ExpressionHelper.GetText(expression));
+            Assert.AreEqual("StaticClass`1.ComplexItem.Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4].Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4]._field", ExpressionHelper.GetText(expression));
             Assert.AreEqual("FieldResult", ExpressionHelper.GetValue(expression));
         }
 

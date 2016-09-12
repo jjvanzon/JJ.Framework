@@ -21,9 +21,9 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
             get { return new ComplexItem { Name = "PropertyResult" }; }
         }
 
-        public ComplexItem Method(int parameter)
+        public ComplexItem MethodWithParameter(int parameter)
         {
-            return new ComplexItem { Name = "MethodResult" };
+            return new ComplexItem { Name = "MethodWithParameterResult" };
         }
 
         public ComplexItem MethodWithParams(params int[] array)

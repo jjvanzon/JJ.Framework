@@ -26,9 +26,14 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
             get { return "IndexerResult"; }
         }
 
-        public string Method(int parameter)
+        public string MethodWithoutParameter()
         {
-            return "MethodResult";
+            return "MethodWithoutParameterResult";
+        }
+
+        public string MethodWithParameter(int parameter)
+        {
+            return "MethodWithParameterResult";
         }
 
         public string MethodWithParams(params int[] array)

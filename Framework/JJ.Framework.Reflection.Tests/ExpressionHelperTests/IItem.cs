@@ -13,7 +13,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         int Property { get; set; }
         [IndexerName("Indexer")]
         string this[int index] { get; }
-        string Method(int parameter);
+        string MethodWithParameter(int parameter);
         string MethodWithParams(params int[] array);
     }
 }

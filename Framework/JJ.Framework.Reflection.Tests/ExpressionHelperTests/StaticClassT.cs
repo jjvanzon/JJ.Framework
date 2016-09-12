@@ -33,9 +33,14 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
             get { return _array; }
         }
 
-        public static string Method(int parameter)
+        public static string MethodWithoutParameter()
         {
-            return "MethodResult";
+            return "MethodWithoutParameterResult";
+        }
+
+        public static string MethodWithParameter(int parameter)
+        {
+            return "MethodWithParameterResult";
         }
 
         public static string MethodWithParams(params int[] array)

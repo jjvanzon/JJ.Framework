@@ -191,8 +191,10 @@ namespace JJ.Framework.Reflection
                     VisitIndexerValue(node.Arguments[i]);
                     _sb.Append(", ");
                 }
-
-                VisitIndexerValue(node.Arguments[node.Arguments.Count - 1]);
+                if (node.Arguments.Count != 0)
+                {
+                    VisitIndexerValue(node.Arguments[node.Arguments.Count - 1]);
+                }
                 _sb.Append("]");
             }
             else
@@ -205,7 +207,10 @@ namespace JJ.Framework.Reflection
                     Visit(node.Arguments[i]);
                     _sb.Append(", ");
                 }
-                Visit(node.Arguments[node.Arguments.Count - 1]);
+                if (node.Arguments.Count != 0)
+                {
+                    Visit(node.Arguments[node.Arguments.Count - 1]);
+                }
                 _sb.Append(")");
             }
         }
