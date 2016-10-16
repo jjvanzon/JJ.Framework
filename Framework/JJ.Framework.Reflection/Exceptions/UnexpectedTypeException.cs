@@ -7,7 +7,7 @@ namespace JJ.Framework.Reflection.Exceptions
 {
     public class UnexpectedTypeException : Exception
     {
-        private const string MESSAGE = "{0} has an unexpected type: '{0}'";
+        private const string MESSAGE = "{0} has an unexpected type: '{1}'";
 
         public UnexpectedTypeException(Expression<Func<object>> expression)
         {
