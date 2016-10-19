@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.GetNames", "Demos\JJ.Demos.GetNames\JJ.Demos.GetNames.csproj", "{95C85909-B8F6-4D5E-8657-1839B500125D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.GetNames", "Demos\GetNames\JJ.Demos.GetNames.csproj", "{95C85909-B8F6-4D5E-8657-1839B500125D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.GetNames.Tests", "Demos\JJ.Demos.GetNames.Tests\JJ.Demos.GetNames.Tests.csproj", "{BF5AFB7D-5CFD-4E1D-9F84-9EF02D87BD36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.GetNames.Tests", "Demos\GetNames.Tests\JJ.Demos.GetNames.Tests.csproj", "{BF5AFB7D-5CFD-4E1D-9F84-9EF02D87BD36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
