@@ -1,5 +1,0 @@
-C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\SgmlReaderDll\bin\debug\SgmlReaderDll.dll
-C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\SgmlReaderDll\bin\debug\SgmlReaderDll.pdb
-C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\SgmlReaderDll\obj\Debug\ResolveAssemblyReference.cache
-C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\SgmlReaderDll\obj\Debug\SgmlReaderDll.dll
-C:\Documents and Settings\Jan-Joost van Zon\Desktop\WindowsFormsApplication1\Dependencies\SgmlReader\SgmlReaderDll\obj\Debug\SgmlReaderDll.pdb
