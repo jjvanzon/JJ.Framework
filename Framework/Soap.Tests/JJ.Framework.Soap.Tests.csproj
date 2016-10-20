@@ -67,11 +67,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Presentation\SetText.AppService.Interface\JJ.Presentation.SaveText.AppService.Interface.csproj">
+    <ProjectReference Include="..\..\Presentation\SaveText.AppService.Interface\JJ.Presentation.SaveText.AppService.Interface.csproj">
       <Project>{4a052265-9896-4d0b-a9b0-14d052bc95d0}</Project>
       <Name>JJ.Presentation.SaveText.AppService.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Presentation\SetText.Interface\JJ.Presentation.SaveText.Interface.csproj">
+    <ProjectReference Include="..\..\Presentation\SaveText.Interface\JJ.Presentation.SaveText.Interface.csproj">
       <Project>{f074226b-734d-4308-b1c5-30350a228d8b}</Project>
       <Name>JJ.Presentation.SaveText.Interface</Name>
     </ProjectReference>

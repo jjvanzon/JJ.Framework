@@ -109,55 +109,55 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging", "Framework\Logging\JJ.Framework.Logging.csproj", "{CEEB755D-DE12-4E70-816E-546C429B44B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText", "Data\SetText\JJ.Data.SaveText.csproj", "{95449A62-9F9B-42DA-812E-92BC0C2783AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText", "Data\SaveText\JJ.Data.SaveText.csproj", "{95449A62-9F9B-42DA-812E-92BC0C2783AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.DefaultRepositories", "Data\SetText.DefaultRepositories\JJ.Data.SaveText.DefaultRepositories.csproj", "{06443309-668F-42FE-8996-D2C3FFA637F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.DefaultRepositories", "Data\SaveText.DefaultRepositories\JJ.Data.SaveText.DefaultRepositories.csproj", "{06443309-668F-42FE-8996-D2C3FFA637F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.NHibernate", "Data\SetText.NHibernate\JJ.Data.SaveText.NHibernate.csproj", "{48145ED7-5BB1-4ECB-9FB0-0DBD35B80EA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.NHibernate", "Data\SaveText.NHibernate\JJ.Data.SaveText.NHibernate.csproj", "{48145ED7-5BB1-4ECB-9FB0-0DBD35B80EA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.EntityFramework5", "Data\SetText.EntityFramework5\JJ.Data.SaveText.EntityFramework5.csproj", "{77AB85CE-6402-4AA3-A9A9-83121D5D9C6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.EntityFramework5", "Data\SaveText.EntityFramework5\JJ.Data.SaveText.EntityFramework5.csproj", "{77AB85CE-6402-4AA3-A9A9-83121D5D9C6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.Xml", "Data\SetText.Xml\JJ.Data.SaveText.Xml.csproj", "{292046BB-5667-4231-B8AA-BAD57CD1B481}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.Xml", "Data\SaveText.Xml\JJ.Data.SaveText.Xml.csproj", "{292046BB-5667-4231-B8AA-BAD57CD1B481}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText", "Presentation\SetText\JJ.Presentation.SaveText.csproj", "{44B139AB-BDF0-414A-AA01-4B7E62ADCF57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText", "Presentation\SaveText\JJ.Presentation.SaveText.csproj", "{44B139AB-BDF0-414A-AA01-4B7E62ADCF57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Mvc", "Presentation\SetText.Mvc\JJ.Presentation.SaveText.Mvc.csproj", "{93E3A63D-1523-4DE4-9B9D-FC6CE7CD6AC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Mvc", "Presentation\SaveText.Mvc\JJ.Presentation.SaveText.Mvc.csproj", "{93E3A63D-1523-4DE4-9B9D-FC6CE7CD6AC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.SaveText", "Business\SetText\JJ.Business.SaveText.csproj", "{AE912326-CDA3-4CBA-B8DB-E59B36E403B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.SaveText", "Business\SaveText\JJ.Business.SaveText.csproj", "{AE912326-CDA3-4CBA-B8DB-E59B36E403B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Html", "Presentation\SetText.Html\JJ.Presentation.SaveText.Html.csproj", "{26EEC1BC-7E27-4541-8C5C-BA993B703F2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Html", "Presentation\SaveText.Html\JJ.Presentation.SaveText.Html.csproj", "{26EEC1BC-7E27-4541-8C5C-BA993B703F2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.AppService", "Presentation\SetText.AppService\JJ.Presentation.SaveText.AppService.csproj", "{0F59DBC8-E641-496D-9DA6-059E4EFE01EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.AppService", "Presentation\SaveText.AppService\JJ.Presentation.SaveText.AppService.csproj", "{0F59DBC8-E641-496D-9DA6-059E4EFE01EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.Xml", "Framework\Data.Xml\JJ.Framework.Data.Xml.csproj", "{3EDF4C94-F84A-43B2-95A5-F47DC30F1A5C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgmlReaderDll", "External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj", "{499527FF-AE52-450F-B3E3-4AD53E1712AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.Memory", "Data\SetText.Memory\JJ.Data.SaveText.Memory.csproj", "{BECFECBE-8EC2-485E-921E-2FB6FE048AAC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.Memory", "Data\SaveText.Memory\JJ.Data.SaveText.Memory.csproj", "{BECFECBE-8EC2-485E-921E-2FB6FE048AAC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.Memory", "Framework\Data.Memory\JJ.Framework.Data.Memory.csproj", "{86348B50-ECA9-4849-A221-73F0ED31713B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.WinForms.Offline", "Presentation\SetText.WinForms.Offline\JJ.Presentation.SaveText.WinForms.Offline.csproj", "{C0871BAD-F76E-4EB8-AD78-858B794122AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.WinForms.Offline", "Presentation\SaveText.WinForms.Offline\JJ.Presentation.SaveText.WinForms.Offline.csproj", "{C0871BAD-F76E-4EB8-AD78-858B794122AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.WinForms.OfflineWithSync", "Presentation\SetText.WinForms.OfflineWithSync\JJ.Presentation.SaveText.WinForms.OfflineWithSync.csproj", "{44CECF36-B1C2-4BDA-BA63-8F66E803EF85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.WinForms.OfflineWithSync", "Presentation\SaveText.WinForms.OfflineWithSync\JJ.Presentation.SaveText.WinForms.OfflineWithSync.csproj", "{44CECF36-B1C2-4BDA-BA63-8F66E803EF85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.WinForms.Online", "Presentation\SetText.WinForms.Online\JJ.Presentation.SaveText.WinForms.Online.csproj", "{FBBB9772-A706-4881-AA42-F3EBCA7A272B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.WinForms.Online", "Presentation\SaveText.WinForms.Online\JJ.Presentation.SaveText.WinForms.Online.csproj", "{FBBB9772-A706-4881-AA42-F3EBCA7A272B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.WinForms.OnlineOfflineSwitched", "Presentation\SetText.WinForms.OnlineOfflineSwitched\JJ.Presentation.SaveText.WinForms.OnlineOfflineSwitched.csproj", "{59A98F56-001A-4094-B783-E7024768F425}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.WinForms.OnlineOfflineSwitched", "Presentation\SaveText.WinForms.OnlineOfflineSwitched\JJ.Presentation.SaveText.WinForms.OnlineOfflineSwitched.csproj", "{59A98F56-001A-4094-B783-E7024768F425}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.AppService.Interface", "Presentation\SetText.AppService.Interface\JJ.Presentation.SaveText.AppService.Interface.csproj", "{4A052265-9896-4D0B-A9B0-14D052BC95D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.AppService.Interface", "Presentation\SaveText.AppService.Interface\JJ.Presentation.SaveText.AppService.Interface.csproj", "{4A052265-9896-4D0B-A9B0-14D052BC95D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.Xml.Linq", "Framework\Data.Xml.Linq\JJ.Framework.Data.Xml.Linq.csproj", "{BA423767-A57E-4278-BBA8-5C01F3E8D555}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.Xml.Linq", "Data\SetText.Xml.Linq\JJ.Data.SaveText.Xml.Linq.csproj", "{6B54E0E9-FF92-4DD9-93A4-262544E74163}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.Xml.Linq", "Data\SaveText.Xml.Linq\JJ.Data.SaveText.Xml.Linq.csproj", "{6B54E0E9-FF92-4DD9-93A4-262544E74163}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.AppService.Tests", "Presentation\SetText.AppService.Tests\JJ.Presentation.SaveText.AppService.Tests.csproj", "{80473C02-D43B-483F-9D00-21C64FCCC342}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.AppService.Tests", "Presentation\SaveText.AppService.Tests\JJ.Presentation.SaveText.AppService.Tests.csproj", "{80473C02-D43B-483F-9D00-21C64FCCC342}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Unity.DotNet.Offline", "Presentation\SetText.Unity.DotNet.Offline\JJ.Presentation.SaveText.Unity.DotNet.Offline.csproj", "{9BC68E57-61E1-4084-9D12-749123B2B4CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Unity.DotNet.Offline", "Presentation\SaveText.Unity.DotNet.Offline\JJ.Presentation.SaveText.Unity.DotNet.Offline.csproj", "{9BC68E57-61E1-4084-9D12-749123B2B4CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Unity.DotNet.OfflineWithSync", "Presentation\SetText.Unity.DotNet.OfflineWithSync\JJ.Presentation.SaveText.Unity.DotNet.OfflineWithSync.csproj", "{C0410B6E-9E98-4341-B54B-7E4D76748D3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Unity.DotNet.OfflineWithSync", "Presentation\SaveText.Unity.DotNet.OfflineWithSync\JJ.Presentation.SaveText.Unity.DotNet.OfflineWithSync.csproj", "{C0410B6E-9E98-4341-B54B-7E4D76748D3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Unity.DotNet.Online", "Presentation\SetText.Unity.DotNet.Online\JJ.Presentation.SaveText.Unity.DotNet.Online.csproj", "{BFF2CB2F-C1B7-4DFF-A35B-90038B9F5063}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Unity.DotNet.Online", "Presentation\SaveText.Unity.DotNet.Online\JJ.Presentation.SaveText.Unity.DotNet.Online.csproj", "{BFF2CB2F-C1B7-4DFF-A35B-90038B9F5063}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml.Linq", "Framework\Xml.Linq\JJ.Framework.Xml.Linq.csproj", "{8DCBF3F3-B30F-4C11-8957-BEA7F43EE173}"
 EndProject
@@ -183,17 +183,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Tests", "Framework\Logging.Tests\JJ.Framework.Logging.Tests.csproj", "{E93C6237-52BC-40F1-84C7-ACF9CF7AA287}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Interface", "Presentation\SetText.Interface\JJ.Presentation.SaveText.Interface.csproj", "{F074226B-734D-4308-B1C5-30350A228D8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Interface", "Presentation\SaveText.Interface\JJ.Presentation.SaveText.Interface.csproj", "{F074226B-734D-4308-B1C5-30350A228D8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.AppService.Client", "Presentation\SetText.AppService.Client\JJ.Presentation.SaveText.AppService.Client.csproj", "{F35C6131-D793-49D3-8044-E8B06F9CB107}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.AppService.Client", "Presentation\SaveText.AppService.Client\JJ.Presentation.SaveText.AppService.Client.csproj", "{F35C6131-D793-49D3-8044-E8B06F9CB107}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.WinForms.Online.CustomSoapClient", "Presentation\SetText.WinForms.Online.CustomSoapClient\JJ.Presentation.SaveText.WinForms.Online.CustomSoapClient.csproj", "{F36B7455-7754-467E-8F64-72A33C687889}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.WinForms.Online.CustomSoapClient", "Presentation\SaveText.WinForms.Online.CustomSoapClient\JJ.Presentation.SaveText.WinForms.Online.CustomSoapClient.csproj", "{F36B7455-7754-467E-8F64-72A33C687889}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Tests.ServiceInterface", "Framework\Soap.Tests.ServiceInterface\JJ.Framework.Soap.Tests.ServiceInterface.csproj", "{9F0128B1-B662-474D-9B73-3FD8E9783B40}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Tests.Server", "Framework\Soap.Tests.Server\JJ.Framework.Soap.Tests.Server.csproj", "{D3440F56-DBD9-4B17-84E5-532E1D6FFE24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Unity.DotNet.Online.WwwObject", "Presentation\SetText.Unity.DotNet.Online.WwwObject\JJ.Presentation.SaveText.Unity.DotNet.Online.WwwObject.csproj", "{A233A8F1-5BD3-4BFA-BB4B-8A5E727C353A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Unity.DotNet.Online.WwwObject", "Presentation\SaveText.Unity.DotNet.Online.WwwObject\JJ.Presentation.SaveText.Unity.DotNet.Online.WwwObject.csproj", "{A233A8F1-5BD3-4BFA-BB4B-8A5E727C353A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Diagnostics", "Framework\Logging.Diagnostics\JJ.Framework.Logging.Diagnostics.csproj", "{3673E148-26F4-4DDD-870D-ADC0486BE39C}"
 EndProject
@@ -3387,105 +3387,105 @@ Global
 		SccProjectTopLevelParentUniqueName109 = JJ.sln
 		SccProjectName109 = Analysis/TestCode
 		SccLocalPath109 = Analysis\\TestCode
-		SccProjectUniqueName110 = Business\\SetText\\JJ.Business.SaveText.csproj
+		SccProjectUniqueName110 = Business\\SaveText\\JJ.Business.SaveText.csproj
 		SccProjectTopLevelParentUniqueName110 = JJ.sln
-		SccProjectName110 = Business/SetText
-		SccLocalPath110 = Business\\SetText
-		SccProjectUniqueName111 = Data\\SetText\\JJ.Data.SaveText.csproj
+		SccProjectName110 = Business/SaveText
+		SccLocalPath110 = Business\\SaveText
+		SccProjectUniqueName111 = Data\\SaveText\\JJ.Data.SaveText.csproj
 		SccProjectTopLevelParentUniqueName111 = JJ.sln
-		SccProjectName111 = Data/SetText
-		SccLocalPath111 = Data\\SetText
-		SccProjectUniqueName112 = Data\\SetText.DefaultRepositories\\JJ.Data.SaveText.DefaultRepositories.csproj
+		SccProjectName111 = Data/SaveText
+		SccLocalPath111 = Data\\SaveText
+		SccProjectUniqueName112 = Data\\SaveText.DefaultRepositories\\JJ.Data.SaveText.DefaultRepositories.csproj
 		SccProjectTopLevelParentUniqueName112 = JJ.sln
-		SccProjectName112 = Data/SetText.DefaultRepositories
-		SccLocalPath112 = Data\\SetText.DefaultRepositories
-		SccProjectUniqueName113 = Data\\SetText.EntityFramework5\\JJ.Data.SaveText.EntityFramework5.csproj
+		SccProjectName112 = Data/SaveText.DefaultRepositories
+		SccLocalPath112 = Data\\SaveText.DefaultRepositories
+		SccProjectUniqueName113 = Data\\SaveText.EntityFramework5\\JJ.Data.SaveText.EntityFramework5.csproj
 		SccProjectTopLevelParentUniqueName113 = JJ.sln
-		SccProjectName113 = Data/SetText.EntityFramework5
-		SccLocalPath113 = Data\\SetText.EntityFramework5
-		SccProjectUniqueName114 = Data\\SetText.Memory\\JJ.Data.SaveText.Memory.csproj
+		SccProjectName113 = Data/SaveText.EntityFramework5
+		SccLocalPath113 = Data\\SaveText.EntityFramework5
+		SccProjectUniqueName114 = Data\\SaveText.Memory\\JJ.Data.SaveText.Memory.csproj
 		SccProjectTopLevelParentUniqueName114 = JJ.sln
-		SccProjectName114 = Data/SetText.Memory
-		SccLocalPath114 = Data\\SetText.Memory
-		SccProjectUniqueName115 = Data\\SetText.NHibernate\\JJ.Data.SaveText.NHibernate.csproj
+		SccProjectName114 = Data/SaveText.Memory
+		SccLocalPath114 = Data\\SaveText.Memory
+		SccProjectUniqueName115 = Data\\SaveText.NHibernate\\JJ.Data.SaveText.NHibernate.csproj
 		SccProjectTopLevelParentUniqueName115 = JJ.sln
-		SccProjectName115 = Data/SetText.NHibernate
-		SccLocalPath115 = Data\\SetText.NHibernate
-		SccProjectUniqueName116 = Data\\SetText.Xml\\JJ.Data.SaveText.Xml.csproj
+		SccProjectName115 = Data/SaveText.NHibernate
+		SccLocalPath115 = Data\\SaveText.NHibernate
+		SccProjectUniqueName116 = Data\\SaveText.Xml\\JJ.Data.SaveText.Xml.csproj
 		SccProjectTopLevelParentUniqueName116 = JJ.sln
-		SccProjectName116 = Data/SetText.Xml
-		SccLocalPath116 = Data\\SetText.Xml
-		SccProjectUniqueName117 = Data\\SetText.Xml.Linq\\JJ.Data.SaveText.Xml.Linq.csproj
+		SccProjectName116 = Data/SaveText.Xml
+		SccLocalPath116 = Data\\SaveText.Xml
+		SccProjectUniqueName117 = Data\\SaveText.Xml.Linq\\JJ.Data.SaveText.Xml.Linq.csproj
 		SccProjectTopLevelParentUniqueName117 = JJ.sln
-		SccProjectName117 = Data/SetText.Xml.Linq
-		SccLocalPath117 = Data\\SetText.Xml.Linq
-		SccProjectUniqueName118 = Presentation\\SetText\\JJ.Presentation.SaveText.csproj
+		SccProjectName117 = Data/SaveText.Xml.Linq
+		SccLocalPath117 = Data\\SaveText.Xml.Linq
+		SccProjectUniqueName118 = Presentation\\SaveText\\JJ.Presentation.SaveText.csproj
 		SccProjectTopLevelParentUniqueName118 = JJ.sln
-		SccProjectName118 = Presentation/SetText
-		SccLocalPath118 = Presentation\\SetText
-		SccProjectUniqueName119 = Presentation\\SetText.AppService\\JJ.Presentation.SaveText.AppService.csproj
+		SccProjectName118 = Presentation/SaveText
+		SccLocalPath118 = Presentation\\SaveText
+		SccProjectUniqueName119 = Presentation\\SaveText.AppService\\JJ.Presentation.SaveText.AppService.csproj
 		SccProjectTopLevelParentUniqueName119 = JJ.sln
-		SccProjectName119 = Presentation/SetText.AppService
-		SccLocalPath119 = Presentation\\SetText.AppService
-		SccProjectUniqueName120 = Presentation\\SetText.AppService.Client\\JJ.Presentation.SaveText.AppService.Client.csproj
+		SccProjectName119 = Presentation/SaveText.AppService
+		SccLocalPath119 = Presentation\\SaveText.AppService
+		SccProjectUniqueName120 = Presentation\\SaveText.AppService.Client\\JJ.Presentation.SaveText.AppService.Client.csproj
 		SccProjectTopLevelParentUniqueName120 = JJ.sln
-		SccProjectName120 = Presentation/SetText.AppService.Client
-		SccLocalPath120 = Presentation\\SetText.AppService.Client
-		SccProjectUniqueName121 = Presentation\\SetText.AppService.Interface\\JJ.Presentation.SaveText.AppService.Interface.csproj
+		SccProjectName120 = Presentation/SaveText.AppService.Client
+		SccLocalPath120 = Presentation\\SaveText.AppService.Client
+		SccProjectUniqueName121 = Presentation\\SaveText.AppService.Interface\\JJ.Presentation.SaveText.AppService.Interface.csproj
 		SccProjectTopLevelParentUniqueName121 = JJ.sln
-		SccProjectName121 = Presentation/SetText.AppService.Interface
-		SccLocalPath121 = Presentation\\SetText.AppService.Interface
-		SccProjectUniqueName122 = Presentation\\SetText.AppService.Tests\\JJ.Presentation.SaveText.AppService.Tests.csproj
+		SccProjectName121 = Presentation/SaveText.AppService.Interface
+		SccLocalPath121 = Presentation\\SaveText.AppService.Interface
+		SccProjectUniqueName122 = Presentation\\SaveText.AppService.Tests\\JJ.Presentation.SaveText.AppService.Tests.csproj
 		SccProjectTopLevelParentUniqueName122 = JJ.sln
-		SccProjectName122 = Presentation/SetText.AppService.Tests
-		SccLocalPath122 = Presentation\\SetText.AppService.Tests
-		SccProjectUniqueName123 = Presentation\\SetText.Html\\JJ.Presentation.SaveText.Html.csproj
+		SccProjectName122 = Presentation/SaveText.AppService.Tests
+		SccLocalPath122 = Presentation\\SaveText.AppService.Tests
+		SccProjectUniqueName123 = Presentation\\SaveText.Html\\JJ.Presentation.SaveText.Html.csproj
 		SccProjectTopLevelParentUniqueName123 = JJ.sln
-		SccProjectName123 = Presentation/SetText.Html
-		SccLocalPath123 = Presentation\\SetText.Html
-		SccProjectUniqueName124 = Presentation\\SetText.Interface\\JJ.Presentation.SaveText.Interface.csproj
+		SccProjectName123 = Presentation/SaveText.Html
+		SccLocalPath123 = Presentation\\SaveText.Html
+		SccProjectUniqueName124 = Presentation\\SaveText.Interface\\JJ.Presentation.SaveText.Interface.csproj
 		SccProjectTopLevelParentUniqueName124 = JJ.sln
-		SccProjectName124 = Presentation/SetText.Interface
-		SccLocalPath124 = Presentation\\SetText.Interface
-		SccProjectUniqueName125 = Presentation\\SetText.Mvc\\JJ.Presentation.SaveText.Mvc.csproj
+		SccProjectName124 = Presentation/SaveText.Interface
+		SccLocalPath124 = Presentation\\SaveText.Interface
+		SccProjectUniqueName125 = Presentation\\SaveText.Mvc\\JJ.Presentation.SaveText.Mvc.csproj
 		SccProjectTopLevelParentUniqueName125 = JJ.sln
-		SccProjectName125 = Presentation/SetText.Mvc
-		SccLocalPath125 = Presentation\\SetText.Mvc
-		SccProjectUniqueName126 = Presentation\\SetText.Unity.DotNet.Offline\\JJ.Presentation.SaveText.Unity.DotNet.Offline.csproj
+		SccProjectName125 = Presentation/SaveText.Mvc
+		SccLocalPath125 = Presentation\\SaveText.Mvc
+		SccProjectUniqueName126 = Presentation\\SaveText.Unity.DotNet.Offline\\JJ.Presentation.SaveText.Unity.DotNet.Offline.csproj
 		SccProjectTopLevelParentUniqueName126 = JJ.sln
-		SccProjectName126 = Presentation/SetText.Unity.DotNet.Offline
-		SccLocalPath126 = Presentation\\SetText.Unity.DotNet.Offline
-		SccProjectUniqueName127 = Presentation\\SetText.Unity.DotNet.OfflineWithSync\\JJ.Presentation.SaveText.Unity.DotNet.OfflineWithSync.csproj
+		SccProjectName126 = Presentation/SaveText.Unity.DotNet.Offline
+		SccLocalPath126 = Presentation\\SaveText.Unity.DotNet.Offline
+		SccProjectUniqueName127 = Presentation\\SaveText.Unity.DotNet.OfflineWithSync\\JJ.Presentation.SaveText.Unity.DotNet.OfflineWithSync.csproj
 		SccProjectTopLevelParentUniqueName127 = JJ.sln
-		SccProjectName127 = Presentation/SetText.Unity.DotNet.OfflineWithSync
-		SccLocalPath127 = Presentation\\SetText.Unity.DotNet.OfflineWithSync
-		SccProjectUniqueName128 = Presentation\\SetText.Unity.DotNet.Online\\JJ.Presentation.SaveText.Unity.DotNet.Online.csproj
+		SccProjectName127 = Presentation/SaveText.Unity.DotNet.OfflineWithSync
+		SccLocalPath127 = Presentation\\SaveText.Unity.DotNet.OfflineWithSync
+		SccProjectUniqueName128 = Presentation\\SaveText.Unity.DotNet.Online\\JJ.Presentation.SaveText.Unity.DotNet.Online.csproj
 		SccProjectTopLevelParentUniqueName128 = JJ.sln
-		SccProjectName128 = Presentation/SetText.Unity.DotNet.Online
-		SccLocalPath128 = Presentation\\SetText.Unity.DotNet.Online
-		SccProjectUniqueName129 = Presentation\\SetText.Unity.DotNet.Online.WwwObject\\JJ.Presentation.SaveText.Unity.DotNet.Online.WwwObject.csproj
+		SccProjectName128 = Presentation/SaveText.Unity.DotNet.Online
+		SccLocalPath128 = Presentation\\SaveText.Unity.DotNet.Online
+		SccProjectUniqueName129 = Presentation\\SaveText.Unity.DotNet.Online.WwwObject\\JJ.Presentation.SaveText.Unity.DotNet.Online.WwwObject.csproj
 		SccProjectTopLevelParentUniqueName129 = JJ.sln
-		SccProjectName129 = Presentation/SetText.Unity.DotNet.Online.WwwObject
-		SccLocalPath129 = Presentation\\SetText.Unity.DotNet.Online.WwwObject
-		SccProjectUniqueName130 = Presentation\\SetText.WinForms.Offline\\JJ.Presentation.SaveText.WinForms.Offline.csproj
+		SccProjectName129 = Presentation/SaveText.Unity.DotNet.Online.WwwObject
+		SccLocalPath129 = Presentation\\SaveText.Unity.DotNet.Online.WwwObject
+		SccProjectUniqueName130 = Presentation\\SaveText.WinForms.Offline\\JJ.Presentation.SaveText.WinForms.Offline.csproj
 		SccProjectTopLevelParentUniqueName130 = JJ.sln
-		SccProjectName130 = Presentation/SetText.WinForms.Offline
-		SccLocalPath130 = Presentation\\SetText.WinForms.Offline
-		SccProjectUniqueName131 = Presentation\\SetText.WinForms.OfflineWithSync\\JJ.Presentation.SaveText.WinForms.OfflineWithSync.csproj
+		SccProjectName130 = Presentation/SaveText.WinForms.Offline
+		SccLocalPath130 = Presentation\\SaveText.WinForms.Offline
+		SccProjectUniqueName131 = Presentation\\SaveText.WinForms.OfflineWithSync\\JJ.Presentation.SaveText.WinForms.OfflineWithSync.csproj
 		SccProjectTopLevelParentUniqueName131 = JJ.sln
-		SccProjectName131 = Presentation/SetText.WinForms.OfflineWithSync
-		SccLocalPath131 = Presentation\\SetText.WinForms.OfflineWithSync
-		SccProjectUniqueName132 = Presentation\\SetText.WinForms.Online\\JJ.Presentation.SaveText.WinForms.Online.csproj
+		SccProjectName131 = Presentation/SaveText.WinForms.OfflineWithSync
+		SccLocalPath131 = Presentation\\SaveText.WinForms.OfflineWithSync
+		SccProjectUniqueName132 = Presentation\\SaveText.WinForms.Online\\JJ.Presentation.SaveText.WinForms.Online.csproj
 		SccProjectTopLevelParentUniqueName132 = JJ.sln
-		SccProjectName132 = Presentation/SetText.WinForms.Online
-		SccLocalPath132 = Presentation\\SetText.WinForms.Online
-		SccProjectUniqueName133 = Presentation\\SetText.WinForms.Online.CustomSoapClient\\JJ.Presentation.SaveText.WinForms.Online.CustomSoapClient.csproj
+		SccProjectName132 = Presentation/SaveText.WinForms.Online
+		SccLocalPath132 = Presentation\\SaveText.WinForms.Online
+		SccProjectUniqueName133 = Presentation\\SaveText.WinForms.Online.CustomSoapClient\\JJ.Presentation.SaveText.WinForms.Online.CustomSoapClient.csproj
 		SccProjectTopLevelParentUniqueName133 = JJ.sln
-		SccProjectName133 = Presentation/SetText.WinForms.Online.CustomSoapClient
-		SccLocalPath133 = Presentation\\SetText.WinForms.Online.CustomSoapClient
-		SccProjectUniqueName134 = Presentation\\SetText.WinForms.OnlineOfflineSwitched\\JJ.Presentation.SaveText.WinForms.OnlineOfflineSwitched.csproj
+		SccProjectName133 = Presentation/SaveText.WinForms.Online.CustomSoapClient
+		SccLocalPath133 = Presentation\\SaveText.WinForms.Online.CustomSoapClient
+		SccProjectUniqueName134 = Presentation\\SaveText.WinForms.OnlineOfflineSwitched\\JJ.Presentation.SaveText.WinForms.OnlineOfflineSwitched.csproj
 		SccProjectTopLevelParentUniqueName134 = JJ.sln
-		SccProjectName134 = Presentation/SetText.WinForms.OnlineOfflineSwitched
-		SccLocalPath134 = Presentation\\SetText.WinForms.OnlineOfflineSwitched
+		SccProjectName134 = Presentation/SaveText.WinForms.OnlineOfflineSwitched
+		SccLocalPath134 = Presentation\\SaveText.WinForms.OnlineOfflineSwitched
 	EndGlobalSection
 EndGlobal
