@@ -285,7 +285,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Analysis.Vsix", "Analysi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lomont", "External Components\Lomont\Lomont.csproj", "{CDA729CD-CD5E-4700-8308-B4B916C8EAB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.Synthesizer.Inlining", "Demos\Synthesizer.Inlining\JJ.Demos.Synthesizer.Inlining.csproj", "{58794EC8-775B-4EA6-A12C-F330AB03B0F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.Synthesizer.NanoOptimization", "Demos\Synthesizer.NanoOptimization\JJ.Demos.Synthesizer.NanoOptimization.csproj", "{58794EC8-775B-4EA6-A12C-F330AB03B0F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Analysis.TestCode", "Analysis\TestCode\JJ.Analysis.TestCode.csproj", "{0AF3635C-D14B-496A-A1BC-40EB3DD5DFDA}"
 EndProject
@@ -3379,10 +3379,10 @@ Global
 		SccProjectTopLevelParentUniqueName107 = JJ.sln
 		SccProjectName107 = Analysis/Visx
 		SccLocalPath107 = Analysis\\Visx
-		SccProjectUniqueName108 = Demos\\Synthesizer.Inlining\\JJ.Demos.Synthesizer.Inlining.csproj
+		SccProjectUniqueName108 = Demos\\Synthesizer.NanoOptimization\\JJ.Demos.Synthesizer.NanoOptimization.csproj
 		SccProjectTopLevelParentUniqueName108 = JJ.sln
-		SccProjectName108 = Demos/Synthesizer.Inlining
-		SccLocalPath108 = Demos\\Synthesizer.Inlining
+		SccProjectName108 = Demos/Synthesizer.NanoOptimization
+		SccLocalPath108 = Demos\\Synthesizer.NanoOptimization
 		SccProjectUniqueName109 = Analysis\\TestCode\\JJ.Analysis.TestCode.csproj
 		SccProjectTopLevelParentUniqueName109 = JJ.sln
 		SccProjectName109 = Analysis/TestCode
