@@ -2,7 +2,7 @@
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 //using JJ.Framework.Xml.Linq;
 //using System.Text;
-//using JJ.Presentation.SetText.Interface.ViewModels;
+//using JJ.Presentation.SaveText.Interface.ViewModels;
 //using System.Collections.Generic;
 //using JJ.Framework.Testing;
 //using System.Net;
@@ -15,12 +15,12 @@
 //        [TestMethod]
 //        public void Test_SoapClient()
 //        {
-//            string url = "http://localhost:6371/settextappservice.svc";
-//            string soapAction = "http://tempuri.org/ISetTextAppService/Save";
+//            string url = "http://localhost:6371/savetextappservice.svc";
+//            string soapAction = "http://tempuri.org/ISaveTextAppService/Save";
 //            SoapClient client = new SoapClient(url, Encoding.UTF8);
 
-//            SetTextViewModel viewModel = CreateViewModel();
-//            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
+//            SaveTextViewModel viewModel = CreateViewModel();
+//            SaveTextViewModel viewModel2 = client.Invoke<SaveTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
 
 //            if (viewModel2.ValidationMessages != null)
 //            {
@@ -34,15 +34,15 @@
 //        {
 //            var namespaceMappings = new List<SoapNamespaceMapping>
 //            {
-//                new SoapNamespaceMapping(SoapNamespaceMapping.WCF_SOAP_NAMESPACE_HEADER + "JJ.Presentation.SetText.Interface.ViewModels", "http://blahblahblah.com"),
+//                new SoapNamespaceMapping(SoapNamespaceMapping.WCF_SOAP_NAMESPACE_HEADER + "JJ.Presentation.SaveText.Interface.ViewModels", "http://blahblahblah.com"),
 //            };
 
-//            string url = "http://localhost:6371/settextappservice.svc";
-//            string soapAction = "http://tempuri.org/ISetTextAppService/Save";
+//            string url = "http://localhost:6371/savetextappservice.svc";
+//            string soapAction = "http://tempuri.org/ISaveTextAppService/Save";
 //            SoapClient client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
 
-//            SetTextViewModel viewModel = CreateViewModel();
-//            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
+//            SaveTextViewModel viewModel = CreateViewModel();
+//            SaveTextViewModel viewModel2 = client.Invoke<SaveTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
 
 //            // WCF will accept the message, just will not bind the data, 
 //            // so the sevice will return a validation message.
@@ -60,17 +60,17 @@
 //                new SoapNamespaceMapping("http://tempuri.org/", "http://blahblahblah.org"),
 //            };
 
-//            string url = "http://localhost:6371/settextappservice.svc";
-//            string soapAction = "http://tempuri.org/ISetTextAppService/Save";
+//            string url = "http://localhost:6371/savetextappservice.svc";
+//            string soapAction = "http://tempuri.org/ISaveTextAppService/Save";
 //            SoapClient client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
 
-//            SetTextViewModel viewModel = CreateViewModel();
-//            SetTextViewModel viewModel2 = client.Invoke<SetTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
+//            SaveTextViewModel viewModel = CreateViewModel();
+//            SaveTextViewModel viewModel2 = client.Invoke<SaveTextViewModel>(soapAction, "Save", new SoapParameter("viewModel", viewModel), new SoapParameter("cultureName", "nl-NL"));
 //        }
 
-//        private SetTextViewModel CreateViewModel()
+//        private SaveTextViewModel CreateViewModel()
 //        {
-//            return new SetTextViewModel
+//            return new SaveTextViewModel
 //            {
 //                Text = "Hi!",
 //            };
