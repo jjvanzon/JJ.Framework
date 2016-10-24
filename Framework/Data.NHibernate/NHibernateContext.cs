@@ -62,10 +62,7 @@ namespace JJ.Framework.Data.NHibernate
         {
             TEntity entity = new TEntity();
 
-            if (!_entitiesToSave.Contains(entity))
-            {
-                _entitiesToSave.Add(entity);
-            }
+            _entitiesToSave.Add(entity);
 
             object id = GetID(entity);
             _entityDictionary.AddOrReplaceIfNeeded(id, entity);
@@ -75,10 +72,7 @@ namespace JJ.Framework.Data.NHibernate
 
         public override void Insert(object entity)
         {
-            if (!_entitiesToSave.Contains(entity))
-            {
-                _entitiesToSave.Add(entity);
-            }
+            _entitiesToSave.Add(entity);
 
             object id = GetID(entity);
             _entityDictionary.AddOrReplaceIfNeeded(id, entity);
@@ -93,10 +87,7 @@ namespace JJ.Framework.Data.NHibernate
         {
             Session.Delete(entity);
 
-            if (!_entitiesToSave.Contains(entity))
-            {
-                _entitiesToSave.Remove(entity);
-            }
+            _entitiesToSave.Remove(entity);
 
             object id = GetID(entity);
             _entityDictionary.TryRemove(entity, id);
@@ -104,7 +95,7 @@ namespace JJ.Framework.Data.NHibernate
 
         public override IEnumerable<TEntity> Query<TEntity>()
         {
-            return Session.Query<TEntity>();
+            throw new Exception("Use ISession.QueryOver<TEntity> instead.");
         }
 
         // Transactions
