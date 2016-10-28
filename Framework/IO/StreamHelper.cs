@@ -11,12 +11,16 @@ namespace JJ.Framework.IO
         {
             if (stream == null) throw new NullException(() => stream);
 
-            // Use memory stream as an intermediate, because not all Stream types support the Length property.
-            using (var stream2 = new MemoryStream())
+            MemoryStream memoryStream = stream as MemoryStream;
+
+            if (memoryStream == null)
             {
-                Stream_PlatformSupport.CopyTo(stream, stream2, bufferSize);
-                return stream2.ToArray();
+                // Use memory stream as an intermediate, because not all Stream types support the Length property.
+                memoryStream = new MemoryStream();
+                Stream_PlatformSupport.CopyTo(stream, memoryStream, bufferSize);
             }
+
+            return memoryStream.ToArray();
         }
 
         public static Stream BytesToStream(byte[] bytes)
