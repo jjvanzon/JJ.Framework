@@ -63,6 +63,7 @@
     <Compile Include="Exceptions\PropertyNotFoundException.cs" />
     <Compile Include="Exceptions\PropertyNotFoundExceptionOfT.cs" />
     <Compile Include="EnumHelper.cs" />
+    <Compile Include="StringBuilderWithIndentation.cs" />
     <Compile Include="StringExtensions_Casing.cs" />
     <Compile Include="Exceptions\TypeNotFoundException.cs" />
     <Compile Include="Exceptions\ValueNotSupportedException.cs" />

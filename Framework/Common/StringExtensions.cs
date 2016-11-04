@@ -126,5 +126,24 @@ namespace JJ.Framework.Common
             string output = regex.Replace(input, newValue);
             return output;
         }
+
+        public static string Repeat(this string stringToRepeat, int repeatCount)
+        {
+            if (stringToRepeat == null) throw new ArgumentNullException(nameof(stringToRepeat));
+
+            char[] sourceChars = stringToRepeat.ToCharArray();
+            int sourceLength = sourceChars.Length;
+
+            int destLength = sourceLength * repeatCount;
+            var destChars = new char[destLength];
+
+            for (int i = 0; i < destLength; i += sourceLength)
+            {
+                Array.Copy(sourceChars, 0, destChars, i, sourceLength);
+            }
+
+            string destString = new string(destChars);
+            return destString;
+        }
     }
 }
