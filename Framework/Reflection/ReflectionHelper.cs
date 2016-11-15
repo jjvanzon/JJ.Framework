@@ -251,6 +251,25 @@ namespace JJ.Framework.Reflection
             return obj;
         }
 
+        public static IList<Type> GetTypeAndBaseClasses(Type type)
+        {
+            if (type == null) throw new NullException(() => type);
+
+            var types = new List<Type>();
+            types.Add(type);
+
+            Type tempType = type;
+
+            while (type.BaseType != null)
+            {
+                type = type.BaseType;
+
+                types.Add(type);
+            }
+
+            return types;
+        }
+
         // Generic overloads
 
         public static Type GetImplementation<TBaseType>(Assembly assembly)
