@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using JJ.Framework.Common;
 
-namespace JJ.Demos.Synthesizer.NanoOptimization.Helpers
+namespace JJ.Framework.Common
 {
     public class StringBuilderWithIndentation
     {
