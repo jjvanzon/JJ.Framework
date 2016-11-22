@@ -168,7 +168,7 @@ namespace JJ.Framework.Mathematics
         /// <summary> Equally spreads out a number indices over a different number of indices. </summary>
         public static Dictionary<int, int> Spread(int sourceIndex1, int sourceIndex2, int destIndex1, int destIndex2)
         {
-            // TODO: There seem to be a lot of repeated principes here, compared to the overload that takes 2 int's.
+            // TODO: There seem to be a lot of repeated principles here, compared to the overload that takes 2 int's.
             if (sourceIndex2 < sourceIndex1) throw new LessThanOrEqualException(() => sourceIndex2, () => sourceIndex1);
             if (destIndex2 < destIndex1) throw new LessThanOrEqualException(() => destIndex2, () => destIndex1);
 
