@@ -56,12 +56,6 @@ namespace JJ.Framework.Data.NHibernate
             fluentConfiguration = fluentConfiguration.Mappings(x => x.FluentMappings.AddFromAssembly(modelAssembly));
             fluentConfiguration = fluentConfiguration.Mappings(x => x.FluentMappings.AddFromAssembly(mappingAssembly));
 
-            if (SqlLogger.Enabled)
-            {
-                global::NHibernate.Cfg.Configuration configuration = fluentConfiguration.BuildConfiguration();
-                configuration.SetInterceptor(new SqlLogInterceptor());
-            }
-
             return fluentConfiguration.BuildSessionFactory();
         }
     }

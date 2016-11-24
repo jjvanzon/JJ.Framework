@@ -51,17 +51,6 @@ namespace JJ.Framework.Data.NHibernate
 
             _session.Transaction.Enlist(command);
             
-            if (SqlLogger.Enabled)
-            {
-                string sql = SqlCommandFormatter.Convert(command, command.Connection, includeUseStatements: true);
-                SqlLogger.WriteLine("");
-                SqlLogger.WriteLine(sql);
-
-                Debug.WriteLine("");
-                Debug.WriteLine(String.Format("use [{0}]", command.Connection.Database));
-                Debug.WriteLine(command.CommandText);
-            }
-
             return command;
         }
     }

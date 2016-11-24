@@ -56,15 +56,11 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigurationSection.cs" />
     <Compile Include="EntityDictionary.cs" />
     <Compile Include="NHibernateContext.cs" />
     <Compile Include="NHibernateSqlExecutor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NHibernateSessionFactoryCache.cs" />
-    <Compile Include="SqlLogger.cs" />
-    <Compile Include="SqlLoggingConfiguration.cs" />
-    <Compile Include="SqlLogInterceptor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Third Party\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\FluentNHibernate.csproj">
