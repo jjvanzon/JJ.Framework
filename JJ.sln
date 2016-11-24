@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{789E68E5-3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{72857B67-3003-486C-9BB3-34AF5748BE95}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External Components", "External Components", "{E3DC759D-B004-4E6C-8381-D5D5C74A5B92}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third Party", "Third Party", "{E3DC759D-B004-4E6C-8381-D5D5C74A5B92}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OneOff", "OneOff", "{8811F001-E852-4533-A212-1050A0153972}"
 EndProject
@@ -49,13 +49,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.QuestionAndAnswer.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.EntityFramework5", "Framework\Data.EntityFramework5\JJ.Framework.Data.EntityFramework5.csproj", "{9676E4C3-1A1F-45B8-8FFD-C398F14002E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NCore.Framework NET 3.5", "External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj", "{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NCore.Framework NET 3.5", "Third Party\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj", "{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NAspect.Framework.NET 3.5", "External Components\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj", "{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NAspect.Framework.NET 3.5", "Third Party\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj", "{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPath.Framework.NET 3.5", "External Components\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj", "{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPath.Framework.NET 3.5", "Third Party\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj", "{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPersist.Framework.NET 3.5", "External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj", "{E6C03D2A-D150-4473-9439-D300746A1390}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPersist.Framework.NET 3.5", "Third Party\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj", "{E6C03D2A-D150-4473-9439-D300746A1390}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.QuestionAndAnswer.EntityFramework5", "Data\QuestionAndAnswer.EntityFramework5\JJ.Data.QuestionAndAnswer.EntityFramework5.csproj", "{FFE345E3-1F70-40E8-BB12-9CB377EF7EB5}"
 EndProject
@@ -131,7 +131,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.SaveText.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.Xml", "Framework\Data.Xml\JJ.Framework.Data.Xml.csproj", "{3EDF4C94-F84A-43B2-95A5-F47DC30F1A5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgmlReaderDll", "External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj", "{499527FF-AE52-450F-B3E3-4AD53E1712AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgmlReaderDll", "Third Party\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj", "{499527FF-AE52-450F-B3E3-4AD53E1712AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Data.SaveText.Memory", "Data\SaveText.Memory\JJ.Data.SaveText.Memory.csproj", "{BECFECBE-8EC2-485E-921E-2FB6FE048AAC}"
 EndProject
@@ -255,9 +255,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.Synthesizer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.Synthesizer.VectorGraphics", "Presentation\Synthesizer.VectorGraphics\JJ.Presentation.Synthesizer.VectorGraphics.csproj", "{DA036CC8-85CC-4A2B-B557-0A222A4486C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate", "External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\NHibernate.csproj", "{5909BFE7-93CF-4E5F-BE22-6293368AF01D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate", "Third Party\NHibernate\Source Code\3.3.1.GA\src\NHibernate\NHibernate.csproj", "{5909BFE7-93CF-4E5F-BE22-6293368AF01D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\FluentNHibernate.csproj", "{529145D5-6CC3-4016-89B5-826563024AF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "Third Party\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\FluentNHibernate.csproj", "{529145D5-6CC3-4016-89B5-826563024AF1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.Synthesizer.Api", "Business\Synthesizer.Api\JJ.Business.Synthesizer.Api.csproj", "{9451509B-96E7-43A7-87A2-74E5E582C0CD}"
 EndProject
@@ -265,9 +265,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.OneOff.Synthesizer.DataM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.Synthesizer.NAudio", "Presentation\Synthesizer.NAudio\JJ.Presentation.Synthesizer.NAudio.csproj", "{3F36ED87-8751-499D-8FD0-F5D6E2ED4A8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio", "External Components\NAudio\Source Code\1.7.2\NAudio\NAudio.csproj", "{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudio", "Third Party\NAudio\Source Code\1.7.2\NAudio\NAudio.csproj", "{DA4F02E3-0B5E-42CD-B8D9-5583FA51D66E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudioDemo", "External Components\NAudio\Source Code\1.7.2\NAudioDemo\NAudioDemo.csproj", "{C37A547B-F31E-45FB-870A-CFA704D06152}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudioDemo", "Third Party\NAudio\Source Code\1.7.2\NAudioDemo\NAudioDemo.csproj", "{C37A547B-F31E-45FB-870A-CFA704D06152}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.Canonical", "Business\Canonical\JJ.Business.Canonical.csproj", "{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1}"
 EndProject
@@ -277,13 +277,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{23
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynthesizerDB", "Database\SynthesizerDB\SynthesizerDB.csproj", "{F9370CA4-AB57-4BC8-BAA5-FDAEA8DB3F3F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analysis", "Analysis", "{13F19F92-3B43-4AE6-AC54-AB522900A45A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.CodeAnalysis", "Framework\CodeAnalysis\JJ.Framework.CodeAnalysis.csproj", "{A7C6E469-8196-4A35-A13F-545557D601DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.CodeAnalysis.Vsix", "Framework\CodeAnalysis.Visx\JJ.Framework.CodeAnalysis.Vsix.csproj", "{B01FC573-D952-41D4-A4FB-81B343EB8E1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lomont", "External Components\Lomont\Lomont.csproj", "{CDA729CD-CD5E-4700-8308-B4B916C8EAB9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lomont", "Third Party\Lomont\Lomont.csproj", "{CDA729CD-CD5E-4700-8308-B4B916C8EAB9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.Synthesizer.Tests.NanoOptimization", "Business\Synthesizer.Tests.NanoOptimization\JJ.Business.Synthesizer.Tests.NanoOptimization.csproj", "{58794EC8-775B-4EA6-A12C-F330AB03B0F8}"
 EndProject
@@ -2940,11 +2938,11 @@ Global
 		{4DBE5E36-4B54-4E5F-9B4F-5BBF33A3CEF1} = {50495465-0C70-46B2-A1BD-B5F6BD0EA3B2}
 		{5D06A212-5459-47F3-8109-E012C5FC9E3A} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{F9370CA4-AB57-4BC8-BAA5-FDAEA8DB3F3F} = {23450891-1092-41AF-BCDA-616DA0E8418A}
-		{A7C6E469-8196-4A35-A13F-545557D601DB} = {13F19F92-3B43-4AE6-AC54-AB522900A45A}
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A} = {13F19F92-3B43-4AE6-AC54-AB522900A45A}
+		{A7C6E469-8196-4A35-A13F-545557D601DB} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{B01FC573-D952-41D4-A4FB-81B343EB8E1A} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{CDA729CD-CD5E-4700-8308-B4B916C8EAB9} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{58794EC8-775B-4EA6-A12C-F330AB03B0F8} = {50495465-0C70-46B2-A1BD-B5F6BD0EA3B2}
-		{0AF3635C-D14B-496A-A1BC-40EB3DD5DFDA} = {13F19F92-3B43-4AE6-AC54-AB522900A45A}
+		{0AF3635C-D14B-496A-A1BC-40EB3DD5DFDA} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 135
@@ -2990,18 +2988,18 @@ Global
 		SccProjectTopLevelParentUniqueName9 = JJ.sln
 		SccProjectName9 = Business/QuestionAndAnswer
 		SccLocalPath9 = Business\\QuestionAndAnswer
-		SccProjectUniqueName10 = External\u0020Components\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate\\NHibernate.csproj
+		SccProjectUniqueName10 = Third\u0020Party\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate\\NHibernate.csproj
 		SccProjectTopLevelParentUniqueName10 = JJ.sln
-		SccProjectName10 = External\u0020Components/NHibernate/Source\u0020Code/3.3.1.GA/src/NHibernate
-		SccLocalPath10 = External\u0020Components\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate
-		SccProjectUniqueName11 = External\u0020Components\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate\\FluentNHibernate.csproj
+		SccProjectName10 = Third\u0020Party/NHibernate/Source\u0020Code/3.3.1.GA/src/NHibernate
+		SccLocalPath10 = Third\u0020Party\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate
+		SccProjectUniqueName11 = Third\u0020Party\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate\\FluentNHibernate.csproj
 		SccProjectTopLevelParentUniqueName11 = JJ.sln
-		SccProjectName11 = External\u0020Components/FluentNHibernate/Source\u0020Code/1.3/src/FluentNHibernate
-		SccLocalPath11 = External\u0020Components\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate
-		SccProjectUniqueName12 = External\u0020Components\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll\\SgmlReaderDll.csproj
+		SccProjectName11 = Third\u0020Party/FluentNHibernate/Source\u0020Code/1.3/src/FluentNHibernate
+		SccLocalPath11 = Third\u0020Party\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate
+		SccProjectUniqueName12 = Third\u0020Party\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll\\SgmlReaderDll.csproj
 		SccProjectTopLevelParentUniqueName12 = JJ.sln
-		SccProjectName12 = External\u0020Components/SgmlReader/Source\u0020Code\u0020Adapted/sgmlreaderdll
-		SccLocalPath12 = External\u0020Components\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll
+		SccProjectName12 = Third\u0020Party/SgmlReader/Source\u0020Code\u0020Adapted/sgmlreaderdll
+		SccLocalPath12 = Third\u0020Party\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll
 		SccProjectUniqueName13 = Framework\\Xml\\JJ.Framework.Xml.csproj
 		SccProjectTopLevelParentUniqueName13 = JJ.sln
 		SccProjectName13 = Framework/Xml
@@ -3078,22 +3076,22 @@ Global
 		SccProjectTopLevelParentUniqueName31 = JJ.sln
 		SccProjectName31 = Presentation/QuestionAndAnswer.MvcAspx
 		SccLocalPath31 = Presentation\\QuestionAndAnswer.MvcAspx
-		SccProjectUniqueName32 = External\u0020Components\\NPersist\\Source\u0020Code\\NCore\\Framework\\Puzzle.NCore.Framework\u0020NET\u00203.5.csproj
+		SccProjectUniqueName32 = Third\u0020Party\\NPersist\\Source\u0020Code\\NCore\\Framework\\Puzzle.NCore.Framework\u0020NET\u00203.5.csproj
 		SccProjectTopLevelParentUniqueName32 = JJ.sln
-		SccProjectName32 = External\u0020Components/NPersist/Source\u0020Code/NCore/Framework
-		SccLocalPath32 = External\u0020Components\\NPersist\\Source\u0020Code\\NCore\\Framework
-		SccProjectUniqueName33 = External\u0020Components\\NPersist\\Source\u0020Code\\NAspect\\Framework\\Puzzle.NAspect.Framework.NET\u00203.5.csproj
+		SccProjectName32 = Third\u0020Party/NPersist/Source\u0020Code/NCore/Framework
+		SccLocalPath32 = Third\u0020Party\\NPersist\\Source\u0020Code\\NCore\\Framework
+		SccProjectUniqueName33 = Third\u0020Party\\NPersist\\Source\u0020Code\\NAspect\\Framework\\Puzzle.NAspect.Framework.NET\u00203.5.csproj
 		SccProjectTopLevelParentUniqueName33 = JJ.sln
-		SccProjectName33 = External\u0020Components/NPersist/Source\u0020Code/NAspect/Framework
-		SccLocalPath33 = External\u0020Components\\NPersist\\Source\u0020Code\\NAspect\\Framework
-		SccProjectUniqueName34 = External\u0020Components\\NPersist\\Source\u0020Code\\NPath\\Framework\\Puzzle.NPath.Framework.NET\u00203.5.csproj
+		SccProjectName33 = Third\u0020Party/NPersist/Source\u0020Code/NAspect/Framework
+		SccLocalPath33 = Third\u0020Party\\NPersist\\Source\u0020Code\\NAspect\\Framework
+		SccProjectUniqueName34 = Third\u0020Party\\NPersist\\Source\u0020Code\\NPath\\Framework\\Puzzle.NPath.Framework.NET\u00203.5.csproj
 		SccProjectTopLevelParentUniqueName34 = JJ.sln
-		SccProjectName34 = External\u0020Components/NPersist/Source\u0020Code/NPath/Framework
-		SccLocalPath34 = External\u0020Components\\NPersist\\Source\u0020Code\\NPath\\Framework
-		SccProjectUniqueName35 = External\u0020Components\\NPersist\\Source\u0020Code\\NPersist\\Framework\\Puzzle.NPersist.Framework.NET\u00203.5.csproj
+		SccProjectName34 = Third\u0020Party/NPersist/Source\u0020Code/NPath/Framework
+		SccLocalPath34 = Third\u0020Party\\NPersist\\Source\u0020Code\\NPath\\Framework
+		SccProjectUniqueName35 = Third\u0020Party\\NPersist\\Source\u0020Code\\NPersist\\Framework\\Puzzle.NPersist.Framework.NET\u00203.5.csproj
 		SccProjectTopLevelParentUniqueName35 = JJ.sln
-		SccProjectName35 = External\u0020Components/NPersist/Source\u0020Code/NPersist/Framework
-		SccLocalPath35 = External\u0020Components\\NPersist\\Source\u0020Code\\NPersist\\Framework
+		SccProjectName35 = Third\u0020Party/NPersist/Source\u0020Code/NPersist/Framework
+		SccLocalPath35 = Third\u0020Party\\NPersist\\Source\u0020Code\\NPersist\\Framework
 		SccProjectUniqueName36 = Framework\\Data.NPersist\\JJ.Framework.Data.NPersist.csproj
 		SccProjectTopLevelParentUniqueName36 = JJ.sln
 		SccProjectName36 = Framework/Data.NPersist
@@ -3394,10 +3392,10 @@ Global
 		SccProjectTopLevelParentUniqueName110 = JJ.sln
 		SccProjectName110 = Data/Synthesizer
 		SccLocalPath110 = Data\\Synthesizer
-		SccProjectUniqueName111 = External\u0020Components\\Lomont\\Lomont.csproj
+		SccProjectUniqueName111 = Third\u0020Party\\Lomont\\Lomont.csproj
 		SccProjectTopLevelParentUniqueName111 = JJ.sln
-		SccProjectName111 = External\u0020Components/Lomont
-		SccLocalPath111 = External\u0020Components\\Lomont
+		SccProjectName111 = Third\u0020Party/Lomont
+		SccLocalPath111 = Third\u0020Party\\Lomont
 		SccProjectUniqueName112 = Framework\\Collections\\JJ.Framework.Collections.csproj
 		SccProjectTopLevelParentUniqueName112 = JJ.sln
 		SccProjectName112 = Framework/Collections
@@ -3442,10 +3440,10 @@ Global
 		SccProjectTopLevelParentUniqueName122 = JJ.sln
 		SccProjectName122 = Framework/Presentation.WinForms.TestForms
 		SccLocalPath122 = Framework\\Presentation.WinForms.TestForms
-		SccProjectUniqueName123 = External\u0020Components\\NAudio\\Source\u0020Code\\1.7.2\\NAudio\\NAudio.csproj
+		SccProjectUniqueName123 = Third\u0020Party\\NAudio\\Source\u0020Code\\1.7.2\\NAudio\\NAudio.csproj
 		SccProjectTopLevelParentUniqueName123 = JJ.sln
-		SccProjectName123 = External\u0020Components/NAudio/Source\u0020Code/1.7.2/NAudio
-		SccLocalPath123 = External\u0020Components\\NAudio\\Source\u0020Code\\1.7.2\\NAudio
+		SccProjectName123 = Third\u0020Party/NAudio/Source\u0020Code/1.7.2/NAudio
+		SccLocalPath123 = Third\u0020Party\\NAudio\\Source\u0020Code\\1.7.2\\NAudio
 		SccProjectUniqueName124 = Presentation\\Synthesizer.NAudio\\JJ.Presentation.Synthesizer.NAudio.csproj
 		SccProjectTopLevelParentUniqueName124 = JJ.sln
 		SccProjectName124 = Presentation/Synthesizer.NAudio
@@ -3462,10 +3460,10 @@ Global
 		SccProjectTopLevelParentUniqueName127 = JJ.sln
 		SccProjectName127 = OneOff/Synthesizer.DataMigration
 		SccLocalPath127 = OneOff\\Synthesizer.DataMigration
-		SccProjectUniqueName128 = External\u0020Components\\NAudio\\Source\u0020Code\\1.7.2\\NAudioDemo\\NAudioDemo.csproj
+		SccProjectUniqueName128 = Third\u0020Party\\NAudio\\Source\u0020Code\\1.7.2\\NAudioDemo\\NAudioDemo.csproj
 		SccProjectTopLevelParentUniqueName128 = JJ.sln
-		SccProjectName128 = External\u0020Components/NAudio/Source\u0020Code/1.7.2/NAudioDemo
-		SccLocalPath128 = External\u0020Components\\NAudio\\Source\u0020Code\\1.7.2\\NAudioDemo
+		SccProjectName128 = Third\u0020Party/NAudio/Source\u0020Code/1.7.2/NAudioDemo
+		SccLocalPath128 = Third\u0020Party\\NAudio\\Source\u0020Code\\1.7.2\\NAudioDemo
 		SccProjectUniqueName129 = Database\\SynthesizerDB\\SynthesizerDB.csproj
 		SccProjectTopLevelParentUniqueName129 = JJ.sln
 		SccProjectName129 = Database/SynthesizerDB

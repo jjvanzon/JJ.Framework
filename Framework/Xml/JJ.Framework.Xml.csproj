@@ -51,7 +51,7 @@
     <Compile Include="XmlToObjectConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj">
+    <ProjectReference Include="..\..\Third Party\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj">
       <Project>{499527ff-ae52-450f-b3e3-4ad53e1712ad}</Project>
       <Name>SgmlReaderDll</Name>
     </ProjectReference>

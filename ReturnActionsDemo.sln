@@ -25,11 +25,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml", "Framewo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility", "Framework\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj", "{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgmlReaderDll", "External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj", "{499527FF-AE52-450F-B3E3-4AD53E1712AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgmlReaderDll", "Third Party\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj", "{499527FF-AE52-450F-B3E3-4AD53E1712AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "External Components\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\FluentNHibernate.csproj", "{529145D5-6CC3-4016-89B5-826563024AF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "Third Party\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\FluentNHibernate.csproj", "{529145D5-6CC3-4016-89B5-826563024AF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate", "External Components\NHibernate\Source Code\3.3.1.GA\src\NHibernate\NHibernate.csproj", "{5909BFE7-93CF-4E5F-BE22-6293368AF01D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate", "Third Party\NHibernate\Source Code\3.3.1.GA\src\NHibernate\NHibernate.csproj", "{5909BFE7-93CF-4E5F-BE22-6293368AF01D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcUrlParameter", "Demos\ReturnActions.MvcUrlParameter\JJ.Demos.ReturnActions.MvcUrlParameter.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
 EndProject
@@ -155,10 +155,10 @@ Global
 		SccProjectTopLevelParentUniqueName2 = ReturnActionsDemo.sln
 		SccProjectName2 = Framework/Reflection
 		SccLocalPath2 = Framework\\Reflection
-		SccProjectUniqueName3 = External\u0020Components\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll\\SgmlReaderDll.csproj
+		SccProjectUniqueName3 = Third\u0020Party\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll\\SgmlReaderDll.csproj
 		SccProjectTopLevelParentUniqueName3 = ReturnActionsDemo.sln
-		SccProjectName3 = External\u0020Components/SgmlReader/Source\u0020Code\u0020Adapted/sgmlreaderdll
-		SccLocalPath3 = External\u0020Components\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll
+		SccProjectName3 = Third\u0020Party/SgmlReader/Source\u0020Code\u0020Adapted/sgmlreaderdll
+		SccLocalPath3 = Third\u0020Party\\SgmlReader\\Source\u0020Code\u0020Adapted\\sgmlreaderdll
 		SccProjectUniqueName4 = Framework\\Xml\\JJ.Framework.Xml.csproj
 		SccProjectTopLevelParentUniqueName4 = ReturnActionsDemo.sln
 		SccProjectName4 = Framework/Xml
@@ -183,14 +183,14 @@ Global
 		SccProjectUniqueName10 = Demos\\ReturnActions.MvcPostData\\JJ.Demos.ReturnActions.MvcPostData.csproj
 		SccProjectName10 = Demos/ReturnActions.MvcPostData
 		SccLocalPath10 = Demos\\ReturnActions.MvcPostData
-		SccProjectUniqueName11 = External\u0020Components\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate\\NHibernate.csproj
+		SccProjectUniqueName11 = Third\u0020Party\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate\\NHibernate.csproj
 		SccProjectTopLevelParentUniqueName11 = ReturnActionsDemo.sln
-		SccProjectName11 = External\u0020Components/NHibernate/Source\u0020Code/3.3.1.GA/src/NHibernate
-		SccLocalPath11 = External\u0020Components\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate
-		SccProjectUniqueName12 = External\u0020Components\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate\\FluentNHibernate.csproj
+		SccProjectName11 = Third\u0020Party/NHibernate/Source\u0020Code/3.3.1.GA/src/NHibernate
+		SccLocalPath11 = Third\u0020Party\\NHibernate\\Source\u0020Code\\3.3.1.GA\\src\\NHibernate
+		SccProjectUniqueName12 = Third\u0020Party\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate\\FluentNHibernate.csproj
 		SccProjectTopLevelParentUniqueName12 = ReturnActionsDemo.sln
-		SccProjectName12 = External\u0020Components/FluentNHibernate/Source\u0020Code/1.3/src/FluentNHibernate
-		SccLocalPath12 = External\u0020Components\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate
+		SccProjectName12 = Third\u0020Party/FluentNHibernate/Source\u0020Code/1.3/src/FluentNHibernate
+		SccLocalPath12 = Third\u0020Party\\FluentNHibernate\\Source\u0020Code\\1.3\\src\\FluentNHibernate
 		SccProjectUniqueName13 = Demos\\ReturnActions.MvcUrlParameter\\JJ.Demos.ReturnActions.MvcUrlParameter.csproj
 		SccProjectName13 = Demos/ReturnActions.MvcUrlParameter
 		SccLocalPath13 = Demos\\ReturnActions.MvcUrlParameter
