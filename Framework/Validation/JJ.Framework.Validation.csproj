@@ -43,8 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebugHelper.cs" />
-    <Compile Include="FluentValidator.cs" />
-    <Compile Include="FluentValidator_WithoutConstructorArgumentNullCheck.cs" />
+    <Compile Include="VersatileValidator.cs" />
+    <Compile Include="VersatileValidator_WithoutConstructorArgumentNullCheck.cs" />
     <Compile Include="PropertyKeyHelper.cs" />
     <Compile Include="Resources\ValidationMessageFormatter.cs" />
     <Compile Include="Resources\ValidationMessages.Designer.cs">

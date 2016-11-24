@@ -12,13 +12,13 @@ using System.Globalization;
 
 namespace JJ.Framework.Validation
 {
-    public abstract class FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> : ValidatorBase<TRootObject>
+    public abstract class VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> : ValidatorBase<TRootObject>
     {
         /// <param name="postponeExecute">
         /// When set to true, you can do initializations in your constructor
         /// before Execute goes off. If so, then you have to call Execute in your own constructor.
         /// </param>
-        public FluentValidator_WithoutConstructorArgumentNullCheck(TRootObject obj, bool postponeExecute = false)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck(TRootObject obj, bool postponeExecute = false)
             : base(obj, postponeExecute)
         { }
 
@@ -39,7 +39,7 @@ namespace JJ.Framework.Validation
         /// <param name="formatProvider">
         /// Use this parameter if the number format is different from the current culture.
         /// </param>
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> For(Expression<Func<object>> propertyExpression, string propertyDisplayName, IFormatProvider formatProvider = null)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> For(Expression<Func<object>> propertyExpression, string propertyDisplayName, IFormatProvider formatProvider = null)
         {
             object value = ExpressionHelper.GetValue(propertyExpression);
 
@@ -62,7 +62,7 @@ namespace JJ.Framework.Validation
         /// <param name="formatProvider">
         /// Use this parameter if the number format is different from the current culture.
         /// </param>
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> For(object value, string propertyKey, string propertyDisplayName, IFormatProvider formatProvider = null)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> For(object value, string propertyKey, string propertyDisplayName, IFormatProvider formatProvider = null)
         {
             if (propertyKey == null) throw new NullException(() => propertyKey);
             if (propertyDisplayName == null) throw new NullException(() => propertyDisplayName);
@@ -78,7 +78,7 @@ namespace JJ.Framework.Validation
 
         // Nullability
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNull()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNull()
         {
             if (_value == null)
             {
@@ -88,7 +88,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNullOrWhiteSpace()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNullOrWhiteSpace()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
@@ -100,7 +100,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNullOrEmpty()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNullOrEmpty()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
@@ -112,7 +112,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNull()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNull()
         {
             if (_value != null)
             {
@@ -122,7 +122,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNullOrEmpty()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNullOrEmpty()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
@@ -136,7 +136,7 @@ namespace JJ.Framework.Validation
 
         // Strings
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> MaxLength(int maxLength)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> MaxLength(int maxLength)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
@@ -155,7 +155,7 @@ namespace JJ.Framework.Validation
 
         // Equation
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> In<TValue>(IEnumerable<TValue> possibleValues)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> In<TValue>(IEnumerable<TValue> possibleValues)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
@@ -174,14 +174,14 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> In(params object[] possibleValues)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> In(params object[] possibleValues)
         {
             if (possibleValues == null) throw new NullException(() => possibleValues);
 
             return In((IEnumerable<object>)(object[])possibleValues);
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> Is(object value)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> Is(object value)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
@@ -200,7 +200,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNot(object value)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNot(object value)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
@@ -221,7 +221,7 @@ namespace JJ.Framework.Validation
 
         // Comparison
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThan<TValue>(TValue limit)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThan<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
             if (String.IsNullOrEmpty(stringValue))
@@ -248,7 +248,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThanOrEqual<TValue>(TValue limit)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThanOrEqual<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
             if (String.IsNullOrEmpty(stringValue))
@@ -275,7 +275,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThanOrEqual<TValue>(TValue limit)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThanOrEqual<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
             if (String.IsNullOrEmpty(stringValue))
@@ -302,7 +302,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThan<TValue>(TValue limit)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThan<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
             if (String.IsNullOrEmpty(stringValue))
@@ -349,7 +349,7 @@ namespace JJ.Framework.Validation
 
         // Type checks
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsInteger()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsInteger()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
@@ -367,7 +367,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotInteger()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotInteger()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
@@ -385,7 +385,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsDouble()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsDouble()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
@@ -403,7 +403,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsEnum<TEnum>()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsEnum<TEnum>()
             where TEnum : struct
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -461,7 +461,7 @@ namespace JJ.Framework.Validation
 
         // Other
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNaN()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNaN()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
@@ -482,7 +482,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        public FluentValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotInfinity()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotInfinity()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 

@@ -152,8 +152,6 @@ namespace JJ.Framework.Mathematics
             throw new NotImplementedException();
         }
 
-        // From 1999
-
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Interpolate_Cubic_SmoothSlope(
             double xMinus1, double x0, double x1, double x2,
@@ -181,7 +179,7 @@ namespace JJ.Framework.Mathematics
             double a = incl0;
             double b = (3 * dy - dx * incl1 - 2 * a * dx) / dx2;
             double c = (dy - a * dx - b * dx2) / dx3;
-            double y = y0 + ofs * (a + (ofs * (b + (c * ofs))));
+            double y = y0 + ofs * (a + (ofs * (b + (ofs * c))));
             return y;
         }
     }
