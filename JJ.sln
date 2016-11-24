@@ -279,15 +279,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SynthesizerDB", "Database\S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analysis", "Analysis", "{13F19F92-3B43-4AE6-AC54-AB522900A45A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Analysis", "Analysis\Analysis\JJ.Analysis.csproj", "{A7C6E469-8196-4A35-A13F-545557D601DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.CodeAnalysis", "Framework\CodeAnalysis\JJ.Framework.CodeAnalysis.csproj", "{A7C6E469-8196-4A35-A13F-545557D601DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Analysis.Vsix", "Analysis\Visx\JJ.Analysis.Vsix.csproj", "{B01FC573-D952-41D4-A4FB-81B343EB8E1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.CodeAnalysis.Vsix", "Framework\CodeAnalysis.Visx\JJ.Framework.CodeAnalysis.Vsix.csproj", "{B01FC573-D952-41D4-A4FB-81B343EB8E1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lomont", "External Components\Lomont\Lomont.csproj", "{CDA729CD-CD5E-4700-8308-B4B916C8EAB9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.Synthesizer.Tests.NanoOptimization", "Business\Synthesizer.Tests.NanoOptimization\JJ.Business.Synthesizer.Tests.NanoOptimization.csproj", "{58794EC8-775B-4EA6-A12C-F330AB03B0F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Analysis.TestCode", "Analysis\TestCode\JJ.Analysis.TestCode.csproj", "{0AF3635C-D14B-496A-A1BC-40EB3DD5DFDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.CodeAnalysis.TestCode", "Framework\CodeAnalysis.TestCode\JJ.Framework.CodeAnalysis.TestCode.csproj", "{0AF3635C-D14B-496A-A1BC-40EB3DD5DFDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -3470,22 +3470,22 @@ Global
 		SccProjectTopLevelParentUniqueName129 = JJ.sln
 		SccProjectName129 = Database/SynthesizerDB
 		SccLocalPath129 = Database\\SynthesizerDB
-		SccProjectUniqueName130 = Analysis\\Analysis\\JJ.Analysis.csproj
+		SccProjectUniqueName130 = Framework\\CodeAnalysis\\JJ.Framework.CodeAnalysis.csproj
 		SccProjectTopLevelParentUniqueName130 = JJ.sln
-		SccProjectName130 = Analysis/Analysis
-		SccLocalPath130 = Analysis\\Analysis
-		SccProjectUniqueName131 = Analysis\\Visx\\JJ.Analysis.Vsix.csproj
+		SccProjectName130 = Framework/CodeAnalysis
+		SccLocalPath130 = Framework\\CodeAnalysis
+		SccProjectUniqueName131 = Framework\\CodeAnalysis.Visx\\JJ.Framework.CodeAnalysis.Vsix.csproj
 		SccProjectTopLevelParentUniqueName131 = JJ.sln
-		SccProjectName131 = Analysis/Visx
-		SccLocalPath131 = Analysis\\Visx
+		SccProjectName131 = Framework/CodeAnalysis.Visx
+		SccLocalPath131 = Framework\\CodeAnalysis.Visx
 		SccProjectUniqueName132 = Business\\Synthesizer.Tests.NanoOptimization\\JJ.Business.Synthesizer.Tests.NanoOptimization.csproj
 		SccProjectTopLevelParentUniqueName132 = JJ.sln
 		SccProjectName132 = Business/Synthesizer.Tests.NanoOptimization
 		SccLocalPath132 = Business\\Synthesizer.Tests.NanoOptimization
-		SccProjectUniqueName133 = Analysis\\TestCode\\JJ.Analysis.TestCode.csproj
+		SccProjectUniqueName133 = Framework\\CodeAnalysis.TestCode\\JJ.Framework.CodeAnalysis.TestCode.csproj
 		SccProjectTopLevelParentUniqueName133 = JJ.sln
-		SccProjectName133 = Analysis/TestCode
-		SccLocalPath133 = Analysis\\TestCode
+		SccProjectName133 = Framework/CodeAnalysis.TestCode
+		SccLocalPath133 = Framework\\CodeAnalysis.TestCode
 		SccLocalPath134 = .
 	EndGlobalSection
 EndGlobal

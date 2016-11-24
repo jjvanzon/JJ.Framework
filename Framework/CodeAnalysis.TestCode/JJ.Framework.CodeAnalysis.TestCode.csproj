@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0AF3635C-D14B-496A-A1BC-40EB3DD5DFDA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JJ.Framework.CodeAnalysis.TestCode</RootNamespace>
+    <AssemblyName>JJ.Framework.CodeAnalysis.TestCode</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Fields_ThatAreNotPrivate.cs" />
+    <Compile Include="LocalVariableName_TooManyCapitalsInARow.cs" />
+    <Compile Include="LocalVariableName_NotStartingWithLowerCase_MultipleInOneStatement.cs" />
+    <Compile Include="LocalVariableName_NotStartingWithLowerCase.cs" />
+    <Compile Include="ParameterName_TooManyCapitalsInARow.cs" />
+    <Compile Include="ParameterName_NotStartingWithLowerCase.cs" />
+    <Compile Include="PartialClassWithNameError2.cs" />
+    <Compile Include="PartialClassWithNameError1.cs" />
+    <Compile Include="ConstantName_NotExactlyMatchesItsValue.cs" />
+    <Compile Include="ConstantName_NotAllCapitals.cs" />
+    <Compile Include="TInterfaceWith_InterfaceName_NotStartingWithI.cs" />
+    <Compile Include="IINTErfaceWith_InterfaceName_WithTooManyCapitalsInARow.cs" />
+    <Compile Include="ClassName_WithTooManyCapitalsAtTheEND.cs" />
+    <Compile Include="ClassName_WithTooManyCAPItalsInARow.cs" />
+    <Compile Include="FieldName_WithTooManyCapitalsInARow.cs" />
+    <Compile Include="MethodName_WithTooManyCapitalsInARow.cs" />
+    <Compile Include="PropertyName_WithTooManyCapitalsInARow.cs" />
+    <Compile Include="PublicMethod_WithReferenceParameter.cs" />
+    <Compile Include="PublicMethod_WithStringParameter.cs" />
+    <Compile Include="FieldName_NotUnderscoredCamelCase.cs" />
+    <Compile Include="className_NotStartingWithUpperCase.cs" />
+    <Compile Include="MethodName_NotStartingWithUpperCase.cs" />
+    <Compile Include="PublicMethod_WithValueParameter.cs" />
+    <Compile Include="PropertyName_NotStartingWithUpperCase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
