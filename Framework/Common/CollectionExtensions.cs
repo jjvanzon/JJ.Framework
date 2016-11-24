@@ -7,7 +7,7 @@ namespace JJ.Framework.Common
     public static class CollectionExtensions
     {
         private static string _separatorGuidString = GetSeparatorGuid();
-        private static string _nullGuidString = GetNullGuid();
+        private static string _emptyGuidString = GetNullGuid();
 
         private static string GetNullGuid()
         {

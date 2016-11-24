@@ -67,18 +67,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Presentation\SaveText.AppService.Interface\JJ.Presentation.SaveText.AppService.Interface.csproj">
-      <Project>{4a052265-9896-4d0b-a9b0-14d052bc95d0}</Project>
-      <Name>JJ.Presentation.SaveText.AppService.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Presentation\SaveText.Interface\JJ.Presentation.SaveText.Interface.csproj">
-      <Project>{f074226b-734d-4308-b1c5-30350a228d8b}</Project>
-      <Name>JJ.Presentation.SaveText.Interface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Data\Canonical\JJ.Data.Canonical.csproj">
-      <Project>{08ea4a4e-d815-47ae-9277-da6672d36214}</Project>
-      <Name>JJ.Data.Canonical</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Configuration\JJ.Framework.Configuration.csproj">
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
