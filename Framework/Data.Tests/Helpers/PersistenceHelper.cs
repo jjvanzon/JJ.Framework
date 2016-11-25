@@ -1,31 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Data.SqlClient;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using JJ.Framework.Configuration;
-using JJ.Framework.Data;
-using JJ.Framework.Data.Tests.Model;
-using JJ.Framework.Data.Tests.NHibernate;
+using JJ.Framework.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Data.Tests
+namespace JJ.Framework.Data.Tests.Helpers
 {
     public static class PersistenceHelper
     {
         public static IContext CreatePersistenceContext(string contextType)
         {
-            ConfigurationSection configuration = CustomConfigurationManager.GetSection<ConfigurationSection>();
-            
-            string modelAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-            string mappingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+            try
+            {
+                ConfigurationSection configuration = CustomConfigurationManager.GetSection<ConfigurationSection>();
 
-            return ContextFactory.CreateContext(
-                contextType,
-                configuration.Location,
-                modelAssemblyName,
-                mappingAssemblyName,
-                configuration.Dialect);
+                string modelAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+                string mappingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+
+                return ContextFactory.CreateContext(
+                    contextType,
+                    configuration.Location,
+                    modelAssemblyName,
+                    mappingAssemblyName,
+                    configuration.Dialect);
+            }
+            catch (Exception ex)
+            {
+                Exception innerMostException = ExceptionHelper.GetInnermostException(ex);
+                if (innerMostException is SqlException)
+                {
+                    string message = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
+                    Assert.Inconclusive(message);
+                }
+
+                throw;
+            }
         }
     }
 }

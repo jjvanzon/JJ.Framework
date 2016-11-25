@@ -2,11 +2,6 @@
 using JJ.Framework.Soap.Tests.Helpers;
 using JJ.Framework.Soap.Tests.ServiceInterface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Framework.Soap.Tests
 {
@@ -19,7 +14,11 @@ namespace JJ.Framework.Soap.Tests
             string url = AppSettings<IAppSettings>.Get(x => x.Url);
             var client = new NativeWcfClient(url);
             ComplicatedType obj1 = TestHelper.CreateComplicatedObject();
-            ComplicatedType obj2 = client.SendAndGetComplicatedObject(obj1);
+
+            TestHelper.WithInconclusiveConnectionAssertion(() =>
+            {
+                ComplicatedType obj2 = client.SendAndGetComplicatedObject(obj1);
+            });
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using JJ.Framework.Soap.Tests.ServiceInterface;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using JJ.Framework.Reflection.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Net;
+using JJ.Framework.Logging;
+using System.ServiceModel;
 
 namespace JJ.Framework.Soap.Tests.Helpers
 {
@@ -98,7 +100,7 @@ namespace JJ.Framework.Soap.Tests.Helpers
                 ArrayOfTimeSpan = new TimeSpan[] { TimeSpan.Parse("01:00"), TimeSpan.Parse("02:00") },
                 ArrayOfDateTime = new DateTime[] { DateTime.Parse("2001-02-03 04:05"), DateTime.Parse("2006-07-08 09:10") },
                 ArrayOfEnumType = new EnumType[] { EnumType.EnumMember1, EnumType.EnumMember2 },
-                
+
 
                 //ArrayOfNullableBoolean = new bool?[] { null, true, false },
                 //ArrayOfNullableByte = new byte?[] { null, 0x10, 0x20 },
@@ -121,6 +123,30 @@ namespace JJ.Framework.Soap.Tests.Helpers
             };
 
             return complicatedObject;
+        }
+
+        public static void WithInconclusiveConnectionAssertion(Action action)
+        {
+            if (action == null) throw new NullException(() => action);
+
+            try
+            {
+                action();
+            }
+            catch (WebException ex)
+            {
+                AssertInconclusive(ex);
+            }
+            catch (EndpointNotFoundException ex)
+            {
+                AssertInconclusive(ex);
+            }
+        }
+
+        private static void AssertInconclusive(Exception ex)
+        {
+            string message = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
+            Assert.Inconclusive(message);
         }
     }
 }

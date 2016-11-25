@@ -22,7 +22,12 @@ namespace JJ.Framework.Soap.Tests
             string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
             var client = new SoapClient(url, Encoding.UTF8);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
-            CompositeType obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
+
+            CompositeType obj2 = null;
+            TestHelper.WithInconclusiveConnectionAssertion(() =>
+            {
+                obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
+            });
 
             AssertHelper.IsNotNull(() => obj2);
             AssertHelper.IsTrue(() => obj2.BoolValue);
@@ -42,7 +47,13 @@ namespace JJ.Framework.Soap.Tests
             string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
             var client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
-            CompositeType obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
+
+            CompositeType obj2 = null;
+
+            TestHelper.WithInconclusiveConnectionAssertion(() =>
+            {
+                obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
+            });
 
             // WCF will accept the message, just will not bind the data sent to the server.
             AssertHelper.IsNotNull(() => obj2);
@@ -64,7 +75,13 @@ namespace JJ.Framework.Soap.Tests
             string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
             var client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
-            CompositeType obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
+
+            CompositeType obj2;
+
+            TestHelper.WithInconclusiveConnectionAssertion(() =>
+            {
+                obj2 = client.Invoke<CompositeType>(soapAction, methodName, new SoapParameter("compositeObject", obj1));
+            });
         }
     }
 }

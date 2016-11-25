@@ -6,22 +6,28 @@ namespace JJ.Framework.Presentation.Mvc.Tests
     [TestClass]
     public class ReturnUrlHelperTests
     {
+        [TestInitialize]
+        public void Test_Initialize()
+        {
+            ActionDispatcher.RegisterAssembly(GetType().Assembly);
+        }
+
         [TestMethod]
         public void Test_ReturnUrlHelper_ConvertActionInfoToReturnUrl()
         {
-            ActionInfo actionInfo = JJ.Framework.Presentation.ActionDispatcher.CreateActionInfo("Questions", "Details", "id", 1);
+            ActionInfo actionInfo = JJ.Framework.Presentation.ActionDispatcher.CreateActionInfo("QuestionDetailsPresenter", "Show", "id", 1);
 
             string url = ActionDispatcher.GetUrl(actionInfo);
             
-            Assert.AreEqual("Questions\\Details?id=1", url);
+            Assert.AreEqual("Questions/Details?id=1", url);
         }
 
         [TestMethod]
         public void Test_ReturnUrlHelper_ConvertActionInfosToReturnUrl()
         {
-            ActionInfo actionInfo1 = JJ.Framework.Presentation.ActionDispatcher.CreateActionInfo("Questions", "Details", "id", 1);
-            ActionInfo actionInfo2 = JJ.Framework.Presentation.ActionDispatcher.CreateActionInfo("Questions", "Edit", "id", 1);
-            ActionInfo actionInfo3 = JJ.Framework.Presentation.ActionDispatcher.CreateActionInfo("Login", "Index");
+            ActionInfo actionInfo1 = JJ.Framework.Presentation.ActionDispatcher.CreateActionInfo("QuestionDetailsPresenter", "Show", "id", 1);
+            ActionInfo actionInfo2 = JJ.Framework.Presentation.ActionDispatcher.CreateActionInfo("QuestionEditPresenter", "Edit", "id", 1);
+            ActionInfo actionInfo3 = JJ.Framework.Presentation.ActionDispatcher.CreateActionInfo("LoginPresenter", "Show");
 
             actionInfo1.ReturnAction = actionInfo2;
             actionInfo2.ReturnAction = actionInfo3;

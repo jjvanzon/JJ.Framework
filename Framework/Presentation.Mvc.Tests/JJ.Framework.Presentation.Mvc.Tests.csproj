@@ -55,6 +55,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Names\ActionNames.cs" />
+    <Compile Include="Names\ActionParameterNames.cs" />
+    <Compile Include="Names\ControllerNames.cs" />
+    <Compile Include="ViewMappings\LoginIndexViewMapping.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Names\PresenterActionNames.cs" />
+    <Compile Include="Names\PresenterNames.cs" />
+    <Compile Include="Names\PresenterParameterNames.cs" />
+    <Compile Include="ViewMappings\QuestionDetailsViewMapping.cs" />
+    <Compile Include="ViewModels\QuestionDetailsViewModel.cs" />
+    <Compile Include="ViewMappings\QuestionEditViewMapping.cs" />
+    <Compile Include="ViewModels\QuestionEditViewModel.cs" />
+    <Compile Include="Names\ViewNames.cs" />
     <Compile Include="ReturnUrlHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UrlHelpersTests.cs" />

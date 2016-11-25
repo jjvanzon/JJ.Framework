@@ -15,7 +15,11 @@ namespace JJ.Framework.Soap.Tests
             string url = AppSettings<IAppSettings>.Get(x => x.Url);
             var client = new CustomWcfSoapClient<ITestService>(url);
             ComplicatedType obj1 = TestHelper.CreateComplicatedObject();
-            ComplicatedType obj2 = client.Invoke(x => x.SendAndGetComplicatedObject(obj1));
+
+            TestHelper.WithInconclusiveConnectionAssertion(() =>
+            {
+                ComplicatedType obj2 = client.Invoke(x => x.SendAndGetComplicatedObject(obj1));
+            });
         }
 
         [TestMethod]
@@ -24,7 +28,11 @@ namespace JJ.Framework.Soap.Tests
             string url = AppSettings<IAppSettings>.Get(x => x.Url);
             var client = new CustomWcfSoapClient<ITestService>(url);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
-            CompositeType obj2 = client.Invoke(x => x.SendAndGetCompositeObject(obj1));
+
+            TestHelper.WithInconclusiveConnectionAssertion(() =>
+            {
+                CompositeType obj2 = client.Invoke(x => x.SendAndGetCompositeObject(obj1));
+            });
         }
 
         [TestMethod]
@@ -33,7 +41,11 @@ namespace JJ.Framework.Soap.Tests
             string url = AppSettings<IAppSettings>.Get(x => x.Url);
             var client = new CustomWcfSoapClient<ITestService>(url);
             TypeWithCollection obj1 = new TypeWithCollection { StringList = new string[] { "Hi", "there", "!" } };
-            TypeWithCollection obj2 = client.Invoke(x => x.SendAndGetObjectWithCollection(obj1));
+
+            TestHelper.WithInconclusiveConnectionAssertion(() =>
+            {
+                TypeWithCollection obj2 = client.Invoke(x => x.SendAndGetObjectWithCollection(obj1));
+            });
         }
     }
 }
