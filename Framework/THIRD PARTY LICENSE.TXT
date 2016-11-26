@@ -1,0 +1,5 @@
+Additional license terms apply to third party components, which can be found in the following folders:
+
+packages\Microsoft.Composition.1.0.27
+packages\System.Collections.Immutable.1.1.36
+packages\System.Reflection.Metadata.1.0.21
