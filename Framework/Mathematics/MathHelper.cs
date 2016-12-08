@@ -165,6 +165,27 @@ namespace JJ.Framework.Mathematics
             return (long)temp * step;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double ScaleLinearly(
+            double input,
+            double sourceValueA,
+            double sourceValueB,
+            double targetValueA,
+            double targetValueB)
+        {
+            double sourceRange = sourceValueB - sourceValueA;
+            double targetRange = targetValueB - targetValueA;
+            double between0And1 = (input - sourceValueA) / sourceRange;
+            double result = between0And1 * targetRange + targetValueA;
+            return result;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double ScaleLinearly(double input, double sourceValueA, double targetValueA, double slope)
+        {
+            return (input - sourceValueA) * slope + targetValueA;
+        }
+
         /// <summary> Equally spreads out a number indices over a different number of indices. </summary>
         public static Dictionary<int, int> Spread(int sourceIndex1, int sourceIndex2, int destIndex1, int destIndex2)
         {
