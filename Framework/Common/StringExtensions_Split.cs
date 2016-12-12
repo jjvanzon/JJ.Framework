@@ -28,9 +28,14 @@ namespace JJ.Framework.Common
 
         public static string[] SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
         {
-            IList<string> values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
+            string[] values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
 
-            return values.TrimAll(quote.Value).ToArray();
+            if (quote.HasValue)
+            {
+                values = values.Select(x => x.Trim(quote.Value)).ToArray();
+            }
+
+            return values;
         }
 
         public static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, char quote)

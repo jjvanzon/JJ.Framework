@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Collections
 {
@@ -24,15 +23,15 @@ namespace JJ.Framework.Collections
         }
         public RedBlackTreeNode<TKey, TValue> GetGrandparent()
         {
-            if (Parent == null) throw new NullException(() => Parent); // Not the root node
-            if (Parent.Parent == null) throw new NullException(() => Parent.Parent);  // Not child of root
+            if (Parent == null) throw new ArgumentNullException(nameof(Parent)); // Not the root node
+            if (Parent.Parent == null) throw new ArgumentNullException("Parent.Parent");  // Not child of root
 
             return Parent.Parent;
         }
 
         public RedBlackTreeNode<TKey, TValue> TryGetSibling()
         {
-            if (Parent == null) throw new NullException(() => Parent);
+            if (Parent == null) throw new ArgumentNullException(nameof(Parent));
 
             if (this == Parent.Left)
             {
@@ -46,8 +45,8 @@ namespace JJ.Framework.Collections
 
         public RedBlackTreeNode<TKey, TValue> GetUncle()
         {
-            if (Parent == null) throw new NullException(() => Parent); // Root node has no uncle
-            if (Parent.Parent == null) throw new NullException(() => Parent.Parent); // Children of root have no uncle
+            if (Parent == null) throw new ArgumentNullException(nameof(Parent)); // Root node has no uncle
+            if (Parent.Parent == null) throw new ArgumentNullException(nameof(Parent.Parent)); // Children of root have no uncle
 
             return Parent.TryGetSibling();
         }
