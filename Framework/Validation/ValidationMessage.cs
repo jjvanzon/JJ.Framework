@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Reflection.Exceptions;
+﻿using JJ.Framework.Exceptions;
 using System;
 using System.Diagnostics;
 using JJ.Framework.PlatformCompatibility;

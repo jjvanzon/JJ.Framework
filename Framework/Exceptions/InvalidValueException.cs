@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JJ.Framework.Common.Exceptions
+namespace JJ.Framework.Exceptions
 {
     public class InvalidValueException : Exception
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using JJ.Framework.Common.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Security
 {

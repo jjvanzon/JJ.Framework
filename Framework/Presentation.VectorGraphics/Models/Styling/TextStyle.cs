@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Presentation.VectorGraphics.Enums;
 using JJ.Framework.Presentation.VectorGraphics.Helpers;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using System.Diagnostics;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Styling

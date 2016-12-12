@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {

@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Business;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.SideEffects

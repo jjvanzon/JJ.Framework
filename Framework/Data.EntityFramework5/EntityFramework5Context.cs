@@ -1,5 +1,5 @@
 ﻿using JJ.Framework.Reflection;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;

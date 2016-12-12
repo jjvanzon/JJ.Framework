@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 

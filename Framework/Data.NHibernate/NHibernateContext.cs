@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Linq;
 using System.Reflection;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using NHibernate.Persister.Entity;
 
 namespace JJ.Framework.Data.NHibernate

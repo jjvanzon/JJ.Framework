@@ -1,4 +1,4 @@
-﻿using JJ.Framework.Reflection.Exceptions;
+﻿using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Presentation.WinForms.Extensions
 {

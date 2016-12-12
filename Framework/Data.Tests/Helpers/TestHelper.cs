@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Reflection;
 using JJ.Framework.Logging;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Puzzle.NPersist.Framework.Exceptions;
 

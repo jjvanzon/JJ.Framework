@@ -5,10 +5,10 @@ using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
 using JJ.Framework.Common;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Xml.Linq;
-using JJ.Framework.Common.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Data.Xml.Linq.Internal
 {

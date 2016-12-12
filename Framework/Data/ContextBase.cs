@@ -1,9 +1,9 @@
-﻿using JJ.Framework.Reflection.Exceptions;
+﻿using JJ.Framework.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using JJ.Framework.Common;
-using JJ.Framework.Common.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Data
 {

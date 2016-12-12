@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using JJ.Framework.Xml;
 using System;
 using System.Collections.Generic;

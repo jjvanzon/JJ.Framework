@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using JJ.Framework.Data.Memory.Internal;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Data.Memory
 {

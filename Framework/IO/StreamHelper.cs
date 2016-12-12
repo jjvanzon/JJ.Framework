@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.IO
 {

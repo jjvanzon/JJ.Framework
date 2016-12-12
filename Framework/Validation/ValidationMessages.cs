@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using JJ.Framework.Validation.Resources;
 using JJ.Framework.Reflection;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Validation
 {

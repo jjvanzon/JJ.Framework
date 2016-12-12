@@ -9,8 +9,8 @@ using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Xml.Internal;
 using JJ.Framework.Reflection;
-using JJ.Framework.Reflection.Exceptions;
-using JJ.Framework.Common.Exceptions;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Xml
 {

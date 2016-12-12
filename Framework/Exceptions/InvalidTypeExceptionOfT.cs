@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace JJ.Framework.Reflection.Exceptions
+namespace JJ.Framework.Exceptions
 {
     public class InvalidTypeException<T> : InvalidTypeException
     {

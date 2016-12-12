@@ -1,5 +1,5 @@
 ﻿using JJ.Framework.Data.SqlClient;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using NHibernate;
 using System;
 using System.Collections.Generic;

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using JJ.Framework.Common;
 using JJ.Framework.Presentation.WinForms.Helpers;
 using JJ.Framework.Presentation.WinForms.EventArg;
-using JJ.Framework.Common.Exceptions;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Presentation.WinForms.Controls
 {

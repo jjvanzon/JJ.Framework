@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Xml.Serialization;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
-using JJ.Framework.Reflection.Exceptions;
+using JJ.Framework.Exceptions;
 using JJ.Framework.PlatformCompatibility;
 using System.Xml.Linq;
 using System.Xml;
