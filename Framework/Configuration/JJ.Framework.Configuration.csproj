@@ -46,7 +46,7 @@
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
     <Compile Include="ConversionHelper.cs" />
-    <Compile Include="ConfigurationManager.cs" />
+    <Compile Include="CustomConfigurationManager.cs" />
     <Compile Include="ConfigurationSectionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
