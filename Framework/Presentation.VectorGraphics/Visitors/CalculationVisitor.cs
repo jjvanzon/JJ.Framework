@@ -4,7 +4,6 @@ using JJ.Framework.Exceptions;
 using System.Collections.Generic;
 using System.Linq;
 using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Mathematics;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Visitors
