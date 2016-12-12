@@ -1,5 +1,4 @@
-﻿using JJ.Framework.Reflection.Exceptions;
-using System;
+﻿using System;
 using System.Reflection;
 
 namespace JJ.Framework.Reflection
@@ -8,21 +7,21 @@ namespace JJ.Framework.Reflection
     {
         public static bool IsAssignableTo(this Type type, Type otherType)
         {
-            if (otherType == null) throw new NullException(() => otherType);
+            if (otherType == null) throw new ArgumentNullException(nameof(otherType));
 
             return otherType.IsAssignableFrom(type);
         }
 
         public static bool IsNullableType(this Type type)
         {
-            if (type == null) throw new NullException(() => type);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
 
         public static Type GetUnderlyingNullableType(this Type type)
         {
-            if (type == null) throw new NullException(() => type);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             // For performance, do not check if it is a nullable type.
             return type.GetGenericArguments()[0];
@@ -30,7 +29,7 @@ namespace JJ.Framework.Reflection
 
         public static bool IsReferenceType(this Type type)
         {
-            if (type == null) throw new NullException(() => type);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             return !type.IsValueType;
         }

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
-using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Reflection
 {
@@ -60,7 +59,7 @@ namespace JJ.Framework.Reflection
         /// </summary>
         public static MemberInfo GetMember(LambdaExpression expression)
         {
-            if (expression == null) throw new NullException(() => expression);
+            if (expression == null) throw new ArgumentNullException(nameof(expression));
 
             switch (expression.Body.NodeType)
             {
@@ -100,7 +99,7 @@ namespace JJ.Framework.Reflection
         /// </summary>
         public static object GetValue(LambdaExpression expression)
         {
-            if (expression == null) throw new NullException(() => expression);
+            if (expression == null) throw new ArgumentNullException(nameof(expression));
 
             return GetValue(expression.Body);
         }
@@ -113,7 +112,7 @@ namespace JJ.Framework.Reflection
         /// </summary>
         public static object GetValue(Expression expression)
         {
-            if (expression == null) throw new NullException(() => expression);
+            if (expression == null) throw new ArgumentNullException(nameof(expression));
 
             var translator = new ExpressionToValueTranslator();
             object result = translator.GetValue(expression);
@@ -129,13 +128,13 @@ namespace JJ.Framework.Reflection
 
         public static IList<object> GetValues(LambdaExpression expression)
         {
-            if (expression == null) throw new NullException(() => expression);
+            if (expression == null) throw new ArgumentNullException(nameof(expression));
             return GetValues(expression.Body);
         }
 
         public static IList<object> GetValues(Expression expression)
         {
-            if (expression == null) throw new NullException(() => expression);
+            if (expression == null) throw new ArgumentNullException(nameof(expression));
 
             var translator = new ExpressionToValueTranslator();
             IList<object> result = translator.GetValues(expression);
@@ -159,7 +158,7 @@ namespace JJ.Framework.Reflection
         /// </param>
         public static string GetText(LambdaExpression expression, bool showIndexerValues = false)
         {
-            if (expression == null) throw new NullException(() => expression);
+            if (expression == null) throw new ArgumentNullException(nameof(expression));
             return GetText(expression.Body, showIndexerValues);
         }
 
@@ -169,7 +168,7 @@ namespace JJ.Framework.Reflection
         /// </param>
         public static string GetText(Expression expression, bool showIndexerValues = false)
         {
-            if (expression == null) throw new NullException(() => expression);
+            if (expression == null) throw new ArgumentNullException(nameof(expression));
 
             var translator = new ExpressionToTextTranslator();
             translator.ShowIndexerValues = showIndexerValues;
@@ -181,7 +180,7 @@ namespace JJ.Framework.Reflection
 
         public static MethodCallInfo GetMethodCallInfo(LambdaExpression expression)
         {
-            if (expression == null) throw new NullException(() => expression);
+            if (expression == null) throw new ArgumentNullException(nameof(expression));
 
             switch (expression.Body.NodeType)
             {

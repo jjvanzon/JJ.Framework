@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JJ.Framework.Common;
-using JJ.Framework.Common.Exceptions;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Reflection
 {
@@ -59,8 +57,8 @@ namespace JJ.Framework.Reflection
 
         public static Type[] GetImplementations(Assembly assembly, Type baseType)
         {
-            if (assembly == null) throw new NullException(() => assembly);
-            if (baseType == null) throw new NullException(() => baseType);
+            if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+            if (baseType == null) throw new ArgumentNullException(nameof(baseType));
 
             lock (_implementationsDictionaryLock)
             {
@@ -89,13 +87,13 @@ namespace JJ.Framework.Reflection
 
         public static Type GetItemType(object collection)
         {
-            if (collection == null) throw new NullException(() => collection);
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
             return GetItemType(collection.GetType());
         }
 
         public static Type GetItemType(PropertyInfo collectionProperty)
         {
-            if (collectionProperty == null) throw new NullException(() => collectionProperty);
+            if (collectionProperty == null) throw new ArgumentNullException(nameof(collectionProperty));
             return GetItemType(collectionProperty.PropertyType);
         }
 
@@ -114,7 +112,7 @@ namespace JJ.Framework.Reflection
 
         public static Type TryGetItemType(Type collectionType)
         {
-            if (collectionType == null) throw new NullException(() => collectionType);
+            if (collectionType == null) throw new ArgumentNullException(nameof(collectionType));
 
             lock (_itemTypeDictionaryLock)
             {
@@ -198,7 +196,7 @@ namespace JJ.Framework.Reflection
 
         public static bool IsStatic(MemberInfo member)
         {
-            if (member == null) throw new NullException(() => member);
+            if (member == null) throw new ArgumentNullException(nameof(member));
 
             MemberTypes_PlatformSafe memberType = member.MemberType_PlatformSafe();
 
@@ -243,7 +241,7 @@ namespace JJ.Framework.Reflection
 
             if (type == null)
             {
-                throw new TypeNotFoundException(typeName);
+                throw new Exception($"Type '{typeName}' not found.");
             }
 
             object obj = Activator.CreateInstance(type, args);
@@ -253,7 +251,7 @@ namespace JJ.Framework.Reflection
 
         public static IList<Type> GetTypeAndBaseClasses(Type type)
         {
-            if (type == null) throw new NullException(() => type);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             var types = new List<Type>();
             types.Add(type);

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JJ.Framework.Exceptions</RootNamespace>
+    <AssemblyName>JJ.Framework.Exceptions</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CollectionEmptyException.cs" />
+    <Compile Include="CollectionNotEmptyException.cs" />
+    <Compile Include="ContainsException.cs" />
+    <Compile Include="EqualException.cs" />
+    <Compile Include="FileAlreadyExistException.cs" />
+    <Compile Include="FileDoesNotExistException.cs" />
+    <Compile Include="FolderAlreadyExistsException.cs" />
+    <Compile Include="FolderDoesNotExistException.cs" />
+    <Compile Include="GreaterThanException.cs" />
+    <Compile Include="GreaterThanOrEqualException.cs" />
+    <Compile Include="HasNullsException.cs" />
+    <Compile Include="InfinityException.cs" />
+    <Compile Include="InvalidIndexException.cs" />
+    <Compile Include="InvalidReferenceException.cs" />
+    <Compile Include="InvalidTypeException.cs" />
+    <Compile Include="InvalidTypeExceptionOfT.cs" />
+    <Compile Include="InvalidValueException.cs" />
+    <Compile Include="IsDateTimeException.cs" />
+    <Compile Include="IsDecimalException.cs" />
+    <Compile Include="IsDoubleException.cs" />
+    <Compile Include="IsEnumException.cs" />
+    <Compile Include="IsEnumExceptionOfT.cs" />
+    <Compile Include="IsIntegerException.cs" />
+    <Compile Include="IsTypeException.cs" />
+    <Compile Include="IsTypeExceptionOfT.cs" />
+    <Compile Include="LessThanException.cs" />
+    <Compile Include="LessThanOrEqualException.cs" />
+    <Compile Include="NaNException.cs" />
+    <Compile Include="NotContainsException.cs" />
+    <Compile Include="NotDateTimeException.cs" />
+    <Compile Include="NotDecimalException.cs" />
+    <Compile Include="NotDoubleException.cs" />
+    <Compile Include="NotEnumException.cs" />
+    <Compile Include="NotEnumExceptionOfT.cs" />
+    <Compile Include="NotEqualException.cs" />
+    <Compile Include="NotFoundException.cs" />
+    <Compile Include="NotFoundExceptionOfT.cs" />
+    <Compile Include="NotInfinityException.cs" />
+    <Compile Include="NotIntegerException.cs" />
+    <Compile Include="NotNaNException.cs" />
+    <Compile Include="NotNullException.cs" />
+    <Compile Include="NotNullOrEmptyException.cs" />
+    <Compile Include="NotNullOrWhiteSpaceException.cs" />
+    <Compile Include="NotUniqueException.cs" />
+    <Compile Include="NotUniqueExceptionOfT.cs" />
+    <Compile Include="NullException.cs" />
+    <Compile Include="NullOrEmptyException.cs" />
+    <Compile Include="NullOrWhiteSpaceException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyNotFoundException.cs" />
+    <Compile Include="PropertyNotFoundExceptionOfT.cs" />
+    <Compile Include="TypeNotFoundException.cs" />
+    <Compile Include="UnexpectedTypeException.cs" />
+    <Compile Include="ValueNotSupportedException.cs" />
+    <Compile Include="ZeroException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">
+      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Reflection\JJ.Framework.Reflection.csproj">
+      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
+      <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

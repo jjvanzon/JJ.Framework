@@ -2,9 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Linq.Expressions;
-using JJ.Framework.Reflection.Exceptions;
 using JJ.Framework.Common;
-using JJ.Framework.Common.Exceptions;
 
 namespace JJ.Framework.Reflection
 {
@@ -26,7 +24,7 @@ namespace JJ.Framework.Reflection
 
             if (_objectType == null)
             {
-                throw new TypeNotFoundException(typeName);
+                throw new Exception($"Type '{typeName}' not found.");
             }
 
             _object = Activator.CreateInstance(_objectType, args);
@@ -35,7 +33,7 @@ namespace JJ.Framework.Reflection
         /// <summary> Use this constructor to access instance members. </summary>
         public Accessor(object obj)
         {
-            if (obj == null) throw new NullException(() => obj);
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
 
             _object = obj;
             _objectType = obj.GetType();
@@ -44,7 +42,7 @@ namespace JJ.Framework.Reflection
         /// <summary> Use this constructor to access static members. </summary>
         public Accessor(Type objectType)
         {
-            if (objectType == null) throw new NullException(() => objectType);
+            if (objectType == null) throw new ArgumentNullException(nameof(objectType));
 
             _objectType = objectType;
         }
@@ -52,8 +50,8 @@ namespace JJ.Framework.Reflection
         /// <summary> Use this constructor to access members of the base class. </summary>
         public Accessor(object obj, Type objectType)
         {
-            if (obj == null) throw new NullException(() => obj);
-            if (objectType == null) throw new NullException(() => objectType);
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
+            if (objectType == null) throw new ArgumentNullException(nameof(objectType));
 
             _object = obj;
             _objectType = objectType;
@@ -159,7 +157,7 @@ namespace JJ.Framework.Reflection
 
         public object InvokeMethod(string name, params object[] parameters)
         {
-            if (parameters == null) throw new NullException(() => parameters);
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
             Type[] parameterTypes = ReflectionHelper.TypesFromObjects(parameters);
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
             return method.Invoke(_object, parameters);
@@ -169,7 +167,7 @@ namespace JJ.Framework.Reflection
 
         public object GetIndexerValue(params object[] parameters)
         {
-            if (parameters == null) throw new NullException(() => parameters);
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
             if (parameters.Length < 1) throw new Exception("parameters.Length must be at least 1.");
 
             Type[] parameterTypes = ReflectionHelper.TypesFromObjects(parameters);
@@ -179,7 +177,7 @@ namespace JJ.Framework.Reflection
 
         public void SetIndexerValue(params object[] parametersAndValue)
         {
-            if (parametersAndValue == null) throw new NullException(() => parametersAndValue);
+            if (parametersAndValue == null) throw new ArgumentNullException(nameof(parametersAndValue));
             if (parametersAndValue.Length < 2) throw new Exception("parametersAndValue.Length must be at least 2");
             object[] parameters = parametersAndValue.Take(parametersAndValue.Length - 1).ToArray();
             object value = parametersAndValue.Last();

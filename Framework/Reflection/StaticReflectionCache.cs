@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Reflection.Exceptions;
 
 namespace JJ.Framework.Reflection
 {
@@ -21,7 +20,7 @@ namespace JJ.Framework.Reflection
 
         public static FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
-            if (type == null) throw new NullException(() => type);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             lock (_fieldsIndexLock)
             {
@@ -54,7 +53,7 @@ namespace JJ.Framework.Reflection
 
         public static FieldInfo TryGetField(Type type, string name)
         {
-            if (type == null) throw new NullException(() => type);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             lock (_fieldIndexLock)
             {
@@ -79,7 +78,7 @@ namespace JJ.Framework.Reflection
 
         public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
-            if (type == null) throw new NullException(() => type);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             lock (_propertiesIndexLock)
             {
@@ -112,7 +111,7 @@ namespace JJ.Framework.Reflection
 
         public static PropertyInfo TryGetProperty(Type type, string name)
         {
-            if (type == null) throw new NullException(() => type);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             lock (_propertyIndexLock)
             {
@@ -147,9 +146,9 @@ namespace JJ.Framework.Reflection
 
         public static PropertyInfo TryGetIndexer(Type type, params Type[] parameterTypes)
         {
-            if (type == null) throw new NullException(() => type);
-            if (parameterTypes == null) throw new NullException(() => parameterTypes);
-            if (parameterTypes.Length == 0) throw new ZeroException(() => parameterTypes.Length);
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
+            if (parameterTypes.Length == 0) throw new Exception("parameterTypes.Length is 0."); 
 
             string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
 
@@ -182,7 +181,7 @@ namespace JJ.Framework.Reflection
 
         public static MethodInfo[] GetMethods(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
-            if (type == null) throw new NullException(() => type);
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             lock (_methodsIndexLock)
             {
@@ -215,8 +214,8 @@ namespace JJ.Framework.Reflection
 
         public static MethodInfo TryGetMethod(Type type, string name, params Type[] parameterTypes)
         {
-            if (type == null) throw new NullException(() => type);
-            if (parameterTypes == null) throw new NullException(() => parameterTypes);
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
             
             string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
 
