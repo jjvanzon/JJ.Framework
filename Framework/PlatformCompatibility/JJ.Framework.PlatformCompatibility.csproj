@@ -50,6 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stream_PlatformSupport.cs" />
     <Compile Include="String_PlatformSupport.cs" />
+    <Content Include="README.TXT" />
     <Compile Include="Tuple_PlatformSupport`2.cs" />
     <Compile Include="Tuple_PlatformSupport`3.cs" />
   </ItemGroup>

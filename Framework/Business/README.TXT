@@ -1,1 +1,1 @@
-﻿JJ.Framework.Business contains classes to support the business logic layer and your own API's.
+﻿JJ.Framework.Business contains classes to support a business logic layer or your own API's.
