@@ -125,6 +125,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "Third P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Exceptions", "Framework\Exceptions\JJ.Framework.Exceptions.csproj", "{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C18D0F96-E8CA-4146-9938-F05724612DC7}"
+	ProjectSection(SolutionItems) = preProject
+		Framework\LICENSE.TXT = Framework\LICENSE.TXT
+		Framework\README.TXT = Framework\README.TXT
+		Framework\THIRD PARTY LICENSE.TXT = Framework\THIRD PARTY LICENSE.TXT
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

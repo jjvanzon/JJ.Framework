@@ -1,0 +1,1 @@
+﻿JJ.Framework.Configuration allows you to work with complex configuration structures in your app.config or web.config file. Doing it the classic way with System.Configuration is difficult and error prone. JJ.Framework.Configuration makes it super easy.

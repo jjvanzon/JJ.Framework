@@ -1,0 +1,1 @@
+﻿JJ.Framework.Common contains basic helpers for among other things working with textual information.

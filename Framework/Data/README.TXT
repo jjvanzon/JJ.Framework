@@ -1,0 +1,1 @@
+﻿JJ.Framework.Data allows you to switch between many different types of data storage technology, without having to change any application source code. See also: JJ.Framework.Data.EntityFramework, JJ.Framework.Data.Memory, JJ.Framework.Data.NHibernate, JJ.Framework.Data.NPersist, JJ.Framework.Data.SqlClient, JJ.Framework.Data.Xml and JJ.Framework.Data.Xml.Linq.

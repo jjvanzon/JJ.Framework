@@ -1,0 +1,1 @@
+﻿JJ.Framework.Logging should contain any code for logging in general. It for now contains only the ExceptionHelper class, which among other things can convert exception information to a string.
