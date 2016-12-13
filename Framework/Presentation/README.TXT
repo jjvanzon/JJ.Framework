@@ -1,0 +1,3 @@
+﻿JJ.Framework.Presentation contains some general things to support a presentation layer. It contains a couple of commonly used ViewModels. (All views in our architecture are backed by ViewModels.) For instance a PagerViewModel.
+
+It also contains code of kind of a failed experiment (ActionDispatcher). That was meant to take information about a user action and dynamically dispatch to a class and method that would handle that user action. After having fully implemented the idea, it proved that it just made everything more complicated. That's what I do. I try things out and they do not always lead to success. The good ideas I apply to real-world applications.

@@ -39,7 +39,7 @@ namespace JJ.Framework.Xml
     /// If the parent element is missing from the XML, the collection will be null.
     /// 
     /// Recognized values are the .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
-    /// the numeric types, their the signed and unsigned variations and
+    /// the numeric types, their signed and unsigned variations and
     /// String, Guid, DateTime, TimeSpan and Enum types.
     /// 
     /// The composite types in the object structure must have parameterless constructors.
@@ -76,7 +76,7 @@ namespace JJ.Framework.Xml
         /// If the parent element is missing from the XML, the collection will be null.
         /// 
         /// Recognized values are the .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
-        /// the numeric types, their the signed and unsigned variations and
+        /// the numeric types, their signed and unsigned variations and
         /// String, Guid, DateTime, TimeSpan and Enum types.
         /// 
         /// The composite types in the object structure must have parameterless constructors.

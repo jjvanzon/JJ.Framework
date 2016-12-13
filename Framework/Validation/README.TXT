@@ -2,7 +2,7 @@
 
 	For(() => Thing.Value).NotNull().MaxLength(100);
 
-If you separate validations from the rest of your code and turn them into validator classes, your business rules may become better maintainable. The validation messages are dry pairs of keys and message texts, which makes the output of the validations easily integratable with any other system. The set of fluent methods might be incomplete, but we just add things at the time we need it. You can also add validation messages imperatively:
+If you separate validations from the rest of your code and turn them into validator classes, your business rules may become better maintainable. The validation messages are dry pairs of keys and message texts, which makes the output of the validations easily integratable with any other system. The set of fluent methods might be incomplete, but we just add things when we need it. You can also add validation messages imperatively, for instance:
 
 	ValidationMessages.AddIsZeroMessage(...)
 

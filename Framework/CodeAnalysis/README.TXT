@@ -1,1 +1,1 @@
-﻿JJ.Framework.CodeAnalysis performs checks on coding style that can be automatically executed as a programmer is typing it in.
+﻿JJ.Framework.CodeAnalysis performs checks on coding style that can be automatically executed while a programmer is typing it in.
