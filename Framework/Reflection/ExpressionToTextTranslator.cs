@@ -78,62 +78,15 @@ namespace JJ.Framework.Reflection
                         VisitNewArray(newArrayExpression);
                         return;
                     }
-            }
 
-            throw new ArgumentException(String.Format("Name cannot be obtained from {0}.", node.NodeType));
+                default:
+                    throw new ArgumentException($"Name cannot be obtained from Node with NodeType {node.NodeType}.");
+            }
         }
 
         protected virtual void VisitConvert(UnaryExpression node)
         {
-            switch (node.Operand.NodeType)
-            {
-                case ExpressionType.MemberAccess:
-                    {
-                        var memberExpression = (MemberExpression)node.Operand;
-                        VisitMember(memberExpression);
-                        return;
-                    }
-
-                case ExpressionType.Call:
-                    {
-                        Visit(node.Operand);
-                        return;
-                    }
-
-                case ExpressionType.ArrayIndex:
-                    {
-                        var binaryExpression = (BinaryExpression)node.Operand;
-                        VisitArrayIndex(binaryExpression);
-                        break;
-                    }
-
-                case ExpressionType.Constant:
-                    {
-                        var constantExpression = (ConstantExpression)node.Operand;
-                        VisitConstant(constantExpression);
-                        break;
-                    }
-
-                case ExpressionType.Convert:
-                case ExpressionType.ConvertChecked:
-                    {
-                        var convertExpression2 = (UnaryExpression)node.Operand;
-                        VisitConvert(convertExpression2);
-                        break;
-                    }
-
-                case ExpressionType.ArrayLength:
-                    {
-                        var unaryExpression = (UnaryExpression)node.Operand;
-                        VisitArrayLength(unaryExpression);
-                        return;
-                    }
-
-                default:
-                    {
-                        throw new ArgumentException(String.Format("Name cannot be obtained from NodeType {0}.", node.Operand.NodeType));
-                    }
-            }
+            Visit(node.Operand);
         }
 
         protected virtual void VisitConstant(ConstantExpression node)
@@ -193,7 +146,8 @@ namespace JJ.Framework.Reflection
                 }
                 if (node.Arguments.Count != 0)
                 {
-                    VisitIndexerValue(node.Arguments[node.Arguments.Count - 1]);
+                    Expression lastArgumentExpression = node.Arguments[node.Arguments.Count - 1];
+                    VisitIndexerValue(lastArgumentExpression);
                 }
                 _sb.Append("]");
             }
@@ -209,7 +163,8 @@ namespace JJ.Framework.Reflection
                 }
                 if (node.Arguments.Count != 0)
                 {
-                    Visit(node.Arguments[node.Arguments.Count - 1]);
+                    Expression lastArgumentExpression = node.Arguments[node.Arguments.Count - 1];
+                    Visit(lastArgumentExpression);
                 }
                 _sb.Append(")");
             }
@@ -217,39 +172,19 @@ namespace JJ.Framework.Reflection
 
         protected virtual void VisitArrayLength(UnaryExpression node)
         {
-            if (node.Operand.NodeType == ExpressionType.MemberAccess)
-            {
-                var memberExpression = (MemberExpression)node.Operand;
-                VisitMember(memberExpression);
+            Visit(node.Operand);
 
-                _sb.Append(".");
-                _sb.Append("Length");
-                return;
-            }
-
-            throw new ArgumentException(String.Format("Name cannot be obtained from NodeType {0}.", node.Operand.NodeType));
+            _sb.Append(".");
+            _sb.Append("Length");
         }
 
         protected virtual void VisitArrayIndex(BinaryExpression node)
         {
-            var memberExpression = (MemberExpression)node.Left;
-            VisitMember(memberExpression);
+            Visit(node.Left);
 
             _sb.Append("[");
 
-            switch (node.Right.NodeType)
-            {
-                case ExpressionType.Constant:
-                    var constantExpression = (ConstantExpression)node.Right;
-                    int index = (int)constantExpression.Value;
-                    _sb.Append(index);
-                    break;
-
-                case ExpressionType.MemberAccess:
-                    var memberExpression2 = (MemberExpression)node.Right;
-                    VisitIndexerValue(memberExpression2);
-                    break;
-            }
+            VisitIndexerValue(node.Right);
 
             _sb.Append("]");
         }

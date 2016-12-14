@@ -31,63 +31,58 @@ namespace JJ.Framework.Reflection
             switch (node.NodeType)
             {
                 case ExpressionType.MemberAccess:
-                {
-                    var memberExpression = (MemberExpression)node;
-                    VisitMember(memberExpression);
-                    return;
-                }
+                    {
+                        var memberExpression = (MemberExpression)node;
+                        VisitMember(memberExpression);
+                        break;
+                    }
 
                 case ExpressionType.Convert:
                 case ExpressionType.ConvertChecked:
-                {
-                    var unaryExpression = (UnaryExpression)node;
-                    VisitConvert(unaryExpression);
-                    return;
-                }
+                    {
+                        var unaryExpression = (UnaryExpression)node;
+                        VisitConvert(unaryExpression);
+                        break;
+                    }
 
                 case ExpressionType.ArrayLength:
-                {
-                    var unaryExpression = (UnaryExpression)node;
-                    VisitArrayLength(unaryExpression);
-                    return;
-                }
+                    {
+                        var unaryExpression = (UnaryExpression)node;
+                        VisitArrayLength(unaryExpression);
+                        break;
+                    }
 
                 case ExpressionType.Call:
-                {
-                    var methodCallExpression = (MethodCallExpression)node;
-                    VisitMethodCall(methodCallExpression);
-                    return;
-                }
+                    {
+                        var methodCallExpression = (MethodCallExpression)node;
+                        VisitMethodCall(methodCallExpression);
+                        break;
+                    }
 
                 case ExpressionType.Constant:
-                {
-                    var constantExpression = (ConstantExpression)node;
-                    _stack.Push(constantExpression.Value);
-                    return;
-                }
+                    {
+                        var constantExpression = (ConstantExpression)node;
+                        _stack.Push(constantExpression.Value);
+                        break;
+                    }
 
                 case ExpressionType.ArrayIndex:
-                {
-                    var binaryExpression = (BinaryExpression)node;
-                    VisitArrayIndex(binaryExpression);
-                    return;
-                }
+                    {
+                        var binaryExpression = (BinaryExpression)node;
+                        VisitArrayIndex(binaryExpression);
+                        break;
+                    }
 
                 case ExpressionType.NewArrayInit:
-                {
-                    var newArrayExpression = (NewArrayExpression)node;
-                    VisitNewArray(newArrayExpression);
-                    return;
-                }
+                    {
+                        var newArrayExpression = (NewArrayExpression)node;
+                        VisitNewArray(newArrayExpression);
+                        break;
+                    }
+
+                default:
+                    throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", node.NodeType));
             }
-
-            throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", node.NodeType));
-        }
-
-        protected virtual void VisitConstant(UnaryExpression unaryExpression)
-        {
-            var constantExpression = (ConstantExpression)unaryExpression.Operand;
-            _stack.Push(constantExpression.Value);
         }
 
         protected virtual void VisitMember(MemberExpression node)
@@ -174,36 +169,7 @@ namespace JJ.Framework.Reflection
 
         protected virtual void VisitConvert(UnaryExpression node)
         {
-            switch (node.Operand.NodeType)
-            {
-                case ExpressionType.MemberAccess:
-                    var memberExpression = (MemberExpression)node.Operand;
-                    VisitMember(memberExpression);
-                    break;
-
-                case ExpressionType.Call:
-                    Visit(node.Operand);
-                    break;
-
-                case ExpressionType.ArrayIndex:
-                    var binaryExpression = (BinaryExpression)node.Operand;
-                    VisitArrayIndex(binaryExpression);
-                    break;
-
-                case ExpressionType.Constant:
-                    // TODO: Looks wrong. Should this not be node.Operand?
-                    VisitConstant(node);
-                    break;
-
-                case ExpressionType.Convert:
-                case ExpressionType.ConvertChecked:
-                    var convertExpression2 = (UnaryExpression)node.Operand;
-                    VisitConvert(convertExpression2);
-                    break;
-
-                default:
-                    throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.Operand.NodeType));
-            }
+            Visit(node.Operand);
 
             object obj = _stack.Pop();
             if (obj is IConvertible)

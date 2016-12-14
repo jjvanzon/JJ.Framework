@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace JJ.Framework.Presentation.Mvc
 {
-    public static class HtmlHelperExtensions_Collections
+    public static class MvcCollectionExtensions
     {
         public static IDisposable BeginItem(this HtmlHelper htmlHelper, Expression<Func<object>> expression)
         {
