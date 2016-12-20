@@ -1,0 +1,1 @@
+raiserror ('This will stop the script.', 11, -1); 
