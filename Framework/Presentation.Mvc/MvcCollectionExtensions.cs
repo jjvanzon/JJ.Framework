@@ -10,6 +10,9 @@ namespace JJ.Framework.Presentation.Mvc
 {
     public static class MvcCollectionExtensions
     {
+        private static object _qualifierDictionaryLock = new object();
+        private static Dictionary<int, Qualifier> _qualifierDictionary = new Dictionary<int, Qualifier>();
+
         public static IDisposable BeginItem(this HtmlHelper htmlHelper, Expression<Func<object>> expression)
         {
             Qualifier qualifier = GetQualifierForCurrentThread();
@@ -43,34 +46,30 @@ namespace JJ.Framework.Presentation.Mvc
             return new DummyDisposable(); 
         }
 
-        private static object _qualifierDictionaryLock = new object();
-        private static Dictionary<object, Qualifier> _qualifierDictionary = new Dictionary<object, Qualifier>();
-
         private static Qualifier GetQualifierForCurrentThread()
         {
             lock (_qualifierDictionaryLock)
             {
-                object key = Thread.CurrentThread.ManagedThreadId;
+                int key = Thread.CurrentThread.ManagedThreadId;
 
-                if (!_qualifierDictionary.ContainsKey(key))
+                Qualifier qualifier;
+                if (!_qualifierDictionary.TryGetValue(key, out qualifier))
                 {
-                    _qualifierDictionary[key] = new Qualifier();
+                    qualifier = new Qualifier();
+                    _qualifierDictionary[key] = qualifier;
                 }
 
-                return _qualifierDictionary[key];
+                return qualifier;
             }
         }
 
         internal static void RemoveQualifierForCurrentThread()
         {
-            lock (_qualifierDictionary)
+            lock (_qualifierDictionaryLock)
             {
-                object key = Thread.CurrentThread.ManagedThreadId;
+                int key = Thread.CurrentThread.ManagedThreadId;
 
-                if (_qualifierDictionary.ContainsKey(key))
-                {
-                    _qualifierDictionary.Remove(key);
-                }
+                _qualifierDictionary.Remove(key);
             }
         }
 
@@ -78,21 +77,21 @@ namespace JJ.Framework.Presentation.Mvc
         /// A qualifier to which you can add item nodes, collection nodes and indexes.
         /// Automatically assigns the HtmlFieldPrefix and adds hidden input elements that store the indexes.
         /// When Dispose is called, the last node of the qualifier is removed.
-        /// If no nodes are left, Dispose restores the original HtmlFieldPrefix.
+        /// If no nodes are left, Dispose clears all the HtmlFieldPrefix.
         /// </summary>
         private class Qualifier : IDisposable
         {
-            // You cannot use the HtmlHelper in the constructor,
-            // because the HtmlHelper can change when you go from one partial view to another.
+            /// <summary>
+            /// You cannot use the HtmlHelper in the constructor,
+            /// because the HtmlHelper can change when you go from one partial view to another.
+            /// HashSet for unicity.
+            /// </summary>
             private readonly HashSet<HtmlHelper> _htmlHelpers = new HashSet<HtmlHelper>();
             private readonly Stack<Node> _nodes = new Stack<Node>();
 
             public void AddItemNode(HtmlHelper htmlHelper, string identifier)
             {
-                if (!_htmlHelpers.Contains(htmlHelper))
-                {
-                    _htmlHelpers.Add(htmlHelper);
-                }
+                _htmlHelpers.Add(htmlHelper);
 
                 _nodes.Push(new ItemNode(identifier));
 
@@ -106,10 +105,7 @@ namespace JJ.Framework.Presentation.Mvc
 
             public void IncrementIndex(HtmlHelper htmlHelper)
             {
-                if (!_htmlHelpers.Contains(htmlHelper))
-                {
-                    _htmlHelpers.Add(htmlHelper);
-                }
+                _htmlHelpers.Add(htmlHelper);
 
                 var node = _nodes.Peek() as CollectionNode;
                 if (node == null)
@@ -133,11 +129,6 @@ namespace JJ.Framework.Presentation.Mvc
                 string htmlFieldPrefix = FormatHtmlFieldPrefix();
                 string collectionName = CutOffIndex(htmlFieldPrefix);
                 string indexFieldName = String.Format("{0}.index", collectionName);
-
-                // Tip from original BeginCollectionItem author:
-                // "    autocomplete="off" is needed to work around a very annoying Chrome behaviour
-                //      whereby it reuses old values after the user clicks "Back", which causes the
-                //      xyz.index and xyz[...] values to get out of sync.   "
 
                 // You cannot use HtmlHelper.Hidden, because it will use the wrong name prefix, and also generate a bad ID field with the wrong prefix.
                 string html = String.Format(@"<input type=""hidden"" name=""{0}"" value=""{1}"" autocomplete=""off""/>", htmlHelper.Encode(indexFieldName), htmlHelper.Encode(index));
@@ -178,7 +169,7 @@ namespace JJ.Framework.Presentation.Mvc
 
                 if (_nodes.Count == 0)
                 {
-                    // Restore the original HtmlFieldPrefixes.
+                    // Clear the HtmlFieldPrefixes.
                     foreach (HtmlHelper htmlHelper in _htmlHelpers)
 			        {
                         htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = "";
