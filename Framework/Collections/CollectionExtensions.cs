@@ -218,6 +218,44 @@ namespace JJ.Framework.Common
         }
 
         /// <summary>
+        /// IList&lt;T&gt; has an IndexOf method natively. This overload provides one for IEnumerable&lt;T&gt;,
+        /// for both syntactic sugar and it prevents full materialization of the collection.
+        /// This method prefixed with 'TryGet' returns null if the item is not found.
+        /// </summary>
+        public static int? TryGetIndexOf<TItem>(this IEnumerable<TItem> collection, TItem item)
+        {
+            int i = 0;
+
+            foreach (TItem item2 in collection)
+            {
+                if (Object.Equals(item2, item))
+                {
+                    return i;
+                }
+
+                i++;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// IList&lt;T&gt; has an IndexOf method natively. This overload provides one for IEnumerable&lt;T&gt;,
+        /// for both syntactic sugar and it prevents full materialization of the collection.
+        /// </summary>
+        public static int IndexOf<TItem>(this IEnumerable<TItem> collection, TItem item)
+        {
+            int? i = TryGetIndexOf(collection, item);
+
+            if (!i.HasValue)
+            {
+                throw new Exception($"{nameof(item)} not found.");
+            }
+
+            return i.Value;
+        }
+
+        /// <summary>
         /// Returns the list index of the first item that matches the predicate.
         /// Does not check duplicates, because that would make it slower.
         /// </summary>
