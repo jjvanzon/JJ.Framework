@@ -283,7 +283,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.CodeAnalysis.V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lomont", "Third Party\Lomont\Lomont.csproj", "{CDA729CD-CD5E-4700-8308-B4B916C8EAB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.Synthesizer.Tests.NanoOptimization", "Business\Synthesizer.Tests.NanoOptimization\JJ.Business.Synthesizer.Tests.NanoOptimization.csproj", "{58794EC8-775B-4EA6-A12C-F330AB03B0F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.SynthesizerPrototype.Tests", "Business\SynthesizerPrototype.Tests\JJ.Business.SynthesizerPrototype.Tests.csproj", "{58794EC8-775B-4EA6-A12C-F330AB03B0F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.CodeAnalysis.TestCode", "Framework\CodeAnalysis.TestCode\JJ.Framework.CodeAnalysis.TestCode.csproj", "{0AF3635C-D14B-496A-A1BC-40EB3DD5DFDA}"
 EndProject
