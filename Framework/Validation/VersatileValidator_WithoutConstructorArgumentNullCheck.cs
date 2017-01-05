@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using JJ.Framework.Common;
 using System.Collections;
 using System.Globalization;
+using JJ.Framework.Collections;
 
 namespace JJ.Framework.Validation
 {

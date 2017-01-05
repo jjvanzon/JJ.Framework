@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using JJ.Framework.Collections;
 
 namespace JJ.Framework.Presentation.WinForms.Helpers
 {

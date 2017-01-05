@@ -7,6 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using JJ.Framework.Reflection;
+using JJ.Framework.Collections;
 
 namespace JJ.Framework.Presentation
 {

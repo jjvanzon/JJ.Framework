@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using JJ.Framework.Web;
 using System.Web;
 using JJ.Framework.Common;
+using JJ.Framework.Collections;
 
 namespace JJ.Framework.Presentation.Mvc
 {
