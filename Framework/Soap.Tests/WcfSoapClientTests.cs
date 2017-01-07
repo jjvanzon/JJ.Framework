@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Configuration;
 using JJ.Framework.Soap.Tests.ServiceInterface;
 using JJ.Framework.Soap.Tests.Helpers;

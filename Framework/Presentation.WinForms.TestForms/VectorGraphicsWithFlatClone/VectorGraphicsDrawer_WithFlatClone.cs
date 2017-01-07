@@ -1,5 +1,4 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Visitors;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;

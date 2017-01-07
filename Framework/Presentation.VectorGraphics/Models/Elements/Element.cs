@@ -4,7 +4,6 @@ using JJ.Framework.Business;
 using JJ.Framework.Presentation.VectorGraphics.Relationships;
 using JJ.Framework.Presentation.VectorGraphics.Gestures;
 using JJ.Framework.Presentation.VectorGraphics.SideEffects;
-using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {

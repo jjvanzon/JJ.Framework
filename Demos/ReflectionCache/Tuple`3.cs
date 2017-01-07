@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JJ.Demos.ReflectionCache
+﻿namespace JJ.Demos.ReflectionCache
 {
     /// <summary>
     /// A subsitute for Tuple&lt;T1, T2, T3&gt; for use in .NET versions lower than 4.0.

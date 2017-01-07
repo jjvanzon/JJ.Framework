@@ -1,12 +1,9 @@
 ﻿using JJ.Framework.Testing;
 using JJ.Framework.Xml.Linq.Tests.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using JJ.Framework.Xml.Linq.Tests.Helpers;
-using System.Collections;
 
 namespace JJ.Framework.Xml.Linq.Tests
 {

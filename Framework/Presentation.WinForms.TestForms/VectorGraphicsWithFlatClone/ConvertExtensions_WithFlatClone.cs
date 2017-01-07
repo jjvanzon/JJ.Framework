@@ -1,5 +1,4 @@
-﻿using JJ.Framework.Common;
-using JJ.Framework.Presentation.VectorGraphics.Enums;
+﻿using JJ.Framework.Presentation.VectorGraphics.Enums;
 using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Exceptions;
 using System.Drawing;

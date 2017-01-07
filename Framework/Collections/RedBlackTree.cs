@@ -17,8 +17,6 @@ Retrieved from: http://en.literateprograms.org/Red-black_tree_(Java)?oldid=19200
 */
 
 using System;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace JJ.Framework.Collections
 {

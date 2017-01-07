@@ -1,12 +1,6 @@
 ﻿using JJ.Demos.ReturnActions.Helpers;
 using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Demos.ReturnActions.ViewModels.Entities;
 using JJ.Framework.Presentation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JJ.Demos.ReturnActions.Presenters
 {

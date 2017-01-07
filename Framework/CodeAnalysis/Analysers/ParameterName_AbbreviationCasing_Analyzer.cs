@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Linq;
 using JJ.Framework.CodeAnalysis.Helpers;
 using JJ.Framework.CodeAnalysis.Names;
 using Microsoft.CodeAnalysis;

@@ -1,5 +1,4 @@
 ﻿using JJ.Framework.Exceptions;
-using JJ.Framework.Validation.Resources;
 using System;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,7 +6,6 @@ using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 using System.Collections.Generic;
 using JJ.Framework.Common;
-using System.Collections;
 using System.Globalization;
 using JJ.Framework.Collections;
 

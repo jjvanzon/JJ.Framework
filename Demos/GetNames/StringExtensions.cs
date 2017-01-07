@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JJ.Demos.GetNames
+﻿namespace JJ.Demos.GetNames
 {
     public static class StringExtensions
     {

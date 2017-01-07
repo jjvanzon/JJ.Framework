@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace JJ.OneOff.BeginCollectionItemTest.Views
+﻿namespace JJ.OneOff.BeginCollectionItemTest.Views
 {
     public static class ViewNames
     {

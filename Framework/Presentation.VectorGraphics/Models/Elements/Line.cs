@@ -1,9 +1,6 @@
 ﻿using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Exceptions;
-using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements

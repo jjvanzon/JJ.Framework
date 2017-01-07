@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace JJ.OneOff.BeginCollectionItemTest.Controllers
+﻿namespace JJ.OneOff.BeginCollectionItemTest.Controllers
 {
     public static class ActionNames
     {

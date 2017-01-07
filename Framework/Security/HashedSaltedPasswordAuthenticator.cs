@@ -1,11 +1,7 @@
-﻿using JJ.Framework.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Security.Authentication;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Security

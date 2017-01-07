@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JJ.Framework.Testing;
+﻿using JJ.Framework.Testing;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {

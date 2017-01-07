@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace JJ.Framework.Exceptions
+﻿namespace JJ.Framework.Exceptions
 {
     public class NotEnumException<T> : NotEnumException
     {

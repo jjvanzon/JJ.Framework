@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace JJ.Framework.Reflection.Tests.AccessorTests
+﻿namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
     internal class DerivedClassAccessor_UsingExpressions : DerivedClassAccessorBase
     {

@@ -1,12 +1,10 @@
-﻿using JJ.Framework.Common;
-using JJ.Framework.Reflection;
+﻿using JJ.Framework.Reflection;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Xml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Xml;
 
 namespace JJ.Framework.Data.Xml.Internal

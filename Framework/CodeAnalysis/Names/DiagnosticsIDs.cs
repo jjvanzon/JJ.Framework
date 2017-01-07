@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace JJ.Framework.CodeAnalysis.Names
+﻿namespace JJ.Framework.CodeAnalysis.Names
 {
     internal static class DiagnosticsIDs
     {

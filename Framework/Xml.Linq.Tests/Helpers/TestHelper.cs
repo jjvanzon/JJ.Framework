@@ -1,12 +1,8 @@
 ﻿using JJ.Framework.Testing;
 using JJ.Framework.Xml.Linq.Tests.Mocks;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Xml.Linq;
 
 namespace JJ.Framework.Xml.Linq.Tests.Helpers
 {

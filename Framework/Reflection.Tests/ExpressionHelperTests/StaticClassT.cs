@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-
-namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
+﻿namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {
     internal static class StaticClass<T>
     {

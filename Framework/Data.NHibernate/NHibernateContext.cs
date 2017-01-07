@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using NHibernate;
-using NHibernate.Linq;
 using System.Reflection;
 using JJ.Framework.Exceptions;
 using NHibernate.Persister.Entity;

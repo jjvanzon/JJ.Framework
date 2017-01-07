@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Configuration;
 using JJ.Framework.Data.Tests.Model;
 using JJ.Framework.Testing;
-using NHibernate;
 using JJ.Framework.Logging;
 using JJ.Framework.Data.Tests.Helpers;
 using System.Data.SqlClient;

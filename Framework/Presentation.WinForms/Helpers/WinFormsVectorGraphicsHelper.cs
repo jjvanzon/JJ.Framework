@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using JJ.Framework.Presentation.VectorGraphics.Gestures;
 
 namespace JJ.Framework.Presentation.WinForms.Helpers

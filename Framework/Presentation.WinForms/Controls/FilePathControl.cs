@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using JJ.Framework.Common;
 using JJ.Framework.Presentation.WinForms.Helpers;
 using JJ.Framework.Presentation.WinForms.EventArg;
 using JJ.Framework.Exceptions;

@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Reflection;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Configuration.Tests
 {

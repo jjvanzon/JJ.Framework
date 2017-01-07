@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Xml.Tests.Mocks;
-using JJ.Framework.Testing;
 using JJ.Framework.Xml.Tests.Helpers;
 
 namespace JJ.Framework.Xml.Tests

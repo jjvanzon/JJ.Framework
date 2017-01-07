@@ -3,11 +3,8 @@ using JJ.Framework.Xml.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Xml.Linq;
-using JJ.Framework.Common;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Soap

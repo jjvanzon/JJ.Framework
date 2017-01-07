@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements

@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace JJ.Framework.Soap.Tests.Helpers
+﻿namespace JJ.Framework.Soap.Tests.Helpers
 {
     internal interface IAppSettings
     {

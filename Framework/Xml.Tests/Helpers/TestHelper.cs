@@ -1,11 +1,7 @@
 ﻿using JJ.Framework.Testing;
 using JJ.Framework.Xml.Tests.Mocks;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Xml;
 
 namespace JJ.Framework.Xml.Tests.Helpers
 {

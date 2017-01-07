@@ -1,10 +1,4 @@
 ﻿using JJ.Demos.ReturnActions.MvcUrlParameter.Names;
-using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Framework.Presentation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
