@@ -11,7 +11,7 @@ namespace JJ.Framework.Common
             _tabString = tabString;
         }
 
-        private readonly string _tabString = "    ";
+        private readonly string _tabString;
         private readonly StringBuilder _sb = new StringBuilder();
 
         public override string ToString() => _sb.ToString();
