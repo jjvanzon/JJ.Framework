@@ -16,7 +16,7 @@ namespace JJ.Framework.Reflection
         private readonly object _object;
         private readonly Type _objectType;
 
-        /// <summary> Use this constructor for to access instance members of internal classes. </summary>
+        /// <summary> Use this constructor to access instance members of internal classes. </summary>
         public Accessor(string typeName, params object[] args)
         {
             _objectType = Type.GetType(typeName);
