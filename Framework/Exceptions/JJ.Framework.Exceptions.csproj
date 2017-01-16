@@ -62,7 +62,9 @@
     <Compile Include="IsEnumException.cs" />
     <Compile Include="IsEnumExceptionOfT.cs" />
     <Compile Include="IsIntegerException.cs" />
+    <Compile Include="IsNotTypeException.cs" />
     <Compile Include="IsTypeException.cs" />
+    <Compile Include="IsNotTypeExceptionOfT.cs" />
     <Compile Include="IsTypeExceptionOfT.cs" />
     <Compile Include="LessThanException.cs" />
     <Compile Include="LessThanOrEqualException.cs" />
