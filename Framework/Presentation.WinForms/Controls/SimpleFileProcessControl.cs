@@ -39,7 +39,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
                 // you cannot use the property on another thread.
                 string filePath = FilePath;
 
-                Async(() => RunProcess(filePath));
+                Async(() => RunProcess());
             }
         }
 
@@ -50,19 +50,13 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         // Processing
 
-        // TODO:
-        // Warning CA1801  Parameter 'filePath' of 'SimpleFileProcessControl.RunProcess(string)' is never used.Remove the parameter or use it in the method body.
-        private void RunProcess(string filePath)
+        private void RunProcess()
         {
             IsRunning = true;
 
-            // try-catch outcommented because the Microsoft Visual Studio 2012 Express for Web only breaks on non-user-handled exceptions.
             try
             {
-                if (OnRunProcess != null)
-                {
-                    OnRunProcess(this, EventArgs.Empty);
-                }
+                OnRunProcess?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception ex)
             {
