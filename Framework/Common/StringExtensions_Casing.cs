@@ -86,7 +86,7 @@ namespace JJ.Framework.Common
                 }
                 else
                 {
-                    string charCodeToHex = ((int)chr).ToString("x");
+                    string charCodeToHex = ((int)chr).ToString("x4");
                     string escapedChar = "u" + charCodeToHex;
                     sb.Append(escapedChar);
                 }
