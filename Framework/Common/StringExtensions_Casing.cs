@@ -55,6 +55,8 @@ namespace JJ.Framework.Common
         /// A little more restrictive than actual C# camel case.
         /// Only latin accent-free characters, digits and _ will be kept in tact.
         /// Other characters will be escaped in the form "u" + hex unicode character code.
+        /// This clashes with for intance a literal "u0021", 
+        /// so it is not a full-proof way to generate a unique result.
         /// </summary>
         public static string ToCamelCase(this string input)
         {
