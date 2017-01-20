@@ -297,6 +297,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.SynthesizerProt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.SynthesizerPrototype.WithStructs", "Business\SynthesizerPrototype.WithStructs\JJ.Business.SynthesizerPrototype.WithStructs.csproj", "{06933DCA-EB38-4766-9794-A4EC0F5DA135}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections.Tests", "Framework\Collections.Tests\JJ.Framework.Collections.Tests.csproj", "{6C0B1E65-EAA0-472F-81E5-96584744C7B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -2934,6 +2936,30 @@ Global
 		{06933DCA-EB38-4766-9794-A4EC0F5DA135}.Release|x64.Build.0 = Release|Any CPU
 		{06933DCA-EB38-4766-9794-A4EC0F5DA135}.Release|x86.ActiveCfg = Release|Any CPU
 		{06933DCA-EB38-4766-9794-A4EC0F5DA135}.Release|x86.Build.0 = Release|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Debug|x64.Build.0 = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Debug|x86.Build.0 = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Release|x64.ActiveCfg = Release|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Release|x64.Build.0 = Release|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Release|x86.ActiveCfg = Release|Any CPU
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -3078,9 +3104,10 @@ Global
 		{934FDD6D-60BA-4478-975C-0C692C1AC4BB} = {50495465-0C70-46B2-A1BD-B5F6BD0EA3B2}
 		{4D7EE000-E58D-4EB8-8DB3-B3BFED50CFFB} = {50495465-0C70-46B2-A1BD-B5F6BD0EA3B2}
 		{06933DCA-EB38-4766-9794-A4EC0F5DA135} = {50495465-0C70-46B2-A1BD-B5F6BD0EA3B2}
+		{6C0B1E65-EAA0-472F-81E5-96584744C7B4} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 140
+		SccNumberOfProjects = 141
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -3640,5 +3667,9 @@ Global
 		SccProjectTopLevelParentUniqueName139 = JJ.sln
 		SccProjectName139 = Business/SynthesizerPrototype.WithStructs
 		SccLocalPath139 = Business\\SynthesizerPrototype.WithStructs
+		SccProjectUniqueName140 = Framework\\Collections.Tests\\JJ.Framework.Collections.Tests.csproj
+		SccProjectTopLevelParentUniqueName140 = JJ.sln
+		SccProjectName140 = Framework/Collections.Tests
+		SccLocalPath140 = Framework\\Collections.Tests
 	EndGlobalSection
 EndGlobal

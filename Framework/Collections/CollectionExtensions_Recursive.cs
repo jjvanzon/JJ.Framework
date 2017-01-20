@@ -5,6 +5,12 @@ namespace JJ.Framework.Collections
 {
     public static class CollectionExtensions_Recursive
     {
+        // TODO: Maintain the recursive order as you traverse the tree and enumerate.
+
+        // TODO: Make IList variation actually faster 
+        // and better debuggable by preventing enumerator creation 
+        // and privately adding to a single list.
+
         /// <summary> Does not include the collection it is executed upon in the result. <summary>
         public static IEnumerable<T> SelectRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
         {

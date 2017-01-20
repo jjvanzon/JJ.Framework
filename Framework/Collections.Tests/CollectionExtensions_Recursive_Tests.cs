@@ -111,7 +111,7 @@ namespace JJ.Framework.Collections.Tests
         {
             IList<string> actualItemNames = items.Select(x => x.Name).ToArray();
 
-            // For now, sort, but later the orders should actually be kept in tact.
+            // For now, sort, but later rework the recursive methods so that the order os actually kept in tact.
             expectedItemsNames = expectedItemsNames.OrderBy(x => x).ToArray();
             actualItemNames = actualItemNames.OrderBy(x => x).ToArray();
 
