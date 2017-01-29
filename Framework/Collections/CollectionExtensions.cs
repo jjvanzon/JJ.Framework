@@ -22,7 +22,7 @@ namespace JJ.Framework.Collections
             if (collection == null) throw new ArgumentNullException(nameof(collection));
             if (items == null) throw new ArgumentNullException(nameof(items));
 
-            foreach (var x in items)
+            foreach (T x in items)
             {
                 collection.Add(x);
             }
@@ -375,7 +375,7 @@ namespace JJ.Framework.Collections
             if (collection == null) throw new ArgumentNullException(nameof(collection));
             if (items == null) throw new ArgumentNullException(nameof(items));
 
-            foreach (var x in items)
+            foreach (T x in items)
             {
                 collection.Add(x);
             }

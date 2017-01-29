@@ -52,15 +52,14 @@ namespace JJ.Framework.Presentation
                     return types[0];
 
                 case 0:
-                    throw new Exception(string.Format("Type with short name '{0}' not found in the AppDomain's assemblies.", shortTypeName));
+                    throw new Exception($"Type with short name '{shortTypeName}' not found in the AppDomain's assemblies.");
 
                 default:
-                    throw new Exception(string.Format(
-                        "Type with short name '{0}' found multiple times in the AppDomain's assemblies. " +
+                    throw new Exception(
+                        $"Type with short name '{shortTypeName}' found multiple times in the AppDomain's assemblies. " +
                         "Presenters must have unique class names within the AppDomain. " +
                         "If that is not possible you must program the instantiation of the presenter yourself and use the other overload of DispatchAction. " +
-                        "Found types:{1}{2}",
-                        shortTypeName, Environment.NewLine, String_PlatformSupport.Join(Environment.NewLine, types.Select(x => x.FullName))));
+                        "Found types:" + Environment.NewLine + String_PlatformSupport.Join(Environment.NewLine, types.Select(x => x.FullName)));
             }
         }
 
@@ -113,7 +112,7 @@ namespace JJ.Framework.Presentation
             MethodInfo method = type.GetMethod(actionInfo.ActionName);
             if (method == null)
             {
-                throw new Exception(string.Format("Method '{0}' of type '{1}' not found.", actionInfo.ActionName, type.Name));
+                throw new Exception($"Method '{actionInfo.ActionName}' of type '{type.Name}' not found.");
             }
 
             // Convert parameter values.
@@ -157,7 +156,7 @@ namespace JJ.Framework.Presentation
                         //    String_PlatformSupport.Join(", ", actionInfo.Parameters.Select(x => x.Name))));
 
                     default:
-                        throw new Exception(string.Format("Parameter '{0}' for method '{1}' of type '{2}' found multiple times in ActionInfo.", parameter.Name, method.Name, type.Name));
+                        throw new Exception($"Parameter '{parameter.Name}' for method '{method.Name}' of type '{type.Name}' found multiple times in ActionInfo.");
                 }
 
                 object parameterValue = ConvertValue(value, parameter.ParameterType);

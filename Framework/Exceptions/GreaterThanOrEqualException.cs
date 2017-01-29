@@ -7,7 +7,7 @@ namespace JJ.Framework.Exceptions
     public class GreaterThanOrEqualException : Exception
     {
         public GreaterThanOrEqualException(Expression<Func<object>> expression, object limit)
-            : base(string.Format("{0} is greater than or equal to {1}.", ExpressionHelper.GetText(expression), limit))
+            : base($"{ExpressionHelper.GetText(expression)} is greater than or equal to {limit}.")
         { }
 
         /// <summary>
@@ -15,7 +15,7 @@ namespace JJ.Framework.Exceptions
         /// If you only want to show the limit's value, use the other overload.
         /// </summary>
         public GreaterThanOrEqualException(Expression<Func<object>> expression, Expression<Func<object>> limitExpression)
-            : base(string.Format("{0} is greater than or equal to {1} of {2}.", ExpressionHelper.GetText(expression), ExpressionHelper.GetText(limitExpression), ExpressionHelper.GetValue(limitExpression)))
+            : base($"{ExpressionHelper.GetText(expression)} is greater than or equal to {ExpressionHelper.GetText(limitExpression)} of {ExpressionHelper.GetValue(limitExpression)}.")
         { }
     }
 }

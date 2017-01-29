@@ -23,7 +23,7 @@ namespace JJ.Framework.Validation
         {
             get
             {
-                return string.Format("{0}: {1}", PropertyKey, Text);
+                return $"{PropertyKey}: {Text}";
             }
         }
     }

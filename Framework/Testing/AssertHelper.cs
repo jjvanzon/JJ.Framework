@@ -221,6 +221,7 @@ namespace JJ.Framework.Testing
         private static string GetNotEqualFailedMessage<T>(T a, string message)
         {
             return
+                // ReSharper disable once UseStringInterpolation
                 string.Format("Assert.NotEqual failed. Both values are <{0}>.{1}{2}",
                     a != null ? a.ToString() : "null",
                     !string.IsNullOrEmpty(message) ? " " : "",
@@ -230,6 +231,7 @@ namespace JJ.Framework.Testing
         private static string GetExpectedActualMessage<T>(string methodName, T expected, T actual, string message)
         {
             return
+                // ReSharper disable once UseStringInterpolation
                 string.Format("Assert.{0} failed. Expected <{1}>, Actual <{2}>.{3}{4}",
                     methodName,
                     expected != null ? expected.ToString() : "null",
@@ -240,11 +242,9 @@ namespace JJ.Framework.Testing
 
         private static string GetFailureMessage(string methodName, string message)
         {
-            return
-                string.Format("Assert.{0} failed.{1}{2}",
-                    methodName,
-                    !string.IsNullOrEmpty(message) ? " " : "",
-                    message);
+            string separator = !string.IsNullOrEmpty(message) ? " " : "";
+
+            return $"Assert.{methodName} failed.{separator}{message}";
         }
     }
 }

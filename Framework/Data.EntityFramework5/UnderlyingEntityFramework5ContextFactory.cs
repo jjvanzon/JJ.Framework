@@ -30,7 +30,9 @@ namespace JJ.Framework.Data.EntityFramework5
                 }
             }
 
-            throw new Exception(string.Format("No .msl file found in the embedded resources of the mapping assembly '{0}'. (The .msl file is a resource generated out of an .edmx file.)", mappingAssembly.GetName().Name));
+            throw new Exception(
+                $"No .msl file found in the embedded resources of the mapping assembly '{mappingAssembly.GetName().Name}'. " + 
+                "(The .msl file is a resource generated out of an .edmx file.)");
         }
 
         private static string GetSpecialConnectionString(string connectionString, string modelName)

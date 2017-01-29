@@ -46,7 +46,7 @@ namespace JJ.Framework.Reflection
             FieldInfo field = TryGetField(type, name);
             if (field == null)
             {
-                throw new Exception(string.Format("Field '{0}' not found.", name));
+                throw new Exception($"Field '{name}' not found.");
             }
             return field;
         }
@@ -104,7 +104,7 @@ namespace JJ.Framework.Reflection
             PropertyInfo property = TryGetProperty(type, name);
             if (property == null)
             {
-                throw new Exception(string.Format("Property '{0}' not found.", name));
+                throw new Exception($"Property '{name}' not found.");
             }
             return property;
         }
@@ -139,7 +139,7 @@ namespace JJ.Framework.Reflection
             PropertyInfo property = TryGetIndexer(type, parameterTypes);
             if (property == null)
             {
-                throw new Exception(string.Format("Indexer not found with parameterTypes '{0}'.", String_PlatformSupport.Join(", ", parameterTypes.Select(x => x.ToString()))));
+                throw new Exception($"Indexer not found with parameterTypes '{String_PlatformSupport.Join(", ", parameterTypes.Select(x => x.ToString()))}'.");
             }
             return property;
         }
@@ -207,7 +207,7 @@ namespace JJ.Framework.Reflection
             MethodInfo method = TryGetMethod(type, name, parameterTypes);
             if (method == null)
             {
-                throw new Exception(string.Format("Method '{0}' not found.", name));
+                throw new Exception($"Method '{name}' not found.");
             }
             return method;
         }

@@ -70,7 +70,7 @@ namespace JJ.Framework.Presentation.WinForms.Helpers
                 ancestor = ancestor.Parent;
             }
 
-            throw new Exception(string.Format("No ancestor UserControl found for Control '{0}'.", control.Name));
+            throw new Exception($"No ancestor UserControl found for Control '{control.Name}'.");
         }
 
         public static IList<TControl> GetDescendantsOfType<TControl>(Control control)

@@ -274,7 +274,7 @@ namespace JJ.Framework.Mathematics
                 return digitValue;
             }
 
-            throw new Exception(string.Format("Invalid digit: '{0}'.", chr));
+            throw new Exception($"Invalid digit: '{chr}'.");
         }
 
         // Letter Sequences

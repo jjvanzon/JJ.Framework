@@ -83,6 +83,7 @@ namespace JJ.Framework.Common
                 }
 
                 // Detect separator
+                // ReSharper disable once InvertIf
                 if (input.Substring(pos, separator.Length) == separator)
                 {
                     // An end-of-element was found.

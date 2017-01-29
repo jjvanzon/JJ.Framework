@@ -8,12 +8,6 @@ namespace JJ.Framework.Presentation
         public string Name { get; set; }
         public string Value { get; set; }
 
-        private string DebuggerDisplay
-        {
-            get
-            {
-                return string.Format("{0}={1}", Name, Value);
-            }
-        }
+        private string DebuggerDisplay => $"{Name}={Value}";
     }
 }

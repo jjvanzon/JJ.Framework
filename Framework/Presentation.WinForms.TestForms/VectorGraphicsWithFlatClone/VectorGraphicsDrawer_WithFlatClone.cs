@@ -54,7 +54,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
                 return;
             }
 
-            throw new Exception(string.Format("Unexpected Element type '{0}'", sourceElement.GetType().FullName));
+            throw new Exception($"Unexpected Element type '{sourceElement.GetType().FullName}'");
         }
 
         //private void DrawBackground(VectorGraphicsElements.Rectangle sourceRectangle, Graphics destGraphics)

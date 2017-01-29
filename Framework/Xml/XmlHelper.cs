@@ -19,7 +19,7 @@ namespace JJ.Framework.Xml
             XmlNode childNode = TrySelectNode(parentNode, xpath);
             if (childNode == null)
             {
-                throw new Exception(string.Format("Node '{0}' does not exist in parent node '{1}'.", xpath, parentNode.Name));
+                throw new Exception($"Node '{xpath}' does not exist in parent node '{parentNode.Name}'.");
             }
             return childNode;
         }
@@ -44,7 +44,7 @@ namespace JJ.Framework.Xml
                     return nodes[0];
 
                 default:
-                    throw new Exception(string.Format("Node '{0}' is not unique inside parent node '{1}'.", xpath, parentNode.Name));
+                    throw new Exception($"Node '{xpath}' is not unique inside parent node '{parentNode.Name}'.");
             }
         }
 
@@ -61,7 +61,7 @@ namespace JJ.Framework.Xml
             XmlElement childElement = TryGetElement(parentElement, childElementName);
             if (childElement == null)
             {
-                throw new Exception(string.Format("Parent element '{0}' does not contain any element named '{1}'.", parentElement.Name, childElementName));
+                throw new Exception($"Parent element '{parentElement.Name}' does not contain any element named '{childElementName}'.");
             }
             return childElement;
         }
@@ -84,7 +84,7 @@ namespace JJ.Framework.Xml
                     return childElements[0];
 
                 default:
-                    throw new Exception(string.Format("Element '{0}' was found multiple times inside '{1}'.", childElementName, parentElement.Name));
+                    throw new Exception($"Element '{childElementName}' was found multiple times inside '{parentElement.Name}'.");
             }
         }
 
@@ -112,7 +112,7 @@ namespace JJ.Framework.Xml
             XmlAttribute attribute = TryGetAttribute(element, attributeName);
             if (attribute == null)
             {
-                throw new Exception(string.Format("Element '{0}' does not contain attribute '{1}'.", element.Name, attributeName));
+                throw new Exception($"Element '{element.Name}' does not contain attribute '{attributeName}'.");
             }
             return attribute;
         }
@@ -139,7 +139,7 @@ namespace JJ.Framework.Xml
             string attributeValue = TryGetAttributeValue(element, attributeName);
             if (string.IsNullOrEmpty(attributeValue))
             {
-                throw new Exception(string.Format("Element '{0}' does not specify attribute '{1}'.", element.Name, attributeName));
+                throw new Exception($"Element '{element.Name}' does not specify attribute '{attributeName}'.");
             }
             return attributeValue;
         }
@@ -158,9 +158,7 @@ namespace JJ.Framework.Xml
 
         public static void SetAttributeValue(XmlElement element, string attributeName, string value)
         {
-            // TODO: Optimize performance by using attributes directly rather than through XPath.
-            string xpath = "@" + attributeName;
-            XmlAttribute xmlAttribute = (XmlAttribute)XmlHelper.SelectNode(element, xpath);
+            XmlAttribute xmlAttribute = GetAttribute(element, attributeName);
             xmlAttribute.Value = value;
         }
     }

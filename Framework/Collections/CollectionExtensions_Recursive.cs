@@ -19,6 +19,7 @@ namespace JJ.Framework.Collections
 
             foreach (T sourceItem in collection)
             {
+                // ReSharper disable once InvertIf
                 if (sourceItem != null)
                 {
                     foreach (T destItem in sourceItem.SelectRecursive(selector))
@@ -39,6 +40,7 @@ namespace JJ.Framework.Collections
             {
                 T sourceItem = collection[i];
 
+                // ReSharper disable once InvertIf
                 if (sourceItem != null)
                 {
                     foreach (T destItem in sourceItem.SelectRecursive(selector))

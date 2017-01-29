@@ -50,7 +50,7 @@ namespace JJ.Framework.Data.NHibernate
             }
             else
             {
-                throw new NotSupportedException(string.Format("Dialect '{0}' not supported.", dialect));
+                throw new NotSupportedException($"Dialect '{dialect}' not supported.");
             }
 
             fluentConfiguration = fluentConfiguration.Mappings(x => x.FluentMappings.AddFromAssembly(modelAssembly));

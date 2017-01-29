@@ -51,7 +51,7 @@ namespace JJ.Framework.PlatformCompatibility
                 return MemberTypes_PlatformSafe.TypeInfo;
             }
 
-            throw new Exception(string.Format("memberInfo has the unsupported type: '{0}'", memberInfo.GetType()));
+            throw new Exception($"memberInfo has the unsupported type: '{memberInfo.GetType()}'");
         }
 
         /// <summary>

@@ -82,7 +82,7 @@ namespace JJ.Framework.Reflection
             Type type = TryGetTypeByShortName(shortTypeName);
             if (type == null)
             {
-                throw new Exception(string.Format("Type with short name '{0}' not found in the AppDomain's assemblies.", shortTypeName));
+                throw new Exception($"Type with short name '{shortTypeName}' not found in the AppDomain's assemblies.");
             }
             return type;
         }
@@ -100,9 +100,9 @@ namespace JJ.Framework.Reflection
                     return null;
 
                 default:
-                    throw new Exception(string.Format(
-                        "Type with short name '{0}' found multiple times in the AppDomain's assemblies. Found types:{1}{2}",
-                        shortTypeName, Environment.NewLine, String_PlatformSupport.Join(Environment.NewLine, types.Select(x => x.FullName))));
+                    throw new Exception(
+                        $"Type with short name '{shortTypeName}' found multiple times in the AppDomain's assemblies. " + 
+                        $"Found types:{Environment.NewLine}{String_PlatformSupport.Join(Environment.NewLine, types.Select(x => x.FullName))}");
             }
         }
 
@@ -161,12 +161,12 @@ namespace JJ.Framework.Reflection
                         return constructors[0];
 
                     case 0:
-                        throw new Exception(string.Format("No constructor found for type '{0}' for binding flags '{1}'.", type.FullName, _bindingFlags));
+                        throw new Exception($"No constructor found for type '{type.FullName}' for binding flags '{_bindingFlags}'.");
 
                     default:
-                        throw new Exception(string.Format(
-                            "Multiple constructors found on type '{0}' for binding flags '{1}'. Found constructors: {2}", 
-                            type.FullName, _bindingFlags, String_PlatformSupport.Join(", ", constructors.Select(x => x.ToString()))));
+                        throw new Exception(
+                            $"Multiple constructors found on type '{type.FullName}' for binding flags '{_bindingFlags}'. " +
+                            $"Found constructors: {String_PlatformSupport.Join(", ", constructors.Select(x => x.ToString()))}");
                 }
             }
         }

@@ -8,7 +8,7 @@ namespace JJ.Framework.Exceptions
         {
             if (entityType == null) throw new ArgumentNullException(nameof(entityType));
 
-            Message = string.Format("{0} with key '{1}' not found.", entityType.Name, key);
+            Message = $"{entityType.Name} with key '{key}' not found.";
         }
 
         public override string Message { get; }

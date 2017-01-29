@@ -10,7 +10,7 @@ namespace JJ.Framework.Exceptions
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
 
-            Message = string.Format("Property '{0}' not found on type '{1}'.", propertyName, type.Name);
+            Message = $"Property '{propertyName}' not found on type '{type.Name}'.";
         }
     }
 }

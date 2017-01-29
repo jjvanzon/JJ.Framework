@@ -108,7 +108,7 @@ namespace JJ.Framework.Common
             text = text.Trim();
 
             // Replace two or more white space characters by a single space.
-            Regex regex = new Regex(@"(\s{2,})");
+            var regex = new Regex(@"(\s{2,})");
             text = regex.Replace(text, " ");
 
             return text;
