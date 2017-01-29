@@ -186,7 +186,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 			string schema = joinMapping.schema ?? mappings.SchemaName;
 			string catalog = joinMapping.catalog ?? mappings.CatalogName;
 
-			string action = "all"; // joinMapping.schemaaction ?? "all";
+			const string action = "all"; // joinMapping.schemaaction ?? "all";
 
 			string tableName = joinMapping.table;
 			Table table = mappings.AddTable(schema, catalog, GetClassTableName(persistentClass, tableName), joinMapping.Subselect, false, action);

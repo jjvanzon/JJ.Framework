@@ -261,11 +261,10 @@ namespace NHibernate.Dialect
 		/// <returns>The SQL with the <paramref name="tableName" /> inserted.</returns>
 		public override string GetDropTableString(string tableName)
 		{
-			string dropTable =
-				"if exists (select * from dbo.sysobjects where id = object_id(N'{0}') and OBJECTPROPERTY(id, N'IsUserTable') = 1)" +
-				" drop table {0}";
+		    const string dropTable = "if exists (select * from dbo.sysobjects where id = object_id(N'{0}') and OBJECTPROPERTY(id, N'IsUserTable') = 1)" +
+		                             " drop table {0}";
 
-			return string.Format(dropTable, tableName);
+		    return string.Format(dropTable, tableName);
 		}
 
 		public override string ForUpdateString

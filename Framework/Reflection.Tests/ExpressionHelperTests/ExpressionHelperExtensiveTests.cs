@@ -69,7 +69,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         [TestMethod]
         public void Test_ExpressionHelpers_Conversion_Numeric()
         {
-            int value = 1;
+            const int value = 1;
             Assert.AreEqual("value", ExpressionHelper.GetText(() => (long)value));
             Assert.AreEqual(1, ExpressionHelper.GetValue(() => (long)value));
         }
@@ -165,7 +165,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         public void Test_ExpressionHelpers_ArrayIndex_Variable()
         {
             int[] array = { 10, 11, 12 };
-            int i = 2;
+            const int i = 2;
             Assert.AreEqual("array[i]", ExpressionHelper.GetText(() => array[i]));
             Assert.AreEqual(12, ExpressionHelper.GetValue(() => array[i]));
         }
@@ -174,7 +174,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         public void Test_ExpressionHelpers_ArrayIndex_Variable_ShowIndexerValues()
         {
             int[] array = { 10, 11, 12 };
-            int i = 2;
+            const int i = 2;
             Assert.AreEqual("array[2]", ExpressionHelper.GetText(() => array[i], true));
         }
 
@@ -182,7 +182,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         public void Test_ExpressionHelpers_Indexer_ShowIndexerValues()
         {
             var list = new List<int> { 10, 11, 12 };
-            int i = 2;
+            const int i = 2;
             Assert.AreEqual("list[2]", ExpressionHelper.GetText(() => list[i], true));
         }
 
@@ -263,7 +263,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
                 new Item { Name = "Item3" }, 
             };
 
-            int i = 1;
+            const int i = 1;
             Assert.AreEqual("Item2", ExpressionHelper.GetValue(() => items[i].Name));
         }
 
@@ -271,7 +271,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         public void Bug_ExpressionHelpers_GetValue_Crash_Property_AfterIndexerCall()
         {
             var complexItem = new ComplexItem();
-            int i = 0;
+            const int i = 0;
             ExpressionHelper.GetValue(() => complexItem[i].Name);
         }
     }

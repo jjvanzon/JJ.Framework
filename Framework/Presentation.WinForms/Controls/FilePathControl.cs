@@ -144,7 +144,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
                 // Perhaps it would have been a better plan to use WinForms in a standard way and build solutions to its problems
                 // on top of this.
 
-                int y = 0;
+                const int y = 0;
                 int x = 0;
                 int height = textBox.Height; // We cannot size a TextBox's height, so we're stuck with it.
 

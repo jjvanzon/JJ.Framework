@@ -13,7 +13,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         [TestMethod]
         public void Test_ExpressionHelpers_GetText_LocalVariable()
         {
-            int variable = 1;
+            const int variable = 1;
             Assert.AreEqual("variable", ExpressionHelper.GetText(() => variable));
         }
 

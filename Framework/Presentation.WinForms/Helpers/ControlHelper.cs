@@ -46,7 +46,7 @@ namespace JJ.Framework.Presentation.WinForms.Helpers
             bool autoScaleFactorIs1 = autoScaleFactor - 1 < 0.001; // Beware for rounding errors when equating floats.
             if (!autoScaleFactorIs1)
             {
-                float fontScalingCorrectionFactor = 0.9f; // Completely arbitrary experimentally obtained factor.
+                const float fontScalingCorrectionFactor = 0.9f; // Completely arbitrary experimentally obtained factor.
                 autoScaleFactor *= fontScalingCorrectionFactor;
             }
 
