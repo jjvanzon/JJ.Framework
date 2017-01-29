@@ -27,11 +27,11 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         [TestMethod]
         public void Test_Accessor_UsingExpressions_StaticField()
         {
-            ClassAccessor_UsingExpressions.StaticField = 1;
-            AssertHelper.AreEqual(1, () => ClassAccessor_UsingExpressions.StaticField);
+            ClassAccessor_UsingExpressions._staticField = 1;
+            AssertHelper.AreEqual(1, () => ClassAccessor_UsingExpressions._staticField);
 
-            ClassAccessor_UsingExpressions.StaticField = 2;
-            AssertHelper.AreEqual(2, () => ClassAccessor_UsingExpressions.StaticField);
+            ClassAccessor_UsingExpressions._staticField = 2;
+            AssertHelper.AreEqual(2, () => ClassAccessor_UsingExpressions._staticField);
         }
 
         [TestMethod]

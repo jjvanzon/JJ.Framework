@@ -61,10 +61,10 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
             return _accessor.InvokeMethod(() => IntMethodIntInt(0, 0), parameter1, parameter2);
         }
 
-        public static int StaticField
+        public static int _staticField
         {
-            get { return _staticAccessor.GetFieldValue(() => StaticField); }
-            set { _staticAccessor.SetFieldValue(() => StaticField, value); }
+            get { return _staticAccessor.GetFieldValue(() => _staticField); }
+            set { _staticAccessor.SetFieldValue(() => _staticField, value); }
         }
 
         public static int StaticProperty

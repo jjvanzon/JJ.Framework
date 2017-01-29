@@ -93,7 +93,7 @@ namespace JJ.Framework.Reflection
         {
             if (node.Type.IsPrimitive)
             {
-                _sb.Append(node.Value.ToString());
+                _sb.Append(node.Value);
             }
             else if (node.Type == typeof(string))
             {

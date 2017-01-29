@@ -23,7 +23,7 @@ namespace JJ.Framework.Reflection
             _list = new List<object>();
             _stack = new Stack<object>();
             Visit(expression);
-            return _stack.Peek();;
+            return _stack.Peek();
         }
 
         protected virtual void Visit(Expression node)
@@ -181,6 +181,7 @@ namespace JJ.Framework.Reflection
 
         protected virtual void VisitArrayLength(UnaryExpression node)
         {
+            // ReSharper disable once InvertIf
             if (node.Operand.NodeType == ExpressionType.MemberAccess)
             {
                 var memberExpression = (MemberExpression)node.Operand;

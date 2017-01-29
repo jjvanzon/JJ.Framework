@@ -9,15 +9,9 @@ namespace JJ.Framework.Reflection
             Name = name;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; }
 
-        private readonly IList<MethodCallParameterInfo> _parameters = new List<MethodCallParameterInfo>();
-        /// <summary>
-        /// auto-instantiated
-        /// </summary>
-        public IList<MethodCallParameterInfo> Parameters
-        {
-            get { return _parameters; }
-        }
+        /// <summary> auto-instantiated </summary>
+        public IList<MethodCallParameterInfo> Parameters { get; } = new List<MethodCallParameterInfo>();
     }
 }

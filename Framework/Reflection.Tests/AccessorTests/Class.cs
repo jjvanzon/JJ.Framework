@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+// ReSharper disable UnusedMember.Local
+// ReSharper disable UnusedParameter.Local
 #pragma warning disable 169
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
@@ -49,7 +51,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
             set { _stringDictionary[key] = value; }
         }
 
-        private static int StaticField;
+        private static int _staticField;
 
         private static int StaticProperty { get; set; }
 

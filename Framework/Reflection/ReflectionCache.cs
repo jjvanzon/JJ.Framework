@@ -25,6 +25,7 @@ namespace JJ.Framework.Reflection
             lock (_propertiesDictionaryLock)
             {
                 PropertyInfo[] properties;
+                // ReSharper disable once InvertIf
                 if (!_propertiesDictionary.TryGetValue(type, out properties))
                 {
                     properties = type.GetProperties(_bindingFlags);
@@ -44,6 +45,7 @@ namespace JJ.Framework.Reflection
             lock (_propertyDictionaryDictionaryLock)
             {
                 IDictionary<string, PropertyInfo> propertyDictionary;
+                // ReSharper disable once InvertIf
                 if (!_propertyDictionaryDictionary.TryGetValue(type, out propertyDictionary))
                 {
                     propertyDictionary = type.GetProperties(_bindingFlags).ToDictionary(x => x.Name);
@@ -63,6 +65,7 @@ namespace JJ.Framework.Reflection
             lock (_fieldsDictionaryLock)
             {
                 FieldInfo[] fields;
+                // ReSharper disable once InvertIf
                 if (!_fieldsDictionary.TryGetValue(type, out fields))
                 {
                     fields = type.GetFields(_bindingFlags);

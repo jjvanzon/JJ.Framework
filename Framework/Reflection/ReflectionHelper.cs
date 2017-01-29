@@ -64,6 +64,7 @@ namespace JJ.Framework.Reflection
             {
                 string key = GetImplementationsDictionaryKey(assembly, baseType);
                 Type[] types;
+                // ReSharper disable once InvertIf
                 if (!_implementationsDictionary.TryGetValue(key, out types))
                 {
                     types = assembly.GetTypes();
@@ -117,27 +118,29 @@ namespace JJ.Framework.Reflection
             lock (_itemTypeDictionaryLock)
             {
                 Type itemType;
-                if (!_itemTypeDictionary.TryGetValue(collectionType, out itemType))
+                if (_itemTypeDictionary.TryGetValue(collectionType, out itemType))
                 {
-                    // This works for IEnumerable<T> itself.
-                    if (collectionType.IsGenericType)
-                    {
-                        Type openGenericCollectionType = collectionType.GetGenericTypeDefinition();
-                        if (openGenericCollectionType == typeof(IEnumerable<>))
-                        {
-                            itemType = collectionType.GetGenericArguments()[0];
-                        }
-                    }
-
-                    // This works for types that implement IEnumerable<T> / have IEnumerable<T> as a base.
-                    Type enumerableInterface = collectionType.GetInterface_PlatformSafe(typeof(IEnumerable<>).FullName);
-                    if (enumerableInterface != null)
-                    {
-                        itemType = enumerableInterface.GetGenericArguments()[0];
-                    }
-
-                    _itemTypeDictionary.Add(collectionType, itemType);
+                    return itemType;
                 }
+
+                // This works for IEnumerable<T> itself.
+                if (collectionType.IsGenericType)
+                {
+                    Type openGenericCollectionType = collectionType.GetGenericTypeDefinition();
+                    if (openGenericCollectionType == typeof(IEnumerable<>))
+                    {
+                        itemType = collectionType.GetGenericArguments()[0];
+                    }
+                }
+
+                // This works for types that implement IEnumerable<T> / have IEnumerable<T> as a base.
+                Type enumerableInterface = collectionType.GetInterface_PlatformSafe(typeof(IEnumerable<>).FullName);
+                if (enumerableInterface != null)
+                {
+                    itemType = enumerableInterface.GetGenericArguments()[0];
+                }
+
+                _itemTypeDictionary.Add(collectionType, itemType);
 
                 return itemType;
             }
