@@ -8,12 +8,8 @@
 
 using System;
 using Antlr.Runtime;
-using IList 		= System.Collections.IList;
-using ArrayList 	= System.Collections.ArrayList;
 using Stack 		= Antlr.Runtime.Collections.StackList;
 
-using IDictionary	= System.Collections.IDictionary;
-using Hashtable 	= System.Collections.Hashtable;
 namespace  NHibernate.Hql.Ast.ANTLR 
 {
 public partial class HqlLexer : Lexer {

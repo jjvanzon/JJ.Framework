@@ -1,5 +1,3 @@
-using System;
-
 namespace NHibernate.Cfg
 {
 	public class HbmConstants

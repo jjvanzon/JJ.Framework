@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JJ.Framework.Testing
+﻿namespace JJ.Framework.Testing
 {
     internal static class TestHelper
     {

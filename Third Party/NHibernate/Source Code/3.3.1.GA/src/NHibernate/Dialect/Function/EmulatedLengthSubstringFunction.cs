@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Text;
 using NHibernate.Engine;
 using NHibernate.SqlCommand;
-using NHibernate.Type;
 using System;
 
 namespace NHibernate.Dialect.Function

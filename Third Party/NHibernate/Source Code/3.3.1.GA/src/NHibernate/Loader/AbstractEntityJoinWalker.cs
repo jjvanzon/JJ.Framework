@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using NHibernate.Engine;
-using NHibernate.Loader.Criteria;
 using NHibernate.Persister.Entity;
 using NHibernate.SqlCommand;
 using NHibernate.Type;

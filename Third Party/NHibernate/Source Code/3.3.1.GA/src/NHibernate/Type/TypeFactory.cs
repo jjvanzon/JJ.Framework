@@ -7,7 +7,6 @@ using System.Xml;
 using System.Xml.Linq;
 using NHibernate.Bytecode;
 using NHibernate.Classic;
-using NHibernate.Engine;
 using NHibernate.SqlTypes;
 using NHibernate.UserTypes;
 using NHibernate.Util;

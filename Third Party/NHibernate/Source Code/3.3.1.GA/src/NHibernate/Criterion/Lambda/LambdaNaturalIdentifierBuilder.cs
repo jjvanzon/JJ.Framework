@@ -1,12 +1,3 @@
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-
-using NHibernate.Impl;
-using NHibernate.SqlCommand;
-
 namespace NHibernate.Criterion.Lambda
 {
 

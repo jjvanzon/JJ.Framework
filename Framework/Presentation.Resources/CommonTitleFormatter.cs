@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JJ.Framework.Presentation.Resources
+﻿namespace JJ.Framework.Presentation.Resources
 {
     public static class CommonTitleFormatter
     {

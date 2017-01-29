@@ -1,4 +1,3 @@
-using System;
 using NHibernate.Dialect.Function;
 
 namespace NHibernate.Mapping

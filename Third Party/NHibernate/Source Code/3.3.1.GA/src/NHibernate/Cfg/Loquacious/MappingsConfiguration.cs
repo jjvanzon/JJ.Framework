@@ -1,5 +1,3 @@
-using System;
-
 namespace NHibernate.Cfg.Loquacious
 {
 	internal class MappingsConfiguration : IMappingsConfiguration

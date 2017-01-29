@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using NHibernate.Cfg.MappingSchema;
 using NHibernate.Mapping;
 using NHibernate.Util;

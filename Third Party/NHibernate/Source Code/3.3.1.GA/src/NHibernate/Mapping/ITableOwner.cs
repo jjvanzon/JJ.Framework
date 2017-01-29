@@ -1,5 +1,3 @@
-using System;
-
 namespace NHibernate.Mapping
 {
 	public interface ITableOwner

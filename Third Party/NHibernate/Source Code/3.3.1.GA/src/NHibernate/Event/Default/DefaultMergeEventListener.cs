@@ -8,7 +8,6 @@ using NHibernate.Intercept;
 using NHibernate.Persister.Entity;
 using NHibernate.Proxy;
 using NHibernate.Type;
-using NHibernate.Util;
 
 namespace NHibernate.Event.Default
 {

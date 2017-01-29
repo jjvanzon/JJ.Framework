@@ -2,7 +2,6 @@
 using Antlr.Runtime;
 using NHibernate.Engine;
 using NHibernate.Type;
-using NHibernate.Util;
 
 namespace NHibernate.Hql.Ast.ANTLR.Tree
 {

@@ -1,7 +1,6 @@
 using System;
 using NHibernate.Cfg.Loquacious;
 using NHibernate.Context;
-using NHibernate.Engine;
 using NHibernate.Hql;
 using NHibernate.Linq.Functions;
 using NHibernate.Util;

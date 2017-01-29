@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using NHibernate.Engine;
 using NHibernate.Intercept;
 using NHibernate.Properties;

@@ -1,5 +1,4 @@
 ﻿using JJ.Framework.PlatformCompatibility;
-using System;
 using System.Collections.Generic;
 
 namespace JJ.Framework.Validation.Resources

@@ -1,8 +1,3 @@
-using System;
-using System.Linq.Expressions;
-
-using NHibernate.Impl;
-
 namespace NHibernate.Criterion
 {
 	public static class QueryOverBuilderExtensions

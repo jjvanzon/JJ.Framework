@@ -1,5 +1,3 @@
-using NHibernate;
-
 namespace NHibernate.Tuple
 {
 	/// <summary> 

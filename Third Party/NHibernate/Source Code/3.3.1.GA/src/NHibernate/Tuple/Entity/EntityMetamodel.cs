@@ -8,7 +8,6 @@ using NHibernate.Intercept;
 using NHibernate.Mapping;
 using NHibernate.Type;
 using NHibernate.Util;
-using Array = NHibernate.Mapping.Array;
 
 namespace NHibernate.Tuple.Entity
 {

@@ -7,12 +7,7 @@
 
 
 using NHibernate.Hql.Ast.ANTLR.Tree;
-
-
-using System;
 using Antlr.Runtime;
-using IList 		= System.Collections.IList;
-using ArrayList 	= System.Collections.ArrayList;
 using Stack 		= Antlr.Runtime.Collections.StackList;
 
 

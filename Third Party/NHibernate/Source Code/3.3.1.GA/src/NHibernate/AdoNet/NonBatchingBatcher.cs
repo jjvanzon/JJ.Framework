@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using NHibernate.AdoNet;
 using NHibernate.Engine;
 
 namespace NHibernate.AdoNet

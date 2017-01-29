@@ -1,5 +1,3 @@
-using System;
-
 namespace NHibernate.SqlCommand
 {
 	public interface ISqlStringVisitor

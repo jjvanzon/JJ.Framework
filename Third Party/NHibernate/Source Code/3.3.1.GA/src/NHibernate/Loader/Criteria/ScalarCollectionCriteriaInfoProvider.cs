@@ -1,4 +1,3 @@
-using System;
 using NHibernate.Hql.Util;
 using NHibernate.Persister.Collection;
 using NHibernate.Persister.Entity;

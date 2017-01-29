@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using NHibernate.Engine;
 using NHibernate.Persister.Collection;

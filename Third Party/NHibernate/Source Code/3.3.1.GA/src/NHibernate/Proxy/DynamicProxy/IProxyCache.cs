@@ -6,8 +6,6 @@
 
 #endregion
 
-using System;
-
 namespace NHibernate.Proxy.DynamicProxy
 {
 	public interface IProxyCache

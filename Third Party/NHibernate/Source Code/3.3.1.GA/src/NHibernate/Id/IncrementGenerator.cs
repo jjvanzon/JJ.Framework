@@ -7,7 +7,6 @@ using System.Text;
 using NHibernate.Engine;
 using NHibernate.Exceptions;
 using NHibernate.Type;
-using NHibernate.Util;
 using System.Data.Common;
 
 namespace NHibernate.Id

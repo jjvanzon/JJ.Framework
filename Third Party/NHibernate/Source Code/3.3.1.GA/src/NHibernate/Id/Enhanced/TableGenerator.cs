@@ -3,7 +3,6 @@ using System.Data;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using NHibernate.Engine;
-using NHibernate.Mapping;
 using NHibernate.Type;
 using NHibernate.Util;
 using NHibernate.SqlCommand;

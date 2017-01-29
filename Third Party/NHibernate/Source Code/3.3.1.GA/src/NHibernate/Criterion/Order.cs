@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using NHibernate.Criterion;
 using NHibernate.Engine;
 using NHibernate.SqlCommand;
 

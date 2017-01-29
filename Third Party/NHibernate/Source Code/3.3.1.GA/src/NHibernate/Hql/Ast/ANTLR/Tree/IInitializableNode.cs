@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NHibernate.Hql.Ast.ANTLR.Tree
+﻿namespace NHibernate.Hql.Ast.ANTLR.Tree
 {
 	/// <summary>
 	/// An interface for initializeable AST nodes.

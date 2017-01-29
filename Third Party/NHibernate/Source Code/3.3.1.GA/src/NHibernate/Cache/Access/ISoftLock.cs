@@ -1,5 +1,3 @@
-using System;
-
 namespace NHibernate.Cache.Access
 {
 	/// <summary>

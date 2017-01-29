@@ -7,7 +7,6 @@ using NHibernate.Engine;
 using NHibernate.Mapping;
 using NHibernate.SqlCommand;
 using NHibernate.Type;
-using NHibernate.Util;
 
 namespace NHibernate.Persister.Entity
 {

@@ -1,4 +1,3 @@
-using System;
 using System.Globalization;
 using NHibernate.Dialect.Function;
 using NHibernate.Hql.Util;

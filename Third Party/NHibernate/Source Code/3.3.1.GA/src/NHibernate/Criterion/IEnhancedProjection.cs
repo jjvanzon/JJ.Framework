@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NHibernate.Criterion
+﻿namespace NHibernate.Criterion
 {
 	/// <summary>
 	/// An "enhanced" Projection for a <see cref="ICriteria" /> query.

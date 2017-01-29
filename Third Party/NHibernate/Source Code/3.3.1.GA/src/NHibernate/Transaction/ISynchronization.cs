@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using NHibernate;
-
 namespace NHibernate.Transaction
 {
 	/// <summary>

@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using NHibernate.Linq.Clauses;
 using NHibernate.Linq.Visitors;
 using Remotion.Linq;

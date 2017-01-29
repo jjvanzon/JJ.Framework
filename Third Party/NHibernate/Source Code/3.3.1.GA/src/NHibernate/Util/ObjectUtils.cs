@@ -53,8 +53,6 @@
  */
 
 
-using System.Text;
-
 namespace NHibernate.Util
 {
 	/// <summary>

@@ -1,5 +1,3 @@
-using System;
-
 namespace NHibernate.Cfg.MappingSchema
 {
 	public partial class HbmOneToMany: IRelationship

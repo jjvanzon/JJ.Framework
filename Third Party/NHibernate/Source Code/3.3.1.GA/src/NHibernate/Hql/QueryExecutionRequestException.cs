@@ -1,5 +1,3 @@
-using System;
-
 namespace NHibernate.Hql
 {
 	public class QueryExecutionRequestException : QueryException

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NHibernate.Driver
+﻿namespace NHibernate.Driver
 {
 	/// <summary>
 	/// This provides a driver for Sybase ASE 15 using the ADO.NET driver.

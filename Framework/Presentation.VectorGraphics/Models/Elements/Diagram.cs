@@ -1,7 +1,6 @@
 ﻿using JJ.Framework.Presentation.VectorGraphics.Gestures;
 using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Presentation.VectorGraphics.Visitors;
-using System;
 using System.Collections.Generic;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements

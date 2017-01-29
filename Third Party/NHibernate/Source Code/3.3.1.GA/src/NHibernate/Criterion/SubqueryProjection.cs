@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using NHibernate.Engine;
-using NHibernate.Impl;
 using NHibernate.SqlCommand;
 using NHibernate.Type;
 

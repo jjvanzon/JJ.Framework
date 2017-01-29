@@ -1,10 +1,3 @@
-using System;
-using System.Data;
-using System.Data.Common;
-
-using NHibernate.Dialect;
-using NHibernate.Exceptions;
-
 namespace NHibernate.Engine.Transaction
 {
 	/// <summary>

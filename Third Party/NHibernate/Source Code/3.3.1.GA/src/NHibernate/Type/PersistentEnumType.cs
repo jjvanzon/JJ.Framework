@@ -6,9 +6,7 @@ using NHibernate.SqlTypes;
 
 namespace NHibernate.Type
 {
-	using System.Runtime.Serialization;
-
-	/// <summary>
+    /// <summary>
 	/// PersistentEnumType
 	/// </summary>
 	[Serializable]

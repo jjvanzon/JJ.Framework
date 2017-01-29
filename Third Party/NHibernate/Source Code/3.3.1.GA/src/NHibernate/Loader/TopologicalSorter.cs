@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 // Algorithm from: http://tawani.blogspot.com/2009/02/topological-sorting-and-cyclic.html
 namespace NHibernate.Loader

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JJ.Framework.Exceptions
+﻿namespace JJ.Framework.Exceptions
 {
     public class NotUniqueException<TObject> : NotUniqueException
     {

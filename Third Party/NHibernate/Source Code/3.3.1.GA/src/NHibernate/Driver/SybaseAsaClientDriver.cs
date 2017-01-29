@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NHibernate.Driver
+﻿namespace NHibernate.Driver
 {
 	/// <summary>
 	/// The SybaseAsaClientDriver driver provides a database driver for Adaptive Server Anywhere 9.0.

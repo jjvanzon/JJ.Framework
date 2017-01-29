@@ -1,5 +1,4 @@
-﻿using System;
-using NHibernate.Util;
+﻿using NHibernate.Util;
 
 namespace NHibernate.Hql.Ast.ANTLR.Util
 {

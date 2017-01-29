@@ -1,5 +1,4 @@
-﻿using System;
-using Antlr.Runtime;
+﻿using Antlr.Runtime;
 
 namespace NHibernate.Hql.Ast.ANTLR
 {
