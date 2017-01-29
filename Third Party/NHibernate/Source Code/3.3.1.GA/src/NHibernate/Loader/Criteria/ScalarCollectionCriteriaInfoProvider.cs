@@ -8,17 +8,17 @@ namespace NHibernate.Loader.Criteria
 {
 	public class ScalarCollectionCriteriaInfoProvider : ICriteriaInfoProvider
 	{
-		private readonly String role;
+		private readonly string role;
 		private readonly IQueryableCollection persister;
 		private readonly SessionFactoryHelper helper;
-		public ScalarCollectionCriteriaInfoProvider(SessionFactoryHelper helper, String role)
+		public ScalarCollectionCriteriaInfoProvider(SessionFactoryHelper helper, string role)
 		{
 			this.role = role;
 			this.helper = helper;
 			this.persister = helper.RequireQueryableCollection(role);
 		}
 
-		public String Name
+		public string Name
 		{
 			get
 			{
@@ -42,7 +42,7 @@ namespace NHibernate.Loader.Criteria
 			}
 		}
 
-		public IType GetType(String relativePath)
+		public IType GetType(string relativePath)
 		{
 			//not sure what things are going to be passed here, how about 'id', maybe 'index' or 'key' or 'elements' ???
 			return PropertyMapping.ToType(relativePath);

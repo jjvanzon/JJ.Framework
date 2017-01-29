@@ -15,8 +15,8 @@ namespace JJ.Framework.Reflection
 
         // Fields
 
-        private static Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, FieldInfo[]> _fieldsIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, FieldInfo[]>();
-        private static object _fieldsIndexLock = new object();
+        private static readonly Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, FieldInfo[]> _fieldsIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, FieldInfo[]>();
+        private static readonly object _fieldsIndexLock = new object();
 
         public static FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
@@ -38,15 +38,15 @@ namespace JJ.Framework.Reflection
             }
         }
 
-        private static Dictionary<Tuple_PlatformSupport<Type, string>, FieldInfo> _fieldIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, FieldInfo>();
-        private static object _fieldIndexLock = new object();
+        private static readonly Dictionary<Tuple_PlatformSupport<Type, string>, FieldInfo> _fieldIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, FieldInfo>();
+        private static readonly object _fieldIndexLock = new object();
 
         public static FieldInfo GetField(Type type, string name)
         {
             FieldInfo field = TryGetField(type, name);
             if (field == null)
             {
-                throw new Exception(String.Format("Field '{0}' not found.", name));
+                throw new Exception(string.Format("Field '{0}' not found.", name));
             }
             return field;
         }
@@ -73,8 +73,8 @@ namespace JJ.Framework.Reflection
 
         // Properties
 
-        private static Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, PropertyInfo[]> _propertiesIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, PropertyInfo[]>();
-        private static object _propertiesIndexLock = new object();
+        private static readonly Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, PropertyInfo[]> _propertiesIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, PropertyInfo[]>();
+        private static readonly object _propertiesIndexLock = new object();
 
         public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
@@ -96,15 +96,15 @@ namespace JJ.Framework.Reflection
             }
         }
 
-        private static Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo> _propertyIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo>();
-        private static object _propertyIndexLock = new object();
+        private static readonly Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo> _propertyIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo>();
+        private static readonly object _propertyIndexLock = new object();
 
         public static PropertyInfo GetProperty(Type type, string name)
         {
             PropertyInfo property = TryGetProperty(type, name);
             if (property == null)
             {
-                throw new Exception(String.Format("Property '{0}' not found.", name));
+                throw new Exception(string.Format("Property '{0}' not found.", name));
             }
             return property;
         }
@@ -131,15 +131,15 @@ namespace JJ.Framework.Reflection
 
         // Indexers
 
-        private static Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo> _indexerIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo>();
-        private static object _indexerIndexLock = new object();
+        private static readonly Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo> _indexerIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo>();
+        private static readonly object _indexerIndexLock = new object();
 
         public static PropertyInfo GetIndexer(Type type, params Type[] parameterTypes)
         {
             PropertyInfo property = TryGetIndexer(type, parameterTypes);
             if (property == null)
             {
-                throw new Exception(String.Format("Indexer not found with parameterTypes '{0}'.", String_PlatformSupport.Join(", ", parameterTypes.Select(x => x.ToString()))));
+                throw new Exception(string.Format("Indexer not found with parameterTypes '{0}'.", String_PlatformSupport.Join(", ", parameterTypes.Select(x => x.ToString()))));
             }
             return property;
         }
@@ -176,8 +176,8 @@ namespace JJ.Framework.Reflection
 
         // Methods
 
-        private static Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, MethodInfo[]> _methodsIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, MethodInfo[]>();
-        private static object _methodsIndexLock = new object();
+        private static readonly Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, MethodInfo[]> _methodsIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, MethodInfo[]>();
+        private static readonly object _methodsIndexLock = new object();
 
         public static MethodInfo[] GetMethods(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
         {
@@ -199,15 +199,15 @@ namespace JJ.Framework.Reflection
             }
         }
 
-        private static Dictionary<Tuple_PlatformSupport<Type, string, string>, MethodInfo> _methodDictionary = new Dictionary<Tuple_PlatformSupport<Type, string, string>, MethodInfo>();
-        private static object _methodDictionaryLock = new object();
+        private static readonly Dictionary<Tuple_PlatformSupport<Type, string, string>, MethodInfo> _methodDictionary = new Dictionary<Tuple_PlatformSupport<Type, string, string>, MethodInfo>();
+        private static readonly object _methodDictionaryLock = new object();
 
         public static MethodInfo GetMethod(Type type, string name, params Type[] parameterTypes)
         {
             MethodInfo method = TryGetMethod(type, name, parameterTypes);
             if (method == null)
             {
-                throw new Exception(String.Format("Method '{0}' not found.", name));
+                throw new Exception(string.Format("Method '{0}' not found.", name));
             }
             return method;
         }

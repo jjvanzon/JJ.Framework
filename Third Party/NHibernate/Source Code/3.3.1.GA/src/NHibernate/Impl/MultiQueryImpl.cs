@@ -675,7 +675,7 @@ namespace NHibernate.Impl
 
 			if (!queryResultPositions.ContainsKey(key))
 			{
-				throw new InvalidOperationException(String.Format("The key '{0}' is unknown", key));
+				throw new InvalidOperationException(string.Format("The key '{0}' is unknown", key));
 			}
 
 			return queryResults[queryResultPositions[key]];
@@ -784,7 +784,7 @@ namespace NHibernate.Impl
 		{
 			if (queryResultPositions.ContainsKey(key))
 			{
-				throw new InvalidOperationException(String.Format("The key '{0}' already exists", key));
+				throw new InvalidOperationException(string.Format("The key '{0}' already exists", key));
 			}
 		}
 

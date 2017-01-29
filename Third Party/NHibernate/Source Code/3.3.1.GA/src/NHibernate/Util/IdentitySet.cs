@@ -10,7 +10,7 @@ namespace NHibernate.Util
 	/// </summary>
 	public class IdentitySet : Set
 	{
-		private IDictionary map;
+		private readonly IDictionary map;
 		private static readonly object DumpValue = new object();
 
 		public IdentitySet()

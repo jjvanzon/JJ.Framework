@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
     public partial class PagerControl : UserControl
     {
         private PagerViewModel _viewModel;
-        private IList<LinkLabel> _pageNumberLinkLabels = new List<LinkLabel>();
+        private readonly IList<LinkLabel> _pageNumberLinkLabels = new List<LinkLabel>();
 
         public event EventHandler GoToFirstPageClicked;
         public event EventHandler GoToPreviousPageClicked;
@@ -155,7 +155,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             if (PageNumberClicked != null)
             {
                 LinkLabel pageNumberLinkLabel = (LinkLabel)sender;
-                int pageNumber = Int32.Parse(pageNumberLinkLabel.Text);
+                int pageNumber = int.Parse(pageNumberLinkLabel.Text);
                 var e2 = new PageNumberEventArgs(pageNumber);
                 PageNumberClicked(sender, e2);
             }

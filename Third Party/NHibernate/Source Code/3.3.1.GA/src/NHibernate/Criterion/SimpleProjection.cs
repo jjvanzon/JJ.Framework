@@ -37,7 +37,7 @@ namespace NHibernate.Criterion
 			return GetColumnAliases(alias, position);
 		}
 
-		public String[] GetColumnAliases(int position, ICriteria criteria, ICriteriaQuery criteriaQuery) 
+		public string[] GetColumnAliases(int position, ICriteria criteria, ICriteriaQuery criteriaQuery) 
 		{
 			int numColumns = this.GetColumnCount(criteria, criteriaQuery);
 			string[] aliases = new string[numColumns];
@@ -51,7 +51,7 @@ namespace NHibernate.Criterion
 		
 		public virtual string[] Aliases
 		{
-			get { return new String[1]; }
+			get { return new string[1]; }
 		}
 
 		public abstract bool IsGrouped { get; }

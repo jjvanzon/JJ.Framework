@@ -25,7 +25,7 @@ namespace NHibernate.Type
 			get { return "Int16"; }
 		}
 
-		private static readonly Int16 ZERO = 0;
+		private static readonly short ZERO = 0;
 		public override object Get(IDataReader rs, int index)
 		{
 			try
@@ -52,7 +52,7 @@ namespace NHibernate.Type
 
 		public override System.Type ReturnedClass
 		{
-			get { return typeof(Int16); }
+			get { return typeof(short); }
 		}
 
 		public override void Set(IDbCommand rs, object value, int index)
@@ -67,31 +67,31 @@ namespace NHibernate.Type
 
 		public override object FromStringValue(string xml)
 		{
-			return Int16.Parse(xml);
+			return short.Parse(xml);
 		}
 
 		#region IVersionType Members
 
 		public virtual object Next(object current, ISessionImplementor session)
 		{
-			return (Int16)((Int16)current + 1);
+			return (short)((short)current + 1);
 		}
 
 		public virtual object Seed(ISessionImplementor session)
 		{
-			return (Int16)1;
+			return (short)1;
 		}
 
 		public IComparer Comparator
 		{
-			get { return Comparer<Int16>.Default; }
+			get { return Comparer<short>.Default; }
 		}
 
 		#endregion
 
 		public override System.Type PrimitiveClass
 		{
-			get { return typeof (Int16); }
+			get { return typeof (short); }
 		}
 
 		public override object DefaultValue

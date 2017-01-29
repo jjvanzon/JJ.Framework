@@ -12,11 +12,11 @@ namespace FluentNHibernate.Mapping
     {
         readonly AttributeStore columnAttributes = new AttributeStore();
         readonly IList<string> columns = new List<string>();
-        Member member;
+        readonly Member member;
         readonly Type entityType;
         readonly AccessStrategyBuilder<IdentityPart> access;
         readonly AttributeStore attributes = new AttributeStore();
-        Type identityType;
+        readonly Type identityType;
         bool nextBool = true;
         string name;
 

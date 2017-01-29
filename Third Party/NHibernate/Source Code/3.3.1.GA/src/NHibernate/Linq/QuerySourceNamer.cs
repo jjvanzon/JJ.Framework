@@ -26,7 +26,7 @@ namespace NHibernate.Linq
 		{
 			if (!_map.ContainsKey(querySource))
 				throw new HibernateException(
-					String.Format("Query Source could not be identified: ItemName = {0}, ItemType = {1}, Expression = {2}",
+					string.Format("Query Source could not be identified: ItemName = {0}, ItemType = {1}, Expression = {2}",
 					              querySource.ItemName,
 					              querySource.ItemType,
 					              querySource));

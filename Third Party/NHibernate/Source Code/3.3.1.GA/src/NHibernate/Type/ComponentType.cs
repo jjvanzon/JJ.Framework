@@ -23,7 +23,7 @@ namespace NHibernate.Type
 		private readonly FetchMode?[] joinedFetch;
 		private readonly bool isKey;
 		protected internal EntityModeToTuplizerMapping tuplizerMapping;
-	    private bool overridesGetHashCode;
+	    private readonly bool overridesGetHashCode;
 
 	    public override SqlType[] SqlTypes(IMapping mapping)
 		{
@@ -547,7 +547,7 @@ namespace NHibernate.Type
 				return current != null;
 			}
 			object[] currentValues = GetPropertyValues(current, session);
-			object[] oldValues = (Object[]) old;
+			object[] oldValues = (object[]) old;
 			int loc = 0;
 			for (int i = 0; i < currentValues.Length; i++)
 			{

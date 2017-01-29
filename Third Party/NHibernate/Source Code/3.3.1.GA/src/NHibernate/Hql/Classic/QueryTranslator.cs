@@ -80,7 +80,7 @@ namespace NHibernate.Hql.Classic
 		private bool hasScalars;
 		private bool shallowQuery;
 		private QueryTranslator superQuery;
-		private IList<IParameterSpecification> collectedParameters = new List<IParameterSpecification>();
+		private readonly IList<IParameterSpecification> collectedParameters = new List<IParameterSpecification>();
 		private int positionalParameterFound;
 
 		private class FetchedCollections
@@ -802,7 +802,7 @@ namespace NHibernate.Hql.Classic
 				string name = returnedTypes[i];
 				//if ( !IsName(name) ) throw new QueryException("unknown type: " + name);
 				persisters[i] = GetPersisterForName(name);
-				suffixes[i] = (size == 1) ? String.Empty : i.ToString() + StringHelper.Underscore;
+				suffixes[i] = (size == 1) ? string.Empty : i.ToString() + StringHelper.Underscore;
 				names[i] = name;
 				includeInSelect[i] = !entitiesToFetch.Contains(name);
 				if (includeInSelect[i])
@@ -921,7 +921,7 @@ namespace NHibernate.Hql.Classic
 			for (int k = 0; k < size; k++)
 			{
 				string name = returnedTypes[k];
-				string suffix = size == 1 ? String.Empty : k.ToString() + StringHelper.Underscore;
+				string suffix = size == 1 ? string.Empty : k.ToString() + StringHelper.Underscore;
 				sql.AddSelectFragmentString(new SqlString(persisters[k].IdentifierSelectFragment(name, suffix)));
 			}
 		}
@@ -931,7 +931,7 @@ namespace NHibernate.Hql.Classic
 			int size = returnedTypes.Count;
 			for (int k = 0; k < size; k++)
 			{
-				string suffix = (size == 1) ? String.Empty : k.ToString() + StringHelper.Underscore;
+				string suffix = (size == 1) ? string.Empty : k.ToString() + StringHelper.Underscore;
 				string name = (string) returnedTypes[k];
 				sql.AddSelectFragmentString(new SqlString(persisters[k].PropertySelectFragment(name, suffix, false)));
 			}
@@ -1205,7 +1205,7 @@ namespace NHibernate.Hql.Classic
 
 		private class Selector : JoinSequence.ISelector
 		{
-			private QueryTranslator outer;
+			private readonly QueryTranslator outer;
 
 			public Selector(QueryTranslator outer)
 			{
@@ -1399,7 +1399,7 @@ namespace NHibernate.Hql.Classic
 			string[] tokens = StringHelper.Split(ParserHelper.Whitespace + "(),", query, true);
 			if (tokens.Length == 0)
 			{
-				return new String[] {query};
+				return new string[] {query};
 			} // just especially for the trivial collection filter 
 
 			ArrayList placeholders = new ArrayList();

@@ -95,7 +95,7 @@ namespace NHibernate.Criterion
 			return null; //unsupported
 		}
 
-		public string[] GetColumnAliases(String alias, int loc)
+		public string[] GetColumnAliases(string alias, int loc)
 		{
 			return null; //unsupported
 		}

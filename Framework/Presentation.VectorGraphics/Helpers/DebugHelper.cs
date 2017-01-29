@@ -17,7 +17,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             sb.AppendFormat("'{0}', ", label.Text);
 
             string tag = Convert.ToString(label.Tag);
-            if (!String.IsNullOrEmpty(tag))
+            if (!string.IsNullOrEmpty(tag))
             {
                 sb.AppendFormat("Tag='{0}', ", label.Tag);
             }
@@ -37,7 +37,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             sb.AppendFormat("{{{0}}} ", line.GetType().Name);
 
             string tag = Convert.ToString(line.Tag);
-            if (!String.IsNullOrEmpty(tag))
+            if (!string.IsNullOrEmpty(tag))
             {
                 sb.AppendFormat("Tag='{0}', ", tag);
             }
@@ -76,7 +76,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             sb.AppendFormat("{{{0}}} ", point.GetType().Name);
 
             string tag = Convert.ToString(point.Tag);
-            if (!String.IsNullOrEmpty(tag))
+            if (!string.IsNullOrEmpty(tag))
             {
                 sb.AppendFormat("Tag='{0}', ", point.Tag);
             }
@@ -97,7 +97,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             sb.AppendFormat("{{{0}}} ", rectangle.GetType().Name);
 
             string tag = Convert.ToString(rectangle.Tag);
-            if (!String.IsNullOrEmpty(tag))
+            if (!string.IsNullOrEmpty(tag))
             {
                 sb.AppendFormat("Tag='{0}', ", rectangle.Tag);
             }

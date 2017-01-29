@@ -12,8 +12,8 @@ namespace NHibernate.Criterion
 	[Serializable]
 	public abstract class LogicalExpression : AbstractCriterion
 	{
-		private ICriterion _lhs;
-		private ICriterion _rhs;
+		private readonly ICriterion _lhs;
+		private readonly ICriterion _rhs;
 
 		/// <summary>
 		/// Initialize a new instance of the <see cref="LogicalExpression" /> class that

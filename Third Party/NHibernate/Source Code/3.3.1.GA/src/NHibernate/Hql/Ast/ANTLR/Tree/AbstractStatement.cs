@@ -30,7 +30,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		/// Returns additional display text for the AST node.
 		/// </summary>
 		/// <returns>The additional display text.</returns>
-		public String GetDisplayText()
+		public string GetDisplayText()
 		{
 			StringBuilder buf = new StringBuilder();
 			if (Walker.QuerySpaces.Count > 0)

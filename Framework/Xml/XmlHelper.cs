@@ -19,7 +19,7 @@ namespace JJ.Framework.Xml
             XmlNode childNode = TrySelectNode(parentNode, xpath);
             if (childNode == null)
             {
-                throw new Exception(String.Format("Node '{0}' does not exist in parent node '{1}'.", xpath, parentNode.Name));
+                throw new Exception(string.Format("Node '{0}' does not exist in parent node '{1}'.", xpath, parentNode.Name));
             }
             return childNode;
         }
@@ -44,7 +44,7 @@ namespace JJ.Framework.Xml
                     return nodes[0];
 
                 default:
-                    throw new Exception(String.Format("Node '{0}' is not unique inside parent node '{1}'.", xpath, parentNode.Name));
+                    throw new Exception(string.Format("Node '{0}' is not unique inside parent node '{1}'.", xpath, parentNode.Name));
             }
         }
 
@@ -61,7 +61,7 @@ namespace JJ.Framework.Xml
             XmlElement childElement = TryGetElement(parentElement, childElementName);
             if (childElement == null)
             {
-                throw new Exception(String.Format("Parent element '{0}' does not contain any element named '{1}'.", parentElement.Name, childElementName));
+                throw new Exception(string.Format("Parent element '{0}' does not contain any element named '{1}'.", parentElement.Name, childElementName));
             }
             return childElement;
         }
@@ -84,7 +84,7 @@ namespace JJ.Framework.Xml
                     return childElements[0];
 
                 default:
-                    throw new Exception(String.Format("Element '{0}' was found multiple times inside '{1}'.", childElementName, parentElement.Name));
+                    throw new Exception(string.Format("Element '{0}' was found multiple times inside '{1}'.", childElementName, parentElement.Name));
             }
         }
 
@@ -94,7 +94,7 @@ namespace JJ.Framework.Xml
         public static IList<XmlElement> GetElements(XmlElement parentElement, string childElementName)
         {
             if (parentElement == null) throw new NullException(() => parentElement);
-            if (String.IsNullOrEmpty(childElementName)) throw new ArgumentException("childElementName cannot be null or white space.");
+            if (string.IsNullOrEmpty(childElementName)) throw new ArgumentException("childElementName cannot be null or white space.");
 
             // The outcommented line below selected descendents, not children.
             //return parentElement.GetElementsByTagName(childElementName).OfType<XmlElement>().ToArray();
@@ -112,7 +112,7 @@ namespace JJ.Framework.Xml
             XmlAttribute attribute = TryGetAttribute(element, attributeName);
             if (attribute == null)
             {
-                throw new Exception(String.Format("Element '{0}' does not contain attribute '{1}'.", element.Name, attributeName));
+                throw new Exception(string.Format("Element '{0}' does not contain attribute '{1}'.", element.Name, attributeName));
             }
             return attribute;
         }
@@ -137,9 +137,9 @@ namespace JJ.Framework.Xml
         public static string GetAttributeValue(XmlElement element, string attributeName)
         {
             string attributeValue = TryGetAttributeValue(element, attributeName);
-            if (String.IsNullOrEmpty(attributeValue))
+            if (string.IsNullOrEmpty(attributeValue))
             {
-                throw new Exception(String.Format("Element '{0}' does not specify attribute '{1}'.", element.Name, attributeName));
+                throw new Exception(string.Format("Element '{0}' does not specify attribute '{1}'.", element.Name, attributeName));
             }
             return attributeValue;
         }

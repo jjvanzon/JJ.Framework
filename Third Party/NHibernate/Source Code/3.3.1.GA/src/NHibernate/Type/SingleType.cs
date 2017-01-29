@@ -28,7 +28,7 @@ namespace NHibernate.Type
 			get { return "Single"; }
 		}
 
-		private static readonly Single ZERO = 0;
+		private static readonly float ZERO = 0;
 		public override object Get(IDataReader rs, int index)
 		{
 			try
@@ -55,7 +55,7 @@ namespace NHibernate.Type
 
 		public override System.Type ReturnedClass
 		{
-			get { return typeof(Single); }
+			get { return typeof(float); }
 		}
 
 		public override void Set(IDbCommand rs, object value, int index)
@@ -70,12 +70,12 @@ namespace NHibernate.Type
 
 		public override object FromStringValue(string xml)
 		{
-			return Single.Parse(xml);
+			return float.Parse(xml);
 		}
 
 		public override System.Type PrimitiveClass
 		{
-			get { return typeof(Single); }
+			get { return typeof(float); }
 		}
 
 		public override object DefaultValue

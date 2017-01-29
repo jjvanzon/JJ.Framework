@@ -92,7 +92,7 @@ namespace NHibernate.Criterion
 		/// </summary>
 		/// <param name="propertyName"></param>
 		/// <returns></returns>
-		public static AggregateProjection Max(String propertyName)
+		public static AggregateProjection Max(string propertyName)
 		{
 			return new AggregateProjection("max", propertyName);
 		}
@@ -113,7 +113,7 @@ namespace NHibernate.Criterion
 		/// </summary>
 		/// <param name="propertyName"></param>
 		/// <returns></returns>
-		public static AggregateProjection Min(String propertyName)
+		public static AggregateProjection Min(string propertyName)
 		{
 			return new AggregateProjection("min", propertyName);
 		}
@@ -153,7 +153,7 @@ namespace NHibernate.Criterion
 		/// </summary>
 		/// <param name="propertyName"></param>
 		/// <returns></returns>
-		public static AggregateProjection Sum(String propertyName)
+		public static AggregateProjection Sum(string propertyName)
 		{
 			return new AggregateProjection("sum", propertyName);
 		}

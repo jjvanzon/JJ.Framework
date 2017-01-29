@@ -40,7 +40,7 @@ namespace JJ.Framework.Data.NHibernate
 
             entity = Session.Get<TEntity>(id);
 
-            _entityDictionary.AddOrReplaceIfNeeded<TEntity>(id, entity);
+            _entityDictionary.AddOrReplaceIfNeeded(id, entity);
 
             return entity;
         }
@@ -209,6 +209,10 @@ namespace JJ.Framework.Data.NHibernate
             bool isProxy = obj is global::NHibernate.Proxy.INHibernateProxy;
             if (isProxy)
             {
+                if (type.BaseType == null)
+                {
+                    throw new NullException(() => type.BaseType);
+                }
                 type = type.BaseType;
             }
 

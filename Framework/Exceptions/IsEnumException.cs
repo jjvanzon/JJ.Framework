@@ -6,27 +6,15 @@ namespace JJ.Framework.Exceptions
     {
         private const string MESSAGE_TEMPLATE = "Type {0} should not be an enum.";
 
-        private string _message;
-
-        public override string Message
-        {
-            get { return _message; }
-        }
+        public override string Message { get; }
 
         public IsEnumException(Type type)
         {
             string typeName;
 
-            if (type == null)
-            {
-                typeName = "<null>";
-            }
-            else
-            {
-                typeName = type.FullName;
-            }
+            typeName = type == null ? "<null>" : type.FullName;
 
-            _message = String.Format(MESSAGE_TEMPLATE, typeName);
+            Message = string.Format(MESSAGE_TEMPLATE, typeName);
         }
     }
 }

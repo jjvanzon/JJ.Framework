@@ -63,7 +63,7 @@ namespace NHibernate.Id
 		public override void Configure(IType type, IDictionary<string, string> parms, Dialect.Dialect dialect)
 		{
 			base.Configure(type, parms, dialect);
-			maxLo = PropertiesHelper.GetInt64(MaxLo, parms, Int16.MaxValue);
+			maxLo = PropertiesHelper.GetInt64(MaxLo, parms, short.MaxValue);
 			lo = maxLo + 1; // so we "clock over" on the first invocation
 			returnClass = type.ReturnedClass;
 		}

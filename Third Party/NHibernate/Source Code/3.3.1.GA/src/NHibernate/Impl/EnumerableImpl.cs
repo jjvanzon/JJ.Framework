@@ -22,22 +22,22 @@ namespace NHibernate.Impl
 	{
 		private static readonly IInternalLogger log = LoggerProvider.LoggerFor(typeof(EnumerableImpl));
 
-		private IDataReader _reader;
-		private IEventSource _session;
-		private IType[] _types;
-		private bool _single;
+		private readonly IDataReader _reader;
+		private readonly IEventSource _session;
+		private readonly IType[] _types;
+		private readonly bool _single;
 		private object _currentResult;
 		private bool _hasNext;
 		private bool _startedReading; // True if at least one MoveNext call was made.
-		private string[][] _names;
-		private IDbCommand _cmd;
-		private bool _readOnly;
+		private readonly string[][] _names;
+		private readonly IDbCommand _cmd;
+		private readonly bool _readOnly;
 
 		// when we start enumerating through the DataReader we are positioned
 		// before the first record we need
 		private int _currentRow = -1;
-		private HolderInstantiator _holderInstantiator;
-		private RowSelection _selection;
+		private readonly HolderInstantiator _holderInstantiator;
+		private readonly RowSelection _selection;
 
 		/// <summary>
 		/// Create an <see cref="IEnumerable"/> wrapper over an <see cref="IDataReader"/>.

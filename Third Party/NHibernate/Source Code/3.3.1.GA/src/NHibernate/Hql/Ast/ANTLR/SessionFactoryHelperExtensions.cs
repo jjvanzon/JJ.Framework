@@ -67,7 +67,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 		/// <param name="functionName">The function name.</param>
 		/// <param name="first">The first argument expression.</param>
 		/// <returns>the function return type given the function name and the first argument expression node.</returns>
-		public IType FindFunctionReturnType(String functionName, IASTNode first)
+		public IType FindFunctionReturnType(string functionName, IASTNode first)
 		{
 			// locate the registered function by the given name
 			ISQLFunction sqlFunction = RequireSQLFunction(functionName);
@@ -272,7 +272,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 		/// <param name="collPersister">The persister for the collection at which the join should be rooted.</param>
 		/// <param name="collectionName">The alias to use for qualifying column references.</param>
 		/// <returns>The generated join sequence.</returns>
-		public JoinSequence CreateCollectionJoinSequence(IQueryableCollection collPersister, String collectionName)
+		public JoinSequence CreateCollectionJoinSequence(IQueryableCollection collPersister, string collectionName)
 		{
 			JoinSequence joinSequence = CreateJoinSequence();
 			joinSequence.SetRoot(collPersister, collectionName);
@@ -311,7 +311,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 			return joinSequence;
 		}
 
-		public String[][] GenerateColumnNames(IType[] sqlResultTypes)
+		public string[][] GenerateColumnNames(IType[] sqlResultTypes)
 		{
 			return NameGenerator.GenerateColumnNames(sqlResultTypes, _sfi);
 		}

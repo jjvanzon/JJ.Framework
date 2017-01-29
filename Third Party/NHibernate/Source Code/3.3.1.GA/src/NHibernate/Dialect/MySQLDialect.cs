@@ -199,11 +199,11 @@ namespace NHibernate.Dialect
 																string referencedTable, string[] primaryKey,
 																bool referencesPrimaryKey)
 		{
-			string cols = String.Join(StringHelper.CommaSpace, foreignKey);
+			string cols = string.Join(StringHelper.CommaSpace, foreignKey);
 			return
 				new StringBuilder(30).Append(" add index (").Append(cols).Append("), add constraint ").Append(constraintName).Append
 					(" foreign key (").Append(cols).Append(") references ").Append(referencedTable).Append(" (").Append(
-					String.Join(StringHelper.CommaSpace, primaryKey)).Append(')').ToString();
+					string.Join(StringHelper.CommaSpace, primaryKey)).Append(')').ToString();
 		}
 
 		/// <summary>

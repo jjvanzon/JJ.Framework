@@ -479,7 +479,7 @@ namespace NHibernate.Driver
 		{
 			// [row][column]
 			private readonly object[][] records;
-			private int colCount = 0;
+			private readonly int colCount = 0;
 
 			private readonly DataTable schemaTable;
 
@@ -607,7 +607,7 @@ namespace NHibernate.Driver
 					}
 				}
 
-				throw new IndexOutOfRangeException(String.Format("No column with the specified name was found: {0}.", colName));
+				throw new IndexOutOfRangeException(string.Format("No column with the specified name was found: {0}.", colName));
 			}
 
 			/// <summary>

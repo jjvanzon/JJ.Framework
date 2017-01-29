@@ -17,7 +17,7 @@ namespace NHibernate.Tool.hbm2ddl
 		private readonly IConnectionHelper connectionHelper;
 		private readonly Dialect.Dialect dialect;
 		private readonly List<Exception> exceptions;
-		private IFormatter formatter;
+		private readonly IFormatter formatter;
 
 		public SchemaUpdate(Configuration cfg) : this(cfg, cfg.Properties) {}
 

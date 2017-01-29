@@ -11,7 +11,7 @@ namespace JJ.Framework.Collections
         // and better debuggable by preventing enumerator creation 
         // and privately adding to a single list.
 
-        /// <summary> Does not include the collection it is executed upon in the result. <summary>
+        /// <summary> Does not include the collection it is executed upon in the result. </summary>
         public static IEnumerable<T> SelectRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
@@ -29,7 +29,7 @@ namespace JJ.Framework.Collections
             }
         }
 
-        /// <summary> Does not include the collection it is executed upon in the result. <summary>
+        /// <summary> Does not include the collection it is executed upon in the result. </summary>
         public static IEnumerable<T> SelectRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
@@ -49,7 +49,7 @@ namespace JJ.Framework.Collections
             }
         }
 
-        /// <summary> Does not include the item it is executed upon in the result. <summary>
+        /// <summary> Does not include the item it is executed upon in the result. </summary>
         public static IEnumerable<T> SelectRecursive<T>(this T sourceItem, Func<T, IList<T>> selector)
         {
             if (sourceItem == null) throw new ArgumentNullException(nameof(sourceItem));
@@ -63,7 +63,7 @@ namespace JJ.Framework.Collections
             }
         }
 
-        /// <summary> Does not include the item it is executed upon in the result. <summary>
+        /// <summary> Does not include the item it is executed upon in the result. </summary>
         public static IEnumerable<T> SelectRecursive<T>(this T sourceItem, Func<T, IEnumerable<T>> selector)
         {
             if (sourceItem == null) throw new ArgumentNullException(nameof(sourceItem));
@@ -77,24 +77,26 @@ namespace JJ.Framework.Collections
             }
         }
 
-        /// <summary> Includes the collection it is executed upon in the result. <summary>
+        /// <summary> Includes the collection it is executed upon in the result. </summary>
         public static IEnumerable<T> UnionRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
             if (selector == null) throw new ArgumentNullException(nameof(selector));
 
+            // ReSharper disable once PossibleMultipleEnumeration
             foreach (T item in collection)
             {
                 yield return item;
             }
 
+            // ReSharper disable once PossibleMultipleEnumeration
             foreach (T item in collection.SelectRecursive(selector))
             {
                 yield return item;
             }
         }
 
-        /// <summary> Includes the collection it is executed upon in the result. <summary>
+        /// <summary> Includes the collection it is executed upon in the result. </summary>
         public static IEnumerable<T> UnionRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
@@ -112,7 +114,7 @@ namespace JJ.Framework.Collections
             }
         }
 
-        /// <summary> Includes the item it is executed upon in the result. <summary>
+        /// <summary> Includes the item it is executed upon in the result. </summary>
         public static IEnumerable<T> UnionRecursive<T>(this T sourceItem, Func<T, IList<T>> selector)
         {
             if (sourceItem == null) throw new ArgumentNullException(nameof(sourceItem));
@@ -126,7 +128,7 @@ namespace JJ.Framework.Collections
             }
         }
 
-        /// <summary> Includes the item it is executed upon in the result. <summary>
+        /// <summary> Includes the item it is executed upon in the result. </summary>
         public static IEnumerable<T> UnionRecursive<T>(this T sourceItem, Func<T, IEnumerable<T>> selector)
         {
             if (sourceItem == null) throw new ArgumentNullException(nameof(sourceItem));

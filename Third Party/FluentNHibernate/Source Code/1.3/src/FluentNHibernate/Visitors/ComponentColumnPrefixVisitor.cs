@@ -7,7 +7,7 @@ namespace FluentNHibernate.Visitors
 {
     public class ComponentColumnPrefixVisitor : DefaultMappingModelVisitor
     {
-        private Stack<string> prefixes = new Stack<string>();
+        private readonly Stack<string> prefixes = new Stack<string>();
 
         public override void Visit(IComponentMapping mapping)
         {

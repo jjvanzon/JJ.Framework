@@ -34,7 +34,7 @@ namespace JJ.Framework.Common
             _sb.AppendFormat(format, args);
         }
 
-        private int _indentLevel = 0;
+        private int _indentLevel;
         public int IndentLevel
         {
             get { return _indentLevel; }
@@ -54,9 +54,7 @@ namespace JJ.Framework.Common
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string GetTabs()
         {
-            if (_tabString == null) return null;
-
-            string tabs = _tabString.Repeat(_indentLevel);
+            string tabs = _tabString?.Repeat(_indentLevel);
             return tabs;
         }
     }

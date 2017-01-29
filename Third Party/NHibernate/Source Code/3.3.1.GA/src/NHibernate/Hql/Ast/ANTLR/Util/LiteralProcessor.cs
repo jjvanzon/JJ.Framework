@@ -71,7 +71,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Util
 			}
 			else
 			{
-				Object value = ReflectHelper.GetConstantValue(text);
+				object value = ReflectHelper.GetConstantValue(text);
 				if (value == null)
 				{
 					throw new InvalidPathException("Invalid path: '" + text + "'");
@@ -185,10 +185,10 @@ namespace NHibernate.Hql.Ast.ANTLR.Util
                 }
             }
 
-			Decimal number;
+			decimal number;
 			try
 			{
-				number = Decimal.Parse(literalValue, NumberFormatInfo.InvariantInfo);
+				number = decimal.Parse(literalValue, NumberFormatInfo.InvariantInfo);
 			}
 			catch (Exception t)
 			{
@@ -345,12 +345,12 @@ namespace NHibernate.Hql.Ast.ANTLR.Util
 
 		interface IDecimalFormatter
 		{
-			string Format(Decimal number);
+			string Format(decimal number);
 		}
 
 		class ExactDecimalFormatter : IDecimalFormatter
 		{
-			public string Format(Decimal number)
+			public string Format(decimal number)
 			{
 				return number.ToString(NumberFormatInfo.InvariantInfo);
 			}
@@ -360,7 +360,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Util
 		{
 			private static readonly string FORMAT_STRING = "#0.0E0";
 
-			public string Format(Decimal number)
+			public string Format(decimal number)
 			{
 				try
 				{

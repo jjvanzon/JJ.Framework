@@ -11,8 +11,8 @@ namespace NHibernate.Criterion.Lambda
 
 	public class LambdaSubqueryBuilder
 	{
-		private string propertyName;
-		private object value;
+		private readonly string propertyName;
+		private readonly object value;
 
 		/// <summary>
 		/// Constructed with property name

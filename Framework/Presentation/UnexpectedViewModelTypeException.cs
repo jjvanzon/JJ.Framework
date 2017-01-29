@@ -27,7 +27,7 @@ namespace JJ.Framework.Presentation
                     viewModelTypeDescription = _viewModel.GetType().FullName;
                 }
 
-                return String.Format(MESSAGE, viewModelTypeDescription);
+                return string.Format(MESSAGE, viewModelTypeDescription);
             }
         }
     }

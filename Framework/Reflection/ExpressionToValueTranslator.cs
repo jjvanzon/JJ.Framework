@@ -81,7 +81,7 @@ namespace JJ.Framework.Reflection
                     }
 
                 default:
-                    throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", node.NodeType));
+                    throw new ArgumentException(string.Format("Value cannot be obtained from {0}.", node.NodeType));
             }
         }
 
@@ -106,7 +106,7 @@ namespace JJ.Framework.Reflection
                     return;
 
                 default:
-                    throw new NotSupportedException(String.Format("Member types other than FieldInfo and PropertyInfo are not supported. Member type = {0}", node.Member.GetType().Name));
+                    throw new NotSupportedException(string.Format("Member types other than FieldInfo and PropertyInfo are not supported. Member type = {0}", node.Member.GetType().Name));
             }
         }
 
@@ -190,7 +190,7 @@ namespace JJ.Framework.Reflection
                 return;
             }
 
-            throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.Operand.NodeType));
+            throw new ArgumentException(string.Format("Value cannot be obtained from NodeType {0}.", node.Operand.NodeType));
         }
 
         protected virtual void VisitArrayIndex(BinaryExpression node)
@@ -220,7 +220,7 @@ namespace JJ.Framework.Reflection
                     break;
 
                 default:
-                    throw new Exception(String.Format("ArrayIndex right side of NodeType '{0}' is not supported.", node.Right.NodeType));
+                    throw new Exception(string.Format("ArrayIndex right side of NodeType '{0}' is not supported.", node.Right.NodeType));
             }
 
             object arrayElement = array.GetValue(index);

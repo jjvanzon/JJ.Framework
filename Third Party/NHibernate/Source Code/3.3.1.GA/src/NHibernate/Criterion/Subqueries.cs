@@ -25,172 +25,172 @@ namespace NHibernate.Criterion
 			return new ExistsSubqueryExpression("not exists", dc);
 		}
 
-		public static AbstractCriterion PropertyEqAll(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyEqAll(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, "=", "all", dc);
 		}
 
-		public static AbstractCriterion PropertyIn(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyIn(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, "in", null, dc);
 		}
 
-		public static AbstractCriterion PropertyNotIn(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyNotIn(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, "not in", null, dc);
 		}
 
-		public static AbstractCriterion PropertyEq(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyEq(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, "=", null, dc);
 		}
 
-		public static AbstractCriterion PropertyNe(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyNe(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, "<>", null, dc);
 		}
 
-		public static AbstractCriterion PropertyGt(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyGt(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, ">", null, dc);
 		}
 
-		public static AbstractCriterion PropertyLt(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyLt(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, "<", null, dc);
 		}
 
-		public static AbstractCriterion PropertyGe(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyGe(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, ">=", null, dc);
 		}
 
-		public static AbstractCriterion PropertyLe(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyLe(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, "<=", null, dc);
 		}
 
-		public static AbstractCriterion PropertyGtAll(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyGtAll(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, ">", "all", dc);
 		}
 
-		public static AbstractCriterion PropertyLtAll(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyLtAll(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, "<", "all", dc);
 		}
 
-		public static AbstractCriterion PropertyGeAll(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyGeAll(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, ">=", "all", dc);
 		}
 
-		public static AbstractCriterion PropertyLeAll(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyLeAll(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, "<=", "all", dc);
 		}
 
-		public static AbstractCriterion PropertyGtSome(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyGtSome(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, ">", "some", dc);
 		}
 
-		public static AbstractCriterion PropertyLtSome(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyLtSome(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, "<", "some", dc);
 		}
 
-		public static AbstractCriterion PropertyGeSome(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyGeSome(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, ">=", "some", dc);
 		}
 
-		public static AbstractCriterion PropertyLeSome(String propertyName, DetachedCriteria dc)
+		public static AbstractCriterion PropertyLeSome(string propertyName, DetachedCriteria dc)
 		{
 			return new PropertySubqueryExpression(propertyName, "<=", "some", dc);
 		}
 
-		public static AbstractCriterion EqAll(Object value, DetachedCriteria dc)
+		public static AbstractCriterion EqAll(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, "=", "all", dc);
 		}
 
-		public static AbstractCriterion In(Object value, DetachedCriteria dc)
+		public static AbstractCriterion In(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, "in", null, dc);
 		}
 
-		public static AbstractCriterion NotIn(Object value, DetachedCriteria dc)
+		public static AbstractCriterion NotIn(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, "not in", null, dc);
 		}
 
-		public static AbstractCriterion Eq(Object value, DetachedCriteria dc)
+		public static AbstractCriterion Eq(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, "=", null, dc);
 		}
 
-		public static AbstractCriterion Gt(Object value, DetachedCriteria dc)
+		public static AbstractCriterion Gt(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, ">", null, dc);
 		}
 
-		public static AbstractCriterion Lt(Object value, DetachedCriteria dc)
+		public static AbstractCriterion Lt(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, "<", null, dc);
 		}
 
-		public static AbstractCriterion Ge(Object value, DetachedCriteria dc)
+		public static AbstractCriterion Ge(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, ">=", null, dc);
 		}
 
-		public static AbstractCriterion Le(Object value, DetachedCriteria dc)
+		public static AbstractCriterion Le(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, "<=", null, dc);
 		}
 
-		public static AbstractCriterion Ne(Object value, DetachedCriteria dc)
+		public static AbstractCriterion Ne(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, "<>", null, dc);
 		}
 
-		public static AbstractCriterion GtAll(Object value, DetachedCriteria dc)
+		public static AbstractCriterion GtAll(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, ">", "all", dc);
 		}
 
-		public static AbstractCriterion LtAll(Object value, DetachedCriteria dc)
+		public static AbstractCriterion LtAll(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, "<", "all", dc);
 		}
 
-		public static AbstractCriterion GeAll(Object value, DetachedCriteria dc)
+		public static AbstractCriterion GeAll(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, ">=", "all", dc);
 		}
 
-		public static AbstractCriterion LeAll(Object value, DetachedCriteria dc)
+		public static AbstractCriterion LeAll(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, "<=", "all", dc);
 		}
 
-		public static AbstractCriterion GtSome(Object value, DetachedCriteria dc)
+		public static AbstractCriterion GtSome(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, ">", "some", dc);
 		}
 
-		public static AbstractCriterion LtSome(Object value, DetachedCriteria dc)
+		public static AbstractCriterion LtSome(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, "<", "some", dc);
 		}
 
-		public static AbstractCriterion GeSome(Object value, DetachedCriteria dc)
+		public static AbstractCriterion GeSome(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, ">=", "some", dc);
 		}
 
-		public static AbstractCriterion LeSome(Object value, DetachedCriteria dc)
+		public static AbstractCriterion LeSome(object value, DetachedCriteria dc)
 		{
 			return new SimpleSubqueryExpression(value, "<=", "some", dc);
 		}

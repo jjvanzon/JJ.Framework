@@ -51,7 +51,7 @@ namespace JJ.Framework.Common
             Stream stream = assembly.GetManifestResourceStream(resourceName);
             if (stream == null)
             {
-                throw new Exception(String.Format("Embedded resource '{0}' not found.", GetEmbeddedResourceName(assembly, subNamespace, fileName)));
+                throw new Exception($"Embedded resource '{resourceName}' not found.");
             }
             return stream;
         }
@@ -59,15 +59,15 @@ namespace JJ.Framework.Common
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
         public static string GetEmbeddedResourceName(Assembly assembly, string subNamespace, string fileName)
         {
-            if (assembly == null) throw new ArgumentNullException("assembly");
-            if (String.IsNullOrEmpty(subNamespace))
+            if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+            if (string.IsNullOrEmpty(subNamespace))
             {
-                string embeddedResourceName = String.Format("{0}.{1}", assembly.GetName().Name, fileName);
+                string embeddedResourceName = $"{assembly.GetName().Name}.{fileName}";
                 return embeddedResourceName;
             }
             else
             {
-                string embeddedResourceName = String.Format("{0}.{1}.{2}", assembly.GetName().Name, subNamespace, fileName);
+                string embeddedResourceName = $"{assembly.GetName().Name}.{subNamespace}.{fileName}";
                 return embeddedResourceName;
             }
         }

@@ -94,7 +94,7 @@ namespace FluentNHibernate.Testing.Values
 
             if (actualList.Count != expectedList.Count)
             {
-                throw new ApplicationException(String.Format("Actual count ({0}) does not equal expected count ({1})", actualList.Count, expectedList.Count));
+                throw new ApplicationException(string.Format("Actual count ({0}) does not equal expected count ({1})", actualList.Count, expectedList.Count));
             }
 
             var equalsFunc = (EntityEqualityComparer != null)
@@ -108,7 +108,7 @@ namespace FluentNHibernate.Testing.Values
                     continue;
                 }
 
-                var message = String.Format("Expected '{0}' but got '{1}' at position {2}",
+                var message = string.Format("Expected '{0}' but got '{1}' at position {2}",
                     expectedList[i],
                     actualList[i],
                     i);

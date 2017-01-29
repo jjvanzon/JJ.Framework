@@ -11,7 +11,7 @@ namespace JJ.Framework.Reflection
 
         public string Name { get; private set; }
 
-        private IList<MethodCallParameterInfo> _parameters = new List<MethodCallParameterInfo>();
+        private readonly IList<MethodCallParameterInfo> _parameters = new List<MethodCallParameterInfo>();
         /// <summary>
         /// auto-instantiated
         /// </summary>

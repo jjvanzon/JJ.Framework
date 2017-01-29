@@ -18,8 +18,8 @@ namespace JJ.Framework.Reflection
 
         // GetImplementation
 
-        private static object _implementationsDictionaryLock = new object();
-        private static Dictionary<string, Type[]> _implementationsDictionary = new Dictionary<string, Type[]>();
+        private static readonly object _implementationsDictionaryLock = new object();
+        private static readonly Dictionary<string, Type[]> _implementationsDictionary = new Dictionary<string, Type[]>();
 
         public static Type GetImplementation(Assembly assembly, Type baseType)
         {
@@ -27,7 +27,7 @@ namespace JJ.Framework.Reflection
 
             if (type == null)
             {
-                throw new Exception(String.Format("No implementation of type '{0}' found in assembly '{1}'.", baseType, assembly.GetName().Name));
+                throw new Exception(string.Format("No implementation of type '{0}' found in assembly '{1}'.", baseType, assembly.GetName().Name));
             }
 
             return type;
@@ -44,7 +44,7 @@ namespace JJ.Framework.Reflection
 
             if (types.Length > 1)
             {
-                throw new Exception(String.Format("Multiple implementations of type '{0}' found in assembly '{1}'.", baseType, assembly.GetName().Name));
+                throw new Exception(string.Format("Multiple implementations of type '{0}' found in assembly '{1}'.", baseType, assembly.GetName().Name));
             }
 
             return types[0];
@@ -102,13 +102,13 @@ namespace JJ.Framework.Reflection
             Type itemType = TryGetItemType(collectionType);
             if (itemType == null)
             {
-                throw new Exception(String.Format("Type '{0}' has no item type.", collectionType.GetType().Name));
+                throw new Exception(string.Format("Type '{0}' has no item type.", collectionType.GetType().Name));
             }
             return itemType;
         }
 
-        private static object _itemTypeDictionaryLock = new object ();
-        private static Dictionary<Type, Type> _itemTypeDictionary = new Dictionary<Type, Type>();
+        private static readonly object _itemTypeDictionaryLock = new object ();
+        private static readonly Dictionary<Type, Type> _itemTypeDictionary = new Dictionary<Type, Type>();
 
         public static Type TryGetItemType(Type collectionType)
         {
@@ -217,7 +217,7 @@ namespace JJ.Framework.Reflection
                     return getterOrSetter.IsStatic;
 
                 default:
-                    throw new Exception(String.Format("IsStatic cannot be obtained from member of type '{0}'.", member.GetType().Name));
+                    throw new Exception(string.Format("IsStatic cannot be obtained from member of type '{0}'.", member.GetType().Name));
             }
         }
 

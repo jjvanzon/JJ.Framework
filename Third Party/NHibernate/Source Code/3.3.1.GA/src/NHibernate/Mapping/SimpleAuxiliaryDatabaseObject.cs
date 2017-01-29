@@ -20,13 +20,13 @@ namespace NHibernate.Mapping
 		private readonly string sqlCreateString;
 		private readonly string sqlDropString;
 
-		public SimpleAuxiliaryDatabaseObject(String sqlCreateString, String sqlDropString)
+		public SimpleAuxiliaryDatabaseObject(string sqlCreateString, string sqlDropString)
 		{
 			this.sqlCreateString = sqlCreateString;
 			this.sqlDropString = sqlDropString;
 		}
 
-		public SimpleAuxiliaryDatabaseObject(String sqlCreateString, String sqlDropString, HashedSet<string> dialectScopes)
+		public SimpleAuxiliaryDatabaseObject(string sqlCreateString, string sqlDropString, HashedSet<string> dialectScopes)
 			: base(dialectScopes)
 		{
 			this.sqlCreateString = sqlCreateString;

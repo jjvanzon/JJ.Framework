@@ -14,20 +14,20 @@ namespace NHibernate.Criterion
 	public abstract class SubqueryExpression : AbstractCriterion
 	{
 		private readonly CriteriaImpl criteriaImpl;
-		private readonly String quantifier;
+		private readonly string quantifier;
 		private readonly bool prefixOp;
-		private readonly String op;
+		private readonly string op;
 		private QueryParameters parameters;
 		private IType[] types;
 
 		[NonSerialized] private CriteriaQueryTranslator innerQuery;
 
-		protected SubqueryExpression(String op, String quantifier, DetachedCriteria dc)
+		protected SubqueryExpression(string op, string quantifier, DetachedCriteria dc)
 			:this(op, quantifier, dc, true)
 		{
 		}
 
-		protected SubqueryExpression(String op, String quantifier, DetachedCriteria dc, bool prefixOp)
+		protected SubqueryExpression(string op, string quantifier, DetachedCriteria dc, bool prefixOp)
 		{
 			criteriaImpl = dc.GetCriteriaImpl();
 			this.quantifier = quantifier;

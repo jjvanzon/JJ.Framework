@@ -36,8 +36,8 @@ namespace NHibernate.Tuple
 		/// property, represents new (i.e., un-saved) instances of the owning entity.</param>
 		/// <param name="identifierGenerator">The generator to use for id value generation.</param>
 		public IdentifierProperty(
-			String name,
-			String node,
+			string name,
+			string node,
 			IType type,
 			bool embedded,
 			IdentifierValue unsavedValue,

@@ -34,7 +34,7 @@ namespace NHibernate.Criterion
 			return projection.GetTypes(criteria, criteriaQuery);
 		}
 
-		public virtual IType[] GetTypes(String alias, ICriteria criteria, ICriteriaQuery criteriaQuery)
+		public virtual IType[] GetTypes(string alias, ICriteria criteria, ICriteriaQuery criteriaQuery)
 		{
 			return this.alias.Equals(alias)
 				? GetTypes(criteria, criteriaQuery)

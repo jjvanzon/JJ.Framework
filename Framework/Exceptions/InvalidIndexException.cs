@@ -11,7 +11,7 @@ namespace JJ.Framework.Exceptions
         private const string MESSAGE = "{0} {1} is an invalid index for {2} with count {3}.";
 
         public InvalidIndexException(Expression<Func<object>> listIndexExpression, Expression<Func<object>> countExpression)
-            : base(String.Format(
+            : base(string.Format(
                 MESSAGE, 
                 ExpressionHelper.GetText(listIndexExpression), 
                 ExpressionHelper.GetValue(listIndexExpression), 

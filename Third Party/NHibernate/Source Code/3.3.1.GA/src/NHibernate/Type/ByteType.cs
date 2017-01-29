@@ -57,7 +57,7 @@ namespace NHibernate.Type
 
 		public virtual object StringToObject(string xml)
 		{
-			return Byte.Parse(xml);
+			return byte.Parse(xml);
 		}
 
 		public override object FromStringValue(string xml)

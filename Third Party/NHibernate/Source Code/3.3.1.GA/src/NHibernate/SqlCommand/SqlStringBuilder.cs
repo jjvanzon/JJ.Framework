@@ -32,7 +32,7 @@ namespace NHibernate.SqlCommand
 	public class SqlStringBuilder : ISqlStringBuilder
 	{
 		// this holds the strings and parameters that make up the full sql statement.
-		private List<object> sqlParts;
+		private readonly List<object> sqlParts;
 
 		private AddingSqlStringVisitor addingVisitor;
 
@@ -323,7 +323,7 @@ namespace NHibernate.SqlCommand
 
 		private class AddingSqlStringVisitor : ISqlStringVisitor
 		{
-			private SqlStringBuilder parent;
+			private readonly SqlStringBuilder parent;
 
 			public AddingSqlStringVisitor(SqlStringBuilder parent)
 			{

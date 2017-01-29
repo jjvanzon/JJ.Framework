@@ -14,9 +14,9 @@ namespace NHibernate.Criterion.Lambda
 	{
 		public class LambdaBetweenBuilder
 		{
-			private ExpressionProcessor.ProjectionInfo projection;
-			private object lo;
-			private bool isNot;
+			private readonly ExpressionProcessor.ProjectionInfo projection;
+			private readonly object lo;
+			private readonly bool isNot;
 
 			public LambdaBetweenBuilder(ExpressionProcessor.ProjectionInfo projection, object lo, bool isNot)
 			{
@@ -36,7 +36,7 @@ namespace NHibernate.Criterion.Lambda
 			}
 		}
 
-		private ExpressionProcessor.ProjectionInfo projection;
+		private readonly ExpressionProcessor.ProjectionInfo projection;
 		private bool isNot;
 
 		private AbstractCriterion Process(AbstractCriterion criterion)

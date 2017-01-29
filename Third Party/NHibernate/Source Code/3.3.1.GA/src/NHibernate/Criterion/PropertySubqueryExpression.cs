@@ -10,9 +10,9 @@ namespace NHibernate.Criterion
 	[Serializable]
 	public class PropertySubqueryExpression : SubqueryExpression
 	{
-		private String propertyName;
+		private readonly string propertyName;
 
-		internal PropertySubqueryExpression(String propertyName, String op, String quantifier, DetachedCriteria dc)
+		internal PropertySubqueryExpression(string propertyName, string op, string quantifier, DetachedCriteria dc)
 			: base(op, quantifier, dc)
 		{
 			this.propertyName = propertyName;

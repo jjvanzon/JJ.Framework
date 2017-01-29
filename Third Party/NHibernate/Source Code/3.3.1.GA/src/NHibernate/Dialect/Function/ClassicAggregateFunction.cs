@@ -11,7 +11,7 @@ namespace NHibernate.Dialect.Function
 	[Serializable]
 	public class ClassicAggregateFunction : ISQLFunction, IFunctionGrammar
 	{
-		private IType returnType = null;
+		private readonly IType returnType = null;
 		private readonly string name;
 		protected readonly bool acceptAsterisk;
 

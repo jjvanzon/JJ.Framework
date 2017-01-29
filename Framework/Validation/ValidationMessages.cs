@@ -64,7 +64,7 @@ namespace JJ.Framework.Validation
 
         public void AddContainsMessage(string propertyKey, string propertyDisplayName, object valueOrName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.Contains(propertyDisplayName, valueOrName));
         }
 
@@ -89,7 +89,7 @@ namespace JJ.Framework.Validation
 
         public void AddExistsMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.Exists(propertyDisplayName));
         }
 
@@ -139,7 +139,7 @@ namespace JJ.Framework.Validation
 
         public void AddGreaterThanMessage(string propertyKey, string propertyDisplayName, object limitOrName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.GreaterThan(propertyDisplayName, limitOrName));
         }
 
@@ -158,7 +158,7 @@ namespace JJ.Framework.Validation
 
         public void AddGreaterThanOrEqualMessage(string propertyKey, string propertyDisplayName, object limitOrName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.GreaterThanOrEqual(propertyDisplayName, limitOrName));
         }
 
@@ -177,7 +177,7 @@ namespace JJ.Framework.Validation
 
         public void AddHasNullsMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.HasNulls(propertyDisplayName));
         }
 
@@ -189,7 +189,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsInvalidChoiceMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.InvalidChoice(propertyDisplayName));
         }
 
@@ -201,7 +201,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsInvalidMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.Invalid(propertyDisplayName));
         }
 
@@ -213,7 +213,7 @@ namespace JJ.Framework.Validation
 
         public void AddInvalidIndexMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.InvalidIndex(propertyDisplayName));
         }
 
@@ -225,7 +225,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsBrokenNumberMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.IsBrokenNumber(propertyDisplayName));
         }
 
@@ -237,7 +237,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsEmptyMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.IsEmpty(propertyDisplayName));
         }
 
@@ -249,7 +249,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsEqualMessage(string propertyKey, string propertyDisplayName, object valueOrName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.IsEqual(propertyDisplayName, valueOrName));
         }
 
@@ -268,7 +268,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsFilledInMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.IsFilledIn(propertyDisplayName));
         }
 
@@ -280,7 +280,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsInfinityMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.IsInfinity(propertyDisplayName));
         }
 
@@ -292,7 +292,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsInListMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.IsInList(propertyDisplayName));
         }
 
@@ -304,7 +304,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsIntegerMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.IsInteger(propertyDisplayName));
         }
 
@@ -316,7 +316,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsNaNMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.IsNaN(propertyDisplayName));
         }
 
@@ -328,7 +328,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsOfTypeMessage(string propertyKey, string propertyDisplayName, string typeName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.IsOfType(propertyDisplayName, typeName));
         }
 
@@ -353,7 +353,7 @@ namespace JJ.Framework.Validation
 
         public void AddIsZeroMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.IsZero(propertyDisplayName));
         }
 
@@ -365,7 +365,7 @@ namespace JJ.Framework.Validation
 
         public void AddLengthExceededMessage(string propertyKey, string propertyDisplayName, int length)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.LengthExceeded(propertyDisplayName, length));
         }
 
@@ -377,7 +377,7 @@ namespace JJ.Framework.Validation
 
         public void AddLessThanMessage(string propertyKey, string propertyDisplayName, object limitOrName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.LessThan(propertyDisplayName, limitOrName));
         }
 
@@ -396,7 +396,7 @@ namespace JJ.Framework.Validation
 
         public void AddLessThanOrEqualMessage(string propertyKey, string propertyDisplayName, object limitOrName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.LessThanOrEqual(propertyDisplayName, limitOrName));
         }
 
@@ -421,15 +421,15 @@ namespace JJ.Framework.Validation
 
         public void AddNotBothValidationMessage(string propertyKey, string propertyDisplayName1, string propertyDisplayName2)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName1)) throw new NullOrEmptyException(() => propertyDisplayName1);
-            if (String.IsNullOrEmpty(propertyDisplayName2)) throw new NullOrEmptyException(() => propertyDisplayName2);
+            if (string.IsNullOrEmpty(propertyDisplayName1)) throw new NullOrEmptyException(() => propertyDisplayName1);
+            if (string.IsNullOrEmpty(propertyDisplayName2)) throw new NullOrEmptyException(() => propertyDisplayName2);
 
             Add(propertyKey, ValidationMessageFormatter.NotBoth(propertyDisplayName1, propertyDisplayName2));
         }
 
         public void AddNotBrokenNumberMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotBrokenNumber(propertyDisplayName));
         }
 
@@ -441,7 +441,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotContainsMessage(string propertyKey, string propertyDisplayName, object valueOrName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotContains(propertyDisplayName, valueOrName));
         }
 
@@ -460,7 +460,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotEmptyMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotEmpty(propertyDisplayName));
         }
 
@@ -472,7 +472,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotEqualMessage(string propertyKey, string propertyDisplayName, object valueOrName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotEqual(propertyDisplayName, valueOrName));
         }
 
@@ -497,7 +497,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotExistsMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotExists(propertyDisplayName));
         }
 
@@ -509,13 +509,13 @@ namespace JJ.Framework.Validation
 
         public void AddNotExistsMessage(string propertyKey, string propertyDisplayName, object value)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotExists(propertyDisplayName, value));
         }
 
         public void AddRequiredMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotFilledIn(propertyDisplayName));
         }
 
@@ -527,7 +527,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotInListMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotInList(propertyDisplayName));
         }
 
@@ -539,7 +539,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotInListMessage(string propertyKey, string propertyDisplayName, object value)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotInList(propertyDisplayName, value));
         }
 
@@ -551,7 +551,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotInListMessage<TItem>(string propertyKey, string propertyDisplayName, IEnumerable<TItem> possibleValues)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotInList(propertyDisplayName, possibleValues));
         }
 
@@ -563,7 +563,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotInListMessage<TItem>(string propertyKey, string propertyDisplayName, TItem value, IEnumerable<TItem> possibleValues)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotInList(propertyDisplayName, value, possibleValues));
         }
 
@@ -575,7 +575,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotIntegerMessage(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotInteger(propertyDisplayName));
         }
 
@@ -587,7 +587,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotOfTypeMessage(string propertyKey, string propertyDisplayName, string typeName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotOfType(propertyDisplayName, typeName));
         }
 
@@ -612,7 +612,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotUniqueMessageSingular(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotUniqueSingular(propertyDisplayName));
         }
 
@@ -624,7 +624,7 @@ namespace JJ.Framework.Validation
 
         public void AddNotUniqueMessagePlural(string propertyKey, string propertyDisplayName)
         {
-            if (String.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationMessageFormatter.NotUniquePlural(propertyDisplayName));
         }
 

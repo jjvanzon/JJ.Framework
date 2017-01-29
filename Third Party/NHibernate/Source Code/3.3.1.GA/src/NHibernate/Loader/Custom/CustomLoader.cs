@@ -26,7 +26,7 @@ namespace NHibernate.Loader.Custom
 
 		private readonly SqlString sql;
 		private readonly ISet<string> querySpaces = new HashedSet<string>();
-		private List<IParameterSpecification> parametersSpecifications;
+		private readonly List<IParameterSpecification> parametersSpecifications;
 
 		private readonly IQueryable[] entityPersisters;
 		private readonly int[] entityOwners;

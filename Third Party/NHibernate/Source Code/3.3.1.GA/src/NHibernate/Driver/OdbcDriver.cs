@@ -40,7 +40,7 @@ namespace NHibernate.Driver
 
 		public override string NamedPrefix
 		{
-			get { return String.Empty; }
+			get { return string.Empty; }
 		}
 
 		protected static void SetVariableLengthParameterSize(IDbDataParameter dbParam, SqlType sqlType)

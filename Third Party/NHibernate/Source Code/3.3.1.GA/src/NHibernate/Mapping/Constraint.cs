@@ -160,7 +160,7 @@ namespace NHibernate.Mapping
 			return true;
 		}
 
-		public override System.String ToString()
+		public override string ToString()
 		{
 			return
 				string.Format("{0}({1}{2}) as {3}", GetType().FullName, Table.Name,

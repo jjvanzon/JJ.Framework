@@ -94,7 +94,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		}
 
 		public FromElement CreateCollectionElementsJoin(IQueryableCollection queryableCollection,
-																						 String collectionName)
+																						 string collectionName)
 		{
 			JoinSequence collectionJoinSequence = _fromClause.SessionFactoryHelper.CreateCollectionJoinSequence(queryableCollection, collectionName);
 			_queryableCollection = queryableCollection;

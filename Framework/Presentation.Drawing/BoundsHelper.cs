@@ -12,12 +12,12 @@ namespace JJ.Framework.Presentation.Drawing
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float CorrectCoordinate(float value)
         {
-            if (Single.IsNaN(value))
+            if (float.IsNaN(value))
             {
                 return 0f;
             }
 
-            if (Single.IsInfinity(value))
+            if (float.IsInfinity(value))
             {
                 return 0f;
             }
@@ -50,7 +50,7 @@ namespace JJ.Framework.Presentation.Drawing
         {
             length = CorrectCoordinate(length);
 
-            if (length == 0f)
+            if (Math.Abs(length) < VERY_SMALL_VALUE)
             {
                 return VERY_SMALL_VALUE;
             }

@@ -15,7 +15,7 @@ namespace NHibernate.Driver
 		private readonly string multipleQueriesSeparator;
 		private bool hasReturnParameter;
 		private bool foundReturnParameter = false;
-		private IList<string> assignedParameterNames = new List<string>();
+		private readonly IList<string> assignedParameterNames = new List<string>();
 
 		public SqlStringFormatter(ISqlParameterFormatter formatter, string multipleQueriesSeparator)
 		{
@@ -49,7 +49,7 @@ namespace NHibernate.Driver
 			if (hasReturnParameter && !foundReturnParameter)
 			{
 				result.Append(parameter);
-				assignedParameterNames.Add(String.Empty);
+				assignedParameterNames.Add(string.Empty);
 				foundReturnParameter = true;
 				return;
 			}

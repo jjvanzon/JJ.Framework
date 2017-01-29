@@ -12,7 +12,7 @@ namespace NHibernate.Criterion.Lambda
 	public class QueryOverProjectionBuilder<T>
 	{
 
-		private ProjectionList projectionList;
+		private readonly ProjectionList projectionList;
 		private IProjection lastProjection = null;
 
 		public QueryOverProjectionBuilder()

@@ -18,7 +18,7 @@ namespace JJ.Framework.Data
         private const string CUSTOM_CONFIGURATION_MANAGER_TYPE_STRING = "JJ.Framework.Configuration.CustomConfigurationManager";
         private const string GET_SECTION_METHOD_NAME = "GetSection";
 
-        private static object _lock = new object();
+        private static readonly object _lock = new object();
         private static PersistenceConfiguration _persistenceConfiguration;
 
         public static PersistenceConfiguration GetPersistenceConfiguration()
@@ -35,13 +35,13 @@ namespace JJ.Framework.Data
                 Type type = assembly.GetType(CUSTOM_CONFIGURATION_MANAGER_TYPE_STRING);
                 if (type == null)
                 {
-                    throw new Exception(String.Format(@"Type '{0}' not found in assembly '{1}'.", CUSTOM_CONFIGURATION_MANAGER_TYPE_STRING, assembly.GetName().Name));
+                    throw new Exception($@"Type '{CUSTOM_CONFIGURATION_MANAGER_TYPE_STRING}' not found in assembly '{assembly.GetName().Name}'.");
                 }
 
                 MethodInfo openGenericMethod = type.GetMethod(GET_SECTION_METHOD_NAME, BindingFlags.Public | BindingFlags.Static, null, Type.EmptyTypes, null);
                 if (openGenericMethod == null)
                 {
-                    throw new Exception(String.Format("Method '{0}' not found in type '{1}'.", GET_SECTION_METHOD_NAME, type.Name));
+                    throw new Exception($"Method '{GET_SECTION_METHOD_NAME}' not found in type '{type.Name}'.");
                 }
 
                 MethodInfo closedGenericMethod = openGenericMethod.MakeGenericMethod(typeof(PersistenceConfiguration));

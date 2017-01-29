@@ -221,8 +221,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (element == null) throw new NullException(() => element);
 
-            float value = ScaleHelper.PixelsToX(element.Diagram, xInPixels);
-            value = ScaleHelper.AbsoluteToRelativeX(element, value);
+            float value = PixelsToX(element.Diagram, xInPixels);
+            value = AbsoluteToRelativeX(element, value);
             return value;
         }
 
@@ -230,8 +230,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (element == null) throw new NullException(() => element);
 
-            float value = ScaleHelper.PixelsToY(element.Diagram, yInPixels);
-            value = ScaleHelper.AbsoluteToRelativeY(element, value);
+            float value = PixelsToY(element.Diagram, yInPixels);
+            value = AbsoluteToRelativeY(element, value);
             return value;
         }
 
@@ -239,8 +239,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (element == null) throw new NullException(() => element);
 
-            float value = ScaleHelper.RelativeToAbsoluteX(element, relativeX);
-            value = ScaleHelper.XToPixels(element.Diagram, value);
+            float value = RelativeToAbsoluteX(element, relativeX);
+            value = XToPixels(element.Diagram, value);
             return value;
         }
 
@@ -248,8 +248,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (element == null) throw new NullException(() => element);
 
-            float value = ScaleHelper.RelativeToAbsoluteY(element, relativeY);
-            value = ScaleHelper.YToPixels(element.Diagram, value);
+            float value = RelativeToAbsoluteY(element, relativeY);
+            value = YToPixels(element.Diagram, value);
             return value;
         }
 
@@ -258,7 +258,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             if (element == null) throw new NullException(() => element);
 
             // Just delegates to the Diagram method. These methods are here for syntactic sugar.
-            float value = ScaleHelper.PixelsToX(element.Diagram, xInPixels);
+            float value = PixelsToX(element.Diagram, xInPixels);
             return value;
         }
 
@@ -267,7 +267,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             if (element == null) throw new NullException(() => element);
 
             // Just delegates to the Diagram method. These methods are here for syntactic sugar.
-            float value = ScaleHelper.PixelsToY(element.Diagram, yInPixels);
+            float value = PixelsToY(element.Diagram, yInPixels);
             return value;
         }
 
@@ -276,7 +276,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             if (element == null) throw new NullException(() => element);
 
             // Just delegates to the Diagram method. These methods are here for syntactic sugar.
-            float value = ScaleHelper.XToPixels(element.Diagram, absoluteX);
+            float value = XToPixels(element.Diagram, absoluteX);
             return value;
         }
 
@@ -285,7 +285,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             if (element == null) throw new NullException(() => element);
 
             // Just delegates to the Diagram method. These methods are here for syntactic sugar.
-            float value = ScaleHelper.YToPixels(element.Diagram, absoluteY);
+            float value = YToPixels(element.Diagram, absoluteY);
             return value;
         }
     }

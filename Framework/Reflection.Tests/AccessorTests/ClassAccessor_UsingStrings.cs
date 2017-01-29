@@ -4,7 +4,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
     internal class ClassAccessor_UsingStrings : ClassAccessorBase
     {
-        private static Accessor _staticAccessor;
+        private static readonly Accessor _staticAccessor;
 
         public ClassAccessor_UsingStrings(Class obj)
             : base(obj)

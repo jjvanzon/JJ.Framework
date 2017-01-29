@@ -155,7 +155,7 @@ namespace NHibernate.Engine
 		/// determination, instead assume that value; the client code must be 
 		/// prepared to "recover" in the case that this assumed result is incorrect.
 		/// </remarks>
-		public static bool IsNotTransient(string entityName, System.Object entity, bool? assumed, ISessionImplementor session)
+		public static bool IsNotTransient(string entityName, object entity, bool? assumed, ISessionImplementor session)
 		{
 			if (entity.IsProxy())
 				return true;
@@ -212,7 +212,7 @@ namespace NHibernate.Engine
 			}
 
 			// hit the database, after checking the session cache for a snapshot
-			System.Object[] snapshot =
+			object[] snapshot =
 				session.PersistenceContext.GetDatabaseSnapshot(persister.GetIdentifier(entity, session.EntityMode), persister);
 			return snapshot == null;
 		}

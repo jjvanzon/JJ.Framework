@@ -229,9 +229,9 @@ namespace NHibernate.Hql.Ast.ANTLR.Loader
 			int size = fromElementList.Count;
 			_entityPersisters = new IQueryable[size];
 			_entityEagerPropertyFetches = new bool[size];
-			_entityAliases = new String[size];
-			_sqlAliases = new String[size];
-			_sqlAliasSuffixes = new String[size];
+			_entityAliases = new string[size];
+			_sqlAliases = new string[size];
+			_sqlAliasSuffixes = new string[size];
 			_includeInSelect = new bool[size];
 			_owners = new int[size];
 			_ownerAssociationTypes = new EntityType[size];
@@ -298,8 +298,8 @@ namespace NHibernate.Hql.Ast.ANTLR.Loader
 			{
 				for (int i = 0; i < results.Count; i++)
 				{
-					var row = (Object[]) results[i];
-					Object result = holderInstantiator.Instantiate(row);
+					var row = (object[]) results[i];
+					object result = holderInstantiator.Instantiate(row);
 					results[i] = result;
 				}
 

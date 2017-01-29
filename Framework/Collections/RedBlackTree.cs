@@ -32,12 +32,9 @@ namespace JJ.Framework.Collections
     {
         private RedBlackTreeNode<TKey, TValue> _root;
 
-        public RedBlackTree()
-        { }
-
         private static RedBlackTreeColorEnum NullCoalescedNodeColor(RedBlackTreeNode<TKey, TValue> node)
         {
-            return node == null ? RedBlackTreeColorEnum.Black : node.Color;
+            return node?.Color ?? RedBlackTreeColorEnum.Black;
         }
 
         public TValue Lookup(TKey key)
@@ -121,7 +118,7 @@ namespace JJ.Framework.Collections
                 node = predecessor;
             }
 
-            RedBlackTreeNode<TKey, TValue> child = node.Right == null ? node.Left : node.Right;
+            RedBlackTreeNode<TKey, TValue> child = node.Right ?? node.Left;
             if (NullCoalescedNodeColor(node) == RedBlackTreeColorEnum.Black)
             {
                 node.Color = NullCoalescedNodeColor(child);
@@ -171,7 +168,7 @@ namespace JJ.Framework.Collections
                 {
                     return node;
                 }
-                else if (compResult < 0)
+                if (compResult < 0)
                 {
                     node = node.Left;
                 }
@@ -180,7 +177,8 @@ namespace JJ.Framework.Collections
                     node = node.Right;
                 }
             }
-            return node;
+
+            return null;
         }
 
         private void RotateLeft(RedBlackTreeNode<TKey, TValue> node)
@@ -255,10 +253,8 @@ namespace JJ.Framework.Collections
             {
                 return; // Tree is still valid
             }
-            else
-            {
-                InsertCase3(node);
-            }
+
+            InsertCase3(node);
         }
 
         private void InsertCase3(RedBlackTreeNode<TKey, TValue> node)
@@ -330,10 +326,8 @@ namespace JJ.Framework.Collections
             {
                 return;
             }
-            else
-            {
-                DeleteCase2(node);
-            }
+
+            DeleteCase2(node);
         }
 
         private void DeleteCase2(RedBlackTreeNode<TKey, TValue> node)

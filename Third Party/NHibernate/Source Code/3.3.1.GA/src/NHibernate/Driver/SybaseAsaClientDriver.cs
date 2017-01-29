@@ -30,7 +30,7 @@ namespace NHibernate.Driver
 
 		public override string NamedPrefix
 		{
-			get { return String.Empty; }
+			get { return string.Empty; }
 		}
 	}
 }

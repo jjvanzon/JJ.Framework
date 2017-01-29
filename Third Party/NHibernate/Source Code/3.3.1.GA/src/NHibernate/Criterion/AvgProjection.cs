@@ -12,7 +12,7 @@ namespace NHibernate.Criterion
 	public class AvgProjection : AggregateProjection
 	{
 		public AvgProjection(IProjection projection) : base("avg", projection) {}
-		public AvgProjection(String propertyName) : base("avg", propertyName) {}
+		public AvgProjection(string propertyName) : base("avg", propertyName) {}
 
 		public override SqlString ToSqlString(ICriteria criteria, int loc, ICriteriaQuery criteriaQuery,
 		                                      IDictionary<string, IFilter> enabledFilters)

@@ -18,7 +18,7 @@ namespace NHibernate.Dialect.Function
 	[Serializable]
 	public class StandardSQLFunction : ISQLFunction
 	{
-		private IType returnType = null;
+		private readonly IType returnType = null;
 		protected readonly string name;
 
 		/// <summary>

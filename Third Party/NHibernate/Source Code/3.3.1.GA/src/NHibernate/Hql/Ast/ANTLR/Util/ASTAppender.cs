@@ -18,7 +18,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Util
 			this.parent = parent;
 		}
 
-		public IASTNode Append(int type, String text, bool appendIfEmpty)
+		public IASTNode Append(int type, string text, bool appendIfEmpty)
 		{
 			if (text != null && (appendIfEmpty || text.Length > 0))
 			{

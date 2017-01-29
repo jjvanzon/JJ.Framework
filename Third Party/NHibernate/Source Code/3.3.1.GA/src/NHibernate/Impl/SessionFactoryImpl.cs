@@ -552,7 +552,7 @@ namespace NHibernate.Impl
 			return GetEntityPersister(className).IdentifierPropertyName;
 		}
 
-		public IType[] GetReturnTypes(String queryString)
+		public IType[] GetReturnTypes(string queryString)
 		{
 			return
 				queryPlanCache.GetHQLQueryPlan(queryString, false, new CollectionHelper.EmptyMapClass<string, IFilter>()).

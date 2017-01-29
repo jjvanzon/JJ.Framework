@@ -210,7 +210,7 @@ namespace NHibernate.Criterion
 		/// Project SQL function abs()
 		/// Note: throws an exception outside of a QueryOver expression
 		/// </summary>
-		public static Int64 Abs(this Int64 numericProperty)
+		public static long Abs(this long numericProperty)
 		{
 			throw new Exception("Not to be used directly - use inside QueryOver expression");
 		}

@@ -116,7 +116,7 @@ namespace NHibernate.Util
 		{
 		}
 
-		private static object theNull = new NullClass();
+		private static readonly object theNull = new NullClass();
 
 		/// <summary></summary>
 		public static object Null

@@ -14,7 +14,7 @@ namespace NHibernate.Criterion
 	{
 		private bool distinct;
 
-		protected internal CountProjection(String prop) : base("count", prop) {}
+		protected internal CountProjection(string prop) : base("count", prop) {}
 		protected internal CountProjection(IProjection projection) : base("count", projection) {}
 
 		public override IType[] GetTypes(ICriteria criteria, ICriteriaQuery criteriaQuery)

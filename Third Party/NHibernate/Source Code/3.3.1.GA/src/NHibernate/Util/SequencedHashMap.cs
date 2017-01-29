@@ -84,7 +84,7 @@ namespace NHibernate.Util
 		[Serializable]
 		private class Entry
 		{
-			private object _key;
+			private readonly object _key;
 			private object _value;
 
 			private Entry _next = null;
@@ -161,12 +161,12 @@ namespace NHibernate.Util
 		/// <summary>
 		/// Sentinel used to hold the head and tail of the list of entries
 		/// </summary>
-		private Entry _sentinel;
+		private readonly Entry _sentinel;
 
 		/// <summary>
 		/// Map of keys to entries
 		/// </summary>
-		private Hashtable _entries;
+		private readonly Hashtable _entries;
 
 		/// <summary>
 		/// Holds the number of modifications that have occurred to the map, excluding modifications
@@ -528,7 +528,7 @@ namespace NHibernate.Util
 
 		private class KeyCollection : ICollection
 		{
-			private SequencedHashMap _parent;
+			private readonly SequencedHashMap _parent;
 
 			public KeyCollection(SequencedHashMap parent)
 			{
@@ -580,7 +580,7 @@ namespace NHibernate.Util
 
 		private class ValuesCollection : ICollection
 		{
-			private SequencedHashMap _parent;
+			private readonly SequencedHashMap _parent;
 
 			public ValuesCollection(SequencedHashMap parent)
 			{
@@ -651,10 +651,10 @@ namespace NHibernate.Util
 
 		private class OrderedEnumerator : IDictionaryEnumerator
 		{
-			private SequencedHashMap _parent;
-			private ReturnType _returnType;
+			private readonly SequencedHashMap _parent;
+			private readonly ReturnType _returnType;
 			private Entry _pos;
-			private long _expectedModCount;
+			private readonly long _expectedModCount;
 
 			public OrderedEnumerator(SequencedHashMap parent, ReturnType returnType)
 			{

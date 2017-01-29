@@ -7,7 +7,7 @@ namespace JJ.Framework.Data.SqlClient
 {
     internal class SqlExecutorWithSqlConnection : ISqlExecutor
     {
-        private SqlConnection _sqlConnection;
+        private readonly SqlConnection _sqlConnection;
 
         public SqlExecutorWithSqlConnection(SqlConnection sqlConnection)
         {

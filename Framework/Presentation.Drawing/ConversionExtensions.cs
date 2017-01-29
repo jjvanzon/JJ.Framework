@@ -122,7 +122,7 @@ namespace JJ.Framework.Presentation.Drawing
             {
                 case DashStyleEnum.Dotted:
                     destPen.DashStyle = DashStyle.Dot;
-                    destPen.DashPattern = new float[] { 1, 1.5f };
+                    destPen.DashPattern = new[] { 1, 1.5f };
                     break;
 
                 case DashStyleEnum.Dashed:
@@ -154,24 +154,18 @@ namespace JJ.Framework.Presentation.Drawing
         {
             if (sourceTextStyle == null) throw new NullException(() => sourceTextStyle);
 
-            var destStringFormat = new StringFormat();
-
-            destStringFormat.Alignment = sourceTextStyle.HorizontalAlignmentEnum.ToSystemDrawing();
-            destStringFormat.LineAlignment = sourceTextStyle.VerticalAlignmentEnum.ToSystemDrawing();
+            var destStringFormat = new StringFormat
+            {
+                Alignment = sourceTextStyle.HorizontalAlignmentEnum.ToSystemDrawing(),
+                LineAlignment = sourceTextStyle.VerticalAlignmentEnum.ToSystemDrawing()
+            };
 
             if (sourceTextStyle.Wrap == false)
             {
                 destStringFormat.FormatFlags |= StringFormatFlags.NoWrap;
             }
 
-            if (sourceTextStyle.Abbreviate)
-            {
-                destStringFormat.Trimming = StringTrimming.EllipsisCharacter;
-            }
-            else
-            {
-                destStringFormat.Trimming = StringTrimming.None;
-            }
+            destStringFormat.Trimming = sourceTextStyle.Abbreviate ? StringTrimming.EllipsisCharacter : StringTrimming.None;
 
             return destStringFormat;
         }

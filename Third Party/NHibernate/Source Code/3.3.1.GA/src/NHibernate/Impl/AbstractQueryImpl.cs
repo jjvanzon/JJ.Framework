@@ -681,7 +681,7 @@ namespace NHibernate.Impl
 					}
 					else if (retType.IsArray)
 					{
-						SetParameterList(namedParam, (Object[])obj);
+						SetParameterList(namedParam, (object[])obj);
 					}
 					else
 					{

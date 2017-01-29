@@ -10,7 +10,7 @@ namespace NHibernate.Criterion
 	[Serializable]
 	public class IdentifierProjection : SimpleProjection
 	{
-		private bool grouped;
+		private readonly bool grouped;
 
 		protected internal IdentifierProjection(bool grouped)
 		{

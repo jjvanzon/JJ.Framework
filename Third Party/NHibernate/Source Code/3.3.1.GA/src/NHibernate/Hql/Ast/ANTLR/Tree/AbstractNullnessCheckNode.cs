@@ -66,7 +66,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			Type = expansionConnectorType;
 			Text = expansionConnectorText;
 
-			String[] mutationTexts = ExtractMutationTexts( Operand, operandColumnSpan );
+			string[] mutationTexts = ExtractMutationTexts( Operand, operandColumnSpan );
 
 			IASTNode container = this;
 			container.ClearChildren();
@@ -111,7 +111,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		{
 			if ( operand is ParameterNode ) 
 			{
-				String[] rtn = new String[count];
+				string[] rtn = new string[count];
 				for ( int i = 0; i < count; i++ ) 
 				{
 					rtn[i] = "?";

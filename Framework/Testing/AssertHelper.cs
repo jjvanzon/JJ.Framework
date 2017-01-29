@@ -39,7 +39,7 @@ namespace JJ.Framework.Testing
         {
             T b = ExpressionHelper.GetValue(bExpression);
 
-            if (Object.Equals(a, b))
+            if (object.Equals(a, b))
             {
                 string name = ExpressionHelper.GetText(bExpression);
                 string message = TestHelper.FormatTestedPropertyMessage(name);
@@ -50,12 +50,12 @@ namespace JJ.Framework.Testing
 
         public static void AreEqual<T>(T expected, Expression<Func<T>> actualExpression)
         {
-            ExpectedActualCheck((actual) => Object.Equals(expected, actual), "AreEqual", expected, actualExpression);
+            ExpectedActualCheck((actual) => object.Equals(expected, actual), "AreEqual", expected, actualExpression);
         }
 
         public static void AreSame<T>(T expected, Expression<Func<T>> actualExpression)
         {
-            ExpectedActualCheck((actual) => Object.ReferenceEquals(expected, actual), "AreSame", expected, actualExpression);
+            ExpectedActualCheck((actual) => object.ReferenceEquals(expected, actual), "AreSame", expected, actualExpression);
         }
 
         public static void IsTrue(Expression<Func<bool>> expression)
@@ -80,12 +80,12 @@ namespace JJ.Framework.Testing
 
         public static void IsNullOrEmpty(Expression<Func<string>> expression)
         {
-            Check(x => String.IsNullOrEmpty(x), "IsNullOrEmpty", expression);
+            Check(x => string.IsNullOrEmpty(x), "IsNullOrEmpty", expression);
         }
 
         public static void NotNullOrEmpty(Expression<Func<string>> expression)
         {
-            Check(x => !String.IsNullOrEmpty(x), "NotNullOrEmpty", expression);
+            Check(x => !string.IsNullOrEmpty(x), "NotNullOrEmpty", expression);
         }
 
         public static void IsOfType<T>(Expression<Func<object>> expression)
@@ -221,29 +221,29 @@ namespace JJ.Framework.Testing
         private static string GetNotEqualFailedMessage<T>(T a, string message)
         {
             return
-                String.Format("Assert.NotEqual failed. Both values are <{0}>.{1}{2}",
+                string.Format("Assert.NotEqual failed. Both values are <{0}>.{1}{2}",
                     a != null ? a.ToString() : "null",
-                    !String.IsNullOrEmpty(message) ? " " : "",
+                    !string.IsNullOrEmpty(message) ? " " : "",
                     message);
         }
 
         private static string GetExpectedActualMessage<T>(string methodName, T expected, T actual, string message)
         {
             return
-                String.Format("Assert.{0} failed. Expected <{1}>, Actual <{2}>.{3}{4}",
+                string.Format("Assert.{0} failed. Expected <{1}>, Actual <{2}>.{3}{4}",
                     methodName,
                     expected != null ? expected.ToString() : "null",
                     actual != null ? actual.ToString() : "null",
-                    !String.IsNullOrEmpty(message) ? " " : "",
+                    !string.IsNullOrEmpty(message) ? " " : "",
                     message);
         }
 
         private static string GetFailureMessage(string methodName, string message)
         {
             return
-                String.Format("Assert.{0} failed.{1}{2}",
+                string.Format("Assert.{0} failed.{1}{2}",
                     methodName,
-                    !String.IsNullOrEmpty(message) ? " " : "",
+                    !string.IsNullOrEmpty(message) ? " " : "",
                     message);
         }
     }

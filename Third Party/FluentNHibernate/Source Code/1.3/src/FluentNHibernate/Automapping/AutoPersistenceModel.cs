@@ -466,7 +466,7 @@ namespace FluentNHibernate.Automapping
     public class AutomappedComponentResolver : IComponentReferenceResolver
     {
         readonly AutoMapper mapper;
-        IAutomappingConfiguration cfg;
+        readonly IAutomappingConfiguration cfg;
 
         public AutomappedComponentResolver(AutoMapper mapper, IAutomappingConfiguration cfg)
         {

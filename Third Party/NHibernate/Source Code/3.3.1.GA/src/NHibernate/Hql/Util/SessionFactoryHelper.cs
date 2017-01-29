@@ -81,7 +81,7 @@ namespace NHibernate.Hql.Util
 		/// </summary>
 		/// <param name="role">The collection role name.</param>
 		/// <returns>The defined CollectionPersister for this collection role, or null.</returns>
-		public IQueryableCollection GetCollectionPersister(String role)
+		public IQueryableCollection GetCollectionPersister(string role)
 		{
 			try
 			{
@@ -103,7 +103,7 @@ namespace NHibernate.Hql.Util
 		/// </summary>
 		/// <param name="name">The class or entity name</param>
 		/// <returns>The defined persister for this entity</returns>
-		public IEntityPersister RequireClassPersister(String name)
+		public IEntityPersister RequireClassPersister(string name)
 		{
 			IEntityPersister cp = FindEntityPersisterByName(name);
 			if (cp == null)
@@ -119,7 +119,7 @@ namespace NHibernate.Hql.Util
 		/// </summary>
 		/// <param name="name">The class or entity name</param>
 		/// <returns>The defined persister for this entity, or null if none found.</returns>
-		private IEntityPersister FindEntityPersisterByName(String name)
+		private IEntityPersister FindEntityPersisterByName(string name)
 		{
 			// First, try to get the persister using the given name directly.
 			try
@@ -132,7 +132,7 @@ namespace NHibernate.Hql.Util
 			}
 
 			// If that didn't work, try using the 'import' name.
-			String importedClassName = sfi.GetImportedClassName(name);
+			string importedClassName = sfi.GetImportedClassName(name);
 			if (importedClassName == null)
 			{
 				return null;
@@ -160,7 +160,7 @@ namespace NHibernate.Hql.Util
 		/// </summary>
 		/// <param name="role">The collection role for whcih to retrieve the property mapping.</param>
 		/// <returns>The property mapping.</returns>
-		public IPropertyMapping GetCollectionPropertyMapping(String role)
+		public IPropertyMapping GetCollectionPropertyMapping(string role)
 		{
 			return collectionPropertyMappingByRole[role];
 		}
@@ -173,7 +173,7 @@ namespace NHibernate.Hql.Util
 		* @return The defined CollectionPersister for this collection role.
 		* @throws QueryException Indicates that the collection persister could not be found.
 		*/
-		public IQueryableCollection RequireQueryableCollection(String role)
+		public IQueryableCollection RequireQueryableCollection(string role)
 		{
 			try
 			{

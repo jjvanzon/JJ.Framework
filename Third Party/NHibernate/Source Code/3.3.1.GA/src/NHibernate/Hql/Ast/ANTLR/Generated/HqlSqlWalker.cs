@@ -1019,7 +1019,7 @@ public partial class HqlSqlWalker : TreeParser
             	retval.Tree = (IASTNode)adaptor.RulePostProcessing(root_0);
 
 
-            		retval.Tree =  CreateIntoClause(((p != null) ? p.p : default(String)), ((ps != null) ? ((IASTNode)ps.Tree) : null));
+            		retval.Tree =  CreateIntoClause(((p != null) ? p.p : default(string)), ((ps != null) ? ((IASTNode)ps.Tree) : null));
             	
         }
         catch (RecognitionException re) 
@@ -4062,7 +4062,7 @@ public partial class HqlSqlWalker : TreeParser
                     	Match(input, Token.UP, null); adaptor.AddChild(root_0, root_1);_last = _save_last_1;
                     	}
 
-                    	 fromElement = CreateFromElement(((p != null) ? p.p : default(String)), ((p != null) ? ((IASTNode)p.Tree) : null), a, pf); 
+                    	 fromElement = CreateFromElement(((p != null) ? p.p : default(string)), ((p != null) ? ((IASTNode)p.Tree) : null), a, pf); 
 
 
                     	// AST REWRITE
@@ -4673,7 +4673,7 @@ public partial class HqlSqlWalker : TreeParser
 
     public class path_return : TreeRuleReturnScope
     {
-        public String p;
+        public string p;
         private IASTNode tree;
         override public object Tree
         {
@@ -4778,7 +4778,7 @@ public partial class HqlSqlWalker : TreeParser
 
 
                     				StringBuilder buf = new StringBuilder();
-                    				buf.Append(((x != null) ? x.p : default(String))).Append('.').Append(((y != null) ? ((IASTNode)y.Start) : null).ToString());
+                    				buf.Append(((x != null) ? x.p : default(string))).Append('.').Append(((y != null) ? ((IASTNode)y.Start) : null).ToString());
                     				retval.p =  buf.ToString();
                     			
 
@@ -4856,7 +4856,7 @@ public partial class HqlSqlWalker : TreeParser
             	    // HqlSqlWalker.g:294:8: ^( IDENT[$path.p] )
             	    {
             	    IASTNode root_1 = (IASTNode)adaptor.GetNilNode();
-            	    root_1 = (IASTNode)adaptor.BecomeRoot((IASTNode)adaptor.Create(IDENT, ((path75 != null) ? path75.p : default(String))), root_1);
+            	    root_1 = (IASTNode)adaptor.BecomeRoot((IASTNode)adaptor.Create(IDENT, ((path75 != null) ? path75.p : default(string))), root_1);
 
             	    adaptor.AddChild(root_0, root_1);
             	    }

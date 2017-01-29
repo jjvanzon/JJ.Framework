@@ -32,7 +32,7 @@ namespace NHibernate.Util
 
 		// key = IdentityKey of the passed in Key
 		// value = object passed in
-		private IDictionary map;
+		private readonly IDictionary map;
 
 		/// <summary>
 		/// Create a new instance of the IdentityMap that has no 

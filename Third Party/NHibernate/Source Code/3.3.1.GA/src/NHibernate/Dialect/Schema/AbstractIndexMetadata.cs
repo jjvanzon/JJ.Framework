@@ -6,7 +6,7 @@ namespace NHibernate.Dialect.Schema
 {
 	public abstract class AbstractIndexMetadata : IIndexMetadata
 	{
-		private String name;
+		private string name;
 		private readonly List<IColumnMetadata> columns = new List<IColumnMetadata>();
 
 		public AbstractIndexMetadata(DataRow rs)

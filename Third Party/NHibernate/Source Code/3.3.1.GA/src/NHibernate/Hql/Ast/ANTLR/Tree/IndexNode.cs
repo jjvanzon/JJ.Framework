@@ -61,9 +61,9 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 			// Generate the inner join -- The elements need to be joined to the collection they are in.
 			FromElement fromElement = collectionNode.FromElement;
-			String elementTable = fromElement.TableAlias;
+			string elementTable = fromElement.TableAlias;
 			FromClause fromClause = fromElement.FromClause;
-			String path = collectionNode.Path;
+			string path = collectionNode.Path;
 
 			FromElement elem = fromClause.FindCollectionJoin( path );
 			if ( elem == null ) 
@@ -95,7 +95,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			}
 
 			// Sometimes use the element table alias, sometimes use the... umm... collection table alias (many to many)
-			String collectionTableAlias = elementTable;
+			string collectionTableAlias = elementTable;
 			if ( elem.CollectionTableAlias != null ) 
 			{
 				collectionTableAlias = elem.CollectionTableAlias;
@@ -148,7 +148,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			}
 
 			// Now, set the text for this node.  It should be the element columns.
-			String[] elementColumns = queryableCollection.GetElementColumnNames( elementTable );
+			string[] elementColumns = queryableCollection.GetElementColumnNames( elementTable );
 			Text = elementColumns[0];
 
 		    IsResolved = true;
@@ -168,7 +168,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		    if ( queryableCollection != null && !queryableCollection.IsOneToMany) 
             {
 			    FromReferenceNode collectionNode = ( FromReferenceNode ) GetChild(0);
-			    String path = collectionNode.Path + "[]." + propertyName;
+			    string path = collectionNode.Path + "[]." + propertyName;
 
 			    if (Log.IsDebugEnabled) 
                 {

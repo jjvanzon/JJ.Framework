@@ -14,12 +14,12 @@ namespace JJ.Framework.Data.Memory.Internal
     internal class EntityStore<TEntity> : IEntityStore
         where TEntity : class, new()
     {
-        private IMemoryMapping _mapping;
+        private readonly IMemoryMapping _mapping;
 
-        private Dictionary<object, TEntity> _dictionary = new Dictionary<object, TEntity>();
-        private HashSet<TEntity> _hashSet = new HashSet<TEntity>();
+        private readonly Dictionary<object, TEntity> _dictionary = new Dictionary<object, TEntity>();
+        private readonly HashSet<TEntity> _hashSet = new HashSet<TEntity>();
 
-        private object _lock = new object();
+        private readonly object _lock = new object();
 
         public EntityStore(IMemoryMapping mapping)
         {
@@ -30,7 +30,10 @@ namespace JJ.Framework.Data.Memory.Internal
         public TEntity TryGet(object id)
         {
             TEntity entity;
-            _dictionary.TryGetValue(id, out entity);
+            lock (_lock)
+            {
+                _dictionary.TryGetValue(id, out entity);
+            }
             return entity;
         }
 
@@ -95,7 +98,7 @@ namespace JJ.Framework.Data.Memory.Internal
 
         // Identity
 
-        private int _maxID = 0;
+        private int _maxID;
 
         private object TryGetIDFromEntity(TEntity entity)
         {
@@ -112,7 +115,7 @@ namespace JJ.Framework.Data.Memory.Internal
         {
             if (_mapping.IdentityType != IdentityType.AutoIncrement)
             {
-                throw new Exception(String.Format("ID should not be automatically set for IdentityType '{0}'.", _mapping.IdentityType));
+                throw new Exception($"ID should not be automatically set for IdentityType '{_mapping.IdentityType}'.");
             }
 
             PropertyInfo property = GetIdentityProperty(entity);

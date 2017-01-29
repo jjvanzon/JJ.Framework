@@ -59,17 +59,6 @@ namespace JJ.Framework.Presentation.Drawing
             throw new UnexpectedTypeException(() => sourceElement);
         }
 
-        // TODO:
-        // Warning CA1811	'VectorGraphicsDrawer.DrawBackground(Rectangle, Graphics)' appears to have no upstream public or protected callers.
-        private static void DrawBackground(VectorGraphicsElements.Rectangle sourceRectangle, Graphics destGraphics)
-        {
-            if (sourceRectangle.CalculatedValues.Visible && sourceRectangle.Style.BackStyle.Visible)
-            {
-                Color destBackColor = sourceRectangle.Style.BackStyle.Color.ToSystemDrawing();
-                destGraphics.Clear(destBackColor);
-            }
-        }
-
         private static void DrawPoint(VectorGraphicsElements.Point sourcePoint, Graphics destGraphics)
         {
             if (sourcePoint.CalculatedValues.Visible && sourcePoint.PointStyle.Visible)

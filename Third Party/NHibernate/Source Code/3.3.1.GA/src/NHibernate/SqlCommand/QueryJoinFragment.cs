@@ -8,10 +8,10 @@ namespace NHibernate.SqlCommand
 	/// </summary>
 	public class QueryJoinFragment : JoinFragment
 	{
-		private SqlStringBuilder afterFrom = new SqlStringBuilder();
-		private SqlStringBuilder afterWhere = new SqlStringBuilder();
-		private Dialect.Dialect dialect;
-		private bool useThetaStyleInnerJoins;
+		private readonly SqlStringBuilder afterFrom = new SqlStringBuilder();
+		private readonly SqlStringBuilder afterWhere = new SqlStringBuilder();
+		private readonly Dialect.Dialect dialect;
+		private readonly bool useThetaStyleInnerJoins;
 
 		public QueryJoinFragment(Dialect.Dialect dialect, bool useThetaStyleInnerJoins)
 		{

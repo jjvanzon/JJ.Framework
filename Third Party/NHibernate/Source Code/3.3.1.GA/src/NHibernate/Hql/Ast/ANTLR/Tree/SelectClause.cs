@@ -236,7 +236,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 									_fromElementsForLoad.Add(fromElement);
 									//sqlResultTypeList.add( type );
 									// Generate the select expression.
-									String text = fromElement.RenderIdentifierSelect(size, k);
+									string text = fromElement.RenderIdentifierSelect(size, k);
 									SelectExpressionImpl generatedExpr = (SelectExpressionImpl)appender.Append(HqlSqlWalker.SELECT_EXPR, text, false);
 									if (generatedExpr != null)
 									{
@@ -362,7 +362,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		{
 			if (_constructorNode == null)
 			{
-				_aliases = new String[selectExpressions.Length];
+				_aliases = new string[selectExpressions.Length];
 				for (int i = 0; i < selectExpressions.Length; i++)
 				{
 					string alias = selectExpressions[i].Alias;
@@ -483,7 +483,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			{
 				if (fromElement.CollectionJoin || fromElement.QueryableCollection != null)
 				{
-					String suffix;
+					string suffix;
 					if (_collectionFromElements == null)
 					{
 						_collectionFromElements = new List<FromElement>();

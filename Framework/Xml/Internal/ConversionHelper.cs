@@ -7,13 +7,13 @@ namespace JJ.Framework.Xml.Internal
 {
     internal static class ConversionHelper
     {
-        private static CultureInfo _culture = CultureInfo_PlatformSafe.GetCultureInfo("en-US");
+        private static readonly CultureInfo _culture = CultureInfo_PlatformSafe.GetCultureInfo("en-US");
 
         public static object ConvertValue(string input, Type type)
         {
             if (type.IsNullableType())
             {
-                if (String.IsNullOrEmpty(input))
+                if (string.IsNullOrEmpty(input))
                 {
                     return null;
                 }
@@ -38,13 +38,13 @@ namespace JJ.Framework.Xml.Internal
 
             if (type == typeof(IntPtr))
             {
-                int number = Int32.Parse(input);
+                int number = int.Parse(input);
                 return new IntPtr(number);
             }
 
             if (type == typeof(UIntPtr))
             {
-                uint number = UInt32.Parse(input);
+                uint number = uint.Parse(input);
                 return new UIntPtr(number);
             }
 

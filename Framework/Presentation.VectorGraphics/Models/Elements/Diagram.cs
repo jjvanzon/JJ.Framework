@@ -18,7 +18,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             Background = new Rectangle
             {
                 Diagram = this,
-                ZIndex = Int32.MinValue,
+                ZIndex = int.MinValue,
                 Tag = "Background"
             };
             Background.Style.LineStyle = new LineStyle { Visible = false };

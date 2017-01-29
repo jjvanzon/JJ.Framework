@@ -38,8 +38,8 @@ namespace JJ.Framework.Configuration
     /// </summary>
     public static class CustomConfigurationManager
     {
-        private static object _sectionDictionaryLock = new object();
-        private static Dictionary<string, object> _sectionDictionary = new Dictionary<string, object>();
+        private static readonly object _sectionDictionaryLock = new object();
+        private static readonly Dictionary<string, object> _sectionDictionary = new Dictionary<string, object>();
 
         public static T GetSection<T>()
             where T : new()
@@ -78,10 +78,10 @@ namespace JJ.Framework.Configuration
         {
             T section = TryGetSection<T>(sectionName);
 
-            bool sectionNotFound = Object.Equals(section, default(T));
+            bool sectionNotFound = object.Equals(section, default(T));
             if (sectionNotFound)
             {
-                throw new Exception(String.Format("Configuration section '{0}' not found.", sectionName));
+                throw new Exception($"Configuration section '{sectionName}' not found.");
             }
 
             return section;

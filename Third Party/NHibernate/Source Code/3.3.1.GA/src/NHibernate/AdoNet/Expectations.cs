@@ -32,7 +32,7 @@ namespace NHibernate.AdoNet
 				}
 				if (expectedRowCount < rowCount)
 				{
-					String msg = "Unexpected row count: " + rowCount + "; expected: " + expectedRowCount;
+					string msg = "Unexpected row count: " + rowCount + "; expected: " + expectedRowCount;
 					throw new TooManyRowsAffectedException(msg, expectedRowCount, rowCount);
 				}
 			}

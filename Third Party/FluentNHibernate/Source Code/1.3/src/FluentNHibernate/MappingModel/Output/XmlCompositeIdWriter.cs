@@ -8,7 +8,7 @@ namespace FluentNHibernate.MappingModel.Output
 {
     public class XmlCompositeIdWriter : NullMappingModelVisitor, IXmlWriter<CompositeIdMapping>
     {
-        private IXmlWriterServiceLocator serviceLocator;
+        private readonly IXmlWriterServiceLocator serviceLocator;
         private XmlDocument document;
 
         public XmlCompositeIdWriter(IXmlWriterServiceLocator serviceLocator)

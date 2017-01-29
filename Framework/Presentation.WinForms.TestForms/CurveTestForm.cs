@@ -44,32 +44,32 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
             label.Position.Width = 500;
             label.Position.Height = 100;
 
-            _curve = new VectorGraphicsElements.Curve
+            _curve = new Curve
             {
                 Diagram = diagram,
                 Parent = diagram.Background,
                 SegmentCount = 100,
 
-                PointA = new VectorGraphicsElements.Point
+                PointA = new Point
                 {
                     Diagram = diagram,
                     Parent = diagram.Background,
                     Visible = true
                 },
 
-                ControlPointA = new VectorGraphicsElements.Point
+                ControlPointA = new Point
                 {
                     Diagram = diagram,
                     Parent = diagram.Background
                 },
 
-                ControlPointB = new VectorGraphicsElements.Point
+                ControlPointB = new Point
                 {
                     Diagram = diagram,
                     Parent = diagram.Background
                 },
 
-                PointB = new VectorGraphicsElements.Point
+                PointB = new Point
                 {
                     Diagram = diagram,
                     Parent = diagram.Background
@@ -103,7 +103,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 Color = ColorHelper.GetColor(80, 40, 120, 255)
             };
 
-            var demoLine1 = new VectorGraphicsElements.Line
+            var demoLine1 = new Line
             {
                 Diagram = diagram,
                 Parent = diagram.Background,
@@ -112,7 +112,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
                 LineStyle = demoLineStyle
             };
 
-            var demoLine2 = new VectorGraphicsElements.Line
+            var demoLine2 = new Line
             {
                 Diagram = diagram,
                 Parent = diagram.Background,

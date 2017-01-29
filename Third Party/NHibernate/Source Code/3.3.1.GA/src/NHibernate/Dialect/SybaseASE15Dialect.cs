@@ -246,7 +246,7 @@ namespace NHibernate.Dialect
 		
 		public override string ForUpdateString
 		{
-			get { return String.Empty; }
+			get { return string.Empty; }
 		}
 		
 		public override string GenerateTemporaryTableName(string baseTableName)

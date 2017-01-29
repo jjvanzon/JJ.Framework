@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Mathematics
 {
     public static class Randomizer
     {
-        private static Random _random = CreateRandom();
+        private static readonly Random _random = CreateRandom();
 
         private static Random CreateRandom()
         {
@@ -23,7 +24,7 @@ namespace JJ.Framework.Mathematics
         public static int GetInt32()
         {
             // Int32.MaxValue without the - 1 can produce an overflow error.
-            return GetInt32(Int32.MinValue, Int32.MaxValue - 1);
+            return GetInt32(int.MinValue, int.MaxValue - 1);
         }
 
         /// <summary>
@@ -51,19 +52,19 @@ namespace JJ.Framework.Mathematics
 
         public static T GetRandomItem<T>(IEnumerable<T> collection)
         {
+            // ReSharper disable once PossibleMultipleEnumeration
             int count = collection.Count();
             if (count == 0)
             {
-                throw new Exception("Collection is empty.");
+                throw new CollectionEmptyException(() => collection);
             }
 
-            int index = Randomizer.GetInt32(count - 1);
+            int index = GetInt32(count - 1);
+            // ReSharper disable once PossibleMultipleEnumeration
             return collection.ElementAt(index);
         }
 
         /// <summary> Returns a random number between 0.0 and 1.0. </summary>
-        /// <param name="min">inclusive</param>
-        /// <param name="max">exclusive</param>
         public static double GetDouble()
         {
             return _random.NextDouble();

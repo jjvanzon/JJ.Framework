@@ -65,7 +65,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 
 		private HbmGenerator GetIdGenerator(HbmId idSchema)
 		{
-			return String.IsNullOrEmpty(idSchema.generator1) ? idSchema.generator : new HbmGenerator() { @class = idSchema.generator1 };
+			return string.IsNullOrEmpty(idSchema.generator1) ? idSchema.generator : new HbmGenerator() { @class = idSchema.generator1 };
 		}
 
 		private static void VerifiyIdTypeIsValid(IType idType, string className)

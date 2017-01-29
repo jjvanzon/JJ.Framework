@@ -25,7 +25,7 @@ namespace NHibernate.Type
 			get { return "Int32"; }
 		}
 
-		private static readonly Int32 ZERO = 0;
+		private static readonly int ZERO = 0;
 		public override object Get(IDataReader rs, int index)
 		{
 			try
@@ -52,7 +52,7 @@ namespace NHibernate.Type
 
 		public override System.Type ReturnedClass
 		{
-			get { return typeof(Int32); }
+			get { return typeof(int); }
 		}
 
 		public override void Set(IDbCommand rs, object value, int index)
@@ -67,14 +67,14 @@ namespace NHibernate.Type
 
 		public override object FromStringValue(string xml)
 		{
-			return Int32.Parse(xml);
+			return int.Parse(xml);
 		}
 
 		#region IVersionType Members
 
 		public virtual object Next(object current, ISessionImplementor session)
 		{
-			return (Int32)current + 1;
+			return (int)current + 1;
 		}
 
 		public virtual object Seed(ISessionImplementor session)
@@ -84,14 +84,14 @@ namespace NHibernate.Type
 
 		public IComparer Comparator
 		{
-			get { return Comparer<Int32>.Default; }
+			get { return Comparer<int>.Default; }
 		}
 
 		#endregion
 
 		public override System.Type PrimitiveClass
 		{
-			get { return typeof(Int32); }
+			get { return typeof(int); }
 		}
 
 		public override object DefaultValue

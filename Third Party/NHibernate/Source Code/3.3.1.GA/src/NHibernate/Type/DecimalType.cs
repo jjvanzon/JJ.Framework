@@ -32,7 +32,7 @@ namespace NHibernate.Type
 
 		public override System.Type ReturnedClass
 		{
-			get { return typeof(Decimal); }
+			get { return typeof(decimal); }
 		}
 
 		public override void Set(IDbCommand st, object value, int index)
@@ -47,7 +47,7 @@ namespace NHibernate.Type
 
 		public override System.Type PrimitiveClass
 		{
-			get { return typeof (Decimal); }
+			get { return typeof (decimal); }
 		}
 
 		public override object DefaultValue
@@ -57,7 +57,7 @@ namespace NHibernate.Type
 
 		public override object FromStringValue(string xml)
 		{
-			return Decimal.Parse(xml);
+			return decimal.Parse(xml);
 		}
 
 		public override string ObjectToSQLString(object value, Dialect.Dialect dialect)

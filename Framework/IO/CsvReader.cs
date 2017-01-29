@@ -8,7 +8,7 @@ namespace JJ.Framework.IO
     {
         // TODO: Enforce number of columns.
 
-        private StreamReader _reader;
+        private readonly StreamReader _reader;
         private string[] _values;
 
         public CsvReader(Stream stream)
@@ -23,10 +23,7 @@ namespace JJ.Framework.IO
 
         public void Dispose()
         {
-            if (_reader != null)
-            {
-                _reader.Dispose();
-            }
+            _reader?.Dispose();
         }
 
         public bool Read()
@@ -48,9 +45,6 @@ namespace JJ.Framework.IO
             return line.SplitWithQuotation(",", quote: '"');
         }
 
-        public string this[int i]
-        {
-            get { return _values[i]; }
-        }
+        public string this[int i] => _values[i];
     }
 }

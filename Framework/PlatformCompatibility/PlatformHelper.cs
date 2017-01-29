@@ -24,7 +24,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static MemberTypes_PlatformSafe MemberInfo_MemberType_PlatformSafe(MemberInfo memberInfo)
         {
-            if (memberInfo == null) throw new ArgumentNullException("memberInfo");
+            if (memberInfo == null) throw new ArgumentNullException(nameof(memberInfo));
 
             if (memberInfo is PropertyInfo)
             {
@@ -51,7 +51,7 @@ namespace JJ.Framework.PlatformCompatibility
                 return MemberTypes_PlatformSafe.TypeInfo;
             }
 
-            throw new Exception(String.Format("memberInfo has the unsupported type: '{0}'", memberInfo.GetType()));
+            throw new Exception(string.Format("memberInfo has the unsupported type: '{0}'", memberInfo.GetType()));
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static string String_Join_PlatformSupport<T>(string separator, IEnumerable<T> values)
         {
-            return String.Join(separator, values.Select(x => x.ToString()).ToArray());
+            return string.Join(separator, values.Select(x => x.ToString()).ToArray());
         }
 
         /// <summary>
@@ -137,12 +137,12 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static bool String_IsNullOrWhiteSpace_PlatformSupport(string value)
         {
-            if (String.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
             {
                 return true;
             }
 
-            if (String.Equals(value.Trim(), ""))
+            if (string.Equals(value.Trim(), ""))
             {
                 return true;
             }
@@ -173,7 +173,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static object PropertyInfo_GetValue_PlatformSafe(PropertyInfo propertyInfo, object obj, object[] index)
         {
-            if (propertyInfo == null) throw new ArgumentNullException("propertyInfo");
+            if (propertyInfo == null) throw new ArgumentNullException(nameof(propertyInfo));
 
             return propertyInfo.GetGetMethod().Invoke(obj, index);
         }

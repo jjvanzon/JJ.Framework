@@ -135,7 +135,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 			get { return _impliedJoinType; }
 		}
 
-		public String[] ReturnAliases
+		public string[] ReturnAliases
 		{
 			get { return _selectClause.QueryReturnAliases; }
 		}
@@ -725,8 +725,8 @@ namespace NHibernate.Hql.Ast.ANTLR
 
 			// Get the names of the columns used to link between the collection
 			// owner and the collection elements.
-			String[] keyColumnNames = persister.KeyColumnNames;
-			String fkTableAlias = persister.IsOneToMany
+			string[] keyColumnNames = persister.KeyColumnNames;
+			string fkTableAlias = persister.IsOneToMany
 					? fromElement.TableAlias
 					: fromClause.AliasGenerator.CreateName(_collectionFilterRole);
 
@@ -1104,7 +1104,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 	{
 		private readonly FromElement _joinFragment;
 		private FromElement _referencedFromElement;
-		private String _joinAlias;
+		private string _joinAlias;
 
 		public WithClauseVisitor(FromElement fromElement) 
 		{
@@ -1176,7 +1176,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 			_joinFragment.AddEmbeddedParameter(paramSpec);
 		}
 
-		private static String ExtractAppliedAlias(IASTNode dotNode) 
+		private static string ExtractAppliedAlias(IASTNode dotNode) 
 		{
 			return dotNode.Text.Substring( 0, dotNode.Text.IndexOf( '.' ) );
 		}
@@ -1186,7 +1186,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 			return _referencedFromElement;
 		}
 
-		public String GetJoinAlias() 
+		public string GetJoinAlias() 
 		{
 			return _joinAlias;
 		}

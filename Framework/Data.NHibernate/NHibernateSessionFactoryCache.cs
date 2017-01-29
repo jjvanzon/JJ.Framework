@@ -12,7 +12,7 @@ namespace JJ.Framework.Data.NHibernate
     {
         private static readonly object _lock = new object();
         private static readonly Dictionary<string, ISessionFactory> _dictionary = new Dictionary<string, ISessionFactory>();
-        private static readonly string _separator = "$$";
+        private const string SEPARATOR = "$$";
 
         public static ISessionFactory GetSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
         {
@@ -33,12 +33,12 @@ namespace JJ.Framework.Data.NHibernate
 
         private static string GetKey(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
         {
-            return connectionString + _separator + modelAssembly.FullName + _separator + mappingAssembly.FullName + _separator + dialect;
+            return connectionString + SEPARATOR + modelAssembly.FullName + SEPARATOR + mappingAssembly.FullName + SEPARATOR + dialect;
         }
 
         private static ISessionFactory CreateSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
         {
-            if (String.IsNullOrEmpty(dialect)) throw new ArgumentException("dialect cannot be null or empty.");
+            if (string.IsNullOrEmpty(dialect)) throw new ArgumentException("dialect cannot be null or empty.");
 
             var config = new global::NHibernate.Cfg.Configuration();
 
@@ -50,7 +50,7 @@ namespace JJ.Framework.Data.NHibernate
             }
             else
             {
-                throw new NotSupportedException(String.Format("Dialect '{0}' not supported.", dialect));
+                throw new NotSupportedException(string.Format("Dialect '{0}' not supported.", dialect));
             }
 
             fluentConfiguration = fluentConfiguration.Mappings(x => x.FluentMappings.AddFromAssembly(modelAssembly));

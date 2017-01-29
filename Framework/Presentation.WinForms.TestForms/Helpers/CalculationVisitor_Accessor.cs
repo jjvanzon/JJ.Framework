@@ -6,7 +6,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
 {
     internal class CalculationVisitor_Accessor
     {
-        private Accessor _accessor;
+        private readonly Accessor _accessor;
 
         public CalculationVisitor_Accessor()
         {

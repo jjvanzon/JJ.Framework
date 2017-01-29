@@ -97,17 +97,10 @@ namespace JJ.Framework.Data.EntityFramework5
             //    _transaction.Rollback();
             //}
 
-            if (Context != null)
-            {
-                Context.Dispose();
-            }
+            underlyingContext?.Dispose();
 
-            if (_transactionScope != null)
-            {
-                _transactionScope.Dispose();
-            }
+            _transactionScope?.Dispose();
 
-            Context = null;
             _transactionScope = null;
         }
 

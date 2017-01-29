@@ -35,7 +35,7 @@ namespace NHibernate.Engine
 
 			if (log.IsDebugEnabled && version != null)
 			{
-				System.String versionStr = persister.IsVersioned ? persister.VersionType.ToLoggableString(version, session.Factory) : "null";
+				string versionStr = persister.IsVersioned ? persister.VersionType.ToLoggableString(version, session.Factory) : "null";
 				log.Debug("Version: " + versionStr);
 			}
 		}

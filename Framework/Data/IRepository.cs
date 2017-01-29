@@ -2,7 +2,7 @@
 
 namespace JJ.Framework.Data
 {
-    public interface IRepository<TEntity, TID>
+    public interface IRepository<TEntity, in TID>
     {
         TEntity TryGet(TID id);
         TEntity Get(TID id);

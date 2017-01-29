@@ -30,7 +30,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
                 return;
             }
 
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (_previousPointerX != e.XInPixels ||
+                // ReSharper disable once CompareOfFloatsByEqualityOperator
                 _previousPointerY != e.YInPixels)
             {
                 MouseMove(sender, e);

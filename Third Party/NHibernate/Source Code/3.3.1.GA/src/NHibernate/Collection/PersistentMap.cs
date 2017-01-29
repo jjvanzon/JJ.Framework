@@ -474,7 +474,7 @@ namespace NHibernate.Collection
 			private readonly object index;
 			private readonly object old;
 
-			public RemoveDelayedOperation(PersistentMap enclosingInstance, Object index, Object old)
+			public RemoveDelayedOperation(PersistentMap enclosingInstance, object index, object old)
 			{
 				this.enclosingInstance = enclosingInstance;
 				this.index = index;

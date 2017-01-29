@@ -11,7 +11,7 @@ namespace JJ.Framework.Data.NHibernate
         /// The first level is the entity Type, second level's key is the entity ID.
         /// Value is the entity object.
         /// </summary>
-        private Dictionary<Type, Dictionary<object, object>> _entityDictionary = new Dictionary<Type, Dictionary<object, object>>();
+        private readonly Dictionary<Type, Dictionary<object, object>> _entityDictionary = new Dictionary<Type, Dictionary<object, object>>();
 
         public TEntity TryGet<TEntity>(object id)
             where TEntity : class

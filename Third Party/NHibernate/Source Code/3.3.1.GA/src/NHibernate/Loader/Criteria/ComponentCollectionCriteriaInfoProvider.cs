@@ -31,7 +31,7 @@ namespace NHibernate.Loader.Criteria
 
 		#region ICriteriaInfoProvider Members
 
-		public String Name
+		public string Name
 		{
 			get { return persister.Role; }
 		}
@@ -46,7 +46,7 @@ namespace NHibernate.Loader.Criteria
 			get { return persister; }
 		}
 
-		public IType GetType(String relativePath)
+		public IType GetType(string relativePath)
 		{
 			// TODO: can a component have a nested component? then we may need to do something more here...
 			if (relativePath.IndexOf('.') >= 0)

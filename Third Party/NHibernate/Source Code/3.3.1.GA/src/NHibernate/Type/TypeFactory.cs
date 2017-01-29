@@ -168,32 +168,32 @@ namespace NHibernate.Type
 		private static void RegisterDefaultNetTypes()
 		{
 			// NOTE : each .NET type mut appear only one time
-			RegisterType(typeof (Byte[]), NHibernateUtil.Binary, new[] {"binary"},
+			RegisterType(typeof (byte[]), NHibernateUtil.Binary, new[] {"binary"},
 			             l => GetType(NHibernateUtil.Binary, l, len => new BinaryType(SqlTypeFactory.GetBinary(len))));
 
-			RegisterType(typeof(Boolean), NHibernateUtil.Boolean, new[] { "boolean", "bool" });
-			RegisterType(typeof (Byte), NHibernateUtil.Byte, new[]{ "byte"});
-			RegisterType(typeof (Char), NHibernateUtil.Character, new[] {"character", "char"});
+			RegisterType(typeof(bool), NHibernateUtil.Boolean, new[] { "boolean", "bool" });
+			RegisterType(typeof (byte), NHibernateUtil.Byte, new[]{ "byte"});
+			RegisterType(typeof (char), NHibernateUtil.Character, new[] {"character", "char"});
 			RegisterType(typeof (CultureInfo), NHibernateUtil.CultureInfo, new[]{ "locale"});
 			RegisterType(typeof (DateTime), NHibernateUtil.DateTime, new[]{ "datetime"} );
 			RegisterType(typeof (DateTimeOffset), NHibernateUtil.DateTimeOffset, new[]{ "datetimeoffset"});
 
-			RegisterType(typeof (Decimal), NHibernateUtil.Decimal, new[] {"big_decimal", "decimal"},
+			RegisterType(typeof (decimal), NHibernateUtil.Decimal, new[] {"big_decimal", "decimal"},
 			             (p, s) => GetType(NHibernateUtil.Decimal, p, s, st => new DecimalType(st)));
 
-			RegisterType(typeof (Double), NHibernateUtil.Double, new[] {"double"},
+			RegisterType(typeof (double), NHibernateUtil.Double, new[] {"double"},
 			             (p, s) => GetType(NHibernateUtil.Double, p, s, st => new DoubleType(st)));
 
 			RegisterType(typeof (Guid), NHibernateUtil.Guid, new[]{ "guid"});
-			RegisterType(typeof (Int16), NHibernateUtil.Int16, new[]{ "short"});
-			RegisterType(typeof (Int32), NHibernateUtil.Int32, new[] {"integer", "int"});
-			RegisterType(typeof (Int64), NHibernateUtil.Int64, new[]{ "long"});
-			RegisterType(typeof(SByte), NHibernateUtil.SByte, EmptyAliases);
+			RegisterType(typeof (short), NHibernateUtil.Int16, new[]{ "short"});
+			RegisterType(typeof (int), NHibernateUtil.Int32, new[] {"integer", "int"});
+			RegisterType(typeof (long), NHibernateUtil.Int64, new[]{ "long"});
+			RegisterType(typeof(sbyte), NHibernateUtil.SByte, EmptyAliases);
 
-			RegisterType(typeof (Single), NHibernateUtil.Single, new[] {"float", "single"},
+			RegisterType(typeof (float), NHibernateUtil.Single, new[] {"float", "single"},
 			             (p, s) => GetType(NHibernateUtil.Single, p, s, st => new SingleType(st)));
 
-			RegisterType(typeof (String), NHibernateUtil.String, new[] {"string"},
+			RegisterType(typeof (string), NHibernateUtil.String, new[] {"string"},
 			             l => GetType(NHibernateUtil.String, l, len => new StringType(SqlTypeFactory.GetString(len))));
 
 			RegisterType(typeof (TimeSpan), NHibernateUtil.TimeSpan, new[] {"timespan"});
@@ -201,9 +201,9 @@ namespace NHibernate.Type
 			RegisterType(typeof (System.Type), NHibernateUtil.Class, new[] {"class"},
 			             l => GetType(NHibernateUtil.Class, l, len => new TypeType(SqlTypeFactory.GetString(len))));
 
-			RegisterType(typeof (UInt16), NHibernateUtil.UInt16, new[] {"ushort"});
-			RegisterType(typeof (UInt32), NHibernateUtil.UInt32, new[] {"uint"});
-			RegisterType(typeof (UInt64), NHibernateUtil.UInt64, new[] {"ulong"});
+			RegisterType(typeof (ushort), NHibernateUtil.UInt16, new[] {"ushort"});
+			RegisterType(typeof (uint), NHibernateUtil.UInt32, new[] {"uint"});
+			RegisterType(typeof (ulong), NHibernateUtil.UInt64, new[] {"ulong"});
 
 			RegisterType(typeof (XmlDocument), NHibernateUtil.XmlDoc, new[] {"xmldoc", "xmldocument", "xml"});
 			
@@ -213,7 +213,7 @@ namespace NHibernate.Type
 
 			// object needs to have both class and serializable setup before it can
 			// be created.
-			RegisterType(typeof (Object), NHibernateUtil.Object, new[] {"object"});
+			RegisterType(typeof (object), NHibernateUtil.Object, new[] {"object"});
 		}
 
 		/// <summary>
@@ -354,8 +354,8 @@ namespace NHibernate.Type
 				}
 
 				typeName = parsedName[0].Trim();
-				byte precision = Byte.Parse(parsedName[1].Trim());
-				byte scale = Byte.Parse(parsedName[2].Trim());
+				byte precision = byte.Parse(parsedName[1].Trim());
+				byte scale = byte.Parse(parsedName[2].Trim());
 
 				return BuiltInType(typeName, precision, scale);
 			}
@@ -370,7 +370,7 @@ namespace NHibernate.Type
 				}
 
 				typeName = parsedName[0].Trim();
-				int length = Int32.Parse(parsedName[1].Trim());
+				int length = int.Parse(parsedName[1].Trim());
 
 				return BuiltInType(typeName, length);
 			}
@@ -541,7 +541,7 @@ namespace NHibernate.Type
 					{
 						if (typeClassification == TypeClassification.Length)
 						{
-							type = GetSerializableType(typeClass, Int32.Parse(parsedTypeName[1]));
+							type = GetSerializableType(typeClass, int.Parse(parsedTypeName[1]));
 						}
 						else if (length != null)
 						{
@@ -557,7 +557,7 @@ namespace NHibernate.Type
 			return type;
 		}
 
-		private static Boolean IsNullableEnum(System.Type typeClass)
+		private static bool IsNullableEnum(System.Type typeClass)
 		{
 			if (!typeClass.IsGenericType) return false;
 			System.Type nullable = typeof(Nullable<>);
@@ -922,7 +922,7 @@ namespace NHibernate.Type
 			return result;
 		}
 
-		public static void InjectParameters(Object type, IDictionary<string, string> parameters)
+		public static void InjectParameters(object type, IDictionary<string, string> parameters)
 		{
 			if (type is IParameterizedType)
 			{

@@ -13,7 +13,7 @@ namespace NHibernate.Criterion
 	[Serializable]
 	public class SubqueryProjection : SimpleProjection
 	{
-		private SelectSubqueryExpression _subQuery;
+		private readonly SelectSubqueryExpression _subQuery;
 
 		protected internal SubqueryProjection(SelectSubqueryExpression subquery)
 		{

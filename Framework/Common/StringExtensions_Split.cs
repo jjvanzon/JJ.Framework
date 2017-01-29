@@ -4,16 +4,16 @@ using System.Linq;
 
 namespace JJ.Framework.Common
 {
-    public static partial class StringExtensions_Split
+    public static class StringExtensions_Split
     {
         public static string[] Split(this string input, char separator, StringSplitOptions options)
         {
-            return input.Split(new char[] { separator }, options);
+            return input.Split(new[] { separator }, options);
         }
 
         public static string[] Split(this string input, string separator, StringSplitOptions options)
         {
-            return input.Split(new string[] { separator }, options);
+            return input.Split(new[] { separator }, options);
         }
 
         public static string[] SplitWithQuotation(this string input, string separator, char quote)
@@ -52,12 +52,12 @@ namespace JJ.Framework.Common
                 return input.Split(separator, options);
             }
 
-            if (String.IsNullOrEmpty(separator))
+            if (string.IsNullOrEmpty(separator))
             {
-                throw new ArgumentNullException("separator");
+                throw new ArgumentNullException(nameof(separator));
             }
 
-            if (String.IsNullOrEmpty(input))
+            if (string.IsNullOrEmpty(input))
             {
                 return new string[0];
             }
@@ -88,7 +88,7 @@ namespace JJ.Framework.Common
                     // An end-of-element was found.
                     string value = input.FromTill(startPos, pos - 1);
 
-                    if (!String.IsNullOrEmpty(value) || options != StringSplitOptions.RemoveEmptyEntries)
+                    if (!string.IsNullOrEmpty(value) || options != StringSplitOptions.RemoveEmptyEntries)
                     {
                         values.Add(value);
                     }
@@ -101,7 +101,7 @@ namespace JJ.Framework.Common
             // Add last element
             // (For the previous elements, the separator functions as an end-of-value, while the last value does hot have that.)
             string str2 = input.FromTill(startPos, input.Length - 1);
-            if (!String.IsNullOrEmpty(str2) || options != StringSplitOptions.RemoveEmptyEntries)
+            if (!string.IsNullOrEmpty(str2) || options != StringSplitOptions.RemoveEmptyEntries)
             {
                 values.Add(str2);
             }

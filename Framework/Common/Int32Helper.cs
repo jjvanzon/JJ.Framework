@@ -11,7 +11,7 @@ namespace JJ.Framework.Common
     {
         public static bool TryParse(string s, IFormatProvider provider, out int result)
         {
-            return Int32.TryParse(s, NumberStyles.Integer, provider, out result);
+            return int.TryParse(s, NumberStyles.Integer, provider, out result);
         }
     }
 }

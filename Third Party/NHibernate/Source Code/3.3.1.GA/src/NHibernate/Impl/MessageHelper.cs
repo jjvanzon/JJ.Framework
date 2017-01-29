@@ -191,7 +191,7 @@ namespace NHibernate.Impl
 		/// </summary>
 		/// <param name="persister">The <see cref="IEntityPersister"/> for the class in question</param>
 		/// <returns>A descriptive <see cref="String" /> in the form <c>[FooBar]</c></returns>
-		public static String InfoString(IEntityPersister persister)
+		public static string InfoString(IEntityPersister persister)
 		{
 			StringBuilder s = new StringBuilder();
 			s.Append('[');
@@ -213,7 +213,7 @@ namespace NHibernate.Impl
 		/// <param name="persister">The <see cref="ICollectionPersister"/> for the class in question</param>
 		/// <param name="id">The id</param>
 		/// <returns>A descriptive <see cref="String" /> in the form <c>[collectionrole#id]</c></returns>
-		public static String InfoString(ICollectionPersister persister, object id)
+		public static string InfoString(ICollectionPersister persister, object id)
 		{
 			StringBuilder s = new StringBuilder();
 			s.Append('[');

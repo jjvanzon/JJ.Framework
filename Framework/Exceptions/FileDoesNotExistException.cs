@@ -7,7 +7,7 @@ namespace JJ.Framework.Exceptions
         private const string MESSAGE = "File '{0}' does not exist.";
 
         public FileDoesNotExistException(string filePath)
-            : base(String.Format(MESSAGE, filePath))
+            : base(string.Format(MESSAGE, filePath))
         { }
     }
 }

@@ -5,7 +5,7 @@ namespace NHibernate.SqlCommand
 {
 	public class DisjunctionFragment
 	{
-		private SqlStringBuilder buffer = new SqlStringBuilder();
+		private readonly SqlStringBuilder buffer = new SqlStringBuilder();
 
 		public DisjunctionFragment()
 		{

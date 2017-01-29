@@ -559,7 +559,7 @@ namespace NHibernate.Event.Default
 				else if (copyEntry.Status != Status.Loaded && copyEntry.Status != Status.ReadOnly)
 				{
 					throw new AssertionFailure(
-						String.Format(
+						string.Format(
 							"Merged entity does not have status set to MANAGED or READ_ONLY; {0} status = {1}",
 							entityCopy,
 							copyEntry.Status));

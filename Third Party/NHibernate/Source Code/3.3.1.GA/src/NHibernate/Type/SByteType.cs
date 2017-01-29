@@ -25,7 +25,7 @@ namespace NHibernate.Type
 			get { return "SByte"; }
 		}
 
-		private static readonly SByte ZERO = 0;
+		private static readonly sbyte ZERO = 0;
 		public override object Get(IDataReader rs, int index)
 		{
 			try
@@ -52,7 +52,7 @@ namespace NHibernate.Type
 
 		public override System.Type ReturnedClass
 		{
-			get { return typeof(SByte); }
+			get { return typeof(sbyte); }
 		}
 
 		public override void Set(IDbCommand rs, object value, int index)
@@ -67,31 +67,31 @@ namespace NHibernate.Type
 
 		public override object FromStringValue(string xml)
 		{
-			return SByte.Parse(xml);
+			return sbyte.Parse(xml);
 		}
 
 		#region IVersionType Members
 
 		public virtual object Next(object current, ISessionImplementor session)
 		{
-			return (SByte)((SByte)current + 1);
+			return (sbyte)((sbyte)current + 1);
 		}
 
 		public virtual object Seed(ISessionImplementor session)
 		{
-			return (SByte)1;
+			return (sbyte)1;
 		}
 
 		public IComparer Comparator
 		{
-			get { return Comparer<SByte>.Default; }
+			get { return Comparer<sbyte>.Default; }
 		}
 
 		#endregion
 
 		public override System.Type PrimitiveClass
 		{
-			get { return typeof(SByte); }
+			get { return typeof(sbyte); }
 		}
 
 		public override object DefaultValue

@@ -9,11 +9,11 @@ namespace NHibernate.Criterion
 	[Serializable]
 	public class Property : PropertyProjection
 	{
-		internal Property(String propertyName) : base(propertyName)
+		internal Property(string propertyName) : base(propertyName)
 		{
 		}
 
-		public AbstractCriterion Between(Object min, Object max)
+		public AbstractCriterion Between(object min, object max)
 		{
 			return Expression.Between(PropertyName, min, max);
 		}
@@ -23,42 +23,42 @@ namespace NHibernate.Criterion
 			return Expression.In(PropertyName, values);
 		}
 
-		public AbstractCriterion In(Object[] values)
+		public AbstractCriterion In(object[] values)
 		{
 			return Expression.In(PropertyName, values);
 		}
 
-		public AbstractCriterion Like(Object value)
+		public AbstractCriterion Like(object value)
 		{
 			return Expression.Like(PropertyName, value);
 		}
 
-		public AbstractCriterion Like(String value, MatchMode matchMode)
+		public AbstractCriterion Like(string value, MatchMode matchMode)
 		{
 			return Expression.Like(PropertyName, value, matchMode);
 		}
 
-		public AbstractCriterion Eq(Object value)
+		public AbstractCriterion Eq(object value)
 		{
 			return Expression.Eq(PropertyName, value);
 		}
 
-		public AbstractCriterion Gt(Object value)
+		public AbstractCriterion Gt(object value)
 		{
 			return Expression.Gt(PropertyName, value);
 		}
 
-		public AbstractCriterion Lt(Object value)
+		public AbstractCriterion Lt(object value)
 		{
 			return Expression.Lt(PropertyName, value);
 		}
 
-		public AbstractCriterion Le(Object value)
+		public AbstractCriterion Le(object value)
 		{
 			return Expression.Le(PropertyName, value);
 		}
 
-		public AbstractCriterion Ge(Object value)
+		public AbstractCriterion Ge(object value)
 		{
 			return Expression.Ge(PropertyName, value);
 		}
@@ -93,32 +93,32 @@ namespace NHibernate.Criterion
 			return Expression.GtProperty(PropertyName, other.PropertyName);
 		}
 
-		public AbstractCriterion EqProperty(String other)
+		public AbstractCriterion EqProperty(string other)
 		{
 			return Expression.EqProperty(PropertyName, other);
 		}
 
-		public AbstractCriterion NotEqProperty(String other)
+		public AbstractCriterion NotEqProperty(string other)
 		{
 			return Expression.NotEqProperty(PropertyName, other);
 		}
 
-		public AbstractCriterion LeProperty(String other)
+		public AbstractCriterion LeProperty(string other)
 		{
 			return Expression.LeProperty(PropertyName, other);
 		}
 
-		public AbstractCriterion GeProperty(String other)
+		public AbstractCriterion GeProperty(string other)
 		{
 			return Expression.GeProperty(PropertyName, other);
 		}
 
-		public AbstractCriterion LtProperty(String other)
+		public AbstractCriterion LtProperty(string other)
 		{
 			return Expression.LtProperty(PropertyName, other);
 		}
 
-		public AbstractCriterion GtProperty(String other)
+		public AbstractCriterion GtProperty(string other)
 		{
 			return Expression.GtProperty(PropertyName, other);
 		}
@@ -178,7 +178,7 @@ namespace NHibernate.Criterion
 			return Order.Desc(PropertyName);
 		}
 
-		public static Property ForName(String propertyName)
+		public static Property ForName(string propertyName)
 		{
 			return new Property(propertyName);
 		}
@@ -186,7 +186,7 @@ namespace NHibernate.Criterion
 		/// <summary>
 		/// Get a component attribute of this property
 		/// </summary>
-		public Property GetProperty(String propertyName)
+		public Property GetProperty(string propertyName)
 		{
 			return ForName(PropertyName + '.' + propertyName);
 		}

@@ -688,7 +688,7 @@ namespace NHibernate.Tuple.Entity
 
 		#region Tuplizer
 		private readonly EntityEntityModeToTuplizerMapping tuplizerMapping;
-		private bool hasUnwrapProxyForProperties;
+		private readonly bool hasUnwrapProxyForProperties;
 
 		public IEntityTuplizer GetTuplizer(EntityMode entityMode)
 		{

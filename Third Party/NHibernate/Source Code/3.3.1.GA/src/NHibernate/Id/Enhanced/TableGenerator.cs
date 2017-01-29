@@ -414,7 +414,7 @@ namespace NHibernate.Id.Enhanced
 
 		private class TableAccessCallback : IAccessCallback
 		{
-			private TableGenerator owner;
+			private readonly TableGenerator owner;
 			private readonly ISessionImplementor session;
 
 			public TableAccessCallback(ISessionImplementor session, TableGenerator owner)

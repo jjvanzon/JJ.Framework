@@ -84,12 +84,18 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
 
             diagram.Recalculate();
 
+            // ReSharper disable once JoinDeclarationAndInitializer
             float expectedRelative;
+            // ReSharper disable once JoinDeclarationAndInitializer
             float expectedAbsolute;
+            // ReSharper disable once JoinDeclarationAndInitializer
             float expectedPixels;
 
+            // ReSharper disable once JoinDeclarationAndInitializer
             float actualRelative;
+            // ReSharper disable once JoinDeclarationAndInitializer
             float actualAbsolute;
+            // ReSharper disable once JoinDeclarationAndInitializer
             float actualPixels;
 
             expectedRelative = 0.75f;
@@ -186,7 +192,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
             AssertHelper.AreEqual(expectedDarkerColor, () => darkerColor);
 
             int actualMaxedOutColor = ColorHelper.SetBrightness(color, 255);
-            int expectedMaxedOutColor = 0x027fbfff;
+            const int expectedMaxedOutColor = 0x027fbfff;
             AssertHelper.AreEqual(expectedMaxedOutColor, () => actualMaxedOutColor);
 
             int whiteWithAlpha = ColorHelper.GetColor(255, 255, 255, 255);

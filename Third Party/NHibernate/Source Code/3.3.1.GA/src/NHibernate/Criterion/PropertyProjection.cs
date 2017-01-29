@@ -12,8 +12,8 @@ namespace NHibernate.Criterion
 	[Serializable]
 	public class PropertyProjection : SimpleProjection, IPropertyProjection
 	{
-		private string propertyName;
-		private bool grouped;
+		private readonly string propertyName;
+		private readonly bool grouped;
 
 		protected internal PropertyProjection(string propertyName, bool grouped)
 		{

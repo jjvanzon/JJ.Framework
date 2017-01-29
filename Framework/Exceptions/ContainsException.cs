@@ -9,11 +9,11 @@ namespace JJ.Framework.Exceptions
         private const string MESSAGE = "{0} should not contain {1}.";
 
         public ContainsException(Expression<Func<object>> expression, object value)
-            : base(String.Format(MESSAGE, ExpressionHelper.GetText(expression), value))
+            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression), value))
         { }
 
         public ContainsException(Expression<Func<object>> expression1, Expression<Func<object>> expression2)
-            : base(String.Format(MESSAGE, ExpressionHelper.GetText(expression1), ExpressionHelper.GetText(expression2)))
+            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression1), ExpressionHelper.GetText(expression2)))
         { }
     }
 }

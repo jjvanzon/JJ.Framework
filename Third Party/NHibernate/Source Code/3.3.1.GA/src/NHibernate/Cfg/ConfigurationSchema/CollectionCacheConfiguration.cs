@@ -21,7 +21,7 @@ namespace NHibernate.Cfg.ConfigurationSchema
 		/// <exception cref="ArgumentException">When <paramref name="collection"/> is null or empty.</exception>
 		public CollectionCacheConfiguration(string collection, EntityCacheUsage usage)
 		{
-			if (String.IsNullOrEmpty(collection))
+			if (string.IsNullOrEmpty(collection))
 				throw new ArgumentException("collection is null or empty.", "collection");
 			this.collection = collection;
 			this.usage = usage;

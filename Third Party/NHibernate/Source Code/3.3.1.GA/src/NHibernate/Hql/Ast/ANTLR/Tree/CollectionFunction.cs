@@ -33,10 +33,10 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			ResolveCollectionProperty( expr );
 		}
 
-		protected override void PrepareSelectColumns(String[] selectColumns) 
+		protected override void PrepareSelectColumns(string[] selectColumns) 
 		{
 			// we need to strip off the embedded parens so that sql-gen does not double these up
-			String subselect = selectColumns[0].Trim();
+			string subselect = selectColumns[0].Trim();
 			if ( subselect.StartsWith( "(") && subselect.EndsWith( ")" ) ) 
 			{
 				subselect = subselect.Substring( 1, subselect.Length -2 );

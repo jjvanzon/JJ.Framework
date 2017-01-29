@@ -41,7 +41,7 @@ namespace Sgml {
         object[] items;
         int size;
         int count;
-        int growth;
+        readonly int growth;
 
         public HWStack(int growth) {
             this.growth = growth;
@@ -143,7 +143,7 @@ namespace Sgml {
         internal ElementDecl DtdType; // the DTD type found via validation
         internal State CurrentState;
         internal bool Simulated; // tag was injected into result stream.
-        HWStack attributes = new HWStack(10);
+        readonly HWStack attributes = new HWStack(10);
 
         /// <summary>
         /// Attribute objects are reused during parsing to reduce memory allocations, 
@@ -249,7 +249,7 @@ namespace Sgml {
         SgmlDtd dtd;
         Entity current;
         State state;
-        XmlNameTable nametable;
+        readonly XmlNameTable nametable;
         char partial;
         object endTag;
         HWStack stack;
@@ -450,7 +450,7 @@ namespace Sgml {
 
         void Log(string msg, params string[] args) {
             if (ErrorLog != null) {
-                string err = String.Format(msg, args);
+                string err = string.Format(msg, args);
                 if (this.lastError != this.current) {
                     err = err + "    " + this.current.Context();
                     this.lastError = this.current;
@@ -583,14 +583,14 @@ namespace Sgml {
                 if (this.state == State.Attr && StringUtilities.EqualsIgnoreCase(this.a.Name, "xmlns")) {
                     return "http://www.w3.org/2000/xmlns/";
                 }
-                return String.Empty;
+                return string.Empty;
             }
         }
 
         public override string Prefix { 
             get {
                 // SGML has no namespaces.
-                return String.Empty;
+                return string.Empty;
             }
         }
 
@@ -670,7 +670,7 @@ namespace Sgml {
                     string xmllang = n.XmlLang;
                     if (xmllang != null) return xmllang;
                 }
-                return String.Empty;
+                return string.Empty;
             }
         }
 
@@ -962,7 +962,7 @@ namespace Sgml {
             return false;
         }
 
-        static string declterm = " \t\r\n><";
+        static readonly string declterm = " \t\r\n><";
         bool ParseTag(char ch) {
             if (ch == '%') {
                 return ParseAspNet();
@@ -973,7 +973,7 @@ namespace Sgml {
                     return ParseComment();
                 } else if (ch == '[') {
                     return ParseConditionalBlock();
-                }else if (ch != '_' && !Char.IsLetter(ch)) {
+                }else if (ch != '_' && !char.IsLetter(ch)) {
                     // perhaps it's one of those nasty office document hacks like '<![if ! ie ]>'
                     string value = this.current.ScanToEnd(this.sb, "Recovering", ">"); // skip it
                     Log("Ignoring invalid markup '<!"+value+">");
@@ -1028,9 +1028,9 @@ namespace Sgml {
             return this.nametable.Add(name);
         }
 
-        static string tagterm = " \t\r\n=/><";
-        static string aterm = " \t\r\n='\"/>";
-        static string avterm = " \t\r\n>";
+        static readonly string tagterm = " \t\r\n=/><";
+        static readonly string aterm = " \t\r\n='\"/>";
+        static readonly string avterm = " \t\r\n>";
         bool ParseStartTag(char ch) {
             string name = null;
             if (state != State.PseudoStartTag){
@@ -1179,7 +1179,7 @@ namespace Sgml {
             return true;
         }
 
-        static string cdataterm = "\t\r\n[<>";
+        static readonly string cdataterm = "\t\r\n[<>";
         bool ParseConditionalBlock(){
             char ch = current.ReadChar(); // skip '['
             ch = current.SkipWhitespace();
@@ -1201,7 +1201,7 @@ namespace Sgml {
             return true;
         }
 
-        static string dtterm = " \t\r\n>";
+        static readonly string dtterm = " \t\r\n>";
         void ParseDocType() {
             char ch = this.current.SkipWhitespace();
             string name = this.ScanName(SgmlReader.dtterm);
@@ -1254,7 +1254,7 @@ namespace Sgml {
             this.current.ReadChar();
         }
 
-        static string piterm = " \t\r\n?";
+        static readonly string piterm = " \t\r\n?";
         bool ParsePI() {
             string name = this.current.ScanToken(this.sb, SgmlReader.piterm, false);
             string value = null;
@@ -1283,7 +1283,7 @@ namespace Sgml {
             while (ch != Entity.EOF) {
                 if (ch == '<') {
                     ch = this.current.ReadChar();
-                    if (ch == '/' || ch == '!' || ch == '?' || Char.IsLetter(ch)) {
+                    if (ch == '/' || ch == '!' || ch == '?' || char.IsLetter(ch)) {
                         // Hit a tag, so return XmlNodeType.Text token
                         // and remember we partially started a new tag.
                         this.state = State.PartialTag;
@@ -1467,7 +1467,7 @@ namespace Sgml {
             else {
                 this.name.Length = 0;
                 while (ch != Entity.EOF && 
-                    (Char.IsLetter(ch) || ch == '_' || ch == '-')) {
+                    (char.IsLetter(ch) || ch == '_' || ch == '-')) {
                     this.name.Append(ch);
                     ch = this.current.ReadChar();
                 }

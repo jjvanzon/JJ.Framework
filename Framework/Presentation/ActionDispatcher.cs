@@ -17,7 +17,7 @@ namespace JJ.Framework.Presentation
     /// </summary>
     public static class ActionDispatcher
     {
-        private static ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
+        private static readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
 
         /// <summary>
         /// Gets a view model dynamically from the described presenter and action.
@@ -52,10 +52,10 @@ namespace JJ.Framework.Presentation
                     return types[0];
 
                 case 0:
-                    throw new Exception(String.Format("Type with short name '{0}' not found in the AppDomain's assemblies.", shortTypeName));
+                    throw new Exception(string.Format("Type with short name '{0}' not found in the AppDomain's assemblies.", shortTypeName));
 
                 default:
-                    throw new Exception(String.Format(
+                    throw new Exception(string.Format(
                         "Type with short name '{0}' found multiple times in the AppDomain's assemblies. " +
                         "Presenters must have unique class names within the AppDomain. " +
                         "If that is not possible you must program the instantiation of the presenter yourself and use the other overload of DispatchAction. " +
@@ -113,7 +113,7 @@ namespace JJ.Framework.Presentation
             MethodInfo method = type.GetMethod(actionInfo.ActionName);
             if (method == null)
             {
-                throw new Exception(String.Format("Method '{0}' of type '{1}' not found.", actionInfo.ActionName, type.Name));
+                throw new Exception(string.Format("Method '{0}' of type '{1}' not found.", actionInfo.ActionName, type.Name));
             }
 
             // Convert parameter values.
@@ -134,7 +134,7 @@ namespace JJ.Framework.Presentation
                 // Handle normal parameter.
                 object value;
                 IList<ActionParameterInfo> matchingActionParameterInfos = actionInfo.Parameters
-                                                                                    .Where(x => String.Equals(x.Name, parameter.Name))
+                                                                                    .Where(x => string.Equals(x.Name, parameter.Name))
                                                                                     .ToArray();
                 switch (matchingActionParameterInfos.Count)
                 {
@@ -157,7 +157,7 @@ namespace JJ.Framework.Presentation
                         //    String_PlatformSupport.Join(", ", actionInfo.Parameters.Select(x => x.Name))));
 
                     default:
-                        throw new Exception(String.Format("Parameter '{0}' for method '{1}' of type '{2}' found multiple times in ActionInfo.", parameter.Name, method.Name, type.Name));
+                        throw new Exception(string.Format("Parameter '{0}' for method '{1}' of type '{2}' found multiple times in ActionInfo.", parameter.Name, method.Name, type.Name));
                 }
 
                 object parameterValue = ConvertValue(value, parameter.ParameterType);
@@ -239,7 +239,7 @@ namespace JJ.Framework.Presentation
         private static object ConvertValue(object value, Type type)
         {
             // TODO: Convert more types of values.
-            if (String.IsNullOrEmpty(Convert.ToString(value)))
+            if (string.IsNullOrEmpty(Convert.ToString(value)))
             {
                 return null;
             }

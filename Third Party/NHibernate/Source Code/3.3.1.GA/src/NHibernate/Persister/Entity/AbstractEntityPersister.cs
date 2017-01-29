@@ -3294,19 +3294,19 @@ namespace NHibernate.Persister.Entity
 			}
 
 			int[] formulaTableNumbers = SubclassFormulaTableNumberClosure;
-			String[] formulaTemplates = SubclassFormulaTemplateClosure;
-			String[] formulaAliases = SubclassFormulaAliasClosure;
+			string[] formulaTemplates = SubclassFormulaTemplateClosure;
+			string[] formulaAliases = SubclassFormulaAliasClosure;
 			for (int i = 0; i < subclassFormulaNumbers.Length; i++)
 			{
 				int formulaNumber = subclassFormulaNumbers[i];
-				String subalias = GenerateTableAlias(RootAlias, formulaTableNumbers[formulaNumber]);
+				string subalias = GenerateTableAlias(RootAlias, formulaTableNumbers[formulaNumber]);
 				selectFragment.AddFormula(subalias, formulaTemplates[formulaNumber], formulaAliases[formulaNumber]);
 			}
 
 			return selectFragment;
 		}
 
-		protected string CreateFrom(int tableNumber, String alias)
+		protected string CreateFrom(int tableNumber, string alias)
 		{
 			return GetSubclassTableName(tableNumber) + ' ' + alias;
 		}

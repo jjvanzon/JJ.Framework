@@ -12,7 +12,7 @@ namespace NHibernate.Criterion
 	public class NotNullExpression : AbstractCriterion
 	{
 		private readonly string _propertyName;
-		private IProjection _projection;
+		private readonly IProjection _projection;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="NotNullExpression"/> class.

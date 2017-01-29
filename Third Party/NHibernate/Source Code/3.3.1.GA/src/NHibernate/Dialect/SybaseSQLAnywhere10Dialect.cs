@@ -508,7 +508,7 @@ namespace NHibernate.Dialect
 			}
 			else
 			{
-				return String.Empty;
+				return string.Empty;
 			}
 		}
 

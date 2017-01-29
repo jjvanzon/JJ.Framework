@@ -19,7 +19,7 @@
             get { return "PropertyResult"; }
         }
 
-        private static int[] _array = { 10, 11, 12 };
+        private static readonly int[] _array = { 10, 11, 12 };
         public static int[] Array
         {
             get { return _array; }

@@ -13,7 +13,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
         {
             if (font == null) throw new NullException(() => font);
 
-            if (String.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text))
             {
                 return 0f;
             }

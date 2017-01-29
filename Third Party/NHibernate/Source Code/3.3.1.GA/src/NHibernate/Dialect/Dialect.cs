@@ -781,7 +781,7 @@ namespace NHibernate.Dialect
 		/// </summary>
 		public virtual string CascadeConstraintsString
 		{
-			get { return String.Empty; }
+			get { return string.Empty; }
 		}
 
 		/// <summary> Only needed if the Dialect does not have SupportsForeignKeyConstraintInAlterTable. </summary>
@@ -2180,7 +2180,7 @@ namespace NHibernate.Dialect
 
 		public virtual string TableTypeString
 		{
-			get { return String.Empty; } // for differentiation of mysql storage engines
+			get { return string.Empty; } // for differentiation of mysql storage engines
 		}
 
 		/// <summary>
@@ -2188,7 +2188,7 @@ namespace NHibernate.Dialect
 		/// </summary>
 		public virtual string NullColumnString
 		{
-			get { return String.Empty; }
+			get { return string.Empty; }
 		}
 
 		/// <summary>

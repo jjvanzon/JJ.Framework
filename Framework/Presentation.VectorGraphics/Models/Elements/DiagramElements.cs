@@ -14,7 +14,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         private readonly Diagram _diagram;
         private readonly IList<Element> _elements = new List<Element>();
 
-        private DiagramToElementsRelationship _relationship;
+        private readonly DiagramToElementsRelationship _relationship;
 
         internal DiagramElements(Diagram diagram)
         {

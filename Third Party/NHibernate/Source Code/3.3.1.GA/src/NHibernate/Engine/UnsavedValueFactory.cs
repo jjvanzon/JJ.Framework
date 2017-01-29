@@ -84,7 +84,7 @@ namespace NHibernate.Engine
 		}
 
 		public static VersionValue GetUnsavedVersionValue(
-			String versionUnsavedValue,
+			string versionUnsavedValue,
 			IGetter versionGetter,
 			IVersionType versionType,
 			ConstructorInfo constructor)

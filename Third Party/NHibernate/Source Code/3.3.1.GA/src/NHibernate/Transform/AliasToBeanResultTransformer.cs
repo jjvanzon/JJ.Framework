@@ -59,7 +59,7 @@ namespace NHibernate.Transform
 				                            	});
 		}
 
-		public object TransformTuple(object[] tuple, String[] aliases)
+		public object TransformTuple(object[] tuple, string[] aliases)
 		{
 			if (aliases == null)
 			{

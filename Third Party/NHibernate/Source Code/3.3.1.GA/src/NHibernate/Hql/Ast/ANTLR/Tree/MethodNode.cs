@@ -88,7 +88,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		}
 		public void ResolveCollectionProperty(IASTNode expr)
 		{
-			String propertyName = CollectionProperties.GetNormalizedPropertyName( _methodName );
+			string propertyName = CollectionProperties.GetNormalizedPropertyName( _methodName );
 
 			if ( expr is FromReferenceNode ) 
 			{
@@ -127,7 +127,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			}
 		}
 
-		public String GetDisplayText()
+		public string GetDisplayText()
 		{
 			return "{" +
 					"method=" + _methodName +
@@ -167,7 +167,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 				FromElement lhsOrigin = lhs.FromElement;
 				if ( lhsOrigin != null && "" == lhsOrigin.Text )
 				{
-					String lhsOriginText = lhsOrigin.Queryable.TableName +
+					string lhsOriginText = lhsOrigin.Queryable.TableName +
 							" " + lhsOrigin.TableAlias;
 					lhsOrigin.Text = lhsOriginText;
 				}
@@ -175,12 +175,12 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			}
 		}
 
-		private void HandleElements(FromReferenceNode collectionNode, String propertyName)
+		private void HandleElements(FromReferenceNode collectionNode, string propertyName)
 		{
 			FromElement collectionFromElement = collectionNode.FromElement;
 			IQueryableCollection queryableCollection = collectionFromElement.QueryableCollection;
 
-			String path = collectionNode.Path + "[]." + propertyName;
+			string path = collectionNode.Path + "[]." + propertyName;
 			Log.Debug("Creating elements for " + path);
 
 			_fromElement = collectionFromElement;

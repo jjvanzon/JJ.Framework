@@ -8,8 +8,8 @@ namespace JJ.Framework.Common
     /// </summary>
     public static class ConfigurationHelper
     {
-        private static object _sectionsLock = new object();
-        private static IDictionary<Type, object> _sections = new Dictionary<Type, object>();
+        private static readonly object _sectionsLock = new object();
+        private static readonly IDictionary<Type, object> _sections = new Dictionary<Type, object>();
 
         // TODO: Make the overloads with the explicit section name.
 
@@ -20,7 +20,8 @@ namespace JJ.Framework.Common
                 object section = TryGetSection<T>();
                 if (section == null)
                 {
-                    throw new Exception(String.Format(
+                    // ReSharper disable once UseStringInterpolation
+                    throw new Exception(string.Format(
                         "Configuration section of type '{0}' was not set. To allow {1} to use this configuration section, call {2}.SetSection.",
                         typeof(T).FullName,
                         typeof(ConfigurationHelper).Assembly.GetName().Name,
@@ -42,13 +43,13 @@ namespace JJ.Framework.Common
 
         public static void SetSection<T>(T section)
         {
-            if (section == null) throw new ArgumentNullException("section");
+            if (section == null) throw new ArgumentNullException(nameof(section));
 
             lock (_sectionsLock)
             {
                 if (_sections.ContainsKey(typeof(T)))
                 {
-                    throw new Exception(String.Format("Configuration section of type '{0}' was already set.", typeof(T).FullName));
+                    throw new Exception($"Configuration section of type '{typeof(T).FullName}' was already set.");
                 }
                 _sections.Add(typeof(T), section);
             }

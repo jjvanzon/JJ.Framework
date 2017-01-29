@@ -101,7 +101,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 			public override string RenderScalarIdentifierSelect(int i)
 			{
-				String[] cols = GetBasePropertyMapping().ToColumns(fromElement.TableAlias, fromElement.ComponentProperty);
+				string[] cols = GetBasePropertyMapping().ToColumns(fromElement.TableAlias, fromElement.ComponentProperty);
 				var buf = new StringBuilder();
 				// For property references generate <tablealias>.<columnname> as <projectionalias>
 				for (int j = 0; j < cols.Length; j++)

@@ -227,7 +227,7 @@ namespace FluentNHibernate.Mapping
         public T AsMap(string indexColumnName)
         {
             collectionBuilder = attrs => CollectionMapping.Map(attrs);
-            AsIndexedCollection<Int32>(indexColumnName, null);
+            AsIndexedCollection<int>(indexColumnName, null);
             return (T)this;
         }
 
@@ -244,7 +244,7 @@ namespace FluentNHibernate.Mapping
                 collection.Set(x => x.Sort, Layer.UserSupplied, sort.ToLowerInvariantString());
                 return collection;
             };
-            AsIndexedCollection<Int32>(indexColumnName, null);
+            AsIndexedCollection<int>(indexColumnName, null);
             return (T)this;
         }
 

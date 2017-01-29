@@ -53,7 +53,7 @@ namespace NHibernate.Tuple
 		/// <returns>The appropriate VersionProperty definition.</returns>
 		public static VersionProperty BuildVersionProperty(Mapping.Property property, bool lazyAvailable)
 		{
-			String mappedUnsavedValue = ((IKeyValue) property.Value).NullValue;
+			string mappedUnsavedValue = ((IKeyValue) property.Value).NullValue;
 
 			VersionValue unsavedValue = UnsavedValueFactory.GetUnsavedVersionValue(
 				mappedUnsavedValue,

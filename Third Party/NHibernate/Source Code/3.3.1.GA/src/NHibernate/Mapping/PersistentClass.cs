@@ -260,7 +260,7 @@ namespace NHibernate.Mapping
 		public virtual string EntityName
 		{
 			get { return entityName; }
-			set { entityName = value == null ? null : String.Intern(value); }
+			set { entityName = value == null ? null : string.Intern(value); }
 		}
 
 		/// <summary>

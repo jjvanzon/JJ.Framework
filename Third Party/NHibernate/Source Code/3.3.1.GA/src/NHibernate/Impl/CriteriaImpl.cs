@@ -644,7 +644,7 @@ namespace NHibernate.Impl
 			private readonly string path;
 			private LockMode lockMode;
 			private readonly JoinType joinType;
-			private ICriterion withClause;
+			private readonly ICriterion withClause;
 
 			internal Subcriteria(CriteriaImpl root, ICriteria parent, string path, string alias, JoinType joinType, ICriterion withClause)
 			{

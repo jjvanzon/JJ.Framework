@@ -312,7 +312,7 @@ namespace NHibernate.Properties
 						// add some details to the error message - there have been a few forum posts an they are 
 						// all related to an ISet and IDictionary mixups.
 						string msg =
-							String.Format("The type {0} can not be assigned to a property of type {1}", value.GetType(),
+							string.Format("The type {0} can not be assigned to a property of type {1}", value.GetType(),
 														property.PropertyType);
 						throw new PropertyAccessException(ae, msg, true, clazz, propertyName);
 					}

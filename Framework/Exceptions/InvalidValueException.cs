@@ -6,18 +6,13 @@ namespace JJ.Framework.Exceptions
     {
         private const string MESSAGE = "Invalid {0} value: '{1}'.";
 
-        private string _message;
-
-        public override string Message
-        {
-            get { return _message; }
-        }
+        public override string Message { get; }
 
         public InvalidValueException(object value)
         {
-            if (value == null) throw new ArgumentNullException("value");
+            if (value == null) throw new ArgumentNullException(nameof(value));
 
-            _message = String.Format(MESSAGE, value.GetType().Name, value);
+            Message = string.Format(MESSAGE, value.GetType().Name, value);
         }
     }
 }

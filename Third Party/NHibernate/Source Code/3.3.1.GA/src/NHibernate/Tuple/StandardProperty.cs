@@ -42,8 +42,8 @@ namespace NHibernate.Tuple
 		/// <param name="cascadeStyle">The cascade style for this property's value.</param>
 		/// <param name="fetchMode">Any fetch mode defined for this property </param>
 		public StandardProperty(
-			String name,
-			String node,
+			string name,
+			string node,
 			IType type,
 			bool lazy,
 			bool insertable,

@@ -12,9 +12,9 @@ namespace NHibernate.Criterion
 	[Serializable]
 	public class SimpleSubqueryExpression : SubqueryExpression
 	{
-		private Object value;
+		private readonly object value;
 
-		internal SimpleSubqueryExpression(Object value, String op, String quantifier, DetachedCriteria dc)
+		internal SimpleSubqueryExpression(object value, string op, string quantifier, DetachedCriteria dc)
 			: base(op, quantifier, dc)
 		{
 			this.value = value;

@@ -21,6 +21,7 @@ namespace JJ.Framework.Collections
         public RedBlackTreeNode<TKey, TValue> GetGrandparent()
         {
             if (Parent == null) throw new ArgumentNullException(nameof(Parent)); // Not the root node
+            // ReSharper disable once NotResolvedInText
             if (Parent.Parent == null) throw new ArgumentNullException("Parent.Parent");  // Not child of root
 
             return Parent.Parent;

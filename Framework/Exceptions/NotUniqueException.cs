@@ -9,7 +9,7 @@ namespace JJ.Framework.Exceptions
         private const string MESSAGE = "{0} not unique.";
 
         public NotUniqueException(Expression<Func<object>> expression)
-            : this(String.Format(MESSAGE, ExpressionHelper.GetText(expression)))
+            : this(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
         { }
 
         public NotUniqueException(string message)

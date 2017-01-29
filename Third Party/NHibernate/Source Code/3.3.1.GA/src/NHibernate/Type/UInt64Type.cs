@@ -24,7 +24,7 @@ namespace NHibernate.Type
 			get { return "UInt64"; }
 		}
 
-		private static readonly UInt32 ZERO = 0;
+		private static readonly uint ZERO = 0;
 		public override object Get(IDataReader rs, int index)
 		{
 			try
@@ -51,7 +51,7 @@ namespace NHibernate.Type
 
 		public override System.Type ReturnedClass
 		{
-			get { return typeof(UInt64); }
+			get { return typeof(ulong); }
 		}
 
 		public override void Set(IDbCommand rs, object value, int index)
@@ -66,14 +66,14 @@ namespace NHibernate.Type
 
 		public override object FromStringValue(string xml)
 		{
-			return UInt64.Parse(xml);
+			return ulong.Parse(xml);
 		}
 
 		#region IVersionType Members
 
 		public virtual object Next(object current, ISessionImplementor session)
 		{
-			return (UInt64)current + 1;
+			return (ulong)current + 1;
 		}
 
 		public virtual object Seed(ISessionImplementor session)
@@ -83,14 +83,14 @@ namespace NHibernate.Type
 
 		public IComparer Comparator
 		{
-			get { return Comparer<UInt64>.Default; }
+			get { return Comparer<ulong>.Default; }
 		}
 
 		#endregion
 
 		public override System.Type PrimitiveClass
 		{
-			get { return typeof(UInt64); }
+			get { return typeof(ulong); }
 		}
 
 		public override object DefaultValue

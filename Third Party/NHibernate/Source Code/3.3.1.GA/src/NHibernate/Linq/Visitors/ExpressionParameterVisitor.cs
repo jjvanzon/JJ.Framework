@@ -63,7 +63,7 @@ namespace NHibernate.Linq.Visitors
 
 		private static bool IsNullObject(ConstantExpression expression)
 		{
-			return expression.Type == typeof(Object) && expression.Value == null;
+			return expression.Type == typeof(object) && expression.Value == null;
 		}
 	}
 }

@@ -216,7 +216,7 @@ namespace NHibernate.Loader
 
 			var dependencies = new List<string>();
 			var on = association.On.ToString();
-			if (!String.IsNullOrEmpty(on))
+			if (!string.IsNullOrEmpty(on))
 			{
 				foreach (Match match in aliasRegex.Matches(on))
 				{
@@ -811,7 +811,7 @@ namespace NHibernate.Loader
 			collectionSuffixes = BasicLoader.GenerateSuffixes(joins + 1, collections);
 
 			persisters = new ILoadable[joins];
-			aliases = new String[joins];
+			aliases = new string[joins];
 			owners = new int[joins];
 			ownerAssociationTypes = new EntityType[joins];
 			lockModeArray = ArrayHelper.FillArray(lockMode, joins);

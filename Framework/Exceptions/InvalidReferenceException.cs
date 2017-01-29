@@ -9,7 +9,7 @@ namespace JJ.Framework.Exceptions
         private const string MESSAGE = "{0} not found in list.";
 
         public InvalidReferenceException(Expression<Func<object>> expression)
-            : base(String.Format(MESSAGE, ExpressionHelper.GetText(expression)))
+            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
         { }
     }
 }

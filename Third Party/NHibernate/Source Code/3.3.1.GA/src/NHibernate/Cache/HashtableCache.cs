@@ -7,7 +7,7 @@ namespace NHibernate.Cache
 	/// </summary>
 	public class HashtableCache : ICache
 	{
-		private IDictionary hashtable = new Hashtable();
+		private readonly IDictionary hashtable = new Hashtable();
 		private readonly string regionName;
 
 		#region ICache Members

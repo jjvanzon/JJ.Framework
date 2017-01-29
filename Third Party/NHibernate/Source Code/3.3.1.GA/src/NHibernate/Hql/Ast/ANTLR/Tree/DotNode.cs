@@ -539,7 +539,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			FromElement = elem;	// This 'dot' expression now refers to the resulting from element.
 		}
 
-		private bool AreSame(String alias1, String alias2) {
+		private bool AreSame(string alias1, string alias2) {
 			// again, null != null here
 			return !StringHelper.IsEmpty( alias1 ) && !StringHelper.IsEmpty( alias2 ) && alias1.Equals( alias2 );
 		}
@@ -678,7 +678,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			return _columns;
 		}
 
-		private static void CheckSubclassOrSuperclassPropertyReference(AbstractSelectExpression lhs, String propertyName) 
+		private static void CheckSubclassOrSuperclassPropertyReference(AbstractSelectExpression lhs, string propertyName) 
 		{
 			if ( lhs != null && !( lhs is IndexNode ) ) 
 			{

@@ -126,11 +126,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         {
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
 
-            Element hitElement = _mouseCapturingElement;
-            if (hitElement == null)
-            {
-                hitElement = TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
-            }
+            Element hitElement = _mouseCapturingElement ?? TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
 
             if (hitElement != null)
             {
@@ -187,11 +183,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
             IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
 
-            Element hitElement = _mouseCapturingElement;
-            if (hitElement == null)
-            {
-                hitElement = TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
-            }
+            Element hitElement = _mouseCapturingElement ?? TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
 
             if (hitElement != null)
             {

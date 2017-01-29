@@ -242,7 +242,7 @@ namespace NHibernate.Proxy.DynamicProxy
 			IL.Emit(OpCodes.Ldarg_1);
 			IL.Emit(OpCodes.Ldstr, "__baseInterfaceCount");
 			IL.Emit(OpCodes.Ldc_I4, baseInterfaceCount);
-			IL.Emit(OpCodes.Box, typeof (Int32));
+			IL.Emit(OpCodes.Box, typeof (int));
 			IL.Emit(OpCodes.Callvirt, addValue);
 
 			int index = 0;

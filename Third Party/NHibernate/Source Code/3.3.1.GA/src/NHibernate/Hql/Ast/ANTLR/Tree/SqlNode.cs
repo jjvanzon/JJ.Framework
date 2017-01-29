@@ -15,7 +15,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		/**
 		 * The original text for the node, mostly for debugging.
 		 */
-		private String _originalText;
+		private string _originalText;
 
 		/**
 		 * The data type of this node.  Null for 'no type'.

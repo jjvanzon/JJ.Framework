@@ -256,7 +256,7 @@ namespace NHibernate.Tool.hbm2ddl
 
         protected static bool CharEquals(char expected, char actual)
         {
-            return Char.ToLowerInvariant(expected) == Char.ToLowerInvariant(actual);
+            return char.ToLowerInvariant(expected) == char.ToLowerInvariant(actual);
         }
 
         protected bool CharEquals(char compare)
@@ -355,7 +355,7 @@ namespace NHibernate.Tool.hbm2ddl
 
             if (CharEquals('g', Current))
             {
-                if (_gFound || (!Char.IsWhiteSpace(LastChar) && LastChar != char.MinValue))
+                if (_gFound || (!char.IsWhiteSpace(LastChar) && LastChar != char.MinValue))
                 {
                     FoundNonEmptyCharacter(Current);
                     return false;

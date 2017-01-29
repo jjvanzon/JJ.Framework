@@ -23,7 +23,7 @@ namespace JJ.Framework.Data
         {
             if (persistenceConfiguration == null) throw new NullException(() => persistenceConfiguration);
 
-            return ContextFactory.CreateContext(
+            return CreateContext(
                 persistenceConfiguration.ContextType,
                 persistenceConfiguration.Location,
                 persistenceConfiguration.ModelAssembly,
@@ -40,18 +40,18 @@ namespace JJ.Framework.Data
             Type persistenceContextType = ResolveContextType(contextTypeName);
 
             Assembly modelAssembly = null;
-            if (!String.IsNullOrEmpty(modelAssemblyName))
+            if (!string.IsNullOrEmpty(modelAssemblyName))
             {
                 modelAssembly = Assembly.Load(modelAssemblyName);
             }
 
             Assembly mappingAssembly = null;
-            if (!String.IsNullOrEmpty(mappingAssemblyName))
+            if (!string.IsNullOrEmpty(mappingAssemblyName))
             {
                 mappingAssembly = Assembly.Load(mappingAssemblyName);
             }
 
-            return ContextFactory.CreateContext(persistenceContextType, location, modelAssembly, mappingAssembly, dialect);
+            return CreateContext(persistenceContextType, location, modelAssembly, mappingAssembly, dialect);
         }
 
         public static IContext CreateContext(Type persistenceContextType, string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
@@ -59,8 +59,8 @@ namespace JJ.Framework.Data
             return (IContext)Activator.CreateInstance(persistenceContextType, persistenceLocation, modelAssembly, mappingAssembly, dialect);
         }
 
-        private static object _contextTypeDictionaryLock = new object();
-        private static Dictionary<string, Type> _contextTypeDictionary = new Dictionary<string, Type>();
+        private static readonly object _contextTypeDictionaryLock = new object();
+        private static readonly Dictionary<string, Type> _contextTypeDictionary = new Dictionary<string, Type>();
 
         private static Type ResolveContextType(string contextTypeName)
         {
@@ -99,10 +99,10 @@ namespace JJ.Framework.Data
                             break;
 
                         case 0:
-                            throw new Exception(String.Format("Context type '{0}' not found.", contextTypeName));
+                            throw new Exception($"Context type '{contextTypeName}' not found.");
 
                         default:
-                            throw new Exception(String.Format("Multiple context types found in assembly '{0}'. Please specify a fully qualified type name or implement only one context in the assembly.", assembly.GetName().Name));
+                            throw new Exception($"Multiple context types found in assembly '{assembly.GetName().Name}'. Please specify a fully qualified type name or implement only one context in the assembly.");
                     }
                 }
 

@@ -164,7 +164,7 @@ namespace NHibernate.Bytecode.CodeDom
 					log.Debug("Compiled with error:\n" + code);
 					foreach (CompilerError e in res.Errors)
 					{
-						log.Debug(String.Format("Line:{0}, Column:{1} Message:{2}", e.Line, e.Column, e.ErrorText));
+						log.Debug(string.Format("Line:{0}, Column:{1} Message:{2}", e.Line, e.Column, e.ErrorText));
 					}
 					throw new InvalidOperationException(res.Errors[0].ErrorText);
 				}

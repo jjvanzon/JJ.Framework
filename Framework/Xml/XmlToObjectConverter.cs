@@ -48,7 +48,7 @@ namespace JJ.Framework.Xml
         where TDestObject: new()
     {
 
-        private static ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
+        private static readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
 
         /// <summary>
         /// Converts an XML structure to an object tree.
@@ -190,7 +190,7 @@ namespace JJ.Framework.Xml
                 bool isValid = !hasXmlAttributeAttribute && !hasXmlElementAttribute;
                 if (!isValid)
                 {
-                    throw new Exception(String.Format("Property '{0}' is an Array or is List<T>-assignable and therefore cannot be marked with XmlAttribute or XmlElement. Use XmlArray and XmlArrayItem instead.", destProperty.Name));
+                    throw new Exception(string.Format("Property '{0}' is an Array or is List<T>-assignable and therefore cannot be marked with XmlAttribute or XmlElement. Use XmlArray and XmlArrayItem instead.", destProperty.Name));
                 }
                 return NodeTypeEnum.Array;
             }
@@ -200,7 +200,7 @@ namespace JJ.Framework.Xml
                 bool isValid = !hasXmlElementAttribute && !hasXmlArrayAttribute && !hasXmlArrayItemAttribute;
                 if (!isValid)
                 {
-                    throw new Exception(String.Format("Property '{0}' is an XML attribute and therefore cannot be marked with XmlElement, XmlArray or XmlArrayItem.", destProperty.Name));
+                    throw new Exception(string.Format("Property '{0}' is an XML attribute and therefore cannot be marked with XmlElement, XmlArray or XmlArrayItem.", destProperty.Name));
                 }
                 return NodeTypeEnum.Attribute;
             }
@@ -209,7 +209,7 @@ namespace JJ.Framework.Xml
             bool isValidElement = !hasXmlAttributeAttribute && !hasXmlArrayAttribute && !hasXmlArrayItemAttribute;
             if (!isValidElement)
             {
-                throw new Exception(String.Format("Property '{0}' is an XML element and therefore cannot be marked with XmlAttribute, XmlArray or XmlArrayItem.", destProperty.Name));
+                throw new Exception(string.Format("Property '{0}' is an XML element and therefore cannot be marked with XmlAttribute, XmlArray or XmlArrayItem.", destProperty.Name));
             }
             return NodeTypeEnum.Element;
         }
@@ -242,7 +242,7 @@ namespace JJ.Framework.Xml
                 }
 
                 // If not nullable and element is null, throw an exception.
-                throw new Exception(String.Format("XML node '{0}' does not have the required child element '{1}'.", sourceParentElement.Name, sourceChildElementName));
+                throw new Exception(string.Format("XML node '{0}' does not have the required child element '{1}'.", sourceParentElement.Name, sourceChildElementName));
             }
         }
 
@@ -324,7 +324,7 @@ namespace JJ.Framework.Xml
         {
             // Try get element name from XmlElement attribute.
             string name = TryGetXmlElementNameFromAttribute(destProperty);
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 return name;
             }
@@ -376,7 +376,7 @@ namespace JJ.Framework.Xml
                 }
 
                 // If not nullable and attribute is null or empty, throw an exception.
-                throw new Exception(String.Format("XML node '{0}' does not specify the required attribute '{1}'.", sourceParentElement.Name, sourceXmlAttributeName));
+                throw new Exception(string.Format("XML node '{0}' does not specify the required attribute '{1}'.", sourceParentElement.Name, sourceXmlAttributeName));
             }
 
             destProperty.SetValue_PlatformSupport(destParentObject, destPropertyValue);
@@ -396,7 +396,7 @@ namespace JJ.Framework.Xml
 
             string sourceAttributeValue = sourceXmlAttribute.Value;
 
-            if (String.IsNullOrEmpty(sourceAttributeValue))
+            if (string.IsNullOrEmpty(sourceAttributeValue))
             {
                 return null;
             }
@@ -417,7 +417,7 @@ namespace JJ.Framework.Xml
         {
             // Try get attribute name from XmlAttribute attribute.
             string name = TryGetAttributeNameFromAttribute(destProperty);
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 return name;
             }
@@ -520,7 +520,7 @@ namespace JJ.Framework.Xml
                 return;
             }
 
-            throw new Exception(String.Format("Type '{0}' is not supported: it not an Array type or a generic collection type to which List<T> can be assigned.", destCollectionType.Name));
+            throw new Exception(string.Format("Type '{0}' is not supported: it not an Array type or a generic collection type to which List<T> can be assigned.", destCollectionType.Name));
         }
 
         /// <summary>
@@ -620,7 +620,7 @@ namespace JJ.Framework.Xml
         {
             // Try get element name from XmlArray attribute.
             string name = TryGetXmlArrayNameFromAttribute(destCollectionProperty);
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 return name;
             }
@@ -656,7 +656,7 @@ namespace JJ.Framework.Xml
         {
             // Try get element name from XmlArrayItem attribute.
             string name = TryGetXmlArrayItemNameFromAttribute(collectionProperty);
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 return name;
             }

@@ -93,7 +93,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 
 		private NativeSQLQueryRootReturn CreateReturn(HbmReturn returnSchema, int count)
 		{
-			String alias = returnSchema.alias;
+			string alias = returnSchema.alias;
 
 			if (StringHelper.IsEmpty(alias))
 				alias = "alias_" + count; // hack/workaround as sqlquery impl depend on having a key.
@@ -308,7 +308,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 		private static List<string> GetResultColumns(HbmReturnProperty returnPropertySchema)
 		{
 			List<string> allResultColumns = new List<string>();
-			String column = Unquote(returnPropertySchema.column);
+			string column = Unquote(returnPropertySchema.column);
 
 			if (column != null)
 				allResultColumns.Add(column);
@@ -358,12 +358,12 @@ namespace NHibernate.Cfg.XmlHbmBinding
 		{
 			int propertySize = propertyNames.Count;
 			for (int propIndex = 0; propIndex < propertySize; propIndex++)
-				if (((String) propertyNames[propIndex]).StartsWith(follower))
+				if (((string) propertyNames[propIndex]).StartsWith(follower))
 					return propIndex;
 			return -1;
 		}
 
-		private static String Unquote(String name)
+		private static string Unquote(string name)
 		{
 			if (name != null && name[0] == '`')
 				name = name.Substring(1, name.Length - 2);

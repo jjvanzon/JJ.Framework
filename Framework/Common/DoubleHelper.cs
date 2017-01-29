@@ -13,14 +13,14 @@ namespace JJ.Framework.Common
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool TryParse(string s, IFormatProvider provider, out double result)
         {
-            return Double.TryParse(s, NumberStyles.Any, provider, out result);
+            return double.TryParse(s, NumberStyles.Any, provider, out result);
         }
 
         /// <summary> Returns true if the value is NaN, PositiveInfinity or NegativeInfinity. </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsSpecialValue(double value)
         {
-            return Double.IsNaN(value) || Double.IsInfinity(value);
+            return double.IsNaN(value) || double.IsInfinity(value);
         }
     }
 }

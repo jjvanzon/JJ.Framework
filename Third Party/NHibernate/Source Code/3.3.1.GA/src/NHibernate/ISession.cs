@@ -268,7 +268,7 @@ namespace NHibernate
 		/// with <c>cascade="all"</c> or <c>cascade="all-delete-orphan"</c>.
 		/// </remarks>
 		/// <param name="obj">a persistent instance</param>
-		void Evict(Object obj);
+		void Evict(object obj);
 
 		/// <summary>
 		/// Return the persistent instance of the given entity class with the given identifier,

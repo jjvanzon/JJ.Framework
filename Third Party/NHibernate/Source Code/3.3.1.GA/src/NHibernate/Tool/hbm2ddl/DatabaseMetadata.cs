@@ -166,7 +166,7 @@ namespace NHibernate.Tool.hbm2ddl
 			return false;
 		}
 
-		public override String ToString()
+		public override string ToString()
 		{
 			return "DatabaseMetadata" + StringHelper.CollectionToString((ICollection)tables.Keys) + " " +
 						 StringHelper.CollectionToString((ICollection)sequences);

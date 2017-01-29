@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
+// ReSharper disable once RedundantUsingDirective
+using System.Drawing;
 using JJ.Framework.Presentation.VectorGraphics.EventArg;
 using JJ.Framework.Presentation.VectorGraphics.Gestures;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;

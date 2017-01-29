@@ -13,7 +13,7 @@ namespace NHibernate.Loader.Criteria
 			this.persister = persister;
 		}
 
-		public String Name
+		public string Name
 		{
 			get
 			{
@@ -37,7 +37,7 @@ namespace NHibernate.Loader.Criteria
 			}
 		}
 
-		public IType GetType(String relativePath)
+		public IType GetType(string relativePath)
 		{
 			return persister.ToType(relativePath);
 		}

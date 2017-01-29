@@ -6,23 +6,10 @@ namespace JJ.Framework.Collections
 {
     public static class CollectionExtensions
     {
-        private static string _separatorGuidString = GetSeparatorGuid();
-        private static string _emptyGuidString = GetNullGuid();
-
-        private static string GetNullGuid()
-        {
-            return Guid.Empty.ToString();
-        }
-
-        private static string GetSeparatorGuid()
-        {
-            return Guid.NewGuid().ToString();
-        }
-
         public static void AddRange<T>(this HashSet<T> dest, IEnumerable<T> source)
         {
-            if (dest == null) throw new ArgumentNullException("dest");
-            if (source == null) throw new ArgumentNullException("source");
+            if (dest == null) throw new ArgumentNullException(nameof(dest));
+            if (source == null) throw new ArgumentNullException(nameof(source));
 
             foreach (T item in source)
             {
@@ -32,8 +19,8 @@ namespace JJ.Framework.Collections
 
         public static void AddRange<T>(this IList<T> collection, IEnumerable<T> items)
         {
-            if (collection == null) throw new ArgumentNullException("collection");
-            if (items == null) throw new ArgumentNullException("items");
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            if (items == null) throw new ArgumentNullException(nameof(items));
 
             foreach (var x in items)
             {
@@ -43,10 +30,10 @@ namespace JJ.Framework.Collections
 
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
-            if (enumerable == null) throw new ArgumentNullException("enumerable");
-            if (action == null) throw new ArgumentNullException("action");
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            if (action == null) throw new ArgumentNullException(nameof(action));
 
-            foreach (var x in enumerable)
+            foreach (T x in enumerable)
             {
                 action(x);
             }
@@ -56,7 +43,7 @@ namespace JJ.Framework.Collections
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
 
-            return enumerable.Except(new T[] { x });
+            return enumerable.Except(new[] { x });
         }
 
         /// <summary>
@@ -89,24 +76,24 @@ namespace JJ.Framework.Collections
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
 
-            return enumerable.Union(new T[] { x });
+            return enumerable.Union(new[] { x });
         }
 
         public static IEnumerable<T> Union<T>(this T x, IEnumerable<T> enumerable)
         {
-            return new T[] { x }.Union(enumerable);
+            return new[] { x }.Union(enumerable);
         }
 
         public static IEnumerable<T> Concat<T>(this IEnumerable<T> enumerable, T x)
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
 
-            return enumerable.Concat(new T[] { x });
+            return enumerable.Concat(new[] { x });
         }
 
         public static IEnumerable<T> Concat<T>(this T x, IEnumerable<T> enumerable)
         {
-            return new T[] { x }.Concat(enumerable);
+            return new[] { x }.Concat(enumerable);
         }
 
         public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey> keySelector)
@@ -129,7 +116,7 @@ namespace JJ.Framework.Collections
 
         public static IEnumerable<TItem> AsEnumerable<TItem>(this TItem item)
         {
-            return new TItem[] { item };
+            return new[] { item };
         }
 
         public static Dictionary<TKey, IList<TItem>> ToNonUniqueDictionary<TKey, TItem>(this IEnumerable<TItem> sourceCollection, Func<TItem, TKey> keySelector)
@@ -145,9 +132,9 @@ namespace JJ.Framework.Collections
             Func<TSourceItem, TKey> keySelector,
             Func<TSourceItem, TDestItem> elementSelector)
         {
-            if (sourceCollection == null) throw new ArgumentNullException("sourceCollection");
-            if (keySelector == null) throw new ArgumentNullException("keySelector");
-            if (elementSelector == null) throw new ArgumentNullException("valueSelector");
+            if (sourceCollection == null) throw new ArgumentNullException(nameof(sourceCollection));
+            if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
+            if (elementSelector == null) throw new ArgumentNullException(nameof(elementSelector));
 
             var dictionary = new Dictionary<TKey, IList<TDestItem>>();
 
@@ -173,11 +160,13 @@ namespace JJ.Framework.Collections
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
 
+            // ReSharper disable once PossibleMultipleEnumeration
             if (!source.Any())
             {
                 return default(TSource);
             }
 
+            // ReSharper disable once PossibleMultipleEnumeration
             return source.Max();
         }
 
@@ -185,11 +174,13 @@ namespace JJ.Framework.Collections
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
 
+            // ReSharper disable once PossibleMultipleEnumeration
             if (!source.Any())
             {
                 return default(TResult);
             }
 
+            // ReSharper disable once PossibleMultipleEnumeration
             return source.Max(selector);
         }
 
@@ -197,11 +188,13 @@ namespace JJ.Framework.Collections
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
 
+            // ReSharper disable once PossibleMultipleEnumeration
             if (!source.Any())
             {
                 return default(TSource);
             }
 
+            // ReSharper disable once PossibleMultipleEnumeration
             return source.Min();
         }
 
@@ -209,11 +202,13 @@ namespace JJ.Framework.Collections
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
 
+            // ReSharper disable once PossibleMultipleEnumeration
             if (!source.Any())
             {
                 return default(TResult);
             }
 
+            // ReSharper disable once PossibleMultipleEnumeration
             return source.Min(selector);
         }
 
@@ -228,7 +223,7 @@ namespace JJ.Framework.Collections
 
             foreach (TItem item2 in collection)
             {
-                if (Object.Equals(item2, item))
+                if (object.Equals(item2, item))
                 {
                     return i;
                 }
@@ -277,8 +272,8 @@ namespace JJ.Framework.Collections
         /// </summary>
         public static int IndexOf<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
-            if (collection == null) throw new ArgumentNullException("collection");
-            if (predicate == null) throw new ArgumentNullException("predicate");
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
             int? index = TryGetIndexOf(collection, predicate);
 
@@ -296,8 +291,8 @@ namespace JJ.Framework.Collections
         /// </summary>
         public static int? TryGetIndexOf<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
-            if (collection == null) throw new ArgumentNullException("collection");
-            if (predicate == null) throw new ArgumentNullException("predicate");
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
             for (int i = 0; i < collection.Count; i++)
             {
@@ -318,8 +313,8 @@ namespace JJ.Framework.Collections
         /// </summary>
         public static int? TryGetIndexOf<TSource>(this IEnumerable<TSource> collection, Func<TSource, bool> predicate)
         {
-            if (collection == null) throw new ArgumentNullException("collection");
-            if (predicate == null) throw new ArgumentNullException("predicate");
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
 
             int i = 0;
             foreach (TSource item in collection)
@@ -377,8 +372,8 @@ namespace JJ.Framework.Collections
 
         public static void Add<T>(this IList<T> collection, params T[] items)
         {
-            if (collection == null) throw new ArgumentNullException("collection");
-            if (items == null) throw new ArgumentNullException("items");
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            if (items == null) throw new ArgumentNullException(nameof(items));
 
             foreach (var x in items)
             {
@@ -390,8 +385,10 @@ namespace JJ.Framework.Collections
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
 
+            // ReSharper disable once PossibleMultipleEnumeration
             double product = collection.FirstOrDefault();
 
+            // ReSharper disable once PossibleMultipleEnumeration
             foreach (double value in collection.Skip(1))
             {
                 product *= value;
@@ -402,7 +399,7 @@ namespace JJ.Framework.Collections
 
         public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
         {
-            if (source == null) throw new ArgumentNullException("source");
+            if (source == null) throw new ArgumentNullException(nameof(source));
             return new HashSet<T>(source);
         }
     }

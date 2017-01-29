@@ -29,7 +29,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 				return (int)CharStreamConstants.EOF;
 			}
 
-			return Char.ToLowerInvariant(data[(p + i) - 1]); // This is how "case insensitive" is defined, i.e., could also use a special culture...
+			return char.ToLowerInvariant(data[(p + i) - 1]); // This is how "case insensitive" is defined, i.e., could also use a special culture...
 		}
 	}
 }

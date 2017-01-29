@@ -16,7 +16,7 @@ namespace JJ.Framework.Presentation
             int pageCount = (int)Math.Ceiling((decimal)count / (decimal)pageSize);
             if (selectedPageIndex > pageCount)
             {
-                throw new Exception(String.Format("pageIndex {0} is larger than pageCount {1}.", selectedPageIndex, pageCount));
+                throw new Exception(string.Format("pageIndex {0} is larger than pageCount {1}.", selectedPageIndex, pageCount));
             }
 
             bool hasPages = pageCount != 0;

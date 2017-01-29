@@ -22,7 +22,7 @@ namespace NHibernate.Driver
 	/// </remarks>
 	public class NHybridDataReader : IDataReader
 	{
-		private IInternalLogger log = LoggerProvider.LoggerFor(typeof(NHybridDataReader));
+		private readonly IInternalLogger log = LoggerProvider.LoggerFor(typeof(NHybridDataReader));
 
 		private IDataReader _reader;
 		private bool _isMidstream = false;

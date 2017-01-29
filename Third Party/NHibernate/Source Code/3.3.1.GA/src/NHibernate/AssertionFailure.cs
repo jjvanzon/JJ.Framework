@@ -15,7 +15,7 @@ namespace NHibernate
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AssertionFailure"/> class.
 		/// </summary>
-		public AssertionFailure() : base(String.Empty)
+		public AssertionFailure() : base(string.Empty)
 		{
 			LoggerProvider.LoggerFor(typeof(AssertionFailure)).Error(DefaultMessage);
 		}

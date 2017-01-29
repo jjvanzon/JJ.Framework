@@ -61,12 +61,12 @@ namespace NHibernate.Hql.Ast.ANTLR
 			parseErrorHandler.ReportError(e); // Use the delegate.
 		}
 
-		public void ReportError(String s)
+		public void ReportError(string s)
 		{
 			parseErrorHandler.ReportError(s); // Use the delegate.
 		}
 
-		public void ReportWarning(String s)
+		public void ReportWarning(string s)
 		{
 			parseErrorHandler.ReportWarning(s);
 		}
@@ -157,7 +157,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 			}
 		}
 
-		private void Separator(IASTNode n, String sep)
+		private void Separator(IASTNode n, string sep)
 		{
 			if (n.NextSibling != null)
 			{
@@ -303,7 +303,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 			}
 		}
 
-		private void CommaBetweenParameters(String comma)
+		private void CommaBetweenParameters(string comma)
 		{
 			writer.CommaBetweenParameters(comma);
 		}
@@ -394,7 +394,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 
 			#region ISqlWriter Members
 
-			public void Clause(String clause)
+			public void Clause(string clause)
 			{
 				generator.GetStringBuilder().Add(clause);
 			}
@@ -409,7 +409,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 				generator.GetStringBuilder().Add(parameter);
 			}
 
-			public void CommaBetweenParameters(String comma)
+			public void CommaBetweenParameters(string comma)
 			{
 				generator.GetStringBuilder().Add(comma);
 			}
@@ -435,7 +435,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 
         	#region ISqlWriter Members
 
-            public void Clause(String clause)
+            public void Clause(string clause)
             {
                 builder.Add(clause);
             }
@@ -450,7 +450,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 						builder.Add(parameter);
         	}
 
-        	public void CommaBetweenParameters(String comma)
+        	public void CommaBetweenParameters(string comma)
             {
                 builder.Add(comma);
             }

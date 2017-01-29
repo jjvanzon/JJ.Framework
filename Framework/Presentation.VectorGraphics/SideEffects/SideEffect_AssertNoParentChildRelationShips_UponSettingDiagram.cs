@@ -7,7 +7,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
 {
     internal class SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram : ISideEffect
     {
-        private Element _element;
+        private readonly Element _element;
 
         public SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(Element element)
         {

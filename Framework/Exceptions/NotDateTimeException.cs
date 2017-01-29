@@ -9,7 +9,7 @@ namespace JJ.Framework.Exceptions
         private const string MESSAGE = "{0} is not a DateTime.";
 
         public NotDateTimeException(Expression<Func<object>> expression)
-            : base(String.Format(MESSAGE, ExpressionHelper.GetText(expression)))
+            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
         { }
     }
 }

@@ -42,7 +42,7 @@ namespace NHibernate.Util
 			return false;
 		}
 
-		public string Render(String alias, IDictionary<string, IFilter> enabledFilters)
+		public string Render(string alias, IDictionary<string, IFilter> enabledFilters)
 		{
 			StringBuilder buffer = new StringBuilder();
 			Render(buffer, alias, enabledFilters);

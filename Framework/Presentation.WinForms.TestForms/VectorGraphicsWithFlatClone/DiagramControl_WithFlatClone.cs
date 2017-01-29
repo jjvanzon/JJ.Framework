@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
 
         // TODO: 
         // Warning CA2213	'DiagramControl' contains field 'DiagramControl._graphicsBuffer' that is of IDisposable type: 'ControlGraphicsBuffer'. Change the Dispose method on 'DiagramControl' to call Dispose or Close on this field.
-        private ControlGraphicsBuffer _graphicsBuffer;
+        private readonly ControlGraphicsBuffer _graphicsBuffer;
 
         public DiagramControl_WithFlatClone()
         {

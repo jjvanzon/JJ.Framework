@@ -243,12 +243,12 @@ namespace NHibernate.Type
 			get { return PROPERTY_NAMES; }
 		}
 
-		public object GetPropertyValue(Object component, int i, ISessionImplementor session)
+		public object GetPropertyValue(object component, int i, ISessionImplementor session)
 		{
 			return i == 0 ? session.BestGuessEntityName(component) : Id(component, session);
 		}
 
-		public object[] GetPropertyValues(Object component, EntityMode entityMode)
+		public object[] GetPropertyValues(object component, EntityMode entityMode)
 		{
 			throw new NotSupportedException();
 		}

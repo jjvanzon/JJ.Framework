@@ -62,7 +62,7 @@ namespace NHibernate.UserTypes
 		/// <param name="x"></param>
 		/// <param name="y"></param>
 		/// <returns></returns>
-		bool Equals(Object x, Object y);
+		bool Equals(object x, object y);
 
 		/// <summary>
 		/// Get a hashcode for the instance, consistent with persistence "equality"

@@ -11,11 +11,11 @@ namespace NHibernate.Cache
 	///	</remarks>
 	public sealed class Timestamper
 	{
-		private static object lockObject = new object();
+		private static readonly object lockObject = new object();
 
 		// hibernate is using System.currentMilliSeconds which is calculated
 		// from jan 1, 1970
-		private static long baseDateMs = (new DateTime(1970, 1, 1).Ticks) / 10000;
+		private static readonly long baseDateMs = (new DateTime(1970, 1, 1).Ticks) / 10000;
 
 		private static short counter = 0;
 		private static long time;

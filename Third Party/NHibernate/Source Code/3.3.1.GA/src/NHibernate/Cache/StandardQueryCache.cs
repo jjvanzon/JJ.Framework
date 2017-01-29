@@ -28,7 +28,7 @@ namespace NHibernate.Cache
 			if (regionName == null)
 				regionName = typeof (StandardQueryCache).FullName;
 
-			String prefix = settings.CacheRegionPrefix;
+			string prefix = settings.CacheRegionPrefix;
 			if (!string.IsNullOrEmpty(prefix))
 				regionName = prefix + '.' + regionName;
 

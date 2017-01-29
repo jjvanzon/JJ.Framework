@@ -238,7 +238,7 @@ namespace NHibernate.Cfg
 			settings.IsWrapResultSetsEnabled = wrapResultSets;
 			settings.BatcherFactory = CreateBatcherFactory(properties, settings.AdoBatchSize, connectionProvider);
 
-			string isolationString = PropertiesHelper.GetString(Environment.Isolation, properties, String.Empty);
+			string isolationString = PropertiesHelper.GetString(Environment.Isolation, properties, string.Empty);
 			IsolationLevel isolation = IsolationLevel.Unspecified;
 			if (isolationString.Length > 0)
 			{

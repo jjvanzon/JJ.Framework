@@ -34,7 +34,7 @@ namespace FluentNHibernate
         public IConventionFinder Conventions { get; private set; }
         public bool MergeMappings { get; set; }
         private IEnumerable<HibernateMapping> compiledMappings;
-        private ValidationVisitor validationVisitor;
+        private readonly ValidationVisitor validationVisitor;
         public PairBiDirectionalManyToManySidesDelegate BiDirectionalManyToManyPairer { get; set; }
 
         IDiagnosticMessageDispatcher diagnosticDispatcher = new DefaultDiagnosticMessageDispatcher();

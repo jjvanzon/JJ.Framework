@@ -132,7 +132,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			return types;
 		}
 
-		private ConstructorInfo ResolveConstructor(String path)
+		private ConstructorInfo ResolveConstructor(string path)
 		{
 			string importedClassName = SessionFactoryHelper.GetImportedClassName( path );
 			string className = StringHelper.IsEmpty( importedClassName ) ? path : importedClassName;

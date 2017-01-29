@@ -11,8 +11,8 @@ namespace NHibernate.Util
 	[Serializable]
 	public class WeakRefWrapper
 	{
-		private WeakReference reference;
-		private int hashCode;
+		private readonly WeakReference reference;
+		private readonly int hashCode;
 
 		public WeakRefWrapper(object target)
 		{
@@ -77,7 +77,7 @@ namespace NHibernate.Util
 
 	public class WeakEnumerator : IDictionaryEnumerator
 	{
-		private IDictionaryEnumerator innerEnumerator;
+		private readonly IDictionaryEnumerator innerEnumerator;
 
 		public WeakEnumerator(IDictionaryEnumerator innerEnumerator)
 		{
@@ -143,7 +143,7 @@ namespace NHibernate.Util
 	[Serializable]
 	public class WeakHashtable : IDictionary
 	{
-		private Hashtable innerHashtable = new Hashtable();
+		private readonly Hashtable innerHashtable = new Hashtable();
 
 		public void Scavenge()
 		{

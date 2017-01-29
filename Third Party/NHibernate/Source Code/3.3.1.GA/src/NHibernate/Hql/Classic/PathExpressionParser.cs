@@ -267,7 +267,7 @@ namespace NHibernate.Hql.Classic
 			DereferenceProperty(propertyName);
 		}
 
-		private void DereferenceCollection(String propertyName, String role, QueryTranslator q)
+		private void DereferenceCollection(string propertyName, string role, QueryTranslator q)
 		{
 			collectionRole = role;
 			IQueryableCollection collPersister = q.GetCollectionPersister(role);
@@ -632,7 +632,7 @@ namespace NHibernate.Hql.Classic
 		}
 
 		/// <summary></summary>
-		public String CollectionOwnerName
+		public string CollectionOwnerName
 		{
 			get { return collectionOwnerName; }
 		}

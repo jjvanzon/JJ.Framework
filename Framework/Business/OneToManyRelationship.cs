@@ -13,7 +13,7 @@ namespace JJ.Framework.Business
         where TChild : class
     {
         protected TParent _parent;
-        private ICollection<TChild> _children;
+        private readonly ICollection<TChild> _children;
 
         [DebuggerHidden]
         public OneToManyRelationship(TParent parent, ICollection<TChild> children)

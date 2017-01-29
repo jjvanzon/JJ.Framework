@@ -8,9 +8,9 @@ namespace NHibernate.Criterion
 	/// </summary>
 	public abstract class MatchMode
 	{
-		private int _intCode;
-		private string _name;
-		private static Hashtable Instances = new Hashtable();
+		private readonly int _intCode;
+		private readonly string _name;
+		private static readonly Hashtable Instances = new Hashtable();
 
 		static MatchMode()
 		{

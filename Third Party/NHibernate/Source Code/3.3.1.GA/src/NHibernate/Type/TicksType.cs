@@ -74,7 +74,7 @@ namespace NHibernate.Type
 
 		public override object FromStringValue(string xml)
 		{
-			return new DateTime(Int64.Parse(xml));
+			return new DateTime(long.Parse(xml));
 		}
 
 		#region IVersionType Members
@@ -91,7 +91,7 @@ namespace NHibernate.Type
 
 		public object StringToObject(string xml)
 		{
-			return Int64.Parse(xml);
+			return long.Parse(xml);
 		}
 
 		public IComparer Comparator

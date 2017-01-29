@@ -15,8 +15,8 @@ namespace JJ.Framework.Data.SqlClient
     public static class SqlCommandHelper
     {
         private static readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
-        private static IDictionary<object, string> _sqlDictionary = new Dictionary<object, string>();
-        private static object _sqlDictionaryLock = new object();
+        private static readonly IDictionary<object, string> _sqlDictionary = new Dictionary<object, string>();
+        private static readonly object _sqlDictionaryLock = new object();
 
         public static SqlCommand CreateSqlCommand(SqlConnection connection, object sqlEnum, object parameters)
         {
@@ -42,7 +42,7 @@ namespace JJ.Framework.Data.SqlClient
                     object value = property.GetValue_PlatformSafe(parameters);
                     if (value == null)
                     {
-                        sqlParameter = CreateNullableSqlParameter(property.Name, value, property.PropertyType);
+                        sqlParameter = CreateNullableSqlParameter(property.Name, property.PropertyType);
                     }
                     else
                     {
@@ -65,7 +65,7 @@ namespace JJ.Framework.Data.SqlClient
             {
                 while (reader.Read())
                 {
-                    T obj = SqlCommandHelper.ConvertRecordToObject<T>(reader);
+                    T obj = ConvertRecordToObject<T>(reader);
                     yield return obj;
                 }
             }
@@ -114,11 +114,11 @@ namespace JJ.Framework.Data.SqlClient
                 if (!_sqlDictionary.TryGetValue(sqlEnum, out sql))
                 {
                     Type sqlEnumType = sqlEnum.GetType();
-                    string embeddedResourceName = String.Format("{0}.{1}.sql", sqlEnumType.Namespace, sqlEnum);
+                    string embeddedResourceName = $"{sqlEnumType.Namespace}.{sqlEnum}.sql";
                     Stream stream = sqlEnumType.Assembly.GetManifestResourceStream(embeddedResourceName);
                     if (stream == null)
                     {
-                        throw new Exception(String.Format("Embedded resource with name '{0}' not found. The sql file should be an embedded resource that resides in the same namespace\\subfolder as the sqlEnum type.", embeddedResourceName));
+                        throw new Exception($"Embedded resource with name '{embeddedResourceName}' not found. The sql file should be an embedded resource that resides in the same namespace\\subfolder as the sqlEnum type.");
                     }
                     stream.Position = 0;
                     sql = StreamHelper.StreamToString(stream, Encoding.UTF8);
@@ -141,10 +141,13 @@ namespace JJ.Framework.Data.SqlClient
         /// As soon as you want to pass null, you have to specify all sorts of additional data.
         /// This method still only handles a select set of types correctly and should be extended in the future.
         /// </summary>
-        private static SqlParameter CreateNullableSqlParameter(string name, object value, Type type)
+        private static SqlParameter CreateNullableSqlParameter(string name, Type type)
         {
-            var sqlParameter = new SqlParameter(name, DBNull.Value);
-            sqlParameter.DbType = GetDbType(type);
+            var sqlParameter = new SqlParameter(name, DBNull.Value)
+            {
+                DbType = GetDbType(type)
+            };
+
             if (sqlParameter.DbType == DbType.Binary)
             {
                 // To make it varbinary, setting this property like this is required.
@@ -155,7 +158,7 @@ namespace JJ.Framework.Data.SqlClient
 
         private static DbType GetDbType(Type type)
         {
-            if (type == typeof(String))
+            if (type == typeof(string))
             {
                 return DbType.String;
             }
@@ -163,18 +166,18 @@ namespace JJ.Framework.Data.SqlClient
             {
                 return DbType.Binary;
             }
-            else if (type == typeof(Int32))
+            else if (type == typeof(int))
             {
                 return DbType.Int32;
             }
-            else if (type == typeof(Boolean))
+            else if (type == typeof(bool))
             {
                 return DbType.Boolean;
             }
             else
             {
                 // TODO: Program additional conversion code to support more types.
-                throw new Exception(String.Format("Type '{0}' is not supported.", type.FullName));
+                throw new Exception($"Type '{type.FullName}' is not supported.");
             }
         }
     }

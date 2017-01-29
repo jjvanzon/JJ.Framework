@@ -42,7 +42,7 @@ namespace NHibernate.Linq
 
 	public class NHibernateNodeTypeProvider : INodeTypeProvider
 	{
-		private INodeTypeProvider defaultNodeTypeProvider;
+		private readonly INodeTypeProvider defaultNodeTypeProvider;
 
 		public NHibernateNodeTypeProvider()
 		{

@@ -19,7 +19,7 @@ namespace JJ.Framework.Data
         public static TRepositoryInterface CreateRepositoryFromConfiguration<TRepositoryInterface>(IContext context, PersistenceConfiguration configuration)
         {
             if (configuration == null) throw new NullException(() => configuration);
-            return RepositoryFactory.CreateRepository<TRepositoryInterface>(context, configuration.RepositoryAssemblies);
+            return CreateRepository<TRepositoryInterface>(context, configuration.RepositoryAssemblies);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace JJ.Framework.Data
         {
             PersistenceConfiguration configuration = PersistenceConfigurationHelper.GetPersistenceConfiguration();
 
-            return RepositoryFactory.CreateRepository<TRepositoryInterface>(context, configuration.RepositoryAssemblies);
+            return CreateRepository<TRepositoryInterface>(context, configuration.RepositoryAssemblies);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace JJ.Framework.Data
 
             Assembly[] repositoryAssemblies = repositoryAssemblyNames.Select(x => Assembly.Load(x)).ToArray();
 
-            return RepositoryFactory.CreateRepository<TRepositoryInterface>(context, repositoryAssemblies);
+            return CreateRepository<TRepositoryInterface>(context, repositoryAssemblies);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace JJ.Framework.Data
             }
 
             string repositoryAssembliesDescription = String_PlatformSupport.Join(", ", repositoryAssemblies.Select(x => x.GetName().Name));
-            throw new Exception(String.Format("No implementation of type {0} found in any of the following assemblies: {1}", typeof(TRepositoryInterface), repositoryAssembliesDescription));
+            throw new Exception($"No implementation of type {typeof(TRepositoryInterface)} found in any of the following assemblies: {repositoryAssembliesDescription}");
         }
     }
 }

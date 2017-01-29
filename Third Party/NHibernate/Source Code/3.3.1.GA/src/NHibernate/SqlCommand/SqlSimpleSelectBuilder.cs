@@ -170,7 +170,7 @@ namespace NHibernate.SqlCommand
 			return this;
 		}
 
-		public virtual SqlSimpleSelectBuilder SetComment(System.String comment)
+		public virtual SqlSimpleSelectBuilder SetComment(string comment)
 		{
 			this.comment = comment;
 			return this;

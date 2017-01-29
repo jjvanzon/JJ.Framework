@@ -143,7 +143,7 @@ namespace NHibernate.Type
 			StringBuilder buf = new StringBuilder();
 			for (int i = 0; i < bytes.Length; i++)
 			{
-				String hexStr = Convert.ToString(bytes[i] - Byte.MinValue, 16);
+				string hexStr = Convert.ToString(bytes[i] - byte.MinValue, 16);
 				if (hexStr.Length == 1)
 					buf.Append('0');
 				buf.Append(hexStr);
@@ -170,7 +170,7 @@ namespace NHibernate.Type
 			for (int i = 0; i < bytes.Length; i++)
 			{
 				string hexStr = xml.Substring(i * 2, ((i + 1) * 2) - (i * 2));
-				bytes[i] = (byte)(Convert.ToInt32(hexStr, 16) + Byte.MinValue);
+				bytes[i] = (byte)(Convert.ToInt32(hexStr, 16) + byte.MinValue);
 			}
 			return ToExternalFormat(bytes);
 		}

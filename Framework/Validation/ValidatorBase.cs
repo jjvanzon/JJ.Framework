@@ -39,7 +39,7 @@ namespace JJ.Framework.Validation
         {
             if (ValidationMessages.Count > 0)
             {
-                string formattedMessages = String.Join(Environment.NewLine, ValidationMessages.Select(x => x.Text).ToArray());
+                string formattedMessages = string.Join(Environment.NewLine, ValidationMessages.Select(x => x.Text).ToArray());
                 throw new Exception(formattedMessages);
             }
         }

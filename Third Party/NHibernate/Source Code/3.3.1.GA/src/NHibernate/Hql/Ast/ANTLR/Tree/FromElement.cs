@@ -41,7 +41,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		private SqlString _withClauseFragment;
 		private string _withClauseJoinAlias;
 		private bool _filter;
-		private IToken _token;
+		private readonly IToken _token;
 
 		public FromElement(IToken token) : base(token)
 		{
@@ -75,7 +75,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			_isAllPropertyFetch = fetch;
 		}
 
-		public void SetWithClauseFragment(String withClauseJoinAlias, SqlString withClauseFragment)
+		public void SetWithClauseFragment(string withClauseJoinAlias, SqlString withClauseFragment)
 		{
 			_withClauseJoinAlias = withClauseJoinAlias;
 			_withClauseFragment = withClauseFragment;
@@ -290,7 +290,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 				{
 					return null;
 				}
-				if (String.IsNullOrEmpty(_origin.Text))
+				if (string.IsNullOrEmpty(_origin.Text))
 				{
 					return _origin.RealOrigin;
 				}

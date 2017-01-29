@@ -14,7 +14,7 @@ namespace JJ.Framework.Validation
         public ValidationMessage(string propertyKey, string text)
         {
             if (String_PlatformSupport.IsNullOrWhiteSpace(propertyKey)) throw new NullOrWhiteSpaceException(() => propertyKey);
-            if (String.IsNullOrEmpty(text)) throw new NullException(() => text);
+            if (string.IsNullOrEmpty(text)) throw new NullException(() => text);
 
             PropertyKey = propertyKey;
             Text = text;
@@ -24,7 +24,7 @@ namespace JJ.Framework.Validation
         {
             get
             {
-                return String.Format("{0}: {1}", PropertyKey, Text);
+                return string.Format("{0}: {1}", PropertyKey, Text);
             }
         }
     }

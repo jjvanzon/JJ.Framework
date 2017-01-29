@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace JJ.Framework.Common
 {
-    public static partial class StringExtensions
+    public static class StringExtensions
     {
         /// <summary>
         /// Returns the left part of a string.
@@ -81,8 +81,8 @@ namespace JJ.Framework.Common
         /// </summary>
         public static string CutRightUntil(this string input, string until)
         {
-            if (until == null) throw new ArgumentNullException("until");
-            int index = input.LastIndexOf(until);
+            if (until == null) throw new ArgumentNullException(nameof(until));
+            int index = input.LastIndexOf(until, StringComparison.Ordinal);
             if (index == -1) return input;
             string output = input.Left(index + until.Length);
             return output;
@@ -93,8 +93,8 @@ namespace JJ.Framework.Common
         /// </summary>
         public static string CutLeftUntil(this string input, string until)
         {
-            if (until == null) throw new ArgumentNullException("until");
-            int index = input.IndexOf(until);
+            if (until == null) throw new ArgumentNullException(nameof(until));
+            int index = input.IndexOf(until, StringComparison.Ordinal);
             if (index == -1) return input;
             string output = input.Right(input.Length - index);
             return output;

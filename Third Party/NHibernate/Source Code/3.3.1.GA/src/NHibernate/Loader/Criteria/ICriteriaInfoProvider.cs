@@ -9,6 +9,6 @@ namespace NHibernate.Loader.Criteria
         string Name { get; }
         string[] Spaces { get; }
         IPropertyMapping PropertyMapping { get; }
-        IType GetType(String relativePath);
+        IType GetType(string relativePath);
     }
 }

@@ -191,7 +191,7 @@ namespace NHibernate.Driver
 		{
 			if (sqlType == null)
 			{
-				throw new QueryException(String.Format("No type assigned to parameter '{0}'", name));
+				throw new QueryException(string.Format("No type assigned to parameter '{0}'", name));
 			}
 
 			dbParam.ParameterName = FormatNameForParameter(name);

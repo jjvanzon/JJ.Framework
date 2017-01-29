@@ -166,7 +166,7 @@ namespace FluentNHibernate.Mapping
         /// <example>
         /// HasOne(x => x.ExtendedInfo);
         /// </example>
-        public OneToOnePart<TOther> HasOne<TOther>(Expression<Func<T, Object>> memberExpression)
+        public OneToOnePart<TOther> HasOne<TOther>(Expression<Func<T, object>> memberExpression)
         {
             return HasOne<TOther>(memberExpression.ToMember());
         }

@@ -5,7 +5,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
     public class KeyUpGesture : GestureBase
     {
-        public EventHandler<KeyEventArgs> KeyUp;
+        public event EventHandler<KeyEventArgs> KeyUp;
 
         protected override void HandleKeyUp(object sender, EventArg.KeyEventArgs e)
         {

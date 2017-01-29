@@ -5,7 +5,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
     internal class ClassWithNamedIndexer
     {
-        private Dictionary<int, int> _intDictionary = new Dictionary<int, int>();
+        private readonly Dictionary<int, int> _intDictionary = new Dictionary<int, int>();
 
         [IndexerName("Indexer")]
         private int this[int index]

@@ -6,10 +6,10 @@ namespace JJ.Framework.Data
 {
     public abstract class ContextBase : IContext
     {
-        public string Location { get; private set; }
-        protected Assembly ModelAssembly { get; private set; }
-        protected Assembly MappingAssembly { get; private set; }
-        protected string Dialect { get; private set; }
+        public string Location { get; }
+        protected Assembly ModelAssembly { get; }
+        protected Assembly MappingAssembly { get; }
+        protected string Dialect { get; }
 
         /// <param name="location">can be null or empty</param>
         /// <param name="modelAssembly">not nullable</param>

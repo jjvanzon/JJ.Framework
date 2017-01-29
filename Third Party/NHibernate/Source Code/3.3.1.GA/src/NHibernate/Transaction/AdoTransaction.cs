@@ -321,7 +321,7 @@ namespace NHibernate.Transaction
 		/// </summary>
 		private bool _isAlreadyDisposed;
 
-		private Guid sessionId;
+		private readonly Guid sessionId;
 
 		/// <summary>
 		/// Finalizer that ensures the object is correctly disposed of.

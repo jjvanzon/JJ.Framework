@@ -24,7 +24,7 @@ namespace NHibernate.Engine
 		private static readonly IInternalLogger log = LoggerProvider.LoggerFor(typeof(ActionQueue));
 		private const int InitQueueListSize = 5;
 
-		private ISessionImplementor session;
+		private readonly ISessionImplementor session;
 
 		// Object insertions, updates, and deletions have list semantics because
 		// they must happen in the right order so as to respect referential
@@ -458,7 +458,7 @@ loopInsertion: ;
 		private class BeforeTransactionCompletionProcessQueue 
 		{
 			private ISessionImplementor session;
-			private IList<BeforeTransactionCompletionProcessDelegate> processes = new List<BeforeTransactionCompletionProcessDelegate>();
+			private readonly IList<BeforeTransactionCompletionProcessDelegate> processes = new List<BeforeTransactionCompletionProcessDelegate>();
 
 			public bool HasActions
 			{
@@ -505,9 +505,9 @@ loopInsertion: ;
 		[Serializable]
 		private class AfterTransactionCompletionProcessQueue 
 		{
-			private ISessionImplementor session;
-			private ISet<string> querySpacesToInvalidate = new HashedSet<string>();
-			private IList<AfterTransactionCompletionProcessDelegate> processes = new List<AfterTransactionCompletionProcessDelegate>(InitQueueListSize * 3);
+			private readonly ISessionImplementor session;
+			private readonly ISet<string> querySpacesToInvalidate = new HashedSet<string>();
+			private readonly IList<AfterTransactionCompletionProcessDelegate> processes = new List<AfterTransactionCompletionProcessDelegate>(InitQueueListSize * 3);
 
 			public bool HasActions
 			{

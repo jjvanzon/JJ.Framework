@@ -1668,18 +1668,18 @@ namespace NHibernate.Cfg
 		/// <summary>
 		/// Set up a cache for an entity class
 		/// </summary>
-		public Configuration SetCacheConcurrencyStrategy(String clazz, String concurrencyStrategy)
+		public Configuration SetCacheConcurrencyStrategy(string clazz, string concurrencyStrategy)
 		{
 			SetCacheConcurrencyStrategy(clazz, concurrencyStrategy, clazz);
 			return this;
 		}
 
-		public void SetCacheConcurrencyStrategy(String clazz, String concurrencyStrategy, String region)
+		public void SetCacheConcurrencyStrategy(string clazz, string concurrencyStrategy, string region)
 		{
 			SetCacheConcurrencyStrategy(clazz, concurrencyStrategy, region, true);
 		}
 
-		internal void SetCacheConcurrencyStrategy(String clazz, String concurrencyStrategy, String region, bool includeLazy)
+		internal void SetCacheConcurrencyStrategy(string clazz, string concurrencyStrategy, string region, bool includeLazy)
 		{
 			RootClass rootClass = GetRootClassMapping(StringHelper.GetFullClassname(clazz));
 			if (rootClass == null)

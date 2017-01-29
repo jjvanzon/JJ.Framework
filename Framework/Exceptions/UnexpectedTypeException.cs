@@ -23,11 +23,9 @@ namespace JJ.Framework.Exceptions
                 typeDescription = value.GetType().FullName;
             }
 
-            _message = String.Format(MESSAGE, expressionText, typeDescription);
+            Message = string.Format(MESSAGE, expressionText, typeDescription);
         }
 
-        private string _message;
-
-        public override string Message => _message;
+        public override string Message { get; }
     }
 }

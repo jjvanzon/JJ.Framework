@@ -15,13 +15,13 @@ namespace NHibernate.Type
 
 		public virtual object GetInstance(object code)
 		{
-			if (code is String)
+			if (code is string)
 			{
-				return GetInstanceFromString((String) code);
+				return GetInstanceFromString((string) code);
 			}
-			else if (code is Char)
+			else if (code is char)
 			{
-				return GetInstanceFromChar((Char) code);
+				return GetInstanceFromChar((char) code);
 			}
 			else
 			{
@@ -29,7 +29,7 @@ namespace NHibernate.Type
 			}
 		}
 
-		private object GetInstanceFromString(String s)
+		private object GetInstanceFromString(string s)
 		{
 			if (s.Length == 0) throw new HibernateException(string.Format("Can't Parse empty string as {0}", this.ReturnedClass.Name));
 
@@ -59,9 +59,9 @@ namespace NHibernate.Type
 			}
 		}
 
-		private object GetInstanceFromChar(Char c)
+		private object GetInstanceFromChar(char c)
 		{
-			Object instance;
+			object instance;
 
 			instance = Enum.ToObject(this.ReturnedClass, c);
 			if (Enum.IsDefined(this.ReturnedClass, instance)) return instance;
@@ -72,9 +72,9 @@ namespace NHibernate.Type
 			throw new HibernateException(string.Format("Can't Parse {0} as {1}", c, this.ReturnedClass.Name));
 		}
 
-		private Char Alternate(Char c)
+		private char Alternate(char c)
 		{
-			return Char.IsUpper(c) ? Char.ToLower(c) : Char.ToUpper(c);
+			return char.IsUpper(c) ? char.ToLower(c) : char.ToUpper(c);
 		}
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace NHibernate.Type
 			}
 			else
 			{
-				return (Char) (Int32) instance;
+				return (char) (int) instance;
 			}
 		}
 
@@ -104,7 +104,7 @@ namespace NHibernate.Type
 			}
 			else
 			{
-				par.Value = ((Char) (Int32) (value)).ToString();
+				par.Value = ((char) (int) (value)).ToString();
 			}
 		}
 

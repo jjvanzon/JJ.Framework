@@ -9,7 +9,7 @@ namespace JJ.Framework.Exceptions
         private const string MESSAGE = "{0} is null.";
 
         public NullException(Expression<Func<object>> expression)
-            : base(String.Format(MESSAGE, ExpressionHelper.GetText(expression)))
+            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
         { }
     }
 }

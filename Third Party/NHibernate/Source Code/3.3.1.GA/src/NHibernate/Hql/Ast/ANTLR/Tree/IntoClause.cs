@@ -19,7 +19,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 	public class IntoClause : HqlSqlWalkerNode, IDisplayableNode
 	{
 		private IQueryable _persister;
-		private String _columnSpec = string.Empty;
+		private string _columnSpec = string.Empty;
 		private IType[] _types;
 
 		private bool _discriminated;

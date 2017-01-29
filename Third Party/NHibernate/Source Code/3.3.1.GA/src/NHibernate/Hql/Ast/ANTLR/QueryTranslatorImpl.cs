@@ -307,7 +307,7 @@ namespace NHibernate.Hql.Ast.ANTLR
 		/// <param name="replacements">Defined query substitutions.</param>
 		/// <param name="shallow">Does this represent a shallow (scalar or entity-id) select?</param>
 		/// <param name="collectionRole">the role name of the collection used as the basis for the filter, NULL if this is not a filter.</param>
-		private void DoCompile(IDictionary<string, string> replacements, bool shallow, String collectionRole) 
+		private void DoCompile(IDictionary<string, string> replacements, bool shallow, string collectionRole) 
 		{
 			// If the query is already compiled, skip the compilation.
 			if ( _compiled ) 

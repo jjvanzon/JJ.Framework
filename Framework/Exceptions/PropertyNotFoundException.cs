@@ -4,18 +4,13 @@ namespace JJ.Framework.Exceptions
 {
     public class PropertyNotFoundException : Exception
     {
-        private string _message;
-
-        public override string Message
-        {
-            get { return _message; }
-        }
+        public override string Message { get; }
 
         public PropertyNotFoundException(Type type, string propertyName)
         {
             if (type == null) throw new ArgumentNullException("type");
 
-            _message = String.Format("Property '{0}' not found on type '{1}'.", propertyName, type.Name);
+            Message = string.Format("Property '{0}' not found on type '{1}'.", propertyName, type.Name);
         }
     }
 }

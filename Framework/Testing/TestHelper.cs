@@ -8,7 +8,7 @@ namespace JJ.Framework.Testing
 
         public static string FormatTestedPropertyMessage(string propertyDescription)
         {
-            return String.Format(TESTED_PROPERTY_MESSAGE, propertyDescription);
+            return string.Format(TESTED_PROPERTY_MESSAGE, propertyDescription);
         }
     }
 }

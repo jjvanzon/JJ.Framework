@@ -13,7 +13,7 @@ namespace JJ.Framework.Presentation
         {
             get
             {
-                return String.Format("{0}={1}", Name, Value);
+                return string.Format("{0}={1}", Name, Value);
             }
         }
     }

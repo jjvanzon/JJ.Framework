@@ -38,7 +38,7 @@ namespace NHibernate.Cache
 		}
 
 		//Mainly for SysCache and Memcache
-		public override String ToString()
+		public override string ToString()
 		{
 			// For Component the user can override ToString
 			return entityOrRoleName + '#' + key;

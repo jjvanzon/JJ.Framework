@@ -100,7 +100,7 @@ namespace NHibernate.Persister.Collection
 					cols = memberPersister.GetElementColumnNames(alias);
 					if (cols.Length != 1)
 						throw new QueryException("composite collection element in minElement()");
-					return new System.String[] { "min(" + cols[0] + ')' };
+					return new string[] { "min(" + cols[0] + ')' };
 
 				default:
 					throw new QueryException("illegal syntax near collection: " + propertyName);

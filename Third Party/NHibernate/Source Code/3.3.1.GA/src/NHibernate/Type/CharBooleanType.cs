@@ -62,7 +62,7 @@ namespace NHibernate.Type
 		/// <param name="cmd"></param>
 		/// <param name="value"></param>
 		/// <param name="index"></param>
-		public override void Set(IDbCommand cmd, Object value, int index)
+		public override void Set(IDbCommand cmd, object value, int index)
 		{
 			((IDataParameter) cmd.Parameters[index]).Value = ToCharacter(value);
 		}
@@ -82,7 +82,7 @@ namespace NHibernate.Type
 		/// </summary>
 		/// <param name="xml"></param>
 		/// <returns></returns>
-		public override object StringToObject(String xml)
+		public override object StringToObject(string xml)
 		{
 			if (StringHelper.EqualsCaseInsensitive(TrueString, xml))
 			{

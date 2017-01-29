@@ -179,9 +179,9 @@ namespace NHibernate.Hql.Ast.ANTLR.Util
 
 		private class JoinSequenceSelector : JoinSequence.ISelector
 		{
-			private FromClause _fromClause;
-			private FromElement _fromElement;
-			private HqlSqlWalker _walker;
+			private readonly FromClause _fromClause;
+			private readonly FromElement _fromElement;
+			private readonly HqlSqlWalker _walker;
 
 			internal JoinSequenceSelector(HqlSqlWalker walker, FromClause fromClause, FromElement fromElement)
 			{

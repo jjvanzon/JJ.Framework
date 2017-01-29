@@ -5,7 +5,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
     public class CurvePosition : ElementPosition
     {
-        private Curve _curve;
+        private readonly Curve _curve;
 
         internal CurvePosition(Curve curve)
             : base(curve)

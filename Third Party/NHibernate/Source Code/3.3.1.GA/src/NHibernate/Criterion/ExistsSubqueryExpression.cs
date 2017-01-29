@@ -11,7 +11,7 @@ namespace NHibernate.Criterion
 			return SqlString.Empty;
 		}
 
-		internal ExistsSubqueryExpression(String quantifier, DetachedCriteria dc) : base(null, quantifier, dc)
+		internal ExistsSubqueryExpression(string quantifier, DetachedCriteria dc) : base(null, quantifier, dc)
 		{
 		}
 	}

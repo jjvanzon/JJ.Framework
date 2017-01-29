@@ -265,7 +265,7 @@ namespace NHibernate.Dialect
 				"if exists (select * from dbo.sysobjects where id = object_id(N'{0}') and OBJECTPROPERTY(id, N'IsUserTable') = 1)" +
 				" drop table {0}";
 
-			return String.Format(dropTable, tableName);
+			return string.Format(dropTable, tableName);
 		}
 
 		public override string ForUpdateString

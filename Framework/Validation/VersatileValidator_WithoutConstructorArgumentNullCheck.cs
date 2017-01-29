@@ -101,7 +101,7 @@ namespace JJ.Framework.Validation
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 ValidationMessages.AddRequiredMessage(_propertyKey, _propertyDisplayName);
             }
@@ -123,7 +123,7 @@ namespace JJ.Framework.Validation
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (!String.IsNullOrEmpty(stringValue))
+            if (!string.IsNullOrEmpty(stringValue))
             {
                 ValidationMessages.AddIsFilledInMessage(_propertyKey, _propertyDisplayName);
             }
@@ -137,7 +137,7 @@ namespace JJ.Framework.Validation
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -156,7 +156,7 @@ namespace JJ.Framework.Validation
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -182,14 +182,14 @@ namespace JJ.Framework.Validation
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
             string otherStringValue = Convert.ToString(value, _formatProvider);
 
-            if (!String.Equals(stringValue, otherStringValue))
+            if (!string.Equals(stringValue, otherStringValue))
             {
                 ValidationMessages.AddNotEqualMessage(_propertyKey, _propertyDisplayName, value);
             }
@@ -201,14 +201,14 @@ namespace JJ.Framework.Validation
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
             string otherStringValue = Convert.ToString(value, _formatProvider);
 
-            if (String.Equals(stringValue, otherStringValue))
+            if (string.Equals(stringValue, otherStringValue))
             {
                 ValidationMessages.AddIsEqualMessage(_propertyKey, _propertyDisplayName, value);
             }
@@ -221,7 +221,7 @@ namespace JJ.Framework.Validation
         public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThan<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -248,7 +248,7 @@ namespace JJ.Framework.Validation
         public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> GreaterThanOrEqual<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -275,7 +275,7 @@ namespace JJ.Framework.Validation
         public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThanOrEqual<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -302,7 +302,7 @@ namespace JJ.Framework.Validation
         public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> LessThan<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -350,13 +350,13 @@ namespace JJ.Framework.Validation
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
             int convertedValue;
-            if (!Int32.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out convertedValue))
+            if (!int.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out convertedValue))
             {
                 ValidationMessages.AddNotIntegerMessage(_propertyKey, _propertyDisplayName);
             }
@@ -368,13 +368,13 @@ namespace JJ.Framework.Validation
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
 
             int convertedValue;
-            if (Int32.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out convertedValue))
+            if (int.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out convertedValue))
             {
                 ValidationMessages.AddIsIntegerMessage(_propertyKey, _propertyDisplayName);
             }
@@ -386,7 +386,7 @@ namespace JJ.Framework.Validation
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -404,7 +404,7 @@ namespace JJ.Framework.Validation
             where TEnum : struct
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -462,7 +462,7 @@ namespace JJ.Framework.Validation
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -470,7 +470,7 @@ namespace JJ.Framework.Validation
             double convertedValue;
             if (DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
             {
-                if (Double.IsNaN(convertedValue))
+                if (double.IsNaN(convertedValue))
                 {
                     ValidationMessages.AddIsNaNMessage(_propertyKey, _propertyDisplayName);
                 }
@@ -483,7 +483,7 @@ namespace JJ.Framework.Validation
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String.IsNullOrEmpty(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 return this;
             }
@@ -491,7 +491,7 @@ namespace JJ.Framework.Validation
             double convertedValue;
             if (DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
             {
-                if (Double.IsInfinity(convertedValue))
+                if (double.IsInfinity(convertedValue))
                 {
                     ValidationMessages.AddIsInfinityMessage(_propertyKey, _propertyDisplayName);
                 }

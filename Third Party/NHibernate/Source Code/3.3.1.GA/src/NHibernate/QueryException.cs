@@ -117,7 +117,7 @@ namespace NHibernate
 		public override void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
 			base.GetObjectData(info, context);
-			info.AddValue("queryString", queryString, typeof(String));
+			info.AddValue("queryString", queryString, typeof(string));
 		}
 
 		#endregion

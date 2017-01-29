@@ -49,10 +49,10 @@ namespace NHibernate.Criterion.Lambda
 	{
 		public class LambdaBetweenBuilder
 		{
-			private TReturn root;
-			private ExpressionProcessor.ProjectionInfo projection;
-			private bool isNot;
-			private object lo;
+			private readonly TReturn root;
+			private readonly ExpressionProcessor.ProjectionInfo projection;
+			private readonly bool isNot;
+			private readonly object lo;
 
 			public LambdaBetweenBuilder(TReturn root, ExpressionProcessor.ProjectionInfo projection, bool isNot, object lo)
 			{
@@ -76,8 +76,8 @@ namespace NHibernate.Criterion.Lambda
 			}
 		}
 
-		private TReturn root;
-		private ExpressionProcessor.ProjectionInfo projection;
+		private readonly TReturn root;
+		private readonly ExpressionProcessor.ProjectionInfo projection;
 		protected bool isNot;
 
 		/// <summary>

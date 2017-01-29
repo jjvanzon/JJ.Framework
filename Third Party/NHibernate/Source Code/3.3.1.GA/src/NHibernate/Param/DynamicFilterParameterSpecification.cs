@@ -17,7 +17,7 @@ namespace NHibernate.Param
 
 		private readonly IType expectedDefinedType;
 		private readonly string filterParameterFullName;
-		private IType elementType;
+		private readonly IType elementType;
 
 		/// <summary>
 		/// Constructs a parameter specification for a particular filter parameter.

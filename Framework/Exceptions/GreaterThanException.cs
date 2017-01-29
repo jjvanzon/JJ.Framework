@@ -7,7 +7,7 @@ namespace JJ.Framework.Exceptions
     public class GreaterThanException : Exception
     {
         public GreaterThanException(Expression<Func<object>> expression, object limit)
-            : base(String.Format("{0} is greater than {1}.", ExpressionHelper.GetText(expression), limit))
+            : base($"{ExpressionHelper.GetText(expression)} is greater than {limit}.")
         { }
 
         /// <summary>
@@ -15,7 +15,8 @@ namespace JJ.Framework.Exceptions
         /// If you only want to show the limit's value, use the other overload.
         /// </summary>
         public GreaterThanException(Expression<Func<object>> expression, Expression<Func<object>> limitExpression)
-            : base(String.Format("{0} is greater than {1} of {2}.", ExpressionHelper.GetText(expression), ExpressionHelper.GetText(limitExpression), ExpressionHelper.GetValue(limitExpression)))
+            // ReSharper disable once UseStringInterpolation
+            : base(string.Format("{0} is greater than {1} of {2}.", ExpressionHelper.GetText(expression), ExpressionHelper.GetText(limitExpression), ExpressionHelper.GetValue(limitExpression)))
         { }
     }
 }

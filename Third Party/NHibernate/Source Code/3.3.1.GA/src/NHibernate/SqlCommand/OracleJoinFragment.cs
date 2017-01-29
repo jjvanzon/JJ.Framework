@@ -10,8 +10,8 @@ namespace NHibernate.SqlCommand
 	/// </summary>
 	public class OracleJoinFragment : JoinFragment
 	{
-		private SqlStringBuilder afterFrom = new SqlStringBuilder();
-		private SqlStringBuilder afterWhere = new SqlStringBuilder();
+		private readonly SqlStringBuilder afterFrom = new SqlStringBuilder();
+		private readonly SqlStringBuilder afterWhere = new SqlStringBuilder();
 
 		public override void AddJoin(string tableName, string alias, string[] fkColumns, string[] pkColumns, JoinType joinType)
 		{

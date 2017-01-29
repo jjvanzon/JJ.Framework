@@ -57,7 +57,7 @@ namespace NHibernate.Criterion
 		/// <summary>
 		/// Get the Sql operator to put between multiple <see cref="ICriterion"/>s.
 		/// </summary>
-		protected abstract String Op { get; }
+		protected abstract string Op { get; }
 
 		public override TypedValue[] GetTypedValues(ICriteria criteria, ICriteriaQuery criteriaQuery)
 		{

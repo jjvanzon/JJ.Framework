@@ -146,7 +146,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			{
 				// TODO: Replace this with a more elegant solution.
 				string[] idColumnNames = (_persister != null) ?
-						((IQueryable)_persister).IdentifierColumnNames : new String[0];
+						((IQueryable)_persister).IdentifierColumnNames : new string[0];
 
 				StringBuilder buf = new StringBuilder();
 				for (int i = 0; i < idColumnNames.Length; i++)
@@ -466,7 +466,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 
 		private static string GenerateSuffix(int size, int k)
 		{
-			String suffix = size == 1 ? "" : k.ToString() + '_';
+			string suffix = size == 1 ? "" : k.ToString() + '_';
 			return suffix;
 		}
 
@@ -507,7 +507,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		/// </summary>
 		/// <param name="fragment">A SQL fragment.</param>
 		/// <returns>The fragment, without the leading comma and spaces.</returns>
-		private static string TrimLeadingCommaAndSpaces(String fragment)
+		private static string TrimLeadingCommaAndSpaces(string fragment)
 		{
 			if (fragment.Length > 0 && fragment[0] == ',')
 			{

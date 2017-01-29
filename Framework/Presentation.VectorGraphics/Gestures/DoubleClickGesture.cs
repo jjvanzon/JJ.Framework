@@ -100,7 +100,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             }
 
             var e2 = new ElementEventArgs(e.Element);
-            DoubleClick(sender, e2);
+            DoubleClick?.Invoke(sender, e2);
             return true;
         }
 

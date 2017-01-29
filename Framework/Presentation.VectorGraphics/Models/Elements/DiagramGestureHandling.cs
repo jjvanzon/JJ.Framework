@@ -7,7 +7,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
     /// <summary> For when you need to send primitive gestures to the diagram. </summary>
     public class DiagramGestureHandling
     {
-        private Diagram _diagram;
+        private readonly Diagram _diagram;
 
         internal DiagramGestureHandling(Diagram diagram)
         {

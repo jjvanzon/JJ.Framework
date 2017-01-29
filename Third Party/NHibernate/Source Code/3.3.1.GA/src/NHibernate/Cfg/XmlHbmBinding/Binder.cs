@@ -100,7 +100,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 			}
 			catch (Exception e)
 			{
-				throw new MappingException(String.Format(errorMessage, fullName), e);
+				throw new MappingException(string.Format(errorMessage, fullName), e);
 			}
 		}
 

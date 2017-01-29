@@ -273,7 +273,7 @@ namespace NHibernate.Util
 			int loc = qualifiedName.LastIndexOf(".");
 			if (loc < 0)
 			{
-				return String.Empty;
+				return string.Empty;
 			}
 			else
 			{
@@ -378,7 +378,7 @@ namespace NHibernate.Util
 			// if there is no value in the array then return no string...
 			if (len == 0)
 			{
-				return String.Empty;
+				return string.Empty;
 			}
 
 			StringBuilder buf = new StringBuilder(len * 12);

@@ -15,8 +15,8 @@ namespace JJ.Framework.Data.Memory
             if (mappingAssembly == null) throw new NullException(() => mappingAssembly);
         }
 
-        private object _lock = new object();
-        private Dictionary<Type, IEntityStore> _entityStoreDictionary = new Dictionary<Type, IEntityStore>();
+        private readonly object _lock = new object();
+        private readonly Dictionary<Type, IEntityStore> _entityStoreDictionary = new Dictionary<Type, IEntityStore>();
 
         private EntityStore<TEntity> GetEntityStore<TEntity>()
             where TEntity : class, new()

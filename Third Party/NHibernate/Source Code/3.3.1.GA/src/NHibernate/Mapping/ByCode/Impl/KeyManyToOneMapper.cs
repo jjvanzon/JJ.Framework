@@ -41,7 +41,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 			if (!_member.GetPropertyOrFieldType().IsAssignableFrom(entityType))
 			{
 				throw new ArgumentOutOfRangeException("entityType",
-					String.Format("The type is incompatible; expected assignable to {0}", _member.GetPropertyOrFieldType()));
+					string.Format("The type is incompatible; expected assignable to {0}", _member.GetPropertyOrFieldType()));
 			}
 			_manyToOne.@class = entityType.GetShortClassName(_mapDoc);
 		}

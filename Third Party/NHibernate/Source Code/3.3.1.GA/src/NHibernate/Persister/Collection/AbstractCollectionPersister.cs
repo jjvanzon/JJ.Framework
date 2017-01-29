@@ -2033,7 +2033,7 @@ namespace NHibernate.Persister.Collection
 		#region IPostInsertIdentityPersister Members
 
 		private string identitySelectString;
-	    private bool isCollectionIntegerIndex;
+	    private readonly bool isCollectionIntegerIndex;
 
 	    public string IdentitySelectString
 		{

@@ -21,7 +21,7 @@ namespace NHibernate.Loader
 		private readonly SqlString on;
 		private readonly IDictionary<string, IFilter> enabledFilters;
 
-		public OuterJoinableAssociation(IAssociationType joinableType, String lhsAlias, String[] lhsColumns, String rhsAlias,
+		public OuterJoinableAssociation(IAssociationType joinableType, string lhsAlias, string[] lhsColumns, string rhsAlias,
 		                                JoinType joinType, SqlString withClause, ISessionFactoryImplementor factory,
 		                                IDictionary<string, IFilter> enabledFilters)
 		{

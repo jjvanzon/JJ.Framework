@@ -35,7 +35,7 @@ namespace NHibernate.Mapping
 		private bool inverse;
 		private bool mutable = true;
 		private string cacheConcurrencyStrategy;
-		private String cacheRegionName;
+		private string cacheRegionName;
 		private string orderBy;
 		private string where;
 		private PersistentClass owner;

@@ -17,7 +17,7 @@ namespace NHibernate.Dialect.Function
 	[Serializable]
 	public class StandardSafeSQLFunction : StandardSQLFunction
 	{
-		private int allowedArgsCount = 1;
+		private readonly int allowedArgsCount = 1;
 		/// <summary>
 		/// Initializes a new instance of the StandardSafeSQLFunction class.
 		/// </summary>

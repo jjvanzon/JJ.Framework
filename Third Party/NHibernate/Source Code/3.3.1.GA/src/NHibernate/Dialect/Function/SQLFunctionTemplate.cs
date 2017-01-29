@@ -25,8 +25,8 @@ namespace NHibernate.Dialect.Function
 
 		private struct TemplateChunk
 		{
-			public string Text; // including prefix if parameter
-			public int ArgumentIndex;
+			public readonly string Text; // including prefix if parameter
+			public readonly int ArgumentIndex;
 
 			public TemplateChunk(string chunk, int argIndex)
 			{

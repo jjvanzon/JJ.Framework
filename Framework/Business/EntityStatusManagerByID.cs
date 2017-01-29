@@ -12,8 +12,8 @@ namespace JJ.Framework.Business
         // TODO: Tuples as keys might not be fast.
         // TODO: Tuple has bad platform compatibility.
 
-        private IDictionary<Tuple_PlatformSupport<Type, object>, EntityStatusEnum> _entityStatuses = new Dictionary<Tuple_PlatformSupport<Type, object>, EntityStatusEnum>();
-        private IDictionary<Tuple_PlatformSupport<Type, object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple_PlatformSupport<Type, object, string>, PropertyStatusEnum>();
+        private readonly IDictionary<Tuple_PlatformSupport<Type, object>, EntityStatusEnum> _entityStatuses = new Dictionary<Tuple_PlatformSupport<Type, object>, EntityStatusEnum>();
+        private readonly IDictionary<Tuple_PlatformSupport<Type, object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple_PlatformSupport<Type, object, string>, PropertyStatusEnum>();
 
         // IsDirty
 

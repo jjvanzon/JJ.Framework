@@ -30,7 +30,7 @@ namespace NHibernate.Type
 		private readonly System.Type serializableClass;
 		private readonly BinaryType binaryType;
 
-		internal SerializableType() : this(typeof(Object))
+		internal SerializableType() : this(typeof(object))
 		{
 		}
 
@@ -85,7 +85,7 @@ namespace NHibernate.Type
 			return x.Equals(y) || binaryType.IsEqual(ToBytes(x), ToBytes(y));
 		}
 
-		public override int GetHashCode(Object x, EntityMode entityMode)
+		public override int GetHashCode(object x, EntityMode entityMode)
 		{
 			return binaryType.GetHashCode(ToBytes(x), entityMode);
 		}

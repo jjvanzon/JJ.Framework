@@ -11,8 +11,8 @@ namespace FluentNHibernate.Conventions.Inspections
         IArrayInspector, IBagInspector, IListInspector, IMapInspector, ISetInspector
 #pragma warning restore 612,618
     {
-        InspectorModelMapper<ICollectionInspector, CollectionMapping> propertyMappings = new InspectorModelMapper<ICollectionInspector, CollectionMapping>();
-        CollectionMapping mapping;
+        readonly InspectorModelMapper<ICollectionInspector, CollectionMapping> propertyMappings = new InspectorModelMapper<ICollectionInspector, CollectionMapping>();
+        readonly CollectionMapping mapping;
 
         public CollectionInspector(CollectionMapping mapping)
         {

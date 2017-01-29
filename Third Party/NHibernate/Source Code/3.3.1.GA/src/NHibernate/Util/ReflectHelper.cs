@@ -465,7 +465,7 @@ namespace NHibernate.Util
         /// <returns>The unwrapped exception.</returns>
         public static Exception UnwrapTargetInvocationException(TargetInvocationException ex)
         {
-            Exception_InternalPreserveStackTrace.Invoke(ex.InnerException, new Object[] { });
+            Exception_InternalPreserveStackTrace.Invoke(ex.InnerException, new object[] { });
             return ex.InnerException;
         }
 

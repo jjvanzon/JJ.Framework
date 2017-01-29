@@ -7,7 +7,7 @@ namespace JJ.Framework.Reflection
 {
     internal class ExpressionToTextTranslator
     {
-        private StringBuilder _sb = new StringBuilder();
+        private readonly StringBuilder _sb = new StringBuilder();
 
         /// <summary> 
         /// If you set this to true, an expression like MyArray[i] will translate to e.g. 

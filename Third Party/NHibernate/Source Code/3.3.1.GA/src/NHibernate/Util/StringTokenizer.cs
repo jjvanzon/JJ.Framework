@@ -9,9 +9,9 @@ namespace NHibernate.Util
 	public class StringTokenizer : IEnumerable<string>
 	{
 		private const string _defaultDelim = " \t\n\r\f";
-		private string _origin;
-		private string _delim;
-		private bool _returnDelim;
+		private readonly string _origin;
+		private readonly string _delim;
+		private readonly bool _returnDelim;
 
 		/// <summary>
 		/// 
@@ -70,9 +70,9 @@ namespace NHibernate.Util
 
 		private class StringTokenizerEnumerator : IEnumerator<string>
 		{
-			private StringTokenizer _stokenizer;
+			private readonly StringTokenizer _stokenizer;
 			private int _cursor = 0;
-			private String _next = null;
+			private string _next = null;
 
 			public StringTokenizerEnumerator(StringTokenizer stok)
 			{

@@ -76,7 +76,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 			return ASTUtil.CollectChildren(this, CollectionFetchPredicate);
 		}
 
-		public FromElement FindCollectionJoin(String path)
+		public FromElement FindCollectionJoin(string path)
 		{
 			return _collectionJoinFromElementsByPath[path];
 		}
@@ -117,7 +117,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 		/// </summary>
 		/// <param name="alias">The SQL table alias name.</param>
 		/// <returns>true if the from node contains the table alias name.</returns>
-		public bool ContainsTableAlias(String alias)
+		public bool ContainsTableAlias(string alias)
 		{
 			return _fromElementByTableAlias.ContainsKey(alias);
 		}

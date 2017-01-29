@@ -11,7 +11,7 @@ namespace NHibernate.Engine
 	/// </summary>
 	public sealed class Nullability
 	{
-		private ISessionImplementor session;
+		private readonly ISessionImplementor session;
 
 		public Nullability(ISessionImplementor session)
 		{

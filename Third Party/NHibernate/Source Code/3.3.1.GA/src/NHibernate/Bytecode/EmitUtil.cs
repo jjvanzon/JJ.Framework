@@ -52,7 +52,7 @@ namespace NHibernate.Bytecode
 
 			if (value > -129 && value < 128)
 			{
-				il.Emit(OpCodes.Ldc_I4_S, (SByte) value);
+				il.Emit(OpCodes.Ldc_I4_S, (sbyte) value);
 			}
 			else
 			{
@@ -68,7 +68,7 @@ namespace NHibernate.Bytecode
 			}
 		}
 
-		private static Dictionary<System.Type, OpCode> typeToOpcode;
+		private static readonly Dictionary<System.Type, OpCode> typeToOpcode;
 
 		static EmitUtil()
 		{

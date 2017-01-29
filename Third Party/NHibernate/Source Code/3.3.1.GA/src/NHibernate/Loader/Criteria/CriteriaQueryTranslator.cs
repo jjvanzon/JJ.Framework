@@ -31,7 +31,7 @@ namespace NHibernate.Loader.Criteria
 		private readonly IDictionary<ICriteria, ICriteriaInfoProvider> criteriaInfoMap =
 			new Dictionary<ICriteria, ICriteriaInfoProvider>();
 
-		private readonly IDictionary<String, ICriteriaInfoProvider> nameCriteriaInfoMap =
+		private readonly IDictionary<string, ICriteriaInfoProvider> nameCriteriaInfoMap =
 			new Dictionary<string, ICriteriaInfoProvider>();
 
 		private readonly ISet<ICollectionPersister> criteriaCollectionPersisters = new HashedSet<ICollectionPersister>();
@@ -41,7 +41,7 @@ namespace NHibernate.Loader.Criteria
 		private readonly IDictionary<string, JoinType> associationPathJoinTypesMap = new LinkedHashMap<string, JoinType>();
 		private readonly IDictionary<string, ICriterion> withClauseMap = new Dictionary<string, ICriterion>();
 		private readonly ISessionFactoryImplementor sessionFactory;
-		private SessionFactoryHelper helper;
+		private readonly SessionFactoryHelper helper;
 
 		private readonly ICollection<IParameterSpecification> collectedParameterSpecifications;
 		private readonly ICollection<NamedParameter> namedParameters;
@@ -516,7 +516,7 @@ namespace NHibernate.Loader.Criteria
 
 		public string GetSQLAlias(ICriteria criteria)
 		{
-			String alias = criteriaSQLAliasMap[criteria];
+			string alias = criteriaSQLAliasMap[criteria];
 			logger.DebugFormat("returning alias={0} for criteria={1}", alias, criteria);
 			return alias;
 		}

@@ -149,7 +149,7 @@ namespace NHibernate.AdoNet
 			get { return _countOfCommands; }
 		}
 
-		private void SetObjectParam(Object obj, string paramName, object paramValue)
+		private void SetObjectParam(object obj, string paramName, object paramValue)
 		{
 			System.Type objType = obj.GetType();
 			PropertyInfo propInfo = objType.GetProperty(paramName);

@@ -72,7 +72,7 @@ namespace JJ.Framework.Reflection
                     return methodCallExpression.Method;
 
                 default:
-                    throw new NotSupportedException(String.Format("Member cannot be retrieved from NodeType {0}.", expression.Body.NodeType));
+                    throw new NotSupportedException(string.Format("Member cannot be retrieved from NodeType {0}.", expression.Body.NodeType));
             }
         }
 
@@ -204,7 +204,7 @@ namespace JJ.Framework.Reflection
                     return methodCallInfo;
 
                 default:
-                    throw new NotSupportedException(String.Format("MethodCallInfo cannot be retrieved from NodeType {0}.", expression.Body.NodeType));
+                    throw new NotSupportedException(string.Format("MethodCallInfo cannot be retrieved from NodeType {0}.", expression.Body.NodeType));
             }
         }
     }

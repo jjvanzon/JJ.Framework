@@ -23,7 +23,7 @@ namespace NHibernate
 		/// <param name="message">The message that describes the error. </param>
 		/// <param name="id">The identifier of the object that caused the exception.</param>
 		/// <param name="entityName">The EntityName of the object attempted to be loaded.</param>
-		public NonUniqueObjectException(String message, object id, string entityName)
+		public NonUniqueObjectException(string message, object id, string entityName)
 			: base(message)
 		{
 			this.entityName = entityName;
@@ -63,7 +63,7 @@ namespace NHibernate
 		protected NonUniqueObjectException(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
-			identifier = info.GetValue("identifier", typeof(Object));
+			identifier = info.GetValue("identifier", typeof(object));
 			entityName = info.GetValue("entityName", typeof(string)) as string;
 		}
 
@@ -83,7 +83,7 @@ namespace NHibernate
 		public override void GetObjectData(SerializationInfo info, StreamingContext context)
 		{
 			base.GetObjectData(info, context);
-			info.AddValue("identifier", identifier, typeof(Object));
+			info.AddValue("identifier", identifier, typeof(object));
 			info.AddValue("entityName", entityName, typeof(string));
 		}
 

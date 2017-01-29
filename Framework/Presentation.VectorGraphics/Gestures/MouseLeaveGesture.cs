@@ -60,7 +60,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
             if (sender != _previousSender)
             {
                 var e2 = new MouseEventArgs(_previousSender, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
-                MouseLeave(sender, e2);
+                MouseLeave?.Invoke(sender, e2);
 
                 _previousSender = sender as Element;
             }

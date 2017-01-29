@@ -6,27 +6,27 @@ namespace JJ.Framework.Presentation.Resources
     {
         public static string ObjectNotFoundWithID(string objectTypeName, object id)
         {
-            return String.Format(CommonMessages.ObjectNotFoundWithID, objectTypeName, id);
+            return string.Format(CommonMessages.ObjectNotFoundWithID, objectTypeName, id);
         }
 
         public static string ObjectNotFound(string objectTypeName)
         {
-            return String.Format(CommonMessages.ObjectNotFound, objectTypeName);
+            return string.Format(CommonMessages.ObjectNotFound, objectTypeName);
         }
 
         public static string CannotDeleteObjectWithName(string objectTypeName, string objectName)
         {
-            return String.Format(CommonMessages.CannotDeleteObjectWithName, objectTypeName, objectName);
+            return string.Format(CommonMessages.CannotDeleteObjectWithName, objectTypeName, objectName);
         }
 
         public static string AreYouSureYouWishToDeleteWithName(string objectTypeName, string objectName)
         {
-            return String.Format(CommonMessages.AreYouSureYouWishToDeleteWithName, objectTypeName, objectName);
+            return string.Format(CommonMessages.AreYouSureYouWishToDeleteWithName, objectTypeName, objectName);
         }
 
         public static string ObjectIsDeleted(string objectTypeName)
         {
-            return String.Format(CommonMessages.ObjectIsDeleted, objectTypeName);
+            return string.Format(CommonMessages.ObjectIsDeleted, objectTypeName);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace FluentNHibernate.Mapping
 {
     public class ColumnPart
     {
-        private ColumnMapping columnMapping;
+        private readonly ColumnMapping columnMapping;
         private bool nextBool = true;
 
         public ColumnPart(ColumnMapping columnMapping)

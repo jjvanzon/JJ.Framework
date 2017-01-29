@@ -18,7 +18,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Tree
 	public class JavaConstantNode : SqlNode, IExpectedTypeAwareNode, ISessionFactoryAwareNode 
 	{
 		private ISessionFactoryImplementor _factory;
-		private Object _constantValue;
+		private object _constantValue;
 		private IType _heuristicType;
 		private IType _expectedType;
 	    private bool _processedText;

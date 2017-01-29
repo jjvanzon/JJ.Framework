@@ -12,7 +12,7 @@ namespace NHibernate.Hql
 		public static string CreateCollectionSubquery(
 			JoinSequence joinSequence,
 			IDictionary<string, IFilter> enabledFilters,
-			String[] columns)
+			string[] columns)
 		{
 			try
 			{

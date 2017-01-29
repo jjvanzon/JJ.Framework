@@ -22,12 +22,12 @@ namespace NHibernate.SqlCommand
 		private int lastOrderByIndex;
 		private int lastOrderByPartIndex;
 		private int parenNestCount;
-		private SqlString sql;
+		private readonly SqlString sql;
 
 		/// <summary>
 		/// Contains the subselect clause as it is being built.
 		/// </summary>
-		private SqlStringBuilder builder;
+		private readonly SqlStringBuilder builder;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SubselectClauseExtractor"/> class.

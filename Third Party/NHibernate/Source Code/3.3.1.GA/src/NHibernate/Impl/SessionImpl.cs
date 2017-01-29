@@ -2212,7 +2212,7 @@ namespace NHibernate.Impl
 			}
 		}
 
-		public override Object GetFilterParameterValue(string filterParameterName)
+		public override object GetFilterParameterValue(string filterParameterName)
 		{
 			using (new SessionIdLoggingContext(SessionId))
 			{

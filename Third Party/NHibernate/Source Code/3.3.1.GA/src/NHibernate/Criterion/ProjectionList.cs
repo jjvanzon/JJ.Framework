@@ -14,7 +14,7 @@ namespace NHibernate.Criterion
 	[Serializable]
 	public class ProjectionList : IEnhancedProjection
 	{
-		private IList<IProjection> elements = new List<IProjection>();
+		private readonly IList<IProjection> elements = new List<IProjection>();
 
 		protected internal ProjectionList()
 		{
@@ -31,7 +31,7 @@ namespace NHibernate.Criterion
 			return this;
 		}
 
-		public ProjectionList Add(IProjection projection, String alias)
+		public ProjectionList Add(IProjection projection, string alias)
 		{
 			return Add(Projections.Alias(projection, alias));
 		}
@@ -97,7 +97,7 @@ namespace NHibernate.Criterion
 
 			for (int i = 0; i < Length; i++)
 			{
-				String[] colAliases = this[i].GetColumnAliases(loc);
+				string[] colAliases = this[i].GetColumnAliases(loc);
 				foreach (string alias in colAliases)
 					aliases.Add(alias);
 				loc += colAliases.Length;
@@ -111,7 +111,7 @@ namespace NHibernate.Criterion
 		{
 			for (int i = 0; i < Length; i++)
 			{
-				String[] result = this[i].GetColumnAliases(alias, loc);
+				string[] result = this[i].GetColumnAliases(alias, loc);
 				if (result != null) return result;
 				loc += this[i].GetColumnAliases(loc).Length;
 			}
@@ -165,7 +165,7 @@ namespace NHibernate.Criterion
 			return null;
 		}
 
-		public String[] Aliases
+		public string[] Aliases
 		{
 			get
 			{
@@ -173,7 +173,7 @@ namespace NHibernate.Criterion
 
 				for (int i = 0; i < Length; i++)
 				{
-					String[] aliases = this[i].Aliases;
+					string[] aliases = this[i].Aliases;
 					foreach (string alias in aliases)
 						aliasList.Add(alias);
 				}
@@ -196,7 +196,7 @@ namespace NHibernate.Criterion
 			get { return elements.Count; }
 		}
 
-		public override String ToString()
+		public override string ToString()
 		{
 			return elements.ToString();
 		}

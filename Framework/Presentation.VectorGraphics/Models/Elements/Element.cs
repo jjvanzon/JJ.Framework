@@ -39,7 +39,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         // Related Objects
 
-        private ElementToDiagramRelationship _diagramRelationship;
+        private readonly ElementToDiagramRelationship _diagramRelationship;
 
         public Diagram Diagram
         {
@@ -59,7 +59,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        private ChildToParentRelationship _parentRelationship;
+        private readonly ChildToParentRelationship _parentRelationship;
 
         public Element Parent
         {

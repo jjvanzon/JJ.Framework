@@ -108,7 +108,7 @@ namespace NHibernate.Criterion
 				return false;
 			}
 
-			public bool Include(object propertyValue, String propertyName, IType type)
+			public bool Include(object propertyValue, string propertyName, IType type)
 			{
 				return propertyValue != null && !IsZero(propertyValue);
 			}
@@ -126,7 +126,7 @@ namespace NHibernate.Criterion
 		[Serializable]
 		private class NotNullOrEmptyStringPropertySelector : IPropertySelector
 		{
-			public bool Include(object propertyValue, String propertyName, IType type)
+			public bool Include(object propertyValue, string propertyName, IType type)
 			{
 				if (propertyValue == null) return false;
 				return propertyValue.ToString().Length > 0;
@@ -218,7 +218,7 @@ namespace NHibernate.Criterion
 		/// Exclude a particular named property
 		/// </summary>
 		/// <param name="name">The name of the property to exclude.</param>
-		public Example ExcludeProperty(String name)
+		public Example ExcludeProperty(string name)
 		{
 			_excludedProperties.Add(name);
 			return this;
@@ -250,7 +250,7 @@ namespace NHibernate.Criterion
 			_selector = selector;
 		}
 
-		public override String ToString()
+		public override string ToString()
 		{
 			return "example (" + _entity + ')';
 		}
@@ -265,7 +265,7 @@ namespace NHibernate.Criterion
 		/// <see langword="true" /> if the Property should be included, <see langword="false" /> if
 		/// the Property should not be a part of the Query.
 		/// </returns>
-		private bool IsPropertyIncluded(object value, String name, IType type)
+		private bool IsPropertyIncluded(object value, string name, IType type)
 		{
 			return !_excludedProperties.Contains(name) &&
 			       !type.IsAssociationType &&
@@ -302,13 +302,13 @@ namespace NHibernate.Criterion
 			builder.Add(StringHelper.OpenParen);
 
 			IEntityPersister meta = criteriaQuery.Factory.GetEntityPersister(criteriaQuery.GetEntityName(criteria));
-			String[] propertyNames = meta.PropertyNames;
+			string[] propertyNames = meta.PropertyNames;
 			IType[] propertyTypes = meta.PropertyTypes;
 			object[] propertyValues = GetPropertyValues(meta, criteria, criteriaQuery);
 			for (int i = 0; i < propertyNames.Length; i++)
 			{
 				object propertyValue = propertyValues[i];
-				String propertyName = propertyNames[i];
+				string propertyName = propertyNames[i];
 
 				bool isPropertyIncluded = i != meta.VersionProperty &&
 				                          IsPropertyIncluded(propertyValue, propertyName, propertyTypes[i]);
@@ -464,7 +464,7 @@ namespace NHibernate.Criterion
 		}
 
 		protected void AppendPropertyCondition(
-			String propertyName,
+			string propertyName,
 			object propertyValue,
 			ICriteria criteria,
 			ICriteriaQuery cq,
@@ -493,7 +493,7 @@ namespace NHibernate.Criterion
 		}
 
 		protected void AppendComponentCondition(
-			String path,
+			string path,
 			object component,
 			IAbstractComponentType type,
 			ICriteria criteria,
@@ -503,12 +503,12 @@ namespace NHibernate.Criterion
 		{
 			if (component != null)
 			{
-				String[] propertyNames = type.PropertyNames;
+				string[] propertyNames = type.PropertyNames;
 				object[] values = type.GetPropertyValues(component, GetEntityMode(criteria, criteriaQuery));
 				IType[] subtypes = type.Subtypes;
 				for (int i = 0; i < propertyNames.Length; i++)
 				{
-					String subpath = StringHelper.Qualify(path, propertyNames[i]);
+					string subpath = StringHelper.Qualify(path, propertyNames[i]);
 					object value = values[i];
 					if (IsPropertyIncluded(value, subpath, subtypes[i]))
 					{

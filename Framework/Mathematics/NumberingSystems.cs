@@ -32,8 +32,7 @@ namespace JJ.Framework.Mathematics
         //     digit[2] = 6437 / 100 % 10 = 64 % 10 = 4
         //     digit[3] = 6437 / 1000 % 10 = 6 % 10 = 6
 
-        private static char[] DEFAULT_DIGIT_CHARS = new char[]
-        {
+        private static readonly char[] _defaultDigitChars = {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 
             'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 
@@ -112,7 +111,7 @@ namespace JJ.Framework.Mathematics
 
             int[] digitValues = GetDigitValues(number, b);
             char[] digits = digitValues.Select(x => DigitValueToChar(x, digitChars)).ToArray();
-            string result = new String(digits);
+            string result = new string(digits);
             return result;
         }
 
@@ -125,7 +124,7 @@ namespace JJ.Framework.Mathematics
         {
             int[] digitValues = GetDigitValues(number, b);
             char[] digits = digitValues.Select(x => DigitValueToChar(x, firstChar)).ToArray();
-            string result = new String(digits);
+            string result = new string(digits);
             return result;
         }
 
@@ -134,7 +133,7 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static string ToHex(int input)
         {
-            return ToBase(input, 16, DEFAULT_DIGIT_CHARS);
+            return ToBase(input, 16, _defaultDigitChars);
         }
 
         /// <summary>
@@ -143,7 +142,7 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static string ToBase(int number, int b)
         {
-            return ToBase(number, b, DEFAULT_DIGIT_CHARS);
+            return ToBase(number, b, _defaultDigitChars);
         }
 
         // From Base
@@ -154,7 +153,7 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         private static int FromBase(string input, int b, Func<char, int> charToDigitValueDelegate)
         {
-            if (String.IsNullOrEmpty(input)) throw new ArgumentException("input cannot be null or empty.");
+            if (string.IsNullOrEmpty(input)) throw new ArgumentException("input cannot be null or empty.");
             if (b < 2) throw new ArgumentException("b must be 2 or higher.");
             if (charToDigitValueDelegate == null) throw new NullException(() => charToDigitValueDelegate);
 
@@ -275,7 +274,7 @@ namespace JJ.Framework.Mathematics
                 return digitValue;
             }
 
-            throw new Exception(String.Format("Invalid digit: '{0}'.", chr));
+            throw new Exception(string.Format("Invalid digit: '{0}'.", chr));
         }
 
         // Letter Sequences
@@ -304,19 +303,18 @@ namespace JJ.Framework.Mathematics
         /// so you basically start counting at 0 again,
         /// but you get 26 for free.
         /// </summary>
-        /// <param name="temp">0 is the first letter</param>
+        /// <param name="firstChar">0 is the first letter</param>
         public static string ToLetterSequence(int value, int b, char firstChar = 'A')
         {
             int ceiling = b;
             int i = 1;
-            string result;
             int temp = value;
 
             while (true)
             {
                 if (temp < ceiling)
                 {
-                    result = ToBase(temp, b, firstChar);
+                    string result = ToBase(temp, b, firstChar);
                     result = result.PadLeft(i, firstChar);
                     return result;
                 }
@@ -357,7 +355,7 @@ namespace JJ.Framework.Mathematics
         /// </summary>
         public static int FromLetterSequence(string input, int b, char firstChar = 'A')
         {
-            if (String.IsNullOrEmpty(input)) throw new NullException(() => input);
+            if (string.IsNullOrEmpty(input)) throw new NullException(() => input);
 
             int value = FromBase(input, b, firstChar);
 

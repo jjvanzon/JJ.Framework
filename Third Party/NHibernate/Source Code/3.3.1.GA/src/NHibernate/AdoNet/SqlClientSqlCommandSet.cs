@@ -14,16 +14,16 @@ namespace NHibernate.AdoNet
 	/// </summary>
 	public class SqlClientSqlCommandSet : IDisposable
 	{
-		private static System.Type sqlCmdSetType;
-		private object instance;
-		private PropSetter<SqlConnection> connectionSetter;
-		private PropSetter<SqlTransaction> transactionSetter;
-		private PropSetter<int> commandTimeoutSetter;
-		private PropGetter<SqlConnection> connectionGetter;
-		private SqlClientSqlCommandSet.PropGetter<System.Data.SqlClient.SqlCommand> commandGetter;
-		private AppendCommand doAppend;
-		private ExecuteNonQueryCommand doExecuteNonQuery;
-		private DisposeCommand doDispose;
+		private static readonly System.Type sqlCmdSetType;
+		private readonly object instance;
+		private readonly PropSetter<SqlConnection> connectionSetter;
+		private readonly PropSetter<SqlTransaction> transactionSetter;
+		private readonly PropSetter<int> commandTimeoutSetter;
+		private readonly PropGetter<SqlConnection> connectionGetter;
+		private readonly SqlClientSqlCommandSet.PropGetter<System.Data.SqlClient.SqlCommand> commandGetter;
+		private readonly AppendCommand doAppend;
+		private readonly ExecuteNonQueryCommand doExecuteNonQuery;
+		private readonly DisposeCommand doDispose;
 		private int countOfCommands = 0;
 
 		static SqlClientSqlCommandSet()

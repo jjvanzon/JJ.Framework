@@ -61,7 +61,7 @@ namespace NHibernate.Util
 				{
 					string key = en.Current;
 
-					string value = en.MoveNext() ? en.Current : String.Empty;
+					string value = en.MoveNext() ? en.Current : string.Empty;
 					map[key] = value;
 				}
 			}

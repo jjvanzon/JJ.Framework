@@ -151,7 +151,7 @@ namespace NHibernate
 		/// The identifier property of the returned instance
 		/// should be initialized with the given identifier.
 		/// </remarks>
-		object Instantiate(System.String entityName, EntityMode entityMode, object id);
+		object Instantiate(string entityName, EntityMode entityMode, object id);
 
 		/// <summary> Get the entity name for a persistent or transient instance</summary>
 		/// <param name="entity">an entity instance </param>

@@ -5,7 +5,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
 {
     internal class Element_Accessor
     {
-        private Accessor _accessor;
+        private readonly Accessor _accessor;
 
         public Element_Accessor(Element element)
         {

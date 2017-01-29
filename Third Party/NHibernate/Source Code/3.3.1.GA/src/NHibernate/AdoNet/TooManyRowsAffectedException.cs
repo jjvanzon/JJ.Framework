@@ -10,7 +10,7 @@ namespace NHibernate.AdoNet
 		private readonly int expectedRowCount;
 		private readonly int actualRowCount;
 
-		public TooManyRowsAffectedException(String message, int expectedRowCount, int actualRowCount)
+		public TooManyRowsAffectedException(string message, int expectedRowCount, int actualRowCount)
 			: base(message)
 		{
 			this.expectedRowCount = expectedRowCount;
