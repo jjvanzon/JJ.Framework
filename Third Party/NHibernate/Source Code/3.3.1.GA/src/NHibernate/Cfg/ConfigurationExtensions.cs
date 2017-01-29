@@ -140,15 +140,15 @@ namespace NHibernate.Cfg
 		{
 			if (configuration == null)
 			{
-				throw new ArgumentNullException("configuration");
+				throw new ArgumentNullException(nameof(configuration));
 			}
 			if (queryIdentifier == null)
 			{
-				throw new ArgumentNullException("queryIdentifier");
+				throw new ArgumentNullException(nameof(queryIdentifier));
 			}
 			if (namedQueryDefinition == null)
 			{
-				throw new ArgumentNullException("namedQueryDefinition");
+				throw new ArgumentNullException(nameof(namedQueryDefinition));
 			}
 			var builder = new NamedQueryDefinitionBuilder();
 			namedQueryDefinition(builder);

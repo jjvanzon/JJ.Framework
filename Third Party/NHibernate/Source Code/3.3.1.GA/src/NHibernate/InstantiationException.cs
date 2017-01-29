@@ -16,7 +16,7 @@ namespace NHibernate
 			: base(message)
 		{
 			if (type == null)
-				throw new ArgumentNullException("type");
+				throw new ArgumentNullException(nameof(type));
 
 			this.type = type;
 		}
@@ -35,7 +35,7 @@ namespace NHibernate
 			: base(message, innerException)
 		{
 			if (type == null)
-				throw new ArgumentNullException("type");
+				throw new ArgumentNullException(nameof(type));
 
 			this.type = type;
 		}

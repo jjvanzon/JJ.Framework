@@ -13,11 +13,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (container == null)
 			{
-				throw new ArgumentNullException("container");
+				throw new ArgumentNullException(nameof(container));
 			}
 			if (mapDoc == null)
 			{
-				throw new ArgumentNullException("mapDoc");
+				throw new ArgumentNullException(nameof(mapDoc));
 			}
 			this.container = container;
 			this.mapDoc = mapDoc;
@@ -39,7 +39,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (!IsMemberSupportedByMappedContainer(property))
 			{
-				throw new ArgumentOutOfRangeException("property", "Can't add a property of another graph");
+				throw new ArgumentOutOfRangeException(nameof(property), "Can't add a property of another graph");
 			}
 			var hbmProperty = new HbmProperty {name = property.Name};
 			mapping(new PropertyMapper(property, hbmProperty));
@@ -55,7 +55,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (!IsMemberSupportedByMappedContainer(property))
 			{
-				throw new ArgumentOutOfRangeException("property", "Can't add a property of another graph");
+				throw new ArgumentOutOfRangeException(nameof(property), "Can't add a property of another graph");
 			}
 			var hbm = new HbmComponent { name = property.Name };
 			mapping(new ComponentMapper(hbm, property.GetPropertyOrFieldType(), property, MapDoc));
@@ -66,7 +66,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (!IsMemberSupportedByMappedContainer(property))
 			{
-				throw new ArgumentOutOfRangeException("property", "Can't add a property of another graph");
+				throw new ArgumentOutOfRangeException(nameof(property), "Can't add a property of another graph");
 			}
 			var hbm = new HbmDynamicComponent { name = property.Name };
 			mapping(new DynamicComponentMapper(hbm, property, MapDoc));
@@ -77,7 +77,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (!IsMemberSupportedByMappedContainer(property))
 			{
-				throw new ArgumentOutOfRangeException("property", "Can't add a property of another graph");
+				throw new ArgumentOutOfRangeException(nameof(property), "Can't add a property of another graph");
 			}
 			var hbm = new HbmManyToOne { name = property.Name };
 			mapping(new ManyToOneMapper(property, hbm, MapDoc));
@@ -88,7 +88,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (!IsMemberSupportedByMappedContainer(property))
 			{
-				throw new ArgumentOutOfRangeException("property", "Can't add a property of another graph");
+				throw new ArgumentOutOfRangeException(nameof(property), "Can't add a property of another graph");
 			}
 			var hbm = new HbmAny { name = property.Name };
 			mapping(new AnyMapper(property, idTypeOfMetaType, hbm, MapDoc));

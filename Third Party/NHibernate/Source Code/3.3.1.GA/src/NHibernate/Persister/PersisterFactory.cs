@@ -22,7 +22,7 @@ namespace NHibernate.Persister
 		{
 		}
 
-		private static readonly System.Type[] PersisterConstructorArgs = new System.Type[]
+		private static readonly System.Type[] PersisterConstructorArgs = new[]
 			{
 				typeof(PersistentClass),
 				typeof(ICacheConcurrencyStrategy),
@@ -32,14 +32,14 @@ namespace NHibernate.Persister
 
 		// TODO: is it really necessary to provide Configuration to CollectionPersisters ? Should it not be enough with associated class ?
 		// or why does ClassPersister's not get access to configuration ?
-		private static readonly System.Type[] CollectionPersisterConstructorArgs = new System.Type[]
+		private static readonly System.Type[] CollectionPersisterConstructorArgs = new[]
 			{
 				typeof(Mapping.Collection),
 				typeof(ICacheConcurrencyStrategy),
 				typeof(ISessionFactoryImplementor)
 			};
 
-		private static readonly System.Type[] CollectionPersisterConstructor2Args = new System.Type[]
+		private static readonly System.Type[] CollectionPersisterConstructor2Args = new[]
 			{
 				typeof(Mapping.Collection),
 				typeof(ICacheConcurrencyStrategy),

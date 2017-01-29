@@ -442,7 +442,7 @@ namespace NHibernate.Impl
 		{
 			if (sessionLocalInterceptor == null)
 			{
-				throw new ArgumentNullException("sessionLocalInterceptor");
+				throw new ArgumentNullException(nameof(sessionLocalInterceptor));
 			}
 			return OpenSession(connection, false, long.MinValue, sessionLocalInterceptor);
 		}
@@ -451,7 +451,7 @@ namespace NHibernate.Impl
 		{
 			if (sessionLocalInterceptor == null)
 			{
-				throw new ArgumentNullException("sessionLocalInterceptor");
+				throw new ArgumentNullException(nameof(sessionLocalInterceptor));
 			}
 			long timestamp = settings.CacheProvider.NextTimestamp();
 			return OpenSession(null, true, timestamp, sessionLocalInterceptor);
@@ -985,7 +985,7 @@ namespace NHibernate.Impl
 		{
 			if (string.IsNullOrEmpty(cacheRegion))
 			{
-				throw new ArgumentNullException("cacheRegion", "use the zero-argument form to evict the default query cache");
+				throw new ArgumentNullException(nameof(cacheRegion), "use the zero-argument form to evict the default query cache");
 			}
 			else
 			{

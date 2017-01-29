@@ -23,7 +23,7 @@ namespace NHibernate.Cfg.ConfigurationSchema
 		public EventConfiguration(ListenerConfiguration listener, ListenerType type)
 		{
 			if (listener == null)
-				throw new ArgumentNullException("listener");
+				throw new ArgumentNullException(nameof(listener));
 			this.type = type;
 			listeners.Add(listener);
 		}

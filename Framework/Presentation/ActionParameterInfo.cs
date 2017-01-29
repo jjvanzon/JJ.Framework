@@ -2,7 +2,7 @@
 
 namespace JJ.Framework.Presentation
 {
-    [DebuggerDisplay("{DebuggerDisplay}")]
+    [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
     public sealed class ActionParameterInfo
     {
         public string Name { get; set; }

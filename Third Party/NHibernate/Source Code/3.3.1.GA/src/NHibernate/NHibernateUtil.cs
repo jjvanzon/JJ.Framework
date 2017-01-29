@@ -497,7 +497,7 @@ namespace NHibernate
 			EnumerableImpl hibernateEnumerator = enumerator as EnumerableImpl;
 			if (hibernateEnumerator == null)
 			{
-				throw new ArgumentException("Not a NHibernate enumerator", "enumerator");
+				throw new ArgumentException("Not a NHibernate enumerator", nameof(enumerator));
 			}
 			hibernateEnumerator.Dispose();
 		}
@@ -511,7 +511,7 @@ namespace NHibernate
 			EnumerableImpl hibernateEnumerable = enumerable as EnumerableImpl;
 			if (hibernateEnumerable == null)
 			{
-				throw new ArgumentException("Not a NHibernate enumerable", "enumerable");
+				throw new ArgumentException("Not a NHibernate enumerable", nameof(enumerable));
 			}
 			hibernateEnumerable.Dispose();
 		}

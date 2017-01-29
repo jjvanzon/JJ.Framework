@@ -25,17 +25,17 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (splitGroupId == null)
 			{
-				throw new ArgumentNullException("splitGroupId");
+				throw new ArgumentNullException(nameof(splitGroupId));
 			}
 			if (hbmJoin == null)
 			{
-				throw new ArgumentNullException("hbmJoin");
+				throw new ArgumentNullException(nameof(hbmJoin));
 			}
 			this.hbmJoin = hbmJoin;
 			this.hbmJoin.table = splitGroupId.Trim();
 			if (string.IsNullOrEmpty(this.hbmJoin.table))
 			{
-				throw new ArgumentOutOfRangeException("splitGroupId", "The table-name cant be empty.");
+				throw new ArgumentOutOfRangeException(nameof(splitGroupId), "The table-name cant be empty.");
 			}
 			if (hbmJoin.key == null)
 			{
@@ -59,7 +59,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (property == null)
 			{
-				throw new ArgumentNullException("property");
+				throw new ArgumentNullException(nameof(property));
 			}
 			var toAdd = new[] { property };
 			hbmJoin.Items = hbmJoin.Items == null ? toAdd : hbmJoin.Items.Concat(toAdd).ToArray();
@@ -110,13 +110,13 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (tableName == null)
 			{
-				throw new ArgumentNullException("tableName");
+				throw new ArgumentNullException(nameof(tableName));
 			}
 
 			var trimmedName = tableName.Trim();
 			if (string.IsNullOrEmpty(trimmedName))
 			{
-				throw new ArgumentOutOfRangeException("tableName", "The table-name cant be empty.");
+				throw new ArgumentOutOfRangeException(nameof(tableName), "The table-name cant be empty.");
 			}
 			var oldName = hbmJoin.table;
 			hbmJoin.table = trimmedName;

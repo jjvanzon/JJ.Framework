@@ -20,10 +20,10 @@ namespace NHibernate.Event
 			: base(source)
 		{
 			if (entity == null)
-				throw new ArgumentNullException("entity", "attempt to create replication strategy with null entity");
+				throw new ArgumentNullException(nameof(entity), "attempt to create replication strategy with null entity");
 
 			if (replicationMode == null)
-				throw new ArgumentNullException("replicationMode",
+				throw new ArgumentNullException(nameof(replicationMode),
 				                                "attempt to create replication strategy with null replication mode");
 
 			this.entityName = entityName;

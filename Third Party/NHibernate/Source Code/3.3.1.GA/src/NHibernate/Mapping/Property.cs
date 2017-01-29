@@ -106,7 +106,7 @@ namespace NHibernate.Mapping
 				}
 				else
 				{
-					string[] tokens = cascade.Split(new char[] { ',' });
+					string[] tokens = cascade.Split(new[] { ',' });
 					if (tokens.Length == 0) return CascadeStyle.None;
 					CascadeStyle[] styles = new CascadeStyle[tokens.Length];
 					int i = 0;

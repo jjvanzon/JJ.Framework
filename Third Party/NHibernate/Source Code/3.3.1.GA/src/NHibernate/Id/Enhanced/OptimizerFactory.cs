@@ -38,11 +38,11 @@ namespace NHibernate.Id.Enhanced
 		{
 			if (string.IsNullOrEmpty(type))
 			{
-				throw new ArgumentNullException("type");
+				throw new ArgumentNullException(nameof(type));
 			}
 			if (returnClass == null)
 			{
-				throw new ArgumentNullException("returnClass");
+				throw new ArgumentNullException(nameof(returnClass));
 			}
 			string optimizerClassName;
 			switch (type)

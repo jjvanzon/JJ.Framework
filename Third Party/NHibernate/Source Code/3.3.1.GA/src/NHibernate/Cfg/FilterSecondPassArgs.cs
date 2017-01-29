@@ -12,11 +12,11 @@ namespace NHibernate.Cfg
 		{
 			if (filterable == null)
 			{
-				throw new ArgumentNullException("filterable");
+				throw new ArgumentNullException(nameof(filterable));
 			}
 			if (string.IsNullOrEmpty(filterName))
 			{
-				throw new ArgumentNullException("filterName");
+				throw new ArgumentNullException(nameof(filterName));
 			}
 			Filterable = filterable;
 			FilterName = filterName;

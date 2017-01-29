@@ -84,7 +84,7 @@ namespace NHibernate.Transaction
 
 		public void RegisterSynchronization(ISynchronization sync)
 		{
-			if (sync == null) throw new ArgumentNullException("sync");
+			if (sync == null) throw new ArgumentNullException(nameof(sync));
 			if (synchronizations == null)
 			{
 				synchronizations = new List<ISynchronization>();

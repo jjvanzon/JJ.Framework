@@ -38,13 +38,13 @@ namespace NHibernate.Util
 		{
 			if (typeName == null)
 			{
-				throw new ArgumentNullException("typeName");
+				throw new ArgumentNullException(nameof(typeName));
 			}
 			var type = WhiteSpaces.Replace(typeName, " ");
 			type = MultipleSpaces.Replace(type, " ").Replace(", [", ",[").Replace("[ [", "[[").Replace("] ]", "]]");
 			if (type.Trim(' ','[', ']', '\\', ',') == string.Empty)
 			{
-				throw new ArgumentException(string.Format("The type to parse is not a type name:{0}", typeName), "typeName");
+				throw new ArgumentException(string.Format("The type to parse is not a type name:{0}", typeName), nameof(typeName));
 			}
 			int genericTypeArgsStartIdx = type.IndexOf('[');
 			int genericTypeArgsEndIdx = type.LastIndexOf(']');

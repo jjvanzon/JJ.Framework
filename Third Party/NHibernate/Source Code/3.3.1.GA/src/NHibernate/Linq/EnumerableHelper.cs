@@ -18,7 +18,7 @@ namespace NHibernate.Linq
 		{
 			if (method == null)
 			{
-				throw new ArgumentNullException("method");
+				throw new ArgumentNullException(nameof(method));
 			}
 			MethodInfo methodInfo = ((MethodCallExpression) method.Body).Method;
 			return methodInfo.IsGenericMethod ? methodInfo.GetGenericMethodDefinition() : methodInfo;
@@ -34,7 +34,7 @@ namespace NHibernate.Linq
 		{
 			if (method == null)
 			{
-				throw new ArgumentNullException("method");
+				throw new ArgumentNullException(nameof(method));
 			}
 			var methodInfo = ((MethodCallExpression)method.Body).Method;
 			return methodInfo.IsGenericMethod ? methodInfo.GetGenericMethodDefinition() : methodInfo;
@@ -51,7 +51,7 @@ namespace NHibernate.Linq
 		{
 			if (property == null)
 			{
-				throw new ArgumentNullException("property");
+				throw new ArgumentNullException(nameof(property));
 			}
 			return ((MemberExpression)property.Body).Member;
 		}

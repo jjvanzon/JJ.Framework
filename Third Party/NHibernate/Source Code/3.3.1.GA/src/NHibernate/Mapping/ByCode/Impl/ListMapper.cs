@@ -23,15 +23,15 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (ownerType == null)
 			{
-				throw new ArgumentNullException("ownerType");
+				throw new ArgumentNullException(nameof(ownerType));
 			}
 			if (elementType == null)
 			{
-				throw new ArgumentNullException("elementType");
+				throw new ArgumentNullException(nameof(elementType));
 			}
 			if (mapping == null)
 			{
-				throw new ArgumentNullException("mapping");
+				throw new ArgumentNullException(nameof(mapping));
 			}
 			OwnerType = ownerType;
 			ElementType = elementType;
@@ -131,11 +131,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (collectionType == null)
 			{
-				throw new ArgumentNullException("collectionType");
+				throw new ArgumentNullException(nameof(collectionType));
 			}
 			if (!typeof (IUserCollectionType).IsAssignableFrom(collectionType))
 			{
-				throw new ArgumentOutOfRangeException("collectionType",
+				throw new ArgumentOutOfRangeException(nameof(collectionType),
 				                                      string.Format(
 				                                      	"The collection type should be an implementation of IUserCollectionType.({0})",
 				                                      	collectionType));
@@ -197,11 +197,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (persister == null)
 			{
-				throw new ArgumentNullException("persister");
+				throw new ArgumentNullException(nameof(persister));
 			}
 			if (!typeof(ICollectionPersister).IsAssignableFrom(persister))
 			{
-				throw new ArgumentOutOfRangeException("persister", "Expected type implementing ICollectionPersister.");
+				throw new ArgumentOutOfRangeException(nameof(persister), "Expected type implementing ICollectionPersister.");
 			}
 			mapping.persister = persister.AssemblyQualifiedName;
 		}

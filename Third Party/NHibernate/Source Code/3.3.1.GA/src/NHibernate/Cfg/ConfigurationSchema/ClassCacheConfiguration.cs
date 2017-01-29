@@ -35,7 +35,7 @@ namespace NHibernate.Cfg.ConfigurationSchema
 		public ClassCacheConfiguration(string clazz, EntityCacheUsage usage)
 		{
 			if (string.IsNullOrEmpty(clazz))
-				throw new ArgumentException("clazz is null or empty.", "clazz");
+				throw new ArgumentException("clazz is null or empty.", nameof(clazz));
 			this.clazz = clazz;
 			this.usage = usage;
 		}

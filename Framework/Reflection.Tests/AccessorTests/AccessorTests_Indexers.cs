@@ -10,6 +10,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         public void Test_Accessor_UsingStrings_Indexer_Int()
         {
             var obj = new Class();
+            // ReSharper disable once UseObjectOrCollectionInitializer
             var accessor = new ClassAccessor_UsingStrings(obj);
             accessor[1] = 1;
             accessor[2] = 2;
@@ -21,6 +22,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         public void Test_Accessor_UsingStrings_Indexer_String()
         {
             var obj = new Class();
+            // ReSharper disable once UseObjectOrCollectionInitializer
             var accessor = new ClassAccessor_UsingStrings(obj);
             accessor["A"] = "1";
             accessor["B"] = "2";
@@ -32,6 +34,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         public void Test_Accessor_UsingStrings_Indexer_InBaseClass()
         {
             var obj = new DerivedClass();
+            // ReSharper disable once UseObjectOrCollectionInitializer
             var accessor = new ClassAccessor_UsingStrings(obj, typeof(Class));
             accessor[1] = 1;
             accessor[2] = 2;
@@ -43,6 +46,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         public void Test_Accessor_UsingStrings_Indexer_Named()
         {
             var obj = new ClassWithNamedIndexer();
+            // ReSharper disable once UseObjectOrCollectionInitializer
             var accessor = new ClassWithNamedIndexerAccessor(obj);
             accessor[1] = 1;
             accessor[2] = 2;

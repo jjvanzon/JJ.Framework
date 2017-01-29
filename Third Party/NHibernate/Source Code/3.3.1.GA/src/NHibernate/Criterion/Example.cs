@@ -233,7 +233,7 @@ namespace NHibernate.Criterion
 		public static Example Create(object entity)
 		{
 			if (entity == null)
-				throw new ArgumentNullException("entity", "null example");
+				throw new ArgumentNullException(nameof(entity), "null example");
 
 			return new Example(entity, NotNullOrEmptyString);
 		}

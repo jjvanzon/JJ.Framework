@@ -9,11 +9,11 @@ namespace NHibernate.Mapping.ByCode.Impl.CustomizersImpl
 		{
 			if (propertyPath == null)
 			{
-				throw new ArgumentNullException("propertyPath");
+				throw new ArgumentNullException(nameof(propertyPath));
 			}
 			if (explicitDeclarationsHolder == null)
 			{
-				throw new ArgumentNullException("explicitDeclarationsHolder");
+				throw new ArgumentNullException(nameof(explicitDeclarationsHolder));
 			}
 			explicitDeclarationsHolder.AddAsDynamicComponent(propertyPath.LocalMember, typeof(TComponent));
 		}

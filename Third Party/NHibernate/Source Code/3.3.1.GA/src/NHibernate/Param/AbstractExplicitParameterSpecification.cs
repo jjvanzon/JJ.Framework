@@ -65,7 +65,7 @@ namespace NHibernate.Param
 		{
 			if (sessionFactory == null)
 			{
-				throw new ArgumentNullException("sessionFactory");
+				throw new ArgumentNullException(nameof(sessionFactory));
 			}
 			if (ExpectedType != null)
 			{

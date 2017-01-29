@@ -69,7 +69,7 @@ namespace FluentNHibernate.Utils.Reflection
                 }
 
                 if (nextOperand.NodeType != ExpressionType.Convert)
-                    throw new ArgumentException("Expression not supported", "expression");
+                    throw new ArgumentException("Expression not supported", nameof(expression));
 	            
                 var unaryExpression = (UnaryExpression)nextOperand;
                 desiredConversionType = unaryExpression.Type;
@@ -101,7 +101,7 @@ namespace FluentNHibernate.Utils.Reflection
 
             if (enforceCheck && memberExpression == null)
             {
-                throw new ArgumentException("Not a member access", "expression");
+                throw new ArgumentException("Not a member access", nameof(expression));
             }
 
             return memberExpression;

@@ -71,7 +71,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (foreignProperty == null)
 			{
-				throw new ArgumentNullException("foreignProperty");
+				throw new ArgumentNullException(nameof(foreignProperty));
 			}
 			param = new {property = foreignProperty.Name};
 		}

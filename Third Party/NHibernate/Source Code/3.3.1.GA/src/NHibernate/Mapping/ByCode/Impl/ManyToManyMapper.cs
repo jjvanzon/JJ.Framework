@@ -15,11 +15,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (elementType == null)
 			{
-				throw new ArgumentNullException("elementType");
+				throw new ArgumentNullException(nameof(elementType));
 			}
 			if (manyToMany == null)
 			{
-				throw new ArgumentNullException("manyToMany");
+				throw new ArgumentNullException(nameof(manyToMany));
 			}
 			this.elementType = elementType;
 			this.manyToMany = manyToMany;
@@ -99,7 +99,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (!elementType.IsAssignableFrom(entityType))
 			{
-				throw new ArgumentOutOfRangeException("entityType",
+				throw new ArgumentOutOfRangeException(nameof(entityType),
 				                                      string.Format("The type is incompatible; expected assignable to {0}",
 				                                                    elementType));
 			}

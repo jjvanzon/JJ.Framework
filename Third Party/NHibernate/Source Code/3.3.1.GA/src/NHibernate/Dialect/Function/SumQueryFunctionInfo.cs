@@ -16,7 +16,7 @@ namespace NHibernate.Dialect.Function
 		{
 			if (columnType == null)
 			{
-				throw new ArgumentNullException("columnType");
+				throw new ArgumentNullException(nameof(columnType));
 			}
 			SqlType[] sqlTypes;
 			try

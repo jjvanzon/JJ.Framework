@@ -37,7 +37,7 @@ namespace NHibernate
 				case ConnectionReleaseMode.OnClose:
 					return "on_close";
 				default:
-					throw new ArgumentOutOfRangeException("value");
+					throw new ArgumentOutOfRangeException(nameof(value));
 			}
 		}
 	}

@@ -81,7 +81,7 @@ namespace NHibernate.Linq.Visitors
 				var builder = new HqlTreeBuilder();
 
 				return builder.Case(
-					new HqlWhen[] {builder.When(node, builder.True())},
+					new[] {builder.When(node, builder.True())},
 					builder.False());
 			}
 

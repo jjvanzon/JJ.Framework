@@ -11,7 +11,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (realMapper == null)
 			{
-				throw new ArgumentNullException("realMapper");
+				throw new ArgumentNullException(nameof(realMapper));
 			}
 			_realMapper = realMapper;
 		}

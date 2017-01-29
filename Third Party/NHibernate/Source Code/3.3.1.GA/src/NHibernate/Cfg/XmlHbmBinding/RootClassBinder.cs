@@ -185,7 +185,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 					return PropertyGeneration.Always;
 
 				default:
-					throw new ArgumentOutOfRangeException("versionGeneration");
+					throw new ArgumentOutOfRangeException(nameof(versionGeneration));
 			}
 		}
 

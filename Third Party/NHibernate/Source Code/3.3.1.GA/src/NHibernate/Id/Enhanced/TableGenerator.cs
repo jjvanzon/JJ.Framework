@@ -524,7 +524,7 @@ namespace NHibernate.Id.Enhanced
 				+ dialect.PrimaryKeyString + " ( " + SegmentColumnName + ") "
 				+ ")";
 
-			return new string[] { createString };
+			return new[] { createString };
 		}
 
 

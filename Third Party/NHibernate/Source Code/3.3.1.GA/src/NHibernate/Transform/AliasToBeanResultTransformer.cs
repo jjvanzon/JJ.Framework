@@ -37,7 +37,7 @@ namespace NHibernate.Transform
 		{
 			if (resultClass == null)
 			{
-				throw new ArgumentNullException("resultClass");
+				throw new ArgumentNullException(nameof(resultClass));
 			}
 			this.resultClass = resultClass;
 
@@ -48,7 +48,7 @@ namespace NHibernate.Transform
 			if (constructor == null && resultClass.IsClass)
 			{
 				throw new ArgumentException("The target class of a AliasToBeanResultTransformer need a parameter-less constructor",
-				                            "resultClass");
+				                            nameof(resultClass));
 			}
 
 			propertyAccessor =
@@ -63,7 +63,7 @@ namespace NHibernate.Transform
 		{
 			if (aliases == null)
 			{
-				throw new ArgumentNullException("aliases");
+				throw new ArgumentNullException(nameof(aliases));
 			}
 			object result;
 

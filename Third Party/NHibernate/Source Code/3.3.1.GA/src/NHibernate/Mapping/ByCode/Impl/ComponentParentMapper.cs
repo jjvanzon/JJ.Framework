@@ -12,7 +12,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (member == null)
 			{
-				throw new ArgumentNullException("member");
+				throw new ArgumentNullException(nameof(member));
 			}
 			parent.name = member.Name;
 			accessorPropertyMapper = new AccessorPropertyMapper(member.DeclaringType, member.Name, x => parent.access = x);

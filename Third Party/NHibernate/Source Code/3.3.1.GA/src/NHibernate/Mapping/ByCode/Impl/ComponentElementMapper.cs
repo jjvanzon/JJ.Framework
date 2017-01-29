@@ -30,7 +30,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (parent == null)
 			{
-				throw new ArgumentNullException("parent");
+				throw new ArgumentNullException(nameof(parent));
 			}
 			IComponentParentMapper mapper = GetParentMapper(parent);
 			parentMapping(mapper);
@@ -108,7 +108,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (property == null)
 			{
-				throw new ArgumentNullException("property");
+				throw new ArgumentNullException(nameof(property));
 			}
 			var toAdd = new[] { property };
 			_component.Items = _component.Items == null ? toAdd : _component.Items.Concat(toAdd).ToArray();

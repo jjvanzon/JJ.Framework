@@ -35,7 +35,7 @@ namespace NHibernate.Util
 		}
 
 		public JoinedEnumerable(IEnumerable first, IEnumerable second)
-			: this(new IEnumerable[] { first, second })
+			: this(new[] { first, second })
 		{
 		}
 
@@ -178,7 +178,7 @@ namespace NHibernate.Util
 		}
 
 		public JoinedEnumerable(IEnumerable<T> first, IEnumerable<T> second)
-			: this(new IEnumerable<T>[] { first, second })
+			: this(new[] { first, second })
 		{
 		}
 

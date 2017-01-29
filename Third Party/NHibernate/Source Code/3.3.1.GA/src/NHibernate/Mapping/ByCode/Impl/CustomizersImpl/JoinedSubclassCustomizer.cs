@@ -12,7 +12,7 @@ namespace NHibernate.Mapping.ByCode.Impl.CustomizersImpl
 		{
 			if (explicitDeclarationsHolder == null)
 			{
-				throw new ArgumentNullException("explicitDeclarationsHolder");
+				throw new ArgumentNullException(nameof(explicitDeclarationsHolder));
 			}
 			explicitDeclarationsHolder.AddAsTablePerClassEntity(typeof (TEntity));
 			// Add an empty customizer as a way to register the class as explicity declared

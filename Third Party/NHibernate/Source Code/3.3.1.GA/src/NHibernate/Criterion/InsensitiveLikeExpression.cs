@@ -117,7 +117,7 @@ namespace NHibernate.Criterion
 		{
 			if (projection != null)
 			{
-				return new IProjection[] { projection };
+				return new[] { projection };
 			}
 			return null;
 		}

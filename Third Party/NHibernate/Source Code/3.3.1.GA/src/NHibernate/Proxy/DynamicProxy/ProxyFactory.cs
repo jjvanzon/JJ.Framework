@@ -41,7 +41,7 @@ namespace NHibernate.Proxy.DynamicProxy
 		{
 			if (proxyMethodBuilder == null)
 			{
-				throw new ArgumentNullException("proxyMethodBuilder");
+				throw new ArgumentNullException(nameof(proxyMethodBuilder));
 			}
 			ProxyMethodBuilder = proxyMethodBuilder;
 			ProxyAssemblyBuilder = proxyAssemblyBuilder;

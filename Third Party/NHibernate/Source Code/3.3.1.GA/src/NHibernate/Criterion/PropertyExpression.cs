@@ -131,15 +131,15 @@ namespace NHibernate.Criterion
 		{
 			if(_lhsProjection != null && _rhsProjection != null)
 			{
-				return new IProjection[] {_lhsProjection, _rhsProjection};
+				return new[] {_lhsProjection, _rhsProjection};
 			}
 			if(_lhsProjection != null)
 			{
-				return new IProjection[] {_lhsProjection};
+				return new[] {_lhsProjection};
 			}
 			if(_rhsProjection != null)
 			{
-				return new IProjection[] {_rhsProjection};
+				return new[] {_rhsProjection};
 			}
 			return null;
 		}

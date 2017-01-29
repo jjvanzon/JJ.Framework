@@ -11,7 +11,7 @@ namespace NHibernate.Cfg.MappingSchema
 		public bool ShouldParse(string resourceName)
 		{
 			if (resourceName == null)
-				throw new ArgumentNullException("resourceName");
+				throw new ArgumentNullException(nameof(resourceName));
 
 			// TODO: ignore case?
 			return resourceName.EndsWith(".hbm.xml");

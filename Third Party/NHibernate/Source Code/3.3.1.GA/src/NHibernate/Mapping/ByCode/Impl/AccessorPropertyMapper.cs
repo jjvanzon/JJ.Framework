@@ -25,7 +25,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 			PropertyName = propertyName;
 			if (declaringType == null)
 			{
-				throw new ArgumentNullException("declaringType");
+				throw new ArgumentNullException(nameof(declaringType));
 			}
 			MemberInfo member = null;
 			if (propertyName != null)
@@ -81,7 +81,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 					}
 					else
 					{
-						throw new ArgumentOutOfRangeException("accessor",
+						throw new ArgumentOutOfRangeException(nameof(accessor),
 						                                      "The property name " + propertyName
 						                                      + " does not match with any supported field naming strategies.");
 					}
@@ -93,7 +93,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 					setAccessor("none");
 					break;
 				default:
-					throw new ArgumentOutOfRangeException("accessor");
+					throw new ArgumentOutOfRangeException(nameof(accessor));
 			}
 		}
 
@@ -105,7 +105,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 			}
 			if (accessorType == null)
 			{
-				throw new ArgumentNullException("accessorType");
+				throw new ArgumentNullException(nameof(accessorType));
 			}
 			if (typeof (IPropertyAccessor).IsAssignableFrom(accessorType))
 			{
@@ -113,7 +113,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 			}
 			else
 			{
-				throw new ArgumentOutOfRangeException("accessorType", "The accessor should implements IPropertyAccessor.");
+				throw new ArgumentOutOfRangeException(nameof(accessorType), "The accessor should implements IPropertyAccessor.");
 			}
 		}
 

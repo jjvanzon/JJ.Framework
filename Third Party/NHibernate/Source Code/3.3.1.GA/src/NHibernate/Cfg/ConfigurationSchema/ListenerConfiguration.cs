@@ -28,7 +28,7 @@ namespace NHibernate.Cfg.ConfigurationSchema
 		public ListenerConfiguration(string clazz)
 		{
 			if (string.IsNullOrEmpty(clazz))
-				throw new ArgumentException("clazz is null or empty.", "clazz");
+				throw new ArgumentException("clazz is null or empty.", nameof(clazz));
 			this.clazz = clazz;
 		}
 

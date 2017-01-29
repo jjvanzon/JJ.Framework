@@ -472,7 +472,7 @@ namespace NHibernate.Impl
 		public ICriteria SetProjection(params IProjection[] projections)
 		{
 			if(projections==null)
-				throw new ArgumentNullException("projections");
+				throw new ArgumentNullException(nameof(projections));
 			if(projections.Length ==0)
 				throw new ArgumentException("projections must contain a least one projection");
 

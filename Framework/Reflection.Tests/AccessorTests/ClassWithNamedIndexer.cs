@@ -8,6 +8,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         private readonly Dictionary<int, int> _intDictionary = new Dictionary<int, int>();
 
         [IndexerName("Indexer")]
+        // ReSharper disable once UnusedMember.Local
         private int this[int index]
         {
             get { return _intDictionary[index]; }

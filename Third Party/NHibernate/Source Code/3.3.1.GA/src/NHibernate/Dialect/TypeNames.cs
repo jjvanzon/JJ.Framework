@@ -59,7 +59,7 @@ namespace NHibernate.Dialect
 			string result;
 			if (!defaults.TryGetValue(typecode, out result))
 			{
-				throw new ArgumentException("Dialect does not support DbType." + typecode, "typecode");
+				throw new ArgumentException("Dialect does not support DbType." + typecode, nameof(typecode));
 			}
 			return result;
 		}

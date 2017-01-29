@@ -75,7 +75,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 
 			if (_member != null && propertyInTheOtherSide.DeclaringType != _member.GetPropertyOrFieldType())
 			{
-				throw new ArgumentOutOfRangeException("propertyInTheOtherSide",
+				throw new ArgumentOutOfRangeException(nameof(propertyInTheOtherSide),
 				                                      string.Format("Expected a member of {0} found the member {1} of {2}", _member.GetPropertyOrFieldType(), propertyInTheOtherSide,
 				                                                    propertyInTheOtherSide.DeclaringType));
 			}

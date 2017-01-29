@@ -59,7 +59,7 @@ namespace NHibernate.Tuple.Component
 		{
 			if (index < 0 || index >= propertySpan)
 			{
-				throw new ArgumentOutOfRangeException("index", string.Format("illegal index value for component property access [request={0}, span={1}]", index, propertySpan));
+				throw new ArgumentOutOfRangeException(nameof(index), string.Format("illegal index value for component property access [request={0}, span={1}]", index, propertySpan));
 			}
 			return properties[index];
 		}

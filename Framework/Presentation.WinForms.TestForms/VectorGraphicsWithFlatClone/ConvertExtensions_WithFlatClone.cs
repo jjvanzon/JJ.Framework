@@ -117,7 +117,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
             {
                 case DashStyleEnum.Dotted:
                     destPen.DashStyle = DashStyle.Dot;
-                    destPen.DashPattern = new float[] { 1, 1.5f };
+                    destPen.DashPattern = new[] { 1, 1.5f };
                     break;
 
                 case DashStyleEnum.Dashed:

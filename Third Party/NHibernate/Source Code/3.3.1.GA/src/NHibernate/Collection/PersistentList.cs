@@ -361,7 +361,7 @@ namespace NHibernate.Collection
 					// check if the index is valid
 					if(index >= Count)
 					{
-						throw new ArgumentOutOfRangeException("index");
+						throw new ArgumentOutOfRangeException(nameof(index));
 					}
 					return null;
 				}

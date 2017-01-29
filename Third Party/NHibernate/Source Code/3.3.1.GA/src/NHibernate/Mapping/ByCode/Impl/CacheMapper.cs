@@ -11,7 +11,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (cacheMapping == null)
 			{
-				throw new ArgumentNullException("cacheMapping");
+				throw new ArgumentNullException(nameof(cacheMapping));
 			}
 			this.cacheMapping = cacheMapping;
 			Usage(CacheUsage.Transactional);

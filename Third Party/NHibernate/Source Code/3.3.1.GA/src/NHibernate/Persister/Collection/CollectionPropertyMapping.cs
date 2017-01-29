@@ -72,7 +72,7 @@ namespace NHibernate.Persister.Collection
 
 				case CollectionPropertyNames.Size:
 					cols = memberPersister.KeyColumnNames;
-					return new string[] { "count(" + alias + '.' + cols[0] + ')' };
+					return new[] { "count(" + alias + '.' + cols[0] + ')' };
 
 				case CollectionPropertyNames.MaxIndex:
 					if (!memberPersister.HasIndex)
@@ -80,7 +80,7 @@ namespace NHibernate.Persister.Collection
 					cols = memberPersister.GetIndexColumnNames(alias);
 					if (cols.Length != 1)
 						throw new QueryException("composite collection index in maxIndex()");
-					return new string[] { "max(" + cols[0] + ')' };
+					return new[] { "max(" + cols[0] + ')' };
 
 				case CollectionPropertyNames.MinIndex:
 					if (!memberPersister.HasIndex)
@@ -88,19 +88,19 @@ namespace NHibernate.Persister.Collection
 					cols = memberPersister.GetIndexColumnNames(alias);
 					if (cols.Length != 1)
 						throw new QueryException("composite collection index in minIndex()");
-					return new string[] { "min(" + cols[0] + ')' };
+					return new[] { "min(" + cols[0] + ')' };
 
 				case CollectionPropertyNames.MaxElement:
 					cols = memberPersister.GetElementColumnNames(alias);
 					if (cols.Length != 1)
 						throw new QueryException("composite collection element in maxElement()");
-					return new string[] { "max(" + cols[0] + ')' };
+					return new[] { "max(" + cols[0] + ')' };
 
 				case CollectionPropertyNames.MinElement:
 					cols = memberPersister.GetElementColumnNames(alias);
 					if (cols.Length != 1)
 						throw new QueryException("composite collection element in minElement()");
-					return new string[] { "min(" + cols[0] + ')' };
+					return new[] { "min(" + cols[0] + ')' };
 
 				default:
 					throw new QueryException("illegal syntax near collection: " + propertyName);

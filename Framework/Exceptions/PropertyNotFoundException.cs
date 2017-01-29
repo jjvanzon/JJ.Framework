@@ -8,7 +8,7 @@ namespace JJ.Framework.Exceptions
 
         public PropertyNotFoundException(Type type, string propertyName)
         {
-            if (type == null) throw new ArgumentNullException("type");
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             Message = string.Format("Property '{0}' not found on type '{1}'.", propertyName, type.Name);
         }

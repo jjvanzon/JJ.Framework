@@ -15,7 +15,7 @@ namespace NHibernate.Event
 			: base(source)
 		{
 			if (entity == null)
-				throw new ArgumentNullException("entity", "Attempt to generate refresh event with null object");
+				throw new ArgumentNullException(nameof(entity), "Attempt to generate refresh event with null object");
 			this.entity = entity;
 		}
 
@@ -23,7 +23,7 @@ namespace NHibernate.Event
 			: this(entity, source)
 		{
 			if (lockMode == null)
-				throw new ArgumentNullException("lockMode", "Attempt to generate refresh event with null lock mode");
+				throw new ArgumentNullException(nameof(lockMode), "Attempt to generate refresh event with null lock mode");
 
 			this.lockMode = lockMode;
 		}

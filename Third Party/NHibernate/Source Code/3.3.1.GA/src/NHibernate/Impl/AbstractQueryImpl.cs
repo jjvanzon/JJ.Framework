@@ -171,7 +171,7 @@ namespace NHibernate.Impl
 		{
 			if (param == null)
 			{
-				throw new ArgumentNullException("param", "The IType can not be guessed for a null value.");
+				throw new ArgumentNullException(nameof(param), "The IType can not be guessed for a null value.");
 			}
 
 			System.Type clazz = NHibernateProxyHelper.GetClassWithoutInitializingProxy(param);
@@ -191,7 +191,7 @@ namespace NHibernate.Impl
 		{
 			if (clazz == null)
 			{
-				throw new ArgumentNullException("clazz", "The IType can not be guessed for a null value.");
+				throw new ArgumentNullException(nameof(clazz), "The IType can not be guessed for a null value.");
 			}
 
 			string typename = clazz.AssemblyQualifiedName;
@@ -343,7 +343,7 @@ namespace NHibernate.Impl
 				IType type = parameterMetadata.GetNamedParameterExpectedType(name);
 				if (type == null)
 				{
-					throw new ArgumentNullException("val",
+					throw new ArgumentNullException(nameof(val),
 																					"A type specific Set(name, val) should be called because the Type can not be guessed from a null value.");
 				}
 
@@ -361,7 +361,7 @@ namespace NHibernate.Impl
 		{
 			if (val == null)
 			{
-				throw new ArgumentNullException("val",
+				throw new ArgumentNullException(nameof(val),
 																				"A type specific Set(position, val) should be called because the Type can not be guessed from a null value.");
 			}
 			else
@@ -707,7 +707,7 @@ namespace NHibernate.Impl
 			}
 			if (type == null)
 			{
-				throw new ArgumentNullException("type","Can't determine the type of parameter-list elements.");
+				throw new ArgumentNullException(nameof(type),"Can't determine the type of parameter-list elements.");
 			}
 			if(!vals.Any())
 			{
@@ -721,7 +721,7 @@ namespace NHibernate.Impl
 		{
 			if (vals == null)
 			{
-				throw new ArgumentNullException("vals");
+				throw new ArgumentNullException(nameof(vals));
 			}
 
 			if (!parameterMetadata.NamedParameterNames.Contains(name))

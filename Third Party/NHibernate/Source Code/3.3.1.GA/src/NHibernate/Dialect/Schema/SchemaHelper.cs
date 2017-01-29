@@ -14,10 +14,10 @@ namespace NHibernate.Dialect.Schema
 		public static object GetValue(DataRow row, params string[] alternativeColumnNames)
 		{
 			if (alternativeColumnNames == null)
-				throw new ArgumentNullException("alternativeColumnNames");
+				throw new ArgumentNullException(nameof(alternativeColumnNames));
 
 			if (alternativeColumnNames.Length < 1)
-				throw new ArgumentOutOfRangeException("alternativeColumnNames", "At least one name must be given.");
+				throw new ArgumentOutOfRangeException(nameof(alternativeColumnNames), "At least one name must be given.");
 
 			foreach (var name in alternativeColumnNames)
 			{

@@ -40,7 +40,7 @@ namespace NHibernate.Dialect.Lock
 				.SetIdentityColumn(lockable.RootTableIdentifierColumnNames, lockable.IdentifierType);
 			if (lockable.IsVersioned)
 			{
-				select.SetVersionColumn(new string[] { lockable.VersionColumnName }, lockable.VersionType);
+				select.SetVersionColumn(new[] { lockable.VersionColumnName }, lockable.VersionType);
 			}
 			if (factory.Settings.IsCommentsEnabled)
 			{

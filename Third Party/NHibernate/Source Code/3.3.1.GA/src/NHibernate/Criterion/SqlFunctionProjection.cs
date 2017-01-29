@@ -115,7 +115,7 @@ namespace NHibernate.Criterion
 		{
 			ISQLFunction sqlFunction = GetFunction(criteriaQuery);
 			IType type = sqlFunction.ReturnType(returnType, criteriaQuery.Factory);
-			return new IType[] {type};
+			return new[] {type};
 		}
 
 		public override TypedValue[] GetTypedValues(ICriteria criteria, ICriteriaQuery criteriaQuery)

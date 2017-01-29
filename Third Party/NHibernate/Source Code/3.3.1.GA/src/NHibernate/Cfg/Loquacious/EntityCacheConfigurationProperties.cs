@@ -28,12 +28,12 @@ namespace NHibernate.Cfg.Loquacious
 		{
 			if (collectionProperty == null)
 			{
-				throw new ArgumentNullException("collectionProperty");
+				throw new ArgumentNullException(nameof(collectionProperty));
 			}
 			var mi = ExpressionsHelper.DecodeMemberAccessExpression(collectionProperty);
 			if(mi.DeclaringType != typeof(TEntity))
 			{
-				throw new ArgumentOutOfRangeException("collectionProperty", "Collection not owned by " + typeof (TEntity).FullName);
+				throw new ArgumentOutOfRangeException(nameof(collectionProperty), "Collection not owned by " + typeof (TEntity).FullName);
 			}
 			var ecc = new EntityCollectionCacheConfigurationProperties();
 			collectionCacheConfiguration(ecc);

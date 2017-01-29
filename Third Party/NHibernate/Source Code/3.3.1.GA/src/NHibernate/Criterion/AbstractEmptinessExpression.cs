@@ -60,7 +60,7 @@ namespace NHibernate.Criterion
 
 			innerSelect.Append(")");
 
-			return new SqlString(new string[] {ExcludeEmpty ? "exists" : "not exists", innerSelect.ToString()});
+			return new SqlString(new[] {ExcludeEmpty ? "exists" : "not exists", innerSelect.ToString()});
 		}
 
 

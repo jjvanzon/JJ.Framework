@@ -60,7 +60,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (baseIndex <= 0)
 			{
-				throw new ArgumentOutOfRangeException("baseIndex", "The baseIndex should be positive value");
+				throw new ArgumentOutOfRangeException(nameof(baseIndex), "The baseIndex should be positive value");
 			}
 
 			mapping.@base = baseIndex.ToString();

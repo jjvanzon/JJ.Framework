@@ -52,12 +52,12 @@ namespace NHibernate.Criterion
 
 		public override IType[] GetTypes(ICriteria criteria, ICriteriaQuery criteriaQuery)
 		{
-			return new IType[] { typedValue.Type };
+			return new[] { typedValue.Type };
 		}
 
 		public override TypedValue[] GetTypedValues(ICriteria criteria, ICriteriaQuery criteriaQuery)
 		{
-			return new TypedValue[] { typedValue };
+			return new[] { typedValue };
 		}
 	}
 }

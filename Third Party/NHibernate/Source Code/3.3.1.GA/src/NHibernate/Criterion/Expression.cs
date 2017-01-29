@@ -36,7 +36,7 @@ namespace NHibernate.Criterion
 		/// <returns></returns>
 		public static AbstractCriterion Sql(SqlString sql, object value, IType type)
 		{
-			return Sql(sql, new object[] { value }, new IType[] { type });
+			return Sql(sql, new[] { value }, new[] { type });
 		}
 
 		/// <summary>
@@ -44,7 +44,7 @@ namespace NHibernate.Criterion
 		/// </summary>
 		public static AbstractCriterion Sql(string sql, object value, IType type)
 		{
-			return Sql(sql, new object[] { value }, new IType[] { type });
+			return Sql(sql, new[] { value }, new[] { type });
 		}
 
 		public static AbstractCriterion Sql(string sql, object[] values, IType[] types)

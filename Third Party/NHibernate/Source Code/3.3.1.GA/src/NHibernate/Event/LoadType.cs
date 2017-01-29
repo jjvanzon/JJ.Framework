@@ -13,7 +13,7 @@ namespace NHibernate.Event
 		internal LoadType(string name)
 		{
 			if (string.IsNullOrEmpty(name))
-				throw new ArgumentNullException("name");
+				throw new ArgumentNullException(nameof(name));
 
 			this.name = name;
 		}

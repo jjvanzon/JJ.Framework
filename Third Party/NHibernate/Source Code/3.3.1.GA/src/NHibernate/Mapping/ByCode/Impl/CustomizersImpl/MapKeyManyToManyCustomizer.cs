@@ -11,7 +11,7 @@ namespace NHibernate.Mapping.ByCode.Impl.CustomizersImpl
 		{
 			if (explicitDeclarationsHolder == null)
 			{
-				throw new ArgumentNullException("explicitDeclarationsHolder");
+				throw new ArgumentNullException(nameof(explicitDeclarationsHolder));
 			}
 			explicitDeclarationsHolder.AddAsManyToManyRelation(propertyPath.LocalMember);
 			this.propertyPath = propertyPath;

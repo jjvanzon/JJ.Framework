@@ -317,7 +317,7 @@ namespace NHibernate.Type
 		/// </remarks>
 		public override sealed SqlType[] SqlTypes(IMapping mapping)
 		{
-			return new SqlType[] {SqlType};
+			return new[] {SqlType};
 		}
 
 		/// <summary>

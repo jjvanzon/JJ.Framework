@@ -89,11 +89,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (persistentType == null)
 			{
-				throw new ArgumentNullException("persistentType");
+				throw new ArgumentNullException(nameof(persistentType));
 			}
 			if (!typeof (IUserType).IsAssignableFrom(persistentType) && !typeof (IType).IsAssignableFrom(persistentType))
 			{
-				throw new ArgumentOutOfRangeException("persistentType", "Expected type implementing IUserType or IType.");
+				throw new ArgumentOutOfRangeException(nameof(persistentType), "Expected type implementing IUserType or IType.");
 			}
 			hbmMapKey.type = persistentType.AssemblyQualifiedName;
 		}

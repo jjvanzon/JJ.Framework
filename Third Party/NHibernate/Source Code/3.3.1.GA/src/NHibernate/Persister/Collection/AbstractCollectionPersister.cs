@@ -736,7 +736,7 @@ namespace NHibernate.Persister.Collection
 		{
 			if (id == null)
 			{
-				throw new ArgumentNullException("id", "Null key for collection: " + role);
+				throw new ArgumentNullException(nameof(id), "Null key for collection: " + role);
 			}
 
 			KeyType.NullSafeSet(st, id, i, session);
@@ -1459,8 +1459,8 @@ namespace NHibernate.Persister.Collection
 
 			if (hasIdentifier)
 			{
-				InitCollectionPropertyMap("id", identifierType, new string[] {identifierColumnAlias},
-				                          new string[] {identifierColumnName});
+				InitCollectionPropertyMap("id", identifierType, new[] {identifierColumnAlias},
+				                          new[] {identifierColumnName});
 			}
 		}
 
@@ -2051,7 +2051,7 @@ namespace NHibernate.Persister.Collection
 
 		public string[] RootTableKeyColumnNames
 		{
-			get { return new string[] {IdentifierColumnName}; }
+			get { return new[] {IdentifierColumnName}; }
 		}
 
 		public SqlString GetSelectByUniqueKeyString(string propertyName)

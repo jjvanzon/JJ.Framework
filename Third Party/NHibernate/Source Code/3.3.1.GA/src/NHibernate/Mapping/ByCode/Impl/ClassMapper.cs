@@ -45,7 +45,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (property == null)
 			{
-				throw new ArgumentNullException("property");
+				throw new ArgumentNullException(nameof(property));
 			}
 			var toAdd = new[] {property};
 			classMapping.Items = classMapping.Items == null ? toAdd : classMapping.Items.Concat(toAdd).ToArray();
@@ -89,7 +89,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 			}
 			if (!IsMemberSupportedByMappedContainer(idProperty))
 			{
-				throw new ArgumentOutOfRangeException("idProperty", "Can't use, as component id property, a property of another graph");
+				throw new ArgumentOutOfRangeException(nameof(idProperty), "Can't use, as component id property, a property of another graph");
 			}
 			if (composedIdWasUsed)
 			{

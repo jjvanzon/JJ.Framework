@@ -160,7 +160,7 @@ namespace NHibernate.Dialect
 		public static Dialect GetDialect(IDictionary<string, string> props)
 		{
 			if (props == null)
-				throw new ArgumentNullException("props");
+				throw new ArgumentNullException(nameof(props));
 			string dialectName;
 			if (props.TryGetValue(Environment.Dialect, out dialectName) == false)
 				throw new InvalidOperationException("Could not find the dialect in the configuration");
@@ -980,7 +980,7 @@ namespace NHibernate.Dialect
 		/// <returns> The sequence drop commands </returns>
 		public virtual string[] GetDropSequenceStrings(string sequenceName)
 		{
-			return new string[] { GetDropSequenceString(sequenceName) };
+			return new[] { GetDropSequenceString(sequenceName) };
 		}
 
 		/// <summary> 
@@ -1025,7 +1025,7 @@ namespace NHibernate.Dialect
 		/// <returns> The sequence creation commands </returns>
 		public virtual string[] GetCreateSequenceStrings(string sequenceName, int initialValue, int incrementSize)
 		{
-			return new string[] { GetCreateSequenceString(sequenceName, initialValue, incrementSize) };
+			return new[] { GetCreateSequenceString(sequenceName, initialValue, incrementSize) };
 		}
 
 		/// <summary> 

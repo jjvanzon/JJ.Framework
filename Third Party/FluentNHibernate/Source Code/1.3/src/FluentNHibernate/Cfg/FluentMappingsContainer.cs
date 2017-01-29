@@ -70,7 +70,7 @@ namespace FluentNHibernate.Cfg
         public FluentMappingsContainer Add(Type type)
         {
             if (type == null)
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
 
             types.Add(type);
             WasUsed = true;

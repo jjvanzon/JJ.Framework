@@ -13,11 +13,11 @@ namespace NHibernate.Driver
 		{
 			if (connectionType == null)
 			{
-				throw new ArgumentNullException("connectionType");
+				throw new ArgumentNullException(nameof(connectionType));
 			}
 			if (commandType == null)
 			{
-				throw new ArgumentNullException("commandType");
+				throw new ArgumentNullException(nameof(commandType));
 			}
 			this.connectionType = connectionType;
 			this.commandType = commandType;

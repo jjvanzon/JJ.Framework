@@ -167,7 +167,7 @@ namespace NHibernate.SqlCommand
 		/// <param name="sql">A SQL fragment</param>
 		public SqlString(string sql)
 		{
-			if (sql == null) throw new ArgumentNullException("sql");
+			if (sql == null) throw new ArgumentNullException(nameof(sql));
 
 			_parts = new List<Part>(1) { new Part(0, sql) };
 			_parameters = Empty._parameters;
@@ -180,7 +180,7 @@ namespace NHibernate.SqlCommand
 		/// <param name="parameter">A query parameter</param>
 		public SqlString(Parameter parameter)
 		{
-			if (parameter == null) throw new ArgumentNullException("parameter");
+			if (parameter == null) throw new ArgumentNullException(nameof(parameter));
 
 			_parts = new List<Part>(1) { new Part(0) };
 			_parameters = new SortedList<int, Parameter>(1) { { 0, parameter } };
@@ -428,7 +428,7 @@ namespace NHibernate.SqlCommand
 		/// if not found.</returns>
 		public int IndexOf(string text, int startIndex, int length, StringComparison stringComparison)
 		{
-			if (text == null) throw new ArgumentNullException("text");
+			if (text == null) throw new ArgumentNullException(nameof(text));
 
 			var sqlSearchStartIndex = _sqlStartIndex + startIndex;
 			var maxSearchLength = Math.Min(length, _sqlStartIndex + _length - sqlSearchStartIndex);
@@ -500,7 +500,7 @@ namespace NHibernate.SqlCommand
 		/// if not found.</returns>
 		private int LastIndexOf(string text, int startIndex, int length, StringComparison stringComparison)
 		{
-			if (text == null) throw new ArgumentNullException("text");
+			if (text == null) throw new ArgumentNullException(nameof(text));
 
 			var sqlSearchEndIndex = _sqlStartIndex + Math.Min(_length, startIndex + length);
 			var maxSearchLength = sqlSearchEndIndex - _sqlStartIndex - startIndex;

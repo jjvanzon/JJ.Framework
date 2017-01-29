@@ -23,7 +23,7 @@ namespace NHibernate.Proxy.DynamicProxy
 		{
 			if (emitter == null)
 			{
-				throw new ArgumentNullException("emitter");
+				throw new ArgumentNullException(nameof(emitter));
 			}
 			MethodBodyEmitter = emitter;
 		}

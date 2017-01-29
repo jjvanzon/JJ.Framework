@@ -1651,7 +1651,7 @@ namespace NHibernate.Persister.Entity
 			}
 			update.AddColumn(VersionColumnName, VersionType);
 			update.SetIdentityColumn(IdentifierColumnNames, IdentifierType);
-			update.SetVersionColumn(new string[] { VersionColumnName }, VersionType);
+			update.SetVersionColumn(new[] { VersionColumnName }, VersionType);
 			return update.ToSqlCommandInfo();
 		}
 
@@ -1992,28 +1992,28 @@ namespace NHibernate.Persister.Entity
 				{
 					if (entityMetamodel.HasNonIdentifierPropertyNamedId)
 					{
-						subclassPropertyAliases[EntityPersister.EntityID + "." + idPropertyNames[i]] = new string[] { idAliases[i] };
-						subclassPropertyColumnNames[EntityPersister.EntityID + "." + IdentifierPropertyName + "." + idPropertyNames[i]] = new string[] { idColumnNames[i] };
+						subclassPropertyAliases[EntityPersister.EntityID + "." + idPropertyNames[i]] = new[] { idAliases[i] };
+						subclassPropertyColumnNames[EntityPersister.EntityID + "." + IdentifierPropertyName + "." + idPropertyNames[i]] = new[] { idColumnNames[i] };
 					}
 					//				if (hasIdentifierProperty() && !ENTITY_ID.equals( getIdentifierPropertyName() ) ) {
 					if (HasIdentifierProperty)
 					{
-						subclassPropertyAliases[IdentifierPropertyName + "." + idPropertyNames[i]] = new string[] { idAliases[i] };
-						subclassPropertyColumnNames[IdentifierPropertyName + "." + idPropertyNames[i]] = new string[] { idColumnNames[i] };
+						subclassPropertyAliases[IdentifierPropertyName + "." + idPropertyNames[i]] = new[] { idAliases[i] };
+						subclassPropertyColumnNames[IdentifierPropertyName + "." + idPropertyNames[i]] = new[] { idColumnNames[i] };
 					}
 					else
 					{
 						// embedded composite ids ( alias.idname1, alias.idname2 )
-						subclassPropertyAliases[idPropertyNames[i]] = new string[] { idAliases[i] };
-						subclassPropertyColumnNames[idPropertyNames[i]] = new string[] { idColumnNames[i] };
+						subclassPropertyAliases[idPropertyNames[i]] = new[] { idAliases[i] };
+						subclassPropertyColumnNames[idPropertyNames[i]] = new[] { idColumnNames[i] };
 					}
 				}
 			}
 
 			if (entityMetamodel.IsPolymorphic)
 			{
-				subclassPropertyAliases[EntityClass] = new string[] { DiscriminatorAlias };
-				subclassPropertyColumnNames[EntityClass] = new string[] { DiscriminatorColumnName };
+				subclassPropertyAliases[EntityClass] = new[] { DiscriminatorAlias };
+				subclassPropertyColumnNames[EntityClass] = new[] { DiscriminatorColumnName };
 			}
 		}
 
@@ -2138,8 +2138,8 @@ namespace NHibernate.Persister.Entity
 
 		private void InitDiscriminatorPropertyPath()
 		{
-			propertyMapping.InitPropertyPaths(EntityClass, DiscriminatorType, new string[] {DiscriminatorColumnName},
-			                                  new string[] {DiscriminatorFormulaTemplate}, Factory);
+			propertyMapping.InitPropertyPaths(EntityClass, DiscriminatorType, new[] {DiscriminatorColumnName},
+			                                  new[] {DiscriminatorFormulaTemplate}, Factory);
 		}
 
 		private void InitPropertyPaths(IMapping mapping)
@@ -2202,7 +2202,7 @@ namespace NHibernate.Persister.Entity
 
 			// select the correct row by either pk or rowid
 			if (useRowId)
-				updateBuilder.SetIdentityColumn(new string[] { rowIdName }, NHibernateUtil.Int32); //TODO: eventually, rowIdName[j]
+				updateBuilder.SetIdentityColumn(new[] { rowIdName }, NHibernateUtil.Int32); //TODO: eventually, rowIdName[j]
 			else
 				updateBuilder.SetIdentityColumn(GetKeyColumns(j), IdentifierType);
 
@@ -2224,7 +2224,7 @@ namespace NHibernate.Persister.Entity
 				// check it (unless this is a "generated" version column)!
 				if (CheckVersion(includeProperty))
 				{
-					updateBuilder.SetVersionColumn(new string[] { VersionColumnName }, VersionType);
+					updateBuilder.SetVersionColumn(new[] { VersionColumnName }, VersionType);
 					hasColumns = true;
 				}
 			}

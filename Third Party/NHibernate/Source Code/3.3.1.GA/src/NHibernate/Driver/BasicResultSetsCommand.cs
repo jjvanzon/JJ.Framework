@@ -88,11 +88,11 @@ namespace NHibernate.Driver
 		{
 			if (batcher == null)
 			{
-				throw new ArgumentNullException("batcher");
+				throw new ArgumentNullException(nameof(batcher));
 			}
 			if (command == null)
 			{
-				throw new ArgumentNullException("command");
+				throw new ArgumentNullException(nameof(command));
 			}
 			this.batcher = batcher;
 			this.command = command;

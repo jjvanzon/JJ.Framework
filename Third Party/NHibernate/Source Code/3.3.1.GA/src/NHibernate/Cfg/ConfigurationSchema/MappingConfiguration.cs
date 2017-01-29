@@ -27,7 +27,7 @@ namespace NHibernate.Cfg.ConfigurationSchema
 		public MappingConfiguration(string file)
 		{
 			if (string.IsNullOrEmpty(file))
-				throw new ArgumentException("file is null or empty.", "file");
+				throw new ArgumentException("file is null or empty.", nameof(file));
 			this.file = file;
 		}
 
@@ -40,7 +40,7 @@ namespace NHibernate.Cfg.ConfigurationSchema
 		public MappingConfiguration(string assembly, string resource)
 		{
 			if (string.IsNullOrEmpty(assembly))
-				throw new ArgumentException("assembly is null or empty.", "assembly");
+				throw new ArgumentException("assembly is null or empty.", nameof(assembly));
 			this.assembly = assembly;
 			this.resource = resource;
 		}

@@ -27,10 +27,10 @@ namespace NHibernate.Cfg.MappingSchema
 		public MappingDocumentAggregator(IMappingDocumentParser parser, IAssemblyResourceFilter defaultFilter)
 		{
 			if (parser == null)
-				throw new ArgumentNullException("parser");
+				throw new ArgumentNullException(nameof(parser));
 
 			if (defaultFilter == null)
-				throw new ArgumentNullException("defaultFilter");
+				throw new ArgumentNullException(nameof(defaultFilter));
 
 			this.parser = parser;
 			this.defaultFilter = defaultFilter;
@@ -39,7 +39,7 @@ namespace NHibernate.Cfg.MappingSchema
 		public void Add(HbmMapping document)
 		{
 			if (document == null)
-				throw new ArgumentNullException("document");
+				throw new ArgumentNullException(nameof(document));
 
 			documents.Add(document);
 		}
@@ -53,7 +53,7 @@ namespace NHibernate.Cfg.MappingSchema
 		public void Add(Assembly assembly, string resourceName)
 		{
 			if (assembly == null)
-				throw new ArgumentNullException("assembly");
+				throw new ArgumentNullException(nameof(assembly));
 
 			using (Stream stream = assembly.GetManifestResourceStream(resourceName))
 				Add(stream);
@@ -65,10 +65,10 @@ namespace NHibernate.Cfg.MappingSchema
 		public void Add(Assembly assembly, IAssemblyResourceFilter filter)
 		{
 			if (assembly == null)
-				throw new ArgumentNullException("assembly");
+				throw new ArgumentNullException(nameof(assembly));
 
 			if (filter == null)
-				throw new ArgumentNullException("filter");
+				throw new ArgumentNullException(nameof(filter));
 
 			foreach (string resourceName in assembly.GetManifestResourceNames())
 				if (defaultFilter.ShouldParse(resourceName))
@@ -85,7 +85,7 @@ namespace NHibernate.Cfg.MappingSchema
 		public void Add(FileInfo file)
 		{
 			if (file == null)
-				throw new ArgumentNullException("file");
+				throw new ArgumentNullException(nameof(file));
 
 			// TODO: Exception handling...
 			// OpenRead() throws: DirectoryNotFoundException, IOException, UnauthorizedAccessException

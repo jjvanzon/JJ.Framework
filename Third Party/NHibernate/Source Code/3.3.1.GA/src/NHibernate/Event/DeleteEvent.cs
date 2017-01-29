@@ -18,7 +18,7 @@ namespace NHibernate.Event
 			: base(source)
 		{
 			if (entity == null)
-				throw new ArgumentNullException("entity", "Attempt to create delete event with null entity");
+				throw new ArgumentNullException(nameof(entity), "Attempt to create delete event with null entity");
 
 			this.entity = entity;
 		}

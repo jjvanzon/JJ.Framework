@@ -1399,7 +1399,7 @@ namespace NHibernate.Hql.Classic
 			string[] tokens = StringHelper.Split(ParserHelper.Whitespace + "(),", query, true);
 			if (tokens.Length == 0)
 			{
-				return new string[] {query};
+				return new[] {query};
 			} // just especially for the trivial collection filter 
 
 			ArrayList placeholders = new ArrayList();

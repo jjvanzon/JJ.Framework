@@ -12,8 +12,8 @@ namespace FluentNHibernate.Utils
         public static int EditDistance(string x, string y)
         {
             // Validate parameters
-            if (x == null) throw new ArgumentNullException("x");
-            if (y == null) throw new ArgumentNullException("y");
+            if (x == null) throw new ArgumentNullException(nameof(x));
+            if (y == null) throw new ArgumentNullException(nameof(y));
 
             // Convert the parameters into IList instances
             // in order to obtain indexing capabilities
@@ -31,7 +31,7 @@ namespace FluentNHibernate.Utils
             // just store the current row and the next row, each of which has a length m+1,
             // so just O(m) space. Initialize the current row.
             int curRow = 0, nextRow = 1;
-            int[][] rows = new int[][] { new int[m + 1], new int[m + 1] };
+            int[][] rows = new[] { new int[m + 1], new int[m + 1] };
             for (int j = 0; j <= m; ++j) rows[curRow][j] = j;
 
             // For each virtual row (since we only have physical storage for two)

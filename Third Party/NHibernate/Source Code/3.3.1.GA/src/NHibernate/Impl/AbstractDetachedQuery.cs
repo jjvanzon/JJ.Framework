@@ -107,7 +107,7 @@ namespace NHibernate.Impl
 		public void SetLockMode(string alias, LockMode lockMode)
 		{
 			if (string.IsNullOrEmpty(alias))
-				throw new ArgumentNullException("alias", "Is null or empty.");
+				throw new ArgumentNullException(nameof(alias), "Is null or empty.");
 
 			lockModes[alias] = lockMode;
 		}
@@ -121,7 +121,7 @@ namespace NHibernate.Impl
 		public IDetachedQuery SetParameter(string name, object val, Type.IType type)
 		{
 			if (string.IsNullOrEmpty(name))
-				throw new ArgumentNullException("name", "Is null or empty.");
+				throw new ArgumentNullException(nameof(name), "Is null or empty.");
 			namedParams[name] = new TypedValue(type, val, EntityMode.Poco);
 			return this;
 		}
@@ -135,7 +135,7 @@ namespace NHibernate.Impl
 		public IDetachedQuery SetParameter(string name, object val)
 		{
 			if (string.IsNullOrEmpty(name))
-				throw new ArgumentNullException("name", "Is null or empty.");
+				throw new ArgumentNullException(nameof(name), "Is null or empty.");
 			namedUntypeParams[name] = val;
 			return this;
 		}
@@ -143,7 +143,7 @@ namespace NHibernate.Impl
 		public IDetachedQuery SetParameterList(string name, ICollection vals, Type.IType type)
 		{
 			if (string.IsNullOrEmpty(name))
-				throw new ArgumentNullException("name", "Is null or empty.");
+				throw new ArgumentNullException(nameof(name), "Is null or empty.");
 			namedListParams[name] = new TypedValue(type, vals, EntityMode.Poco);
 			return this;
 		}
@@ -151,7 +151,7 @@ namespace NHibernate.Impl
 		public IDetachedQuery SetParameterList(string name, ICollection vals)
 		{
 			if (string.IsNullOrEmpty(name))
-				throw new ArgumentNullException("name", "Is null or empty.");
+				throw new ArgumentNullException(nameof(name), "Is null or empty.");
 			namedUntypeListParams[name] = vals;
 			return this;
 		}
@@ -159,7 +159,7 @@ namespace NHibernate.Impl
 		public IDetachedQuery SetProperties(object obj)
 		{
 			if (obj == null)
-				throw new ArgumentNullException("obj");
+				throw new ArgumentNullException(nameof(obj));
 			optionalUntypeParams.Add(obj);
 			return this;
 		}
@@ -596,7 +596,7 @@ namespace NHibernate.Impl
 		public IDetachedQuery CopyParametersFrom(IDetachedQueryImplementor origin)
 		{
 			if (origin == null)
-				throw new ArgumentNullException("origin");
+				throw new ArgumentNullException(nameof(origin));
 			(this as IDetachedQueryImplementor).OverrideParametersFrom(origin);
 			return this;
 		}

@@ -489,7 +489,7 @@ namespace NHibernate.Loader
 						}
 
 					default:
-						throw new ArgumentOutOfRangeException("config", config, "Unknown OJ strategy " + config);
+						throw new ArgumentOutOfRangeException(nameof(config), config, "Unknown OJ strategy " + config);
 				}
 			}
 		}

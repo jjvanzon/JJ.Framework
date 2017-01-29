@@ -13,7 +13,7 @@ namespace NHibernate.Transform
 		{
 			if (constructor == null)
 			{
-				throw new ArgumentNullException("constructor");
+				throw new ArgumentNullException(nameof(constructor));
 			}
 			this.constructor = constructor;
 		}

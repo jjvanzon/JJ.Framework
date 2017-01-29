@@ -12,8 +12,8 @@ namespace FluentNHibernate
 
         public DummyPropertyInfo(string name, Type type)
         {
-            if (name == null) throw new ArgumentNullException("name");
-            if (type == null) throw new ArgumentNullException("type");
+            if (name == null) throw new ArgumentNullException(nameof(name));
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
             this.name = name;
             this.type = type;

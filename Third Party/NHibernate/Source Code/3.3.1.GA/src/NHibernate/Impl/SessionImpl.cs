@@ -441,7 +441,7 @@ namespace NHibernate.Impl
 
 				if (obj == null)
 				{
-					throw new ArgumentNullException("obj", "null object passed to GetCurrentLockMode");
+					throw new ArgumentNullException(nameof(obj), "null object passed to GetCurrentLockMode");
 				}
 
 				if (obj.IsProxy())
@@ -746,7 +746,7 @@ namespace NHibernate.Impl
 			{
 				if (string.IsNullOrEmpty(query))
 				{
-					throw new ArgumentNullException("query", "attempt to perform delete-by-query with null query");
+					throw new ArgumentNullException(nameof(query), "attempt to perform delete-by-query with null query");
 				}
 
 				CheckAndUpdateSessionStatus();
@@ -813,7 +813,7 @@ namespace NHibernate.Impl
 			{
 				if (collection == null)
 				{
-					throw new ArgumentNullException("collection", "null collection passed to filter");
+					throw new ArgumentNullException(nameof(collection), "null collection passed to filter");
 				}
 
 				CollectionEntry entry = persistenceContext.GetCollectionEntryOrNull(collection);
@@ -1230,7 +1230,7 @@ namespace NHibernate.Impl
 			{
 				if (id == null)
 				{
-					throw new ArgumentNullException("id", "null is not a valid identifier");
+					throw new ArgumentNullException(nameof(id), "null is not a valid identifier");
 				}
 
 				var @event = new LoadEvent(id, entityName, false, this);
@@ -2272,7 +2272,7 @@ namespace NHibernate.Impl
 				int dot = filterParameterName.IndexOf(".");
 				if (dot <= 0)
 				{
-					throw new ArgumentException("Invalid filter-parameter name format", "filterParameterName");
+					throw new ArgumentException("Invalid filter-parameter name format", nameof(filterParameterName));
 				}
 				string filterName = filterParameterName.Substring(0, dot);
 				string parameterName = filterParameterName.Substring(dot + 1);

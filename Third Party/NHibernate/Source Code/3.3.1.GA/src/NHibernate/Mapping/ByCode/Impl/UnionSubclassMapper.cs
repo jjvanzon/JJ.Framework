@@ -26,7 +26,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (property == null)
 			{
-				throw new ArgumentNullException("property");
+				throw new ArgumentNullException(nameof(property));
 			}
 			var toAdd = new[] {property};
 			classMapping.Items = classMapping.Items == null ? toAdd : classMapping.Items.Concat(toAdd).ToArray();
@@ -165,11 +165,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (baseType == null)
 			{
-				throw new ArgumentNullException("baseType");
+				throw new ArgumentNullException(nameof(baseType));
 			}
 			if (!Container.GetBaseTypes().Contains(baseType))
 			{
-				throw new ArgumentOutOfRangeException("baseType",
+				throw new ArgumentOutOfRangeException(nameof(baseType),
 				                                      string.Format("{0} is a valid super-class of {1}", baseType, Container));
 			}
 			classMapping.extends = baseType.GetShortClassName(MapDoc);

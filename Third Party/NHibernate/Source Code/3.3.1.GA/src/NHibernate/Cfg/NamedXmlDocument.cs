@@ -15,7 +15,7 @@ namespace NHibernate.Cfg
 		{
 			if (document == null)
 			{
-				throw new ArgumentNullException("document");
+				throw new ArgumentNullException(nameof(document));
 			}
 			this.name = name;
 			if (document.DocumentElement == null)

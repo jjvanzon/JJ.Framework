@@ -413,7 +413,7 @@ namespace NHibernate.Util
 		/// <returns></returns>
 		public static string[] Multiply(string str, IEnumerator placeholders, IEnumerator replacements)
 		{
-			string[] result = new string[] { str };
+			string[] result = new[] { str };
 			while (placeholders.MoveNext())
 			{
 				replacements.MoveNext();
@@ -453,7 +453,7 @@ namespace NHibernate.Util
 		{
 			if (SingleQuote == character)
 			{
-				throw new ArgumentOutOfRangeException("character", "Unquoted count of quotes is invalid");
+				throw new ArgumentOutOfRangeException(nameof(character), "Unquoted count of quotes is invalid");
 			}
 
 			// Impl note: takes advantage of the fact that an escaped single quote
@@ -752,7 +752,7 @@ namespace NHibernate.Util
 			int dot = filterParameterName.IndexOf(".");
 			if (dot <= 0)
 			{
-				throw new ArgumentException("Invalid filter-parameter name format; the name should be a property path.", "filterParameterName");
+				throw new ArgumentException("Invalid filter-parameter name format; the name should be a property path.", nameof(filterParameterName));
 			}
 			string filterName = filterParameterName.Substring(0, dot);
 			string parameterName = filterParameterName.Substring(dot + 1);

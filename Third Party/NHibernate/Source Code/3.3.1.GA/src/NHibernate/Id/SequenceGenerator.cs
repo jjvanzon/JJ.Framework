@@ -165,7 +165,7 @@ namespace NHibernate.Id
 			{
 				paramsDDL = ' ' + parameters;
 			}
-			return new string[] { string.Concat(baseDDL,paramsDDL) };
+			return new[] { string.Concat(baseDDL,paramsDDL) };
 		}
 
 		/// <summary>
@@ -177,7 +177,7 @@ namespace NHibernate.Id
 		/// </returns>
 		public string[] SqlDropString(Dialect.Dialect dialect)
 		{
-			return new string[] { dialect.GetDropSequenceString(sequenceName) };
+			return new[] { dialect.GetDropSequenceString(sequenceName) };
 		}
 
 		/// <summary>

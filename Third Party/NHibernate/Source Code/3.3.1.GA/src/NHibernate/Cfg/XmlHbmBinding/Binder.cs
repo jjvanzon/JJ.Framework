@@ -20,7 +20,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 		protected Binder(Mappings mappings)
 		{
 			if (mappings == null)
-				throw new ArgumentNullException("mappings");
+				throw new ArgumentNullException(nameof(mappings));
 
 			this.mappings = mappings;
 		}

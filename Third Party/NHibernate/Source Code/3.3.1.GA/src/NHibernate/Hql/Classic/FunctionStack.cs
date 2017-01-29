@@ -64,7 +64,7 @@ namespace NHibernate.Hql.Classic
 		{
 			if (mapping == null)
 			{
-				throw new ArgumentNullException("mapping");
+				throw new ArgumentNullException(nameof(mapping));
 			}
 			this.mapping = mapping;
 		}
@@ -73,7 +73,7 @@ namespace NHibernate.Hql.Classic
 		{
 			if (sqlFunction == null)
 			{
-				throw new ArgumentNullException("sqlFunction");
+				throw new ArgumentNullException(nameof(sqlFunction));
 			}
 			stack.Push(new FunctionHolder(sqlFunction));
 		}

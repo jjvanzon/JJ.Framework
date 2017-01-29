@@ -77,7 +77,7 @@ namespace NHibernate.Param
 		{
 			if (sessionFactory == null)
 			{
-				throw new ArgumentNullException("sessionFactory");
+				throw new ArgumentNullException(nameof(sessionFactory));
 			}
 			int columnSpan = ExpectedType.GetColumnSpan(sessionFactory);
 			for (int i = 0; i < columnSpan; i++)

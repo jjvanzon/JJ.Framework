@@ -53,7 +53,7 @@ namespace NHibernate.Criterion
 				criteriaQuery.GetIndexForAlias(),
 				criteriaQuery, 
 				enabledFilters);
-			return new SqlString[]
+			return new[]
 				{
 					StringHelper.RemoveAsAliasesFromSql(sqlString)
 				};

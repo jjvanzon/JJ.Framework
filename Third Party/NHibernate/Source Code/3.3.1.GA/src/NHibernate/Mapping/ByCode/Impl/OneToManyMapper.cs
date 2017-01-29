@@ -13,7 +13,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (oneToManyMapping == null)
 			{
-				throw new ArgumentNullException("oneToManyMapping");
+				throw new ArgumentNullException(nameof(oneToManyMapping));
 			}
 			this.collectionElementType = collectionElementType;
 			if (collectionElementType != null)
@@ -30,7 +30,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (!collectionElementType.IsAssignableFrom(entityType))
 			{
-				throw new ArgumentOutOfRangeException("entityType",
+				throw new ArgumentOutOfRangeException(nameof(entityType),
 				                                      string.Format("The type is incompatible; expected assignable to {0}",
 				                                                    collectionElementType));
 			}

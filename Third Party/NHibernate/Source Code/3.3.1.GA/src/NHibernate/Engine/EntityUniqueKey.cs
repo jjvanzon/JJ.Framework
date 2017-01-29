@@ -24,13 +24,13 @@ namespace NHibernate.Engine
 		public EntityUniqueKey(string entityName, string uniqueKeyName, object semiResolvedKey, IType keyType, EntityMode entityMode, ISessionFactoryImplementor factory)
 		{
 			if (string.IsNullOrEmpty(entityName))
-				throw new ArgumentNullException("entityName");
+				throw new ArgumentNullException(nameof(entityName));
 			if (string.IsNullOrEmpty(uniqueKeyName))
-				throw new ArgumentNullException("entityName");
+				throw new ArgumentNullException(nameof(entityName));
 			if (semiResolvedKey == null)
-				throw new ArgumentNullException("semiResolvedKey");
+				throw new ArgumentNullException(nameof(semiResolvedKey));
 			if (keyType == null)
-				throw new ArgumentNullException("keyType");
+				throw new ArgumentNullException(nameof(keyType));
 
 			this.entityName = entityName;
 			this.uniqueKeyName = uniqueKeyName;

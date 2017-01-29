@@ -16,7 +16,7 @@ namespace NHibernate.Mapping.ByCode.Impl.CustomizersImpl
 		{
 			if (explicitDeclarationsHolder == null)
 			{
-				throw new ArgumentNullException("explicitDeclarationsHolder");
+				throw new ArgumentNullException(nameof(explicitDeclarationsHolder));
 			}
 			this.splitGroupId = splitGroupId;
 			keyMapper = new JoinKeyCustomizer<TEntity>(customizersHolder);

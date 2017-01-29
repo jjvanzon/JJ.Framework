@@ -81,7 +81,7 @@ namespace NHibernate.Impl
 			// Make sure this is a defined parameter and check the incoming value type
 			if (values == null)
 			{
-				throw new ArgumentException("Collection must be not null!", "values");
+				throw new ArgumentException("Collection must be not null!", nameof(values));
 			}
 			IType type = definition.GetParameterType(name);
 			if (type == null)

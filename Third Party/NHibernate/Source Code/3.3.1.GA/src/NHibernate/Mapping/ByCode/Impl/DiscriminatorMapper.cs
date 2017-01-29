@@ -13,7 +13,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (discriminatorMapping == null)
 			{
-				throw new ArgumentNullException("discriminatorMapping");
+				throw new ArgumentNullException(nameof(discriminatorMapping));
 			}
 			this.discriminatorMapping = discriminatorMapping;
 		}
@@ -76,11 +76,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (persistentType == null)
 			{
-				throw new ArgumentNullException("persistentType");
+				throw new ArgumentNullException(nameof(persistentType));
 			}
 			if (!typeof (IDiscriminatorType).IsAssignableFrom(persistentType))
 			{
-				throw new ArgumentOutOfRangeException("persistentType", "Expected type implementing IDiscriminatorType");
+				throw new ArgumentOutOfRangeException(nameof(persistentType), "Expected type implementing IDiscriminatorType");
 			}
 			discriminatorMapping.type = persistentType.AssemblyQualifiedName;
 		}

@@ -38,7 +38,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 			PropertyPath analizing = source;
 			var returnLocalMembers = new List<MemberInfo>(10);

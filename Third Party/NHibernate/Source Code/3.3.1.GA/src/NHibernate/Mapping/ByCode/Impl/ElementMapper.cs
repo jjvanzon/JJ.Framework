@@ -17,11 +17,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (elementType == null)
 			{
-				throw new ArgumentNullException("elementType");
+				throw new ArgumentNullException(nameof(elementType));
 			}
 			if (elementMapping == null)
 			{
-				throw new ArgumentNullException("elementMapping");
+				throw new ArgumentNullException(nameof(elementMapping));
 			}
 			this.elementType = elementType;
 			this.elementMapping = elementMapping;
@@ -130,11 +130,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (persistentType == null)
 			{
-				throw new ArgumentNullException("persistentType");
+				throw new ArgumentNullException(nameof(persistentType));
 			}
 			if (!typeof (IUserType).IsAssignableFrom(persistentType) && !typeof (IType).IsAssignableFrom(persistentType))
 			{
-				throw new ArgumentOutOfRangeException("persistentType", "Expected type implementing IUserType or IType.");
+				throw new ArgumentOutOfRangeException(nameof(persistentType), "Expected type implementing IUserType or IType.");
 			}
 			if (parameters != null)
 			{

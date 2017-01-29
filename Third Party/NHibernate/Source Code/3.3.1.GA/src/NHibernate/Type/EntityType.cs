@@ -106,7 +106,7 @@ namespace NHibernate.Type
 
 		public override object NullSafeGet(IDataReader rs, string name, ISessionImplementor session, object owner)
 		{
-			return NullSafeGet(rs, new string[] {name}, session, owner);
+			return NullSafeGet(rs, new[] {name}, session, owner);
 		}
 
 		/// <summary> 

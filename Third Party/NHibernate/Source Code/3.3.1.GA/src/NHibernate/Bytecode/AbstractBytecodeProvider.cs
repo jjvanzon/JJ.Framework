@@ -91,7 +91,7 @@ namespace NHibernate.Bytecode
 		{
 			if (string.IsNullOrEmpty(typeAssemblyQualifiedName))
 			{
-				throw new ArgumentNullException("typeAssemblyQualifiedName");
+				throw new ArgumentNullException(nameof(typeAssemblyQualifiedName));
 			}
 			System.Type ctf= ReflectHelper.ClassForName(typeAssemblyQualifiedName);
 			SetCollectionTypeFactoryClass(ctf);
@@ -101,7 +101,7 @@ namespace NHibernate.Bytecode
 		{
 			if (type == null)
 			{
-				throw new ArgumentNullException("type");
+				throw new ArgumentNullException(nameof(type));
 			}
 			if (typeof(ICollectionTypeFactory).IsAssignableFrom(type) == false)
 			{

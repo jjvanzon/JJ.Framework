@@ -58,7 +58,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (property == null)
 			{
-				throw new ArgumentNullException("property");
+				throw new ArgumentNullException(nameof(property));
 			}
 			var toAdd = new[] { property };
 			id.Items = id.Items == null ? toAdd : id.Items.Concat(toAdd).ToArray();

@@ -221,7 +221,7 @@ namespace NHibernate.Tool.hbm2ddl
 
 			if (export && connection == null)
 			{
-				throw new ArgumentNullException("connection", "When export is set to true, you need to pass a non null connection");
+				throw new ArgumentNullException(nameof(connection), "When export is set to true, you need to pass a non null connection");
 			}
 			if (export)
 			{

@@ -22,7 +22,7 @@ namespace NHibernate.Cfg.ConfigurationSchema
 		public CollectionCacheConfiguration(string collection, EntityCacheUsage usage)
 		{
 			if (string.IsNullOrEmpty(collection))
-				throw new ArgumentException("collection is null or empty.", "collection");
+				throw new ArgumentException("collection is null or empty.", nameof(collection));
 			this.collection = collection;
 			this.usage = usage;
 		}

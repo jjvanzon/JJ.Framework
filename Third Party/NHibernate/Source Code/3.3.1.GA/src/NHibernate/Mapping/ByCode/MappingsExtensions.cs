@@ -17,7 +17,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (mappings == null)
 			{
-				throw new ArgumentNullException("mappings");
+				throw new ArgumentNullException(nameof(mappings));
 			}
 			string mappingsFolderPath = ArrangeMappingsFolderPath();
 			foreach (HbmMapping hbmMapping in mappings)
@@ -32,7 +32,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (mappings == null)
 			{
-				throw new ArgumentNullException("mappings");
+				throw new ArgumentNullException(nameof(mappings));
 			}
 			return Serialize(mappings);
 		}

@@ -33,7 +33,7 @@ namespace NHibernate.Cfg.XmlHbmBinding
 					return FlushMode.Always;
 
 				default:
-					throw new ArgumentOutOfRangeException("flushMode");
+					throw new ArgumentOutOfRangeException(nameof(flushMode));
 			}
 		}
 	}

@@ -22,15 +22,15 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (elementType == null)
 			{
-				throw new ArgumentNullException("elementType");
+				throw new ArgumentNullException(nameof(elementType));
 			}
 			if (foreignIdType == null)
 			{
-				throw new ArgumentNullException("foreignIdType");
+				throw new ArgumentNullException(nameof(foreignIdType));
 			}
 			if (manyToAny == null)
 			{
-				throw new ArgumentNullException("manyToAny");
+				throw new ArgumentNullException(nameof(manyToAny));
 			}
 			this.elementType = elementType;
 			this.foreignIdType = foreignIdType;
@@ -102,19 +102,19 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (value == null)
 			{
-				throw new ArgumentNullException("value");
+				throw new ArgumentNullException(nameof(value));
 			}
 			if (entityType == null)
 			{
-				throw new ArgumentNullException("entityType");
+				throw new ArgumentNullException(nameof(entityType));
 			}
 			if (value is System.Type)
 			{
-				throw new ArgumentOutOfRangeException("value", "System.Type is invalid meta-type (you don't need to set meta-values).");
+				throw new ArgumentOutOfRangeException(nameof(value), "System.Type is invalid meta-type (you don't need to set meta-values).");
 			}
 			if(!elementType.IsAssignableFrom(entityType))
 			{
-				throw new ArgumentOutOfRangeException("entityType", string.Format("A {0} is not assignable to the collection's elements which type is {1}", entityType, elementType));
+				throw new ArgumentOutOfRangeException(nameof(entityType), string.Format("A {0} is not assignable to the collection's elements which type is {1}", entityType, elementType));
 			}
 			System.Type metavalueType = value.GetType();
 			if (manyToAny.metavalue == null)

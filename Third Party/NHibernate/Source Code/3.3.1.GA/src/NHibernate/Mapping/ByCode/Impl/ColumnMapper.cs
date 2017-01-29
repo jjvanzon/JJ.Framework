@@ -12,15 +12,15 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (mapping == null)
 			{
-				throw new ArgumentNullException("mapping");
+				throw new ArgumentNullException(nameof(mapping));
 			}
 			if (memberName == null)
 			{
-				throw new ArgumentNullException("memberName");
+				throw new ArgumentNullException(nameof(memberName));
 			}
 			if (string.Empty == memberName.Trim())
 			{
-				throw new ArgumentNullException("memberName", "The column name should be a valid not empty name.");
+				throw new ArgumentNullException(nameof(memberName), "The column name should be a valid not empty name.");
 			}
 			this.mapping = mapping;
 			if (string.IsNullOrEmpty(mapping.name))
@@ -40,7 +40,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (length <= 0)
 			{
-				throw new ArgumentOutOfRangeException("length", "The length should be positive value");
+				throw new ArgumentOutOfRangeException(nameof(length), "The length should be positive value");
 			}
 			mapping.length = length.ToString();
 		}
@@ -49,7 +49,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (precision <= 0)
 			{
-				throw new ArgumentOutOfRangeException("precision", "The precision should be positive value");
+				throw new ArgumentOutOfRangeException(nameof(precision), "The precision should be positive value");
 			}
 			mapping.precision = precision.ToString();
 		}
@@ -58,7 +58,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (scale < 0)
 			{
-				throw new ArgumentOutOfRangeException("scale", "The scale should be positive value");
+				throw new ArgumentOutOfRangeException(nameof(scale), "The scale should be positive value");
 			}
 			mapping.scale = scale.ToString();
 		}

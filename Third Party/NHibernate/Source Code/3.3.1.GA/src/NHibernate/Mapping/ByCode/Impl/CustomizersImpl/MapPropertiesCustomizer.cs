@@ -10,7 +10,7 @@ namespace NHibernate.Mapping.ByCode.Impl.CustomizersImpl
 		{
 			if (explicitDeclarationsHolder == null)
 			{
-				throw new ArgumentNullException("explicitDeclarationsHolder");
+				throw new ArgumentNullException(nameof(explicitDeclarationsHolder));
 			}
 			explicitDeclarationsHolder.AddAsMap(propertyPath.LocalMember);
 		}

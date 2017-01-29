@@ -15,7 +15,7 @@ namespace FluentNHibernate
 
 		public AssemblyTypeSource(Assembly source)
 		{
-			if (source == null) throw new ArgumentNullException("source");
+			if (source == null) throw new ArgumentNullException(nameof(source));
 
 			this.source = source;
 		}
@@ -29,7 +29,7 @@ namespace FluentNHibernate
 
 		public void LogSource(IDiagnosticLogger logger)
 		{
-			if (logger == null) throw new ArgumentNullException("logger");
+			if (logger == null) throw new ArgumentNullException(nameof(logger));
 
 			logger.LoadedFluentMappingsFromSource(this);
 		}

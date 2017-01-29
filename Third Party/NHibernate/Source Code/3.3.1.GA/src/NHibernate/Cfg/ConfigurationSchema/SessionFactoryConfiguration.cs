@@ -13,7 +13,7 @@ namespace NHibernate.Cfg.ConfigurationSchema
 		internal SessionFactoryConfiguration(XPathNavigator hbConfigurationSection)
 		{
 			if (hbConfigurationSection == null)
-				throw new ArgumentNullException("hbConfigurationSection");
+				throw new ArgumentNullException(nameof(hbConfigurationSection));
 			Parse(hbConfigurationSection);
 		}
 

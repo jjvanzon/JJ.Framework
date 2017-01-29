@@ -30,15 +30,15 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (modelInspector == null)
 			{
-				throw new ArgumentNullException("modelInspector");
+				throw new ArgumentNullException(nameof(modelInspector));
 			}
 			if (customizerHolder == null)
 			{
-				throw new ArgumentNullException("customizerHolder");
+				throw new ArgumentNullException(nameof(customizerHolder));
 			}
 			if (membersProvider == null)
 			{
-				throw new ArgumentNullException("membersProvider");
+				throw new ArgumentNullException(nameof(membersProvider));
 			}
 			this.modelInspector = modelInspector;
 			this.customizerHolder = customizerHolder;
@@ -535,7 +535,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (types == null)
 			{
-				throw new ArgumentNullException("types");
+				throw new ArgumentNullException(nameof(types));
 			}
 			var typeToMap = new HashSet<System.Type>(types);
 
@@ -566,7 +566,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (types == null)
 			{
-				throw new ArgumentNullException("types");
+				throw new ArgumentNullException(nameof(types));
 			}
 			var typeToMap = new HashSet<System.Type>(types);
 
@@ -891,7 +891,7 @@ namespace NHibernate.Mapping.ByCode
 							 || modelInspector.IsDictionary(member) || modelInspector.IsArray(member)
 							 || modelInspector.IsList(member) || modelInspector.IsBag(member))
 			{
-				throw new ArgumentOutOfRangeException("propertyPath",
+				throw new ArgumentOutOfRangeException(nameof(propertyPath),
 				                                      string.Format("The property {0} of {1} can't be part of composite-id.",
 																														member.Name, member.DeclaringType));
 			}
@@ -926,7 +926,7 @@ namespace NHibernate.Mapping.ByCode
 			         || modelInspector.IsDictionary(property) || modelInspector.IsArray(property)
 			         || modelInspector.IsList(property) || modelInspector.IsBag(property))
 			{
-				throw new ArgumentOutOfRangeException("property",
+				throw new ArgumentOutOfRangeException(nameof(property),
 				                                      string.Format("The property {0} of {1} can't be part of natural-id.",
 				                                                    property.Name, property.DeclaringType));
 			}
@@ -1749,7 +1749,7 @@ namespace NHibernate.Mapping.ByCode
 			var mapping = mappingInstance as IConformistHoldersProvider;
 			if(mapping == null)
 			{
-				throw new ArgumentOutOfRangeException("type", "The mapping class must be an implementation of IConformistHoldersProvider.");
+				throw new ArgumentOutOfRangeException(nameof(type), "The mapping class must be an implementation of IConformistHoldersProvider.");
 			}
 			AddMapping(mapping);
 		}
@@ -1758,7 +1758,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (types == null)
 			{
-				throw new ArgumentNullException("types");
+				throw new ArgumentNullException(nameof(types));
 			}
 			foreach (var type in types.Where(x=> typeof(IConformistHoldersProvider).IsAssignableFrom(x) && !x.IsGenericTypeDefinition))
 			{

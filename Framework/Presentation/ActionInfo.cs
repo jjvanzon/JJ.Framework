@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Presentation
 {
-    [DebuggerDisplay("{DebuggerDisplay}")]
+    [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
     public sealed class ActionInfo
     {
         public string PresenterName { get; set; }

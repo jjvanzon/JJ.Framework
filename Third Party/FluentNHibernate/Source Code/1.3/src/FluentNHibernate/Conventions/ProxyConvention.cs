@@ -15,12 +15,12 @@ namespace FluentNHibernate.Conventions
         {
             if (mapPersistentTypeToProxyInterfaceType == null)
             {
-                throw new ArgumentNullException("mapPersistentTypeToProxyInterfaceType");
+                throw new ArgumentNullException(nameof(mapPersistentTypeToProxyInterfaceType));
             }
 
             if(mapProxyInterfaceTypeToPersistentType == null)
             {
-                throw new ArgumentNullException("mapProxyInterfaceTypeToPersistentType");
+                throw new ArgumentNullException(nameof(mapProxyInterfaceTypeToPersistentType));
             }
 
             this._mapPersistentTypeToProxyInterfaceType = mapPersistentTypeToProxyInterfaceType;

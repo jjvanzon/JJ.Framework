@@ -40,8 +40,8 @@ namespace FluentNHibernate.Mapping
 
         public FilterDefinition AddParameter(string name, IType type)
         {
-            if (string.IsNullOrEmpty(name)) throw new ArgumentException("The name is mandatory", "name");
-            if (type == null) throw new ArgumentNullException("type");
+            if (string.IsNullOrEmpty(name)) throw new ArgumentException("The name is mandatory", nameof(name));
+            if (type == null) throw new ArgumentNullException(nameof(type));
             parameters.Add(name, type);
             return this;
         }

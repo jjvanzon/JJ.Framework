@@ -482,7 +482,7 @@ namespace NHibernate.Util
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (method == null)
@@ -644,7 +644,7 @@ namespace NHibernate.Util
     	{
     		if (collectionInstance == null)
     		{
-    			throw new ArgumentNullException("collectionInstance");
+    			throw new ArgumentNullException(nameof(collectionInstance));
     		}
     		var collectionType = collectionInstance.GetType();
 				return GetCollectionElementType(collectionType);
@@ -654,7 +654,7 @@ namespace NHibernate.Util
 			{
 				if (collectionType == null)
 				{
-					throw new ArgumentNullException("collectionType");
+					throw new ArgumentNullException(nameof(collectionType));
 				}
 				if (collectionType.IsArray)
 				{
@@ -716,11 +716,11 @@ namespace NHibernate.Util
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 			if (realDeclaringType == null)
 			{
-				throw new ArgumentNullException("realDeclaringType");
+				throw new ArgumentNullException(nameof(realDeclaringType));
 			}
 			var methodDeclaringType = source.DeclaringType;
 			if(realDeclaringType.Equals(methodDeclaringType))

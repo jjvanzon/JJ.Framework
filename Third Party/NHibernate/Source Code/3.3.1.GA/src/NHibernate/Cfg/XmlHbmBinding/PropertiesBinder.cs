@@ -56,15 +56,15 @@ namespace NHibernate.Cfg.XmlHbmBinding
 		{
 			if (table == null)
 			{
-				throw new ArgumentNullException("table");
+				throw new ArgumentNullException(nameof(table));
 			}
 			if (modifier == null)
 			{
-				throw new ArgumentNullException("modifier");
+				throw new ArgumentNullException(nameof(modifier));
 			}
 			if (addToModelAction == null)
 			{
-				throw new ArgumentNullException("addToModelAction");
+				throw new ArgumentNullException(nameof(addToModelAction));
 			}
 
 			foreach (var entityPropertyMapping in properties)

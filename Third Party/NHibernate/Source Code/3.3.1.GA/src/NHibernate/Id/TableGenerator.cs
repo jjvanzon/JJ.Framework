@@ -107,7 +107,7 @@ namespace NHibernate.Id
 			if (columnType == null)
 			{
 				log.Error("Column type for TableGenerator is not a value type");
-				throw new ArgumentException("type is not a ValueTypeType", "type");
+				throw new ArgumentException("type is not a ValueTypeType", nameof(type));
 			}
 
 			// build the sql string for the Update since it uses parameters

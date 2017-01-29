@@ -174,7 +174,7 @@ namespace NHibernate.Loader.Criteria
 			}
 			for (int i = 0; i < results.Count; i++)
 			{
-				var row = results[i] as object[] ?? new object[] { results[i] };
+				var row = results[i] as object[] ?? new[] { results[i] };
 				object result = customResultTransformer.TransformTuple(row, translator.HasProjection ? translator.ProjectedAliases : userAliases);
 				results[i] = result;
 			}

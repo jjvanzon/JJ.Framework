@@ -13,7 +13,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (classMapping == null)
 			{
-				throw new ArgumentNullException("classMapping");
+				throw new ArgumentNullException(nameof(classMapping));
 			}
 			this.classMapping = classMapping;
 			naturalIdmapping = new HbmNaturalId();
@@ -25,7 +25,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (property == null)
 			{
-				throw new ArgumentNullException("property");
+				throw new ArgumentNullException(nameof(property));
 			}
 			if(classMapping.naturalid == null)
 			{

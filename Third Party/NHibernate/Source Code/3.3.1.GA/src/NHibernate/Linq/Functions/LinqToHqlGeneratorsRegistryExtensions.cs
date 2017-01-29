@@ -9,11 +9,11 @@ namespace NHibernate.Linq.Functions
 		{
 			if (registry == null)
 			{
-				throw new ArgumentNullException("registry");
+				throw new ArgumentNullException(nameof(registry));
 			}
 			if (generator == null)
 			{
-				throw new ArgumentNullException("generator");
+				throw new ArgumentNullException(nameof(generator));
 			}
 			Array.ForEach(generator.SupportedMethods.ToArray(), method=> registry.RegisterGenerator(method, generator));
 		}
@@ -22,11 +22,11 @@ namespace NHibernate.Linq.Functions
 		{
 			if (registry == null)
 			{
-				throw new ArgumentNullException("registry");
+				throw new ArgumentNullException(nameof(registry));
 			}
 			if (generator == null)
 			{
-				throw new ArgumentNullException("generator");
+				throw new ArgumentNullException(nameof(generator));
 			}
 			Array.ForEach(generator.SupportedProperties.ToArray(), property => registry.RegisterGenerator(property, generator));
 		}

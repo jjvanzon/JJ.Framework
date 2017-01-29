@@ -7,6 +7,7 @@
     /// </summary>
     public interface IClassAccessor
     {
+        // ReSharper disable once InconsistentNaming
         int _field { get; set; }
         int Property { get; set; }
         void VoidMethod();

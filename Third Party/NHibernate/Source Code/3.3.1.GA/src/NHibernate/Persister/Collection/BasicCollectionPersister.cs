@@ -71,7 +71,7 @@ namespace NHibernate.Persister.Collection
 				.AddColumns(KeyColumnNames, null, KeyType);
 			
 			if (hasIdentifier)
-				insert.AddColumns(new string[] {IdentifierColumnName}, null, IdentifierType);
+				insert.AddColumns(new[] {IdentifierColumnName}, null, IdentifierType);
 
 			if (HasIndex)
 				insert.AddColumns(IndexColumnNames, indexColumnIsSettable, IndexType);
@@ -95,7 +95,7 @@ namespace NHibernate.Persister.Collection
 				.AddColumns(ElementColumnNames, elementColumnIsSettable, ElementType);
 			if (hasIdentifier)
 			{
-				update.AddWhereFragment(new string[] { IdentifierColumnName }, IdentifierType, " = ");
+				update.AddWhereFragment(new[] { IdentifierColumnName }, IdentifierType, " = ");
 			}
 			else if (HasIndex && !indexContainsFormula)
 			{
@@ -125,7 +125,7 @@ namespace NHibernate.Persister.Collection
 			delete.SetTableName(qualifiedTableName);
 			if (hasIdentifier)
 			{
-				delete.AddWhereFragment(new string[] { IdentifierColumnName }, IdentifierType, " = ");
+				delete.AddWhereFragment(new[] { IdentifierColumnName }, IdentifierType, " = ");
 			}
 			else if (HasIndex && !indexContainsFormula)
 			{

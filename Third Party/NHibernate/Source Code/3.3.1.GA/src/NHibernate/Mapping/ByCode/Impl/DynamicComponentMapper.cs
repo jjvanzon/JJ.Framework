@@ -17,7 +17,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (mapDoc == null)
 			{
-				throw new ArgumentNullException("mapDoc");
+				throw new ArgumentNullException(nameof(mapDoc));
 			}
 			Container = declaringTypeMember.DeclaringType;
 			MapDoc = mapDoc;
@@ -33,7 +33,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (property == null)
 			{
-				throw new ArgumentNullException("property");
+				throw new ArgumentNullException(nameof(property));
 			}
 			var toAdd = new[] { property };
 			component.Items = component.Items == null ? toAdd : component.Items.Concat(toAdd).ToArray();

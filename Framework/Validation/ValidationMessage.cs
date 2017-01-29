@@ -4,7 +4,7 @@ using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Validation
 {
-    [DebuggerDisplay("{DebuggerDisplay}")]
+    [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
     public class ValidationMessage
     {
         public string PropertyKey { get; private set; }

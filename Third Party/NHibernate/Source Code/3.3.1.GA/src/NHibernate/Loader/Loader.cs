@@ -1274,7 +1274,7 @@ namespace NHibernate.Loader
 			try
 			{
 				QueryParameters qp =
-					new QueryParameters(new IType[] { identifierType }, new object[] { id }, optionalObject, optionalEntityName,
+					new QueryParameters(new[] { identifierType }, new[] { id }, optionalObject, optionalEntityName,
 										optionalIdentifier);
 				result = DoQueryAndInitializeNonLazyCollections(session, qp, false);
 			}
@@ -1307,8 +1307,8 @@ namespace NHibernate.Loader
 			{
 				result =
 					DoQueryAndInitializeNonLazyCollections(session,
-														   new QueryParameters(new IType[] { keyType, indexType },
-																			   new object[] { key, index }), false);
+														   new QueryParameters(new[] { keyType, indexType },
+																			   new[] { key, index }), false);
 			}
 			catch (Exception sqle)
 			{
@@ -1369,10 +1369,10 @@ namespace NHibernate.Loader
 				Log.Debug("loading collection: " + MessageHelper.InfoString(CollectionPersisters[0], id));
 			}
 
-			object[] ids = new object[] { id };
+			object[] ids = new[] { id };
 			try
 			{
-				DoQueryAndInitializeNonLazyCollections(session, new QueryParameters(new IType[] { type }, ids, ids), true);
+				DoQueryAndInitializeNonLazyCollections(session, new QueryParameters(new[] { type }, ids, ids), true);
 			}
 			catch (HibernateException)
 			{

@@ -50,7 +50,7 @@ namespace NHibernate.Mapping.ByCode
 			{
 				return ((FieldInfo) propertyOrField).FieldType;
 			}
-			throw new ArgumentOutOfRangeException("propertyOrField",
+			throw new ArgumentOutOfRangeException(nameof(propertyOrField),
 			                                      "Expected PropertyInfo or FieldInfo; found :" + propertyOrField.MemberType);
 		}
 
@@ -163,7 +163,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 
 			if (source.DeclaringType.Equals(source.ReflectedType))
@@ -185,7 +185,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 			if (source is PropertyInfo)
 			{
@@ -204,7 +204,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 			var propertyInfo = source as PropertyInfo;
 			if (propertyInfo == null)
@@ -337,7 +337,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (acceptPropertyClauses == null)
 			{
-				throw new ArgumentNullException("acceptPropertyClauses");
+				throw new ArgumentNullException(nameof(acceptPropertyClauses));
 			}
 			if (propertyContainerType == null || propertyType == null)
 			{
@@ -419,11 +419,11 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 			if (abstractType == null)
 			{
-				throw new ArgumentNullException("abstractType");
+				throw new ArgumentNullException(nameof(abstractType));
 			}
 			if (source.IsInterface)
 			{
@@ -456,11 +456,11 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (member == null)
 			{
-				throw new ArgumentNullException("member");
+				throw new ArgumentNullException(nameof(member));
 			}
 			if (reflectedType == null)
 			{
-				throw new ArgumentNullException("reflectedType");
+				throw new ArgumentNullException(nameof(reflectedType));
 			}
 			var field = member as FieldInfo;
 			if (field != null && field.IsPrivate)
@@ -516,7 +516,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 			if (memberName == null)
 			{

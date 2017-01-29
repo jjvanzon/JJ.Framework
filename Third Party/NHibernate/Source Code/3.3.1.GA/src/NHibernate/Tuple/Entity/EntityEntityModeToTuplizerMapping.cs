@@ -15,7 +15,7 @@ namespace NHibernate.Tuple.Entity
 	[Serializable]
 	public class EntityEntityModeToTuplizerMapping : EntityModeToTuplizerMapping
 	{
-		private static readonly System.Type[] entityTuplizerCTORSignature = new System.Type[] { typeof(EntityMetamodel), typeof(PersistentClass) };
+		private static readonly System.Type[] entityTuplizerCTORSignature = new[] { typeof(EntityMetamodel), typeof(PersistentClass) };
 
 		/// <summary> 
 		/// Instantiates a EntityEntityModeToTuplizerMapping based on the given

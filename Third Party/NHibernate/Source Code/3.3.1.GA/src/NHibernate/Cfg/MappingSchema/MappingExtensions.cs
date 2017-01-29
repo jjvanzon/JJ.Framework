@@ -15,7 +15,7 @@ namespace NHibernate.Cfg.MappingSchema
 				case HbmTuplizerEntitymode.DynamicMap:
 					return EntityMode.Map;
 				default:
-					throw new ArgumentOutOfRangeException("source");
+					throw new ArgumentOutOfRangeException(nameof(source));
 			}
 		}
 	}

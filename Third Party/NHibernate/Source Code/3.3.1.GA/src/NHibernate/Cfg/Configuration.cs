@@ -511,7 +511,7 @@ namespace NHibernate.Cfg
 		{
 			if (mappingDocument == null)
 			{
-				throw new ArgumentNullException("mappingDocument");
+				throw new ArgumentNullException(nameof(mappingDocument));
 			}
 			try
 			{
@@ -699,7 +699,7 @@ namespace NHibernate.Cfg
 		{
 			if (paths == null)
 			{
-				throw new ArgumentNullException("paths");
+				throw new ArgumentNullException(nameof(paths));
 			}
 			foreach (var path in paths)
 			{
@@ -1487,12 +1487,12 @@ namespace NHibernate.Cfg
 		{
 			if (assembly == null)
 			{
-				throw new HibernateException("Could not configure NHibernate.", new ArgumentNullException("assembly"));
+				throw new HibernateException("Could not configure NHibernate.", new ArgumentNullException(nameof(assembly)));
 			}
 
 			if (resourceName == null)
 			{
-				throw new HibernateException("Could not configure NHibernate.", new ArgumentNullException("resourceName"));
+				throw new HibernateException("Could not configure NHibernate.", new ArgumentNullException(nameof(resourceName)));
 			}
 
 			Stream stream = null;
@@ -1530,7 +1530,7 @@ namespace NHibernate.Cfg
 			if (textReader == null)
 			{
 				throw new HibernateConfigException("Could not configure NHibernate.",
-												   new ArgumentException("A null value was passed in.", "textReader"));
+												   new ArgumentException("A null value was passed in.", nameof(textReader)));
 			}
 
 			try

@@ -11,15 +11,15 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (filterName == null)
 			{
-				throw new ArgumentNullException("filterName");
+				throw new ArgumentNullException(nameof(filterName));
 			}
 			if (string.Empty.Equals(filterName.Trim()))
 			{
-				throw new ArgumentOutOfRangeException("filterName", "Invalid filter-name: the name should contain no blank characters.");
+				throw new ArgumentOutOfRangeException(nameof(filterName), "Invalid filter-name: the name should contain no blank characters.");
 			}
 			if (filter == null)
 			{
-				throw new ArgumentNullException("filter");
+				throw new ArgumentNullException(nameof(filter));
 			}
 			this.filter = filter;
 			this.filter.name = filterName;

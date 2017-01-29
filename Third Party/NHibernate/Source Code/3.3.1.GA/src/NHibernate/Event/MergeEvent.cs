@@ -18,7 +18,7 @@ namespace NHibernate.Event
 			: base(source)
 		{
 			if (entity == null)
-				throw new ArgumentNullException("entity", "attempt to create merge event with null entity");
+				throw new ArgumentNullException(nameof(entity), "attempt to create merge event with null entity");
 
 			Original = entity;
 		}
@@ -33,7 +33,7 @@ namespace NHibernate.Event
 			: this(entityName, original, source)
 		{
 			if (id == null)
-				throw new ArgumentNullException("id", "attempt to create merge event with null identifier");
+				throw new ArgumentNullException(nameof(id), "attempt to create merge event with null identifier");
 
 			RequestedId = id;
 		}

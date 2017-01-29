@@ -98,12 +98,12 @@ namespace NHibernate.Criterion
 
 		public override TypedValue[] GetTypedValues(ICriteria criteria, ICriteriaQuery criteriaQuery)
 		{
-			return new TypedValue[] { typedValue };
+			return new[] { typedValue };
 		}
 
 		public override IProjection[] GetProjections()
 		{
-			return new IProjection[] { projection };
+			return new[] { projection };
 		}
 
 		#endregion

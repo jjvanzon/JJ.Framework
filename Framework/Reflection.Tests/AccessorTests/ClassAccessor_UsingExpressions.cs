@@ -63,19 +63,19 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
         public static int StaticField
         {
-            get { return (int)_staticAccessor.GetFieldValue(() => StaticField); }
+            get { return _staticAccessor.GetFieldValue(() => StaticField); }
             set { _staticAccessor.SetFieldValue(() => StaticField, value); }
         }
 
         public static int StaticProperty
         {
-            get { return (int)_staticAccessor.GetPropertyValue(() => StaticProperty); }
+            get { return _staticAccessor.GetPropertyValue(() => StaticProperty); }
             set { _staticAccessor.SetPropertyValue(() => StaticProperty, value); }
         }
 
         public static int StaticMethod(int parameter)
         {
-            return (int)_staticAccessor.InvokeMethod(() => StaticMethod(0), parameter);
+            return _staticAccessor.InvokeMethod(() => StaticMethod(0), parameter);
         }
     }
 }

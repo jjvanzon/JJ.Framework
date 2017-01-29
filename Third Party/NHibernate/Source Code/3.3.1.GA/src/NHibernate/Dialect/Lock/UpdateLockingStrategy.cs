@@ -53,8 +53,8 @@ namespace NHibernate.Dialect.Lock
 			SqlUpdateBuilder update = new SqlUpdateBuilder(factory.Dialect, factory);
 			update.SetTableName(lockable.RootTableName);
 			update.SetIdentityColumn(lockable.RootTableIdentifierColumnNames, lockable.IdentifierType);
-			update.SetVersionColumn(new string[] { lockable.VersionColumnName }, lockable.VersionType);
-			update.AddColumns(new string[] { lockable.VersionColumnName }, null, lockable.VersionType);
+			update.SetVersionColumn(new[] { lockable.VersionColumnName }, lockable.VersionType);
+			update.AddColumns(new[] { lockable.VersionColumnName }, null, lockable.VersionType);
 			if (factory.Settings.IsCommentsEnabled)
 			{
 				update.SetComment(lockMode + " lock " + lockable.EntityName);

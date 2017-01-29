@@ -236,7 +236,7 @@ namespace NHibernate.Type
 			get { return false; }
 		}
 
-		private static readonly string[] PROPERTY_NAMES = new string[] { "class", "id" };
+		private static readonly string[] PROPERTY_NAMES = new[] { "class", "id" };
 
 		public string[] PropertyNames
 		{
@@ -255,7 +255,7 @@ namespace NHibernate.Type
 
 		public object[] GetPropertyValues(object component, ISessionImplementor session)
 		{
-			return new object[] { session.BestGuessEntityName(component), Id(component, session) };
+			return new[] { session.BestGuessEntityName(component), Id(component, session) };
 		}
 
 		private static object Id(object component, ISessionImplementor session)
@@ -272,7 +272,7 @@ namespace NHibernate.Type
 
 		public IType[] Subtypes
 		{
-			get { return new IType[] {metaType, identifierType}; }
+			get { return new[] {metaType, identifierType}; }
 		}
 
 		public void SetPropertyValues(object component, object[] values, EntityMode entityMode)

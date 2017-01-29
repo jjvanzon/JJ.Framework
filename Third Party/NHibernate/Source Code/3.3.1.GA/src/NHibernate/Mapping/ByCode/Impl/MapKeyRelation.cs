@@ -16,15 +16,15 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (dictionaryKeyType == null)
 			{
-				throw new ArgumentNullException("dictionaryKeyType");
+				throw new ArgumentNullException(nameof(dictionaryKeyType));
 			}
 			if (mapMapping == null)
 			{
-				throw new ArgumentNullException("mapMapping");
+				throw new ArgumentNullException(nameof(mapMapping));
 			}
 			if (mapDoc == null)
 			{
-				throw new ArgumentNullException("mapDoc");
+				throw new ArgumentNullException(nameof(mapDoc));
 			}
 			this.dictionaryKeyType = dictionaryKeyType;
 			this.mapMapping = mapMapping;

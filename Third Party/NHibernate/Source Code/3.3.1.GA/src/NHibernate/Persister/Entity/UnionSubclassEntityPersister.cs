@@ -51,9 +51,9 @@ namespace NHibernate.Persister.Entity
 			             	? ExecuteUpdateResultCheckStyle.Count
 			             	: (persistentClass.CustomSQLInsertCheckStyle
 			             	   ?? ExecuteUpdateResultCheckStyle.DetermineDefault(sql, callable));
-			customSQLInsert = new SqlString[] { sql };
-			insertCallable = new bool[] { callable };
-			insertResultCheckStyles = new ExecuteUpdateResultCheckStyle[] { checkStyle };
+			customSQLInsert = new[] { sql };
+			insertCallable = new[] { callable };
+			insertResultCheckStyles = new[] { checkStyle };
 
 			sql = persistentClass.CustomSQLUpdate;
 			callable = sql != null && persistentClass.IsCustomUpdateCallable;
@@ -61,9 +61,9 @@ namespace NHibernate.Persister.Entity
 			             	? ExecuteUpdateResultCheckStyle.Count
 			             	: (persistentClass.CustomSQLUpdateCheckStyle
 			             	   ?? ExecuteUpdateResultCheckStyle.DetermineDefault(sql, callable));
-			customSQLUpdate = new SqlString[] { sql };
-			updateCallable = new bool[] { callable };
-			updateResultCheckStyles = new ExecuteUpdateResultCheckStyle[] { checkStyle };
+			customSQLUpdate = new[] { sql };
+			updateCallable = new[] { callable };
+			updateResultCheckStyles = new[] { checkStyle };
 
 			sql = persistentClass.CustomSQLDelete;
 			callable = sql != null && persistentClass.IsCustomDeleteCallable;
@@ -71,9 +71,9 @@ namespace NHibernate.Persister.Entity
 			             	? ExecuteUpdateResultCheckStyle.Count
 			             	: (persistentClass.CustomSQLDeleteCheckStyle
 			             	   ?? ExecuteUpdateResultCheckStyle.DetermineDefault(sql, callable));
-			customSQLDelete = new SqlString[] { sql };
-			deleteCallable = new bool[] { callable };
-			deleteResultCheckStyles = new ExecuteUpdateResultCheckStyle[] { checkStyle };
+			customSQLDelete = new[] { sql };
+			deleteCallable = new[] { callable };
+			deleteResultCheckStyles = new[] { checkStyle };
 
 			#endregion
 
@@ -158,8 +158,8 @@ namespace NHibernate.Persister.Entity
 			}
 			else
 			{
-				constraintOrderedTableNames = new string[] { tableName };
-				constraintOrderedKeyColumnNames = new string[][] { IdentifierColumnNames };
+				constraintOrderedTableNames = new[] { tableName };
+				constraintOrderedKeyColumnNames = new[] { IdentifierColumnNames };
 			}
 			#endregion
 

@@ -55,7 +55,7 @@ namespace NHibernate.Criterion
 
 		public override IType[] GetTypes(ICriteria criteria, ICriteriaQuery criteriaQuery)
 		{
-			return new IType[]{ type };
+			return new[]{ type };
 		}
 
 		public override NHibernate.Engine.TypedValue[] GetTypedValues(ICriteria criteria, ICriteriaQuery criteriaQuery)

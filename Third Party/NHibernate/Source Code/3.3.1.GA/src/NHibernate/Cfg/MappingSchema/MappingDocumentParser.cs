@@ -16,7 +16,7 @@ namespace NHibernate.Cfg.MappingSchema
 		public HbmMapping Parse(Stream stream)
 		{
 			if (stream == null)
-				throw new ArgumentNullException("stream");
+				throw new ArgumentNullException(nameof(stream));
 
 			return (HbmMapping) serializer.Deserialize(stream);
 

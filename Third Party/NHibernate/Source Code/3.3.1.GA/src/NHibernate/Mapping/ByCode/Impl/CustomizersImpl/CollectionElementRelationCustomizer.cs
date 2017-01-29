@@ -12,7 +12,7 @@ namespace NHibernate.Mapping.ByCode.Impl.CustomizersImpl
 		{
 			if (explicitDeclarationsHolder == null)
 			{
-				throw new ArgumentNullException("explicitDeclarationsHolder");
+				throw new ArgumentNullException(nameof(explicitDeclarationsHolder));
 			}
 			this.explicitDeclarationsHolder = explicitDeclarationsHolder;
 			this.propertyPath = propertyPath;
@@ -65,7 +65,7 @@ namespace NHibernate.Mapping.ByCode.Impl.CustomizersImpl
 		{
 			if (mapping == null)
 			{
-				throw new ArgumentNullException("mapping");
+				throw new ArgumentNullException(nameof(mapping));
 			}
 			var manyToAnyCustomizer = new ManyToAnyCustomizer(explicitDeclarationsHolder, propertyPath, customizersHolder);
 			mapping(manyToAnyCustomizer);

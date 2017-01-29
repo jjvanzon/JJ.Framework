@@ -33,7 +33,7 @@ namespace NHibernate.Cfg.MappingSchema
 				case HbmUnsavedValueType.None:
 					return "none";
 				default:
-					throw new ArgumentOutOfRangeException("unsavedValueType");
+					throw new ArgumentOutOfRangeException(nameof(unsavedValueType));
 			}
 		}
 
@@ -50,7 +50,7 @@ namespace NHibernate.Cfg.MappingSchema
 				case HbmCacheUsage.Transactional:
 					return "transactional";
 				default:
-					throw new ArgumentOutOfRangeException("cacheUsage");
+					throw new ArgumentOutOfRangeException(nameof(cacheUsage));
 			}
 		}
 
@@ -69,7 +69,7 @@ namespace NHibernate.Cfg.MappingSchema
 				case HbmCacheMode.Refresh:
 					return CacheMode.Refresh;
 				default:
-					throw new ArgumentOutOfRangeException("cacheMode");
+					throw new ArgumentOutOfRangeException(nameof(cacheMode));
 			}
 		}
 

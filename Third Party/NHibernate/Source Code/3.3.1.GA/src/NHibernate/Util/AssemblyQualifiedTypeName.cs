@@ -12,7 +12,7 @@ namespace NHibernate.Util
 		{
 			if (type == null)
 			{
-				throw new ArgumentNullException("type");
+				throw new ArgumentNullException(nameof(type));
 			}
 			this.type = type;
 			this.assembly = assembly;

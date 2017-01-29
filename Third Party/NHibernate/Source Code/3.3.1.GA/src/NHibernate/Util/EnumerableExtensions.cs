@@ -9,7 +9,7 @@ namespace NHibernate.Util
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 			using (DisposableEnumerator enumerator = source.GetDisposableEnumerator())
 			{
@@ -25,7 +25,7 @@ namespace NHibernate.Util
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 			IList collection = source as IList;
 			if (collection != null)
@@ -52,7 +52,7 @@ namespace NHibernate.Util
 		{
 			if (source == null)
 			{
-				throw new ArgumentNullException("source");
+				throw new ArgumentNullException(nameof(source));
 			}
 			IList collection = source as IList;
 			if (collection != null)

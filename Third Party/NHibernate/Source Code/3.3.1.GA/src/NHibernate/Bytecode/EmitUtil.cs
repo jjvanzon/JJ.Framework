@@ -164,7 +164,7 @@ namespace NHibernate.Bytecode
 			ConstructorBuilder constructorBuilder =
 				delegateBuilder.DefineConstructor(
 					MethodAttributes.RTSpecialName | MethodAttributes.HideBySig | MethodAttributes.Public,
-					CallingConventions.Standard, new System.Type[] {typeof(object), typeof(IntPtr)});
+					CallingConventions.Standard, new[] {typeof(object), typeof(IntPtr)});
 
 			constructorBuilder.SetImplementationFlags(
 				MethodImplAttributes.Runtime | MethodImplAttributes.Managed);
@@ -194,7 +194,7 @@ namespace NHibernate.Bytecode
 			il.Emit(
 				OpCodes.Call,
 				typeof(MethodBase).GetMethod(
-					"GetMethodFromHandle", new System.Type[] {typeof(RuntimeMethodHandle)}));
+					"GetMethodFromHandle", new[] {typeof(RuntimeMethodHandle)}));
 			il.Emit(OpCodes.Castclass, typeof(MethodInfo));
 		}
 
@@ -202,7 +202,7 @@ namespace NHibernate.Bytecode
 		{
 			MethodInfo createDelegate = typeof(Delegate).GetMethod(
 				"CreateDelegate", BindingFlags.Static | BindingFlags.Public | BindingFlags.ExactBinding, null,
-				new System.Type[] {typeof(System.Type), typeof(MethodInfo)}, null);
+				new[] {typeof(System.Type), typeof(MethodInfo)}, null);
 
 			EmitLoadType(il, delegateType);
 			EmitLoadMethodInfo(il, methodInfo);

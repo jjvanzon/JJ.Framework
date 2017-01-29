@@ -9,7 +9,7 @@ using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Validation
 {
-    [DebuggerDisplay("{DebuggerDisplay}")]
+    [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
     public class ValidationMessages : IEnumerable<ValidationMessage>
     {
         private readonly List<ValidationMessage> _list = new List<ValidationMessage>();

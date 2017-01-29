@@ -10,9 +10,7 @@ namespace JJ.Framework.Exceptions
 
         public IsEnumException(Type type)
         {
-            string typeName;
-
-            typeName = type == null ? "<null>" : type.FullName;
+            string typeName = type == null ? "<null>" : type.FullName;
 
             Message = string.Format(MESSAGE_TEMPLATE, typeName);
         }

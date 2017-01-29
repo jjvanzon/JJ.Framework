@@ -76,7 +76,7 @@ namespace NHibernate.Criterion
 			SqlString lhSqlString = _lhs.ToSqlString(criteria, criteriaQuery, enabledFilters);
 			SqlString rhSqlString = _rhs.ToSqlString(criteria, criteriaQuery, enabledFilters);
 
-			sqlBuilder.Add(new SqlString[] {lhSqlString, rhSqlString},
+			sqlBuilder.Add(new[] {lhSqlString, rhSqlString},
 			               "(",
 			               Op,
 			               ")",

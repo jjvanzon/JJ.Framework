@@ -12,7 +12,7 @@ namespace NHibernate.Driver
 		{
 			if (dbProviderFactory == null)
 			{
-				throw new ArgumentNullException("dbProviderFactory");
+				throw new ArgumentNullException(nameof(dbProviderFactory));
 			}
 			this.dbProviderFactory = dbProviderFactory;
 		}

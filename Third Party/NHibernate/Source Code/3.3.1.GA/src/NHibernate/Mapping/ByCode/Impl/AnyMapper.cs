@@ -35,11 +35,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 			entityPropertyMapper = member == null ? new NoMemberPropertyMapper() : accessorMapper;
 			if (foreignIdType == null)
 			{
-				throw new ArgumentNullException("foreignIdType");
+				throw new ArgumentNullException(nameof(foreignIdType));
 			}
 			if (any == null)
 			{
-				throw new ArgumentNullException("any");
+				throw new ArgumentNullException(nameof(any));
 			}
 
 			this.any.idtype = this.foreignIdType.GetNhTypeName();
@@ -131,15 +131,15 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (value == null)
 			{
-				throw new ArgumentNullException("value");
+				throw new ArgumentNullException(nameof(value));
 			}
 			if (entityType == null)
 			{
-				throw new ArgumentNullException("entityType");
+				throw new ArgumentNullException(nameof(entityType));
 			}
 			if (value is System.Type)
 			{
-				throw new ArgumentOutOfRangeException("value", "System.Type is invalid meta-type (you don't need to set meta-values).");
+				throw new ArgumentOutOfRangeException(nameof(value), "System.Type is invalid meta-type (you don't need to set meta-values).");
 			}
 			System.Type metavalueType = value.GetType();
 			if (any.metavalue == null)

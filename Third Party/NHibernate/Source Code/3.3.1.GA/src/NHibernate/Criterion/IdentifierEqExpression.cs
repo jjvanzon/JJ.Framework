@@ -79,13 +79,13 @@ namespace NHibernate.Criterion
 			if (_projection != null)
 				return _projection.GetTypedValues(criteria, criteriaQuery);
 			
-			return new TypedValue[] {criteriaQuery.GetTypedIdentifierValue(criteria, value)};
+			return new[] {criteriaQuery.GetTypedIdentifierValue(criteria, value)};
 		}
 
 		public override IProjection[] GetProjections()
 		{
 			if(_projection != null)
-				return new IProjection[] { _projection };
+				return new[] { _projection };
 			return null;
 		}
 

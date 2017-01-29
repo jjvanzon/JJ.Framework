@@ -13,7 +13,7 @@ namespace NHibernate.Mapping.ByCode
 		{
 			if (localMember == null)
 			{
-				throw new ArgumentNullException("localMember");
+				throw new ArgumentNullException(nameof(localMember));
 			}
 			this.previousPath = previousPath;
 			this.localMember = localMember;

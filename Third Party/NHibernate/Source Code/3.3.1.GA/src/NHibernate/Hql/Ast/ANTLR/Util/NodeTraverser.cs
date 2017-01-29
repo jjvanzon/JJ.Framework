@@ -22,7 +22,7 @@ namespace NHibernate.Hql.Ast.ANTLR.Util
 		{
 			if (ast == null)
 			{
-				throw new ArgumentNullException("ast");
+				throw new ArgumentNullException(nameof(ast));
 			}
 
 			for (int i = 0; i < ast.ChildCount; i++)

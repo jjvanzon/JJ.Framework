@@ -1269,7 +1269,7 @@ namespace NHibernate.Engine
 		public void SetReadOnly(object entityOrProxy, bool readOnly)
 		{
 			if (entityOrProxy == null)
-				throw new ArgumentNullException("entityOrProxy");
+				throw new ArgumentNullException(nameof(entityOrProxy));
 		
 			if (IsReadOnly(entityOrProxy) == readOnly)
 				return;

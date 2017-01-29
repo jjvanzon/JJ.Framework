@@ -14,7 +14,7 @@ namespace NHibernate.Tuple.Component
 	[Serializable]
 	public class ComponentEntityModeToTuplizerMapping : EntityModeToTuplizerMapping
 	{
-		private static readonly System.Type[] componentTuplizerCTORSignature = new System.Type[] { typeof(Mapping.Component) };
+		private static readonly System.Type[] componentTuplizerCTORSignature = new[] { typeof(Mapping.Component) };
 
 		public ComponentEntityModeToTuplizerMapping(Mapping.Component component)
 		{

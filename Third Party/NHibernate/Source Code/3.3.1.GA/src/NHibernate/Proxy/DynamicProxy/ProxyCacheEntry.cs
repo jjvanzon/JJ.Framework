@@ -20,7 +20,7 @@ namespace NHibernate.Proxy.DynamicProxy
 		{
 			if (baseType == null)
 			{
-				throw new ArgumentNullException("baseType");
+				throw new ArgumentNullException(nameof(baseType));
 			}
 			BaseType = baseType;
 			Interfaces = interfaces ?? new System.Type[0];

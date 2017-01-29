@@ -18,7 +18,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (propertyMapping == null)
 			{
-				throw new ArgumentNullException("propertyMapping");
+				throw new ArgumentNullException(nameof(propertyMapping));
 			}
 			this.member = member;
 			this.propertyMapping = propertyMapping;
@@ -33,7 +33,7 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (propertyMapping == null)
 			{
-				throw new ArgumentNullException("propertyMapping");
+				throw new ArgumentNullException(nameof(propertyMapping));
 			}
 			this.member = member;
 			this.propertyMapping = propertyMapping;
@@ -95,11 +95,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (persistentType == null)
 			{
-				throw new ArgumentNullException("persistentType");
+				throw new ArgumentNullException(nameof(persistentType));
 			}
 			if (!typeof (IUserType).IsAssignableFrom(persistentType) && !typeof (IType).IsAssignableFrom(persistentType) && !typeof (ICompositeUserType).IsAssignableFrom(persistentType))
 			{
-				throw new ArgumentOutOfRangeException("persistentType", "Expected type implementing IUserType, ICompositeUserType or IType.");
+				throw new ArgumentOutOfRangeException(nameof(persistentType), "Expected type implementing IUserType, ICompositeUserType or IType.");
 			}
 			if (parameters != null)
 			{

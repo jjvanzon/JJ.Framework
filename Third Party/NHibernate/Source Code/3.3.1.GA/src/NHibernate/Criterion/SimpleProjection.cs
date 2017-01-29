@@ -29,7 +29,7 @@ namespace NHibernate.Criterion
 
 		public virtual string[] GetColumnAliases(int loc)
 		{
-			return new string[] {"y" + loc + "_"};
+			return new[] {"y" + loc + "_"};
 		}
 		
 		public string[] GetColumnAliases(string alias, int position, ICriteria criteria, ICriteriaQuery criteriaQuery)

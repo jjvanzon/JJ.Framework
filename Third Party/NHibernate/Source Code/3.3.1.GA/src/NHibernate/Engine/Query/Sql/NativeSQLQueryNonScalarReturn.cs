@@ -22,7 +22,7 @@ namespace NHibernate.Engine.Query.Sql
 		protected internal NativeSQLQueryNonScalarReturn(string alias, IDictionary<string, string[]> propertyResults, LockMode lockMode)
 		{
 			if (string.IsNullOrEmpty(alias))
-				throw new ArgumentNullException("alias", "A valid scalar alias must be specified.");
+				throw new ArgumentNullException(nameof(alias), "A valid scalar alias must be specified.");
 
 			this.alias = alias;
 			this.lockMode = lockMode;

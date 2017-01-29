@@ -5,7 +5,7 @@ using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
-    [DebuggerDisplay("{DebuggerDisplay}")]
+    [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
     public class Line : Element
     {
         public Line()

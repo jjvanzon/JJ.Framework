@@ -37,7 +37,7 @@ namespace NHibernate.Event.Default
 		public void CopyTo(Array array, int index)
 		{
 			if (array == null)
-				throw new ArgumentNullException("array");
+				throw new ArgumentNullException(nameof(array));
 			if (index < 0)
 				throw new ArgumentOutOfRangeException("arrayIndex is less than 0");
 			if (entityToCopyMap.Count + index + 1 > array.Length)
@@ -94,9 +94,9 @@ namespace NHibernate.Event.Default
 		public void Add(object key, object value)
 		{
 			if (key == null)
-				throw new ArgumentNullException("key");
+				throw new ArgumentNullException(nameof(key));
 			if (value == null)
-				throw new ArgumentNullException("value");
+				throw new ArgumentNullException(nameof(value));
 			
 			entityToCopyMap.Add(key, value);
 			entityToOperatedOnFlagMap.Add(key, false);

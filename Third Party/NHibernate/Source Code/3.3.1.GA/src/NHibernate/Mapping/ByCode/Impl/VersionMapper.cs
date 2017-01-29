@@ -18,11 +18,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (member == null)
 			{
-				throw new ArgumentNullException("member");
+				throw new ArgumentNullException(nameof(member));
 			}
 			if (hbmVersion == null)
 			{
-				throw new ArgumentNullException("hbmVersion");
+				throw new ArgumentNullException(nameof(hbmVersion));
 			}
 			this.member = member;
 			versionMapping = hbmVersion;
@@ -111,11 +111,11 @@ namespace NHibernate.Mapping.ByCode.Impl
 		{
 			if (persistentType == null)
 			{
-				throw new ArgumentNullException("persistentType");
+				throw new ArgumentNullException(nameof(persistentType));
 			}
 			if (!typeof (IUserVersionType).IsAssignableFrom(persistentType))
 			{
-				throw new ArgumentOutOfRangeException("persistentType", "Expected type implementing IUserVersionType");
+				throw new ArgumentOutOfRangeException(nameof(persistentType), "Expected type implementing IUserVersionType");
 			}
 			versionMapping.type = persistentType.AssemblyQualifiedName;
 		}

@@ -11,7 +11,7 @@ namespace NHibernate.Intercept
 		{
 			if (targetInstance == null)
 			{
-				throw new ArgumentNullException("targetInstance");
+				throw new ArgumentNullException(nameof(targetInstance));
 			}
 			TargetInstance = targetInstance;
 		}

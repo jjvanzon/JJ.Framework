@@ -93,7 +93,7 @@ namespace NHibernate.Collection.Generic
 					// check if the index is valid
 					if (index >= Count)
 					{
-						throw new ArgumentOutOfRangeException("index");
+						throw new ArgumentOutOfRangeException(nameof(index));
 					}
 					return default(T);
 				}

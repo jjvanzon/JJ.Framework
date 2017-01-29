@@ -19,10 +19,10 @@ namespace NHibernate.Event
 			: base(source)
 		{
 			if (entityId == null)
-				throw new ArgumentNullException("entityId", "id to load is required for loading");
+				throw new ArgumentNullException(nameof(entityId), "id to load is required for loading");
 
 			if (lockMode == LockMode.Write)
-				throw new ArgumentOutOfRangeException("lockMode", "Invalid lock mode for loading");
+				throw new ArgumentOutOfRangeException(nameof(lockMode), "Invalid lock mode for loading");
 
 			if (lockMode == null)
 			{

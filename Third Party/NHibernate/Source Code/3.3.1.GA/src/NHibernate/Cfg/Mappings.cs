@@ -235,7 +235,7 @@ namespace NHibernate.Cfg
 		{
 			if (rename == null)
 			{
-				throw new ArgumentNullException("rename");
+				throw new ArgumentNullException(nameof(rename));
 			}
 			// if the imports dictionary already contains the rename, then make sure 
 			// the rename is not for a different className.  If it is a different className
