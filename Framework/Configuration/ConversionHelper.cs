@@ -1,4 +1,5 @@
 ﻿using System;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Configuration
 {
@@ -12,6 +13,16 @@ namespace JJ.Framework.Configuration
 
         public static object ConvertValue(object input, Type type)
         {
+            if (input == null)
+            {
+                return null;
+            }
+
+            if (type.IsNullableType())
+            {
+                type = type.GetUnderlyingNullableType();
+            }
+
             return Convert.ChangeType(input, type);
         }
     }
