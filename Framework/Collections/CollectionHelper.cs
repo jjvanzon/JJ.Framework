@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Collections
 {
@@ -70,6 +72,17 @@ namespace JJ.Framework.Collections
 
                     sampleIndex -= jump;
                 }
+            }
+        }
+
+        public static IEnumerable<T> Repeat<T>(int count, Func<T> selector)
+        {
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
+
+            for (int i = 0; i < count; i++)
+            {
+                T item = selector();
+                yield return item;
             }
         }
     }
