@@ -125,7 +125,7 @@ namespace JJ.Framework.PlatformCompatibility
         public static void Stream_CopyTo_PlatformSupport(Stream source, Stream dest, int bufferSize)
         {
             int bytesRead;
-            byte[] buffer = new byte[bufferSize];
+            var buffer = new byte[bufferSize];
             while ((bytesRead = source.Read(buffer, 0, buffer.Length)) != 0)
             {
                 dest.Write(buffer, 0, bytesRead);
