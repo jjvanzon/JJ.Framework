@@ -78,7 +78,7 @@ namespace JJ.Framework.Presentation.WinForms.Helpers
             if (control == null) throw new NullException(() => control);
 
             IList<TControl> descendants = control.Controls.Cast<Control>()
-                                                          .SelectRecursive(x => x.Controls.Cast<Control>())
+                                                          .UnionRecursive(x => x.Controls.Cast<Control>())
                                                           .OfType<TControl>()
                                                           .ToArray();
             return descendants;
