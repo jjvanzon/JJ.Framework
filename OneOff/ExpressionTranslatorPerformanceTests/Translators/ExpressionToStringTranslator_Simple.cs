@@ -11,7 +11,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
         public string Result
         {
-            get { return sb.ToString().CutLeft("."); }
+            get { return sb.ToString().TrimStart("."); }
         }
 
         public void Visit<T>(Expression<Func<T>> expression)

@@ -16,7 +16,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
             {
                 return sb
                     .ToString()
-                    .CutLeft(".")
+                    .TrimStart(".")
                     .Replace("(.", "(")
                     .Replace("[.", "[");
             }

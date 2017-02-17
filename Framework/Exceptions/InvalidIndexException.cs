@@ -15,7 +15,7 @@ namespace JJ.Framework.Exceptions
                 MESSAGE, 
                 ExpressionHelper.GetText(listIndexExpression), 
                 ExpressionHelper.GetValue(listIndexExpression), 
-                ExpressionHelper.GetText(countExpression).CutLeft('.').TrimEnd('.'), 
+                StringExtensions.TrimStart(ExpressionHelper.GetText(countExpression), '.').TrimEnd('.'), 
                 ExpressionHelper.GetValue(countExpression)))
         {  }
     }

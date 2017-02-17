@@ -19,7 +19,7 @@ namespace JJ.Framework.Reflection
             Visit(expression);
 
             string result = _sb.ToString()
-                               .CutLeft(".")
+                               .TrimStart(".")
                                .Replace("(.", "(")
                                .Replace("[.", "[");
             return result;

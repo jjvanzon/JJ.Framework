@@ -26,7 +26,7 @@ namespace JJ.Framework.Data.EntityFramework5
             {
                 if (resourceName.EndsWith(".msl"))
                 {
-                    return resourceName.CutRight(".msl");
+                    return resourceName.TrimEnd(".msl");
                 }
             }
 

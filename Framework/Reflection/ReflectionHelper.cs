@@ -180,7 +180,7 @@ namespace JJ.Framework.Reflection
                 return false;
             }
 
-            string propertyName = method.Name.CutLeft("get_").CutLeft("set_");
+            string propertyName = method.Name.TrimStart("get_").TrimStart("set_");
 
             Type type = method.DeclaringType;
             var defaultMemberAttribute = (DefaultMemberAttribute)type.GetCustomAttributes(typeof(DefaultMemberAttribute), inherit: true).SingleOrDefault();

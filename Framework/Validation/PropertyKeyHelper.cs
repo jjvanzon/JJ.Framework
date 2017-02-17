@@ -12,7 +12,7 @@ namespace JJ.Framework.Validation
             string propertyKey = ExpressionHelper.GetText(propertyKeyExpression, true);
 
             // Always cut off the root object, e.g. "MyObject.MyProperty" becomes "MyProperty".
-            propertyKey = propertyKey.CutLeftUntil(".").CutLeft(".");
+            propertyKey = propertyKey.TrimStartUntil(".").TrimStart(".");
 
             return propertyKey;
         }

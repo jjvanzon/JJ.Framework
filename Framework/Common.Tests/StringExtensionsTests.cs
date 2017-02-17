@@ -9,7 +9,7 @@ namespace JJ.Framework.Common.Tests
         public void Test_StringExtensions_CutRightUntil()
         {
             string input = "abcdefg";
-            string output = input.CutRightUntil("de");
+            string output = input.TrimEndUntil("de");
             Assert.AreEqual("abcde", output);
         }
 
@@ -17,7 +17,7 @@ namespace JJ.Framework.Common.Tests
         public void Test_StringExtensions_CutLeftUntil()
         {
             string input = "abcdefg";
-            string output = input.CutLeftUntil("de");
+            string output = input.TrimStartUntil("de");
             Assert.AreEqual("defg", output);
         }
     }

@@ -38,7 +38,7 @@ namespace JJ.Framework.Common
                 return input;
             }
 
-            return input.Left(1).ToUpper() + input.CutLeft(1);
+            return input.Left(1).ToUpper() + input.TrimStart(1);
         }
 
         public static string StartWithLowerCase(this string input)
@@ -48,7 +48,7 @@ namespace JJ.Framework.Common
                 return input;
             }
 
-            return input.Left(1).ToLower() + input.CutLeft(1);
+            return input.Left(1).ToLower() + input.TrimStart(1);
         }
 
         /// <summary>
