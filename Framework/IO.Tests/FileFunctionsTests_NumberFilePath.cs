@@ -140,35 +140,28 @@ namespace JJ.Framework.IO.Tests
         public void Test_FileFunctions_GetNumberedFilePath_RelativePath()
         {
             string folderPath = TestHelper.GenerateFolderName(MethodBase.GetCurrentMethod());
-            string subDirectory = Path.Combine(folderPath, "temp2");
 
             string originalCurrentDirectory = Environment.CurrentDirectory;
-
             try
             {
-                Directory.CreateDirectory(subDirectory);
+                Directory.CreateDirectory(folderPath);
                 Environment.CurrentDirectory = folderPath;
 
-                const string baseFilePath = @"temp2\temp.txt";
+                const string baseFilePath = "temp.txt";
 
-                string filePath1 = FileHelper.GetNumberedFilePath(baseFilePath);
-                AssertHelper.AreEqual(@"temp2\temp.txt", () => filePath1);
+                const string expectedFilePath1 = "temp.txt";
+                string actualFilePath = FileHelper.GetNumberedFilePath(baseFilePath);
+                AssertHelper.AreEqual(expectedFilePath1, () => actualFilePath);
 
-                try
-                {
-                    File.Create(filePath1).Close();
-                    string filePath2 = FileHelper.GetNumberedFilePath(baseFilePath);
-                    AssertHelper.AreEqual(@"temp2\temp (2).txt", () => filePath2);
-                }
-                finally
-                {
-                    if (File.Exists(filePath1)) File.Delete(filePath1);
-                }
+                File.Create("temp.txt").Close();
+                const string expectedFilePath2 = "temp (2).txt";
+                string actualFilePath2 = FileHelper.GetNumberedFilePath(baseFilePath);
+                AssertHelper.AreEqual(expectedFilePath2, () => actualFilePath2);
             }
             finally
             {
-                if (Directory.Exists(subDirectory)) Directory.Delete(subDirectory);
                 Environment.CurrentDirectory = originalCurrentDirectory;
+                if (Directory.Exists(folderPath)) Directory.Delete(folderPath, recursive: true);
             }
         }
 

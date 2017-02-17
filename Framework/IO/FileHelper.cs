@@ -35,13 +35,13 @@ namespace JJ.Framework.IO
             string folderPath = Path.GetDirectoryName(originalFilePath).TrimEnd(@"\"); // Remove slash from root (e.g. @"C:\")
             string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(originalFilePath);
             string fileExtension = Path.GetExtension(originalFilePath);
+            string separator = !string.IsNullOrEmpty(folderPath) ? "\\" : "";
 
             int number = mustNumberFirstFile ? 1 : 2;
             string filePath;
             do
             {
-                filePath =
-                    $@"{folderPath}\{fileNameWithoutExtension}{numberPrefix}{number.ToString(numberFormatString)}{numberSuffix}{fileExtension}";
+                filePath = $@"{folderPath}{separator}{fileNameWithoutExtension}{numberPrefix}{number.ToString(numberFormatString)}{numberSuffix}{fileExtension}";
                 number++;
             } while (File.Exists(filePath));
 

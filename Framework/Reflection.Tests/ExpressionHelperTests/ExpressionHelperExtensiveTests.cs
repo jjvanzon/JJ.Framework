@@ -69,7 +69,8 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         [TestMethod]
         public void Test_ExpressionHelpers_Conversion_Numeric()
         {
-            const int value = 1;
+            // ReSharper disable once ConvertToConstant.Local
+            int value = 1;
             Assert.AreEqual("value", ExpressionHelper.GetText(() => (long)value));
             Assert.AreEqual(1, ExpressionHelper.GetValue(() => (long)value));
         }
@@ -165,7 +166,8 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
         public void Test_ExpressionHelpers_ArrayIndex_Variable()
         {
             int[] array = { 10, 11, 12 };
-            const int i = 2;
+            // ReSharper disable once ConvertToConstant.Local
+            int i = 2;
             Assert.AreEqual("array[i]", ExpressionHelper.GetText(() => array[i]));
             Assert.AreEqual(12, ExpressionHelper.GetValue(() => array[i]));
         }
