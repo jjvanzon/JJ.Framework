@@ -56,7 +56,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="DirectoryInfoExtensionsTests.cs" />
-    <Compile Include="2017-02-17 Backup of FileFunctionsTests.cs" />
     <Compile Include="FileFunctionsTests.cs" />
     <Compile Include="FileFunctionsTests_NumberFilePath.cs" />
     <Compile Include="FileInfoExtensionsTests.cs" />

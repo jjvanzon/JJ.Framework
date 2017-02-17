@@ -15,8 +15,8 @@ namespace JJ.Framework.IO.Tests
 
         public void Test_FileFunctions_ClearFolder(string folderPath, Action overloadToTest)
         {
-            string filePath1 = Path.Combine(folderPath, @"temp (1).txt");
-            string filePath2 = Path.Combine(folderPath, @"temp (2).txt");
+            string filePath1 = Path.Combine(folderPath, "temp (1).txt");
+            string filePath2 = Path.Combine(folderPath, "temp (2).txt");
             try
             {
                 Directory.CreateDirectory(folderPath);
