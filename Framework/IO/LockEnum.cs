@@ -1,5 +1,6 @@
 ﻿namespace JJ.Framework.IO
 {
+    /// <summary> Fully unit tested. </summary>
     public enum LockEnum
     {
         Undefined = 0,

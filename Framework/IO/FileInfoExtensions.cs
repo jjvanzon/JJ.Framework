@@ -2,6 +2,7 @@
 
 namespace JJ.Framework.IO
 {
+    /// <summary> Fully unit tested. </summary>
     public static class FileInfoExtensions
     {
         public static void Hide(this FileInfo file) => FileHelper.HideFile(file);

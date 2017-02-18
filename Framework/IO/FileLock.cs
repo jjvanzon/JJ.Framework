@@ -5,6 +5,7 @@ using JJ.Framework.Exceptions;
 namespace JJ.Framework.IO
 {
     /// <summary>
+    /// Fully unit tested.
     /// Allows you to lock a file.
     /// A write lock is the most common, allowing other processes to still read the file, but not write it.
     /// A read lock is used for transactional integrity:

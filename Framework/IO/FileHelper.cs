@@ -7,6 +7,7 @@ using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.IO
 {
+    /// <summary> Fully unit tested. </summary>
     public static class FileHelper
     {
         /// <summary>

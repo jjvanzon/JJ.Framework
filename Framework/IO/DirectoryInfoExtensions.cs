@@ -2,6 +2,7 @@
 
 namespace JJ.Framework.IO
 {
+    /// <summary> Fully unit tested. </summary>
     public static class DirectoryInfoExtensions
     {
         public static void Clear(this DirectoryInfo directoryInfo) => FileHelper.ClearFolder(directoryInfo);

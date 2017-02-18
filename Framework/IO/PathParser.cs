@@ -5,6 +5,7 @@ using JJ.Framework.Common;
 
 namespace JJ.Framework.IO
 {
+    /// <summary> Fully unit tested. </summary>
     public class PathParser
     {
         public string Volume { get; }
