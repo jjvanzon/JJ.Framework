@@ -105,6 +105,12 @@ namespace JJ.Framework.IO
                         CreateReadLockStream();
                         _readLockStream.Position = position;
                         break;
+
+                    case LockEnum.None:
+                        break;
+
+                    default:
+                        throw new InvalidValueException(_lockEnum);
                 }
 
                 _lockEnum = value;
@@ -129,9 +135,7 @@ namespace JJ.Framework.IO
 
         private void DisposeReadLockStream()
         {
-            if (_readLockStream == null) return;
-
-            _readLockStream.Dispose();
+            _readLockStream?.Dispose();
             _readLockStream = null;
         }
 
@@ -153,9 +157,7 @@ namespace JJ.Framework.IO
 
         private void DisposeWriteLockStream()
         {
-            if (_writeLockStream == null) return;
-
-            _writeLockStream.Dispose();
+            _writeLockStream?.Dispose();
             _writeLockStream = null;
         }
 

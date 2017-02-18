@@ -144,7 +144,6 @@ namespace JJ.Framework.IO.Tests
         public void Test_FileFunctions_IsFolder_True_NonExistent()
         {
             string folderPath = TestHelper.GenerateFolderName(MethodBase.GetCurrentMethod());
-            DeleteFileOrFolder(folderPath);
             AssertHelper.IsTrue(() => FileHelper.IsFolder(folderPath));
         }
 
@@ -154,7 +153,6 @@ namespace JJ.Framework.IO.Tests
             string filePath = TestHelper.GenerateFileName(MethodBase.GetCurrentMethod());
             try
             {
-                DeleteFileOrFolder(filePath);
                 Directory.CreateDirectory(filePath);
 
                 AssertHelper.IsTrue(() => FileHelper.IsFolder(filePath));
@@ -170,8 +168,6 @@ namespace JJ.Framework.IO.Tests
         {
             string filePath = TestHelper.GenerateFileName(MethodBase.GetCurrentMethod());
 
-            DeleteFileOrFolder(filePath);
-
             AssertHelper.IsFalse(() => FileHelper.IsFolder(filePath));
         }
 
@@ -180,8 +176,6 @@ namespace JJ.Framework.IO.Tests
         public void Test_FileFunctions_IsFolder_False_HasPeriodButClearlyNotFile()
         {
             string path = Path.Combine(TestHelper.GenerateFolderName(MethodBase.GetCurrentMethod()), "JJ.Framework.IO");
-
-            DeleteFileOrFolder(path);
 
             AssertHelper.IsFalse(() => FileHelper.IsFolder(path));
         }
@@ -208,7 +202,6 @@ namespace JJ.Framework.IO.Tests
         public void Test_FileFunctions_IsFile_True_NonExistent()
         {
             string filePath = TestHelper.GenerateFileName(MethodBase.GetCurrentMethod());
-            DeleteFileOrFolder(filePath);
             AssertHelper.IsTrue(() => FileHelper.IsFile(filePath));
         }
 
@@ -233,7 +226,6 @@ namespace JJ.Framework.IO.Tests
         public void Test_FileFunctions_IsFile_False_LooksLikeFolder_NonExistent()
         {
             string path = Path.Combine(TestHelper.GenerateFolderName(MethodBase.GetCurrentMethod()), "temp");
-            DeleteFileOrFolder(path);
             AssertHelper.IsFalse(() => FileHelper.IsFile(path));
         }
 

@@ -12,7 +12,7 @@ namespace JJ.Framework.IO
             if (writer == null) throw new NullException(() => writer);
 
             int size = Marshal.SizeOf(typeof(T));
-            byte[] buffer = new byte[size];
+            var buffer = new byte[size];
             GCHandle gcHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
             Marshal.StructureToPtr(strct, gcHandle.AddrOfPinnedObject(), true);
             writer.BaseStream.Write(buffer, 0, buffer.Length);

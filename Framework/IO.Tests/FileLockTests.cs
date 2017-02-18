@@ -13,17 +13,11 @@ namespace JJ.Framework.IO.Tests
         public void Test_FileLock_ConditionViolation_PathNullOrEmpty()
         {
             AssertHelper.ThrowsException(
-                () =>
-                {
-                    new FileLock((string)null, LockEnum.None);
-                },
+                () => new FileLock((string)null, LockEnum.None),
                 "filePath is null or empty.");
 
             AssertHelper.ThrowsException(
-                () =>
-                {
-                    new FileLock("", LockEnum.None);
-                },
+                () => new FileLock("", LockEnum.None),
                 "filePath is null or empty.");
         }
 
@@ -35,10 +29,7 @@ namespace JJ.Framework.IO.Tests
             if (File.Exists(tempFilePath)) File.Delete(tempFilePath);
 
             AssertHelper.ThrowsException(
-                () =>
-                {
-                    new FileLock(tempFilePath, LockEnum.None);
-                },
+                () => new FileLock(tempFilePath, LockEnum.None),
                 $"File '{tempFilePath}' does not exist.");
         }
 
@@ -52,8 +43,8 @@ namespace JJ.Framework.IO.Tests
 
                 using (new FileLock(tempFilePath, LockEnum.None))
                 {
-                    ReadFromFile(tempFilePath);
-                    WriteToFile(tempFilePath);
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertFileCanBeWritten(tempFilePath);
                 }
             }
             finally
@@ -70,13 +61,13 @@ namespace JJ.Framework.IO.Tests
             {
                 CreateTempFile(tempFilePath);
 
-                ReadFromFile(tempFilePath);
-                WriteToFile(tempFilePath);
+                AssertFileCanBeRead(tempFilePath);
+                AssertFileCanBeWritten(tempFilePath);
 
                 using (new FileLock(tempFilePath, LockEnum.Read))
                 {
-                    AssertHelper.ThrowsException(() => ReadFromFile(tempFilePath));
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeRead(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                 }
             }
             finally
@@ -93,17 +84,17 @@ namespace JJ.Framework.IO.Tests
             {
                 CreateTempFile(tempFilePath);
 
-                ReadFromFile(tempFilePath);
-                WriteToFile(tempFilePath);
+                AssertFileCanBeRead(tempFilePath);
+                AssertFileCanBeWritten(tempFilePath);
 
                 using (new FileLock(tempFilePath, LockEnum.Write))
                 {
-                    ReadFromFile(tempFilePath);
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                 }
 
-                ReadFromFile(tempFilePath);
-                WriteToFile(tempFilePath);
+                AssertFileCanBeRead(tempFilePath);
+                AssertFileCanBeWritten(tempFilePath);
             }
             finally
             {
@@ -121,13 +112,13 @@ namespace JJ.Framework.IO.Tests
 
                 using (var fileLock = new FileLock(tempFilePath, LockEnum.None))
                 {
-                    ReadFromFile(tempFilePath);
-                    WriteToFile(tempFilePath);
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertFileCanBeWritten(tempFilePath);
 
                     fileLock.LockEnum = LockEnum.Read;
 
-                    AssertHelper.ThrowsException(() => ReadFromFile(tempFilePath));
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeRead(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                 }
             }
             finally
@@ -146,13 +137,13 @@ namespace JJ.Framework.IO.Tests
 
                 using (var fileLock = new FileLock(tempFilePath, LockEnum.None))
                 {
-                    ReadFromFile(tempFilePath);
-                    WriteToFile(tempFilePath);
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertFileCanBeWritten(tempFilePath);
 
                     fileLock.LockEnum = LockEnum.Write;
 
-                    ReadFromFile(tempFilePath);
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                 }
             }
             finally
@@ -171,13 +162,13 @@ namespace JJ.Framework.IO.Tests
 
                 using (var fileLock = new FileLock(tempFilePath, LockEnum.Read))
                 {
-                    AssertHelper.ThrowsException(() => ReadFromFile(tempFilePath));
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeRead(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
 
                     fileLock.LockEnum = LockEnum.None;
 
-                    ReadFromFile(tempFilePath);
-                    WriteToFile(tempFilePath);
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertFileCanBeWritten(tempFilePath);
                 }
             }
             finally
@@ -196,13 +187,13 @@ namespace JJ.Framework.IO.Tests
 
                 using (var fileLock = new FileLock(tempFilePath, LockEnum.Read))
                 {
-                    AssertHelper.ThrowsException(() => ReadFromFile(tempFilePath));
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeRead(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
 
                     fileLock.LockEnum = LockEnum.Write;
 
-                    ReadFromFile(tempFilePath);
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                 }
             }
             finally
@@ -221,13 +212,13 @@ namespace JJ.Framework.IO.Tests
 
                 using (var fileLock = new FileLock(tempFilePath, LockEnum.Write))
                 {
-                    ReadFromFile(tempFilePath);
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
 
                     fileLock.LockEnum = LockEnum.None;
 
-                    ReadFromFile(tempFilePath);
-                    WriteToFile(tempFilePath);
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertFileCanBeWritten(tempFilePath);
                 }
             }
             finally
@@ -246,13 +237,13 @@ namespace JJ.Framework.IO.Tests
 
                 using (var fileLock = new FileLock(tempFilePath, LockEnum.Write))
                 {
-                    ReadFromFile(tempFilePath);
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
 
                     fileLock.LockEnum = LockEnum.Read;
 
-                    AssertHelper.ThrowsException(() => ReadFromFile(tempFilePath));
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeRead(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                 }
             }
             finally
@@ -272,44 +263,44 @@ namespace JJ.Framework.IO.Tests
                 using (FileLock fileLock = new FileLock(tempFilePath, LockEnum.None))
                 {
                     // Check no lock
-                    ReadFromFile(tempFilePath);
-                    WriteToFile(tempFilePath);
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertFileCanBeWritten(tempFilePath);
 
                     // Change lock from None to Write
                     fileLock.LockEnum = LockEnum.Write;
-                    ReadFromFile(tempFilePath);
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
 
                     // Change lock from Write to None
                     fileLock.LockEnum = LockEnum.None;
-                    ReadFromFile(tempFilePath);
-                    WriteToFile(tempFilePath);
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertFileCanBeWritten(tempFilePath);
 
                     // Change lock from None to Read
                     fileLock.LockEnum = LockEnum.Read;
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
-                    AssertHelper.ThrowsException(() => ReadFromFile(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeRead(tempFilePath));
 
                     // Change lock from Read to None
                     fileLock.LockEnum = LockEnum.None;
-                    ReadFromFile(tempFilePath);
-                    WriteToFile(tempFilePath);
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertFileCanBeWritten(tempFilePath);
 
                     // Change lock from Read to Write
                     fileLock.LockEnum = LockEnum.Read;
-                    AssertHelper.ThrowsException(() => ReadFromFile(tempFilePath));
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeRead(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                     fileLock.LockEnum = LockEnum.Write;
-                    ReadFromFile(tempFilePath);
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
 
                     // Change lock from Write to Read
                     fileLock.LockEnum = LockEnum.Write;
-                    ReadFromFile(tempFilePath);
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                     fileLock.LockEnum = LockEnum.Read;
-                    AssertHelper.ThrowsException(() => ReadFromFile(tempFilePath));
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeRead(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                 }
             }
             finally
@@ -470,21 +461,21 @@ namespace JJ.Framework.IO.Tests
 
                 using (new FileLock(tempFilePath, LockEnum.Read))
                 {
-                    AssertHelper.ThrowsException(() => ReadFromFile(tempFilePath));
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeRead(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                 }
 
-                ReadFromFile(tempFilePath);
-                WriteToFile(tempFilePath);
+                AssertFileCanBeRead(tempFilePath);
+                AssertFileCanBeWritten(tempFilePath);
 
                 using (new FileLock(tempFilePath, LockEnum.Write))
                 {
-                    ReadFromFile(tempFilePath);
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertFileCanBeRead(tempFilePath);
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                 }
 
-                ReadFromFile(tempFilePath);
-                WriteToFile(tempFilePath);
+                AssertFileCanBeRead(tempFilePath);
+                AssertFileCanBeWritten(tempFilePath);
             }
             finally
             {
@@ -504,12 +495,12 @@ namespace JJ.Framework.IO.Tests
 
                 using (new FileLock(fileInfo, LockEnum.Read))
                 {
-                    AssertHelper.ThrowsException(() => ReadFromFile(tempFilePath));
-                    AssertHelper.ThrowsException(() => WriteToFile(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeRead(tempFilePath));
+                    AssertHelper.ThrowsException(() => AssertFileCanBeWritten(tempFilePath));
                 }
 
-                ReadFromFile(tempFilePath);
-                WriteToFile(tempFilePath);
+                AssertFileCanBeRead(tempFilePath);
+                AssertFileCanBeWritten(tempFilePath);
             }
             finally
             {
@@ -575,9 +566,10 @@ namespace JJ.Framework.IO.Tests
         {
             string tempFilePath = TestHelper.GenerateFileName(MethodBase.GetCurrentMethod());
 
-            CreateTempFile(tempFilePath);
             try
             {
+                CreateTempFile(tempFilePath);
+
                 using (var fileLock = new FileLock(tempFilePath, LockEnum.Write))
                 {
                     fileLock.Stream.Write(new byte[] { 0x10, 0x20, 0x30 }, 0, 3);
@@ -611,12 +603,12 @@ namespace JJ.Framework.IO.Tests
             if (File.Exists(filePath)) File.Delete(filePath);
         }
 
-        private void ReadFromFile(string filePath)
+        private void AssertFileCanBeRead(string filePath)
         {
             File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite).Close();
         }
 
-        private void WriteToFile(string filePath)
+        private void AssertFileCanBeWritten(string filePath)
         {
             File.Open(filePath, FileMode.Open, FileAccess.Write, FileShare.ReadWrite).Close();
         }
