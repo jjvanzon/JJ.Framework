@@ -32,19 +32,15 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             if (child == null) throw new NullException(() => child);
 
-            ISideEffect sideEffect1 = new SideEffect_AssertDiagram_UponSettingParentOrChild(child, _parent);
-            sideEffect1.Execute();
-
-            ISideEffect sideEffect2 = new SideEffect_PreventCircularity(child, _parent);
-            sideEffect2.Execute();
+            new SideEffect_AssertDiagram_UponSettingParentOrChild(child, _parent).Execute();
+            new SideEffect_PreventCircularity(child, _parent).Execute();
 
             _childrenRelationship.Add(child);
         }
 
         public void Remove(Element child)
         {
-            ISideEffect sideEffect = new SideEffect_AssertDiagram_UponSettingParentOrChild(child, _parent);
-            sideEffect.Execute();
+            new SideEffect_AssertDiagram_UponSettingParentOrChild(child, _parent).Execute();
 
             _childrenRelationship.Remove(child);
         }

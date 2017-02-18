@@ -30,19 +30,15 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public void Add(Element element)
         {
-            ISideEffect sideEffect = new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element);
-            sideEffect.Execute();
+            new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element).Execute();
 
             _relationship.Add(element);
         }
 
         public void Remove(Element element)
         {
-            ISideEffect sideEffect1 = new SideEffect_AssertCannotRemoveBackgroundFromDiagram(element);
-            sideEffect1.Execute();
-
-            ISideEffect sideEffect2 = new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element);
-            sideEffect2.Execute();
+            new SideEffect_AssertCannotRemoveBackgroundFromDiagram(element).Execute();
+            new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element).Execute();
 
             _relationship.Remove(element);
         }
