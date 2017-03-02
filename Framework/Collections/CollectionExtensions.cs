@@ -402,5 +402,16 @@ namespace JJ.Framework.Collections
             if (source == null) throw new ArgumentNullException(nameof(source));
             return new HashSet<T>(source);
         }
+
+        public static T PeekOrDefault<T>(this Stack<T> stack)
+        {
+            // ReSharper disable once ConvertIfStatementToReturnStatement
+            if (stack.Count == 0)
+            {
+                return default(T);
+            }
+
+            return stack.Peek();
+        }
     }
 }
