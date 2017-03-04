@@ -22,14 +22,14 @@ namespace JJ.Framework.Presentation.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class CommonTitles {
+    internal class CommonResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal CommonTitles() {
+        internal CommonResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace JJ.Framework.Presentation.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Framework.Presentation.Resources.CommonTitles", typeof(CommonTitles).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Framework.Presentation.Resources.CommonResources", typeof(CommonResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -70,11 +70,29 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to delete {0} &apos;{1}&apos;?.
+        /// </summary>
+        internal static string AreYouSureYouWishToDeleteWithName {
+            get {
+                return ResourceManager.GetString("AreYouSureYouWishToDeleteWithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot delete {0} &apos;{1}&apos;..
+        /// </summary>
+        internal static string CannotDeleteObjectWithName {
+            get {
+                return ResourceManager.GetString("CannotDeleteObjectWithName", resourceCulture);
             }
         }
         
@@ -282,6 +300,33 @@ namespace JJ.Framework.Presentation.Resources {
         internal static string ObjectDetails {
             get {
                 return ResourceManager.GetString("ObjectDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is deleted..
+        /// </summary>
+        internal static string ObjectIsDeleted {
+            get {
+                return ResourceManager.GetString("ObjectIsDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} not found..
+        /// </summary>
+        internal static string ObjectNotFound {
+            get {
+                return ResourceManager.GetString("ObjectNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} with ID {1} not found..
+        /// </summary>
+        internal static string ObjectNotFoundWithID {
+            get {
+                return ResourceManager.GetString("ObjectNotFoundWithID", resourceCulture);
             }
         }
         

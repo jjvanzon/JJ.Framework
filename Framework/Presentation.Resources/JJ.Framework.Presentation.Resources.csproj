@@ -40,30 +40,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonMessages.Designer.cs">
+    <Compile Include="CommonResourceFormatter.cs" />
+    <Compile Include="CommonResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CommonMessages.resx</DependentUpon>
-    </Compile>
-    <Compile Include="CommonMessageFormatter.cs" />
-    <Compile Include="CommonTitlesFormatter.cs" />
-    <Compile Include="CommonTitles.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommonTitles.resx</DependentUpon>
+      <DependentUpon>CommonResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="CommonMessages.nl-NL.resx" />
-    <EmbeddedResource Include="CommonMessages.resx">
+    <EmbeddedResource Include="CommonResources.nl-NL.resx" />
+    <EmbeddedResource Include="CommonResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CommonMessages.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CommonTitles.nl-NL.resx" />
-    <EmbeddedResource Include="CommonTitles.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>CommonTitles.Designer.cs</LastGenOutput>
+      <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -118,105 +118,134 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Add" xml:space="preserve">
-    <value>Toevoegen</value>
+    <value>Add</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Annuleren</value>
+    <value>Cancel</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Sluiten</value>
+    <value>Close</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Verwijderen</value>
+    <value>Delete</value>
   </data>
   <data name="DeleteObject" xml:space="preserve">
-    <value>{0} verwijderen</value>
+    <value>Delete {0}</value>
+    <comment>{0} = object name</comment>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Bewerken</value>
+    <value>Edit</value>
   </data>
   <data name="EditObject" xml:space="preserve">
-    <value>{0} bewerken</value>
+    <value>Edit {0}</value>
+    <comment>{0} = object name</comment>
   </data>
   <data name="ObjectCount" xml:space="preserve">
-    <value>Aantal {0}</value>
+    <value>Number of {0}</value>
+    <comment>{0} = object name plural</comment>
   </data>
   <data name="ID" xml:space="preserve">
     <value>ID</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Taal</value>
+    <value>Language</value>
   </data>
   <data name="LogIn" xml:space="preserve">
-    <value>Inloggen</value>
+    <value>Log In</value>
   </data>
   <data name="LogOut" xml:space="preserve">
-    <value>Uitloggen</value>
+    <value>Log Out</value>
   </data>
   <data name="Messages" xml:space="preserve">
-    <value>Meldingen</value>
+    <value>Messages</value>
   </data>
   <data name="Name" xml:space="preserve">
-    <value>Naam</value>
+    <value>Name</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>Nieuw</value>
+    <value>New</value>
   </data>
   <data name="No" xml:space="preserve">
-    <value>Nee</value>
+    <value>No</value>
   </data>
   <data name="None" xml:space="preserve">
-    <value>Geen</value>
+    <value>None</value>
   </data>
   <data name="NotAuthorized" xml:space="preserve">
-    <value>Niet gemachtigd</value>
+    <value>Not Authorized</value>
   </data>
   <data name="ObjectDetails" xml:space="preserve">
-    <value>{0} details</value>
+    <value>{0} Details</value>
+    <comment>{0} = object name</comment>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="Remove" xml:space="preserve">
-    <value>Verwijderen</value>
+    <value>Remove</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Opslaan</value>
+    <value>Save</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Zoeken</value>
+    <value>Search</value>
   </data>
   <data name="Yes" xml:space="preserve">
-    <value>Ja</value>
+    <value>Yes</value>
   </data>
   <data name="ObjectProperties" xml:space="preserve">
-    <value>{0} eigenschappen</value>
+    <value>{0} Properties</value>
+    <comment>{0} = object name</comment>
   </data>
   <data name="Properties" xml:space="preserve">
-    <value>Eigenschappen</value>
+    <value>Properties</value>
   </data>
   <data name="FilePath" xml:space="preserve">
-    <value>Bestandspad</value>
+    <value>File Path</value>
   </data>
   <data name="CloseObject" xml:space="preserve">
-    <value>{0} sluiten</value>
+    <value>Close {0}</value>
+    <comment>{0} = object name</comment>
+  </data>
+  <data name="SaveObject" xml:space="preserve">
+    <value>Save {0}</value>
+    <comment>{0} = object name</comment>
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
-  </data>
-  <data name="SaveObject" xml:space="preserve">
-    <value>{0} opslaan</value>
+    <comment>As in the user interface element.</comment>
   </data>
   <data name="Item" xml:space="preserve">
     <value>Item</value>
   </data>
   <data name="False" xml:space="preserve">
-    <value>Onwaar</value>
+    <value>False</value>
   </data>
   <data name="True" xml:space="preserve">
-    <value>Waar</value>
+    <value>True</value>
   </data>
   <data name="NoObject" xml:space="preserve">
-    <value>Geen {0}</value>
+    <value>No {0}</value>
+    <comment>{0} = object name, for example: 'No document'</comment>
+  </data>
+  <data name="AreYouSureYouWishToDeleteWithName" xml:space="preserve">
+    <value>Are you sure you wish to delete {0} '{1}'?</value>
+    <comment>{0} = type of object, {1} = name</comment>
+  </data>
+  <data name="CannotDeleteObjectWithName" xml:space="preserve">
+    <value>Cannot delete {0} '{1}'.</value>
+    <comment>{0} = type of object, {1} = name</comment>
+  </data>
+  <data name="ObjectIsDeleted" xml:space="preserve">
+    <value>{0} is deleted.</value>
+    <comment>{0} = type of object</comment>
+  </data>
+  <data name="ObjectNotFound" xml:space="preserve">
+    <value>{0} not found.</value>
+    <comment>{0} = type of object</comment>
+  </data>
+  <data name="ObjectNotFoundWithID" xml:space="preserve">
+    <value>{0} with ID {1} not found.</value>
+    <comment>{0} = type of object, {1} = ID</comment>
   </data>
 </root>
