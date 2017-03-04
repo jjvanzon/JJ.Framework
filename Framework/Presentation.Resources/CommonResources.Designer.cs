@@ -72,9 +72,9 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you wish to delete {0} &apos;{1}&apos;?.
         /// </summary>
-        internal static string AreYouSureYouWishToDeleteWithName {
+        internal static string AreYouSureYouWishToDelete_WithTypeName_AndName {
             get {
-                return ResourceManager.GetString("AreYouSureYouWishToDeleteWithName", resourceCulture);
+                return ResourceManager.GetString("AreYouSureYouWishToDelete_WithTypeName_AndName", resourceCulture);
             }
         }
         
@@ -90,9 +90,9 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cannot delete {0} &apos;{1}&apos;..
         /// </summary>
-        internal static string CannotDeleteObjectWithName {
+        internal static string CannotDelete_WithTypeName_AndName {
             get {
-                return ResourceManager.GetString("CannotDeleteObjectWithName", resourceCulture);
+                return ResourceManager.GetString("CannotDelete_WithTypeName_AndName", resourceCulture);
             }
         }
         
@@ -108,9 +108,9 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Close {0}.
         /// </summary>
-        internal static string CloseObject {
+        internal static string Close_WithName {
             get {
-                return ResourceManager.GetString("CloseObject", resourceCulture);
+                return ResourceManager.GetString("Close_WithName", resourceCulture);
             }
         }
         
@@ -126,9 +126,18 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Delete {0}.
         /// </summary>
-        internal static string DeleteObject {
+        internal static string Delete_WithName {
             get {
-                return ResourceManager.GetString("DeleteObject", resourceCulture);
+                return ResourceManager.GetString("Delete_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Details.
+        /// </summary>
+        internal static string Details_WithName {
+            get {
+                return ResourceManager.GetString("Details_WithName", resourceCulture);
             }
         }
         
@@ -144,9 +153,9 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Edit {0}.
         /// </summary>
-        internal static string EditObject {
+        internal static string Edit_WithName {
             get {
-                return ResourceManager.GetString("EditObject", resourceCulture);
+                return ResourceManager.GetString("Edit_WithName", resourceCulture);
             }
         }
         
@@ -174,6 +183,15 @@ namespace JJ.Framework.Presentation.Resources {
         internal static string ID {
             get {
                 return ResourceManager.GetString("ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is deleted..
+        /// </summary>
+        internal static string IsDeleted_WithName {
+            get {
+                return ResourceManager.GetString("IsDeleted_WithName", resourceCulture);
             }
         }
         
@@ -270,9 +288,9 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No {0}.
         /// </summary>
-        internal static string NoObject {
+        internal static string NoObject_WithName {
             get {
-                return ResourceManager.GetString("NoObject", resourceCulture);
+                return ResourceManager.GetString("NoObject_WithName", resourceCulture);
             }
         }
         
@@ -286,56 +304,29 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of {0}.
-        /// </summary>
-        internal static string ObjectCount {
-            get {
-                return ResourceManager.GetString("ObjectCount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} Details.
-        /// </summary>
-        internal static string ObjectDetails {
-            get {
-                return ResourceManager.GetString("ObjectDetails", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} is deleted..
-        /// </summary>
-        internal static string ObjectIsDeleted {
-            get {
-                return ResourceManager.GetString("ObjectIsDeleted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to {0} not found..
         /// </summary>
-        internal static string ObjectNotFound {
+        internal static string NotFound_WithName {
             get {
-                return ResourceManager.GetString("ObjectNotFound", resourceCulture);
+                return ResourceManager.GetString("NotFound_WithName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {0} with ID {1} not found..
         /// </summary>
-        internal static string ObjectNotFoundWithID {
+        internal static string NotFound_WithName_AndID {
             get {
-                return ResourceManager.GetString("ObjectNotFoundWithID", resourceCulture);
+                return ResourceManager.GetString("NotFound_WithName_AndID", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Properties.
+        ///   Looks up a localized string similar to Number of {0}.
         /// </summary>
-        internal static string ObjectProperties {
+        internal static string ObjectCount_WithNamePlural {
             get {
-                return ResourceManager.GetString("ObjectProperties", resourceCulture);
+                return ResourceManager.GetString("ObjectCount_WithNamePlural", resourceCulture);
             }
         }
         
@@ -354,6 +345,15 @@ namespace JJ.Framework.Presentation.Resources {
         internal static string Properties {
             get {
                 return ResourceManager.GetString("Properties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Properties.
+        /// </summary>
+        internal static string Properties_WithName {
+            get {
+                return ResourceManager.GetString("Properties_WithName", resourceCulture);
             }
         }
         
@@ -378,9 +378,9 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Save {0}.
         /// </summary>
-        internal static string SaveObject {
+        internal static string Save_WithName {
             get {
-                return ResourceManager.GetString("SaveObject", resourceCulture);
+                return ResourceManager.GetString("Save_WithName", resourceCulture);
             }
         }
         

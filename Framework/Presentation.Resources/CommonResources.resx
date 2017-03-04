@@ -129,18 +129,18 @@
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
-  <data name="DeleteObject" xml:space="preserve">
+  <data name="Delete_WithName" xml:space="preserve">
     <value>Delete {0}</value>
     <comment>{0} = object name</comment>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="EditObject" xml:space="preserve">
+  <data name="Edit_WithName" xml:space="preserve">
     <value>Edit {0}</value>
     <comment>{0} = object name</comment>
   </data>
-  <data name="ObjectCount" xml:space="preserve">
+  <data name="ObjectCount_WithNamePlural" xml:space="preserve">
     <value>Number of {0}</value>
     <comment>{0} = object name plural</comment>
   </data>
@@ -174,7 +174,7 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>Not Authorized</value>
   </data>
-  <data name="ObjectDetails" xml:space="preserve">
+  <data name="Details_WithName" xml:space="preserve">
     <value>{0} Details</value>
     <comment>{0} = object name</comment>
   </data>
@@ -193,7 +193,7 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="ObjectProperties" xml:space="preserve">
+  <data name="Properties_WithName" xml:space="preserve">
     <value>{0} Properties</value>
     <comment>{0} = object name</comment>
   </data>
@@ -203,11 +203,11 @@
   <data name="FilePath" xml:space="preserve">
     <value>File Path</value>
   </data>
-  <data name="CloseObject" xml:space="preserve">
+  <data name="Close_WithName" xml:space="preserve">
     <value>Close {0}</value>
     <comment>{0} = object name</comment>
   </data>
-  <data name="SaveObject" xml:space="preserve">
+  <data name="Save_WithName" xml:space="preserve">
     <value>Save {0}</value>
     <comment>{0} = object name</comment>
   </data>
@@ -224,27 +224,27 @@
   <data name="True" xml:space="preserve">
     <value>True</value>
   </data>
-  <data name="NoObject" xml:space="preserve">
+  <data name="NoObject_WithName" xml:space="preserve">
     <value>No {0}</value>
     <comment>{0} = object name, for example: 'No document'</comment>
   </data>
-  <data name="AreYouSureYouWishToDeleteWithName" xml:space="preserve">
+  <data name="AreYouSureYouWishToDelete_WithTypeName_AndName" xml:space="preserve">
     <value>Are you sure you wish to delete {0} '{1}'?</value>
     <comment>{0} = type of object, {1} = name</comment>
   </data>
-  <data name="CannotDeleteObjectWithName" xml:space="preserve">
+  <data name="CannotDelete_WithTypeName_AndName" xml:space="preserve">
     <value>Cannot delete {0} '{1}'.</value>
     <comment>{0} = type of object, {1} = name</comment>
   </data>
-  <data name="ObjectIsDeleted" xml:space="preserve">
+  <data name="IsDeleted_WithName" xml:space="preserve">
     <value>{0} is deleted.</value>
     <comment>{0} = type of object</comment>
   </data>
-  <data name="ObjectNotFound" xml:space="preserve">
+  <data name="NotFound_WithName" xml:space="preserve">
     <value>{0} not found.</value>
     <comment>{0} = type of object</comment>
   </data>
-  <data name="ObjectNotFoundWithID" xml:space="preserve">
+  <data name="NotFound_WithName_AndID" xml:space="preserve">
     <value>{0} with ID {1} not found.</value>
     <comment>{0} = type of object, {1} = ID</comment>
   </data>
