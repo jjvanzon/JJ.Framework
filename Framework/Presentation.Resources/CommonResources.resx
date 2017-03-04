@@ -131,18 +131,18 @@
   </data>
   <data name="Delete_WithName" xml:space="preserve">
     <value>Delete {0}</value>
-    <comment>{0} = object name</comment>
+    <comment>{0} = name</comment>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
   <data name="Edit_WithName" xml:space="preserve">
     <value>Edit {0}</value>
-    <comment>{0} = object name</comment>
+    <comment>{0} = name</comment>
   </data>
-  <data name="ObjectCount_WithNamePlural" xml:space="preserve">
+  <data name="Count_WithNamePlural" xml:space="preserve">
     <value>Number of {0}</value>
-    <comment>{0} = object name plural</comment>
+    <comment>{0} = name plural</comment>
   </data>
   <data name="ID" xml:space="preserve">
     <value>ID</value>
@@ -176,7 +176,7 @@
   </data>
   <data name="Details_WithName" xml:space="preserve">
     <value>{0} Details</value>
-    <comment>{0} = object name</comment>
+    <comment>{0} = name</comment>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
@@ -195,7 +195,7 @@
   </data>
   <data name="Properties_WithName" xml:space="preserve">
     <value>{0} Properties</value>
-    <comment>{0} = object name</comment>
+    <comment>{0} = name</comment>
   </data>
   <data name="Properties" xml:space="preserve">
     <value>Properties</value>
@@ -205,11 +205,11 @@
   </data>
   <data name="Close_WithName" xml:space="preserve">
     <value>Close {0}</value>
-    <comment>{0} = object name</comment>
+    <comment>{0} = name</comment>
   </data>
   <data name="Save_WithName" xml:space="preserve">
     <value>Save {0}</value>
-    <comment>{0} = object name</comment>
+    <comment>{0} = name</comment>
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
@@ -226,7 +226,7 @@
   </data>
   <data name="NoObject_WithName" xml:space="preserve">
     <value>No {0}</value>
-    <comment>{0} = object name, for example: 'No document'</comment>
+    <comment>{0} = name, for example: 'No document'</comment>
   </data>
   <data name="AreYouSureYouWishToDelete_WithTypeName_AndName" xml:space="preserve">
     <value>Are you sure you wish to delete {0} '{1}'?</value>
@@ -238,14 +238,33 @@
   </data>
   <data name="IsDeleted_WithName" xml:space="preserve">
     <value>{0} is deleted.</value>
-    <comment>{0} = type of object</comment>
+    <comment>{0} = name</comment>
   </data>
   <data name="NotFound_WithName" xml:space="preserve">
     <value>{0} not found.</value>
-    <comment>{0} = type of object</comment>
+    <comment>{0} = name</comment>
   </data>
   <data name="NotFound_WithName_AndID" xml:space="preserve">
     <value>{0} with ID {1} not found.</value>
-    <comment>{0} = type of object, {1} = ID</comment>
+    <comment>{0} = name, {1} = ID</comment>
+  </data>
+  <data name="ID_WithName" xml:space="preserve">
+    <value>{0} ID</value>
+    <comment>{0} = name</comment>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="NotFound_WithItemName_ID_AndListName" xml:space="preserve">
+    <value>{0} with ID '{1}' not found in the list of {2}.</value>
+    <comment>{0} = name, {1} = id, {2} = name plural</comment>
+  </data>
+  <data name="NotFound_WithTypeName_AndName" xml:space="preserve">
+    <value>{0} named '{1}' not found.</value>
+    <comment>{0} = type of object, e.g. 'Recipe', {1} = name of object, e.g. 'eggs and bacon'.</comment>
+  </data>
+  <data name="OneOrTheOtherMustBeFilledIn" xml:space="preserve">
+    <value>Either {0} or {1} must be filled in.</value>
+    <comment>{0} = name of first thing, {1} = name of second thing</comment>
   </data>
 </root>

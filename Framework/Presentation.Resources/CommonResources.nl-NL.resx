@@ -129,16 +129,16 @@
   <data name="Delete" xml:space="preserve">
     <value>Verwijderen</value>
   </data>
-  <data name="DeleteObject" xml:space="preserve">
+  <data name="Delete_WithName" xml:space="preserve">
     <value>{0} verwijderen</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Bewerken</value>
   </data>
-  <data name="EditObject" xml:space="preserve">
+  <data name="Edit_WithName" xml:space="preserve">
     <value>{0} bewerken</value>
   </data>
-  <data name="ObjectCount" xml:space="preserve">
+  <data name="Count_WithNamePlural" xml:space="preserve">
     <value>Aantal {0}</value>
   </data>
   <data name="ID" xml:space="preserve">
@@ -171,7 +171,7 @@
   <data name="NotAuthorized" xml:space="preserve">
     <value>Niet gemachtigd</value>
   </data>
-  <data name="ObjectDetails" xml:space="preserve">
+  <data name="Details_WithName" xml:space="preserve">
     <value>{0} details</value>
   </data>
   <data name="OK" xml:space="preserve">
@@ -189,7 +189,7 @@
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>
   </data>
-  <data name="ObjectProperties" xml:space="preserve">
+  <data name="Properties_WithName" xml:space="preserve">
     <value>{0} eigenschappen</value>
   </data>
   <data name="Properties" xml:space="preserve">
@@ -198,13 +198,13 @@
   <data name="FilePath" xml:space="preserve">
     <value>Bestandspad</value>
   </data>
-  <data name="CloseObject" xml:space="preserve">
+  <data name="Close_WithName" xml:space="preserve">
     <value>{0} sluiten</value>
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
-  <data name="SaveObject" xml:space="preserve">
+  <data name="Save_WithName" xml:space="preserve">
     <value>{0} opslaan</value>
   </data>
   <data name="Item" xml:space="preserve">
@@ -216,27 +216,38 @@
   <data name="True" xml:space="preserve">
     <value>Waar</value>
   </data>
-  <data name="NoObject" xml:space="preserve">
+  <data name="NoObject_WithName" xml:space="preserve">
     <value>Geen {0}</value>
   </data>
-  <data name="AreYouSureYouWishToDeleteWithName" xml:space="preserve">
+  <data name="AreYouSureYouWishToDelete_WithTypeName_AndName" xml:space="preserve">
     <value>Weet u zeker dat u {0} '{1}' wilt verwijderen?</value>
-    <comment>{0} = type of object, {1} = name</comment>
   </data>
-  <data name="CannotDeleteObjectWithName" xml:space="preserve">
+  <data name="CannotDelete_WithTypeName_AndName" xml:space="preserve">
     <value>{0} '{1}' kan niet worden verwijderd.</value>
-    <comment>{0} = type of object, {2} = name</comment>
   </data>
-  <data name="ObjectIsDeleted" xml:space="preserve">
+  <data name="IsDeleted_WithName" xml:space="preserve">
     <value>{0} is verwijderd.</value>
-    <comment>{0} = type of object</comment>
   </data>
-  <data name="ObjectNotFound" xml:space="preserve">
+  <data name="NotFound_WithName" xml:space="preserve">
     <value>{0} niet gevonden.</value>
-    <comment>{0} = type of object</comment>
   </data>
-  <data name="ObjectNotFoundWithID" xml:space="preserve">
+  <data name="NotFound_WithName_AndID" xml:space="preserve">
     <value>{0} met ID {1} niet gevonden.</value>
-    <comment>{0} = type of object, {1} = ID</comment>
+  </data>
+  <data name="ID_WithName" xml:space="preserve">
+    <value>{0} ID</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Soort</value>
+  </data>
+  <data name="NotFound_WithItemName_ID_AndListName" xml:space="preserve">
+    <value>{0} met ID '{1}' niet gevonden in de lijst van {2}.</value>
+  </data>
+  <data name="NotFound_WithTypeName_AndName" xml:space="preserve">
+    <value>{0} genaamd '{1}' niet gevonden.</value>
+  </data>
+  <data name="OneOrTheOtherMustBeFilledIn" xml:space="preserve">
+    <value>{0} of {1} moet zijn ingevuld.</value>
+    <comment>{0} = name of first thing, {1} = name of second thing</comment>
   </data>
 </root>

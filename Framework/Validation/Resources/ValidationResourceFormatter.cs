@@ -205,6 +205,8 @@ namespace JJ.Framework.Validation.Resources
             return string.Format(ValidationResources.NotUnique_WithName_Plural, propertyDisplayNamePlural);
         }
 
+        public static string NotUniqueSingular(string propertyDisplayNameSingular, object value) => string.Format(ValidationResources.NotUnique_WithName_AndValue_Singular, propertyDisplayNameSingular, value);
+
         public static string NotExists(string propertyDisplayName)
         {
             return string.Format(ValidationResources.NotExists_WithName, propertyDisplayName);

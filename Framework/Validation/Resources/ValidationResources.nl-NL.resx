@@ -119,157 +119,122 @@
   </resheader>
   <data name="Contains_WithName_AndValue" xml:space="preserve">
     <value>{0} bevat {1}.</value>
-    <comment>{0} = property, {1} = value</comment>
   </data>
   <data name="LengthExceeded_WithName_AndLength" xml:space="preserve">
     <value>{0} is langer dan {1} tekens.</value>
-    <comment>{0} = property, {1} = max length</comment>
   </data>
   <data name="FileAlreadyExists_WithFilePath" xml:space="preserve">
     <value>Bestand '{0}' bestaat al.</value>
-    <comment>{0} = file path</comment>
   </data>
   <data name="FileNotFound_WithFilePath" xml:space="preserve">
     <value>Bestand '{0}' bestaat niet.</value>
-    <comment>{0} = file path</comment>
   </data>
   <data name="FolderAlreadyExists_WithFolderPAth" xml:space="preserve">
     <value>Map '{0}' bestaat al.</value>
-    <comment>{0} = folder path</comment>
   </data>
   <data name="FolderNotFound_WithFolderPath" xml:space="preserve">
     <value>Map '{0}' niet gevonden.</value>
-    <comment>{0} = folder path</comment>
   </data>
   <data name="GreaterThanOrEqual_WithName_AndLimit" xml:space="preserve">
     <value>{0} zou lager dan {1} moeten zijn.</value>
-    <comment>{0} = property, {1} = limit</comment>
   </data>
   <data name="GreaterThan_WithName_AndLimit" xml:space="preserve">
     <value>{0} ligt boven de {1}.</value>
-    <comment>{0} = property, {1} = limit</comment>
   </data>
   <data name="HasNulls_WithName" xml:space="preserve">
     <value>{0} heeft lege waardes.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="InvalidIndex_WithName" xml:space="preserve">
     <value>{0} is een ongelding nummer.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="Invalid_WithName" xml:space="preserve">
     <value>{0} is ongeldig.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="IsBrokenNumber_WithName" xml:space="preserve">
     <value>{0} is een kommagetal.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="IsEmpty_WithName" xml:space="preserve">
     <value>{0} is leeg.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="IsEqual_WithName_AndValue" xml:space="preserve">
     <value>{0} is {1}.</value>
-    <comment>{0} = property, {1} = value</comment>
   </data>
   <data name="IsFilledIn_WithName" xml:space="preserve">
     <value>{0} zou niet ingevuld moeten zijn.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="IsInfinity_WithName" xml:space="preserve">
     <value>{0} is oneindig.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="IsInList_WithName" xml:space="preserve">
     <value>{0} staat in de lijst met niet-toegestane waardes.</value>
   </data>
   <data name="IsInteger_WithName" xml:space="preserve">
     <value>{0} is geen geheel getal.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="IsNaN_WithName" xml:space="preserve">
     <value>{0} is geen getal.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="IsOfType_WithName_AndTypeName" xml:space="preserve">
     <value>{0} is van het soort {1}.</value>
-    <comment>{0} = property, {1} = type name</comment>
   </data>
   <data name="IsZero_WithName" xml:space="preserve">
     <value>{0} is 0.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="LessThanOrEqual_WithName_AndLimit" xml:space="preserve">
     <value>{0} zou hoger dan {1} moeten zijn.</value>
-    <comment>{0} = property, {1} = limit</comment>
   </data>
   <data name="LessThan_WithName_AndLimit" xml:space="preserve">
     <value>{0} ligt onder de {1}.</value>
-    <comment>{0} = property, {1} = limit</comment>
   </data>
   <data name="NotBrokenNumber_WithName" xml:space="preserve">
     <value>{0} is geen kommagetal.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="NotContains_WithName_AndValue" xml:space="preserve">
     <value>{0} bevat geen {1}.</value>
-    <comment>{0} = property, {1} = value</comment>
   </data>
   <data name="NotEmpty_WithName" xml:space="preserve">
     <value>{0} is niet leeg.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="NotEqual_WithName_AndValue" xml:space="preserve">
     <value>{0} is niet {1}.</value>
-    <comment>{0} = property, {1} = value</comment>
   </data>
   <data name="NotFilledIn_WithName" xml:space="preserve">
     <value>{0} is niet ingevuld.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="NotInList_WithName" xml:space="preserve">
     <value>{0} staat niet in de lijst van toegestane waardes.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="NotInList_WithName_AndAllowedValues" xml:space="preserve">
     <value>{0} zou een van de volgende waardes moeten hebben: {1}.</value>
-    <comment>{0} = property, {1} = allowed values</comment>
   </data>
   <data name="NotInteger_WithName" xml:space="preserve">
     <value>{0} is geen geheel getal.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="NotOfType_WithName_AndTypeName" xml:space="preserve">
     <value>{0} is niet van het soort {1}.</value>
-    <comment>{0} = property, {1} = type name</comment>
   </data>
   <data name="NotUnique_WithName_Singular" xml:space="preserve">
     <value>{0} is niet uniek.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="Exists_WithName" xml:space="preserve">
     <value>{0} zou niet moeten bestaan.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="NotExists_WithName" xml:space="preserve">
     <value>{0} bestaant niet.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="NotUnique_WithName_Plural" xml:space="preserve">
     <value>{0} zijn niet uniek.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="NotInList_WithName_AndValue" xml:space="preserve">
     <value>{0} '{1}' staat niet in de lijst van toegestane waardes.</value>
-    <comment>{0} = property, {1} = value</comment>
   </data>
   <data name="InvalidChoice_WithName" xml:space="preserve">
     <value>{0} is een ongeldige keuze.</value>
-    <comment>{0} = property</comment>
   </data>
   <data name="NotBoth_WithTwoNames" xml:space="preserve">
     <value>{0} of {1} kunnen worden ingevuld, maar niet beide tegelijk.</value>
-    <comment>{0} = first property, {1} = second property</comment>
+  </data>
+  <data name="NotUnique_WithName_AndValue_Singular" xml:space="preserve">
+    <value>{0} '{1}' is niet uniek.</value>
   </data>
 </root>

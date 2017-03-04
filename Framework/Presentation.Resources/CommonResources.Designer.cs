@@ -115,6 +115,15 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of {0}.
+        /// </summary>
+        internal static string Count_WithNamePlural {
+            get {
+                return ResourceManager.GetString("Count_WithNamePlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         internal static string Delete {
@@ -183,6 +192,15 @@ namespace JJ.Framework.Presentation.Resources {
         internal static string ID {
             get {
                 return ResourceManager.GetString("ID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} ID.
+        /// </summary>
+        internal static string ID_WithName {
+            get {
+                return ResourceManager.GetString("ID_WithName", resourceCulture);
             }
         }
         
@@ -304,6 +322,15 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} with ID &apos;{1}&apos; not found in the list of {2}..
+        /// </summary>
+        internal static string NotFound_WithItemName_ID_AndListName {
+            get {
+                return ResourceManager.GetString("NotFound_WithItemName_ID_AndListName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} not found..
         /// </summary>
         internal static string NotFound_WithName {
@@ -322,11 +349,11 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of {0}.
+        ///   Looks up a localized string similar to {0} named &apos;{1}&apos; not found..
         /// </summary>
-        internal static string ObjectCount_WithNamePlural {
+        internal static string NotFound_WithTypeName_AndName {
             get {
-                return ResourceManager.GetString("ObjectCount_WithNamePlural", resourceCulture);
+                return ResourceManager.GetString("NotFound_WithTypeName_AndName", resourceCulture);
             }
         }
         
@@ -336,6 +363,15 @@ namespace JJ.Framework.Presentation.Resources {
         internal static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Either {0} or {1} must be filled in..
+        /// </summary>
+        internal static string OneOrTheOtherMustBeFilledIn {
+            get {
+                return ResourceManager.GetString("OneOrTheOtherMustBeFilledIn", resourceCulture);
             }
         }
         
@@ -399,6 +435,15 @@ namespace JJ.Framework.Presentation.Resources {
         internal static string True {
             get {
                 return ResourceManager.GetString("True", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        internal static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         
