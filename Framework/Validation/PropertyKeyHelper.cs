@@ -2,12 +2,13 @@
 using JJ.Framework.Reflection;
 using System;
 using System.Linq.Expressions;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Validation
 {
     internal static class PropertyKeyHelper
     {
-        public static string GetPropertyKeyFromExpression(Expression<Func<object>> propertyKeyExpression)
+        public static string GetPropertyKeyFromExpression([NotNull] Expression<Func<object>> propertyKeyExpression)
         {
             string propertyKey = ExpressionHelper.GetText(propertyKeyExpression, true);
 

@@ -2,14 +2,14 @@
 {
     public static class CommonMessageFormatter
     {
-        public static string ObjectNotFoundWithID(string objectTypeName, object id)
+        public static string ObjectNotFoundWithID(string objectName, object id)
         {
-            return string.Format(CommonMessages.ObjectNotFoundWithID, objectTypeName, id);
+            return string.Format(CommonMessages.ObjectNotFoundWithID, objectName, id);
         }
 
-        public static string ObjectNotFound(string objectTypeName)
+        public static string ObjectNotFound(string objectName)
         {
-            return string.Format(CommonMessages.ObjectNotFound, objectTypeName);
+            return string.Format(CommonMessages.ObjectNotFound, objectName);
         }
 
         public static string CannotDeleteObjectWithName(string objectTypeName, string objectName)

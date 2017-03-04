@@ -22,7 +22,7 @@ namespace JJ.Framework.Presentation.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class CommonTitles {
+    internal class CommonTitles {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace JJ.Framework.Presentation.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Framework.Presentation.Resources.CommonTitles", typeof(CommonTitles).Assembly);
@@ -51,7 +51,7 @@ namespace JJ.Framework.Presentation.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
-        public static string Add {
+        internal static string Add {
             get {
                 return ResourceManager.GetString("Add", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
-        public static string Cancel {
+        internal static string Cancel {
             get {
                 return ResourceManager.GetString("Cancel", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
-        public static string Close {
+        internal static string Close {
             get {
                 return ResourceManager.GetString("Close", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Close {0}.
         /// </summary>
-        public static string CloseObject {
+        internal static string CloseObject {
             get {
                 return ResourceManager.GetString("CloseObject", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
-        public static string Delete {
+        internal static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Delete {0}.
         /// </summary>
-        public static string DeleteObject {
+        internal static string DeleteObject {
             get {
                 return ResourceManager.GetString("DeleteObject", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
-        public static string Edit {
+        internal static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Edit {0}.
         /// </summary>
-        public static string EditObject {
+        internal static string EditObject {
             get {
                 return ResourceManager.GetString("EditObject", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to False.
         /// </summary>
-        public static string False {
+        internal static string False {
             get {
                 return ResourceManager.GetString("False", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to File Path.
         /// </summary>
-        public static string FilePath {
+        internal static string FilePath {
             get {
                 return ResourceManager.GetString("FilePath", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to ID.
         /// </summary>
-        public static string ID {
+        internal static string ID {
             get {
                 return ResourceManager.GetString("ID", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Item.
         /// </summary>
-        public static string Item {
+        internal static string Item {
             get {
                 return ResourceManager.GetString("Item", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
-        public static string Language {
+        internal static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Log In.
         /// </summary>
-        public static string LogIn {
+        internal static string LogIn {
             get {
                 return ResourceManager.GetString("LogIn", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Log Out.
         /// </summary>
-        public static string LogOut {
+        internal static string LogOut {
             get {
                 return ResourceManager.GetString("LogOut", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Menu.
         /// </summary>
-        public static string Menu {
+        internal static string Menu {
             get {
                 return ResourceManager.GetString("Menu", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Messages.
         /// </summary>
-        public static string Messages {
+        internal static string Messages {
             get {
                 return ResourceManager.GetString("Messages", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
-        public static string Name {
+        internal static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to New.
         /// </summary>
-        public static string New {
+        internal static string New {
             get {
                 return ResourceManager.GetString("New", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
-        public static string No {
+        internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
             }
@@ -243,16 +243,25 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
-        public static string None {
+        internal static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No {0}.
+        /// </summary>
+        internal static string NoObject {
+            get {
+                return ResourceManager.GetString("NoObject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Not Authorized.
         /// </summary>
-        public static string NotAuthorized {
+        internal static string NotAuthorized {
             get {
                 return ResourceManager.GetString("NotAuthorized", resourceCulture);
             }
@@ -261,7 +270,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Number of {0}.
         /// </summary>
-        public static string ObjectCount {
+        internal static string ObjectCount {
             get {
                 return ResourceManager.GetString("ObjectCount", resourceCulture);
             }
@@ -270,7 +279,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} Details.
         /// </summary>
-        public static string ObjectDetails {
+        internal static string ObjectDetails {
             get {
                 return ResourceManager.GetString("ObjectDetails", resourceCulture);
             }
@@ -279,7 +288,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} Properties.
         /// </summary>
-        public static string ObjectProperties {
+        internal static string ObjectProperties {
             get {
                 return ResourceManager.GetString("ObjectProperties", resourceCulture);
             }
@@ -288,7 +297,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
-        public static string OK {
+        internal static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
             }
@@ -297,7 +306,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Properties.
         /// </summary>
-        public static string Properties {
+        internal static string Properties {
             get {
                 return ResourceManager.GetString("Properties", resourceCulture);
             }
@@ -306,7 +315,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
-        public static string Remove {
+        internal static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
             }
@@ -315,7 +324,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
-        public static string Save {
+        internal static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
             }
@@ -324,7 +333,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Save {0}.
         /// </summary>
-        public static string SaveObject {
+        internal static string SaveObject {
             get {
                 return ResourceManager.GetString("SaveObject", resourceCulture);
             }
@@ -333,7 +342,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
-        public static string Search {
+        internal static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
             }
@@ -342,7 +351,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to True.
         /// </summary>
-        public static string True {
+        internal static string True {
             get {
                 return ResourceManager.GetString("True", resourceCulture);
             }
@@ -351,7 +360,7 @@ namespace JJ.Framework.Presentation.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
-        public static string Yes {
+        internal static string Yes {
             get {
                 return ResourceManager.GetString("Yes", resourceCulture);
             }

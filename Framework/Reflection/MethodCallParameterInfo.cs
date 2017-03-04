@@ -11,8 +11,8 @@ namespace JJ.Framework.Reflection
             Value = value;
         }
 
-        public Type ParameterType { get; private set; }
-        public string Name { get; private set; }
-        public object Value { get; private set; }
+        public Type ParameterType { get; }
+        public string Name { get; }
+        public object Value { get; }
     }
 }

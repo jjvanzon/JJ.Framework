@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Reflection
 {
@@ -147,7 +148,7 @@ namespace JJ.Framework.Reflection
         /// If you set this to true, an expression like MyArray[i] will translate to e.g.
         /// "MyArray[2]" instead of "MyArray[i]".
         /// </param>
-        public static string GetText<T>(Expression<Func<T>> expression, bool showIndexerValues = false)
+        public static string GetText<T>([NotNull] Expression<Func<T>> expression, bool showIndexerValues = false)
         {
             return GetText((LambdaExpression)expression, showIndexerValues);
         }
@@ -156,7 +157,7 @@ namespace JJ.Framework.Reflection
         /// If you set this to true, an expression like MyArray[i] will translate to e.g.
         /// "MyArray[2]" instead of "MyArray[i]".
         /// </param>
-        public static string GetText(LambdaExpression expression, bool showIndexerValues = false)
+        public static string GetText([NotNull] LambdaExpression expression, bool showIndexerValues = false)
         {
             if (expression == null) throw new ArgumentNullException(nameof(expression));
             return GetText(expression.Body, showIndexerValues);

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq.Expressions;
+using JetBrains.Annotations;
 using JJ.Framework.Validation.Resources;
 using JJ.Framework.Reflection;
 using JJ.Framework.Exceptions;
@@ -12,14 +13,14 @@ namespace JJ.Framework.Validation
     [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
     public class ValidationMessages : IEnumerable<ValidationMessage>
     {
-        private readonly List<ValidationMessage> _list = new List<ValidationMessage>();
+        [ItemNotNull] [NotNull] private readonly List<ValidationMessage> _list = new List<ValidationMessage>();
 
         /// <param name="propertyKeyExpression">
         /// Used to extract the property key.
         /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
         /// The root of the expression is excluded from the property key, e.g. "() => MyObject.MyProperty" produces the property key "MyProperty".
         /// </param>
-        public void Add(Expression<Func<object>> propertyKeyExpression, string message)
+        public void Add([NotNull] Expression<Func<object>> propertyKeyExpression, string message)
         {
             string propertyKey = PropertyKeyHelper.GetPropertyKeyFromExpression(propertyKeyExpression);
             Add(propertyKey, message);
@@ -37,15 +38,10 @@ namespace JJ.Framework.Validation
             _list.AddRange(validationMessages);
         }
 
-        public int Count
-        {
-            get { return _list.Count; }
-        }
+        public int Count => _list.Count;
 
-        public ValidationMessage this[int i]
-        {
-            get { return _list[i]; }
-        }
+        [NotNull]
+        public ValidationMessage this[int i] => _list[i];
 
         public IEnumerator<ValidationMessage> GetEnumerator()
         {
@@ -57,10 +53,7 @@ namespace JJ.Framework.Validation
             return _list.GetEnumerator();
         }
 
-        private string DebuggerDisplay
-        {
-            get { return DebugHelper.GetDebuggerDisplay(this); }
-        }
+        private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
 
         public void AddContainsMessage(string propertyKey, string propertyDisplayName, object valueOrName)
         {

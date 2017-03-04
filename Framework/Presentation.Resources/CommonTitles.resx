@@ -131,14 +131,14 @@
   </data>
   <data name="DeleteObject" xml:space="preserve">
     <value>Delete {0}</value>
-    <comment>{0} = type of object, singular</comment>
+    <comment>{0} = object name</comment>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
   <data name="EditObject" xml:space="preserve">
     <value>Edit {0}</value>
-    <comment>{0} = type of object, singular</comment>
+    <comment>{0} = object name</comment>
   </data>
   <data name="ObjectCount" xml:space="preserve">
     <value>Number of {0}</value>
@@ -176,7 +176,7 @@
   </data>
   <data name="ObjectDetails" xml:space="preserve">
     <value>{0} Details</value>
-    <comment>{0} = type of object, singular</comment>
+    <comment>{0} = object name</comment>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
@@ -195,7 +195,7 @@
   </data>
   <data name="ObjectProperties" xml:space="preserve">
     <value>{0} Properties</value>
-    <comment>{0} = type of object</comment>
+    <comment>{0} = object name</comment>
   </data>
   <data name="Properties" xml:space="preserve">
     <value>Properties</value>
@@ -205,11 +205,11 @@
   </data>
   <data name="CloseObject" xml:space="preserve">
     <value>Close {0}</value>
-    <comment>{0} = type of object, singular</comment>
+    <comment>{0} = object name</comment>
   </data>
   <data name="SaveObject" xml:space="preserve">
     <value>Save {0}</value>
-    <comment>{0} = type of object, singular</comment>
+    <comment>{0} = object name</comment>
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
@@ -223,5 +223,9 @@
   </data>
   <data name="True" xml:space="preserve">
     <value>True</value>
+  </data>
+  <data name="NoObject" xml:space="preserve">
+    <value>No {0}</value>
+    <comment>{0} = object name, for example: 'No document'</comment>
   </data>
 </root>

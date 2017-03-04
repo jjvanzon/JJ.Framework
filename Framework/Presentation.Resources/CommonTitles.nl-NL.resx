@@ -131,14 +131,12 @@
   </data>
   <data name="DeleteObject" xml:space="preserve">
     <value>{0} verwijderen</value>
-    <comment>{0} = type of object, singular</comment>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Bewerken</value>
   </data>
   <data name="EditObject" xml:space="preserve">
     <value>{0} bewerken</value>
-    <comment>{0} = type of object, singular</comment>
   </data>
   <data name="ObjectCount" xml:space="preserve">
     <value>Aantal {0}</value>
@@ -175,7 +173,6 @@
   </data>
   <data name="ObjectDetails" xml:space="preserve">
     <value>{0} details</value>
-    <comment>{0} = type of object, singular</comment>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
@@ -194,7 +191,6 @@
   </data>
   <data name="ObjectProperties" xml:space="preserve">
     <value>{0} eigenschappen</value>
-    <comment>{0} = type of object</comment>
   </data>
   <data name="Properties" xml:space="preserve">
     <value>Eigenschappen</value>
@@ -204,15 +200,12 @@
   </data>
   <data name="CloseObject" xml:space="preserve">
     <value>{0} sluiten</value>
-    <comment>{0} = type of object, singular</comment>
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
-    <comment>As in the user interface element.</comment>
   </data>
   <data name="SaveObject" xml:space="preserve">
     <value>{0} opslaan</value>
-    <comment>{0} = type of object, singular</comment>
   </data>
   <data name="Item" xml:space="preserve">
     <value>Item</value>
@@ -222,5 +215,8 @@
   </data>
   <data name="True" xml:space="preserve">
     <value>Waar</value>
+  </data>
+  <data name="NoObject" xml:space="preserve">
+    <value>Geen {0}</value>
   </data>
 </root>

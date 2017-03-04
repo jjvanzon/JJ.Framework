@@ -7,6 +7,7 @@ using JJ.Framework.Reflection;
 using System.Collections.Generic;
 using JJ.Framework.Common;
 using System.Globalization;
+using JetBrains.Annotations;
 using JJ.Framework.Collections;
 
 namespace JJ.Framework.Validation
@@ -152,8 +153,10 @@ namespace JJ.Framework.Validation
 
         // Equation
 
-        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> In<TValue>(IEnumerable<TValue> possibleValues)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> In<TValue>([NotNull] IEnumerable<TValue> possibleValues)
         {
+            if (possibleValues == null) throw new NullException(() => possibleValues);
+
             string stringValue = Convert.ToString(_value, _formatProvider);
 
             if (string.IsNullOrEmpty(stringValue))
@@ -161,10 +164,12 @@ namespace JJ.Framework.Validation
                 return this;
             }
 
+            // ReSharper disable once PossibleMultipleEnumeration
             bool isAllowed = possibleValues.Where(x => Equals(x, _value)).Any();
 
             if (!isAllowed)
             {
+                // ReSharper disable once PossibleMultipleEnumeration
                 ValidationMessages.AddNotInListMessage(_propertyKey, _propertyDisplayName, possibleValues);
             }
 
@@ -175,7 +180,7 @@ namespace JJ.Framework.Validation
         {
             if (possibleValues == null) throw new NullException(() => possibleValues);
 
-            return In((IEnumerable<object>)(object[])possibleValues);
+            return In((IEnumerable<object>)possibleValues);
         }
 
         public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> Is(object value)
@@ -432,7 +437,7 @@ namespace JJ.Framework.Validation
         private bool IsEnum_WithNumericComparison<TEnum>(object value)
             where TEnum : struct
         {
-            TEnum[] enumValues = (TEnum[])Enum.GetValues(typeof(TEnum));
+            IList<TEnum> enumValues = EnumHelper.GetValues<TEnum>();
 
             // Convert to a canonical form.
             // "Every enumeration type has an underlying type, which can be any integral type except char."
@@ -468,6 +473,7 @@ namespace JJ.Framework.Validation
             }
 
             double convertedValue;
+            // ReSharper disable once InvertIf
             if (DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
             {
                 if (double.IsNaN(convertedValue))
@@ -489,6 +495,7 @@ namespace JJ.Framework.Validation
             }
 
             double convertedValue;
+            // ReSharper disable once InvertIf
             if (DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
             {
                 if (double.IsInfinity(convertedValue))

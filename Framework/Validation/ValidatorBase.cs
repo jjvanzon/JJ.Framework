@@ -1,6 +1,7 @@
 ﻿using JJ.Framework.Exceptions;
 using System;
 using System.Linq;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Validation
 {
@@ -12,31 +13,31 @@ namespace JJ.Framework.Validation
         /// </param>
         public ValidatorBase(TRootObject obj, bool postponeExecute = false)
         {
-            Object = obj;
+            Obj = obj;
 
             if (!postponeExecute)
             {
+                // ReSharper disable once VirtualMemberCallInConstructor
                 Execute();
             }
         }
 
-        public TRootObject Object { get; private set; }
+        [CanBeNull]
+        public virtual TRootObject Obj { get; }
 
         protected abstract void Execute();
 
-        private readonly ValidationMessages _validationMessages = new ValidationMessages();
-        public ValidationMessages ValidationMessages { get { return _validationMessages; } }
+        [NotNull]
+        public ValidationMessages ValidationMessages { get; } = new ValidationMessages();
 
-        public bool IsValid
-        {
-            get { return ValidationMessages.Count == 0; }
-        }
+        public bool IsValid => ValidationMessages.Count == 0;
 
         /// <summary>
         /// Throws an exception if IsValid is false.
         /// </summary>
         public void Assert()
         {
+            // ReSharper disable once InvertIf
             if (ValidationMessages.Count > 0)
             {
                 string formattedMessages = string.Join(Environment.NewLine, ValidationMessages.Select(x => x.Text).ToArray());
@@ -69,7 +70,7 @@ namespace JJ.Framework.Validation
         /// </summary>
         protected void ExecuteValidator(Type validatorType, string messagePrefix)
         {
-            IValidator validator = (IValidator)Activator.CreateInstance(validatorType, new object[] { Object });
+            IValidator validator = (IValidator)Activator.CreateInstance(validatorType, Obj);
             ExecuteValidator(validator, messagePrefix);
         }
 

@@ -46,7 +46,7 @@
       <DependentUpon>CommonMessages.resx</DependentUpon>
     </Compile>
     <Compile Include="CommonMessageFormatter.cs" />
-    <Compile Include="CommonTitleFormatter.cs" />
+    <Compile Include="CommonTitlesFormatter.cs" />
     <Compile Include="CommonTitles.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -62,7 +62,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CommonTitles.nl-NL.resx" />
     <EmbeddedResource Include="CommonTitles.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CommonTitles.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
