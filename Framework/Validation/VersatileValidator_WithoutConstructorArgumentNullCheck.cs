@@ -12,7 +12,7 @@ using JJ.Framework.Collections;
 
 namespace JJ.Framework.Validation
 {
-    public abstract class VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> : ValidatorBase<TRootObject>
+    public abstract class VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> : ValidatorBase_WithoutConstructorArgumentNullCheck<TRootObject>
     {
         /// <param name="postponeExecute">
         /// When set to true, you can do initializations in your constructor

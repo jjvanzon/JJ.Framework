@@ -57,7 +57,7 @@
     </Compile>
     <Compile Include="ValidationMessage.cs" />
     <Compile Include="ValidationMessages.cs" />
-    <Compile Include="ValidatorBase.cs" />
+    <Compile Include="ValidatorBase_WithoutConstructorArgumentNullCheck.cs" />
     <Compile Include="IValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

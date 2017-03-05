@@ -5,13 +5,13 @@ using JetBrains.Annotations;
 
 namespace JJ.Framework.Validation
 {
-    public abstract class ValidatorBase<TRootObject> : IValidator
+    public abstract class ValidatorBase_WithoutConstructorArgumentNullCheck<TRootObject> : IValidator
     {
         /// <param name="postponeExecute">
         /// When set to true, you can do initializations in your constructor
         /// before Execute goes off. Then you have to call Execute from your own constructor.
         /// </param>
-        public ValidatorBase(TRootObject obj, bool postponeExecute = false)
+        public ValidatorBase_WithoutConstructorArgumentNullCheck(TRootObject obj, bool postponeExecute = false)
         {
             Obj = obj;
 
@@ -58,7 +58,7 @@ namespace JJ.Framework.Validation
         /// This overload only works when the sub-validator takes the same object as the parent validator,
         /// and if the sub-validator has no additional constructor parameters.
         /// </summary>
-        protected void ExecuteValidator(Type validatorType)
+        protected void ExecuteValidator([NotNull] Type validatorType)
         {
             ExecuteValidator(validatorType, null);
         }
@@ -68,7 +68,7 @@ namespace JJ.Framework.Validation
         /// This overload only works when the sub-validator takes the same object as the parent validator,
         /// and if the sub-validator has no additional constructor parameters.
         /// </summary>
-        protected void ExecuteValidator(Type validatorType, string messagePrefix)
+        protected void ExecuteValidator([NotNull] Type validatorType, string messagePrefix)
         {
             IValidator validator = (IValidator)Activator.CreateInstance(validatorType, Obj);
             ExecuteValidator(validator, messagePrefix);
@@ -81,7 +81,7 @@ namespace JJ.Framework.Validation
         /// A message prefix can identify the parent object so that validation messages indicate 
         /// what specific part of the object structure they are about. 
         /// </param>
-        public void ExecuteValidator(IValidator validator, string messagePrefix)
+        public void ExecuteValidator([NotNull] IValidator validator, string messagePrefix)
         {
             if (validator == null) throw new NullException(() => validator);
 
