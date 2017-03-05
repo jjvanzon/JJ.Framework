@@ -1,220 +1,91 @@
 ﻿using JJ.Framework.PlatformCompatibility;
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Validation.Resources
 {
     public static class ValidationResourceFormatter
     {
-        public static string Contains(string propertyDisplayName, object valueOrName)
-        {
-            return string.Format(ValidationResources.Contains_WithName_AndValue, propertyDisplayName, valueOrName);
-        }
+        public static string Contains(string displayName, object valueOrName) => string.Format(ValidationResources.Contains_WithName_AndValue, displayName, valueOrName);
+        public static string LengthExceeded(string displayName, int length) => string.Format(ValidationResources.LengthExceeded_WithName_AndLength, displayName, length);
+        public static string FileAlreadyExists(string filePath) => string.Format(ValidationResources.FileAlreadyExists_WithFilePath, filePath);
+        public static string FileNotFound(string filePath) => string.Format(ValidationResources.FileNotFound_WithFilePath, filePath);
+        public static string FolderAlreadyExists(string folderPath) => string.Format(ValidationResources.FolderAlreadyExists_WithFolderPAth, folderPath);
+        public static string FolderNotFound(string folderPath) => string.Format(ValidationResources.FolderNotFound_WithFolderPath, folderPath);
+        public static string GreaterThan(string displayName, object limitOrName) => string.Format(ValidationResources.GreaterThan_WithName_AndLimit, displayName, limitOrName);
+        public static string GreaterThanOrEqual(string displayName, object limitOrName) => string.Format(ValidationResources.GreaterThanOrEqual_WithName_AndLimit, displayName, limitOrName);
+        public static string HasNulls(string displayName) => string.Format(ValidationResources.HasNulls_WithName, displayName);
+        public static string Invalid(string displayName) => string.Format(ValidationResources.Invalid_WithName, displayName);
+        public static string InvalidChoice(string displayName) => string.Format(ValidationResources.InvalidChoice_WithName, displayName);
+        public static string InvalidIndex(string displayName) => string.Format(ValidationResources.InvalidIndex_WithName, displayName);
+        public static string IsBrokenNumber(string displayName) => string.Format(ValidationResources.IsBrokenNumber_WithName, displayName);
+        public static string IsEmpty(string displayName) => string.Format(ValidationResources.IsEmpty_WithName, displayName);
+        public static string IsEqual(string displayName, object valueOrName) => string.Format(ValidationResources.IsEqual_WithName_AndValue, displayName, valueOrName);
+        public static string IsFilledIn(string displayName) => string.Format(ValidationResources.IsFilledIn_WithName, displayName);
+        public static string IsInfinity(string displayName) => string.Format(ValidationResources.IsInfinity_WithName, displayName);
+        public static string IsInList(string displayName) => string.Format(ValidationResources.IsInList_WithName, displayName);
+        public static string IsInteger(string displayName) => string.Format(ValidationResources.IsInteger_WithName, displayName);
+        public static string IsNaN(string displayName) => string.Format(ValidationResources.IsNaN_WithName, displayName);
+        public static string Exists(string displayName) => string.Format(ValidationResources.Exists_WithName, displayName);
+        public static string IsOfType(string displayName, string typeName) => string.Format(ValidationResources.IsOfType_WithName_AndTypeName, displayName, typeName);
+        public static string IsZero(string displayName) => string.Format(ValidationResources.IsZero_WithName, displayName);
+        public static string LessThan(string displayName, object limitOrName) => string.Format(ValidationResources.LessThan_WithName_AndLimit, displayName, limitOrName);
+        public static string LessThanOrEqual(string displayName, object limitOrName) => string.Format(ValidationResources.LessThanOrEqual_WithName_AndLimit, displayName, limitOrName);
+        public static string NotBoth(string displayName1, string displayName2) => string.Format(ValidationResources.NotBoth_WithTwoNames, displayName1, displayName2);
+        public static string NotBrokenNumber(string displayName) => string.Format(ValidationResources.NotBrokenNumber_WithName, displayName);
+        public static string NotContains(string displayName, object valueOrName) => string.Format(ValidationResources.NotContains_WithName_AndValue, displayName, valueOrName);
+        public static string NotEmpty(string displayName) => string.Format(ValidationResources.NotEmpty_WithName, displayName);
+        public static string NotEqual(string displayName, object valueOrName) => string.Format(ValidationResources.NotEqual_WithName_AndValue, displayName, valueOrName);
+        public static string NotFilledIn(string displayName) => string.Format(ValidationResources.NotFilledIn_WithName, displayName);
+        public static string NotInList(string displayName) => string.Format(ValidationResources.NotInList_WithName, displayName);
 
-        public static string LengthExceeded(string propertyDisplayName, int length)
-        {
-            return string.Format(ValidationResources.LengthExceeded_WithName_AndLength, propertyDisplayName, length);
-        }
-
-        public static string FileAlreadyExists(string filePath)
-        {
-            return string.Format(ValidationResources.FileAlreadyExists_WithFilePath, filePath);
-        }
-
-        public static string FileNotFound(string filePath)
-        {
-            return string.Format(ValidationResources.FileNotFound_WithFilePath, filePath);
-        }
-
-        public static string FolderAlreadyExists(string folderPath)
-        {
-            return string.Format(ValidationResources.FolderAlreadyExists_WithFolderPAth, folderPath);
-        }
-
-        public static string FolderNotFound(string folderPath)
-        {
-            return string.Format(ValidationResources.FolderNotFound_WithFolderPath, folderPath);
-        }
-
-        public static string GreaterThan(string propertyDisplayName, object limitOrName)
-        {
-            return string.Format(ValidationResources.GreaterThan_WithName_AndLimit, propertyDisplayName, limitOrName);
-        }
-
-        public static string GreaterThanOrEqual(string propertyDisplayName, object limitOrName)
-        {
-            return string.Format(ValidationResources.GreaterThanOrEqual_WithName_AndLimit, propertyDisplayName, limitOrName);
-        }
-
-        public static string HasNulls(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.HasNulls_WithName, propertyDisplayName);
-        }
-
-        public static string Invalid(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.Invalid_WithName, propertyDisplayName);
-        }
-
-        public static string InvalidChoice(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.InvalidChoice_WithName, propertyDisplayName);
-        }
-
-        public static string InvalidIndex(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.InvalidIndex_WithName, propertyDisplayName);
-        }
-
-        public static string IsBrokenNumber(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.IsBrokenNumber_WithName, propertyDisplayName);
-        }
-
-        public static string IsEmpty(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.IsEmpty_WithName, propertyDisplayName);
-        }
-
-        public static string IsEqual(string propertyDisplayName, object valueOrName)
-        {
-            return string.Format(ValidationResources.IsEqual_WithName_AndValue, propertyDisplayName, valueOrName);
-        }
-
-        public static string IsFilledIn(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.IsFilledIn_WithName, propertyDisplayName);
-        }
-
-        public static string IsInfinity(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.IsInfinity_WithName, propertyDisplayName);
-        }
-
-        public static string IsInList(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.IsInList_WithName, propertyDisplayName);
-        }
-
-        public static string IsInteger(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.IsInteger_WithName, propertyDisplayName);
-        }
-
-        public static string IsNaN(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.IsNaN_WithName, propertyDisplayName);
-        }
-
-        public static string Exists(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.Exists_WithName, propertyDisplayName);
-        }
-
-        public static string IsOfType(string propertyDisplayName, string typeName)
-        {
-            return string.Format(ValidationResources.IsOfType_WithName_AndTypeName, propertyDisplayName, typeName);
-        }
-
-        public static string IsZero(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.IsZero_WithName, propertyDisplayName);
-        }
-
-        public static string LessThan(string propertyDisplayName, object limitOrName)
-        {
-            return string.Format(ValidationResources.LessThan_WithName_AndLimit, propertyDisplayName, limitOrName);
-        }
-
-        public static string LessThanOrEqual(string propertyDisplayName, object limitOrName)
-        {
-            return string.Format(ValidationResources.LessThanOrEqual_WithName_AndLimit, propertyDisplayName, limitOrName);
-        }
-
-        public static string NotBoth(string propertyDisplayName1, string propertyDisplayName2)
-        {
-            return string.Format(ValidationResources.NotBoth_WithTwoNames, propertyDisplayName1, propertyDisplayName2);
-        }
-
-        public static string NotBrokenNumber(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.NotBrokenNumber_WithName, propertyDisplayName);
-        }
-
-        public static string NotContains(string propertyDisplayName, object valueOrName)
-        {
-            return string.Format(ValidationResources.NotContains_WithName_AndValue, propertyDisplayName, valueOrName);
-        }
-
-        public static string NotEmpty(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.NotEmpty_WithName, propertyDisplayName);
-        }
-
-        public static string NotEqual(string propertyDisplayName, object valueOrName)
-        {
-            return string.Format(ValidationResources.NotEqual_WithName_AndValue, propertyDisplayName, valueOrName);
-        }
-
-        public static string NotFilledIn(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.NotFilledIn_WithName, propertyDisplayName);
-        }
-
-        public static string NotInList(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.NotInList_WithName, propertyDisplayName);
-        }
-
-        public static string NotInList<TItem>(string propertyDisplayName, IEnumerable<TItem> possibleValues)
+        public static string NotInList<TItem>(string displayName, IEnumerable<TItem> possibleValues)
         {
             string joined = String_PlatformSupport.Join(", ", possibleValues);
-            string message = string.Format(ValidationResources.NotInList_WithName_AndAllowedValues, propertyDisplayName, joined);
+            string message = string.Format(ValidationResources.NotInList_WithName_AndAllowedValues, displayName, joined);
             return message;
         }
 
-        public static string NotInList<TItem>(string propertyDisplayName, TItem value, IEnumerable<TItem> possibleValues)
+        public static string NotInList<TItem>(string displayName, TItem value, IEnumerable<TItem> possibleValues)
         {
             string joinedPossibleValues = String_PlatformSupport.Join(", ", possibleValues);
-            string message = string.Format(ValidationResources.NotInList_WithName_AndValue_AndAllowedValues, propertyDisplayName, value, joinedPossibleValues);
+            string message = string.Format(ValidationResources.NotInList_WithName_AndValue_AndAllowedValues, displayName, value, joinedPossibleValues);
             return message;
         }
 
-        public static string NotInList(string propertyDisplayName, object value)
+        public static string NotInList(string displayName, object value)
         {
-            string message = string.Format(ValidationResources.NotInList_WithName_AndValue, propertyDisplayName, value);
+            string message = string.Format(ValidationResources.NotInList_WithName_AndValue, displayName, value);
             return message;
         }
 
-        public static string NotInteger(string propertyDisplayName)
+        public static string NotInteger(string displayName) => string.Format(ValidationResources.NotInteger_WithName, displayName);
+        public static string NotOfType(string displayName, string typeName) => string.Format(ValidationResources.NotOfType_WithName_AndTypeName, displayName, typeName);
+        public static string NotUniqueSingular(string displayNameSingular) => string.Format(ValidationResources.NotUnique_WithName_Singular, displayNameSingular);
+        public static string NotUniquePlural(string displayNamePlural) => string.Format(ValidationResources.NotUnique_WithName_Plural, displayNamePlural);
+        public static string NotUniqueSingular(string displayNameSingular, object value) => string.Format(ValidationResources.NotUnique_WithName_AndValue_Singular, displayNameSingular, value);
+
+        public static string NotUniqueSingular(string displayNameSingular, [NotNull] IEnumerable<object> duplicateValues)
         {
-            return string.Format(ValidationResources.NotInteger_WithName, propertyDisplayName);
+            if (duplicateValues == null) throw new NullException(() => duplicateValues);
+
+            string formattedDuplicateValues = string.Join(", ", duplicateValues.Select(x => $"'{x}'"));
+
+            return string.Format(ValidationResources.NotUnique_WithName_AndDuplicateValues_Singular, displayNameSingular, formattedDuplicateValues);
         }
 
-        public static string NotOfType(string propertyDisplayName, string typeName)
+        public static string NotUniquePlural(string displayNamePlural, [NotNull] IEnumerable<object> duplicateValues)
         {
-            return string.Format(ValidationResources.NotOfType_WithName_AndTypeName, propertyDisplayName, typeName);
+            if (duplicateValues == null) throw new NullException(() => duplicateValues);
+
+            string formattedDuplicateValues = string.Join(", ", duplicateValues.Select(x => $"'{x}'"));
+
+            return string.Format(ValidationResources.NotUnique_WithName_AndDuplicateValues_Plural, displayNamePlural, formattedDuplicateValues);
         }
 
-        public static string NotUniqueSingular(string propertyDisplayNameSingular)
-        {
-            return string.Format(ValidationResources.NotUnique_WithName_Singular, propertyDisplayNameSingular);
-        }
-
-        public static string NotUniquePlural(string propertyDisplayNamePlural)
-        {
-            return string.Format(ValidationResources.NotUnique_WithName_Plural, propertyDisplayNamePlural);
-        }
-
-        public static string NotUniqueSingular(string propertyDisplayNameSingular, object value) => string.Format(ValidationResources.NotUnique_WithName_AndValue_Singular, propertyDisplayNameSingular, value);
-
-        public static string NotExists(string propertyDisplayName)
-        {
-            return string.Format(ValidationResources.NotExists_WithName, propertyDisplayName);
-        }
-
-        public static string NotExists(string propertyDisplayName, object value)
-        {
-            return string.Format(ValidationResources.NotExists_WithName_AndValue, propertyDisplayName, value);
-        }
+        public static string NotExists(string displayName) => string.Format(ValidationResources.NotExists_WithName, displayName);
+        public static string NotExists(string displayName, object value) => string.Format(ValidationResources.NotExists_WithName_AndValue, displayName, value);
     }
 }

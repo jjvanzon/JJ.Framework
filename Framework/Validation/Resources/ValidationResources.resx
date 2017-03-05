@@ -285,4 +285,12 @@
     <value>{0} '{1}' is not unique.</value>
     <comment>{0} = property, {1} = value</comment>
   </data>
+  <data name="NotUnique_WithName_AndDuplicateValues_Plural" xml:space="preserve">
+    <value>{0} are not unique. Duplicates: {1}.</value>
+    <comment>{0} = name plural, {1} = comma separated list of duplicate values</comment>
+  </data>
+  <data name="NotUnique_WithName_AndDuplicateValues_Singular" xml:space="preserve">
+    <value>{0} is not unique. Duplicates: {1}.</value>
+    <comment>{0} = name singular, {1} = comma separated list of duplicate values</comment>
+  </data>
 </root>

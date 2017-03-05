@@ -412,6 +412,24 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} are not unique. Duplicates: {1}..
+        /// </summary>
+        internal static string NotUnique_WithName_AndDuplicateValues_Plural {
+            get {
+                return ResourceManager.GetString("NotUnique_WithName_AndDuplicateValues_Plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} is not unique. Duplicates: {1}..
+        /// </summary>
+        internal static string NotUnique_WithName_AndDuplicateValues_Singular {
+            get {
+                return ResourceManager.GetString("NotUnique_WithName_AndDuplicateValues_Singular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} &apos;{1}&apos; is not unique..
         /// </summary>
         internal static string NotUnique_WithName_AndValue_Singular {

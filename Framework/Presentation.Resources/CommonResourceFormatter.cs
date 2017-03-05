@@ -25,6 +25,7 @@
         public static string Menu => CommonResources.Menu;
         public static string Messages => CommonResources.Messages;
         public static string Name => CommonResources.Name;
+        public static string Names => CommonResources.Names;
         public static string New => CommonResources.New;
         public static string No => CommonResources.No;
         public static string None => CommonResources.None;

@@ -250,4 +250,7 @@
     <value>{0} of {1} moet zijn ingevuld.</value>
     <comment>{0} = name of first thing, {1} = name of second thing</comment>
   </data>
+  <data name="Names" xml:space="preserve">
+    <value>Namen</value>
+  </data>
 </root>

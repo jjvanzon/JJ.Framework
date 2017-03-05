@@ -267,4 +267,7 @@
     <value>Either {0} or {1} must be filled in.</value>
     <comment>{0} = name of first thing, {1} = name of second thing</comment>
   </data>
+  <data name="Names" xml:space="preserve">
+    <value>Names</value>
+  </data>
 </root>
