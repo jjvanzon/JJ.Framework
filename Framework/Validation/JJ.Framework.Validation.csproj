@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DebugHelper.cs" />
+    <Compile Include="ValidatorBase.cs" />
     <Compile Include="VersatileValidator.cs" />
     <Compile Include="VersatileValidator_WithoutConstructorArgumentNullCheck.cs" />
     <Compile Include="PropertyKeyHelper.cs" />
