@@ -506,16 +506,16 @@ namespace JJ.Framework.Validation
             Add(propertyKey, ValidationResourceFormatter.NotExists(propertyDisplayName, value));
         }
 
-        public void AddRequiredMessage(string propertyKey, string propertyDisplayName)
+        public void AddNotFilledInMessage(string propertyKey, string propertyDisplayName)
         {
             if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(propertyKey, ValidationResourceFormatter.NotFilledIn(propertyDisplayName));
         }
 
-        public void AddRequiredMessage([NotNull] Expression<Func<object>> propertyKeyExpression, string propertyDisplayName)
+        public void AddNotFilledInMessage([NotNull] Expression<Func<object>> propertyKeyExpression, string propertyDisplayName)
         {
             string propertyKey = ExpressionHelper.GetText(propertyKeyExpression);
-            AddRequiredMessage(propertyKey, propertyDisplayName);
+            AddNotFilledInMessage(propertyKey, propertyDisplayName);
         }
 
         public void AddNotInListMessage(string propertyKey, string propertyDisplayName)

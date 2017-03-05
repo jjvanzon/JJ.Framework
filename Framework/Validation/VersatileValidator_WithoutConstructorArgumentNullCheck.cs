@@ -83,7 +83,7 @@ namespace JJ.Framework.Validation
         {
             if (_value == null)
             {
-                ValidationMessages.AddRequiredMessage(_propertyKey, _propertyDisplayName);
+                ValidationMessages.AddNotFilledInMessage(_propertyKey, _propertyDisplayName);
             }
 
             return this;
@@ -96,7 +96,7 @@ namespace JJ.Framework.Validation
 
             if (String_PlatformSupport.IsNullOrWhiteSpace(stringValue))
             {
-                ValidationMessages.AddRequiredMessage(_propertyKey, _propertyDisplayName);
+                ValidationMessages.AddNotFilledInMessage(_propertyKey, _propertyDisplayName);
             }
 
             return this;
@@ -109,7 +109,7 @@ namespace JJ.Framework.Validation
 
             if (string.IsNullOrEmpty(stringValue))
             {
-                ValidationMessages.AddRequiredMessage(_propertyKey, _propertyDisplayName);
+                ValidationMessages.AddNotFilledInMessage(_propertyKey, _propertyDisplayName);
             }
 
             return this;
