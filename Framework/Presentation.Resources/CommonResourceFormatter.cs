@@ -3,9 +3,10 @@
     public static class CommonResourceFormatter
     {
         public static string Add => CommonResources.Add;
-        public static string AreYouSureYouWishToDelete_WithTypeName_AndName(string objectTypeDisplayName, string objectName) => string.Format(CommonResources.AreYouSureYouWishToDelete_WithTypeName_AndName, objectTypeDisplayName, objectName);
+        public static string AreYouSureYouWishToDelete_WithTypeName_AndName(string typeName, string name) => string.Format(CommonResources.AreYouSureYouWishToDelete_WithTypeName_AndName, typeName, name);
         public static string Cancel => CommonResources.Cancel;
-        public static string CannotDelete_WithTypeName_AndName(string objectTypeDisplayName, string objectName) => string.Format(CommonResources.CannotDelete_WithTypeName_AndName, objectTypeDisplayName, objectName);
+        public static string CannotDelete_WithTypeName_AndName(string typeName, string name) => string.Format(CommonResources.CannotDelete_WithTypeName_AndName, typeName, name);
+        public static string CannotDelete_WithName_AndDependencies(string name, string dependentItem) => string.Format(CommonResources.CannotDelete_WithName_AndDependencies, name, dependentItem);
         public static string Close => CommonResources.Close;
         public static string Close_WithName(string name) => string.Format(CommonResources.Close_WithName, name);
         public static string Delete => CommonResources.Delete;
@@ -33,8 +34,8 @@
         public static string NotAuthorized => CommonResources.NotAuthorized;
         public static string NotFound_WithName(string name) => string.Format(CommonResources.NotFound_WithName, name);
         public static string NotFound_WithName_AndID(string name, object id) => string.Format(CommonResources.NotFound_WithName_AndID, name, id);
-        public static string NotFound_WithTypeName_AndName(string entityTypeDisplayName, string name) => string.Format(CommonResources.NotFound_WithTypeName_AndName, entityTypeDisplayName, name);
-        public static string NotFoundInList_WithItemName_ID_AndListName(string name, int documentID, string listName) => string.Format(CommonResources.NotFound_WithItemName_ID_AndListName, name, documentID, listName);
+        public static string NotFound_WithTypeName_AndName(string typeName, string name) => string.Format(CommonResources.NotFound_WithTypeName_AndName, typeName, name);
+        public static string NotFoundInList_WithItemName_ID_AndListName(string name, int id, string listName) => string.Format(CommonResources.NotFound_WithItemName_ID_AndListName, name, id, listName);
         public static string Count_WithNamePlural(string namePlural) => string.Format(CommonResources.Count_WithNamePlural, namePlural);
         public static string OK => CommonResources.OK;
         public static string OneOrTheOtherMustBeFilledIn(string name1, string name2) => string.Format(CommonResources.OneOrTheOtherMustBeFilledIn, name1, name2);

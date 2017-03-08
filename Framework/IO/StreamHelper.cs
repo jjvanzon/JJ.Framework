@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Text;
+using JetBrains.Annotations;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Exceptions;
 
@@ -7,7 +8,8 @@ namespace JJ.Framework.IO
 {
     public static class StreamHelper
     {
-        public static byte[] StreamToBytes(Stream stream, int bufferSize = 8192)
+        [NotNull]
+        public static byte[] StreamToBytes([NotNull] Stream stream, int bufferSize = 8192)
         {
             if (stream == null) throw new NullException(() => stream);
 
@@ -23,12 +25,14 @@ namespace JJ.Framework.IO
             return memoryStream.ToArray();
         }
 
-        public static Stream BytesToStream(byte[] bytes)
+        [NotNull]
+        public static Stream BytesToStream([NotNull] byte[] bytes)
         {
             return new MemoryStream(bytes);
         }
 
-        public static string StreamToString(Stream stream, Encoding encoding)
+        [NotNull]
+        public static string StreamToString([NotNull] Stream stream, [NotNull] Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);
 
@@ -40,20 +44,23 @@ namespace JJ.Framework.IO
             }
         }
 
-        public static Stream StringToStream(string text, Encoding encoding)
+        [NotNull]
+        public static Stream StringToStream(string text, [NotNull] Encoding encoding)
         {
             byte[] bytes = StringToBytes(text, encoding);
             Stream stream = BytesToStream(bytes);
             return stream;
         }
 
-        public static byte[] StringToBytes(string text, Encoding encoding)
+        [NotNull]
+        public static byte[] StringToBytes([NotNull] string text, [NotNull] Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);
             return encoding.GetBytes(text);
         }
 
-        public static string BytesToString(byte[] bytes, Encoding encoding)
+        [NotNull]
+        public static string BytesToString([NotNull] byte[] bytes, [NotNull] Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);
 
