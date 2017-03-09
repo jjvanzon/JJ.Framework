@@ -6,7 +6,7 @@
         public static string AreYouSureYouWishToDelete_WithTypeName_AndName(string typeName, string name) => string.Format(CommonResources.AreYouSureYouWishToDelete_WithTypeName_AndName, typeName, name);
         public static string Cancel => CommonResources.Cancel;
         public static string CannotDelete_WithTypeName_AndName(string typeName, string name) => string.Format(CommonResources.CannotDelete_WithTypeName_AndName, typeName, name);
-        public static string CannotDelete_WithName_AndDependencies(string name, string dependentItem) => string.Format(CommonResources.CannotDelete_WithName_AndDependencies, name, dependentItem);
+        public static string CannotDelete_WithName_AndDependentItem(string name, string dependentItem) => string.Format(CommonResources.CannotDelete_WithName_AndDependentItem, name, dependentItem);
         public static string Close => CommonResources.Close;
         public static string Close_WithName(string name) => string.Format(CommonResources.Close_WithName, name);
         public static string Delete => CommonResources.Delete;

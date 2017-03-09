@@ -253,8 +253,8 @@
   <data name="Names" xml:space="preserve">
     <value>Namen</value>
   </data>
-  <data name="CannotDelete_WithName_AndDependencies" xml:space="preserve">
-    <value>Kan {0} niet verwijderen, want het wordt nog gebruikt door: {1}.</value>
+  <data name="CannotDelete_WithName_AndDependentItem" xml:space="preserve">
+    <value>Kan {0} niet verwijderen, want het wordt nog gebruikt door het volgende: {1}.</value>
     <comment>{0} = name, {1} = dependent item</comment>
   </data>
 </root>
