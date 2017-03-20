@@ -55,6 +55,7 @@
     <Compile Include="LockEnum.cs" />
     <Compile Include="PathParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SafeFileOverwriter.cs" />
     <Compile Include="StreamHelper.cs" />
   </ItemGroup>
   <ItemGroup>
