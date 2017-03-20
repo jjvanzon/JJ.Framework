@@ -172,7 +172,7 @@ namespace JJ.Framework.IO.Tests
         }
 
         [TestMethod]
-        public void Test_SafeFileOverwriter_Stream()
+        public void Test_SafeFileOverwriter_TempStream()
         {
             lock (_testLock)
             {
@@ -296,7 +296,7 @@ namespace JJ.Framework.IO.Tests
         }
 
         [TestMethod]
-        public void Test_SafeFileOverwriter_Cancel_FileAlreadyDisposed_NoException()
+        public void Test_SafeFileOverwriter_Dispose_WhenAlreadyDisposed_NoException()
         {
             lock (_testLock)
             {
@@ -319,13 +319,15 @@ namespace JJ.Framework.IO.Tests
         }
 
         [TestMethod]
-        public void Test_SafeFileOverwriter_Cancel_CloseTempFile_DeleteTempFile()
+        public void Test_SafeFileOverwriter_Dispose_CloseTempFile_DeleteTempFile()
         {
             lock (_testLock)
             {
                 try
                 {
                     CreateFile();
+
+                    AssertHelper.IsTrue(() => OnlyOriginalFileExists());
 
                     using (var safeFileOverwriter = new SafeFileOverwriter(_filePath))
                     {
@@ -347,7 +349,7 @@ namespace JJ.Framework.IO.Tests
         }
 
         [TestMethod]
-        public void Test_SafeFileOverwriter_Cancel_UnlockFile()
+        public void Test_SafeFileOverwriter_Dispose_UnlockFile()
         {
             lock (_testLock)
             {
@@ -365,62 +367,6 @@ namespace JJ.Framework.IO.Tests
                         LockEnum actualLock2 = FileLock.DetermineLock(_filePath);
                         Assert.AreEqual(expectedLock2, actualLock2, "LockEnum after opening");
 
-                    }
-
-                    const LockEnum expectedLock3 = LockEnum.None;
-                    LockEnum actualLock3 = FileLock.DetermineLock(_filePath);
-                    Assert.AreEqual(expectedLock3, actualLock3, "LockEnum after saving");
-                }
-                finally
-                {
-                    DeleteFileIfNeeded();
-                }
-            }
-        }
-
-        [TestMethod]
-        public void Test_SafeFileOverwriter_Disposal_CloseTempFile_DeleteTempFile()
-        {
-            lock (_testLock)
-            {
-                try
-                {
-                    CreateFile();
-
-                    AssertHelper.IsTrue(() => OnlyOriginalFileExists());
-
-                    using (new SafeFileOverwriter(_filePath))
-                    {
-                        AssertHelper.IsTrue(() => OriginalFileAndTempFileExist());
-                    }
-
-                    AssertHelper.IsTrue(() => OnlyOriginalFileExists());
-                }
-                finally
-                {
-                    DeleteFileIfNeeded();
-                }
-            }
-        }
-
-        [TestMethod]
-        public void Test_SafeFileOverwriter_Disposal_UnlockFile()
-        {
-            lock (_testLock)
-            {
-                try
-                {
-                    CreateFile();
-
-                    const LockEnum expectedLock1 = LockEnum.None;
-                    LockEnum actualLock1 = FileLock.DetermineLock(_filePath);
-                    Assert.AreEqual(expectedLock1, actualLock1, "LockEnum before opening");
-
-                    using (new SafeFileOverwriter(_filePath))
-                    {
-                        const LockEnum expectedLock2 = LockEnum.Write;
-                        LockEnum actualLock2 = FileLock.DetermineLock(_filePath);
-                        Assert.AreEqual(expectedLock2, actualLock2, "LockEnum after opening");
                     }
 
                     const LockEnum expectedLock3 = LockEnum.None;
@@ -644,7 +590,7 @@ namespace JJ.Framework.IO.Tests
             FileInfo[] files = dir.GetFiles(FILE_NAME + "*");
             return
                 files.Length == 1 &&
-                files[0].Name == FILE_NAME;
+                string.Equals(files[0].Name, FILE_NAME, StringComparison.OrdinalIgnoreCase);
         }
 
         private bool OriginalFileAndTempFileExist()
@@ -653,14 +599,14 @@ namespace JJ.Framework.IO.Tests
             FileInfo[] files = dir.GetFiles(FILE_NAME + "*");
             return
                 files.Length == 2 &&
-                files.Any(x => x.Name == FILE_NAME);
+                files.Any(x => string.Equals(x.Name, FILE_NAME, StringComparison.OrdinalIgnoreCase));
         }
 
         private FileInfo GetTempFileInfo()
         {
             var dir = new DirectoryInfo(_folderPath);
             FileInfo[] files = dir.GetFiles(FILE_NAME + "*");
-            return files.Where(x => x.Name != FILE_NAME).Single();
+            return files.Where(x => !string.Equals(x.Name, FILE_NAME, StringComparison.OrdinalIgnoreCase)).Single();
         }
     }
 }

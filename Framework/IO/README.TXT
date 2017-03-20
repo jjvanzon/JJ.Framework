@@ -44,4 +44,5 @@ A lot is unit tested, but not all. The class summary will tell you.
 
 - SafeFileOverwriter:
   First writes to a temporary file and only when all went well, the original file is overwritten.
-  The security settings and file attributes and file properties are retained as the temp file replaces the original.
+  The security settings and file attributes and file properties are retained 
+  as the temp file replaces the original.

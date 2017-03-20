@@ -12,6 +12,7 @@ namespace JJ.Framework.IO
         private readonly Stream _destFileStream;
 
         /// <summary>
+        /// Fully unit tested.
         /// This class enables a safe file overwrite,
         /// by first writing to a temporary file and only when all
         /// went well, the original file is overwritten.
