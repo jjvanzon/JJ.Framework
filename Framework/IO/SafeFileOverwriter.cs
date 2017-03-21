@@ -65,6 +65,7 @@ namespace JJ.Framework.IO
                 using (_destFileStream)
                 {
                     _destFileStream.SetLength(0);
+                    _destFileStream.Flush();
                     _tempFileStream.CopyTo(_destFileStream);
                     _destFileStream.Flush();
                 }
