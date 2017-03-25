@@ -44,6 +44,7 @@
         public static string Remove => CommonResources.Remove;
         public static string Save => CommonResources.Save;
         public static string Save_WithName(string name) => string.Format(CommonResources.Save_WithName, name);
+        public static string Select_WithName(string name) => string.Format(CommonResources.Select_WithName, name);
         public static string Search => CommonResources.Search;
         public static string True => CommonResources.True;
         public static string Type => CommonResources.Type;

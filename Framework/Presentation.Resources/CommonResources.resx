@@ -274,4 +274,8 @@
     <value>Cannot delete {0}, because it is still used by the following: {1}.</value>
     <comment>{0} = name, {1} = dependent item</comment>
   </data>
+  <data name="Select_WithName" xml:space="preserve">
+    <value>Select {0}</value>
+    <comment>{0} = name</comment>
+  </data>
 </root>

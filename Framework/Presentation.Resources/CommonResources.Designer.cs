@@ -448,6 +448,15 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select {0}.
+        /// </summary>
+        internal static string Select_WithName {
+            get {
+                return ResourceManager.GetString("Select_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to True.
         /// </summary>
         internal static string True {
