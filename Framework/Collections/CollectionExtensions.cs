@@ -46,9 +46,7 @@ namespace JJ.Framework.Collections
             return enumerable.Except(new[] { x });
         }
 
-        /// <summary>
-        /// The original Except() method from .NET automatically does a distinct, which is something you do not always want.
-        /// </summary>
+        /// <summary> The original Except() method from .NET automatically does a distinct, which is something you do not always want. </summary>
         public static IEnumerable<T> Except<T>(this IEnumerable<T> source, IEnumerable<T> input, bool distinct)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
@@ -58,10 +56,10 @@ namespace JJ.Framework.Collections
             {
                 return source.Except(input);
             }
-            else
-            {
-                return source.Where(x => !input.Contains(x));
-            }
+
+            HashSet<T> inputHashSet = input.ToHashSet();
+
+            return source.Where(x => !inputHashSet.Contains(x));
         }
 
         public static IEnumerable<T> Except<T>(this IEnumerable<T> source, Predicate<T> predicate)
@@ -79,10 +77,7 @@ namespace JJ.Framework.Collections
             return enumerable.Union(new[] { x });
         }
 
-        public static IEnumerable<T> Union<T>(this T x, IEnumerable<T> enumerable)
-        {
-            return new[] { x }.Union(enumerable);
-        }
+        public static IEnumerable<T> Union<T>(this T x, IEnumerable<T> enumerable) => new[] { x }.Union(enumerable);
 
         public static IEnumerable<T> Concat<T>(this IEnumerable<T> enumerable, T x)
         {
@@ -91,10 +86,7 @@ namespace JJ.Framework.Collections
             return enumerable.Concat(new[] { x });
         }
 
-        public static IEnumerable<T> Concat<T>(this T x, IEnumerable<T> enumerable)
-        {
-            return new[] { x }.Concat(enumerable);
-        }
+        public static IEnumerable<T> Concat<T>(this T x, IEnumerable<T> enumerable) => new[] { x }.Concat(enumerable);
 
         public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey> keySelector)
         {
@@ -114,10 +106,7 @@ namespace JJ.Framework.Collections
             }
         }
 
-        public static IEnumerable<TItem> AsEnumerable<TItem>(this TItem item)
-        {
-            return new[] { item };
-        }
+        public static IEnumerable<TItem> AsEnumerable<TItem>(this TItem item) => new[] { item };
 
         public static Dictionary<TKey, IList<TItem>> ToNonUniqueDictionary<TKey, TItem>(this IEnumerable<TItem> sourceCollection, Func<TItem, TKey> keySelector)
         {
@@ -142,8 +131,7 @@ namespace JJ.Framework.Collections
             {
                 TKey key = keySelector(item);
 
-                IList<TDestItem> elementsUnderKey;
-                if (!dictionary.TryGetValue(key, out elementsUnderKey))
+                if (!dictionary.TryGetValue(key, out IList<TDestItem> elementsUnderKey))
                 {
                     elementsUnderKey = new List<TDestItem>();
                     dictionary.Add(key, elementsUnderKey);
@@ -389,6 +377,7 @@ namespace JJ.Framework.Collections
             double product = collection.FirstOrDefault();
 
             // ReSharper disable once PossibleMultipleEnumeration
+            // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (double value in collection.Skip(1))
             {
                 product *= value;
@@ -400,6 +389,9 @@ namespace JJ.Framework.Collections
         public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
+
+            if (source is HashSet<T> hashSet) return hashSet;
+
             return new HashSet<T>(source);
         }
 
