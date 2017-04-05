@@ -1,9 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third Party", "Third Party", "{E3DC759D-B004-4E6C-8381-D5D5C74A5B92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C18D0F96-E8CA-4146-9938-F05724612DC7}"
+	ProjectSection(SolutionItems) = preProject
+		Framework\LICENSE.TXT = Framework\LICENSE.TXT
+		Framework\README.TXT = Framework\README.TXT
+		Framework\THIRD PARTY LICENSE.TXT = Framework\THIRD PARTY LICENSE.TXT
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data", "Framework\Data\JJ.Framework.Data.csproj", "{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}"
 EndProject
@@ -124,13 +131,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentNHibernate", "Third Party\FluentNHibernate\Source Code\1.3\src\FluentNHibernate\FluentNHibernate.csproj", "{529145D5-6CC3-4016-89B5-826563024AF1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Exceptions", "Framework\Exceptions\JJ.Framework.Exceptions.csproj", "{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C18D0F96-E8CA-4146-9938-F05724612DC7}"
-	ProjectSection(SolutionItems) = preProject
-		Framework\LICENSE.TXT = Framework\LICENSE.TXT
-		Framework\README.TXT = Framework\README.TXT
-		Framework\THIRD PARTY LICENSE.TXT = Framework\THIRD PARTY LICENSE.TXT
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections.Tests", "Framework\Collections.Tests\JJ.Framework.Collections.Tests.csproj", "{6C0B1E65-EAA0-472F-81E5-96584744C7B4}"
 EndProject

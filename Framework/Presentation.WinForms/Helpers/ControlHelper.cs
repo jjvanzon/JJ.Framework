@@ -61,8 +61,7 @@ namespace JJ.Framework.Presentation.WinForms.Helpers
             Control ancestor = control.Parent;
             while (ancestor != null)
             {
-                var ancestorUserControl = ancestor as UserControl;
-                if (ancestorUserControl != null)
+                if (ancestor is UserControl ancestorUserControl)
                 {
                     return ancestorUserControl;
                 }
