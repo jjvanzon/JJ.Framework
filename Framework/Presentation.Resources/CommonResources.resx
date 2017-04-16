@@ -272,7 +272,7 @@
   </data>
   <data name="CannotDelete_WithName_AndDependentItem" xml:space="preserve">
     <value>Cannot delete {0}, because it is still used by the following: {1}.</value>
-    <comment>{0} = name, {1} = dependent item</comment>
+    <comment>{0} = name, {1} = dependent item(s)</comment>
   </data>
   <data name="Select_WithName" xml:space="preserve">
     <value>Select {0}</value>
