@@ -228,12 +228,12 @@
     <value>No {0}</value>
     <comment>{0} = name, for example: 'No document'</comment>
   </data>
-  <data name="AreYouSureYouWishToDelete_WithTypeName_AndName" xml:space="preserve">
-    <value>Are you sure you wish to delete {0} '{1}'?</value>
+  <data name="AreYouSureYouWishToDelete_WithType_AndName" xml:space="preserve">
+    <value>Are you sure you wish to delete {0} {1}?</value>
     <comment>{0} = type of object, {1} = name</comment>
   </data>
-  <data name="CannotDelete_WithTypeName_AndName" xml:space="preserve">
-    <value>Cannot delete {0} '{1}'.</value>
+  <data name="CannotDelete_WithType_AndName" xml:space="preserve">
+    <value>Cannot delete {0} {1}.</value>
     <comment>{0} = type of object, {1} = name</comment>
   </data>
   <data name="IsDeleted_WithName" xml:space="preserve">
@@ -256,11 +256,11 @@
     <value>Type</value>
   </data>
   <data name="NotFound_WithItemName_ID_AndListName" xml:space="preserve">
-    <value>{0} with ID '{1}' not found in the list of {2}.</value>
+    <value>{0} with ID {1} not found in the list of {2}.</value>
     <comment>{0} = name, {1} = id, {2} = name plural</comment>
   </data>
-  <data name="NotFound_WithTypeName_AndName" xml:space="preserve">
-    <value>{0} named '{1}' not found.</value>
+  <data name="NotFound_WithType_AndName" xml:space="preserve">
+    <value>{0} named {1} not found.</value>
     <comment>{0} = type of object, e.g. 'Recipe', {1} = name of object, e.g. 'eggs and bacon'.</comment>
   </data>
   <data name="OneOrTheOtherMustBeFilledIn" xml:space="preserve">
@@ -277,5 +277,8 @@
   <data name="Select_WithName" xml:space="preserve">
     <value>Select {0}</value>
     <comment>{0} = name</comment>
+  </data>
+  <data name="AlreadyExists_WithType_AndName" xml:space="preserve">
+    <value>{0} {1} already exists.</value>
   </data>
 </root>

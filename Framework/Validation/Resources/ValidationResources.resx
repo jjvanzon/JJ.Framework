@@ -262,15 +262,15 @@
     <comment>{0} = property</comment>
   </data>
   <data name="NotInList_WithName_AndValue" xml:space="preserve">
-    <value>{0} '{1}' is not one of the allowed values.</value>
+    <value>{0} {1} is not one of the allowed values.</value>
     <comment>{0} = property, {1} = value</comment>
   </data>
   <data name="NotInList_WithName_AndValue_AndAllowedValues" xml:space="preserve">
-    <value>{0} '{1}' not allowed. Allowed values: {2}.</value>
+    <value>{0} {1} not allowed. Allowed values: {2}.</value>
     <comment>{0} = property, {1} = value, {2} = allowed values</comment>
   </data>
   <data name="NotExists_WithName_AndValue" xml:space="preserve">
-    <value>{0} '{1}' does not exist.</value>
+    <value>{0} {1} does not exist.</value>
     <comment>{0} = property, {1} = value</comment>
   </data>
   <data name="InvalidChoice_WithName" xml:space="preserve">
@@ -282,7 +282,7 @@
     <comment>{0} = first property, {1} = second property</comment>
   </data>
   <data name="NotUnique_WithName_AndValue_Singular" xml:space="preserve">
-    <value>{0} '{1}' is not unique.</value>
+    <value>{0} {1} is not unique.</value>
     <comment>{0} = property, {1} = value</comment>
   </data>
   <data name="NotUnique_WithName_AndDuplicateValues_Plural" xml:space="preserve">

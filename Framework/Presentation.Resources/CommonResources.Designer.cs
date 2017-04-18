@@ -70,11 +70,20 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you wish to delete {0} &apos;{1}&apos;?.
+        ///   Looks up a localized string similar to {0} {1} already exists..
         /// </summary>
-        internal static string AreYouSureYouWishToDelete_WithTypeName_AndName {
+        internal static string AlreadyExists_WithType_AndName {
             get {
-                return ResourceManager.GetString("AreYouSureYouWishToDelete_WithTypeName_AndName", resourceCulture);
+                return ResourceManager.GetString("AlreadyExists_WithType_AndName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to delete {0} {1}?.
+        /// </summary>
+        internal static string AreYouSureYouWishToDelete_WithType_AndName {
+            get {
+                return ResourceManager.GetString("AreYouSureYouWishToDelete_WithType_AndName", resourceCulture);
             }
         }
         
@@ -97,11 +106,11 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannot delete {0} &apos;{1}&apos;..
+        ///   Looks up a localized string similar to Cannot delete {0} {1}..
         /// </summary>
-        internal static string CannotDelete_WithTypeName_AndName {
+        internal static string CannotDelete_WithType_AndName {
             get {
-                return ResourceManager.GetString("CannotDelete_WithTypeName_AndName", resourceCulture);
+                return ResourceManager.GetString("CannotDelete_WithType_AndName", resourceCulture);
             }
         }
         
@@ -340,7 +349,7 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} with ID &apos;{1}&apos; not found in the list of {2}..
+        ///   Looks up a localized string similar to {0} with ID {1} not found in the list of {2}..
         /// </summary>
         internal static string NotFound_WithItemName_ID_AndListName {
             get {
@@ -367,11 +376,11 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} named &apos;{1}&apos; not found..
+        ///   Looks up a localized string similar to {0} named {1} not found..
         /// </summary>
-        internal static string NotFound_WithTypeName_AndName {
+        internal static string NotFound_WithType_AndName {
             get {
-                return ResourceManager.GetString("NotFound_WithTypeName_AndName", resourceCulture);
+                return ResourceManager.GetString("NotFound_WithType_AndName", resourceCulture);
             }
         }
         

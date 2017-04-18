@@ -219,10 +219,10 @@
   <data name="NoObject_WithName" xml:space="preserve">
     <value>Geen {0}</value>
   </data>
-  <data name="AreYouSureYouWishToDelete_WithTypeName_AndName" xml:space="preserve">
+  <data name="AreYouSureYouWishToDelete_WithType_AndName" xml:space="preserve">
     <value>Weet u zeker dat u {0} '{1}' wilt verwijderen?</value>
   </data>
-  <data name="CannotDelete_WithTypeName_AndName" xml:space="preserve">
+  <data name="CannotDelete_WithType_AndName" xml:space="preserve">
     <value>{0} '{1}' kan niet worden verwijderd.</value>
   </data>
   <data name="IsDeleted_WithName" xml:space="preserve">
@@ -243,7 +243,7 @@
   <data name="NotFound_WithItemName_ID_AndListName" xml:space="preserve">
     <value>{0} met ID '{1}' niet gevonden in de lijst van {2}.</value>
   </data>
-  <data name="NotFound_WithTypeName_AndName" xml:space="preserve">
+  <data name="NotFound_WithType_AndName" xml:space="preserve">
     <value>{0} genaamd '{1}' niet gevonden.</value>
   </data>
   <data name="OneOrTheOtherMustBeFilledIn" xml:space="preserve">
@@ -260,5 +260,8 @@
   <data name="Select_WithName" xml:space="preserve">
     <value>{0} selecteren</value>
     <comment>{0} = name</comment>
+  </data>
+  <data name="AlreadyExists_WithType_AndName" xml:space="preserve">
+    <value>{0} {1} bestaat al.</value>
   </data>
 </root>

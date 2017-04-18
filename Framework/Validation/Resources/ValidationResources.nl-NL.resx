@@ -226,7 +226,7 @@
     <value>{0} zijn dubbel.</value>
   </data>
   <data name="NotInList_WithName_AndValue" xml:space="preserve">
-    <value>{0} '{1}' staat niet in de lijst van toegestane waardes.</value>
+    <value>{0} {1} staat niet in de lijst van toegestane waardes.</value>
   </data>
   <data name="InvalidChoice_WithName" xml:space="preserve">
     <value>{0} is een ongeldige keuze.</value>
@@ -235,7 +235,7 @@
     <value>{0} of {1} kunnen worden ingevuld, maar niet beide tegelijk.</value>
   </data>
   <data name="NotUnique_WithName_AndValue_Singular" xml:space="preserve">
-    <value>{0} '{1}' is dubbel.</value>
+    <value>{0} {1} is dubbel.</value>
   </data>
   <data name="NotUnique_WithName_AndDuplicateValues_Plural" xml:space="preserve">
     <value>{0} zijn dubbel. Dubbele: {1}.</value>

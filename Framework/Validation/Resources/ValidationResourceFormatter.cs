@@ -80,7 +80,7 @@ namespace JJ.Framework.Validation.Resources
         {
             if (duplicateValues == null) throw new NullException(() => duplicateValues);
 
-            string formattedDuplicateValues = string.Join(", ", duplicateValues.Select(x => $"'{x}'"));
+            string formattedDuplicateValues = string.Join(", ", duplicateValues.Select(x => $"{x}"));
 
             return string.Format(ValidationResources.NotUnique_WithName_AndDuplicateValues_Plural, displayNamePlural, formattedDuplicateValues);
         }

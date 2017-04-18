@@ -340,7 +340,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} &apos;{1}&apos; does not exist..
+        ///   Looks up a localized string similar to {0} {1} does not exist..
         /// </summary>
         internal static string NotExists_WithName_AndValue {
             get {
@@ -376,7 +376,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} &apos;{1}&apos; is not one of the allowed values..
+        ///   Looks up a localized string similar to {0} {1} is not one of the allowed values..
         /// </summary>
         internal static string NotInList_WithName_AndValue {
             get {
@@ -385,7 +385,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} &apos;{1}&apos; not allowed. Allowed values: {2}..
+        ///   Looks up a localized string similar to {0} {1} not allowed. Allowed values: {2}..
         /// </summary>
         internal static string NotInList_WithName_AndValue_AndAllowedValues {
             get {
@@ -430,7 +430,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} &apos;{1}&apos; is not unique..
+        ///   Looks up a localized string similar to {0} {1} is not unique..
         /// </summary>
         internal static string NotUnique_WithName_AndValue_Singular {
             get {
