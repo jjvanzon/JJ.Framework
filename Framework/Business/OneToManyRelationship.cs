@@ -19,10 +19,9 @@ namespace JJ.Framework.Business
         public OneToManyRelationship(TParent parent, ICollection<TChild> children)
         {
             if (parent == null) throw new NullException(() => parent);
-            if (children == null) throw new NullException(() => children);
 
             _parent = parent;
-            _children = children;
+            _children = children ?? throw new NullException(() => children);
         }
 
         protected abstract void SetParent(TChild child);

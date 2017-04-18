@@ -10,62 +10,23 @@ namespace JJ.Framework.Data
 
         public RepositoryBase(IContext context)
         {
-            if (context == null) throw new NullException(() => context);
-            _context = context;
+            _context = context ?? throw new NullException(() => context);
         }
 
-        public virtual TEntity TryGet(TID id)
-        {
-            return _context.TryGet<TEntity>(id);
-        }
-
-        public virtual TEntity Get(TID id)
-        {
-            return _context.Get<TEntity>(id);
-        }
-
-        public virtual IList<TEntity> GetAll()
-        {
-            return _context.GetAll<TEntity>();
-        }
-
-        public virtual TEntity Create()
-        {
-            return _context.Create<TEntity>();
-        }
-
-        public virtual void Insert(TEntity entity)
-        {
-            _context.Insert(entity);
-        }
-
-        public virtual void Delete(TEntity entity)
-        {
-            _context.Delete(entity);
-        }
-
-        public virtual void Update(TEntity entity)
-        {
-            _context.Update(entity);
-        }
+        public virtual TEntity TryGet(TID id) => _context.TryGet<TEntity>(id);
+        public virtual TEntity Get(TID id) => _context.Get<TEntity>(id);
+        public virtual IList<TEntity> GetAll() => _context.GetAll<TEntity>();
+        public virtual TEntity Create() => _context.Create<TEntity>();
+        public virtual void Insert(TEntity entity) => _context.Insert(entity);
+        public virtual void Delete(TEntity entity) => _context.Delete(entity);
+        public virtual void Update(TEntity entity) => _context.Update(entity);
 
         /// <summary>
         /// Sends pending statements to the data store but does not yet commit the transaction.
         /// This may fill in data store generated data you might require, such as ID's.
         /// </summary>
-        public virtual void Flush()
-        {
-            _context.Flush();
-        }
-
-        public virtual void Commit()
-        {
-            _context.Commit();
-        }
-
-        public virtual void Rollback()
-        {
-            _context.Rollback();
-        }
+        public virtual void Flush() => _context.Flush();
+        public virtual void Commit() => _context.Commit();
+        public virtual void Rollback() => _context.Rollback();
     }
 }
