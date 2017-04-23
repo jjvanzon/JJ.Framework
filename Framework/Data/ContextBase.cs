@@ -17,10 +17,8 @@ namespace JJ.Framework.Data
         /// <param name="dialect">can be null or empty</param>
         public ContextBase(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
         {
-            if (modelAssembly == null) throw new NullException(() => modelAssembly);
-
             Location = location;
-            ModelAssembly = modelAssembly;
+            ModelAssembly = modelAssembly ?? throw new NullException(() => modelAssembly);
             MappingAssembly = mappingAssembly;
             Dialect = dialect;
         }
