@@ -46,11 +46,18 @@
     <Compile Include="EntityStatusHelper.cs" />
     <Compile Include="EntityStatusManager.cs" />
     <Compile Include="EntityStatusManagerByID.cs" />
+    <Compile Include="Helpers\DebugHelper.cs" />
+    <Compile Include="IResult.cs" />
     <Compile Include="ISideEffect.cs" />
     <Compile Include="ManyToOneRelationship.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="Messages.cs" />
     <Compile Include="OneToManyRelationship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyStatusEnum.cs" />
+    <Compile Include="ResultBase.cs" />
+    <Compile Include="ResultT.cs" />
+    <Compile Include="VoidResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\JJ.Framework.Data.csproj">

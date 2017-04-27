@@ -11,7 +11,7 @@ namespace JJ.Framework.Validation
         {
             if (validationMessages == null) throw new NullException(() => validationMessages);
 
-            return String_PlatformSupport.Join(Environment.NewLine, validationMessages.Select(x => $"{x.PropertyKey}: {x.Text}"));
+            return String_PlatformSupport.Join(Environment.NewLine, validationMessages.Select(x => $"{x.Key}: {x.Text}"));
         }
     }
 }

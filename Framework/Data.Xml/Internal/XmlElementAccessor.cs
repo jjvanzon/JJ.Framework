@@ -20,7 +20,7 @@ namespace JJ.Framework.Data.Xml.Internal
         private string _elementName;
         private object _lock = new object();
 
-        public XmlDocument Document { get; private set; }
+        public XmlDocument Document { get; }
 
         public XmlElementAccessor(string filePath, string rootElementName, string elementName)
         {

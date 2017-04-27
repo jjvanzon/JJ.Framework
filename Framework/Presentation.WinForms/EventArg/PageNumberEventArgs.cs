@@ -4,7 +4,7 @@ namespace JJ.Framework.Presentation.WinForms.EventArg
 {
     public class PageNumberEventArgs : EventArgs
     {
-        public int PageNumber { get; private set; }
+        public int PageNumber { get; }
 
         public PageNumberEventArgs(int pageNumber)
         {

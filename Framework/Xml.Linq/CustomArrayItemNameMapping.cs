@@ -7,8 +7,8 @@ namespace JJ.Framework.Xml.Linq
     {
         public const string DEFAULT_XML_ARRAY_ITEM_NAMESPACE_STRING = "http://schemas.microsoft.com/2003/10/Serialization/Arrays";
 
-        public Type DotNetItemType { get; private set; }
-        public string XmlArrayItemName { get; private set; }
+        public Type DotNetItemType { get; }
+        public string XmlArrayItemName { get; }
 
         public CustomArrayItemNameMapping(Type dotNetItemType, string xmlArrayItemName)
         {

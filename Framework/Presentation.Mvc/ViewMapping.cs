@@ -13,7 +13,7 @@ namespace JJ.Framework.Presentation.Mvc
         public string ViewName { get; protected set; }
 
         // TODO: Is this enough encapsulation?
-        public IList<ActionParameterMapping> ParameterMappings { get; private set; }
+        public IList<ActionParameterMapping> ParameterMappings { get; }
 
         public ViewMapping()
         {

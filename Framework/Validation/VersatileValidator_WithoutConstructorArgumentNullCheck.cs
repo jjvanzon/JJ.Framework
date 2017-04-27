@@ -43,15 +43,15 @@ namespace JJ.Framework.Validation
         {
             object value = ExpressionHelper.GetValue(propertyExpression);
 
-            string propertyKey = PropertyKeyHelper.GetPropertyKeyFromExpression(propertyExpression);
+            string key = MessageKeyHelper.GetMessageKeyFromExpression(propertyExpression);
 
-            return For(value, propertyKey, propertyDisplayName, formatProvider);
+            return For(value, key, propertyDisplayName, formatProvider);
         }
 
         /// <summary>
         /// Indicates which property value we are going to validate.
         /// </summary>
-        /// <param name="propertyKey">
+        /// <param name="key">
         /// A technical key of the property we are going to validate.
         /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
         /// </param>
@@ -62,13 +62,13 @@ namespace JJ.Framework.Validation
         /// Use this parameter if e.g. the number format is different from the current culture.
         /// </param>
         [NotNull]
-        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> For(object value, string propertyKey, string propertyDisplayName, [CanBeNull] IFormatProvider formatProvider = null)
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> For(object value, string key, string propertyDisplayName, [CanBeNull] IFormatProvider formatProvider = null)
         {
-            if (propertyKey == null) throw new NullException(() => propertyKey);
-            if (propertyDisplayName == null) throw new NullException(() => propertyDisplayName);
+            if (string.IsNullOrEmpty(key)) throw new NullOrEmptyException(() => key);
+            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
 
             _value = value;
-            _propertyKey = propertyKey;
+            _propertyKey = key;
             _propertyDisplayName = propertyDisplayName;
 
             _formatProvider = formatProvider ?? CultureHelper.GetCurrentCulture();

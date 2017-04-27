@@ -17,8 +17,8 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
     {
         private const string ROOT_ELEMENT_NAME = "root";
 
-        public XmlElementAccessor Accessor { get; private set; }
-        public XmlToEntityConverter Converter { get; private set; }
+        public XmlElementAccessor Accessor { get; }
+        public XmlToEntityConverter Converter { get; }
 
         private readonly IXmlMapping _mapping;
 

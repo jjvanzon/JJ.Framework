@@ -49,7 +49,7 @@
     <Compile Include="ValidatorBase.cs" />
     <Compile Include="VersatileValidator.cs" />
     <Compile Include="VersatileValidator_WithoutConstructorArgumentNullCheck.cs" />
-    <Compile Include="PropertyKeyHelper.cs" />
+    <Compile Include="MessageKeyHelper.cs" />
     <Compile Include="Resources\ValidationResourceFormatter.cs" />
     <Compile Include="Resources\ValidationResources.Designer.cs">
       <AutoGen>True</AutoGen>

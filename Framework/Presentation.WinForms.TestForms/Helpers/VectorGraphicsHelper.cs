@@ -43,10 +43,10 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
             };
         }
 
-        private static Font DefaultFont { get; set; }
-        public static LineStyle DefaultLineStyle { get; private set; }
-        public static TextStyle DefaultTextStyle { get; private set; }
-        public static PointStyle InvisiblePointStyle { get; private set; }
-        public static BackStyle BlueBackStyle { get; private set; }
+        private static Font DefaultFont { get; }
+        public static LineStyle DefaultLineStyle { get; }
+        public static TextStyle DefaultTextStyle { get; }
+        public static PointStyle InvisiblePointStyle { get; }
+        public static BackStyle BlueBackStyle { get; }
     }
 }

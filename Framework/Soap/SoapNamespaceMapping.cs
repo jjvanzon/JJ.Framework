@@ -7,8 +7,8 @@ namespace JJ.Framework.Xml.Linq
     {
         public const string WCF_SOAP_NAMESPACE_HEADER = "http://schemas.datacontract.org/2004/07/";
 
-        public string SourceXmlNamespace { get; private set; }
-        public string DestXmlNamespace { get; private set; }
+        public string SourceXmlNamespace { get; }
+        public string DestXmlNamespace { get; }
 
         public SoapNamespaceMapping(string sourceXmlNamespace, string destXmlNamespace)
         {

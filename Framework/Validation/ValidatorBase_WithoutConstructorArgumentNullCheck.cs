@@ -87,7 +87,7 @@ namespace JJ.Framework.Validation
 
             foreach (ValidationMessage validationMessage in validator.ValidationMessages)
             {
-                ValidationMessages.Add(validationMessage.PropertyKey, messagePrefix + validationMessage.Text);
+                ValidationMessages.Add(validationMessage.Key, messagePrefix + validationMessage.Text);
             }
         }
     }

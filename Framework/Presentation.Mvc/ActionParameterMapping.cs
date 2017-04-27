@@ -5,8 +5,8 @@ namespace JJ.Framework.Presentation.Mvc
 {
     public class ActionParameterMapping
     {
-        public string PresenterParameterName { get; private set; }
-        public string ControllerParameterName { get; private set; }
+        public string PresenterParameterName { get; }
+        public string ControllerParameterName { get; }
 
         public ActionParameterMapping(string presenterParameterName, string controllerParameterName)
         {

@@ -7,15 +7,15 @@ namespace JJ.Framework.Validation
     [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
     public class ValidationMessage
     {
-        public string PropertyKey { get; private set; }
-        public string Text { get; private set; }
+        public string Key { get; }
+        public string Text { get; }
 
-        public ValidationMessage(string propertyKey, string text)
+        public ValidationMessage(string key, string text)
         {
-            if (String_PlatformSupport.IsNullOrWhiteSpace(propertyKey)) throw new NullOrWhiteSpaceException(() => propertyKey);
+            if (String_PlatformSupport.IsNullOrWhiteSpace(key)) throw new NullOrWhiteSpaceException(() => key);
             if (string.IsNullOrEmpty(text)) throw new NullException(() => text);
 
-            PropertyKey = propertyKey;
+            Key = key;
             Text = text;
         }
 
@@ -23,7 +23,7 @@ namespace JJ.Framework.Validation
         {
             get
             {
-                return $"{PropertyKey}: {Text}";
+                return $"{Key}: {Text}";
             }
         }
     }

@@ -183,7 +183,7 @@ namespace JJ.Framework.Presentation.Mvc
 
         private abstract class Node
         {
-            public string Identifier { get; private set; }
+            public string Identifier { get; }
 
             public Node(string identifier)
             {
