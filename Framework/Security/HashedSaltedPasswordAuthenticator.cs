@@ -10,17 +10,14 @@ namespace JJ.Framework.Security
     {
         private const int SALT_BYTES_LENGTH = 24;
 
-        private AuthenticationTypeEnum _authenticationType;
+        private readonly AuthenticationTypeEnum _authenticationType;
 
         internal HashedSaltedPasswordAuthenticator(AuthenticationTypeEnum authenticationType)
         { 
             _authenticationType = authenticationType;
         }
 
-        public override bool PasswordIsRequired
-        {
-            get { return true; }
-        }
+        public override bool PasswordIsRequired => true;
 
         public override bool IsAuthentic(string passwordFromClient, string tokenFromClient, string passwordFromServer, IList<string> tokenValuesFromServer)
         {
