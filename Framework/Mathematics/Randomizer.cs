@@ -51,7 +51,6 @@ namespace JJ.Framework.Mathematics
         }
 
         public static T GetRandomItem<T>(IEnumerable<T> collection)
-            where T : class
         {
             int count = collection.Count();
             if (count == 0)
@@ -65,41 +64,13 @@ namespace JJ.Framework.Mathematics
         }
 
         public static T TryGetRandomItem<T>(IEnumerable<T> collection)
-            where T : class
         {
             // ReSharper disable once PossibleMultipleEnumeration
             int count = collection.Count();
             if (count == 0)
             {
-                return null;
-            }
-
-            int index = GetInt32(count - 1);
-            // ReSharper disable once PossibleMultipleEnumeration
-            return collection.ElementAt(index);
-        }
-
-        public static T? GetRandomItem<T>(IEnumerable<T?> collection)
-            where T : struct
-        {
-            int count = collection.Count();
-            if (count == 0)
-            {
-                throw new CollectionEmptyException(() => collection);
-            }
-
-            int index = GetInt32(count - 1);
-            // ReSharper disable once PossibleMultipleEnumeration
-            return collection.ElementAt(index);
-        }
-
-        public static T? TryGetRandomItem<T>(IEnumerable<T?> collection)
-            where T : struct
-        {
-            // ReSharper disable once PossibleMultipleEnumeration
-            int count = collection.Count();
-            if (count == 0)
-            {
+                // Unfortunately, you cannot create overloads that return T? for structs and null for classes.
+                // This is not currently possible in C#. I think they're working on it.
                 return default(T);
             }
 
