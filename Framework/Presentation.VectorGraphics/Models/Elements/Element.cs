@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using JJ.Framework.Business;
 using JJ.Framework.Presentation.VectorGraphics.Relationships;
 using JJ.Framework.Presentation.VectorGraphics.Gestures;
 using JJ.Framework.Presentation.VectorGraphics.SideEffects;
@@ -8,7 +7,7 @@ using JJ.Framework.Presentation.VectorGraphics.SideEffects;
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
     /// <summary> base class that can contain VectorGraphics child elements. </summary>
-    public abstract partial class Element
+    public abstract class Element
     {
         internal Element()
         {

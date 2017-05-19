@@ -5,7 +5,6 @@ using System.Linq;
 using System.Diagnostics;
 using JJ.Framework.Presentation.VectorGraphics.Relationships;
 using JJ.Framework.Presentation.VectorGraphics.SideEffects;
-using JJ.Framework.Business;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
@@ -17,9 +16,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         internal ElementChildren(Element parent)
         {
-            if (parent == null) throw new NullException(() => parent);
-
-            _parent = parent;
+            _parent = parent ?? throw new NullException(() => parent);
             _list = new List<Element>();
 
             _childrenRelationship = new ParentToChildrenRelationship(_parent, _list);

@@ -55,8 +55,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public override float Width
         {
-            get { return 0; }
-            set { throw new NotSupportedException(); }
+            get => 0;
+            set => throw new NotSupportedException();
         }
 
         public override float Height

@@ -11,9 +11,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         internal DiagramGestureHandling(Diagram diagram)
         {
-            if (diagram == null) throw new NullException(() => diagram);
-
-            _diagram = diagram;
+            _diagram = diagram ?? throw new NullException(() => diagram);
             _gestureHandler = new GestureHandler(_diagram);
         }
 
@@ -43,14 +41,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             _diagram.Recalculate();
         }
 
-        public void HandleKeyDown(KeyEventArgs keyEventArgs)
-        {
-            _gestureHandler.HandleKeyDown(keyEventArgs);
-        }
-
-        public void HandleKeyUp(KeyEventArgs keyEventArgs)
-        {
-            _gestureHandler.HandleKeyUp(keyEventArgs);
-        }
+        public void HandleKeyDown(KeyEventArgs keyEventArgs) => _gestureHandler.HandleKeyDown(keyEventArgs);
+        public void HandleKeyUp(KeyEventArgs keyEventArgs) => _gestureHandler.HandleKeyUp(keyEventArgs);
     }
 }
