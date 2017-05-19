@@ -133,15 +133,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             }
         }
 
-        public float ScaledRight
-        {
-            get { return ScaledX + ScaledWidth; }
-        }
+        public float ScaledRight => ScaledX + ScaledWidth;
 
-        public float ScaledBottom
-        {
-            get { return ScaledY + ScaledHeight; }
-        }
+        public float ScaledBottom => ScaledY + ScaledHeight;
 
         public float PixelsToX(float xInPixels)
         {
@@ -183,14 +177,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
             return ScaleHelper.HeightToPixels(_diagram, scaledHeight);
         }
 
-        public bool XAxisIsFlipped
-        {
-            get { return ScaledWidth < 0f; }
-        }
+        public bool XAxisIsFlipped => ScaledWidth < 0f;
 
-        public bool YAxisIsFlipped
-        {
-            get { return ScaledHeight < 0f; }
-        }
+        public bool YAxisIsFlipped => ScaledHeight < 0f;
     }
 }

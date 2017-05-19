@@ -22,17 +22,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Styling
         public VerticalAlignmentEnum VerticalAlignmentEnum { get; set; }
 
         private Font _font = new Font();
-        /// <summary>
-        /// not nullable, auto-instantiated
-        /// </summary>
+        /// <summary> not nullable, auto-instantiated </summary>
         public Font Font
         {
             [DebuggerHidden]
             get { return _font; }
             set
             {
-                if (value == null) throw new NullException(() => value);
-                _font = value;
+                _font = value ?? throw new NullException(() => value);
             }
         }
     }

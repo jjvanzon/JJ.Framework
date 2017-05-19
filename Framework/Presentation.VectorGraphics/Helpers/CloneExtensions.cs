@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+﻿using System;
+using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Helpers
@@ -18,6 +19,36 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
             return dest;
         }
 
+        public static Font Clone(this Font source)
+        {
+            if (source == null) throw new NullException(() => source);
+
+            var dest = new Font
+            {
+                Bold = source.Bold,
+                Italic = source.Italic,
+                Name = source.Name,
+                Size = source.Size
+            };
+
+            return dest;
+        }
+
+        public static LineStyle Clone(this LineStyle source)
+        {
+            if (source == null) throw new NullException(() => source);
+
+            var dest = new LineStyle
+            {
+                Visible = source.Visible,
+                Width = source.Width,
+                Color = source.Color,
+                DashStyleEnum = source.DashStyleEnum
+            };
+
+            return dest;
+        }
+
         public static PointStyle Clone(this PointStyle source)
         {
             if (source == null) throw new NullException(() => source);
@@ -27,6 +58,24 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
                 Color = source.Color,
                 Visible = source.Visible,
                 Width = source.Width
+            };
+
+            return dest;
+        }
+
+        /// <summary> Will also clone TextStyle.Font. </summary>
+        public static TextStyle Clone(this TextStyle source)
+        {
+            if (source == null) throw new NullException(() => source);
+
+            var dest = new TextStyle
+            {
+                Color = source.Color,
+                Abbreviate = source.Abbreviate,
+                Wrap = source.Wrap,
+                HorizontalAlignmentEnum = source.HorizontalAlignmentEnum,
+                VerticalAlignmentEnum = source.VerticalAlignmentEnum,
+                Font = source.Font.Clone()
             };
 
             return dest;
