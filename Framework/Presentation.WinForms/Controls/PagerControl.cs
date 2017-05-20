@@ -18,10 +18,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         public event EventHandler GoToNextPageClicked;
         public event EventHandler GoToLastPageClicked;
 
-        public PagerControl()
-        {
-            InitializeComponent();
-        }
+        public PagerControl() => InitializeComponent();
 
         private bool _resizeBusy;
 
