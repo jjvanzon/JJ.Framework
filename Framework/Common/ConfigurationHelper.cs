@@ -11,7 +11,7 @@ namespace JJ.Framework.Common
         private static readonly object _sectionsLock = new object();
         private static readonly IDictionary<Type, object> _sections = new Dictionary<Type, object>();
 
-        // TODO: Make the overloads with the explicit section name.
+        // TODO: Low priority: Make the overloads with the explicit section name.
 
         public static T GetSection<T>()
         {

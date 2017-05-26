@@ -70,6 +70,7 @@
       <DependentUpon>DiagramControl.cs</DependentUpon>
     </Compile>
     <Compile Include="EventArg\OnRunProcessEventArgs.cs" />
+    <Compile Include="Helpers\UnhandledExceptionMessageBoxShower.cs" />
     <Compile Include="Helpers\WinFormsVectorGraphicsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\SimpleFileProcessControl.cs">
