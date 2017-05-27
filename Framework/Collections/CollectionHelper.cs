@@ -85,5 +85,16 @@ namespace JJ.Framework.Collections
                 yield return item;
             }
         }
+
+        public static IEnumerable<T> Repeat<T>(int count, Func<int, T> selector)
+        {
+            if (selector == null) throw new ArgumentNullException(nameof(selector));
+
+            for (int i = 0; i < count; i++)
+            {
+                T item = selector(i);
+                yield return item;
+            }
+        }
     }
 }
