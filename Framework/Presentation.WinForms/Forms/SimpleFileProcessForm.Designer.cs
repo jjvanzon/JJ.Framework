@@ -39,23 +39,27 @@ namespace JJ.Framework.Presentation.WinForms.Forms
             this.simpleFileProcessControl = new JJ.Framework.Presentation.WinForms.Controls.SimpleFileProcessControl();
             this.SuspendLayout();
             // 
-            // simpleProcessControl
+            // simpleFileProcessControl
             // 
             this.simpleFileProcessControl.Description = "";
             this.simpleFileProcessControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.simpleFileProcessControl.FilePath = "";
+            this.simpleFileProcessControl.IsRunning = false;
             this.simpleFileProcessControl.Location = new System.Drawing.Point(0, 0);
-            this.simpleFileProcessControl.Name = "simpleProcessControl";
-            this.simpleFileProcessControl.Size = new System.Drawing.Size(646, 280);
+            this.simpleFileProcessControl.Margin = new System.Windows.Forms.Padding(4);
+            this.simpleFileProcessControl.MustShowExceptions = false;
+            this.simpleFileProcessControl.Name = "simpleFileProcessControl";
+            this.simpleFileProcessControl.Size = new System.Drawing.Size(853, 346);
             this.simpleFileProcessControl.TabIndex = 0;
             // 
-            // SimpleProcessForm
+            // SimpleFileProcessForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(646, 280);
+            this.ClientSize = new System.Drawing.Size(853, 346);
             this.Controls.Add(this.simpleFileProcessControl);
-            this.Name = "SimpleProcessForm";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "SimpleFileProcessForm";
             this.Text = "SimpleProcessForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Base_FormClosing);
             this.ResumeLayout(false);
@@ -64,6 +68,6 @@ namespace JJ.Framework.Presentation.WinForms.Forms
 
         #endregion
 
-        private JJ.Framework.Presentation.WinForms.Controls.SimpleFileProcessControl simpleFileProcessControl;
+        private Controls.SimpleFileProcessControl simpleFileProcessControl;
     }
 }

@@ -11,25 +11,13 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 
         public string _field = "FieldResult";
 
-        public ComplexItem Property
-        {
-            get { return new ComplexItem { Name = "PropertyResult" }; }
-        }
+        public ComplexItem Property => new ComplexItem { Name = "PropertyResult" };
 
-        public ComplexItem MethodWithParameter(int parameter)
-        {
-            return new ComplexItem { Name = "MethodWithParameterResult" };
-        }
+        public ComplexItem MethodWithParameter(int parameter) => new ComplexItem { Name = "MethodWithParameterResult" };
 
-        public ComplexItem MethodWithParams(params int[] array)
-        {
-            return new ComplexItem { Name = "MethodWithParamsResult" };
-        }
+        public ComplexItem MethodWithParams(params int[] array) => new ComplexItem { Name = "MethodWithParamsResult" };
 
         [IndexerName("Indexer")]
-        public ComplexItem this[int index]
-        {
-            get { return new ComplexItem { Name = "IndexerResult" }; }
-        }
+        public ComplexItem this[int index] => new ComplexItem { Name = "IndexerResult" };
     }
 }

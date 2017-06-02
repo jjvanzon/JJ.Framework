@@ -76,13 +76,12 @@ namespace JJ.Framework.Presentation
             IDictionary<string, PropertyInfo> propertyDictionary = _reflectionCache.GetPropertyDictionary(constructorArguments.GetType());
 
             IList<ParameterInfo> parameters = constructor.GetParameters();
-            object[] parameterValues = new object[parameters.Count];
+            var parameterValues = new object[parameters.Count];
             for (int i = 0; i < parameters.Count; i++)
             {
                 ParameterInfo parameter = parameters[i];
 
-                PropertyInfo property;
-                propertyDictionary.TryGetValue(parameter.Name, out property);
+                propertyDictionary.TryGetValue(parameter.Name, out PropertyInfo property);
 
                 if (property != null)
                 {
@@ -117,7 +116,7 @@ namespace JJ.Framework.Presentation
 
             // Convert parameter values.
             IList<ParameterInfo> parameters = method.GetParameters();
-            object[] parameterValues = new object[parameters.Count];
+            var parameterValues = new object[parameters.Count];
 
             for (int i = 0; i < parameters.Count; i++)
             {

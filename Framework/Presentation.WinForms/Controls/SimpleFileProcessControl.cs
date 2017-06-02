@@ -8,6 +8,8 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 {
     public partial class SimpleFileProcessControl : UserControl
     {
+        private bool _isLoaded;
+
         public event EventHandler OnRunProcess;
 
         public SimpleFileProcessControl()
@@ -19,18 +21,14 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         private void SimpleFileProcessControl_Load(object sender, EventArgs e)
         {
+            _isLoaded = true;
+
             ApplyIsRunning();
         }
 
-        private void buttonStart_Click(object sender, EventArgs e)
-        {
-            Start();
-        }
+        private void buttonStart_Click(object sender, EventArgs e) => Start();
 
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            Cancel();
-        }
+        private void buttonCancel_Click(object sender, EventArgs e) => Cancel();
 
         private void Start()
         {
@@ -43,10 +41,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             }
         }
 
-        private void Cancel()
-        {
-            IsRunning = false;
-        }
+        private void Cancel() => IsRunning = false;
 
         // Processing
 
@@ -76,10 +71,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         // Progress Label
 
-        public void ShowProgress(string message)
-        {
-            OnUiThread(() => labelProgress.Text = message);
-        }
+        public void ShowProgress(string message) => OnUiThread(() => labelProgress.Text = message);
 
         // IsRunning
 
@@ -88,7 +80,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         [Browsable(false)]
         public bool IsRunning
         {
-            get { return _isRunning; }
+            get => _isRunning;
             set 
             {
                 _isRunning = value;
@@ -110,8 +102,8 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         public string FilePath
         {
-            get { return textBoxFilePath.Text; ; }
-            set { textBoxFilePath.Text = value; }
+            get => textBoxFilePath.Text;
+            set => textBoxFilePath.Text = value;
         }
 
         [Editor(
@@ -119,21 +111,33 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             "System.Drawing.Design.UITypeEditor")]
         public string Description
         {
-            get { return labelDescription.Text; ; }
-            set { labelDescription.Text = value; }
+            get => labelDescription.Text;
+            set => labelDescription.Text = value;
         }
-        
+
         [DefaultValue(true)]
-        public bool MustShowExceptions
-        {
-            get; set;
-        }
+        public bool MustShowExceptions { get; set; }
 
         // Helpers
 
         private void OnUiThread(Action action)
         {
-            this.BeginInvoke(action);
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                return;
+            }
+
+            if (DesignMode)
+            {
+                return;
+            }
+
+            if (!_isLoaded)
+            {
+                return;
+            }
+
+            BeginInvoke(action);
         }
 
         private void Async(Action action)
