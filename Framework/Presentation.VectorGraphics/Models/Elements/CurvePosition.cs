@@ -1,5 +1,4 @@
 ﻿using System;
-using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
@@ -17,15 +16,15 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             get
             {
-                if (_curve.PointA == null) throw new NullException(() => _curve.PointA);
-                if (_curve.PointB == null) throw new NullException(() => _curve.PointB);
+                if (_curve.PointA == null) return 0f;
+                if (_curve.PointB == null) return 0f;
 
                 return Math.Min(_curve.PointA.Position.X, _curve.PointB.Position.X);
             }
             set
             {
-                if (_curve.PointA == null) throw new NullException(() => _curve.PointA);
-                if (_curve.PointB == null) throw new NullException(() => _curve.PointB);
+                if (_curve.PointA == null) return;
+                if (_curve.PointB == null) return;
 
                 float dx = _curve.PointB.Position.X - _curve.PointA.Position.X;
                 _curve.PointA.Position.X = value;
@@ -37,15 +36,15 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             get
             {
-                if (_curve.PointA == null) throw new NullException(() => _curve.PointA);
-                if (_curve.PointB == null) throw new NullException(() => _curve.PointB);
+                if (_curve.PointA == null) return 0f;
+                if (_curve.PointB == null) return 0f;
 
                 return Math.Min(_curve.PointA.Position.Y, _curve.PointB.Position.Y);
             }
             set
             {
-                if (_curve.PointA == null) throw new NullException(() => _curve.PointA);
-                if (_curve.PointB == null) throw new NullException(() => _curve.PointB);
+                if (_curve.PointA == null) return;
+                if (_curve.PointB == null) return;
 
                 float dy = _curve.PointB.Position.Y - _curve.PointA.Position.Y;
                 _curve.PointA.Position.Y = value;

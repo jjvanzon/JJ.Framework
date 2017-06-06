@@ -1,5 +1,4 @@
 ﻿using System;
-using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
@@ -17,15 +16,15 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             get
             {
-                if (_line.PointA == null) throw new NullException(() => _line.PointA);
-                if (_line.PointB == null) throw new NullException(() => _line.PointB);
+                if (_line.PointA == null) return 0f;
+                if (_line.PointB == null) return 0f;
 
                 return Math.Min(_line.PointA.Position.X, _line.PointB.Position.X);
             }
             set
             {
-                if (_line.PointA == null) throw new NullException(() => _line.PointA);
-                if (_line.PointB == null) throw new NullException(() => _line.PointB);
+                if (_line.PointA == null) return;
+                if (_line.PointB == null) return;
 
                 float dx = _line.PointB.Position.X - _line.PointA.Position.X;
                 _line.PointA.Position.X = value;
@@ -37,15 +36,15 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
         {
             get
             {
-                if (_line.PointA == null) throw new NullException(() => _line.PointA);
-                if (_line.PointB == null) throw new NullException(() => _line.PointB);
+                if (_line.PointA == null) return 0f;
+                if (_line.PointB == null) return 0f;
 
                 return Math.Min(_line.PointA.Position.Y, _line.PointB.Position.Y);
             }
             set
             {
-                if (_line.PointA == null) throw new NullException(() => _line.PointA);
-                if (_line.PointB == null) throw new NullException(() => _line.PointB);
+                if (_line.PointA == null) return;
+                if (_line.PointB == null) return;
 
                 float dy = _line.PointB.Position.Y - _line.PointA.Position.Y;
                 _line.PointA.Position.Y = value;
@@ -55,14 +54,14 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
         public override float Width
         {
-            get { return 0; }
-            set { throw new NotSupportedException(); }
+            get => 0;
+            set => throw new NotSupportedException();
         }
 
         public override float Height
         {
-            get { return 0; }
-            set { throw new NotSupportedException(); }
+            get => 0;
+            set => throw new NotSupportedException();
         }
     }
 }

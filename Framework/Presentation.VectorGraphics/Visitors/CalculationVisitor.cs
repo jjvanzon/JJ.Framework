@@ -159,11 +159,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
         private void PostProcessPolymorphic(Element element)
         {
-            var curve = element as Curve;
-            if (curve != null)
+            if (element is Curve curve)
             {
                 PostProcessCurve(curve);
-                return;
             }
         }
 
