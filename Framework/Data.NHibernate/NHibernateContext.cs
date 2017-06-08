@@ -21,8 +21,6 @@ namespace JJ.Framework.Data.NHibernate
         /// </summary>
         private readonly EntityDictionary _entityDictionary = new EntityDictionary();
 
-        private readonly Dictionary<Type, object> _getAllCache = new Dictionary<Type, object>();
-
         public NHibernateContext(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
             : base(connectionString, modelAssembly, mappingAssembly, dialect)
         {
@@ -43,18 +41,6 @@ namespace JJ.Framework.Data.NHibernate
             _entityDictionary.AddOrReplaceIfNeeded(id, entity);
 
             return entity;
-        }
-
-        public override IList<TEntity> GetAll<TEntity>()
-        {
-            object entities;
-            if (!_getAllCache.TryGetValue(typeof(TEntity), out entities))
-            {
-                entities = Session.QueryOver<TEntity>().List();
-                _getAllCache.Add(typeof(TEntity), entities);
-            }
-            
-            return (IList<TEntity>)entities;
         }
 
         public override TEntity Create<TEntity>()
@@ -120,8 +106,6 @@ namespace JJ.Framework.Data.NHibernate
         {
             Flush();
 
-            _getAllCache.Clear();
-
             if (Session.Transaction.IsActive)
             {
                 Session.Transaction.Commit();
@@ -148,8 +132,6 @@ namespace JJ.Framework.Data.NHibernate
         {
             _entitiesToSave.Clear();
             _entityDictionary.Clear();
-
-            _getAllCache.Clear();
 
             CloseSession(Session);
             Session = OpenSession();

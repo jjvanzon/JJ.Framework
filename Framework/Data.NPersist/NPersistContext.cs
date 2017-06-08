@@ -24,11 +24,6 @@ namespace JJ.Framework.Data.NPersist
             return Context.TryGetObjectById<TEntity>(id);
         }
 
-        public override IList<TEntity> GetAll<TEntity>()
-        {
-            return Context.GetObjects<TEntity>();
-        }
-
         public override void Insert(object entity)
         {
             Context.AttachObject(entity);

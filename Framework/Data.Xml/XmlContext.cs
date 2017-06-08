@@ -94,7 +94,8 @@ namespace JJ.Framework.Data.Xml
             entityStore.Delete(entity);
         }
 
-        public override IList<TEntity> GetAll<TEntity>()
+        public IList<TEntity> GetAll<TEntity>()
+            where TEntity : class, new()
         {
             EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
             return entityStore.GetAll();

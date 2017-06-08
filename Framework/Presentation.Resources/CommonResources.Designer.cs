@@ -97,6 +97,15 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot delete {0}..
+        /// </summary>
+        internal static string CannotDelete_WithName {
+            get {
+                return ResourceManager.GetString("CannotDelete_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot delete {0}, because it is still used by the following: {1}..
         /// </summary>
         internal static string CannotDelete_WithName_AndDependentItem {

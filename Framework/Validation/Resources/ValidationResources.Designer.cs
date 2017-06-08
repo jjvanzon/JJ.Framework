@@ -358,7 +358,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not one of the allowed values..
+        ///   Looks up a localized string similar to {0} is not one of the allowed items..
         /// </summary>
         internal static string NotInList_WithName {
             get {
@@ -376,7 +376,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} {1} is not one of the allowed values..
+        ///   Looks up a localized string similar to {0} {1} is not one of the allowed items..
         /// </summary>
         internal static string NotInList_WithName_AndValue {
             get {
@@ -385,7 +385,7 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} {1} not allowed. Allowed values: {2}..
+        ///   Looks up a localized string similar to {0} {1} not allowed. Allowed items: {2}..
         /// </summary>
         internal static string NotInList_WithName_AndValue_AndAllowedValues {
             get {

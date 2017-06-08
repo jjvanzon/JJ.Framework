@@ -230,12 +230,12 @@
     <comment>{0} = property</comment>
   </data>
   <data name="NotInList_WithName" xml:space="preserve">
-    <value>{0} is not one of the allowed values.</value>
+    <value>{0} is not one of the allowed items.</value>
     <comment>{0} = property</comment>
   </data>
   <data name="NotInList_WithName_AndAllowedValues" xml:space="preserve">
     <value>{0} should have one of the values: {1}.</value>
-    <comment>{0} = property, {1} = allowed values</comment>
+    <comment>{0} = property, {1} = allowed items</comment>
   </data>
   <data name="NotInteger_WithName" xml:space="preserve">
     <value>{0} is not an integer number.</value>
@@ -262,12 +262,12 @@
     <comment>{0} = property</comment>
   </data>
   <data name="NotInList_WithName_AndValue" xml:space="preserve">
-    <value>{0} {1} is not one of the allowed values.</value>
-    <comment>{0} = property, {1} = value</comment>
+    <value>{0} {1} is not one of the allowed items.</value>
+    <comment>{0} = property, {1} = item / value</comment>
   </data>
   <data name="NotInList_WithName_AndValue_AndAllowedValues" xml:space="preserve">
-    <value>{0} {1} not allowed. Allowed values: {2}.</value>
-    <comment>{0} = property, {1} = value, {2} = allowed values</comment>
+    <value>{0} {1} not allowed. Allowed items: {2}.</value>
+    <comment>{0} = property, {1} = value, {2} = allowed items</comment>
   </data>
   <data name="NotExists_WithName_AndValue" xml:space="preserve">
     <value>{0} {1} does not exist.</value>

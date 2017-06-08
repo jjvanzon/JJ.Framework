@@ -41,11 +41,6 @@ namespace JJ.Framework.Data.EntityFramework5
             return Context.Set<TEntity>().Find(id);
         }
 
-        public override IList<TEntity> GetAll<TEntity>()
-        {
-            return Context.Set<TEntity>().ToArray();
-        }
-
         public override TEntity Create<TEntity>()
         {
             var entity = new TEntity();

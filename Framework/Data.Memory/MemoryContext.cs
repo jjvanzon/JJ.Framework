@@ -75,15 +75,10 @@ namespace JJ.Framework.Data.Memory
             entityStore.Delete(entity);
         }
 
-        public override IList<TEntity> GetAll<TEntity>()
+        public override IEnumerable<TEntity> Query<TEntity>()
         {
             EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
             return entityStore.GetAll();
-        }
-
-        public override IEnumerable<TEntity> Query<TEntity>()
-        {
-            return GetAll<TEntity>();
         }
 
         public override void Commit()

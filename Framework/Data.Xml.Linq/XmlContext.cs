@@ -91,12 +91,6 @@ namespace JJ.Framework.Data.Xml.Linq
             entityStore.Delete(entity);
         }
 
-        public override IList<TEntity> GetAll<TEntity>()
-        {
-            EntityStore<TEntity> entityStore = GetEntityStore<TEntity>();
-            return entityStore.GetAll();
-        }
-
         public override IEnumerable<TEntity> Query<TEntity>()
         {
             throw new NotSupportedException("XmlContext does not support Query<TEntity>().");

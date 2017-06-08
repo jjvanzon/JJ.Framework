@@ -15,7 +15,6 @@ namespace JJ.Framework.Data
 
         public virtual TEntity TryGet(TID id) => _context.TryGet<TEntity>(id);
         public virtual TEntity Get(TID id) => _context.Get<TEntity>(id);
-        public virtual IList<TEntity> GetAll() => _context.GetAll<TEntity>();
         public virtual TEntity Create() => _context.Create<TEntity>();
         public virtual void Insert(TEntity entity) => _context.Insert(entity);
         public virtual void Delete(TEntity entity) => _context.Delete(entity);

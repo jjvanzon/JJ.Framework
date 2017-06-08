@@ -131,45 +131,6 @@ namespace JJ.Framework.Data.Tests
             }
         }
 
-        // GetAll
-
-        [TestMethod]
-        public void Test_Persistence_NHibernate_GetAll()
-        {
-            string contextType = GetNHibernateContextType();
-            Test_Persistence_GetAll(contextType);
-        }
-
-        [TestMethod]
-        public void Test_Persistence_NPersist_GetAll()
-        {
-            string contextType = GetNPersistContextType();
-
-            TestHelper.WithNPersistInconclusiveAssertion(() =>
-            {
-                Test_Persistence_GetAll(contextType);
-            });
-        }
-
-        [TestMethod]
-        public void Test_Persistence_EntityFramework5_GetAll()
-        {
-            string contextType = GetEntityFramework5ContextType();
-            Test_Persistence_GetAll(contextType);
-        }
-
-        private void Test_Persistence_GetAll(string contextType)
-        {
-            using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
-            {
-                foreach (Thing entity in context.GetAll<Thing>())
-                {
-                    int id = entity.ID;
-                    string name = entity.Name;
-                }
-            }
-        }
-
         // Create
 
         [TestMethod]
@@ -343,7 +304,7 @@ namespace JJ.Framework.Data.Tests
             catch (Exception ex)
             {
                 // This is the expected exception message.
-                if (String.Equals(ex.Message, "Use ISession.QueryOver<TEntity> instead."))
+                if (string.Equals(ex.Message, "Use ISession.QueryOver<TEntity> instead."))
                 {
                     return;
                 }

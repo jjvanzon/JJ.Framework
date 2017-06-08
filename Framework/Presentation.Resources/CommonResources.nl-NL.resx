@@ -264,4 +264,8 @@
   <data name="AlreadyExists_WithType_AndName" xml:space="preserve">
     <value>{0} {1} bestaat al.</value>
   </data>
+  <data name="CannotDelete_WithName" xml:space="preserve">
+    <value>{0} kan niet worden verwijderd.</value>
+    <comment>{0} = name</comment>
+  </data>
 </root>
