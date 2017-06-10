@@ -19,12 +19,6 @@ namespace JJ.Framework.Validation
             Text = text;
         }
 
-        private string DebuggerDisplay
-        {
-            get
-            {
-                return $"{Key}: {Text}";
-            }
-        }
+        private string DebuggerDisplay => $"{Key}: {Text}";
     }
 }
