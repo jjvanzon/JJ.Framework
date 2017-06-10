@@ -52,7 +52,7 @@ namespace JJ.Framework.Presentation.Drawing
                 _width = width;
                 _height = height;
 
-                // I am not sure why I would have to be this tollerant.
+                // I am not sure why I would have to be this tolerant.
                 if (_width < 1) _width = 1;
                 if (_height < 1) _height = 1;
 
