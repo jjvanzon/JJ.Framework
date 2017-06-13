@@ -86,11 +86,11 @@ namespace JJ.Framework.Validation
         }
 
         [NotNull]
-        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNullOrWhiteSpace()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNullOrEmpty()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (String_PlatformSupport.IsNullOrWhiteSpace(stringValue))
+            if (string.IsNullOrEmpty(stringValue))
             {
                 ValidationMessages.AddNotFilledInMessage(_propertyKey, _propertyDisplayName);
             }
@@ -99,11 +99,11 @@ namespace JJ.Framework.Validation
         }
 
         [NotNull]
-        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNullOrEmpty()
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> NotNullOrWhiteSpace()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
 
-            if (string.IsNullOrEmpty(stringValue))
+            if (String_PlatformSupport.IsNullOrWhiteSpace(stringValue))
             {
                 ValidationMessages.AddNotFilledInMessage(_propertyKey, _propertyDisplayName);
             }
@@ -128,6 +128,19 @@ namespace JJ.Framework.Validation
             string stringValue = Convert.ToString(_value, _formatProvider);
 
             if (!string.IsNullOrEmpty(stringValue))
+            {
+                ValidationMessages.AddIsFilledInMessage(_propertyKey, _propertyDisplayName);
+            }
+
+            return this;
+        }
+
+        [NotNull]
+        public VersatileValidator_WithoutConstructorArgumentNullCheck<TRootObject> IsNullOrWhiteSpace()
+        {
+            string stringValue = Convert.ToString(_value, _formatProvider);
+
+            if (!string.IsNullOrWhiteSpace(stringValue))
             {
                 ValidationMessages.AddIsFilledInMessage(_propertyKey, _propertyDisplayName);
             }
