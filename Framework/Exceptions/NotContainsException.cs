@@ -8,12 +8,12 @@ namespace JJ.Framework.Exceptions
     {
         private const string MESSAGE = "{0} does not contain {1}.";
 
-        public NotContainsException(Expression<Func<object>> expression, object value)
-            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression), value))
+        public NotContainsException(Expression<Func<object>> collectionExpression, object item)
+            : base(string.Format(MESSAGE, ExpressionHelper.GetText(collectionExpression), item))
         { }
 
-        public NotContainsException(Expression<Func<object>> expression1, Expression<Func<object>> expression2)
-            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression1), ExpressionHelper.GetText(expression2)))
+        public NotContainsException(Expression<Func<object>> collectionexpression, Expression<Func<object>> itemExpression)
+            : base(string.Format(MESSAGE, ExpressionHelper.GetText(collectionexpression), ExpressionHelper.GetText(itemExpression)))
         { }
     }
 }
