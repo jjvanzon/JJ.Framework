@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="DebugHelper.cs" />
     <Compile Include="ValidatorBase.cs" />
-    <Compile Include="2017-06-20 Backup of VersatileValidator.cs" />
     <Compile Include="VersatileValidator.cs" />
     <Compile Include="MessageKeyHelper.cs" />
     <Compile Include="Resources\ValidationResourceFormatter.cs" />
@@ -58,7 +57,6 @@
     </Compile>
     <Compile Include="ValidationMessage.cs" />
     <Compile Include="ValidationMessages.cs" />
-    <Compile Include="2017-06-20 Backup of ValidatorBase_WithoutConstructorArgumentNullCheck.cs" />
     <Compile Include="IValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
