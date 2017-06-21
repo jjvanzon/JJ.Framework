@@ -217,7 +217,7 @@
     <value>{0} does not contain {1}.</value>
     <comment>{0} = property, {1} = value</comment>
   </data>
-  <data name="NotEmpty_WithName" xml:space="preserve">
+  <data name="NotEmpty_WithName_Singular" xml:space="preserve">
     <value>{0} is not empty.</value>
     <comment>{0} = property</comment>
   </data>
@@ -292,5 +292,13 @@
   <data name="NotUnique_WithName_AndDuplicateValues_Singular" xml:space="preserve">
     <value>{0} is not unique. Duplicates: {1}.</value>
     <comment>{0} = name singular, {1} = comma separated list of duplicate values</comment>
+  </data>
+  <data name="AreEmpty_WithName" xml:space="preserve">
+    <value>{0} are empty.</value>
+    <comment>{0} = property</comment>
+  </data>
+  <data name="NotEmpty_WithName_Plural" xml:space="preserve">
+    <value>{0} are not empty.</value>
+    <comment>{0} = property</comment>
   </data>
 </root>

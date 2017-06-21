@@ -8,6 +8,7 @@ namespace JJ.Framework.Validation.Resources
 {
     public static class ValidationResourceFormatter
     {
+        public static string AreEmpty(string displayName) => string.Format(ValidationResources.AreEmpty_WithName, displayName);
         public static string Contains(string displayName, object valueOrName) => string.Format(ValidationResources.Contains_WithName_AndValue, displayName, valueOrName);
         public static string LengthExceeded(string displayName, int length) => string.Format(ValidationResources.LengthExceeded_WithName_AndLength, displayName, length);
         public static string FileAlreadyExists(string filePath) => string.Format(ValidationResources.FileAlreadyExists_WithFilePath, filePath);
@@ -36,7 +37,8 @@ namespace JJ.Framework.Validation.Resources
         public static string NotBoth(string displayName1, string displayName2) => string.Format(ValidationResources.NotBoth_WithTwoNames, displayName1, displayName2);
         public static string NotBrokenNumber(string displayName) => string.Format(ValidationResources.NotBrokenNumber_WithName, displayName);
         public static string NotContains(string displayName, object valueOrName) => string.Format(ValidationResources.NotContains_WithName_AndValue, displayName, valueOrName);
-        public static string NotEmpty(string displayName) => string.Format(ValidationResources.NotEmpty_WithName, displayName);
+        public static string NotEmptySingular(string displayNameSingular) => string.Format(ValidationResources.NotEmpty_WithName_Singular, displayNameSingular);
+        public static string NotEmptyPlural(string displayNamePlural) => string.Format(ValidationResources.NotEmpty_WithName_Plural, displayNamePlural);
         public static string NotEqual(string displayName, object valueOrName) => string.Format(ValidationResources.NotEqual_WithName_AndValue, displayName, valueOrName);
         public static string NotFilledIn(string displayName) => string.Format(ValidationResources.NotFilledIn_WithName, displayName);
         public static string NotInList(string displayName) => string.Format(ValidationResources.NotInList_WithName, displayName);

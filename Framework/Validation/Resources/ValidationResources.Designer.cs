@@ -61,6 +61,15 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} are empty..
+        /// </summary>
+        internal static string AreEmpty_WithName {
+            get {
+                return ResourceManager.GetString("AreEmpty_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} contains {1}..
         /// </summary>
         internal static string Contains_WithName_AndValue {
@@ -313,11 +322,20 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} are not empty..
+        /// </summary>
+        internal static string NotEmpty_WithName_Plural {
+            get {
+                return ResourceManager.GetString("NotEmpty_WithName_Plural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not empty..
         /// </summary>
-        internal static string NotEmpty_WithName {
+        internal static string NotEmpty_WithName_Singular {
             get {
-                return ResourceManager.GetString("NotEmpty_WithName", resourceCulture);
+                return ResourceManager.GetString("NotEmpty_WithName_Singular", resourceCulture);
             }
         }
         

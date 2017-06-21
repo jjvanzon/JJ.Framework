@@ -192,7 +192,7 @@
   <data name="NotContains_WithName_AndValue" xml:space="preserve">
     <value>{0} bevat geen {1}.</value>
   </data>
-  <data name="NotEmpty_WithName" xml:space="preserve">
+  <data name="NotEmpty_WithName_Singular" xml:space="preserve">
     <value>{0} is niet leeg.</value>
   </data>
   <data name="NotEqual_WithName_AndValue" xml:space="preserve">
@@ -242,5 +242,11 @@
   </data>
   <data name="NotUnique_WithName_AndDuplicateValues_Singular" xml:space="preserve">
     <value>{0} is dubbel. Dubbele: {1}.</value>
+  </data>
+  <data name="AreEmpty_WithName" xml:space="preserve">
+    <value>{0} zijn leeg.</value>
+  </data>
+  <data name="NotEmpty_WithName_Plural" xml:space="preserve">
+    <value>{0} zijn niet leeg.</value>
   </data>
 </root>

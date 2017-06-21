@@ -210,16 +210,28 @@ namespace JJ.Framework.Validation
             AddIsBrokenNumberMessage(key, propertyDisplayName);
         }
 
-        public void AddIsEmptyMessage(string key, string propertyDisplayName)
+        public void AddIsEmptyMessageSingular(string key, string propertyDisplayNameSingular)
         {
-            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
-            Add(key, ValidationResourceFormatter.IsEmpty(propertyDisplayName));
+            if (string.IsNullOrEmpty(propertyDisplayNameSingular)) throw new NullOrEmptyException(() => propertyDisplayNameSingular);
+            Add(key, ValidationResourceFormatter.IsEmpty(propertyDisplayNameSingular));
         }
 
-        public void AddIsEmptyMessage([NotNull] Expression<Func<object>> keyExpression, string propertyDisplayName)
+        public void AddIsEmptyMessageSingular([NotNull] Expression<Func<object>> keyExpression, string propertyDisplayNameSingular)
         {
             string key = ExpressionHelper.GetText(keyExpression);
-            AddIsEmptyMessage(key, propertyDisplayName);
+            AddIsEmptyMessageSingular(key, propertyDisplayNameSingular);
+        }
+
+        public void AddAreEmptyMessagePlural(string key, string propertyDisplayNamePlural)
+        {
+            if (string.IsNullOrEmpty(propertyDisplayNamePlural)) throw new NullOrEmptyException(() => propertyDisplayNamePlural);
+            Add(key, ValidationResourceFormatter.AreEmpty(propertyDisplayNamePlural));
+        }
+
+        public void AddAreEmptyMessagePlural([NotNull] Expression<Func<object>> keyExpression, string propertyDisplayNamePlural)
+        {
+            string key = ExpressionHelper.GetText(keyExpression);
+            AddAreEmptyMessagePlural(key, propertyDisplayNamePlural);
         }
 
         public void AddIsEqualMessage(string key, string propertyDisplayName, object valueOrName)
@@ -433,16 +445,28 @@ namespace JJ.Framework.Validation
             AddNotContainsMessage(key, propertyDisplayName, valueExpressionText);
         }
 
-        public void AddNotEmptyMessage(string key, string propertyDisplayName)
+        public void AddNotEmptyMessageSingular(string key, string propertyDisplayNameSingular)
         {
-            if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
-            Add(key, ValidationResourceFormatter.NotEmpty(propertyDisplayName));
+            if (string.IsNullOrEmpty(propertyDisplayNameSingular)) throw new NullOrEmptyException(() => propertyDisplayNameSingular);
+            Add(key, ValidationResourceFormatter.NotEmptySingular(propertyDisplayNameSingular));
         }
 
-        public void AddNotEmptyMessage([NotNull] Expression<Func<object>> keyExpression, string propertyDisplayName)
+        public void AddNotEmptyMessageSingular([NotNull] Expression<Func<object>> keyExpression, string propertyDisplayNameSingular)
         {
             string key = ExpressionHelper.GetText(keyExpression);
-            AddNotEmptyMessage(key, propertyDisplayName);
+            AddNotEmptyMessageSingular(key, propertyDisplayNameSingular);
+        }
+
+        public void AddNotEmptyMessagePlural(string key, string propertyDisplayNamePlural)
+        {
+            if (string.IsNullOrEmpty(propertyDisplayNamePlural)) throw new NullOrEmptyException(() => propertyDisplayNamePlural);
+            Add(key, ValidationResourceFormatter.NotEmptyPlural(propertyDisplayNamePlural));
+        }
+
+        public void AddNotEmptyMessagePlural([NotNull] Expression<Func<object>> keyExpression, string propertyDisplayNamePlural)
+        {
+            string key = ExpressionHelper.GetText(keyExpression);
+            AddNotEmptyMessagePlural(key, propertyDisplayNamePlural);
         }
 
         public void AddNotEqualMessage(string key, string propertyDisplayName, object valueOrName)
