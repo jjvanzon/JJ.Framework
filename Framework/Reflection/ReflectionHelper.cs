@@ -150,7 +150,7 @@ namespace JJ.Framework.Reflection
 
         public static Type[] TypesFromObjects(params object[] objects)
         {
-            Type[] types = new Type[objects.Length];
+            var types = new Type[objects.Length];
             for (int i = 0; i < objects.Length; i++)
             {
                 object parameter = objects[i];
@@ -256,10 +256,7 @@ namespace JJ.Framework.Reflection
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
 
-            var types = new List<Type>();
-            types.Add(type);
-
-            Type tempType = type;
+            var types = new List<Type> { type };
 
             while (type.BaseType != null)
             {

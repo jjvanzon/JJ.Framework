@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JJ.OneOff.BeginCollectionItemTest")]
+[assembly: AssemblyTitle("JJ.Framework.Presentation.Mvc.TestViews")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JJ.OneOff.BeginCollectionItemTest")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyProduct("JJ.Framework.Presentation.Mvc.TestViews")]
+[assembly: AssemblyCopyright("Copyright © 2013 Jan-Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

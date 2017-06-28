@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Text;
 using System.Linq.Expressions;
-using JJ.Framework.Common;
+using System.Reflection;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {
-    public class ExpressionToStringTranslator_Simple : ExpressionVisitor, IExpressionToStringTranslator
+    public class ExpressionToValueTranslator_Simple : ExpressionVisitor, IExpressionToValueTranslator
     {
-        private StringBuilder sb = new StringBuilder();
-
-        public string Result
-        {
-            get { return sb.ToString().TrimStart("."); }
-        }
+        public object Result { get; private set; }
 
         public void Visit<T>(Expression<Func<T>> expression)
         {
@@ -44,19 +38,41 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                     return node;
 
                 default:
-                    throw new ArgumentException(String.Format("Name cannot be obtained from {0}.", node.NodeType));
+                    throw new ArgumentException($"Value cannot be obtained from {node.NodeType}.");
             }
+        }
+
+        protected override Expression VisitConstant(ConstantExpression node)
+        {
+            Result = node.Value;
+            return node;
         }
 
         protected override Expression VisitMember(MemberExpression node)
         {
+            // First process 'parent' node.
             if (node.Expression != null)
             {
                 Visit(node.Expression);
             }
 
-            sb.Append(".");
-            sb.Append(node.Member.Name);
+            // Then process 'child' node.
+            switch (node.Member.MemberType)
+            {
+                case MemberTypes.Field:
+                    var field = (FieldInfo)node.Member;
+                    Result = field.GetValue(Result);
+                    break;
+
+                case MemberTypes.Property:
+                    var property = (PropertyInfo)node.Member;
+                    Result = property.GetValue(Result, null);
+                    break;
+
+                default:
+                    throw new NotSupportedException($"MemberTypes ofther than Field and Property are not supported. MemberType = {node.Member.MemberType}");
+            }
+
             return node;
         }
 
@@ -66,12 +82,12 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
             {
                 case ExpressionType.ArrayLength:
                     Visit(node.Operand);
-                    sb.Append(".");
-                    sb.Append("Length");
+                    Array array = (Array)Result;
+                    Result = array.Length;
                     return node;
 
                 default:
-                    throw new ArgumentException(String.Format("Name cannot be obtained from node with NodeType '{0}'.", node.NodeType));
+                    throw new ArgumentException($"Value cannot be obtained from node with NodeType {node.NodeType}.");
             }
         }
     }

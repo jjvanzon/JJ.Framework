@@ -19,19 +19,17 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
         private string GetStringFromLambdaExpression(LambdaExpression lambdaExpression)
         {
-            var memberExpression = lambdaExpression.Body as MemberExpression;
-            if (memberExpression != null)
+            if (lambdaExpression.Body is MemberExpression memberExpression)
             {
                 return GetStringFromMemberExpression(memberExpression);
             }
 
-            var unaryExpression = lambdaExpression.Body as UnaryExpression;
-            if (unaryExpression != null)
+            if (lambdaExpression.Body is UnaryExpression unaryExpression)
             {
                 return GetStringFromUnaryExpression(unaryExpression);
             }
 
-            throw new ArgumentException(String.Format("Name cannot be obtained from {0}.", lambdaExpression.Body.GetType().Name));
+            throw new ArgumentException($"Name cannot be obtained from {lambdaExpression.Body.GetType().Name}.");
         }
 
         private string GetStringFromUnaryExpression(UnaryExpression unaryExpression)
@@ -58,16 +56,14 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                     break;
             }
 
-            throw new ArgumentException(String.Format("Name cannot be obtained from {0}.", unaryExpression.Operand.GetType().Name));
+            throw new ArgumentException($"Name cannot be obtained from {unaryExpression.Operand.GetType().Name}.");
         }
 
         private string GetStringFromMemberExpression(MemberExpression memberExpression)
         {
             string name = memberExpression.Member.Name;
 
-            var parentMemberExpression = memberExpression.Expression as MemberExpression;
-
-            if (parentMemberExpression != null)
+            if (memberExpression.Expression is MemberExpression parentMemberExpression)
             {
                 string qualifier = GetStringFromMemberExpression(parentMemberExpression);
                 return qualifier + "." + name;

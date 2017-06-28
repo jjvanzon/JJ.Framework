@@ -9,19 +9,17 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
         public void Visit<T>(Expression<Func<T>> expression)
         {
-            var memberExpression = expression.Body as MemberExpression;
-            if (memberExpression != null)
+            if (expression.Body is MemberExpression memberExpression)
             {
                 Result = GetValueFromMemberExpression(expression, memberExpression);
             }
 
-            var unaryExpression = expression.Body as UnaryExpression;
-            if (unaryExpression != null)
+            if (expression.Body is UnaryExpression unaryExpression)
             {
                 Result = GetValueFromUnaryExpression(expression, unaryExpression);
             }
 
-            throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", expression.Body.GetType().Name));
+            throw new ArgumentException($"Value cannot be obtained from {expression.Body.GetType().Name}.");
         }
 
         private static T GetValueFromUnaryExpression<T>(Expression<Func<T>> expression, UnaryExpression unaryExpression)
@@ -56,10 +54,10 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                     break;
             }
 
-            throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", unaryExpression.Operand.GetType().Name));
+            throw new ArgumentException($"Value cannot be obtained from {unaryExpression.Operand.GetType().Name}.");
         }
 
-        private static object FuncCacheLock = new object();
+        private static readonly object _funcCacheLock = new object();
 
         private static T GetValueFromMemberExpression<T>(Expression<Func<T>> expression, MemberExpression memberExpression)
         {
@@ -67,7 +65,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
             object cacheKey = memberExpression.ToString();
 
-            lock (FuncCacheLock)
+            lock (_funcCacheLock)
             {
                 if (FuncCache<T>.ContainsKey(cacheKey))
                 {

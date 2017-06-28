@@ -15,19 +15,10 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Items
         public int Property { get; set; }
 
         [IndexerName("Indexer")]
-        public string this[int index]
-        {
-            get { return "IndexerResult"; }
-        }
+        public string this[int index] => "IndexerResult";
 
-        public string Method(int parameter)
-        {
-            return "MethodResult";
-        }
+        public string Method(int parameter) => "MethodResult";
 
-        public string MethodWithParams(params int[] array)
-        {
-            return "MethodWithParamsResult";
-        }
+        public string MethodWithParams(params int[] array) => "MethodWithParamsResult";
     }
 }

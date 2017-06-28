@@ -33,5 +33,8 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Helpers
 
         public static readonly IExpressionHelper UsingFuncCacheAndConstantHashCode =
             new ExpressionHelper<ExpressionToValueTranslator_UsingFuncCacheAndConstantHashCode>();
+
+        public static readonly IExpressionHelper Dummies =
+            new ExpressionHelper<ExpressionToStringCustomTranslator_Dummy, ExpressionToValueCustomTranslator_Dummy>();
     }
 }

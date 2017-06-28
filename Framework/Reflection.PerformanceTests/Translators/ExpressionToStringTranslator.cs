@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Text;
 using System.Linq.Expressions;
-using System.Reflection;
+using JJ.Framework.Common;
+using JJ.Framework.Reflection;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {
-    public class ExpressionToValueTranslator : ExpressionVisitor, IExpressionToValueTranslator
+    public class ExpressionToStringTranslator : ExpressionVisitor, IExpressionToStringTranslator
     {
-        private Stack<object> Stack = new Stack<object>();
+        private readonly StringBuilder _sb = new StringBuilder();
 
-        public object Result 
-        {
-            get { return Stack.Peek(); }
-        }
+        public string Result => _sb.ToString()
+                                   .TrimStart(".")
+                                   .Replace("(.", "(")
+                                   .Replace("[.", "[");
 
         public void Visit<T>(Expression<Func<T>> expression)
         {
@@ -23,7 +24,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
         {
             Visit(expression.Body);
         }
-
+ 
         public override Expression Visit(Expression node)
         {
             switch (node.NodeType)
@@ -47,12 +48,12 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
                 case ExpressionType.Constant:
                     var constantExpression = (ConstantExpression)node;
-                    Stack.Push(constantExpression.Value);
+                    VisitConstant(constantExpression);
                     return node;
 
                 case ExpressionType.ArrayIndex:
                     var binaryExpression = (BinaryExpression)node;
-                    VisitArrayIndex(binaryExpression);
+                    VisitBinary(binaryExpression);
                     return node;
 
                 case ExpressionType.NewArrayInit:
@@ -61,91 +62,80 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                     return node;
 
                 default:
-                    throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", node.NodeType));
+                    throw new ArgumentException($"Name cannot be obtained from {node.NodeType}.");
             }
         }
 
         protected override Expression VisitConstant(ConstantExpression node)
         {
-            Stack.Push(node.Value);
+            if (node.Type.IsPrimitive)
+            {
+                _sb.Append(node.Value);
+            }
+            else if (node.Type == typeof(string))
+            {
+                _sb.Append(@"""");
+
+                _sb.Append((string)node.Value);
+
+                _sb.Append(@"""");
+            }
+
             return node;
         }
 
         protected override Expression VisitMember(MemberExpression node)
         {
-            // First process 'parent' node.
             if (node.Expression != null)
             {
                 Visit(node.Expression);
             }
 
-            // Then process 'child' node.
-            switch (node.Member.MemberType)
+            if (ReflectionHelper.IsStatic(node.Member))
             {
-                case MemberTypes.Field:
-                    VisitField(node);
-                    break;
-
-                case MemberTypes.Property:
-                    VisitProperty(node);
-                    break;
-
-                default:
-                    throw new NotSupportedException(String.Format("MemberTypes ofther than Field and Property are not supported. MemberType = {0}", node.Member.MemberType));
+                _sb.Append(node.Member.DeclaringType.Name);
             }
 
+            _sb.Append(".");
+            _sb.Append(node.Member.Name);
             return node;
-        }
-
-        private void VisitField(MemberExpression node)
-        {
-            var field = (FieldInfo)node.Member;
-            object obj = null;
-            if (!field.IsStatic)
-            {
-                obj = Stack.Pop();
-            }
-            object value = field.GetValue(obj);
-            Stack.Push(value);
-        }
-
-        private void VisitProperty(MemberExpression node)
-        {
-            var property = (PropertyInfo)node.Member;
-            object obj = null;
-            MethodInfo getterOrSetter = property.GetGetMethod() ?? property.GetSetMethod();
-            if (!getterOrSetter.IsStatic)
-            {
-                obj = Stack.Pop();
-            }
-            object value = property.GetValue(obj, null);
-            Stack.Push(value);
         }
 
         protected override Expression VisitMethodCall(MethodCallExpression node)
         {
-            if (!node.Method.IsStatic)
+            if (node.Method.IsStatic)
             {
-                Visit(node.Object);
+                _sb.Append(node.Method.DeclaringType.Name);
             }
             else
             {
-                Stack.Push(null);
+                Visit(node.Object);
             }
 
-            for (int i = 0; i < node.Arguments.Count; i++)
+            if (ReflectionHelper.IsIndexerMethod(node.Method))
             {
-                Visit(node.Arguments[i]);
+                _sb.Append("[");
+                for (int i = 0; i < node.Arguments.Count - 1; i++)
+                {
+                    Visit(node.Arguments[i]);
+                    _sb.Append(", ");
+                }
+                Visit(node.Arguments[node.Arguments.Count - 1]);
+                _sb.Append("]");
             }
-            object[] arguments = new object[node.Arguments.Count];
-            for (int i = 0; i < node.Arguments.Count; i++) 
+            else
             {
-                arguments[i] = Stack.Pop();
+                _sb.Append(".");
+                _sb.Append(node.Method.Name);
+                _sb.Append("(");
+                for (int i = 0; i < node.Arguments.Count - 1; i++)
+                {
+                    Visit(node.Arguments[i]);
+                    _sb.Append(", ");
+                }
+                Visit(node.Arguments[node.Arguments.Count - 1]);
+                _sb.Append(")");
             }
-
-            object obj = Stack.Pop();
-            object value = node.Method.Invoke(obj, arguments);
-            Stack.Push(value);
 
             return node;
         }
@@ -156,7 +146,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
             {
                 case ExpressionType.Convert:
                 case ExpressionType.ConvertChecked:
-                    VisitConvert(node);
+                    Visit(node.Operand);
                     return node;
 
                 case ExpressionType.ArrayLength:
@@ -164,27 +154,15 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                     return node;
 
                 default:
-                    throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.NodeType));
+                    throw new ArgumentException($"Name cannot be obtained from NodeType '{node.NodeType}'.");
             }
-        }
-
-        private void VisitConvert(UnaryExpression node)
-        {
-            Visit(node.Operand);
-
-            object obj = Stack.Pop();
-            if (obj is IConvertible)
-            {
-                obj = Convert.ChangeType(obj, node.Type);
-            }
-            Stack.Push(obj);
         }
 
         private void VisitArrayLength(UnaryExpression node)
         {
             Visit(node.Operand);
-            Array array = (Array)Stack.Pop();
-            Stack.Push(array.Length);
+            _sb.Append(".");
+            _sb.Append("Length");
         }
 
         protected override Expression VisitBinary(BinaryExpression node)
@@ -196,7 +174,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                     return node;
 
                 default:
-                    throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.NodeType));
+                    throw new ArgumentException($"Name cannot be obtained from NodeType '{node.NodeType}'.");
             }
         }
 
@@ -204,26 +182,24 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
         {
             var memberExpression = (MemberExpression)node.Left;
             VisitMember(memberExpression);
-            var array = (Array)Stack.Pop();
+
+            _sb.Append("[");
 
             var constantExpression = (ConstantExpression)node.Right;
             int index = (int)constantExpression.Value;
-            Stack.Push(array.GetValue(index));
+            _sb.Append(index);
+
+            _sb.Append("]");
         }
 
         protected override Expression VisitNewArray(NewArrayExpression node)
         {
-            for (int i = 0; i < node.Expressions.Count; i++)
+            for (int i = 0; i < node.Expressions.Count - 1; i++)
             {
                 Visit(node.Expressions[i]);
+                _sb.Append(", ");
             }
-            Array array = (Array)Activator.CreateInstance(node.Type, node.Expressions.Count);
-            for (int i = node.Expressions.Count - 1; i >= 0; i--)
-            {
-                object item = Stack.Pop();
-                array.SetValue(item, i);
-            }
-            Stack.Push(array);
+            Visit(node.Expressions[node.Expressions.Count - 1]);
 
             return node;
         }

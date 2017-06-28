@@ -27,19 +27,17 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
         private object GetValueFromExpressionOfFunc<T>(Expression<Func<T>> expression)
         {
-            var memberExpression = expression.Body as MemberExpression;
-            if (memberExpression != null)
+            if (expression.Body is MemberExpression memberExpression)
             {
                 return GetValueFromMemberExpression(memberExpression);
             }
 
-            var unaryExpression = expression.Body as UnaryExpression;
-            if (unaryExpression != null)
+            if (expression.Body is UnaryExpression unaryExpression)
             {
                 return GetValueFromUnaryExpression(unaryExpression);
             }
 
-            throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", expression.Body.GetType().Name));
+            throw new ArgumentException($"Value cannot be obtained from {expression.Body.GetType().Name}.");
         }
 
         private object GetValueFromUnaryExpression(UnaryExpression unaryExpression)
@@ -67,7 +65,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                     break;
             }
 
-            throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", unaryExpression.Operand.GetType().Name));
+            throw new ArgumentException($"Value cannot be obtained from {unaryExpression.Operand.GetType().Name}.");
         }
 
         private object GetValueFromMemberExpression(MemberExpression memberExpression)
@@ -102,14 +100,12 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
         private object GetOuterMostConstantAndAddMembers(Expression expression, List<MemberInfo> members)
         {
-            var constantExpression = expression as ConstantExpression;
-            if (constantExpression != null)
+            if (expression is ConstantExpression constantExpression)
             {
                 return constantExpression.Value;
             }
 
-            var memberExpression = expression as MemberExpression;
-            if (memberExpression != null)
+            if (expression is MemberExpression memberExpression)
             {
                 members.Insert(0, memberExpression.Member);
                 return GetOuterMostConstantAndAddMembers(memberExpression.Expression, members);

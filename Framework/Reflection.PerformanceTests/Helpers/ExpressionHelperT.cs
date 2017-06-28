@@ -37,7 +37,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Helpers
     // Generic overloads
 
     public class ExpressionHelper<TExpressionToValueTranslator>
-        : ExpressionHelper<ExpressionToStringTranslator_Dummy, TExpressionToValueTranslator>
+        : ExpressionHelper<ExpressionToStringCustomTranslator_Dummy, TExpressionToValueTranslator>
         where TExpressionToValueTranslator : IExpressionToValueTranslator, new()
     { }
 }

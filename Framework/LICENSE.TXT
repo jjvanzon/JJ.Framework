@@ -1,3 +1,9 @@
+Applies to:
+- JJ.Framework
+- JJ's Reference Architecture
+- JJ.Demos
+- SaveText prototype application
+
 Copyright (c) 2013 - 2017 Jan-Joost van Zon
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of 

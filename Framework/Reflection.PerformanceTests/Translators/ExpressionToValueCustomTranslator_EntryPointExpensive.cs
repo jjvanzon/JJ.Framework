@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Text;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {
-    public class ExpressionToStringCustomTranslator_EntryPointExpensive : IExpressionToStringTranslator
+    public class ExpressionToValueCustomTranslator_EntryPointExpensive : IExpressionToValueTranslator
     {
-        private StringBuilder StringBuilder = new StringBuilder();
-
-        public string Result
-        {
-            get
-            {
-                return StringBuilder.ToString().Substring(1);
-            }
-        }
+        public object Result { get; private set; }
 
         public void Visit<T>(Expression<Func<T>> expression)
         {
@@ -25,7 +17,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
         {
             Visit(expression.Body);
         }
-
+ 
         public void Visit(Expression node)
         {
             switch (node.NodeType)
@@ -65,15 +57,15 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                             var memberExpression = (MemberExpression)unaryExpression.Operand;
                             VisitMember(memberExpression);
 
-                            StringBuilder.Append(".");
-                            StringBuilder.Append("Length");
+                            Array array = (Array)Result;
+                            Result = array.Length;
                             return;
                         }
                         break;
                     }
             }
 
-            throw new ArgumentException(String.Format("Name cannot be obtained from {0}.", node.NodeType));
+            throw new ArgumentException($"Value cannot be obtained from {node.NodeType}.");
         }
 
         private void VisitMember(MemberExpression node)
@@ -83,30 +75,44 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
             {
                 switch (node.Expression.NodeType)
                 {
+                    case ExpressionType.Constant:
+                        var constantExpression = (ConstantExpression)node.Expression;
+                        Result = constantExpression.Value;
+                        break;
+
                     case ExpressionType.MemberAccess:
-                        {
-                            var node2 = (MemberExpression)node.Expression;
-                            VisitMember(node2);
-                            break;
-                        }
+                        var node2 = (MemberExpression)node.Expression;
+                        VisitMember(node2);
+                        break;
 
                     case ExpressionType.Convert:
                     case ExpressionType.ConvertChecked:
+                        var unaryExpression = (UnaryExpression)node.Expression;
+                        if (unaryExpression.Operand.NodeType == ExpressionType.MemberAccess)
                         {
-                            var unaryExpression = (UnaryExpression)node.Expression;
-                            if (unaryExpression.Operand.NodeType == ExpressionType.MemberAccess)
-                            {
-                                var memberExpression = (MemberExpression)unaryExpression.Operand;
-                                VisitMember(memberExpression);
-                            }
-                            return;
+                            var memberExpression = (MemberExpression)unaryExpression.Operand;
+                            VisitMember(memberExpression);
                         }
+                        return;
                 }
             }
 
             // Then process 'child' node.
-            StringBuilder.Append(".");
-            StringBuilder.Append(node.Member.Name);
+            switch (node.Member.MemberType)
+            {
+                case MemberTypes.Field:
+                    var field = (FieldInfo)node.Member;
+                    Result = field.GetValue(Result);
+                    break;
+
+                case MemberTypes.Property:
+                    var property = (PropertyInfo)node.Member;
+                    Result = property.GetValue(Result, null);
+                    break;
+
+                default:
+                    throw new NotSupportedException($"MemberTypes ofther than Field and Property are not supported. MemberType = {node.Member.MemberType}");
+            }
         }
     }
 }

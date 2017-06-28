@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using JJ.Framework.Common;
 using System.Linq.Expressions;
 
 namespace JJ.Framework.Reflection
@@ -19,7 +18,7 @@ namespace JJ.Framework.Reflection
             Visit(expression);
 
             string result = _sb.ToString()
-                               .TrimStart(".")
+                               .TrimStart('.')
                                .Replace("(.", "(")
                                .Replace("[.", "[");
             return result;

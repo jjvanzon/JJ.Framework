@@ -10,6 +10,7 @@ namespace JJ.Framework.Reflection
     /// Limitation: private base members cannot be accessed.
     /// Use a separate Accessor object to access the private members of the base class.
     /// To access internal classes, use the GetType / or CreateInstance static methods.
+    /// Another limitation is that it cannot invoke private or internal constructors for you (yet).
     /// </summary>
     public class Accessor
     {
@@ -32,28 +33,21 @@ namespace JJ.Framework.Reflection
         /// <summary> Use this constructor to access instance members. </summary>
         public Accessor(object obj)
         {
-            if (obj == null) throw new ArgumentNullException(nameof(obj));
-
-            _object = obj;
+            _object = obj ?? throw new ArgumentNullException(nameof(obj));
             _objectType = obj.GetType();
         }
 
         /// <summary> Use this constructor to access static members. </summary>
         public Accessor(Type objectType)
         {
-            if (objectType == null) throw new ArgumentNullException(nameof(objectType));
-
-            _objectType = objectType;
+            _objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
         }
 
         /// <summary> Use this constructor to access members of the base class. </summary>
         public Accessor(object obj, Type objectType)
         {
-            if (obj == null) throw new ArgumentNullException(nameof(obj));
-            if (objectType == null) throw new ArgumentNullException(nameof(objectType));
-
-            _object = obj;
-            _objectType = objectType;
+            _object = obj ?? throw new ArgumentNullException(nameof(obj));
+            _objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
         }
 
         // Fields

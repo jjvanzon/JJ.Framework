@@ -4,18 +4,11 @@ using System.Linq.Expressions;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {
-    public class ExpressionToStringCustomTranslator_Simple : IExpressionToStringTranslator
+    public class ExpressionToStringCustomTranslator_EntryPointExpensive : IExpressionToStringTranslator
     {
-        private StringBuilder StringBuilder = new StringBuilder();
+        private readonly StringBuilder _stringBuilder = new StringBuilder();
 
-        public string Result
-        {
-            get
-            {
-                return StringBuilder.ToString().Substring(1); // Take off the last period.
-            }
-        }
-
+        public string Result => _stringBuilder.ToString().Substring(1);
 
         public void Visit<T>(Expression<Func<T>> expression)
         {
@@ -27,10 +20,17 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
             Visit(expression.Body);
         }
 
-        private void Visit(Expression node)
+        public void Visit(Expression node)
         {
             switch (node.NodeType)
             {
+                case ExpressionType.Lambda:
+                    {
+                        var lambdaExpression = (LambdaExpression)node;
+                        Visit(lambdaExpression.Body);
+                        return;
+                    }
+
                 case ExpressionType.MemberAccess:
                     {
                         var memberExpression = (MemberExpression)node;
@@ -59,15 +59,15 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                             var memberExpression = (MemberExpression)unaryExpression.Operand;
                             VisitMember(memberExpression);
 
-                            StringBuilder.Append(".");
-                            StringBuilder.Append("Length");
+                            _stringBuilder.Append(".");
+                            _stringBuilder.Append("Length");
                             return;
                         }
                         break;
                     }
             }
 
-            throw new ArgumentException(String.Format("Name cannot be obtained from {0}.", node.NodeType));
+            throw new ArgumentException($"Name cannot be obtained from {node.NodeType}.");
         }
 
         private void VisitMember(MemberExpression node)
@@ -99,8 +99,8 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
             }
 
             // Then process 'child' node.
-            StringBuilder.Append(".");
-            StringBuilder.Append(node.Member.Name);
+            _stringBuilder.Append(".");
+            _stringBuilder.Append(node.Member.Name);
         }
     }
 }

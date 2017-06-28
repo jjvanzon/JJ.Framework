@@ -11,6 +11,10 @@ namespace JJ.Framework.Business
     /// Stores entity statuses such as IsDirty and IsNew.
     /// It is just a glorified set of dictionaries, really.
     /// </summary>
+    [Obsolete("Use your own custom-programmed EntityStatusManager instead. " + 
+              "Then you can give it a more specific interface like: IsNew(Order) and NameIsDirty(Customer) " + 
+              "So writers and readers know what to do and what to expect.")]
+    
     public class EntityStatusManager
     {
         // TODO: Tuples as keys might not be fast.

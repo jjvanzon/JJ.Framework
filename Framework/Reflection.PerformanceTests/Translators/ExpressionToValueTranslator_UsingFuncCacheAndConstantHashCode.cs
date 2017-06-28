@@ -14,19 +14,17 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
         private static T GetValueFromExpressionOfFunc<T>(Expression<Func<T>> expression)
         {
-            var memberExpression = expression.Body as MemberExpression;
-            if (memberExpression != null)
+            if (expression.Body is MemberExpression memberExpression)
             {
                 return GetValueFromMemberExpression(expression, memberExpression);
             }
 
-            var unaryExpression = expression.Body as UnaryExpression;
-            if (unaryExpression != null)
+            if (expression.Body is UnaryExpression unaryExpression)
             {
                 return GetValueFromUnaryExpression(expression, unaryExpression);
             }
 
-            throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", expression.Body.GetType().Name));
+            throw new ArgumentException($"Value cannot be obtained from {expression.Body.GetType().Name}.");
         }
 
         private static T GetValueFromUnaryExpression<T>(Expression<Func<T>> expression, UnaryExpression unaryExpression)
@@ -45,10 +43,10 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                     break;
             }
 
-            throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", unaryExpression.Operand.GetType().Name));
+            throw new ArgumentException($"Value cannot be obtained from {unaryExpression.Operand.GetType().Name}.");
         }
 
-        private static object FuncCacheLock = new object();
+        private static readonly object _funcCacheLock = new object();
 
         private static T GetValueFromMemberExpression<T>(Expression<Func<T>> expression, MemberExpression memberExpression)
         {
@@ -56,7 +54,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
             object cacheKey = GetMemberExpressionKey(memberExpression);
 
-            lock (FuncCacheLock)
+            lock (_funcCacheLock)
             {
                 if (FuncCache<T>.ContainsKey(cacheKey))
                 {
@@ -72,24 +70,22 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
             return value;
         }
 
-        private static string guid = Guid.NewGuid().ToString();
+        private static readonly string _guid = Guid.NewGuid().ToString();
 
         private static object GetMemberExpressionKey(MemberExpression memberExpression)
         {
             object constant = GetOuterMostConstant(memberExpression);
-            return memberExpression.ToString() + guid + constant.GetHashCode();
+            return memberExpression + _guid + constant.GetHashCode();
         }
 
         private static object GetOuterMostConstant(Expression expression)
         {
-            var constantExpression = expression as ConstantExpression;
-            if (constantExpression != null)
+            if (expression is ConstantExpression constantExpression)
             {
                 return constantExpression.Value;
             }
 
-            var memberExpression = expression as MemberExpression;
-            if (memberExpression != null)
+            if (expression is MemberExpression memberExpression)
             {
                 return GetOuterMostConstant(memberExpression.Expression);
             }

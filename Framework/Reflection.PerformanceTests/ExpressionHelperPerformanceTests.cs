@@ -12,7 +12,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
     [TestClass]
     public class ExpressionHelperPerformanceTests
     {
-        private int Repeats = 1000;
+        private const int REPEATS = 100000;
 
         // GetString Simple
 
@@ -26,6 +26,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
             Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingTranslators);
             Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.Dummies);
             //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
             //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
             //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
@@ -43,6 +44,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
             Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingTranslators);
             Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.Dummies);
             //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
             //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
             //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingFuncCache);
@@ -63,6 +65,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
             Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingTranslators);
             Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.Dummies);
             //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
             //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
             //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
@@ -80,6 +83,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
             Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingTranslators);
             Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.Dummies);
             //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
             //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
             //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
@@ -100,6 +104,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
             Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingTranslators);
             Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.Dummies);
             //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
             //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
             //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
@@ -120,6 +125,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
             Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingTranslators);
             Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.Dummies);
             //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
             //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
             //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
@@ -176,12 +182,12 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             string text = ExpressionHelper.GetText(expressionHelperExpression);
 
             Stopwatch stopwatch = Stopwatch.StartNew();
-            for (int i = 0; i < Repeats; i++)
+            for (int i = 0; i < REPEATS; i++)
             {
                 expressionHelper.GetString(expression);
             }
             stopwatch.Stop();
-            TraceLogger.LogPerformance(text, stopwatch, Repeats);
+            TraceLogger.LogPerformance(text, stopwatch, REPEATS);
         }
 
 
@@ -193,12 +199,12 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             string text = ExpressionHelper.GetText(expressionHelperExpression);
 
             Stopwatch stopwatch = Stopwatch.StartNew();
-            for (int i = 0; i < Repeats; i++)
+            for (int i = 0; i < REPEATS; i++)
             {
                 expressionHelper.GetValue(expression);
             }
             stopwatch.Stop();
-            TraceLogger.LogPerformance(text, stopwatch, Repeats);
+            TraceLogger.LogPerformance(text, stopwatch, REPEATS);
         }
 
         public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base<T>(
@@ -210,12 +216,12 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
 
             Item item = CreateItem();
             Stopwatch stopwatch = Stopwatch.StartNew();
-            for (int i = 0; i < Repeats; i++)
+            for (int i = 0; i < REPEATS; i++)
             {
                 NotNull_NotPostponingStringRetrieval(expression, expressionHelper);
             }
             stopwatch.Stop();
-            TraceLogger.LogPerformance(text, stopwatch, Repeats);
+            TraceLogger.LogPerformance(text, stopwatch, REPEATS);
         }
 
         private void NotNull_NotPostponingStringRetrieval<T>(Expression<Func<T>> expression, IExpressionHelper expressionHelper)
@@ -223,7 +229,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             string text = expressionHelper.GetString(expression);
             if (expressionHelper.GetValue(expression) == null)
             {
-                throw new Exception(String.Format("{0} cannot be null.", text));
+                throw new Exception($"{text} cannot be null.");
             }
         }
 
@@ -235,19 +241,19 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
             string text = ExpressionHelper.GetText(expressionHelperExpression);
 
             Stopwatch stopwatch = Stopwatch.StartNew();
-            for (int i = 0; i < Repeats; i++)
+            for (int i = 0; i < REPEATS; i++)
             {
                 NotNull_Base(expression, expressionHelper);
             }
             stopwatch.Stop();
-            TraceLogger.LogPerformance(text, stopwatch, Repeats);
+            TraceLogger.LogPerformance(text, stopwatch, REPEATS);
         }
 
         private void NotNull_Base<T>(Expression<Func<T>> expression, IExpressionHelper expressionHelper)
         {
             if (expressionHelper.GetValue(expression) == null)
             {
-                throw new Exception(String.Format("{0} cannot be null.", expressionHelper.GetString(expression)));
+                throw new Exception($"{expressionHelper.GetString(expression)} cannot be null.");
             }
         }
 

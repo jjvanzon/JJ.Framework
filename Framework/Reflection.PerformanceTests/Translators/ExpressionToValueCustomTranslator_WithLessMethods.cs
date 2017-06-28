@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {
-    public class ExpressionToValueCustomTranslator_Simple : IExpressionToValueTranslator
+    public class ExpressionToValueCustomTranslator_WithLessMethods : IExpressionToValueTranslator
     {
         public object Result { get; private set; }
 
@@ -18,14 +18,28 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
             Visit(expression.Body);
         }
 
-        private void Visit(Expression node)
+        public void Visit(Expression node)
         {
             switch (node.NodeType)
             {
+                case ExpressionType.Lambda:
+                {
+                    var lambdaExpression = (LambdaExpression)node;
+                    Visit(lambdaExpression.Body);
+                    return;
+                }
+
                 case ExpressionType.MemberAccess:
                 {
                     var memberExpression = (MemberExpression)node;
                     VisitMember(memberExpression);
+                    return;
+                }
+
+                case ExpressionType.Constant:
+                {
+                    var constantExpression = (ConstantExpression)node;
+                    Result = constantExpression.Value;
                     return;
                 }
 
@@ -58,7 +72,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                 }
             }
 
-            throw new ArgumentException(String.Format("Value cannot be obtained from {0}.", node.NodeType));
+            throw new ArgumentException($"Value cannot be obtained from {node.NodeType}.");
         }
 
         private void VisitMember(MemberExpression node)
@@ -66,34 +80,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
             // First process 'parent' node.
             if (node.Expression != null)
             {
-                switch (node.Expression.NodeType)
-                {
-                    case ExpressionType.Constant:
-                        {
-                            var constantExpression = (ConstantExpression)node.Expression;
-                            Result = constantExpression.Value;
-                            break;
-                        }
-
-                    case ExpressionType.MemberAccess:
-                    {
-                        var node2 = (MemberExpression)node.Expression;
-                        VisitMember(node2);
-                        break;
-                    }
-
-                    case ExpressionType.Convert:
-                    case ExpressionType.ConvertChecked:
-                    {
-                        var unaryExpression = (UnaryExpression)node.Expression;
-                        if (unaryExpression.Operand.NodeType == ExpressionType.MemberAccess)
-                        {
-                            var memberExpression = (MemberExpression)unaryExpression.Operand;
-                            VisitMember(memberExpression);
-                        }
-                        return;
-                    }
-                }
+                Visit(node.Expression);
             }
 
             // Then process 'child' node.
@@ -110,7 +97,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                     break;
 
                 default:
-                    throw new NotSupportedException(String.Format("MemberTypes ofther than Field and Property are not supported. MemberType = {0}", node.Member.MemberType)); 
+                    throw new NotSupportedException($"MemberTypes ofther than Field and Property are not supported. MemberType = {node.Member.MemberType}"); 
             }
         }
     }

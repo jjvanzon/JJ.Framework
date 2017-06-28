@@ -4,17 +4,11 @@ using System.Linq.Expressions;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {
-    public class ExpressionToStringCustomTranslator_WithLessMethods : IExpressionToStringTranslator
+    public class ExpressionToStringCustomTranslator_Simple : IExpressionToStringTranslator
     {
-        private StringBuilder StringBuilder = new StringBuilder();
+        private readonly StringBuilder _stringBuilder = new StringBuilder();
 
-        public string Result
-        {
-            get
-            {
-                return StringBuilder.ToString().Substring(1);
-            }
-        }
+        public string Result => _stringBuilder.ToString().Substring(1);
 
         public void Visit<T>(Expression<Func<T>> expression)
         {
@@ -25,28 +19,17 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
         {
             Visit(expression.Body);
         }
- 
-        public void Visit(Expression node)
+
+        private void Visit(Expression node)
         {
             switch (node.NodeType)
             {
-                case ExpressionType.Lambda:
-                    {
-                        var lambdaExpression = (LambdaExpression)node;
-                        Visit(lambdaExpression.Body);
-                        return;
-                    }
-
                 case ExpressionType.MemberAccess:
                     {
                         var memberExpression = (MemberExpression)node;
                         VisitMember(memberExpression);
                         return;
                     }
-
-                case ExpressionType.Constant:
-                    // Ignore.
-                    return;
 
                 case ExpressionType.Convert:
                 case ExpressionType.ConvertChecked:
@@ -69,15 +52,15 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                             var memberExpression = (MemberExpression)unaryExpression.Operand;
                             VisitMember(memberExpression);
 
-                            StringBuilder.Append(".");
-                            StringBuilder.Append("Length");
+                            _stringBuilder.Append(".");
+                            _stringBuilder.Append("Length");
                             return;
                         }
                         break;
                     }
             }
 
-            throw new ArgumentException(String.Format("Name cannot be obtained from {0}.", node.NodeType));
+            throw new ArgumentException($"Name cannot be obtained from {node.NodeType}.");
         }
 
         private void VisitMember(MemberExpression node)
@@ -85,12 +68,32 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
             // First process 'parent' node.
             if (node.Expression != null)
             {
-                Visit(node.Expression);
+                switch (node.Expression.NodeType)
+                {
+                    case ExpressionType.MemberAccess:
+                        {
+                            var node2 = (MemberExpression)node.Expression;
+                            VisitMember(node2);
+                            break;
+                        }
+
+                    case ExpressionType.Convert:
+                    case ExpressionType.ConvertChecked:
+                        {
+                            var unaryExpression = (UnaryExpression)node.Expression;
+                            if (unaryExpression.Operand.NodeType == ExpressionType.MemberAccess)
+                            {
+                                var memberExpression = (MemberExpression)unaryExpression.Operand;
+                                VisitMember(memberExpression);
+                            }
+                            return;
+                        }
+                }
             }
 
             // Then process 'child' node.
-            StringBuilder.Append(".");
-            StringBuilder.Append(node.Member.Name);
+            _stringBuilder.Append(".");
+            _stringBuilder.Append(node.Member.Name);
         }
     }
 }

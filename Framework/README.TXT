@@ -6,4 +6,4 @@ In the documentation I describe a way of working and design patterns I use at ho
 
 I started programming this framework at home in 2013. Some code is even ported from my previous code base that I started in 2010. I have also used a variation of this code at work in a team of 7 that I lead.
 
-I apologize in advance. The quality of this framework should have been improved before publishing. Some more unit testing is needed, a couple of bad ideas should be gotten rid of and some bugs should be solved. I only publish it now, so it gets the legal status of being open source. I do not accept the responsibility of keeping it totally bug free, because frankly I have other things to do with my time. Sorry.
+I apologize in advance. The quality of this framework should have been improved before publishing. Some more unit testing is needed, a couple of bad ideas should be gotten rid of and some bugs should be solved. I only publish it now, so it gets the legal status of being open source. I do not accept the responsibility of keeping it totally bug free.
