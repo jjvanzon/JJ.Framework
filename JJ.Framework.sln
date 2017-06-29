@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.10
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third Party", "Third Party", "{E3DC759D-B004-4E6C-8381-D5D5C74A5B92}"
 EndProject
@@ -135,6 +135,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections.Tests", "Framework\Collections.Tests\JJ.Framework.Collections.Tests.csproj", "{6C0B1E65-EAA0-472F-81E5-96584744C7B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Tests", "Framework\IO.Tests\JJ.Framework.IO.Tests.csproj", "{C3E382BA-94E2-4AB5-855B-17BF0C10ACCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Mvc.TestViews", "Framework\Presentation.Mvc.TestViews\JJ.Framework.Presentation.Mvc.TestViews.csproj", "{CC7D3740-2460-4806-B6E7-4F3670B06D1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.PerformanceTests", "Framework\Reflection.PerformanceTests\JJ.Framework.Reflection.PerformanceTests.csproj", "{D62518C8-8D09-48E4-8CDF-720EEEEE6241}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1316,6 +1320,54 @@ Global
 		{C3E382BA-94E2-4AB5-855B-17BF0C10ACCB}.Release|x64.Build.0 = Release|Any CPU
 		{C3E382BA-94E2-4AB5-855B-17BF0C10ACCB}.Release|x86.ActiveCfg = Release|Any CPU
 		{C3E382BA-94E2-4AB5-855B-17BF0C10ACCB}.Release|x86.Build.0 = Release|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Debug|x64.Build.0 = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Debug|x86.Build.0 = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Release|x64.ActiveCfg = Release|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Release|x64.Build.0 = Release|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC7D3740-2460-4806-B6E7-4F3670B06D1B}.Release|x86.Build.0 = Release|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Debug|x64.Build.0 = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Debug|x86.Build.0 = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Release|x64.ActiveCfg = Release|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Release|x64.Build.0 = Release|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Release|x86.ActiveCfg = Release|Any CPU
+		{D62518C8-8D09-48E4-8CDF-720EEEEE6241}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1330,7 +1382,7 @@ Global
 		{529145D5-6CC3-4016-89B5-826563024AF1} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 63
+		SccNumberOfProjects = 65
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -1527,5 +1579,11 @@ Global
 		SccProjectUniqueName62 = Framework\\IO.Tests\\JJ.Framework.IO.Tests.csproj
 		SccProjectName62 = Framework/IO.Tests
 		SccLocalPath62 = Framework\\IO.Tests
+		SccProjectUniqueName63 = Framework\\Presentation.Mvc.TestViews\\JJ.Framework.Presentation.Mvc.TestViews.csproj
+		SccProjectName63 = Framework/Presentation.Mvc.TestViews
+		SccLocalPath63 = Framework\\Presentation.Mvc.TestViews
+		SccProjectUniqueName64 = Framework\\Reflection.PerformanceTests\\JJ.Framework.Reflection.PerformanceTests.csproj
+		SccProjectName64 = Framework/Reflection.PerformanceTests
+		SccLocalPath64 = Framework\\Reflection.PerformanceTests
 	EndGlobalSection
 EndGlobal
