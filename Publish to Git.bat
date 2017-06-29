@@ -37,12 +37,14 @@ REM COPY DOCS
 xcopy /s /v /r /q "D:\JJ\Dev\1. Products\1. Docs\2. Software Architecture" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Architecture\"
 
 REM COPY CODE FOLDERS
+xcopy /s /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Demos" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Demos\"
 xcopy /s /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Framework\"
 
 REM COPY CODE FILES IN ROOT
+xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\JJ.Demos.sln" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
 xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\JJ.Framework.sln" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
-xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\LICENSE.TXT" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
-xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\THIRD PARTY LICENSE.TXT" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
+xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\LICENSE.TXT" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
+xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\THIRD PARTY LICENSE.TXT" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
 rem Remove this copy action eventually, when root gets its own readme
 xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\README.TXT" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
 
