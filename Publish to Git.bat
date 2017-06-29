@@ -44,15 +44,14 @@ REM COPY CODE FILES IN ROOT
 xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\JJ.Demos.sln" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
 xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\JJ.Framework.sln" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
 xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\LICENSE.TXT" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
+xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\README.MD" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
 xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\THIRD PARTY LICENSE.TXT" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
-rem Remove this copy action eventually, when root gets its own readme
-xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Framework\README.TXT" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git"
 
 REM MOVE PDF's
 xcopy /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Architecture\Parts\*.pdf" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Architecture"
 rd /s /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Architecture\Parts"
 
-rem TODO: Copy more code.
+rem TODO: SaveText code
 
 pause
 prompt
