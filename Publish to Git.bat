@@ -7,10 +7,10 @@ chdir "D:\JJ\Dev\1. Products\2. Code\1. Software System\X"
 rem /s: Removes all directories and files in the specified directory in addition to the directory itself.  Used to remove a directory tree.
 rem /q: Quiet mode, do not ask if ok to remove a directory tree with /s
 
-REM DELETE DOCS
+echo DELETE DOCS
 rd /s /q "9. JJ Git\Architecture"
 
-REM DELETE CODE FOLDERS
+echo DELETE CODE FOLDERS
 rd /s /q "9. JJ Git\Business"
 rd /s /q "9. JJ Git\Data"
 rd /s /q "9. JJ Git\Database"
@@ -21,7 +21,7 @@ rd /s /q "9. JJ Git\Presentation"
 rem /q: Quiet mode, do not ask if ok to delete on global wildcard
 rem /f: Force deleting of read-only files.
 
-REM DELETE CODE FILES IN ROOT
+echo DELETE CODE FILES IN ROOT
 del /q /f "9. JJ Git\*.sln"
 del /q /f "9. JJ Git\*.txt"
 del /q /f "9. JJ Git\*.md"
@@ -33,15 +33,17 @@ rem /q: Does not display file names while copying
 rem Slash at the end of dest is needed, otherwise it asks if it is a directory or file.
 rem Slash should not be put at the end of source, because then it gives an error message.
 
-REM COPY DOCS
+echo COPY DOCS
 xcopy /s /v /r /q "D:\JJ\Dev\1. Products\1. Docs\2. Software Architecture" "9. JJ Git\Architecture\"
 
-REM COPY CODE FOLDERS
+echo COPY CODE FOLDERS
 xcopy /s /v /r /q "9. JJ\Demos" "9. JJ Git\Demos\"
 xcopy /s /v /r /q "9. JJ\Framework" "9. JJ Git\Framework\"
 mkdir "9. JJ Git\Business\"
+xcopy /s /v /r /q "9. JJ\Business\Canonical" "9. JJ Git\Business\Canonical\"
 xcopy /s /v /r /q "9. JJ\Business\SaveText" "9. JJ Git\Business\SaveText\"
 mkdir "9. JJ Git\Data\"
+xcopy /s /v /r /q "9. JJ\Data\Canonical" "9. JJ Git\Data\Canonical\"
 xcopy /s /v /r /q "9. JJ\Data\SaveText" "9. JJ Git\Data\SaveText\"
 xcopy /s /v /r /q "9. JJ\Data\SaveText.DefaultRepositories" "9. JJ Git\Data\SaveText.DefaultRepositories\"
 xcopy /s /v /r /q "9. JJ\Data\SaveText.EntityFramework5" "9. JJ Git\Data\SaveText.EntityFramework5\"
@@ -76,7 +78,7 @@ xcopy /s /v /r /q "9. JJ\Presentation\SaveText.WinForms.Online" "9. JJ Git\Prese
 xcopy /s /v /r /q "9. JJ\Presentation\SaveText.WinForms.Online.CustomSoapClient" "9. JJ Git\Presentation\SaveText.WinForms.Online.CustomSoapClient\"
 xcopy /s /v /r /q "9. JJ\Presentation\SaveText.WinForms.OnlineOfflineSwitched" "9. JJ Git\Presentation\SaveText.WinForms.OnlineOfflineSwitched\"
 
-REM COPY CODE FILES IN ROOT
+echo COPY CODE FILES IN ROOT
 xcopy /v /r /q "9. JJ\JJ.Demos.sln" "9. JJ Git"
 xcopy /v /r /q "9. JJ\JJ.Framework.sln" "9. JJ Git"
 xcopy /v /r /q "9. JJ\SaveText.sln" "9. JJ Git"
@@ -84,9 +86,12 @@ xcopy /v /r /q "9. JJ\LICENSE.TXT" "9. JJ Git"
 xcopy /v /r /q "9. JJ\README.MD" "9. JJ Git"
 xcopy /v /r /q "9. JJ\THIRD PARTY LICENSE.TXT" "9. JJ Git"
 
-REM MOVE PDF's
+echo MOVE PDF's
 xcopy /v /r /q "9. JJ Git\Architecture\Parts\*.pdf" "9. JJ Git\Architecture"
 rd /s /q "9. JJ Git\Architecture\Parts"
+
+echo WARNING: CANONICAL DATA / BUSINESS IS PUBLISHED.
+echo CONSIDER IF IT CONTAINS DATA MODELING YOU DO NOT WANT TO OPEN SOURCE.
 
 pause
 prompt
