@@ -249,4 +249,7 @@
   <data name="NotEmpty_WithName_Plural" xml:space="preserve">
     <value>{0} zijn niet leeg.</value>
   </data>
+  <data name="NotFilledIn" xml:space="preserve">
+    <value>Niet ingevuld.</value>
+  </data>
 </root>

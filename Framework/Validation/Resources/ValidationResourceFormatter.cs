@@ -41,6 +41,7 @@ namespace JJ.Framework.Validation.Resources
         public static string NotEmptyPlural(string displayNamePlural) => string.Format(ValidationResources.NotEmpty_WithName_Plural, displayNamePlural);
         public static string NotEqual(string displayName, object valueOrName) => string.Format(ValidationResources.NotEqual_WithName_AndValue, displayName, valueOrName);
         public static string NotFilledIn(string displayName) => string.Format(ValidationResources.NotFilledIn_WithName, displayName);
+        public static string NotFilledIn() => ValidationResources.NotFilledIn;
         public static string NotInList(string displayName) => string.Format(ValidationResources.NotInList_WithName, displayName);
 
         public static string NotInList<TItem>(string displayName, IEnumerable<TItem> possibleValues)

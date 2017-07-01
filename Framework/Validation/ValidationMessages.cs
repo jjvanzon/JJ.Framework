@@ -524,6 +524,17 @@ namespace JJ.Framework.Validation
             AddNotFilledInMessage(key, propertyDisplayName);
         }
 
+        public void AddNotFilledInMessage(string key)
+        {
+            Add(key, ValidationResourceFormatter.NotFilledIn());
+        }
+
+        public void AddNotFilledInMessage([NotNull] Expression<Func<object>> keyExpression)
+        {
+            string key = ExpressionHelper.GetText(keyExpression);
+            AddNotFilledInMessage(key);
+        }
+
         public void AddNotInListMessage(string key, string propertyDisplayName)
         {
             if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);

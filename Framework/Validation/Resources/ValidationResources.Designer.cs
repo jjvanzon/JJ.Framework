@@ -367,6 +367,15 @@ namespace JJ.Framework.Validation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not filled in..
+        /// </summary>
+        internal static string NotFilledIn {
+            get {
+                return ResourceManager.GetString("NotFilledIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is not filled in..
         /// </summary>
         internal static string NotFilledIn_WithName {

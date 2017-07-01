@@ -301,4 +301,7 @@
     <value>{0} are not empty.</value>
     <comment>{0} = property</comment>
   </data>
+  <data name="NotFilledIn" xml:space="preserve">
+    <value>Not filled in.</value>
+  </data>
 </root>
