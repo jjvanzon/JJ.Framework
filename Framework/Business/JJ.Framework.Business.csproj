@@ -46,7 +46,7 @@
     <Compile Include="EntityStatusHelper.cs" />
     <Compile Include="EntityStatusManager.cs" />
     <Compile Include="EntityStatusManagerByID.cs" />
-    <Compile Include="Helpers\DebugHelper.cs" />
+    <Compile Include="Helpers\DebuggerDisplayFormatter.cs" />
     <Compile Include="IResult.cs" />
     <Compile Include="ISideEffect.cs" />
     <Compile Include="ManyToOneRelationship.cs" />
@@ -60,6 +60,10 @@
     <Compile Include="VoidResult.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">
+      <Project>{44FD9133-5FE7-4824-BD35-27273706D127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data\JJ.Framework.Data.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
       <Name>JJ.Framework.Data</Name>

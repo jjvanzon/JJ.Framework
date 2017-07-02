@@ -19,6 +19,6 @@ namespace JJ.Framework.Business
         public string Key { get; }
         public string Text { get; }
 
-        private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
+        private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
     }
 }

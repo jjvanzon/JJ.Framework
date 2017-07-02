@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using JJ.Framework.Business.Helpers;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Business
 {
+    [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
     public class Messages : IEnumerable<Message>
     {
         private readonly IList<Message> _list = new List<Message>();
@@ -32,6 +35,10 @@ namespace JJ.Framework.Business
                 Add(message);
             }
         }
+
+        public int Count => _list.Count;
+
+        private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 
         // IEnumerable
 
