@@ -1,10 +1,4 @@
-﻿//
-//  Circle.Framework.Integration.DotNet.Expressions.ExpressionToNameCustomTranslator
-//
-//      Author: Jan-Joost van Zon
-//      Date: 2013-02-10 - 2013-02-28
-//
-//  -----
+﻿// Date: 2013-02
 
 using System;
 using System.Collections.Generic;
