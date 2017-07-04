@@ -412,6 +412,15 @@ namespace JJ.Framework.Presentation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        internal static string Open {
+            get {
+                return ResourceManager.GetString("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Properties.
         /// </summary>
         internal static string Properties {
@@ -426,6 +435,15 @@ namespace JJ.Framework.Presentation.Resources {
         internal static string Properties_WithName {
             get {
                 return ResourceManager.GetString("Properties_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string Refresh {
+            get {
+                return ResourceManager.GetString("Refresh", resourceCulture);
             }
         }
         

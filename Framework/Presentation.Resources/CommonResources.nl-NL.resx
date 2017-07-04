@@ -268,4 +268,10 @@
     <value>{0} kan niet worden verwijderd.</value>
     <comment>{0} = name</comment>
   </data>
+  <data name="Open" xml:space="preserve">
+    <value>Openen</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Verversen</value>
+  </data>
 </root>

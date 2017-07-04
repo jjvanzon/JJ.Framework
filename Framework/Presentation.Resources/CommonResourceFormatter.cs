@@ -41,8 +41,10 @@
         public static string Count_WithNamePlural(string namePlural) => string.Format(CommonResources.Count_WithNamePlural, namePlural);
         public static string OK => CommonResources.OK;
         public static string OneOrTheOtherMustBeFilledIn(string name1, string name2) => string.Format(CommonResources.OneOrTheOtherMustBeFilledIn, name1, name2);
+        public static string Open => CommonResources.Open;
         public static string Properties => CommonResources.Properties;
         public static string Properties_WithName(string name) => string.Format(CommonResources.Properties_WithName, name);
+        public static string Refresh => CommonResources.Refresh;
         public static string Remove => CommonResources.Remove;
         public static string Save => CommonResources.Save;
         public static string Save_WithName(string name) => string.Format(CommonResources.Save_WithName, name);

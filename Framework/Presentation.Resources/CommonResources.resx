@@ -285,4 +285,11 @@
     <value>Cannot delete {0}.</value>
     <comment>{0} = name</comment>
   </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+    <comment>Verb</comment>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
 </root>
