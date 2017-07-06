@@ -86,10 +86,6 @@ xcopy /v /r /q "9. JJ\LICENSE.TXT" "9. JJ Git"
 xcopy /v /r /q "9. JJ\README.MD" "9. JJ Git"
 xcopy /v /r /q "9. JJ\THIRD PARTY LICENSE.TXT" "9. JJ Git"
 
-echo MOVE PDF's
-xcopy /v /r /q "9. JJ Git\Architecture\Parts\*.pdf" "9. JJ Git\Architecture"
-rd /s /q "9. JJ Git\Architecture\Parts"
-
 echo WARNING: CANONICAL DATA / BUSINESS IS PUBLISHED.
 echo CONSIDER IF IT CONTAINS DATA MODELING YOU DO NOT WANT TO OPEN SOURCE.
 
