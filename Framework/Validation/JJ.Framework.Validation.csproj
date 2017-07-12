@@ -48,14 +48,12 @@
     <Compile Include="DebugHelper.cs" />
     <Compile Include="ValidatorBase.cs" />
     <Compile Include="VersatileValidator.cs" />
-    <Compile Include="2017-07-12 Backup of MessageKeyHelper.cs" />
     <Compile Include="Resources\ValidationResourceFormatter.cs" />
     <Compile Include="Resources\ValidationResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidationResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="2017-07-12 Backup of ValidationMessage.cs" />
     <Compile Include="ValidationMessages.cs" />
     <Compile Include="IValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

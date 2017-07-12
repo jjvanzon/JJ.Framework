@@ -50,8 +50,6 @@
     <Compile Include="IResult.cs" />
     <Compile Include="ISideEffect.cs" />
     <Compile Include="ManyToOneRelationship.cs" />
-    <Compile Include="2017-07-12 Backup of Message.cs" />
-    <Compile Include="2017-07-12 Backup of Messages.cs" />
     <Compile Include="OneToManyRelationship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyStatusEnum.cs" />
