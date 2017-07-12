@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using JJ.Framework.Business.Helpers;
 
@@ -9,10 +10,10 @@ namespace JJ.Framework.Business
     {
         public bool Successful { get; set; }
 
-        private Messages _messages = new Messages();
+        private IList<string> _messages = new List<string>();
 
         /// <summary> not nullable, auto-instantiated </summary>
-        public Messages Messages
+        public IList<string> Messages
         {
             get => _messages;
             set => _messages = value ?? throw new ArgumentNullException(nameof(value));

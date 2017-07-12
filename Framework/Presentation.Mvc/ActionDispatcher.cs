@@ -88,9 +88,9 @@ namespace JJ.Framework.Presentation.Mvc
             if (mustReturnView)
             {
                 sourceController.ModelState.ClearModelErrors();
-                foreach (var validationMessage in destMapping.GetValidationMesssages(viewModel))
+                foreach (string message in destMapping.GetValidationMesssages(viewModel))
                 {
-                    sourceController.ModelState.AddModelError(validationMessage.Key, validationMessage.Value);
+                    sourceController.ModelState.AddModelError(nameof(message), message);
                 }
 
                 return sourceControllerAccessor.View(destMapping.ViewName, viewModel);

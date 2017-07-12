@@ -1,9 +1,7 @@
 ﻿using JJ.Framework.Exceptions;
 using System;
 using System.Linq;
-using System.Linq.Expressions;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Reflection;
 using System.Collections.Generic;
 using JJ.Framework.Common;
 using System.Globalization;
@@ -15,38 +13,12 @@ namespace JJ.Framework.Validation
     public abstract class VersatileValidator : ValidatorBase
     {
         private object _value;
-        private string _propertyKey;
         private string _propertyDisplayName;
         private IFormatProvider _formatProvider;
-
-        /// <param name="propertyDisplayName">
-        /// Indicates which property value we are going to validate.
-        /// </param>
-        /// <param name="propertyExpression">
-        /// Used to extract both the value and a property key.
-        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
-        /// The root of the expression is excluded from the property key, e.g. "() => MyObject.MyProperty" produces the property key "MyProperty".
-        /// </param>
-        /// <param name="formatProvider">
-        /// Use this parameter if e.g. the number format is different from the current culture.
-        /// </param>
-        [NotNull]
-        public VersatileValidator For([NotNull] Expression<Func<object>> propertyExpression, string propertyDisplayName, [CanBeNull] IFormatProvider formatProvider = null)
-        {
-            object value = ExpressionHelper.GetValue(propertyExpression);
-
-            string key = MessageKeyHelper.GetMessageKeyFromExpression(propertyExpression);
-
-            return For(value, key, propertyDisplayName, formatProvider);
-        }
 
         /// <summary>
         /// Indicates which property value we are going to validate.
         /// </summary>
-        /// <param name="key">
-        /// A technical key of the property we are going to validate.
-        /// The property key is used e.g. to make MVC display validation messages next to the corresponding html input element.
-        /// </param>
         /// <param name="propertyDisplayName">
         /// Used in messages to indicate what property the validation message is about.
         /// </param>
@@ -54,13 +26,11 @@ namespace JJ.Framework.Validation
         /// Use this parameter if e.g. the number format is different from the current culture.
         /// </param>
         [NotNull]
-        public VersatileValidator For(object value, string key, string propertyDisplayName, [CanBeNull] IFormatProvider formatProvider = null)
+        public VersatileValidator For(object value, string propertyDisplayName, [CanBeNull] IFormatProvider formatProvider = null)
         {
-            if (string.IsNullOrEmpty(key)) throw new NullOrEmptyException(() => key);
             if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
 
             _value = value;
-            _propertyKey = key;
             _propertyDisplayName = propertyDisplayName;
 
             _formatProvider = formatProvider ?? CultureHelper.GetCurrentCulture();
@@ -75,7 +45,7 @@ namespace JJ.Framework.Validation
         {
             if (_value == null)
             {
-                ValidationMessages.AddNotFilledInMessage(_propertyKey, _propertyDisplayName);
+                Messages.AddNotFilledInMessage(_propertyDisplayName);
             }
 
             return this;
@@ -88,7 +58,7 @@ namespace JJ.Framework.Validation
 
             if (string.IsNullOrEmpty(stringValue))
             {
-                ValidationMessages.AddNotFilledInMessage(_propertyKey, _propertyDisplayName);
+                Messages.AddNotFilledInMessage(_propertyDisplayName);
             }
 
             return this;
@@ -101,7 +71,7 @@ namespace JJ.Framework.Validation
 
             if (String_PlatformSupport.IsNullOrWhiteSpace(stringValue))
             {
-                ValidationMessages.AddNotFilledInMessage(_propertyKey, _propertyDisplayName);
+                Messages.AddNotFilledInMessage(_propertyDisplayName);
             }
 
             return this;
@@ -112,7 +82,7 @@ namespace JJ.Framework.Validation
         {
             if (_value != null)
             {
-                ValidationMessages.AddIsFilledInMessage(_propertyKey, _propertyDisplayName);
+                Messages.AddIsFilledInMessage(_propertyDisplayName);
             }
 
             return this;
@@ -125,7 +95,7 @@ namespace JJ.Framework.Validation
 
             if (!string.IsNullOrEmpty(stringValue))
             {
-                ValidationMessages.AddIsFilledInMessage(_propertyKey, _propertyDisplayName);
+                Messages.AddIsFilledInMessage(_propertyDisplayName);
             }
 
             return this;
@@ -138,7 +108,7 @@ namespace JJ.Framework.Validation
 
             if (!string.IsNullOrWhiteSpace(stringValue))
             {
-                ValidationMessages.AddIsFilledInMessage(_propertyKey, _propertyDisplayName);
+                Messages.AddIsFilledInMessage(_propertyDisplayName);
             }
 
             return this;
@@ -158,7 +128,7 @@ namespace JJ.Framework.Validation
 
             if (stringValue.Length > maxLength)
             {
-                ValidationMessages.AddLengthExceededMessage(_propertyKey, _propertyDisplayName, maxLength);
+                Messages.AddLengthExceededMessage(_propertyDisplayName, maxLength);
             }
 
             return this;
@@ -184,7 +154,7 @@ namespace JJ.Framework.Validation
             if (!isAllowed)
             {
                 // ReSharper disable once PossibleMultipleEnumeration
-                ValidationMessages.AddNotInListMessage(_propertyKey, _propertyDisplayName, possibleValues);
+                Messages.AddNotInListMessage(_propertyDisplayName, possibleValues);
             }
 
             return this;
@@ -212,7 +182,7 @@ namespace JJ.Framework.Validation
 
             if (!string.Equals(stringValue, otherStringValue))
             {
-                ValidationMessages.AddNotEqualMessage(_propertyKey, _propertyDisplayName, value);
+                Messages.AddNotEqualMessage(_propertyDisplayName, value);
             }
 
             return this;
@@ -232,7 +202,7 @@ namespace JJ.Framework.Validation
 
             if (string.Equals(stringValue, otherStringValue))
             {
-                ValidationMessages.AddIsEqualMessage(_propertyKey, _propertyDisplayName, value);
+                Messages.AddIsEqualMessage(_propertyDisplayName, value);
             }
 
             return this;
@@ -262,7 +232,7 @@ namespace JJ.Framework.Validation
             bool isValid = comparisonResult > 0;
             if (!isValid)
             {
-                ValidationMessages.AddLessThanOrEqualMessage(_propertyKey, _propertyDisplayName, limit);
+                Messages.AddLessThanOrEqualMessage(_propertyDisplayName, limit);
             }
 
             return this;
@@ -290,7 +260,7 @@ namespace JJ.Framework.Validation
             bool isValid = comparisonResult >= 0;
             if (!isValid)
             {
-                ValidationMessages.AddLessThanMessage(_propertyKey, _propertyDisplayName, limit);
+                Messages.AddLessThanMessage(_propertyDisplayName, limit);
             }
 
             return this;
@@ -318,7 +288,7 @@ namespace JJ.Framework.Validation
             bool isValid = comparisonResult <= 0;
             if (!isValid)
             {
-                ValidationMessages.AddGreaterThanMessage(_propertyKey, _propertyDisplayName, limit);
+                Messages.AddGreaterThanMessage(_propertyDisplayName, limit);
             }
 
             return this;
@@ -346,7 +316,7 @@ namespace JJ.Framework.Validation
             bool isValid = comparisonResult < 0;
             if (!isValid)
             {
-                ValidationMessages.AddGreaterThanOrEqualMessage(_propertyKey, _propertyDisplayName, limit);
+                Messages.AddGreaterThanOrEqualMessage(_propertyDisplayName, limit);
             }
 
             return this;
@@ -385,7 +355,7 @@ namespace JJ.Framework.Validation
             int convertedValue;
             if (!int.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out convertedValue))
             {
-                ValidationMessages.AddNotIntegerMessage(_propertyKey, _propertyDisplayName);
+                Messages.AddNotIntegerMessage(_propertyDisplayName);
             }
 
             return this;
@@ -404,7 +374,7 @@ namespace JJ.Framework.Validation
             int convertedValue;
             if (int.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out convertedValue))
             {
-                ValidationMessages.AddIsIntegerMessage(_propertyKey, _propertyDisplayName);
+                Messages.AddIsIntegerMessage(_propertyDisplayName);
             }
 
             return this;
@@ -423,7 +393,7 @@ namespace JJ.Framework.Validation
             double convertedValue;
             if (!DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
             {
-                ValidationMessages.AddNotBrokenNumberMessage(_propertyKey, _propertyDisplayName);
+                Messages.AddNotBrokenNumberMessage(_propertyDisplayName);
             }
 
             return this;
@@ -453,7 +423,7 @@ namespace JJ.Framework.Validation
 
             if (!isEnum)
             {
-                ValidationMessages.AddIsInvalidChoiceMessage(_propertyKey, _propertyDisplayName);
+                Messages.AddIsInvalidChoiceMessage(_propertyDisplayName);
             }
 
             return this;
@@ -504,7 +474,7 @@ namespace JJ.Framework.Validation
             {
                 if (double.IsNaN(convertedValue))
                 {
-                    ValidationMessages.AddIsNaNMessage(_propertyKey, _propertyDisplayName);
+                    Messages.AddIsNaNMessage(_propertyDisplayName);
                 }
             }
 
@@ -527,7 +497,7 @@ namespace JJ.Framework.Validation
             {
                 if (double.IsInfinity(convertedValue))
                 {
-                    ValidationMessages.AddIsInfinityMessage(_propertyKey, _propertyDisplayName);
+                    Messages.AddIsInfinityMessage(_propertyDisplayName);
                 }
             }
 
@@ -551,7 +521,7 @@ namespace JJ.Framework.Validation
                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                 if (convertedValue == 0.0)
                 {
-                    ValidationMessages.AddIsZeroMessage(_propertyKey, _propertyDisplayName);
+                    Messages.AddIsZeroMessage(_propertyDisplayName);
                 }
             }
 

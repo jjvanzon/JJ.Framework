@@ -48,14 +48,14 @@
     <Compile Include="DebugHelper.cs" />
     <Compile Include="ValidatorBase.cs" />
     <Compile Include="VersatileValidator.cs" />
-    <Compile Include="MessageKeyHelper.cs" />
+    <Compile Include="2017-07-12 Backup of MessageKeyHelper.cs" />
     <Compile Include="Resources\ValidationResourceFormatter.cs" />
     <Compile Include="Resources\ValidationResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidationResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="ValidationMessage.cs" />
+    <Compile Include="2017-07-12 Backup of ValidationMessage.cs" />
     <Compile Include="ValidationMessages.cs" />
     <Compile Include="IValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,7 +92,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT" />
+    <None Include="README.MD" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

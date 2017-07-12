@@ -1,27 +1,12 @@
 ﻿using JJ.Framework.Common;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace JJ.Framework.Business.Helpers
 {
     internal static class DebuggerDisplayFormatter
     {
-        public static string GetDebuggerDisplay(Message message)
-        {
-            if (message == null) throw new ArgumentNullException(nameof(message));
-
-            string debuggerDisplay = $"{{{nameof(Message)}}} {FormatMessage(message)}";
-            return debuggerDisplay;
-        }
-
-        public static string GetDebuggerDisplay(Messages messages)
-        {
-            if (messages == null) throw new ArgumentNullException(nameof(messages));
-
-            string debuggerDisplay = $"{{{nameof(Messages)}}} {FormatMessages(messages)}";
-            return debuggerDisplay;
-        }
-
         public static string GetDebuggerDisplay(IResult result)
         {
             if (result == null) throw new ArgumentNullException(nameof(result));
@@ -51,17 +36,15 @@ namespace JJ.Framework.Business.Helpers
             return sb.ToString();
         }
 
-        private static string FormatMessage(Message message) => $"{message.Key} - '{message.Text}'";
-
-        private static string FormatMessages(Messages messages)
+        private static string FormatMessages(IList<string> messages)
         {
             var sb = new StringBuilder();
 
-            foreach (Message message in messages)
+            foreach (string message in messages)
             {
                 if (message != null)
                 {
-                    sb.Append($"{FormatMessage(message)}, ");
+                    sb.Append($"{message}, ");
                 }
                 else
                 {

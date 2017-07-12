@@ -27,9 +27,9 @@ namespace JJ.Framework.Presentation.Mvc
         }
 
         /// <summary> not nullable </summary>
-        protected virtual ICollection<KeyValuePair<string, string>> GetValidationMesssages(TViewModel viewModel)
+        protected virtual ICollection<string> GetValidationMesssages(TViewModel viewModel)
         {
-            return new KeyValuePair<string, string>[0];
+            return new string[0];
         }
 
         protected virtual bool Predicate(TViewModel viewModel)
@@ -102,6 +102,6 @@ namespace JJ.Framework.Presentation.Mvc
         object IViewMapping.GetRouteValues(object viewModel) => GetRouteValues((TViewModel)viewModel);
         bool IViewMapping.Predicate(object viewModel) => Predicate((TViewModel)viewModel);
         Type IViewMapping.ViewModelType => typeof(TViewModel);
-        ICollection<KeyValuePair<string, string>> IViewMapping.GetValidationMesssages(object viewModel) => GetValidationMesssages((TViewModel)viewModel);
+        ICollection<string> IViewMapping.GetValidationMesssages(object viewModel) => GetValidationMesssages((TViewModel)viewModel);
     }
 }

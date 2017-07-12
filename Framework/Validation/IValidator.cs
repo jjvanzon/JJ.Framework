@@ -2,7 +2,7 @@
 {
     public interface IValidator
     {
-        ValidationMessages ValidationMessages { get; }
+        ValidationMessages Messages { get; }
         bool IsValid { get; }
         void Assert();
     }

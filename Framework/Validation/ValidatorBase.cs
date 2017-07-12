@@ -8,9 +8,9 @@ namespace JJ.Framework.Validation
     public abstract class ValidatorBase : IValidator
     {
         [NotNull]
-        public ValidationMessages ValidationMessages { get; } = new ValidationMessages();
+        public ValidationMessages Messages { get; } = new ValidationMessages();
 
-        public bool IsValid => ValidationMessages.Count == 0;
+        public bool IsValid => Messages.Count == 0;
 
         /// <summary>
         /// Throws an exception if IsValid is false.
@@ -18,9 +18,9 @@ namespace JJ.Framework.Validation
         public void Assert()
         {
             // ReSharper disable once InvertIf
-            if (ValidationMessages.Count > 0)
+            if (Messages.Count > 0)
             {
-                string formattedMessages = string.Join(Environment.NewLine, ValidationMessages.Select(x => x.Text).ToArray());
+                string formattedMessages = string.Join(Environment.NewLine, Messages);
                 throw new Exception(formattedMessages);
             }
         }
@@ -41,9 +41,9 @@ namespace JJ.Framework.Validation
         {
             if (validator == null) throw new NullException(() => validator);
 
-            foreach (ValidationMessage validationMessage in validator.ValidationMessages)
+            foreach (string validationMessage in validator.Messages)
             {
-                ValidationMessages.Add(validationMessage.Key, messagePrefix + validationMessage.Text);
+                Messages.Add(messagePrefix + validationMessage);
             }
         }
     }
