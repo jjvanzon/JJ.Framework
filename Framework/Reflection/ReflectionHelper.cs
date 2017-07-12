@@ -167,7 +167,7 @@ namespace JJ.Framework.Reflection
             return types;
         }
 
-        public static bool IsIndexerMethod(MethodInfo method)
+        public static bool IsIndexerMethod(MethodBase method)
         {
             if (!method.IsSpecialName)
             {

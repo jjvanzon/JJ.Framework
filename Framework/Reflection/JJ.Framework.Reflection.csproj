@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessor.cs" />
+    <Compile Include="MethodBaseExtensions.cs" />
     <Compile Include="MethodCallParameterInfo.cs" />
     <Compile Include="ExpressionHelper.cs" />
     <Compile Include="ExpressionToTextTranslator.cs" />
