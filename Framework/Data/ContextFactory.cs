@@ -91,7 +91,7 @@ namespace JJ.Framework.Data
                         // Otherwise assume it is a full assembly name.
                         assembly = Assembly.Load(contextTypeName);
                     }
-                    IList<Type> types = ReflectionHelper.GetImplementations<IContext>(assembly);
+                    IList<Type> types = assembly.GetImplementations<IContext>();
                     switch (types.Count)
                     {
                         case 1:

@@ -55,8 +55,8 @@ namespace JJ.Framework.Presentation.Mvc
         /// </summary>
         protected void MapPresenter(string presenterName, string presenterActionName)
         {
-            if (String.IsNullOrEmpty(presenterName)) throw new NullOrEmptyException(() => presenterName);
-            if (String.IsNullOrEmpty(presenterActionName)) throw new NullOrEmptyException(() => presenterActionName);
+            if (string.IsNullOrEmpty(presenterName)) throw new NullOrEmptyException(() => presenterName);
+            if (string.IsNullOrEmpty(presenterActionName)) throw new NullOrEmptyException(() => presenterActionName);
 
             PresenterName = presenterName;
             PresenterActionName = presenterActionName;
@@ -67,9 +67,9 @@ namespace JJ.Framework.Presentation.Mvc
         /// </summary>
         protected void MapController(string controllerName, string controllerGetActionName, string viewName)
         {
-            if (String.IsNullOrEmpty(controllerName)) throw new NullOrEmptyException(() => controllerName);
-            if (String.IsNullOrEmpty(controllerGetActionName)) throw new NullOrEmptyException(() => controllerGetActionName);
-            if (String.IsNullOrEmpty(viewName)) throw new NullOrEmptyException(() => viewName);
+            if (string.IsNullOrEmpty(controllerName)) throw new NullOrEmptyException(() => controllerName);
+            if (string.IsNullOrEmpty(controllerGetActionName)) throw new NullOrEmptyException(() => controllerGetActionName);
+            if (string.IsNullOrEmpty(viewName)) throw new NullOrEmptyException(() => viewName);
 
             ControllerName = controllerName;
             ControllerGetActionName = controllerGetActionName;
@@ -81,7 +81,7 @@ namespace JJ.Framework.Presentation.Mvc
         /// </summary>
         public void MapController(string controllerName, string viewName)
         {
-            if (String.IsNullOrEmpty(viewName)) throw new NullOrEmptyException(() => viewName);
+            if (string.IsNullOrEmpty(viewName)) throw new NullOrEmptyException(() => viewName);
 
             ControllerName = controllerName;
             ViewName = viewName;
@@ -94,49 +94,14 @@ namespace JJ.Framework.Presentation.Mvc
 
         // IViewMapping
 
-        string IViewMapping.ViewName
-        {
-            get { return ViewName; }
-        }
-
-        string IViewMapping.PresenterName
-        {
-            get { return PresenterName; }
-        }
-
-        string IViewMapping.PresenterActionName
-        {
-            get { return PresenterActionName; }
-        }
-
-        string IViewMapping.ControllerName
-        {
-            get { return ControllerName; }
-        }
-
-        string IViewMapping.ControllerGetActionName
-        {
-            get { return ControllerGetActionName; }
-        }
-
-        object IViewMapping.GetRouteValues(object viewModel)
-        {
-            return GetRouteValues((TViewModel)viewModel);
-        }
-
-        ICollection<KeyValuePair<string, string>> IViewMapping.GetValidationMesssages(object viewModel)
-        {
-            return GetValidationMesssages((TViewModel)viewModel);
-        }
-
-        bool IViewMapping.Predicate(object viewModel)
-        {
-            return Predicate((TViewModel)viewModel);
-        }
-
-        Type IViewMapping.ViewModelType
-        {
-            get { return typeof(TViewModel); }
-        }
+        string IViewMapping.ViewName => ViewName;
+        string IViewMapping.PresenterName => PresenterName;
+        string IViewMapping.PresenterActionName => PresenterActionName;
+        string IViewMapping.ControllerName => ControllerName;
+        string IViewMapping.ControllerGetActionName => ControllerGetActionName;
+        object IViewMapping.GetRouteValues(object viewModel) => GetRouteValues((TViewModel)viewModel);
+        bool IViewMapping.Predicate(object viewModel) => Predicate((TViewModel)viewModel);
+        Type IViewMapping.ViewModelType => typeof(TViewModel);
+        ICollection<KeyValuePair<string, string>> IViewMapping.GetValidationMesssages(object viewModel) => GetValidationMesssages((TViewModel)viewModel);
     }
 }

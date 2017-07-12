@@ -12,7 +12,7 @@ namespace JJ.Framework.Data.EntityFramework5
         // Also: if it is not required, don't check it for null in the ContextBase class.
         public static DbContext CreateContext(string connectionString, Assembly modelAssembly, Assembly mappingAssembly)
         {
-            Type dbContextType = ReflectionHelper.GetImplementation<DbContext>(mappingAssembly);
+            Type dbContextType = mappingAssembly.GetImplementation<DbContext>();
             string modelName = GetEntityFrameworkModelName(mappingAssembly);
             string specialConnectionString = GetSpecialConnectionString(connectionString, modelName);
 

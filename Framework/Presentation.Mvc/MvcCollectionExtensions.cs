@@ -128,10 +128,10 @@ namespace JJ.Framework.Presentation.Mvc
 
                 string htmlFieldPrefix = FormatHtmlFieldPrefix();
                 string collectionName = CutOffIndex(htmlFieldPrefix);
-                string indexFieldName = String.Format("{0}.index", collectionName);
+                string indexFieldName = string.Format("{0}.index", collectionName);
 
                 // You cannot use HtmlHelper.Hidden, because it will use the wrong name prefix, and also generate a bad ID field with the wrong prefix.
-                string html = String.Format(@"<input type=""hidden"" name=""{0}"" value=""{1}"" autocomplete=""off""/>", htmlHelper.Encode(indexFieldName), htmlHelper.Encode(index));
+                string html = string.Format(@"<input type=""hidden"" name=""{0}"" value=""{1}"" autocomplete=""off""/>", htmlHelper.Encode(indexFieldName), htmlHelper.Encode(index));
 
                 // TODO: Check if you have already added the hidden field with this name and value. 
                 // You can get duplicates if you do not use straightforeward nested loops.
@@ -149,7 +149,7 @@ namespace JJ.Framework.Presentation.Mvc
 
             public string FormatHtmlFieldPrefix()
             {
-                return String.Join(".", _nodes.Select(x => x.FormatText()).Reverse());
+                return string.Join(".", _nodes.Select(x => x.FormatText()).Reverse());
             }
 
             public void Dispose()

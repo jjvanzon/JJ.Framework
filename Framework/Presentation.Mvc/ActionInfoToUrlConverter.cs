@@ -42,7 +42,7 @@ namespace JJ.Framework.Presentation.Mvc
         private static string ConvertActionInfoToUrl_ByList(IList<ActionInfo> actionInfos, string returnUrlParameterName)
         {
             // TODO: Performance of these string operations is not great.
-            if (String.IsNullOrWhiteSpace(returnUrlParameterName)) throw new Exception("returnUrlParameterName cannot be null or white space.");
+            if (string.IsNullOrWhiteSpace(returnUrlParameterName)) throw new Exception("returnUrlParameterName cannot be null or white space.");
 
             ActionInfo actionInfo = actionInfos[0];
             string url = ConvertActionInfoToUrl_NonRecursive(actionInfo);
@@ -66,8 +66,8 @@ namespace JJ.Framework.Presentation.Mvc
         {
             if (actionInfo == null) throw new NullException(() => actionInfo);
             if (actionInfo.Parameters == null) throw new NullException(() => actionInfo.Parameters);
-            if (String.IsNullOrEmpty(actionInfo.PresenterName)) throw new NullOrEmptyException(() => actionInfo.PresenterName);
-            if (String.IsNullOrEmpty(actionInfo.ActionName)) throw new NullOrEmptyException(() => actionInfo.ActionName);
+            if (string.IsNullOrEmpty(actionInfo.PresenterName)) throw new NullOrEmptyException(() => actionInfo.PresenterName);
+            if (string.IsNullOrEmpty(actionInfo.ActionName)) throw new NullOrEmptyException(() => actionInfo.ActionName);
 
             var urlInfo = new UrlInfo(actionInfo.PresenterName, actionInfo.ActionName);
             urlInfo.Parameters = actionInfo.Parameters.Select(x => new UrlParameterInfo(x.Name, x.Value)).ToArray();
@@ -89,7 +89,7 @@ namespace JJ.Framework.Presentation.Mvc
         /// </summary>
         public static ActionInfo ConvertUrlToActionInfo(string url, string returnUrlParameterName = "ret")
         {
-            if (String.IsNullOrEmpty(url))
+            if (string.IsNullOrEmpty(url))
             {
                 return null;
             }
@@ -122,7 +122,7 @@ namespace JJ.Framework.Presentation.Mvc
             {
                 UrlParameterInfo sourceUrlParameterInfo = sourceUrlInfo.Parameters[i];
 
-                bool isReturnUrlParameter = String.Equals(sourceUrlParameterInfo.Name, returnUrlParameterName);
+                bool isReturnUrlParameter = string.Equals(sourceUrlParameterInfo.Name, returnUrlParameterName);
                 if (!isReturnUrlParameter)
                 {
                     var destActionParameterInfo = new ActionParameterInfo

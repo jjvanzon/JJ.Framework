@@ -49,10 +49,10 @@ namespace JJ.Framework.Presentation.Mvc
 
             if (_registeredAssemblies.Contains(assembly))
             {
-                throw new Exception(String.Format("Assembly '{0}' was already registered in the ActionDispatcher.", assembly.FullName));
+                throw new Exception(string.Format("Assembly '{0}' was already registered in the ActionDispatcher.", assembly.FullName));
             }
 
-            IList<Type> types = ReflectionHelper.GetImplementations<IViewMapping>(assembly);
+            IList<Type> types = assembly.GetImplementations<IViewMapping>();
             IList<IViewMapping> viewMappings = types.Select(x => (IViewMapping)Activator.CreateInstance(x)).ToArray();
             _mappingsByViewModelType = viewMappings.ToNonUniqueDictionary(x => x.ViewModelType);
             _mappingsByControllerActionKey = viewMappings.ToNonUniqueDictionary(x => GetActionKey(x.ControllerName, x.ControllerGetActionName));
@@ -62,12 +62,12 @@ namespace JJ.Framework.Presentation.Mvc
         // Dispatch
 
         private static string _tempDataKey = "vm-b5b9-20e1e86a12d8";
-        public static string TempDataKey { get { return _tempDataKey; } }
+        public static string TempDataKey => _tempDataKey;
 
         public static ActionResult Dispatch(Controller sourceController, string sourceActionName, object viewModel)
         {
             if (sourceController == null) throw new NullException(() => sourceController);
-            if (String.IsNullOrEmpty(sourceActionName)) throw new NullOrEmptyException(() => sourceActionName);
+            if (string.IsNullOrEmpty(sourceActionName)) throw new NullOrEmptyException(() => sourceActionName);
             if (viewModel == null) throw new NullException(() => viewModel);
 
             IViewMapping destMapping = GetViewMappingByViewModel(viewModel);
@@ -75,14 +75,14 @@ namespace JJ.Framework.Presentation.Mvc
             ControllerAccessor sourceControllerAccessor = new ControllerAccessor(sourceController);
             string sourceControllerName = GetControllerName(sourceController);
 
-            bool hasActionName = !String.IsNullOrEmpty(destMapping.ControllerGetActionName);
+            bool hasActionName = !string.IsNullOrEmpty(destMapping.ControllerGetActionName);
             if (!hasActionName)
             {
                 return sourceControllerAccessor.View(destMapping.ViewName, viewModel);
             }
 
-            bool isSameControllerAndAction = String.Equals(destMapping.ControllerName, sourceControllerName) &&
-                                             String.Equals(destMapping.ControllerGetActionName, sourceActionName);
+            bool isSameControllerAndAction = string.Equals(destMapping.ControllerName, sourceControllerName) &&
+                                             string.Equals(destMapping.ControllerGetActionName, sourceActionName);
 
             bool mustReturnView = isSameControllerAndAction;
             if (mustReturnView)
@@ -125,11 +125,11 @@ namespace JJ.Framework.Presentation.Mvc
                         return mappings2[0];
 
                     case 0:
-                        throw new Exception(String.Format(
+                        throw new Exception(string.Format(
                             "viewModel of type '{0}' has multiple mappings and applying the predicate results in 0 mappings.", viewModel.GetType().FullName));
 
                     default:
-                        throw new Exception(String.Format(
+                        throw new Exception(string.Format(
                             "viewModel of type '{0}' has multiple mappings and applying the predicate results in multiple mappings.", viewModel.GetType().FullName));
                 }
             }
@@ -147,9 +147,9 @@ namespace JJ.Framework.Presentation.Mvc
         /// </summary>
         public static ActionInfo TryGetActionInfo(string mvcUrl, string returnUrlParameterName = "ret")
         {
-            if (String.IsNullOrEmpty(returnUrlParameterName)) throw new NullOrEmptyException(() => returnUrlParameterName);
+            if (string.IsNullOrEmpty(returnUrlParameterName)) throw new NullOrEmptyException(() => returnUrlParameterName);
 
-            if (String.IsNullOrEmpty(mvcUrl))
+            if (string.IsNullOrEmpty(mvcUrl))
             {
                 // There must be null-tollerance here, for brevity in calls to the ActionDispatcher.
                 return null;
@@ -199,14 +199,14 @@ namespace JJ.Framework.Presentation.Mvc
             // Map unnamed parameters to presenter action parameters
             // (e.g. in "Question/Details/1234" the third URL path element
             // is the first parameter.
-            ActionParameterInfo[] unnamedControllerActionParameters = controllerActionInfo.Parameters.Where(x => String.IsNullOrEmpty(x.Name)).ToArray();
+            ActionParameterInfo[] unnamedControllerActionParameters = controllerActionInfo.Parameters.Where(x => string.IsNullOrEmpty(x.Name)).ToArray();
             for (int i = 0; i < unnamedControllerActionParameters.Length; i++)
             {
                 ActionParameterInfo controllerParameterInfo = unnamedControllerActionParameters[i];
                 ActionParameterMapping parameterMapping = viewMapping.ParameterMappings.ElementAtOrDefault(i);
                 if (parameterMapping == null)
                 {
-                    throw new Exception(String.Format(
+                    throw new Exception(string.Format(
                         "Unnamed controller parameter [{0}] in URL '{1}' cannot be mapped to a presenter parameter. " +
                         "When a controller parameter can be used as a URL path element it must be mapped in the ViewMapping " +
                         "using the MapParameter method. The unnamed parameter will be mapped to a presenter parameter in the order " +
@@ -225,7 +225,7 @@ namespace JJ.Framework.Presentation.Mvc
             foreach (ActionParameterInfo controllerParameterInfo in namedControllerActionParameter)
             {
                 ActionParameterMapping parameterMapping = viewMapping.ParameterMappings
-                                                                     .Where(x => String.Equals(x.ControllerParameterName, controllerParameterInfo.Name))
+                                                                     .Where(x => string.Equals(x.ControllerParameterName, controllerParameterInfo.Name))
                                                                      .SingleOrDefault();
                 string presenterParameterName;
                 if (parameterMapping == null)
@@ -268,7 +268,7 @@ namespace JJ.Framework.Presentation.Mvc
                     throw new ViewMappingNotFoundException(key);
 
                 default:
-                    throw new Exception(String.Format("Controller action '{0}' has multiple mappings.", key));
+                    throw new Exception(string.Format("Controller action '{0}' has multiple mappings.", key));
             }
         }
 
@@ -285,7 +285,7 @@ namespace JJ.Framework.Presentation.Mvc
         public static string GetUrl(ActionInfo presenterActionInfo, string returnUrlParameterName = "ret")
         {
             if (presenterActionInfo == null) throw new NullException(() => presenterActionInfo);
-            if (String.IsNullOrEmpty(returnUrlParameterName)) throw new NullOrEmptyException(() => returnUrlParameterName);
+            if (string.IsNullOrEmpty(returnUrlParameterName)) throw new NullOrEmptyException(() => returnUrlParameterName);
 
             ActionInfo controllerActionInfo = TranslateActionInfo_FromPresenterToController_Recursive(presenterActionInfo);
 
@@ -326,7 +326,7 @@ namespace JJ.Framework.Presentation.Mvc
             foreach (ActionParameterInfo presenterParameterInfo in presenterActionInfo.Parameters)
             {
                 ActionParameterMapping parameterMapping = viewMapping.ParameterMappings
-                                                                     .Where(x => String.Equals(x.PresenterParameterName, presenterParameterInfo.Name))
+                                                                     .Where(x => string.Equals(x.PresenterParameterName, presenterParameterInfo.Name))
                                                                      .SingleOrDefault();
                 string controllerParameterName;
                 if (parameterMapping == null)
@@ -370,7 +370,7 @@ namespace JJ.Framework.Presentation.Mvc
                     throw new ViewMappingNotFoundException(key);
 
                 default:
-                    throw new Exception(String.Format("Presenter action '{0}' has multiple mappings.", key));
+                    throw new Exception(string.Format("Presenter action '{0}' has multiple mappings.", key));
             }
         }
 
@@ -384,7 +384,7 @@ namespace JJ.Framework.Presentation.Mvc
 
         private static string GetActionKey(string controllerName, string actionName)
         {
-            string key = String.Format("{0}/{1}", controllerName, actionName);
+            string key = string.Format("{0}/{1}", controllerName, actionName);
             return key;
         }
     }

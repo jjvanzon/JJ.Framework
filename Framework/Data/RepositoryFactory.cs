@@ -63,7 +63,7 @@ namespace JJ.Framework.Data
 
             foreach (Assembly repositoryAssembly in repositoryAssemblies)
             {
-                Type repositoryType = ReflectionHelper.TryGetImplementation<TRepositoryInterface>(repositoryAssembly);
+                Type repositoryType = repositoryAssembly.TryGetImplementation<TRepositoryInterface>();
                 if (repositoryType != null)
                 {
                     return (TRepositoryInterface)Activator.CreateInstance(repositoryType, context);

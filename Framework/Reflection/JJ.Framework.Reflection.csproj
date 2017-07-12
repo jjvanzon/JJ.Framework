@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessor.cs" />
-    <Compile Include="MethodBaseExtensions.cs" />
+    <Compile Include="2017-07-12 Backup of MethodBaseExtensions.cs" />
     <Compile Include="MethodCallParameterInfo.cs" />
     <Compile Include="ExpressionHelper.cs" />
     <Compile Include="ExpressionToTextTranslator.cs" />
@@ -56,7 +56,7 @@
     <Compile Include="ReflectionCache.cs" />
     <Compile Include="StaticReflectionCache.cs" />
     <Compile Include="ReflectionHelper.cs" />
-    <Compile Include="TypeExtensions.cs" />
+    <Compile Include="ReflectionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">

@@ -91,7 +91,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                 Visit(node.Expression);
             }
 
-            if (ReflectionHelper.IsStatic(node.Member))
+            if (node.Member.IsStatic())
             {
                 _sb.Append(node.Member.DeclaringType.Name);
             }
@@ -112,7 +112,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
                 Visit(node.Object);
             }
 
-            if (ReflectionHelper.IsIndexerMethod(node.Method))
+            if (node.Method.IsIndexer())
             {
                 _sb.Append("[");
                 for (int i = 0; i < node.Arguments.Count - 1; i++)

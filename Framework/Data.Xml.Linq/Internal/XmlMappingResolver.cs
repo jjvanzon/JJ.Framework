@@ -12,7 +12,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
         public static IXmlMapping GetXmlMapping(Type entityType, Assembly mappingAssembly)
         {
             Type baseType = typeof(XmlMapping<>).MakeGenericType(entityType);
-            Type derivedType = ReflectionHelper.GetImplementation(mappingAssembly, baseType);
+            Type derivedType = mappingAssembly.GetImplementation(baseType);
             IXmlMapping instance = (IXmlMapping)Activator.CreateInstance(derivedType);
             return instance;
         }

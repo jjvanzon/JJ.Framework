@@ -12,7 +12,7 @@ namespace JJ.Framework.Presentation.Mvc
             "Only call RegisterAssembly upon program initialization, because it is not thread-safe.";
 
         public ViewMappingNotFoundException(string viewMappingKeyDescription)
-            : base(String.Format(MESSAGE, viewMappingKeyDescription))
+            : base(string.Format(MESSAGE, viewMappingKeyDescription))
         { }
     }
 }

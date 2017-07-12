@@ -10,8 +10,8 @@ namespace JJ.Framework.Presentation.Mvc
 
         public ActionParameterMapping(string presenterParameterName, string controllerParameterName)
         {
-            if (String.IsNullOrEmpty(presenterParameterName)) throw new NullOrEmptyException(() => presenterParameterName);
-            if (String.IsNullOrEmpty(controllerParameterName)) throw new NullOrEmptyException(() => controllerParameterName);
+            if (string.IsNullOrEmpty(presenterParameterName)) throw new NullOrEmptyException(() => presenterParameterName);
+            if (string.IsNullOrEmpty(controllerParameterName)) throw new NullOrEmptyException(() => controllerParameterName);
 
             PresenterParameterName = presenterParameterName;
             ControllerParameterName = controllerParameterName;
