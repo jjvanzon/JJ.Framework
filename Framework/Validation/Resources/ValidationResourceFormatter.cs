@@ -1,7 +1,6 @@
 ﻿using JJ.Framework.PlatformCompatibility;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Validation.Resources
@@ -70,7 +69,7 @@ namespace JJ.Framework.Validation.Resources
         public static string NotUniquePlural(string displayNamePlural) => string.Format(ValidationResources.NotUnique_WithName_Plural, displayNamePlural);
         public static string NotUniqueSingular(string displayNameSingular, object value) => string.Format(ValidationResources.NotUnique_WithName_AndValue_Singular, displayNameSingular, value);
 
-        public static string NotUniqueSingular(string displayNameSingular, [NotNull] IEnumerable<object> duplicateValues)
+        public static string NotUniqueSingular(string displayNameSingular, IEnumerable<object> duplicateValues)
         {
             if (duplicateValues == null) throw new NullException(() => duplicateValues);
 
@@ -79,7 +78,7 @@ namespace JJ.Framework.Validation.Resources
             return string.Format(ValidationResources.NotUnique_WithName_AndDuplicateValues_Singular, displayNameSingular, formattedDuplicateValues);
         }
 
-        public static string NotUniquePlural(string displayNamePlural, [NotNull] IEnumerable<object> duplicateValues)
+        public static string NotUniquePlural(string displayNamePlural, IEnumerable<object> duplicateValues)
         {
             if (duplicateValues == null) throw new NullException(() => duplicateValues);
 

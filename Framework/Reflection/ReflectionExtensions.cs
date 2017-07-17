@@ -43,8 +43,7 @@ namespace JJ.Framework.Reflection
 
             lock (_itemTypeDictionaryLock)
             {
-                Type itemType;
-                if (_itemTypeDictionary.TryGetValue(collectionType, out itemType))
+                if (_itemTypeDictionary.TryGetValue(collectionType, out Type itemType))
                 {
                     return itemType;
                 }
@@ -119,9 +118,8 @@ namespace JJ.Framework.Reflection
             lock (_implementationsDictionaryLock)
             {
                 string key = GetImplementationsDictionaryKey(assembly, baseType);
-                Type[] types;
                 // ReSharper disable once InvertIf
-                if (!_implementationsDictionary.TryGetValue(key, out types))
+                if (!_implementationsDictionary.TryGetValue(key, out Type[] types))
                 {
                     types = assembly.GetTypes();
                     types = Enumerable.Union(

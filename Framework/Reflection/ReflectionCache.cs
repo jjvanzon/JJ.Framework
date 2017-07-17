@@ -10,10 +10,7 @@ namespace JJ.Framework.Reflection
     {
         private readonly BindingFlags _bindingFlags;
 
-        public ReflectionCache(BindingFlags bindingFlags)
-        {
-            _bindingFlags = bindingFlags;
-        }
+        public ReflectionCache(BindingFlags bindingFlags) => _bindingFlags = bindingFlags;
 
         // Properties
 
@@ -24,9 +21,8 @@ namespace JJ.Framework.Reflection
         {
             lock (_propertiesDictionaryLock)
             {
-                PropertyInfo[] properties;
                 // ReSharper disable once InvertIf
-                if (!_propertiesDictionary.TryGetValue(type, out properties))
+                if (!_propertiesDictionary.TryGetValue(type, out PropertyInfo[] properties))
                 {
                     properties = type.GetProperties(_bindingFlags);
                     _propertiesDictionary.Add(type, properties);
@@ -44,9 +40,8 @@ namespace JJ.Framework.Reflection
         {
             lock (_propertyDictionaryDictionaryLock)
             {
-                IDictionary<string, PropertyInfo> propertyDictionary;
                 // ReSharper disable once InvertIf
-                if (!_propertyDictionaryDictionary.TryGetValue(type, out propertyDictionary))
+                if (!_propertyDictionaryDictionary.TryGetValue(type, out IDictionary<string, PropertyInfo> propertyDictionary))
                 {
                     propertyDictionary = type.GetProperties(_bindingFlags).ToDictionary(x => x.Name);
                     _propertyDictionaryDictionary.Add(type, propertyDictionary);
@@ -64,9 +59,8 @@ namespace JJ.Framework.Reflection
         {
             lock (_fieldsDictionaryLock)
             {
-                FieldInfo[] fields;
                 // ReSharper disable once InvertIf
-                if (!_fieldsDictionary.TryGetValue(type, out fields))
+                if (!_fieldsDictionary.TryGetValue(type, out FieldInfo[] fields))
                 {
                     fields = type.GetFields(_bindingFlags);
                     _fieldsDictionary.Add(type, fields);
@@ -113,13 +107,12 @@ namespace JJ.Framework.Reflection
         {
             lock (_typeByShortNameDictionaryLock)
             {
-                Type[] types;
-                if (_typeByShortNameDictionary.TryGetValue(shortTypeName, out types))
+                if (_typeByShortNameDictionary.TryGetValue(shortTypeName, out Type[] types))
                 {
                     return types;
                 }
 
-                List<Type> list = new List<Type>();
+                var list = new List<Type>();
                 foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     try
@@ -150,8 +143,7 @@ namespace JJ.Framework.Reflection
         {
             lock (_constructorDictionaryLock)
             {
-                ConstructorInfo constructor;
-                if (_constructorDictionary.TryGetValue(type, out constructor))
+                if (_constructorDictionary.TryGetValue(type, out ConstructorInfo constructor))
                 {
                     return constructor;
                 }
@@ -164,12 +156,12 @@ namespace JJ.Framework.Reflection
                         return constructors[0];
 
                     case 0:
-                        throw new Exception($"No constructor found for type '{type.FullName}' for binding flags '{_bindingFlags}'.");
+                        throw new Exception($"No constructor found for type '{type.FullName}' for '{new {_bindingFlags}}'.");
 
                     default:
                         throw new Exception(
-                            $"Multiple constructors found on type '{type.FullName}' for binding flags '{_bindingFlags}'. " +
-                            $"Found constructors: {String_PlatformSupport.Join(", ", constructors.Select(x => x.ToString()))}");
+                            $"Multiple constructors found on type '{type.FullName}' for '{new { _bindingFlags }}'. " +
+                            $"Found constructors: {String_PlatformSupport.Join(", ", constructors)}");
                 }
             }
         }

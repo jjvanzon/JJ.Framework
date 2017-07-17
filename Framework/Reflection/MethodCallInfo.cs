@@ -4,10 +4,7 @@ namespace JJ.Framework.Reflection
 {
     public class MethodCallInfo
     {
-        internal MethodCallInfo(string name)
-        {
-            Name = name;
-        }
+        internal MethodCallInfo(string name) => Name = name;
 
         public string Name { get; }
 

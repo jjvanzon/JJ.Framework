@@ -83,10 +83,7 @@ namespace JJ.Framework.Reflection
             }
         }
 
-        protected virtual void VisitConvert(UnaryExpression node)
-        {
-            Visit(node.Operand);
-        }
+        protected virtual void VisitConvert(UnaryExpression node) => Visit(node.Operand);
 
         protected virtual void VisitConstant(ConstantExpression node)
         {

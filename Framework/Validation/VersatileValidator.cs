@@ -1,12 +1,11 @@
-﻿using JJ.Framework.Exceptions;
-using System;
-using System.Linq;
-using JJ.Framework.PlatformCompatibility;
+﻿using System;
 using System.Collections.Generic;
-using JJ.Framework.Common;
 using System.Globalization;
-using JetBrains.Annotations;
+using System.Linq;
 using JJ.Framework.Collections;
+using JJ.Framework.Common;
+using JJ.Framework.Exceptions;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Validation
 {
@@ -25,8 +24,7 @@ namespace JJ.Framework.Validation
         /// <param name="formatProvider">
         /// Use this parameter if e.g. the number format is different from the current culture.
         /// </param>
-        [NotNull]
-        public VersatileValidator For(object value, string propertyDisplayName, [CanBeNull] IFormatProvider formatProvider = null)
+        public VersatileValidator For(object value, string propertyDisplayName, IFormatProvider formatProvider = null)
         {
             if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
 
@@ -39,8 +37,7 @@ namespace JJ.Framework.Validation
         }
 
         // Nullability
-
-        [NotNull]
+        
         public VersatileValidator NotNull()
         {
             if (_value == null)
@@ -50,8 +47,7 @@ namespace JJ.Framework.Validation
 
             return this;
         }
-
-        [NotNull]
+        
         public VersatileValidator NotNullOrEmpty()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -63,8 +59,7 @@ namespace JJ.Framework.Validation
 
             return this;
         }
-
-        [NotNull]
+        
         public VersatileValidator NotNullOrWhiteSpace()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -76,8 +71,7 @@ namespace JJ.Framework.Validation
 
             return this;
         }
-
-        [NotNull]
+        
         public VersatileValidator IsNull()
         {
             if (_value != null)
@@ -88,7 +82,7 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        [NotNull]
+        
         public VersatileValidator IsNullOrEmpty()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -100,8 +94,7 @@ namespace JJ.Framework.Validation
 
             return this;
         }
-
-        [NotNull]
+        
         public VersatileValidator IsNullOrWhiteSpace()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -115,8 +108,7 @@ namespace JJ.Framework.Validation
         }
 
         // Strings
-
-        [NotNull]
+        
         public VersatileValidator MaxLength(int maxLength)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -135,9 +127,8 @@ namespace JJ.Framework.Validation
         }
 
         // Equation
-
-        [NotNull]
-        public VersatileValidator In<TValue>([NotNull] IEnumerable<TValue> possibleValues)
+        
+        public VersatileValidator In<TValue>(IEnumerable<TValue> possibleValues)
         {
             if (possibleValues == null) throw new NullException(() => possibleValues);
 
@@ -159,8 +150,7 @@ namespace JJ.Framework.Validation
 
             return this;
         }
-
-        [NotNull]
+        
         public VersatileValidator In(params object[] possibleValues)
         {
             if (possibleValues == null) throw new NullException(() => possibleValues);
@@ -168,7 +158,6 @@ namespace JJ.Framework.Validation
             return In((IEnumerable<object>)possibleValues);
         }
 
-        [NotNull]
         public VersatileValidator Is(object value)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -187,8 +176,7 @@ namespace JJ.Framework.Validation
 
             return this;
         }
-
-        [NotNull]
+        
         public VersatileValidator IsNot(object value)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -209,8 +197,7 @@ namespace JJ.Framework.Validation
         }
 
         // Comparison
-
-        [NotNull]
+        
         public VersatileValidator GreaterThan<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -237,8 +224,7 @@ namespace JJ.Framework.Validation
 
             return this;
         }
-
-        [NotNull]
+        
         public VersatileValidator GreaterThanOrEqual<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -266,7 +252,6 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        [NotNull]
         public VersatileValidator LessThanOrEqual<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -294,7 +279,6 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        [NotNull]
         public VersatileValidator LessThan<TValue>(TValue limit)
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -341,8 +325,7 @@ namespace JJ.Framework.Validation
         }
 
         // Type checks
-
-        [NotNull]
+        
         public VersatileValidator IsInteger()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -352,8 +335,7 @@ namespace JJ.Framework.Validation
                 return this;
             }
 
-            int convertedValue;
-            if (!int.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out convertedValue))
+            if (!int.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out int _))
             {
                 Messages.AddNotIntegerMessage(_propertyDisplayName);
             }
@@ -361,7 +343,6 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        [NotNull]
         public VersatileValidator NotInteger()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -371,16 +352,14 @@ namespace JJ.Framework.Validation
                 return this;
             }
 
-            int convertedValue;
-            if (int.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out convertedValue))
+            if (int.TryParse(stringValue, NumberStyles.Integer, _formatProvider, out int _))
             {
                 Messages.AddIsIntegerMessage(_propertyDisplayName);
             }
 
             return this;
         }
-
-        [NotNull]
+        
         public VersatileValidator IsDouble()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -390,16 +369,14 @@ namespace JJ.Framework.Validation
                 return this;
             }
 
-            double convertedValue;
-            if (!DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
+            if (!DoubleHelper.TryParse(stringValue, _formatProvider, out double _))
             {
                 Messages.AddNotBrokenNumberMessage(_propertyDisplayName);
             }
 
             return this;
         }
-
-        [NotNull]
+        
         public VersatileValidator IsEnum<TEnum>()
             where TEnum : struct
         {
@@ -457,8 +434,7 @@ namespace JJ.Framework.Validation
         }
 
         // Other
-
-        [NotNull]
+        
         public VersatileValidator NotNaN()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -468,9 +444,8 @@ namespace JJ.Framework.Validation
                 return this;
             }
 
-            double convertedValue;
             // ReSharper disable once InvertIf
-            if (DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
+            if (DoubleHelper.TryParse(stringValue, _formatProvider, out double convertedValue))
             {
                 if (double.IsNaN(convertedValue))
                 {
@@ -480,8 +455,7 @@ namespace JJ.Framework.Validation
 
             return this;
         }
-
-        [NotNull]
+        
         public VersatileValidator NotInfinity()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -491,9 +465,8 @@ namespace JJ.Framework.Validation
                 return this;
             }
 
-            double convertedValue;
             // ReSharper disable once InvertIf
-            if (DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
+            if (DoubleHelper.TryParse(stringValue, _formatProvider, out double convertedValue))
             {
                 if (double.IsInfinity(convertedValue))
                 {
@@ -504,7 +477,6 @@ namespace JJ.Framework.Validation
             return this;
         }
 
-        [NotNull]
         public VersatileValidator NotZero()
         {
             string stringValue = Convert.ToString(_value, _formatProvider);
@@ -514,9 +486,8 @@ namespace JJ.Framework.Validation
                 return this;
             }
 
-            double convertedValue;
             // ReSharper disable once InvertIf
-            if (DoubleHelper.TryParse(stringValue, _formatProvider, out convertedValue))
+            if (DoubleHelper.TryParse(stringValue, _formatProvider, out double convertedValue))
             {
                 // ReSharper disable once CompareOfFloatsByEqualityOperator
                 if (convertedValue == 0.0)

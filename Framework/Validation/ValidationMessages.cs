@@ -162,7 +162,6 @@ namespace JJ.Framework.Validation
             Add(ValidationResourceFormatter.LengthExceeded(propertyDisplayName, length));
         }
 
-
         public void AddLessThanMessage(string propertyDisplayName, object limitOrName)
         {
             if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
@@ -174,7 +173,6 @@ namespace JJ.Framework.Validation
             if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);
             Add(ValidationResourceFormatter.LessThanOrEqual(propertyDisplayName, limitOrName));
         }
-
 
         public void AddNotBothValidationMessage(string propertyDisplayName1, string propertyDisplayName2)
         {

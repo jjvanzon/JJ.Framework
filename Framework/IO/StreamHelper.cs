@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Text;
-using JetBrains.Annotations;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Exceptions;
 
@@ -8,8 +7,7 @@ namespace JJ.Framework.IO
 {
     public static class StreamHelper
     {
-        [NotNull]
-        public static byte[] StreamToBytes([NotNull] Stream stream, int bufferSize = 8192)
+        public static byte[] StreamToBytes(Stream stream, int bufferSize = 8192)
         {
             if (stream == null) throw new NullException(() => stream);
 
@@ -25,14 +23,12 @@ namespace JJ.Framework.IO
             return memoryStream.ToArray();
         }
 
-        [NotNull]
-        public static Stream BytesToStream([NotNull] byte[] bytes)
+        public static Stream BytesToStream(byte[] bytes)
         {
             return new MemoryStream(bytes);
         }
 
-        [NotNull]
-        public static string StreamToString([NotNull] Stream stream, [NotNull] Encoding encoding)
+        public static string StreamToString(Stream stream, Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);
 
@@ -43,24 +39,21 @@ namespace JJ.Framework.IO
                 return text;
             }
         }
-
-        [NotNull]
-        public static Stream StringToStream(string text, [NotNull] Encoding encoding)
+        
+        public static Stream StringToStream(string text, Encoding encoding)
         {
             byte[] bytes = StringToBytes(text, encoding);
             Stream stream = BytesToStream(bytes);
             return stream;
         }
 
-        [NotNull]
-        public static byte[] StringToBytes([NotNull] string text, [NotNull] Encoding encoding)
+        public static byte[] StringToBytes(string text, Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);
             return encoding.GetBytes(text);
         }
-
-        [NotNull]
-        public static string BytesToString([NotNull] byte[] bytes, [NotNull] Encoding encoding)
+        
+        public static string BytesToString(byte[] bytes, Encoding encoding)
         {
             if (encoding == null) throw new NullException(() => encoding);
 

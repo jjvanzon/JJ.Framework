@@ -1,20 +1,15 @@
 ﻿using JJ.Framework.Exceptions;
 using System;
-using System.Linq;
-using JetBrains.Annotations;
 
 namespace JJ.Framework.Validation
 {
     public abstract class ValidatorBase : IValidator
     {
-        [NotNull]
         public ValidationMessages Messages { get; } = new ValidationMessages();
 
         public bool IsValid => Messages.Count == 0;
 
-        /// <summary>
-        /// Throws an exception if IsValid is false.
-        /// </summary>
+        /// <summary> Throws an exception if IsValid is false. </summary>
         public void Assert()
         {
             // ReSharper disable once InvertIf
@@ -37,7 +32,7 @@ namespace JJ.Framework.Validation
         /// A message prefix can identify the parent object so that validation messages indicate 
         /// what specific part of the object structure they are about. 
         /// </param>
-        public void ExecuteValidator([NotNull] IValidator validator, string messagePrefix)
+        public void ExecuteValidator(IValidator validator, string messagePrefix)
         {
             if (validator == null) throw new NullException(() => validator);
 
