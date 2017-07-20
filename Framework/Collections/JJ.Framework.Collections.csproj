@@ -57,6 +57,10 @@
       <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
       <Name>JJ.Framework.Exceptions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reflection\JJ.Framework.Reflection.csproj">
+      <Project>{1A8E047C-7893-4918-B415-CE3928E815D8}</Project>
+      <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
