@@ -425,6 +425,27 @@ namespace JJ.Framework.Collections
             return sourceCollection.ToNonUniqueDictionary(keySelector, x => x);
         }
 
+        public static Dictionary<TKey, IList<TElement>> ToNonUniqueDictionary<TKey, TElement>(
+            this IEnumerable<IGrouping<TKey, TElement>> sourceGroups)
+        {
+            // NOTE: You cannot delegate to the generalized ToNonUniqueDictionary,
+            // because it expects a singular element selector, not plural. So the following would not work:
+            // sourceGroups.ToNonUniqueDictionary(x => x.Key, x => x.ToArray());
+
+            if (sourceGroups == null) throw new ArgumentNullException(nameof(sourceGroups));
+
+            var dictionary = new Dictionary<TKey, IList<TElement>>();
+
+            foreach (IGrouping<TKey, TElement> sourceGroup in sourceGroups)
+            {
+                TKey key = sourceGroup.Key;
+
+                dictionary.Add(key, sourceGroup.ToArray());
+            }
+
+            return dictionary;
+        }
+
         public static Dictionary<TKey, IList<TDestItem>> ToNonUniqueDictionary<TKey, TSourceItem, TDestItem>(
             this IEnumerable<TSourceItem> sourceCollection,
             Func<TSourceItem, TKey> keySelector,
