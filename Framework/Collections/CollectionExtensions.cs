@@ -268,6 +268,11 @@ namespace JJ.Framework.Collections
             return stack.Peek();
         }
 
+        public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)
+        {
+            return collection.Select(selector).Product();
+        }
+
         public static double Product(this IEnumerable<double> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
