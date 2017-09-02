@@ -47,6 +47,7 @@
     <Compile Include="CollectionNotEmptyException.cs" />
     <Compile Include="ContainsException.cs" />
     <Compile Include="EqualException.cs" />
+    <Compile Include="ExceptionWithExpressionBase.cs" />
     <Compile Include="FileAlreadyExistException.cs" />
     <Compile Include="FileDoesNotExistException.cs" />
     <Compile Include="FolderAlreadyExistsException.cs" />

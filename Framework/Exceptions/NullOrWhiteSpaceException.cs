@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Linq.Expressions;
-using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
-    public class NullOrEmptyException : Exception
+    public class NullOrEmptyException : ExceptionWithExpressionBase
     {
-        private const string MESSAGE = "{0} is null or empty.";
+        protected override string MessageFormat => "{0} is null or empty.";
 
-        public NullOrEmptyException(Expression<Func<object>> expression)
-            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
+        public NullOrEmptyException(Expression<Func<object>> expression) : base(expression)
+        { }
+
+        public NullOrEmptyException(string name) : base(name)
         { }
     }
 }
