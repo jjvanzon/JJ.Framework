@@ -259,6 +259,8 @@ namespace JJ.Framework.Collections
 
         public static T PeekOrDefault<T>(this Stack<T> stack)
         {
+            if (stack == null) throw new ArgumentNullException(nameof(stack));
+
             // ReSharper disable once ConvertIfStatementToReturnStatement
             if (stack.Count == 0)
             {
@@ -266,6 +268,19 @@ namespace JJ.Framework.Collections
             }
 
             return stack.Peek();
+        }
+
+        public static T PeekOrDefault<T>(this Queue<T> queue)
+        {
+            if (queue == null) throw new ArgumentNullException(nameof(queue));
+
+            // ReSharper disable once ConvertIfStatementToReturnStatement
+            if (queue.Count == 0)
+            {
+                return default(T);
+            }
+
+            return queue.Peek();
         }
 
         public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)
