@@ -123,7 +123,7 @@ namespace JJ.Framework.Reflection
                 {
                     types = assembly.GetTypes();
                     types = Enumerable.Union(
-                        types.Where(x => x.BaseType == baseType),
+                        types.Where(x => x.GetBaseClasses().Contains(baseType)),
                         types.Where(x => x.GetInterface_PlatformSafe(baseType.Name) != null)).ToArray();
 
                     _implementationsDictionary.Add(key, types);

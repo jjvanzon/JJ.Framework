@@ -7,19 +7,19 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Framework.Collections.Tests
 {
     [TestClass]
-    public class CollectionExtensions_Recursive_Tests
+    public class CollectionExtensions_Recursive_IEnumerable_Tests
     {
         [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
         private class Item
         {
             public string Name { get; set; }
-            public IList<Item> Children { get; set; } = new List<Item>();
+            public IEnumerable<Item> Children { get; set; } = new List<Item>();
 
-            private string DebuggerDisplay => $"{{{nameof(Item)}}} '{Name}' [{Children?.Count}]";
+            private string DebuggerDisplay => $"{{{nameof(Item)}}} '{Name}' [{Children?.Count()}]";
         }
 
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_SelectRecursive_OnItem()
+        public void Test_CollectionExtensions_Recursive_SelectRecursive_IEnumerable_OnItem()
         {
             // Setup
             Item item = CreateItem();
@@ -28,12 +28,12 @@ namespace JJ.Framework.Collections.Tests
             IList<Item> items = item.SelectRecursive(x => x.Children).ToArray();
 
             // Assert
-            IList<string> expectedItemsNames = new string[] { "1.1", "1.2", "1.2.1", "1.3", "1.3.1", "1.3.2" };
+            IList<string> expectedItemsNames = new[] { "1.1", "1.2", "1.2.1", "1.3", "1.3.1", "1.3.2" };
             AssertItemNames(expectedItemsNames, items);
         }
 
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_SelectRecursive_OnCollection()
+        public void Test_CollectionExtensions_Recursive_SelectRecursive_IEnumerable_OnCollection()
         {
             // Setup
             Item item = CreateItem();
@@ -42,12 +42,12 @@ namespace JJ.Framework.Collections.Tests
             IList<Item> items = item.Children.SelectRecursive(x => x.Children).ToArray();
 
             // Assert
-            IList<string> expectedItemsNames = new string[] { "1.2.1", "1.3.1", "1.3.2" };
+            IList<string> expectedItemsNames = new[] { "1.2.1", "1.3.1", "1.3.2" };
             AssertItemNames(expectedItemsNames, items);
         }
 
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_UnionRecursive_OnItem()
+        public void Test_CollectionExtensions_Recursive_UnionRecursive_IEnumerable_OnItem()
         {
             // Setup
             Item item = CreateItem();
@@ -56,12 +56,12 @@ namespace JJ.Framework.Collections.Tests
             IList<Item> items = item.UnionRecursive(x => x.Children).ToArray();
 
             // Assert
-            IList<string> expectedItemsNames = new string[] { "1", "1.1", "1.2", "1.2.1", "1.3", "1.3.1", "1.3.2" };
+            IList<string> expectedItemsNames = new[] { "1", "1.1", "1.2", "1.2.1", "1.3", "1.3.1", "1.3.2" };
             AssertItemNames(expectedItemsNames, items);
         }
 
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_UnionRecursive_OnCollection()
+        public void Test_CollectionExtensions_Recursive_UnionRecursive_IEnumerable_OnCollection()
         {
             // Setup
             Item item = CreateItem();
@@ -70,7 +70,7 @@ namespace JJ.Framework.Collections.Tests
             IList<Item> items = item.Children.UnionRecursive(x => x.Children).ToArray();
 
             // Assert
-            IList<string> expectedItemsNames = new string[] { "1.1", "1.2", "1.2.1", "1.3", "1.3.1", "1.3.2" };
+            IList<string> expectedItemsNames = new[] { "1.1", "1.2", "1.2.1", "1.3", "1.3.1", "1.3.2" };
             AssertItemNames(expectedItemsNames, items);
         }
 
@@ -81,13 +81,13 @@ namespace JJ.Framework.Collections.Tests
             var item = new Item
             {
                 Name = "1",
-                Children = new Item[]
+                Children = new[]
                 {
                     new Item { Name = "1.1" },
                     new Item
                     {
                         Name = "1.2",
-                        Children = new Item[]
+                        Children = new[]
                         {
                             new Item { Name = "1.2.1" },
                         }
@@ -95,7 +95,7 @@ namespace JJ.Framework.Collections.Tests
                     new Item
                     {
                         Name = "1.3",
-                        Children = new Item[]
+                        Children = new[]
                         {
                             new Item { Name = "1.3.1" },
                             new Item { Name = "1.3.2" },
@@ -111,12 +111,8 @@ namespace JJ.Framework.Collections.Tests
         {
             IList<string> actualItemNames = items.Select(x => x.Name).ToArray();
 
-            // For now, sort, but later rework the recursive methods so that the order os actually kept in tact.
-            expectedItemsNames = expectedItemsNames.OrderBy(x => x).ToArray();
-            actualItemNames = actualItemNames.OrderBy(x => x).ToArray();
-
             AssertHelper.AreEqual(expectedItemsNames.Count, () => items.Count);
-            AssertHelper.IsTrue(() => Enumerable.SequenceEqual(expectedItemsNames, actualItemNames));
+            AssertHelper.IsTrue(() => actualItemNames.SequenceEqual(expectedItemsNames));
         }
     }
 }

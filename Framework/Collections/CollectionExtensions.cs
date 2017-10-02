@@ -283,6 +283,30 @@ namespace JJ.Framework.Collections
             return queue.Peek();
         }
 
+        /// <summary>
+        /// For some polymorphism between Stacks and Queues, there are these Add and Remove extension methods,
+        /// in place of Push, Pop, Enqueue and Dequeue.
+        /// </summary>
+        public static void Add<T>(this Stack<T> stack, T item) => stack.Push(item);
+
+        /// <summary>
+        /// For some polymorphism between Stacks and Queues, there are these Add and Remove extension methods,
+        /// in place of Push, Pop, Enqueue and Dequeue.
+        /// </summary>
+        public static void Remove<T>(this Stack<T> stack) => stack.Pop();
+
+        /// <summary>
+        /// For some polymorphism between Stacks and Queues, there are these Add and Remove extension methods,
+        /// in place of Push, Pop, Enqueue and Dequeue.
+        /// </summary>
+        public static void Add<T>(this Queue<T> stack, T item) => stack.Enqueue(item);
+
+        /// <summary>
+        /// For some polymorphism between Stacks and Queues, there are these Add and Remove extension methods,
+        /// in place of Push, Pop, Enqueue and Dequeue.
+        /// </summary>
+        public static void Remove<T>(this Queue<T> stack) => stack.Dequeue();
+
         public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)
         {
             return collection.Select(selector).Product();
