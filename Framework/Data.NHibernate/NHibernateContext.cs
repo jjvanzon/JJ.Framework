@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NHibernate;
 using System.Reflection;
 using JJ.Framework.Exceptions;
+using NHibernate.Engine;
 using NHibernate.Persister.Entity;
 
 namespace JJ.Framework.Data.NHibernate
@@ -163,8 +164,7 @@ namespace JJ.Framework.Data.NHibernate
 
             if (obj == null) throw new NullException(() => obj);
 
-            var sessionImplementor = Session as global::NHibernate.Engine.ISessionImplementor;
-            if (sessionImplementor == null)
+            if (!(Session is ISessionImplementor sessionImplementor))
             {
                 throw new Exception("Session is not an ISessionImplementor.");
             }
