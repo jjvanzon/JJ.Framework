@@ -83,6 +83,7 @@
     <Compile Include="NotEqualException.cs" />
     <Compile Include="NotFoundException.cs" />
     <Compile Include="NotFoundExceptionOfT.cs" />
+    <Compile Include="HasValueException.cs" />
     <Compile Include="NotInfinityException.cs" />
     <Compile Include="NotIntegerException.cs" />
     <Compile Include="NotNaNException.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="NotNullOrWhiteSpaceException.cs" />
     <Compile Include="NotUniqueException.cs" />
     <Compile Include="NotUniqueExceptionOfT.cs" />
+    <Compile Include="NotHasValueException.cs" />
     <Compile Include="NullException.cs" />
     <Compile Include="NullOrEmptyException.cs" />
     <Compile Include="NullOrWhiteSpaceException.cs" />
