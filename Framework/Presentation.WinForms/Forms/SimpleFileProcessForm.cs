@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -26,8 +27,8 @@ namespace JJ.Framework.Presentation.WinForms.Forms
         [Browsable(false)]
         public bool IsRunning
         {
-            get { return simpleFileProcessControl.IsRunning; }
-            set { simpleFileProcessControl.IsRunning = value; }
+            get => simpleFileProcessControl.IsRunning;
+            set => simpleFileProcessControl.IsRunning = value;
         }
 
         public void ShowProgress(string message)
@@ -37,8 +38,8 @@ namespace JJ.Framework.Presentation.WinForms.Forms
 
         public string FilePath
         {
-            get { return simpleFileProcessControl.FilePath; }
-            set { simpleFileProcessControl.FilePath = value; }
+            get => simpleFileProcessControl.FilePath;
+            set => simpleFileProcessControl.FilePath = value;
         }
 
         [Editor(
@@ -46,22 +47,28 @@ namespace JJ.Framework.Presentation.WinForms.Forms
             "System.Drawing.Design.UITypeEditor")]
         public string Description
         {
-            get { return simpleFileProcessControl.Description; ; }
-            set { simpleFileProcessControl.Description = value; }
+            get => simpleFileProcessControl.Description;
+            set => simpleFileProcessControl.Description = value;
         }
 
         public bool MustShowExceptions
         {
-            get { return simpleFileProcessControl.MustShowExceptions; }
-            set { simpleFileProcessControl.MustShowExceptions = value; }
+            get => simpleFileProcessControl.MustShowExceptions;
+            set => simpleFileProcessControl.MustShowExceptions = value;
+        }
+
+        private void SimpleFileProcessForm_Load(object sender, EventArgs e) => PositionControls();
+        private void SimpleFileProcessForm_SizeChanged(object sender, EventArgs e) => PositionControls();
+
+        private void PositionControls()
+        {
+            simpleFileProcessControl.Location = new Point(0, 0);
+            simpleFileProcessControl.Size = new Size(ClientRectangle.Width, ClientRectangle.Height);
         }
 
         private void simpleProcessControl_OnRunProcess(object sender, EventArgs e)
         {
-            if (OnRunProcess != null)
-            {
-                OnRunProcess(sender, e);
-            }
+            OnRunProcess?.Invoke(sender, e);
         }
 
         private void Base_FormClosing(object sender, FormClosingEventArgs e)

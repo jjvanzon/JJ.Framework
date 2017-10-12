@@ -42,26 +42,27 @@ namespace JJ.Framework.Presentation.WinForms.Forms
             // simpleFileProcessControl
             // 
             this.simpleFileProcessControl.Description = "";
-            this.simpleFileProcessControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.simpleFileProcessControl.FilePath = "";
             this.simpleFileProcessControl.IsRunning = false;
             this.simpleFileProcessControl.Location = new System.Drawing.Point(0, 0);
-            this.simpleFileProcessControl.Margin = new System.Windows.Forms.Padding(4);
+            this.simpleFileProcessControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.simpleFileProcessControl.MustShowExceptions = false;
             this.simpleFileProcessControl.Name = "simpleFileProcessControl";
-            this.simpleFileProcessControl.Size = new System.Drawing.Size(853, 346);
+            this.simpleFileProcessControl.Size = new System.Drawing.Size(627, 347);
             this.simpleFileProcessControl.TabIndex = 0;
             // 
             // SimpleFileProcessForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(853, 346);
+            this.ClientSize = new System.Drawing.Size(695, 432);
             this.Controls.Add(this.simpleFileProcessControl);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "SimpleFileProcessForm";
             this.Text = "SimpleProcessForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Base_FormClosing);
+            this.Load += new System.EventHandler(this.SimpleFileProcessForm_Load);
+            this.SizeChanged += new System.EventHandler(this.SimpleFileProcessForm_SizeChanged);
             this.ResumeLayout(false);
 
         }

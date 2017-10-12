@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
 using JJ.Framework.Logging;
@@ -8,6 +9,8 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 {
     public partial class SimpleFileProcessControl : UserControl
     {
+        private const int SPACING = 16;
+
         private bool _isLoaded;
 
         public event EventHandler OnRunProcess;
@@ -24,19 +27,48 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             _isLoaded = true;
 
             ApplyIsRunning();
+
+            PositionControls();
         }
 
         private void buttonStart_Click(object sender, EventArgs e) => Start();
 
         private void buttonCancel_Click(object sender, EventArgs e) => Cancel();
 
+        private void SimpleFileProcessControl_Resize(object sender, EventArgs e) => PositionControls();
+
+        private void PositionControls()
+        {
+            int y = Height;
+
+            y -= labelProgress.Height;
+
+            labelProgress.Location = new Point(0, y);
+            labelProgress.Width = Width;
+
+            y -= SPACING;
+            y -= buttonStart.Height;
+
+            buttonStart.Location = new Point(SPACING, y);
+            buttonCancel.Location = new Point(Width - SPACING - buttonCancel.Width, y);
+
+            y -= SPACING;
+            y -= textBoxFilePath.Height;
+
+            labelFilePath.Location = new Point(SPACING, y);
+
+            int textBoxFilePathWidth = SPACING + labelFilePath.Width + SPACING;
+            textBoxFilePath.Location = new Point(textBoxFilePathWidth, y);
+            textBoxFilePath.Width = Width - SPACING - textBoxFilePathWidth;
+
+            labelDescription.Location = new Point(SPACING, SPACING);
+            labelDescription.Size = new Size(Width - SPACING - SPACING, Height - textBoxFilePath.Top - SPACING - SPACING);
+        }
+
         private void Start()
         {
             if (MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                // you cannot use the property on another thread.
-                string filePath = FilePath;
-
                 Async(() => RunProcess());
             }
         }
