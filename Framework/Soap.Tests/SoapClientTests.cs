@@ -17,7 +17,7 @@ namespace JJ.Framework.Soap.Tests
         [TestMethod]
         public void Test_SoapClient()
         {
-            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
             string methodName = "SendAndGetCompositeObject";
             string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
             var client = new SoapClient(url, Encoding.UTF8);
@@ -42,7 +42,7 @@ namespace JJ.Framework.Soap.Tests
                 new SoapNamespaceMapping(SoapNamespaceMapping.WCF_SOAP_NAMESPACE_HEADER + typeof(CompositeType).Namespace, "http://blahblahblah.com"),
             };
 
-            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
             string methodName = "SendAndGetCompositeObject";
             string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
             var client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
@@ -70,7 +70,7 @@ namespace JJ.Framework.Soap.Tests
                 new SoapNamespaceMapping("http://tempuri.org/", "http://blahblahblah.org"),
             };
 
-            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
             string methodName = "SendAndGetCompositeObject";
             string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
             var client = new SoapClient(url, Encoding.UTF8, namespaceMappings);

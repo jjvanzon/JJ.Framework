@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace JJ.Framework.Configuration
 {
-    public static class AppSettings<TInterface>
+    public static class AppSettingsReader<TInterface>
     {
         public static TValue Get<TValue>(Expression<Func<TInterface, TValue>> expression)
         {

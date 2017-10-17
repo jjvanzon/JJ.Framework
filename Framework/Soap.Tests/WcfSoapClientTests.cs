@@ -11,7 +11,7 @@ namespace JJ.Framework.Soap.Tests
         [TestMethod]
         public void Test_WcfSoapClient_SendAndGetComplicatedObject()
         {
-            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
             var client = new CustomWcfSoapClient<ITestService>(url);
             ComplicatedType obj1 = TestHelper.CreateComplicatedObject();
 
@@ -24,7 +24,7 @@ namespace JJ.Framework.Soap.Tests
         [TestMethod]
         public void Test_WcfSoapClient_SendAndGetCompositeObject()
         {
-            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
             var client = new CustomWcfSoapClient<ITestService>(url);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
 
@@ -37,7 +37,7 @@ namespace JJ.Framework.Soap.Tests
         [TestMethod]
         public void Test_WcfSoapClient_SendAndGetObjectWithCollection()
         {
-            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
             var client = new CustomWcfSoapClient<ITestService>(url);
             TypeWithCollection obj1 = new TypeWithCollection { StringList = new string[] { "Hi", "there", "!" } };
 

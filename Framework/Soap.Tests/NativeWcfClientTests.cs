@@ -11,7 +11,7 @@ namespace JJ.Framework.Soap.Tests
         [TestMethod]
         public void Test_NativeWcfClient_SendAndGetComplicatedObject()
         { 
-            string url = AppSettings<IAppSettings>.Get(x => x.Url);
+            string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
             var client = new NativeWcfClient(url);
             ComplicatedType obj1 = TestHelper.CreateComplicatedObject();
 

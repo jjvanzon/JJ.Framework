@@ -8,7 +8,7 @@ namespace JJ.Framework.Configuration.Tests
         [TestMethod]
         public void Test_AppSettings()
         {
-            int value = AppSettings<IMySettings>.Get(x => x.MySetting);
+            int value = AppSettingsReader<IMySettings>.Get(x => x.MySetting);
         }
     }
 }

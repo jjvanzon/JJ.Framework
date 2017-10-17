@@ -45,13 +45,13 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         public override string Text
         {
-            get { return FilePath; }
-            set { FilePath = value; }
+            get => FilePath;
+            set => FilePath = value;
         }
 
         public string LabelText
         {
-            get { return label.Text; }
+            get => label.Text;
             set
             {
                 if (label.Text == value) return;
@@ -62,15 +62,15 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         public string FilePath
         {
-            get { return textBox.Text; }
-            set { textBox.Text = value; }
+            get => textBox.Text;
+            set => textBox.Text = value;
         }
 
         private FileBrowseModeEnum _browseMode;
         public FileBrowseModeEnum BrowseMode
         {
-            get { return _browseMode; }
-            set { SetBrowseMode(value); }
+            get => _browseMode;
+            set => SetBrowseMode(value);
         }
 
         private int _spacing;
@@ -78,7 +78,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         [DefaultValue(4)]
         public int Spacing
         {
-            get { return _spacing; }
+            get => _spacing;
             set
             {
                 if (_spacing == value) return;
@@ -90,8 +90,8 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         [DefaultValue(true)]
         public bool TextBoxEnabled
         {
-            get { return textBox.Enabled; }
-            set { textBox.Enabled = value; }
+            get => textBox.Enabled;
+            set => textBox.Enabled = value;
         }
 
         // Applying
