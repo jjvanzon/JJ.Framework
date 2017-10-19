@@ -4,11 +4,11 @@ namespace JJ.Framework.Exceptions
 {
     public class NotFoundException : Exception
     {
-        public NotFoundException(Type entityType, object key)
+        public NotFoundException(Type type, object key)
         {
-            if (entityType == null) throw new ArgumentNullException(nameof(entityType));
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
-            Message = $"{entityType.Name} with key '{key}' not found.";
+            Message = $"{type.Name} with key '{key}' not found.";
         }
 
         public override string Message { get; }

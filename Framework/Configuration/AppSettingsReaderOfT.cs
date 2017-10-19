@@ -2,6 +2,7 @@
 using System;
 using System.Configuration;
 using System.Linq.Expressions;
+using JJ.Framework.Conversion;
 
 namespace JJ.Framework.Configuration
 {
@@ -11,7 +12,7 @@ namespace JJ.Framework.Configuration
         {
             string name = ExpressionHelper.GetName(expression);
             string stringValue = ConfigurationManager.AppSettings[name];
-            TValue value = ConversionHelper.ConvertValue<TValue>(stringValue);
+            TValue value = SimpleTypeConverter.ParseValue<TValue>(stringValue);
             return value;
         }
     }

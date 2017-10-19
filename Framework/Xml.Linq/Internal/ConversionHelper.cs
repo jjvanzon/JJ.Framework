@@ -1,91 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Reflection;
 using System.Xml.Serialization;
 using JJ.Framework.Reflection;
 using JJ.Framework.PlatformCompatibility;
 using System.Xml;
+using JJ.Framework.Conversion;
 
 namespace JJ.Framework.Xml.Linq.Internal
 {
     internal static class ConversionHelper
     {
-        /// <param name="cultureInfo">
+        /// <param name="formatProvider">
         /// Nullable. When null, standard XML / SOAP formatting will be used.
         /// </param>
-        public static object ParseValue(string input, Type type, CultureInfo cultureInfo)
+        public static object ParseValue(string input, Type type, IFormatProvider formatProvider)
         {
-            if (cultureInfo == null)
+            if (formatProvider == null)
             {
                 return ParseValueWithStandardXmlFormatting(input, type);
             }
             else
             {
-                if (type.IsNullableType())
-                {
-                    if (String.IsNullOrEmpty(input))
-                    {
-                        return null;
-                    }
-
-                    type = type.GetUnderlyingNullableType();
-                }
-
-                if (type.IsEnum)
-                {
-                    return Enum.Parse(type, input);
-                }
-
-                if (type == typeof(TimeSpan))
-                {
-                    return TimeSpan.Parse(input);
-                }
-
-                if (type == typeof(Guid))
-                {
-                    return new Guid(input);
-                }
-
-                if (type == typeof(IntPtr))
-                {
-                    int number = Int32.Parse(input);
-                    return new IntPtr(number);
-                }
-
-                if (type == typeof(UIntPtr))
-                {
-                    uint number = UInt32.Parse(input);
-                    return new UIntPtr(number);
-                }
-
-                return Convert.ChangeType(input, type, cultureInfo);
+                return SimpleTypeConverter.ParseValue(input, type, formatProvider);
             }
         }
 
         // TODO: Not sure how well XmlConvert is supported on different (mobile) platforms.
 
-        private static Dictionary<Type, Func<string, object>> _xmlConvertFuncDictionary = new Dictionary<Type, Func<string, object>>
+        private static readonly Dictionary<Type, Func<string, object>> _xmlConvertFuncDictionary = new Dictionary<Type, Func<string, object>>
         {
-            { typeof(Boolean),        x => XmlConvert.ToBoolean(x) },
-            { typeof(Byte),           x => XmlConvert.ToByte(x) },
-            { typeof(Char),           x => (char)Convert.ToInt32(x) }, // WCF expects chars to be numbers...
-            { typeof(Decimal),        x => XmlConvert.ToDecimal(x) },
-            { typeof(Double),         x => XmlConvert.ToDouble(x) },
-            { typeof(Guid),           x => XmlConvert.ToGuid(x) },
-            { typeof(Int16),          x => XmlConvert.ToInt16(x) },
-            { typeof(Int32),          x => XmlConvert.ToInt32(x) },
-            { typeof(Int64),          x => XmlConvert.ToInt64(x) },
-            { typeof(SByte),          x => XmlConvert.ToSByte(x) },
-            { typeof(Single),         x => XmlConvert.ToSingle(x) },
-            { typeof(TimeSpan),       x => XmlConvert.ToTimeSpan(x) },
-            { typeof(UInt16),         x => XmlConvert.ToUInt16(x) },
-            { typeof(UInt32),         x => XmlConvert.ToUInt32(x) },
-            { typeof(UInt64),         x => XmlConvert.ToUInt64(x) },
-            { typeof(String),         x => x },
+            { typeof(bool), x => XmlConvert.ToBoolean(x) },
+            { typeof(byte), x => XmlConvert.ToByte(x) },
+            { typeof(char), x => (char)Convert.ToInt32(x) }, // WCF expects chars to be numbers...
+            { typeof(decimal), x => XmlConvert.ToDecimal(x) },
+            { typeof(double), x => XmlConvert.ToDouble(x) },
+            { typeof(Guid), x => XmlConvert.ToGuid(x) },
+            { typeof(short), x => XmlConvert.ToInt16(x) },
+            { typeof(int), x => XmlConvert.ToInt32(x) },
+            { typeof(long), x => XmlConvert.ToInt64(x) },
+            { typeof(sbyte), x => XmlConvert.ToSByte(x) },
+            { typeof(float), x => XmlConvert.ToSingle(x) },
+            { typeof(TimeSpan), x => XmlConvert.ToTimeSpan(x) },
+            { typeof(ushort), x => XmlConvert.ToUInt16(x) },
+            { typeof(uint), x => XmlConvert.ToUInt32(x) },
+            { typeof(ulong), x => XmlConvert.ToUInt64(x) },
+            { typeof(string), x => x },
 
             // XML supports customization of the date time format, but here we only support the default format.
-            { typeof(DateTime),       x => XmlConvert.ToDateTime(x, XmlDateTimeSerializationMode.Local) },
+            { typeof(DateTime), x => XmlConvert.ToDateTime(x, XmlDateTimeSerializationMode.Local) },
             { typeof(DateTimeOffset), x => XmlConvert.ToDateTimeOffset(x) }
         };
 
@@ -93,7 +56,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         {
             if (type.IsNullableType())
             {
-                if (String.IsNullOrEmpty(input))
+                if (string.IsNullOrEmpty(input))
                 {
                     return null;
                 }
@@ -106,23 +69,22 @@ namespace JJ.Framework.Xml.Linq.Internal
                 return Enum.Parse(type, input);
             }
 
-            Func<string, object> func;
-            if (_xmlConvertFuncDictionary.TryGetValue(type, out func))
+            if (_xmlConvertFuncDictionary.TryGetValue(type, out var func))
             {
                 return func(input);
             }
 
-            throw new Exception(String.Format("Value '{0}' could not be converted to type '{1}' .", input, type.Name)); 
+            throw new Exception($"Value '{input}' could not be converted to type '{type.Name}' ."); 
         }
 
-        /// <param name="cultureInfo">
+        /// <param name="formatProvider">
         /// Nullable. When null, standard XML / SOAP formatting will be used.
         /// </param>
-        public static object FormatValue(object input, CultureInfo cultureInfo = null)
+        public static object FormatValue(object input, IFormatProvider formatProvider = null)
         {
-            if (cultureInfo != null)
+            if (formatProvider != null)
             {
-                return Convert.ToString(input, cultureInfo);
+                return Convert.ToString(input, formatProvider);
             }
 
             if (input == null)
@@ -131,9 +93,9 @@ namespace JJ.Framework.Xml.Linq.Internal
             }
 
             // System.Linq.Xml will not format char as an int, even though WCF expects it.
-            if (input.GetType() == typeof(char))
+            if (input is char c)
             {
-                return (int)(char)input;
+                return (int)c;
             }
 
             // System.Linq.Xml will take care of other standard XML formatting.
@@ -176,7 +138,7 @@ namespace JJ.Framework.Xml.Linq.Internal
                 bool isValid = !hasXmlAttributeAttribute && !hasXmlElementAttribute;
                 if (!isValid)
                 {
-                    throw new Exception(String.Format("Property '{0}' is an Array or is List<T>-assignable and therefore cannot be marked with XmlAttribute or XmlElement. Use XmlArray and XmlArrayItem instead.", property.Name));
+                    throw new Exception($"Property '{property.Name}' is an Array or is List<T>-assignable and therefore cannot be marked with XmlAttribute or XmlElement. Use XmlArray and XmlArrayItem instead.");
                 }
                 return NodeTypeEnum.Array;
             }
@@ -186,7 +148,7 @@ namespace JJ.Framework.Xml.Linq.Internal
                 bool isValid = !hasXmlElementAttribute && !hasXmlArrayAttribute && !hasXmlArrayItemAttribute;
                 if (!isValid)
                 {
-                    throw new Exception(String.Format("Property '{0}' is an XML attribute and therefore cannot be marked with XmlElement, XmlArray or XmlArrayItem.", property.Name));
+                    throw new Exception($"Property '{property.Name}' is an XML attribute and therefore cannot be marked with XmlElement, XmlArray or XmlArrayItem.");
                 }
                 return NodeTypeEnum.Attribute;
             }
@@ -195,7 +157,7 @@ namespace JJ.Framework.Xml.Linq.Internal
             bool isValidElement = !hasXmlAttributeAttribute && !hasXmlArrayAttribute && !hasXmlArrayItemAttribute;
             if (!isValidElement)
             {
-                throw new Exception(String.Format("Property '{0}' is an XML element and therefore cannot be marked with XmlAttribute, XmlArray or XmlArrayItem.", property.Name));
+                throw new Exception($"Property '{property.Name}' is an XML element and therefore cannot be marked with XmlAttribute, XmlArray or XmlArrayItem.");
             }
             return NodeTypeEnum.Element;
         }

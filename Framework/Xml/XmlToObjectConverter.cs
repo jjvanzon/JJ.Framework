@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using JJ.Framework.Common;
+using JJ.Framework.Conversion;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Xml.Internal;
 using JJ.Framework.Reflection;
@@ -290,7 +291,7 @@ namespace JJ.Framework.Xml
         private object ConvertLeafElement(XmlElement sourceElement, Type destType)
         {
             string sourceValue = sourceElement.InnerText;
-            object destValue = ConversionHelper.ConvertValue(sourceValue, destType);
+            object destValue = SimpleTypeConverter.ParseValue(sourceValue, destType);
             return destValue;
         }
 
@@ -395,7 +396,7 @@ namespace JJ.Framework.Xml
                 return null;
             }
 
-            object destValue = ConversionHelper.ConvertValue(sourceAttributeValue, destType);
+            object destValue = SimpleTypeConverter.ParseValue(sourceAttributeValue, destType);
             return destValue;
         }
 
