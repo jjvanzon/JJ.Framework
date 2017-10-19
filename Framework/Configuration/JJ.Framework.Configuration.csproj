@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettingsReaderOfT.cs" />
-    <Compile Include="2017-10-19 Backup of ConversionHelper %28JJ.Framework.Configuration%29.cs" />
     <Compile Include="CustomConfigurationManager.cs" />
     <Compile Include="ConfigurationSectionHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

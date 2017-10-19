@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Internal\2017-10-19 Backup of ConversionHelper %28JJ.Framework.Xml%29.cs" />
     <Compile Include="HtmlToXmlConverter.cs" />
     <Compile Include="Internal\NodeTypeEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
