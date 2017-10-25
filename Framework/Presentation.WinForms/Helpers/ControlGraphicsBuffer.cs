@@ -1,5 +1,5 @@
-﻿using JJ.Framework.Presentation.Drawing;
-using JJ.Framework.Exceptions;
+﻿using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.Drawing;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -23,9 +23,7 @@ namespace JJ.Framework.Presentation.WinForms.Helpers
 
         public ControlGraphicsBuffer(Control control, SmoothingMode smoothingMode = SmoothingMode.AntiAlias)
         {
-            if (control == null) throw new NullException(() => control);
-
-            _control = control;
+            _control = control ?? throw new NullException(() => control);
             _control.SizeChanged += _control_SizeChanged;
             _controlGraphics = _control.CreateGraphics();
 
@@ -48,10 +46,7 @@ namespace JJ.Framework.Presentation.WinForms.Helpers
         }
 
         /// <summary> Execute draw methods on this. </summary>
-        public Graphics Graphics
-        {
-            get { return _graphicsBuffer.Graphics; }
-        }
+        public Graphics Graphics => _graphicsBuffer.Graphics;
 
         /// <summary> Displays buffered graphics onto the control. </summary>
         public void DrawBuffer()

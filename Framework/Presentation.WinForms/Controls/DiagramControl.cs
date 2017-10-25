@@ -1,11 +1,11 @@
-﻿using System.Windows.Forms;
-using JJ.Framework.Presentation.Drawing;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Presentation.WinForms.Helpers;
-using JJ.Framework.Presentation.WinForms.Extensions;
+﻿using JJ.Framework.Presentation.Drawing;
 using JJ.Framework.Presentation.VectorGraphics.Gestures;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using JJ.Framework.Presentation.WinForms.Extensions;
+using JJ.Framework.Presentation.WinForms.Helpers;
 using System;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace JJ.Framework.Presentation.WinForms.Controls
 {
@@ -17,7 +17,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         /// <summary> nullable </summary>
         public Diagram Diagram 
         {
-            get { return _diagram; }
+            get => _diagram;
             set
             {
                 _diagram = value;
@@ -32,17 +32,11 @@ namespace JJ.Framework.Presentation.WinForms.Controls
             _graphicsBuffer = new ControlGraphicsBuffer(this);
         }
 
-        public DoubleClickGesture CreateDoubleClickGesture()
-        {
-            return WinFormsVectorGraphicsHelper.CreateDoubleClickGesture();
-        }
+        public DoubleClickGesture CreateDoubleClickGesture() => WinFormsVectorGraphicsHelper.CreateDoubleClickGesture();
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            if (Diagram != null)
-            {
-                Diagram.GestureHandling.HandleMouseDown(e.ToVectorGraphics());
-            }
+            Diagram?.GestureHandling.HandleMouseDown(e.ToVectorGraphics());
 
             base.OnMouseDown(e);
 
@@ -51,10 +45,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if (Diagram != null)
-            {
-                Diagram.GestureHandling.HandleMouseMove(e.ToVectorGraphics());
-            }
+            Diagram?.GestureHandling.HandleMouseMove(e.ToVectorGraphics());
 
             base.OnMouseMove(e);
 
@@ -63,10 +54,7 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
-            if (Diagram != null)
-            {
-                Diagram.GestureHandling.HandleMouseUp(e.ToVectorGraphics());
-            }
+            Diagram?.GestureHandling.HandleMouseUp(e.ToVectorGraphics());
 
             base.OnMouseUp(e);
 
@@ -75,28 +63,19 @@ namespace JJ.Framework.Presentation.WinForms.Controls
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            if (Diagram != null)
-            {
-                 Diagram.GestureHandling.HandleKeyDown(e.ToVectorGraphics());
-            }
+            Diagram?.GestureHandling.HandleKeyDown(e.ToVectorGraphics());
 
             base.OnKeyDown(e);
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
         {
-            if (Diagram != null)
-            {
-                Diagram.GestureHandling.HandleKeyUp(e.ToVectorGraphics());
-            }
+            Diagram?.GestureHandling.HandleKeyUp(e.ToVectorGraphics());
 
             base.OnKeyUp(e);
         }
 
-        public override void Refresh()
-        {
-            Draw();
-        }
+        public override void Refresh() => Draw();
 
         // Unfortunatly Draw might go off twice when making the control bigger,
         // and once when making the control smaller,
@@ -104,15 +83,9 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         // while making it smaller does not.
         // Responding to Resize is important if the diagram scales.
 
-        private void DiagramControl_Resize(object sender, EventArgs e)
-        {
-            Draw();
-        }
+        private void DiagramControl_Resize(object sender, EventArgs e) => Draw();
 
-        private void DiagramControl_Paint(object sender, PaintEventArgs e)
-        {
-            Draw();
-        }
+        private void DiagramControl_Paint(object sender, PaintEventArgs e) => Draw();
 
         private void Draw()
         {
