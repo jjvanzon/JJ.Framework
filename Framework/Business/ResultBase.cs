@@ -1,7 +1,7 @@
-﻿using System;
+﻿using JJ.Framework.Business.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using JJ.Framework.Business.Helpers;
 
 namespace JJ.Framework.Business
 {
@@ -12,7 +12,7 @@ namespace JJ.Framework.Business
 
         private IList<string> _messages = new List<string>();
 
-        /// <summary> not nullable, auto-instantiated </summary>
+        /// <inheritdoc />
         public IList<string> Messages
         {
             get => _messages;
