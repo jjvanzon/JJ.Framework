@@ -12,6 +12,9 @@ namespace JJ.Framework.Business
 
         private IList<string> _messages = new List<string>();
 
+        public ResultBase() { }
+        public ResultBase(params string[] messages) => Messages = messages;
+
         /// <inheritdoc />
         public IList<string> Messages
         {
