@@ -274,4 +274,7 @@
   <data name="Refresh" xml:space="preserve">
     <value>Verversen</value>
   </data>
+  <data name="Move" xml:space="preserve">
+    <value>Verplaatsen</value>
+  </data>
 </root>
