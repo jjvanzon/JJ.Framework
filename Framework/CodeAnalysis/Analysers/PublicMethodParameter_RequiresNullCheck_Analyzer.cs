@@ -132,7 +132,7 @@ namespace JJ.Framework.CodeAnalysis.Analysers
             }
 
             // TODO: I feel strange about this. How canonical is this name? What if I declare a type String of my own?
-            if (String.Equals(namedTypeSymbol.MetadataName, "String"))
+            if (string.Equals(namedTypeSymbol.MetadataName, "String"))
             {
                 return true;
             }

@@ -14,7 +14,7 @@ namespace JJ.Framework.Web
 
         public UrlInfo Parse(string url)
         {
-            if (String.IsNullOrEmpty(url)) throw new Exception("url cannot be null or empty.");
+            if (string.IsNullOrEmpty(url)) throw new Exception("url cannot be null or empty.");
 
             _fullUrl = url;
 
@@ -35,7 +35,7 @@ namespace JJ.Framework.Web
                     }
 
                 default:
-                    throw new Exception(String.Format("url cannot contain more than one ':'. url = '{0}'.", url));
+                    throw new Exception(string.Format("url cannot contain more than one ':'. url = '{0}'.", url));
             }
         }
 
@@ -59,7 +59,7 @@ namespace JJ.Framework.Web
                     }
 
                 default:
-                    throw new Exception(String.Format("urlWithoutProcol cannot contain more than one '?'. urlWithoutProcol = '{0}'. fullUrl = '{1}'.", urlWithoutProcol, _fullUrl));
+                    throw new Exception(string.Format("urlWithoutProcol cannot contain more than one '?'. urlWithoutProcol = '{0}'. fullUrl = '{1}'.", urlWithoutProcol, _fullUrl));
             }
         }
 
@@ -98,13 +98,13 @@ namespace JJ.Framework.Web
             string[] split = urlParameter.Split('=');
             if (split.Length != 2)
             {
-                throw new Exception(String.Format("urlParameter '{0}' must contain exactly one '=' character. fullUrl = '{1}'.", urlParameter, _fullUrl));
+                throw new Exception(string.Format("urlParameter '{0}' must contain exactly one '=' character. fullUrl = '{1}'.", urlParameter, _fullUrl));
             }
 
             string name = split[0];
             string value = split[1];
 
-            if (String.IsNullOrWhiteSpace(name)) throw new Exception(String.Format("name in urlParameter '{0}' cannot be null or white space. fullUrl = '{1}'.", urlParameter, _fullUrl));
+            if (string.IsNullOrWhiteSpace(name)) throw new Exception(string.Format("name in urlParameter '{0}' cannot be null or white space. fullUrl = '{1}'.", urlParameter, _fullUrl));
 
             var urlParameterInfo = new UrlParameterInfo
             {

@@ -58,7 +58,7 @@ namespace JJ.Framework.CodeAnalysis.Analysers
                     return false;
 
                 default:
-                    throw new Exception(String.Format("{0} {1} is not supported.", nameof(Accessibility), accessibility));
+                    throw new Exception(string.Format("{0} {1} is not supported.", nameof(Accessibility), accessibility));
             }
         }
     }

@@ -24,7 +24,7 @@ namespace JJ.Demos.ReturnActions.Helpers
                     return CreateEntityViewModel2();
 
                 default:
-                    throw new Exception(String.Format("id '{0}' is not a supported value.", id));
+                    throw new Exception(string.Format("id '{0}' is not a supported value.", id));
             }
         }
 

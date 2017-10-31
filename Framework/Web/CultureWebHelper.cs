@@ -16,10 +16,10 @@ namespace JJ.Framework.Web
             if (httpContext == null) throw new NullException(() => httpContext);
 
             string cultureName = CookieHelper.TryGetCookieValue(httpContext.Request, CUTURE_NAME_COOKIE_KEY);
-            if (String.IsNullOrEmpty(cultureName))
+            if (string.IsNullOrEmpty(cultureName))
             {
                 string header = httpContext.Request.Headers[ACCEPT_LANGUAGE_HEADER_KEY];
-                if (!String.IsNullOrEmpty(header))
+                if (!string.IsNullOrEmpty(header))
                 {
                     int pos = header.IndexOf(',');
                     if (pos != -1)

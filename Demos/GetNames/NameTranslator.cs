@@ -76,7 +76,7 @@ namespace JJ.Demos.GetNames
 
             }
 
-            throw new ArgumentException(String.Format("Name cannot be obtained from {0}.", node.GetType().Name));
+            throw new ArgumentException(string.Format("Name cannot be obtained from {0}.", node.GetType().Name));
         }
 
         private void VisitConvert(UnaryExpression node)
@@ -105,7 +105,7 @@ namespace JJ.Demos.GetNames
 
                 default:
                     {
-                        throw new ArgumentException(String.Format("Name cannot be obtained from NodeType {0}.", node.Operand.NodeType));
+                        throw new ArgumentException(string.Format("Name cannot be obtained from NodeType {0}.", node.Operand.NodeType));
                     }
             }
         }
@@ -145,7 +145,7 @@ namespace JJ.Demos.GetNames
         {
             if (node.Method.IsStatic)
             {
-                throw new ArgumentException(String.Format("Name cannot be obtained from NodeType {0} if it is static.", node.NodeType));
+                throw new ArgumentException(string.Format("Name cannot be obtained from NodeType {0} if it is static.", node.NodeType));
             }
 
             Visit(node.Object);
@@ -164,7 +164,7 @@ namespace JJ.Demos.GetNames
                 return;
             }
 
-            throw new ArgumentException(String.Format("Name cannot be obtained from NodeType {0} if it is not an indexer.", node.NodeType));
+            throw new ArgumentException(string.Format("Name cannot be obtained from NodeType {0} if it is not an indexer.", node.NodeType));
         }
 
         private void VisitArrayIndex(BinaryExpression node)

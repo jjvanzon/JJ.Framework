@@ -19,7 +19,7 @@ namespace JJ.Framework.Xml.Linq
             XElement childElement = TryGetElement(parentElement, childElementName);
             if (childElement == null)
             {
-                throw new Exception(String.Format("Parent element '{0}' does not contain any element named '{1}'.", parentElement.Name, childElementName));
+                throw new Exception($"Parent element '{parentElement.Name}' does not contain any element named '{childElementName}'.");
             }
             return childElement;
         }
@@ -42,7 +42,7 @@ namespace JJ.Framework.Xml.Linq
                     return childElements[0];
 
                 default:
-                    throw new Exception(String.Format("Element '{0}' was found multiple times inside '{1}'.", childElementName, parentElement.Name));
+                    throw new Exception($"Element '{childElementName}' was found multiple times inside '{parentElement.Name}'.");
             }
         }
 
@@ -52,7 +52,7 @@ namespace JJ.Framework.Xml.Linq
         public static IList<XElement> GetElements(XElement parentElement, string childElementName)
         {
             if (parentElement == null) throw new NullException(() => parentElement);
-            if (String.IsNullOrEmpty(childElementName)) throw new ArgumentException("childElementName cannot be null or white space.");
+            if (string.IsNullOrEmpty(childElementName)) throw new NullOrWhiteSpaceException(() => childElementName);
 
             // Ignore namespaces (might not be fast)
             //return parentElement.Elements(childElementName).ToArray();
@@ -70,7 +70,7 @@ namespace JJ.Framework.Xml.Linq
             XAttribute attribute = TryGetAttribute(element, attributeName);
             if (attribute == null)
             {
-                throw new Exception(String.Format("Element '{0}' does not contain attribute '{1}'.", element.Name, attributeName));
+                throw new Exception($"Element '{element.Name}' does not contain attribute '{attributeName}'.");
             }
             return attribute;
         }
@@ -95,9 +95,9 @@ namespace JJ.Framework.Xml.Linq
         public static string GetAttributeValue(XElement element, string attributeName)
         {
             string attributeValue = TryGetAttributeValue(element, attributeName);
-            if (String.IsNullOrEmpty(attributeValue))
+            if (string.IsNullOrEmpty(attributeValue))
             {
-                throw new Exception(String.Format("Attribute '{0}' of 'Element '{1}' does not have a value.", attributeName, element.Name));
+                throw new Exception($"Attribute '{attributeName}' of 'Element '{element.Name}' does not have a value.");
             }
             return attributeValue;
         }
@@ -117,7 +117,7 @@ namespace JJ.Framework.Xml.Linq
             XAttribute attribute = element.Attribute(attributeName);
             if (attribute == null)
             {
-                throw new Exception(String.Format("Attribute '{0}' does not exist in element '{1}'.", attributeName, element.Name.LocalName));
+                throw new Exception($"Attribute '{attributeName}' does not exist in element '{element.Name.LocalName}'.");
             }
             attribute.Value = value;
         }

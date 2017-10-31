@@ -16,7 +16,7 @@ namespace JJ.Framework.Logging
 
         public static void LogValue(string name, object value)
         {
-            TraceLogger.Message(String.Format("{0}: {1}", name, value));
+            TraceLogger.Message(string.Format("{0}: {1}", name, value));
         }
 
         public static void LogPerformance(Stopwatch stopwatch)
@@ -34,7 +34,7 @@ namespace JJ.Framework.Logging
             bool hasText = false;
             StringBuilder sb = new StringBuilder();
 
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 sb.Append(name);
                 hasText = true;
@@ -45,7 +45,7 @@ namespace JJ.Framework.Logging
                 if (hasText) sb.Append(" ");
 
                 sb.Append(
-                    String.Format("({0} repeats)", 
+                    string.Format("({0} repeats)", 
                     FormatNumber(repeats)));
 
                 hasText = true;
@@ -56,7 +56,7 @@ namespace JJ.Framework.Logging
                 if (hasText) sb.Append(": ");
 
                 sb.Append(
-                    String.Format("{0} ms", 
+                    string.Format("{0} ms", 
                     FormatNumber(stopwatch.ElapsedMilliseconds)));
 
                 hasText = true;
@@ -66,7 +66,7 @@ namespace JJ.Framework.Logging
                     if (hasText) sb.Append(", ");
 
                     sb.Append(
-                        String.Format("{0} ticks",
+                        string.Format("{0} ticks",
                         FormatNumber(stopwatch.ElapsedTicks)));
                 }
 

@@ -18,7 +18,7 @@ namespace JJ.Framework.CodeAnalysis.Helpers
 
         public static bool IsUnderscoredCamelCase(string name)
         {
-            if (String.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name))
             {
                 return false;
             }

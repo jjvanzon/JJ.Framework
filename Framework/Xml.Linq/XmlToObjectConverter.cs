@@ -222,7 +222,7 @@ namespace JJ.Framework.Xml.Linq
                 }
 
                 // If not nullable and element is null, throw an exception.
-                throw new Exception(String.Format("No XML node found for the required property '{0}'.", destProperty.Name));
+                throw new Exception($"No XML node found for the required property '{destProperty.Name}'.");
             }
 
             // If element not null, convert the element.
@@ -313,7 +313,7 @@ namespace JJ.Framework.Xml.Linq
                 }
 
                 // If not nullable and attribute is null or empty, throw an exception.
-                throw new Exception(String.Format("XML node '{0}' does not specify the required attribute '{1}'.", sourceParentElement.Name, sourceXmlAttributeName));
+                throw new Exception($"XML node '{sourceParentElement.Name}' does not specify the required attribute '{sourceXmlAttributeName}'.");
             }
 
             destProperty.SetValue_PlatformSupport(destParentObject, destPropertyValue);
@@ -333,7 +333,7 @@ namespace JJ.Framework.Xml.Linq
 
             string sourceValue = sourceXmlAttribute.Value;
 
-            if (String.IsNullOrEmpty(sourceValue))
+            if (string.IsNullOrEmpty(sourceValue))
             {
                 return null;
             }
@@ -400,7 +400,8 @@ namespace JJ.Framework.Xml.Linq
                 return;
             }
 
-            throw new Exception(String.Format("Type '{0}' is not supported: it not an Array type or a generic collection type to which List<T> can be assigned.", destCollectionType.Name));
+            throw new Exception(
+                $"Type '{destCollectionType.Name}' is not supported: it not an Array type or a generic collection type to which List<T> can be assigned.");
         }
 
         /// <summary>

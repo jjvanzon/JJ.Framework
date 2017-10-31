@@ -48,8 +48,8 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
                     using (var writer = new StreamWriter(stream))
                     {
                         writer.WriteLine(@"<?xml version=""1.0"" encoding=""utf-8""?>");
-                        writer.WriteLine(String.Format("<{0}>", _rootElementName));
-                        writer.WriteLine(String.Format("</{0}>", _rootElementName));
+                        writer.WriteLine(string.Format("<{0}>", _rootElementName));
+                        writer.WriteLine(string.Format("</{0}>", _rootElementName));
                     }
                 }
             }
@@ -76,7 +76,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
             XElement element = TryGetElementByAttributeValue(attributeName, attributeValue);
             if (element == null)
             {
-                throw new Exception(String.Format("XML element '{0}' with attribute {1} with value '{2}' not found.", _elementName, attributeName, attributeValue));
+                throw new Exception(string.Format("XML element '{0}' with attribute {1} with value '{2}' not found.", _elementName, attributeName, attributeValue));
             }
             return element;
         }

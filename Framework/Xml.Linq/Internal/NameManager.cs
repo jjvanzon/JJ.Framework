@@ -86,7 +86,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         {
             // Try get element name from XmlElement attribute.
             string name = TryGetXmlElementNameFromAttribute(property);
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 return name;
             }
@@ -142,7 +142,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         {
             // Try get attribute name from XmlAttribute attribute.
             string name = TryGetAttributeNameFromAttribute(property);
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 return name;
             }
@@ -198,7 +198,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         {
             // Try get element name from XmlArray attribute.
             string name = TryGetXmlArrayNameFromAttribute(collectionProperty);
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 return name;
             }
@@ -241,7 +241,7 @@ namespace JJ.Framework.Xml.Linq.Internal
             // First try getting the name from the custom XML array item name mappings.
             // This is a feature required for various SOAP implementations.
             string name = TryGetCustomArrayItemName(sourceItemType);
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 XNamespace xmlArrayItemXNamespace = CustomArrayItemNameMapping.DEFAULT_XML_ARRAY_ITEM_NAMESPACE_STRING;
                 return xmlArrayItemXNamespace + name;
@@ -270,7 +270,7 @@ namespace JJ.Framework.Xml.Linq.Internal
             // First try getting the name from the custom XML array item name mappings.
             // This is a feature required for various SOAP implementations.
             string name = TryGetCustomArrayItemName(sourceItemType);
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 return name;
             }
@@ -284,7 +284,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         {
             // Then try get element name from XmlArrayItem attribute.
             string name = TryGetXmlArrayItemNameFromAttribute(collectionProperty);
-            if (!String.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 return name;
             }
@@ -313,7 +313,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         private XName TryGetCustomArrayItemXName(Type sourceItemType)
         {
             string name = TryGetCustomArrayItemName(sourceItemType);
-            if (String.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name))
             {
                 return null;
             }

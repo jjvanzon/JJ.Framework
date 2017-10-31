@@ -35,7 +35,7 @@ namespace JJ.Framework.Soap
         /// </param>
         public CustomWcfSoapClient(string url, string serviceInterfaceName, Encoding encoding)
         {
-            if (String.IsNullOrEmpty(serviceInterfaceName)) throw new ArgumentException("serviceInterfaceName cannot be null or empty.");
+            if (string.IsNullOrEmpty(serviceInterfaceName)) throw new ArgumentException("serviceInterfaceName cannot be null or empty.");
 
             _serviceInterfaceName = serviceInterfaceName;
 
@@ -59,7 +59,7 @@ namespace JJ.Framework.Soap
         /// </param>
         public CustomWcfSoapClient(string url, string serviceInterfaceName, Func<string, string, string> sendMessageDelegate)
         {
-            if (String.IsNullOrEmpty(serviceInterfaceName)) throw new ArgumentException("serviceInterfaceName cannot be null or empty.");
+            if (string.IsNullOrEmpty(serviceInterfaceName)) throw new ArgumentException("serviceInterfaceName cannot be null or empty.");
 
             _serviceInterfaceName = serviceInterfaceName;
 
@@ -71,7 +71,7 @@ namespace JJ.Framework.Soap
         public TResult Invoke<TResult>(string operationName, params SoapParameter[] parameters)
             where TResult : class, new()
         {
-            string soapAction = String.Format("http://tempuri.org/{0}/{1}", _serviceInterfaceName, operationName);
+            string soapAction = string.Format("http://tempuri.org/{0}/{1}", _serviceInterfaceName, operationName);
             return _client.Invoke<TResult>(soapAction, operationName, parameters);
         }
 

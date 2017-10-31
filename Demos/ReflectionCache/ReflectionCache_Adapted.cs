@@ -53,7 +53,7 @@ namespace JJ.Demos.ReflectionCache
             PropertyInfo property = TryGetProperty(type, name);
             if (property == null)
             {
-                throw new Exception(String.Format("Property '{0}' not found.", name));
+                throw new Exception(string.Format("Property '{0}' not found.", name));
             }
             return property;
         }
@@ -103,7 +103,7 @@ namespace JJ.Demos.ReflectionCache
             FieldInfo field = TryGetField(type, name);
             if (field == null)
             {
-                throw new Exception(String.Format("Field '{0}' not found.", name));
+                throw new Exception(string.Format("Field '{0}' not found.", name));
             }
             return field;
         }
@@ -136,7 +136,7 @@ namespace JJ.Demos.ReflectionCache
             PropertyInfo property = TryGetIndexer(type, parameterTypes);
             if (property == null)
             {
-                throw new Exception(String.Format("Indexer not found with parameterTypes '{0}'.", String.Join(", ", parameterTypes.Select(x => x.ToString()).ToArray())));
+                throw new Exception(string.Format("Indexer not found with parameterTypes '{0}'.", string.Join(", ", parameterTypes.Select(x => x.ToString()).ToArray())));
             }
             return property;
         }
@@ -197,7 +197,7 @@ namespace JJ.Demos.ReflectionCache
             MethodInfo method = TryGetMethod(type, name, parameterTypes);
             if (method == null)
             {
-                throw new Exception(String.Format("Method '{0}' not found.", name));
+                throw new Exception(string.Format("Method '{0}' not found.", name));
             }
             return method;
         }
@@ -235,7 +235,7 @@ namespace JJ.Demos.ReflectionCache
                 strings[i] = Convert.ToString(values[i]);
             }
 
-            string key = String.Join(_keySeparator, strings);
+            string key = string.Join(_keySeparator, strings);
 
             return key;
         }

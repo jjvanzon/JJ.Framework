@@ -12,7 +12,7 @@ namespace JJ.Framework.Web
         {
             var sb = new StringBuilder();
 
-            if (!String.IsNullOrEmpty(urlInfo.Protocol))
+            if (!string.IsNullOrEmpty(urlInfo.Protocol))
             {
                 sb.Append(HttpUtility.UrlEncode(urlInfo.Protocol));
                 sb.Append("://");
@@ -76,7 +76,7 @@ namespace JJ.Framework.Web
 
         public static string BuildParameter(UrlParameterInfo parameter)
         {
-            return String.Format(String.Format("{0}={1}", HttpUtility.UrlEncode(parameter.Name), HttpUtility.UrlEncode(parameter.Value)));
+            return string.Format(string.Format("{0}={1}", HttpUtility.UrlEncode(parameter.Name), HttpUtility.UrlEncode(parameter.Value)));
         }
     }
 }

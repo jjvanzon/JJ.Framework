@@ -25,7 +25,7 @@ namespace JJ.Demos.ReturnActions.Presenters
 
         public object Show(int id, ActionInfo returnAction = null)
         {
-            if (String.IsNullOrEmpty(_authenticatedUserName))
+            if (string.IsNullOrEmpty(_authenticatedUserName))
             {
                 var presenter2 = new LoginPresenter();
                 object viewModel = presenter2.Show(ActionDispatcher.CreateActionInfo<EditPresenter>(x => x.Show(id, returnAction)));
@@ -47,7 +47,7 @@ namespace JJ.Demos.ReturnActions.Presenters
 
             viewModel.ReturnAction = viewModel.ReturnAction ?? _defaultReturnAction;
 
-            if (String.IsNullOrEmpty(_authenticatedUserName))
+            if (string.IsNullOrEmpty(_authenticatedUserName))
             {
                 return new NotAuthorizedViewModel();
             }

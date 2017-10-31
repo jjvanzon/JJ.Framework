@@ -37,7 +37,7 @@ namespace JJ.Framework.Presentation.Mvc.Tests
             string parameterString = "";
             if (collection.Count() != 0)
             {
-                parameterString = "?" + parameterName + "=" + String.Join("&" + parameterName + "=", values);
+                parameterString = "?" + parameterName + "=" + string.Join("&" + parameterName + "=", values);
             }
 
             // Build the URL.
@@ -74,7 +74,7 @@ namespace JJ.Framework.Presentation.Mvc.Tests
                     list.Add(str);
                 }
 
-                parametersString = "?" + String.Join("&", list);
+                parametersString = "?" + string.Join("&", list);
             }
 
             // Build the URL.

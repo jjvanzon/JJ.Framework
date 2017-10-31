@@ -13,7 +13,7 @@ namespace JJ.Framework.Xml.Linq
         public CustomArrayItemNameMapping(Type dotNetItemType, string xmlArrayItemName)
         {
             if (dotNetItemType == null) throw new NullException(() => dotNetItemType);
-            if (String.IsNullOrEmpty(xmlArrayItemName)) throw new ArgumentException("xmlArrayItemName cannot be null or empty.");
+            if (string.IsNullOrEmpty(xmlArrayItemName)) throw new ArgumentException("xmlArrayItemName cannot be null or empty.");
 
             DotNetItemType = dotNetItemType;
             XmlArrayItemName = xmlArrayItemName;

@@ -45,7 +45,7 @@ namespace JJ.Demos.GetNames
                     }
             }
 
-            throw new NotSupportedException(String.Format("Name cannot be obtained from {0}.", node.GetType().Name));
+            throw new NotSupportedException(string.Format("Name cannot be obtained from {0}.", node.GetType().Name));
         }
 
         private void VisitConvert(UnaryExpression node)
@@ -61,7 +61,7 @@ namespace JJ.Demos.GetNames
 
                 default:
                     {
-                        throw new NotSupportedException(String.Format("Name cannot be obtained from NodeType {0}.", node.Operand.NodeType));
+                        throw new NotSupportedException(string.Format("Name cannot be obtained from NodeType {0}.", node.Operand.NodeType));
                     }
             }
         }

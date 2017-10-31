@@ -36,7 +36,7 @@ namespace JJ.Framework.Soap.Tests.Server
         public CompositeType SendAndGetCompositeObject(CompositeType compositeObject)
         {
             string stringValue;
-            if (!String.IsNullOrEmpty(compositeObject.StringValue))
+            if (!string.IsNullOrEmpty(compositeObject.StringValue))
             {
                 stringValue = compositeObject.StringValue + " to you too!";
             }
@@ -86,7 +86,7 @@ namespace JJ.Framework.Soap.Tests.Server
 
         public string SendAndGetStringValue(string stringValue)
         {
-            return String.Format("{0} {1}", stringValue, "to you too!");
+            return string.Format("{0} {1}", stringValue, "to you too!");
         }
 
         public ComplicatedType SendAndGetComplicatedObject(ComplicatedType complicatedObject)

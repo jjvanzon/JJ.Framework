@@ -38,13 +38,13 @@ namespace JJ.Framework.CodeAnalysis.Analysers
             string name = castedSymbol.Name;
             string value = Convert.ToString(castedSymbol.ConstantValue);
 
-            bool valueEqualsName = String.Equals(value, name);
+            bool valueEqualsName = string.Equals(value, name);
             if (valueEqualsName)
             {
                 return;
             }
 
-            bool isUpperCase = String.Equals(name, name.ToUpper());
+            bool isUpperCase = string.Equals(name, name.ToUpper());
             if (isUpperCase)
             {
                 return;

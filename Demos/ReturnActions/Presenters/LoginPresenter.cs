@@ -39,7 +39,7 @@ namespace JJ.Demos.ReturnActions.Presenters
             viewModel.ReturnAction = viewModel.ReturnAction ?? _defaultReturnAction;
 
             // Fake authentication
-            if (String.IsNullOrEmpty(viewModel.UserName))
+            if (string.IsNullOrEmpty(viewModel.UserName))
             {
                 return Show();
             }

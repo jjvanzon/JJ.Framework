@@ -38,7 +38,7 @@ namespace JJ.Framework.Data.NPersist
                 }
             }
 
-            throw new Exception(String.Format( "The .npersist was not included as an embedded resource in the mapping assembly '{0}'.", mappingAssembly.GetName().Name));
+            throw new Exception(string.Format( "The .npersist was not included as an embedded resource in the mapping assembly '{0}'.", mappingAssembly.GetName().Name));
         }
     }
 }

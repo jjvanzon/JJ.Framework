@@ -58,7 +58,7 @@ namespace JJ.Framework.Soap
             IEnumerable<SoapNamespaceMapping> namespaceMappings = null,
             IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null)
         {
-            if (String.IsNullOrEmpty(url)) throw new ArgumentException("url cannot be null or empty");
+            if (string.IsNullOrEmpty(url)) throw new ArgumentException("url cannot be null or empty");
             if (encoding == null) throw new NullException(() => encoding);
 
             _url = url;
@@ -87,7 +87,7 @@ namespace JJ.Framework.Soap
             IEnumerable<SoapNamespaceMapping> namespaceMappings = null,
             IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null)
         {
-            if (String.IsNullOrEmpty(url)) throw new ArgumentException("url cannot be null or empty");
+            if (string.IsNullOrEmpty(url)) throw new ArgumentException("url cannot be null or empty");
             if (sendMessageDelegate == null) throw new NullException(() => sendMessageDelegate);
 
             _url = url;

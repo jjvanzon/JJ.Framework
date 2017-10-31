@@ -101,7 +101,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
             PropertyInfo property = entity.GetType().GetProperty(_mapping.IdentityPropertyName);
             if (property == null)
             {
-                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entity.GetType().Name));
+                throw new Exception(string.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entity.GetType().Name));
             }
 
             return property.GetValue_PlatformSafe(entity);
@@ -112,7 +112,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
             PropertyInfo property = entity.GetType().GetProperty(_mapping.IdentityPropertyName);
             if (property == null)
             {
-                throw new Exception(String.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entity.GetType().Name));
+                throw new Exception(string.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entity.GetType().Name));
             }
             property.SetValue(entity, id, null);
         }
@@ -155,7 +155,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 
             string maxIDString = Accessor.GetMaxAttributeValue(_mapping.IdentityPropertyName);
 
-            if (!String.IsNullOrEmpty(maxIDString))
+            if (!string.IsNullOrEmpty(maxIDString))
             {
                 _maxID = Int32.Parse(maxIDString);
             }

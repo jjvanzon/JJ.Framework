@@ -150,7 +150,7 @@ namespace JJ.Framework.Mathematics.Tests
                 results[i] = i.ToString().PadLeft(5) + " - " + letters;
             }
 
-            string resultsConcat = String.Join(Environment.NewLine, results);
+            string resultsConcat = string.Join(Environment.NewLine, results);
         }
 
         [TestMethod]

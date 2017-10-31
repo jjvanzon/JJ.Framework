@@ -12,8 +12,8 @@ namespace JJ.Framework.Xml.Linq
 
         public SoapNamespaceMapping(string sourceXmlNamespace, string destXmlNamespace)
         {
-            if (String.IsNullOrEmpty(sourceXmlNamespace)) throw new NullException(() => sourceXmlNamespace);
-            if (String.IsNullOrEmpty(destXmlNamespace)) throw new NullException(() => destXmlNamespace);
+            if (string.IsNullOrEmpty(sourceXmlNamespace)) throw new NullException(() => sourceXmlNamespace);
+            if (string.IsNullOrEmpty(destXmlNamespace)) throw new NullException(() => destXmlNamespace);
 
             SourceXmlNamespace = sourceXmlNamespace;
             DestXmlNamespace = destXmlNamespace;

@@ -50,8 +50,8 @@ namespace JJ.Framework.Data.Xml.Internal
                     using (var writer = new StreamWriter(stream))
                     {
                         writer.WriteLine(@"<?xml version=""1.0"" encoding=""utf-8""?>");
-                        writer.WriteLine(String.Format("<{0}>", _rootElementName));
-                        writer.WriteLine(String.Format("</{0}>", _rootElementName));
+                        writer.WriteLine(string.Format("<{0}>", _rootElementName));
+                        writer.WriteLine(string.Format("</{0}>", _rootElementName));
                     }
                 }
             }
@@ -84,7 +84,7 @@ namespace JJ.Framework.Data.Xml.Internal
             XmlElement element = TryGetElementByAttributeValue(attributeName, attributeValue);
             if (element == null)
             {
-                throw new Exception(String.Format("XML element '{0}' with attribute {1} with value '{2}' not found.", _elementName, attributeName, attributeValue));
+                throw new Exception(string.Format("XML element '{0}' with attribute {1} with value '{2}' not found.", _elementName, attributeName, attributeValue));
             }
             return element;
         }
@@ -95,7 +95,7 @@ namespace JJ.Framework.Data.Xml.Internal
         public XmlElement TryGetElementByAttributeValue(string attributeName, string attributeValue)
         {
             XmlElement root = GetRoot(Document);
-            string xpath = String.Format("{0}[@{1}='{2}']", _elementName, attributeName, attributeValue);
+            string xpath = string.Format("{0}[@{1}='{2}']", _elementName, attributeName, attributeValue);
             return (XmlElement)XmlHelper.TrySelectNode(root, xpath);
         }
 
@@ -136,7 +136,7 @@ namespace JJ.Framework.Data.Xml.Internal
         /// </summary>
         public string GetMaxAttributeValue(string attributeName)
         {
-            string xpath = String.Format("{0}[not(@{1} > ../@{1})]", _elementName, attributeName);
+            string xpath = string.Format("{0}[not(@{1} > ../@{1})]", _elementName, attributeName);
             XmlElement elementWithMaxID = (XmlElement)XmlHelper.TrySelectNode(Document, xpath);
             if (elementWithMaxID != null)
             {

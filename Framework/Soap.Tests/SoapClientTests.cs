@@ -19,7 +19,7 @@ namespace JJ.Framework.Soap.Tests
         {
             string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
             string methodName = "SendAndGetCompositeObject";
-            string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
+            string soapAction = string.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
             var client = new SoapClient(url, Encoding.UTF8);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
 
@@ -44,7 +44,7 @@ namespace JJ.Framework.Soap.Tests
 
             string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
             string methodName = "SendAndGetCompositeObject";
-            string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
+            string soapAction = string.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
             var client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
 
@@ -72,7 +72,7 @@ namespace JJ.Framework.Soap.Tests
 
             string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
             string methodName = "SendAndGetCompositeObject";
-            string soapAction = String.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
+            string soapAction = string.Format("http://tempuri.org/{0}/{1}", typeof(ITestService).Name, methodName);
             var client = new SoapClient(url, Encoding.UTF8, namespaceMappings);
             CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
 

@@ -332,7 +332,7 @@ namespace JJ.Framework.Xml.Linq
             // so a programming error is a possibility.
             if (!(sourceCollectionObject is IList))
             {
-                throw new Exception(String.Format("Collection of type '{0}' does not implement IList.", sourceCollectionProperty.PropertyType));
+                throw new Exception($"Collection of type '{sourceCollectionProperty.PropertyType}' does not implement IList.");
             }
 
             IList sourceCollection = (IList)sourceCollectionObject;
