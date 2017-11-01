@@ -1,16 +1,16 @@
-﻿using System;
+﻿using JJ.Framework.Common;
+using JJ.Framework.Conversion;
+using JJ.Framework.Exceptions;
+using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Reflection;
+using JJ.Framework.Xml.Internal;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using JJ.Framework.Common;
-using JJ.Framework.Conversion;
-using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Xml.Internal;
-using JJ.Framework.Reflection;
-using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Xml
 {
@@ -107,7 +107,7 @@ namespace JJ.Framework.Xml
 
         public TDestObject Convert(XmlElement sourceElement)
         {
-            TDestObject destObject = new TDestObject();
+            var destObject = new TDestObject();
             ConvertProperties(sourceElement, destObject);
             return destObject;
         }
@@ -340,13 +340,8 @@ namespace JJ.Framework.Xml
         /// </summary>
         private string TryGetXmlElementNameFromAttribute(PropertyInfo destProperty)
         {
-            XmlElementAttribute xmlElementAttribute = destProperty.GetCustomAttribute_PlatformSupport<XmlElementAttribute>();
-            if (xmlElementAttribute != null)
-            {
-                return xmlElementAttribute.ElementName;
-            }
-
-            return null;
+            var xmlElementAttribute = destProperty.GetCustomAttribute_PlatformSupport<XmlElementAttribute>();
+            return xmlElementAttribute?.ElementName;
         }
 
         // XML Attributes
@@ -428,13 +423,8 @@ namespace JJ.Framework.Xml
         /// </summary>
         private string TryGetAttributeNameFromAttribute(PropertyInfo destProperty)
         {
-            XmlAttributeAttribute xmlAttributeAttribute = destProperty.GetCustomAttribute_PlatformSupport<XmlAttributeAttribute>();
-            if (xmlAttributeAttribute != null)
-            {
-                return xmlAttributeAttribute.AttributeName;
-            }
-
-            return null;
+            var xmlAttributeAttribute = destProperty.GetCustomAttribute_PlatformSupport<XmlAttributeAttribute>();
+            return xmlAttributeAttribute?.AttributeName;
         }
 
         // XML Arrays
@@ -530,7 +520,7 @@ namespace JJ.Framework.Xml
             int count = sourceXmlArrayItems.Count;
 
             Type destConcreteCollectionType = destCollectionType;
-            IList destCollection = (IList)Activator.CreateInstance(destConcreteCollectionType, count);
+            var destCollection = (IList)Activator.CreateInstance(destConcreteCollectionType, count);
 
             Type destItemType = destCollectionType.GetItemType();
             for (int i = 0; i < count; i++)
@@ -559,7 +549,7 @@ namespace JJ.Framework.Xml
 
             Type destItemType = destCollectionType.GetItemType();
             Type destConcreteCollectionType = typeof(List<>).MakeGenericType(destItemType);
-            IList destCollection = (IList)Activator.CreateInstance(destConcreteCollectionType, count);
+            var destCollection = (IList)Activator.CreateInstance(destConcreteCollectionType, count);
 
             foreach (XmlElement sourceXmlArrayItem in sourceXmlArrayItems)
             {
@@ -631,7 +621,7 @@ namespace JJ.Framework.Xml
         /// </summary>
         private string TryGetXmlArrayNameFromAttribute(PropertyInfo destCollectionProperty)
         {
-            XmlArrayAttribute xmlArrayAttribute = destCollectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayAttribute>();
+            var xmlArrayAttribute = destCollectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayAttribute>();
             return xmlArrayAttribute?.ElementName;
         }
 
@@ -663,7 +653,7 @@ namespace JJ.Framework.Xml
         /// </summary>
         private string TryGetXmlArrayItemNameFromAttribute(PropertyInfo collectionProperty)
         {
-            XmlArrayItemAttribute xmlArrayItemAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayItemAttribute>();
+            var xmlArrayItemAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayItemAttribute>();
             return xmlArrayItemAttribute?.ElementName;
         }
 
