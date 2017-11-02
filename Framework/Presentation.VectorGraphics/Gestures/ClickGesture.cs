@@ -1,7 +1,7 @@
-﻿using System;
-using JJ.Framework.Mathematics;
+﻿using JJ.Framework.Mathematics;
 using JJ.Framework.Presentation.VectorGraphics.EventArg;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
@@ -17,8 +17,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
         {
             if (Click == null) return;
 
-            var element = sender as Element;
-            if (element != null)
+            if (sender is Element element)
             {
                 _mouseDownElement = element;
             }
