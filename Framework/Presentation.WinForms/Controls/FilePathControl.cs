@@ -1,10 +1,10 @@
-﻿using System;
+﻿using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.WinForms.EventArg;
+using JJ.Framework.Presentation.WinForms.Helpers;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using JJ.Framework.Presentation.WinForms.Helpers;
-using JJ.Framework.Presentation.WinForms.EventArg;
-using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Presentation.WinForms.Controls
 {
@@ -92,6 +92,13 @@ namespace JJ.Framework.Presentation.WinForms.Controls
         {
             get => textBox.Enabled;
             set => textBox.Enabled = value;
+        }
+
+        [DefaultValue(true)]
+        public bool TextBoxVisible
+        {
+            get => textBox.Visible;
+            set => textBox.Visible = value;
         }
 
         // Applying
