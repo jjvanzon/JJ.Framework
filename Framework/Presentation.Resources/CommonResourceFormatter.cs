@@ -54,5 +54,6 @@
         public static string True => CommonResources.True;
         public static string Type => CommonResources.Type;
         public static string Yes => CommonResources.Yes;
+        public static string WantToSaveChanges => CommonResources.WantToSaveChanges;
     }
 }

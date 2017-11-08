@@ -295,4 +295,7 @@
   <data name="Move" xml:space="preserve">
     <value>Move</value>
   </data>
+  <data name="WantToSaveChanges" xml:space="preserve">
+    <value>Do you want to save your changes?</value>
+  </data>
 </root>
