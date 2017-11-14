@@ -298,4 +298,10 @@
   <data name="WantToSaveChanges" xml:space="preserve">
     <value>Do you want to save your changes?</value>
   </data>
+  <data name="Redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
 </root>

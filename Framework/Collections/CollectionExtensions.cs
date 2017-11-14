@@ -1,9 +1,9 @@
-﻿using System;
+﻿using JJ.Framework.Exceptions;
+using JJ.Framework.Reflection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Collections
 {
@@ -208,7 +208,7 @@ namespace JJ.Framework.Collections
             // ReSharper disable once PossibleMultipleEnumeration
             if (!source.Any())
             {
-                return default(TSource);
+                return default;
             }
 
             // ReSharper disable once PossibleMultipleEnumeration
@@ -222,7 +222,7 @@ namespace JJ.Framework.Collections
             // ReSharper disable once PossibleMultipleEnumeration
             if (!source.Any())
             {
-                return default(TResult);
+                return default;
             }
 
             // ReSharper disable once PossibleMultipleEnumeration
@@ -236,7 +236,7 @@ namespace JJ.Framework.Collections
             // ReSharper disable once PossibleMultipleEnumeration
             if (!source.Any())
             {
-                return default(TSource);
+                return default;
             }
 
             // ReSharper disable once PossibleMultipleEnumeration
@@ -250,7 +250,7 @@ namespace JJ.Framework.Collections
             // ReSharper disable once PossibleMultipleEnumeration
             if (!source.Any())
             {
-                return default(TResult);
+                return default;
             }
 
             // ReSharper disable once PossibleMultipleEnumeration
@@ -264,10 +264,23 @@ namespace JJ.Framework.Collections
             // ReSharper disable once ConvertIfStatementToReturnStatement
             if (stack.Count == 0)
             {
-                return default(T);
+                return default;
             }
 
             return stack.Peek();
+        }
+
+        public static T PopOrDefault<T>(this Stack<T> stack)
+        {
+            if (stack == null) throw new ArgumentNullException(nameof(stack));
+
+            // ReSharper disable once ConvertIfStatementToReturnStatement
+            if (stack.Count == 0)
+            {
+                return default;
+            }
+
+            return stack.Pop();
         }
 
         public static T PeekOrDefault<T>(this Queue<T> queue)
@@ -277,7 +290,7 @@ namespace JJ.Framework.Collections
             // ReSharper disable once ConvertIfStatementToReturnStatement
             if (queue.Count == 0)
             {
-                return default(T);
+                return default;
             }
 
             return queue.Peek();
@@ -373,7 +386,7 @@ namespace JJ.Framework.Collections
             IList<T> items = collection.ToArray();
             switch (items.Count)
             {
-                case 0: return default(T);
+                case 0: return default;
                 case 1: return items[0];
                 default: throw new NotUniqueException<T>(keyIndicator);
             }
@@ -391,7 +404,7 @@ namespace JJ.Framework.Collections
             IList<T> items = collection.Where(predicate).ToArray();
             switch (items.Count)
             {
-                case 0: return default(T);
+                case 0: return default;
                 case 1: return items[0];
                 default: throw new NotUniqueException<T>(keyIndicator);
             }

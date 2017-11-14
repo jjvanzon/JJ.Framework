@@ -280,4 +280,10 @@
   <data name="WantToSaveChanges" xml:space="preserve">
     <value>Wijzigingen opslaan?</value>
   </data>
+  <data name="Redo" xml:space="preserve">
+    <value>Herstellen</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Ongedaan maken</value>
+  </data>
 </root>

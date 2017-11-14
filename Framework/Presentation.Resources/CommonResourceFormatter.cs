@@ -45,6 +45,7 @@
         public static string Open => CommonResources.Open;
         public static string Properties => CommonResources.Properties;
         public static string Properties_WithName(string name) => string.Format(CommonResources.Properties_WithName, name);
+        public static string Redo => CommonResources.Redo;
         public static string Refresh => CommonResources.Refresh;
         public static string Remove => CommonResources.Remove;
         public static string Save => CommonResources.Save;
@@ -53,7 +54,8 @@
         public static string Search => CommonResources.Search;
         public static string True => CommonResources.True;
         public static string Type => CommonResources.Type;
-        public static string Yes => CommonResources.Yes;
+        public static string Undo => CommonResources.Undo;
         public static string WantToSaveChanges => CommonResources.WantToSaveChanges;
+        public static string Yes => CommonResources.Yes;
     }
 }
