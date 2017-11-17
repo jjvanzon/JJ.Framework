@@ -6,8 +6,6 @@ namespace JJ.Framework.Exceptions
 {
     public class UnexpectedTypeException : Exception
     {
-        private const string MESSAGE = "{0} has an unexpected type: '{1}'";
-
         public UnexpectedTypeException(Expression<Func<object>> expression)
         {
             string expressionText = ExpressionHelper.GetText(expression);
@@ -23,7 +21,7 @@ namespace JJ.Framework.Exceptions
                 typeDescription = value.GetType().FullName;
             }
 
-            Message = string.Format(MESSAGE, expressionText, typeDescription);
+            Message = $"{expressionText} has an unexpected type: '{typeDescription}'";
         }
 
         public override string Message { get; }

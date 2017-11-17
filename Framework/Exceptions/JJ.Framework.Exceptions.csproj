@@ -60,8 +60,6 @@
     <Compile Include="InfinityException.cs" />
     <Compile Include="InvalidIndexException.cs" />
     <Compile Include="InvalidReferenceException.cs" />
-    <Compile Include="InvalidTypeException.cs" />
-    <Compile Include="InvalidTypeExceptionOfT.cs" />
     <Compile Include="InvalidValueException.cs" />
     <Compile Include="IsDateTimeException.cs" />
     <Compile Include="IsDecimalException.cs" />

@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
-using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.Drawing
 {
@@ -21,36 +21,31 @@ namespace JJ.Framework.Presentation.Drawing
 
         private static void DrawPolymorphic(Element sourceElement, Graphics destGraphics)
         {
-            var sourcePoint = sourceElement as VectorGraphicsElements.Point;
-            if (sourcePoint != null)
+            if (sourceElement is VectorGraphicsElements.Point sourcePoint)
             {
                 DrawPoint(sourcePoint, destGraphics);
                 return;
             }
 
-            var sourceLine = sourceElement as Line;
-            if (sourceLine != null)
+            if (sourceElement is Line sourceLine)
             {
                 DrawLine(sourceLine, destGraphics);
                 return;
             }
 
-            var sourceRectangle = sourceElement as VectorGraphicsElements.Rectangle;
-            if (sourceRectangle != null)
+            if (sourceElement is VectorGraphicsElements.Rectangle sourceRectangle)
             {
                 DrawRectangle(sourceRectangle, destGraphics);
                 return;
             }
 
-            var sourceLabel = sourceElement as Label;
-            if (sourceLabel != null)
+            if (sourceElement is Label sourceLabel)
             {
                 DrawLabel(sourceLabel, destGraphics);
                 return;
             }
 
-            var sourceCurve = sourceElement as Curve;
-            if (sourceCurve != null)
+            if (sourceElement is Curve sourceCurve)
             {
                 DrawCurve(sourceCurve, destGraphics);
                 return;

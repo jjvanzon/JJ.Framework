@@ -1,5 +1,5 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Exceptions;
+﻿using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 {
@@ -9,36 +9,31 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
         {
             if (element == null) throw new NullException(() => element);
 
-            var point = element as Point;
-            if (point != null)
+            if (element is Point point)
             {
                 VisitPoint(point);
                 return;
             }
 
-            var line = element as Line;
-            if (line != null)
+            if (element is Line line)
             {
                 VisitLine(line);
                 return;
             }
 
-            var rectangle = element as Rectangle;
-            if (rectangle != null)
+            if (element is Rectangle rectangle)
             {
                 VisitRectangle(rectangle);
                 return;
             }
 
-            var label = element as Label;
-            if (label != null)
+            if (element is Label label)
             {
                 VisitLabel(label);
                 return;
             }
 
-            var curve = element as Curve;
-            if (curve != null)
+            if (element is Curve curve)
             {
                 VisitCurve(curve);
                 return;
