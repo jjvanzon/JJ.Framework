@@ -16,7 +16,7 @@ namespace JJ.Framework.Common
             return input.Split(new[] { separator }, options);
         }
 
-        public static string[] SplitWithQuotation(this string input, string separator, char quote)
+        public static IList<string> SplitWithQuotation(this string input, string separator, char quote)
         {
             return input.SplitWithQuotation(separator, StringSplitOptions.None, quote);
         }
@@ -26,9 +26,9 @@ namespace JJ.Framework.Common
             return value.Split(separators, StringSplitOptions.None);
         }
 
-        public static string[] SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
+        public static IList<string> SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
         {
-            string[] values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
+            IList<string> values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
 
             if (quote.HasValue)
             {
@@ -38,12 +38,7 @@ namespace JJ.Framework.Common
             return values;
         }
 
-        public static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, char quote)
-        {
-            return input.SplitWithQuotation_WithoutUnescape(separator, StringSplitOptions.None, quote);
-        }
-
-        public static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, StringSplitOptions options, char? quote)
+        private static IList<string> SplitWithQuotation_WithoutUnescape(this string input, string separator, StringSplitOptions options, char? quote)
         {
             if (!quote.HasValue)
             {
@@ -65,7 +60,9 @@ namespace JJ.Framework.Common
             bool inQuote = false;
             int startPos = 0;
 
-            for (int pos = 0; pos < input.Length - separator.Length + 1; pos++)
+            int forEnd = input.Length - separator.Length;
+
+            for (int pos = 0; pos <= forEnd; pos++)
             {
                 char chr = input[pos];
 
@@ -104,7 +101,7 @@ namespace JJ.Framework.Common
                 values.Add(str2);
             }
 
-            return values.ToArray();
+            return values;
         }
     }
 }

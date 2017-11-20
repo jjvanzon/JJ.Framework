@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Common.Tests
 {
@@ -6,10 +7,10 @@ namespace JJ.Framework.Common.Tests
     public class StringExtensions_Split_Tests
     {
         [TestMethod]
-        public void Test_StringExtensions_Split_Tests()
+        public void Test_StringExtensions_SplitWithQuotation()
         {
             string input = @"1234,""1234"",""12,34"",""12""""34"",1""23""4,""12""34"",""12""34""";
-            string[] split2 = input.SplitWithQuotation_WithoutUnescape(",", '"');
+            IList<string> split2 = input.SplitWithQuotation(",", '"');
         }
     }
 }

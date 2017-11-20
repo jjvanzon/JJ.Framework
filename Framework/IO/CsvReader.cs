@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using JJ.Framework.Common;
 
@@ -9,22 +10,13 @@ namespace JJ.Framework.IO
         // TODO: Enforce number of columns.
 
         private readonly StreamReader _reader;
-        private string[] _values;
+        private IList<string> _values;
 
-        public CsvReader(Stream stream)
-        {
-            _reader = new StreamReader(stream);
-        }
+        public CsvReader(Stream stream) => _reader = new StreamReader(stream);
 
-        ~CsvReader()
-        {
-            Dispose();
-        }
+        ~CsvReader() => Dispose();
 
-        public void Dispose()
-        {
-            _reader?.Dispose();
-        }
+        public void Dispose() => _reader?.Dispose();
 
         public bool Read()
         {
@@ -40,10 +32,7 @@ namespace JJ.Framework.IO
             return true;
         }
 
-        private string[] ParseLine(string line)
-        {
-            return line.SplitWithQuotation(",", quote: '"');
-        }
+        private IList<string> ParseLine(string line) => line.SplitWithQuotation(",", quote: '"');
 
         public string this[int i] => _values[i];
     }
