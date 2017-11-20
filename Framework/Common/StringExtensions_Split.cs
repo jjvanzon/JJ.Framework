@@ -45,8 +45,6 @@ namespace JJ.Framework.Common
 
         public static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, StringSplitOptions options, char? quote)
         {
-            // TODO: Make code better understandable.
-
             if (!quote.HasValue)
             {
                 return input.Split(separator, options);
@@ -83,7 +81,6 @@ namespace JJ.Framework.Common
                 }
 
                 // Detect separator
-                // ReSharper disable once InvertIf
                 if (input.Substring(pos, separator.Length) == separator)
                 {
                     // An end-of-element was found.
