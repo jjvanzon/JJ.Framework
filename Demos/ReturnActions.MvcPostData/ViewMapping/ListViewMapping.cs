@@ -5,12 +5,12 @@ using JJ.Framework.Presentation.Mvc;
 
 namespace JJ.Demos.ReturnActions.MvcPostData.ViewMapping
 {
-    public class ListViewMapping : ViewMapping<ListViewModel>
-    {
-        public ListViewMapping()
-        {
-            MapController(ControllerNames.Demo, ActionNames.Index, ViewNames.Index);
-            MapPresenter(PresenterNames.ListPresenter, PresenterActionNames.Show);
-        }
-    }
+	public class ListViewMapping : ViewMapping<ListViewModel>
+	{
+		public ListViewMapping()
+		{
+			MapController(ControllerNames.Demo, ActionNames.Index, ViewNames.Index);
+			MapPresenter(PresenterNames.ListPresenter, PresenterActionNames.Show);
+		}
+	}
 }

@@ -4,12 +4,12 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
-    public class IsIntegerException : Exception
-    {
-        private const string MESSAGE = "{0} should not be an integer number.";
+	public class IsIntegerException : Exception
+	{
+		private const string MESSAGE = "{0} should not be an integer number.";
 
-        public IsIntegerException(Expression<Func<object>> expression)
-            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
-        { }
-    }
+		public IsIntegerException(Expression<Func<object>> expression)
+			: base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
+		{ }
+	}
 }

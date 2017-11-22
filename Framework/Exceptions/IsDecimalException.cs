@@ -4,12 +4,12 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
-    public class IsDecimalException : Exception
-    {
-        private const string MESSAGE = "{0} should not be a Decimal.";
+	public class IsDecimalException : Exception
+	{
+		private const string MESSAGE = "{0} should not be a Decimal.";
 
-        public IsDecimalException(Expression<Func<object>> expression)
-            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
-        { }
-    }
+		public IsDecimalException(Expression<Func<object>> expression)
+			: base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
+		{ }
+	}
 }

@@ -4,11 +4,11 @@ using JJ.Framework.Presentation.Mvc;
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameter.ViewMapping
 {
-    public class NotAuthorizedViewMapping : ViewMapping<NotAuthorizedViewModel>
-    {
-        public NotAuthorizedViewMapping()
-        {
-            ViewName = ViewNames.NotAuthorized;
-        }
-    }
+	public class NotAuthorizedViewMapping : ViewMapping<NotAuthorizedViewModel>
+	{
+		public NotAuthorizedViewMapping()
+		{
+			ViewName = ViewNames.NotAuthorized;
+		}
+	}
 }

@@ -5,56 +5,56 @@ using System.Linq;
 
 namespace JJ.Framework.Business
 {
-    /// <summary>
-    /// Manages the inverse property in a one to n relation ship.
-    /// Don't forget to use _parent in your method implementations.
-    /// </summary>
-    public abstract class OneToManyRelationship<TParent, TChild>
-        where TChild : class
-    {
-        protected TParent _parent;
-        private readonly ICollection<TChild> _children;
+	/// <summary>
+	/// Manages the inverse property in a one to n relation ship.
+	/// Don't forget to use _parent in your method implementations.
+	/// </summary>
+	public abstract class OneToManyRelationship<TParent, TChild>
+		where TChild : class
+	{
+		protected TParent _parent;
+		private readonly ICollection<TChild> _children;
 
-        [DebuggerHidden]
-        public OneToManyRelationship(TParent parent, ICollection<TChild> children)
-        {
-            if (parent == null) throw new NullException(() => parent);
+		[DebuggerHidden]
+		public OneToManyRelationship(TParent parent, ICollection<TChild> children)
+		{
+			if (parent == null) throw new NullException(() => parent);
 
-            _parent = parent;
-            _children = children ?? throw new NullException(() => children);
-        }
+			_parent = parent;
+			_children = children ?? throw new NullException(() => children);
+		}
 
-        protected abstract void SetParent(TChild child);
-        protected abstract void NullifyParent(TChild child);
+		protected abstract void SetParent(TChild child);
+		protected abstract void NullifyParent(TChild child);
 
-        public void Add(TChild child)
-        {
-            if (child == null) throw new NullException(() => child);
+		public void Add(TChild child)
+		{
+			if (child == null) throw new NullException(() => child);
 
-            if (_children.Contains(child)) return;
+			if (_children.Contains(child)) return;
 
-            _children.Add(child);
+			_children.Add(child);
 
-            SetParent(child);
-        }
+			SetParent(child);
+		}
 
-        public void Remove(TChild child)
-        {
-            if (child == null) throw new NullException(() => child);
+		public void Remove(TChild child)
+		{
+			if (child == null) throw new NullException(() => child);
 
-            if (!_children.Contains(child)) return;
+			if (!_children.Contains(child)) return;
 
-            _children.Remove(child);
+			_children.Remove(child);
 
-            NullifyParent(child);
-        }
+			NullifyParent(child);
+		}
 
-        public void Clear()
-        {
-            foreach (TChild child in _children.ToArray())
-            {
-                Remove(child);
-            }
-        }
-    }
+		public void Clear()
+		{
+			foreach (TChild child in _children.ToArray())
+			{
+				Remove(child);
+			}
+		}
+	}
 }

@@ -1,5 +1,5 @@
 ﻿namespace JJ.Framework.Presentation
 {
-    public sealed class NotAuthorizedViewModel
-    { }
+	public sealed class NotAuthorizedViewModel
+	{ }
 }

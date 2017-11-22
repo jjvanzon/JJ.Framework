@@ -1,8 +1,8 @@
 ﻿namespace JJ.Framework.Business
 {
-    internal enum PropertyStatusEnum
-    {
-        Clean,
-        Dirty
-    }
+	internal enum PropertyStatusEnum
+	{
+		Clean,
+		Dirty
+	}
 }

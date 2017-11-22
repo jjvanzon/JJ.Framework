@@ -2,9 +2,9 @@
 
 namespace JJ.Framework.Xml.Linq.Tests.Mocks
 {
-    internal class Element_WithChildElement_WithExplicitAnnotation
-    {
-        [XmlElement]
-        public int Element_WithExplicitAnnotation { get; set; }
-    }
+	internal class Element_WithChildElement_WithExplicitAnnotation
+	{
+		[XmlElement]
+		public int Element_WithExplicitAnnotation { get; set; }
+	}
 }

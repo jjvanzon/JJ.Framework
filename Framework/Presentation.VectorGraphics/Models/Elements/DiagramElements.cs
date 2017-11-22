@@ -9,62 +9,62 @@ using System.Linq;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
-    public class DiagramElements : IEnumerable<Element>
-    {
-        private readonly Diagram _diagram;
-        private readonly IList<Element> _elements = new List<Element>();
+	public class DiagramElements : IEnumerable<Element>
+	{
+		private readonly Diagram _diagram;
+		private readonly IList<Element> _elements = new List<Element>();
 
-        private readonly DiagramToElementsRelationship _relationship;
+		private readonly DiagramToElementsRelationship _relationship;
 
-        internal DiagramElements(Diagram diagram)
-        {
-            if (diagram == null) throw new NullException(() => diagram);
+		internal DiagramElements(Diagram diagram)
+		{
+			if (diagram == null) throw new NullException(() => diagram);
 
-            _diagram = diagram;
+			_diagram = diagram;
 
-            _relationship = new DiagramToElementsRelationship(diagram, _elements);
-        }
+			_relationship = new DiagramToElementsRelationship(diagram, _elements);
+		}
 
-        [DebuggerHidden]
-        public int Count => _elements.Count;
+		[DebuggerHidden]
+		public int Count => _elements.Count;
 
-        public void Add(Element element)
-        {
-            new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element).Execute();
+		public void Add(Element element)
+		{
+			new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element).Execute();
 
-            _relationship.Add(element);
-        }
+			_relationship.Add(element);
+		}
 
-        public void Remove(Element element)
-        {
-            new SideEffect_AssertCannotRemoveBackgroundFromDiagram(element).Execute();
-            new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element).Execute();
+		public void Remove(Element element)
+		{
+			new SideEffect_AssertCannotRemoveBackgroundFromDiagram(element).Execute();
+			new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element).Execute();
 
-            _relationship.Remove(element);
-        }
+			_relationship.Remove(element);
+		}
 
-        [DebuggerHidden]
-        public bool Contains(Element element) => _elements.Contains(element);
+		[DebuggerHidden]
+		public bool Contains(Element element) => _elements.Contains(element);
 
-        public void Clear()
-        {
-            foreach (Element element in _elements.ToArray())
-            {
-                if (element == _diagram.Background)
-                {
-                    continue;
-                }
+		public void Clear()
+		{
+			foreach (Element element in _elements.ToArray())
+			{
+				if (element == _diagram.Background)
+				{
+					continue;
+				}
 
-                Remove(element);
-            }
-        }
+				Remove(element);
+			}
+		}
 
-        // IEnumerable
+		// IEnumerable
 
-        [DebuggerHidden]
-        public IEnumerator<Element> GetEnumerator() => _elements.GetEnumerator();
+		[DebuggerHidden]
+		public IEnumerator<Element> GetEnumerator() => _elements.GetEnumerator();
 
-        [DebuggerHidden]
-        IEnumerator IEnumerable.GetEnumerator() => _elements.GetEnumerator();
-    }
+		[DebuggerHidden]
+		IEnumerator IEnumerable.GetEnumerator() => _elements.GetEnumerator();
+	}
 }

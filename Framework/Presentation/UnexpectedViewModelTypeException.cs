@@ -2,33 +2,33 @@
 
 namespace JJ.Framework.Presentation
 {
-    public class UnexpectedViewModelTypeException : Exception
-    {
-        private const string MESSAGE = "Unexpected view model type: '{0}'.";
+	public class UnexpectedViewModelTypeException : Exception
+	{
+		private const string MESSAGE = "Unexpected view model type: '{0}'.";
 
-        private readonly object _viewModel; 
+		private readonly object _viewModel; 
 
-        public UnexpectedViewModelTypeException(object viewModel)
-        {
-            _viewModel = viewModel;
-        }
+		public UnexpectedViewModelTypeException(object viewModel)
+		{
+			_viewModel = viewModel;
+		}
 
-        public override string Message
-        {
-            get
-            {
-                string viewModelTypeDescription;
-                if (_viewModel == null)
-                {
-                    viewModelTypeDescription = "<null>";
-                }
-                else
-                {
-                    viewModelTypeDescription = _viewModel.GetType().FullName;
-                }
+		public override string Message
+		{
+			get
+			{
+				string viewModelTypeDescription;
+				if (_viewModel == null)
+				{
+					viewModelTypeDescription = "<null>";
+				}
+				else
+				{
+					viewModelTypeDescription = _viewModel.GetType().FullName;
+				}
 
-                return string.Format(MESSAGE, viewModelTypeDescription);
-            }
-        }
-    }
+				return string.Format(MESSAGE, viewModelTypeDescription);
+			}
+		}
+	}
 }

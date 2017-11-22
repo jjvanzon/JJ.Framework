@@ -2,10 +2,10 @@
 
 namespace JJ.Framework.Data.Tests.EntityFramework5
 {
-    public class Model1Context : DbContext
-    {
-        public Model1Context(string specialConnectionString)
-            : base(specialConnectionString)
-        { }
-    }
+	public class Model1Context : DbContext
+	{
+		public Model1Context(string specialConnectionString)
+			: base(specialConnectionString)
+		{ }
+	}
 }

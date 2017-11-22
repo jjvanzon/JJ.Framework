@@ -4,12 +4,12 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
-    public class NotNullOrWhiteSpaceException : Exception
-    {
-        private const string MESSAGE = "{0} should be null or white space.";
+	public class NotNullOrWhiteSpaceException : Exception
+	{
+		private const string MESSAGE = "{0} should be null or white space.";
 
-        public NotNullOrWhiteSpaceException(Expression<Func<object>> expression)
-            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
-        { }
-    }
+		public NotNullOrWhiteSpaceException(Expression<Func<object>> expression)
+			: base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
+		{ }
+	}
 }

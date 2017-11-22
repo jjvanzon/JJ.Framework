@@ -3,43 +3,43 @@ using JJ.Framework.Presentation.VectorGraphics.EventArg;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
-    /// <summary>
-    /// WinForms sends a mouse move event,
-    /// even when I did not move the mouse,
-    /// in case of a move up.
-    /// This gesture will block that and only send
-    /// a mouse move event when you actually moved the mouse.
-    /// </summary>
-    public class MouseMoveGesture : GestureBase
-    {
-        public event EventHandler<MouseEventArgs> MouseMove;
+	/// <summary>
+	/// WinForms sends a mouse move event,
+	/// even when I did not move the mouse,
+	/// in case of a move up.
+	/// This gesture will block that and only send
+	/// a mouse move event when you actually moved the mouse.
+	/// </summary>
+	public class MouseMoveGesture : GestureBase
+	{
+		public event EventHandler<MouseEventArgs> MouseMove;
 
-        private float _previousPointerX;
-        private float _previousPointerY;
+		private float _previousPointerX;
+		private float _previousPointerY;
 
-        protected override void HandleMouseDown(object sender, MouseEventArgs e)
-        {
-            _previousPointerX = e.XInPixels;
-            _previousPointerY = e.YInPixels;
-        }
+		protected override void HandleMouseDown(object sender, MouseEventArgs e)
+		{
+			_previousPointerX = e.XInPixels;
+			_previousPointerY = e.YInPixels;
+		}
 
-        protected override void HandleMouseMove(object sender, MouseEventArgs e)
-        {
-            if (MouseMove == null)
-            {
-                return;
-            }
+		protected override void HandleMouseMove(object sender, MouseEventArgs e)
+		{
+			if (MouseMove == null)
+			{
+				return;
+			}
 
-            // ReSharper disable once CompareOfFloatsByEqualityOperator
-            if (_previousPointerX != e.XInPixels ||
-                // ReSharper disable once CompareOfFloatsByEqualityOperator
-                _previousPointerY != e.YInPixels)
-            {
-                MouseMove(sender, e);
-            }
+			// ReSharper disable once CompareOfFloatsByEqualityOperator
+			if (_previousPointerX != e.XInPixels ||
+				// ReSharper disable once CompareOfFloatsByEqualityOperator
+				_previousPointerY != e.YInPixels)
+			{
+				MouseMove(sender, e);
+			}
 
-            _previousPointerX = e.XInPixels;
-            _previousPointerY = e.YInPixels;
-        }
-    }
+			_previousPointerX = e.XInPixels;
+			_previousPointerY = e.YInPixels;
+		}
+	}
 }

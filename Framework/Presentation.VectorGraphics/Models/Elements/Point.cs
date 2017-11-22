@@ -5,29 +5,29 @@ using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
-    [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
-    public class Point : Element
-    {
-        public Point()
-        {
-            Position = new PointPosition(this);
-        }
+	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
+	public class Point : Element
+	{
+		public Point()
+		{
+			Position = new PointPosition(this);
+		}
 
-        public override ElementPosition Position { get; }
+		public override ElementPosition Position { get; }
 
-        private PointStyle _pointStyle = new PointStyle();
-        /// <summary> not nullable, auto-instantiated </summary>
-        public PointStyle PointStyle
-        {
-            [DebuggerHidden]
-            get { return _pointStyle; }
-            set
-            {
-                if (value == null) throw new NullException(() => value);
-                _pointStyle = value;
-            }
-        }
+		private PointStyle _pointStyle = new PointStyle();
+		/// <summary> not nullable, auto-instantiated </summary>
+		public PointStyle PointStyle
+		{
+			[DebuggerHidden]
+			get { return _pointStyle; }
+			set
+			{
+				if (value == null) throw new NullException(() => value);
+				_pointStyle = value;
+			}
+		}
 
-        private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
-    }
+		private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
+	}
 }

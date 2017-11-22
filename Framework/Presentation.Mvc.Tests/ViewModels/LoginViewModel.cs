@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Presentation.Mvc.Tests.ViewModels
 {
-    public class LoginViewModel
-    {
-    }
+	public class LoginViewModel
+	{
+	}
 }

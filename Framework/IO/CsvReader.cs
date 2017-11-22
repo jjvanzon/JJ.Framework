@@ -5,35 +5,35 @@ using JJ.Framework.Common;
 
 namespace JJ.Framework.IO
 {
-    public class CsvReader : IDisposable
-    {
-        // TODO: Enforce number of columns.
+	public class CsvReader : IDisposable
+	{
+		// TODO: Enforce number of columns.
 
-        private readonly StreamReader _reader;
-        private IList<string> _values;
+		private readonly StreamReader _reader;
+		private IList<string> _values;
 
-        public CsvReader(Stream stream) => _reader = new StreamReader(stream);
+		public CsvReader(Stream stream) => _reader = new StreamReader(stream);
 
-        ~CsvReader() => Dispose();
+		~CsvReader() => Dispose();
 
-        public void Dispose() => _reader?.Dispose();
+		public void Dispose() => _reader?.Dispose();
 
-        public bool Read()
-        {
-            if (_reader.EndOfStream)
-            {
-                return false;
-            }
+		public bool Read()
+		{
+			if (_reader.EndOfStream)
+			{
+				return false;
+			}
 
-            string line = _reader.ReadLine();
+			string line = _reader.ReadLine();
 
-            _values = ParseLine(line);
+			_values = ParseLine(line);
 
-            return true;
-        }
+			return true;
+		}
 
-        private IList<string> ParseLine(string line) => line.SplitWithQuotation(",", quote: '"');
+		private IList<string> ParseLine(string line) => line.SplitWithQuotation(",", quote: '"');
 
-        public string this[int i] => _values[i];
-    }
+		public string this[int i] => _values[i];
+	}
 }

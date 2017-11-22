@@ -3,108 +3,108 @@ using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
 {
-    internal static class VectorGraphicsFactory
-    {
-        public static Diagram CreateTestVectorGraphicsModel()
-        {
-            var diagram = new Diagram();
+	internal static class VectorGraphicsFactory
+	{
+		public static Diagram CreateTestVectorGraphicsModel()
+		{
+			var diagram = new Diagram();
 
-            Rectangle background = diagram.Background;
+			Rectangle background = diagram.Background;
 
-            Rectangle rectangle1 = CreateRectangle(diagram, 200, 10, "Block 1");
+			Rectangle rectangle1 = CreateRectangle(diagram, 200, 10, "Block 1");
 
-            Rectangle rectangle2 = CreateRectangle(diagram, 10, 200, "Block 2");
+			Rectangle rectangle2 = CreateRectangle(diagram, 10, 200, "Block 2");
 
-            var point1 = new Point
-            {
-                Diagram = diagram,
-                Parent = rectangle1,
-                PointStyle = VectorGraphicsHelper.InvisiblePointStyle
-            };
-            point1.Position.X = 150;
-            point1.Position.Y = 30;
+			var point1 = new Point
+			{
+				Diagram = diagram,
+				Parent = rectangle1,
+				PointStyle = VectorGraphicsHelper.InvisiblePointStyle
+			};
+			point1.Position.X = 150;
+			point1.Position.Y = 30;
 
-            var point2 = new Point  
-            {
-                Diagram = diagram,
-                Parent = rectangle2,
-                PointStyle = VectorGraphicsHelper.InvisiblePointStyle
-            };
-            point2.Position.X = 150;
-            point2.Position.Y = 30;
+			var point2 = new Point  
+			{
+				Diagram = diagram,
+				Parent = rectangle2,
+				PointStyle = VectorGraphicsHelper.InvisiblePointStyle
+			};
+			point2.Position.X = 150;
+			point2.Position.Y = 30;
 
-            var line = new Line
-            {
-                Diagram = diagram,
-                Parent = diagram.Background,
-                PointA = point1,
-                PointB = point2,
-                LineStyle = VectorGraphicsHelper.DefaultLineStyle
-            };
+			var line = new Line
+			{
+				Diagram = diagram,
+				Parent = diagram.Background,
+				PointA = point1,
+				PointB = point2,
+				LineStyle = VectorGraphicsHelper.DefaultLineStyle
+			};
 
-            line.ZIndex = -1;
+			line.ZIndex = -1;
 
-            return diagram;
-        }
+			return diagram;
+		}
 
-        private static Rectangle CreateRectangle(Diagram diagram, float x, float y, string text)
-        {
-            var rectangle = new Rectangle()
-            {
-                Diagram = diagram,
-                Parent = diagram.Background
-            };
-            rectangle.Style.LineStyle = VectorGraphicsHelper.DefaultLineStyle;
-            rectangle.Position.X = x;
-            rectangle.Position.Y = y;
-            rectangle.Position.Width = 300;
-            rectangle.Position.Height = 60;
+		private static Rectangle CreateRectangle(Diagram diagram, float x, float y, string text)
+		{
+			var rectangle = new Rectangle()
+			{
+				Diagram = diagram,
+				Parent = diagram.Background
+			};
+			rectangle.Style.LineStyle = VectorGraphicsHelper.DefaultLineStyle;
+			rectangle.Position.X = x;
+			rectangle.Position.Y = y;
+			rectangle.Position.Width = 300;
+			rectangle.Position.Height = 60;
 
-            rectangle.Gestures.Add(new MoveGesture());
+			rectangle.Gestures.Add(new MoveGesture());
 
-            var label = new Label 
-            {
-                Diagram = diagram,
-                Parent = rectangle,
-                Text = text,
-                TextStyle = VectorGraphicsHelper.DefaultTextStyle
-            };
-            label.Position.Width = 300;
-            label.Position.Height = 60;
+			var label = new Label 
+			{
+				Diagram = diagram,
+				Parent = rectangle,
+				Text = text,
+				TextStyle = VectorGraphicsHelper.DefaultTextStyle
+			};
+			label.Position.Width = 300;
+			label.Position.Height = 60;
 
-            return rectangle;
-        }
+			return rectangle;
+		}
 
-        public static Rectangle CreateRectangle(Diagram diagram, string text)
-        {
-            var rectangle = new Rectangle()
-            {
-                Diagram = diagram,
-                Parent = diagram.Background
-            };
+		public static Rectangle CreateRectangle(Diagram diagram, string text)
+		{
+			var rectangle = new Rectangle()
+			{
+				Diagram = diagram,
+				Parent = diagram.Background
+			};
 
-            rectangle.Position.X = VectorGraphicsHelper.SPACING;
-            rectangle.Position.Y = VectorGraphicsHelper.SPACING;
-            rectangle.Position.Width = VectorGraphicsHelper.BLOCK_WIDTH;
-            rectangle.Position.Height = VectorGraphicsHelper.BLOCK_HEIGHT;
-            rectangle.Style.BackStyle = VectorGraphicsHelper.BlueBackStyle;
-            rectangle.Style.LineStyle = VectorGraphicsHelper.DefaultLineStyle;
+			rectangle.Position.X = VectorGraphicsHelper.SPACING;
+			rectangle.Position.Y = VectorGraphicsHelper.SPACING;
+			rectangle.Position.Width = VectorGraphicsHelper.BLOCK_WIDTH;
+			rectangle.Position.Height = VectorGraphicsHelper.BLOCK_HEIGHT;
+			rectangle.Style.BackStyle = VectorGraphicsHelper.BlueBackStyle;
+			rectangle.Style.LineStyle = VectorGraphicsHelper.DefaultLineStyle;
 
-            var label = new Label
-            {
-                Diagram = diagram,
-                Parent = rectangle,
-                Text = text,
-                TextStyle = VectorGraphicsHelper.DefaultTextStyle
-            };
+			var label = new Label
+			{
+				Diagram = diagram,
+				Parent = rectangle,
+				Text = text,
+				TextStyle = VectorGraphicsHelper.DefaultTextStyle
+			};
 
-            label.Position.X = 0;
-            label.Position.Y = 0;
-            label.Position.Width = VectorGraphicsHelper.BLOCK_WIDTH;
-            label.Position.Height = VectorGraphicsHelper.BLOCK_HEIGHT;
+			label.Position.X = 0;
+			label.Position.Y = 0;
+			label.Position.Width = VectorGraphicsHelper.BLOCK_WIDTH;
+			label.Position.Height = VectorGraphicsHelper.BLOCK_HEIGHT;
 
-            return rectangle;
-        }
+			return rectangle;
+		}
 
-    }
+	}
 }

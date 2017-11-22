@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Business
 {
-    public interface ISideEffect
-    {
-        void Execute();
-    }
+	public interface ISideEffect
+	{
+		void Execute();
+	}
 }

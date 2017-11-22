@@ -4,15 +4,15 @@ using System;
 
 namespace JJ.Framework.Presentation.VectorGraphics.EventArg
 {
-    public class ElementEventArgs : EventArgs
-    {
-        public Element Element { get; }
+	public class ElementEventArgs : EventArgs
+	{
+		public Element Element { get; }
 
-        public ElementEventArgs(Element element)
-        {
-            if (element == null) throw new NullException(() => element);
+		public ElementEventArgs(Element element)
+		{
+			if (element == null) throw new NullException(() => element);
 
-            Element = element;
-        }
-    }
+			Element = element;
+		}
+	}
 }

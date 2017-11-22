@@ -1,8 +1,8 @@
 ﻿namespace JJ.Framework.Collections
 {
-    internal enum RedBlackTreeColorEnum
-    {
-        Red,
-        Black
-    }
+	internal enum RedBlackTreeColorEnum
+	{
+		Red,
+		Black
+	}
 }

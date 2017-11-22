@@ -4,12 +4,12 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
-    public class NotDoubleException : Exception
-    {
-        private const string MESSAGE = "{0} is not a double precision floating point number.";
+	public class NotDoubleException : Exception
+	{
+		private const string MESSAGE = "{0} is not a double precision floating point number.";
 
-        public NotDoubleException(Expression<Func<object>> expression)
-            : base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
-        { }
-    }
+		public NotDoubleException(Expression<Func<object>> expression)
+			: base(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
+		{ }
+	}
 }

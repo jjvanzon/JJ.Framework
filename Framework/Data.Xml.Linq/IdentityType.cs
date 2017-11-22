@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Data.Xml.Linq
 {
-    public enum IdentityType
-    {
-        AutoIncrement
-    }
+	public enum IdentityType
+	{
+		AutoIncrement
+	}
 }

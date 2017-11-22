@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Presentation.VectorGraphics.Enums
 {
-    public enum VerticalAlignmentEnum
-    {
-        Undefined,
-        Top,
-        Center,
-        Bottom
-    }
+	public enum VerticalAlignmentEnum
+	{
+		Undefined,
+		Top,
+		Center,
+		Bottom
+	}
 }

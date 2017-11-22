@@ -2,21 +2,21 @@
 
 namespace JJ.Framework.Security
 {
-    public static class AuthenticatorFactory
-    {
-        public static IAuthenticator CreateAuthenticator(AuthenticationTypeEnum authenticationType)
-        {
-            switch (authenticationType)
-            {
-                case AuthenticationTypeEnum.HashedSaltedPasswordSHA256:
-                    return new HashedSaltedPasswordAuthenticator(authenticationType);
+	public static class AuthenticatorFactory
+	{
+		public static IAuthenticator CreateAuthenticator(AuthenticationTypeEnum authenticationType)
+		{
+			switch (authenticationType)
+			{
+				case AuthenticationTypeEnum.HashedSaltedPasswordSHA256:
+					return new HashedSaltedPasswordAuthenticator(authenticationType);
 
-                case AuthenticationTypeEnum.LiteralPassword:
-                    return new LiteralPasswordAuthenticator();
+				case AuthenticationTypeEnum.LiteralPassword:
+					return new LiteralPasswordAuthenticator();
 
-                default:
-                    throw new InvalidValueException(authenticationType);
-            }
-        }
-    }
+				default:
+					throw new InvalidValueException(authenticationType);
+			}
+		}
+	}
 }

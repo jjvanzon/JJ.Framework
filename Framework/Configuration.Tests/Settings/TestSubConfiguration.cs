@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Configuration.Tests
 {
-    public class TestSubConfiguration
-    {
-        public string ChildElement { get; set; }
-    }
+	public class TestSubConfiguration
+	{
+		public string ChildElement { get; set; }
+	}
 }

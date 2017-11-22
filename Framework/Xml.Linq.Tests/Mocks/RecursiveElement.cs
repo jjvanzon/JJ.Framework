@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Xml.Linq.Tests.Mocks
 {
-    internal class RecursiveElement
-    {
-        public RecursiveElement Element { get; set; }
-    }
+	internal class RecursiveElement
+	{
+		public RecursiveElement Element { get; set; }
+	}
 }

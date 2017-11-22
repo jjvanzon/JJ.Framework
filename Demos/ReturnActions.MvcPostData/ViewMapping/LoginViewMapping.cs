@@ -5,12 +5,12 @@ using JJ.Framework.Presentation.Mvc;
 
 namespace JJ.Demos.ReturnActions.MvcPostData.ViewMapping
 {
-    public class LoginViewMapping : ViewMapping<LoginViewModel>
-    {
-        public LoginViewMapping()
-        {
-            MapController(ControllerNames.Login, ActionNames.Index, ViewNames.Index);
-            MapPresenter(PresenterNames.LoginPresenter, PresenterActionNames.Show);
-        }
-    }
+	public class LoginViewMapping : ViewMapping<LoginViewModel>
+	{
+		public LoginViewMapping()
+		{
+			MapController(ControllerNames.Login, ActionNames.Index, ViewNames.Index);
+			MapPresenter(PresenterNames.LoginPresenter, PresenterActionNames.Show);
+		}
+	}
 }
