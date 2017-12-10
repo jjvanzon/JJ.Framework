@@ -1,9 +1,9 @@
-﻿using JJ.Framework.Exceptions;
-using JJ.Framework.Reflection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Collections
 {
@@ -42,7 +42,11 @@ namespace JJ.Framework.Collections
 			}
 		}
 
+		public static TItem[] AsArray<TItem>(this TItem item) => new[] { item };
+
 		public static IEnumerable<TItem> AsEnumerable<TItem>(this TItem item) => new[] { item };
+
+		public static List<TItem> AsList<TItem>(this TItem item) => new List<TItem> { item };
 
 		public static IEnumerable<T> Concat<T>(this IEnumerable<T> enumerable, T x)
 		{
