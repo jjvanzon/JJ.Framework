@@ -42,6 +42,8 @@ namespace JJ.Framework.Collections
 			}
 		}
 
+		// The names 'ToArray' and 'ToList' conflicted with other overloads.
+
 		public static TItem[] AsArray<TItem>(this TItem item) => new[] { item };
 
 		public static IEnumerable<TItem> AsEnumerable<TItem>(this TItem item) => new[] { item };
