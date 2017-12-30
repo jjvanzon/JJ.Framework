@@ -1,11 +1,10 @@
-﻿using JJ.Framework.Reflection;
-using JJ.Framework.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Reflection;
 using System.Transactions;
-using System.Linq;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Data.EntityFramework5
 {
@@ -83,8 +82,6 @@ namespace JJ.Framework.Data.EntityFramework5
 			return context;
 		}
 
-		// TODO:
-		// Warning CA1801  Parameter 'underlyingContext' of 'EntityFramework5Context.CloseContext(DbContext)' is never used.Remove the parameter or use it in the method body.
 		private void CloseContext(DbContext underlyingContext)
 		{
 			//if (_transaction != null)
