@@ -17,6 +17,19 @@ namespace JJ.Framework.Logging
 			return debuggerDisplay;
 		}
 
+		public static string GetDebuggerDisplayWithID<T>(int id)
+		{
+			string debuggerDisplay = GetDebuggerDisplayWithID(typeof(T), id);
+			return debuggerDisplay;
+		}
+
+		public static string GetDebuggerDisplayWithID(Type type, int id)
+		{
+			if (type == null) throw new ArgumentNullException(nameof(type));
+			string debuggerDisplay = $"{{{type.Name}}} (ID = {id})";
+			return debuggerDisplay;
+		}
+
 		/// <summary> Just returns "{TypeName}" without the type name having the namespace, like Visual Studio does by default. </summary>
 		public static string GetDebuggerDisplay(object obj)
 		{
