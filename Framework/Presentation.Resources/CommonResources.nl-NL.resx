@@ -286,4 +286,7 @@
   <data name="Undo" xml:space="preserve">
     <value>Ongedaan maken</value>
   </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Actief</value>
+  </data>
 </root>

@@ -20,6 +20,7 @@
 		public static string FilePath => CommonResources.FilePath;
 		public static string ID => CommonResources.ID;
 		public static string ID_WithName(string name) => string.Format(CommonResources.ID_WithName, name);
+		public static string IsActive => CommonResources.IsActive;
 		public static string IsDeleted_WithName(string name) => string.Format(CommonResources.IsDeleted_WithName, name);
 		public static string Item => CommonResources.Item;
 		public static string Language => CommonResources.Language;
