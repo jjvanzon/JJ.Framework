@@ -1,6 +1,6 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+﻿using System;
 using JJ.Framework.Exceptions;
-using System;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.VectorGraphics.EventArg
 {
@@ -10,9 +10,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.EventArg
 
 		public ElementEventArgs(Element element)
 		{
-			if (element == null) throw new NullException(() => element);
-
-			Element = element;
+			Element = element ?? throw new NullException(() => element);
 		}
 	}
 }

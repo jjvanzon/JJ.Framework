@@ -58,9 +58,11 @@
     <Compile Include="Gestures\KeyUpGesture.cs" />
     <Compile Include="Gestures\MouseLeaveGesture.cs" />
     <Compile Include="Helpers\CloneExtensions.cs" />
-    <Compile Include="Helpers\DebugHelper.cs" />
+    <Compile Include="Helpers\DebuggerDisplayFormatter.cs" />
     <Compile Include="Helpers\ScaleHelper.cs" />
     <Compile Include="Helpers\TextHelper.cs" />
+    <Compile Include="Models\Elements\Ellipse.cs" />
+    <Compile Include="Models\Elements\EllipseStyle.cs" />
     <Compile Include="Models\Elements\Curve.cs" />
     <Compile Include="Models\Elements\DiagramPosition.cs" />
     <Compile Include="Models\Elements\ElementPosition.cs" />
@@ -69,7 +71,6 @@
     <Compile Include="Models\Elements\CurvePosition.cs" />
     <Compile Include="Models\Elements\RectanglePosition.cs" />
     <Compile Include="Models\Elements\LinePosition.cs" />
-    <Compile Include="Models\Elements\LabelPosition.cs" />
     <Compile Include="Models\Elements\PointPosition.cs" />
     <Compile Include="Models\Elements\RectangleStyle.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />
@@ -134,7 +135,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT" />
+    <None Include="README.MD" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

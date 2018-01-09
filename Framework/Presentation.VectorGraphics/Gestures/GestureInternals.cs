@@ -1,5 +1,5 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using JJ.Framework.Exceptions;
+﻿using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.VectorGraphics.EventArg;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
@@ -13,8 +13,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
 		internal GestureInternals(GestureBase gestureBase)
 		{
-			if (gestureBase == null) throw new NullException(() => gestureBase);
-			_gestureBase = gestureBase;
+			_gestureBase = gestureBase ?? throw new NullException(() => gestureBase);
 		}
 
 		public void HandleMouseDown(object sender, MouseEventArgs e) => _gestureBase.InternalHandleMouseDown(sender, e);

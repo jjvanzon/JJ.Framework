@@ -1,10 +1,10 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
-using JJ.Framework.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using JJ.Framework.Presentation.VectorGraphics.Enums;
+using JJ.Framework.Exceptions;
 using JJ.Framework.Mathematics;
+using JJ.Framework.Presentation.VectorGraphics.Enums;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 {
@@ -24,9 +24,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 		/// <summary> Returns elements ordered by calculated Z-Index. </summary>
 		public IList<Element> Execute(Diagram diagram)
 		{
-			if (diagram == null) throw new NullException(() => diagram);
-
-			_diagram = diagram;
+			_diagram = diagram ?? throw new NullException(() => diagram);
 			_currentParentX = 0;
 			_currentParentY = 0;
 			_currentZIndex = 0;
@@ -81,9 +79,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 
 		protected override void VisitPolymorphic(Element element)
 		{
-			// TODO: It seems too coincidental that determining Visible and Enabled works this way.
-			// I would much rather put variables on the call stack or work with a new virtual style
-			// on each stack frame.
+			// It seems too coincidental that determining Visible and Enabled works this way. But it does.
+			// I would think I woul dneed to put variables on the call stack or work with a new virtual style on each stack frame,
+			// but apparently this works too.
+
 			element.CalculatedValues.Visible = element.Visible;
 			if (element.Parent != null)
 			{
@@ -115,44 +114,32 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 			_currentLayer--;
 		}
 
-		protected override void VisitPoint(Point point)
+		// Do not check visibility, because invisible point must be recalculated,
+		// because it must be absolutely positioned,
+		// because it can be referenced by a line.
+		protected override void VisitPoint(Point element) => ProcessTypically(element);
+		protected override void VisitRectangle(Rectangle element) => ProcessTypically(element);
+		protected override void VisitLabel(Label element) => ProcessTypically(element);
+		protected override void VisitEllipse(Ellipse element) => ProcessTypically(element);
+
+		private void ProcessTypically(Element element)
 		{
-			// Do not check visibility, because invisible point must be recalculated,
-			// because it must be absolutely positioned,
-			// because it can be referenced by a line.
+			element.CalculatedValues.XInPixels = element.Position.X + _currentParentX;
+			element.CalculatedValues.YInPixels = element.Position.Y + _currentParentY;
+			element.CalculatedValues.WidthInPixels = element.Position.Width;
+			element.CalculatedValues.HeightInPixels = element.Position.Height;
 
-			point.CalculatedValues.XInPixels = point.Position.X + _currentParentX;
-			point.CalculatedValues.YInPixels = point.Position.Y + _currentParentY;
-			point.CalculatedValues.WidthInPixels = point.Position.Width;
-			point.CalculatedValues.HeightInPixels = point.Position.Height;
+			ApplyScaling(element);
 
-			ApplyScaling(point);
-
-			base.VisitPoint(point);
+			VisitElementBase(element);
 		}
 
-		protected override void VisitRectangle(Rectangle rectangle)
+		private void ApplyScaling(Element element)
 		{
-			rectangle.CalculatedValues.XInPixels = rectangle.Position.X + _currentParentX;
-			rectangle.CalculatedValues.YInPixels = rectangle.Position.Y + _currentParentY;
-			rectangle.CalculatedValues.WidthInPixels = rectangle.Position.Width;
-			rectangle.CalculatedValues.HeightInPixels = rectangle.Position.Height;
-
-			ApplyScaling(rectangle);
-
-			base.VisitRectangle(rectangle);
-		}
-
-		protected override void VisitLabel(Label label)
-		{
-			label.CalculatedValues.XInPixels = label.Position.X + _currentParentX;
-			label.CalculatedValues.YInPixels = label.Position.Y + _currentParentY;
-			label.CalculatedValues.WidthInPixels = label.Position.Width;
-			label.CalculatedValues.HeightInPixels = label.Position.Height;
-
-			ApplyScaling(label);
-
-			base.VisitLabel(label);
+			element.CalculatedValues.XInPixels = _diagram.Position.XToPixels(element.CalculatedValues.XInPixels);
+			element.CalculatedValues.YInPixels = _diagram.Position.YToPixels(element.CalculatedValues.YInPixels);
+			element.CalculatedValues.WidthInPixels = _diagram.Position.WidthToPixels(element.CalculatedValues.WidthInPixels);
+			element.CalculatedValues.HeightInPixels = _diagram.Position.HeightToPixels(element.CalculatedValues.HeightInPixels);
 		}
 
 		// Post Process
@@ -178,9 +165,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 			float t = 0;
 			for (int i = 0; i < sourceCurve.SegmentCount + 1; i++)
 			{
-				float calculatedX;
-				float calculatedY;
-
 				Interpolator.Interpolate_Cubic_FromT(
 					sourceCurve.PointA.CalculatedValues.XInPixels,
 					sourceCurve.ControlPointA.CalculatedValues.XInPixels,
@@ -190,7 +174,9 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 					sourceCurve.ControlPointA.CalculatedValues.YInPixels,
 					sourceCurve.ControlPointB.CalculatedValues.YInPixels,
 					sourceCurve.PointB.CalculatedValues.YInPixels,
-					t, out calculatedX, out calculatedY);
+					t,
+					out float calculatedX,
+					out float calculatedY);
 
 				var destPoint = new Point
 				{
@@ -233,16 +219,6 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 			sourceCurve.CalculatedLines = destLines;
 
 			// TODO: Low priority: Yield over gesture-related properties from curve to the points and lines?
-		}
-
-		// Helpers
-
-		private void ApplyScaling(Element element)
-		{
-			element.CalculatedValues.XInPixels = _diagram.Position.XToPixels(element.CalculatedValues.XInPixels);
-			element.CalculatedValues.YInPixels = _diagram.Position.YToPixels(element.CalculatedValues.YInPixels);
-			element.CalculatedValues.WidthInPixels = _diagram.Position.WidthToPixels(element.CalculatedValues.WidthInPixels);
-			element.CalculatedValues.HeightInPixels = _diagram.Position.HeightToPixels(element.CalculatedValues.HeightInPixels);
 		}
 	}
 }

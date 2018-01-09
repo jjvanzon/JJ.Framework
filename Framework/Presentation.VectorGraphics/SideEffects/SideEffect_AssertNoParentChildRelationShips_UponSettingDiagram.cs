@@ -1,7 +1,7 @@
-﻿using JJ.Framework.Business;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+﻿using System;
+using JJ.Framework.Business;
 using JJ.Framework.Exceptions;
-using System;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
 {
@@ -11,9 +11,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
 
 		public SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(Element element)
 		{
-			if (element == null) throw new NullException(() => element);
-
-			_element = element;
+			_element = element ?? throw new NullException(() => element);
 		}
 
 		public void Execute()

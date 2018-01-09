@@ -1,8 +1,10 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Helpers;
+﻿using System.Diagnostics;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
+	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public abstract class ElementPosition
 	{
 		private readonly Element _element;
@@ -53,5 +55,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
 		public float AbsoluteRight => AbsoluteX + _element.Position.Width;
 		public float AbsoluteBottom => AbsoluteY + _element.Position.Height;
+
+		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}
 }

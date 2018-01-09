@@ -1,87 +1,89 @@
 ﻿using System.Drawing;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using Font = System.Drawing.Font;
 using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.Drawing
 {
 	public static class VectorGraphicsDrawer
 	{
-		public static void Draw(Diagram diagram, Graphics destGraphics)
+		public static void Draw(VectorGraphicsElements.Diagram diagram, Graphics destGraphics)
 		{
 			if (diagram == null) throw new NullException(() => diagram);
 			if (destGraphics == null) throw new NullException(() => destGraphics);
 
-			foreach (Element element in diagram.EnumerateElementsByZIndex())
+			foreach (VectorGraphicsElements.Element element in diagram.EnumerateElementsByZIndex())
 			{
 				DrawPolymorphic(element, destGraphics);
 			}
 		}
 
-		private static void DrawPolymorphic(Element sourceElement, Graphics destGraphics)
+		private static void DrawPolymorphic(VectorGraphicsElements.Element sourceElement, Graphics destGraphics)
 		{
-			if (sourceElement is VectorGraphicsElements.Point sourcePoint)
+			switch (sourceElement)
 			{
-				DrawPoint(sourcePoint, destGraphics);
-				return;
-			}
+				case VectorGraphicsElements.Point sourcePoint:
+					DrawPoint(sourcePoint, destGraphics);
+					return;
 
-			if (sourceElement is Line sourceLine)
-			{
-				DrawLine(sourceLine, destGraphics);
-				return;
-			}
+				case VectorGraphicsElements.Line sourceLine:
+					DrawLine(sourceLine, destGraphics);
+					return;
 
-			if (sourceElement is VectorGraphicsElements.Rectangle sourceRectangle)
-			{
-				DrawRectangle(sourceRectangle, destGraphics);
-				return;
-			}
+				case VectorGraphicsElements.Rectangle sourceRectangle:
+					DrawRectangle(sourceRectangle, destGraphics);
+					return;
 
-			if (sourceElement is Label sourceLabel)
-			{
-				DrawLabel(sourceLabel, destGraphics);
-				return;
-			}
+				case VectorGraphicsElements.Label sourceLabel:
+					DrawLabel(sourceLabel, destGraphics);
+					return;
 
-			if (sourceElement is Curve sourceCurve)
-			{
-				DrawCurve(sourceCurve, destGraphics);
-				return;
-			}
+				case VectorGraphicsElements.Curve sourceCurve:
+					DrawCurve(sourceCurve, destGraphics);
+					return;
 
-			throw new UnexpectedTypeException(() => sourceElement);
+				case VectorGraphicsElements.Ellipse sourceEllipse:
+					DrawEllipse(sourceEllipse, destGraphics);
+					return;
+
+				default:
+					throw new UnexpectedTypeException(() => sourceElement);
+			}
 		}
 
 		private static void DrawPoint(VectorGraphicsElements.Point sourcePoint, Graphics destGraphics)
 		{
-			if (sourcePoint.CalculatedValues.Visible && sourcePoint.PointStyle.Visible)
+			if (!sourcePoint.CalculatedValues.Visible || !sourcePoint.PointStyle.Visible)
 			{
-				RectangleF destRectangle = sourcePoint.ToSystemDrawingRectangleF();
-				using (Brush destBrush = sourcePoint.PointStyle.ToSystemDrawingBrush())
-				{
-					destGraphics.FillEllipse(destBrush, destRectangle);
-				}
+				return;
+			}
+
+			RectangleF destRectangle = sourcePoint.ToSystemDrawingRectangleF();
+			using (Brush destBrush = sourcePoint.PointStyle.ToSystemDrawingBrush())
+			{
+				destGraphics.FillEllipse(destBrush, destRectangle);
 			}
 		}
 
-		private static void DrawLine(Line sourceLine, Graphics destGraphics)
+		private static void DrawLine(VectorGraphicsElements.Line sourceLine, Graphics destGraphics)
 		{
-			if (sourceLine.CalculatedValues.Visible && sourceLine.LineStyle.Visible)
+			if (!sourceLine.CalculatedValues.Visible || !sourceLine.LineStyle.Visible)
 			{
-				if (sourceLine.PointA == null) throw new NullException(() => sourceLine.PointA);
-				if (sourceLine.PointB == null) throw new NullException(() => sourceLine.PointB);
+				return;
+			}
 
-				float x1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.XInPixels);
-				float y1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.YInPixels);
-				float x2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.XInPixels);
-				float y2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.YInPixels);
+			if (sourceLine.PointA == null) throw new NullException(() => sourceLine.PointA);
+			if (sourceLine.PointB == null) throw new NullException(() => sourceLine.PointB);
 
-				using (Pen destPen = sourceLine.LineStyle.ToSystemDrawing())
-				{
-					destGraphics.DrawLine(destPen, x1, y1, x2, y2);
-				}
+			float x1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.XInPixels);
+			float y1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.YInPixels);
+			float x2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.XInPixels);
+			float y2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.YInPixels);
+
+			using (Pen destPen = sourceLine.LineStyle.ToSystemDrawing())
+			{
+				destGraphics.DrawLine(destPen, x1, y1, x2, y2);
 			}
 		}
 
@@ -155,7 +157,7 @@ namespace JJ.Framework.Presentation.Drawing
 			}
 		}
 
-		private static void DrawLabel(Label sourceLabel, Graphics destGraphics)
+		private static void DrawLabel(VectorGraphicsElements.Label sourceLabel, Graphics destGraphics)
 		{
 			if (!sourceLabel.CalculatedValues.Visible)
 			{
@@ -172,7 +174,7 @@ namespace JJ.Framework.Presentation.Drawing
 
 			var destRectangle = new RectangleF(x, y, width, height);
 
-			using (System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing(destGraphics.DpiX))
+			using (Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing(destGraphics.DpiX))
 			{
 				using (Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush())
 				{
@@ -184,11 +186,31 @@ namespace JJ.Framework.Presentation.Drawing
 			}
 		}
 
-		private static void DrawCurve(Curve sourceCurve, Graphics destGraphics)
+		private static void DrawCurve(VectorGraphicsElements.Curve sourceCurve, Graphics destGraphics)
 		{
-			foreach (Line calculatedLine in sourceCurve.CalculatedLines)
+			foreach (VectorGraphicsElements.Line calculatedLine in sourceCurve.CalculatedLines)
 			{
 				DrawLine(calculatedLine, destGraphics);
+			}
+		}
+
+		private static void DrawEllipse(VectorGraphicsElements.Ellipse sourceEllipse, Graphics destGraphics)
+		{
+			if (!sourceEllipse.CalculatedValues.Visible)
+			{
+				return;
+			}
+
+			RectangleF destRectangle = sourceEllipse.ToSystemDrawingRectangleF();
+
+			using (Brush destBrush = sourceEllipse.Style.BackStyle.ToSystemDrawing())
+			{
+				destGraphics.FillEllipse(destBrush, destRectangle);
+			}
+
+			using (Pen destPen = sourceEllipse.Style.LineStyle.ToSystemDrawing())
+			{
+				destGraphics.DrawEllipse(destPen, destRectangle);
 			}
 		}
 	}

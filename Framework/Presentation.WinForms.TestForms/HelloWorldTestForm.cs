@@ -1,5 +1,5 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.WinForms.TestForms
@@ -14,7 +14,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
 		private void Initialize()
 		{
-			Text = this.GetType().FullName;
+			Text = GetType().FullName;
 
 			var diagram = new Diagram();
 

@@ -1,7 +1,7 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+﻿using System.Diagnostics;
 using JJ.Framework.Exceptions;
-using System.Diagnostics;
 using JJ.Framework.Presentation.VectorGraphics.Helpers;
+using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 	{
 		public Label()
 		{
-			Position = new LabelPosition(this);
+			Position = new RectanglePosition(this);
 		}
 
 		public override ElementPosition Position { get; }
@@ -22,14 +22,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 		public TextStyle TextStyle
 		{
 			[DebuggerHidden]
-			get { return _textStyle; }
-			set
-			{
-				if (value == null) throw new NullException(() => value);
-				_textStyle = value;
-			}
+			get => _textStyle;
+			set => _textStyle = value ?? throw new NullException(() => value);
 		}
 
-		private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
+		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}
 }

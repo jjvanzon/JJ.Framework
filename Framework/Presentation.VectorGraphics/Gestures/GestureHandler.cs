@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Mathematics;
 using JJ.Framework.Presentation.VectorGraphics.EventArg;
@@ -14,9 +14,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
 		public GestureHandler(Diagram diagram)
 		{
-			if (diagram == null) throw new NullException(() => diagram);
-
-			_diagram = diagram;
+			_diagram = diagram ?? throw new NullException(() => diagram);
 
 			InitializeMouseMoveGesture();
 		}

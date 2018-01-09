@@ -1,4 +1,6 @@
-﻿JJ.Framework.Presentation.WinForms has a couple of controls in it and a form.
+﻿# JJ.Framework.Presentation.WinForms
+
+Has a couple of controls in it and a form.
 
 Most notably, the DiagramControl, which works with JJ.Framework.Presentation.VectorGraphics, which allows you to use shapes and text with keyboard and mouse gestures to create a kind of interactive diagram or graphical editor. DiagramControl makes that usable in WinForms.
 

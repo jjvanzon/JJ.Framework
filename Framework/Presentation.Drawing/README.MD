@@ -1,3 +1,5 @@
-﻿JJ.Framework.Presentation.Drawing is mostly about mapping JJ.Framework.Presentation.VectorGraphics to System.Drawing, making that Vector Graphics API usable with System.Drawing.
+﻿# JJ.Framework.Presentation.Drawing
+
+Is mostly about mapping JJ.Framework.Presentation.VectorGraphics to System.Drawing, making that Vector Graphics API usable with System.Drawing.
 
 But it also contains a class GraphicsBuffer, which allows you to draw graphics in a buffer, and only if you are done, draw the result to the target Graphics. This allows you to create smoothly drawn graphics with System.Drawing.

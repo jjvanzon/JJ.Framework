@@ -1,11 +1,10 @@
-﻿using JJ.Framework.Business;
-using JJ.Framework.Presentation.VectorGraphics.Relationships;
-using JJ.Framework.Presentation.VectorGraphics.SideEffects;
-using JJ.Framework.Exceptions;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.VectorGraphics.Relationships;
+using JJ.Framework.Presentation.VectorGraphics.SideEffects;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
@@ -18,9 +17,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 
 		internal DiagramElements(Diagram diagram)
 		{
-			if (diagram == null) throw new NullException(() => diagram);
-
-			_diagram = diagram;
+			_diagram = diagram ?? throw new NullException(() => diagram);
 
 			_relationship = new DiagramToElementsRelationship(diagram, _elements);
 		}

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
@@ -14,12 +14,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 		public BackStyle BackStyle
 		{
 			[DebuggerHidden]
-			get { return _backStyle; }
-			set
-			{
-				if (value == null) throw new NullException(() => value);
-				_backStyle = value;
-			}
+			get => _backStyle;
+			set => _backStyle = value ?? throw new NullException(() => value);
 		}
 
 		private LineStyle _topLineStyle = new LineStyle();
@@ -27,12 +23,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 		public LineStyle TopLineStyle
 		{
 			[DebuggerHidden]
-			get { return _topLineStyle; }
-			set
-			{
-				if (value == null) throw new NullException(() => value);
-				_topLineStyle = value;
-			}
+			get => _topLineStyle;
+			set => _topLineStyle = value ?? throw new NullException(() => value);
 		}
 
 		private LineStyle _rightLineStyle = new LineStyle();
@@ -40,12 +32,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 		public LineStyle RightLineStyle
 		{
 			[DebuggerHidden]
-			get { return _rightLineStyle; }
-			set
-			{
-				if (value == null) throw new NullException(() => value);
-				_rightLineStyle = value;
-			}
+			get => _rightLineStyle;
+			set => _rightLineStyle = value ?? throw new NullException(() => value);
 		}
 
 		private LineStyle _bottomLineStyle = new LineStyle();
@@ -53,12 +41,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 		public LineStyle BottomLineStyle
 		{
 			[DebuggerHidden]
-			get { return _bottomLineStyle; }
-			set
-			{
-				if (value == null) throw new NullException(() => value);
-				_bottomLineStyle = value;
-			}
+			get => _bottomLineStyle;
+			set => _bottomLineStyle = value ?? throw new NullException(() => value);
 		}
 
 		private LineStyle _leftLineStyle = new LineStyle();
@@ -66,12 +50,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 		public LineStyle LeftLineStyle
 		{
 			[DebuggerHidden]
-			get { return _leftLineStyle; }
-			set
-			{
-				if (value == null) throw new NullException(() => value);
-				_leftLineStyle = value;
-			}
+			get => _leftLineStyle;
+			set => _leftLineStyle = value ?? throw new NullException(() => value);
 		}
 
 		/// <summary>

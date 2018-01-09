@@ -1,7 +1,7 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
-using JJ.Framework.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
@@ -54,8 +54,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 			get { return _lineStyle; }
 			set
 			{
-				if (value == null) throw new NullException(() => value);
-				_lineStyle = value;
+				_lineStyle = value ?? throw new NullException(() => value);
 			}
 		}
 
@@ -71,8 +70,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 			get { return _calculatedLines; }
 			internal set
 			{
-				if (value == null) throw new NullException(() => value);
-				_calculatedLines = value;
+				_calculatedLines = value ?? throw new NullException(() => value);
 			}
 		}
 	}

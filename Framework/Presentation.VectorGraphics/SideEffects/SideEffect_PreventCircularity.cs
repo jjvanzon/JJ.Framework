@@ -1,7 +1,7 @@
 ﻿using System;
 using JJ.Framework.Business;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
 {
@@ -12,10 +12,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
 
 		public SideEffect_PreventCircularity(Element child, Element parent)
 		{
-			if (child == null) throw new NullException(() => child);
-
 			_parent = parent;
-			_child = child;
+			_child = child ?? throw new NullException(() => child);
 		}
 
 		public void Execute()

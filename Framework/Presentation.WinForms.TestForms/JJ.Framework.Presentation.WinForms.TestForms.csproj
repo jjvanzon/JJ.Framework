@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EllipseTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EllipseTestForm.Designer.cs">
+      <DependentUpon>EllipseTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\CalculationVisitor_Accessor.cs" />
     <Compile Include="Helpers\Element_Accessor.cs" />
     <Compile Include="CurveTestForm.cs">
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FilePathControlTestForm.resx">
       <DependentUpon>FilePathControlTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EllipseTestForm.resx">
+      <DependentUpon>EllipseTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ScaleTestForm.resx">
       <DependentUpon>ScaleTestForm.cs</DependentUpon>

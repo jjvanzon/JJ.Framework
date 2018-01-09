@@ -4,17 +4,17 @@ using JJ.Framework.Presentation.VectorGraphics.Helpers;
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
 	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
-	public class Rectangle : Element
+	public class Ellipse : Element
 	{
-		public Rectangle()
+		public Ellipse()
 		{
 			Position = new RectanglePosition(this);
-			Style = new RectangleStyle();
+			Style = new EllipseStyle();
 		}
 
 		public override ElementPosition Position { get; }
 
-		public RectangleStyle Style { get; }
+		public EllipseStyle Style { get; }
 
 		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}

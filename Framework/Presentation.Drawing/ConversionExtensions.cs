@@ -1,8 +1,9 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
-using JJ.Framework.Exceptions;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.VectorGraphics.Enums;
+using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using VectorGraphicsStyling = JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 
@@ -45,10 +46,32 @@ namespace JJ.Framework.Presentation.Drawing
 		{
 			if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
-			float x = BoundsHelper.CorrectCoordinate(sourceRectangle.CalculatedValues.XInPixels);
-			float y = BoundsHelper.CorrectCoordinate(sourceRectangle.CalculatedValues.YInPixels);
-			float width = BoundsHelper.CorrectLength(sourceRectangle.CalculatedValues.WidthInPixels);
-			float height = BoundsHelper.CorrectLength(sourceRectangle.CalculatedValues.HeightInPixels);
+			RectangleF destRectangleF = sourceRectangle.CalculatedValues.ToSystemDrawingRectangleF();
+
+			return destRectangleF;
+		}
+
+		// Ellipse
+
+		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.Ellipse sourceElement)
+		{
+			if (sourceElement == null) throw new NullException(() => sourceElement);
+
+			RectangleF destRectangleF = sourceElement.CalculatedValues.ToSystemDrawingRectangleF();
+
+			return destRectangleF;
+		}
+
+		// Calculated Values
+
+		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.CalculatedValues calculatedValues)
+		{
+			if (calculatedValues == null) throw new ArgumentNullException(nameof(calculatedValues));
+
+			float x = BoundsHelper.CorrectCoordinate(calculatedValues.XInPixels);
+			float y = BoundsHelper.CorrectCoordinate(calculatedValues.YInPixels);
+			float width = BoundsHelper.CorrectLength(calculatedValues.WidthInPixels);
+			float height = BoundsHelper.CorrectLength(calculatedValues.HeightInPixels);
 
 			var destRectangleF = new RectangleF(x, y, width, height);
 

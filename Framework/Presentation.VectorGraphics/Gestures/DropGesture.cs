@@ -1,7 +1,7 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.VectorGraphics.EventArg;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 {
@@ -17,9 +17,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Gestures
 
 		public DropGesture(IList<DragGesture> dragGestures)
 		{
-			if (dragGestures == null) throw new NullException(() => dragGestures);
-
-			_dragGestures = dragGestures;
+			_dragGestures = dragGestures ?? throw new NullException(() => dragGestures);
 		}
 
 		protected override void HandleMouseUp(object sender, MouseEventArgs e)

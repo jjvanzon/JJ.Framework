@@ -1,7 +1,7 @@
 ﻿using System;
 using JJ.Framework.Business;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
 {
@@ -13,10 +13,8 @@ namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
 		/// <param name="diagram">nullable</param>
 		public SideEffect_AssertCannotChangeBackGroundDiagram(Element element, Diagram diagram)
 		{
-			if (element == null) throw new NullException(() => element);
-
 			_diagram = diagram;
-			_element = element;
+			_element = element ?? throw new NullException(() => element);
 		}
 
 		public void Execute()

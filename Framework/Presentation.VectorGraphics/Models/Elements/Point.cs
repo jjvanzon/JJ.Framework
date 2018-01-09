@@ -1,17 +1,14 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+﻿using System.Diagnostics;
 using JJ.Framework.Exceptions;
-using System.Diagnostics;
 using JJ.Framework.Presentation.VectorGraphics.Helpers;
+using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
 	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public class Point : Element
 	{
-		public Point()
-		{
-			Position = new PointPosition(this);
-		}
+		public Point() => Position = new PointPosition(this);
 
 		public override ElementPosition Position { get; }
 
@@ -20,14 +17,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 		public PointStyle PointStyle
 		{
 			[DebuggerHidden]
-			get { return _pointStyle; }
-			set
-			{
-				if (value == null) throw new NullException(() => value);
-				_pointStyle = value;
-			}
+			get => _pointStyle;
+			set => _pointStyle = value ?? throw new NullException(() => value);
 		}
 
-		private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
+		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}
 }

@@ -1,6 +1,6 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+﻿using System;
 using JJ.Framework.Exceptions;
-using System;
+using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.Presentation.VectorGraphics.EventArg
 {
@@ -12,9 +12,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.EventArg
 
 		public DraggingEventArgs(Element elementBeingDragged, float x, float y)
 		{
-			if (elementBeingDragged == null) throw new NullException(() => elementBeingDragged);
-
-			ElementBeingDragged = elementBeingDragged;
+			ElementBeingDragged = elementBeingDragged ?? throw new NullException(() => elementBeingDragged);
 			X = x;
 			Y = y;
 		}

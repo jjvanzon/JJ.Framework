@@ -1,17 +1,14 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+﻿using System.Diagnostics;
 using JJ.Framework.Exceptions;
-using System.Diagnostics;
 using JJ.Framework.Presentation.VectorGraphics.Helpers;
+using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
 	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public class Line : Element
 	{
-		public Line()
-		{
-			Position = new LinePosition(this);
-		}
+		public Line() => Position = new LinePosition(this);
 
 		public override ElementPosition Position { get; }
 
@@ -26,14 +23,10 @@ namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 		public LineStyle LineStyle
 		{
 			[DebuggerHidden]
-			get { return _lineStyle; }
-			set
-			{
-				if (value == null) throw new NullException(() => value);
-				_lineStyle = value;
-			}
+			get => _lineStyle;
+			set => _lineStyle = value ?? throw new NullException(() => value);
 		}
 
-		private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
+		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}
 }

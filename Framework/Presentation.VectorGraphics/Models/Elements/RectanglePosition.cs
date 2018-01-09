@@ -1,9 +1,12 @@
 ﻿namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
+	/// <summary>
+	/// Not only used for Rectangles, but also used for Labels and Circles.
+	/// </summary>
 	public class RectanglePosition : ElementPosition
 	{
-		internal RectanglePosition(Rectangle point)
-			: base(point)
+		internal RectanglePosition(Element element)
+			: base(element)
 		{ }
 
 		public override float X { get; set; }
