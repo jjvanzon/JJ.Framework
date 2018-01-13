@@ -80,7 +80,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Visitors
 		protected override void VisitPolymorphic(Element element)
 		{
 			// It seems too coincidental that determining Visible and Enabled works this way. But it does.
-			// I would think I woul dneed to put variables on the call stack or work with a new virtual style on each stack frame,
+			// I would think I would need to put variables on the call stack or work with a new virtual style on each stack frame,
 			// but apparently this works too.
 
 			element.CalculatedValues.Visible = element.Visible;

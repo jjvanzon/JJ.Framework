@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
 {
 	/// <summary>
-	/// Not only used for Rectangles, but also used for Labels and Circles.
+	/// Not only used for Rectangles, but also used for Labels and Ellipses.
 	/// </summary>
 	public class RectanglePosition : ElementPosition
 	{

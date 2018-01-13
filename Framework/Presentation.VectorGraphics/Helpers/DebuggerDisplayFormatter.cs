@@ -56,7 +56,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 			return sb.ToString();
 		}
 
-		internal static string GetDebuggerDisplay(Line line)
+		public static string GetDebuggerDisplay(Line line)
 		{
 			if (line == null) throw new NullException(() => line);
 
@@ -90,7 +90,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 			return sb.ToString();
 		}
 
-		internal static string GetDebuggerDisplay(Point point)
+		public static string GetDebuggerDisplay(Point point)
 		{
 			if (point == null) throw new NullException(() => point);
 
@@ -111,7 +111,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 			return sb.ToString();
 		}
 
-		internal static string GetDebuggerDisplay(Rectangle rectangle)
+		public static string GetDebuggerDisplay(Rectangle rectangle)
 		{
 			if (rectangle == null) throw new NullException(() => rectangle);
 
@@ -135,7 +135,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Helpers
 			return sb.ToString();
 		}
 
-		internal static string GetDebuggerDisplay(ElementPosition elementPosition)
+		public static string GetDebuggerDisplay(ElementPosition elementPosition)
 		{
 			return $"X={elementPosition.X}, Y={elementPosition.Y}, Width={elementPosition.Width}, Height={elementPosition.Height}";
 		}
