@@ -22,5 +22,35 @@ namespace JJ.Framework.Common
 		{
 			return double.IsNaN(value) || double.IsInfinity(value);
 		}
+
+		public static double? ParseNullable(string input)
+		{
+			if (string.IsNullOrWhiteSpace(input))
+			{
+				return null;
+			}
+
+			return double.Parse(input);
+		}
+
+		public static bool TryParse(string input, out double? output)
+		{
+			output = default;
+
+			if (string.IsNullOrWhiteSpace(input))
+			{
+				return true;
+			}
+
+			bool result = double.TryParse(input, out double temp);
+			if (!result)
+			{
+				return false;
+			}
+
+			output = temp;
+
+			return true;
+		}
 	}
 }
