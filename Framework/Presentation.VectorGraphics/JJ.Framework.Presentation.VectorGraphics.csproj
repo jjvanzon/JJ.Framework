@@ -44,6 +44,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\GridSnapModeEnum.cs" />
     <Compile Include="Enums\KeyCodeEnum.cs" />
     <Compile Include="Enums\ScaleModeEnum.cs" />
     <Compile Include="EventArg\ElementEventArgs.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Gestures\DropGesture.cs" />
     <Compile Include="Gestures\GestureBase.cs" />
     <Compile Include="Gestures\GestureInternals.cs" />
+    <Compile Include="Gestures\GridSnapGesture.cs" />
     <Compile Include="Gestures\KeyDownGesture.cs" />
     <Compile Include="Gestures\KeyUpGesture.cs" />
     <Compile Include="Gestures\MouseLeaveGesture.cs" />

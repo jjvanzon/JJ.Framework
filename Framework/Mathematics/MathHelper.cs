@@ -132,6 +132,28 @@ namespace JJ.Framework.Mathematics
 
 		/// <summary>
 		/// Rounds to multiples of step, with an offset.
+		/// It uses Math.Round as a helper, which supports a wide range of values.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static float RoundWithStep(float value, float step, float offset)
+		{
+			float temp = (value - offset) / step;
+			return (float)(Math.Round(temp, MidpointRounding.AwayFromZero) * step + offset);
+		}
+
+		/// <summary>
+		/// Rounds to multiples of step, with an offset.
+		/// It uses Math.Round as a helper, which supports a wide range of values.
+		/// </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static float RoundWithStep(float value, float step)
+		{
+			float temp = value / step;
+			return (float)(Math.Round(temp, MidpointRounding.AwayFromZero) * step);
+		}
+
+		/// <summary>
+		/// Rounds to multiples of step, with an offset.
 		/// It uses a cast to Int64 as a helper,
 		/// which might be faster than Math.Round,
 		/// but means you are stuck within the value bounds of long.
@@ -142,7 +164,7 @@ namespace JJ.Framework.Mathematics
 			float temp = (value - offset) / step;
 
 			// Correct for rounding away from 0.
-			if (temp > 0.0) temp += 0.5f;
+			if (temp > 0.0f) temp += 0.5f;
 			else temp -= 0.5f;
 
 			return (long)temp * step + offset;
