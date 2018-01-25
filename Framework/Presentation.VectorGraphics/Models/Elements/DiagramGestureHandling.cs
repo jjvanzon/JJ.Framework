@@ -1,8 +1,8 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using JJ.Framework.Presentation.VectorGraphics.Gestures;
-using JJ.Framework.Exceptions;
+﻿using JJ.Framework.Exceptions;
+using JJ.Framework.VectorGraphics.EventArg;
+using JJ.Framework.VectorGraphics.Gestures;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
+namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	/// <summary> For when you need to send primitive gestures to the diagram. </summary>
 	public class DiagramGestureHandling

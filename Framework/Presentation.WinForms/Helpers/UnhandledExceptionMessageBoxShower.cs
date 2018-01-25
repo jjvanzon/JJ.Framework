@@ -1,9 +1,9 @@
-﻿using JJ.Framework.Logging;
-using System;
+﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using JJ.Framework.Logging;
 
-namespace JJ.Framework.Presentation.WinForms
+namespace JJ.Framework.WinForms.Helpers
 {
 	public static class UnhandledExceptionMessageBoxShower
 	{

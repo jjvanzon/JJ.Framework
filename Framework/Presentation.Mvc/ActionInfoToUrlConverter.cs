@@ -1,11 +1,12 @@
-﻿using JJ.Framework.Exceptions;
-using JJ.Framework.Web;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation;
+using JJ.Framework.Web;
 
-namespace JJ.Framework.Presentation.Mvc
+namespace JJ.Framework.Mvc
 {
 	internal static class ActionInfoToUrlConverter
 	{

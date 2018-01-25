@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace JJ.Framework.Presentation.Mvc
+namespace JJ.Framework.Mvc
 {
 	/// <summary>
 	/// We need this interface to have a mutual type, because the ViewMapping base class is generic.

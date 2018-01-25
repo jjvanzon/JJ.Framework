@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone;
+using JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms
+namespace JJ.Framework.WinForms.TestForms
 {
 	internal partial class PickATestForm : Form
 	{

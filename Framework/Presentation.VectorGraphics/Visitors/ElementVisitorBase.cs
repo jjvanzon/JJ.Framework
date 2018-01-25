@@ -1,7 +1,7 @@
 ﻿using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using JJ.Framework.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Visitors
+namespace JJ.Framework.VectorGraphics.Visitors
 {
 	internal abstract class ElementVisitorBase
 	{

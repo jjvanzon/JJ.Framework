@@ -1,12 +1,12 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using JJ.Framework.Collections;
+using JJ.Framework.Exceptions;
 
-namespace JJ.Framework.Presentation.WinForms.Helpers
+namespace JJ.Framework.WinForms.Helpers
 {
 	public static class ControlHelper
 	{

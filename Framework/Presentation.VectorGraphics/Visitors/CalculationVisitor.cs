@@ -2,11 +2,11 @@
 using System.Linq;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Mathematics;
-using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using JJ.Framework.VectorGraphics.Enums;
+using JJ.Framework.VectorGraphics.Models.Elements;
+using JJ.Framework.VectorGraphics.Models.Styling;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Visitors
+namespace JJ.Framework.VectorGraphics.Visitors
 {
 	/// <summary>
 	/// Takes a set of VectorGraphics elements that can have a hierarchy of child elements

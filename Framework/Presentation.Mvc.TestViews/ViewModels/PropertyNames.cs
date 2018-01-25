@@ -1,4 +1,4 @@
-﻿namespace JJ.OneOff.BeginCollectionItemTest.ViewModels
+﻿namespace JJ.Framework.Mvc.TestViews.ViewModels
 {
 	public static class PropertyNames
 	{

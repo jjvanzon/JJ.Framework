@@ -1,12 +1,12 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using System.Windows.Forms;
-using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using VectorGraphicsStyling = JJ.Framework.Presentation.VectorGraphics.Models.Styling;
-using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.Helpers;
-using JJ.Framework.Presentation.VectorGraphics.Gestures;
+﻿using System.Windows.Forms;
+using JJ.Framework.VectorGraphics.Enums;
+using JJ.Framework.VectorGraphics.Gestures;
+using JJ.Framework.VectorGraphics.Helpers;
+using JJ.Framework.VectorGraphics.Models.Elements;
+using JJ.Framework.VectorGraphics.Models.Styling;
+using Label = JJ.Framework.VectorGraphics.Models.Elements.Label;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms
+namespace JJ.Framework.WinForms.TestForms
 {
 	internal partial class CurveTestForm : Form
 	{
@@ -24,14 +24,14 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
 			var diagram = new Diagram();
 
-			var label = new VectorGraphicsElements.Label
+			var label = new Label
 			{
 				Diagram = diagram,
 				Parent = diagram.Background,
 				Text = "Note: You can move around the points.",
-				TextStyle = new VectorGraphicsStyling.TextStyle
+				TextStyle = new TextStyle
 				{
-					Font = new VectorGraphicsStyling.Font
+					Font = new Font
 					{
 						Size = 12,
 						Bold = true
@@ -75,7 +75,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 					Parent = diagram.Background
 				},
 
-				LineStyle = new VectorGraphicsStyling.LineStyle
+				LineStyle = new LineStyle
 				{
 					Width = 3
 				}
@@ -96,7 +96,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 			_curve.PointB.Position.X = 1000;
 			_curve.PointB.Position.Y = 600;
 
-			var demoLineStyle = new VectorGraphicsStyling.LineStyle
+			var demoLineStyle = new LineStyle
 			{
 				Width = 2,
 				DashStyleEnum = DashStyleEnum.Dashed,

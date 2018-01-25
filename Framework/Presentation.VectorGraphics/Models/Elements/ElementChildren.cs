@@ -1,12 +1,12 @@
-﻿using JJ.Framework.Exceptions;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Diagnostics;
-using JJ.Framework.Presentation.VectorGraphics.Relationships;
-using JJ.Framework.Presentation.VectorGraphics.SideEffects;
+using System.Linq;
+using JJ.Framework.Exceptions;
+using JJ.Framework.VectorGraphics.Relationships;
+using JJ.Framework.VectorGraphics.SideEffects;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
+namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	public class ElementChildren : IEnumerable<Element>
 	{

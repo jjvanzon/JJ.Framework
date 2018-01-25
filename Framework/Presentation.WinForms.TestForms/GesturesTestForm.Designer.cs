@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Presentation.WinForms.TestForms
+﻿using JJ.Framework.WinForms.Controls;
+
+namespace JJ.Framework.WinForms.TestForms
 {
 	partial class GesturesTestForm
 	{
@@ -29,7 +31,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.diagramControl1 = new JJ.Framework.Presentation.WinForms.Controls.DiagramControl();
+			this.diagramControl1 = new DiagramControl();
 			this.SuspendLayout();
 			// 
 			// diagramControl1
@@ -54,7 +56,7 @@
 
 		#endregion
 
-		private Controls.DiagramControl diagramControl1;
+		private DiagramControl diagramControl1;
 	}
 }
 

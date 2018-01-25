@@ -1,8 +1,8 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using System;
+﻿using System;
+using JJ.Framework.VectorGraphics.Enums;
+using JJ.Framework.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.VectorGraphics.EventArg
+namespace JJ.Framework.VectorGraphics.EventArg
 {
 	public class MouseEventArgs : EventArgs
 	{

@@ -1,13 +1,14 @@
-﻿using JJ.Framework.Common;
-using JJ.Framework.Reflection;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Web;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using JJ.Framework.Common;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation;
+using JJ.Framework.Reflection;
+using JJ.Framework.Web;
 
-namespace JJ.Framework.Presentation.Mvc
+namespace JJ.Framework.Mvc
 {
 	// TODO: Make internal after making the Accessor class able to access internal classes,
 	// so internal classes can be used in unit tests.

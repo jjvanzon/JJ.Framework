@@ -1,18 +1,19 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
-using JJ.Framework.Exceptions;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using VectorGraphicsStyling = JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using JJ.Framework.Exceptions;
+using JJ.Framework.VectorGraphics.Enums;
+using JJ.Framework.VectorGraphics.Models.Styling;
+using Font = JJ.Framework.VectorGraphics.Models.Styling.Font;
+using Point = JJ.Framework.VectorGraphics.Models.Elements.Point;
+using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone
+namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 {
 	internal static class ConvertExtensions
 	{
 		// Point
 
-		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.Point sourcePoint)
+		public static RectangleF ToSystemDrawingRectangleF(this Point sourcePoint)
 		{
 			float pointWidth = sourcePoint.PointStyle.Width;
 			var destRectangleF = new RectangleF(
@@ -26,7 +27,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
 
 		// Rectangle
 
-		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.Rectangle sourceRectangle)
+		public static RectangleF ToSystemDrawingRectangleF(this Rectangle sourceRectangle)
 		{
 			if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
@@ -177,7 +178,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
 			return destBrush;
 		}
 
-		public static System.Drawing.Font ToSystemDrawing(this VectorGraphicsStyling.Font sourceFont)
+		public static System.Drawing.Font ToSystemDrawing(this Font sourceFont)
 		{
 			FontStyle destFontStyle = 0;
 

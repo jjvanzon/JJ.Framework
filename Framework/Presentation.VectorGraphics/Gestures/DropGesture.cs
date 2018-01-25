@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.EventArg;
+using JJ.Framework.VectorGraphics.EventArg;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Gestures
+namespace JJ.Framework.VectorGraphics.Gestures
 {
 	public class DropGesture : GestureBase
 	{

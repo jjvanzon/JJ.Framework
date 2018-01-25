@@ -1,8 +1,8 @@
-﻿using JJ.Framework.Business;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using System;
+﻿using System;
+using JJ.Framework.Business;
+using JJ.Framework.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
+namespace JJ.Framework.VectorGraphics.SideEffects
 {
 	internal class SideEffect_AssertDiagram_UponSettingParentOrChild : ISideEffect
 	{

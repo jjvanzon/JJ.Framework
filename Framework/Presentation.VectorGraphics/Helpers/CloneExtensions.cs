@@ -1,8 +1,7 @@
-﻿using System;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
-using JJ.Framework.Exceptions;
+﻿using JJ.Framework.Exceptions;
+using JJ.Framework.VectorGraphics.Models.Styling;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Helpers
+namespace JJ.Framework.VectorGraphics.Helpers
 {
 	public static class CloneExtensions
 	{

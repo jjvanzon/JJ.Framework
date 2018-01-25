@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Threading;
+using System.Windows.Forms;
 using JJ.Framework.Logging;
 
-namespace JJ.Framework.Presentation.WinForms.Controls
+namespace JJ.Framework.WinForms.Controls
 {
 	public partial class SimpleFileProcessControl : UserControl
 	{

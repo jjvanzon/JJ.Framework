@@ -2,7 +2,7 @@
 using System.Drawing.Drawing2D;
 using JJ.Framework.Exceptions;
 
-namespace JJ.Framework.Presentation.Drawing
+namespace JJ.Framework.Drawing
 {
 	/// <summary>
 	/// Allows you to draw graphics in a buffer,

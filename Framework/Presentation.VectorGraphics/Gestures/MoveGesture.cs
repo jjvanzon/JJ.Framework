@@ -1,9 +1,9 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using System;
-using JJ.Framework.Presentation.VectorGraphics.Helpers;
+﻿using System;
+using JJ.Framework.VectorGraphics.EventArg;
+using JJ.Framework.VectorGraphics.Helpers;
+using JJ.Framework.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Gestures
+namespace JJ.Framework.VectorGraphics.Gestures
 {
 	public class MoveGesture : GestureBase
 	{

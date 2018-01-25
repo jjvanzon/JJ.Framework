@@ -1,11 +1,11 @@
-﻿using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.Drawing;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using JJ.Framework.Drawing;
+using JJ.Framework.Exceptions;
 
-namespace JJ.Framework.Presentation.WinForms.Helpers
+namespace JJ.Framework.WinForms.Helpers
 {
 	/// <summary>
 	/// Allows you to draw graphics in a buffer,

@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Presentation.VectorGraphics.Enums
+﻿namespace JJ.Framework.VectorGraphics.Enums
 {
 	public enum ScaleModeEnum
 	{

@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace JJ.Framework.Presentation.WinForms.Forms
+namespace JJ.Framework.WinForms.Forms
 {
 	public partial class SimpleFileProcessForm : Form
 	{

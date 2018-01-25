@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.Helpers;
+using JJ.Framework.VectorGraphics.Enums;
+using JJ.Framework.VectorGraphics.Helpers;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Models.Styling
+namespace JJ.Framework.VectorGraphics.Models.Styling
 {
 	public class TextStyle
 	{

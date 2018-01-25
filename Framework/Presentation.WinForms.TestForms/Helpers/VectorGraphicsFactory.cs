@@ -1,7 +1,7 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Gestures;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+﻿using JJ.Framework.VectorGraphics.Gestures;
+using JJ.Framework.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
+namespace JJ.Framework.WinForms.TestForms.Helpers
 {
 	internal static class VectorGraphicsFactory
 	{

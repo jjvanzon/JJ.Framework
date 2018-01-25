@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using JJ.Framework.VectorGraphics.Models.Elements;
+using Label = JJ.Framework.VectorGraphics.Models.Elements.Label;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms
+namespace JJ.Framework.WinForms.TestForms
 {
 	internal partial class HelloWorldTestForm : Form
 	{
@@ -18,7 +18,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
 			var diagram = new Diagram();
 
-			var label = new VectorGraphicsElements.Label
+			var label = new Label
 			{
 				Diagram = diagram,
 				Parent = diagram.Background,

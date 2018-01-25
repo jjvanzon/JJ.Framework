@@ -7,8 +7,8 @@
     <ProjectGuid>{52E03E08-331A-4CA7-8D8F-6F598C94EED4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Presentation.VectorGraphics</RootNamespace>
-    <AssemblyName>JJ.Framework.Presentation.VectorGraphics</AssemblyName>
+    <RootNamespace>JJ.Framework.VectorGraphics</RootNamespace>
+    <AssemblyName>JJ.Framework.VectorGraphics</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
-using JJ.Framework.Presentation.WinForms.TestForms.Helpers;
+using JJ.Framework.WinForms.TestForms.Helpers;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms
+namespace JJ.Framework.WinForms.TestForms
 {
 	internal partial class HierarchyTestForm : Form
 	{

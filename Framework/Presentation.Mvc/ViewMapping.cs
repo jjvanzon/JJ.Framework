@@ -1,8 +1,9 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation;
 
-namespace JJ.Framework.Presentation.Mvc
+namespace JJ.Framework.Mvc
 {
 	public abstract class ViewMapping<TViewModel> : IViewMapping
 	{

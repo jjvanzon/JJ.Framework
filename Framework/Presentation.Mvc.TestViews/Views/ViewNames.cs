@@ -1,4 +1,4 @@
-﻿namespace JJ.OneOff.BeginCollectionItemTest.Views
+﻿namespace JJ.Framework.Mvc.TestViews.Views
 {
 	public static class ViewNames
 	{

@@ -1,13 +1,14 @@
-﻿using JJ.Framework.Exceptions;
-using JJ.Framework.Reflection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 using JJ.Framework.Collections;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Presentation;
+using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Presentation.Mvc
+namespace JJ.Framework.Mvc
 {
 	/// <summary>
 	/// Used for mapping view models to MVC actions, so we can dynamically redirect a view model to a controller action.

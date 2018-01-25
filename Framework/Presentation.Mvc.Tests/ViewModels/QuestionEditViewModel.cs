@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Presentation.Mvc.Tests.ViewModels
+﻿namespace JJ.Framework.Mvc.Tests.ViewModels
 {
 	public class QuestionEditViewModel
 	{

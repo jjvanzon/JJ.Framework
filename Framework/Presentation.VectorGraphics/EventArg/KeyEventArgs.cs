@@ -1,7 +1,7 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Enums;
-using System;
+﻿using System;
+using JJ.Framework.VectorGraphics.Enums;
 
-namespace JJ.Framework.Presentation.VectorGraphics.EventArg
+namespace JJ.Framework.VectorGraphics.EventArg
 {
 	public class KeyEventArgs : EventArgs
 	{

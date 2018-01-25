@@ -1,10 +1,10 @@
 ﻿using System;
-using System.IO;
-using System.Web.Mvc;
-using System.Web;
 using System.Collections.Generic;
+using System.IO;
+using System.Web;
+using System.Web.Mvc;
 
-namespace HtmlHelpers.BeginCollectionItem
+namespace JJ.Framework.Mvc.TestViews.Helpers
 {
 	public static class HtmlPrefixScopeExtensions
 	{

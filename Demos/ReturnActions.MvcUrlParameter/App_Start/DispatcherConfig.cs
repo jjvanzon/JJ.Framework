@@ -1,5 +1,5 @@
-﻿using ActionDispatcher = JJ.Framework.Presentation.Mvc.ActionDispatcher;
-using System.Reflection;
+﻿using System.Reflection;
+using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameter.App_Start
 {

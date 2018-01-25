@@ -1,9 +1,9 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Gestures;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
-using JJ.Framework.Presentation.VectorGraphics.Visitors;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using JJ.Framework.VectorGraphics.Gestures;
+using JJ.Framework.VectorGraphics.Models.Styling;
+using JJ.Framework.VectorGraphics.Visitors;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
+namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	public class Diagram
 	{

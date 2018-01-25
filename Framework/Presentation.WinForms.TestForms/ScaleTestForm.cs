@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using JJ.Framework.VectorGraphics.Enums;
+using JJ.Framework.VectorGraphics.EventArg;
+using JJ.Framework.VectorGraphics.Gestures;
+using JJ.Framework.VectorGraphics.Models.Elements;
+using JJ.Framework.WinForms.TestForms.Helpers;
 // ReSharper disable once RedundantUsingDirective
-using System.Drawing;
-using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using JJ.Framework.Presentation.VectorGraphics.Gestures;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Presentation.WinForms.TestForms.Helpers;
-using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using Label = JJ.Framework.VectorGraphics.Models.Elements.Label;
+using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms
+namespace JJ.Framework.WinForms.TestForms
 {
 	internal partial class ScaleTestForm : Form
 	{
@@ -47,7 +47,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 			DoubleClickGesture doubleClickGesture = diagramControl1.CreateDoubleClickGesture();
 			doubleClickGesture.DoubleClick += DoubleClickGesture_DoubleClick;
 
-			VectorGraphicsElements.Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
+			Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
 			rectangle.Gestures.Add(mouseDownGesture);
 			rectangle.Gestures.Add(mouseMoveGesture);
 			rectangle.Gestures.Add(mouseUpGesture);
@@ -72,7 +72,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 			var mouseDownGesture = new MouseDownGesture();
 			mouseDownGesture.MouseDown += mouseDownGesture_MouseDown;
 
-			VectorGraphicsElements.Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
+			Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
 			rectangle.Position.Y = 0;
 			rectangle.Position.X = 0;
 			rectangle.Position.Width = 200;
@@ -99,7 +99,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 			var mouseLeaveGesture = new MouseLeaveGesture();
 			mouseLeaveGesture.MouseLeave += mouseLeaveGesture_MouseLeave;
 
-			VectorGraphicsElements.Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
+			Rectangle rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Hello");
 			rectangle.Position.Y = 10;
 			rectangle.Position.X = 10;
 			rectangle.Position.Width = 10;
@@ -161,13 +161,13 @@ namespace JJ.Framework.Presentation.WinForms.TestForms
 
 		private void TrySetElementText(Element element, string text)
 		{
-			var label = element as VectorGraphicsElements.Label;
+			var label = element as Label;
 			if (label == null)
 			{
-				var rectangle = element as VectorGraphicsElements.Rectangle;
+				var rectangle = element as Rectangle;
 				if (rectangle != null)
 				{
-					label = rectangle.Children.OfType<VectorGraphicsElements.Label>().FirstOrDefault();
+					label = rectangle.Children.OfType<Label>().FirstOrDefault();
 				}
 			}
 

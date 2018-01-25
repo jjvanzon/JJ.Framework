@@ -1,10 +1,10 @@
-﻿using JJ.Framework.Exceptions;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using JJ.Framework.Presentation.WinForms.Helpers;
+using JJ.Framework.Exceptions;
+using JJ.Framework.WinForms.Helpers;
 
-namespace JJ.Framework.Presentation.WinForms.Extensions
+namespace JJ.Framework.WinForms.Extensions
 {
 	public static class ControlExtensions
 	{

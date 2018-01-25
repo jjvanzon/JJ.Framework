@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Helpers;
+using JJ.Framework.VectorGraphics.Helpers;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
+namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public abstract class ElementPosition

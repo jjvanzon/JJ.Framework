@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JJ.Framework.Presentation.Mvc
+namespace JJ.Framework.Mvc
 {
 	public class ViewMappingNotFoundException : Exception
 	{

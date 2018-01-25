@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
-using JJ.Framework.Presentation.VectorGraphics.Gestures;
+using JJ.Framework.VectorGraphics.Gestures;
 
-namespace JJ.Framework.Presentation.WinForms.Helpers
+namespace JJ.Framework.WinForms.Helpers
 {
 	public static class WinFormsVectorGraphicsHelper
 	{

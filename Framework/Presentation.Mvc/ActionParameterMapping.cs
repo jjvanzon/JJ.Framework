@@ -1,7 +1,6 @@
 ﻿using JJ.Framework.Exceptions;
-using System;
 
-namespace JJ.Framework.Presentation.Mvc
+namespace JJ.Framework.Mvc
 {
 	public class ActionParameterMapping
 	{

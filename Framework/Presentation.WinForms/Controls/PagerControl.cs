@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
-using JJ.Framework.Presentation.WinForms.EventArg;
-using JJ.Framework.Presentation.WinForms.Extensions;
+using JJ.Framework.Presentation;
+using JJ.Framework.WinForms.EventArg;
+using JJ.Framework.WinForms.Extensions;
 
-namespace JJ.Framework.Presentation.WinForms.Controls
+namespace JJ.Framework.WinForms.Controls
 {
 	public partial class PagerControl : UserControl
 	{

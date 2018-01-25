@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using JJ.Framework.Presentation;
 
-namespace JJ.Framework.Presentation.Mvc
+namespace JJ.Framework.Mvc
 {
 	public static class UrlHelperExtensions
 	{

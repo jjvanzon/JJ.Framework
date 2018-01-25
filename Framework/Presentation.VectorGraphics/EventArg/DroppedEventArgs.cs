@@ -1,8 +1,8 @@
 ﻿using System;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using JJ.Framework.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.VectorGraphics.EventArg
+namespace JJ.Framework.VectorGraphics.EventArg
 {
 	public class DroppedEventArgs : EventArgs
 	{

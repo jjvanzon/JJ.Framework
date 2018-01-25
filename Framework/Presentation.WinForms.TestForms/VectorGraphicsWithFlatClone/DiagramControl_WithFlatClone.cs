@@ -1,12 +1,12 @@
 ﻿using System.Windows.Forms;
-using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Presentation.WinForms.Helpers;
+using JJ.Framework.VectorGraphics.Models.Elements;
+using JJ.Framework.WinForms.Helpers;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone
+namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 {
 	internal partial class DiagramControl_WithFlatClone : UserControl
 	{
-		public VectorGraphicsElements.Rectangle RootVectorGraphicsRectangle { get; set; }
+		public Rectangle RootVectorGraphicsRectangle { get; set; }
 
 		// TODO: 
 		// Warning CA2213	'DiagramControl' contains field 'DiagramControl._graphicsBuffer' that is of IDisposable type: 'ControlGraphicsBuffer'. Change the Dispose method on 'DiagramControl' to call Dispose or Close on this field.

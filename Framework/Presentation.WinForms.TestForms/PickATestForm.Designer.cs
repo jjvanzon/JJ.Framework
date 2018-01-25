@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Presentation.WinForms.TestForms
+﻿using JJ.Framework.WinForms.Controls;
+
+namespace JJ.Framework.WinForms.TestForms
 {
 	partial class PickATestForm
 	{
@@ -28,7 +30,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.diagramControl1 = new JJ.Framework.Presentation.WinForms.Controls.DiagramControl();
+			this.diagramControl1 = new DiagramControl();
 			this.buttonShowHierarchyTestForm = new System.Windows.Forms.Button();
 			this.buttonShowVectorGraphicsWithFlatClone_TestForm = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -193,7 +195,7 @@
 
 		#endregion
 
-		private Controls.DiagramControl diagramControl1;
+		private DiagramControl diagramControl1;
 		private System.Windows.Forms.Button buttonShowHierarchyTestForm;
 		private System.Windows.Forms.Button buttonShowVectorGraphicsWithFlatClone_TestForm;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

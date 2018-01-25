@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using JJ.Framework.VectorGraphics.Models.Styling;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
+namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	public class RectangleStyle
 	{

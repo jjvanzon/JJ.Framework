@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace JJ.OneOff.BeginCollectionItemTest
+namespace JJ.Framework.Mvc.TestViews
 {
 	public class FilterConfig
 	{

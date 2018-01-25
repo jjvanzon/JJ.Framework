@@ -1,5 +1,5 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.OneOff.BeginCollectionItemTest.ViewModels.ItemViewModel>" %>
-<%@ Import Namespace="JJ.OneOff.BeginCollectionItemTest.Views" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.Framework.Mvc.TestViews.ViewModels.ItemViewModel>" %>
+<%@ Import Namespace="JJ.Framework.Mvc.TestViews.Views" %>
 
 <li>
     <%: Model.Name %> (<%: Model.ID %>)

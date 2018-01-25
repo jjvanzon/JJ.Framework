@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Presentation.WinForms.Helpers
+﻿namespace JJ.Framework.WinForms.Helpers
 {
 	public enum FileBrowseModeEnum
 	{

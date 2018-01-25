@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using JJ.Framework.VectorGraphics.Models.Styling;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
+namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	/// <summary>
 	/// Represents a curved line going from one point to the next,

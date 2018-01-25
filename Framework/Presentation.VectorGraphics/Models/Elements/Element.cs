@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using JJ.Framework.Presentation.VectorGraphics.Relationships;
-using JJ.Framework.Presentation.VectorGraphics.Gestures;
-using JJ.Framework.Presentation.VectorGraphics.SideEffects;
+using JJ.Framework.VectorGraphics.Gestures;
+using JJ.Framework.VectorGraphics.Relationships;
+using JJ.Framework.VectorGraphics.SideEffects;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
+namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	/// <summary> base class that can contain VectorGraphics child elements. </summary>
 	public abstract class Element

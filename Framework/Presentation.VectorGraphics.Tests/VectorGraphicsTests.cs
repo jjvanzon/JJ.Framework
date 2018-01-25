@@ -1,11 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using JJ.Framework.Testing;
-using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Presentation.VectorGraphics.Helpers;
+using JJ.Framework.VectorGraphics.Enums;
+using JJ.Framework.VectorGraphics.Helpers;
+using JJ.Framework.VectorGraphics.Models.Elements;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Tests
+namespace JJ.Framework.VectorGraphics.Tests
 {
 	[TestClass]
 	public class VectorGraphicsTests

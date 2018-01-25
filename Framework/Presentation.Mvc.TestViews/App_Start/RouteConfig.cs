@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace JJ.OneOff.BeginCollectionItemTest
+namespace JJ.Framework.Mvc.TestViews
 {
 	public class RouteConfig
 	{

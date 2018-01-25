@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<JJ.OneOff.BeginCollectionItemTest.ViewModels.ItemViewModel>" %>
-<%@ Import Namespace="JJ.OneOff.BeginCollectionItemTest.Views" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<JJ.Framework.Mvc.TestViews.ViewModels.ItemViewModel>" %>
+<%@ Import Namespace="JJ.Framework.Mvc.TestViews.Views" %>
 
 <!DOCTYPE html>
 

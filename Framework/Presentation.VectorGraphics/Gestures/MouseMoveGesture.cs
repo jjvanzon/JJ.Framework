@@ -1,7 +1,7 @@
 ﻿using System;
-using JJ.Framework.Presentation.VectorGraphics.EventArg;
+using JJ.Framework.VectorGraphics.EventArg;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Gestures
+namespace JJ.Framework.VectorGraphics.Gestures
 {
 	/// <summary>
 	/// WinForms sends a mouse move event,

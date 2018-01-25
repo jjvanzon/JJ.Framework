@@ -6,8 +6,8 @@
     <ProjectGuid>{2D46AA63-78C8-4905-BF83-D08A058CCBED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Presentation.Mvc.Tests</RootNamespace>
-    <AssemblyName>JJ.Framework.Presentation.Mvc.Tests</AssemblyName>
+    <RootNamespace>JJ.Framework.Mvc.Tests</RootNamespace>
+    <AssemblyName>JJ.Framework.Mvc.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -77,9 +77,9 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Presentation.Mvc\JJ.Framework.Presentation.Mvc.csproj">
+    <ProjectReference Include="..\Presentation.Mvc\JJ.Framework.Mvc.csproj">
       <Project>{fed3c829-d92a-4800-9462-a175ccac4c70}</Project>
-      <Name>JJ.Framework.Presentation.Mvc</Name>
+      <Name>JJ.Framework.Mvc</Name>
     </ProjectReference>
     <ProjectReference Include="..\Presentation\JJ.Framework.Presentation.csproj">
       <Project>{79b0eac3-5159-4fc8-b3d8-53315b205444}</Project>

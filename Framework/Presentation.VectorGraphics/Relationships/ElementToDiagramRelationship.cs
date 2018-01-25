@@ -1,7 +1,7 @@
 ﻿using JJ.Framework.Business;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using JJ.Framework.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Relationships
+namespace JJ.Framework.VectorGraphics.Relationships
 {
 	internal class ElementToDiagramRelationship : ManyToOneRelationship<Element, Diagram>
 	{

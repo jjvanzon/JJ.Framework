@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Reflection;
+using JJ.Framework.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Tests
+namespace JJ.Framework.VectorGraphics.Tests
 {
 	internal class CalculationVisitor_Accessor
 	{
@@ -10,7 +10,7 @@ namespace JJ.Framework.Presentation.VectorGraphics.Tests
 
 		public CalculationVisitor_Accessor()
 		{
-			_accessor = new Accessor("JJ.Framework.Presentation.VectorGraphics.Visitors.CalculationVisitor, JJ.Framework.Presentation.VectorGraphics");
+			_accessor = new Accessor("JJ.Framework.VectorGraphics.Visitors.CalculationVisitor, JJ.Framework.Presentation.VectorGraphics");
 		}
 
 		public IList<Element> Execute(Diagram diagram)

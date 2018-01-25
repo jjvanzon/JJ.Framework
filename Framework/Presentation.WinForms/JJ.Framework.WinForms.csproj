@@ -7,8 +7,8 @@
     <ProjectGuid>{84A66716-C686-4B8E-A092-CFE38CA7DDE0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Presentation.WinForms</RootNamespace>
-    <AssemblyName>JJ.Framework.Presentation.WinForms</AssemblyName>
+    <RootNamespace>JJ.Framework.WinForms</RootNamespace>
+    <AssemblyName>JJ.Framework.WinForms</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -122,13 +122,13 @@
       <Project>{ceeb755d-de12-4e70-816e-546c429b44b7}</Project>
       <Name>JJ.Framework.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Presentation.Drawing\JJ.Framework.Presentation.Drawing.csproj">
+    <ProjectReference Include="..\Presentation.Drawing\JJ.Framework.Drawing.csproj">
       <Project>{21802a52-f4f7-4366-b61d-06e1fb337b86}</Project>
-      <Name>JJ.Framework.Presentation.Drawing</Name>
+      <Name>JJ.Framework.Drawing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Presentation.VectorGraphics\JJ.Framework.Presentation.VectorGraphics.csproj">
+    <ProjectReference Include="..\Presentation.VectorGraphics\JJ.Framework.VectorGraphics.csproj">
       <Project>{52e03e08-331a-4ca7-8d8f-6f598c94eed4}</Project>
-      <Name>JJ.Framework.Presentation.VectorGraphics</Name>
+      <Name>JJ.Framework.VectorGraphics</Name>
     </ProjectReference>
     <ProjectReference Include="..\Presentation\JJ.Framework.Presentation.csproj">
       <Project>{79b0eac3-5159-4fc8-b3d8-53315b205444}</Project>

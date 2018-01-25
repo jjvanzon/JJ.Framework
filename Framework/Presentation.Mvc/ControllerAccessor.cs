@@ -1,9 +1,9 @@
-﻿using JJ.Framework.Reflection;
-using JJ.Framework.Exceptions;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Web.Mvc;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Presentation.Mvc
+namespace JJ.Framework.Mvc
 {
 	internal class ControllerAccessor
 	{

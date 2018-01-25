@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Web.Mvc;
 
-namespace JJ.Framework.Presentation.Mvc
+namespace JJ.Framework.Mvc
 {
 	public static class MvcCollectionExtensions
 	{

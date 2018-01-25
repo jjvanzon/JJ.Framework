@@ -1,49 +1,51 @@
 ﻿using System.Drawing;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using JJ.Framework.VectorGraphics.Models.Elements;
+using JJ.Framework.VectorGraphics.Models.Styling;
 using Font = System.Drawing.Font;
-using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using Point = JJ.Framework.VectorGraphics.Models.Elements.Point;
+using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
 
-namespace JJ.Framework.Presentation.Drawing
+namespace JJ.Framework.Drawing
 {
 	public static class VectorGraphicsDrawer
 	{
-		public static void Draw(VectorGraphicsElements.Diagram diagram, Graphics destGraphics)
+		public static void Draw(Diagram diagram, Graphics destGraphics)
 		{
 			if (diagram == null) throw new NullException(() => diagram);
 			if (destGraphics == null) throw new NullException(() => destGraphics);
 
-			foreach (VectorGraphicsElements.Element element in diagram.EnumerateElementsByZIndex())
+			foreach (Element element in diagram.EnumerateElementsByZIndex())
 			{
 				DrawPolymorphic(element, destGraphics);
 			}
 		}
 
-		private static void DrawPolymorphic(VectorGraphicsElements.Element sourceElement, Graphics destGraphics)
+		private static void DrawPolymorphic(Element sourceElement, Graphics destGraphics)
 		{
 			switch (sourceElement)
 			{
-				case VectorGraphicsElements.Point sourcePoint:
+				case Point sourcePoint:
 					DrawPoint(sourcePoint, destGraphics);
 					return;
 
-				case VectorGraphicsElements.Line sourceLine:
+				case Line sourceLine:
 					DrawLine(sourceLine, destGraphics);
 					return;
 
-				case VectorGraphicsElements.Rectangle sourceRectangle:
+				case Rectangle sourceRectangle:
 					DrawRectangle(sourceRectangle, destGraphics);
 					return;
 
-				case VectorGraphicsElements.Label sourceLabel:
+				case Label sourceLabel:
 					DrawLabel(sourceLabel, destGraphics);
 					return;
 
-				case VectorGraphicsElements.Curve sourceCurve:
+				case Curve sourceCurve:
 					DrawCurve(sourceCurve, destGraphics);
 					return;
 
-				case VectorGraphicsElements.Ellipse sourceEllipse:
+				case Ellipse sourceEllipse:
 					DrawEllipse(sourceEllipse, destGraphics);
 					return;
 
@@ -52,7 +54,7 @@ namespace JJ.Framework.Presentation.Drawing
 			}
 		}
 
-		private static void DrawPoint(VectorGraphicsElements.Point sourcePoint, Graphics destGraphics)
+		private static void DrawPoint(Point sourcePoint, Graphics destGraphics)
 		{
 			if (!sourcePoint.CalculatedValues.Visible || !sourcePoint.PointStyle.Visible)
 			{
@@ -66,7 +68,7 @@ namespace JJ.Framework.Presentation.Drawing
 			}
 		}
 
-		private static void DrawLine(VectorGraphicsElements.Line sourceLine, Graphics destGraphics)
+		private static void DrawLine(Line sourceLine, Graphics destGraphics)
 		{
 			if (!sourceLine.CalculatedValues.Visible || !sourceLine.LineStyle.Visible)
 			{
@@ -87,7 +89,7 @@ namespace JJ.Framework.Presentation.Drawing
 			}
 		}
 
-		private static void DrawRectangle(VectorGraphicsElements.Rectangle sourceRectangle, Graphics destGraphics)
+		private static void DrawRectangle(Rectangle sourceRectangle, Graphics destGraphics)
 		{
 			if (!sourceRectangle.CalculatedValues.Visible)
 			{
@@ -157,7 +159,7 @@ namespace JJ.Framework.Presentation.Drawing
 			}
 		}
 
-		private static void DrawLabel(VectorGraphicsElements.Label sourceLabel, Graphics destGraphics)
+		private static void DrawLabel(Label sourceLabel, Graphics destGraphics)
 		{
 			if (!sourceLabel.CalculatedValues.Visible)
 			{
@@ -186,15 +188,15 @@ namespace JJ.Framework.Presentation.Drawing
 			}
 		}
 
-		private static void DrawCurve(VectorGraphicsElements.Curve sourceCurve, Graphics destGraphics)
+		private static void DrawCurve(Curve sourceCurve, Graphics destGraphics)
 		{
-			foreach (VectorGraphicsElements.Line calculatedLine in sourceCurve.CalculatedLines)
+			foreach (Line calculatedLine in sourceCurve.CalculatedLines)
 			{
 				DrawLine(calculatedLine, destGraphics);
 			}
 		}
 
-		private static void DrawEllipse(VectorGraphicsElements.Ellipse sourceEllipse, Graphics destGraphics)
+		private static void DrawEllipse(Ellipse sourceEllipse, Graphics destGraphics)
 		{
 			if (!sourceEllipse.CalculatedValues.Visible)
 			{

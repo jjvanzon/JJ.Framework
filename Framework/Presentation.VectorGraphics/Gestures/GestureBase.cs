@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
-using JJ.Framework.Presentation.VectorGraphics.EventArg;
+using JJ.Framework.VectorGraphics.EventArg;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Gestures
+namespace JJ.Framework.VectorGraphics.Gestures
 {
 	/// <summary> Base class for gestures. </summary>
 	public abstract class GestureBase

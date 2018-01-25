@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
+namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	public class LinePosition : ElementPosition
 	{

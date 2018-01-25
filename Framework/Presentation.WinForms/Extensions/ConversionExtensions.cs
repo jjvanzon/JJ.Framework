@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Exceptions;
 
-namespace JJ.Framework.Presentation.WinForms.Extensions
+namespace JJ.Framework.WinForms.Extensions
 {
 	public static class ConversionExtensions
 	{

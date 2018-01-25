@@ -2,10 +2,10 @@
 using System.Linq;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Mathematics;
-using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using JJ.Framework.VectorGraphics.EventArg;
+using JJ.Framework.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Gestures
+namespace JJ.Framework.VectorGraphics.Gestures
 {
 	internal class GestureHandler
 	{

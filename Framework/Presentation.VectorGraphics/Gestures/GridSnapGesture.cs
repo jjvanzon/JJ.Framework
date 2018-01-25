@@ -1,10 +1,11 @@
 ﻿using System;
 using JJ.Framework.Mathematics;
-using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.EventArg;
+using JJ.Framework.VectorGraphics.Enums;
+using JJ.Framework.VectorGraphics.EventArg;
+
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
-namespace JJ.Framework.Presentation.VectorGraphics.Gestures
+namespace JJ.Framework.VectorGraphics.Gestures
 {
 	/// <summary>
 	/// A simple grid snap implementation. When a move gesture is associated with a grid snap gesture,

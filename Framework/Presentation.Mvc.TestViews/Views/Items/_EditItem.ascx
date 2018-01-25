@@ -1,7 +1,7 @@
-﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.OneOff.BeginCollectionItemTest.ViewModels.ItemViewModel>" %>
-<%@ Import Namespace="HtmlHelpers.BeginCollectionItem" %>
-<%@ Import Namespace="JJ.OneOff.BeginCollectionItemTest.Views" %>
-<%@ Import Namespace="JJ.OneOff.BeginCollectionItemTest.ViewModels" %>
+﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.Framework.Mvc.TestViews.ViewModels.ItemViewModel>" %>
+<%@ Import Namespace="JJ.Framework.Mvc.TestViews.Helpers" %>
+<%@ Import Namespace="JJ.Framework.Mvc.TestViews.ViewModels" %>
+<%@ Import Namespace="JJ.Framework.Mvc.TestViews.Views" %>
 
 <li>
     <%: Html.TextBoxFor(x => x.Name) %> (<%: Model.ID %>)

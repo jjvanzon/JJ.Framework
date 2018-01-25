@@ -1,11 +1,11 @@
-﻿using JJ.Framework.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using JJ.Framework.Common;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Presentation.Mvc.Tests
+namespace JJ.Framework.Mvc.Tests
 {
 	[TestClass]
 	public class UrlHelpersTests

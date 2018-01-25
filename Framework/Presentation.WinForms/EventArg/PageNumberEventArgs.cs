@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JJ.Framework.Presentation.WinForms.EventArg
+namespace JJ.Framework.WinForms.EventArg
 {
 	public class PageNumberEventArgs : EventArgs
 	{

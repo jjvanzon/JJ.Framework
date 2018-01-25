@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone
+﻿namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 {
 	partial class DiagramControl_WithFlatClone
 	{

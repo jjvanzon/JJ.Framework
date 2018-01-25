@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Helpers
+namespace JJ.Framework.VectorGraphics.Helpers
 {
 	public static class ColorHelper
 	{

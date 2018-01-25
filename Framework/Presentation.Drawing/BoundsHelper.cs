@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace JJ.Framework.Presentation.Drawing
+namespace JJ.Framework.Drawing
 {
 	internal static class BoundsHelper
 	{

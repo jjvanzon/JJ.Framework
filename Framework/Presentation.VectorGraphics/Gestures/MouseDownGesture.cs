@@ -1,7 +1,7 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.EventArg;
-using System;
+﻿using System;
+using JJ.Framework.VectorGraphics.EventArg;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Gestures
+namespace JJ.Framework.VectorGraphics.Gestures
 {
 	public class MouseDownGesture : GestureBase
 	{

@@ -1,7 +1,7 @@
 ﻿using JJ.Demos.ReturnActions.MvcUrlParameter.Names;
 using JJ.Demos.ReturnActions.Names;
 using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Framework.Presentation.Mvc;
+using JJ.Framework.Mvc;
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameter.ViewMapping
 {

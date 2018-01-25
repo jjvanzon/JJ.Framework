@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Presentation.VectorGraphics.Models.Styling
+﻿namespace JJ.Framework.VectorGraphics.Models.Styling
 {
 	public class Font
 	{

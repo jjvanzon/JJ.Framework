@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace JJ.OneOff.BeginCollectionItemTest
+namespace JJ.Framework.Mvc.TestViews
 {
 	public static class WebApiConfig
 	{

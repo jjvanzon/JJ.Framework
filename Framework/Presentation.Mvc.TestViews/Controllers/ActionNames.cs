@@ -1,4 +1,4 @@
-﻿namespace JJ.OneOff.BeginCollectionItemTest.Controllers
+﻿namespace JJ.Framework.Mvc.TestViews.Controllers
 {
 	public static class ActionNames
 	{

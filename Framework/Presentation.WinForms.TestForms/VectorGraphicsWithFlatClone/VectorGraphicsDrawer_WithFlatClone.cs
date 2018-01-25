@@ -1,53 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
-using JJ.Framework.Presentation.WinForms.TestForms.Helpers;
+using JJ.Framework.VectorGraphics.Models.Elements;
+using JJ.Framework.VectorGraphics.Models.Styling;
+using JJ.Framework.WinForms.TestForms.Helpers;
+using Point = JJ.Framework.VectorGraphics.Models.Elements.Point;
+using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClone
+namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 {
 	internal class VectorGraphicsDrawer_WithFlatClone
 	{
-		public void Draw(VectorGraphicsElements.Rectangle sourceBackground, Graphics destGraphics)
+		public void Draw(Rectangle sourceBackground, Graphics destGraphics)
 		{
 			if (sourceBackground == null) throw new NullException(() => sourceBackground);
 			if (destGraphics == null) throw new NullException(() => destGraphics);
 
 			var visitor_Accessor = new CalculationVisitor_Accessor();
-			IList<VectorGraphicsElements.Element> elements = visitor_Accessor.Execute(sourceBackground.Diagram);
+			IList<Element> elements = visitor_Accessor.Execute(sourceBackground.Diagram);
 
-			foreach (VectorGraphicsElements.Element element in elements)
+			foreach (Element element in elements)
 			{
 				DrawPolymorphic(element, destGraphics);
 			}
 		}
 
-		private void DrawPolymorphic(VectorGraphicsElements.Element sourceElement, Graphics destGraphics)
+		private void DrawPolymorphic(Element sourceElement, Graphics destGraphics)
 		{
-			var sourcePoint = sourceElement as VectorGraphicsElements.Point;
+			var sourcePoint = sourceElement as Point;
 			if (sourcePoint != null)
 			{
 				DrawPoint(sourcePoint, destGraphics);
 				return;
 			}
 
-			var sourceLine = sourceElement as VectorGraphicsElements.Line;
+			var sourceLine = sourceElement as Line;
 			if (sourceLine != null)
 			{
 				DrawLine(sourceLine, destGraphics);
 				return;
 			}
 
-			var sourceRectangle = sourceElement as VectorGraphicsElements.Rectangle;
+			var sourceRectangle = sourceElement as Rectangle;
 			if (sourceRectangle != null)
 			{
 				DrawRectangle(sourceRectangle, destGraphics);
 				return;
 			}
 
-			var sourceLabel = sourceElement as VectorGraphicsElements.Label;
+			var sourceLabel = sourceElement as Label;
 			if (sourceLabel != null)
 			{
 				DrawLabel(sourceLabel, destGraphics);
@@ -66,7 +68,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
 		//	}
 		//}
 
-		private void DrawPoint(VectorGraphicsElements.Point sourcePoint, Graphics destGraphics)
+		private void DrawPoint(Point sourcePoint, Graphics destGraphics)
 		{
 			if (sourcePoint.Visible && sourcePoint.PointStyle.Visible)
 			{
@@ -77,7 +79,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
 			}
 		}
 
-		private void DrawLine(VectorGraphicsElements.Line sourceLine, Graphics destGraphics)
+		private void DrawLine(Line sourceLine, Graphics destGraphics)
 		{
 			if (sourceLine.Visible && sourceLine.LineStyle.Visible)
 			{
@@ -94,7 +96,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
 			}
 		}
 
-		private void DrawRectangle(VectorGraphicsElements.Rectangle sourceRectangle, Graphics destGraphics)
+		private void DrawRectangle(Rectangle sourceRectangle, Graphics destGraphics)
 		{
 			if (!sourceRectangle.Visible)
 			{
@@ -151,7 +153,7 @@ namespace JJ.Framework.Presentation.WinForms.TestForms.VectorGraphicsWithFlatClo
 			}
 		}
 
-		private void DrawLabel(VectorGraphicsElements.Label sourceLabel, Graphics destGraphics)
+		private void DrawLabel(Label sourceLabel, Graphics destGraphics)
 		{
 			if (!sourceLabel.Visible)
 			{

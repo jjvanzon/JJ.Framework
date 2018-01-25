@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Presentation.VectorGraphics.Models.Elements
+﻿namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	/// <summary>
 	/// Not only used for Rectangles, but also used for Labels and Ellipses.

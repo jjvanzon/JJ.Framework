@@ -1,6 +1,6 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Helpers;
+﻿using JJ.Framework.VectorGraphics.Helpers;
 
-namespace JJ.Framework.Presentation.VectorGraphics.Models.Styling
+namespace JJ.Framework.VectorGraphics.Models.Styling
 {
 	public class PointStyle
 	{

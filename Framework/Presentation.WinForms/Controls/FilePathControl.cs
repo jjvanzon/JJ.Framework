@@ -1,12 +1,12 @@
-﻿using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.WinForms.EventArg;
-using JJ.Framework.Presentation.WinForms.Helpers;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using JJ.Framework.Exceptions;
+using JJ.Framework.WinForms.EventArg;
+using JJ.Framework.WinForms.Helpers;
 
-namespace JJ.Framework.Presentation.WinForms.Controls
+namespace JJ.Framework.WinForms.Controls
 {
 	public partial class FilePathControl : UserControl
 	{

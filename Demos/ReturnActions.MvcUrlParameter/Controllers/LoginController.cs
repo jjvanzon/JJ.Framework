@@ -1,9 +1,9 @@
-﻿using JJ.Demos.ReturnActions.MvcUrlParameter.Names;
+﻿using System.Web.Mvc;
+using JJ.Demos.ReturnActions.MvcUrlParameter.Names;
 using JJ.Demos.ReturnActions.Presenters;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Presentation;
-using ActionDispatcher = JJ.Framework.Presentation.Mvc.ActionDispatcher;
-using System.Web.Mvc;
+using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
 {

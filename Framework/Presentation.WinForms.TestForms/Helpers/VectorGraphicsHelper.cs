@@ -1,8 +1,8 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.Helpers;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+﻿using JJ.Framework.VectorGraphics.Enums;
+using JJ.Framework.VectorGraphics.Helpers;
+using JJ.Framework.VectorGraphics.Models.Styling;
 
-namespace JJ.Framework.Presentation.WinForms.TestForms.Helpers
+namespace JJ.Framework.WinForms.TestForms.Helpers
 {
 	public static class VectorGraphicsHelper
 	{

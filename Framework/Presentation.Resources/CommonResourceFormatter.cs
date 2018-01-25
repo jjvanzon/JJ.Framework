@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Presentation.Resources
+﻿namespace JJ.Framework.Resources
 {
 	public static class CommonResourceFormatter
 	{

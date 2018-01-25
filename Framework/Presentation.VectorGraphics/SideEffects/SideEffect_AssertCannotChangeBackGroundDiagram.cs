@@ -1,9 +1,9 @@
 ﻿using System;
 using JJ.Framework.Business;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
+using JJ.Framework.VectorGraphics.Models.Elements;
 
-namespace JJ.Framework.Presentation.VectorGraphics.SideEffects
+namespace JJ.Framework.VectorGraphics.SideEffects
 {
 	internal class SideEffect_AssertCannotChangeBackGroundDiagram : ISideEffect
 	{

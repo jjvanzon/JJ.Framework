@@ -1,7 +1,7 @@
-﻿using JJ.Framework.Presentation.Mvc.Tests.Names;
-using JJ.Framework.Presentation.Mvc.Tests.ViewModels;
+﻿using JJ.Framework.Mvc.Tests.Names;
+using JJ.Framework.Mvc.Tests.ViewModels;
 
-namespace JJ.Framework.Presentation.Mvc.Tests.ViewMappings
+namespace JJ.Framework.Mvc.Tests.ViewMappings
 {
 	public class LoginIndexViewMapping : ViewMapping<LoginViewModel>
 	{

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace JJ.OneOff.BeginCollectionItemTest.ViewModels
+namespace JJ.Framework.Mvc.TestViews.ViewModels
 {
 	public class ItemViewModel
 	{

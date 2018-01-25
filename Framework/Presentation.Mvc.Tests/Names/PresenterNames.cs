@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Presentation.Mvc.Tests.Names
+﻿namespace JJ.Framework.Mvc.Tests.Names
 {
 	internal static class PresenterNames
 	{

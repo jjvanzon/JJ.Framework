@@ -1,4 +1,8 @@
-﻿namespace JJ.Framework.Presentation.WinForms.TestForms
+﻿using JJ.Framework.WinForms.Controls;
+using JJ.Framework.WinForms.EventArg;
+using JJ.Framework.WinForms.Helpers;
+
+namespace JJ.Framework.WinForms.TestForms
 {
 	partial class FilePathControlTestForm
 	{
@@ -29,8 +33,8 @@
 		private void InitializeComponent()
 		{
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.filePathControl2 = new JJ.Framework.Presentation.WinForms.Controls.FilePathControl();
-			this.filePathControl1 = new JJ.Framework.Presentation.WinForms.Controls.FilePathControl();
+			this.filePathControl2 = new FilePathControl();
+			this.filePathControl1 = new FilePathControl();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -50,7 +54,7 @@
 			// 
 			// filePathControl2
 			// 
-			this.filePathControl2.BrowseMode = JJ.Framework.Presentation.WinForms.Helpers.FileBrowseModeEnum.Open;
+			this.filePathControl2.BrowseMode = FileBrowseModeEnum.Open;
 			this.filePathControl2.FilePath = "";
 			this.filePathControl2.LabelText = "Path";
 			this.filePathControl2.Location = new System.Drawing.Point(103, 53);
@@ -61,7 +65,7 @@
 			// 
 			// filePathControl1
 			// 
-			this.filePathControl1.BrowseMode = JJ.Framework.Presentation.WinForms.Helpers.FileBrowseModeEnum.Open;
+			this.filePathControl1.BrowseMode = FileBrowseModeEnum.Open;
 			this.filePathControl1.FilePath = "fadsfs";
 			this.filePathControl1.Font = new System.Drawing.Font("Verdana", 10F);
 			this.filePathControl1.LabelText = "Path";
@@ -71,7 +75,7 @@
 			this.filePathControl1.Size = new System.Drawing.Size(159, 77);
 			this.filePathControl1.Spacing = 0;
 			this.filePathControl1.TabIndex = 0;
-			this.filePathControl1.Browsed += new System.EventHandler<JJ.Framework.Presentation.WinForms.EventArg.FilePathEventArgs>(this.filePathControl1_Browsed);
+			this.filePathControl1.Browsed += new System.EventHandler<FilePathEventArgs>(this.filePathControl1_Browsed);
 			// 
 			// FilePathControlTestForm
 			// 
@@ -89,8 +93,8 @@
 
 		#endregion
 
-		private Controls.FilePathControl filePathControl1;
+		private FilePathControl filePathControl1;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-		private Controls.FilePathControl filePathControl2;
+		private FilePathControl filePathControl2;
 	}
 }

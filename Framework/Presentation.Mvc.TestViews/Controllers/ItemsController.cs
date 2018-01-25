@@ -1,8 +1,8 @@
-﻿using JJ.OneOff.BeginCollectionItemTest.ViewModels;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using JJ.Framework.Mvc.TestViews.ViewModels;
 
-namespace JJ.OneOff.BeginCollectionItemTest.Controllers
+namespace JJ.Framework.Mvc.TestViews.Controllers
 {
 	public class ItemsController : Controller
 	{

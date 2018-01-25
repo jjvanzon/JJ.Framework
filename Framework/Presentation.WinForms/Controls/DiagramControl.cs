@@ -1,13 +1,13 @@
-﻿using JJ.Framework.Presentation.Drawing;
-using JJ.Framework.Presentation.VectorGraphics.Gestures;
-using JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using JJ.Framework.Presentation.WinForms.Extensions;
-using JJ.Framework.Presentation.WinForms.Helpers;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using JJ.Framework.Drawing;
+using JJ.Framework.VectorGraphics.Gestures;
+using JJ.Framework.VectorGraphics.Models.Elements;
+using JJ.Framework.WinForms.Extensions;
+using JJ.Framework.WinForms.Helpers;
 
-namespace JJ.Framework.Presentation.WinForms.Controls
+namespace JJ.Framework.WinForms.Controls
 {
 	public partial class DiagramControl : UserControl
 	{

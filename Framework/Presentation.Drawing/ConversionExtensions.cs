@@ -2,12 +2,14 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using JJ.Framework.Exceptions;
-using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.Models.Styling;
-using VectorGraphicsElements = JJ.Framework.Presentation.VectorGraphics.Models.Elements;
-using VectorGraphicsStyling = JJ.Framework.Presentation.VectorGraphics.Models.Styling;
+using JJ.Framework.VectorGraphics.Enums;
+using JJ.Framework.VectorGraphics.Models.Elements;
+using JJ.Framework.VectorGraphics.Models.Styling;
+using Font = JJ.Framework.VectorGraphics.Models.Styling.Font;
+using Point = JJ.Framework.VectorGraphics.Models.Elements.Point;
+using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
 
-namespace JJ.Framework.Presentation.Drawing
+namespace JJ.Framework.Drawing
 {
 	public static class ConversionExtensions
 	{
@@ -15,7 +17,7 @@ namespace JJ.Framework.Presentation.Drawing
 
 		// Point
 
-		public static PointF ToSystemDrawingPointF(this VectorGraphicsElements.Point sourcePoint)
+		public static PointF ToSystemDrawingPointF(this Point sourcePoint)
 		{
 			if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
@@ -27,7 +29,7 @@ namespace JJ.Framework.Presentation.Drawing
 			return destPointF;
 		}
 
-		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.Point sourcePoint)
+		public static RectangleF ToSystemDrawingRectangleF(this Point sourcePoint)
 		{
 			if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
@@ -42,7 +44,7 @@ namespace JJ.Framework.Presentation.Drawing
 
 		// Rectangle
 
-		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.Rectangle sourceRectangle)
+		public static RectangleF ToSystemDrawingRectangleF(this Rectangle sourceRectangle)
 		{
 			if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 
@@ -53,7 +55,7 @@ namespace JJ.Framework.Presentation.Drawing
 
 		// Ellipse
 
-		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.Ellipse sourceElement)
+		public static RectangleF ToSystemDrawingRectangleF(this Ellipse sourceElement)
 		{
 			if (sourceElement == null) throw new NullException(() => sourceElement);
 
@@ -64,7 +66,7 @@ namespace JJ.Framework.Presentation.Drawing
 
 		// Calculated Values
 
-		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphicsElements.CalculatedValues calculatedValues)
+		public static RectangleF ToSystemDrawingRectangleF(this CalculatedValues calculatedValues)
 		{
 			if (calculatedValues == null) throw new ArgumentNullException(nameof(calculatedValues));
 
@@ -208,7 +210,7 @@ namespace JJ.Framework.Presentation.Drawing
 			return destBrush;
 		}
 
-		public static System.Drawing.Font ToSystemDrawing(this VectorGraphicsStyling.Font sourceFont, float dpi)
+		public static System.Drawing.Font ToSystemDrawing(this Font sourceFont, float dpi)
 		{
 			if (sourceFont == null) throw new NullException(() => sourceFont);
 
