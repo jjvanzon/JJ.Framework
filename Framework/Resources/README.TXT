@@ -1,0 +1,1 @@
+﻿JJ.Framework.Resources contains reusable button texts in multiple languages. Actually only two: Dutch and US English.

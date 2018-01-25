@@ -61,8 +61,10 @@
     <Compile Include="Gestures\MouseLeaveGesture.cs" />
     <Compile Include="Helpers\CloneExtensions.cs" />
     <Compile Include="Helpers\DebuggerDisplayFormatter.cs" />
+    <Compile Include="Helpers\ITextMeasurer.cs" />
     <Compile Include="Helpers\ScaleHelper.cs" />
-    <Compile Include="Helpers\TextHelper.cs" />
+    <Compile Include="Helpers\DefaultTextMeasurer.cs" />
+    <Compile Include="Helpers\WidthAndHeight.cs" />
     <Compile Include="Models\Elements\Ellipse.cs" />
     <Compile Include="Models\Elements\EllipseStyle.cs" />
     <Compile Include="Models\Elements\Curve.cs" />

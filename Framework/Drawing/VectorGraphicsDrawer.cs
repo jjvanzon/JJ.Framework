@@ -176,7 +176,7 @@ namespace JJ.Framework.Drawing
 
 			var destRectangle = new RectangleF(x, y, width, height);
 
-			using (Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing(destGraphics.DpiX))
+			using (Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing(DpiHelper.GetDpi(destGraphics)))
 			{
 				using (Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush())
 				{

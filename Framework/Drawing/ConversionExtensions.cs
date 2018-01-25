@@ -13,8 +13,6 @@ namespace JJ.Framework.Drawing
 {
 	public static class ConversionExtensions
 	{
-		private const float DEFAULT_DPI = 96;
-
 		// Point
 
 		public static PointF ToSystemDrawingPointF(this Point sourcePoint)
@@ -229,7 +227,7 @@ namespace JJ.Framework.Drawing
 			float fontSize = BoundsHelper.CorrectLength(sourceFont.Size);
 
 			// Get rid of Windows DPI scaling.
-			float antiDpiFactor =  DEFAULT_DPI / dpi;
+			float antiDpiFactor =  DpiHelper.GetAntiDpiFactor(dpi);
 			float destFontSize = fontSize * antiDpiFactor;
 
 			var destFont = new System.Drawing.Font(sourceFont.Name, destFontSize, destFontStyle);
