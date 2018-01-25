@@ -188,6 +188,11 @@ namespace JJ.Framework.Presentation.Drawing
 				destStringFormat.FormatFlags |= StringFormatFlags.NoWrap;
 			}
 
+			if (sourceTextStyle.Clip == false)
+			{
+				destStringFormat.FormatFlags |= StringFormatFlags.NoClip;
+			}
+
 			destStringFormat.Trimming = sourceTextStyle.Abbreviate ? StringTrimming.EllipsisCharacter : StringTrimming.None;
 
 			return destStringFormat;

@@ -1,36 +1,34 @@
-﻿using JJ.Framework.Presentation.VectorGraphics.Enums;
-using JJ.Framework.Presentation.VectorGraphics.Helpers;
+﻿using System.Diagnostics;
 using JJ.Framework.Exceptions;
-using System.Diagnostics;
+using JJ.Framework.Presentation.VectorGraphics.Enums;
+using JJ.Framework.Presentation.VectorGraphics.Helpers;
 
 namespace JJ.Framework.Presentation.VectorGraphics.Models.Styling
 {
 	public class TextStyle
 	{
-		public TextStyle()
-		{
-			Abbreviate = true;
-			HorizontalAlignmentEnum = HorizontalAlignmentEnum.Left;
-			VerticalAlignmentEnum = VerticalAlignmentEnum.Top;
-			Color = ColorHelper.Black;
-		}
-
-		public int Color { get; set; }
-		public bool Abbreviate { get; set; }
+		public int Color { get; set; } = ColorHelper.Black;
 		public bool Wrap { get; set; }
-		public HorizontalAlignmentEnum HorizontalAlignmentEnum { get; set; }
-		public VerticalAlignmentEnum VerticalAlignmentEnum { get; set; }
+
+		/// <summary>
+		/// If false, will draw remaining text outside if the rectangle, without cutting it off.
+		/// If true, will cut off pieces of text that do not fit inside the rectangle.
+		/// </summary>
+		public bool Clip { get; set; }
+
+		/// <summary> If true, will show '...' at the end if the text does not fit. </summary>
+		public bool Abbreviate { get; set; }
+
+		public HorizontalAlignmentEnum HorizontalAlignmentEnum { get; set; } = HorizontalAlignmentEnum.Left;
+		public VerticalAlignmentEnum VerticalAlignmentEnum { get; set; } = VerticalAlignmentEnum.Top;
 
 		private Font _font = new Font();
+
 		/// <summary> not nullable, auto-instantiated </summary>
 		public Font Font
 		{
-			[DebuggerHidden]
-			get { return _font; }
-			set
-			{
-				_font = value ?? throw new NullException(() => value);
-			}
+			[DebuggerHidden] get => _font;
+			set => _font = value ?? throw new NullException(() => value);
 		}
 	}
 }
