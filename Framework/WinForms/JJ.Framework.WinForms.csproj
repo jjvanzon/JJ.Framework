@@ -122,11 +122,11 @@
       <Project>{ceeb755d-de12-4e70-816e-546c429b44b7}</Project>
       <Name>JJ.Framework.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Presentation.Drawing\JJ.Framework.Drawing.csproj">
+    <ProjectReference Include="..\Drawing\JJ.Framework.Drawing.csproj">
       <Project>{21802a52-f4f7-4366-b61d-06e1fb337b86}</Project>
       <Name>JJ.Framework.Drawing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Presentation.VectorGraphics\JJ.Framework.VectorGraphics.csproj">
+    <ProjectReference Include="..\VectorGraphics\JJ.Framework.VectorGraphics.csproj">
       <Project>{52e03e08-331a-4ca7-8d8f-6f598c94eed4}</Project>
       <Name>JJ.Framework.VectorGraphics</Name>
     </ProjectReference>

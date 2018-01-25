@@ -180,15 +180,15 @@
       <Project>{fa44aba2-8e13-402c-a5a0-8d73c74b5181}</Project>
       <Name>JJ.Framework.Exceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Presentation.Drawing\JJ.Framework.Drawing.csproj">
+    <ProjectReference Include="..\Drawing\JJ.Framework.Drawing.csproj">
       <Project>{21802a52-f4f7-4366-b61d-06e1fb337b86}</Project>
       <Name>JJ.Framework.Drawing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Presentation.VectorGraphics\JJ.Framework.VectorGraphics.csproj">
+    <ProjectReference Include="..\VectorGraphics\JJ.Framework.VectorGraphics.csproj">
       <Project>{52e03e08-331a-4ca7-8d8f-6f598c94eed4}</Project>
       <Name>JJ.Framework.VectorGraphics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Presentation.WinForms\JJ.Framework.WinForms.csproj">
+    <ProjectReference Include="..\WinForms\JJ.Framework.WinForms.csproj">
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
       <Name>JJ.Framework.WinForms</Name>
     </ProjectReference>

@@ -240,7 +240,7 @@
     <Content Include="Views\Shared\_ActionParameterInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Presentation.Mvc\JJ.Framework.Mvc.csproj">
+    <ProjectReference Include="..\..\Framework\Mvc\JJ.Framework.Mvc.csproj">
       <Project>{fed3c829-d92a-4800-9462-a175ccac4c70}</Project>
       <Name>JJ.Framework.Mvc</Name>
     </ProjectReference>
