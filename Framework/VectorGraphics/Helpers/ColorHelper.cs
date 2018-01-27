@@ -1,4 +1,4 @@
-﻿using System;
+﻿using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.VectorGraphics.Helpers
 {
@@ -19,19 +19,19 @@ namespace JJ.Framework.VectorGraphics.Helpers
 			return color;
 		}
 
-		public static int GetColor(int alpha, int red, int green, int blue)
+		public static int GetColor(int opacity, int red, int green, int blue)
 		{
-			if (alpha < 0) throw new Exception("alpha cannot be less than 0");
-			if (alpha > 255) throw new Exception("alpha cannot be greater than 255");
-			if (red < 0) throw new Exception("red cannot be less than 0");
-			if (red > 255) throw new Exception("red cannot be greater than 255");
-			if (green < 0) throw new Exception("green cannot be less than 0");
-			if (green > 255) throw new Exception("green cannot be greater than 255");
-			if (blue < 0) throw new Exception("blue cannot be less than 0");
-			if (blue > 255) throw new Exception("blue cannot be greater than 255");
+			if (opacity < 0) throw new LessThanException(() => opacity, 0);
+			if (opacity > 255) throw new GreaterThanException(() => opacity, 255);
+			if (red < 0) throw new LessThanException(() => red, 0);
+			if (red > 255) throw new GreaterThanException(() => red, 255);
+			if (green < 0) throw new LessThanException(() => green, 0);
+			if (green > 255) throw new GreaterThanException(() => green, 255);
+			if (blue < 0) throw new LessThanException(() => blue, 0);
+			if (blue > 255) throw new GreaterThanException(() => blue, 255);
 
 			int color = 0;
-			color |= alpha;
+			color |= opacity;
 
 			color = color << 8;
 			color |= red;
@@ -52,7 +52,7 @@ namespace JJ.Framework.VectorGraphics.Helpers
 		/// <param name="grade">0 makes it black, 1 keeps it the same color.</param>
 		public static int SetBrightness(int color, double grade)
 		{
-			int a = GetAlpha(color);
+			int a = GetOpacity(color);
 			int r = GetRed(color);
 			int g = GetGreen(color);
 			int b = GetBlue(color);
@@ -82,9 +82,9 @@ namespace JJ.Framework.VectorGraphics.Helpers
 			return GetColor(a, r, g, b);
 		}
 
-		public static int GetAlpha(int color)
+		public static int GetOpacity(int color)
 		{
-			int value = color >> 24; // Move alpha to the right
+			int value = color >> 24; // Move opacity to the right
 			value = value & 0x000000FF; // NOTE: We use a mask, because a left shift with 1 in the left most bit (sign bit) makes the bit shift fill it up with 1's, not 0's.
 			return value;
 		}
@@ -108,6 +108,20 @@ namespace JJ.Framework.VectorGraphics.Helpers
 			int value = color; // Blue is already at the right.
 			value = value & 0x000000FF; // NOTE: We use a mask, because a left shift with 1 in the left most bit (sign bit) makes the bit shift fill it up with 1's, not 0's.
 			return value;
+		}
+
+		public static int SetOpacity(int originalColor, int newOpacity)
+		{
+			if (newOpacity < 0) throw new LessThanException(() => newOpacity, 0);
+			if (newOpacity > 255) throw new GreaterThanException(() => newOpacity, 255);
+
+			int r = GetRed(originalColor);
+			int g = GetGreen(originalColor);
+			int b = GetBlue(originalColor);
+
+			int newColor = GetColor(newOpacity, r, g, b);
+			
+			return newColor;
 		}
 	}
 }

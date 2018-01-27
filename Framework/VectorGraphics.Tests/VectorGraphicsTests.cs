@@ -175,7 +175,7 @@ namespace JJ.Framework.VectorGraphics.Tests
 		{
 			int color = ColorHelper.GetColor(2, 4, 6, 8);
 
-			int alpha = ColorHelper.GetAlpha(color);
+			int alpha = ColorHelper.GetOpacity(color);
 			AssertHelper.AreEqual(2, () => alpha);
 
 			int red = ColorHelper.GetRed(color);
