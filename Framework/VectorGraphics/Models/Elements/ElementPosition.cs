@@ -43,18 +43,21 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 
 		public float RelativeRight
 		{
-			get => _element.Position.X + _element.Position.Width;
-			set => _element.Position.X = value - _element.Position.Width;
+			get => X + Width;
+			set => X = value - Width;
 		}
 
 		public float RelativeBottom
 		{
-			get => _element.Position.Y + _element.Position.Height;
-			set => _element.Position.Y = value - _element.Position.Height;
+			get => Y + Height;
+			set => Y = value - Height;
 		}
 
-		public float AbsoluteRight => AbsoluteX + _element.Position.Width;
-		public float AbsoluteBottom => AbsoluteY + _element.Position.Height;
+		public float AbsoluteRight => AbsoluteX + Width;
+		public float AbsoluteBottom => AbsoluteY + Height;
+
+		public float AbsoluteCenterX  => AbsoluteX + Width / 2f;
+		public float AbsoluteCenterY => AbsoluteY + Height / 2f;
 
 		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}

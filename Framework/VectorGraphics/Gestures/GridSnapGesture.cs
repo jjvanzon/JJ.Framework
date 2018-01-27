@@ -10,8 +10,9 @@ namespace JJ.Framework.VectorGraphics.Gestures
 	/// <summary>
 	/// A simple grid snap implementation. When a move gesture is associated with a grid snap gesture,
 	/// the coordinates snap to grid upon moving. It doesn't show a grid nor makes it optional to snap with like a Ctrl key or something.
+	/// NOTE: This is not a Gesture you can tie to an element. You pass a MoveGesture with the constructor instead.
 	/// </summary>
-	public class GridSnapGesture : GestureBase
+	public class GridSnapGesture
 	{
 		private const float DEFAULT_SNAP = 8f;
 
