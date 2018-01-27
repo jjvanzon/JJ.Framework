@@ -6,51 +6,24 @@ namespace JJ.Framework.Common
 	public static class StringExtensions
 	{
 		/// <summary> Returns the left part of a string. </summary>
-		public static string Left(this string input, int length)
-		{
-			return input.Substring(0, length);
-		}
+		public static string Left(this string input, int length) => input.Substring(0, length);
 
 		/// <summary> Returns the right part of a string. </summary>
-		public static string Right(this string input, int length)
-		{
-			return input.Substring(input.Length - length, length);
-		}
+		public static string Right(this string input, int length) => input.Substring(input.Length - length, length);
 
-		public static string TrimEnd(this string input, char chr)
-		{
-			return TrimEnd(input, chr.ToString());
-		}
+		public static string TrimEnd(this string input, char chr) => TrimEnd(input, chr.ToString());
 
-		public static string TrimEnd(this string input, string end)
-		{
-			return input.EndsWith(end) ? input.TrimEnd(end.Length) : input;
-		}
+		public static string TrimEnd(this string input, string end) => input.EndsWith(end) ? input.TrimEnd(end.Length) : input;
 
-		public static string TrimEnd(this string input, int length)
-		{
-			return input.Left(input.Length - length);
-		}
+		public static string TrimEnd(this string input, int length) => input.Left(input.Length - length);
 
-		public static string TrimStart(this string input, char chr)
-		{
-			return TrimStart(input, chr.ToString());
-		}
+		public static string TrimStart(this string input, char chr) => TrimStart(input, chr.ToString());
 
-		public static string TrimStart(this string input, string start)
-		{
-			return input.StartsWith(start) ? input.TrimStart(start.Length) : input;
-		}
+		public static string TrimStart(this string input, string start) => input.StartsWith(start) ? input.TrimStart(start.Length) : input;
 
-		public static string TrimStart(this string input, int length)
-		{
-			return input.Right(input.Length - length);
-		}
+		public static string TrimStart(this string input, int length) => input.Right(input.Length - length);
 
-		public static string FromTill(this string input, int startIndex, int endIndex)
-		{
-			return input.Substring(startIndex, endIndex - startIndex + 1);
-		}
+		public static string FromTill(this string input, int startIndex, int endIndex) => input.Substring(startIndex, endIndex - startIndex + 1);
 
 		/// <summary>
 		/// Cuts off the right part of a string until the specified delimiter and returns what remains with a portion cut off still including the delimiter itself.
@@ -92,7 +65,7 @@ namespace JJ.Framework.Common
 
 		public static string Replace(this string input, string oldValue, string newValue, bool ignoreCase)
 		{
-			RegexOptions options = default(RegexOptions);
+			RegexOptions options = default;
 			if (ignoreCase)
 			{
 				options = RegexOptions.IgnoreCase;

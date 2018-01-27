@@ -19,5 +19,11 @@ namespace JJ.Framework.Drawing
 			SizeF sizeF = _graphics.MeasureString(text, font.ToSystemDrawing(DpiHelper.DEFAULT_DPI));
 			return new WidthAndHeight(sizeF.Width, sizeF.Height);
 		}
+
+		public WidthAndHeight GetTextSize(string text, Font font, float lineWidth)
+		{
+			SizeF sizeF = _graphics.MeasureString(text, font.ToSystemDrawing(DpiHelper.DEFAULT_DPI), (int)lineWidth);
+			return new WidthAndHeight(sizeF.Width, sizeF.Height);
+		}
 	}
 }
