@@ -1,8 +1,8 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Data.Memory.Internal
 {
@@ -23,8 +23,7 @@ namespace JJ.Framework.Data.Memory.Internal
 
 		public EntityStore(IMemoryMapping mapping)
 		{
-			if (mapping == null) throw new NullException(() => mapping);
-			_mapping = mapping;
+			_mapping = mapping ?? throw new NullException(() => mapping);
 		}
 
 		public TEntity TryGet(object id)
@@ -34,6 +33,7 @@ namespace JJ.Framework.Data.Memory.Internal
 			{
 				_dictionary.TryGetValue(id, out entity);
 			}
+
 			return entity;
 		}
 
@@ -91,10 +91,7 @@ namespace JJ.Framework.Data.Memory.Internal
 			}
 		}
 
-		public IList<TEntity> GetAll()
-		{
-			return _hashSet.ToArray();
-		}
+		public IList<TEntity> GetAll() => _hashSet.ToArray();
 
 		// Identity
 
@@ -141,19 +138,14 @@ namespace JJ.Framework.Data.Memory.Internal
 			{
 				throw new PropertyNotFoundException(entityType, _mapping.IdentityPropertyName);
 			}
+
 			return property;
 		}
 
 		// IEntityStore
 
-		void IEntityStore.Insert(object entity)
-		{
-			Insert((TEntity)entity);
-		}
+		void IEntityStore.Insert(object entity) => Insert((TEntity)entity);
 
-		void IEntityStore.Delete(object entity)
-		{
-			Delete((TEntity)entity);
-		}
+		void IEntityStore.Delete(object entity) => Delete((TEntity)entity);
 	}
 }

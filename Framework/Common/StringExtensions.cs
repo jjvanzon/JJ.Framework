@@ -5,11 +5,39 @@ namespace JJ.Framework.Common
 {
 	public static class StringExtensions
 	{
-		/// <summary> Returns the left part of a string. </summary>
+		/// <summary>
+		/// Returns the left part of a string.
+		/// Throws an exception if the string has less characters than the length provided.
+		/// </summary>
 		public static string Left(this string input, int length) => input.Substring(0, length);
 
-		/// <summary> Returns the right part of a string. </summary>
+		/// <summary>
+		/// Returns the right part of a string.
+		/// Throws an exception if the string has less characters than the length provided.
+		/// </summary>
 		public static string Right(this string input, int length) => input.Substring(input.Length - length, length);
+
+		/// <summary>
+		/// Returns the left part of a string.
+		/// Can return less characters than the length provided if string is shorter.
+		/// </summary>
+		public static string TakeLeft(this string input, int length)
+		{
+			if (length > input.Length) length = input.Length;
+
+			return input.Left(length);
+		}
+
+		/// <summary>
+		/// Returns the left part of a string.
+		/// Can return less characters than the length provided if string is shorter.
+		/// </summary>
+		public static string TakeRight(this string input, int length)
+		{
+			if (length > input.Length) length = input.Length;
+
+			return input.Right(length);
+		}
 
 		public static string TrimEnd(this string input, char chr) => TrimEnd(input, chr.ToString());
 

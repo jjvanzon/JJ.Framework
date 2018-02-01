@@ -7,24 +7,16 @@ namespace JJ.Framework.Common
 	public static class StringExtensions_Split
 	{
 		public static string[] Split(this string input, char separator, StringSplitOptions options)
-		{
-			return input.Split(new[] { separator }, options);
-		}
+			=> input.Split(new[] { separator }, options);
 
 		public static string[] Split(this string input, string separator, StringSplitOptions options)
-		{
-			return input.Split(new[] { separator }, options);
-		}
+			=> input.Split(new[] { separator }, options);
 
 		public static IList<string> SplitWithQuotation(this string input, string separator, char quote)
-		{
-			return input.SplitWithQuotation(separator, StringSplitOptions.None, quote);
-		}
+			=> input.SplitWithQuotation(separator, StringSplitOptions.None, quote);
 
 		public static string[] Split(this string value, params string[] separators)
-		{
-			return value.Split(separators, StringSplitOptions.None);
-		}
+			=> value.Split(separators, StringSplitOptions.None);
 
 		public static IList<string> SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
 		{
@@ -38,7 +30,11 @@ namespace JJ.Framework.Common
 			return values;
 		}
 
-		private static IList<string> SplitWithQuotation_WithoutUnescape(this string input, string separator, StringSplitOptions options, char? quote)
+		private static IList<string> SplitWithQuotation_WithoutUnescape(
+			this string input,
+			string separator,
+			StringSplitOptions options,
+			char? quote)
 		{
 			if (!quote.HasValue)
 			{

@@ -63,6 +63,10 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Testing\JJ.Framework.Testing.csproj">
+      <Project>{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}</Project>
+      <Name>JJ.Framework.Testing</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
