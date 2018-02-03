@@ -8,7 +8,7 @@ namespace JJ.Framework.VectorGraphics.Helpers
 		WidthAndHeight GetTextSize(string text, Font font);
 
 		/// <summary>
-		/// The returned text width can actually differ from the width passwed along,
+		/// The returned text width can actually differ from the width passed along,
 		/// since wrapping can actually make some of the right side space unused.
 		/// The returned text height can be more than one line height,
 		/// due to text wrapping.
