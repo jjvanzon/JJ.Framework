@@ -13,18 +13,26 @@ namespace JJ.Framework.Drawing
 {
 	public static class ConversionExtensions
 	{
+		// Picture
+
+		public static System.Drawing.Point ToSystemDrawingPoint(this Picture sourcePicture)
+		{
+			if (sourcePicture == null) throw new NullException(() => sourcePicture);
+			return sourcePicture.CalculatedValues.ToSystemDrawingPoint();
+		}
+
+		public static System.Drawing.Rectangle ToSystemDrawingRectangle(this Picture sourcePicture)
+		{
+			if (sourcePicture == null) throw new NullException(() => sourcePicture);
+			return sourcePicture.CalculatedValues.ToSystemDrawingRectangle();
+		}
+
 		// Point
 
 		public static PointF ToSystemDrawingPointF(this Point sourcePoint)
 		{
 			if (sourcePoint == null) throw new NullException(() => sourcePoint);
-
-			float x = BoundsHelper.CorrectCoordinate(sourcePoint.CalculatedValues.XInPixels);
-			float y = BoundsHelper.CorrectCoordinate(sourcePoint.CalculatedValues.YInPixels);
-
-			var destPointF = new PointF(x, y);
-
-			return destPointF;
+			return sourcePoint.CalculatedValues.ToSystemDrawingPointF();
 		}
 
 		public static RectangleF ToSystemDrawingRectangleF(this Point sourcePoint)
@@ -45,10 +53,7 @@ namespace JJ.Framework.Drawing
 		public static RectangleF ToSystemDrawingRectangleF(this Rectangle sourceRectangle)
 		{
 			if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
-
-			RectangleF destRectangleF = sourceRectangle.CalculatedValues.ToSystemDrawingRectangleF();
-
-			return destRectangleF;
+			return sourceRectangle.CalculatedValues.ToSystemDrawingRectangleF();
 		}
 
 		// Ellipse
@@ -56,10 +61,7 @@ namespace JJ.Framework.Drawing
 		public static RectangleF ToSystemDrawingRectangleF(this Ellipse sourceElement)
 		{
 			if (sourceElement == null) throw new NullException(() => sourceElement);
-
-			RectangleF destRectangleF = sourceElement.CalculatedValues.ToSystemDrawingRectangleF();
-
-			return destRectangleF;
+			return sourceElement.CalculatedValues.ToSystemDrawingRectangleF();
 		}
 
 		// Calculated Values
@@ -76,6 +78,40 @@ namespace JJ.Framework.Drawing
 			var destRectangleF = new RectangleF(x, y, width, height);
 
 			return destRectangleF;
+		}
+
+		public static System.Drawing.Rectangle ToSystemDrawingRectangle(this CalculatedValues calculatedValues)
+		{
+			if (calculatedValues == null) throw new ArgumentNullException(nameof(calculatedValues));
+
+			int x = BoundsHelper.CorrectCoordinateToInt32(calculatedValues.XInPixels);
+			int y = BoundsHelper.CorrectCoordinateToInt32(calculatedValues.YInPixels);
+			int width = BoundsHelper.CorrectLengthToInt32(calculatedValues.WidthInPixels);
+			int height = BoundsHelper.CorrectLengthToInt32(calculatedValues.HeightInPixels);
+
+			var destRectangle = new System.Drawing.Rectangle(x, y, width, height);
+
+			return destRectangle;
+		}
+
+		public static System.Drawing.Point ToSystemDrawingPoint(this CalculatedValues calculatedValues)
+		{
+			int x = BoundsHelper.CorrectCoordinateToInt32(calculatedValues.XInPixels);
+			int y = BoundsHelper.CorrectCoordinateToInt32(calculatedValues.YInPixels);
+
+			var destPoint = new System.Drawing.Point(x, y);
+
+			return destPoint;
+		}
+
+		public static PointF ToSystemDrawingPointF(this CalculatedValues calculatedValues)
+		{
+			float x = BoundsHelper.CorrectCoordinate(calculatedValues.XInPixels);
+			float y = BoundsHelper.CorrectCoordinate(calculatedValues.YInPixels);
+
+			var destPointF = new PointF(x, y);
+
+			return destPointF;
 		}
 
 		// Style Values
@@ -139,7 +175,7 @@ namespace JJ.Framework.Drawing
 			float lineWidth = BoundsHelper.CorrectLength(sourceLineStyle.Width);
 
 			Color destColor = sourceLineStyle.Color.ToSystemDrawing();
-			Pen destPen = new Pen(destColor, lineWidth);
+			var destPen = new Pen(destColor, lineWidth);
 
 			switch (sourceLineStyle.DashStyleEnum)
 			{

@@ -49,6 +49,10 @@ namespace JJ.Framework.Drawing
 					DrawEllipse(sourceEllipse, destGraphics);
 					return;
 
+				case Picture sourcePicture:
+					DrawPicture(sourcePicture, destGraphics);
+					break;
+
 				default:
 					throw new UnexpectedTypeException(() => sourceElement);
 			}
@@ -213,6 +217,19 @@ namespace JJ.Framework.Drawing
 			using (Pen destPen = sourceEllipse.Style.LineStyle.ToSystemDrawing())
 			{
 				destGraphics.DrawEllipse(destPen, destRectangle);
+			}
+		}
+
+		private static void DrawPicture(Picture sourcePicture, Graphics destGraphics)
+		{
+			Bitmap bitmap = sourcePicture.GetUnderlyingPictureWrapper<UnderlyingPictureWrapper>().Bitmap;
+			if (sourcePicture.Style.Clip)
+			{
+				destGraphics.DrawImageUnscaledAndClipped(bitmap, sourcePicture.ToSystemDrawingRectangle());
+			}
+			else
+			{
+				destGraphics.DrawImageUnscaled(bitmap, sourcePicture.ToSystemDrawingPoint());
 			}
 		}
 	}

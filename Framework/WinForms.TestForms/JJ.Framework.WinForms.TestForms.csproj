@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PictureTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PictureTestForm.Designer.cs">
+      <DependentUpon>PictureTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EllipseTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     <Compile Include="VectorGraphicsWithFlatClone\VectorGraphicsDrawer_WithFlatClone.cs" />
     <EmbeddedResource Include="CurveTestForm.resx">
       <DependentUpon>CurveTestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PictureTestForm.resx">
+      <DependentUpon>PictureTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FilePathControlTestForm.resx">
       <DependentUpon>FilePathControlTestForm.cs</DependentUpon>
@@ -196,6 +205,9 @@
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pencil.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

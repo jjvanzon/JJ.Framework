@@ -121,6 +121,7 @@ namespace JJ.Framework.VectorGraphics.Visitors
 		protected override void VisitRectangle(Rectangle element) => ProcessTypically(element);
 		protected override void VisitLabel(Label element) => ProcessTypically(element);
 		protected override void VisitEllipse(Ellipse element) => ProcessTypically(element);
+		protected override void VisitPicture(Picture element) => ProcessTypically(element);
 
 		private void ProcessTypically(Element element)
 		{

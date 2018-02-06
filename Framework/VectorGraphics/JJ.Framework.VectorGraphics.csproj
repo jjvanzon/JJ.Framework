@@ -62,6 +62,7 @@
     <Compile Include="Helpers\CloneExtensions.cs" />
     <Compile Include="Helpers\DebuggerDisplayFormatter.cs" />
     <Compile Include="Helpers\ITextMeasurer.cs" />
+    <Compile Include="Helpers\IUnderlyingPictureWrapper.cs" />
     <Compile Include="Helpers\ScaleHelper.cs" />
     <Compile Include="Helpers\ApproximatingTextMeasurer.cs" />
     <Compile Include="Helpers\WidthAndHeight.cs" />
@@ -73,10 +74,12 @@
     <Compile Include="Models\Elements\CalculatedValues.cs" />
     <Compile Include="Models\Elements\DiagramGestureHandling.cs" />
     <Compile Include="Models\Elements\CurvePosition.cs" />
+    <Compile Include="Models\Elements\Picture.cs" />
     <Compile Include="Models\Elements\RectanglePosition.cs" />
     <Compile Include="Models\Elements\LinePosition.cs" />
     <Compile Include="Models\Elements\PointPosition.cs" />
     <Compile Include="Models\Elements\RectangleStyle.cs" />
+    <Compile Include="Models\Styling\PictureStyle.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />
     <Compile Include="Relationships\DiagramToElementsRelationship.cs" />
     <Compile Include="Relationships\ElementToDiagramRelationship.cs" />
@@ -141,6 +144,7 @@
   <ItemGroup>
     <None Include="README.MD" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

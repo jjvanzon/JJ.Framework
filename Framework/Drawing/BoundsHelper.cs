@@ -57,5 +57,25 @@ namespace JJ.Framework.Drawing
 
 			return length;
 		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static int CorrectCoordinateToInt32(float value)
+		{
+			float correctedFloat = CorrectCoordinate(value);
+			if (correctedFloat > int.MaxValue) correctedFloat = int.MaxValue;
+			if (correctedFloat < int.MinValue) correctedFloat = int.MinValue;
+
+			return (int)correctedFloat;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static int CorrectLengthToInt32(float value)
+		{
+			float correctedFloat = CorrectLength(value);
+			if (correctedFloat > int.MaxValue) correctedFloat = int.MaxValue;
+			if (correctedFloat < int.MinValue) correctedFloat = int.MinValue;
+
+			return (int)correctedFloat;
+		}
 	}
 }

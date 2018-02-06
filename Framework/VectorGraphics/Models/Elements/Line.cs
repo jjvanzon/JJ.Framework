@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using JJ.Framework.Exceptions;
+﻿using System;
+using System.Diagnostics;
 using JJ.Framework.VectorGraphics.Helpers;
 using JJ.Framework.VectorGraphics.Models.Styling;
 
@@ -24,7 +24,7 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		{
 			[DebuggerHidden]
 			get => _lineStyle;
-			set => _lineStyle = value ?? throw new NullException(() => value);
+			set => _lineStyle = value ?? throw new ArgumentNullException(nameof(LineStyle));
 		}
 
 		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);

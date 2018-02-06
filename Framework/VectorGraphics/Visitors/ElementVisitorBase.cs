@@ -35,17 +35,22 @@ namespace JJ.Framework.VectorGraphics.Visitors
 					VisitEllipse(ellipse);
 					return;
 
+				case Picture picture:
+					VisitPicture(picture);
+					return;
+
 				default:
 					throw new UnexpectedTypeException(() => element);
 			}
 		}
 
-		protected virtual void VisitPoint(Point point) => VisitElementBase(point);
-		protected virtual void VisitLine(Line line) => VisitElementBase(line);
-		protected virtual void VisitRectangle(Rectangle rectangle) => VisitElementBase(rectangle);
-		protected virtual void VisitLabel(Label label) => VisitElementBase(label);
-		protected virtual void VisitCurve(Curve curve) => VisitElementBase(curve);
-		protected virtual void VisitEllipse(Ellipse ellipse) => VisitElementBase(ellipse);
+		protected virtual void VisitPoint(Point element) => VisitElementBase(element);
+		protected virtual void VisitLine(Line element) => VisitElementBase(element);
+		protected virtual void VisitRectangle(Rectangle element) => VisitElementBase(element);
+		protected virtual void VisitLabel(Label element) => VisitElementBase(element);
+		protected virtual void VisitCurve(Curve element) => VisitElementBase(element);
+		protected virtual void VisitEllipse(Ellipse element) => VisitElementBase(element);
+		protected virtual void VisitPicture(Picture element) => VisitElementBase(element);
 
 		protected virtual void VisitElementBase(Element element) => VisitChildren(element);
 

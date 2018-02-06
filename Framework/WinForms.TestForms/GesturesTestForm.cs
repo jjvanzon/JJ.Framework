@@ -6,7 +6,7 @@ using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.WinForms.TestForms.Helpers;
 // ReSharper disable once RedundantUsingDirective
 using Label = JJ.Framework.VectorGraphics.Models.Elements.Label;
-using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
+using MouseEventArgs = JJ.Framework.VectorGraphics.EventArg.MouseEventArgs;
 
 namespace JJ.Framework.WinForms.TestForms
 {
@@ -98,35 +98,13 @@ namespace JJ.Framework.WinForms.TestForms
 			diagramControl1.Diagram = diagram;
 		}
 
-		private void mouseDownGesture_MouseDown(object sender, VectorGraphics.EventArg.MouseEventArgs e)
-		{
-			TrySetElementText(e.Element, "MouseDown");
-		}
-
-		private void mouseMoveGesture_MouseMove(object sender, VectorGraphics.EventArg.MouseEventArgs e)
-		{
-			TrySetElementText(e.Element, "MouseMove");
-		}
-
-		private void mouseUpGesture_MouseUp(object sender, VectorGraphics.EventArg.MouseEventArgs e)
-		{
-			TrySetElementText(e.Element, "MouseUp");
-		}
-
-		private void mouseLeaveGesture_MouseLeave(object sender, VectorGraphics.EventArg.MouseEventArgs e)
-		{
-			TrySetElementText(e.Element, "MouseLeave");
-		}
-
-		private void clickGesture_Click(object sender, ElementEventArgs e)
-		{
-			TrySetElementText(e.Element, "Clicked");
-		}
-
-		private void dragGesture_Dragging(object sender, DraggingEventArgs e)
-		{
-			TrySetElementText(e.ElementBeingDragged, "Dragging");
-		}
+		private void mouseDownGesture_MouseDown(object sender, MouseEventArgs e) => TrySetElementText(e.Element, "MouseDown");
+		private void mouseMoveGesture_MouseMove(object sender, MouseEventArgs e) => TrySetElementText(e.Element, "MouseMove");
+		private void mouseUpGesture_MouseUp(object sender, MouseEventArgs e) => TrySetElementText(e.Element, "MouseUp");
+		private void mouseLeaveGesture_MouseLeave(object sender, MouseEventArgs e) => TrySetElementText(e.Element, "MouseLeave");
+		private void clickGesture_Click(object sender, ElementEventArgs e) => TrySetElementText(e.Element, "Clicked");
+		private void dragGesture_Dragging(object sender, DraggingEventArgs e) => TrySetElementText(e.ElementBeingDragged, "Dragging");
+		private void DoubleClickGesture_DoubleClick(object sender, ElementEventArgs e) => TrySetElementText(e.Element, "DoubleClicked");
 
 		private void dropGesture_Dropped(object sender, DroppedEventArgs e)
 		{
@@ -134,18 +112,12 @@ namespace JJ.Framework.WinForms.TestForms
 			TrySetElementText(e.DroppedOnElement, "Dropped On");
 		}
 
-		private void DoubleClickGesture_DoubleClick(object sender, ElementEventArgs e)
-		{
-			TrySetElementText(e.Element, "DoubleClicked");
-		}
-
 		private void TrySetElementText(Element element, string text)
 		{
 			var label = element as Label;
 			if (label == null)
 			{
-				var rectangle = element as Rectangle;
-				if (rectangle != null)
+				if (element is Rectangle rectangle)
 				{
 					label = rectangle.Children.OfType<Label>().FirstOrDefault();
 				}

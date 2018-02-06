@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using JJ.Framework.VectorGraphics.Helpers;
 
 namespace JJ.Framework.VectorGraphics.Models.Elements
@@ -9,12 +10,18 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		public Rectangle()
 		{
 			Position = new RectanglePosition(this);
-			Style = new RectangleStyle();
 		}
 
 		public override ElementPosition Position { get; }
 
-		public RectangleStyle Style { get; }
+		private RectangleStyle _style = new RectangleStyle();
+		/// <summary> not nullable, auto-instantiated </summary>
+		public RectangleStyle Style
+		{
+			[DebuggerHidden]
+			get => _style;
+			set => _style = value ?? throw new ArgumentNullException(nameof(Style));
+		}
 
 		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}
