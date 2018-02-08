@@ -7,26 +7,26 @@ namespace JJ.Framework.VectorGraphics.Helpers
 	public class ApproximatingTextMeasurer : ITextMeasurer
 	{
 		/// <inheritdoc />
-		public WidthAndHeight GetTextSize(string text, Font font)
+		public (float width, float height) GetTextSize(string text, Font font)
 		{
 			if (font == null) throw new ArgumentNullException(nameof(font));
 
 			float textWidth = GetTextWidth(text, font);
 			float textHeight = GetTextHeight(font);
 
-			return new WidthAndHeight(textWidth, textHeight);
+			return (textWidth, textHeight);
 		}
 
 		/// <inheritdoc />
-		public WidthAndHeight GetTextSize(string text, Font font, float lineWidth)
+		public (float width, float height) GetTextSize(string text, Font font, float lineWidth)
 		{
-			WidthAndHeight sizeWithoutWrapping = GetTextSize(text, font);
+			(float width, float height) sizeWithoutWrapping = GetTextSize(text, font);
 
-			int lineCount = (int)Math.Ceiling(sizeWithoutWrapping.Width / lineWidth);
+			int lineCount = (int)Math.Ceiling(sizeWithoutWrapping.width / lineWidth);
 			float lineHeight = GetTextHeight(font);
 			float height = lineHeight * lineCount;
 
-			return new WidthAndHeight(lineWidth, height);
+			return (lineWidth, height);
 		}
 
 		/// <summary> Returns an approximate width of the string according to the specified font. </summary>

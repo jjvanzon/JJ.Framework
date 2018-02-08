@@ -5,9 +5,9 @@ using JJ.Framework.Exceptions;
 using JJ.Framework.VectorGraphics.Enums;
 using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.VectorGraphics.Models.Styling;
-using Font = JJ.Framework.VectorGraphics.Models.Styling.Font;
-using Point = JJ.Framework.VectorGraphics.Models.Elements.Point;
-using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
+using Font = System.Drawing.Font;
+using Point = System.Drawing.Point;
+using Rectangle = System.Drawing.Rectangle;
 
 namespace JJ.Framework.Drawing
 {
@@ -15,13 +15,13 @@ namespace JJ.Framework.Drawing
 	{
 		// Picture
 
-		public static System.Drawing.Point ToSystemDrawingPoint(this Picture sourcePicture)
+		public static Point ToSystemDrawingPoint(this Picture sourcePicture)
 		{
 			if (sourcePicture == null) throw new NullException(() => sourcePicture);
 			return sourcePicture.CalculatedValues.ToSystemDrawingPoint();
 		}
 
-		public static System.Drawing.Rectangle ToSystemDrawingRectangle(this Picture sourcePicture)
+		public static Rectangle ToSystemDrawingRectangle(this Picture sourcePicture)
 		{
 			if (sourcePicture == null) throw new NullException(() => sourcePicture);
 			return sourcePicture.CalculatedValues.ToSystemDrawingRectangle();
@@ -29,13 +29,13 @@ namespace JJ.Framework.Drawing
 
 		// Point
 
-		public static PointF ToSystemDrawingPointF(this Point sourcePoint)
+		public static PointF ToSystemDrawingPointF(this VectorGraphics.Models.Elements.Point sourcePoint)
 		{
 			if (sourcePoint == null) throw new NullException(() => sourcePoint);
 			return sourcePoint.CalculatedValues.ToSystemDrawingPointF();
 		}
 
-		public static RectangleF ToSystemDrawingRectangleF(this Point sourcePoint)
+		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphics.Models.Elements.Point sourcePoint)
 		{
 			if (sourcePoint == null) throw new NullException(() => sourcePoint);
 
@@ -50,7 +50,7 @@ namespace JJ.Framework.Drawing
 
 		// Rectangle
 
-		public static RectangleF ToSystemDrawingRectangleF(this Rectangle sourceRectangle)
+		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphics.Models.Elements.Rectangle sourceRectangle)
 		{
 			if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
 			return sourceRectangle.CalculatedValues.ToSystemDrawingRectangleF();
@@ -80,7 +80,7 @@ namespace JJ.Framework.Drawing
 			return destRectangleF;
 		}
 
-		public static System.Drawing.Rectangle ToSystemDrawingRectangle(this CalculatedValues calculatedValues)
+		public static Rectangle ToSystemDrawingRectangle(this CalculatedValues calculatedValues)
 		{
 			if (calculatedValues == null) throw new ArgumentNullException(nameof(calculatedValues));
 
@@ -89,17 +89,17 @@ namespace JJ.Framework.Drawing
 			int width = BoundsHelper.CorrectLengthToInt32(calculatedValues.WidthInPixels);
 			int height = BoundsHelper.CorrectLengthToInt32(calculatedValues.HeightInPixels);
 
-			var destRectangle = new System.Drawing.Rectangle(x, y, width, height);
+			var destRectangle = new Rectangle(x, y, width, height);
 
 			return destRectangle;
 		}
 
-		public static System.Drawing.Point ToSystemDrawingPoint(this CalculatedValues calculatedValues)
+		public static Point ToSystemDrawingPoint(this CalculatedValues calculatedValues)
 		{
 			int x = BoundsHelper.CorrectCoordinateToInt32(calculatedValues.XInPixels);
 			int y = BoundsHelper.CorrectCoordinateToInt32(calculatedValues.YInPixels);
 
-			var destPoint = new System.Drawing.Point(x, y);
+			var destPoint = new Point(x, y);
 
 			return destPoint;
 		}
@@ -116,10 +116,7 @@ namespace JJ.Framework.Drawing
 
 		// Style Values
 
-		public static Color ToSystemDrawing(this int color)
-		{
-			return Color.FromArgb(color);
-		}
+		public static Color ToSystemDrawing(this int color) => Color.FromArgb(color);
 
 		public static StringAlignment ToSystemDrawing(this HorizontalAlignmentEnum horizontalAlignmentEnum)
 		{
@@ -244,7 +241,7 @@ namespace JJ.Framework.Drawing
 			return destBrush;
 		}
 
-		public static System.Drawing.Font ToSystemDrawing(this Font sourceFont, float dpi)
+		public static Font ToSystemDrawing(this VectorGraphics.Models.Styling.Font sourceFont, float dpi)
 		{
 			if (sourceFont == null) throw new NullException(() => sourceFont);
 
@@ -263,10 +260,10 @@ namespace JJ.Framework.Drawing
 			float fontSize = BoundsHelper.CorrectLength(sourceFont.Size);
 
 			// Get rid of Windows DPI scaling.
-			float antiDpiFactor =  DpiHelper.GetAntiDpiFactor(dpi);
+			float antiDpiFactor = DpiHelper.GetAntiDpiFactor(dpi);
 			float destFontSize = fontSize * antiDpiFactor;
 
-			var destFont = new System.Drawing.Font(sourceFont.Name, destFontSize, destFontStyle);
+			var destFont = new Font(sourceFont.Name, destFontSize, destFontStyle);
 			return destFont;
 		}
 	}

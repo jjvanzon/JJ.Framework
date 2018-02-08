@@ -222,14 +222,14 @@ namespace JJ.Framework.Drawing
 
 		private static void DrawPicture(Picture sourcePicture, Graphics destGraphics)
 		{
-			Bitmap bitmap = sourcePicture.GetUnderlyingPictureWrapper<UnderlyingPictureWrapper>().Bitmap;
+			var destImage = (Image)sourcePicture.UnderlyingPicture;
 			if (sourcePicture.Style.Clip)
 			{
-				destGraphics.DrawImageUnscaledAndClipped(bitmap, sourcePicture.ToSystemDrawingRectangle());
+				destGraphics.DrawImageUnscaledAndClipped(destImage, sourcePicture.ToSystemDrawingRectangle());
 			}
 			else
 			{
-				destGraphics.DrawImageUnscaled(bitmap, sourcePicture.ToSystemDrawingPoint());
+				destGraphics.DrawImageUnscaled(destImage, sourcePicture.ToSystemDrawingPoint());
 			}
 		}
 	}

@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using JJ.Framework.Drawing;
 using JJ.Framework.VectorGraphics.Gestures;
 using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.WinForms.TestForms.Helpers;
@@ -35,9 +34,7 @@ namespace JJ.Framework.WinForms.TestForms
 			picture.Position.Height = 100;
 
 			picture.Gestures.Add(new MoveGesture());
-
-			var wrapper = new UnderlyingPictureWrapper { Bitmap = Resources.Pencil };
-			picture.SetUnderlyingPictureWrapper(wrapper);
+			picture.UnderlyingPicture = Resources.Pencil;
 
 			diagramControl1.Diagram = diagram;
 		}

@@ -40,6 +40,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoundsHelper.cs" />
@@ -48,7 +52,6 @@
     <Compile Include="GraphicsBuffer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextMeasurer.cs" />
-    <Compile Include="UnderlyingPictureWrapper.cs" />
     <Compile Include="VectorGraphicsDrawer.cs" />
   </ItemGroup>
   <ItemGroup>
