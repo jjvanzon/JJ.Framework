@@ -10,43 +10,35 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 		public const float BLOCK_HEIGHT = 60;
 		public const float SPACING = 10;
 
-		static VectorGraphicsHelper()
+		private static Font DefaultFont { get; } = new Font
 		{
-			DefaultFont = new Font
-			{
-				Bold = true,
-				Name = "Verdana",
-				Size = 13
-			};
+			Bold = true,
+			Name = "Verdana",
+			Size = 13
+		};
 
-			DefaultLineStyle = new LineStyle
-			{
-				Width = 2
-			};
+		public static LineStyle DefaultLineStyle { get; } = new LineStyle
+		{
+			Width = 2
+		};
 
-			DefaultTextStyle = new TextStyle
-			{
-				HorizontalAlignmentEnum = HorizontalAlignmentEnum.Center,
-				VerticalAlignmentEnum = VerticalAlignmentEnum.Center,
-				Font = DefaultFont
-			};
+		public static TextStyle DefaultTextStyle { get; } = new TextStyle
+		{
+			HorizontalAlignmentEnum = HorizontalAlignmentEnum.Center,
+			VerticalAlignmentEnum = VerticalAlignmentEnum.Center,
+			Font = DefaultFont,
+			Clip = true
+		};
 
-			InvisiblePointStyle = new PointStyle
-			{
-				Visible = false
-			};
+		public static PointStyle InvisiblePointStyle { get; } = new PointStyle
+		{
+			Visible = false
+		};
 
-			BlueBackStyle = new BackStyle
-			{
-				Visible = true,
-				Color = ColorHelper.GetColor(64, 128, 255)
-			};
-		}
-
-		private static Font DefaultFont { get; }
-		public static LineStyle DefaultLineStyle { get; }
-		public static TextStyle DefaultTextStyle { get; }
-		public static PointStyle InvisiblePointStyle { get; }
-		public static BackStyle BlueBackStyle { get; }
+		public static BackStyle BlueBackStyle { get; } = new BackStyle
+		{
+			Visible = true,
+			Color = ColorHelper.GetColor(64, 128, 255)
+		};
 	}
 }

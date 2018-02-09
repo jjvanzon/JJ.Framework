@@ -7,7 +7,8 @@
 		/// If true, will cut off pieces of the picture that do not fit inside the rectangle.
 		/// </summary>
 		public bool Clip { get; set; }
-		public float Opacity { get; set; }
-		public (int x, int y, int width, int height) CropWindow { get; set; }
+		public bool Scale { get; set; }
+		public float Opacity { get; set; } = 1f;
+		//public (int x, int y, int width, int height) CropWindow { get; set; }
 	}
 }

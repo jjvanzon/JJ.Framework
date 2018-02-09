@@ -56,7 +56,6 @@ namespace JJ.Framework.WinForms.TestForms
 			rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Double Click Me");
 			rectangle.Position.Y = currentY;
 			rectangle.Gestures.Add(doubleClickGesture);
-			//rectangle.Gestures.Add(mouseLeaveGesture);
 
 			currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;
 
@@ -71,8 +70,6 @@ namespace JJ.Framework.WinForms.TestForms
 
 			rectangle = VectorGraphicsFactory.CreateRectangle(diagram, "Click Me Too");
 			rectangle.Position.Y = currentY;
-			//rectangle.Gestures.Add(mouseDownGesture);
-			//rectangle.Gestures.Add(mouseMoveGesture);
 			rectangle.Gestures.Add(clickGesture);
 
 			currentY += VectorGraphicsHelper.BLOCK_HEIGHT + VectorGraphicsHelper.SPACING;

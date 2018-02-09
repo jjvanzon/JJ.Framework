@@ -1,236 +1,147 @@
-﻿using System.Drawing;
-using JJ.Framework.Exceptions;
-using JJ.Framework.VectorGraphics.Models.Elements;
+﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using JJ.Framework.VectorGraphics.Drawing;
 using JJ.Framework.VectorGraphics.Models.Styling;
 using Font = System.Drawing.Font;
-using Point = JJ.Framework.VectorGraphics.Models.Elements.Point;
-using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
 
 namespace JJ.Framework.Drawing
 {
-	public static class VectorGraphicsDrawer
+	public class VectorGraphicsDrawer : DrawerBase
 	{
-		public static void Draw(Diagram diagram, Graphics destGraphics)
-		{
-			if (diagram == null) throw new NullException(() => diagram);
-			if (destGraphics == null) throw new NullException(() => destGraphics);
+		private readonly Graphics _destGraphics;
 
-			foreach (Element element in diagram.EnumerateElementsByZIndex())
+		public VectorGraphicsDrawer(Graphics destGraphics) => _destGraphics = destGraphics ?? throw new ArgumentNullException(nameof(destGraphics));
+
+		protected override void DrawLine(float x1, float y1, float x2, float y2, LineStyle lineStyle)
+		{
+			using (Pen destPen = lineStyle.ToSystemDrawing())
 			{
-				DrawPolymorphic(element, destGraphics);
+				_destGraphics.DrawLine(destPen, x1, y1, x2, y2);
 			}
 		}
 
-		private static void DrawPolymorphic(Element sourceElement, Graphics destGraphics)
+		protected override void FillRectangle(float x, float y, float width, float height, BackStyle backStyle)
 		{
-			switch (sourceElement)
+			using (Brush destBrush = backStyle.ToSystemDrawing())
 			{
-				case Point sourcePoint:
-					DrawPoint(sourcePoint, destGraphics);
-					return;
-
-				case Line sourceLine:
-					DrawLine(sourceLine, destGraphics);
-					return;
-
-				case Rectangle sourceRectangle:
-					DrawRectangle(sourceRectangle, destGraphics);
-					return;
-
-				case Label sourceLabel:
-					DrawLabel(sourceLabel, destGraphics);
-					return;
-
-				case Curve sourceCurve:
-					DrawCurve(sourceCurve, destGraphics);
-					return;
-
-				case Ellipse sourceEllipse:
-					DrawEllipse(sourceEllipse, destGraphics);
-					return;
-
-				case Picture sourcePicture:
-					DrawPicture(sourcePicture, destGraphics);
-					break;
-
-				default:
-					throw new UnexpectedTypeException(() => sourceElement);
+				_destGraphics.FillRectangle(destBrush, x, y, width, height);
 			}
 		}
 
-		private static void DrawPoint(Point sourcePoint, Graphics destGraphics)
+		protected override void DrawRectangle(float x, float y, float width, float height, LineStyle lineStyle)
 		{
-			if (!sourcePoint.CalculatedValues.Visible || !sourcePoint.PointStyle.Visible)
+			using (Pen destPen = lineStyle.ToSystemDrawing())
 			{
-				return;
-			}
-
-			RectangleF destRectangle = sourcePoint.ToSystemDrawingRectangleF();
-			using (Brush destBrush = sourcePoint.PointStyle.ToSystemDrawingBrush())
-			{
-				destGraphics.FillEllipse(destBrush, destRectangle);
+				_destGraphics.DrawRectangle(destPen, x, y, width, height);
 			}
 		}
 
-		private static void DrawLine(Line sourceLine, Graphics destGraphics)
+		protected override void DrawLabel(string text, float x, float y, float width, float height, TextStyle textStyle)
 		{
-			if (!sourceLine.CalculatedValues.Visible || !sourceLine.LineStyle.Visible)
+			using (Font destFont = textStyle.Font.ToSystemDrawing(DpiHelper.GetDpi(_destGraphics)))
 			{
-				return;
-			}
-
-			if (sourceLine.PointA == null) throw new NullException(() => sourceLine.PointA);
-			if (sourceLine.PointB == null) throw new NullException(() => sourceLine.PointB);
-
-			float x1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.XInPixels);
-			float y1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.YInPixels);
-			float x2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.XInPixels);
-			float y2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.YInPixels);
-
-			using (Pen destPen = sourceLine.LineStyle.ToSystemDrawing())
-			{
-				destGraphics.DrawLine(destPen, x1, y1, x2, y2);
-			}
-		}
-
-		private static void DrawRectangle(Rectangle sourceRectangle, Graphics destGraphics)
-		{
-			if (!sourceRectangle.CalculatedValues.Visible)
-			{
-				return;
-			}
-
-			// Draw Back
-			if (sourceRectangle.Style.BackStyle.Visible)
-			{
-				RectangleF destRectangle = sourceRectangle.ToSystemDrawingRectangleF();
-
-				using (Brush destBrush = sourceRectangle.Style.BackStyle.ToSystemDrawing())
+				using (Brush destBrush = textStyle.ToSystemDrawingBrush())
 				{
-					destGraphics.FillRectangle(destBrush, destRectangle);
-				}
-			}
-
-			// Draw Rectangle
-			float left = BoundsHelper.CorrectCoordinate(sourceRectangle.CalculatedValues.XInPixels);
-			float top = BoundsHelper.CorrectCoordinate(sourceRectangle.CalculatedValues.YInPixels);
-			float width = BoundsHelper.CorrectLength(sourceRectangle.CalculatedValues.WidthInPixels);
-			float height = BoundsHelper.CorrectLength(sourceRectangle.CalculatedValues.HeightInPixels);
-
-			LineStyle lineStyle = sourceRectangle.Style.LineStyle;
-			if (lineStyle != null)
-			{
-				if (lineStyle.Visible)
-				{
-					using (Pen destPen = lineStyle.ToSystemDrawing())
+					using (StringFormat destStringFormat = textStyle.ToSystemDrawingStringFormat())
 					{
-						destGraphics.DrawRectangle(destPen, left, top, width, height);
-					}
-				}
-			}
-			else
-			{
-				// Draw 4 Border Lines (with different styles)
-
-				// TODO: You would think that bounds check is unnecessary here.
-				float right = left + width;
-				float bottom = top + height;
-
-				var destTopLeftPointF = new PointF(left, top);
-				var destTopRightPointF = new PointF(right, top);
-				var destBottomRightPointF = new PointF(right, bottom);
-				var destBottomLeftPointF = new PointF(left, bottom);
-
-				using (Pen destTopPen = sourceRectangle.Style.TopLineStyle.ToSystemDrawing())
-				{
-					destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
-				}
-
-				using (Pen destRightPen = sourceRectangle.Style.RightLineStyle.ToSystemDrawing())
-				{
-					destGraphics.DrawLine(destRightPen, destTopRightPointF, destBottomRightPointF);
-				}
-
-				using (Pen destBottomPen = sourceRectangle.Style.BottomLineStyle.ToSystemDrawing())
-				{
-					destGraphics.DrawLine(destBottomPen, destBottomRightPointF, destBottomLeftPointF);
-				}
-
-				using (Pen destLeftPen = sourceRectangle.Style.LeftLineStyle.ToSystemDrawing())
-				{
-					destGraphics.DrawLine(destLeftPen, destBottomLeftPointF, destTopLeftPointF);
-				}
-			}
-		}
-
-		private static void DrawLabel(Label sourceLabel, Graphics destGraphics)
-		{
-			if (!sourceLabel.CalculatedValues.Visible)
-			{
-				return;
-			}
-
-			float x = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.XInPixels);
-			float y = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.YInPixels);
-
-			// Calling CorrectCoordinate instead of CorrectLength,
-			// because apparently System.Drawing hates it when I correct 0 to 1E-9f.
-			float width = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.WidthInPixels);
-			float height = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.HeightInPixels);
-
-			var destRectangle = new RectangleF(x, y, width, height);
-
-			using (Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing(DpiHelper.GetDpi(destGraphics)))
-			{
-				using (Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush())
-				{
-					using (StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat())
-					{
-						destGraphics.DrawString(sourceLabel.Text, destFont, destBrush, destRectangle, destStringFormat);
+						_destGraphics.DrawString(text, destFont, destBrush, new RectangleF(x, y, width, height), destStringFormat);
 					}
 				}
 			}
 		}
 
-		private static void DrawCurve(Curve sourceCurve, Graphics destGraphics)
+		protected override void DrawEllipse(float x, float y, float width, float height, LineStyle lineStyle)
 		{
-			foreach (Line calculatedLine in sourceCurve.CalculatedLines)
+			using (Pen destPen = lineStyle.ToSystemDrawing())
 			{
-				DrawLine(calculatedLine, destGraphics);
+				_destGraphics.DrawEllipse(destPen, x, y, width, height);
 			}
 		}
 
-		private static void DrawEllipse(Ellipse sourceEllipse, Graphics destGraphics)
+		protected override void FillEllipse(float x, float y, float width, float height, BackStyle backStyle)
 		{
-			if (!sourceEllipse.CalculatedValues.Visible)
+			using (Brush destBrush = backStyle.ToSystemDrawing())
 			{
-				return;
-			}
-
-			RectangleF destRectangle = sourceEllipse.ToSystemDrawingRectangleF();
-
-			using (Brush destBrush = sourceEllipse.Style.BackStyle.ToSystemDrawing())
-			{
-				destGraphics.FillEllipse(destBrush, destRectangle);
-			}
-
-			using (Pen destPen = sourceEllipse.Style.LineStyle.ToSystemDrawing())
-			{
-				destGraphics.DrawEllipse(destPen, destRectangle);
+				_destGraphics.FillEllipse(destBrush, x, y, width, height);
 			}
 		}
 
-		private static void DrawPicture(Picture sourcePicture, Graphics destGraphics)
+		protected override void DrawPictureClipped(object picture, int x, int y, int width, int height)
 		{
-			var destImage = (Image)sourcePicture.UnderlyingPicture;
-			if (sourcePicture.Style.Clip)
-			{
-				destGraphics.DrawImageUnscaledAndClipped(destImage, sourcePicture.ToSystemDrawingRectangle());
-			}
-			else
-			{
-				destGraphics.DrawImageUnscaled(destImage, sourcePicture.ToSystemDrawingPoint());
-			}
+			var image = (Image)picture;
+			var destRectangle = new Rectangle(x, y, width, height);
+			_destGraphics.DrawImageUnscaledAndClipped(image, destRectangle);
+		}
+
+		protected override void DrawPictureUnscaledUnclipped(object picture, int x, int y)
+		{
+			var image = (Image)picture;
+			_destGraphics.DrawImageUnscaled(image, x, y);
+		}
+
+		protected override void DrawPictureScaled(object picture, int x, int y, int width, int height)
+		{
+			var image = (Image)picture;
+			_destGraphics.DrawImage(
+				image,
+				new Rectangle(x, y, width, height),
+				0,
+				0,
+				image.Width,
+				image.Height,
+				GraphicsUnit.Pixel);
+		}
+
+		protected override void DrawPictureScaledWithColorMatrix(object picture, int x, int y, int width, int height, float[][] colorMatrix)
+		{
+			var image = (Image)picture;
+			var imageAttributes = new ImageAttributes();
+			imageAttributes.SetColorMatrix(new ColorMatrix(colorMatrix), ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+			_destGraphics.DrawImage(
+				image,
+				new Rectangle(x, y, width, height),
+				0,
+				0,
+				image.Width,
+				image.Height,
+				GraphicsUnit.Pixel,
+				imageAttributes);
+		}
+
+		protected override void DrawPictureClippedWithColorMatrix(object picture, int x, int y, int width, int height, float[][] colorMatrix)
+		{
+			var image = (Image)picture;
+			var imageAttributes = new ImageAttributes();
+			imageAttributes.SetColorMatrix(new ColorMatrix(colorMatrix), ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+			_destGraphics.DrawImage(
+				image,
+				new Rectangle(x, y, width, height),
+				0,
+				0,
+				width,
+				height,
+				GraphicsUnit.Pixel,
+				imageAttributes);
+		}
+
+		protected override void DrawPictureUnscaledUnclippedWithColorMatrix(object picture, int x, int y, float[][] colorMatrix)
+		{
+			var image = (Image)picture;
+			var imageAttributes = new ImageAttributes();
+			imageAttributes.SetColorMatrix(new ColorMatrix(colorMatrix), ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+			_destGraphics.DrawImage(
+				image,
+				new Rectangle(x, y, image.Width, image.Height),
+				0,
+				0,
+				image.Width,
+				image.Height,
+				GraphicsUnit.Pixel,
+				imageAttributes);
 		}
 	}
 }

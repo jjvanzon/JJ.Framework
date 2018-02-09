@@ -12,10 +12,18 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 
 		public override ElementPosition Position { get; }
 
-		/// <summary> Nullable. Coordinates of the point are related to the Point's parent. </summary>
+		/// <summary>
+		/// Coordinates of the point are related to the Point's parent. 
+		/// Nullable while building up the model.
+		/// Not nullable once its being drawn.
+		/// </summary>
 		public Point PointA { get; set; }
 
-		/// <summary> Nullable. Coordinates of the point are related to the Point's parent. </summary>
+		/// <summary>
+		/// Coordinates of the point are related to the Point's parent. 
+		/// Nullable while building up the model.
+		/// Not nullable once its being drawn.
+		/// </summary>
 		public Point PointB { get; set; }
 
 		private LineStyle _lineStyle = new LineStyle();

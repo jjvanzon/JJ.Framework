@@ -46,7 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoundsHelper.cs" />
     <Compile Include="ConversionExtensions.cs" />
     <Compile Include="DpiHelper.cs" />
     <Compile Include="GraphicsBuffer.cs" />

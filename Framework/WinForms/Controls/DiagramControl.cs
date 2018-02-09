@@ -121,7 +121,7 @@ namespace JJ.Framework.WinForms.Controls
 
 			Diagram.Recalculate();
 
-			VectorGraphicsDrawer.Draw(Diagram, _graphicsBuffer.Graphics);
+			new VectorGraphicsDrawer(_graphicsBuffer.Graphics).Draw(Diagram);
 
 			_graphicsBuffer.DrawBuffer();
 		}

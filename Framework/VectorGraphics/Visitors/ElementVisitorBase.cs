@@ -3,7 +3,7 @@ using JJ.Framework.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.VectorGraphics.Visitors
 {
-	internal abstract class ElementVisitorBase
+	public abstract class ElementVisitorBase
 	{
 		protected virtual void VisitPolymorphic(Element element)
 		{

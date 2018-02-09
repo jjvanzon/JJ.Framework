@@ -1,119 +1,15 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using JJ.Framework.Exceptions;
+using JJ.Framework.VectorGraphics.Drawing;
 using JJ.Framework.VectorGraphics.Enums;
-using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.VectorGraphics.Models.Styling;
 using Font = System.Drawing.Font;
-using Point = System.Drawing.Point;
-using Rectangle = System.Drawing.Rectangle;
 
 namespace JJ.Framework.Drawing
 {
 	public static class ConversionExtensions
 	{
-		// Picture
-
-		public static Point ToSystemDrawingPoint(this Picture sourcePicture)
-		{
-			if (sourcePicture == null) throw new NullException(() => sourcePicture);
-			return sourcePicture.CalculatedValues.ToSystemDrawingPoint();
-		}
-
-		public static Rectangle ToSystemDrawingRectangle(this Picture sourcePicture)
-		{
-			if (sourcePicture == null) throw new NullException(() => sourcePicture);
-			return sourcePicture.CalculatedValues.ToSystemDrawingRectangle();
-		}
-
-		// Point
-
-		public static PointF ToSystemDrawingPointF(this VectorGraphics.Models.Elements.Point sourcePoint)
-		{
-			if (sourcePoint == null) throw new NullException(() => sourcePoint);
-			return sourcePoint.CalculatedValues.ToSystemDrawingPointF();
-		}
-
-		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphics.Models.Elements.Point sourcePoint)
-		{
-			if (sourcePoint == null) throw new NullException(() => sourcePoint);
-
-			float pointWidth = BoundsHelper.CorrectLength(sourcePoint.PointStyle.Width);
-			float x = BoundsHelper.CorrectCoordinate(sourcePoint.CalculatedValues.XInPixels - pointWidth / 2f);
-			float y = BoundsHelper.CorrectCoordinate(sourcePoint.CalculatedValues.YInPixels - pointWidth / 2f);
-
-			var destRectangleF = new RectangleF(x, y, pointWidth, pointWidth);
-
-			return destRectangleF;
-		}
-
-		// Rectangle
-
-		public static RectangleF ToSystemDrawingRectangleF(this VectorGraphics.Models.Elements.Rectangle sourceRectangle)
-		{
-			if (sourceRectangle == null) throw new NullException(() => sourceRectangle);
-			return sourceRectangle.CalculatedValues.ToSystemDrawingRectangleF();
-		}
-
-		// Ellipse
-
-		public static RectangleF ToSystemDrawingRectangleF(this Ellipse sourceElement)
-		{
-			if (sourceElement == null) throw new NullException(() => sourceElement);
-			return sourceElement.CalculatedValues.ToSystemDrawingRectangleF();
-		}
-
-		// Calculated Values
-
-		public static RectangleF ToSystemDrawingRectangleF(this CalculatedValues calculatedValues)
-		{
-			if (calculatedValues == null) throw new ArgumentNullException(nameof(calculatedValues));
-
-			float x = BoundsHelper.CorrectCoordinate(calculatedValues.XInPixels);
-			float y = BoundsHelper.CorrectCoordinate(calculatedValues.YInPixels);
-			float width = BoundsHelper.CorrectLength(calculatedValues.WidthInPixels);
-			float height = BoundsHelper.CorrectLength(calculatedValues.HeightInPixels);
-
-			var destRectangleF = new RectangleF(x, y, width, height);
-
-			return destRectangleF;
-		}
-
-		public static Rectangle ToSystemDrawingRectangle(this CalculatedValues calculatedValues)
-		{
-			if (calculatedValues == null) throw new ArgumentNullException(nameof(calculatedValues));
-
-			int x = BoundsHelper.CorrectCoordinateToInt32(calculatedValues.XInPixels);
-			int y = BoundsHelper.CorrectCoordinateToInt32(calculatedValues.YInPixels);
-			int width = BoundsHelper.CorrectLengthToInt32(calculatedValues.WidthInPixels);
-			int height = BoundsHelper.CorrectLengthToInt32(calculatedValues.HeightInPixels);
-
-			var destRectangle = new Rectangle(x, y, width, height);
-
-			return destRectangle;
-		}
-
-		public static Point ToSystemDrawingPoint(this CalculatedValues calculatedValues)
-		{
-			int x = BoundsHelper.CorrectCoordinateToInt32(calculatedValues.XInPixels);
-			int y = BoundsHelper.CorrectCoordinateToInt32(calculatedValues.YInPixels);
-
-			var destPoint = new Point(x, y);
-
-			return destPoint;
-		}
-
-		public static PointF ToSystemDrawingPointF(this CalculatedValues calculatedValues)
-		{
-			float x = BoundsHelper.CorrectCoordinate(calculatedValues.XInPixels);
-			float y = BoundsHelper.CorrectCoordinate(calculatedValues.YInPixels);
-
-			var destPointF = new PointF(x, y);
-
-			return destPointF;
-		}
-
 		// Style Values
 
 		public static Color ToSystemDrawing(this int color) => Color.FromArgb(color);
@@ -155,15 +51,6 @@ namespace JJ.Framework.Drawing
 		}
 
 		// Style Objects
-
-		public static Brush ToSystemDrawingBrush(this PointStyle sourcePointStyle)
-		{
-			if (sourcePointStyle == null) throw new NullException(() => sourcePointStyle);
-
-			Color destColor = sourcePointStyle.Color.ToSystemDrawing();
-			var destBrush = new SolidBrush(destColor);
-			return destBrush;
-		}
 
 		public static Pen ToSystemDrawing(this LineStyle sourceLineStyle)
 		{

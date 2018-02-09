@@ -244,7 +244,8 @@ namespace Sgml {
     /// SgmlReader is an XmlReader API over any SGML document (including built in 
     /// support for HTML).  
     /// </summary>
-    public class SgmlReader : XmlReader {
+    public class SgmlReader : XmlReader, IDisposable
+    {
         SgmlDtd dtd;
         Entity current;
         State state;
@@ -1689,5 +1690,10 @@ namespace Sgml {
                 }
             }
         }
+
+	    public void Dispose()
+	    {
+		    throw new NotImplementedException();
+	    }
     }
 }
