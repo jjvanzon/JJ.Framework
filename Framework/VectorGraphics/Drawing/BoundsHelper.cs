@@ -5,10 +5,9 @@ namespace JJ.Framework.VectorGraphics.Drawing
 {
 	public static class BoundsHelper
 	{
-		// TODO: If these values are at the scale of pixels, aren't these too 'big'?
-		private const float MAX_VALUE = 1E9f;
-		private const float MIN_VALUE = -1E9f;
-		private const float VERY_SMALL_VALUE = 1E-9f;
+		private const float MAX_VALUE = 100_000f;
+		private const float MIN_VALUE = -100_000f;
+		private const float VERY_SMALL_VALUE = 0.00001f;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float CorrectCoordinate(float value)
@@ -57,22 +56,6 @@ namespace JJ.Framework.VectorGraphics.Drawing
 			}
 
 			return length;
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int CorrectCoordinateToInt32(float value)
-		{
-			float correctedFloat = CorrectCoordinate(value);
-			int correctedToInt32 = CorrectToInt32(correctedFloat);
-			return correctedToInt32;
-		}
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int CorrectLengthToInt32(float value)
-		{
-			float correctedFloat = CorrectLength(value);
-			int correctedToInt32 = CorrectToInt32(correctedFloat);
-			return correctedToInt32;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

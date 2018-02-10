@@ -189,12 +189,12 @@ namespace JJ.Framework.VectorGraphics.Drawing
 			float x = sourceLabel.CalculatedValues.XInPixels;
 			float y = sourceLabel.CalculatedValues.YInPixels;
 
-			// HACK:
-			// Calling CorrectCoordinate instead of CorrectLength,
+			// NOTE: Used to call CorrectCoordinate here
 			// because apparently System.Drawing hates it when I correct 0 to 1E-9f.
-			float width = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.WidthInPixels);
-			float height = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.HeightInPixels);
-
+			// But now they are correcte to 1E-5. Not sure if that helps. Also not sure anymore at what precise point System.Drawing hated it.
+			float width = sourceLabel.CalculatedValues.WidthInPixels;
+			float height = sourceLabel.CalculatedValues.HeightInPixels;
+			
 			DrawLabel(sourceLabel.Text, x, y, width, height, sourceLabel.TextStyle);
 		}
 
