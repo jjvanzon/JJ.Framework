@@ -13,7 +13,7 @@ namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 
 		private void Initialize()
 		{
-			Text = this.GetType().FullName;
+			Text = GetType().FullName;
 
 			diagramControl1.RootVectorGraphicsRectangle = VectorGraphicsFactory.CreateTestVectorGraphicsModel().Background;
 		}

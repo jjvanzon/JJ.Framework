@@ -1,6 +1,6 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Data.NHibernate
 {
@@ -16,14 +16,12 @@ namespace JJ.Framework.Data.NHibernate
 		public TEntity TryGet<TEntity>(object id)
 			where TEntity : class
 		{
-			Dictionary<object, object> nestedDictionary;
-			if (!_entityDictionary.TryGetValue(typeof(TEntity), out nestedDictionary))
+			if (!_entityDictionary.TryGetValue(typeof(TEntity), out Dictionary<object, object> nestedDictionary))
 			{
 				return null;
 			}
 
-			object entityObject;
-			if (!nestedDictionary.TryGetValue(id, out entityObject))
+			if (!nestedDictionary.TryGetValue(id, out object entityObject))
 			{
 				return null;
 			}
@@ -62,14 +60,13 @@ namespace JJ.Framework.Data.NHibernate
 
 			// If you naively add entities with no ID assigned (default(TID)), 
 			// you will get a result from TryGet when you expect null.
-			bool isDefault = JJ.Framework.Reflection.ReflectionHelper.IsDefault(id);
+			bool isDefault = Reflection.ReflectionHelper.IsDefault(id);
 			if (isDefault)
 			{
 				return;
 			}
 
-			Dictionary<object, object> nestedDictionary;
-			if (!_entityDictionary.TryGetValue(type, out nestedDictionary))
+			if (!_entityDictionary.TryGetValue(type, out Dictionary<object, object> nestedDictionary))
 			{
 				nestedDictionary = new Dictionary<object, object>();
 				_entityDictionary.Add(type, nestedDictionary);
@@ -92,8 +89,7 @@ namespace JJ.Framework.Data.NHibernate
 
 			Type type = entity.GetType();
 
-			Dictionary<object, object> nestedDictionary;
-			if (!_entityDictionary.TryGetValue(type, out nestedDictionary))
+			if (!_entityDictionary.TryGetValue(type, out Dictionary<object, object> nestedDictionary))
 			{
 				return;
 			}

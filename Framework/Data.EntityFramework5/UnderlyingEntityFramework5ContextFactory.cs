@@ -16,7 +16,7 @@ namespace JJ.Framework.Data.EntityFramework5
 			string modelName = GetEntityFrameworkModelName(mappingAssembly);
 			string specialConnectionString = GetSpecialConnectionString(connectionString, modelName);
 
-			DbContext dbContext = (DbContext)Activator.CreateInstance(dbContextType, specialConnectionString);
+			var dbContext = (DbContext)Activator.CreateInstance(dbContextType, specialConnectionString);
 			return dbContext;
 		}
 

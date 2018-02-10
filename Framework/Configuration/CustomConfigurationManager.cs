@@ -1,10 +1,10 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Reflection;
 using System.Xml;
+using JJ.Framework.Exceptions;
 using JJ.Framework.Xml;
-using System.Configuration;
 
 namespace JJ.Framework.Configuration
 {
@@ -76,9 +76,9 @@ namespace JJ.Framework.Configuration
 		public static T GetSection<T>(string sectionName)
 			where T : new()
 		{
-			T section = TryGetSection<T>(sectionName);
+			var section = TryGetSection<T>(sectionName);
 
-			bool sectionNotFound = object.Equals(section, default(T));
+			bool sectionNotFound = Equals(section, default(T));
 			if (sectionNotFound)
 			{
 				throw new Exception($"Configuration section '{sectionName}' not found.");
@@ -92,10 +92,9 @@ namespace JJ.Framework.Configuration
 		{
 			lock (_sectionDictionaryLock)
 			{
-				object section;
-				if (!_sectionDictionary.TryGetValue(sectionName, out section))
+				if (!_sectionDictionary.TryGetValue(sectionName, out object section))
 				{
-					XmlElement sourceXmlElement = (XmlElement)ConfigurationManager.GetSection(sectionName);
+					var sourceXmlElement = (XmlElement)ConfigurationManager.GetSection(sectionName);
 					if (sourceXmlElement != null)
 					{
 						var converter = new XmlToObjectConverter<T>();

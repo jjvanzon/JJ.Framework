@@ -1,13 +1,13 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Reflection;
 using System.Text;
-using JJ.Framework.PlatformCompatibility;
-using System.Data;
-using System.IO;
+using JJ.Framework.Exceptions;
 using JJ.Framework.IO;
+using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Data.SqlClient
@@ -65,7 +65,7 @@ namespace JJ.Framework.Data.SqlClient
 			{
 				while (reader.Read())
 				{
-					T obj = ConvertRecordToObject<T>(reader);
+					var obj = ConvertRecordToObject<T>(reader);
 					yield return obj;
 				}
 			}
@@ -76,7 +76,7 @@ namespace JJ.Framework.Data.SqlClient
 		{
 			if (IsSimpleType(typeof(T)))
 			{
-				T value = (T)ConvertValue(reader[0], typeof(T));
+				var value = (T)ConvertValue(reader[0], typeof(T));
 				return value;
 			}
 
@@ -110,8 +110,7 @@ namespace JJ.Framework.Data.SqlClient
 
 			lock (_sqlDictionaryLock)
 			{
-				string sql;
-				if (!_sqlDictionary.TryGetValue(sqlEnum, out sql))
+				if (!_sqlDictionary.TryGetValue(sqlEnum, out string sql))
 				{
 					Type sqlEnumType = sqlEnum.GetType();
 					string embeddedResourceName = $"{sqlEnumType.Namespace}.{sqlEnum}.sql";

@@ -1,5 +1,4 @@
 ﻿using JJ.Framework.Exceptions;
-using System.Collections.Generic;
 
 namespace JJ.Framework.Data
 {

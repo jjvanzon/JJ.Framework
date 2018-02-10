@@ -1,13 +1,13 @@
-﻿using JJ.Framework.Common;
-using JJ.Framework.Exceptions;
-using JJ.Framework.PlatformCompatibility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using JJ.Framework.Reflection;
 using JJ.Framework.Collections;
+using JJ.Framework.Common;
+using JJ.Framework.Exceptions;
+using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Presentation
 {
@@ -169,7 +169,7 @@ namespace JJ.Framework.Presentation
 
 		public static ActionInfo CreateActionInfo<TPresenter>(Expression<Func<TPresenter, object>> methodCallExpression)
 		{
-			return CreateActionInfo(typeof(TPresenter), (LambdaExpression)methodCallExpression);
+			return CreateActionInfo(typeof(TPresenter), methodCallExpression);
 		}
 
 		public static ActionInfo CreateActionInfo(Type presenterType, Expression<Func<object>> methodCallExpression)
@@ -218,6 +218,7 @@ namespace JJ.Framework.Presentation
 		/// </summary>
 		public static ActionInfo CreateActionInfo(string presenterName, string actionName, params object[] parameterNamesAndValues)
 		{
+			// ReSharper disable once SuggestVarOrType_Elsewhere
 			var keyValuePairs = KeyValuePairHelper.ConvertNamesAndValuesListToKeyValuePairs(parameterNamesAndValues);
 
 			var actionInfo = new ActionInfo

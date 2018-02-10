@@ -44,7 +44,7 @@ namespace JJ.Framework.Collections
 			if (node == null)
 			{
 				//return null;
-				return default(TValue); // DIRTY: default does not say much about whether the value is in there.
+				return default; // DIRTY: default does not say much about whether the value is in there.
 			}
 
 			return node.Value;
@@ -133,7 +133,7 @@ namespace JJ.Framework.Collections
 			if (_root == null)
 			{
 				// TODO: This is dirty.
-				return default(TValue);
+				return default;
 			}
 			else
 			{
@@ -148,7 +148,7 @@ namespace JJ.Framework.Collections
 			if (_root == null)
 			{
 				// TODO: This is dirty.
-				return default(TValue);
+				return default;
 			}
 			else
 			{

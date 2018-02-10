@@ -20,7 +20,7 @@ namespace JJ.Framework.WinForms.TestForms
 
 		private void Initialize()
 		{
-			Text = this.GetType().FullName;
+			Text = GetType().FullName;
 
 			var diagram = new Diagram();
 
@@ -103,6 +103,7 @@ namespace JJ.Framework.WinForms.TestForms
 				Color = ColorHelper.GetColor(80, 40, 120, 255)
 			};
 
+			// ReSharper disable once UnusedVariable
 			var demoLine1 = new Line
 			{
 				Diagram = diagram,
@@ -112,6 +113,7 @@ namespace JJ.Framework.WinForms.TestForms
 				LineStyle = demoLineStyle
 			};
 
+			// ReSharper disable once UnusedVariable
 			var demoLine2 = new Line
 			{
 				Diagram = diagram,
@@ -121,10 +123,10 @@ namespace JJ.Framework.WinForms.TestForms
 				LineStyle = demoLineStyle
 			};
 
-			var pointAGestureRegion = CreateGestureRegion(diagram, _curve.PointA);
-			var controlPointAGestureRegion = CreateGestureRegion(diagram, _curve.ControlPointA);
-			var controlPointBGestureRegion = CreateGestureRegion(diagram, _curve.ControlPointB);
-			var pointBGestureRegion = CreateGestureRegion(diagram, _curve.PointB);
+			Rectangle pointAGestureRegion = CreateGestureRegion(diagram, _curve.PointA);
+			Rectangle controlPointAGestureRegion = CreateGestureRegion(diagram, _curve.ControlPointA);
+			Rectangle controlPointBGestureRegion = CreateGestureRegion(diagram, _curve.ControlPointB);
+			Rectangle pointBGestureRegion = CreateGestureRegion(diagram, _curve.PointB);
 
 			var pointAMoveGesture = new MoveGesture();
 			pointAGestureRegion.Gestures.Add(pointAMoveGesture);

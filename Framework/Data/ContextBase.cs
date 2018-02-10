@@ -1,6 +1,6 @@
-﻿using JJ.Framework.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Data
 {
@@ -25,7 +25,7 @@ namespace JJ.Framework.Data
 
 		public virtual TEntity Get<TEntity>(object id) where TEntity : class, new()
 		{
-			TEntity entity = TryGet<TEntity>(id);
+			var entity = TryGet<TEntity>(id);
 
 			if (entity == null)
 			{

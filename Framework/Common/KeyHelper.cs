@@ -14,7 +14,7 @@ namespace JJ.Framework.Common
 		{
 			if (values == null) throw new ArgumentNullException(nameof(values));
 
-			string[] strings = new string[values.Length];
+			var strings = new string[values.Length];
 
 			for (int i = 0; i < strings.Length; i++)
 			{

@@ -35,8 +35,7 @@ namespace JJ.Framework.Common
 		{
 			lock (_sectionsLock)
 			{
-				object section;
-				_sections.TryGetValue(typeof(T), out section);
+				_sections.TryGetValue(typeof(T), out object section);
 				return (T)section;
 			}
 		}

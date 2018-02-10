@@ -78,7 +78,7 @@ namespace JJ.Framework.Data
 				if (type == null)
 				{
 					// Otherwise assume the assembly name is :JJ.Framework.Data." + persistenceContextTypeName.
-					string assumedAssemblyName = typeof(JJ.Framework.Data.ContextFactory).Assembly.GetName().Name + "." + contextTypeName;
+					string assumedAssemblyName = typeof(ContextFactory).Assembly.GetName().Name + "." + contextTypeName;
 					Assembly assembly;
 					try
 					{

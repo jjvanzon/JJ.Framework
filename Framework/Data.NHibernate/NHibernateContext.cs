@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using NHibernate;
 using System.Reflection;
 using JJ.Framework.Exceptions;
+using NHibernate;
 using NHibernate.Engine;
 using NHibernate.Persister.Entity;
 
@@ -31,7 +31,7 @@ namespace JJ.Framework.Data.NHibernate
 
 		public override TEntity TryGet<TEntity>(object id)
 		{
-			TEntity entity = _entityDictionary.TryGet<TEntity>(id);
+			var entity = _entityDictionary.TryGet<TEntity>(id);
 			if (entity != null)
 			{
 				return entity;
@@ -46,7 +46,7 @@ namespace JJ.Framework.Data.NHibernate
 
 		public override TEntity Create<TEntity>()
 		{
-			TEntity entity = new TEntity();
+			var entity = new TEntity();
 
 			_entitiesToSave.Add(entity);
 

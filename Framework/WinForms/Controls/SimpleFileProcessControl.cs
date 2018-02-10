@@ -69,7 +69,7 @@ namespace JJ.Framework.WinForms.Controls
 		{
 			if (MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
-				Async(() => RunProcess());
+				Async(RunProcess);
 			}
 		}
 

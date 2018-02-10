@@ -101,7 +101,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 		private void InitializeMouseMoveGesture()
 		{
-			MouseMoveGesture mouseMoveGesture = new MouseMoveGesture();
+			var mouseMoveGesture = new MouseMoveGesture();
 			mouseMoveGesture.MouseMove += mouseMoveGesture_MouseMove;
 			_mouseMoveGesture = mouseMoveGesture;
 		}
@@ -110,7 +110,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 		{
 			if (_mouseMoveGesture != null)
 			{
-				MouseMoveGesture mouseMoveGesture = (MouseMoveGesture)_mouseMoveGesture;
+				var mouseMoveGesture = (MouseMoveGesture)_mouseMoveGesture;
 				mouseMoveGesture.MouseMove -= mouseMoveGesture_MouseMove;
 			}
 		}
@@ -163,7 +163,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 				return;
 			}
 
-			MouseEventArgs e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
+			var e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
 			foreach (GestureBase gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
 			{
@@ -222,7 +222,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 				return;
 			}
 
-			MouseEventArgs e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
+			var e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
 			foreach (GestureBase gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
 			{

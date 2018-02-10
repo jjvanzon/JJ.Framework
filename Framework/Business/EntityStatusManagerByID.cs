@@ -1,9 +1,9 @@
-﻿using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Reflection;
-using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using JJ.Framework.Exceptions;
+using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Business
 {
@@ -109,8 +109,7 @@ namespace JJ.Framework.Business
 		private EntityStatusEnum GetStatus(Type entityType, object id)
 		{
 			var key = new Tuple_PlatformSupport<Type, object>(entityType, id);
-			EntityStatusEnum entityStatus;
-			_entityStatuses.TryGetValue(key, out entityStatus);
+			_entityStatuses.TryGetValue(key, out EntityStatusEnum entityStatus);
 			return entityStatus;
 		}
 
@@ -127,8 +126,7 @@ namespace JJ.Framework.Business
 			object entity = values[values.Count - 2];
 			string propertyName = ExpressionHelper.GetName(propertyExpression);
 			var key = new Tuple_PlatformSupport<Type, object, string>(entity.GetType(), id, propertyName);
-			PropertyStatusEnum propertyStatus;
-			_propertyStatuses.TryGetValue(key, out propertyStatus);
+			_propertyStatuses.TryGetValue(key, out PropertyStatusEnum propertyStatus);
 			return propertyStatus;
 		}
 

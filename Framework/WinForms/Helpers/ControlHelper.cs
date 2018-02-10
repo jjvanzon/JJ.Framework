@@ -31,7 +31,7 @@ namespace JJ.Framework.WinForms.Helpers
 			if (font == null) throw new NullException(() => font);
 			if (control == null) throw new NullException(() => control);
 
-			UserControl userControl = ControlHelper.GetAncestorUserControl(control);
+			UserControl userControl = GetAncestorUserControl(control);
 			if (userControl.ParentForm == null) throw new NullException(() => userControl.ParentForm);
 
 			SizeF size = graphics.MeasureString(text, font);
@@ -50,7 +50,7 @@ namespace JJ.Framework.WinForms.Helpers
 				autoScaleFactor *= fontScalingCorrectionFactor;
 			}
 
-			SizeF scaledSize = new SizeF(size.Width * autoScaleFactor, size.Height * autoScaleFactor);
+			var scaledSize = new SizeF(size.Width * autoScaleFactor, size.Height * autoScaleFactor);
 			return scaledSize;
 		}
 

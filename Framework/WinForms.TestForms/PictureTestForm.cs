@@ -20,6 +20,7 @@ namespace JJ.Framework.WinForms.TestForms
 		{
 			InitializeComponent();
 
+			// ReSharper disable once VirtualMemberCallInConstructor
 			Text = GetType().FullName;
 
 			var diagram = new Diagram();

@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Data
+﻿// ReSharper disable InconsistentNaming
+namespace JJ.Framework.Data
 {
 	/// <summary>
 	/// Provides some constants for different dialects,

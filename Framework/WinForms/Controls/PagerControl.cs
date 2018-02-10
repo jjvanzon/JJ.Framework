@@ -102,7 +102,7 @@ namespace JJ.Framework.WinForms.Controls
 			}
 
 			// Rearrange controls in flowLayoutPanel
-			List<Control> childControls = new List<Control>(_pageNumberLinkLabels.Count + 6);
+			var childControls = new List<Control>(_pageNumberLinkLabels.Count + 6);
 			childControls.Add(linkLabelGoToFirstPage);
 			childControls.Add(linkLabelGoToPreviousPage);
 			childControls.Add(labelLeftEllipsis);
@@ -152,7 +152,7 @@ namespace JJ.Framework.WinForms.Controls
 		{
 			if (PageNumberClicked != null)
 			{
-				LinkLabel pageNumberLinkLabel = (LinkLabel)sender;
+				var pageNumberLinkLabel = (LinkLabel)sender;
 				int pageNumber = int.Parse(pageNumberLinkLabel.Text);
 				var e2 = new PageNumberEventArgs(pageNumber);
 				PageNumberClicked(sender, e2);

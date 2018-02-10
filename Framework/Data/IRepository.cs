@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace JJ.Framework.Data
+﻿namespace JJ.Framework.Data
 {
 	public interface IRepository<TEntity, in TID>
 	{
@@ -8,6 +6,7 @@ namespace JJ.Framework.Data
 		TEntity Get(TID id);
 		TEntity Create();
 		void Delete(TEntity entity);
+		// ReSharper disable once UnusedMember.Global
 		void Update(TEntity entity);
 		void Insert(TEntity entity);
 

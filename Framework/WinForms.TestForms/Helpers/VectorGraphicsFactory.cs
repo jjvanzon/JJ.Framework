@@ -9,8 +9,6 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 		{
 			var diagram = new Diagram();
 
-			Rectangle background = diagram.Background;
-
 			Rectangle rectangle1 = CreateRectangle(diagram, 200, 10, "Block 1");
 
 			Rectangle rectangle2 = CreateRectangle(diagram, 10, 200, "Block 2");
@@ -49,12 +47,12 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 
 		private static Rectangle CreateRectangle(Diagram diagram, float x, float y, string text)
 		{
-			var rectangle = new Rectangle()
+			var rectangle = new Rectangle
 			{
 				Diagram = diagram,
-				Parent = diagram.Background
+				Parent = diagram.Background,
+				Style = { LineStyle = VectorGraphicsHelper.DefaultLineStyle }
 			};
-			rectangle.Style.LineStyle = VectorGraphicsHelper.DefaultLineStyle;
 			rectangle.Position.X = x;
 			rectangle.Position.Y = y;
 			rectangle.Position.Width = 300;
@@ -77,7 +75,7 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 
 		public static Rectangle CreateRectangle(Diagram diagram, string text)
 		{
-			var rectangle = new Rectangle()
+			var rectangle = new Rectangle
 			{
 				Diagram = diagram,
 				Parent = diagram.Background

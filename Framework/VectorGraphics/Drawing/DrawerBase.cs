@@ -268,6 +268,7 @@ namespace JJ.Framework.VectorGraphics.Drawing
 		}
 
 
+		// ReSharper disable once RedundantExplicitArrayCreation
 		private float[][] GetOpacityColorMatrix(float opacity) =>
 			new[]
 			{

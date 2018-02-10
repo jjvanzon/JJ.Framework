@@ -578,7 +578,7 @@ namespace JJ.Framework.Collections
 
 			foreach (TItem item2 in collection)
 			{
-				if (object.Equals(item2, item))
+				if (Equals(item2, item))
 				{
 					return i;
 				}

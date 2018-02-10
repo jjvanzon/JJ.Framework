@@ -61,9 +61,10 @@ namespace JJ.Framework.Conversion
 			return Convert.ChangeType(input, type, formatProvider);
 		}
 
+		// ReSharper disable once UnusedMember.Global
 		public static T ConvertValue<T>(object input)
 		{
-			T value = (T)ConvertValue(input, typeof(T));
+			var value = (T)ConvertValue(input, typeof(T));
 			return value;
 		}
 

@@ -134,10 +134,10 @@ namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 				float right = sourceRectangle.Position.X + sourceRectangle.Position.Width;
 				float bottom = sourceRectangle.Position.Y + sourceRectangle.Position.Height;
 
-				PointF destTopLeftPointF = new PointF(sourceRectangle.Position.X, sourceRectangle.Position.Y);
-				PointF destTopRightPointF = new PointF(right, sourceRectangle.Position.Y);
-				PointF destBottomRightPointF = new PointF(right, bottom);
-				PointF destBottomLeftPointF = new PointF(sourceRectangle.Position.X, bottom);
+				var destTopLeftPointF = new PointF(sourceRectangle.Position.X, sourceRectangle.Position.Y);
+				var destTopRightPointF = new PointF(right, sourceRectangle.Position.Y);
+				var destBottomRightPointF = new PointF(right, bottom);
+				var destBottomLeftPointF = new PointF(sourceRectangle.Position.X, bottom);
 
 				Pen destTopPen = sourceRectangle.Style.TopLineStyle.ToSystemDrawing();
 				destGraphics.DrawLine(destTopPen, destTopLeftPointF, destTopRightPointF);
@@ -162,7 +162,7 @@ namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 
 			StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
 			System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
-			RectangleF destRectangle = new RectangleF(
+			var destRectangle = new RectangleF(
 				sourceLabel.Position.X, 
 				sourceLabel.Position.Y, 
 				sourceLabel.Position.Width, 

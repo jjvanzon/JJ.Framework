@@ -1,8 +1,8 @@
-﻿using JJ.Framework.Reflection;
-using System;
+﻿using System;
 using System.Configuration;
 using System.Linq.Expressions;
 using JJ.Framework.Conversion;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Configuration
 {
@@ -12,7 +12,7 @@ namespace JJ.Framework.Configuration
 		{
 			string name = ExpressionHelper.GetName(expression);
 			string stringValue = ConfigurationManager.AppSettings[name];
-			TValue value = SimpleTypeConverter.ParseValue<TValue>(stringValue);
+			var value = SimpleTypeConverter.ParseValue<TValue>(stringValue);
 			return value;
 		}
 	}

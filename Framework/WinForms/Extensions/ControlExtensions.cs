@@ -23,6 +23,7 @@ namespace JJ.Framework.WinForms.Extensions
 
 			control.TabIndex = currentTabIndex++;
 
+			// ReSharper disable once SuggestVarOrType_Elsewhere
 			var sortedChildren =
 				from Control x in control.Controls
 				orderby x.Location.Y, x.Location.X

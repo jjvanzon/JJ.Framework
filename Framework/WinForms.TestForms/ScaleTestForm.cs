@@ -9,16 +9,25 @@ using JJ.Framework.WinForms.TestForms.Helpers;
 // ReSharper disable once RedundantUsingDirective
 using Label = JJ.Framework.VectorGraphics.Models.Elements.Label;
 using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
+// ReSharper disable UnusedMember.Local
 
 namespace JJ.Framework.WinForms.TestForms
 {
 	internal partial class ScaleTestForm : Form
 	{
+		private string _text;
+
+		public override string Text
+		{
+			get => _text;
+			set => _text = value;
+		}
+
 		public ScaleTestForm()
 		{
 			InitializeComponent();
 
-			Text = GetType().FullName;
+			_text = GetType().FullName;
 
 			InitializeDiagramAndElements3();
 		}

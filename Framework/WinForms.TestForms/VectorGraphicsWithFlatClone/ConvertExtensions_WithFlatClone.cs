@@ -112,7 +112,7 @@ namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 			if (sourceLineStyle == null) throw new NullException(() => sourceLineStyle);
 
 			Color destColor = sourceLineStyle.Color.ToSystemDrawing();
-			Pen destPen = new Pen(destColor, sourceLineStyle.Width);
+			var destPen = new Pen(destColor, sourceLineStyle.Width);
 
 			switch (sourceLineStyle.DashStyleEnum)
 			{
