@@ -132,7 +132,6 @@ namespace JJ.Framework.VectorGraphics.Drawing
 			// Draw Back
 			if (sourceRectangle.Style.BackStyle.Visible)
 			{
-
 				FillRectangle(x, y, width, height, sourceRectangle.Style.BackStyle);
 			}
 
