@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="CultureHelper.cs" />
+    <Compile Include="EventArgsOfT.cs" />
     <Compile Include="Int32Helper.cs" />
     <Compile Include="DoubleHelper.cs" />
     <Compile Include="EmbeddedResourceHelper.cs" />

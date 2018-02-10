@@ -7,10 +7,7 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public class Rectangle : Element
 	{
-		public Rectangle()
-		{
-			Position = new RectanglePosition(this);
-		}
+		public Rectangle() => Position = new RectanglePosition(this);
 
 		public override ElementPosition Position { get; }
 

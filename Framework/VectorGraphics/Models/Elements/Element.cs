@@ -9,7 +9,7 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 	/// <summary> base class that can contain VectorGraphics child elements. </summary>
 	public abstract class Element
 	{
-		internal Element()
+		public Element()
 		{
 			Gestures = new List<GestureBase>();
 			CalculatedValues = new CalculatedValues();
@@ -26,6 +26,11 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		public bool Visible { get; set; }
 		public int ZIndex { get; set; }
 		public object Tag { get; set; }
+
+		/// <summary>
+		/// Typically assign as follows in the constructor of your derived class:
+		/// Position = new RectanglePosition(this);
+		/// </summary>
 		public abstract ElementPosition Position { get; }
 		public CalculatedValues CalculatedValues { get; }
 

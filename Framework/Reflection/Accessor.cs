@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Reflection;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace JJ.Framework.Reflection
 {

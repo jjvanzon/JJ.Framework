@@ -5,7 +5,7 @@
 	/// </summary>
 	public class RectanglePosition : ElementPosition
 	{
-		internal RectanglePosition(Element element)
+		public RectanglePosition(Element element)
 			: base(element)
 		{ }
 
