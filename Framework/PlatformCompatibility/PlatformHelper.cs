@@ -93,7 +93,7 @@ namespace JJ.Framework.PlatformCompatibility
 		/// </summary>
 		public static void XElement_Save_PlatformSafe(XElement element, string fileName)
 		{
-			using (FileStream stream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
+			using (var stream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
 			{
 				XElement_Save_PlatformSafe(element, stream);
 			}

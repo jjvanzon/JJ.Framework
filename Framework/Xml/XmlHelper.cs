@@ -1,8 +1,8 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Xml
 {
@@ -34,6 +34,10 @@ namespace JJ.Framework.Xml
 			if (parentNode == null) throw new NullException(() => parentNode);
 
 			XmlNodeList nodes = parentNode.SelectNodes(xpath);
+			if (nodes == null)
+			{
+				throw new NullException(() => parentNode.SelectNodes(xpath));
+			}
 
 			switch (nodes.Count)
 			{
@@ -98,7 +102,7 @@ namespace JJ.Framework.Xml
 
 			// The outcommented line below selected descendents, not children.
 			//return parentElement.GetElementsByTagName(childElementName).OfType<XmlElement>().ToArray();
-			return parentElement.SelectNodes(childElementName).OfType<XmlElement>().ToArray();
+			return parentElement.SelectNodes(childElementName)?.OfType<XmlElement>().ToArray() ?? new XmlElement[0];
 		}
 
 		// Attributes

@@ -1,8 +1,8 @@
-﻿using JJ.Framework.PlatformCompatibility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Reflection
 {
@@ -154,7 +154,7 @@ namespace JJ.Framework.Reflection
 			{
 				Visit(node.Arguments[i]);
 			}
-			object[] arguments = new object[node.Arguments.Count];
+			var arguments = new object[node.Arguments.Count];
 			for (int i = node.Arguments.Count - 1; i >= 0; i--)
 			{
 				arguments[i] = _stack.Pop();
@@ -186,7 +186,7 @@ namespace JJ.Framework.Reflection
 			{
 				var memberExpression = (MemberExpression)node.Operand;
 				VisitMember(memberExpression);
-				Array array = (Array)_stack.Pop();
+				var array = (Array)_stack.Pop();
 				_stack.Push(array.Length);
 				return;
 			}
@@ -235,7 +235,7 @@ namespace JJ.Framework.Reflection
 				Visit(node.Expressions[i]);
 			}
 
-			Array array = (Array)Activator.CreateInstance(node.Type, node.Expressions.Count);
+			var array = (Array)Activator.CreateInstance(node.Type, node.Expressions.Count);
 			for (int i = node.Expressions.Count - 1; i >= 0; i--)
 			{
 				object item = _stack.Pop();

@@ -1,7 +1,7 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Mathematics
 {
@@ -53,7 +53,7 @@ namespace JJ.Framework.Mathematics
 			if (b < 2) throw new ArgumentException("b must be 2 or higher.");
 
 			int digitCount = GetDigitCount(number, b);
-			int[] digits = new int[digitCount];
+			var digits = new int[digitCount];
 
 			for (int i = digitCount - 1; i >= 0; i--)
 			{

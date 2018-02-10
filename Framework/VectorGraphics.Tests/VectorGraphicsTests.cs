@@ -4,6 +4,7 @@ using JJ.Framework.VectorGraphics.Enums;
 using JJ.Framework.VectorGraphics.Helpers;
 using JJ.Framework.VectorGraphics.Models.Elements;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable RedundantAssignment
 
 namespace JJ.Framework.VectorGraphics.Tests
 {

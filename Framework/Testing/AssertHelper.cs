@@ -1,9 +1,9 @@
-﻿using JJ.Framework.Reflection;
-using JJ.Framework.Exceptions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Linq.Expressions;
 using System.Threading;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Testing
 {
@@ -39,7 +39,7 @@ namespace JJ.Framework.Testing
 		{
 			T b = ExpressionHelper.GetValue(bExpression);
 
-			if (object.Equals(a, b))
+			if (Equals(a, b))
 			{
 				string name = ExpressionHelper.GetText(bExpression);
 				string message = TestHelper.FormatTestedPropertyMessage(name);
@@ -50,16 +50,17 @@ namespace JJ.Framework.Testing
 
 		public static void AreEqual<T>(T expected, Expression<Func<T>> actualExpression)
 		{
-			ExpectedActualCheck((actual) => object.Equals(expected, actual), "AreEqual", expected, actualExpression);
+			ExpectedActualCheck(actual => Equals(expected, actual), "AreEqual", expected, actualExpression);
 		}
 
 		public static void AreSame<T>(T expected, Expression<Func<T>> actualExpression)
 		{
-			ExpectedActualCheck((actual) => object.ReferenceEquals(expected, actual), "AreSame", expected, actualExpression);
+			ExpectedActualCheck(actual => ReferenceEquals(expected, actual), "AreSame", expected, actualExpression);
 		}
 
 		public static void IsTrue(Expression<Func<bool>> expression)
 		{
+			// ReSharper disable once RedundantBoolCompare
 			Check(x => x == true, "IsTrue", expression);
 		}
 
@@ -94,7 +95,7 @@ namespace JJ.Framework.Testing
 			if (obj == null) throw new Exception("obj cannot be null");
 			Type expected = typeof(T);
 			Type actual = obj.GetType();
-			ExpectedActualCheck((x) => expected == actual, "IsOfType", expected, expression);
+			ExpectedActualCheck(x => expected == actual, "IsOfType", expected, expression);
 		}
 
 		// ThrowsException Checks
@@ -165,7 +166,7 @@ namespace JJ.Framework.Testing
 		public static void ThrowsExceptionOnOtherThread(Action statement)
 		{
 			bool exceptionWasThrown = false;
-			Action action = new Action(() =>
+			var action = new Action(() =>
 			{
 				try
 				{
@@ -177,8 +178,8 @@ namespace JJ.Framework.Testing
 				}
 			});
 
-			ThreadStart threadStart = new ThreadStart(action);
-			Thread thread = new Thread(threadStart);
+			var threadStart = new ThreadStart(action);
+			var thread = new Thread(threadStart);
 			thread.Start();
 			thread.Join();
 
@@ -192,7 +193,7 @@ namespace JJ.Framework.Testing
 
 		private static void ExpectedActualCheck<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression)
 		{
-			T actual = (T)ExpressionHelper.GetValue(actualExpression);
+			T actual = ExpressionHelper.GetValue(actualExpression);
 			if (!condition(actual))
 			{
 				string name = ExpressionHelper.GetText(actualExpression);

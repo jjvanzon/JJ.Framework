@@ -20,6 +20,8 @@ namespace JJ.Framework.Exceptions
 
 		public ExceptionWithExpressionBase(string name)
 		{
+			// TODO: Maybe solve this warning once, but it is kind of high-impact (see TODO above).
+			// ReSharper disable once VirtualMemberCallInConstructor
 			_message = string.Format(MessageFormat, name);
 		}
 	}

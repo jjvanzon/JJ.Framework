@@ -147,22 +147,6 @@ namespace JJ.Framework.WinForms.TestForms
 			TrySetElementText(e.Element, "MouseLeave");
 		}
 
-		private void clickGesture_Click(object sender, ElementEventArgs e)
-		{
-			TrySetElementText(e.Element, "Clicked");
-		}
-
-		private void dragGesture_Dragging(object sender, DraggingEventArgs e)
-		{
-			TrySetElementText(e.ElementBeingDragged, "Dragging");
-		}
-
-		private void dropGesture_Dropped(object sender, DroppedEventArgs e)
-		{
-			TrySetElementText(e.DraggedElement, "Dragged");
-			TrySetElementText(e.DroppedOnElement, "Dropped On");
-		}
-
 		private void DoubleClickGesture_DoubleClick(object sender, ElementEventArgs e)
 		{
 			TrySetElementText(e.Element, "DoubleClicked");
@@ -173,8 +157,7 @@ namespace JJ.Framework.WinForms.TestForms
 			var label = element as Label;
 			if (label == null)
 			{
-				var rectangle = element as Rectangle;
-				if (rectangle != null)
+				if (element is Rectangle rectangle)
 				{
 					label = rectangle.Children.OfType<Label>().FirstOrDefault();
 				}

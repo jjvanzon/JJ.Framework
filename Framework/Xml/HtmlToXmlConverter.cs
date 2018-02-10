@@ -1,6 +1,6 @@
-﻿using Sgml;
-using System.IO;
+﻿using System.IO;
 using System.Xml;
+using Sgml;
 
 namespace JJ.Framework.Xml
 {
@@ -8,13 +8,13 @@ namespace JJ.Framework.Xml
 	{
 		public static string Convert(string html)
 		{
-			using (StringReader stringReader = new StringReader(html))
+			using (var stringReader = new StringReader(html))
 			{
-				using (SgmlReader sgmlReader = new SgmlReader { DocType = "HTML", InputStream = stringReader })
+				using (var sgmlReader = new SgmlReader { DocType = "HTML", InputStream = stringReader })
 				{
-					using (StringWriter stringWriter = new StringWriter())
+					using (var stringWriter = new StringWriter())
 					{
-						using (XmlTextWriter xmlTextWriter = new XmlTextWriter(stringWriter))
+						using (var xmlTextWriter = new XmlTextWriter(stringWriter))
 						{
 							xmlTextWriter.WriteStartDocument(); // Write XML header
 

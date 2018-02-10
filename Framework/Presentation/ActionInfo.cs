@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Presentation
 {
@@ -17,6 +18,7 @@ namespace JJ.Framework.Presentation
 		/// <summary> nullable </summary>
 		public ActionInfo ReturnAction { get; set; }
 
+		[UsedImplicitly]
 		private string DebuggerDisplay
 		{
 			get

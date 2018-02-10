@@ -5,6 +5,7 @@ using JJ.Framework.Exceptions;
 using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.VectorGraphics.Models.Styling;
 using JJ.Framework.WinForms.TestForms.Helpers;
+using Font = System.Drawing.Font;
 using Point = JJ.Framework.VectorGraphics.Models.Elements.Point;
 using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
 
@@ -28,32 +29,23 @@ namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 
 		private void DrawPolymorphic(Element sourceElement, Graphics destGraphics)
 		{
-			var sourcePoint = sourceElement as Point;
-			if (sourcePoint != null)
+			switch (sourceElement)
 			{
-				DrawPoint(sourcePoint, destGraphics);
-				return;
-			}
+				case Point sourcePoint:
+					DrawPoint(sourcePoint, destGraphics);
+					return;
 
-			var sourceLine = sourceElement as Line;
-			if (sourceLine != null)
-			{
-				DrawLine(sourceLine, destGraphics);
-				return;
-			}
+				case Line sourceLine:
+					DrawLine(sourceLine, destGraphics);
+					return;
 
-			var sourceRectangle = sourceElement as Rectangle;
-			if (sourceRectangle != null)
-			{
-				DrawRectangle(sourceRectangle, destGraphics);
-				return;
-			}
+				case Rectangle sourceRectangle:
+					DrawRectangle(sourceRectangle, destGraphics);
+					return;
 
-			var sourceLabel = sourceElement as Label;
-			if (sourceLabel != null)
-			{
-				DrawLabel(sourceLabel, destGraphics);
-				return;
+				case Label sourceLabel:
+					DrawLabel(sourceLabel, destGraphics);
+					return;
 			}
 
 			throw new Exception($"Unexpected Element type '{sourceElement.GetType().FullName}'");
@@ -88,10 +80,10 @@ namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 
 				Pen destPen = sourceLine.LineStyle.ToSystemDrawing();
 				destGraphics.DrawLine(
-					destPen, 
-					sourceLine.PointA.Position.X, 
+					destPen,
+					sourceLine.PointA.Position.X,
 					sourceLine.PointA.Position.Y,
-					sourceLine.PointB.Position.X, 
+					sourceLine.PointB.Position.X,
 					sourceLine.PointB.Position.Y);
 			}
 		}
@@ -161,11 +153,11 @@ namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 			}
 
 			StringFormat destStringFormat = sourceLabel.TextStyle.ToSystemDrawingStringFormat();
-			System.Drawing.Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
+			Font destFont = sourceLabel.TextStyle.Font.ToSystemDrawing();
 			var destRectangle = new RectangleF(
-				sourceLabel.Position.X, 
-				sourceLabel.Position.Y, 
-				sourceLabel.Position.Width, 
+				sourceLabel.Position.X,
+				sourceLabel.Position.Y,
+				sourceLabel.Position.Width,
 				sourceLabel.Position.Height);
 			Brush destBrush = sourceLabel.TextStyle.ToSystemDrawingBrush();
 

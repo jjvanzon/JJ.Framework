@@ -220,7 +220,7 @@
     <value>{0} zou niet moeten bestaan.</value>
   </data>
   <data name="NotExists_WithName" xml:space="preserve">
-    <value>{0} bestaant niet.</value>
+    <value>{0} bestaat niet.</value>
   </data>
   <data name="NotUnique_WithName_Plural" xml:space="preserve">
     <value>{0} zijn dubbel.</value>
@@ -251,5 +251,11 @@
   </data>
   <data name="NotFilledIn" xml:space="preserve">
     <value>Niet ingevuld.</value>
+  </data>
+  <data name="NotExists_WithName_AndValue" xml:space="preserve">
+    <value>{0} {1} bestaat niet.</value>
+  </data>
+  <data name="NotInList_WithName_AndValue_AndAllowedValues" xml:space="preserve">
+    <value>{0} {1} niet toegestaan. Mogelijke waardes: {2}.</value>
   </data>
 </root>

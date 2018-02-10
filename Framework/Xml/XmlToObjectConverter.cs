@@ -1,16 +1,16 @@
-﻿using JJ.Framework.Common;
-using JJ.Framework.Conversion;
-using JJ.Framework.Exceptions;
-using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Reflection;
-using JJ.Framework.Xml.Internal;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using JJ.Framework.Common;
+using JJ.Framework.Conversion;
+using JJ.Framework.Exceptions;
+using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Reflection;
+using JJ.Framework.Xml.Internal;
 
 namespace JJ.Framework.Xml
 {
@@ -49,40 +49,6 @@ namespace JJ.Framework.Xml
 		where TDestObject: new()
 	{
 		private static readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
-
-		/// <summary>
-		/// Converts an XML structure to an object tree.
-		/// 
-		/// (Under certain platforms standard XML serialization may not be available 
-		/// or may not be the best option. That is why this class exists.)
-		/// 
-		/// By default properties are mapped to XML elements.
-		/// 
-		/// To map to XML attributes, mark a property with the XmlAttribute attribute.
-		/// 
-		/// If a property is an Array type or a supported collection type, 
-		/// a parent XML element is expected,
-		/// and a child element for each position in the array.
-		/// That single collection property maps to both this parent element and the child elements.
-		/// The supported collection types are Array types, List&lt;T&gt;, IList&lt;T&gt;, ICollection&lt;T&gt; and IEnumerable&lt;T&gt;.
-		/// 
-		/// By default the names in the XML are the camel-case version of the property names.
-		/// For XML array items, however, it is not the property name, but the collection property's item type name converted to camel case.
-		/// To diverge from this standard, you can specify the node name explicitly by using the following .NET attributes
-		/// on the properties: XmlElement, XmlAttribute, XmlArray and XmlArrayItem.
-		/// 
-		/// Reference types are always optional. Value types are optional only if they are nullable.
-		/// Collection types are always optional. If only the parent element is present, an empty collection will be assigned.
-		/// If the parent element is missing from the XML, the collection will be null.
-		/// 
-		/// Recognized values are the .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
-		/// the numeric types, their signed and unsigned variations and
-		/// String, Guid, DateTime, TimeSpan and Enum types.
-		/// 
-		/// The composite types in the object structure must have parameterless constructors.
-		/// </summary>
-		public XmlToObjectConverter()
-		{ }
 
 		public TDestObject Convert(byte[] data)
 		{
@@ -206,6 +172,7 @@ namespace JJ.Framework.Xml
 			}
 
 			// If it is not an array or attribute, then it is an element by default.
+			// ReSharper disable once ConditionIsAlwaysTrueOrFalse
 			bool isValidElement = !hasXmlAttributeAttribute && !hasXmlArrayAttribute && !hasXmlArrayItemAttribute;
 			if (!isValidElement)
 			{

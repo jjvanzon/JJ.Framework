@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text;
-using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Exceptions;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.IO
 {
@@ -11,9 +11,7 @@ namespace JJ.Framework.IO
 		{
 			if (stream == null) throw new NullException(() => stream);
 
-			MemoryStream memoryStream = stream as MemoryStream;
-
-			if (memoryStream == null)
+			if (!(stream is MemoryStream memoryStream))
 			{
 				// Use memory stream as an intermediate, because not all Stream types support the Length property.
 				memoryStream = new MemoryStream();

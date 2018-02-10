@@ -20,6 +20,7 @@ namespace JJ.Framework.WinForms.Forms
 			simpleFileProcessControl.OnRunProcess += simpleProcessControl_OnRunProcess;
 		}
 
+		// ReSharper disable once ValueParameterNotUsed
 		public new string Text { get { return null; } set { } }
 
 		public event EventHandler OnRunProcess;

@@ -24,6 +24,7 @@ namespace JJ.Framework.Mathematics
 		public static int GetInt32()
 		{
 			// Int32.MaxValue without the - 1 can produce an overflow error.
+			// ReSharper disable once IntroduceOptionalParameters.Global
 			return GetInt32(int.MinValue, int.MaxValue - 1);
 		}
 
@@ -52,6 +53,7 @@ namespace JJ.Framework.Mathematics
 
 		public static T GetRandomItem<T>(IEnumerable<T> collection)
 		{
+			// ReSharper disable once PossibleMultipleEnumeration
 			int count = collection.Count();
 			if (count == 0)
 			{
@@ -71,7 +73,7 @@ namespace JJ.Framework.Mathematics
 			{
 				// Unfortunately, you cannot create overloads that return T? for structs and null for classes.
 				// This is not currently possible in C#. I think they're working on it.
-				return default(T);
+				return default;
 			}
 
 			int index = GetInt32(count - 1);

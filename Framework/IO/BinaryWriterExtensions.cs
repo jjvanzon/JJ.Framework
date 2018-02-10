@@ -1,6 +1,6 @@
-﻿using JJ.Framework.Exceptions;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.InteropServices;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.IO
 {
@@ -30,7 +30,7 @@ namespace JJ.Framework.IO
 			int size = Marshal.SizeOf(typeof(T));
 			byte[] buffer = reader.ReadBytes(size);
 			GCHandle gcHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-			T result = (T)Marshal.PtrToStructure(gcHandle.AddrOfPinnedObject(), typeof(T));
+			var result = (T)Marshal.PtrToStructure(gcHandle.AddrOfPinnedObject(), typeof(T));
 			gcHandle.Free();
 			return result;
 		}

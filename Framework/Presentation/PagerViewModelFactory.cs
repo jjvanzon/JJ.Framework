@@ -1,6 +1,6 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Presentation
 {
@@ -13,6 +13,7 @@ namespace JJ.Framework.Presentation
 			if (count < 0) throw new LessThanException(() => count, 0);
 			if (maxVisiblePageNumbers < 1) throw new LessThanException(() => maxVisiblePageNumbers, 1);
 
+			// ReSharper disable RedundantCast
 			int pageCount = (int)Math.Ceiling((decimal)count / (decimal)pageSize);
 			if (selectedPageIndex > pageCount)
 			{
