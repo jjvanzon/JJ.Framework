@@ -6,9 +6,6 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	public class RectangleStyle
 	{
-		internal RectangleStyle()
-		{ }
-
 		private BackStyle _backStyle = new BackStyle();
 		/// <summary> not nullable, auto-instantiated </summary>
 		public BackStyle BackStyle
