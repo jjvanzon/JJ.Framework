@@ -70,7 +70,6 @@
     <Compile Include="Helpers\ITextMeasurer.cs" />
     <Compile Include="Helpers\ScaleHelper.cs" />
     <Compile Include="Helpers\ApproximatingTextMeasurer.cs" />
-    <Compile Include="Drawing\IDrawer.cs" />
     <Compile Include="Models\Elements\Ellipse.cs" />
     <Compile Include="Models\Elements\EllipseStyle.cs" />
     <Compile Include="Models\Elements\Curve.cs" />
@@ -84,13 +83,6 @@
     <Compile Include="Models\Elements\LinePosition.cs" />
     <Compile Include="Models\Elements\PointPosition.cs" />
     <Compile Include="Models\Elements\RectangleStyle.cs" />
-    <Compile Include="Models\PictureOperators\Brightness.cs" />
-    <Compile Include="Models\PictureOperators\Colorize.cs" />
-    <Compile Include="Models\PictureOperators\Crop.cs" />
-    <Compile Include="Models\PictureOperators\InputPicture.cs" />
-    <Compile Include="Models\PictureOperators\Opacity.cs" />
-    <Compile Include="Models\PictureOperators\PictureOperator.cs" />
-    <Compile Include="Models\PictureOperators\Scale.cs" />
     <Compile Include="Models\Styling\PictureStyle.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />
     <Compile Include="Relationships\DiagramToElementsRelationship.cs" />

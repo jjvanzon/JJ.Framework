@@ -63,16 +63,21 @@ namespace JJ.Framework.VectorGraphics.Drawing
 		public static int CorrectCoordinateToInt32(float value)
 		{
 			float correctedFloat = CorrectCoordinate(value);
-			if (correctedFloat > int.MaxValue) correctedFloat = int.MaxValue;
-			if (correctedFloat < int.MinValue) correctedFloat = int.MinValue;
-
-			return (int)correctedFloat;
+			int correctedToInt32 = CorrectToInt32(correctedFloat);
+			return correctedToInt32;
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int CorrectLengthToInt32(float value)
 		{
 			float correctedFloat = CorrectLength(value);
+			int correctedToInt32 = CorrectToInt32(correctedFloat);
+			return correctedToInt32;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static int CorrectToInt32(float correctedFloat)
+		{
 			if (correctedFloat > int.MaxValue) correctedFloat = int.MaxValue;
 			if (correctedFloat < int.MinValue) correctedFloat = int.MinValue;
 

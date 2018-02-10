@@ -9,6 +9,5 @@
 		public bool Clip { get; set; }
 		public bool Scale { get; set; }
 		public float Opacity { get; set; } = 1f;
-		//public (int x, int y, int width, int height) CropWindow { get; set; }
 	}
 }

@@ -11,7 +11,7 @@ namespace JJ.Framework.VectorGraphics.Drawing
 	/// Coordinates minimally -1 x 10^9 and maximally 1 x 10^9
 	/// Sizes at least 1 x 10^-9.
 	/// </summary>
-	public abstract class DrawerBase : IDrawer
+	public abstract class DrawerBase
 	{
 		protected abstract void DrawLine(float x1, float y1, float x2, float y2, LineStyle lineStyle);
 		protected abstract void FillRectangle(float x, float y, float width, float height, BackStyle backStyle);
@@ -107,10 +107,10 @@ namespace JJ.Framework.VectorGraphics.Drawing
 			if (sourceLine.PointA == null) throw new NullException(() => sourceLine.PointA);
 			if (sourceLine.PointB == null) throw new NullException(() => sourceLine.PointB);
 
-			float x1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.XInPixels);
-			float y1 = BoundsHelper.CorrectCoordinate(sourceLine.PointA.CalculatedValues.YInPixels);
-			float x2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.XInPixels);
-			float y2 = BoundsHelper.CorrectCoordinate(sourceLine.PointB.CalculatedValues.YInPixels);
+			float x1 = sourceLine.PointA.CalculatedValues.XInPixels;
+			float y1 = sourceLine.PointA.CalculatedValues.YInPixels;
+			float x2 = sourceLine.PointB.CalculatedValues.XInPixels;
+			float y2 = sourceLine.PointB.CalculatedValues.YInPixels;
 
 			DrawLine(x1, y1, x2, y2, sourceLine.LineStyle);
 		}
@@ -124,10 +124,10 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 			CalculatedValues calculatedValues = sourceRectangle.CalculatedValues;
 
-			float x = BoundsHelper.CorrectCoordinate(calculatedValues.XInPixels);
-			float y = BoundsHelper.CorrectCoordinate(calculatedValues.YInPixels);
-			float width = BoundsHelper.CorrectLength(calculatedValues.WidthInPixels);
-			float height = BoundsHelper.CorrectLength(calculatedValues.HeightInPixels);
+			float x = calculatedValues.XInPixels;
+			float y = calculatedValues.YInPixels;
+			float width = calculatedValues.WidthInPixels;
+			float height = calculatedValues.HeightInPixels;
 
 			// Draw Back
 			if (sourceRectangle.Style.BackStyle.Visible)
@@ -186,13 +186,12 @@ namespace JJ.Framework.VectorGraphics.Drawing
 				return;
 			}
 
-			float x = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.XInPixels);
-			float y = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.YInPixels);
+			float x = sourceLabel.CalculatedValues.XInPixels;
+			float y = sourceLabel.CalculatedValues.YInPixels;
 
 			// HACK:
 			// Calling CorrectCoordinate instead of CorrectLength,
 			// because apparently System.Drawing hates it when I correct 0 to 1E-9f.
-			// TODO: See if the new clipping options take away the problem.
 			float width = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.WidthInPixels);
 			float height = BoundsHelper.CorrectCoordinate(sourceLabel.CalculatedValues.HeightInPixels);
 
@@ -208,13 +207,13 @@ namespace JJ.Framework.VectorGraphics.Drawing
 				return;
 			}
 
-			float x = BoundsHelper.CorrectCoordinate(calculatedValues.XInPixels);
-			float y = BoundsHelper.CorrectCoordinate(calculatedValues.YInPixels);
-			float width = BoundsHelper.CorrectLength(calculatedValues.WidthInPixels);
-			float height = BoundsHelper.CorrectLength(calculatedValues.HeightInPixels);
+			float x = calculatedValues.XInPixels;
+			float y = calculatedValues.YInPixels;
+			float width = calculatedValues.WidthInPixels;
+			float height = calculatedValues.HeightInPixels;
 
-			DrawEllipse(x, y, width, height, sourceEllipse.Style.LineStyle);
 			FillEllipse(x, y, width, height, sourceEllipse.Style.BackStyle);
+			DrawEllipse(x, y, width, height, sourceEllipse.Style.LineStyle);
 		}
 
 		private void DrawPicture(Picture sourcePicture)
@@ -224,10 +223,10 @@ namespace JJ.Framework.VectorGraphics.Drawing
 				return;
 			}
 
-			int x = BoundsHelper.CorrectCoordinateToInt32(sourcePicture.CalculatedValues.XInPixels);
-			int y = BoundsHelper.CorrectCoordinateToInt32(sourcePicture.CalculatedValues.YInPixels);
-			int width = BoundsHelper.CorrectLengthToInt32(sourcePicture.CalculatedValues.WidthInPixels);
-			int height = BoundsHelper.CorrectLengthToInt32(sourcePicture.CalculatedValues.HeightInPixels);
+			int x = BoundsHelper.CorrectToInt32(sourcePicture.CalculatedValues.XInPixels);
+			int y = BoundsHelper.CorrectToInt32(sourcePicture.CalculatedValues.YInPixels);
+			int width = BoundsHelper.CorrectToInt32(sourcePicture.CalculatedValues.WidthInPixels);
+			int height = BoundsHelper.CorrectToInt32(sourcePicture.CalculatedValues.HeightInPixels);
 
 			// NOTE: A picture cannot be scaled and clipped at the same time. 
 			// (That would be cropped, which is different.)

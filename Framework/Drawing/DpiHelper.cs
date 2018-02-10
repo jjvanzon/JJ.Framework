@@ -12,7 +12,7 @@ namespace JJ.Framework.Drawing
 		public static float GetDpi(Graphics graphics)
 		{
 			if (graphics == null) throw new ArgumentNullException(nameof(graphics));
-			return graphics.DpiX;
+			return graphics.DpiY;
 		}
 	}
 }

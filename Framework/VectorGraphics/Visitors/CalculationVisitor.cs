@@ -2,6 +2,7 @@
 using System.Linq;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Mathematics;
+using JJ.Framework.VectorGraphics.Drawing;
 using JJ.Framework.VectorGraphics.Enums;
 using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.VectorGraphics.Models.Styling;
@@ -125,22 +126,25 @@ namespace JJ.Framework.VectorGraphics.Visitors
 
 		private void ProcessTypically(Element element)
 		{
+			// Relative to Absolute
 			element.CalculatedValues.XInPixels = element.Position.X + _currentParentX;
 			element.CalculatedValues.YInPixels = element.Position.Y + _currentParentY;
 			element.CalculatedValues.WidthInPixels = element.Position.Width;
 			element.CalculatedValues.HeightInPixels = element.Position.Height;
 
-			ApplyScaling(element);
-
-			VisitElementBase(element);
-		}
-
-		private void ApplyScaling(Element element)
-		{
+			// Scale to Pixels
 			element.CalculatedValues.XInPixels = _diagram.Position.XToPixels(element.CalculatedValues.XInPixels);
 			element.CalculatedValues.YInPixels = _diagram.Position.YToPixels(element.CalculatedValues.YInPixels);
 			element.CalculatedValues.WidthInPixels = _diagram.Position.WidthToPixels(element.CalculatedValues.WidthInPixels);
 			element.CalculatedValues.HeightInPixels = _diagram.Position.HeightToPixels(element.CalculatedValues.HeightInPixels);
+
+			// Correct the Bounds
+			element.CalculatedValues.XInPixels = BoundsHelper.CorrectCoordinate(element.CalculatedValues.XInPixels);
+			element.CalculatedValues.YInPixels = BoundsHelper.CorrectCoordinate(element.CalculatedValues.YInPixels);
+			element.CalculatedValues.WidthInPixels = BoundsHelper.CorrectLength(element.CalculatedValues.WidthInPixels);
+			element.CalculatedValues.HeightInPixels = BoundsHelper.CorrectLength(element.CalculatedValues.HeightInPixels);
+
+			VisitElementBase(element);
 		}
 
 		// Post Process
