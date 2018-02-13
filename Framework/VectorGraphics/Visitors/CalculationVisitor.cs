@@ -99,33 +99,6 @@ namespace JJ.Framework.VectorGraphics.Visitors
 			element.CalculatedValues.Layer = _currentLayer;
 			element.CalculatedValues.ZIndex = _currentZIndex++;
 
-			base.VisitPolymorphic(element);
-		}
-
-		protected override void VisitChildren(Element parentElement)
-		{
-			_currentParentX += parentElement.Position.X;
-			_currentParentY += parentElement.Position.Y;
-			_currentLayer++;
-
-			base.VisitChildren(parentElement);
-
-			_currentParentX -= parentElement.Position.X;
-			_currentParentY -= parentElement.Position.Y;
-			_currentLayer--;
-		}
-
-		// Do not check visibility, because invisible point must be recalculated,
-		// because it must be absolutely positioned,
-		// because it can be referenced by a line.
-		protected override void VisitPoint(Point element) => ProcessTypically(element);
-		protected override void VisitRectangle(Rectangle element) => ProcessTypically(element);
-		protected override void VisitLabel(Label element) => ProcessTypically(element);
-		protected override void VisitEllipse(Ellipse element) => ProcessTypically(element);
-		protected override void VisitPicture(Picture element) => ProcessTypically(element);
-
-		private void ProcessTypically(Element element)
-		{
 			// Relative to Absolute
 			element.CalculatedValues.XInPixels = element.Position.X + _currentParentX;
 			element.CalculatedValues.YInPixels = element.Position.Y + _currentParentY;
@@ -144,7 +117,20 @@ namespace JJ.Framework.VectorGraphics.Visitors
 			element.CalculatedValues.WidthInPixels = BoundsHelper.CorrectLength(element.CalculatedValues.WidthInPixels);
 			element.CalculatedValues.HeightInPixels = BoundsHelper.CorrectLength(element.CalculatedValues.HeightInPixels);
 
-			VisitElementBase(element);
+			base.VisitPolymorphic(element);
+		}
+
+		protected override void VisitChildren(Element parentElement)
+		{
+			_currentParentX += parentElement.Position.X;
+			_currentParentY += parentElement.Position.Y;
+			_currentLayer++;
+
+			base.VisitChildren(parentElement);
+
+			_currentParentX -= parentElement.Position.X;
+			_currentParentY -= parentElement.Position.Y;
+			_currentLayer--;
 		}
 
 		// Post Process

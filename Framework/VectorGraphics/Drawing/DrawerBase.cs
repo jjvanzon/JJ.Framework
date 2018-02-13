@@ -68,8 +68,7 @@ namespace JJ.Framework.VectorGraphics.Drawing
 					DrawPicture(sourcePicture);
 					break;
 
-				default:
-					throw new UnexpectedTypeException(() => sourceElement);
+				// No default case: An other element type can be just a custom programmed composite element.
 			}
 		}
 

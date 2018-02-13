@@ -40,7 +40,8 @@ namespace JJ.Framework.VectorGraphics.Visitors
 					return;
 
 				default:
-					throw new UnexpectedTypeException(() => element);
+					VisitComposite(element);
+					break;
 			}
 		}
 
@@ -51,6 +52,7 @@ namespace JJ.Framework.VectorGraphics.Visitors
 		protected virtual void VisitCurve(Curve element) => VisitElementBase(element);
 		protected virtual void VisitEllipse(Ellipse element) => VisitElementBase(element);
 		protected virtual void VisitPicture(Picture element) => VisitElementBase(element);
+		protected virtual void VisitComposite(Element element) => VisitElementBase(element);
 
 		protected virtual void VisitElementBase(Element element) => VisitChildren(element);
 
