@@ -7,7 +7,7 @@ namespace JJ.Framework.VectorGraphics.Drawing
 	{
 		private const float MAX_VALUE = 100_000f;
 		private const float MIN_VALUE = -100_000f;
-		private const float VERY_SMALL_VALUE = 0.00001f;
+		private const float VERY_SMALL_VALUE = 0.0001f;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float CorrectCoordinate(float value)

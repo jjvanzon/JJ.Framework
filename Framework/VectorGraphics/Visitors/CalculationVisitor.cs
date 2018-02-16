@@ -46,11 +46,14 @@ namespace JJ.Framework.VectorGraphics.Visitors
 
 			}
 
+
+
+
 			VisitPolymorphic(diagram.Background);
 
 			IList<Element> orderedElements = ApplyExplicitZIndex(diagram);
 
-			foreach (Element element in diagram.Elements)
+			foreach (Element element in diagram.Elements.ToArray())
 			{
 				PostProcessPolymorphic(element);
 			}
@@ -150,6 +153,13 @@ namespace JJ.Framework.VectorGraphics.Visitors
 			if (sourceCurve.ControlPointA == null) throw new NullException(() => sourceCurve.ControlPointA);
 			if (sourceCurve.ControlPointB == null) throw new NullException(() => sourceCurve.ControlPointB);
 
+			foreach (Line calculatedLine in sourceCurve.CalculatedLines)
+			{
+				calculatedLine.PointA.Dispose();
+				calculatedLine.PointB.Dispose();
+				calculatedLine.Dispose();
+			}
+
 			var destPoints = new List<Point>(sourceCurve.SegmentCount + 1);
 
 			float step = 1f / sourceCurve.SegmentCount;
@@ -169,7 +179,7 @@ namespace JJ.Framework.VectorGraphics.Visitors
 					out float calculatedX,
 					out float calculatedY);
 
-				var destPoint = new Point
+				var destPoint = new Point(sourceCurve.Diagram.Background)
 				{
 					PointStyle = new PointStyle { Visible = false }
 				};
@@ -193,7 +203,7 @@ namespace JJ.Framework.VectorGraphics.Visitors
 				Point destPointA = destPoints[i];
 				Point destPointB = destPoints[i + 1];
 
-				var destLine = new Line
+				var destLine = new Line(sourceCurve.Diagram.Background)
 				{
 					PointA = destPointA,
 					PointB = destPointB,

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using JJ.Framework.Exceptions;
 using JJ.Framework.VectorGraphics.Models.Styling;
 
@@ -11,10 +10,8 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 	/// </summary>
 	public class Curve : Element
 	{
-		public Curve()
-		{
-			Position = new CurvePosition(this);
-		}
+		/// <inheritdoc />
+		public Curve(Element parent) : base(parent) => Position = new CurvePosition(this);
 
 		private int _segmentCount = 20;
 
@@ -23,13 +20,12 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		/// The curve is drawn out as a sequence of straight lines.
 		/// The segment count controls the precision with which the curve is drawn.
 		/// </summary>
-		public int SegmentCount 
+		public int SegmentCount
 		{
-			[DebuggerHidden]
-			get { return _segmentCount; }
+			get => _segmentCount;
 			set
 			{
-				if (value < 1) throw new LessThanException(() => value, 1);
+				if (value < 1) throw new LessThanException(() => SegmentCount, 1);
 				_segmentCount = value;
 			}
 		}
@@ -47,31 +43,23 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		public Point ControlPointB { get; set; }
 
 		private LineStyle _lineStyle = new LineStyle();
+
 		/// <summary> not nullable, auto-instantiated </summary>
 		public LineStyle LineStyle
 		{
-			[DebuggerHidden]
-			get { return _lineStyle; }
-			set
-			{
-				_lineStyle = value ?? throw new NullException(() => value);
-			}
+			get => _lineStyle;
+			set => _lineStyle = value ?? throw new NullException(() => value);
 		}
 
 		public override ElementPosition Position { get; }
 
 		private IList<Line> _calculatedLines = new List<Line>();
-		/// <summary>
-		/// Not nullable. Auto-instantiated.
-		/// </summary>
+
+		/// <summary> Not nullable. Auto-instantiated. </summary>
 		public IList<Line> CalculatedLines
 		{
-			[DebuggerHidden]
-			get { return _calculatedLines; }
-			internal set
-			{
-				_calculatedLines = value ?? throw new NullException(() => value);
-			}
+			get => _calculatedLines;
+			internal set => _calculatedLines = value ?? throw new NullException(() => value);
 		}
 	}
 }

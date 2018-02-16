@@ -1,5 +1,5 @@
-﻿using JJ.Framework.Exceptions;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Business
 {
@@ -8,21 +8,18 @@ namespace JJ.Framework.Business
 	/// Don't forget to use _child in your method implementations.
 	/// </summary>
 	public abstract class ManyToOneRelationship<TChild, TParent>
+		where TChild : class 
 	{
-		protected TChild _child;
+		protected readonly TChild _child;
 		private TParent _parent;
 
 		[DebuggerHidden]
-		public ManyToOneRelationship(TChild child)
-		{
-			if (child == null) throw new NullException(() => child);
-			_child = child;
-		}
+		public ManyToOneRelationship(TChild child) => _child = child ?? throw new NullException(() => child);
 
 		public TParent Parent 
 		{
 			[DebuggerHidden]
-			get { return _parent; }
+			get => _parent;
 			set
 			{
 				if (ReferenceEquals(_parent, value)) return;

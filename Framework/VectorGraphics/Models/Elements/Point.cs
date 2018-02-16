@@ -8,7 +8,8 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public class Point : Element
 	{
-		public Point() => Position = new PointPosition(this);
+		/// <inheritdoc />
+		public Point(Element parent) : base(parent) => Position = new PointPosition(this);
 
 		public override ElementPosition Position { get; }
 
@@ -16,7 +17,6 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		/// <summary> not nullable, auto-instantiated </summary>
 		public PointStyle PointStyle
 		{
-			[DebuggerHidden]
 			get => _pointStyle;
 			set => _pointStyle = value ?? throw new NullException(() => value);
 		}

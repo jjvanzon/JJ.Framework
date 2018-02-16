@@ -18,10 +18,8 @@ namespace JJ.Framework.WinForms.TestForms
 
 			var diagram = new Diagram();
 
-			var label = new Label
+			var label = new Label(diagram.Background)
 			{
-				Diagram = diagram,
-				Parent = diagram.Background,
 				Text = "Hello World!",
 			};
 			label.Position.X = 10;

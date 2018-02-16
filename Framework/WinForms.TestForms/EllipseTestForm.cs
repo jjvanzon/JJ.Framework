@@ -19,11 +19,7 @@ namespace JJ.Framework.WinForms.TestForms
 
 			var diagram = new Diagram();
 
-			var element = new Ellipse
-			{
-				Diagram = diagram,
-				Parent = diagram.Background
-			};
+			var element = new Ellipse(diagram.Background);
 			element.Position.X = 10;
 			element.Position.Y = 20;
 			element.Position.Width = 150;

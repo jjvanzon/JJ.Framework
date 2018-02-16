@@ -24,10 +24,8 @@ namespace JJ.Framework.WinForms.TestForms
 
 			var diagram = new Diagram();
 
-			var label = new Label
+			var label = new Label(diagram.Background)
 			{
-				Diagram = diagram,
-				Parent = diagram.Background,
 				Text = "Note: You can move around the points.",
 				TextStyle = new TextStyle
 				{
@@ -44,36 +42,20 @@ namespace JJ.Framework.WinForms.TestForms
 			label.Position.Width = 500;
 			label.Position.Height = 100;
 
-			_curve = new Curve
+			_curve = new Curve(diagram.Background)
 			{
-				Diagram = diagram,
-				Parent = diagram.Background,
 				SegmentCount = 100,
 
-				PointA = new Point
+				PointA = new Point(diagram.Background)
 				{
-					Diagram = diagram,
-					Parent = diagram.Background,
 					Visible = true
 				},
 
-				ControlPointA = new Point
-				{
-					Diagram = diagram,
-					Parent = diagram.Background
-				},
+				ControlPointA = new Point(diagram.Background),
 
-				ControlPointB = new Point
-				{
-					Diagram = diagram,
-					Parent = diagram.Background
-				},
+				ControlPointB = new Point(diagram.Background),
 
-				PointB = new Point
-				{
-					Diagram = diagram,
-					Parent = diagram.Background
-				},
+				PointB = new Point(diagram.Background),
 
 				LineStyle = new LineStyle
 				{
@@ -104,20 +86,16 @@ namespace JJ.Framework.WinForms.TestForms
 			};
 
 			// ReSharper disable once UnusedVariable
-			var demoLine1 = new Line
+			var demoLine1 = new Line(diagram.Background)
 			{
-				Diagram = diagram,
-				Parent = diagram.Background,
 				PointA = _curve.PointA,
 				PointB = _curve.ControlPointA,
 				LineStyle = demoLineStyle
 			};
 
 			// ReSharper disable once UnusedVariable
-			var demoLine2 = new Line
+			var demoLine2 = new Line(diagram.Background)
 			{
-				Diagram = diagram,
-				Parent = diagram.Background,
 				PointA = _curve.PointB,
 				PointB = _curve.ControlPointB,
 				LineStyle = demoLineStyle
@@ -149,10 +127,8 @@ namespace JJ.Framework.WinForms.TestForms
 
 		private Rectangle CreateGestureRegion(Diagram diagram, Point point)
 		{
-			var rectangle = new Rectangle
+			var rectangle = new Rectangle(diagram.Background)
 			{
-				Diagram = diagram,
-				Parent = diagram.Background,
 				Visible = false
 			};
 

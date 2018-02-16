@@ -8,7 +8,8 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public class Line : Element
 	{
-		public Line() => Position = new LinePosition(this);
+		/// <inheritdoc />
+		public Line(Element parent) : base(parent) => Position = new LinePosition(this);
 
 		public override ElementPosition Position { get; }
 
@@ -27,10 +28,10 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		public Point PointB { get; set; }
 
 		private LineStyle _lineStyle = new LineStyle();
+
 		/// <summary> not nullable, auto-instantiated </summary>
 		public LineStyle LineStyle
 		{
-			[DebuggerHidden]
 			get => _lineStyle;
 			set => _lineStyle = value ?? throw new ArgumentNullException(nameof(LineStyle));
 		}

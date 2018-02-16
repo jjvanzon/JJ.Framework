@@ -11,21 +11,17 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		{
 			Elements = new DiagramElements(this);
 			Position = new DiagramPosition(this);
-			Gestures = new List<GestureBase>();
 			GestureHandling = new DiagramGestureHandling(this);
 
-			Background = new Rectangle
+			Background = new Rectangle(this)
 			{
-				Diagram = this,
 				ZIndex = int.MinValue,
-				Tag = "Background"
+				Tag = "Background",
+				Style = { LineStyle = new LineStyle { Visible = false } }
 			};
-			Background.Style.LineStyle = new LineStyle { Visible = false };
 		}
 
-		/// <summary> read-only, not nullable </summary>
 		public Rectangle Background { get; }
-
 		public DiagramElements Elements { get; }
 
 		private IList<Element> _elementsOrderByZIndex = new Element[0];
@@ -37,25 +33,15 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 			}
 		}
 
-		// Scaling
-
 		public DiagramPosition Position { get; }
 
-		// Calculation
-
-		public void Recalculate()
-		{
-			var visitor = new CalculationVisitor();
-			_elementsOrderByZIndex = visitor.Execute(this);
-		}
-
-		// Gestures
+		public void Recalculate() => _elementsOrderByZIndex = new CalculationVisitor().Execute(this);
 
 		/// <summary>
 		/// The gestures on the diagram always go off regardless of bubbling.
 		/// It gives us a means to tap in on events at a more basic level.
 		/// </summary>
-		public IList<GestureBase> Gestures { get; }
+		public IList<GestureBase> Gestures { get; } = new List<GestureBase>();
 
 		/// <summary> For when you need to send primitive gestures to the diagram. </summary>
 		public DiagramGestureHandling GestureHandling { get; }

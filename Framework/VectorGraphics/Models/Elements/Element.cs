@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
 using JJ.Framework.VectorGraphics.Gestures;
 using JJ.Framework.VectorGraphics.Relationships;
 using JJ.Framework.VectorGraphics.SideEffects;
@@ -7,20 +7,40 @@ using JJ.Framework.VectorGraphics.SideEffects;
 namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	/// <summary> base class that can contain VectorGraphics child elements. </summary>
-	public abstract class Element
+	public abstract class Element : IDisposable
 	{
-		public Element()
+		private bool _isDisposing;
+
+		/// <summary> The only element that needs no parent is the Diagram.Background element. </summary>
+		internal Element(Diagram diagram)
 		{
-			Gestures = new List<GestureBase>();
-			CalculatedValues = new CalculatedValues();
-
-			_parentRelationship = new ChildToParentRelationship(this);
 			_diagramRelationship = new ElementToDiagramRelationship(this);
+			_parentRelationship = new ChildToParentRelationship(this);
+			Children = new ElementChildren(this);
 
-			Children = new ElementChildren(parent: this);
+			_diagramRelationship.Parent = diagram ?? throw new ArgumentNullException(nameof(diagram));
+
 			Visible = true;
 			MustBubble = true;
 			Enabled = true;
+		}
+
+		/// <summary> When in doubt, use Diagram.Background. </summary>
+		public Element(Element parent)
+			: this(parent?.Diagram) => _parentRelationship.Parent = parent ?? throw new ArgumentNullException(nameof(parent));
+
+		public void Dispose()
+		{
+			_isDisposing = true;
+
+			int childrenCount = Children.Count;
+			for (int i = childrenCount - 1; i >= 0; i--)
+			{
+				Children[i].Dispose();
+			}
+
+			_parentRelationship.Parent = null;
+			_diagramRelationship.Parent = null;
 		}
 
 		public bool Visible { get; set; }
@@ -32,45 +52,36 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		/// Position = new RectanglePosition(this);
 		/// </summary>
 		public abstract ElementPosition Position { get; }
-		public CalculatedValues CalculatedValues { get; }
 
-		// Gestures
+		public CalculatedValues CalculatedValues { get; } = new CalculatedValues();
 
-		public IList<GestureBase> Gestures { get; }
+		public IList<GestureBase> Gestures { get; } = new List<GestureBase>();
 		public bool MustBubble { get; set; }
+
 		/// <summary> Indicates whether the element will respond to mouse and keyboard gestures. </summary>
 		public bool Enabled { get; set; }
-
-		// Related Objects
 
 		private readonly ElementToDiagramRelationship _diagramRelationship;
 
 		public Diagram Diagram
 		{
-			[DebuggerHidden]
-			get { return _diagramRelationship.Parent; }
-			set
-			{
-				if (_diagramRelationship.Parent == value) return;
-
-				new SideEffect_AssertCannotChangeBackGroundDiagram(this, _diagramRelationship.Parent).Execute();
-				new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(this).Execute();
-
-				_diagramRelationship.Parent = value;
-			}
+			get => _diagramRelationship.Parent;
+			internal set => _diagramRelationship.Parent = value;
 		}
 
 		private readonly ChildToParentRelationship _parentRelationship;
 
 		public Element Parent
 		{
-			[DebuggerHidden]
-			get { return _parentRelationship.Parent; }
+			get => _parentRelationship.Parent;
 			set
 			{
+				if (_isDisposing) return;
+
+				if (value == null) throw new ArgumentNullException(nameof(Parent));
+
 				if (_parentRelationship.Parent == value) return;
 
-				new SideEffect_AssertDiagram_UponSettingParentOrChild(this, value).Execute();
 				new SideEffect_PreventCircularity(this, value).Execute();
 
 				_parentRelationship.Parent = value;

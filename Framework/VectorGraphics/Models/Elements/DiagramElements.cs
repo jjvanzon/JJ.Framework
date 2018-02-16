@@ -25,25 +25,18 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		[DebuggerHidden]
 		public int Count => _elements.Count;
 
-		public void Add(Element element)
-		{
-			new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element).Execute();
+		internal void Add(Element element) => _relationship.Add(element);
 
-			_relationship.Add(element);
-		}
-
-		public void Remove(Element element)
+		internal void Remove(Element element)
 		{
 			new SideEffect_AssertCannotRemoveBackgroundFromDiagram(element).Execute();
-			new SideEffect_AssertNoParentChildRelationShips_UponSettingDiagram(element).Execute();
-
 			_relationship.Remove(element);
 		}
 
 		[DebuggerHidden]
 		public bool Contains(Element element) => _elements.Contains(element);
 
-		public void Clear()
+		internal void Clear()
 		{
 			foreach (Element element in _elements.ToArray())
 			{

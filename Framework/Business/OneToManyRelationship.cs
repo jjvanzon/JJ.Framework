@@ -1,7 +1,7 @@
-﻿using JJ.Framework.Exceptions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Business
 {
@@ -10,17 +10,16 @@ namespace JJ.Framework.Business
 	/// Don't forget to use _parent in your method implementations.
 	/// </summary>
 	public abstract class OneToManyRelationship<TParent, TChild>
+		where TParent : class
 		where TChild : class
 	{
-		protected TParent _parent;
+		protected readonly TParent _parent;
 		private readonly ICollection<TChild> _children;
 
 		[DebuggerHidden]
 		public OneToManyRelationship(TParent parent, ICollection<TChild> children)
 		{
-			if (parent == null) throw new NullException(() => parent);
-
-			_parent = parent;
+			_parent = parent ?? throw new NullException(() => parent);
 			_children = children ?? throw new NullException(() => children);
 		}
 

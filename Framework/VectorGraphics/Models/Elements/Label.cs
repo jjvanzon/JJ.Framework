@@ -8,7 +8,8 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public class Label : Element
 	{
-		public Label() => Position = new RectanglePosition(this);
+		/// <inheritdoc />
+		public Label(Element parent) : base(parent) => Position = new RectanglePosition(this);
 
 		public override ElementPosition Position { get; }
 
@@ -18,7 +19,6 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		/// <summary> not nullable, auto-instantiated </summary>
 		public TextStyle TextStyle
 		{
-			[DebuggerHidden]
 			get => _textStyle;
 			set => _textStyle = value ?? throw new NullException(() => value);
 		}

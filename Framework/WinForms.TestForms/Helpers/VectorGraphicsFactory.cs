@@ -13,28 +13,22 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 
 			Rectangle rectangle2 = CreateRectangle(diagram, 10, 200, "Block 2");
 
-			var point1 = new Point
+			var point1 = new Point(rectangle1)
 			{
-				Diagram = diagram,
-				Parent = rectangle1,
 				PointStyle = VectorGraphicsHelper.InvisiblePointStyle
 			};
 			point1.Position.X = 150;
 			point1.Position.Y = 30;
 
-			var point2 = new Point  
+			var point2 = new Point(rectangle2)
 			{
-				Diagram = diagram,
-				Parent = rectangle2,
 				PointStyle = VectorGraphicsHelper.InvisiblePointStyle
 			};
 			point2.Position.X = 150;
 			point2.Position.Y = 30;
 
-			var line = new Line
+			var line = new Line(diagram.Background)
 			{
-				Diagram = diagram,
-				Parent = diagram.Background,
 				PointA = point1,
 				PointB = point2,
 				LineStyle = VectorGraphicsHelper.DefaultLineStyle
@@ -47,10 +41,8 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 
 		private static Rectangle CreateRectangle(Diagram diagram, float x, float y, string text)
 		{
-			var rectangle = new Rectangle
+			var rectangle = new Rectangle(diagram.Background)
 			{
-				Diagram = diagram,
-				Parent = diagram.Background,
 				Style = { LineStyle = VectorGraphicsHelper.DefaultLineStyle }
 			};
 			rectangle.Position.X = x;
@@ -60,10 +52,8 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 
 			rectangle.Gestures.Add(new MoveGesture());
 
-			var label = new Label 
+			var label = new Label(rectangle)
 			{
-				Diagram = diagram,
-				Parent = rectangle,
 				Text = text,
 				TextStyle = VectorGraphicsHelper.DefaultTextStyle
 			};
@@ -75,11 +65,7 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 
 		public static Rectangle CreateRectangle(Diagram diagram, string text)
 		{
-			var rectangle = new Rectangle
-			{
-				Diagram = diagram,
-				Parent = diagram.Background
-			};
+			var rectangle = new Rectangle(diagram.Background);
 
 			rectangle.Position.X = VectorGraphicsHelper.SPACING;
 			rectangle.Position.Y = VectorGraphicsHelper.SPACING;
@@ -88,10 +74,8 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 			rectangle.Style.BackStyle = VectorGraphicsHelper.BlueBackStyle;
 			rectangle.Style.LineStyle = VectorGraphicsHelper.DefaultLineStyle;
 
-			var label = new Label
+			var label = new Label(rectangle)
 			{
-				Diagram = diagram,
-				Parent = rectangle,
 				Text = text,
 				TextStyle = VectorGraphicsHelper.DefaultTextStyle
 			};
@@ -103,6 +87,5 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 
 			return rectangle;
 		}
-
 	}
 }

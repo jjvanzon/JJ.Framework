@@ -14,11 +14,11 @@ namespace JJ.Framework.VectorGraphics.Drawing
 	public abstract class DrawerBase
 	{
 		protected abstract void DrawLine(float x1, float y1, float x2, float y2, LineStyle lineStyle);
-		protected abstract void FillRectangle(float x, float y, float width, float height, BackStyle backStyle);
-		protected abstract void DrawRectangle(float x, float y, float width, float height, LineStyle lineStyle);
+		protected internal abstract void FillRectangle(float x, float y, float width, float height, BackStyle backStyle);
+		protected internal abstract void DrawRectangle(float x, float y, float width, float height, LineStyle lineStyle);
 		protected abstract void DrawLabel(string text, float x, float y, float width, float height, TextStyle textStyle);
 		protected abstract void DrawEllipse(float x, float y, float width, float height, LineStyle lineStyle);
-		protected abstract void FillEllipse(float x, float y, float width, float height, BackStyle backStyle);
+		protected internal abstract void FillEllipse(float x, float y, float width, float height, BackStyle backStyle);
 		protected abstract void DrawPictureUnscaledUnclipped(object picture, int x, int y);
 		protected abstract void DrawPictureClipped(object picture, int x, int y, int width, int height);
 		protected abstract void DrawPictureScaled(object picture, int x, int y, int width, int height);
@@ -26,10 +26,15 @@ namespace JJ.Framework.VectorGraphics.Drawing
 		protected abstract void DrawPictureClippedWithColorMatrix(object picture, int x, int y, int width, int height, float[][] colorMatrix);
 		protected abstract void DrawPictureUnscaledUnclippedWithColorMatrix(object picture, int x, int y, float[][] colorMatrix);
 
+		public static bool MustDrawCoordinateIndicators
+		{
+			get => CoordinateIndicatorHelper.MustDrawCoordinateIndicators;
+			set => CoordinateIndicatorHelper.MustDrawCoordinateIndicators = value;
+		}
+
 		public void Draw(Diagram diagram)
 		{
 			if (diagram == null) throw new ArgumentNullException(nameof(diagram));
-
 			foreach (Element element in diagram.EnumerateElementsByZIndex())
 			{
 				DrawPolymorphic(element);
@@ -82,7 +87,10 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawPoint(Point sourcePoint)
 		{
-			if (!sourcePoint.CalculatedValues.Visible || !sourcePoint.PointStyle.Visible)
+#if DEBUG
+			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourcePoint);
+#endif
+			if (!sourcePoint.CalculatedValues.Visible && !sourcePoint.PointStyle.Visible)
 			{
 				return;
 			}
@@ -98,6 +106,9 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawLine(Line sourceLine)
 		{
+#if DEBUG
+			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourceLine);
+#endif
 			if (!sourceLine.CalculatedValues.Visible || !sourceLine.LineStyle.Visible)
 			{
 				return;
@@ -116,6 +127,9 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawRectangle(Rectangle sourceRectangle)
 		{
+#if DEBUG
+			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourceRectangle);
+#endif
 			if (!sourceRectangle.CalculatedValues.Visible)
 			{
 				return;
@@ -179,6 +193,9 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawLabel(Label sourceLabel)
 		{
+#if DEBUG
+			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourceLabel);
+#endif
 			if (!sourceLabel.CalculatedValues.Visible)
 			{
 				return;
@@ -192,12 +209,15 @@ namespace JJ.Framework.VectorGraphics.Drawing
 			// But now they are correcte to 1E-5. Not sure if that helps. Also not sure anymore at what precise point System.Drawing hated it.
 			float width = sourceLabel.CalculatedValues.WidthInPixels;
 			float height = sourceLabel.CalculatedValues.HeightInPixels;
-			
+
 			DrawLabel(sourceLabel.Text, x, y, width, height, sourceLabel.TextStyle);
 		}
 
 		private void DrawEllipse(Ellipse sourceEllipse)
 		{
+#if DEBUG
+			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourceEllipse);
+#endif
 			CalculatedValues calculatedValues = sourceEllipse.CalculatedValues;
 
 			if (!calculatedValues.Visible)
@@ -216,6 +236,9 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawPicture(Picture sourcePicture)
 		{
+#if DEBUG
+			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourcePicture);
+#endif
 			if (!sourcePicture.CalculatedValues.Visible)
 			{
 				return;
@@ -264,7 +287,6 @@ namespace JJ.Framework.VectorGraphics.Drawing
 			}
 		}
 
-
 		// ReSharper disable once RedundantExplicitArrayCreation
 		private float[][] GetOpacityColorMatrix(float opacity) =>
 			new[]
@@ -275,6 +297,5 @@ namespace JJ.Framework.VectorGraphics.Drawing
 				new float[] { 0, 0, 0, opacity, 0 },
 				new float[] { 0, 0, 0, 0, 1 }
 			};
-
 	}
 }

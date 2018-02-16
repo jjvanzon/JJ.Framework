@@ -46,11 +46,7 @@ namespace JJ.Framework.WinForms.TestForms
 			mouseDownGesture.MouseDown += ClipMouseDownGesture_MouseDown;
 			rectangle.Position.Y = currentY;
 
-			_picture = new Picture
-			{
-				Diagram = diagram,
-				Parent = diagram.Background
-			};
+			_picture = new Picture(diagram.Background);
 			_picture.Position.X = 10;
 			_picture.Position.Y = 20;
 			_picture.Position.Width = 24;

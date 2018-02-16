@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using JJ.Framework.Exceptions;
+﻿using JJ.Framework.Exceptions;
 using JJ.Framework.VectorGraphics.Models.Styling;
 
 namespace JJ.Framework.VectorGraphics.Models.Elements
@@ -13,7 +12,6 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		/// <summary> not nullable, auto-instantiated </summary>
 		public LineStyle LineStyle
 		{
-			[DebuggerHidden]
 			get => _lineStyle;
 			set => _lineStyle = value ?? throw new NullException(() => value);
 		}
@@ -22,7 +20,6 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		/// <summary> not nullable, auto-instantiated </summary>
 		public BackStyle BackStyle
 		{
-			[DebuggerHidden]
 			get => _backStyle;
 			set => _backStyle = value ?? throw new NullException(() => value);
 		}

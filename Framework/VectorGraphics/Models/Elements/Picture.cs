@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Diagnostics;
 using JJ.Framework.VectorGraphics.Models.Styling;
 
 namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	public class Picture : Element
 	{
-		public Picture() => Position = new RectanglePosition(this);
+		/// <inheritdoc />
+		public Picture(Element parent) : base(parent) => Position = new RectanglePosition(this);
 
 		public override ElementPosition Position { get; }
 
@@ -15,7 +15,7 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		/// <summary> not nullable, auto-instantiated </summary>
 		public PictureStyle Style
 		{
-			[DebuggerHidden] get => _style;
+			get => _style;
 			set => _style = value ?? throw new ArgumentNullException(nameof(Style));
 		}
 

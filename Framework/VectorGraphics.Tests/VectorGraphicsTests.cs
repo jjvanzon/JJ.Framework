@@ -18,28 +18,22 @@ namespace JJ.Framework.VectorGraphics.Tests
 
 			var diagram = new Diagram();
 
-			var point = new Point
+			var point = new Point(diagram.Background)
 			{
-				Diagram = diagram,
-				Parent = diagram.Background,
 				ZIndex = zindex++
 			};
 			point.Position.X = 1;
 			point.Position.Y = 2;
 
-			var childPoint1 = new Point
+			var childPoint1 = new Point(point)
 			{
-				Diagram = diagram,
-				Parent = point,
 				ZIndex = zindex++
 			};
 			childPoint1.Position.X = 10;
 			childPoint1.Position.Y = 20;
 
-			var childPoint2 = new Point
+			var childPoint2 = new Point(point)
 			{ 
-				Diagram = diagram,
-				Parent = point,
 				ZIndex = zindex++
 			};
 			childPoint2.Position.X = 12;
@@ -72,11 +66,7 @@ namespace JJ.Framework.VectorGraphics.Tests
 			diagram.Position.ScaledWidth = 4;
 			diagram.Position.ScaledHeight = 8;
 
-			var child = new Rectangle
-			{
-				Diagram = diagram,
-				Parent = diagram.Background
-			};
+			var child = new Rectangle(diagram.Background);
 
 			child.Position.X = 1;
 			child.Position.Y = 2;
@@ -206,24 +196,9 @@ namespace JJ.Framework.VectorGraphics.Tests
 		public void Test_VectorGraphics_CircularityCheck_SetParent()
 		{
 			var diagram = new Diagram();
-
-			var parent = new Point
-			{
-				Diagram = diagram,
-				Parent = diagram.Background,
-			};
-
-			var child = new Point
-			{
-				Diagram = diagram,
-				Parent = parent
-			};
-
-			var grandChild = new Point
-			{
-				Diagram = diagram,
-				Parent = child
-			};
+			var parent = new Point(diagram.Background);
+			var child = new Point(parent);
+			var grandChild = new Point(child);
 
 			AssertHelper.ThrowsException(() =>
 			{
@@ -236,24 +211,9 @@ namespace JJ.Framework.VectorGraphics.Tests
 		public void Test_VectorGraphics_CircularityCheck_AddChild()
 		{
 			var diagram = new Diagram();
-
-			var parent = new Point
-			{
-				Diagram = diagram,
-				Parent = diagram.Background,
-			};
-
-			var child = new Point
-			{
-				Diagram = diagram,
-				Parent = parent
-			};
-
-			var grandChild = new Point
-			{
-				Diagram = diagram,
-				Parent = child
-			};
+			var parent = new Point(diagram.Background);
+			var child = new Point(parent);
+			var grandChild = new Point(child);
 
 			AssertHelper.ThrowsException(() =>
 			{
