@@ -14,13 +14,13 @@ namespace JJ.Framework.Drawing
 			_graphics = graphics ?? throw new ArgumentNullException(nameof(graphics));
 		}
 
-		public (float width, float height) GetTextSize(string text, Font font)
+		public (float widthInPixels, float heightInPixels) GetTextSize(string text, Font font)
 		{
 			SizeF sizeF = _graphics.MeasureString(text, font.ToSystemDrawing(DpiHelper.DEFAULT_DPI));
 			return (sizeF.Width, sizeF.Height);
 		}
 
-		public (float width, float height) GetTextSize(string text, Font font, float lineWidth)
+		public (float widthInPixels, float heightInPixels) GetTextSize(string text, Font font, float lineWidth)
 		{
 			SizeF sizeF = _graphics.MeasureString(text, font.ToSystemDrawing(DpiHelper.DEFAULT_DPI), (int)lineWidth);
 			return (sizeF.Width, sizeF.Height);

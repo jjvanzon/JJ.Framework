@@ -7,7 +7,7 @@ namespace JJ.Framework.VectorGraphics.Helpers
 	public class ApproximatingTextMeasurer : ITextMeasurer
 	{
 		/// <inheritdoc />
-		public (float width, float height) GetTextSize(string text, Font font)
+		public (float widthInPixels, float heightInPixels) GetTextSize(string text, Font font)
 		{
 			if (font == null) throw new ArgumentNullException(nameof(font));
 
@@ -18,7 +18,7 @@ namespace JJ.Framework.VectorGraphics.Helpers
 		}
 
 		/// <inheritdoc />
-		public (float width, float height) GetTextSize(string text, Font font, float lineWidth)
+		public (float widthInPixels, float heightInPixels) GetTextSize(string text, Font font, float lineWidth)
 		{
 			(float width, float height) sizeWithoutWrapping = GetTextSize(text, font);
 

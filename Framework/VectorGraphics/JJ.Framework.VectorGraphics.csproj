@@ -117,6 +117,7 @@
     <Compile Include="Models\Elements\Diagram.cs" />
     <Compile Include="Models\Elements\DiagramElements.cs" />
     <Compile Include="SideEffects\SideEffect_AssertCannotRemoveBackgroundFromDiagram.cs" />
+    <Compile Include="SideEffects\SideEffect_AssertParentAndChildDiagramsAreEqual.cs" />
     <Compile Include="SideEffects\SideEffect_PreventCircularity.cs" />
     <Compile Include="Visitors\CalculationVisitor.cs" />
     <Compile Include="Visitors\ElementVisitorBase.cs" />

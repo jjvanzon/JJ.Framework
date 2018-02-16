@@ -90,7 +90,7 @@ namespace JJ.Framework.VectorGraphics.Drawing
 #if DEBUG
 			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourcePoint);
 #endif
-			if (!sourcePoint.CalculatedValues.Visible && !sourcePoint.PointStyle.Visible)
+			if (!sourcePoint.CalculatedValues.Visible || !sourcePoint.PointStyle.Visible)
 			{
 				return;
 			}

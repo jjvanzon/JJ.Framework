@@ -5,7 +5,7 @@ namespace JJ.Framework.VectorGraphics.Helpers
 	public interface ITextMeasurer
 	{
 		/// <summary> Returns the text width, without wrapping and the text height only depends on the font. </summary>
-		(float width, float height) GetTextSize(string text, Font font);
+		(float widthInPixels, float heightInPixels) GetTextSize(string text, Font font);
 
 		/// <summary>
 		/// The returned text width can actually differ from the width passed along,
@@ -14,6 +14,6 @@ namespace JJ.Framework.VectorGraphics.Helpers
 		/// due to text wrapping.
 		/// </summary>
 		/// <param name="lineWidth">When wrapping text, the provided width influences the height of the measured text.</param>
-		(float width, float height) GetTextSize(string text, Font font, float lineWidth);
+		(float widthInPixels, float heightInPixels) GetTextSize(string text, Font font, float lineWidth);
 	}
 }

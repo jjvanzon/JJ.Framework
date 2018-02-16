@@ -190,7 +190,9 @@ namespace JJ.Framework.VectorGraphics.Visitors
 				// Fill in meaningful values for the other properties.
 				destPoint.CalculatedValues.Visible = false;
 				destPoint.CalculatedValues.Layer = sourceCurve.CalculatedValues.Layer;
-
+#if DEBUG
+				destPoint.Tag = "Curve Point";
+#endif
 				destPoints.Add(destPoint);
 
 				t += step;
@@ -213,7 +215,9 @@ namespace JJ.Framework.VectorGraphics.Visitors
 				destLine.CalculatedValues.Visible = true;
 				destLine.CalculatedValues.ZIndex = sourceCurve.CalculatedValues.ZIndex;
 				destLine.CalculatedValues.Layer = sourceCurve.CalculatedValues.Layer;
-
+#if DEBUG
+				destLine.Tag = "Curve Line";
+#endif
 				destLines.Add(destLine);
 			}
 

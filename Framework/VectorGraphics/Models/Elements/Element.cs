@@ -66,7 +66,12 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		public Diagram Diagram
 		{
 			get => _diagramRelationship.Parent;
-			internal set => _diagramRelationship.Parent = value;
+			internal set
+			{
+				if (_isDisposing) return;
+
+				_diagramRelationship.Parent = value ?? throw new ArgumentNullException(nameof(Diagram));
+			}
 		}
 
 		private readonly ChildToParentRelationship _parentRelationship;
@@ -80,12 +85,18 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 
 				if (value == null) throw new ArgumentNullException(nameof(Parent));
 
-				if (_parentRelationship.Parent == value) return;
+				if (value == _parentRelationship.Parent) return;
 
 				new SideEffect_PreventCircularity(this, value).Execute();
+				new SideEffect_AssertParentAndChildDiagramsAreEqual(this, value).Execute();
 
 				_parentRelationship.Parent = value;
 			}
+		}
+
+		internal void NullifyParent()
+		{
+			_parentRelationship.Parent = null;
 		}
 
 		public ElementChildren Children { get; }

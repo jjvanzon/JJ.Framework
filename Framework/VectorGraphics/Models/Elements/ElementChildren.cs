@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using JJ.Framework.Exceptions;
 using JJ.Framework.VectorGraphics.Relationships;
 using JJ.Framework.VectorGraphics.SideEffects;
 
 namespace JJ.Framework.VectorGraphics.Models.Elements
 {
+	/// <summary>
+	/// Note that there is no Remove method, because this would orphan the child.
+	/// To remove a child, change its parent instead.
+	/// </summary>
 	public class ElementChildren : IEnumerable<Element>
 	{
 		private readonly Element _parent;
@@ -28,19 +31,12 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 			if (child == null) throw new NullException(() => child);
 
 			new SideEffect_PreventCircularity(child, _parent).Execute();
+			new SideEffect_AssertParentAndChildDiagramsAreEqual(child, _parent).Execute();
 
 			_childrenRelationship.Add(child);
 		}
 
-		public void Remove(Element child) => _childrenRelationship.Remove(child);
-
-		public void Clear()
-		{
-			foreach (Element child in this.ToArray())
-			{
-				Remove(child);
-			}
-		}
+		internal void Remove(Element child) => _childrenRelationship.Remove(child);
 
 		public bool Contains(Element child) => _list.Contains(child);
 
