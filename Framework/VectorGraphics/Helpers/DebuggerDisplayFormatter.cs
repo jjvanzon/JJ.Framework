@@ -7,26 +7,26 @@ namespace JJ.Framework.VectorGraphics.Helpers
 {
 	internal static class DebuggerDisplayFormatter
 	{
-		public static string GetDebuggerDisplay(Ellipse circle)
+		public static string GetDebuggerDisplay(Element element)
 		{
-			if (circle == null) throw new NullException(() => circle);
+			if (element == null) throw new NullException(() => element);
 
 			var sb = new StringBuilder();
 
-			sb.Append($"{{{circle.GetType().Name}}} ");
+			sb.Append($"{{{element.GetType().Name}}} ");
 
-			string tag = Convert.ToString(circle.Tag);
+			string tag = Convert.ToString(element.Tag);
 			if (!string.IsNullOrEmpty(tag))
 			{
-				sb.Append($"Tag='{circle.Tag}', ");
+				sb.Append($"Tag='{element.Tag}', ");
 			}
 
-			if (circle.Position != null)
+			if (element.Position != null)
 			{
-				sb.Append($"{GetDebuggerDisplay(circle.Position)} ");
+				sb.Append($"{GetDebuggerDisplay(element.Position)} ");
 			}
 
-			sb.Append($"(HashCode={circle.GetHashCode()})");
+			sb.Append($"(HashCode={element.GetHashCode()})");
 
 			return sb.ToString();
 		}
@@ -107,30 +107,6 @@ namespace JJ.Framework.VectorGraphics.Helpers
 			sb.Append($"({point.Position.X}, {point.Position.Y}) ");
 
 			sb.Append($"(HashCode={point.GetHashCode()})");
-
-			return sb.ToString();
-		}
-
-		public static string GetDebuggerDisplay(Rectangle rectangle)
-		{
-			if (rectangle == null) throw new NullException(() => rectangle);
-
-			var sb = new StringBuilder();
-
-			sb.Append($"{{{rectangle.GetType().Name}}} ");
-
-			string tag = Convert.ToString(rectangle.Tag);
-			if (!string.IsNullOrEmpty(tag))
-			{
-				sb.Append($"Tag='{rectangle.Tag}', ");
-			}
-
-			if (rectangle.Position != null)
-			{
-				sb.Append($"{GetDebuggerDisplay(rectangle.Position)} ");
-			}
-
-			sb.Append($"(HashCode={rectangle.GetHashCode()})");
 
 			return sb.ToString();
 		}

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
-using JJ.Framework.VectorGraphics.Helpers;
 
 namespace JJ.Framework.VectorGraphics.Models.Elements
 {
-	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public class Rectangle : Element
 	{
 		/// <inheritdoc />
@@ -23,7 +20,5 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 			get => _style;
 			set => _style = value ?? throw new ArgumentNullException(nameof(Style));
 		}
-
-		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}
 }

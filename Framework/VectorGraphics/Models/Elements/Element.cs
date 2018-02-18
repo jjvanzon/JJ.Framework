@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using JJ.Framework.VectorGraphics.Gestures;
+using JJ.Framework.VectorGraphics.Helpers;
 using JJ.Framework.VectorGraphics.Relationships;
 using JJ.Framework.VectorGraphics.SideEffects;
 
 namespace JJ.Framework.VectorGraphics.Models.Elements
 {
 	/// <summary> base class that can contain VectorGraphics child elements. </summary>
+	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public abstract class Element : IDisposable
 	{
 		private bool _isDisposing;
@@ -100,5 +103,7 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		}
 
 		public ElementChildren Children { get; }
+
+		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}
 }
