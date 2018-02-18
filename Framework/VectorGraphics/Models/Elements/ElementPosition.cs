@@ -28,10 +28,23 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 			get => X + Width;
 			set => X = value - Width;
 		}
+
 		public float RelativeBottom
 		{
 			get => Y + Height;
 			set => Y = value - Height;
+		}
+
+		public float RelativeCenterY
+		{
+			get => _element.Parent.Position.Height / 2f;
+			set => Y = value - _element.Parent.Position.Height / 2f;
+		}
+
+		public float RelativeCenterX
+		{
+			get => _element.Parent.Position.Width / 2f;
+			set => X = value - _element.Parent.Position.Width / 2f;
 		}
 
 		public float AbsoluteX => ScaleHelper.RelativeToAbsoluteX(_element, 0);
