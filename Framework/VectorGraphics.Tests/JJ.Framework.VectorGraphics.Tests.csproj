@@ -60,6 +60,7 @@
     <Compile Include="VectorGraphicsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VectorGraphicsTests_Hierarchy.cs" />
+    <Compile Include="VectorGraphicsTests_Positioning.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VectorGraphics\JJ.Framework.VectorGraphics.csproj">
