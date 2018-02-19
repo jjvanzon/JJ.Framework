@@ -12,8 +12,6 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public abstract class Element : IDisposable
 	{
-		private bool _isDisposing;
-
 		/// <summary> The only element that needs no parent is the Diagram.Background element. </summary>
 		internal Element(Diagram diagram)
 		{
@@ -34,8 +32,6 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 
 		public void Dispose()
 		{
-			_isDisposing = true;
-
 			int childrenCount = Children.Count;
 			for (int i = childrenCount - 1; i >= 0; i--)
 			{
@@ -69,13 +65,10 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		public Diagram Diagram
 		{
 			get => _diagramRelationship.Parent;
-			internal set
-			{
-				if (_isDisposing) return;
-
-				_diagramRelationship.Parent = value ?? throw new ArgumentNullException(nameof(Diagram));
-			}
+			internal set => _diagramRelationship.Parent = value ?? throw new ArgumentNullException(nameof(Diagram));
 		}
+
+		internal void NullifyDiagram() => _diagramRelationship.Parent = null;
 
 		private readonly ChildToParentRelationship _parentRelationship;
 
@@ -84,8 +77,6 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 			get => _parentRelationship.Parent;
 			set
 			{
-				if (_isDisposing) return;
-
 				if (value == null) throw new ArgumentNullException(nameof(Parent));
 
 				if (value == _parentRelationship.Parent) return;

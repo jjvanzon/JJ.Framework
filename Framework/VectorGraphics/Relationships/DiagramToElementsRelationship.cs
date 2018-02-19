@@ -11,6 +11,6 @@ namespace JJ.Framework.VectorGraphics.Relationships
 		{ }
 
 		protected override void SetParent(Element element) => element.Diagram = _parent;
-		protected override void NullifyParent(Element element) => element.Diagram = null;
+		protected override void NullifyParent(Element element) => element.NullifyDiagram();
 	}
 }
