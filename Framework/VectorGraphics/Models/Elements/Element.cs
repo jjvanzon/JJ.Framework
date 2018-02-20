@@ -30,7 +30,7 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		public Element(Element parent)
 			: this(parent?.Diagram) => _parentRelationship.Parent = parent ?? throw new ArgumentNullException(nameof(parent));
 
-		public void Dispose()
+		public virtual void Dispose()
 		{
 			int childrenCount = Children.Count;
 			for (int i = childrenCount - 1; i >= 0; i--)

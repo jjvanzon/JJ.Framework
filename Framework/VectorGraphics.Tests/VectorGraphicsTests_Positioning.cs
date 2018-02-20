@@ -12,7 +12,7 @@ namespace JJ.Framework.VectorGraphics.Tests
 	public class VectorGraphicsTests_Positioning
 	{
 		[TestMethod]
-		public void Test_VectorGraphics_CalculationVisitor_RelativeCoordinate()
+		public void Test_VectorGraphics_CalculationVisitor_RelativeCoordinates()
 		{
 			int zindex = 1;
 
@@ -53,7 +53,7 @@ namespace JJ.Framework.VectorGraphics.Tests
 		}
 
 		[TestMethod]
-		public void Test_VectorGraphics_ElementPosition_RelativeCenterY()
+		public void Test_VectorGraphics_ElementPosition_CenterY()
 		{
 			var diagram = new Diagram();
 
@@ -70,11 +70,11 @@ namespace JJ.Framework.VectorGraphics.Tests
 			child.Position.Height = 7;
 
 			// Test getter
-			AssertHelper.AreEqual(0.5f, () => child.Position.RelativeCenterY);
+			AssertHelper.AreEqual(0.5f, () => child.Position.CenterY);
 
 			// Test setter
-			child.Position.RelativeCenterY = child.Position.RelativeCenterY;
-			AssertHelper.AreEqual(0.5f, () => child.Position.RelativeCenterY);
+			child.Position.CenterY = child.Position.CenterY;
+			AssertHelper.AreEqual(0.5f, () => child.Position.CenterY);
 		}
 
 		[TestMethod]

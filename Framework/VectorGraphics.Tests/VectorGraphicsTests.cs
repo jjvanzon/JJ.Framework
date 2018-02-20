@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using JJ.Framework.Testing;
-using JJ.Framework.VectorGraphics.Enums;
+﻿using JJ.Framework.Testing;
 using JJ.Framework.VectorGraphics.Helpers;
-using JJ.Framework.VectorGraphics.Models.Elements;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable RedundantAssignment
 

@@ -23,25 +23,25 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		public abstract float Width { get; set; }
 		public abstract float Height { get; set; }
 
-		public float RelativeRight
+		public float Right
 		{
 			get => X + Width;
 			set => X = value - Width;
 		}
 
-		public float RelativeBottom
+		public float Bottom
 		{
 			get => Y + Height;
 			set => Y = value - Height;
 		}
 
-		public float RelativeCenterY
+		public float CenterY
 		{
 			get => Y + Height / 2f;
 			set => Y = value - Height / 2f;
 		}
 
-		public float RelativeCenterX
+		public float CenterX
 		{
 			get => X + Width / 2f;
 			set => X = value - Width / 2f;

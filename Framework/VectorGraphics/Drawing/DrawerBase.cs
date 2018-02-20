@@ -72,8 +72,12 @@ namespace JJ.Framework.VectorGraphics.Drawing
 				case Picture sourcePicture:
 					DrawPicture(sourcePicture);
 					break;
-
-				// No default case: An other element type can be just a custom programmed composite element.
+#if DEBUG
+				default:
+					// Another element type can be just a custom programmed composite element.
+					CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourceElement);
+					break;
+#endif
 			}
 		}
 
