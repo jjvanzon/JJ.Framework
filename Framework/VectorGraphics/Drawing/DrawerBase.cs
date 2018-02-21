@@ -26,10 +26,16 @@ namespace JJ.Framework.VectorGraphics.Drawing
 		protected abstract void DrawPictureClippedWithColorMatrix(object picture, int x, int y, int width, int height, float[][] colorMatrix);
 		protected abstract void DrawPictureUnscaledUnclippedWithColorMatrix(object picture, int x, int y, float[][] colorMatrix);
 
-		public static bool MustDrawCoordinateIndicators
+		public static bool MustDrawCoordinateIndicatorsForPrimitives
 		{
-			get => CoordinateIndicatorHelper.MustDrawCoordinateIndicators;
-			set => CoordinateIndicatorHelper.MustDrawCoordinateIndicators = value;
+			get => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForPrimitives;
+			set => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForPrimitives = value;
+		}
+
+		public static bool MustDrawCoordinateIndicatorsForComposites
+		{
+			get => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForComposites;
+			set => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForComposites = value;
 		}
 
 		public void Draw(Diagram diagram)
@@ -43,6 +49,9 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawPolymorphic(Element sourceElement)
 		{
+#if DEBUG
+			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourceElement);
+#endif
 			switch (sourceElement)
 			{
 				case Curve sourceCurve:
@@ -72,12 +81,8 @@ namespace JJ.Framework.VectorGraphics.Drawing
 				case Picture sourcePicture:
 					DrawPicture(sourcePicture);
 					break;
-#if DEBUG
-				default:
-					// Another element type can be just a custom programmed composite element.
-					CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourceElement);
-					break;
-#endif
+
+				// Another element type can be just a custom programmed composite element.
 			}
 		}
 
@@ -91,9 +96,6 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawPoint(Point sourcePoint)
 		{
-#if DEBUG
-			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourcePoint);
-#endif
 			if (!sourcePoint.CalculatedValues.Visible || !sourcePoint.PointStyle.Visible)
 			{
 				return;
@@ -110,9 +112,6 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawLine(Line sourceLine)
 		{
-#if DEBUG
-			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourceLine);
-#endif
 			if (!sourceLine.CalculatedValues.Visible || !sourceLine.LineStyle.Visible)
 			{
 				return;
@@ -131,9 +130,6 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawRectangle(Rectangle sourceRectangle)
 		{
-#if DEBUG
-			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourceRectangle);
-#endif
 			if (!sourceRectangle.CalculatedValues.Visible)
 			{
 				return;
@@ -197,9 +193,6 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawLabel(Label sourceLabel)
 		{
-#if DEBUG
-			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourceLabel);
-#endif
 			if (!sourceLabel.CalculatedValues.Visible)
 			{
 				return;
@@ -219,9 +212,6 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawEllipse(Ellipse sourceEllipse)
 		{
-#if DEBUG
-			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourceEllipse);
-#endif
 			CalculatedValues calculatedValues = sourceEllipse.CalculatedValues;
 
 			if (!calculatedValues.Visible)
@@ -240,18 +230,17 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawPicture(Picture sourcePicture)
 		{
-#if DEBUG
-			CoordinateIndicatorHelper.DrawCoordinateIndicatorsIfNeeded(this, sourcePicture);
-#endif
-			if (!sourcePicture.CalculatedValues.Visible)
+			CalculatedValues calculatedValues = sourcePicture.CalculatedValues;
+
+			if (!calculatedValues.Visible)
 			{
 				return;
 			}
 
-			int x = BoundsHelper.CorrectToInt32(sourcePicture.CalculatedValues.XInPixels);
-			int y = BoundsHelper.CorrectToInt32(sourcePicture.CalculatedValues.YInPixels);
-			int width = BoundsHelper.CorrectToInt32(sourcePicture.CalculatedValues.WidthInPixels);
-			int height = BoundsHelper.CorrectToInt32(sourcePicture.CalculatedValues.HeightInPixels);
+			int x = BoundsHelper.CorrectToInt32(calculatedValues.XInPixels);
+			int y = BoundsHelper.CorrectToInt32(calculatedValues.YInPixels);
+			int width = BoundsHelper.CorrectToInt32(calculatedValues.WidthInPixels);
+			int height = BoundsHelper.CorrectToInt32(calculatedValues.HeightInPixels);
 
 			// NOTE: A picture cannot be scaled and clipped at the same time. 
 			// (That would be cropped, which is different.)
