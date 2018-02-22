@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionExtensions.cs" />
+    <Compile Include="CollectionExtensions_Recursive_Ancestors.cs" />
     <Compile Include="CollectionExtensions_Recursive_IList.cs" />
     <Compile Include="CollectionExtensions_Recursive_IEnumerable.cs" />
     <Compile Include="CollectionHelper.cs" />

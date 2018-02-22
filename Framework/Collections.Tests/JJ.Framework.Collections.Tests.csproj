@@ -42,6 +42,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionExtensions_Recursive_Ancestors.cs" />
     <Compile Include="CollectionExtensions_Recursive_IEnumerable_Tests.cs" />
     <Compile Include="CollectionExtensions_Recursive_IList_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

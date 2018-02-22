@@ -5,7 +5,6 @@ using JJ.Framework.Mathematics;
 using JJ.Framework.VectorGraphics.Drawing;
 using JJ.Framework.VectorGraphics.Enums;
 using JJ.Framework.VectorGraphics.Models.Elements;
-using JJ.Framework.VectorGraphics.Models.Styling;
 
 namespace JJ.Framework.VectorGraphics.Visitors
 {
@@ -45,9 +44,6 @@ namespace JJ.Framework.VectorGraphics.Visitors
 					throw new ValueNotSupportedException(diagram.Position.ScaleModeEnum);
 
 			}
-
-
-
 
 			VisitPolymorphic(diagram.Background);
 
@@ -148,82 +144,159 @@ namespace JJ.Framework.VectorGraphics.Visitors
 
 		private void PostProcessCurve(Curve sourceCurve)
 		{
-			if (sourceCurve.PointA == null) throw new NullException(() => sourceCurve.PointA);
-			if (sourceCurve.PointB == null) throw new NullException(() => sourceCurve.PointB);
-			if (sourceCurve.ControlPointA == null) throw new NullException(() => sourceCurve.ControlPointA);
-			if (sourceCurve.ControlPointB == null) throw new NullException(() => sourceCurve.ControlPointB);
+			Point sourceCurvePointA = sourceCurve.PointA;
+			Point sourceCurvePointB = sourceCurve.PointB;
+			Point sourceCurveControlPointA = sourceCurve.ControlPointA;
+			Point sourceCurveControlPointB = sourceCurve.ControlPointB;
 
-			foreach (Line calculatedLine in sourceCurve.CalculatedLines)
+			if (sourceCurvePointA == null) throw new NullException(() => sourceCurve.PointA);
+			if (sourceCurvePointB == null) throw new NullException(() => sourceCurve.PointB);
+			if (sourceCurveControlPointA == null) throw new NullException(() => sourceCurve.ControlPointA);
+			if (sourceCurveControlPointB == null) throw new NullException(() => sourceCurve.ControlPointB);
+
+			IList<Line> destLines = sourceCurve.CalculatedLines;
+
+			// TODO: Remove outcommented code.
+
+			int newLineCount = sourceCurve.SegmentCount;
+			//int newPointCount = newLineCount + 1;
+
+			int oldLineCount = destLines.Count;
+			//int oldPointCount = oldLineCount + 1;
+
+			//int minLineCount = Math.Min(newLineCount, oldLineCount);
+			//int minPointCount = minLineCount + 1;
+
+			int oldLineLastIndex = oldLineCount - 1;
+			int newLineLastIndex = newLineCount - 1;
+
+			// Delete
+			for (int i = oldLineCount - 1; i >= newLineCount; i--)
 			{
-				calculatedLine.PointA.Dispose();
-				calculatedLine.PointB.Dispose();
-				calculatedLine.Dispose();
+				Line destLine = destLines[i];
+				destLine.PointB.Dispose();
+				destLine.Dispose();
 			}
 
-			var destPoints = new List<Point>(sourceCurve.SegmentCount + 1);
+			// Create
+			{
+				Point destPointA;
+				if (oldLineCount == 0)
+				{
+					destPointA = CreateCurvePoint(sourceCurve);
+				}
+				else
+				{
+					destPointA = destLines[oldLineLastIndex].PointA;
+				}
 
-			float step = 1f / sourceCurve.SegmentCount;
+				for (int i = oldLineCount; i < newLineCount; i++)
+				{
+					Point destPointB = CreateCurvePoint(sourceCurve);
+					Line destLine = CreateCurveLine(sourceCurve, destPointA, destPointB);
+					destLines.Add(destLine);
+					destPointA = destPointB;
+				}
+			}
+
+			CalculatedValues sourceCurvePointA_CalculatedValues = sourceCurvePointA.CalculatedValues;
+			CalculatedValues sourceCurvePointB_CalculatedValues = sourceCurvePointB.CalculatedValues;
+			CalculatedValues sourceCurveControlPointA_CalculatedValues = sourceCurveControlPointA.CalculatedValues;
+			CalculatedValues sourceCurveControlPointB_CalculatedValues = sourceCurveControlPointB.CalculatedValues;
+			float sourceCurvePointA_XInPixels = sourceCurvePointA_CalculatedValues.XInPixels;
+			float sourceCurveControlPointA_XInPixels = sourceCurveControlPointA_CalculatedValues.XInPixels;
+			float sourceCurveControlPointB_XInPixels = sourceCurveControlPointB_CalculatedValues.XInPixels;
+			float sourceCurvePointB_XInPixels = sourceCurvePointB_CalculatedValues.XInPixels;
+			float sourceCurvePointA_YInPixels = sourceCurvePointA_CalculatedValues.YInPixels;
+			float sourceCurveControlPointA_YInPixels = sourceCurveControlPointA_CalculatedValues.YInPixels;
+			float sourceCurveControlPointB_YInPixels = sourceCurveControlPointB_CalculatedValues.YInPixels;
+			float sourceCurvePointB_YInPixels = sourceCurvePointB_CalculatedValues.YInPixels;
+
+			// Update
+			float step = 1f / newLineCount;
 			float t = 0;
-			for (int i = 0; i < sourceCurve.SegmentCount + 1; i++)
+			for (int i = 0; i < newLineCount; i++)
 			{
 				Interpolator.Interpolate_Cubic_FromT(
-					sourceCurve.PointA.CalculatedValues.XInPixels,
-					sourceCurve.ControlPointA.CalculatedValues.XInPixels,
-					sourceCurve.ControlPointB.CalculatedValues.XInPixels,
-					sourceCurve.PointB.CalculatedValues.XInPixels,
-					sourceCurve.PointA.CalculatedValues.YInPixels,
-					sourceCurve.ControlPointA.CalculatedValues.YInPixels,
-					sourceCurve.ControlPointB.CalculatedValues.YInPixels,
-					sourceCurve.PointB.CalculatedValues.YInPixels,
+					sourceCurvePointA_XInPixels,
+					sourceCurveControlPointA_XInPixels,
+					sourceCurveControlPointB_XInPixels,
+					sourceCurvePointB_XInPixels,
+					sourceCurvePointA_YInPixels,
+					sourceCurveControlPointA_YInPixels,
+					sourceCurveControlPointB_YInPixels,
+					sourceCurvePointB_YInPixels,
 					t,
 					out float calculatedX,
 					out float calculatedY);
 
-				var destPoint = new Point(sourceCurve.Diagram.Background)
-				{
-					PointStyle = new PointStyle { Visible = false }
-				};
-				destPoint.Position.X = calculatedX;
-				destPoint.Position.Y = calculatedY;
-				destPoint.CalculatedValues.XInPixels = calculatedX;
-				destPoint.CalculatedValues.YInPixels = calculatedY;
-				// Fill in meaningful values for the other properties.
-				destPoint.CalculatedValues.Visible = false;
-				destPoint.CalculatedValues.Layer = sourceCurve.CalculatedValues.Layer;
-#if DEBUG
-				destPoint.Tag = "Curve Point";
-#endif
-				destPoints.Add(destPoint);
+				CalculatedValues destPointCalculatedValues = destLines[i].PointA.CalculatedValues;
+				destPointCalculatedValues.XInPixels = calculatedX;
+				destPointCalculatedValues.YInPixels = calculatedY;
+
+				//destPoint.Position.X = calculatedX;
+				//destPoint.Position.Y = calculatedY;
 
 				t += step;
 			}
 
-			var destLines = new List<Line>(sourceCurve.SegmentCount);
-
-			for (int i = 0; i < destPoints.Count - 1; i++)
+			// Last Point is not covered by the loop above.
 			{
-				Point destPointA = destPoints[i];
-				Point destPointB = destPoints[i + 1];
+				Interpolator.Interpolate_Cubic_FromT(
+					sourceCurvePointA_XInPixels,
+					sourceCurveControlPointA_XInPixels,
+					sourceCurveControlPointB_XInPixels,
+					sourceCurvePointB_XInPixels,
+					sourceCurvePointA_YInPixels,
+					sourceCurveControlPointA_YInPixels,
+					sourceCurveControlPointB_YInPixels,
+					sourceCurvePointB_YInPixels,
+					t,
+					out float calculatedX,
+					out float calculatedY);
 
-				var destLine = new Line(sourceCurve.Diagram.Background)
-				{
-					PointA = destPointA,
-					PointB = destPointB,
-					LineStyle = sourceCurve.LineStyle
-				};
-				// Fill in meaningful values for the other properties.
-				destLine.CalculatedValues.Visible = true;
-				destLine.CalculatedValues.ZIndex = sourceCurve.CalculatedValues.ZIndex;
-				destLine.CalculatedValues.Layer = sourceCurve.CalculatedValues.Layer;
-#if DEBUG
-				destLine.Tag = "Curve Line";
-#endif
-				destLines.Add(destLine);
+				CalculatedValues pointCalculatedValues = destLines[newLineLastIndex].PointB.CalculatedValues;
+				pointCalculatedValues.XInPixels = calculatedX;
+				pointCalculatedValues.YInPixels = calculatedY;
+
+				//destPoint.Position.X = calculatedX;
+				//destPoint.Position.Y = calculatedY;
 			}
+		}
 
-			sourceCurve.CalculatedLines = destLines;
+		private static Line CreateCurveLine(Curve sourceCurve, Point destPointA, Point destPointB)
+		{
+			var destLine = new Line(sourceCurve.Diagram.Background)
+			{
+				PointA = destPointA,
+				PointB = destPointB,
+				LineStyle = sourceCurve.LineStyle,
+				Gestures = sourceCurve.Gestures
+			};
 
-			// TODO: Low priority: Yield over gesture-related properties from curve to the points and lines?
+			CalculatedValues destLineCalculatedValues = destLine.CalculatedValues;
+			CalculatedValues sourceCurveCalculatedValues = sourceCurve.CalculatedValues;
+			destLineCalculatedValues.Visible = sourceCurveCalculatedValues.Visible;
+			destLineCalculatedValues.ZIndex = sourceCurveCalculatedValues.ZIndex;
+			destLineCalculatedValues.Layer = sourceCurveCalculatedValues.Layer;
+#if DEBUG
+			destLine.Tag = "Curve Line";
+#endif
+			return destLine;
+		}
+
+		private Point CreateCurvePoint(Curve sourceCurve)
+		{
+			// ReSharper disable once UseObjectOrCollectionInitializer
+			var destPoint = new Point(sourceCurve.Diagram.Background);
+
+			destPoint.PointStyle.Visible = false;
+			destPoint.CalculatedValues.Visible = false;
+			destPoint.CalculatedValues.Layer = _diagram.Background.CalculatedValues.Layer + 1;
+#if DEBUG
+			destPoint.Tag = "Curve Point";
+#endif
+			return destPoint;
 		}
 	}
 }

@@ -54,7 +54,14 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 
 		public CalculatedValues CalculatedValues { get; } = new CalculatedValues();
 
-		public IList<GestureBase> Gestures { get; } = new List<GestureBase>();
+		private IList<GestureBase> _gestures = new List<GestureBase>();
+		/// <summary> not nullable </summary>
+		public IList<GestureBase> Gestures
+		{
+			get => _gestures;
+			set => _gestures = value ?? throw new ArgumentNullException(nameof(Gestures));
+		}
+
 		public bool MustBubble { get; set; }
 
 		/// <summary> Indicates whether the element will respond to mouse and keyboard gestures. </summary>

@@ -1,4 +1,6 @@
-﻿using JJ.Framework.VectorGraphics.Enums;
+﻿using System.Linq;
+using JJ.Framework.Collections;
+using JJ.Framework.VectorGraphics.Enums;
 using JJ.Framework.VectorGraphics.Helpers;
 using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.VectorGraphics.Models.Styling;
@@ -35,7 +37,7 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		public static void DrawCoordinateIndicatorsIfNeeded(DrawerBase drawer, Element element)
 		{
-			if (!element.Visible)
+			if (element.SelfAndAncestors(x => x.Parent).Any(x => !x.Visible))
 			{
 				return;
 			}
