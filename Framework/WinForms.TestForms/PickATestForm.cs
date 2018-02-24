@@ -22,5 +22,7 @@ namespace JJ.Framework.WinForms.TestForms
 		private void buttonShowScaleTest_Click(object sender, EventArgs e) => new ScaleTestForm().Show();
 		private void buttonShowEllipseTest_Click(object sender, EventArgs e) => new EllipseTestForm().Show();
 		private void buttonShowPictureTest_Click(object sender, EventArgs e) => new PictureTestForm().Show();
+		private void buttonShowFlowPositionerLeftAlignedTest_Click(object sender, EventArgs e) => new FlowPositionerLeftAlignedTestForm().Show();
+		private void buttonShowFlowPositionerRightAlignedTest_Click(object sender, EventArgs e) => new FlowPositionerRightAlignedTestForm().Show();
 	}
 }

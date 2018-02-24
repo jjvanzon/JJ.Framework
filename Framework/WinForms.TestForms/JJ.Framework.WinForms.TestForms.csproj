@@ -54,6 +54,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PositionerTestFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PositionerTestFormBase.Designer.cs">
+      <DependentUpon>PositionerTestFormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FlowPositionerRightAlignedTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlowPositionerLeftAlignedTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PictureTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +143,9 @@
     <EmbeddedResource Include="CurveTestForm.resx">
       <DependentUpon>CurveTestForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PositionerTestFormBase.resx">
+      <DependentUpon>PositionerTestFormBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PictureTestForm.resx">
       <DependentUpon>PictureTestForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -185,6 +200,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Collections\JJ.Framework.Collections.csproj">
+      <Project>{5D06A212-5459-47F3-8109-E012C5FC9E3A}</Project>
+      <Name>JJ.Framework.Collections</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
@@ -196,6 +215,10 @@
     <ProjectReference Include="..\Drawing\JJ.Framework.Drawing.csproj">
       <Project>{21802a52-f4f7-4366-b61d-06e1fb337b86}</Project>
       <Name>JJ.Framework.Drawing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mathematics\JJ.Framework.Mathematics.csproj">
+      <Project>{810B90B9-F501-4B91-B019-2AD5AAD63304}</Project>
+      <Name>JJ.Framework.Mathematics</Name>
     </ProjectReference>
     <ProjectReference Include="..\VectorGraphics\JJ.Framework.VectorGraphics.csproj">
       <Project>{52e03e08-331a-4ca7-8d8f-6f598c94eed4}</Project>

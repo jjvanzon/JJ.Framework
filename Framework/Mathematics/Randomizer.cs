@@ -82,17 +82,28 @@ namespace JJ.Framework.Mathematics
 		}
 
 		/// <summary> Returns a random number between 0.0 and 1.0. </summary>
-		public static double GetDouble()
-		{
-			return _random.NextDouble();
-		}
+		public static double GetDouble() => _random.NextDouble();
+
+		/// <summary> Returns a random number between 0.0 and 1.0. </summary>
+		public static float GetSingle() => (float)_random.NextDouble();
 
 		/// <param name="min">inclusive</param>
 		/// <param name="max">exclusive</param>
 		public static double GetDouble(double min, double max)
 		{
-			double value = GetDouble();
-			value = (value - min) * (max - min);
+			double between0And1 = GetDouble();
+			double range = max - min;
+			double value = min + between0And1 * range;
+			return value;
+		}
+
+		/// <param name="min">inclusive</param>
+		/// <param name="max">exclusive</param>
+		public static float GetSingle(float min, float max)
+		{
+			float between0And1 = GetSingle();
+			float range = max - min;
+			float  value = min + between0And1 * range;
 			return value;
 		}
 	}

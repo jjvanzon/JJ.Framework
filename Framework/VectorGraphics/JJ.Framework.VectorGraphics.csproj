@@ -85,6 +85,9 @@
     <Compile Include="Models\Elements\PointPosition.cs" />
     <Compile Include="Models\Elements\RectangleStyle.cs" />
     <Compile Include="Models\Styling\PictureStyle.cs" />
+    <Compile Include="Positioners\FlowPositionerRightAligned.cs" />
+    <Compile Include="Positioners\FlowPositionerLeftAligned.cs" />
+    <Compile Include="Positioners\IPositioner.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />
     <Compile Include="Relationships\DiagramToElementsRelationship.cs" />
     <Compile Include="Relationships\ElementToDiagramRelationship.cs" />

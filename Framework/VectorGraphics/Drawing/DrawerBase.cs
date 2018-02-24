@@ -8,8 +8,8 @@ namespace JJ.Framework.VectorGraphics.Drawing
 	/// <summary>
 	/// The base will corect coordinates and sizes to be within
 	/// certain bounds and sizes to be a minimum positive value.
-	/// Coordinates minimally -1 x 10^9 and maximally 1 x 10^9
-	/// Sizes at least 1 x 10^-9.
+	/// Coordinates minimally -100,000 and maximally 100,000
+	/// Sizes at least 0.0001.
 	/// </summary>
 	public abstract class DrawerBase
 	{

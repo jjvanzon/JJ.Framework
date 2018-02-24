@@ -34,13 +34,15 @@ namespace JJ.Framework.WinForms.TestForms
 			this.buttonShowHierarchyTestForm = new System.Windows.Forms.Button();
 			this.buttonShowVectorGraphicsWithFlatClone_TestForm = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+			this.buttonShowFlowPositionerRightAlignedTest = new System.Windows.Forms.Button();
+			this.buttonShowFlowPositionerLeftAlignedTest = new System.Windows.Forms.Button();
+			this.buttonShowPictureTest = new System.Windows.Forms.Button();
 			this.buttonShowEllipseTest = new System.Windows.Forms.Button();
 			this.buttonShowScaleTest = new System.Windows.Forms.Button();
 			this.buttonShowFilePathControlTest = new System.Windows.Forms.Button();
 			this.buttonShowCurveTest = new System.Windows.Forms.Button();
 			this.buttonShowGestureTestForm = new System.Windows.Forms.Button();
 			this.buttonShowHelloWorldTestForm = new System.Windows.Forms.Button();
-			this.buttonShowPictureTest = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -51,16 +53,16 @@ namespace JJ.Framework.WinForms.TestForms
 			this.diagramControl1.Location = new System.Drawing.Point(0, 0);
 			this.diagramControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.diagramControl1.Name = "diagramControl1";
-			this.diagramControl1.Size = new System.Drawing.Size(317, 487);
+			this.diagramControl1.Size = new System.Drawing.Size(317, 554);
 			this.diagramControl1.TabIndex = 0;
 			// 
 			// buttonShowHierarchyTestForm
 			// 
 			this.buttonShowHierarchyTestForm.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.buttonShowHierarchyTestForm.Location = new System.Drawing.Point(19, 70);
+			this.buttonShowHierarchyTestForm.Location = new System.Drawing.Point(19, 67);
 			this.buttonShowHierarchyTestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonShowHierarchyTestForm.Name = "buttonShowHierarchyTestForm";
-			this.buttonShowHierarchyTestForm.Size = new System.Drawing.Size(279, 40);
+			this.buttonShowHierarchyTestForm.Size = new System.Drawing.Size(279, 37);
 			this.buttonShowHierarchyTestForm.TabIndex = 1;
 			this.buttonShowHierarchyTestForm.Text = "Hierarchy Test";
 			this.buttonShowHierarchyTestForm.UseVisualStyleBackColor = true;
@@ -69,10 +71,10 @@ namespace JJ.Framework.WinForms.TestForms
 			// buttonShowVectorGraphicsWithFlatClone_TestForm
 			// 
 			this.buttonShowVectorGraphicsWithFlatClone_TestForm.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.buttonShowVectorGraphicsWithFlatClone_TestForm.Location = new System.Drawing.Point(19, 120);
+			this.buttonShowVectorGraphicsWithFlatClone_TestForm.Location = new System.Drawing.Point(19, 114);
 			this.buttonShowVectorGraphicsWithFlatClone_TestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonShowVectorGraphicsWithFlatClone_TestForm.Name = "buttonShowVectorGraphicsWithFlatClone_TestForm";
-			this.buttonShowVectorGraphicsWithFlatClone_TestForm.Size = new System.Drawing.Size(279, 40);
+			this.buttonShowVectorGraphicsWithFlatClone_TestForm.Size = new System.Drawing.Size(279, 37);
 			this.buttonShowVectorGraphicsWithFlatClone_TestForm.TabIndex = 3;
 			this.buttonShowVectorGraphicsWithFlatClone_TestForm.Text = "VectorGraphics With Flat Clone Test";
 			this.buttonShowVectorGraphicsWithFlatClone_TestForm.UseVisualStyleBackColor = true;
@@ -82,6 +84,8 @@ namespace JJ.Framework.WinForms.TestForms
 			// 
 			this.tableLayoutPanel1.ColumnCount = 1;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel1.Controls.Add(this.buttonShowFlowPositionerRightAlignedTest, 0, 10);
+			this.tableLayoutPanel1.Controls.Add(this.buttonShowFlowPositionerLeftAlignedTest, 0, 9);
 			this.tableLayoutPanel1.Controls.Add(this.buttonShowPictureTest, 0, 8);
 			this.tableLayoutPanel1.Controls.Add(this.buttonShowEllipseTest, 0, 7);
 			this.tableLayoutPanel1.Controls.Add(this.buttonShowScaleTest, 0, 6);
@@ -96,26 +100,64 @@ namespace JJ.Framework.WinForms.TestForms
 			this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(15);
-			this.tableLayoutPanel1.RowCount = 9;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.10986F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.10986F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.10986F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.10986F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.10986F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11207F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.1135F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11403F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(317, 487);
+			this.tableLayoutPanel1.RowCount = 11;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.089975F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.089975F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.089975F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.089975F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.089975F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.091782F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.092954F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.09339F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.091F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090089F));
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(317, 554);
 			this.tableLayoutPanel1.TabIndex = 5;
+			// 
+			// buttonShowFlowPositionerRightAlignedTest
+			// 
+			this.buttonShowFlowPositionerRightAlignedTest.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.buttonShowFlowPositionerRightAlignedTest.Location = new System.Drawing.Point(19, 490);
+			this.buttonShowFlowPositionerRightAlignedTest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.buttonShowFlowPositionerRightAlignedTest.Name = "buttonShowFlowPositionerRightAlignedTest";
+			this.buttonShowFlowPositionerRightAlignedTest.Size = new System.Drawing.Size(279, 44);
+			this.buttonShowFlowPositionerRightAlignedTest.TabIndex = 12;
+			this.buttonShowFlowPositionerRightAlignedTest.Text = "Flow Positioner Right Aligned Test";
+			this.buttonShowFlowPositionerRightAlignedTest.UseVisualStyleBackColor = true;
+			this.buttonShowFlowPositionerRightAlignedTest.Click += new System.EventHandler(this.buttonShowFlowPositionerRightAlignedTest_Click);
+			// 
+			// buttonShowFlowPositionerLeftAlignedTest
+			// 
+			this.buttonShowFlowPositionerLeftAlignedTest.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.buttonShowFlowPositionerLeftAlignedTest.Location = new System.Drawing.Point(19, 443);
+			this.buttonShowFlowPositionerLeftAlignedTest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.buttonShowFlowPositionerLeftAlignedTest.Name = "buttonShowFlowPositionerLeftAlignedTest";
+			this.buttonShowFlowPositionerLeftAlignedTest.Size = new System.Drawing.Size(279, 37);
+			this.buttonShowFlowPositionerLeftAlignedTest.TabIndex = 11;
+			this.buttonShowFlowPositionerLeftAlignedTest.Text = "Flow Positioner Left Aligned Test";
+			this.buttonShowFlowPositionerLeftAlignedTest.UseVisualStyleBackColor = true;
+			this.buttonShowFlowPositionerLeftAlignedTest.Click += new System.EventHandler(this.buttonShowFlowPositionerLeftAlignedTest_Click);
+			// 
+			// buttonShowPictureTest
+			// 
+			this.buttonShowPictureTest.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.buttonShowPictureTest.Location = new System.Drawing.Point(19, 396);
+			this.buttonShowPictureTest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.buttonShowPictureTest.Name = "buttonShowPictureTest";
+			this.buttonShowPictureTest.Size = new System.Drawing.Size(279, 37);
+			this.buttonShowPictureTest.TabIndex = 10;
+			this.buttonShowPictureTest.Text = "Picture Test";
+			this.buttonShowPictureTest.UseVisualStyleBackColor = true;
+			this.buttonShowPictureTest.Click += new System.EventHandler(this.buttonShowPictureTest_Click);
 			// 
 			// buttonShowEllipseTest
 			// 
 			this.buttonShowEllipseTest.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.buttonShowEllipseTest.Location = new System.Drawing.Point(19, 370);
+			this.buttonShowEllipseTest.Location = new System.Drawing.Point(19, 349);
 			this.buttonShowEllipseTest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonShowEllipseTest.Name = "buttonShowEllipseTest";
-			this.buttonShowEllipseTest.Size = new System.Drawing.Size(279, 40);
+			this.buttonShowEllipseTest.Size = new System.Drawing.Size(279, 37);
 			this.buttonShowEllipseTest.TabIndex = 9;
 			this.buttonShowEllipseTest.Text = "Ellipse Test";
 			this.buttonShowEllipseTest.UseVisualStyleBackColor = true;
@@ -124,10 +166,10 @@ namespace JJ.Framework.WinForms.TestForms
 			// buttonShowScaleTest
 			// 
 			this.buttonShowScaleTest.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.buttonShowScaleTest.Location = new System.Drawing.Point(19, 320);
+			this.buttonShowScaleTest.Location = new System.Drawing.Point(19, 302);
 			this.buttonShowScaleTest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonShowScaleTest.Name = "buttonShowScaleTest";
-			this.buttonShowScaleTest.Size = new System.Drawing.Size(279, 40);
+			this.buttonShowScaleTest.Size = new System.Drawing.Size(279, 37);
 			this.buttonShowScaleTest.TabIndex = 8;
 			this.buttonShowScaleTest.Text = "Scale Test";
 			this.buttonShowScaleTest.UseVisualStyleBackColor = true;
@@ -136,10 +178,10 @@ namespace JJ.Framework.WinForms.TestForms
 			// buttonShowFilePathControlTest
 			// 
 			this.buttonShowFilePathControlTest.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.buttonShowFilePathControlTest.Location = new System.Drawing.Point(19, 270);
+			this.buttonShowFilePathControlTest.Location = new System.Drawing.Point(19, 255);
 			this.buttonShowFilePathControlTest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonShowFilePathControlTest.Name = "buttonShowFilePathControlTest";
-			this.buttonShowFilePathControlTest.Size = new System.Drawing.Size(279, 40);
+			this.buttonShowFilePathControlTest.Size = new System.Drawing.Size(279, 37);
 			this.buttonShowFilePathControlTest.TabIndex = 7;
 			this.buttonShowFilePathControlTest.Text = "FilePathControl Test";
 			this.buttonShowFilePathControlTest.UseVisualStyleBackColor = true;
@@ -148,10 +190,10 @@ namespace JJ.Framework.WinForms.TestForms
 			// buttonShowCurveTest
 			// 
 			this.buttonShowCurveTest.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.buttonShowCurveTest.Location = new System.Drawing.Point(19, 220);
+			this.buttonShowCurveTest.Location = new System.Drawing.Point(19, 208);
 			this.buttonShowCurveTest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonShowCurveTest.Name = "buttonShowCurveTest";
-			this.buttonShowCurveTest.Size = new System.Drawing.Size(279, 40);
+			this.buttonShowCurveTest.Size = new System.Drawing.Size(279, 37);
 			this.buttonShowCurveTest.TabIndex = 6;
 			this.buttonShowCurveTest.Text = "Curve Test";
 			this.buttonShowCurveTest.UseVisualStyleBackColor = true;
@@ -160,10 +202,10 @@ namespace JJ.Framework.WinForms.TestForms
 			// buttonShowGestureTestForm
 			// 
 			this.buttonShowGestureTestForm.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.buttonShowGestureTestForm.Location = new System.Drawing.Point(19, 170);
+			this.buttonShowGestureTestForm.Location = new System.Drawing.Point(19, 161);
 			this.buttonShowGestureTestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonShowGestureTestForm.Name = "buttonShowGestureTestForm";
-			this.buttonShowGestureTestForm.Size = new System.Drawing.Size(279, 40);
+			this.buttonShowGestureTestForm.Size = new System.Drawing.Size(279, 37);
 			this.buttonShowGestureTestForm.TabIndex = 5;
 			this.buttonShowGestureTestForm.Text = "Gesture Test";
 			this.buttonShowGestureTestForm.UseVisualStyleBackColor = true;
@@ -175,29 +217,17 @@ namespace JJ.Framework.WinForms.TestForms
 			this.buttonShowHelloWorldTestForm.Location = new System.Drawing.Point(19, 20);
 			this.buttonShowHelloWorldTestForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.buttonShowHelloWorldTestForm.Name = "buttonShowHelloWorldTestForm";
-			this.buttonShowHelloWorldTestForm.Size = new System.Drawing.Size(279, 40);
+			this.buttonShowHelloWorldTestForm.Size = new System.Drawing.Size(279, 37);
 			this.buttonShowHelloWorldTestForm.TabIndex = 2;
 			this.buttonShowHelloWorldTestForm.Text = "Hello World Test";
 			this.buttonShowHelloWorldTestForm.UseVisualStyleBackColor = true;
 			this.buttonShowHelloWorldTestForm.Click += new System.EventHandler(this.buttonShowHelloWorldTestForm_Click);
 			// 
-			// buttonShowPictureTest
-			// 
-			this.buttonShowPictureTest.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.buttonShowPictureTest.Location = new System.Drawing.Point(19, 420);
-			this.buttonShowPictureTest.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.buttonShowPictureTest.Name = "buttonShowPictureTest";
-			this.buttonShowPictureTest.Size = new System.Drawing.Size(279, 47);
-			this.buttonShowPictureTest.TabIndex = 10;
-			this.buttonShowPictureTest.Text = "Picture Test";
-			this.buttonShowPictureTest.UseVisualStyleBackColor = true;
-			this.buttonShowPictureTest.Click += new System.EventHandler(this.buttonShowPictureTest_Click);
-			// 
 			// PickATestForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 26F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(317, 487);
+			this.ClientSize = new System.Drawing.Size(317, 554);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.diagramControl1);
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -221,6 +251,8 @@ namespace JJ.Framework.WinForms.TestForms
 		private System.Windows.Forms.Button buttonShowScaleTest;
 		private System.Windows.Forms.Button buttonShowEllipseTest;
 		private System.Windows.Forms.Button buttonShowPictureTest;
+		private System.Windows.Forms.Button buttonShowFlowPositionerLeftAlignedTest;
+		private System.Windows.Forms.Button buttonShowFlowPositionerRightAlignedTest;
 	}
 }
 

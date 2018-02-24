@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
+using JJ.Framework.WinForms.Helpers;
 
 namespace JJ.Framework.WinForms.TestForms
 {
@@ -14,14 +16,9 @@ namespace JJ.Framework.WinForms.TestForms
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			Application.ThreadException += Application_ThreadException;
+			UnhandledExceptionMessageBoxShower.Initialize(Assembly.GetExecutingAssembly().GetName().Name);
 
 			Application.Run(new PickATestForm());
-		}
-
-		static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
-		{
-			// Just the fact that I have this handler makes my dev environment stop at thread exceptions (with VS Express 2012 for Web).
 		}
 	}
 }
