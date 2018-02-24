@@ -30,7 +30,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 		{
 			_mouseMoveGesture.Internals.HandleMouseDown(this, e);
 
-			IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
+			IEnumerable<Element> zOrdereredElements = _diagram.ElementsOrderedByZIndex;
 
 			Element hitElement = TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
 
@@ -122,8 +122,8 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 		private void mouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
 		{
-			IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
-
+			IEnumerable<Element> zOrdereredElements = _diagram.ElementsOrderedByZIndex;
+		
 			Element hitElement = _mouseCapturingElement ?? TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
 
 			if (hitElement != null)
@@ -179,7 +179,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 		{
 			_mouseMoveGesture.Internals.HandleMouseUp(this, e);
 
-			IEnumerable<Element> zOrdereredElements = _diagram.EnumerateElementsByZIndex();
+			IEnumerable<Element> zOrdereredElements = _diagram.ElementsOrderedByZIndex;
 
 			Element hitElement = _mouseCapturingElement ?? TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
 

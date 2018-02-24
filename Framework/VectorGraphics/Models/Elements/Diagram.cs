@@ -21,21 +21,14 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 			};
 		}
 
+		private readonly CalculationVisitor _calculationVisitor = new CalculationVisitor();
+
 		public Rectangle Background { get; }
 		public DiagramElements Elements { get; }
-
-		private IList<Element> _elementsOrderByZIndex = new Element[0];
-		public IEnumerable<Element> EnumerateElementsByZIndex()
-		{
-			for (int i = 0; i < _elementsOrderByZIndex.Count; i++)
-			{
-				yield return _elementsOrderByZIndex[i];
-			}
-		}
-
 		public DiagramPosition Position { get; }
+		public IList<Element> ElementsOrderedByZIndex { get; private set; } = new Element[0];
 
-		public void Recalculate() => _elementsOrderByZIndex = new CalculationVisitor().Execute(this);
+		public void Recalculate() => ElementsOrderedByZIndex = _calculationVisitor.Execute(this);
 
 		/// <summary>
 		/// The gestures on the diagram always go off regardless of bubbling.

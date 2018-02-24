@@ -41,7 +41,7 @@ namespace JJ.Framework.VectorGraphics.Drawing
 		public void Draw(Diagram diagram)
 		{
 			if (diagram == null) throw new ArgumentNullException(nameof(diagram));
-			foreach (Element element in diagram.EnumerateElementsByZIndex())
+			foreach (Element element in diagram.ElementsOrderedByZIndex)
 			{
 				DrawPolymorphic(element);
 			}
@@ -54,10 +54,6 @@ namespace JJ.Framework.VectorGraphics.Drawing
 #endif
 			switch (sourceElement)
 			{
-				case Curve sourceCurve:
-					DrawCurve(sourceCurve);
-					break;
-
 				case Point sourcePoint:
 					DrawPoint(sourcePoint);
 					break;
@@ -82,17 +78,11 @@ namespace JJ.Framework.VectorGraphics.Drawing
 					DrawPicture(sourcePicture);
 					break;
 
+				// Curves are not drawn explitly: only indirectly through their generated segement lines.
 				// Another element type can be just a custom programmed composite element.
 			}
 		}
 
-		private void DrawCurve(Curve sourceCurve)
-		{
-			foreach (Line calculatedLine in sourceCurve.CalculatedLines)
-			{
-				DrawLine(calculatedLine);
-			}
-		}
 
 		private void DrawPoint(Point sourcePoint)
 		{
