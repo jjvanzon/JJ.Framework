@@ -7,12 +7,21 @@ namespace JJ.Framework.VectorGraphics.Positioners
 	{
 		private readonly float _rowWidth;
 		private readonly float _rowHeight;
+		private readonly float _horizontalSpacing;
+		private readonly float _verticalSpacing;
 		private readonly IList<float> _itemWidths;
 
-		public FlowPositionerRightAligned(float rowWidth, float rowHeight, IList<float> itemWidths)
+		public FlowPositionerRightAligned(
+			float rowWidth,
+			float rowHeight,
+			float horizontalSpacing,
+			float verticalSpacing,
+			IList<float> itemWidths)
 		{
 			_rowWidth = rowWidth;
 			_rowHeight = rowHeight;
+			_horizontalSpacing = horizontalSpacing;
+			_verticalSpacing = verticalSpacing;
 			_itemWidths = itemWidths ?? throw new ArgumentNullException(nameof(itemWidths));
 		}
 
@@ -42,12 +51,12 @@ namespace JJ.Framework.VectorGraphics.Positioners
 
 					firstIndexInRow = i;
 					x = 0;
-					y += _rowHeight;
+					y += _rowHeight + _verticalSpacing;
 				}
 
 				rectangles[i] = (x, y, itemWidth, _rowHeight);
 
-				x += itemWidth;
+				x += itemWidth + _horizontalSpacing;
 			}
 
 			// Correct the coordinates now that the used space has been determined.

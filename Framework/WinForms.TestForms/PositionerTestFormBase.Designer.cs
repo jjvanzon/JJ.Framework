@@ -56,6 +56,6 @@
 
 		#endregion
 
-		protected Controls.DiagramControl diagramControl;
+		private Controls.DiagramControl diagramControl;
 	}
 }

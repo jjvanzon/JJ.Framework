@@ -12,8 +12,9 @@ namespace JJ.Framework.WinForms.TestForms
 {
 	public partial class PositionerTestFormBase : Form
 	{
-		protected const float ROW_HEIGHT = 24;
-		protected readonly IList<float> _itemWidths;
+		private const float ROW_HEIGHT = 24;
+		private const float SPACING = 4;
+		private readonly IList<float> _itemWidths;
 
 		private const int MIN_ITEM_COUNT = 7;
 		private const int MAX_ITEM_COUNT = 20;
@@ -57,7 +58,7 @@ namespace JJ.Framework.WinForms.TestForms
 			diagramControl.Width = ClientSize.Width;
 			diagramControl.Height = ClientSize.Height;
 
-			IPositioner positioner = CreatePositioner();
+			IPositioner positioner = CreatePositioner(diagramControl.Width, ROW_HEIGHT, SPACING, _itemWidths);
 			IList<(float x, float y, float width, float height)> positions = positioner.Calculate();
 
 			for (int i = 0; i < _itemCount; i++)
@@ -72,7 +73,7 @@ namespace JJ.Framework.WinForms.TestForms
 			}
 		}
 
-		protected virtual IPositioner CreatePositioner() => throw new NotImplementedException();
+		protected virtual IPositioner CreatePositioner(float rowWidth, float rowHeight, float spacing, IList<float> itemWidths) => throw new NotImplementedException();
 
 		private IList<float> GenerateItemWidths(int itemCount)
 		{
