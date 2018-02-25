@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Common
+namespace JJ.Framework.Text
 {
 	public static class StringExtensions_Casing
 	{

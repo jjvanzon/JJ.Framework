@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JJ.Framework.Common
+namespace JJ.Framework.Text
 {
 	public static class StringExtensions_Split
 	{

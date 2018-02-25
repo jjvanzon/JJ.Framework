@@ -5,11 +5,11 @@ using System.Reflection;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
-using JJ.Framework.Common;
 using JJ.Framework.Conversion;
 using JJ.Framework.Exceptions;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
+using JJ.Framework.Text;
 using JJ.Framework.Xml.Internal;
 
 namespace JJ.Framework.Xml

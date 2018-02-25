@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using JJ.Framework.Common;
 using System.Web;
+using JJ.Framework.Text;
 
 namespace JJ.Framework.Web
 {

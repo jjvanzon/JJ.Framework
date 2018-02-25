@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using JJ.Framework.Common;
 using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Text;
 
 namespace JJ.Framework.Reflection
 {

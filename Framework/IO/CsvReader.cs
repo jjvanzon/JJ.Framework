@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using JJ.Framework.Common;
+using JJ.Framework.Text;
 
 namespace JJ.Framework.IO
 {

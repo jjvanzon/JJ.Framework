@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace JJ.Framework.Common
+namespace JJ.Framework.Text
 {
 	public class StringBuilderWithIndentation
 	{

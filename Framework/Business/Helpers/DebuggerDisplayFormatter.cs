@@ -1,7 +1,7 @@
-﻿using JJ.Framework.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using JJ.Framework.Text;
 
 namespace JJ.Framework.Business.Helpers
 {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
@@ -15,7 +14,7 @@ namespace JJ.Framework.Exceptions
 				MESSAGE, 
 				ExpressionHelper.GetText(listIndexExpression), 
 				ExpressionHelper.GetValue(listIndexExpression), 
-				StringExtensions.TrimStart(ExpressionHelper.GetText(countExpression), '.').TrimEnd('.'), 
+				ExpressionHelper.GetText(countExpression).TrimStart('.').TrimEnd('.'), 
 				ExpressionHelper.GetValue(countExpression)))
 		{  }
 	}

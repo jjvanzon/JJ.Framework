@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using JJ.Framework.Common;
+using JJ.Framework.Text;
 
 namespace JJ.Framework.IO
 {

@@ -1,26 +1,20 @@
-﻿using JJ.Framework.PlatformCompatibility;
-using System;
+﻿using System;
 using System.IO;
 using System.Reflection;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Common
 {
 	public static class EmbeddedResourceHelper
 	{
-		public static string GetEmbeddedResourceText(Assembly assembly, string fileName)
-		{
-			return GetEmbeddedResourceText(assembly, null, fileName);
-		}
+		public static string GetEmbeddedResourceText(Assembly assembly, string fileName) 
+			=> GetEmbeddedResourceText(assembly, null, fileName);
 
-		public static byte[] GetEmbeddedResourceBytes(Assembly assembly, string fileName)
-		{
-			return GetEmbeddedResourceBytes(assembly, null, fileName);
-		}
+		public static byte[] GetEmbeddedResourceBytes(Assembly assembly, string fileName) 
+			=> GetEmbeddedResourceBytes(assembly, null, fileName);
 
-		public static Stream GetEmbeddedResourceStream(Assembly assembly, string fileName)
-		{
-			return GetEmbeddedResourceStream(assembly, null, fileName);
-		}
+		public static Stream GetEmbeddedResourceStream(Assembly assembly, string fileName) 
+			=> GetEmbeddedResourceStream(assembly, null, fileName);
 
 		/// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
 		public static string GetEmbeddedResourceText(Assembly assembly, string subNamespace, string fileName)
@@ -53,6 +47,7 @@ namespace JJ.Framework.Common
 			{
 				throw new Exception($"Embedded resource '{resourceName}' not found.");
 			}
+
 			return stream;
 		}
 

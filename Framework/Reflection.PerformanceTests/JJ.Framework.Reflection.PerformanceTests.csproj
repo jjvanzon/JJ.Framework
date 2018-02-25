@@ -105,6 +105,10 @@
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Text\JJ.Framework.Text.csproj">
+      <Project>{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}</Project>
+      <Name>JJ.Framework.Text</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Choose>

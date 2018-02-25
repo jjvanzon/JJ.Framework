@@ -4,11 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using JJ.Framework.Common;
-using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Reflection;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Mathematics;
+using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Reflection;
+using JJ.Framework.Text;
 
 namespace JJ.Framework.Xml.Linq.Internal
 {
@@ -102,7 +102,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// </summary>
 		private string TryGetXmlElementNameFromAttribute(PropertyInfo property)
 		{
-			XmlElementAttribute xmlElementAttribute = property.GetCustomAttribute_PlatformSupport<XmlElementAttribute>();
+			var xmlElementAttribute = property.GetCustomAttribute_PlatformSupport<XmlElementAttribute>();
 			if (xmlElementAttribute != null)
 			{
 				return xmlElementAttribute.ElementName;
@@ -158,7 +158,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// </summary>
 		private string TryGetAttributeNameFromAttribute(PropertyInfo property)
 		{
-			XmlAttributeAttribute xmlAttributeAttribute = property.GetCustomAttribute_PlatformSupport<XmlAttributeAttribute>();
+			var xmlAttributeAttribute = property.GetCustomAttribute_PlatformSupport<XmlAttributeAttribute>();
 			if (xmlAttributeAttribute != null)
 			{
 				return xmlAttributeAttribute.AttributeName;
@@ -214,7 +214,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// </summary>
 		private string TryGetXmlArrayNameFromAttribute(PropertyInfo collectionProperty)
 		{
-			XmlArrayAttribute xmlArrayAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayAttribute>();
+			var xmlArrayAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayAttribute>();
 			if (xmlArrayAttribute != null)
 			{
 				return xmlArrayAttribute.ElementName;
@@ -301,7 +301,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// </summary>
 		private string TryGetXmlArrayItemNameFromAttribute(PropertyInfo collectionProperty)
 		{
-			XmlArrayItemAttribute xmlArrayItemAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayItemAttribute>();
+			var xmlArrayItemAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayItemAttribute>();
 			if (xmlArrayItemAttribute != null)
 			{
 				return xmlArrayItemAttribute.ElementName;
@@ -329,8 +329,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 				return null;
 			}
 
-			string name;
-			if (_customArrayItemNameDictionary.TryGetValue(sourceItemType, out name))
+			if (_customArrayItemNameDictionary.TryGetValue(sourceItemType, out string name))
 			{
 				return name;
 			}
@@ -403,9 +402,6 @@ namespace JJ.Framework.Xml.Linq.Internal
 			}
 		}
 
-		/// <param name="type">
-		/// For properties the type must be the type that the property is part of, not the type of the property value.
-		/// </param>
 		public XName GetXNameForNamespace(string name, string dotNetNamespace)
 		{
 			string xmlNamespaceString = WCF_SOAP_NAMESPACE_START + dotNetNamespace;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JJ.Framework.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Common.Tests

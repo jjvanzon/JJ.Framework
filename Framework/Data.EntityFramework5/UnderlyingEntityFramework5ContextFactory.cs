@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Reflection;
-using JJ.Framework.Common;
 using JJ.Framework.Reflection;
+using JJ.Framework.Text;
 
 namespace JJ.Framework.Data.EntityFramework5
 {

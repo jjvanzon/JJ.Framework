@@ -65,6 +65,10 @@
       <Project>{59622a6e-a9ae-438c-a164-05dea2fcf8cf}</Project>
       <Name>JJ.Framework.PlatformCompatibility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Text\JJ.Framework.Text.csproj">
+      <Project>{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}</Project>
+      <Name>JJ.Framework.Text</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />

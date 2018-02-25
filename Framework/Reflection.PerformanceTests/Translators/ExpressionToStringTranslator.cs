@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Text;
 using System.Linq.Expressions;
-using JJ.Framework.Common;
+using System.Text;
 using JJ.Framework.Reflection;
+using JJ.Framework.Text;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {
