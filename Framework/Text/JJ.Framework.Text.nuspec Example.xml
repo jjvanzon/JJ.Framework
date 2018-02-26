@@ -1,0 +1,39 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>JJ.Framework.Text</id>
+		<version>1.0.0.0</version>
+		<authors>Jan-Joost van Zon</authors>
+		<owners>Jan-Joost van Zon</owners>
+		<copyright>Copyright © 2018 Jan-Joost van Zon</copyright>
+
+		<licenseUrl>https://github.com/jjvanzon/JJ.Framework/blob/master/LICENSE.TXT</licenseUrl>
+		<projectUrl>https://github.com/jjvanzon/JJ.Framework/</projectUrl>
+		<!--<iconUrl>https://github.com/jjvanzon/JJ.Framework/blob/master/jj_icon-maginfied.png</iconUrl>-->
+		<tags>text utility extensions string split casing stringbuilder</tags>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+		<description>
+			Basic helpers for working with textual information, for instance:
+			* String extensions for trimming and cutting.
+			* Case formatting
+			* `String.Split` overloads
+			* `SplitWithQuotation`:
+			Allows you to parse CSV-like lines
+			including quotation for the ability to include
+			the separator character in the values themselves.
+			* `StringBuilderWithIndentation`
+		</description>
+
+		<releaseNotes></releaseNotes>
+
+		<dependencies>
+			<!--<dependency id="Newtonsoft.Json" version="9.0" />-->
+		</dependencies>
+	</metadata>
+
+	<files>
+		<file src="README.MD" target="" />
+	</files>
+</package>

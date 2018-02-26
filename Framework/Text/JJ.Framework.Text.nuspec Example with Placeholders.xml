@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<package>
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<copyright>Copyright © 2018 Jan-Joost van Zon</copyright>
+		<licenseUrl>https://github.com/jjvanzon/JJ.Framework/blob/master/LICENSE.TXT</licenseUrl>
+		<projectUrl>https://github.com/jjvanzon/JJ.Framework/</projectUrl>
+		<!--<iconUrl>https://github.com/jjvanzon/JJ.Framework/blob/master/jj_icon-maginfied.png</iconUrl>-->
+		<tags>text utility extensions string split casing stringbuilder</tags>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>$description$</description>
+		<releaseNotes></releaseNotes>
+	</metadata>
+	
+	<files>
+		<file src="README.MD" target="" />
+	</files>
+</package>

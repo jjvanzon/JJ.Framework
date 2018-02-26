@@ -59,6 +59,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Text", "Framework\Text\JJ.Framework.Text.csproj", "{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.NuGetTest", "Demos\NuGetTest\JJ.Demos.NuGetTest.csproj", "{D0717725-8238-434C-99A2-61ADACAB3595}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -569,6 +571,30 @@ Global
 		{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}.Release|x64.Build.0 = Release|Any CPU
 		{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}.Release|x86.ActiveCfg = Release|Any CPU
 		{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}.Release|x86.Build.0 = Release|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Debug|x64.Build.0 = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Debug|x86.Build.0 = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Release|x64.ActiveCfg = Release|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Release|x64.Build.0 = Release|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Release|x86.ActiveCfg = Release|Any CPU
+		{D0717725-8238-434C-99A2-61ADACAB3595}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -592,7 +618,7 @@ Global
 		SolutionGuid = {548F4A3C-D449-47F5-BDD8-0F7099B17891}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 25
+		SccNumberOfProjects = 26
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -681,5 +707,8 @@ Global
 		SccProjectTopLevelParentUniqueName24 = JJ.Demos.sln
 		SccProjectName24 = Framework/Text
 		SccLocalPath24 = Framework\\Text
+		SccProjectUniqueName25 = Demos\\NuGetTest\\JJ.Demos.NuGetTest.csproj
+		SccProjectName25 = Demos/NuGetTest
+		SccLocalPath25 = Demos\\NuGetTest
 	EndGlobalSection
 EndGlobal

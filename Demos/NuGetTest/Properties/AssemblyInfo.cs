@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JJ.Framework.Text")]
-[assembly: AssemblyDescription("Basic helpers for working with textual information.")]
+[assembly: AssemblyTitle("JJ.Demos.NuGetTest")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
-[assembly: AssemblyProduct("JJ.Framework.Text")]
-[assembly: AssemblyCopyright("Copyright © 2018 Jan-Joost van Zon")]
+[assembly: AssemblyProduct("JJ.Demos.NuGetTest")]
+[assembly: AssemblyCopyright("Copyright © Jan-Joost van Zon 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("964de0b4-27f8-40f8-8d50-c97388bf8ce2")]
+[assembly: Guid("d0717725-8238-434c-99a2-61adacab3595")]
 
 // Version information for an assembly consists of the following four values:
 //

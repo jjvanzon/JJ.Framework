@@ -1,8 +1,7 @@
 ﻿using JJ.Framework.Testing;
-using JJ.Framework.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Common.Tests
+namespace JJ.Framework.Text.Tests
 {
 	[TestClass]
 	public class StringExtensionsTests
