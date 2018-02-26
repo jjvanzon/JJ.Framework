@@ -31,7 +31,6 @@
 		<releaseNotes></releaseNotes>
 
 		<dependencies>
-			<!--<dependency id="Newtonsoft.Json" version="9.0" />-->
 		</dependencies>
 	</metadata>
 

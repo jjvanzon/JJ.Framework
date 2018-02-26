@@ -43,7 +43,7 @@ namespace JJ.Framework.VectorGraphics.Positioners
 				if (x + itemWidth > _rowWidth)
 				{
 					// Correct the coordinates now that the used space has been determined.
-					float rowWidthRemainder = _rowWidth - x;
+					float rowWidthRemainder = _rowWidth - x + _horizontalSpacing;
 					for (int j = firstIndexInRow; j < i; j++)
 					{
 						rectangles[j].x += rowWidthRemainder;
@@ -61,7 +61,7 @@ namespace JJ.Framework.VectorGraphics.Positioners
 
 			// Correct the coordinates now that the used space has been determined.
 			{
-				float rowWidthRemainder = _rowWidth - x;
+				float rowWidthRemainder = _rowWidth - x + _horizontalSpacing;
 				for (int j = firstIndexInRow; j < count; j++)
 				{
 					rectangles[j].x += rowWidthRemainder;

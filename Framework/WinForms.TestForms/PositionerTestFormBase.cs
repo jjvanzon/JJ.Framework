@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using JJ.Framework.Collections;
 using JJ.Framework.Mathematics;
 using JJ.Framework.VectorGraphics.Helpers;
 using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.VectorGraphics.Models.Styling;
 using JJ.Framework.VectorGraphics.Positioners;
+using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
 
 namespace JJ.Framework.WinForms.TestForms
 {
@@ -14,6 +14,7 @@ namespace JJ.Framework.WinForms.TestForms
 	{
 		private const float ROW_HEIGHT = 24;
 		private const float SPACING = 4;
+		private const float LARGE_SPACING = 8;
 		private readonly IList<float> _itemWidths;
 
 		private const int MIN_ITEM_COUNT = 7;
@@ -22,6 +23,7 @@ namespace JJ.Framework.WinForms.TestForms
 		private const float MAX_ITEM_WIDTH = 120;
 
 		private readonly int _itemCount;
+		private readonly Rectangle _frameRectangle;
 		private readonly IList<Rectangle> _rectangles;
 
 		public PositionerTestFormBase()
@@ -32,24 +34,29 @@ namespace JJ.Framework.WinForms.TestForms
 
 			var diagram = new Diagram();
 
+			_frameRectangle = new Rectangle(diagram.Background);
+			_frameRectangle.Style.BackStyle.Color = ColorHelper.SetOpacity(ColorHelper.Black, 48);
+			_frameRectangle.Position.X = LARGE_SPACING;
+			_frameRectangle.Position.Y = LARGE_SPACING;
+
+			var rectangleBackStyle = new BackStyle
+			{
+				Color = ColorHelper.SetOpacity(ColorHelper.Black, 128)
+			};
+
 			for (int i = 0; i < _itemCount; i++)
 			{
-				var rectangle = new Rectangle(diagram.Background);
+				var rectangle = new Rectangle(_frameRectangle);
+				rectangle.Style.BackStyle = rectangleBackStyle;
 				_rectangles.Add(rectangle);
 			}
 
 			InitializeComponent();
 
-			var backStyle = new BackStyle
-			{
-				Color = ColorHelper.SetOpacity(ColorHelper.Black, 128)
-			};
-			_rectangles.ForEach(x => x.Style.BackStyle = backStyle);
-
 			diagramControl.Diagram = diagram;
 			diagramControl.Left = 0;
 			diagramControl.Top = 0;
-
+			
 			PositionControls();
 		}
 
@@ -58,7 +65,10 @@ namespace JJ.Framework.WinForms.TestForms
 			diagramControl.Width = ClientSize.Width;
 			diagramControl.Height = ClientSize.Height;
 
-			IPositioner positioner = CreatePositioner(diagramControl.Width, ROW_HEIGHT, SPACING, _itemWidths);
+			_frameRectangle.Position.Width = ClientSize.Width - LARGE_SPACING * 2;
+			_frameRectangle.Position.Height = ClientSize.Height - LARGE_SPACING * 2;
+
+			IPositioner positioner = CreatePositioner(_frameRectangle.Position.Width, ROW_HEIGHT, SPACING, _itemWidths);
 			IList<(float x, float y, float width, float height)> positions = positioner.Calculate();
 
 			for (int i = 0; i < _itemCount; i++)
