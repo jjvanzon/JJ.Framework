@@ -7,6 +7,7 @@ using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.VectorGraphics.Models.Styling;
 using JJ.Framework.VectorGraphics.Positioners;
 using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
+// ReSharper disable once VirtualMemberCallInConstructor
 
 namespace JJ.Framework.WinForms.TestForms
 {
@@ -18,19 +19,18 @@ namespace JJ.Framework.WinForms.TestForms
 		private readonly IList<float> _itemWidths;
 
 		private const int MIN_ITEM_COUNT = 7;
-		private const int MAX_ITEM_COUNT = 20;
-		private const float MIN_ITEM_WIDTH = 8;
-		private const float MAX_ITEM_WIDTH = 120;
+		private const int MAX_ITEM_COUNT = 30;
+		private const float MIN_ITEM_WIDTH = 20;
+		private const float MAX_ITEM_WIDTH = 200;
 
-		private readonly int _itemCount;
 		private readonly Rectangle _frameRectangle;
 		private readonly IList<Rectangle> _rectangles;
 
 		public PositionerTestFormBase()
 		{
-			_itemCount = Randomizer.GetInt32(MIN_ITEM_COUNT, MAX_ITEM_COUNT);
-			_itemWidths = GenerateItemWidths(_itemCount);
-			_rectangles = new List<Rectangle>(_itemCount);
+			int itemCount = Randomizer.GetInt32(MIN_ITEM_COUNT, MAX_ITEM_COUNT);
+			_itemWidths = GenerateItemWidths(itemCount);
+			_rectangles = new List<Rectangle>(itemCount);
 
 			var diagram = new Diagram();
 
@@ -44,7 +44,7 @@ namespace JJ.Framework.WinForms.TestForms
 				Color = ColorHelper.SetOpacity(ColorHelper.Black, 128)
 			};
 
-			for (int i = 0; i < _itemCount; i++)
+			for (int i = 0; i < itemCount; i++)
 			{
 				var rectangle = new Rectangle(_frameRectangle);
 				rectangle.Style.BackStyle = rectangleBackStyle;
@@ -52,6 +52,8 @@ namespace JJ.Framework.WinForms.TestForms
 			}
 
 			InitializeComponent();
+
+			Text = GetType().Name;
 
 			diagramControl.Diagram = diagram;
 			diagramControl.Left = 0;

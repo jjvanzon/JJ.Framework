@@ -26,6 +26,7 @@ namespace JJ.Framework.Mathematics
 			{
 				x *= n;
 			}
+
 			return x;
 		}
 
@@ -45,6 +46,7 @@ namespace JJ.Framework.Mathematics
 				temp /= n;
 				i++;
 			}
+
 			return i;
 		}
 
@@ -106,8 +108,14 @@ namespace JJ.Framework.Mathematics
 			double temp = (value - offset) / step;
 
 			// Correct for rounding away from 0.
-			if (temp > 0.0) temp += 0.5;
-			else temp -= 0.5;
+			if (temp > 0.0)
+			{
+				temp += 0.5;
+			}
+			else
+			{
+				temp -= 0.5;
+			}
 
 			return (long)temp * step + offset;
 		}
@@ -124,8 +132,14 @@ namespace JJ.Framework.Mathematics
 			double temp = value / step;
 
 			// Correct for rounding away from 0.
-			if (temp > 0.0) temp += 0.5;
-			else temp -= 0.5;
+			if (temp > 0.0)
+			{
+				temp += 0.5;
+			}
+			else
+			{
+				temp -= 0.5;
+			}
 
 			return (long)temp * step;
 		}
@@ -164,8 +178,14 @@ namespace JJ.Framework.Mathematics
 			float temp = (value - offset) / step;
 
 			// Correct for rounding away from 0.
-			if (temp > 0.0f) temp += 0.5f;
-			else temp -= 0.5f;
+			if (temp > 0.0f)
+			{
+				temp += 0.5f;
+			}
+			else
+			{
+				temp -= 0.5f;
+			}
 
 			return (long)temp * step + offset;
 		}
@@ -182,8 +202,14 @@ namespace JJ.Framework.Mathematics
 			float temp = value / step;
 
 			// Correct for rounding away from 0.
-			if (temp > 0.0) temp += 0.5f;
-			else temp -= 0.5f;
+			if (temp > 0.0)
+			{
+				temp += 0.5f;
+			}
+			else
+			{
+				temp -= 0.5f;
+			}
 
 			return (long)temp * step;
 		}
@@ -204,10 +230,8 @@ namespace JJ.Framework.Mathematics
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static double ScaleLinearly(double input, double sourceValueA, double targetValueA, double slope)
-		{
-			return (input - sourceValueA) * slope + targetValueA;
-		}
+		public static double ScaleLinearly(double input, double sourceValueA, double targetValueA, double slope) 
+			=> (input - sourceValueA) * slope + targetValueA;
 
 		/// <summary> Equally spreads out a number indices over a different number of indices. </summary>
 		public static Dictionary<int, int> SpreadIntegers(int sourceIndex1, int sourceIndex2, int destIndex1, int destIndex2)
@@ -219,7 +243,7 @@ namespace JJ.Framework.Mathematics
 			IList<int> sourceRange = Enumerable.Range(sourceIndex1, sourceIndex2).ToArray();
 			IList<int> destRange = Enumerable.Range(destIndex1, destIndex2).ToArray();
 
-			Dictionary<int, int> dictionary =  SpreadItems(sourceRange, destRange);
+			Dictionary<int, int> dictionary = SpreadItems(sourceRange, destRange);
 
 			return dictionary;
 		}
@@ -232,7 +256,7 @@ namespace JJ.Framework.Mathematics
 
 			// TODO: This unncessarily created an intermediate dictionary, but at least it reuses code.
 			Dictionary<int, int> intDictionary = SpreadIntegers(sourceList.Count, destList.Count);
-			
+
 			Dictionary<TSource, TDest> destDictionary = intDictionary.ToDictionary(x => sourceList[x.Key], x => destList[x.Value]);
 
 			return destDictionary;
