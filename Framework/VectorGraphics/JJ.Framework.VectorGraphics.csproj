@@ -88,6 +88,7 @@
     <Compile Include="Positioners\FlowPositionerRightAligned.cs" />
     <Compile Include="Positioners\FlowPositionerLeftAligned.cs" />
     <Compile Include="Positioners\IPositioner.cs" />
+    <Compile Include="Positioners\PositionerBase.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />
     <Compile Include="Relationships\DiagramToElementsRelationship.cs" />
     <Compile Include="Relationships\ElementToDiagramRelationship.cs" />

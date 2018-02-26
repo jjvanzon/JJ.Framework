@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using JJ.Framework.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.VectorGraphics.Positioners
 {
-	public class FlowPositionerLeftAligned : IPositioner
+	public class FlowPositionerLeftAligned : PositionerBase
 	{
 		private readonly float _rowWidth;
 		private readonly float _rowHeight;
@@ -25,7 +26,8 @@ namespace JJ.Framework.VectorGraphics.Positioners
 			_itemWidths = itemWidths ?? throw new ArgumentNullException(nameof(itemWidths));
 		}
 
-		public IList<(float x, float y, float width, float height)> Calculate()
+
+		public override IList<(float x, float y, float width, float height)> Calculate()
 		{
 			int count = _itemWidths.Count;
 

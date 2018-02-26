@@ -69,18 +69,7 @@ namespace JJ.Framework.WinForms.TestForms
 			_frameRectangle.Position.Height = ClientSize.Height - LARGE_SPACING * 2;
 
 			IPositioner positioner = CreatePositioner(_frameRectangle.Position.Width, ROW_HEIGHT, SPACING, _itemWidths);
-			IList<(float x, float y, float width, float height)> positions = positioner.Calculate();
-
-			for (int i = 0; i < _itemCount; i++)
-			{
-				(float x, float y, float width, float height) = positions[i];
-
-				Rectangle rectangle = _rectangles[i];
-				rectangle.Position.X = x;
-				rectangle.Position.Y = y;
-				rectangle.Position.Width = width;
-				rectangle.Position.Height = height;
-			}
+			positioner.Calculate(_rectangles);
 		}
 
 		protected virtual IPositioner CreatePositioner(float rowWidth, float rowHeight, float spacing, IList<float> itemWidths) => throw new NotImplementedException();
