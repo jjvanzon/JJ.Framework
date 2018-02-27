@@ -1,1 +1,0 @@
-﻿JJ.Framework.PlatformCompatibility contains alternatives for any class or method that proved to have compability problems when trying to deploy code to iOS, Android and Windows Phone 8.

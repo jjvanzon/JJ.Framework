@@ -37,7 +37,7 @@ namespace JJ.Framework.Text
 		private int _indentLevel;
 		public int IndentLevel
 		{
-			get { return _indentLevel; }
+			get => _indentLevel;
 			set
 			{
 				if (value < 0) throw new Exception("value cannot be less than 0.");
