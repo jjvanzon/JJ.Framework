@@ -32,6 +32,7 @@ namespace JJ.Framework.VectorGraphics.Positioners
 
 			var rectangles = new(float x, float y, float width, float height)[count];
 
+			bool isFirstItem = true;
 			int firstIndexInRow = 0;
 
 			float x = 0;
@@ -41,7 +42,7 @@ namespace JJ.Framework.VectorGraphics.Positioners
 			{
 				float itemWidth = _itemWidths[i];
 
-				if (MustAdvanceRow(x, y, itemWidth))
+				if (MustAdvanceRow(x, itemWidth, isFirstItem))
 				{
 					// Correct the coordinates now that the used space has been determined.
 					float rowWidthRemainder = _rowWidth - x + _horizontalSpacing;
@@ -58,6 +59,8 @@ namespace JJ.Framework.VectorGraphics.Positioners
 				rectangles[i] = (x, y, itemWidth, _rowHeight);
 
 				x += itemWidth + _horizontalSpacing;
+
+				isFirstItem = false;
 			}
 
 			// Correct the coordinates now that the used space has been determined.
@@ -72,12 +75,9 @@ namespace JJ.Framework.VectorGraphics.Positioners
 			return rectangles;
 		}
 
-		private bool MustAdvanceRow(float x, float y, float itemWidth)
+		private bool MustAdvanceRow(float x , float itemWidth, bool isFirstItem)
 		{
-			bool isFirstRow = y == 0f;
-			bool itemDoesNotFitInRow = itemWidth > _rowWidth;
-
-			if (isFirstRow && itemDoesNotFitInRow)
+			if (isFirstItem)
 			{
 				return false;
 			}

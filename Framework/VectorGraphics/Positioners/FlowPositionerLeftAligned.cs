@@ -36,11 +36,13 @@ namespace JJ.Framework.VectorGraphics.Positioners
 			float x = 0;
 			float y = 0;
 
+			bool isFirstItem = true;
+
 			for (int i = 0; i < count; i++)
 			{
 				float itemWidth = _itemWidths[i];
 
-				if (MustAdvanceRow(x, y, itemWidth))
+				if (MustAdvanceRow(x, itemWidth, isFirstItem))
 				{
 					x = 0;
 					y += _rowHeight + _verticalSpacing;
@@ -48,17 +50,16 @@ namespace JJ.Framework.VectorGraphics.Positioners
 
 				rectangles[i] = (x, y, itemWidth, _rowHeight);
 				x += itemWidth + _horizontalSpacing;
+
+				isFirstItem = false;
 			}
 
 			return rectangles;
 		}
 
-		private bool MustAdvanceRow(float x, float y, float itemWidth)
+		private bool MustAdvanceRow(float x, float itemWidth, bool isFirstItem)
 		{
-			bool isFirstRow = y == 0f;
-			bool itemDoesNotFitInRow = itemWidth > _rowWidth;
-
-			if (isFirstRow && itemDoesNotFitInRow)
+			if (isFirstItem)
 			{
 				return false;
 			}
