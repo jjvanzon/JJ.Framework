@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+// ReSharper disable once CompareOfFloatsByEqualityOperator
 
 namespace JJ.Framework.VectorGraphics.Positioners
 {
@@ -40,7 +41,7 @@ namespace JJ.Framework.VectorGraphics.Positioners
 			{
 				float itemWidth = _itemWidths[i];
 
-				if (x + itemWidth > _rowWidth)
+				if (MustAdvanceRow(x, y, itemWidth))
 				{
 					// Correct the coordinates now that the used space has been determined.
 					float rowWidthRemainder = _rowWidth - x + _horizontalSpacing;
@@ -69,6 +70,19 @@ namespace JJ.Framework.VectorGraphics.Positioners
 			}
 
 			return rectangles;
+		}
+
+		private bool MustAdvanceRow(float x, float y, float itemWidth)
+		{
+			bool isFirstRow = y == 0f;
+			bool itemDoesNotFitInRow = itemWidth > _rowWidth;
+
+			if (isFirstRow && itemDoesNotFitInRow)
+			{
+				return false;
+			}
+
+			return x + itemWidth > _rowWidth;
 		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using JJ.Framework.VectorGraphics.Models.Elements;
+
+// ReSharper disable once CompareOfFloatsByEqualityOperator
 
 namespace JJ.Framework.VectorGraphics.Positioners
 {
@@ -13,8 +14,8 @@ namespace JJ.Framework.VectorGraphics.Positioners
 		private readonly IList<float> _itemWidths;
 
 		public FlowPositionerLeftAligned(
-			float rowWidth, 
-			float rowHeight, 
+			float rowWidth,
+			float rowHeight,
 			float horizontalSpacing,
 			float verticalSpacing,
 			IList<float> itemWidths)
@@ -25,7 +26,6 @@ namespace JJ.Framework.VectorGraphics.Positioners
 			_verticalSpacing = verticalSpacing;
 			_itemWidths = itemWidths ?? throw new ArgumentNullException(nameof(itemWidths));
 		}
-
 
 		public override IList<(float x, float y, float width, float height)> Calculate()
 		{
@@ -40,18 +40,30 @@ namespace JJ.Framework.VectorGraphics.Positioners
 			{
 				float itemWidth = _itemWidths[i];
 
-				if (x + itemWidth > _rowWidth)
+				if (MustAdvanceRow(x, y, itemWidth))
 				{
 					x = 0;
 					y += _rowHeight + _verticalSpacing;
 				}
 
 				rectangles[i] = (x, y, itemWidth, _rowHeight);
-
 				x += itemWidth + _horizontalSpacing;
 			}
 
 			return rectangles;
+		}
+
+		private bool MustAdvanceRow(float x, float y, float itemWidth)
+		{
+			bool isFirstRow = y == 0f;
+			bool itemDoesNotFitInRow = itemWidth > _rowWidth;
+
+			if (isFirstRow && itemDoesNotFitInRow)
+			{
+				return false;
+			}
+
+			return x + itemWidth > _rowWidth;
 		}
 	}
 }

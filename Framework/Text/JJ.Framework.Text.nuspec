@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
 	<metadata>
-		<id>JJ.Framework.Text</id>
-		<version>1.0.0.0</version>
-		<authors>Jan-Joost van Zon</authors>
-		<owners>Jan-Joost van Zon</owners>
-		<copyright>Copyright © 2018 Jan-Joost van Zon</copyright>
+		<id>$id$</id>
+		<version>$version$</version>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<copyright>Copyright © 2013 - 2018 Jan-Joost van Zon</copyright>
 
 		<licenseUrl>https://github.com/jjvanzon/JJ.Framework/blob/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/</projectUrl>
-		<!--<iconUrl>https://github.com/jjvanzon/JJ.Framework/blob/master/jj_icon-maginfied.png</iconUrl>-->
-		<tags>text utility extensions string split casing stringbuilder</tags>
+		<!--<iconUrl>https://github.com/jjvanzon/JJ.Framework/jj_icon-maginfied.png</iconUrl>-->
+		<tags>text utility string extensions split casing stringbuilder indentation</tags>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-
 		<description>Basic helpers for working with textual information.</description>
 		
 		<summary>
@@ -27,11 +26,6 @@
 			the separator character in the values themselves.
 			* `StringBuilderWithIndentation`
 		</summary>
-
-		<releaseNotes></releaseNotes>
-
-		<dependencies>
-		</dependencies>
 	</metadata>
 
 	<files>

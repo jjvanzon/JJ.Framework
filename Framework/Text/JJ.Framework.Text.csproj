@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="JJ.Framework.Text.nuspec Example with Placeholders.xml" />
+    <None Include="nugetpack.ps1" />
     <None Include="README.MD" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

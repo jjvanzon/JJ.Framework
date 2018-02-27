@@ -1,0 +1,1 @@
+﻿nuget pack -build JJ.Framework.Text.csproj
