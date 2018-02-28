@@ -1,0 +1,50 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<copyright>$copyright$</copyright>
+		<description>$description$</description>
+
+		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Reflection</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64.png</iconUrl>
+
+		<tags>reflection extensions expressions lambda text accessor implementations</tags>
+
+		<summary>
+Extensions to the System.Reflection and System.Linq.Expressions namespaces.
+
+Highlights:
+
+* `ExpressionHelper`: Converts many types of lambda expressions into text or retrieves its resulting value. It can also give you method info, parameter names and parameter value info from lambda expressions.
+* `Accessor`: Allows easy access to the internal, private or protected elements of an assembly or class.
+* `ReflectionCache`: Makes using reflection much faster in certain cases. For instance the GetProperties method can be expensive, which is much faster through the ReflectionCache class.
+* `ReflectionExtensions`: Various helper methods, but one of the most useful features is the GetImplementation method and variations thereof, which allow you to retrieve implementations of a specified base class or interface from an assembly, which is useful for plug-in development.
+
+For instance:
+
+	ExpressionHelper.GetText(() =&gt; myParam.MyProperty.MyList[i].MySomething)
+
+Will return :
+
+	"myParam.MyProperty.MyList[i].MySomething"
+		</summary>
+
+		<dependencies>
+			<dependency id="JJ.Framework.Common" version="[1.0,1.1)" />
+			<dependency id="JJ.Framework.PlatformCompatibility" version="[1.0,1.1)" />
+			<dependency id="JJ.Framework.Text" version="[1.0,1.1)" />
+		</dependencies>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	</metadata>
+
+	<files>
+		<file src="README.MD" target="" />
+		<file src="bin\Release\$id$.xml" target="lib\Net45" />
+	</files>
+</package>

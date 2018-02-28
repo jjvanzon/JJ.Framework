@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Basic helpers with very few dependencies.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
-[assembly: AssemblyProduct("JJ.Framework.Common")]
+[assembly: AssemblyProduct("JJ.Framework")]
 [assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan-Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

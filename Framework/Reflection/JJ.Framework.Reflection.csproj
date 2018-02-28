@@ -38,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Release\JJ.Framework.Reflection.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -71,7 +72,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="JJ.Framework.Reflection.nuspec" />
+    <None Include="nugetpack.ps1" />
     <None Include="README.MD" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="nuspec Example.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

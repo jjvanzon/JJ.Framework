@@ -14,12 +14,12 @@
 
 		<tags>text utility string extensions split casing stringbuilder indentation</tags>
 		<summary>
-			Basic helpers for working with textual information. For instance:
-			* String extensions for trimming and cutting.
-			* Case formatting
-			* `String.Split` overloads
-			* `SplitWithQuotation`: Allows you to parse CSV-like lines including quotation for the ability to include the separator character in the values themselves.
-			* `StringBuilderWithIndentation`
+Basic helpers for working with textual information. For instance:
+* String extensions for trimming and cutting.
+* Case formatting
+* `String.Split` overloads
+* `SplitWithQuotation`: Allows you to parse CSV-like lines including quotation for the ability to include the separator character in the values themselves.
+* `StringBuilderWithIndentation`
 		</summary>
 		<releaseNotes>
 			2018-02-27 010: Make TrimEnd and TrimStart cut off repetitions of the passed string, not just a single occurrence.

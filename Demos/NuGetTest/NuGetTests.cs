@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Reflection;
 using JJ.Framework.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,6 +11,11 @@ namespace JJ.Demos.NuGetTest
 	[TestClass]
 	public class NuGetTests
 	{
+		private class Item
+		{
+			public Item Child { get; set; }
+		}
+
 		[TestMethod]
 		public void Test_NuGetReference_JJ_Framework_Text()
 		{
@@ -22,6 +28,14 @@ namespace JJ.Demos.NuGetTest
 		{
 			string[] strings = { "Something", "something", "blah", "blah", "blah." };
 			string joined = String_PlatformSupport.Join(", ", strings);
+		}
+
+		[TestMethod]
+		public void Test_NuGetReferences_JJ_Framework_Reflection()
+		{
+			var item = new Item();
+			string text = ExpressionHelper.GetText(() => item.Child.Child);
+			Assert.AreEqual("item.Child.Child", text);
 		}
 	}
 }
