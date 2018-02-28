@@ -1,6 +1,6 @@
 ﻿# JJ.Framework.Text
 
-Basic helpers for working with textual information, for instance:
+Basic helpers for working with text information, for instance:
 
 * String extensions for trimming and cutting.
 * Case formatting

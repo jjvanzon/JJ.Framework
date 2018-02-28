@@ -1,4 +1,5 @@
-﻿using JJ.Framework.PlatformCompatibility;
+﻿using System.Globalization;
+using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 using JJ.Framework.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -26,8 +27,7 @@ namespace JJ.Demos.NuGetTest
 		[TestMethod]
 		public void Test_NuGetReference_JJ_Framework_PlatformCompatibility()
 		{
-			string[] strings = { "Something", "something", "blah", "blah", "blah." };
-			string joined = String_PlatformSupport.Join(", ", strings);
+			CultureInfo result = CultureInfo_PlatformSafe.GetCultureInfo("nl-NL");
 		}
 
 		[TestMethod]

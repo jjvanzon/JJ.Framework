@@ -14,7 +14,7 @@
 
 		<tags>text utility string extensions split casing stringbuilder indentation</tags>
 		<summary>
-Basic helpers for working with textual information. For instance:
+Basic helpers for working with text information. For instance:
 * String extensions for trimming and cutting.
 * Case formatting
 * `String.Split` overloads
