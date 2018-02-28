@@ -1,21 +1,20 @@
-﻿using JJ.Framework.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Common;
 
 namespace JJ.Framework.Reflection
 {
 	[Obsolete("May not give much performance gain because the dictionaries use complex keys. You might want to use ReflectionCache instead.")]
 	public static class StaticReflectionCache
 	{
-		// TODO: The use of these Tuples as keys (or at least the ones in JJ.Framework.PlatformCompatibility), are not fast dictionary keys.
+		// TODO: The use of these Tuples as keys might not be fast dictionary keys.
 		// Use a different approach to reflection caching (like in ReflectionCacheDemo) and test what happens when you use .NET's own Tuple class.
 
 		// Fields
 
-		private static readonly Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, FieldInfo[]> _fieldsIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, FieldInfo[]>();
+		private static readonly Dictionary<Tuple<Type, BindingFlags>, FieldInfo[]> _fieldsIndex = new Dictionary<Tuple<Type, BindingFlags>, FieldInfo[]>();
 		private static readonly object _fieldsIndexLock = new object();
 
 		public static FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
@@ -24,7 +23,7 @@ namespace JJ.Framework.Reflection
 
 			lock (_fieldsIndexLock)
 			{
-				var key = new Tuple_PlatformSupport<Type, BindingFlags>(type, bindingFlags);
+				var key = new Tuple<Type, BindingFlags>(type, bindingFlags);
 				if (_fieldsIndex.ContainsKey(key))
 				{
 					return _fieldsIndex[key];
@@ -38,7 +37,7 @@ namespace JJ.Framework.Reflection
 			}
 		}
 
-		private static readonly Dictionary<Tuple_PlatformSupport<Type, string>, FieldInfo> _fieldIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, FieldInfo>();
+		private static readonly Dictionary<Tuple<Type, string>, FieldInfo> _fieldIndex = new Dictionary<Tuple<Type, string>, FieldInfo>();
 		private static readonly object _fieldIndexLock = new object();
 
 		public static FieldInfo GetField(Type type, string name)
@@ -57,7 +56,7 @@ namespace JJ.Framework.Reflection
 
 			lock (_fieldIndexLock)
 			{
-				var key = new Tuple_PlatformSupport<Type, string>(type, name);
+				var key = new Tuple<Type, string>(type, name);
 				if (_fieldIndex.ContainsKey(key))
 				{
 					return _fieldIndex[key];
@@ -73,7 +72,7 @@ namespace JJ.Framework.Reflection
 
 		// Properties
 
-		private static readonly Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, PropertyInfo[]> _propertiesIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, PropertyInfo[]>();
+		private static readonly Dictionary<Tuple<Type, BindingFlags>, PropertyInfo[]> _propertiesIndex = new Dictionary<Tuple<Type, BindingFlags>, PropertyInfo[]>();
 		private static readonly object _propertiesIndexLock = new object();
 
 		public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
@@ -82,7 +81,7 @@ namespace JJ.Framework.Reflection
 
 			lock (_propertiesIndexLock)
 			{
-				var key = new Tuple_PlatformSupport<Type, BindingFlags>(type, bindingFlags);
+				var key = new Tuple<Type, BindingFlags>(type, bindingFlags);
 				if (_propertiesIndex.ContainsKey(key))
 				{
 					return _propertiesIndex[key];
@@ -96,7 +95,7 @@ namespace JJ.Framework.Reflection
 			}
 		}
 
-		private static readonly Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo> _propertyIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo>();
+		private static readonly Dictionary<Tuple<Type, string>, PropertyInfo> _propertyIndex = new Dictionary<Tuple<Type, string>, PropertyInfo>();
 		private static readonly object _propertyIndexLock = new object();
 
 		public static PropertyInfo GetProperty(Type type, string name)
@@ -115,7 +114,7 @@ namespace JJ.Framework.Reflection
 
 			lock (_propertyIndexLock)
 			{
-				var key = new Tuple_PlatformSupport<Type, string>(type, name);
+				var key = new Tuple<Type, string>(type, name);
 				if (_propertyIndex.ContainsKey(key))
 				{
 					return _propertyIndex[key];
@@ -131,7 +130,7 @@ namespace JJ.Framework.Reflection
 
 		// Indexers
 
-		private static readonly Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo> _indexerIndex = new Dictionary<Tuple_PlatformSupport<Type, string>, PropertyInfo>();
+		private static readonly Dictionary<Tuple<Type, string>, PropertyInfo> _indexerIndex = new Dictionary<Tuple<Type, string>, PropertyInfo>();
 		private static readonly object _indexerIndexLock = new object();
 
 		public static PropertyInfo GetIndexer(Type type, params Type[] parameterTypes)
@@ -139,7 +138,7 @@ namespace JJ.Framework.Reflection
 			PropertyInfo property = TryGetIndexer(type, parameterTypes);
 			if (property == null)
 			{
-				throw new Exception($"Indexer not found with parameterTypes '{String_PlatformSupport.Join(", ", parameterTypes.Select(x => x.ToString()))}'.");
+				throw new Exception($"Indexer not found with parameterTypes '{string.Join(", ", parameterTypes.Select(x => x.ToString()))}'.");
 			}
 			return property;
 		}
@@ -154,7 +153,7 @@ namespace JJ.Framework.Reflection
 
 			lock (_indexerIndexLock)
 			{
-				var key = new Tuple_PlatformSupport<Type, string>(type, parameterTypesKey);
+				var key = new Tuple<Type, string>(type, parameterTypesKey);
 				if (_indexerIndex.ContainsKey(key))
 				{
 					return _indexerIndex[key];
@@ -176,7 +175,7 @@ namespace JJ.Framework.Reflection
 
 		// Methods
 
-		private static readonly Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, MethodInfo[]> _methodsIndex = new Dictionary<Tuple_PlatformSupport<Type, BindingFlags>, MethodInfo[]>();
+		private static readonly Dictionary<Tuple<Type, BindingFlags>, MethodInfo[]> _methodsIndex = new Dictionary<Tuple<Type, BindingFlags>, MethodInfo[]>();
 		private static readonly object _methodsIndexLock = new object();
 
 		public static MethodInfo[] GetMethods(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
@@ -185,7 +184,7 @@ namespace JJ.Framework.Reflection
 
 			lock (_methodsIndexLock)
 			{
-				var key = new Tuple_PlatformSupport<Type, BindingFlags>(type, bindingFlags);
+				var key = new Tuple<Type, BindingFlags>(type, bindingFlags);
 				if (_methodsIndex.ContainsKey(key))
 				{
 					return _methodsIndex[key];
@@ -199,7 +198,7 @@ namespace JJ.Framework.Reflection
 			}
 		}
 
-		private static readonly Dictionary<Tuple_PlatformSupport<Type, string, string>, MethodInfo> _methodDictionary = new Dictionary<Tuple_PlatformSupport<Type, string, string>, MethodInfo>();
+		private static readonly Dictionary<Tuple<Type, string, string>, MethodInfo> _methodDictionary = new Dictionary<Tuple<Type, string, string>, MethodInfo>();
 		private static readonly object _methodDictionaryLock = new object();
 
 		public static MethodInfo GetMethod(Type type, string name, params Type[] parameterTypes)
@@ -221,7 +220,7 @@ namespace JJ.Framework.Reflection
 
 			lock (_methodDictionaryLock)
 			{
-				var key = new Tuple_PlatformSupport<Type, string, string>(type, name, parameterTypesKey);
+				var key = new Tuple<Type, string, string>(type, name, parameterTypesKey);
 				if (_methodDictionary.ContainsKey(key))
 				{
 					return _methodDictionary[key];

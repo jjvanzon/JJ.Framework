@@ -1,8 +1,7 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
-using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Exceptions;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Data
@@ -70,7 +69,7 @@ namespace JJ.Framework.Data
 				}
 			}
 
-			string repositoryAssembliesDescription = String_PlatformSupport.Join(", ", repositoryAssemblies.Select(x => x.GetName().Name));
+			string repositoryAssembliesDescription = string.Join(", ", repositoryAssemblies.Select(x => x.GetName().Name));
 			throw new Exception($"No implementation of type {typeof(TRepositoryInterface)} found in any of the following assemblies: {repositoryAssembliesDescription}");
 		}
 	}

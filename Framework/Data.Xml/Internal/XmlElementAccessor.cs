@@ -1,10 +1,9 @@
-﻿using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Xml;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using JJ.Framework.Exceptions;
+using JJ.Framework.Xml;
 
 namespace JJ.Framework.Data.Xml.Internal
 {
@@ -24,8 +23,8 @@ namespace JJ.Framework.Data.Xml.Internal
 
 		public XmlElementAccessor(string filePath, string rootElementName, string elementName)
 		{
-			if (String_PlatformSupport.IsNullOrWhiteSpace(rootElementName)) throw new Exception("rootElementName cannot be null or white space.");
-			if (String_PlatformSupport.IsNullOrWhiteSpace(elementName)) throw new Exception("elementName cannot be null or white space.");
+			if (string.IsNullOrWhiteSpace(rootElementName)) throw new NullOrWhiteSpaceException(() => rootElementName);
+			if (string.IsNullOrWhiteSpace(elementName)) throw new NullOrWhiteSpaceException(() => elementName);
 
 			_filePath = filePath;
 			_rootElementName = rootElementName;

@@ -21,7 +21,7 @@ namespace JJ.Framework.Common
 				if (section == null)
 				{
 					// ReSharper disable once UseStringInterpolation
-					throw new Exception(string.Format(
+					throw new ApplicationException(string.Format(
 						"Configuration section of type '{0}' was not set. To allow {1} to use this configuration section, call {2}.SetSection.",
 						typeof(T).FullName,
 						typeof(ConfigurationHelper).Assembly.GetName().Name,
@@ -48,7 +48,7 @@ namespace JJ.Framework.Common
 			{
 				if (_sections.ContainsKey(typeof(T)))
 				{
-					throw new Exception($"Configuration section of type '{typeof(T).FullName}' was already set.");
+					throw new ApplicationException($"Configuration section of type '{typeof(T).FullName}' was already set.");
 				}
 				_sections.Add(typeof(T), section);
 			}

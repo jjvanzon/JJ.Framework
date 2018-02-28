@@ -88,7 +88,7 @@ namespace JJ.Framework.Data.SqlClient
 				PropertyInfo property = properties[i];
 				object value = reader[property.Name];
 				object convertedValue = ConvertValue(value, property.PropertyType);
-				property.SetValue_PlatformSupport(obj, convertedValue);
+				property.SetValue(obj, convertedValue);
 			}
 
 			return obj;

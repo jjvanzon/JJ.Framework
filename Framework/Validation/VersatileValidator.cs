@@ -64,7 +64,7 @@ namespace JJ.Framework.Validation
 		{
 			string stringValue = Convert.ToString(_value, _formatProvider);
 
-			if (String_PlatformSupport.IsNullOrWhiteSpace(stringValue))
+			if (String.IsNullOrWhiteSpace(stringValue))
 			{
 				Messages.AddNotFilledInMessage(_propertyDisplayName);
 			}

@@ -8,15 +8,19 @@
 		<copyright>$copyright$</copyright>
 		<description>$description$</description>
 
-		<licenseUrl>https://github.com/jjvanzon/JJ.Framework/blob/master/LICENSE.TXT</licenseUrl>
+		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/PlatformCompatibility</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64.png</iconUrl>
 
-		<tags>multi-platorm platform compatibility</tags>
+		<tags>platform compatibility multi-platorm</tags>
 		<summary>
 			# JJ.Framework.PlatformCompatibility
 			Contains alternatives for any class or method that proved to have compatibility problems when trying to deploy code to iOS, Android and Windows Phone 8. May have been surpassed by .NET Standard, but this code was from before that.
 		</summary>
+
+		<releaseNotes>
+			2018-02-28: Remove obsolete parts, that were replacements for .NET 4 and .NET 4.5. The whole code base is .NET 4.5 already.
+		</releaseNotes>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>

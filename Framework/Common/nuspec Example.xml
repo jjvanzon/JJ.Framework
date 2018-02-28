@@ -7,7 +7,7 @@
 		<owners>Jan-Joost van Zon</owners>
 		<copyright>Copyright © 2018 Jan-Joost van Zon</copyright>
 
-		<licenseUrl>https://github.com/jjvanzon/JJ.Framework/blob/master/LICENSE.TXT</licenseUrl>
+		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/</projectUrl>
 		<!--<iconUrl>https://github.com/jjvanzon/JJ.Framework/blob/master/jj_icon-maginfied.png</iconUrl>-->
 		<tags>text utility extensions string split casing stringbuilder</tags>
@@ -29,7 +29,7 @@
 		<releaseNotes></releaseNotes>
 
 		<dependencies>
-			<!--<dependency id="Newtonsoft.Json" version="9.0" />-->
+			<dependency id="JJ.Framework.PlatformCompatibility" version="[1.0,2.0)" />
 		</dependencies>
 	</metadata>
 

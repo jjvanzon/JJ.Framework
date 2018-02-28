@@ -1,5 +1,4 @@
-﻿using JJ.Framework.PlatformCompatibility;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -99,7 +98,7 @@ namespace JJ.Framework.Reflection
 				default:
 					throw new Exception(
 						$"Type with short name '{shortTypeName}' found multiple times in the AppDomain's assemblies. " + 
-						$"Found types:{Environment.NewLine}{String_PlatformSupport.Join(Environment.NewLine, types.Select(x => x.FullName))}");
+						$"Found types:{Environment.NewLine}{String.Join(Environment.NewLine, types.Select(x => x.FullName))}");
 			}
 		}
 
@@ -161,7 +160,7 @@ namespace JJ.Framework.Reflection
 					default:
 						throw new Exception(
 							$"Multiple constructors found on type '{type.FullName}' for '{new { _bindingFlags }}'. " +
-							$"Found constructors: {String_PlatformSupport.Join(", ", constructors)}");
+							$"Found constructors: {string.Join(", ", constructors)}");
 				}
 			}
 		}

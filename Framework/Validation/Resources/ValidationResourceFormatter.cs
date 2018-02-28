@@ -1,5 +1,4 @@
-﻿using JJ.Framework.PlatformCompatibility;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using JJ.Framework.Exceptions;
 
@@ -45,14 +44,14 @@ namespace JJ.Framework.Validation.Resources
 
 		public static string NotInList<TItem>(string displayName, IEnumerable<TItem> possibleValues)
 		{
-			string joined = String_PlatformSupport.Join(", ", possibleValues);
+			string joined = string.Join(", ", possibleValues);
 			string message = string.Format(ValidationResources.NotInList_WithName_AndAllowedValues, displayName, joined);
 			return message;
 		}
 
 		public static string NotInList<TItem>(string displayName, TItem value, IEnumerable<TItem> possibleValues)
 		{
-			string joinedPossibleValues = String_PlatformSupport.Join(", ", possibleValues);
+			string joinedPossibleValues = string.Join(", ", possibleValues);
 			string message = string.Format(ValidationResources.NotInList_WithName_AndValue_AndAllowedValues, displayName, value, joinedPossibleValues);
 			return message;
 		}

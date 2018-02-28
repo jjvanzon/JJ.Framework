@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Text.Tests
 {
@@ -60,6 +61,38 @@ namespace JJ.Framework.Text.Tests
 		{
 			string output = "1234".TakeRight(5);
 			AssertHelper.AreEqual("1234", () => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TrimEnd_OneOccurrence()
+		{
+			string input = "LalaBla";
+			string output = input.TrimEnd("Bla");
+			AssertHelper.AreEqual("Lala", () => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TrimEnd_MultipleOccurrences()
+		{
+			string input = "LalaBlaBlaBla";
+			string output = input.TrimEnd("Bla");
+			AssertHelper.AreEqual("Lala", () => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TrimStart_OneOccurrence()
+		{
+			string input = "BlaLala";
+			string output = input.TrimStart("Bla");
+			AssertHelper.AreEqual("Lala", () => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TrimStart_MultipleOccurrences()
+		{
+			string input = "BlaBlaBlaLala";
+			string output = input.TrimStart("Bla");
+			AssertHelper.AreEqual("Lala", () => output);
 		}
 	}
 }

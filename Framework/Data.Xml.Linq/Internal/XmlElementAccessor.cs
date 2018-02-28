@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Exceptions;
+using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Data.Xml.Linq.Internal
 {
@@ -15,17 +15,17 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 	/// </summary>
 	internal class XmlElementAccessor
 	{
-		private string _filePath;
-		private string _rootElementName;
-		private string _elementName;
-		private object _lock = new object();
+		private readonly string _filePath;
+		private readonly string _rootElementName;
+		private readonly string _elementName;
+		private readonly object _lock = new object();
 
 		public XElement Document { get; }
 
 		public XmlElementAccessor(string filePath, string rootElementName, string elementName)
 		{
-			if (String_PlatformSupport.IsNullOrWhiteSpace(rootElementName)) throw new Exception("rootElementName cannot be null or white space.");
-			if (String_PlatformSupport.IsNullOrWhiteSpace(elementName)) throw new Exception("elementName cannot be null or white space.");
+			if (string.IsNullOrWhiteSpace(rootElementName)) throw new NullOrWhiteSpaceException(() => rootElementName);
+			if (string.IsNullOrWhiteSpace(elementName)) throw new NullOrWhiteSpaceException(() => elementName);
 
 			_filePath = filePath;
 			_rootElementName = rootElementName;
@@ -48,8 +48,8 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 					using (var writer = new StreamWriter(stream))
 					{
 						writer.WriteLine(@"<?xml version=""1.0"" encoding=""utf-8""?>");
-						writer.WriteLine(string.Format("<{0}>", _rootElementName));
-						writer.WriteLine(string.Format("</{0}>", _rootElementName));
+						writer.WriteLine($"<{_rootElementName}>");
+						writer.WriteLine($"</{_rootElementName}>");
 					}
 				}
 			}

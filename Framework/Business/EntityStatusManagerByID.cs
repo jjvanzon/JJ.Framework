@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using JJ.Framework.Exceptions;
-using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Business
@@ -10,10 +9,9 @@ namespace JJ.Framework.Business
 	public class EntityStatusManagerByID
 	{
 		// TODO: Tuples as keys might not be fast.
-		// TODO: Tuple has bad platform compatibility.
 
-		private readonly IDictionary<Tuple_PlatformSupport<Type, object>, EntityStatusEnum> _entityStatuses = new Dictionary<Tuple_PlatformSupport<Type, object>, EntityStatusEnum>();
-		private readonly IDictionary<Tuple_PlatformSupport<Type, object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple_PlatformSupport<Type, object, string>, PropertyStatusEnum>();
+		private readonly IDictionary<Tuple<Type, object>, EntityStatusEnum> _entityStatuses = new Dictionary<Tuple<Type, object>, EntityStatusEnum>();
+		private readonly IDictionary<Tuple<Type, object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple<Type, object, string>, PropertyStatusEnum>();
 
 		// IsDirty
 
@@ -108,7 +106,7 @@ namespace JJ.Framework.Business
 
 		private EntityStatusEnum GetStatus(Type entityType, object id)
 		{
-			var key = new Tuple_PlatformSupport<Type, object>(entityType, id);
+			var key = new Tuple<Type, object>(entityType, id);
 			_entityStatuses.TryGetValue(key, out EntityStatusEnum entityStatus);
 			return entityStatus;
 		}
@@ -125,14 +123,14 @@ namespace JJ.Framework.Business
 
 			object entity = values[values.Count - 2];
 			string propertyName = ExpressionHelper.GetName(propertyExpression);
-			var key = new Tuple_PlatformSupport<Type, object, string>(entity.GetType(), id, propertyName);
+			var key = new Tuple<Type, object, string>(entity.GetType(), id, propertyName);
 			_propertyStatuses.TryGetValue(key, out PropertyStatusEnum propertyStatus);
 			return propertyStatus;
 		}
 
 		private void SetStatus(Type entityType, object id, EntityStatusEnum entityStatus)
 		{
-			var key = new Tuple_PlatformSupport<Type, object>(entityType, id);
+			var key = new Tuple<Type, object>(entityType, id);
 			_entityStatuses[key] = entityStatus;
 		}
 
@@ -150,7 +148,7 @@ namespace JJ.Framework.Business
 			// PropertyStatus
 			object entity = values[values.Count - 2];
 			string propertyName = ExpressionHelper.GetName(expression);
-			var key = new Tuple_PlatformSupport<Type, object, string>(entity.GetType(), id, propertyName);
+			var key = new Tuple<Type, object, string>(entity.GetType(), id, propertyName);
 			_propertyStatuses[key] = entityStatus;
 		}
 	}

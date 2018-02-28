@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Common
 {
@@ -32,7 +31,7 @@ namespace JJ.Framework.Common
 			{
 				using (var stream2 = new MemoryStream())
 				{
-					Stream_PlatformSupport.CopyTo(stream, stream2);
+					stream.CopyTo(stream2);
 					return stream2.ToArray();
 				}
 			}

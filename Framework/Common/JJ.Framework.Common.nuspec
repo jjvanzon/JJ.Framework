@@ -1,0 +1,36 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<copyright>$copyright$</copyright>
+		<description>$description$</description>
+
+		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Common</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64.png</iconUrl>
+
+		<tags>common culture double embedded resources enum eventargs int int32 parse</tags>
+		<summary>
+			# JJ.Framework.Common
+			Some basic helpers, for instance:
+			* `ConfigurationHelper`: For using configuration settings when you cannot be dependent on System.Configuration.
+			* `CultureHelper`: For instance to set thread culture with a single code line.
+			* `DoubleHelper`: For instance making it easier to parse nullable doubles.
+			* `EmbeddedResourceHelper`: Make it a little easier to get embedded resource Streams, bytes and strings.
+			* `EnumHelper`: Make it a little easier to call enum parsing and check the validitiy of enum values.
+			* `EventArgs`&lt;`T`&gt;: A generic version of event args. If you use a C# 7 tuple for T you can basically use it for everything.
+			* `Int32Helper`: For instance making it easier to parse nullable ints.
+		</summary>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	</metadata>
+
+	<files>
+		<file src="README.MD" target="" />
+		<file src="bin\Release\$id$.xml" target="lib\Net45" />
+	</files>
+</package>

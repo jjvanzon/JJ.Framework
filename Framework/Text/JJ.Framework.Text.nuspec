@@ -8,7 +8,7 @@
 		<copyright>$copyright$</copyright>
 		<description>$description$</description>
 
-		<licenseUrl>https://github.com/jjvanzon/JJ.Framework/blob/master/LICENSE.TXT</licenseUrl>
+		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Text</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64.png</iconUrl>
 
@@ -21,6 +21,10 @@
 			* `SplitWithQuotation`: Allows you to parse CSV-like lines including quotation for the ability to include the separator character in the values themselves.
 			* `StringBuilderWithIndentation`
 		</summary>
+		<releaseNotes>
+			2018-02-27 010: Make TrimEnd and TrimStart cut off repetitions of the passed string, not just a single occurrence.
+			2018-02-27 020: Now compiled for release.
+		</releaseNotes>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>

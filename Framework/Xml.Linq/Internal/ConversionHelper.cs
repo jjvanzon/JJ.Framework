@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Xml.Serialization;
-using JJ.Framework.Reflection;
-using JJ.Framework.PlatformCompatibility;
 using System.Xml;
+using System.Xml.Serialization;
 using JJ.Framework.Conversion;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Xml.Linq.Internal
 {
@@ -127,10 +126,10 @@ namespace JJ.Framework.Xml.Linq.Internal
 			// but at a large performance cost.
 			// TODO: Simply cache things to get rid of this performance problem?
 
-			bool hasXmlAttributeAttribute = property.GetCustomAttribute_PlatformSupport<XmlAttributeAttribute>() != null;
-			bool hasXmlElementAttribute = property.GetCustomAttribute_PlatformSupport<XmlElementAttribute>() != null;
-			bool hasXmlArrayAttribute = property.GetCustomAttribute_PlatformSupport<XmlArrayAttribute>() != null;
-			bool hasXmlArrayItemAttribute = property.GetCustomAttribute_PlatformSupport<XmlArrayItemAttribute>() != null;
+			bool hasXmlAttributeAttribute = property.GetCustomAttribute<XmlAttributeAttribute>() != null;
+			bool hasXmlElementAttribute = property.GetCustomAttribute<XmlElementAttribute>() != null;
+			bool hasXmlArrayAttribute = property.GetCustomAttribute<XmlArrayAttribute>() != null;
+			bool hasXmlArrayItemAttribute = property.GetCustomAttribute<XmlArrayItemAttribute>() != null;
 			bool isCollectionType = IsSupportedCollectionType(property.PropertyType);
 
 			if (isCollectionType)

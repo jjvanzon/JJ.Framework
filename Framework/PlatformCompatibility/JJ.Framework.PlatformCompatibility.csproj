@@ -53,13 +53,9 @@
     <Compile Include="PlatformExtensions.cs" />
     <Compile Include="MemberTypes_PlatformSafe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stream_PlatformSupport.cs" />
-    <Compile Include="String_PlatformSupport.cs" />
     <None Include="JJ.Framework.PlatformCompatibility.nuspec" />
     <None Include="nugetpack.ps1" />
     <None Include="README.MD" />
-    <Compile Include="Tuple_PlatformSupport`2.cs" />
-    <Compile Include="Tuple_PlatformSupport`3.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

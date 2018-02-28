@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using JJ.Framework.Exceptions;
-using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Business
@@ -20,7 +19,7 @@ namespace JJ.Framework.Business
 		// TODO: Tuples as keys might not be fast.
 
 		private readonly Dictionary<object, EntityStatusEnum> _entityStatuses = new Dictionary<object, EntityStatusEnum>();
-		private readonly Dictionary<Tuple_PlatformSupport<object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple_PlatformSupport<object, string>, PropertyStatusEnum>();
+		private readonly Dictionary<Tuple<object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple<object, string>, PropertyStatusEnum>();
 
 		public bool IsNew(object entity)
 		{
@@ -88,7 +87,7 @@ namespace JJ.Framework.Business
 
 			object entity = values[values.Count - 2];
 			string propertyName = ExpressionHelper.GetName(propertyExpression);
-			var key = new Tuple_PlatformSupport<object, string>(entity, propertyName);
+			var key = new Tuple<object, string>(entity, propertyName);
 			_propertyStatuses.TryGetValue(key, out PropertyStatusEnum propertyStatus);
 			return propertyStatus;
 		}
@@ -111,7 +110,7 @@ namespace JJ.Framework.Business
 
 			object entity = values[values.Count - 2];
 			string propertyName = ExpressionHelper.GetName(propertyExpression);
-			var key = new Tuple_PlatformSupport<object, string>(entity, propertyName);
+			var key = new Tuple<object, string>(entity, propertyName);
 			_propertyStatuses[key] = propertyStatus;
 		}
 

@@ -6,7 +6,6 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Mathematics;
-using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 using JJ.Framework.Text;
 
@@ -102,7 +101,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// </summary>
 		private string TryGetXmlElementNameFromAttribute(PropertyInfo property)
 		{
-			var xmlElementAttribute = property.GetCustomAttribute_PlatformSupport<XmlElementAttribute>();
+			var xmlElementAttribute = property.GetCustomAttribute<XmlElementAttribute>();
 			if (xmlElementAttribute != null)
 			{
 				return xmlElementAttribute.ElementName;
@@ -158,7 +157,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// </summary>
 		private string TryGetAttributeNameFromAttribute(PropertyInfo property)
 		{
-			var xmlAttributeAttribute = property.GetCustomAttribute_PlatformSupport<XmlAttributeAttribute>();
+			var xmlAttributeAttribute = property.GetCustomAttribute<XmlAttributeAttribute>();
 			if (xmlAttributeAttribute != null)
 			{
 				return xmlAttributeAttribute.AttributeName;
@@ -214,13 +213,8 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// </summary>
 		private string TryGetXmlArrayNameFromAttribute(PropertyInfo collectionProperty)
 		{
-			var xmlArrayAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayAttribute>();
-			if (xmlArrayAttribute != null)
-			{
-				return xmlArrayAttribute.ElementName;
-			}
-
-			return null;
+			var xmlArrayAttribute = collectionProperty.GetCustomAttribute<XmlArrayAttribute>();
+			return xmlArrayAttribute?.ElementName;
 		}
 
 		// XML Array Item Names
@@ -301,7 +295,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// </summary>
 		private string TryGetXmlArrayItemNameFromAttribute(PropertyInfo collectionProperty)
 		{
-			var xmlArrayItemAttribute = collectionProperty.GetCustomAttribute_PlatformSupport<XmlArrayItemAttribute>();
+			var xmlArrayItemAttribute = collectionProperty.GetCustomAttribute<XmlArrayItemAttribute>();
 			if (xmlArrayItemAttribute != null)
 			{
 				return xmlArrayItemAttribute.ElementName;

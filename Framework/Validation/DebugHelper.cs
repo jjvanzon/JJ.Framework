@@ -1,5 +1,4 @@
 ﻿using System;
-using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Validation
@@ -10,7 +9,7 @@ namespace JJ.Framework.Validation
 		{
 			if (validationMessages == null) throw new NullException(() => validationMessages);
 
-			return String_PlatformSupport.Join(Environment.NewLine, validationMessages);
+			return String.Join(Environment.NewLine, validationMessages);
 		}
 	}
 }

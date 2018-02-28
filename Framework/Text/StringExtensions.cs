@@ -41,13 +41,37 @@ namespace JJ.Framework.Text
 
 		public static string TrimEnd(this string input, char chr) => TrimEnd(input, chr.ToString());
 
-		public static string TrimEnd(this string input, string end) => input.EndsWith(end) ? input.TrimEnd(end.Length) : input;
+		public static string TrimEnd(this string input, string end)
+		{
+			if (string.IsNullOrEmpty(end)) throw new Exception($"{nameof(end)} is null or empty.");
+
+			string temp = input;
+
+			while (temp.EndsWith(end))
+			{
+				temp = temp.TrimEnd(end.Length);
+			}
+
+			return temp;
+		}
 
 		public static string TrimEnd(this string input, int length) => input.Left(input.Length - length);
 
 		public static string TrimStart(this string input, char chr) => TrimStart(input, chr.ToString());
 
-		public static string TrimStart(this string input, string start) => input.StartsWith(start) ? input.TrimStart(start.Length) : input;
+		public static string TrimStart(this string input, string start)
+		{
+			if (string.IsNullOrEmpty(start)) throw new Exception($"{nameof(start)} is null or empty.");
+
+			string temp = input;
+
+			while (temp.StartsWith(start))
+			{
+				temp = temp.TrimStart(start.Length);
+			}
+
+			return temp;
+		}
 
 		public static string TrimStart(this string input, int length) => input.Right(input.Length - length);
 

@@ -59,7 +59,7 @@ namespace JJ.Framework.Presentation
 						$"Type with short name '{shortTypeName}' found multiple times in the AppDomain's assemblies. " +
 						"Presenters must have unique class names within the AppDomain. " +
 						"If that is not possible you must program the instantiation of the presenter yourself and use the other overload of DispatchAction. " +
-						"Found types:" + Environment.NewLine + String_PlatformSupport.Join(Environment.NewLine, types.Select(x => x.FullName)));
+						"Found types:" + Environment.NewLine + string.Join(Environment.NewLine, types.Select(x => x.FullName)));
 			}
 		}
 

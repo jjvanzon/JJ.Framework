@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Text;
 using JJ.Framework.Exceptions;
-using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.IO
 {
@@ -15,7 +14,7 @@ namespace JJ.Framework.IO
 			{
 				// Use memory stream as an intermediate, because not all Stream types support the Length property.
 				memoryStream = new MemoryStream();
-				Stream_PlatformSupport.CopyTo(stream, memoryStream, bufferSize);
+				stream.CopyTo(memoryStream, bufferSize);
 			}
 
 			return memoryStream.ToArray();

@@ -67,24 +67,7 @@ namespace JJ.Framework.PlatformCompatibility
 		}
 
 		/// <summary>
-		/// .Net 4.5 substitute
-		/// </summary>
-		public static TAttribute GetCustomAttribute_PlatformSupport<TAttribute>(this PropertyInfo propertyInfo)
-			where TAttribute : Attribute
-		{
-			return PlatformHelper.PropertyInfo_GetCustomAttribute_PlatformSupport<TAttribute>(propertyInfo);
-		}
-
-		/// <summary>
-		/// .Net 4.5 substitute
-		/// </summary>
-		public static void SetValue_PlatformSupport(this PropertyInfo propertyInfo, object obj, object value)
-		{
-			PlatformHelper.PropertyInfo_SetValue_PlatformSupport(propertyInfo, obj, value);
-		}
-
-		/// <summary>
-		/// .NET 4.5 substitute and for iOS compatibility: PropertyInfo.GetValue in Mono on a generic type may cause JIT compilation, which is not supported by iOS.
+		/// iOS compatibility: PropertyInfo.GetValue in Mono on a generic type may cause JIT compilation, which is not supported by iOS.
 		/// Use 'PropertyInfo.GetGetMethod().Invoke(object obj, params object[] parameters)' or call this method instead.
 		/// </summary>
 		public static object GetValue_PlatformSafe(this PropertyInfo propertyInfo, object obj, params object[] parameters)
