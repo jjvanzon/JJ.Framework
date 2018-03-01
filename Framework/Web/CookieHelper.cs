@@ -1,6 +1,6 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Web;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Web
 {
@@ -13,11 +13,8 @@ namespace JJ.Framework.Web
 			if (request == null) throw new NullException(() => request);
 
 			HttpCookie cookie = request.Cookies[cookieName];
-			if (cookie != null)
-			{
-				return cookie.Value;
-			}
-			return null;
+
+			return cookie?.Value;
 		}
 
 		public static void SetCookieValue(HttpResponseBase response, string cookieName, string value)
@@ -25,8 +22,10 @@ namespace JJ.Framework.Web
 			if (response == null) throw new NullException(() => response);
 
 			response.Cookies.Remove(cookieName);
-			var cookie = new HttpCookie(cookieName, value);
-			cookie.Expires = DateTime.Now.AddYears(DEFAULT_COOKIE_EXPERIATION_YEARS);
+			var cookie = new HttpCookie(cookieName, value)
+			{
+				Expires = DateTime.Now.AddYears(DEFAULT_COOKIE_EXPERIATION_YEARS)
+			};
 			response.Cookies.Add(cookie);
 		}
 	}

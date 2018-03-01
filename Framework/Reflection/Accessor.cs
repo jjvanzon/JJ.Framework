@@ -24,7 +24,7 @@ namespace JJ.Framework.Reflection
 
 			if (_objectType == null)
 			{
-				throw new Exception($"Type '{typeName}' not found.");
+				throw new ArgumentException($"Type '{typeName}' not found.");
 			}
 
 			_object = Activator.CreateInstance(_objectType, args);

@@ -6,9 +6,9 @@ namespace JJ.Framework.Exceptions
 	{
 		public NotFoundException(Type type, object key)
 		{
-			if (type == null) throw new ArgumentNullException(nameof(type));
+			string typeName = ExceptionHelper.TryFormatShortTypeName(type);
 
-			Message = $"{type.Name} with key '{key}' not found.";
+			Message = $"{typeName} with key '{key}' not found.";
 		}
 
 		public override string Message { get; }

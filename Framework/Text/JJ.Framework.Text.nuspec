@@ -12,7 +12,7 @@
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Text</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64.png</iconUrl>
 
-		<tags>text utility string extensions split casing stringbuilder indentation</tags>
+		<tags>text utility string extensions split casing stringbuilder indentation indent tab</tags>
 		<summary>
 Basic helpers for working with text information. For instance:
 * String extensions for trimming and cutting.

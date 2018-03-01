@@ -6,14 +6,14 @@ namespace JJ.Framework.Exceptions
 {
 	public class EqualException : Exception
 	{
-		private const string MESSAGE = "{0} is '{1}'.";
+		private const string MESSAGE_TEMPLATE = "{0} is '{1}'.";
 
 		public EqualException(Expression<Func<object>> expression1, object value2)
-			: base(string.Format(MESSAGE, ExpressionHelper.GetText(expression1), value2))
+			: base(string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression1), value2))
 		{ }
 
 		public EqualException(Expression<Func<object>> expression1, Expression<Func<object>> expression2)
-			: base(string.Format(MESSAGE, ExpressionHelper.GetText(expression1), ExpressionHelper.GetText(expression2)))
+			: base(string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression1), ExpressionHelper.GetText(expression2)))
 		{ }
 	}
 }

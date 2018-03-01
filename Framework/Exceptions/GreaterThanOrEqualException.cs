@@ -1,21 +1,27 @@
 ﻿using System;
 using System.Linq.Expressions;
-using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
-	public class GreaterThanOrEqualException : Exception
+	/// <inheritdoc />
+	public class GreaterThanOrEqualException : ComparativeExceptionWithExpressionBase
 	{
+		private const string MESSAGE_TEMPLATE = "{0} is greater than or equal to {1}.";
+		private const string MESSAGE_FORMAT_WITH_LIMIT = "{0} is greater than or equal to {1} of {2}.";
+
+		/// <inheritdoc />
 		public GreaterThanOrEqualException(Expression<Func<object>> expression, object limit)
-			: base($"{ExpressionHelper.GetText(expression)} is greater than or equal to {limit}.")
+			: base(MESSAGE_TEMPLATE, expression, limit)
 		{ }
 
-		/// <summary>
-		/// Only use this overload if you wish to show the text and value of the limitExpression in the exception message.
-		/// If you only want to show the limit's value, use the other overload.
-		/// </summary>
+		/// <inheritdoc />
+		public GreaterThanOrEqualException(string name, object limit)
+			: base(MESSAGE_TEMPLATE, name, limit)
+		{ }
+
+		/// <inheritdoc />
 		public GreaterThanOrEqualException(Expression<Func<object>> expression, Expression<Func<object>> limitExpression)
-			: base($"{ExpressionHelper.GetText(expression)} is greater than or equal to {ExpressionHelper.GetText(limitExpression)} of {ExpressionHelper.GetValue(limitExpression)}.")
+			: base(MESSAGE_FORMAT_WITH_LIMIT, expression, limitExpression)
 		{ }
 	}
 }

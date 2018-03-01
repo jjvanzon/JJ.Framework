@@ -6,20 +6,20 @@ namespace JJ.Framework.Exceptions
 {
 	public class IsNotTypeException : Exception
 	{
-		private const string MESSAGE = "{0} is not of type {1}.";
-
-		public override string Message { get; }
+		private const string MESSAGE_TEMPLATE = "{0} is not of type {1}.";
 
 		public IsNotTypeException(Expression<Func<object>> expression, Type type)
 		{
-			if (type == null) throw new NullException(() => type);
+			string typeName = type == null ? "<null>" : type.FullName;
 
-			Message = string.Format(MESSAGE, ExpressionHelper.GetText(expression), type.FullName);
+			Message = string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression), typeName);
 		}
 
 		public IsNotTypeException(Expression<Func<object>> expression, string typeName)
 		{
-			Message = string.Format(MESSAGE, ExpressionHelper.GetText(expression), typeName);
+			Message = string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression), typeName);
 		}
+
+		public override string Message { get; }
 	}
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Web;
 using JJ.Framework.Text;
 
+// ReSharper disable ForCanBeConvertedToForeach
+
 namespace JJ.Framework.Web
 {
 	public class UrlParser
@@ -22,17 +24,17 @@ namespace JJ.Framework.Web
 			switch (split.Length)
 			{
 				case 1:
-					{
-						UrlInfo urlInfo = ParseUrlWithoutProtocol(url);
-						return urlInfo;
-					}
+				{
+					UrlInfo urlInfo = ParseUrlWithoutProtocol(url);
+					return urlInfo;
+				}
 
 				case 2:
-					{
-						UrlInfo urlInfo = ParseUrlWithoutProtocol(split[1]);
-						urlInfo.Protocol = HttpUtility.UrlDecode(split[0]);
-						return urlInfo;
-					}
+				{
+					UrlInfo urlInfo = ParseUrlWithoutProtocol(split[1]);
+					urlInfo.Protocol = HttpUtility.UrlDecode(split[0]);
+					return urlInfo;
+				}
 
 				default:
 					throw new Exception(string.Format("url cannot contain more than one ':'. url = '{0}'.", url));
@@ -46,29 +48,32 @@ namespace JJ.Framework.Web
 			switch (split.Length)
 			{
 				case 1:
-					{
-						UrlInfo urlInfo = ParseUrlWithoutProtocolWithoutParmeters(split[0]);
-						return urlInfo;
-					}
+				{
+					UrlInfo urlInfo = ParseUrlWithoutProtocolWithoutParmeters(split[0]);
+					return urlInfo;
+				}
 
 				case 2:
-					{
-						UrlInfo urlInfo = ParseUrlWithoutProtocolWithoutParmeters(split[0]);
-						urlInfo.Parameters = ParseQueryString(split[1]);
-						return urlInfo;
-					}
+				{
+					UrlInfo urlInfo = ParseUrlWithoutProtocolWithoutParmeters(split[0]);
+					urlInfo.Parameters = ParseQueryString(split[1]);
+					return urlInfo;
+				}
 
 				default:
-					throw new Exception(string.Format("urlWithoutProcol cannot contain more than one '?'. urlWithoutProcol = '{0}'. fullUrl = '{1}'.", urlWithoutProcol, _fullUrl));
+					throw new Exception(
+						$"urlWithoutProcol cannot contain more than one '?'. urlWithoutProcol = '{urlWithoutProcol}'. fullUrl = '{_fullUrl}'.");
 			}
 		}
 
 		private UrlInfo ParseUrlWithoutProtocolWithoutParmeters(string urlWithoutProtocolWithoutParameters)
 		{
 			string[] split = urlWithoutProtocolWithoutParameters.Split('/', StringSplitOptions.RemoveEmptyEntries);
-			var urlInfo = new UrlInfo();
 
-			urlInfo.PathElements = new List<string>(split.Length);
+			var urlInfo = new UrlInfo
+			{
+				PathElements = new List<string>(split.Length)
+			};
 
 			for (int i = 0; i < split.Length; i++)
 			{
@@ -98,13 +103,16 @@ namespace JJ.Framework.Web
 			string[] split = urlParameter.Split('=');
 			if (split.Length != 2)
 			{
-				throw new Exception(string.Format("urlParameter '{0}' must contain exactly one '=' character. fullUrl = '{1}'.", urlParameter, _fullUrl));
+				throw new ArgumentException($"urlParameter '{urlParameter}' must contain exactly one '=' character. fullUrl = '{_fullUrl}'.");
 			}
 
 			string name = split[0];
 			string value = split[1];
 
-			if (string.IsNullOrWhiteSpace(name)) throw new Exception(string.Format("name in urlParameter '{0}' cannot be null or white space. fullUrl = '{1}'.", urlParameter, _fullUrl));
+			if (string.IsNullOrWhiteSpace(name))
+			{
+				throw new ArgumentException($"name in urlParameter '{urlParameter}' cannot be null or white space. fullUrl = '{_fullUrl}'.");
+			}
 
 			var urlParameterInfo = new UrlParameterInfo
 			{

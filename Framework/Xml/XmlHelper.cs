@@ -19,7 +19,7 @@ namespace JJ.Framework.Xml
 			XmlNode childNode = TrySelectNode(parentNode, xpath);
 			if (childNode == null)
 			{
-				throw new Exception($"Node '{xpath}' does not exist in parent node '{parentNode.Name}'.");
+				throw new ArgumentException($"Node '{xpath}' does not exist in parent node '{parentNode.Name}'.");
 			}
 			return childNode;
 		}
@@ -48,7 +48,7 @@ namespace JJ.Framework.Xml
 					return nodes[0];
 
 				default:
-					throw new Exception($"Node '{xpath}' is not unique inside parent node '{parentNode.Name}'.");
+					throw new ArgumentException($"Node '{xpath}' is not unique inside parent node '{parentNode.Name}'.");
 			}
 		}
 
@@ -65,7 +65,7 @@ namespace JJ.Framework.Xml
 			XmlElement childElement = TryGetElement(parentElement, childElementName);
 			if (childElement == null)
 			{
-				throw new Exception($"Parent element '{parentElement.Name}' does not contain any element named '{childElementName}'.");
+				throw new ArgumentException($"Parent element '{parentElement.Name}' does not contain any element named '{childElementName}'.");
 			}
 			return childElement;
 		}

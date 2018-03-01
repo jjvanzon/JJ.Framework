@@ -2,7 +2,7 @@
 
 namespace JJ.Framework.Web
 {
-	[DebuggerDisplay("{DebuggerDisplay}")]
+	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public class UrlParameterInfo
 	{
 		public UrlParameterInfo()
@@ -17,12 +17,6 @@ namespace JJ.Framework.Web
 		public string Name { get; set; }
 		public string Value { get; set; }
 
-		private string DebuggerDisplay
-		{
-			get
-			{
-				return UrlBuilder.BuildParameter(this);
-			}
-		}
+		private string DebuggerDisplay => UrlBuilder.BuildParameter(this);
 	}
 }

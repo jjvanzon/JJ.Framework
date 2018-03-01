@@ -1,8 +1,7 @@
-﻿using JJ.Framework.Exceptions;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.Web;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Web
 {
@@ -26,6 +25,7 @@ namespace JJ.Framework.Web
 					sb.Append(HttpUtility.UrlEncode(urlInfo.PathElements[i]));
 					sb.Append('/');
 				}
+
 				sb.Append(HttpUtility.UrlEncode(urlInfo.PathElements[i]));
 			}
 
@@ -74,9 +74,7 @@ namespace JJ.Framework.Web
 			sb.Append(HttpUtility.UrlEncode(lastParameter.Value));
 		}
 
-		public static string BuildParameter(UrlParameterInfo parameter)
-		{
-			return string.Format(string.Format("{0}={1}", HttpUtility.UrlEncode(parameter.Name), HttpUtility.UrlEncode(parameter.Value)));
-		}
+		public static string BuildParameter(UrlParameterInfo parameter) 
+			=> $"{HttpUtility.UrlEncode(parameter.Name)}={HttpUtility.UrlEncode(parameter.Value)}";
 	}
 }

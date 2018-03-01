@@ -7,11 +7,11 @@ namespace JJ.Framework.Exceptions
 	public class InvalidIndexException : Exception
 	{
 		/// <summary> Example: "outletViewModel.Keys.OutletListIndex 1 is an invalid index for op.Outlets with count 0." </summary>
-		private const string MESSAGE = "{0} {1} is an invalid index for {2} with count {3}.";
+		private const string MESSAGE_TEMPLATE = "{0} {1} is an invalid index for {2} with count {3}.";
 
 		public InvalidIndexException(Expression<Func<object>> listIndexExpression, Expression<Func<object>> countExpression)
 			: base(string.Format(
-				MESSAGE, 
+				MESSAGE_TEMPLATE, 
 				ExpressionHelper.GetText(listIndexExpression), 
 				ExpressionHelper.GetValue(listIndexExpression), 
 				ExpressionHelper.GetText(countExpression).TrimStart('.').TrimEnd('.'), 

@@ -1,8 +1,7 @@
-﻿using JJ.Framework.Exceptions;
-using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Threading;
 using System.Web;
+using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Web
 {
@@ -37,14 +36,12 @@ namespace JJ.Framework.Web
 				}
 			}
 
-			CultureInfo cultureInfo = new CultureInfo(cultureName);
+			var cultureInfo = new CultureInfo(cultureName);
 			Thread.CurrentThread.CurrentCulture = cultureInfo;
 			Thread.CurrentThread.CurrentUICulture = cultureInfo;
 		}
 
-		public static void SetCultureCookie(HttpContextBase httpContext, string cultureName)
-		{
-			CookieHelper.SetCookieValue(httpContext.Response, CUTURE_NAME_COOKIE_KEY, cultureName);
-		}
+		public static void SetCultureCookie(HttpContextBase httpContext, string cultureName) 
+			=> CookieHelper.SetCookieValue(httpContext.Response, CUTURE_NAME_COOKIE_KEY, cultureName);
 	}
 }

@@ -11,17 +11,12 @@ namespace JJ.Framework.Exceptions
 			string expressionText = ExpressionHelper.GetText(expression);
 
 			object value = ExpressionHelper.GetValue(expression);
-			string typeDescription;
-			if (value == null)
-			{
-				typeDescription = "<null>";
-			}
-			else
-			{
-				typeDescription = value.GetType().FullName;
-			}
 
-			Message = $"{expressionText} has an unexpected type: '{typeDescription}'";
+			Type type = value?.GetType();
+
+			string typeName = ExceptionHelper.TryFormatFullTypeName(type);
+
+			Message = $"{expressionText} has an unexpected type: '{typeName}'";
 		}
 
 		public override string Message { get; }

@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Linq.Expressions;
-using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
-	public class GreaterThanException : Exception
+	/// <inheritdoc />
+	public class GreaterThanException : ComparativeExceptionWithExpressionBase
 	{
+		private const string MESSAGE_TEMPLATE = "{0} is greater than {1}.";
+		private const string MESSAGE_FORMAT_WITH_LIMIT = "{0} is greater than {1} of {2}.";
+
+		/// <inheritdoc />
 		public GreaterThanException(Expression<Func<object>> expression, object limit)
-			: base($"{ExpressionHelper.GetText(expression)} is greater than {limit}.")
+			: base(MESSAGE_TEMPLATE, expression, limit)
 		{ }
 
-		/// <summary>
-		/// Only use this overload if you wish to show the text and value of the limitExpression in the exception message.
-		/// If you only want to show the limit's value, use the other overload.
-		/// </summary>
+		/// <inheritdoc />
+		public GreaterThanException(string name, object limit)
+			: base(MESSAGE_TEMPLATE, name, limit)
+		{ }
+
+		/// <inheritdoc />
 		public GreaterThanException(Expression<Func<object>> expression, Expression<Func<object>> limitExpression)
-			// ReSharper disable once UseStringInterpolation
-			: base(string.Format("{0} is greater than {1} of {2}.", ExpressionHelper.GetText(expression), ExpressionHelper.GetText(limitExpression), ExpressionHelper.GetValue(limitExpression)))
+			: base(MESSAGE_FORMAT_WITH_LIMIT, expression, limitExpression)
 		{ }
 	}
 }

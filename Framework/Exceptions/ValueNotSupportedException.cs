@@ -4,20 +4,18 @@ namespace JJ.Framework.Exceptions
 {
 	public class ValueNotSupportedException : Exception
 	{
-		private const string MESSAGE = "{0} value: '{1}' is not supported.";
-
-		public override string Message { get; }
+		private const string MESSAGE_TEMPLATE = "{0} value: '{1}' is not supported.";
 
 		public ValueNotSupportedException(object value)
 		{
-			if (value == null)
-			{
-				Message = string.Format(MESSAGE, "<null>", "<null>");
-			}
-			else
-			{
-				Message = string.Format(MESSAGE, value.GetType(), value);
-			}
+			Type type = value?.GetType();
+
+			string typeName = ExceptionHelper.TryFormatShortTypeName(type);
+			string formattedValue = ExceptionHelper.FormatValue(value);
+
+			Message = string.Format(MESSAGE_TEMPLATE, typeName, formattedValue);
 		}
+
+		public override string Message { get; }
 	}
 }

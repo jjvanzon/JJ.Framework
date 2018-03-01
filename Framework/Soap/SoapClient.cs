@@ -1,11 +1,11 @@
-﻿using JJ.Framework.IO;
-using JJ.Framework.Xml.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
 using JJ.Framework.Exceptions;
+using JJ.Framework.IO;
+using JJ.Framework.Xml.Linq;
 
 namespace JJ.Framework.Soap
 {
@@ -88,10 +88,9 @@ namespace JJ.Framework.Soap
 			IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null)
 		{
 			if (string.IsNullOrEmpty(url)) throw new ArgumentException("url cannot be null or empty");
-			if (sendMessageDelegate == null) throw new NullException(() => sendMessageDelegate);
 
 			_url = url;
-			_sendMessageDelegate = sendMessageDelegate;
+			_sendMessageDelegate = sendMessageDelegate ?? throw new NullException(() => sendMessageDelegate);
 
 			_soapFormatter = new SoapFormatter(namespaceMappings, customArrayItemNameMappings);
 		}
@@ -112,11 +111,11 @@ namespace JJ.Framework.Soap
 
 			HttpWebRequest request = CreateSoapRequest(_url, soapAction, bytesToSend);
 
-			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+			using (var response = (HttpWebResponse)request.GetResponse())
 			{
 				using (Stream responseStream = response.GetResponseStream())
 				{
-					using (StreamReader reader = new StreamReader(responseStream, _encoding))
+					using (var reader = new StreamReader(responseStream, _encoding))
 					{
 						string textReceived = reader.ReadToEnd();
 						return textReceived;
@@ -127,7 +126,7 @@ namespace JJ.Framework.Soap
 
 		private HttpWebRequest CreateSoapRequest(string url, string soapAction, byte[] content)
 		{
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+			var request = (HttpWebRequest)WebRequest.Create(url);
 			request.Method = HTTP_METHOD_POST;
 			request.ContentLength = content.Length;
 			// TODO: The charset should actually vary with the encoding.

@@ -6,10 +6,10 @@ namespace JJ.Framework.Exceptions
 {
 	public class NotUniqueException : Exception
 	{
-		private const string MESSAGE = "{0} not unique.";
+		private const string MESSAGE_TEMPLATE = "{0} not unique.";
 
 		public NotUniqueException(Expression<Func<object>> expression)
-			: this(string.Format(MESSAGE, ExpressionHelper.GetText(expression)))
+			: this(string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression)))
 		{ }
 
 		public NotUniqueException(string message)
