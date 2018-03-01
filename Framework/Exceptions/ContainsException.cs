@@ -1,19 +1,34 @@
 ﻿using System;
 using System.Linq.Expressions;
-using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
-	public class ContainsException : Exception
+	/// <inheritdoc />
+	public class ContainsException : ComparativeExceptionWithExpressionBase
 	{
-		private const string MESSAGE_TEMPLATE = "{0} should not contain {1}.";
+		protected override string MessageTemplateWithAAndB => "{0} should not contain {1}.";
+		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} should not contain {2}.";
+		protected override string MessageTemplateWithNoAValueAndWithBValue => "{0} should not contain {1} of {2}.";
+		protected override string MessageTemplateWithTwoValuesAndTwoNames => "{0} of {1} should not contain {2} of {3}.";
 
-		public ContainsException(Expression<Func<object>> expression, object value)
-			: base(string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression), ExceptionHelper.FormatValue(value)))
-		{ }
+		/// <inheritdoc />
+		public ContainsException(Expression<Func<object>> expressionA, object b)
+			: base(expressionA, b) { }
 
-		public ContainsException(Expression<Func<object>> expression1, Expression<Func<object>> expression2)
-			: base(string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression1), ExpressionHelper.GetText(expression2)))
-		{ }
+		/// <inheritdoc />
+		public ContainsException(object a, object b)
+			: base(a, b) { }
+
+		/// <inheritdoc />
+		public ContainsException(Expression<Func<object>> expressionA, Expression<Func<object>> expressionB, bool showValueA = false, bool showValueB = false)
+			: base(expressionA, expressionB, showValueA, showValueB) { }
+
+		/// <inheritdoc />
+		public ContainsException(Expression<Func<object>> expressionA, object b, bool showValueA = false)
+			: base(expressionA, b, showValueA) { }
+
+		/// <inheritdoc />	
+		public ContainsException(object a, Expression<Func<object>> expressionB, bool showValueB = false)
+			: base(a, expressionB, showValueB) { }
 	}
 }

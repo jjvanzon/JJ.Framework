@@ -6,22 +6,29 @@ namespace JJ.Framework.Exceptions
 	/// <inheritdoc />
 	public class GreaterThanOrEqualException : ComparativeExceptionWithExpressionBase
 	{
-		private const string MESSAGE_TEMPLATE = "{0} is greater than or equal to {1}.";
-		private const string MESSAGE_FORMAT_WITH_LIMIT = "{0} is greater than or equal to {1} of {2}.";
+		protected override string MessageTemplateWithAAndB => "{0} is greater than or equal to {1}.";
+		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} is greater than or equal to {2}.";
+		protected override string MessageTemplateWithNoAValueAndWithBValue => "{0} is greater than or equal to {1} of {2}.";
+		protected override string MessageTemplateWithTwoValuesAndTwoNames => "{0} of {1} is greater than or equal to {2} of {3}.";
 
 		/// <inheritdoc />
-		public GreaterThanOrEqualException(Expression<Func<object>> expression, object limit)
-			: base(MESSAGE_TEMPLATE, expression, limit)
-		{ }
+		public GreaterThanOrEqualException(Expression<Func<object>> expressionA, object b)
+			: base(expressionA, b) { }
 
 		/// <inheritdoc />
-		public GreaterThanOrEqualException(string name, object limit)
-			: base(MESSAGE_TEMPLATE, name, limit)
-		{ }
+		public GreaterThanOrEqualException(object a, object b)
+			: base(a, b) { }
 
 		/// <inheritdoc />
-		public GreaterThanOrEqualException(Expression<Func<object>> expression, Expression<Func<object>> limitExpression)
-			: base(MESSAGE_FORMAT_WITH_LIMIT, expression, limitExpression)
-		{ }
+		public GreaterThanOrEqualException(Expression<Func<object>> expressionA, Expression<Func<object>> expressionB, bool showValueA = false, bool showValueB = false)
+			: base(expressionA, expressionB, showValueA, showValueB) { }
+
+		/// <inheritdoc />
+		public GreaterThanOrEqualException(Expression<Func<object>> expressionA, object b, bool showValueA = false)
+			: base(expressionA, b, showValueA) { }
+
+		/// <inheritdoc />	
+		public GreaterThanOrEqualException(object a, Expression<Func<object>> expressionB, bool showValueB = false)
+			: base(a, expressionB, showValueB) { }
 	}
 }

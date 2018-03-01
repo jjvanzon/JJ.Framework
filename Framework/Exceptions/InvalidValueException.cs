@@ -10,8 +10,8 @@ namespace JJ.Framework.Exceptions
 		{
 			Type type = value?.GetType();
 
-			string formattedValue = ExceptionHelper.FormatValue(value);
 			string typeName = ExceptionHelper.TryFormatShortTypeName(type);
+			string formattedValue = ExceptionHelper.FormatValue(value);
 
 			Message = string.Format(MESSAGE_TEMPLATE, typeName, formattedValue);
 		}

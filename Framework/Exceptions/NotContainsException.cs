@@ -1,19 +1,34 @@
 ﻿using System;
 using System.Linq.Expressions;
-using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
-	public class NotContainsException : Exception
+	/// <inheritdoc />
+	public class NotContainsException : ComparativeExceptionWithExpressionBase
 	{
-		private const string MESSAGE_TEMPLATE = "{0} does not contain {1}.";
+		protected override string MessageTemplateWithAAndB => "{0} does not contain {1}.";
+		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} does not contain {2}.";
+		protected override string MessageTemplateWithNoAValueAndWithBValue => "{0} does not contain {1} of {2}.";
+		protected override string MessageTemplateWithTwoValuesAndTwoNames => "{0} of {1} does not contain {2} of {3}.";
 
-		public NotContainsException(Expression<Func<object>> collectionExpression, object item)
-			: base(string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(collectionExpression), item))
-		{ }
+		/// <inheritdoc />
+		public NotContainsException(Expression<Func<object>> expressionA, object b)
+			: base(expressionA, b) { }
 
-		public NotContainsException(Expression<Func<object>> collectionexpression, Expression<Func<object>> itemExpression)
-			: base(string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(collectionexpression), ExpressionHelper.GetText(itemExpression)))
-		{ }
+		/// <inheritdoc />
+		public NotContainsException(object a, object b)
+			: base(a, b) { }
+
+		/// <inheritdoc />
+		public NotContainsException(Expression<Func<object>> expressionA, Expression<Func<object>> expressionB, bool showValueA = false, bool showValueB = false)
+			: base(expressionA, expressionB, showValueA, showValueB) { }
+
+		/// <inheritdoc />
+		public NotContainsException(Expression<Func<object>> expressionA, object b, bool showValueA = false)
+			: base(expressionA, b, showValueA) { }
+
+		/// <inheritdoc />	
+		public NotContainsException(object a, Expression<Func<object>> expressionB, bool showValueB = false)
+			: base(a, expressionB, showValueB) { }
 	}
 }

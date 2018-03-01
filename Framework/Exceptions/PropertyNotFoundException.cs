@@ -6,7 +6,7 @@ namespace JJ.Framework.Exceptions
 	{
 		public PropertyNotFoundException(Type type, string propertyName)
 		{
-			string typeName = type == null ? "<null>" : type.FullName;
+			string typeName = ExceptionHelper.TryFormatFullTypeName(type);
 
 			Message = $"Property '{propertyName}' not found on type '{typeName}'.";
 		}

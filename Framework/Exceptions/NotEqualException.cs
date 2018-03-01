@@ -1,19 +1,35 @@
-﻿using System;
+﻿
+using System;
 using System.Linq.Expressions;
-using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
-	public class NotEqualException : Exception
+	/// <inheritdoc />
+	public class NotEqualException : ComparativeExceptionWithExpressionBase
 	{
-		private const string MESSAGE_TEMPLATE = "{0} does not equal '{1}'.";
+		protected override string MessageTemplateWithAAndB => "{0} does not equal {1}.";
+		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} does not equal {2}.";
+		protected override string MessageTemplateWithNoAValueAndWithBValue => "{0} does not equal {1} of {2}.";
+		protected override string MessageTemplateWithTwoValuesAndTwoNames => "{0} of {1} does not equal {2} of {3}.";
 
-		public NotEqualException(Expression<Func<object>> expression1, object value)
-			: base(string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression1), ExceptionHelper.FormatValue(value)))
-		{ }
+		/// <inheritdoc />
+		public NotEqualException(Expression<Func<object>> expressionA, object b)
+			: base(expressionA, b) { }
 
-		public NotEqualException(Expression<Func<object>> expression1, Expression<Func<object>> expression2)
-			: base(string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression1), ExpressionHelper.GetText(expression2)))
-		{ }
+		/// <inheritdoc />
+		public NotEqualException(object a, object b)
+			: base(a, b) { }
+
+		/// <inheritdoc />
+		public NotEqualException(Expression<Func<object>> expressionA, Expression<Func<object>> expressionB, bool showValueA = false, bool showValueB = false)
+			: base(expressionA, expressionB, showValueA, showValueB) { }
+
+		/// <inheritdoc />
+		public NotEqualException(Expression<Func<object>> expressionA, object b, bool showValueA = false)
+			: base(expressionA, b, showValueA) { }
+
+		/// <inheritdoc />	
+		public NotEqualException(object a, Expression<Func<object>> expressionB, bool showValueB = false)
+			: base(a, expressionB, showValueB) { }
 	}
 }
