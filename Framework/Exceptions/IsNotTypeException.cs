@@ -27,6 +27,14 @@ namespace JJ.Framework.Exceptions
 			Message = $"{concreteTypeName} {name} is not of type {expectedTypeName}.";
 		}
 
+		public IsNotTypeException(string name, Type expectedType)
+			: this(name, ExceptionHelper.TryFormatShortTypeName(expectedType)) { }
+
+		public IsNotTypeException(string name, string expectedTypeName)
+		{
+			Message = $"{name} is not of type {expectedTypeName}.";
+		}
+
 		public override string Message { get; }
 	}
 }

@@ -61,6 +61,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ComparativeExceptionTests.tt</DependentUpon>
     </Compile>
+    <Compile Include="IsTypeAndIsNotTypeTests.cs" />
     <Compile Include="NotUniqueExceptionTests.cs" />
     <Compile Include="NotFoundExceptionTests.cs" />
     <Compile Include="MiscExceptionTests.cs" />

@@ -16,6 +16,8 @@ namespace JJ.Framework.Exceptions
 		public ComparativeExceptionWithExpressionBase(Expression<Func<object>> expressionA, object b) =>
 			Message = string.Format(MessageTemplateWithAAndB, ExpressionHelper.GetText(expressionA), b);
 
+		/// <param name="a">Can be both the name or the value of the object.</param>
+		/// <param name="b">Can be both the name or the value of the object.</param>
 		public ComparativeExceptionWithExpressionBase(object a, object b) =>
 			Message = string.Format(MessageTemplateWithAAndB, a, b);
 
@@ -59,6 +61,7 @@ namespace JJ.Framework.Exceptions
 			}
 		}
 
+		/// <param name="b">Can be both the name or the value of the object.</param>
 		public ComparativeExceptionWithExpressionBase(Expression<Func<object>> expressionA, object b, bool showValueA = false)
 		{
 			if (showValueA)
@@ -78,6 +81,7 @@ namespace JJ.Framework.Exceptions
 			}
 		}
 
+		/// <param name="a">Can be both the name or the value of the object.</param>
 		public ComparativeExceptionWithExpressionBase(object a, Expression<Func<object>> expressionB, bool showValueB = false)
 		{
 			if (showValueB)

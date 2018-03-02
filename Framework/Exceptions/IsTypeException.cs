@@ -15,9 +15,21 @@ namespace JJ.Framework.Exceptions
 			Message = string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression), typeName);
 		}
 
+		public IsTypeException(string name, Type type)
+		{
+			string typeName = ExceptionHelper.TryFormatShortTypeName(type);
+
+			Message = string.Format(MESSAGE_TEMPLATE, name, typeName);
+		}
+
 		public IsTypeException(Expression<Func<object>> expression, string typeName)
 		{
 			Message = string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression), typeName);
+		}
+
+		public IsTypeException(string name, string typeName)
+		{
+			Message = string.Format(MESSAGE_TEMPLATE, name, typeName);
 		}
 
 		public override string Message { get; }

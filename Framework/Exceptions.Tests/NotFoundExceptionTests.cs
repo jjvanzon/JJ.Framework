@@ -64,7 +64,7 @@ namespace JJ.Framework.Exceptions.Tests
 		}
 
 		[TestMethod]
-		public void Test_NotFoundException_WithName()
+		public void Test_NotFoundException_WithNameOf()
 		{
 			AssertHelper.ThrowsException<NotFoundException>(
 				() =>
@@ -77,7 +77,7 @@ namespace JJ.Framework.Exceptions.Tests
 		}
 
 		[TestMethod]
-		public void Test_NotFoundException_WithName_AndKey()
+		public void Test_NotFoundException_WithNameOf_AndKey()
 		{
 			AssertHelper.ThrowsException<NotFoundException>(
 				() =>

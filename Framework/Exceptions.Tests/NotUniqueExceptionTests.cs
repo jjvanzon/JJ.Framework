@@ -64,7 +64,7 @@ namespace JJ.Framework.Exceptions.Tests
 		}
 
 		[TestMethod]
-		public void Test_NotUniqueException_WithName()
+		public void Test_NotUniqueException_WithNameOf()
 		{
 			AssertHelper.ThrowsException<NotUniqueException>(
 				() =>
@@ -77,7 +77,7 @@ namespace JJ.Framework.Exceptions.Tests
 		}
 
 		[TestMethod]
-		public void Test_NotUniqueException_WithName_AndKey()
+		public void Test_NotUniqueException_WithNameOf_AndKey()
 		{
 			AssertHelper.ThrowsException<NotUniqueException>(
 				() =>
