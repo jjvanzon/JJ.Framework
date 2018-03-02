@@ -31,6 +31,5 @@ Basic helpers for working with text information. For instance:
 
 	<files>
 		<file src="README.MD" target="" />
-		<file src="bin\Release\$id$.xml" target="lib\Net45" />
 	</files>
 </package>

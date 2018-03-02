@@ -35,6 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Release\JJ.Framework.Exceptions.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -97,14 +98,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="JJ.Framework.Exceptions.nuspec" />
+    <None Include="nugetpack.ps1" />
     <None Include="packages.config" />
     <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SimpleExceptions.tt">
+    <None Include="nuspec Example.xml" />
+    <None Include="SimpleExceptions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SimpleExceptions.cs</LastGenOutput>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

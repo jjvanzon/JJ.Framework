@@ -26,6 +26,5 @@ Contains alternatives for any class or method that proved to have compatibility 
 
 	<files>
 		<file src="README.MD" target="" />
-		<file src="bin\Release\$id$.xml" target="lib\Net45" />
 	</files>
 </package>

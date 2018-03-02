@@ -1,5 +1,27 @@
-﻿# JJ.Framework.Exceptions
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<copyright>$copyright$</copyright>
+		<description>$description$</description>
 
+		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Exceptions</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64.png</iconUrl>
+
+		<tags></tags>
+
+		<dependencies>
+			<dependency id="System.ValueTuple" version="4.3.0" />
+			<dependency id="JJ.Framework.Text" version="[1.0,1.1)" />
+			<dependency id="JJ.Framework.Reflection" version="[1.0,1.1)" />
+		</dependencies>
+
+		<summary>
 Contains many exception classes for common basic errors, for instance:
 
 * Null errors, null or white space errors, collection contains nulls, etc.
@@ -17,7 +39,7 @@ There are several advantages over using these exception types.
 
 For example:
 
-	throw new NullException(() => myParent.MyChildren[0].MyProperty);
+	throw new NullException(() =&gt; myParent.MyChildren[0].MyProperty);
 
 Will produce an exception message:
 
@@ -27,7 +49,7 @@ This is where it surpasses the possibilities of the C#6 nameof operator, which c
 
 Another example:
 
-	throw new NotFoundException<Customer>(new { customerNumber });
+	throw new NotFoundException&lt;Customer&gt;(new { customerNumber });
 
 will produce an exception message:
 
@@ -37,10 +59,10 @@ As such it is fit for use with any composite key you might have.
 			
 Some more examples:
 			
-	throw new NotUniqueException<Product>(productNumber);
+	throw new NotUniqueException&lt;Product&gt;(productNumber);
 	throw new ValueNotSupportedException(myCountryEnumValue);
 	throw new FileAlreadyExistsException("text.txt");
-	throw new NullOrWhiteSpaceException(() => myParam.MyProp);
+	throw new NullOrWhiteSpaceException(() =&gt; myParam.MyProp);
 
 Those produce the exception messages:
 			
@@ -52,8 +74,17 @@ Those produce the exception messages:
 
 Here is an example with the value check in it:
 
-	if (height < 0) throw new LessThanException(nameof(height), 0);
+	if (height &lt; 0) throw new LessThanException(nameof(height), 0);
 
 This produces the exception message:
 				
 	height is less than 0.
+			</summary>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	</metadata>
+
+	<files>
+		<file src="README.MD" target="" />
+	</files>
+</package>

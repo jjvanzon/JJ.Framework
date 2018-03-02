@@ -30,6 +30,5 @@ Some basic helpers, for instance:
 
 	<files>
 		<file src="README.MD" target="" />
-		<file src="bin\Release\$id$.xml" target="lib\Net45" />
 	</files>
 </package>

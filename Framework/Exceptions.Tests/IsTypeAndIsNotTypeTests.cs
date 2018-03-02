@@ -46,7 +46,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new IsNotTypeException(nameof(testInt), typeof(TestItem));
 				},
-				"Int32 testInt is not of type TestItem.");
+				"testInt is not of type TestItem.");
 		}
 
 		[TestMethod]
@@ -59,7 +59,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new IsNotTypeException(nameof(testInt), "TestItem");
 				},
-				"Int32 testInt is not of type TestItem.");
+				"testInt is not of type TestItem.");
 		}
 
 		[TestMethod]
