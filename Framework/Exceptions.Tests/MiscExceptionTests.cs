@@ -3,7 +3,6 @@ using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable LocalNameCapturedOnly
 // ReSharper disable RedundantAssignment
-
 // ReSharper disable ConvertToConstant.Local
 // ReSharper disable CollectionNeverUpdated.Local
 
@@ -105,7 +104,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new IsNotTypeException(() => testInt, typeof(TestItem));
 				},
-				"testInt is not of type TestItem.");
+				"Int32 testInt is not of type TestItem.");
 		}
 
 		[TestMethod]
@@ -118,7 +117,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new IsNotTypeException(() => testInt, "TestItem");
 				},
-				"testInt is not of type TestItem.");
+				"Int32 testInt is not of type TestItem.");
 		}
 
 		[TestMethod]
@@ -131,7 +130,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new IsNotTypeException<TestItem>(() => testInt);
 				},
-				"testInt is not of type TestItem.");
+				"Int32 testInt is not of type TestItem.");
 		}
 
 		[TestMethod]
@@ -216,7 +215,14 @@ namespace JJ.Framework.Exceptions.Tests
 		[TestMethod]
 		public void Test_UnexpectedTypeException()
 		{
-			//throw new NotImplementedException();
+			AssertHelper.ThrowsException<UnexpectedTypeException>(
+				() =>
+				{
+					int testInt = 1;
+
+					throw new UnexpectedTypeException(() => testInt);
+				},
+				"testInt has an unexpected type: Int32.");
 		}
 
 		[TestMethod]

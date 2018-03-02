@@ -64,9 +64,14 @@
     <Compile Include="NotUniqueExceptionTests.cs" />
     <Compile Include="NotFoundExceptionTests.cs" />
     <Compile Include="MiscExceptionTests.cs" />
+    <Compile Include="NullExceptionTests.cs" />
+    <Compile Include="SimpleExceptionTests1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SimpleExceptionTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="TestEnum.cs" />
     <Compile Include="TestItem.cs" />
-    <Compile Include="SimpleExceptionTests.cs" />
     <Compile Include="LessThanExceptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -87,6 +92,10 @@
     <Content Include="ComparativeExceptionTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ComparativeExceptionTests1.cs</LastGenOutput>
+    </Content>
+    <Content Include="SimpleExceptionTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SimpleExceptionTests1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
