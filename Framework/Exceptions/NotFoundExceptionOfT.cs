@@ -1,9 +1,8 @@
 ﻿namespace JJ.Framework.Exceptions
 {
-	public class NotFoundException<TEntity> : NotFoundException
+	public class NotFoundException<TObject> : NotFoundException
 	{
-		public NotFoundException(object key)
-			: base(typeof(TEntity), key)
-		{ }
+		public NotFoundException() : base(typeof(TObject)) { }
+		public NotFoundException(object key) : base(typeof(TObject), key) { }
 	}
 }

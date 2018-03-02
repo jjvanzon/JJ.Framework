@@ -13,14 +13,10 @@ namespace JJ.Framework.Exceptions
 		protected abstract string MessageTemplateWithNoAValueAndWithBValue { get; }
 		protected abstract string MessageTemplateWithTwoValuesAndTwoNames { get; }
 
-		public ComparativeExceptionWithExpressionBase(
-			Expression<Func<object>> expressionA, 
-			object b) =>
+		public ComparativeExceptionWithExpressionBase(Expression<Func<object>> expressionA, object b) =>
 			Message = string.Format(MessageTemplateWithAAndB, ExpressionHelper.GetText(expressionA), b);
 
-		public ComparativeExceptionWithExpressionBase(
-			object a, 
-			object b) =>
+		public ComparativeExceptionWithExpressionBase(object a, object b) =>
 			Message = string.Format(MessageTemplateWithAAndB, a, b);
 
 		public ComparativeExceptionWithExpressionBase(
@@ -63,10 +59,7 @@ namespace JJ.Framework.Exceptions
 			}
 		}
 
-		public ComparativeExceptionWithExpressionBase(
-			Expression<Func<object>> expressionA,
-			object b,
-			bool showValueA = false)
+		public ComparativeExceptionWithExpressionBase(Expression<Func<object>> expressionA, object b, bool showValueA = false)
 		{
 			if (showValueA)
 			{
@@ -85,10 +78,7 @@ namespace JJ.Framework.Exceptions
 			}
 		}
 
-		public ComparativeExceptionWithExpressionBase(
-			object a,
-			Expression<Func<object>> expressionB,
-			bool showValueB = false)
+		public ComparativeExceptionWithExpressionBase(object a, Expression<Func<object>> expressionB, bool showValueB = false)
 		{
 			if (showValueB)
 			{

@@ -13,10 +13,6 @@ namespace JJ.Framework.IO
 		public string FileName { get; }
 		public string[] SubFolders { get; } = new string[0];
 
-		public PathParser(string path)
-			: this(path, null)
-		{ }
-
 		public PathParser(string path, bool? isFile = null)
 		{
 			bool? isFile1 = isFile;
@@ -51,9 +47,6 @@ namespace JJ.Framework.IO
 			}
 		}
 
-		private bool IsVolume(string path)
-		{
-			return path.Contains(Path.VolumeSeparatorChar);
-		}
+		private bool IsVolume(string path) => path.Contains(Path.VolumeSeparatorChar);
 	}
 }

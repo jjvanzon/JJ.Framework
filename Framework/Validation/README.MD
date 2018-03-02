@@ -15,4 +15,4 @@ You can also add validation messages imperatively, for instance:
 The __ValidationMessages__ methods are a little more complete, but I am not making any promises about that.
 We use this framework to support our developments, and extend it on the fly, as needed.
 
-This framework is also kind of a proof that you do not need an external validation framework. You can easily do it yourself.
+This framework is also kind of a proof that you do not need an external validation framework. You can do it yourself.

@@ -10,7 +10,7 @@ namespace JJ.Framework.Exceptions
 
 		public IsNotTypeException(Expression<Func<object>> expression, Type type)
 		{
-			string typeName = ExceptionHelper.TryFormatFullTypeName(type);
+			string typeName = ExceptionHelper.TryFormatShortTypeName(type);
 
 			Message = string.Format(MESSAGE_TEMPLATE, ExpressionHelper.GetText(expression), typeName);
 		}

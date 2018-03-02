@@ -1,0 +1,157 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ output extension=".cs" #>
+
+<# 
+	(string, string)[] tuples = 
+	{
+		// NOTE: LessThanExceptionTests are the hand-written tests, upon which this code generation template is based.
+		//("LessThan", "is less than"),
+		("GreaterThan", "is greater than"),
+		("LessThanOrEqual", "is less than or equal to"),
+		("GreaterThanOrEqual", "is greater than or equal to"),
+		("Equal", "is equal to"),
+		("NotEqual", "does not equal"),
+		("Contains", "should not contain"),
+		("NotContains", "does not contain"),
+	};
+#>
+
+using JJ.Framework.Testing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable LocalNameCapturedOnly
+// ReSharper disable ConvertToConstant.Local
+
+namespace JJ.Framework.Exceptions.Tests
+{
+	[TestClass]
+	public class ComparativeExceptionTests
+	{
+		<# foreach ((string codeName, string displayText) in tuples) { #>
+
+			[TestMethod]
+			public void Test_<#= codeName #>Exception_NoExpressions()
+			{
+				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+					() =>
+					{
+						double value;
+
+						throw new <#= codeName #>Exception(nameof(value), 0);
+					},
+					"value <#= displayText #> 0.");
+			}
+
+			[TestMethod]
+			public void Test_<#= codeName #>Exception_AIsExpression_BIsValue()
+			{
+				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+					() =>
+					{
+						var item = new TestItem();
+
+						throw new <#= codeName #>Exception(() => item.Parent, 0);
+					},
+					"item.Parent <#= displayText #> 0.");
+			}
+
+			[TestMethod]
+			public void Test_<#= codeName #>Exception_AIsExpression_BIsValue_ShowValueA()
+			{
+				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+					() =>
+					{
+						double valueA = -1;
+						double valueB = 0;
+
+						throw new <#= codeName #>Exception(() => valueA, valueB, showValueA: true);
+					},
+					"valueA of -1 <#= displayText #> 0.");
+			}
+
+			[TestMethod]
+			public void Test_<#= codeName #>Exception_AIsValue_BIsExpression()
+			{
+				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+					() =>
+					{
+						var item = new TestItem();
+
+						throw new <#= codeName #>Exception(0, () => item.Parent);
+					},
+					"0 <#= displayText #> item.Parent.");
+			}
+
+			[TestMethod]
+			public void Test_<#= codeName #>Exception_AIsValue_BIsExpression_ShowValueB()
+			{
+				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+					() =>
+					{
+						double valueA = -1;
+						double valueB = 0;
+
+						throw new <#= codeName #>Exception(valueA, () => valueB, showValueB: true);
+					},
+					"-1 <#= displayText #> valueB of 0.");
+			}
+
+			[TestMethod]
+			public void Test_<#= codeName #>Exception_AIsExpression_BIsExpression()
+			{
+				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+					() =>
+					{
+						var item = new TestItem();
+						double value = 0;
+
+						throw new <#= codeName #>Exception(() => item.Parent, () => value);
+					},
+					"item.Parent <#= displayText #> value.");
+			}
+
+			[TestMethod]
+			public void Test_<#= codeName #>Exception_AIsExpression_BIsExpression_ShowValueA_ShowValueB()
+			{
+				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+					() =>
+					{
+						double valueA = -1;
+						double valueB = 0;
+
+						throw new <#= codeName #>Exception(() => valueA, () => valueB, showValueA: true, showValueB: true);
+					},
+					"valueA of -1 <#= displayText #> valueB of 0.");
+			}
+
+			[TestMethod]
+			public void Test_<#= codeName #>Exception_AIsExpression_BIsExpression_ShowValueA()
+			{
+				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+					() =>
+					{
+						double valueA = -1;
+						double valueB = 0;
+
+						throw new <#= codeName #>Exception(() => valueA, () => valueB, showValueA: true);
+					},
+					"valueA of -1 <#= displayText #> valueB.");
+			}
+
+			[TestMethod]
+			public void Test_<#= codeName #>Exception_AIsExpression_BIsExpression_ShowValueB()
+			{
+				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+					() =>
+					{
+						double valueA = -1;
+						double valueB = 0;
+
+						throw new <#= codeName #>Exception(() => valueA, () => valueB, showValueB: true);
+					},
+					"valueA <#= displayText #> valueB of 0.");
+			}
+		<# } #>
+
+	}
+}

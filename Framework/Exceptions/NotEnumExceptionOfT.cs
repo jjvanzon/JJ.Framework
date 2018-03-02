@@ -1,8 +1,8 @@
 ﻿namespace JJ.Framework.Exceptions
 {
-	public class NotEnumException<T> : NotEnumException
+	public class NotEnumTypeException<T> : NotEnumTypeException
 	{
-		public NotEnumException()
+		public NotEnumTypeException()
 			: base(typeof(T))
 		{ }
 	}

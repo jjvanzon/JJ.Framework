@@ -56,9 +56,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComparativeExceptionTests1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComparativeExceptionTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotUniqueExceptionTests.cs" />
+    <Compile Include="NotFoundExceptionTests.cs" />
+    <Compile Include="MiscExceptionTests.cs" />
+    <Compile Include="TestEnum.cs" />
     <Compile Include="TestItem.cs" />
     <Compile Include="SimpleExceptionTests.cs" />
-    <Compile Include="ComparativeExceptionTests.cs" />
+    <Compile Include="LessThanExceptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +82,15 @@
       <Project>{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}</Project>
       <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ComparativeExceptionTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ComparativeExceptionTests1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

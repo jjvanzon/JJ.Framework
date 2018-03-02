@@ -6,8 +6,8 @@ namespace JJ.Framework.Exceptions
 	{
 		private const string MESSAGE_TEMPLATE = "Folder '{0}' already exists.";
 
-		public FolderAlreadyExistsException(string filePath)
-			: base(string.Format(MESSAGE_TEMPLATE, filePath))
+		public FolderAlreadyExistsException(string folderPath)
+			: base(string.Format(MESSAGE_TEMPLATE, folderPath))
 		{ }
 	}
 }

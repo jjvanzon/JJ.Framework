@@ -48,6 +48,7 @@
     <Compile Include="ContainsException.cs" />
     <Compile Include="EqualException.cs" />
     <Compile Include="ExceptionHelper.cs" />
+    <Compile Include="ExceptionWithNameTypeAndKeyBase.cs" />
     <Compile Include="SimpleExceptions.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -62,8 +63,8 @@
     <Compile Include="GreaterThanOrEqualException.cs" />
     <Compile Include="InvalidIndexException.cs" />
     <Compile Include="InvalidValueException.cs" />
-    <Compile Include="IsEnumException.cs" />
-    <Compile Include="IsEnumExceptionOfT.cs" />
+    <Compile Include="IsEnumTypeException.cs" />
+    <Compile Include="IsEnumTypeExceptionOfT.cs" />
     <Compile Include="IsNotTypeException.cs" />
     <Compile Include="IsTypeException.cs" />
     <Compile Include="IsNotTypeExceptionOfT.cs" />
@@ -71,7 +72,7 @@
     <Compile Include="LessThanException.cs" />
     <Compile Include="LessThanOrEqualException.cs" />
     <Compile Include="NotContainsException.cs" />
-    <Compile Include="NotEnumException.cs" />
+    <Compile Include="NotEnumTypeException.cs" />
     <Compile Include="NotEnumExceptionOfT.cs" />
     <Compile Include="NotEqualException.cs" />
     <Compile Include="NotFoundException.cs" />
@@ -89,6 +90,10 @@
     <ProjectReference Include="..\Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Text\JJ.Framework.Text.csproj">
+      <Project>{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}</Project>
+      <Name>JJ.Framework.Text</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

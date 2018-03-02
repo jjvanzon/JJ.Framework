@@ -5,7 +5,6 @@ using System.Linq;
 using JJ.Framework.Collections;
 using JJ.Framework.Common;
 using JJ.Framework.Exceptions;
-using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Validation
 {
@@ -465,7 +464,6 @@ namespace JJ.Framework.Validation
 				return this;
 			}
 
-			// ReSharper disable once InvertIf
 			if (DoubleHelper.TryParse(stringValue, _formatProvider, out double convertedValue))
 			{
 				if (double.IsInfinity(convertedValue))
@@ -486,7 +484,6 @@ namespace JJ.Framework.Validation
 				return this;
 			}
 
-			// ReSharper disable once InvertIf
 			if (DoubleHelper.TryParse(stringValue, _formatProvider, out double convertedValue))
 			{
 				// ReSharper disable once CompareOfFloatsByEqualityOperator

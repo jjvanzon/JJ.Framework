@@ -2,13 +2,13 @@
 
 namespace JJ.Framework.Exceptions
 {
-	public class NotEnumException : Exception
+	public class NotEnumTypeException : Exception
 	{
 		private const string MESSAGE_TEMPLATE = "Type {0} is not an enum.";
 
-		public NotEnumException(Type type)
+		public NotEnumTypeException(Type type)
 		{
-			string typeName =  ExceptionHelper.TryFormatFullTypeName(type);
+			string typeName =  ExceptionHelper.TryFormatShortTypeName(type);
 
 			Message = string.Format(MESSAGE_TEMPLATE, typeName);
 		}

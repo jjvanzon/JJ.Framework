@@ -4,7 +4,7 @@ namespace JJ.Framework.Exceptions
 {
 	public class ValueNotSupportedException : Exception
 	{
-		private const string MESSAGE_TEMPLATE = "{0} value: '{1}' is not supported.";
+		private const string MESSAGE_TEMPLATE = "{0} value '{1}' is not supported.";
 
 		public ValueNotSupportedException(object value)
 		{

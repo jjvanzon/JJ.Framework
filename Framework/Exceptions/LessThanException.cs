@@ -12,32 +12,23 @@ namespace JJ.Framework.Exceptions
 		protected override string MessageTemplateWithTwoValuesAndTwoNames => "{0} of {1} is less than {2} of {3}.";
 
 		/// <inheritdoc />
-		public LessThanException(
-			Expression<Func<object>> expressionA,
-			object b) : base(expressionA, b) { }
+		public LessThanException(Expression<Func<object>> expressionA, object b)
+			: base(expressionA, b) { }
 
 		/// <inheritdoc />
-		public LessThanException(
-			object a,
-			object b) : base(a, b) { }
+		public LessThanException(object a, object b)
+			: base(a, b) { }
 
 		/// <inheritdoc />
-		public LessThanException(
-			Expression<Func<object>> expressionA,
-			Expression<Func<object>> expressionB,
-			bool showValueA = false,
-			bool showValueB = false) : base(expressionA, expressionB, showValueA, showValueB) { }
+		public LessThanException(Expression<Func<object>> expressionA, Expression<Func<object>> expressionB, bool showValueA = false, bool showValueB = false)
+			: base(expressionA, expressionB, showValueA, showValueB) { }
 
 		/// <inheritdoc />
-		public LessThanException(
-			Expression<Func<object>> expressionA,
-			object b,
-			bool showValueA = false) : base(expressionA, b, showValueA) { }
+		public LessThanException(Expression<Func<object>> expressionA, object b, bool showValueA = false)
+			: base(expressionA, b, showValueA) { }
 
-		/// <inheritdoc />
-		public LessThanException(
-			object a,
-			Expression<Func<object>> expressionB,
-			bool showValueB = false) : base(a, expressionB, showValueB) { }
+		/// <inheritdoc />	
+		public LessThanException(object a, Expression<Func<object>> expressionB, bool showValueB = false)
+			: base(a, expressionB, showValueB) { }
 	}
 }
