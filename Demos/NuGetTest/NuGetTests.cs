@@ -5,9 +5,11 @@ using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 using JJ.Framework.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-#pragma warning disable S1481 // Unused local variables should be removed
+// ReSharper disable UnusedAutoPropertyAccessor.Local
+// ReSharper disable HeuristicUnreachableCode
 // ReSharper disable UnusedVariable
+#pragma warning disable 162
+#pragma warning disable S1481 // Unused local variables should be removed
 
 namespace JJ.Demos.NuGetTest
 {
