@@ -7,7 +7,6 @@ using JJ.Framework.Text;
 
 namespace JJ.Framework.IO
 {
-	/// <summary> Fully unit tested. </summary>
 	public static class FileHelper
 	{
 		/// <summary>
@@ -92,6 +91,7 @@ namespace JJ.Framework.IO
 			}
 		}
 
+		/// <summary>Gets that path without command line parameters, or executable file name, etc.</summary>
 		public static string ApplicationFolderPath
 		{
 			get

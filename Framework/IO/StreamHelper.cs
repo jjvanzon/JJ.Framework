@@ -4,6 +4,11 @@ using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.IO
 {
+	/// <summary>
+	/// Converts between string, Stream and byte[]. 
+	/// Surprisingly different code is required for converting between those three,
+	/// and this helper class makes it a bit more consistent.
+	/// </summary>
 	public static class StreamHelper
 	{
 		public static byte[] StreamToBytes(Stream stream, int bufferSize = 8192)
@@ -20,10 +25,7 @@ namespace JJ.Framework.IO
 			return memoryStream.ToArray();
 		}
 
-		public static Stream BytesToStream(byte[] bytes)
-		{
-			return new MemoryStream(bytes);
-		}
+		public static Stream BytesToStream(byte[] bytes) => new MemoryStream(bytes);
 
 		public static string StreamToString(Stream stream, Encoding encoding)
 		{
@@ -36,7 +38,7 @@ namespace JJ.Framework.IO
 				return text;
 			}
 		}
-		
+
 		public static Stream StringToStream(string text, Encoding encoding)
 		{
 			byte[] bytes = StringToBytes(text, encoding);
@@ -49,7 +51,7 @@ namespace JJ.Framework.IO
 			if (encoding == null) throw new NullException(() => encoding);
 			return encoding.GetBytes(text);
 		}
-		
+
 		public static string BytesToString(byte[] bytes, Encoding encoding)
 		{
 			if (encoding == null) throw new NullException(() => encoding);

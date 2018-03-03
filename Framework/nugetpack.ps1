@@ -22,3 +22,6 @@ nuget pack -build JJ.Framework.Conversion.csproj -Prop Configuration=Release -Ou
 
 cd "$($codeRootFolderPath)\Framework\Testing"
 nuget pack -build JJ.Framework.Testing.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"
+
+cd "$($codeRootFolderPath)\Framework\IO"
+nuget pack -build JJ.Framework.IO.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"

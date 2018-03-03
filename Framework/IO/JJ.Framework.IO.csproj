@@ -38,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Release\JJ.Framework.IO.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -72,7 +73,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT" />
+    <None Include="JJ.Framework.IO.nuspec" />
+    <None Include="README.MD" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

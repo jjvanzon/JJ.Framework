@@ -5,6 +5,13 @@ using JJ.Framework.Text;
 
 namespace JJ.Framework.IO
 {
+	/// <summary>
+	/// This class enables a safe file overwrite,
+	/// by first writing to a temporary file and only when all
+	/// went well, the original file is overwritten.
+	/// The security settings and file attributes and file properties are retained
+	/// as the temp file replaces the original.
+	/// </summary>
 	public class SafeFileOverwriter : IDisposable
 	{
 		private readonly string _tempFilePath;
@@ -12,7 +19,6 @@ namespace JJ.Framework.IO
 		private readonly Stream _destFileStream;
 
 		/// <summary>
-		/// Fully unit tested.
 		/// This class enables a safe file overwrite,
 		/// by first writing to a temporary file and only when all
 		/// went well, the original file is overwritten.

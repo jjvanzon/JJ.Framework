@@ -5,6 +5,7 @@ using JJ.Framework.Text;
 
 namespace JJ.Framework.IO
 {
+	/// <summary> A class for reading out CSV files. </summary>
 	public class CsvReader : IDisposable
 	{
 		// TODO: Enforce number of columns.

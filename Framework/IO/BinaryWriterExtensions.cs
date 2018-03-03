@@ -4,6 +4,7 @@ using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.IO
 {
+	/// <summary> Contains some methods for reading and writing structs to a stream. </summary>
 	public static class BinaryWriterExtensions
 	{
 		public static void WriteStruct<T>(this BinaryWriter writer, T strct)

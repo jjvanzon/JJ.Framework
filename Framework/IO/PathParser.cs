@@ -5,7 +5,7 @@ using JJ.Framework.Text;
 
 namespace JJ.Framework.IO
 {
-	/// <summary> Fully unit tested. </summary>
+	/// <summary> Neatly splits up a file path into its smaller parts. </summary>
 	public class PathParser
 	{
 		public string Volume { get; }

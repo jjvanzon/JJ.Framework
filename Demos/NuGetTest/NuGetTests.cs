@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Globalization;
 using JJ.Framework.Common;
-using JJ.Framework.Conversion;
 using JJ.Framework.Exceptions;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
+using JJ.Framework.Testing;
 using JJ.Framework.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 // ReSharper disable UnusedAutoPropertyAccessor.Local
 // ReSharper disable HeuristicUnreachableCode
 // ReSharper disable UnusedVariable
@@ -39,7 +40,7 @@ namespace JJ.Demos.NuGetTest
 		[TestMethod]
 		public void Test_NuGetReference_JJ_Framework_Common()
 		{
-			string cultureName =  CultureHelper.GetCurrentCultureName();
+			string cultureName = CultureHelper.GetCurrentCultureName();
 			Assert.IsNotNull(cultureName);
 		}
 
@@ -70,12 +71,20 @@ namespace JJ.Demos.NuGetTest
 			Assert.Fail("An exception should have been thrown.");
 		}
 
+		//[TestMethod]
+		//public void Test_NuGetReference_JJ_Framework_Conversion()
+		//{
+		//	string str = "1234";
+		//	int number = SimpleTypeConverter.ParseValue<int>(str);
+		//	Assert.AreEqual(1234, number);
+		//}
+
 		[TestMethod]
-		public void Test_NuGetReference_JJ_Framework_Conversion()
+		public void Test_NuGetReference_JJ_Framework_Testing()
 		{
-			string str = "1234";
-			int number = SimpleTypeConverter.ParseValue<int>(str);
-			Assert.AreEqual(1234, number);
+			var obj = new object();
+
+			AssertHelper.ThrowsException(() => AssertHelper.IsNull(() => obj), "Assert.IsNull failed. Tested member: 'obj'.");
 		}
 	}
 }
