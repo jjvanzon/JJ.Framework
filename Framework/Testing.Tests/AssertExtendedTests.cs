@@ -9,12 +9,12 @@ namespace JJ.Framework.Testing.Tests
 		[TestMethod]
 		public void Test_ThrowsException_HasException()
 		{
-			AssertHelper.ThrowsException(() => { throw new Exception(); });
+			AssertHelper.ThrowsException(() => throw new Exception());
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(Exception))]
-		public void Test_ThrowsException_NoException()
+		[ExpectedException(typeof(AssertFailedException))]
+		public void Test_ThrowsException_WithNoException()
 		{
 			AssertHelper.ThrowsException(() => { });
 		}

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using JJ.Framework.Collections;
 using JJ.Framework.Common;
+using JJ.Framework.Conversion;
 using JJ.Framework.Exceptions;
 
 namespace JJ.Framework.Validation
@@ -368,7 +369,7 @@ namespace JJ.Framework.Validation
 				return this;
 			}
 
-			if (!DoubleHelper.TryParse(stringValue, _formatProvider, out double _))
+			if (!DoubleParser.TryParse(stringValue, _formatProvider, out double _))
 			{
 				Messages.AddNotBrokenNumberMessage(_propertyDisplayName);
 			}
@@ -444,7 +445,7 @@ namespace JJ.Framework.Validation
 			}
 
 			// ReSharper disable once InvertIf
-			if (DoubleHelper.TryParse(stringValue, _formatProvider, out double convertedValue))
+			if (DoubleParser.TryParse(stringValue, _formatProvider, out double convertedValue))
 			{
 				if (double.IsNaN(convertedValue))
 				{
@@ -464,7 +465,7 @@ namespace JJ.Framework.Validation
 				return this;
 			}
 
-			if (DoubleHelper.TryParse(stringValue, _formatProvider, out double convertedValue))
+			if (DoubleParser.TryParse(stringValue, _formatProvider, out double convertedValue))
 			{
 				if (double.IsInfinity(convertedValue))
 				{
@@ -484,7 +485,7 @@ namespace JJ.Framework.Validation
 				return this;
 			}
 
-			if (DoubleHelper.TryParse(stringValue, _formatProvider, out double convertedValue))
+			if (DoubleParser.TryParse(stringValue, _formatProvider, out double convertedValue))
 			{
 				// ReSharper disable once CompareOfFloatsByEqualityOperator
 				if (convertedValue == 0.0)

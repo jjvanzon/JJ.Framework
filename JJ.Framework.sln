@@ -146,6 +146,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Text", "Framew
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Exceptions.Tests", "Framework\Exceptions.Tests\JJ.Framework.Exceptions.Tests.csproj", "{1C916D50-754B-49F0-B702-61B885B10941}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Conversion.Tests", "Framework\JJ.Framework.Conversion.Tests\JJ.Framework.Conversion.Tests.csproj", "{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1446,6 +1448,30 @@ Global
 		{1C916D50-754B-49F0-B702-61B885B10941}.Release|x64.Build.0 = Release|Any CPU
 		{1C916D50-754B-49F0-B702-61B885B10941}.Release|x86.ActiveCfg = Release|Any CPU
 		{1C916D50-754B-49F0-B702-61B885B10941}.Release|x86.Build.0 = Release|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Debug|x64.Build.0 = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Debug|x86.Build.0 = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Release|x64.ActiveCfg = Release|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Release|x64.Build.0 = Release|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Release|x86.ActiveCfg = Release|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1463,7 +1489,7 @@ Global
 		SolutionGuid = {BB8240EB-FFDA-498D-94B1-E65CAFB74EAF}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 68
+		SccNumberOfProjects = 69
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -1675,5 +1701,8 @@ Global
 		SccProjectUniqueName67 = Framework\\Exceptions.Tests\\JJ.Framework.Exceptions.Tests.csproj
 		SccProjectName67 = Framework/Exceptions.Tests
 		SccLocalPath67 = Framework\\Exceptions.Tests
+		SccProjectUniqueName68 = Framework\\JJ.Framework.Conversion.Tests\\JJ.Framework.Conversion.Tests.csproj
+		SccProjectName68 = Framework/JJ.Framework.Conversion.Tests
+		SccLocalPath68 = Framework\\JJ.Framework.Conversion.Tests
 	EndGlobalSection
 EndGlobal

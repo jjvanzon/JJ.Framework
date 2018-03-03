@@ -1,0 +1,38 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<copyright>$copyright$</copyright>
+		<description>$description$</description>
+
+		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Conversion</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64.png</iconUrl>
+
+		<tags>convert conversion parse parsing tryparse double enum int int32</tags>
+
+		<summary>
+Makes it easier to convert to simple types.
+
+* `SimpleTypeConverter.ConvertValue`: Makes it easier to convert nullables along with non-nullables.
+* `SimpleTypeConverter.ParseValue`: One method to parse enums, TimeSpan, IntPtr, UIntPtr any other simple type and their nullable variations. Those often require different types of conversions. This method just takes care of it.
+* `Int32Parser`: For instance making it easier to parse nullable ints.
+* `DoubleParser`: For instance making it easier to parse nullable doubles.
+* `EnumParser`: Make it a little easier to use enum parsing.
+		</summary>
+
+		<dependencies>
+			<dependency id="JJ.Framework.Reflection" version="[1.0,1.1)" />
+		</dependencies>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	</metadata>
+
+	<files>
+		<file src="README.MD" target="" />
+	</files>
+</package>

@@ -75,6 +75,10 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Conversion\JJ.Framework.Conversion.csproj">
+      <Project>{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4}</Project>
+      <Name>JJ.Framework.Conversion</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj">
       <Project>{fa44aba2-8e13-402c-a5a0-8d73c74b5181}</Project>
       <Name>JJ.Framework.Exceptions</Name>

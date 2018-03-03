@@ -3,10 +3,7 @@ using System.Globalization;
 
 namespace JJ.Framework.Common
 {
-	/// <summary>
-	/// Static classes cannot get extension membrers.
-	/// Instead we have the Int32Helper class for extra static members.
-	/// </summary>
+	[Obsolete("Use JJ.Framework.Conversion.Int32Parser instead.", true)]
 	public static class Int32Helper
 	{
 		public static bool TryParse(string s, IFormatProvider provider, out int result)

@@ -28,7 +28,7 @@ namespace JJ.Framework.Testing
 				return;
 			}
 
-			throw new Exception("An exception should have been thrown.");
+			throw new AssertFailedException("An exception should have been thrown.");
 		}
 
 		// TODO: This code was ported out of a code base from 2010 to a code base from 2014, without any refactoring.
@@ -114,7 +114,7 @@ namespace JJ.Framework.Testing
 				return;
 			}
 
-			Assert.Fail("An exception should have occurred.");
+			throw new AssertFailedException("An exception should have occurred.");
 		}
 
 		public static void ThrowsException(Action statement, Type exceptionType)
@@ -131,7 +131,7 @@ namespace JJ.Framework.Testing
 				return;
 			}
 
-			Assert.Fail("An exception should have occurred.");
+			throw new AssertFailedException("An exception should have occurred.");
 		}
 
 		public static void ThrowsException(Action statement, Type exceptionType, string expectedMessage)
@@ -150,7 +150,7 @@ namespace JJ.Framework.Testing
 				return;
 			}
 
-			Assert.Fail("An exception should have occurred.");
+			throw new AssertFailedException("An exception should have occurred.");
 		}
 
 		public static void ThrowsException<TException>(Action statement)
@@ -185,7 +185,7 @@ namespace JJ.Framework.Testing
 
 			if (!exceptionWasThrown)
 			{
-				Assert.Fail("An exception should have occurred.");
+				throw new AssertFailedException("An exception should have occurred.");
 			}
 		}
 

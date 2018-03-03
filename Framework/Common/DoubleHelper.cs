@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Common
@@ -10,47 +9,20 @@ namespace JJ.Framework.Common
 	/// </summary>
 	public static class DoubleHelper
 	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool TryParse(string s, IFormatProvider provider, out double result)
-		{
-			return double.TryParse(s, NumberStyles.Any, provider, out result);
-		}
-
 		/// <summary> Returns true if the value is NaN, PositiveInfinity or NegativeInfinity. </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static bool IsSpecialValue(double value)
-		{
-			return double.IsNaN(value) || double.IsInfinity(value);
-		}
+		public static bool IsSpecialValue(double value) => double.IsNaN(value) || double.IsInfinity(value);
 
-		public static double? ParseNullable(string input)
-		{
-			if (string.IsNullOrWhiteSpace(input))
-			{
-				return null;
-			}
+		[Obsolete("Use JJ.Framework.Conversion.DoubleParser.TryParse instead.", true)]
+		public static bool TryParse(string s, IFormatProvider provider, out double result) 
+			=> throw new NotImplementedException("Use JJ.Framework.Conversion.DoubleParser.TryParse instead.");
 
-			return double.Parse(input);
-		}
+		[Obsolete("Use JJ.Framework.Conversion.DoubleParser.ParseNullable instead.", true)]
+		public static double? ParseNullable(string input) 
+			=> throw new NotImplementedException("Use JJ.Framework.Conversion.DoubleParser.ParseNullable instead.");
 
-		public static bool TryParse(string input, out double? output)
-		{
-			output = default;
-
-			if (string.IsNullOrWhiteSpace(input))
-			{
-				return true;
-			}
-
-			bool result = double.TryParse(input, out double temp);
-			if (!result)
-			{
-				return false;
-			}
-
-			output = temp;
-
-			return true;
-		}
+		[Obsolete("Use JJ.Framework.Conversion.DoubleParser.TryParse instead.", true)]
+		public static bool TryParse(string input, out double? output) 
+			=> throw new NotImplementedException("Use JJ.Framework.Conversion.DoubleParser.TryParse instead.");
 	}
 }
