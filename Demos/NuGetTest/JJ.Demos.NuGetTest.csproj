@@ -36,20 +36,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JJ.Framework.Common, Version=1.0.6633.34564, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\NuGetTest\packages\JJ.Framework.Common.1.0.6633.34564\lib\Net45\JJ.Framework.Common.dll</HintPath>
+      <HintPath>..\..\NuGetTest\packages\JJ.Framework.Common.1.0.6633.34564\lib\net45\JJ.Framework.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Exceptions, Version=1.0.6636.153, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\NuGetTest\packages\JJ.Framework.Exceptions.1.0.6636.153\lib\net45\JJ.Framework.Exceptions.dll</HintPath>
     </Reference>
     <Reference Include="JJ.Framework.PlatformCompatibility, Version=1.0.6633.34565, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\NuGetTest\packages\JJ.Framework.PlatformCompatibility.1.0.6633.34565\lib\Net45\JJ.Framework.PlatformCompatibility.dll</HintPath>
+      <HintPath>..\..\NuGetTest\packages\JJ.Framework.PlatformCompatibility.1.0.6633.34565\lib\net45\JJ.Framework.PlatformCompatibility.dll</HintPath>
     </Reference>
     <Reference Include="JJ.Framework.Reflection, Version=1.0.6633.36153, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\NuGetTest\packages\JJ.Framework.Reflection.1.0.6633.36153\lib\Net45\JJ.Framework.Reflection.dll</HintPath>
+      <HintPath>..\..\NuGetTest\packages\JJ.Framework.Reflection.1.0.6633.36153\lib\net45\JJ.Framework.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="JJ.Framework.Text, Version=1.0.6633.36116, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\NuGetTest\packages\JJ.Framework.Text.1.0.6633.36116\lib\Net45\JJ.Framework.Text.dll</HintPath>
+      <HintPath>..\..\NuGetTest\packages\JJ.Framework.Text.1.0.6633.36116\lib\net45\JJ.Framework.Text.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\NuGetTest\packages\System.ValueTuple.4.3.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NuGetTests.cs" />
