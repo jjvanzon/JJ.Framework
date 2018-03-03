@@ -20,20 +20,39 @@ namespace JJ.Framework.Conversion.Tests
 		{
 			protected override bool TryParse(string str, out <#= numType #>? result) 
 				=> <#= numType #>Parser.TryParse(str, out result);
+
 			protected override bool TryParse(string str, NumberStyles styles, out <#= numType #>? result) 
 				=> <#= numType #>Parser.TryParse(str, styles, out result);
+
 			protected override bool TryParse(string str, IFormatProvider provider, out <#= numType #>? result) 
 				=> <#= numType #>Parser.TryParse(str, provider, out result);
+
+			protected override bool TryParse(string str, IFormatProvider provider, out <#= numType #> result) 
+				=> <#= numType #>Parser.TryParse(str, provider, out result);
+
 			protected override bool TryParse(string str, NumberStyles styles, IFormatProvider provider, out <#= numType #>? result) 
 				=> <#= numType #>Parser.TryParse(str, styles, provider, out result);
+
 			protected override <#= numType #>? ParseNullable(string str) 
 				=> <#= numType #>Parser.ParseNullable(str);
+
 			protected override <#= numType #>? ParseNullable(string str, NumberStyles styles) 
 				=> <#= numType #>Parser.ParseNullable(str, styles);
+
 			protected override <#= numType #>? ParseNullable(string str, IFormatProvider provider) 
 				=> <#= numType #>Parser.ParseNullable(str, provider);
+
 			protected override <#= numType #>? ParseNullable(string str, NumberStyles styles, IFormatProvider provider) 
 				=> <#= numType #>Parser.ParseNullable(str, styles, provider);
+				
+			[TestMethod]
+			public void Test_<#= numType #>Parser_TryParse_NotNullable_HasValue_WithFormatProvider() => Test_TryParse_NotNullable_HasValue_WithFormatProvider();
+				
+			[TestMethod]
+			public void Test_<#= numType #>Parser_TryParse_NotNullable_IsWhiteSpace_WithFormatProvider() => Test_TryParse_NotNullable_IsWhiteSpace_WithFormatProvider();
+				
+			[TestMethod]
+			public void Test_<#= numType #>Parser_TryParse_NotNullable_IsInvalidNumber_WithFormatProvider() => Test_TryParse_NotNullable_IsInvalidNumber_WithFormatProvider();
 
 			[TestMethod]
 			public void Test_<#= numType #>Parser_TryParse_Nullable_HasValue() => Test_TryParse_Nullable_HasValue();

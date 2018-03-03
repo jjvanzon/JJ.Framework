@@ -26,12 +26,50 @@ namespace JJ.Framework.Conversion.Tests
 
 		protected abstract bool TryParse(string str, out T? number);
 		protected abstract bool TryParse(string str, NumberStyles styles, out T? number);
+		protected abstract bool TryParse(string str, IFormatProvider provider, out T number);
 		protected abstract bool TryParse(string str, IFormatProvider provider, out T? number);
 		protected abstract bool TryParse(string str, NumberStyles styles, IFormatProvider provider, out T? number);
 		protected abstract T? ParseNullable(string str);
 		protected abstract T? ParseNullable(string str, NumberStyles styles);
 		protected abstract T? ParseNullable(string str, IFormatProvider provider);
 		protected abstract T? ParseNullable(string str, NumberStyles styles, IFormatProvider provider);
+
+		protected void Test_TryParse_NotNullable_HasValue_WithFormatProvider()
+		{
+			WithEnUSCulture(
+				() =>
+				{
+					bool success = TryParse(NormalNumberStringNlNL, _nlNLCulture, out T number);
+
+					AssertHelper.IsTrue(() => success);
+					AssertHelper.IsNotNull(() => number);
+					AssertHelper.AreEqual(NormalNumber, () => number);
+				});
+		}
+
+		protected void Test_TryParse_NotNullable_IsWhiteSpace_WithFormatProvider()
+		{
+			WithEnUSCulture(
+				() =>
+				{
+					bool success = TryParse(WHITE_SPACE, _nlNLCulture, out T number);
+
+					AssertHelper.IsFalse(() => success);
+					AssertHelper.AreEqual(default(T), () => number);
+				});
+		}
+
+		protected void Test_TryParse_NotNullable_IsInvalidNumber_WithFormatProvider()
+		{
+			WithEnUSCulture(
+				() =>
+				{
+					bool success = TryParse(INVALID_NUMBER, _nlNLCulture,  out T number);
+
+					AssertHelper.IsFalse(() => success);
+					AssertHelper.AreEqual(default(T), () => number);
+				});
+		}
 
 		protected void Test_TryParse_Nullable_HasValue()
 		{

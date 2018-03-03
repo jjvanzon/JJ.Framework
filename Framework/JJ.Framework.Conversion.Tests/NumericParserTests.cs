@@ -11,20 +11,39 @@ namespace JJ.Framework.Conversion.Tests
 		{
 			protected override bool TryParse(string str, out Double? result) 
 				=> DoubleParser.TryParse(str, out result);
+
 			protected override bool TryParse(string str, NumberStyles styles, out Double? result) 
 				=> DoubleParser.TryParse(str, styles, out result);
+
 			protected override bool TryParse(string str, IFormatProvider provider, out Double? result) 
 				=> DoubleParser.TryParse(str, provider, out result);
+
+			protected override bool TryParse(string str, IFormatProvider provider, out Double result) 
+				=> DoubleParser.TryParse(str, provider, out result);
+
 			protected override bool TryParse(string str, NumberStyles styles, IFormatProvider provider, out Double? result) 
 				=> DoubleParser.TryParse(str, styles, provider, out result);
+
 			protected override Double? ParseNullable(string str) 
 				=> DoubleParser.ParseNullable(str);
+
 			protected override Double? ParseNullable(string str, NumberStyles styles) 
 				=> DoubleParser.ParseNullable(str, styles);
+
 			protected override Double? ParseNullable(string str, IFormatProvider provider) 
 				=> DoubleParser.ParseNullable(str, provider);
+
 			protected override Double? ParseNullable(string str, NumberStyles styles, IFormatProvider provider) 
 				=> DoubleParser.ParseNullable(str, styles, provider);
+				
+			[TestMethod]
+			public void Test_DoubleParser_TryParse_NotNullable_HasValue_WithFormatProvider() => Test_TryParse_NotNullable_HasValue_WithFormatProvider();
+				
+			[TestMethod]
+			public void Test_DoubleParser_TryParse_NotNullable_IsWhiteSpace_WithFormatProvider() => Test_TryParse_NotNullable_IsWhiteSpace_WithFormatProvider();
+				
+			[TestMethod]
+			public void Test_DoubleParser_TryParse_NotNullable_IsInvalidNumber_WithFormatProvider() => Test_TryParse_NotNullable_IsInvalidNumber_WithFormatProvider();
 
 			[TestMethod]
 			public void Test_DoubleParser_TryParse_Nullable_HasValue() => Test_TryParse_Nullable_HasValue();
@@ -100,20 +119,39 @@ namespace JJ.Framework.Conversion.Tests
 		{
 			protected override bool TryParse(string str, out Int32? result) 
 				=> Int32Parser.TryParse(str, out result);
+
 			protected override bool TryParse(string str, NumberStyles styles, out Int32? result) 
 				=> Int32Parser.TryParse(str, styles, out result);
+
 			protected override bool TryParse(string str, IFormatProvider provider, out Int32? result) 
 				=> Int32Parser.TryParse(str, provider, out result);
+
+			protected override bool TryParse(string str, IFormatProvider provider, out Int32 result) 
+				=> Int32Parser.TryParse(str, provider, out result);
+
 			protected override bool TryParse(string str, NumberStyles styles, IFormatProvider provider, out Int32? result) 
 				=> Int32Parser.TryParse(str, styles, provider, out result);
+
 			protected override Int32? ParseNullable(string str) 
 				=> Int32Parser.ParseNullable(str);
+
 			protected override Int32? ParseNullable(string str, NumberStyles styles) 
 				=> Int32Parser.ParseNullable(str, styles);
+
 			protected override Int32? ParseNullable(string str, IFormatProvider provider) 
 				=> Int32Parser.ParseNullable(str, provider);
+
 			protected override Int32? ParseNullable(string str, NumberStyles styles, IFormatProvider provider) 
 				=> Int32Parser.ParseNullable(str, styles, provider);
+				
+			[TestMethod]
+			public void Test_Int32Parser_TryParse_NotNullable_HasValue_WithFormatProvider() => Test_TryParse_NotNullable_HasValue_WithFormatProvider();
+				
+			[TestMethod]
+			public void Test_Int32Parser_TryParse_NotNullable_IsWhiteSpace_WithFormatProvider() => Test_TryParse_NotNullable_IsWhiteSpace_WithFormatProvider();
+				
+			[TestMethod]
+			public void Test_Int32Parser_TryParse_NotNullable_IsInvalidNumber_WithFormatProvider() => Test_TryParse_NotNullable_IsInvalidNumber_WithFormatProvider();
 
 			[TestMethod]
 			public void Test_Int32Parser_TryParse_Nullable_HasValue() => Test_TryParse_Nullable_HasValue();
