@@ -3,7 +3,6 @@ using System.Linq.Expressions;
 using System.Threading;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Testing
 {
@@ -28,7 +27,7 @@ namespace JJ.Framework.Testing
 				return;
 			}
 
-			throw new AssertFailedException("An exception should have been thrown.");
+			throw new Exception("An exception should have been thrown.");
 		}
 
 		// TODO: This code was ported out of a code base from 2010 to a code base from 2014, without any refactoring.
@@ -44,7 +43,7 @@ namespace JJ.Framework.Testing
 				string name = ExpressionHelper.GetText(bExpression);
 				string message = TestHelper.FormatTestedPropertyMessage(name);
 				string fullMessage = GetNotEqualFailedMessage(a, message);
-				throw new AssertFailedException(fullMessage);
+				throw new Exception(fullMessage);
 			}
 		}
 
@@ -110,11 +109,11 @@ namespace JJ.Framework.Testing
 			}
 			catch (Exception ex)
 			{
-				Assert.AreEqual(expectedMessage, ex.Message);
+				AreEqual(expectedMessage, () => ex.Message);
 				return;
 			}
 
-			throw new AssertFailedException("An exception should have occurred.");
+			throw new Exception("An exception should have occurred.");
 		}
 
 		public static void ThrowsException(Action statement, Type exceptionType)
@@ -127,11 +126,11 @@ namespace JJ.Framework.Testing
 			}
 			catch (Exception ex)
 			{
-				Assert.AreEqual(exceptionType, ex.GetType());
+				AreEqual(exceptionType, () => ex.GetType());
 				return;
 			}
 
-			throw new AssertFailedException("An exception should have occurred.");
+			throw new Exception("An exception should have occurred.");
 		}
 
 		public static void ThrowsException(Action statement, Type exceptionType, string expectedMessage)
@@ -145,12 +144,12 @@ namespace JJ.Framework.Testing
 			}
 			catch (Exception ex)
 			{
-				Assert.AreEqual(exceptionType, ex.GetType());
-				Assert.AreEqual(expectedMessage, ex.Message);
+				AreEqual(exceptionType, () => ex.GetType());
+				AreEqual(expectedMessage, () => ex.Message);
 				return;
 			}
 
-			throw new AssertFailedException("An exception should have occurred.");
+			throw new Exception("An exception should have occurred.");
 		}
 
 		public static void ThrowsException<TException>(Action statement)
@@ -166,17 +165,18 @@ namespace JJ.Framework.Testing
 		public static void ThrowsExceptionOnOtherThread(Action statement)
 		{
 			bool exceptionWasThrown = false;
-			var action = new Action(() =>
-			{
-				try
+			var action = new Action(
+				() =>
 				{
-					statement();
-				}
-				catch
-				{
-					exceptionWasThrown = true;
-				}
-			});
+					try
+					{
+						statement();
+					}
+					catch
+					{
+						exceptionWasThrown = true;
+					}
+				});
 
 			var threadStart = new ThreadStart(action);
 			var thread = new Thread(threadStart);
@@ -185,7 +185,7 @@ namespace JJ.Framework.Testing
 
 			if (!exceptionWasThrown)
 			{
-				throw new AssertFailedException("An exception should have occurred.");
+				throw new Exception("An exception should have occurred.");
 			}
 		}
 
@@ -199,7 +199,7 @@ namespace JJ.Framework.Testing
 				string name = ExpressionHelper.GetText(actualExpression);
 				string message = TestHelper.FormatTestedPropertyMessage(name);
 				string fullMessage = GetExpectedActualMessage(methodName, expected, actual, message);
-				throw new AssertFailedException(fullMessage);
+				throw new Exception(fullMessage);
 			}
 		}
 
@@ -213,33 +213,25 @@ namespace JJ.Framework.Testing
 				string name = ExpressionHelper.GetText(expression);
 				string message = TestHelper.FormatTestedPropertyMessage(name);
 				string fullMessage = GetFailureMessage(methodName, message);
-				throw new AssertFailedException(fullMessage);
+				throw new Exception(fullMessage);
 			}
 		}
 
 		// Messages
 
-		private static string GetNotEqualFailedMessage<T>(T a, string message)
-		{
-			return
-				// ReSharper disable once UseStringInterpolation
-				string.Format("Assert.NotEqual failed. Both values are <{0}>.{1}{2}",
-					a != null ? a.ToString() : "null",
-					!string.IsNullOrEmpty(message) ? " " : "",
-					message);
-		}
+		private static string GetNotEqualFailedMessage<T>(T a, string message) => string.Format(
+			"Assert.NotEqual failed. Both values are <{0}>.{1}{2}",
+			a != null ? a.ToString() : "null",
+			!string.IsNullOrEmpty(message) ? " " : "",
+			message);
 
-		private static string GetExpectedActualMessage<T>(string methodName, T expected, T actual, string message)
-		{
-			return
-				// ReSharper disable once UseStringInterpolation
-				string.Format("Assert.{0} failed. Expected <{1}>, Actual <{2}>.{3}{4}",
-					methodName,
-					expected != null ? expected.ToString() : "null",
-					actual != null ? actual.ToString() : "null",
-					!string.IsNullOrEmpty(message) ? " " : "",
-					message);
-		}
+		private static string GetExpectedActualMessage<T>(string methodName, T expected, T actual, string message) => string.Format(
+			"Assert.{0} failed. Expected <{1}>, Actual <{2}>.{3}{4}",
+			methodName,
+			expected != null ? expected.ToString() : "null",
+			actual != null ? actual.ToString() : "null",
+			!string.IsNullOrEmpty(message) ? " " : "",
+			message);
 
 		private static string GetFailureMessage(string methodName, string message)
 		{

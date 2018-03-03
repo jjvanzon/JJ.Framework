@@ -13,7 +13,7 @@ namespace JJ.Framework.Testing.Tests
 		}
 
 		[TestMethod]
-		[ExpectedException(typeof(AssertFailedException))]
+		[ExpectedException(typeof(Exception))]
 		public void Test_ThrowsException_WithNoException()
 		{
 			AssertHelper.ThrowsException(() => { });
