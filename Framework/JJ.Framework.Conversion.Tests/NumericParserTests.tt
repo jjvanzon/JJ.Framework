@@ -5,7 +5,7 @@
 <#@ output extension=".cs" #>
 
 <#
-	string[] numericTypeNames = { "Double", "Int32" };
+	string[] numericTypeNames = { "Decimal", "Double", "Int16", "Int32", "Int64", "Single"};
 #>
 
 using System;
@@ -44,6 +44,11 @@ namespace JJ.Framework.Conversion.Tests
 
 			protected override <#= numType #>? ParseNullable(string str, NumberStyles styles, IFormatProvider provider) 
 				=> <#= numType #>Parser.ParseNullable(str, styles, provider);
+				
+			protected override NumberStyles GetDefaultNumberStyles() => <#= numType #>Parser.DEFAULT_NUMBER_STYLES;
+
+			[TestMethod]
+			public void Test_<#= numType #>Parser_DEFAULT_NUMBER_STYLES() => Test_DEFAULT_NUMBER_STYLES();
 				
 			[TestMethod]
 			public void Test_<#= numType #>Parser_TryParse_NotNullable_HasValue_WithFormatProvider() => Test_TryParse_NotNullable_HasValue_WithFormatProvider();

@@ -15,6 +15,7 @@ namespace JJ.Framework.Conversion.Tests
 		private static readonly CultureInfo _nlNLCulture = new CultureInfo("nl-NL");
 		private static readonly CultureInfo _enUSCulture = new CultureInfo("en-US");
 
+		protected abstract NumberStyles NormalNumberStyles { get; }
 		protected abstract string NormalNumberStringEnUS { get; }
 		protected abstract string NormalNumberStringNlNL { get; }
 		protected abstract T NormalNumber { get; }
@@ -24,6 +25,7 @@ namespace JJ.Framework.Conversion.Tests
 		protected abstract string NumberWithSpecialNumberStylesStringNlNL { get; }
 		protected abstract T NumberWithSpecialNumberStyles { get; }
 
+		protected abstract NumberStyles GetDefaultNumberStyles();
 		protected abstract bool TryParse(string str, out T? number);
 		protected abstract bool TryParse(string str, NumberStyles styles, out T? number);
 		protected abstract bool TryParse(string str, IFormatProvider provider, out T number);
@@ -33,6 +35,11 @@ namespace JJ.Framework.Conversion.Tests
 		protected abstract T? ParseNullable(string str, NumberStyles styles);
 		protected abstract T? ParseNullable(string str, IFormatProvider provider);
 		protected abstract T? ParseNullable(string str, NumberStyles styles, IFormatProvider provider);
+
+		protected void Test_DEFAULT_NUMBER_STYLES()
+		{
+			AssertHelper.AreEqual(NormalNumberStyles, () => GetDefaultNumberStyles());
+		}
 
 		protected void Test_TryParse_NotNullable_HasValue_WithFormatProvider()
 		{

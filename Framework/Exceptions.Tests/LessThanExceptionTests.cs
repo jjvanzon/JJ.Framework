@@ -1,4 +1,4 @@
-﻿// NOTE: This code file is used as a base for the code generated in ComparativeExceptionTests.
+﻿// NOTE: This code file is used as a base for the code generated in ComparativeExceptionTests.tt.
 
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿// NOTE: This code file is used as a base for the code generated in NumericParsers.tt.
+
+using System;
 using System.Globalization;
 using JJ.Framework.Common;
 

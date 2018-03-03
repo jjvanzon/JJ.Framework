@@ -52,6 +52,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DecimalParserTests.cs" />
+    <Compile Include="Int16ParserTests.cs" />
+    <Compile Include="Int64ParserTests.cs" />
+    <Compile Include="SingleParserTests.cs" />
     <Compile Include="NumericParserTests.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

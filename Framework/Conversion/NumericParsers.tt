@@ -1,0 +1,140 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ output extension=".cs" #>
+
+<#
+	(string, string)[] numericTypeNames = 
+	{
+		// NOTE: DoubleParser is the hand-written class, upon which this code generation template is based.
+		//("Double", "NumberStyles.Any"), 
+		("Decimal", "NumberStyles.Number"),
+		("Int16", "NumberStyles.Integer"),
+		("Int32", "NumberStyles.Integer"),
+		("Int64", "NumberStyles.Integer"),
+		("Single", "NumberStyles.Any"),
+	};
+#>
+
+using System;
+using System.Globalization;
+using JJ.Framework.Common;
+
+namespace JJ.Framework.Conversion
+{
+	<# foreach ((string numType, string defaultNumberStyles) in numericTypeNames) { #>
+
+		/// <summary>
+		/// For instance making it easier to parse nullable <#=numType#>.
+		/// Static classes cannot get extension members.
+		/// Otherwise these would have been extensions.
+		/// Instead we have the <#=numType#>Parser class for extra static members.
+		/// </summary>
+		public static class <#=numType#>Parser
+		{
+			public const NumberStyles DEFAULT_NUMBER_STYLES = <#= defaultNumberStyles #>;
+
+			private static CultureInfo GetCurrentFormatProvider() => CultureHelper.GetCurrentCulture();
+
+			/// <summary>
+			/// If you want to use <#=numType#>.TryParse with a format provider,
+			/// then you are obliged to also pass NumberStyles.
+			/// If you ever wonder what NumberStyles to pass,
+			/// just call this method instead. It will mimic the default behavior of TryParse.
+			/// </summary>
+			public static bool TryParse(string s, IFormatProvider provider, out <#=numType#> result)
+				=> <#=numType#>.TryParse(s, DEFAULT_NUMBER_STYLES, provider, out result);
+
+			/// <summary> Parses a nullable <#=numType#>. </summary>
+			public static bool TryParse(string input, IFormatProvider provider, out <#=numType#>? output)
+				=> TryParse(input, DEFAULT_NUMBER_STYLES, provider, out output);
+
+			/// <summary> Parses a nullable <#=numType#>. </summary>
+			public static bool TryParse(string input, NumberStyles style, out <#=numType#>? output)
+				=> TryParse(input, style, GetCurrentFormatProvider(), out output);
+
+			/// <summary> Parses a nullable <#=numType#>. </summary>
+			public static bool TryParse(string input, out <#=numType#>? output)
+			{
+				output = default;
+
+				if (string.IsNullOrWhiteSpace(input))
+				{
+					return true;
+				}
+
+				bool result = <#=numType#>.TryParse(input, out <#=numType#> temp);
+				if (!result)
+				{
+					return false;
+				}
+
+				output = temp;
+
+				return true;
+			}
+
+			/// <summary> Parses a nullable <#=numType#>. </summary>
+			public static bool TryParse(string input, NumberStyles style, IFormatProvider provider, out <#=numType#>? output)
+			{
+				output = default;
+
+				if (string.IsNullOrWhiteSpace(input))
+				{
+					return true;
+				}
+
+				bool result = <#=numType#>.TryParse(input, style, provider, out <#=numType#> temp);
+				if (!result)
+				{
+					return false;
+				}
+
+				output = temp;
+
+				return true;
+			}
+
+			public static <#=numType#>? ParseNullable(string input)
+			{
+				if (string.IsNullOrWhiteSpace(input))
+				{
+					return null;
+				}
+
+				return <#=numType#>.Parse(input);
+			}
+
+			public static <#=numType#>? ParseNullable(string input, NumberStyles style)
+			{
+				if (string.IsNullOrWhiteSpace(input))
+				{
+					return null;
+				}
+
+				return <#=numType#>.Parse(input, style, GetCurrentFormatProvider());
+			}
+
+			public static <#=numType#>? ParseNullable(string input, NumberStyles style, IFormatProvider provider)
+			{
+				if (string.IsNullOrWhiteSpace(input))
+				{
+					return null;
+				}
+
+				return <#=numType#>.Parse(input, style, provider);
+			}
+
+			public static <#=numType#>? ParseNullable(string input, IFormatProvider provider)
+			{
+				if (string.IsNullOrWhiteSpace(input))
+				{
+					return null;
+				}
+
+				return <#=numType#>.Parse(input, DEFAULT_NUMBER_STYLES, provider);
+			}
+		}
+
+	<# } #>
+
+}
