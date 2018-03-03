@@ -103,6 +103,7 @@ namespace JJ.Framework.Conversion.Tests
 					bool success = TryParse(INVALID_NUMBER, SpecialNumberStyles, out T? number);
 
 					AssertHelper.IsFalse(() => success);
+					AssertHelper.IsNull(() => number);
 				});
 		}
 
@@ -136,9 +137,10 @@ namespace JJ.Framework.Conversion.Tests
 			WithEnUSCulture(
 				() =>
 				{
-					bool success = TryParse(WHITE_SPACE, _nlNLCulture, out T? number);
+					bool success = TryParse(INVALID_NUMBER, _nlNLCulture, out T? number);
 
 					AssertHelper.IsFalse(() => success);
+					AssertHelper.IsNull(() => number);
 				});
 		}
 
@@ -175,6 +177,7 @@ namespace JJ.Framework.Conversion.Tests
 					bool success = TryParse(INVALID_NUMBER, SpecialNumberStyles, _nlNLCulture, out T? number);
 
 					AssertHelper.IsFalse(() => success);
+					AssertHelper.IsNull(() => number);
 				});
 		}
 

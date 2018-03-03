@@ -33,10 +33,16 @@ namespace JJ.Framework.Conversion.Tests
 			public void Test_DoubleParser_TryParse_Nullable_IsNull() => Test_TryParse_Nullable_IsNull();
 
 			[TestMethod]
+			public void Test_DoubleParser_TryParse_Nullable_IsInvalid() => Test_TryParse_Nullable_IsInvalid();
+
+			[TestMethod]
 			public void Test_DoubleParser_TryParse_Nullable_HasValue_WithNumberStyles() => Test_TryParse_Nullable_HasValue_WithNumberStyles();
 
 			[TestMethod]
 			public void Test_DoubleParser_TryParse_Nullable_IsNull_WithNumberStyles() => Test_TryParse_Nullable_IsNull_WithNumberStyles();
+
+			[TestMethod]
+			public void Test_DoubleParser_TryParse_Nullable_IsInvalid_WithNumberStyles() => Test_TryParse_Nullable_IsInvalid_WithNumberStyles();
 
 			[TestMethod]
 			public void Test_DoubleParser_TryParse_Nullable_HasValue_WithFormatProvider() 
@@ -45,6 +51,10 @@ namespace JJ.Framework.Conversion.Tests
 			[TestMethod]
 			public void Test_DoubleParser_TryParse_Nullable_IsNull_WithFormatProvider() 
 				=> Test_TryParse_Nullable_IsNull_WithFormatProvider();
+				
+			[TestMethod]
+			public void Test_DoubleParser_TryParse_Nullable_IsInvalid_WithFormatProvider() 
+				=> Test_TryParse_Nullable_IsInvalid_WithFormatProvider();
 
 			[TestMethod]
 			public void Test_DoubleParser_TryParse_Nullable_HasValue_WithNumberStyles_AndFormatProvider() 
@@ -53,6 +63,10 @@ namespace JJ.Framework.Conversion.Tests
 			[TestMethod]
 			public void Test_DoubleParser_TryParse_Nullable_IsNull_WithNumberStyles_AndFormatProvider() 
 				=> Test_TryParse_Nullable_IsNull_WithNumberStyles_AndFormatProvider();
+
+			[TestMethod]
+			public void Test_DoubleParser_TryParse_Nullable_IsInvalid_WithNumberStyles_AndFormatProvider() 
+				=> Test_TryParse_Nullable_IsInvalid_WithNumberStyles_AndFormatProvider();
 
 			[TestMethod]
 			public void Test_DoubleParser_ParseNullable_HasValue() => Test_ParseNullable_HasValue();
@@ -108,10 +122,16 @@ namespace JJ.Framework.Conversion.Tests
 			public void Test_Int32Parser_TryParse_Nullable_IsNull() => Test_TryParse_Nullable_IsNull();
 
 			[TestMethod]
+			public void Test_Int32Parser_TryParse_Nullable_IsInvalid() => Test_TryParse_Nullable_IsInvalid();
+
+			[TestMethod]
 			public void Test_Int32Parser_TryParse_Nullable_HasValue_WithNumberStyles() => Test_TryParse_Nullable_HasValue_WithNumberStyles();
 
 			[TestMethod]
 			public void Test_Int32Parser_TryParse_Nullable_IsNull_WithNumberStyles() => Test_TryParse_Nullable_IsNull_WithNumberStyles();
+
+			[TestMethod]
+			public void Test_Int32Parser_TryParse_Nullable_IsInvalid_WithNumberStyles() => Test_TryParse_Nullable_IsInvalid_WithNumberStyles();
 
 			[TestMethod]
 			public void Test_Int32Parser_TryParse_Nullable_HasValue_WithFormatProvider() 
@@ -120,6 +140,10 @@ namespace JJ.Framework.Conversion.Tests
 			[TestMethod]
 			public void Test_Int32Parser_TryParse_Nullable_IsNull_WithFormatProvider() 
 				=> Test_TryParse_Nullable_IsNull_WithFormatProvider();
+				
+			[TestMethod]
+			public void Test_Int32Parser_TryParse_Nullable_IsInvalid_WithFormatProvider() 
+				=> Test_TryParse_Nullable_IsInvalid_WithFormatProvider();
 
 			[TestMethod]
 			public void Test_Int32Parser_TryParse_Nullable_HasValue_WithNumberStyles_AndFormatProvider() 
@@ -128,6 +152,10 @@ namespace JJ.Framework.Conversion.Tests
 			[TestMethod]
 			public void Test_Int32Parser_TryParse_Nullable_IsNull_WithNumberStyles_AndFormatProvider() 
 				=> Test_TryParse_Nullable_IsNull_WithNumberStyles_AndFormatProvider();
+
+			[TestMethod]
+			public void Test_Int32Parser_TryParse_Nullable_IsInvalid_WithNumberStyles_AndFormatProvider() 
+				=> Test_TryParse_Nullable_IsInvalid_WithNumberStyles_AndFormatProvider();
 
 			[TestMethod]
 			public void Test_Int32Parser_ParseNullable_HasValue() => Test_ParseNullable_HasValue();
