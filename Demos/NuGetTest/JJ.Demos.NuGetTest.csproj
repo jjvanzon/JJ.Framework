@@ -35,23 +35,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JJ.Framework.Common, Version=1.0.6633.33247, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Common.1.0.6633.33247\lib\Net45\JJ.Framework.Common.dll</HintPath>
+    <Reference Include="JJ.Framework.Common, Version=1.0.6636.31308, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.1.0.6636.31308\lib\net45\JJ.Framework.Common.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Conversion, Version=1.0.6636.31799, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Conversion.1.0.6636.31799\lib\net45\JJ.Framework.Conversion.dll</HintPath>
+    <Reference Include="JJ.Framework.Conversion, Version=1.0.6636.32245, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Conversion.1.0.6636.32245\lib\net45\JJ.Framework.Conversion.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Exceptions, Version=1.0.6636.153, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Exceptions.1.0.6636.153\lib\net45\JJ.Framework.Exceptions.dll</HintPath>
+    <Reference Include="JJ.Framework.Exceptions, Version=1.0.6636.31311, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Exceptions.1.0.6636.31311\lib\net45\JJ.Framework.Exceptions.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.PlatformCompatibility, Version=1.0.6632.37409, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.1.0.6632.37409\lib\net45\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    <Reference Include="JJ.Framework.PlatformCompatibility, Version=1.0.6633.34565, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.1.0.6633.34565\lib\Net45\JJ.Framework.PlatformCompatibility.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Reflection, Version=1.0.6633.34565, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Reflection.1.0.6633.34565\lib\Net45\JJ.Framework.Reflection.dll</HintPath>
+    <Reference Include="JJ.Framework.Reflection, Version=1.0.6633.36153, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.1.0.6633.36153\lib\Net45\JJ.Framework.Reflection.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Text, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Text.1.0.0\lib\net45\JJ.Framework.Text.dll</HintPath>
+    <Reference Include="JJ.Framework.Text, Version=1.0.6633.36116, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Text.1.0.6633.36116\lib\Net45\JJ.Framework.Text.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />

@@ -1,22 +1,34 @@
 ﻿using System;
-using System.Globalization;
+using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Conversion
 {
+	/// <summary> Makes it easier to convert simple types. </summary>
 	public static class SimpleTypeConverter
 	{
-		private static readonly CultureInfo _defaultFormatProvider = new CultureInfo("en-US");
+		/// <summary>
+		/// One method to parse numeric types, their signed and unsigned variations, DateTime, TimeSpan, Guid and Enum types, IntPtr, UIntPtr 
+		/// and their nullable variations. Those often require different types of conversions. This method just takes care of it.
+		/// </summary>
+		public static T ParseValue<T>(string input) => ParseValue<T>(input, CultureHelper.GetCurrentCulture());
 
-		public static T ParseValue<T>(string input) => ParseValue<T>(input, _defaultFormatProvider);
+		/// <summary>
+		/// One method to parse numeric types, their signed and unsigned variations, DateTime, TimeSpan, Guid and Enum types, IntPtr, UIntPtr 
+		/// and their nullable variations. Those often require different types of conversions. This method just takes care of it.
+		/// </summary>
+		public static T ParseValue<T>(string input, IFormatProvider formatProvider) => (T)ParseValue(input, typeof(T), formatProvider);
 
-		public static T ParseValue<T>(string input, IFormatProvider formatProvider)
-		{
-			return (T)ParseValue(input, typeof(T), formatProvider);
-		}
-		
-		public static object ParseValue(string input, Type type) => ParseValue(input, type, _defaultFormatProvider);
+		/// <summary>
+		/// One method to parse numeric types, their signed and unsigned variations, DateTime, TimeSpan, Guid and Enum types, IntPtr, UIntPtr 
+		/// and their nullable variations. Those often require different types of conversions. This method just takes care of it.
+		/// </summary>
+		public static object ParseValue(string input, Type type) => ParseValue(input, type, CultureHelper.GetCurrentCulture());
 
+		/// <summary>
+		/// One method to parse numeric types, their signed and unsigned variations, DateTime, TimeSpan, Guid and Enum types, IntPtr, UIntPtr 
+		/// and their nullable variations. Those often require different types of conversions. This method just takes care of it.
+		/// </summary>
 		public static object ParseValue(string input, Type type, IFormatProvider formatProvider)
 		{
 			if (formatProvider == null) throw new ArgumentNullException(nameof(formatProvider));
@@ -61,13 +73,14 @@ namespace JJ.Framework.Conversion
 			return Convert.ChangeType(input, type, formatProvider);
 		}
 
-		// ReSharper disable once UnusedMember.Global
+		/// <summary> Makes it easier to convert nullables along with non-nullables. </summary>
 		public static T ConvertValue<T>(object input)
 		{
 			var value = (T)ConvertValue(input, typeof(T));
 			return value;
 		}
 
+		/// <summary> Makes it easier to convert nullables along with non-nullables. </summary>
 		public static object ConvertValue(object input, Type type)
 		{
 			if (input == null)

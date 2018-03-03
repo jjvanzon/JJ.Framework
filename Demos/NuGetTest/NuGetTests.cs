@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using JJ.Framework.Common;
 using JJ.Framework.Conversion;
 using JJ.Framework.Exceptions;
 using JJ.Framework.PlatformCompatibility;
@@ -33,6 +34,13 @@ namespace JJ.Demos.NuGetTest
 		public void Test_NuGetReference_JJ_Framework_PlatformCompatibility()
 		{
 			CultureInfo result = CultureInfo_PlatformSafe.GetCultureInfo("nl-NL");
+		}
+
+		[TestMethod]
+		public void Test_NuGetReference_JJ_Framework_Common()
+		{
+			string cultureName =  CultureHelper.GetCurrentCultureName();
+			Assert.IsNotNull(cultureName);
 		}
 
 		[TestMethod]

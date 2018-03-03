@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Xml;
@@ -47,6 +48,7 @@ namespace JJ.Framework.Xml
 	public class XmlToObjectConverter<TDestObject>
 		where TDestObject: new()
 	{
+		private static readonly CultureInfo _formatProvider = new CultureInfo("en-US");
 		private static readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
 
 		public TDestObject Convert(byte[] data)
@@ -257,7 +259,7 @@ namespace JJ.Framework.Xml
 		private object ConvertLeafElement(XmlElement sourceElement, Type destType)
 		{
 			string sourceValue = sourceElement.InnerText;
-			object destValue = SimpleTypeConverter.ParseValue(sourceValue, destType);
+			object destValue = SimpleTypeConverter.ParseValue(sourceValue, destType, _formatProvider);
 			return destValue;
 		}
 
@@ -357,7 +359,7 @@ namespace JJ.Framework.Xml
 				return null;
 			}
 
-			object destValue = SimpleTypeConverter.ParseValue(sourceAttributeValue, destType);
+			object destValue = SimpleTypeConverter.ParseValue(sourceAttributeValue, destType, _formatProvider);
 			return destValue;
 		}
 
