@@ -51,7 +51,6 @@
     <Compile Include="StringHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="nugetpack.ps1" />
     <None Include="README.MD" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

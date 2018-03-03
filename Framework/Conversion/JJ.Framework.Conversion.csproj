@@ -35,6 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Release\JJ.Framework.Conversion.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -65,10 +66,10 @@
     <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="NumericParsers.tt">
+    <None Include="NumericParsers.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>NumericParsers.cs</LastGenOutput>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

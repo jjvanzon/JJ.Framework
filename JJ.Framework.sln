@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C18D0F96-E8CA-4146-9938-F05724612DC7}"
 	ProjectSection(SolutionItems) = preProject
 		LICENSE.TXT = LICENSE.TXT
+		Framework\nugetpack.ps1 = Framework\nugetpack.ps1
 		Framework\README.TXT = Framework\README.TXT
 		THIRD PARTY LICENSE.TXT = THIRD PARTY LICENSE.TXT
 	EndProjectSection

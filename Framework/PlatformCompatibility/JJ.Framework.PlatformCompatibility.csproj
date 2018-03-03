@@ -54,7 +54,6 @@
     <Compile Include="MemberTypes_PlatformSafe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="JJ.Framework.PlatformCompatibility.nuspec" />
-    <None Include="nugetpack.ps1" />
     <None Include="README.MD" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -38,6 +38,9 @@
     <Reference Include="JJ.Framework.Common, Version=1.0.6633.33247, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Common.1.0.6633.33247\lib\Net45\JJ.Framework.Common.dll</HintPath>
     </Reference>
+    <Reference Include="JJ.Framework.Conversion, Version=1.0.6636.31799, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Conversion.1.0.6636.31799\lib\net45\JJ.Framework.Conversion.dll</HintPath>
+    </Reference>
     <Reference Include="JJ.Framework.Exceptions, Version=1.0.6636.153, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Exceptions.1.0.6636.153\lib\net45\JJ.Framework.Exceptions.dll</HintPath>
     </Reference>
@@ -63,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

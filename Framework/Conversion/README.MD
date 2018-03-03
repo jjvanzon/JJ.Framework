@@ -1,6 +1,6 @@
 ﻿# JJ.Framework.Conversion
 
-Makes it easier to convert to simple types.
+Makes it easier to convert simple types.
 
 * `SimpleTypeConverter.ConvertValue`: Makes it easier to convert nullables along with non-nullables.
 * `SimpleTypeConverter.ParseValue`: One method to parse enums, TimeSpan, IntPtr, UIntPtr any other simple type and their nullable variations. Those often require different types of conversions. This method just takes care of it.

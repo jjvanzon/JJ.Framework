@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using JJ.Framework.Conversion;
 using JJ.Framework.Exceptions;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
@@ -59,6 +60,14 @@ namespace JJ.Demos.NuGetTest
 			}
 
 			Assert.Fail("An exception should have been thrown.");
+		}
+
+		[TestMethod]
+		public void Test_NuGetReference_JJ_Framework_Conversion()
+		{
+			string str = "1234";
+			int number = SimpleTypeConverter.ParseValue<int>(str);
+			Assert.AreEqual(1234, number);
 		}
 	}
 }

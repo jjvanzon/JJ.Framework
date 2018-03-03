@@ -99,7 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="JJ.Framework.Exceptions.nuspec" />
-    <None Include="nugetpack.ps1" />
     <None Include="packages.config" />
     <None Include="README.MD" />
   </ItemGroup>
