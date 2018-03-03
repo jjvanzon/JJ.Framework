@@ -34,28 +34,11 @@ namespace JJ.Framework.Conversion
 
 			/// <summary> Parses a nullable Decimal. </summary>
 			public static bool TryParse(string input, NumberStyles style, out Decimal? output)
-				=> TryParse(input, style, GetCurrentFormatProvider(), out output);
+				=> TryParse(input, style, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable Decimal. </summary>
 			public static bool TryParse(string input, out Decimal? output)
-			{
-				output = default;
-
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return true;
-				}
-
-				bool result = Decimal.TryParse(input, out Decimal temp);
-				if (!result)
-				{
-					return false;
-				}
-
-				output = temp;
-
-				return true;
-			}
+				=> TryParse(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable Decimal. </summary>
 			public static bool TryParse(string input, NumberStyles style, IFormatProvider provider, out Decimal? output)
@@ -79,24 +62,13 @@ namespace JJ.Framework.Conversion
 			}
 
 			public static Decimal? ParseNullable(string input)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				return Decimal.Parse(input);
-			}
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo);
 
 			public static Decimal? ParseNullable(string input, NumberStyles style)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
+				=> ParseNullable(input, style, NumberFormatInfo.CurrentInfo);
 
-				return Decimal.Parse(input, style, GetCurrentFormatProvider());
-			}
+			public static Decimal? ParseNullable(string input, IFormatProvider provider)
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, provider);
 
 			public static Decimal? ParseNullable(string input, NumberStyles style, IFormatProvider provider)
 			{
@@ -107,15 +79,80 @@ namespace JJ.Framework.Conversion
 
 				return Decimal.Parse(input, style, provider);
 			}
+		}
 
-			public static Decimal? ParseNullable(string input, IFormatProvider provider)
+	
+		/// <summary>
+		/// For instance making it easier to parse nullable Double.
+		/// Static classes cannot get extension members.
+		/// Otherwise these would have been extensions.
+		/// Instead we have the DoubleParser class for extra static members.
+		/// </summary>
+		public static class DoubleParser
+		{
+			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Any;
+
+			private static CultureInfo GetCurrentFormatProvider() => CultureHelper.GetCurrentCulture();
+
+			/// <summary>
+			/// If you want to use Double.TryParse with a format provider,
+			/// then you are obliged to also pass NumberStyles.
+			/// If you ever wonder what NumberStyles to pass,
+			/// just call this method instead. It will mimic the default behavior of TryParse.
+			/// </summary>
+			public static bool TryParse(string s, IFormatProvider provider, out Double result)
+				=> Double.TryParse(s, DEFAULT_NUMBER_STYLES, provider, out result);
+
+			/// <summary> Parses a nullable Double. </summary>
+			public static bool TryParse(string input, IFormatProvider provider, out Double? output)
+				=> TryParse(input, DEFAULT_NUMBER_STYLES, provider, out output);
+
+			/// <summary> Parses a nullable Double. </summary>
+			public static bool TryParse(string input, NumberStyles style, out Double? output)
+				=> TryParse(input, style, NumberFormatInfo.CurrentInfo, out output);
+
+			/// <summary> Parses a nullable Double. </summary>
+			public static bool TryParse(string input, out Double? output)
+				=> TryParse(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo, out output);
+
+			/// <summary> Parses a nullable Double. </summary>
+			public static bool TryParse(string input, NumberStyles style, IFormatProvider provider, out Double? output)
+			{
+				output = default;
+
+				if (string.IsNullOrWhiteSpace(input))
+				{
+					return true;
+				}
+
+				bool result = Double.TryParse(input, style, provider, out Double temp);
+				if (!result)
+				{
+					return false;
+				}
+
+				output = temp;
+
+				return true;
+			}
+
+			public static Double? ParseNullable(string input)
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo);
+
+			public static Double? ParseNullable(string input, NumberStyles style)
+				=> ParseNullable(input, style, NumberFormatInfo.CurrentInfo);
+
+			public static Double? ParseNullable(string input, IFormatProvider provider)
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, provider);
+
+			public static Double? ParseNullable(string input, NumberStyles style, IFormatProvider provider)
 			{
 				if (string.IsNullOrWhiteSpace(input))
 				{
 					return null;
 				}
 
-				return Decimal.Parse(input, DEFAULT_NUMBER_STYLES, provider);
+				return Double.Parse(input, style, provider);
 			}
 		}
 
@@ -147,28 +184,11 @@ namespace JJ.Framework.Conversion
 
 			/// <summary> Parses a nullable Int16. </summary>
 			public static bool TryParse(string input, NumberStyles style, out Int16? output)
-				=> TryParse(input, style, GetCurrentFormatProvider(), out output);
+				=> TryParse(input, style, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable Int16. </summary>
 			public static bool TryParse(string input, out Int16? output)
-			{
-				output = default;
-
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return true;
-				}
-
-				bool result = Int16.TryParse(input, out Int16 temp);
-				if (!result)
-				{
-					return false;
-				}
-
-				output = temp;
-
-				return true;
-			}
+				=> TryParse(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable Int16. </summary>
 			public static bool TryParse(string input, NumberStyles style, IFormatProvider provider, out Int16? output)
@@ -192,24 +212,13 @@ namespace JJ.Framework.Conversion
 			}
 
 			public static Int16? ParseNullable(string input)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				return Int16.Parse(input);
-			}
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo);
 
 			public static Int16? ParseNullable(string input, NumberStyles style)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
+				=> ParseNullable(input, style, NumberFormatInfo.CurrentInfo);
 
-				return Int16.Parse(input, style, GetCurrentFormatProvider());
-			}
+			public static Int16? ParseNullable(string input, IFormatProvider provider)
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, provider);
 
 			public static Int16? ParseNullable(string input, NumberStyles style, IFormatProvider provider)
 			{
@@ -219,16 +228,6 @@ namespace JJ.Framework.Conversion
 				}
 
 				return Int16.Parse(input, style, provider);
-			}
-
-			public static Int16? ParseNullable(string input, IFormatProvider provider)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				return Int16.Parse(input, DEFAULT_NUMBER_STYLES, provider);
 			}
 		}
 
@@ -260,28 +259,11 @@ namespace JJ.Framework.Conversion
 
 			/// <summary> Parses a nullable Int32. </summary>
 			public static bool TryParse(string input, NumberStyles style, out Int32? output)
-				=> TryParse(input, style, GetCurrentFormatProvider(), out output);
+				=> TryParse(input, style, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable Int32. </summary>
 			public static bool TryParse(string input, out Int32? output)
-			{
-				output = default;
-
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return true;
-				}
-
-				bool result = Int32.TryParse(input, out Int32 temp);
-				if (!result)
-				{
-					return false;
-				}
-
-				output = temp;
-
-				return true;
-			}
+				=> TryParse(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable Int32. </summary>
 			public static bool TryParse(string input, NumberStyles style, IFormatProvider provider, out Int32? output)
@@ -305,24 +287,13 @@ namespace JJ.Framework.Conversion
 			}
 
 			public static Int32? ParseNullable(string input)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				return Int32.Parse(input);
-			}
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo);
 
 			public static Int32? ParseNullable(string input, NumberStyles style)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
+				=> ParseNullable(input, style, NumberFormatInfo.CurrentInfo);
 
-				return Int32.Parse(input, style, GetCurrentFormatProvider());
-			}
+			public static Int32? ParseNullable(string input, IFormatProvider provider)
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, provider);
 
 			public static Int32? ParseNullable(string input, NumberStyles style, IFormatProvider provider)
 			{
@@ -332,16 +303,6 @@ namespace JJ.Framework.Conversion
 				}
 
 				return Int32.Parse(input, style, provider);
-			}
-
-			public static Int32? ParseNullable(string input, IFormatProvider provider)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				return Int32.Parse(input, DEFAULT_NUMBER_STYLES, provider);
 			}
 		}
 
@@ -373,28 +334,11 @@ namespace JJ.Framework.Conversion
 
 			/// <summary> Parses a nullable Int64. </summary>
 			public static bool TryParse(string input, NumberStyles style, out Int64? output)
-				=> TryParse(input, style, GetCurrentFormatProvider(), out output);
+				=> TryParse(input, style, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable Int64. </summary>
 			public static bool TryParse(string input, out Int64? output)
-			{
-				output = default;
-
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return true;
-				}
-
-				bool result = Int64.TryParse(input, out Int64 temp);
-				if (!result)
-				{
-					return false;
-				}
-
-				output = temp;
-
-				return true;
-			}
+				=> TryParse(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable Int64. </summary>
 			public static bool TryParse(string input, NumberStyles style, IFormatProvider provider, out Int64? output)
@@ -418,24 +362,13 @@ namespace JJ.Framework.Conversion
 			}
 
 			public static Int64? ParseNullable(string input)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				return Int64.Parse(input);
-			}
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo);
 
 			public static Int64? ParseNullable(string input, NumberStyles style)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
+				=> ParseNullable(input, style, NumberFormatInfo.CurrentInfo);
 
-				return Int64.Parse(input, style, GetCurrentFormatProvider());
-			}
+			public static Int64? ParseNullable(string input, IFormatProvider provider)
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, provider);
 
 			public static Int64? ParseNullable(string input, NumberStyles style, IFormatProvider provider)
 			{
@@ -445,16 +378,6 @@ namespace JJ.Framework.Conversion
 				}
 
 				return Int64.Parse(input, style, provider);
-			}
-
-			public static Int64? ParseNullable(string input, IFormatProvider provider)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				return Int64.Parse(input, DEFAULT_NUMBER_STYLES, provider);
 			}
 		}
 
@@ -486,28 +409,11 @@ namespace JJ.Framework.Conversion
 
 			/// <summary> Parses a nullable Single. </summary>
 			public static bool TryParse(string input, NumberStyles style, out Single? output)
-				=> TryParse(input, style, GetCurrentFormatProvider(), out output);
+				=> TryParse(input, style, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable Single. </summary>
 			public static bool TryParse(string input, out Single? output)
-			{
-				output = default;
-
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return true;
-				}
-
-				bool result = Single.TryParse(input, out Single temp);
-				if (!result)
-				{
-					return false;
-				}
-
-				output = temp;
-
-				return true;
-			}
+				=> TryParse(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable Single. </summary>
 			public static bool TryParse(string input, NumberStyles style, IFormatProvider provider, out Single? output)
@@ -531,24 +437,13 @@ namespace JJ.Framework.Conversion
 			}
 
 			public static Single? ParseNullable(string input)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				return Single.Parse(input);
-			}
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo);
 
 			public static Single? ParseNullable(string input, NumberStyles style)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
+				=> ParseNullable(input, style, NumberFormatInfo.CurrentInfo);
 
-				return Single.Parse(input, style, GetCurrentFormatProvider());
-			}
+			public static Single? ParseNullable(string input, IFormatProvider provider)
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, provider);
 
 			public static Single? ParseNullable(string input, NumberStyles style, IFormatProvider provider)
 			{
@@ -558,16 +453,6 @@ namespace JJ.Framework.Conversion
 				}
 
 				return Single.Parse(input, style, provider);
-			}
-
-			public static Single? ParseNullable(string input, IFormatProvider provider)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				return Single.Parse(input, DEFAULT_NUMBER_STYLES, provider);
 			}
 		}
 

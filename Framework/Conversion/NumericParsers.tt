@@ -5,9 +5,8 @@
 <#
 	(string, string)[] numericTypeNames = 
 	{
-		// NOTE: DoubleParser is the hand-written class, upon which this code generation template is based.
-		//("Double", "NumberStyles.Any"), 
 		("Decimal", "NumberStyles.Number"),
+		("Double", "NumberStyles.Any"), 
 		("Int16", "NumberStyles.Integer"),
 		("Int32", "NumberStyles.Integer"),
 		("Int64", "NumberStyles.Integer"),
@@ -50,28 +49,11 @@ namespace JJ.Framework.Conversion
 
 			/// <summary> Parses a nullable <#=numType#>. </summary>
 			public static bool TryParse(string input, NumberStyles style, out <#=numType#>? output)
-				=> TryParse(input, style, GetCurrentFormatProvider(), out output);
+				=> TryParse(input, style, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable <#=numType#>. </summary>
 			public static bool TryParse(string input, out <#=numType#>? output)
-			{
-				output = default;
-
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return true;
-				}
-
-				bool result = <#=numType#>.TryParse(input, out <#=numType#> temp);
-				if (!result)
-				{
-					return false;
-				}
-
-				output = temp;
-
-				return true;
-			}
+				=> TryParse(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo, out output);
 
 			/// <summary> Parses a nullable <#=numType#>. </summary>
 			public static bool TryParse(string input, NumberStyles style, IFormatProvider provider, out <#=numType#>? output)
@@ -95,24 +77,13 @@ namespace JJ.Framework.Conversion
 			}
 
 			public static <#=numType#>? ParseNullable(string input)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				return <#=numType#>.Parse(input);
-			}
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, NumberFormatInfo.CurrentInfo);
 
 			public static <#=numType#>? ParseNullable(string input, NumberStyles style)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
+				=> ParseNullable(input, style, NumberFormatInfo.CurrentInfo);
 
-				return <#=numType#>.Parse(input, style, GetCurrentFormatProvider());
-			}
+			public static <#=numType#>? ParseNullable(string input, IFormatProvider provider)
+				=> ParseNullable(input, DEFAULT_NUMBER_STYLES, provider);
 
 			public static <#=numType#>? ParseNullable(string input, NumberStyles style, IFormatProvider provider)
 			{
@@ -122,16 +93,6 @@ namespace JJ.Framework.Conversion
 				}
 
 				return <#=numType#>.Parse(input, style, provider);
-			}
-
-			public static <#=numType#>? ParseNullable(string input, IFormatProvider provider)
-			{
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				return <#=numType#>.Parse(input, DEFAULT_NUMBER_STYLES, provider);
 			}
 		}
 

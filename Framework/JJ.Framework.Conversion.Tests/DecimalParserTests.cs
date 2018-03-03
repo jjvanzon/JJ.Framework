@@ -11,7 +11,6 @@ namespace JJ.Framework.Conversion.Tests
 		protected override string NormalNumberStringNlNL => "11,1";
 		protected override decimal NormalNumber => 11.1m;
 
-		// Can't seem to think of number styles that decimal conversion wouldn't normally take.
 		protected override NumberStyles SpecialNumberStyles => NumberStyles.Any;
 		protected override string NumberWithSpecialNumberStylesStringEnUS => "1.11E1";
 		protected override string NumberWithSpecialNumberStylesStringNlNL => "1,11E1";

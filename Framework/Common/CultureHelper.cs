@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Threading;
 
 namespace JJ.Framework.Common
@@ -20,5 +21,12 @@ namespace JJ.Framework.Common
 		public static CultureInfo GetCurrentCulture() => Thread.CurrentThread.CurrentCulture;
 
 		public static string GetCurrentCultureName() => Thread.CurrentThread.CurrentCulture.Name;
+
+		// ReSharper disable once UnusedParameter.Global
+		[Obsolete("Use SetCurrentCultureName instead.", true)]
+		public static void SetThreadCultureName(string cultureName)
+		{
+			throw new NotSupportedException("Use SetCurrentCultureName instead.");
+		}
 	}
 }
