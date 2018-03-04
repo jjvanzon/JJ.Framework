@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
+using JJ.Framework.Collections;
 using JJ.Framework.Common;
 using JJ.Framework.Conversion;
 using JJ.Framework.Exceptions;
@@ -25,7 +28,7 @@ namespace JJ.Demos.NuGetTest
 	{
 		private class Item
 		{
-			public Item Child { get; set; }
+			public Item Parent { get; set; }
 		}
 
 		[TestMethod]
@@ -52,8 +55,8 @@ namespace JJ.Demos.NuGetTest
 		public void Test_NuGetReference_JJ_Framework_Reflection()
 		{
 			var item = new Item();
-			string text = ExpressionHelper.GetText(() => item.Child.Child);
-			Assert.AreEqual("item.Child.Child", text);
+			string text = ExpressionHelper.GetText(() => item.Parent.Parent);
+			Assert.AreEqual("item.Parent.Parent", text);
 		}
 
 		[TestMethod]
@@ -62,12 +65,12 @@ namespace JJ.Demos.NuGetTest
 			var item = new Item();
 			try
 			{
-				throw new NullOrWhiteSpaceException(() => item.Child);
+				throw new NullOrWhiteSpaceException(() => item.Parent);
 			}
 			catch (Exception ex)
 			{
 				Assert.AreEqual(typeof(NullOrWhiteSpaceException), ex.GetType());
-				Assert.AreEqual("item.Child is null or white space.", ex.Message);
+				Assert.AreEqual("item.Parent is null or white space.", ex.Message);
 
 				return;
 			}
@@ -111,6 +114,14 @@ namespace JJ.Demos.NuGetTest
 					}
 				}
 			}
+		}
+
+		[TestMethod]
+		public void Test_NuGetReference_JJ_Framework_Collections()
+		{
+			var item = new Item { Parent = new Item() };
+
+			IList<Item> ancestorsAndSelf = item.SelfAndAncestors(x => x.Parent).ToArray();
 		}
 	}
 }

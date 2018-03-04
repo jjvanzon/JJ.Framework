@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JJ.Framework.Collections, Version=1.1.6637.34225, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Collections.1.1.6637.34225\lib\net45\JJ.Framework.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="JJ.Framework.Common, Version=1.1.0.31223, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Common.1.1.0.31223\lib\net45\JJ.Framework.Common.dll</HintPath>
     </Reference>
