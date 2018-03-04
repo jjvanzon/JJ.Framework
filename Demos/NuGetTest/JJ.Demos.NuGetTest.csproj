@@ -35,29 +35,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JJ.Framework.Common, Version=1.0.6636.31308, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Common.1.0.6636.31308\lib\net45\JJ.Framework.Common.dll</HintPath>
+    <Reference Include="JJ.Framework.Common, Version=1.1.0.31223, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.1.1.0.31223\lib\net45\JJ.Framework.Common.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Conversion, Version=1.0.6636.36531, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Conversion.1.0.6636.36531\lib\net45\JJ.Framework.Conversion.dll</HintPath>
+    <Reference Include="JJ.Framework.Conversion, Version=1.1.0.31224, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Conversion.1.1.0.31224\lib\net45\JJ.Framework.Conversion.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Exceptions, Version=1.0.6636.31311, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Exceptions.1.0.6636.31311\lib\net45\JJ.Framework.Exceptions.dll</HintPath>
+    <Reference Include="JJ.Framework.Exceptions, Version=1.1.0.31224, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Exceptions.1.1.0.31224\lib\net45\JJ.Framework.Exceptions.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.IO, Version=1.0.6636.39270, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.IO.1.0.6636.39270\lib\net45\JJ.Framework.IO.dll</HintPath>
+    <Reference Include="JJ.Framework.IO, Version=1.1.0.31224, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.IO.1.1.0.31224\lib\net45\JJ.Framework.IO.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.PlatformCompatibility, Version=1.0.6633.34565, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.1.0.6633.34565\lib\Net45\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    <Reference Include="JJ.Framework.PlatformCompatibility, Version=1.1.0.31223, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.1.1.0.31223\lib\net45\JJ.Framework.PlatformCompatibility.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Reflection, Version=1.0.6633.36153, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Reflection.1.0.6633.36153\lib\Net45\JJ.Framework.Reflection.dll</HintPath>
+    <Reference Include="JJ.Framework.Reflection, Version=1.1.0.31224, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.1.1.0.31224\lib\net45\JJ.Framework.Reflection.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Testing, Version=1.0.6636.37253, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Testing.1.0.6636.37253\lib\net45\JJ.Framework.Testing.dll</HintPath>
+    <Reference Include="JJ.Framework.Testing, Version=1.1.0.31225, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Testing.1.1.0.31225\lib\net45\JJ.Framework.Testing.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Text, Version=1.0.6633.36116, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Text.1.0.6633.36116\lib\Net45\JJ.Framework.Text.dll</HintPath>
+    <Reference Include="JJ.Framework.Text, Version=1.1.0.31223, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Text.1.1.0.31223\lib\net45\JJ.Framework.Text.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
