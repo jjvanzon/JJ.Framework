@@ -16,9 +16,9 @@
 		<tags>file functions attributes stream csv binarywriter numbered path folder recursive relative absolute compare safe overwrite temp</tags>
 
 		<dependencies>
-			<dependency id="JJ.Framework.Exceptions" version="[1.0,1.1)" />
-			<dependency id="JJ.Framework.PlatformCompatibility" version="[1.0,1.1)" />
-			<dependency id="JJ.Framework.Text" version="[1.0,1.1)" />
+			<dependency id="JJ.Framework.Exceptions" version="[1.1,1.2)" />
+			<dependency id="JJ.Framework.PlatformCompatibility" version="[1.1,1.2)" />
+			<dependency id="JJ.Framework.Text" version="[1.1,1.2)" />
 		</dependencies>
 
 		<summary>
