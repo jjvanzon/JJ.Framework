@@ -11,7 +11,7 @@
 
 		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/IO</projectUrl>
-		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64.png</iconUrl>
+		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
 		<tags>file functions attributes stream csv binarywriter numbered path folder recursive relative absolute compare safe overwrite temp</tags>
 

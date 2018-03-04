@@ -25,7 +25,7 @@ echo DELETE CODE FILES IN ROOT
 del /q /f "9. JJ Git\*.sln"
 del /q /f "9. JJ Git\*.txt"
 del /q /f "9. JJ Git\*.md"
-del /q /f "9. JJ Git\jj-icon-64x64.png"
+del /q /f "9. JJ Git\*.png"
 
 rem /s: Copies directories and subdirectories except empty ones.
 rem /v: Verifies the size of each new file.
@@ -86,7 +86,7 @@ xcopy /v /r /q "9. JJ\JJ.SaveText.sln" "9. JJ Git"
 xcopy /v /r /q "9. JJ\LICENSE.TXT" "9. JJ Git"
 xcopy /v /r /q "9. JJ\README.MD" "9. JJ Git"
 xcopy /v /r /q "9. JJ\THIRD PARTY LICENSE.TXT" "9. JJ Git"
-xcopy /v /r /q "9. JJ\jj-icon-64x64.png" "9. JJ Git"
+xcopy /v /r /q "9. JJ\*.png" "9. JJ Git"
 
 echo WARNING: CANONICAL DATA / BUSINESS IS PUBLISHED.
 echo CONSIDER IF IT CONTAINS DATA MODELING YOU DO NOT WANT TO OPEN SOURCE.
