@@ -1,0 +1,36 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<copyright>$copyright$</copyright>
+		<description>$description$</description>
+
+		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Collections</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
+
+		<tags>collections lists helpers extensions recursion recursive redblacktree red black tree</tags>
+		<summary>
+Basic helpers for working with lists of information.
+
+* Handy LINQ-style extension methods.
+* Recursive collection extensions.
+* A port of a RedBlackTree collection.
+		</summary>
+
+		<dependencies>
+			<dependency id="JJ.Framework.Reflection" version="[1.1,1.2)" />
+			<dependency id="JJ.Framework.Exceptions" version="[1.1,1.2)" />
+		</dependencies>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	</metadata>
+
+	<files>
+		<file src="README.MD" target="" />
+	</files>
+</package>

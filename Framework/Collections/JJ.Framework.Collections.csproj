@@ -37,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Release\JJ.Framework.Collections.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -54,7 +55,8 @@
     <Compile Include="RedBlackTreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT" />
+    <None Include="JJ.Framework.Collections.nuspec" />
+    <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj">
