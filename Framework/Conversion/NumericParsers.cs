@@ -17,8 +17,6 @@ namespace JJ.Framework.Conversion
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Number;
 
-			private static CultureInfo GetCurrentFormatProvider() => CultureHelper.GetCurrentCulture();
-
 			/// <summary>
 			/// If you want to use Decimal.TryParse with a format provider,
 			/// then you are obliged to also pass NumberStyles.
@@ -91,8 +89,6 @@ namespace JJ.Framework.Conversion
 		public static class DoubleParser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Any;
-
-			private static CultureInfo GetCurrentFormatProvider() => CultureHelper.GetCurrentCulture();
 
 			/// <summary>
 			/// If you want to use Double.TryParse with a format provider,
@@ -167,8 +163,6 @@ namespace JJ.Framework.Conversion
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Integer;
 
-			private static CultureInfo GetCurrentFormatProvider() => CultureHelper.GetCurrentCulture();
-
 			/// <summary>
 			/// If you want to use Int16.TryParse with a format provider,
 			/// then you are obliged to also pass NumberStyles.
@@ -241,8 +235,6 @@ namespace JJ.Framework.Conversion
 		public static class Int32Parser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Integer;
-
-			private static CultureInfo GetCurrentFormatProvider() => CultureHelper.GetCurrentCulture();
 
 			/// <summary>
 			/// If you want to use Int32.TryParse with a format provider,
@@ -317,8 +309,6 @@ namespace JJ.Framework.Conversion
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Integer;
 
-			private static CultureInfo GetCurrentFormatProvider() => CultureHelper.GetCurrentCulture();
-
 			/// <summary>
 			/// If you want to use Int64.TryParse with a format provider,
 			/// then you are obliged to also pass NumberStyles.
@@ -391,8 +381,6 @@ namespace JJ.Framework.Conversion
 		public static class SingleParser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Any;
-
-			private static CultureInfo GetCurrentFormatProvider() => CultureHelper.GetCurrentCulture();
 
 			/// <summary>
 			/// If you want to use Single.TryParse with a format provider,

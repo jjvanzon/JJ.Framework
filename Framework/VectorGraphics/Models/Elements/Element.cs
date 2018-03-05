@@ -26,7 +26,7 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 			Enabled = true;
 		}
 
-		/// <summary> When in doubt, use Diagram.Background. </summary>
+		/// <param name="parent">When in doubt, use Diagram.Background.</param>
 		public Element(Element parent)
 			: this(parent?.Diagram) => _parentRelationship.Parent = parent ?? throw new ArgumentNullException(nameof(parent));
 

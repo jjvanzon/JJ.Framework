@@ -47,6 +47,25 @@ namespace JJ.Framework.Reflection
 			return Equals(value, defaultValue);
 		}
 
+		/// <summary>
+		/// A simple type can be a .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
+		/// the numeric types, their signed and unsigned variations, but also
+		/// String, Guid, DateTime, TimeSpan and Enum types.
+		/// If value is null, it is also considered a simple type.
+		/// </summary>
+		public static bool IsSimpleType(object value)
+		{
+			if (value == null)
+			{
+				// A little dirty, because null is not necessarily a simple type.
+				return true;
+			}
+
+			Type type = value.GetType();
+
+			return type.IsSimpleType();
+		}
+
 		public static object CreateInstance(string typeName, params object[] args)
 		{
 			Type type = Type.GetType(typeName);

@@ -12,6 +12,129 @@ namespace JJ.Framework.Exceptions.Tests
 	{
 		
 			[TestMethod]
+			public void Test_LessThanException_NoExpressions()
+			{
+				AssertHelper.ThrowsException<LessThanException>(
+					() =>
+					{
+						double value;
+
+						throw new LessThanException(nameof(value), 0);
+					},
+					"value is less than 0.");
+			}
+
+			[TestMethod]
+			public void Test_LessThanException_AIsExpression_BIsValue()
+			{
+				AssertHelper.ThrowsException<LessThanException>(
+					() =>
+					{
+						var item = new TestItem();
+
+						throw new LessThanException(() => item.Parent, 0);
+					},
+					"item.Parent is less than 0.");
+			}
+
+			[TestMethod]
+			public void Test_LessThanException_AIsExpression_BIsValue_ShowValueA()
+			{
+				AssertHelper.ThrowsException<LessThanException>(
+					() =>
+					{
+						double valueA = -1;
+						double valueB = 0;
+
+						throw new LessThanException(() => valueA, valueB);
+					},
+					"valueA of -1 is less than 0.");
+			}
+
+			[TestMethod]
+			public void Test_LessThanException_AIsValue_BIsExpression()
+			{
+				AssertHelper.ThrowsException<LessThanException>(
+					() =>
+					{
+						var item = new TestItem();
+
+						throw new LessThanException(0, () => item.Parent);
+					},
+					"0 is less than item.Parent.");
+			}
+
+			[TestMethod]
+			public void Test_LessThanException_AIsValue_BIsExpression_ShowValueB()
+			{
+				AssertHelper.ThrowsException<LessThanException>(
+					() =>
+					{
+						double valueA = -1;
+						double valueB = 0;
+
+						throw new LessThanException(valueA, () => valueB);
+					},
+					"-1 is less than valueB of 0.");
+			}
+
+			[TestMethod]
+			public void Test_LessThanException_AIsExpression_BIsExpression()
+			{
+				AssertHelper.ThrowsException<LessThanException>(
+					() =>
+					{
+						var item1 = new TestItem();
+						var item2 = new TestItem();
+
+						throw new LessThanException(() => item1.Parent, () => item2);
+					},
+					"item1.Parent is less than item2.");
+			}
+
+			[TestMethod]
+			public void Test_LessThanException_AIsExpression_BIsExpression_ShowValueA_ShowValueB()
+			{
+				AssertHelper.ThrowsException<LessThanException>(
+					() =>
+					{
+						double valueA = -1;
+						double valueB = 0;
+
+						throw new LessThanException(() => valueA, () => valueB);
+					},
+					"valueA of -1 is less than valueB of 0.");
+			}
+
+			[TestMethod]
+			public void Test_LessThanException_AIsExpression_BIsExpression_ShowValueA()
+			{
+				AssertHelper.ThrowsException<LessThanException>(
+					() =>
+					{
+						double value = -1;
+						var testItem = new TestItem();
+
+						throw new LessThanException(() => value, () => testItem);
+					},
+					"value of -1 is less than testItem.");
+			}
+
+			[TestMethod]
+			public void Test_LessThanException_AIsExpression_BIsExpression_ShowValueB()
+			{
+				AssertHelper.ThrowsException<LessThanException>(
+					() =>
+					{
+						var testItem = new TestItem();
+						double value = 0;
+
+						throw new LessThanException(() => testItem, () => value);
+					},
+					"testItem is less than value of 0.");
+			}
+		
+			[TestMethod]
 			public void Test_GreaterThanException_NoExpressions()
 			{
 				AssertHelper.ThrowsException<GreaterThanException>(
@@ -46,7 +169,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new GreaterThanException(() => valueA, valueB, showValueA: true);
+						throw new GreaterThanException(() => valueA, valueB);
 					},
 					"valueA of -1 is greater than 0.");
 			}
@@ -73,7 +196,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new GreaterThanException(valueA, () => valueB, showValueB: true);
+						throw new GreaterThanException(valueA, () => valueB);
 					},
 					"-1 is greater than valueB of 0.");
 			}
@@ -84,12 +207,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<GreaterThanException>(
 					() =>
 					{
-						var item = new TestItem();
-						double value = 0;
+						var item1 = new TestItem();
+						var item2 = new TestItem();
 
-						throw new GreaterThanException(() => item.Parent, () => value);
+						throw new GreaterThanException(() => item1.Parent, () => item2);
 					},
-					"item.Parent is greater than value.");
+					"item1.Parent is greater than item2.");
 			}
 
 			[TestMethod]
@@ -101,7 +224,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new GreaterThanException(() => valueA, () => valueB, showValueA: true, showValueB: true);
+						throw new GreaterThanException(() => valueA, () => valueB);
 					},
 					"valueA of -1 is greater than valueB of 0.");
 			}
@@ -112,12 +235,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<GreaterThanException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						double value = -1;
+						var testItem = new TestItem();
 
-						throw new GreaterThanException(() => valueA, () => valueB, showValueA: true);
+						throw new GreaterThanException(() => value, () => testItem);
 					},
-					"valueA of -1 is greater than valueB.");
+					"value of -1 is greater than testItem.");
 			}
 
 			[TestMethod]
@@ -126,12 +249,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<GreaterThanException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						var testItem = new TestItem();
+						double value = 0;
 
-						throw new GreaterThanException(() => valueA, () => valueB, showValueB: true);
+						throw new GreaterThanException(() => testItem, () => value);
 					},
-					"valueA is greater than valueB of 0.");
+					"testItem is greater than value of 0.");
 			}
 		
 			[TestMethod]
@@ -169,7 +292,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new LessThanOrEqualException(() => valueA, valueB, showValueA: true);
+						throw new LessThanOrEqualException(() => valueA, valueB);
 					},
 					"valueA of -1 is less than or equal to 0.");
 			}
@@ -196,7 +319,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new LessThanOrEqualException(valueA, () => valueB, showValueB: true);
+						throw new LessThanOrEqualException(valueA, () => valueB);
 					},
 					"-1 is less than or equal to valueB of 0.");
 			}
@@ -207,12 +330,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<LessThanOrEqualException>(
 					() =>
 					{
-						var item = new TestItem();
-						double value = 0;
+						var item1 = new TestItem();
+						var item2 = new TestItem();
 
-						throw new LessThanOrEqualException(() => item.Parent, () => value);
+						throw new LessThanOrEqualException(() => item1.Parent, () => item2);
 					},
-					"item.Parent is less than or equal to value.");
+					"item1.Parent is less than or equal to item2.");
 			}
 
 			[TestMethod]
@@ -224,7 +347,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new LessThanOrEqualException(() => valueA, () => valueB, showValueA: true, showValueB: true);
+						throw new LessThanOrEqualException(() => valueA, () => valueB);
 					},
 					"valueA of -1 is less than or equal to valueB of 0.");
 			}
@@ -235,12 +358,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<LessThanOrEqualException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						double value = -1;
+						var testItem = new TestItem();
 
-						throw new LessThanOrEqualException(() => valueA, () => valueB, showValueA: true);
+						throw new LessThanOrEqualException(() => value, () => testItem);
 					},
-					"valueA of -1 is less than or equal to valueB.");
+					"value of -1 is less than or equal to testItem.");
 			}
 
 			[TestMethod]
@@ -249,12 +372,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<LessThanOrEqualException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						var testItem = new TestItem();
+						double value = 0;
 
-						throw new LessThanOrEqualException(() => valueA, () => valueB, showValueB: true);
+						throw new LessThanOrEqualException(() => testItem, () => value);
 					},
-					"valueA is less than or equal to valueB of 0.");
+					"testItem is less than or equal to value of 0.");
 			}
 		
 			[TestMethod]
@@ -292,7 +415,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new GreaterThanOrEqualException(() => valueA, valueB, showValueA: true);
+						throw new GreaterThanOrEqualException(() => valueA, valueB);
 					},
 					"valueA of -1 is greater than or equal to 0.");
 			}
@@ -319,7 +442,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new GreaterThanOrEqualException(valueA, () => valueB, showValueB: true);
+						throw new GreaterThanOrEqualException(valueA, () => valueB);
 					},
 					"-1 is greater than or equal to valueB of 0.");
 			}
@@ -330,12 +453,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<GreaterThanOrEqualException>(
 					() =>
 					{
-						var item = new TestItem();
-						double value = 0;
+						var item1 = new TestItem();
+						var item2 = new TestItem();
 
-						throw new GreaterThanOrEqualException(() => item.Parent, () => value);
+						throw new GreaterThanOrEqualException(() => item1.Parent, () => item2);
 					},
-					"item.Parent is greater than or equal to value.");
+					"item1.Parent is greater than or equal to item2.");
 			}
 
 			[TestMethod]
@@ -347,7 +470,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new GreaterThanOrEqualException(() => valueA, () => valueB, showValueA: true, showValueB: true);
+						throw new GreaterThanOrEqualException(() => valueA, () => valueB);
 					},
 					"valueA of -1 is greater than or equal to valueB of 0.");
 			}
@@ -358,12 +481,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<GreaterThanOrEqualException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						double value = -1;
+						var testItem = new TestItem();
 
-						throw new GreaterThanOrEqualException(() => valueA, () => valueB, showValueA: true);
+						throw new GreaterThanOrEqualException(() => value, () => testItem);
 					},
-					"valueA of -1 is greater than or equal to valueB.");
+					"value of -1 is greater than or equal to testItem.");
 			}
 
 			[TestMethod]
@@ -372,12 +495,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<GreaterThanOrEqualException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						var testItem = new TestItem();
+						double value = 0;
 
-						throw new GreaterThanOrEqualException(() => valueA, () => valueB, showValueB: true);
+						throw new GreaterThanOrEqualException(() => testItem, () => value);
 					},
-					"valueA is greater than or equal to valueB of 0.");
+					"testItem is greater than or equal to value of 0.");
 			}
 		
 			[TestMethod]
@@ -415,7 +538,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new EqualException(() => valueA, valueB, showValueA: true);
+						throw new EqualException(() => valueA, valueB);
 					},
 					"valueA of -1 is equal to 0.");
 			}
@@ -442,7 +565,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new EqualException(valueA, () => valueB, showValueB: true);
+						throw new EqualException(valueA, () => valueB);
 					},
 					"-1 is equal to valueB of 0.");
 			}
@@ -453,12 +576,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<EqualException>(
 					() =>
 					{
-						var item = new TestItem();
-						double value = 0;
+						var item1 = new TestItem();
+						var item2 = new TestItem();
 
-						throw new EqualException(() => item.Parent, () => value);
+						throw new EqualException(() => item1.Parent, () => item2);
 					},
-					"item.Parent is equal to value.");
+					"item1.Parent is equal to item2.");
 			}
 
 			[TestMethod]
@@ -470,7 +593,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new EqualException(() => valueA, () => valueB, showValueA: true, showValueB: true);
+						throw new EqualException(() => valueA, () => valueB);
 					},
 					"valueA of -1 is equal to valueB of 0.");
 			}
@@ -481,12 +604,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<EqualException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						double value = -1;
+						var testItem = new TestItem();
 
-						throw new EqualException(() => valueA, () => valueB, showValueA: true);
+						throw new EqualException(() => value, () => testItem);
 					},
-					"valueA of -1 is equal to valueB.");
+					"value of -1 is equal to testItem.");
 			}
 
 			[TestMethod]
@@ -495,12 +618,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<EqualException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						var testItem = new TestItem();
+						double value = 0;
 
-						throw new EqualException(() => valueA, () => valueB, showValueB: true);
+						throw new EqualException(() => testItem, () => value);
 					},
-					"valueA is equal to valueB of 0.");
+					"testItem is equal to value of 0.");
 			}
 		
 			[TestMethod]
@@ -538,7 +661,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new NotEqualException(() => valueA, valueB, showValueA: true);
+						throw new NotEqualException(() => valueA, valueB);
 					},
 					"valueA of -1 does not equal 0.");
 			}
@@ -565,7 +688,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new NotEqualException(valueA, () => valueB, showValueB: true);
+						throw new NotEqualException(valueA, () => valueB);
 					},
 					"-1 does not equal valueB of 0.");
 			}
@@ -576,12 +699,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<NotEqualException>(
 					() =>
 					{
-						var item = new TestItem();
-						double value = 0;
+						var item1 = new TestItem();
+						var item2 = new TestItem();
 
-						throw new NotEqualException(() => item.Parent, () => value);
+						throw new NotEqualException(() => item1.Parent, () => item2);
 					},
-					"item.Parent does not equal value.");
+					"item1.Parent does not equal item2.");
 			}
 
 			[TestMethod]
@@ -593,7 +716,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new NotEqualException(() => valueA, () => valueB, showValueA: true, showValueB: true);
+						throw new NotEqualException(() => valueA, () => valueB);
 					},
 					"valueA of -1 does not equal valueB of 0.");
 			}
@@ -604,12 +727,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<NotEqualException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						double value = -1;
+						var testItem = new TestItem();
 
-						throw new NotEqualException(() => valueA, () => valueB, showValueA: true);
+						throw new NotEqualException(() => value, () => testItem);
 					},
-					"valueA of -1 does not equal valueB.");
+					"value of -1 does not equal testItem.");
 			}
 
 			[TestMethod]
@@ -618,12 +741,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<NotEqualException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						var testItem = new TestItem();
+						double value = 0;
 
-						throw new NotEqualException(() => valueA, () => valueB, showValueB: true);
+						throw new NotEqualException(() => testItem, () => value);
 					},
-					"valueA does not equal valueB of 0.");
+					"testItem does not equal value of 0.");
 			}
 		
 			[TestMethod]
@@ -661,7 +784,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new ContainsException(() => valueA, valueB, showValueA: true);
+						throw new ContainsException(() => valueA, valueB);
 					},
 					"valueA of -1 should not contain 0.");
 			}
@@ -688,7 +811,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new ContainsException(valueA, () => valueB, showValueB: true);
+						throw new ContainsException(valueA, () => valueB);
 					},
 					"-1 should not contain valueB of 0.");
 			}
@@ -699,12 +822,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<ContainsException>(
 					() =>
 					{
-						var item = new TestItem();
-						double value = 0;
+						var item1 = new TestItem();
+						var item2 = new TestItem();
 
-						throw new ContainsException(() => item.Parent, () => value);
+						throw new ContainsException(() => item1.Parent, () => item2);
 					},
-					"item.Parent should not contain value.");
+					"item1.Parent should not contain item2.");
 			}
 
 			[TestMethod]
@@ -716,7 +839,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new ContainsException(() => valueA, () => valueB, showValueA: true, showValueB: true);
+						throw new ContainsException(() => valueA, () => valueB);
 					},
 					"valueA of -1 should not contain valueB of 0.");
 			}
@@ -727,12 +850,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<ContainsException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						double value = -1;
+						var testItem = new TestItem();
 
-						throw new ContainsException(() => valueA, () => valueB, showValueA: true);
+						throw new ContainsException(() => value, () => testItem);
 					},
-					"valueA of -1 should not contain valueB.");
+					"value of -1 should not contain testItem.");
 			}
 
 			[TestMethod]
@@ -741,12 +864,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<ContainsException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						var testItem = new TestItem();
+						double value = 0;
 
-						throw new ContainsException(() => valueA, () => valueB, showValueB: true);
+						throw new ContainsException(() => testItem, () => value);
 					},
-					"valueA should not contain valueB of 0.");
+					"testItem should not contain value of 0.");
 			}
 		
 			[TestMethod]
@@ -784,7 +907,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new NotContainsException(() => valueA, valueB, showValueA: true);
+						throw new NotContainsException(() => valueA, valueB);
 					},
 					"valueA of -1 does not contain 0.");
 			}
@@ -811,7 +934,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new NotContainsException(valueA, () => valueB, showValueB: true);
+						throw new NotContainsException(valueA, () => valueB);
 					},
 					"-1 does not contain valueB of 0.");
 			}
@@ -822,12 +945,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<NotContainsException>(
 					() =>
 					{
-						var item = new TestItem();
-						double value = 0;
+						var item1 = new TestItem();
+						var item2 = new TestItem();
 
-						throw new NotContainsException(() => item.Parent, () => value);
+						throw new NotContainsException(() => item1.Parent, () => item2);
 					},
-					"item.Parent does not contain value.");
+					"item1.Parent does not contain item2.");
 			}
 
 			[TestMethod]
@@ -839,7 +962,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new NotContainsException(() => valueA, () => valueB, showValueA: true, showValueB: true);
+						throw new NotContainsException(() => valueA, () => valueB);
 					},
 					"valueA of -1 does not contain valueB of 0.");
 			}
@@ -850,12 +973,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<NotContainsException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						double value = -1;
+						var testItem = new TestItem();
 
-						throw new NotContainsException(() => valueA, () => valueB, showValueA: true);
+						throw new NotContainsException(() => value, () => testItem);
 					},
-					"valueA of -1 does not contain valueB.");
+					"value of -1 does not contain testItem.");
 			}
 
 			[TestMethod]
@@ -864,12 +987,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<NotContainsException>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						var testItem = new TestItem();
+						double value = 0;
 
-						throw new NotContainsException(() => valueA, () => valueB, showValueB: true);
+						throw new NotContainsException(() => testItem, () => value);
 					},
-					"valueA does not contain valueB of 0.");
+					"testItem does not contain value of 0.");
 			}
 		
 	}

@@ -13,7 +13,7 @@
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Exceptions</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
-		<tags>exceptions errors expressions strongly-typed null white space parse type casting not found not unique comparison file folder</tags>
+		<tags>exceptions errors expressions strongly-typed null white space parse type casting found unique comparison file folder</tags>
 
 		<dependencies>
 			<dependency id="System.ValueTuple" version="4.3.0" />
@@ -49,11 +49,11 @@ This is where it surpasses the possibilities of the C#6 nameof operator, which c
 
 Another example:
 
-	throw new NotFoundException&lt;Customer&gt;(new { customerNumber });
+	throw new NotFoundException&lt;Customer&gt;(new { customerNumber, customerType });
 
 will produce an exception message:
 
-	"Customer with key { customerNumber = 1234 } not found."
+	"Customer with key { customerNumber = 1234, customerType = Subscriber } not found."
 
 As such it is fit for use with any composite key you might have.
 			
@@ -66,7 +66,6 @@ Some more examples:
 
 Those produce the exception messages:
 			
-	height is less than 0.
 	Product with key A123 not unique.
 	Country value 'Undefined' is not supported.
 	File 'test.txt' already exists.

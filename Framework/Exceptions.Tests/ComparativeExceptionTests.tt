@@ -5,8 +5,7 @@
 <# 
 	(string, string)[] tuples = 
 	{
-		// NOTE: LessThanExceptionTests are the hand-written tests, upon which this code generation template is based.
-		//("LessThan", "is less than"),
+		("LessThan", "is less than"),
 		("GreaterThan", "is greater than"),
 		("LessThanOrEqual", "is less than or equal to"),
 		("GreaterThanOrEqual", "is greater than or equal to"),
@@ -64,7 +63,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new <#= codeName #>Exception(() => valueA, valueB, showValueA: true);
+						throw new <#= codeName #>Exception(() => valueA, valueB);
 					},
 					"valueA of -1 <#= displayText #> 0.");
 			}
@@ -91,7 +90,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new <#= codeName #>Exception(valueA, () => valueB, showValueB: true);
+						throw new <#= codeName #>Exception(valueA, () => valueB);
 					},
 					"-1 <#= displayText #> valueB of 0.");
 			}
@@ -102,12 +101,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<<#= codeName #>Exception>(
 					() =>
 					{
-						var item = new TestItem();
-						double value = 0;
+						var item1 = new TestItem();
+						var item2 = new TestItem();
 
-						throw new <#= codeName #>Exception(() => item.Parent, () => value);
+						throw new <#= codeName #>Exception(() => item1.Parent, () => item2);
 					},
-					"item.Parent <#= displayText #> value.");
+					"item1.Parent <#= displayText #> item2.");
 			}
 
 			[TestMethod]
@@ -119,7 +118,7 @@ namespace JJ.Framework.Exceptions.Tests
 						double valueA = -1;
 						double valueB = 0;
 
-						throw new <#= codeName #>Exception(() => valueA, () => valueB, showValueA: true, showValueB: true);
+						throw new <#= codeName #>Exception(() => valueA, () => valueB);
 					},
 					"valueA of -1 <#= displayText #> valueB of 0.");
 			}
@@ -130,12 +129,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<<#= codeName #>Exception>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						double value = -1;
+						var testItem = new TestItem();
 
-						throw new <#= codeName #>Exception(() => valueA, () => valueB, showValueA: true);
+						throw new <#= codeName #>Exception(() => value, () => testItem);
 					},
-					"valueA of -1 <#= displayText #> valueB.");
+					"value of -1 <#= displayText #> testItem.");
 			}
 
 			[TestMethod]
@@ -144,12 +143,12 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<<#= codeName #>Exception>(
 					() =>
 					{
-						double valueA = -1;
-						double valueB = 0;
+						var testItem = new TestItem();
+						double value = 0;
 
-						throw new <#= codeName #>Exception(() => valueA, () => valueB, showValueB: true);
+						throw new <#= codeName #>Exception(() => testItem, () => value);
 					},
-					"valueA <#= displayText #> valueB of 0.");
+					"testItem <#= displayText #> value of 0.");
 			}
 		<# } #>
 

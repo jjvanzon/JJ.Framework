@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
     <DocumentationFile>bin\Release\JJ.Framework.Exceptions.xml</DocumentationFile>
+    <NoWarn>1591,1573</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -74,7 +75,7 @@
     <Compile Include="LessThanOrEqualException.cs" />
     <Compile Include="NotContainsException.cs" />
     <Compile Include="NotEnumTypeException.cs" />
-    <Compile Include="NotEnumExceptionOfT.cs" />
+    <Compile Include="NotEnumTypeExceptionOfT.cs" />
     <Compile Include="NotEqualException.cs" />
     <Compile Include="NotFoundException.cs" />
     <Compile Include="NotFoundExceptionOfT.cs" />
@@ -103,7 +104,6 @@
     <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="nuspec Example.xml" />
     <None Include="SimpleExceptions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SimpleExceptions.cs</LastGenOutput>

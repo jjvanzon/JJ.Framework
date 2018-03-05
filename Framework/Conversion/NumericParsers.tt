@@ -3,7 +3,7 @@
 <#@ output extension=".cs" #>
 
 <#
-	(string, string)[] numericTypeNames = 
+	(string, string)[] tuples = 
 	{
 		("Decimal", "NumberStyles.Number"),
 		("Double", "NumberStyles.Any"), 
@@ -20,7 +20,7 @@ using JJ.Framework.Common;
 
 namespace JJ.Framework.Conversion
 {
-	<# foreach ((string numType, string defaultNumberStyles) in numericTypeNames) { #>
+	<# foreach ((string numType, string defaultNumberStyles) in tuples) { #>
 
 		/// <summary>
 		/// For instance making it easier to parse nullable <#=numType#>.
@@ -31,8 +31,6 @@ namespace JJ.Framework.Conversion
 		public static class <#=numType#>Parser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = <#= defaultNumberStyles #>;
-
-			private static CultureInfo GetCurrentFormatProvider() => CultureHelper.GetCurrentCulture();
 
 			/// <summary>
 			/// If you want to use <#=numType#>.TryParse with a format provider,

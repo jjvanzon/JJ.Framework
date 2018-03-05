@@ -9,7 +9,6 @@ namespace JJ.Framework.Exceptions
 	/// is that UnexpectedTypeException only mentions what type it is not,
 	/// not what type is expected.
 	/// Example of produced error messages: "Nala is not of type Dog.", 
-	/// "Cat Nala is not of type Dog."
 	/// </summary>
 	public class IsNotTypeException : Exception
 	{

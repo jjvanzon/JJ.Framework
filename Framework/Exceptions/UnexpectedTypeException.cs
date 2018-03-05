@@ -8,7 +8,7 @@ namespace JJ.Framework.Exceptions
 	/// The difference between IsNotTypeException and UnexpectedTypeException
 	/// is that UnexpectedTypeException only mentions what type it is not,
 	/// not what type is expected.
-	/// Example of produced error message: "Nala has an unexpected type Cat."
+	/// Example of produced error message: "Animal has an unexpected type: Cat."
 	/// </summary>
 	public class UnexpectedTypeException : Exception
 	{

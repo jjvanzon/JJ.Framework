@@ -245,7 +245,7 @@ namespace JJ.Framework.Xml.Linq
 		private object ConvertElement(XElement sourceElement, Type destType)
 		{
 			object destValue;
-			if (ConversionHelper.IsLeafType(destType))
+			if (destType.IsSimpleType())
 			{
 				destValue = ConvertLeafElement(sourceElement, destType);
 			}

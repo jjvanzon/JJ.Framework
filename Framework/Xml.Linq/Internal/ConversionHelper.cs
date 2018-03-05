@@ -200,31 +200,5 @@ namespace JJ.Framework.Xml.Linq.Internal
 			if (openGenericType == typeof(ICollection<>)) return true;
 			return false;
 		}
-
-		/// <summary>
-		/// Determines whether a type is considered a single value without any child data members. 
-		/// This includes the primitive types (Boolean, Char, Byte, the numeric types and their signed and unsigned variations),
-		/// and other types such as String, Guid, DateTime, TimeSpan and Enum types.
-		/// </summary>
-		public static bool IsLeafType(Type type)
-		{
-			if (type.IsPrimitive ||
-				type.IsEnum ||
-				type == typeof(string) ||
-				type == typeof(Guid) ||
-				type == typeof(DateTime) ||
-				type == typeof(TimeSpan))
-			{
-				return true;
-			}
-
-			if (type.IsNullableType())
-			{
-				Type underlyingType = type.GetUnderlyingNullableType();
-				return IsLeafType(underlyingType);
-			}
-
-			return false;
-		}
 	}
 }

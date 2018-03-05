@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -9,9 +10,8 @@ using System.Xml.Linq;
 using JJ.Framework.Exceptions;
 using JJ.Framework.IO;
 using JJ.Framework.PlatformCompatibility;
-using JJ.Framework.Xml.Linq.Internal;
-using System.Globalization;
 using JJ.Framework.Reflection;
+using JJ.Framework.Xml.Linq.Internal;
 
 namespace JJ.Framework.Xml.Linq
 {
@@ -122,7 +122,7 @@ namespace JJ.Framework.Xml.Linq
 		{
 			if (sourceObject == null) throw new NullException(() => sourceObject);
 
-			if (ConversionHelper.IsLeafType(sourceObject.GetType()))
+			if (sourceObject.GetType().IsSimpleType())
 			{
 				XElement destLeafElement = ConvertToLeafElement(sourceObject, _rootElementName);
 				return destLeafElement;
@@ -255,7 +255,7 @@ namespace JJ.Framework.Xml.Linq
 		private XElement ConvertToElement(object sourceObject, XName destXName)
 		{
 			Type sourceType = sourceObject.GetType();
-			if (ConversionHelper.IsLeafType(sourceType))
+			if (sourceType.IsSimpleType())
 			{
 				XElement destElement = ConvertToLeafElement(sourceObject, destXName);
 				return destElement;

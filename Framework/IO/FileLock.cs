@@ -70,7 +70,7 @@ namespace JJ.Framework.IO
 				// thus making our lock fail.
 
 				// Locking integrity is guaranteed, however.
-				// Process will fail if lock fails. Process will continue if lock succeeeds.
+				// Process will fail if lock fails. Process will continue if lock succeeds.
 				// However, it is not possible to keep the file locked, while switching from write lock to read lock.
 
 				// Technical constraints: (cryptic, but it is the basis for the conclusions above)

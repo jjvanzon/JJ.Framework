@@ -27,11 +27,11 @@ This is where it surpasses the possibilities of the C#6 nameof operator, which c
 
 Another example:
 
-	throw new NotFoundException<Customer>(new { customerNumber });
+	throw new NotFoundException<Customer>(new { customerNumber, customerType });
 
 will produce an exception message:
 
-	"Customer with key { customerNumber = 1234 } not found."
+	"Customer with key { customerNumber = 1234, customerType = Subscriber } not found."
 
 As such it is fit for use with any composite key you might have.
 			
@@ -44,7 +44,6 @@ Some more examples:
 
 Those produce the exception messages:
 			
-	height is less than 0.
 	Product with key A123 not unique.
 	Country value 'Undefined' is not supported.
 	File 'test.txt' already exists.

@@ -110,7 +110,7 @@ namespace JJ.Framework.Collections
 
 		/// <param name="keyIndicator">
 		/// Not used for filtering, only used in the exception message. 
-		/// You can use an anonymous type 
+		/// You can use an anonymous type e.g. new { id, cultureName } and it will translate that to something like { id = 1234, cultureName = nl-NL }.
 		/// </param>
 		public static T FirstWithClearException<T>(this IEnumerable<T> collection, object keyIndicator)
 		{
@@ -128,7 +128,7 @@ namespace JJ.Framework.Collections
 
 		/// <param name="keyIndicator">
 		/// Not used for filtering, only used in the exception message. 
-		/// You can use an anonymous type 
+		/// You can use an anonymous type e.g. new { id, cultureName } and it will translate that to something like { id = 1234, cultureName = nl-NL }.
 		/// </param>
 		public static T FirstWithClearException<T>(this IEnumerable<T> collection, Func<T, bool> predicate, object keyIndicator)
 		{
@@ -363,7 +363,6 @@ namespace JJ.Framework.Collections
 
 		/// <param name="keyIndicator">
 		/// Not used for filtering, only used in the exception message. 
-		/// You can use an anonymous type 
 		/// </param>
 		public static T SingleOrDefaultWithClearException<T>(this IEnumerable<T> collection, Expression<Func<object>> keyIndicator)
 		{
@@ -373,7 +372,6 @@ namespace JJ.Framework.Collections
 
 		/// <param name="keyIndicator">
 		/// Not used for filtering, only used in the exception message. 
-		/// You can use an anonymous type 
 		/// </param>
 		public static T SingleOrDefaultWithClearException<T>(this IEnumerable<T> collection, Func<T, bool> predicate, Expression<Func<object>> keyIndicator)
 		{
@@ -418,7 +416,6 @@ namespace JJ.Framework.Collections
 
 		/// <param name="keyIndicator">
 		/// Not used for filtering, only used in the exception message. 
-		/// You can use an anonymous type 
 		/// </param>
 		public static T SingleWithClearException<T>(this IEnumerable<T> collection, Expression<Func<object>> keyIndicator)
 		{
@@ -428,7 +425,6 @@ namespace JJ.Framework.Collections
 
 		/// <param name="keyIndicator">
 		/// Not used for filtering, only used in the exception message. 
-		/// You can use an anonymous type 
 		/// </param>
 		public static T SingleWithClearException<T>(this IEnumerable<T> collection, Func<T, bool> predicate, Expression<Func<object>> keyIndicator)
 		{

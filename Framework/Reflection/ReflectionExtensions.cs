@@ -250,6 +250,34 @@ namespace JJ.Framework.Reflection
 			}
 		}
 
+		/// <summary>
+		/// A simple type can be a .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
+		/// the numeric types, their signed and unsigned variations, but also
+		/// String, Guid, DateTime, TimeSpan and Enum types.
+		/// </summary>
+		public static bool IsSimpleType(this Type type)
+		{
+			if (type == null) throw new ArgumentNullException(nameof(type));
+
+			if (type.IsPrimitive ||
+			    type.IsEnum ||
+			    type == typeof(string) ||
+			    type == typeof(Guid) ||
+			    type == typeof(DateTime) ||
+			    type == typeof(TimeSpan))
+			{
+				return true;
+			}
+
+			if (type.IsNullableType())
+			{
+				Type underlyingType = type.GetUnderlyingNullableType();
+				return IsSimpleType(underlyingType);
+			}
+
+			return false;
+		}
+
 		public static IList<Type> GetBaseClasses(this Type type)
 		{
 			if (type == null) throw new ArgumentNullException(nameof(type));

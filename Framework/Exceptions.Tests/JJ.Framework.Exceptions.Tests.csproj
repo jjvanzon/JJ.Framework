@@ -73,7 +73,6 @@
     </Compile>
     <Compile Include="TestEnum.cs" />
     <Compile Include="TestItem.cs" />
-    <Compile Include="LessThanExceptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
