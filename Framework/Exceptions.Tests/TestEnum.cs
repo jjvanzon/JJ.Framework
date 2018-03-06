@@ -3,7 +3,6 @@
 	internal enum TestEnum
 	{
 		Undefined,
-		EnumMemberA,
-		EnumMemberB
+		Subscriber
 	}
 }

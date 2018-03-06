@@ -51,6 +51,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent is null.");
 			}
 
+			[TestMethod]
+			public void Test_NullException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NullException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NullException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } is null.");
+			}
+
 		
 			[TestMethod]
 			public void Test_CollectionEmptyException_WithNameOf()
@@ -89,6 +103,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new CollectionEmptyException(() => testItem.Parent);
 					},
 					"testItem.Parent collection is empty.");
+			}
+
+			[TestMethod]
+			public void Test_CollectionEmptyException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<CollectionEmptyException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new CollectionEmptyException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } collection is empty.");
 			}
 
 		
@@ -131,6 +159,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent collection should be empty.");
 			}
 
+			[TestMethod]
+			public void Test_CollectionNotEmptyException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<CollectionNotEmptyException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new CollectionNotEmptyException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } collection should be empty.");
+			}
+
 		
 			[TestMethod]
 			public void Test_HasNullsException_WithNameOf()
@@ -169,6 +211,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new HasNullsException(() => testItem.Parent);
 					},
 					"testItem.Parent contains nulls.");
+			}
+
+			[TestMethod]
+			public void Test_HasNullsException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<HasNullsException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new HasNullsException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } contains nulls.");
 			}
 
 		
@@ -211,6 +267,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent should not have a value.");
 			}
 
+			[TestMethod]
+			public void Test_HasValueException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<HasValueException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new HasValueException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } should not have a value.");
+			}
+
 		
 			[TestMethod]
 			public void Test_InfinityException_WithNameOf()
@@ -249,6 +319,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new InfinityException(() => testItem.Parent);
 					},
 					"testItem.Parent is Infinity.");
+			}
+
+			[TestMethod]
+			public void Test_InfinityException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<InfinityException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new InfinityException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } is Infinity.");
 			}
 
 		
@@ -291,6 +375,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent not found in list.");
 			}
 
+			[TestMethod]
+			public void Test_InvalidReferenceException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<InvalidReferenceException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new InvalidReferenceException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } not found in list.");
+			}
+
 		
 			[TestMethod]
 			public void Test_IsDateTimeException_WithNameOf()
@@ -329,6 +427,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new IsDateTimeException(() => testItem.Parent);
 					},
 					"testItem.Parent should not be a DateTime.");
+			}
+
+			[TestMethod]
+			public void Test_IsDateTimeException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<IsDateTimeException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new IsDateTimeException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } should not be a DateTime.");
 			}
 
 		
@@ -371,6 +483,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent should not be a Decimal.");
 			}
 
+			[TestMethod]
+			public void Test_IsDecimalException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<IsDecimalException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new IsDecimalException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } should not be a Decimal.");
+			}
+
 		
 			[TestMethod]
 			public void Test_IsDoubleException_WithNameOf()
@@ -409,6 +535,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new IsDoubleException(() => testItem.Parent);
 					},
 					"testItem.Parent should not be a double precision floating point number.");
+			}
+
+			[TestMethod]
+			public void Test_IsDoubleException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<IsDoubleException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new IsDoubleException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } should not be a double precision floating point number.");
 			}
 
 		
@@ -451,6 +591,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent should not be an integer number.");
 			}
 
+			[TestMethod]
+			public void Test_IsIntegerException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<IsIntegerException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new IsIntegerException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } should not be an integer number.");
+			}
+
 		
 			[TestMethod]
 			public void Test_NaNException_WithNameOf()
@@ -489,6 +643,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new NaNException(() => testItem.Parent);
 					},
 					"testItem.Parent is NaN.");
+			}
+
+			[TestMethod]
+			public void Test_NaNException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NaNException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NaNException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } is NaN.");
 			}
 
 		
@@ -531,6 +699,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent is not a DateTime.");
 			}
 
+			[TestMethod]
+			public void Test_NotDateTimeException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NotDateTimeException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NotDateTimeException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } is not a DateTime.");
+			}
+
 		
 			[TestMethod]
 			public void Test_NotDecimalException_WithNameOf()
@@ -569,6 +751,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new NotDecimalException(() => testItem.Parent);
 					},
 					"testItem.Parent is not a Decimal.");
+			}
+
+			[TestMethod]
+			public void Test_NotDecimalException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NotDecimalException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NotDecimalException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } is not a Decimal.");
 			}
 
 		
@@ -611,6 +807,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent is not a double precision floating point number.");
 			}
 
+			[TestMethod]
+			public void Test_NotDoubleException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NotDoubleException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NotDoubleException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } is not a double precision floating point number.");
+			}
+
 		
 			[TestMethod]
 			public void Test_NotHasValueException_WithNameOf()
@@ -649,6 +859,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new NotHasValueException(() => testItem.Parent);
 					},
 					"testItem.Parent has no value.");
+			}
+
+			[TestMethod]
+			public void Test_NotHasValueException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NotHasValueException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NotHasValueException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } has no value.");
 			}
 
 		
@@ -691,6 +915,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent should be Infinity.");
 			}
 
+			[TestMethod]
+			public void Test_NotInfinityException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NotInfinityException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NotInfinityException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } should be Infinity.");
+			}
+
 		
 			[TestMethod]
 			public void Test_NotIntegerException_WithNameOf()
@@ -729,6 +967,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new NotIntegerException(() => testItem.Parent);
 					},
 					"testItem.Parent is not an integer number.");
+			}
+
+			[TestMethod]
+			public void Test_NotIntegerException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NotIntegerException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NotIntegerException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } is not an integer number.");
 			}
 
 		
@@ -771,6 +1023,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent should be NaN.");
 			}
 
+			[TestMethod]
+			public void Test_NotNaNException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NotNaNException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NotNaNException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } should be NaN.");
+			}
+
 		
 			[TestMethod]
 			public void Test_NotNullException_WithNameOf()
@@ -809,6 +1075,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new NotNullException(() => testItem.Parent);
 					},
 					"testItem.Parent should be null.");
+			}
+
+			[TestMethod]
+			public void Test_NotNullException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NotNullException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NotNullException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } should be null.");
 			}
 
 		
@@ -851,6 +1131,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent should be null or empty.");
 			}
 
+			[TestMethod]
+			public void Test_NotNullOrEmptyException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NotNullOrEmptyException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NotNullOrEmptyException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } should be null or empty.");
+			}
+
 		
 			[TestMethod]
 			public void Test_NotNullOrWhiteSpaceException_WithNameOf()
@@ -889,6 +1183,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new NotNullOrWhiteSpaceException(() => testItem.Parent);
 					},
 					"testItem.Parent should be null or white space.");
+			}
+
+			[TestMethod]
+			public void Test_NotNullOrWhiteSpaceException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NotNullOrWhiteSpaceException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NotNullOrWhiteSpaceException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } should be null or white space.");
 			}
 
 		
@@ -931,6 +1239,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent is null or empty.");
 			}
 
+			[TestMethod]
+			public void Test_NullOrEmptyException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NullOrEmptyException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NullOrEmptyException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } is null or empty.");
+			}
+
 		
 			[TestMethod]
 			public void Test_NullOrWhiteSpaceException_WithNameOf()
@@ -971,6 +1293,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent is null or white space.");
 			}
 
+			[TestMethod]
+			public void Test_NullOrWhiteSpaceException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<NullOrWhiteSpaceException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new NullOrWhiteSpaceException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } is null or white space.");
+			}
+
 		
 			[TestMethod]
 			public void Test_ZeroException_WithNameOf()
@@ -1009,6 +1345,20 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new ZeroException(() => testItem.Parent);
 					},
 					"testItem.Parent is 0.");
+			}
+
+			[TestMethod]
+			public void Test_ZeroException_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<ZeroException>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new ZeroException(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } is 0.");
 			}
 
 		

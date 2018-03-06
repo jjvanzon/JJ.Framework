@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Helpers
 {

@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Web;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Web
 {

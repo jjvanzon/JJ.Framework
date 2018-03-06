@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Exceptions.Comparative;
 using JJ.Framework.VectorGraphics.Models.Styling;
 
 namespace JJ.Framework.VectorGraphics.Models.Elements

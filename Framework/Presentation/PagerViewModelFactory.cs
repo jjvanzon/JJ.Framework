@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Comparative;
 
 namespace JJ.Framework.Presentation
 {

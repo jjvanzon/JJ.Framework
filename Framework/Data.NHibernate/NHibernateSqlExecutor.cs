@@ -3,6 +3,8 @@ using JJ.Framework.Exceptions;
 using NHibernate;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Exceptions.TypeChecking;
 
 namespace JJ.Framework.Data.NHibernate
 {

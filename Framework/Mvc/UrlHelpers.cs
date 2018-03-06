@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using JJ.Framework.Common;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Presentation;
 using JJ.Framework.Reflection;
 using JJ.Framework.Web;

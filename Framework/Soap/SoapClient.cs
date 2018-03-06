@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.IO;
 using JJ.Framework.Xml.Linq;
 

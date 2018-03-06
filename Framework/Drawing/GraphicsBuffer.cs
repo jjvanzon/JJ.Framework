@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Drawing
 {

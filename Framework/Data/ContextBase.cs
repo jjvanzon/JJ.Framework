@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Aggregates;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Data
 {

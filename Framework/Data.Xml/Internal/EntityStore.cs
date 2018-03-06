@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Xml;
+using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Exceptions.Misc;
 
 namespace JJ.Framework.Data.Xml.Internal
 {

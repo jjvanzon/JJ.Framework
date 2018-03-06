@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Reflection;
 using System.Xml;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Xml;
 
 namespace JJ.Framework.Configuration

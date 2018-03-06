@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Web.Mvc;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Mvc

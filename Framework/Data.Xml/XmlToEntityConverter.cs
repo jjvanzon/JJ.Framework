@@ -5,6 +5,7 @@ using JJ.Framework.Xml;
 using System;
 using System.Reflection;
 using System.Xml;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Data.Xml
 {

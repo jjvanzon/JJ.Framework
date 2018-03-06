@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Aggregates;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Collections

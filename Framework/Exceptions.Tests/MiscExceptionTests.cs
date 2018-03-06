@@ -71,11 +71,11 @@ namespace JJ.Framework.Exceptions.Tests
 			AssertHelper.ThrowsException<InvalidValueException>(
 				() =>
 				{
-					var testEnum = TestEnum.EnumMemberA;
+					var testEnum = TestEnum.Subscriber;
 
 					throw new InvalidValueException(testEnum);
 				},
-				"Invalid TestEnum value: 'EnumMemberA'.");
+				"Invalid TestEnum value: 'Subscriber'.");
 		}
 
 		[TestMethod]

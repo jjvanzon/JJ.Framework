@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Misc;
 using JJ.Framework.Mathematics;
 using JJ.Framework.Reflection;
 using JJ.Framework.Text;

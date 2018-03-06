@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
-using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.Reflection;
 using JJ.Framework.Xml.Linq.Internal;
 

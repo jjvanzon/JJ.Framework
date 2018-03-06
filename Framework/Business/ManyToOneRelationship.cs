@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Business
 {

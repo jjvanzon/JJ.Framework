@@ -46,47 +46,47 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComparativeExceptionBase.cs" />
-    <Compile Include="ContainsException.cs" />
-    <Compile Include="EqualException.cs" />
+    <Compile Include="Comparative\ComparativeExceptionBase.cs" />
+    <Compile Include="Comparative\ContainsException.cs" />
+    <Compile Include="Comparative\EqualException.cs" />
     <Compile Include="ExceptionHelper.cs" />
-    <Compile Include="ExceptionWithNameTypeAndKeyBase.cs" />
-    <Compile Include="SimpleExceptions.cs">
+    <Compile Include="Aggregates\ExceptionWithNameTypeAndKeyBase.cs" />
+    <Compile Include="Basic\BasicExceptions.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SimpleExceptions.tt</DependentUpon>
+      <DependentUpon>BasicExceptions.tt</DependentUpon>
     </Compile>
-    <Compile Include="SimpleExceptionBase.cs" />
-    <Compile Include="FileAlreadyExistException.cs" />
-    <Compile Include="FileDoesNotExistException.cs" />
-    <Compile Include="FolderAlreadyExistsException.cs" />
-    <Compile Include="FolderDoesNotExistException.cs" />
-    <Compile Include="GreaterThanException.cs" />
-    <Compile Include="GreaterThanOrEqualException.cs" />
-    <Compile Include="InvalidIndexException.cs" />
-    <Compile Include="InvalidValueException.cs" />
-    <Compile Include="IsEnumTypeException.cs" />
-    <Compile Include="IsEnumTypeExceptionOfT.cs" />
-    <Compile Include="IsNotTypeException.cs" />
-    <Compile Include="IsTypeException.cs" />
-    <Compile Include="IsNotTypeExceptionOfT.cs" />
-    <Compile Include="IsTypeExceptionOfT.cs" />
-    <Compile Include="LessThanException.cs" />
-    <Compile Include="LessThanOrEqualException.cs" />
-    <Compile Include="NotContainsException.cs" />
-    <Compile Include="NotEnumTypeException.cs" />
-    <Compile Include="NotEnumTypeExceptionOfT.cs" />
-    <Compile Include="NotEqualException.cs" />
-    <Compile Include="NotFoundException.cs" />
-    <Compile Include="NotFoundExceptionOfT.cs" />
-    <Compile Include="NotUniqueException.cs" />
-    <Compile Include="NotUniqueExceptionOfT.cs" />
+    <Compile Include="Basic\BasicExceptionBase.cs" />
+    <Compile Include="Files\FileAlreadyExistException.cs" />
+    <Compile Include="Files\FileDoesNotExistException.cs" />
+    <Compile Include="Files\FolderAlreadyExistsException.cs" />
+    <Compile Include="Files\FolderDoesNotExistException.cs" />
+    <Compile Include="Comparative\GreaterThanException.cs" />
+    <Compile Include="Comparative\GreaterThanOrEqualException.cs" />
+    <Compile Include="Aggregates\InvalidIndexException.cs" />
+    <Compile Include="InvalidValues\InvalidValueException.cs" />
+    <Compile Include="TypeChecking\IsEnumTypeException.cs" />
+    <Compile Include="TypeChecking\IsEnumTypeExceptionOfT.cs" />
+    <Compile Include="TypeChecking\IsNotTypeException.cs" />
+    <Compile Include="TypeChecking\IsTypeException.cs" />
+    <Compile Include="TypeChecking\IsNotTypeExceptionOfT.cs" />
+    <Compile Include="TypeChecking\IsTypeExceptionOfT.cs" />
+    <Compile Include="Comparative\LessThanException.cs" />
+    <Compile Include="Comparative\LessThanOrEqualException.cs" />
+    <Compile Include="Comparative\NotContainsException.cs" />
+    <Compile Include="TypeChecking\NotEnumTypeException.cs" />
+    <Compile Include="TypeChecking\NotEnumTypeExceptionOfT.cs" />
+    <Compile Include="Comparative\NotEqualException.cs" />
+    <Compile Include="Aggregates\NotFoundException.cs" />
+    <Compile Include="Aggregates\NotFoundExceptionOfT.cs" />
+    <Compile Include="Aggregates\NotUniqueException.cs" />
+    <Compile Include="Aggregates\NotUniqueExceptionOfT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyNotFoundException.cs" />
-    <Compile Include="PropertyNotFoundExceptionOfT.cs" />
-    <Compile Include="TypeNotFoundException.cs" />
-    <Compile Include="UnexpectedTypeException.cs" />
-    <Compile Include="ValueNotSupportedException.cs" />
+    <Compile Include="TypeChecking\PropertyNotFoundException.cs" />
+    <Compile Include="TypeChecking\PropertyNotFoundExceptionOfT.cs" />
+    <Compile Include="TypeChecking\TypeNotFoundException.cs" />
+    <Compile Include="TypeChecking\UnexpectedTypeException.cs" />
+    <Compile Include="InvalidValues\ValueNotSupportedException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Reflection\JJ.Framework.Reflection.csproj">
@@ -104,9 +104,9 @@
     <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SimpleExceptions.tt">
+    <None Include="Basic\BasicExceptions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SimpleExceptions.cs</LastGenOutput>
+      <LastGenOutput>BasicExceptions.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

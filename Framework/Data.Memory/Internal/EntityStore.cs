@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Exceptions.TypeChecking;
 
 namespace JJ.Framework.Data.Memory.Internal
 {

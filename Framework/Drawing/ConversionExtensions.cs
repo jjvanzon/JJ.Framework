@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
-using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.VectorGraphics.Drawing;
 using JJ.Framework.VectorGraphics.Enums;
 using JJ.Framework.VectorGraphics.Models.Styling;

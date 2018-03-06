@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Data.Xml.Linq.Internal

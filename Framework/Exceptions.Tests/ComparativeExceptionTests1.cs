@@ -1,5 +1,6 @@
 ﻿
 
+using JJ.Framework.Exceptions.Comparative;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable LocalNameCapturedOnly

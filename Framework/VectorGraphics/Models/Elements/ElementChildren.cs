@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.VectorGraphics.Relationships;
 using JJ.Framework.VectorGraphics.SideEffects;
 

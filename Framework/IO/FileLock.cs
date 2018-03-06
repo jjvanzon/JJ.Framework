@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.InvalidValues;
 
 namespace JJ.Framework.IO
 {

@@ -88,6 +88,20 @@ namespace JJ.Framework.Exceptions.Tests
 					"testItem.Parent <#= displayText #>.");
 			}
 
+			[TestMethod]
+			public void Test_<#= codeName #>Exception_WithAnonymousType()
+			{
+				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+					() =>
+					{
+						int customerNumber = 1234;
+						TestEnum customerType = TestEnum.Subscriber;
+
+						throw new <#= codeName #>Exception(new { customerNumber, customerType });
+					},
+					"{ customerNumber = 1234, customerType = Subscriber } <#= displayText #>.");
+			}
+
 		<# } #>
 
 	}

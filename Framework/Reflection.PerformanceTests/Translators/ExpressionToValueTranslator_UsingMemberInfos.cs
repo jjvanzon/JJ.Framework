@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 {

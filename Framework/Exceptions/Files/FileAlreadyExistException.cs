@@ -1,0 +1,13 @@
+﻿using System;
+
+namespace JJ.Framework.Exceptions.Files
+{
+	public class FileAlreadyExistException : Exception
+	{
+		private const string MESSAGE_TEMPLATE = "File '{0}' already exists.";
+
+		public FileAlreadyExistException(string filePath)
+			: base(string.Format(MESSAGE_TEMPLATE, filePath))
+		{ }
+	}
+}

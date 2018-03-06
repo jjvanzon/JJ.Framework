@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using JJ.Framework.Logging;
 using System.ServiceModel;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Soap.Tests.Helpers
 {

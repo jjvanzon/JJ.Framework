@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Web.Mvc;
 using JJ.Framework.Collections;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Presentation;
 using JJ.Framework.Reflection;
 

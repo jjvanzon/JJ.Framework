@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Presentation;
 
 namespace JJ.Framework.Mvc

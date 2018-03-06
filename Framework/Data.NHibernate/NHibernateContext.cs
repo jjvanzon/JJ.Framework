@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using NHibernate;
 using NHibernate.Engine;
 using NHibernate.Persister.Entity;

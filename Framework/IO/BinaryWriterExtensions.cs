@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.InteropServices;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.IO
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Comparative;
 using JJ.Framework.VectorGraphics.EventArg;
 
 namespace JJ.Framework.VectorGraphics.Gestures

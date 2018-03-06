@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Threading;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Testing

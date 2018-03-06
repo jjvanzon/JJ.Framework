@@ -3,6 +3,7 @@ using JJ.Framework.Soap.Tests.ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Soap.Tests.Server
 {

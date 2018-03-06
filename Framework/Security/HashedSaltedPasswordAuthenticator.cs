@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Misc;
 
 namespace JJ.Framework.Security
 {

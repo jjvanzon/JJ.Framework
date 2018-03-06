@@ -4,6 +4,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using JJ.Framework.Drawing;
 using JJ.Framework.Exceptions;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.WinForms.Helpers
 {
