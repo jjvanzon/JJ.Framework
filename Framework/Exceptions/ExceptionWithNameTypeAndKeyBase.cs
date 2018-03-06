@@ -12,14 +12,14 @@ namespace JJ.Framework.Exceptions
 
 		public ExceptionWithNameTypeAndKeyBase(Expression<Func<object>> expression)
 		{
-			string name = ExpressionHelper.GetText(expression);
-			Message = string.Format(MessageWithName, name);
+			string text = ExpressionHelper.GetText(expression);
+			Message = string.Format(MessageWithName, text);
 		}
 
 		public ExceptionWithNameTypeAndKeyBase(Expression<Func<object>> expression, object key)
 		{
-			string name = ExpressionHelper.GetText(expression);
-			Message = string.Format(MessageWithNameAndKey, name, key);
+			string text = ExpressionHelper.GetText(expression);
+			Message = string.Format(MessageWithNameAndKey, text, key);
 		}
 
 		public ExceptionWithNameTypeAndKeyBase(Type type)

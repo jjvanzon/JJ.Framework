@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 namespace JJ.Framework.Exceptions
 {
 	/// <inheritdoc />
-	public class ContainsException : ComparativeExceptionWithExpressionBase
+	public class ContainsException : ComparativeExceptionBase
 	{
 		protected override string MessageTemplateWithAAndB => "{0} should not contain {1}.";
 		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} should not contain {2}.";

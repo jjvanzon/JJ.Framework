@@ -5,6 +5,6 @@ namespace JJ.Framework.Exceptions.Tests
 {
 	internal class TestItem
 	{
-		public TestItem Parent { get; }
+		public TestItem Parent { get; set; }
 	}
 }

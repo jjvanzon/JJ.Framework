@@ -13,24 +13,9 @@ namespace JJ.Framework.Exceptions
 		("CollectionEmptyException", "{0} collection is empty."),
 		("CollectionNotEmptyException", "{0} collection should be empty."),
 		("HasNullsException", "{0} contains nulls."),
-		("HasValueException", "{0} should not have a value."),
 		("InfinityException", "{0} is Infinity."),
-		("InvalidReferenceException", "{0} not found in list."),
-		("IsDateTimeException", "{0} should not be a DateTime."),
-		("IsDecimalException", "{0} should not be a Decimal."),
-		("IsDoubleException", "{0} should not be a double precision floating point number."),
-		("IsIntegerException", "{0} should not be an integer number."),
 		("NaNException", "{0} is NaN."),
-		("NotDateTimeException", "{0} is not a DateTime."),
-		("NotDecimalException", "{0} is not a Decimal."),
-		("NotDoubleException", "{0} is not a double precision floating point number."),
 		("NotHasValueException", "{0} has no value."),
-		("NotInfinityException", "{0} should be Infinity."),
-		("NotIntegerException", "{0} is not an integer number."),
-		("NotNaNException", "{0} should be NaN."),
-		("NotNullException", "{0} should be null."),
-		("NotNullOrEmptyException", "{0} should be null or empty."),
-		("NotNullOrWhiteSpaceException", "{0} should be null or white space."),
 		("NullOrEmptyException", "{0} is null or empty."),
 		("NullOrWhiteSpaceException", "{0} is null or white space."),
 		("ZeroException", "{0} is 0."),
@@ -40,7 +25,7 @@ namespace JJ.Framework.Exceptions
 	{
 #>
 		/// <inheritdoc />
-		public class <#= exception #> : SimpleExceptionWithExpressionBase
+		public class <#= exception #> : SimpleExceptionBase
 		{
 			private const string MESSAGE_TEMPLATE = "<#= message #>";
 

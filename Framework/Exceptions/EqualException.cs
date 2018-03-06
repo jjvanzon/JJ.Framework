@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 namespace JJ.Framework.Exceptions
 {
 	/// <inheritdoc />
-	public class EqualException : ComparativeExceptionWithExpressionBase
+	public class EqualException : ComparativeExceptionBase
 	{
 		protected override string MessageTemplateWithAAndB => "{0} is equal to {1}.";
 		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} is equal to {2}.";

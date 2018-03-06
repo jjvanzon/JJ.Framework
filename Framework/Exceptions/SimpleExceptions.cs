@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 namespace JJ.Framework.Exceptions
 {
 		/// <inheritdoc />
-		public class NullException : SimpleExceptionWithExpressionBase
+		public class NullException : SimpleExceptionBase
 		{
 			private const string MESSAGE_TEMPLATE = "{0} is null.";
 
@@ -16,7 +16,7 @@ namespace JJ.Framework.Exceptions
 		}
 
 		/// <inheritdoc />
-		public class CollectionEmptyException : SimpleExceptionWithExpressionBase
+		public class CollectionEmptyException : SimpleExceptionBase
 		{
 			private const string MESSAGE_TEMPLATE = "{0} collection is empty.";
 
@@ -28,7 +28,7 @@ namespace JJ.Framework.Exceptions
 		}
 
 		/// <inheritdoc />
-		public class CollectionNotEmptyException : SimpleExceptionWithExpressionBase
+		public class CollectionNotEmptyException : SimpleExceptionBase
 		{
 			private const string MESSAGE_TEMPLATE = "{0} collection should be empty.";
 
@@ -40,7 +40,7 @@ namespace JJ.Framework.Exceptions
 		}
 
 		/// <inheritdoc />
-		public class HasNullsException : SimpleExceptionWithExpressionBase
+		public class HasNullsException : SimpleExceptionBase
 		{
 			private const string MESSAGE_TEMPLATE = "{0} contains nulls.";
 
@@ -52,19 +52,7 @@ namespace JJ.Framework.Exceptions
 		}
 
 		/// <inheritdoc />
-		public class HasValueException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} should not have a value.";
-
-			/// <inheritdoc />
-			public HasValueException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public HasValueException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class InfinityException : SimpleExceptionWithExpressionBase
+		public class InfinityException : SimpleExceptionBase
 		{
 			private const string MESSAGE_TEMPLATE = "{0} is Infinity.";
 
@@ -76,67 +64,7 @@ namespace JJ.Framework.Exceptions
 		}
 
 		/// <inheritdoc />
-		public class InvalidReferenceException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} not found in list.";
-
-			/// <inheritdoc />
-			public InvalidReferenceException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public InvalidReferenceException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class IsDateTimeException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} should not be a DateTime.";
-
-			/// <inheritdoc />
-			public IsDateTimeException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public IsDateTimeException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class IsDecimalException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} should not be a Decimal.";
-
-			/// <inheritdoc />
-			public IsDecimalException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public IsDecimalException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class IsDoubleException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} should not be a double precision floating point number.";
-
-			/// <inheritdoc />
-			public IsDoubleException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public IsDoubleException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class IsIntegerException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} should not be an integer number.";
-
-			/// <inheritdoc />
-			public IsIntegerException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public IsIntegerException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class NaNException : SimpleExceptionWithExpressionBase
+		public class NaNException : SimpleExceptionBase
 		{
 			private const string MESSAGE_TEMPLATE = "{0} is NaN.";
 
@@ -148,43 +76,7 @@ namespace JJ.Framework.Exceptions
 		}
 
 		/// <inheritdoc />
-		public class NotDateTimeException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} is not a DateTime.";
-
-			/// <inheritdoc />
-			public NotDateTimeException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public NotDateTimeException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class NotDecimalException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} is not a Decimal.";
-
-			/// <inheritdoc />
-			public NotDecimalException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public NotDecimalException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class NotDoubleException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} is not a double precision floating point number.";
-
-			/// <inheritdoc />
-			public NotDoubleException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public NotDoubleException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class NotHasValueException : SimpleExceptionWithExpressionBase
+		public class NotHasValueException : SimpleExceptionBase
 		{
 			private const string MESSAGE_TEMPLATE = "{0} has no value.";
 
@@ -196,79 +88,7 @@ namespace JJ.Framework.Exceptions
 		}
 
 		/// <inheritdoc />
-		public class NotInfinityException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} should be Infinity.";
-
-			/// <inheritdoc />
-			public NotInfinityException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public NotInfinityException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class NotIntegerException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} is not an integer number.";
-
-			/// <inheritdoc />
-			public NotIntegerException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public NotIntegerException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class NotNaNException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} should be NaN.";
-
-			/// <inheritdoc />
-			public NotNaNException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public NotNaNException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class NotNullException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} should be null.";
-
-			/// <inheritdoc />
-			public NotNullException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public NotNullException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class NotNullOrEmptyException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} should be null or empty.";
-
-			/// <inheritdoc />
-			public NotNullOrEmptyException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public NotNullOrEmptyException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class NotNullOrWhiteSpaceException : SimpleExceptionWithExpressionBase
-		{
-			private const string MESSAGE_TEMPLATE = "{0} should be null or white space.";
-
-			/// <inheritdoc />
-			public NotNullOrWhiteSpaceException(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
-
-			/// <inheritdoc />
-			public NotNullOrWhiteSpaceException(string name) : base(MESSAGE_TEMPLATE, name) { }
-		}
-
-		/// <inheritdoc />
-		public class NullOrEmptyException : SimpleExceptionWithExpressionBase
+		public class NullOrEmptyException : SimpleExceptionBase
 		{
 			private const string MESSAGE_TEMPLATE = "{0} is null or empty.";
 
@@ -280,7 +100,7 @@ namespace JJ.Framework.Exceptions
 		}
 
 		/// <inheritdoc />
-		public class NullOrWhiteSpaceException : SimpleExceptionWithExpressionBase
+		public class NullOrWhiteSpaceException : SimpleExceptionBase
 		{
 			private const string MESSAGE_TEMPLATE = "{0} is null or white space.";
 
@@ -292,7 +112,7 @@ namespace JJ.Framework.Exceptions
 		}
 
 		/// <inheritdoc />
-		public class ZeroException : SimpleExceptionWithExpressionBase
+		public class ZeroException : SimpleExceptionBase
 		{
 			private const string MESSAGE_TEMPLATE = "{0} is 0.";
 

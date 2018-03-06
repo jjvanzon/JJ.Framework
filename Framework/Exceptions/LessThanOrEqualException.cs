@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 namespace JJ.Framework.Exceptions
 {
 	/// <inheritdoc />
-	public class LessThanOrEqualException : ComparativeExceptionWithExpressionBase
+	public class LessThanOrEqualException : ComparativeExceptionBase
 	{
 		protected override string MessageTemplateWithAAndB => "{0} is less than or equal to {1}.";
 		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} is less than or equal to {2}.";

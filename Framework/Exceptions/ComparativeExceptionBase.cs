@@ -6,7 +6,7 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
-	public abstract class ComparativeExceptionWithExpressionBase : Exception
+	public abstract class ComparativeExceptionBase : Exception
 	{
 		protected abstract string MessageTemplateWithAAndB { get; }
 		protected abstract string MessageTemplateWithAValueAndNoBValue { get; }
@@ -15,10 +15,10 @@ namespace JJ.Framework.Exceptions
 
 		/// <param name="a">Can be both the name or the value of the object.</param>
 		/// <param name="b">Can be both the name or the value of the object.</param>
-		public ComparativeExceptionWithExpressionBase(object a, object b) =>
+		public ComparativeExceptionBase(object a, object b) =>
 			Message = string.Format(MessageTemplateWithAAndB, a, b);
 
-		public ComparativeExceptionWithExpressionBase(Expression<Func<object>> expressionA, Expression<Func<object>> expressionB)
+		public ComparativeExceptionBase(Expression<Func<object>> expressionA, Expression<Func<object>> expressionB)
 		{
 			string textA = ExpressionHelper.GetText(expressionA);
 			string textB = ExpressionHelper.GetText(expressionB);
@@ -29,7 +29,7 @@ namespace JJ.Framework.Exceptions
 		}
 
 		/// <param name="b">Can be both the name or the value of the object.</param>
-		public ComparativeExceptionWithExpressionBase(Expression<Func<object>> expressionA, object b)
+		public ComparativeExceptionBase(Expression<Func<object>> expressionA, object b)
 		{
 			string textA = ExpressionHelper.GetText(expressionA);
 			object a = ExpressionHelper.GetValue(expressionA);
@@ -38,7 +38,7 @@ namespace JJ.Framework.Exceptions
 		}
 
 		/// <param name="a">Can be both the name or the value of the object.</param>
-		public ComparativeExceptionWithExpressionBase(object a, Expression<Func<object>> expressionB)
+		public ComparativeExceptionBase(object a, Expression<Func<object>> expressionB)
 		{
 			string textB = ExpressionHelper.GetText(expressionB);
 			object b = ExpressionHelper.GetValue(expressionB);
@@ -72,20 +72,20 @@ namespace JJ.Framework.Exceptions
 		public override string Message { get; }
 
 		[Obsolete("Remove the showValueA or showValueB parameters. They will be deteremined automatically.", true)]
-		public ComparativeExceptionWithExpressionBase(
+		public ComparativeExceptionBase(
 			Expression<Func<object>> expressionA,
 			Expression<Func<object>> expressionB,
 			bool showValueA = false,
 			bool showValueB = false) => throw new NotImplementedException();
 
 		[Obsolete("Remove the showValueA or showValueB parameters. They will be deteremined automatically.", true)]
-		public ComparativeExceptionWithExpressionBase(
+		public ComparativeExceptionBase(
 			Expression<Func<object>> expressionA,
 			object b,
 			bool showValueA = false) => throw new NotImplementedException();
 
 		[Obsolete("Remove the showValueA or showValueB parameters. They will be deteremined automatically.", true)]
-		public ComparativeExceptionWithExpressionBase(
+		public ComparativeExceptionBase(
 			object a,
 			Expression<Func<object>> expressionB,
 			bool showValueB = false) => throw new NotImplementedException();

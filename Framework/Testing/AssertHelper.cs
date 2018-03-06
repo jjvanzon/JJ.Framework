@@ -144,8 +144,8 @@ namespace JJ.Framework.Testing
 			}
 			catch (Exception ex)
 			{
-				AreEqual(exceptionType, () => ex.GetType());
 				AreEqual(expectedMessage, () => ex.Message);
+				AreEqual(exceptionType, () => ex.GetType());
 				return;
 			}
 

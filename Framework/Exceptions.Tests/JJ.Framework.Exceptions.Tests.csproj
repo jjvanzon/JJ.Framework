@@ -65,7 +65,11 @@
     <Compile Include="NotUniqueExceptionTests.cs" />
     <Compile Include="NotFoundExceptionTests.cs" />
     <Compile Include="MiscExceptionTests.cs" />
-    <Compile Include="NullExceptionTests.cs" />
+    <Compile Include="ExceptionsWithNameAndValueTests.cs">
+      <DependentUpon>ExceptionsWithNameAndValueTests.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="SimpleExceptionTests1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,6 +96,10 @@
     <Content Include="ComparativeExceptionTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ComparativeExceptionTests1.cs</LastGenOutput>
+    </Content>
+    <Content Include="ExceptionsWithNameAndValueTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ExceptionsWithNameAndValueTests.cs</LastGenOutput>
     </Content>
     <Content Include="SimpleExceptionTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

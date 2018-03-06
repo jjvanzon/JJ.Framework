@@ -132,8 +132,14 @@ namespace JJ.Framework.Reflection
 			if (!getterOrSetter.IsStatic)
 			{
 				obj = _stack.Pop();
+
+				if (obj == null)
+				{
+					throw new Exception($"{ExpressionHelper.GetText(node)} is null while evaluating the expression.");
+				}
 			}
-			object value = property.GetValue(obj, null);
+
+			object value = property.GetValue(obj);
 			_stack.Push(value);
 
 			_list.Add(value);

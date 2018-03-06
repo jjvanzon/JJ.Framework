@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 namespace JJ.Framework.Exceptions
 {
 	/// <inheritdoc />
-	public class NotEqualException : ComparativeExceptionWithExpressionBase
+	public class NotEqualException : ComparativeExceptionBase
 	{
 		protected override string MessageTemplateWithAAndB => "{0} does not equal {1}.";
 		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} does not equal {2}.";
