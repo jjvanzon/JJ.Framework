@@ -1,6 +1,6 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ output extension=".cs" #>
+<#@ output extension=".txt" #>
 using System;
 using System.Linq.Expressions;
 
@@ -32,13 +32,13 @@ namespace JJ.Framework.Exceptions
 		/// <inheritdoc />
 		public class <#= exception #> : ExceptionWithNameAndValueBase
 		{
-			private const string MESSAGE_TEMPLATE_WITH_NAME = "<#= message #>";
+			private const string MESSAGE_TEMPLATE = "<#= message #>";
 
 			/// <inheritdoc />
-			public <#= exception #>(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE_WITH_NAME, expression) { }
+			public <#= exception #>(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
 
 			/// <inheritdoc />
-			public <#= exception #>(string name) : base(MESSAGE_TEMPLATE_WITH_NAME, name) { }
+			public <#= exception #>(string name) : base(MESSAGE_TEMPLATE, name) { }
 		}
 
 <#

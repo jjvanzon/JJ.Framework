@@ -18,7 +18,7 @@ namespace JJ.Framework.Exceptions
 		{
 			string text = ExpressionHelper.GetText(expression);
 			object value = ExpressionHelper.GetValue(expression);
-			bool mustShowValue = value != null && ReflectionHelper.IsSimpleType(value);
+			bool mustShowValue = ReflectionHelper.IsSimpleType(value) && !string.IsNullOrEmpty(Convert.ToString(value));
 			if (mustShowValue) text += $" of {value}";
 			return text;
 		}

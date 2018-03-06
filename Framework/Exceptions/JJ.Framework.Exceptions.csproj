@@ -51,17 +51,11 @@
     <Compile Include="EqualException.cs" />
     <Compile Include="ExceptionHelper.cs" />
     <Compile Include="ExceptionWithNameTypeAndKeyBase.cs" />
-    <Compile Include="ExceptionsWithNameAndValue.cs">
-      <DependentUpon>ExceptionsWithNameAndValue.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="SimpleExceptions.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SimpleExceptions.tt</DependentUpon>
     </Compile>
-    <Compile Include="ExceptionWithNameAndValueBase.cs" />
     <Compile Include="SimpleExceptionBase.cs" />
     <Compile Include="FileAlreadyExistException.cs" />
     <Compile Include="FileDoesNotExistException.cs" />
@@ -117,12 +111,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ExceptionsWithNameAndValue.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ExceptionsWithNameAndValue.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

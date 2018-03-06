@@ -12,9 +12,24 @@
 		("CollectionEmpty", "collection is empty"),
 		("CollectionNotEmpty", "collection should be empty"),
 		("HasNulls", "contains nulls"),
+		("HasValue", "should not have a value"),
 		("Infinity", "is Infinity"),
+		("InvalidReference", "not found in list"),
+		("IsDateTime", "should not be a DateTime"),
+		("IsDecimal", "should not be a Decimal"),
+		("IsDouble", "should not be a double precision floating point number"),
+		("IsInteger", "should not be an integer number"),
 		("NaN", "is NaN"),
+		("NotDateTime", "is not a DateTime"),
+		("NotDecimal", "is not a Decimal"),
+		("NotDouble", "is not a double precision floating point number"),
 		("NotHasValue", "has no value"),
+		("NotInfinity", "should be Infinity"),
+		("NotInteger", "is not an integer number"),
+		("NotNaN", "should be NaN"),
+		("NotNull", "should be null"),
+		("NotNullOrEmpty", "should be null or empty"),
+		("NotNullOrWhiteSpace", "should be null or white space"),
 		("NullOrEmpty", "is null or empty"),
 		("NullOrWhiteSpace", "is null or white space"),
 		("Zero", "is 0")
@@ -53,11 +68,11 @@ namespace JJ.Framework.Exceptions.Tests
 				AssertHelper.ThrowsException<<#= codeName #>Exception>(
 					() =>
 					{
-						object value = null;
+						object value = 1;
 
 						throw new <#= codeName #>Exception(() => value);
 					},
-					"value <#= displayText #>.");
+					"value of 1 <#= displayText #>.");
 			}
 
 			[TestMethod]
