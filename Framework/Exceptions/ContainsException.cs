@@ -6,10 +6,7 @@ namespace JJ.Framework.Exceptions
 	/// <inheritdoc />
 	public class ContainsException : ComparativeExceptionBase
 	{
-		protected override string MessageTemplateWithAAndB => "{0} should not contain {1}.";
-		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} should not contain {2}.";
-		protected override string MessageTemplateWithNoAValueAndWithBValue => "{0} should not contain {1} of {2}.";
-		protected override string MessageTemplateWithTwoValuesAndTwoNames => "{0} of {1} should not contain {2} of {3}.";
+		protected override string MessageTemplate => "{0} should not contain {1}.";
 
 		/// <inheritdoc />
 		public ContainsException(object a, object b)

@@ -6,10 +6,7 @@ namespace JJ.Framework.Exceptions
 	/// <inheritdoc />
 	public class NotEqualException : ComparativeExceptionBase
 	{
-		protected override string MessageTemplateWithAAndB => "{0} does not equal {1}.";
-		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} does not equal {2}.";
-		protected override string MessageTemplateWithNoAValueAndWithBValue => "{0} does not equal {1} of {2}.";
-		protected override string MessageTemplateWithTwoValuesAndTwoNames => "{0} of {1} does not equal {2} of {3}.";
+		protected override string MessageTemplate => "{0} does not equal {1}.";
 
 		/// <inheritdoc />
 		public NotEqualException(object a, object b)

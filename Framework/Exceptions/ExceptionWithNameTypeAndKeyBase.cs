@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
-using JJ.Framework.Reflection;
+
 // ReSharper disable VirtualMemberCallInConstructor
 
 namespace JJ.Framework.Exceptions
@@ -12,13 +12,13 @@ namespace JJ.Framework.Exceptions
 
 		public ExceptionWithNameTypeAndKeyBase(Expression<Func<object>> expression)
 		{
-			string text = ExpressionHelper.GetText(expression);
+			string text = ExceptionHelper.GetTextWithValue(expression);
 			Message = string.Format(MessageWithName, text);
 		}
 
 		public ExceptionWithNameTypeAndKeyBase(Expression<Func<object>> expression, object key)
 		{
-			string text = ExpressionHelper.GetText(expression);
+			string text = ExceptionHelper.GetTextWithValue(expression);
 			Message = string.Format(MessageWithNameAndKey, text, key);
 		}
 
@@ -34,15 +34,9 @@ namespace JJ.Framework.Exceptions
 			Message = string.Format(MessageWithNameAndKey, typeName, key);
 		}
 
-		public ExceptionWithNameTypeAndKeyBase(string name)
-		{
-			Message = string.Format(MessageWithName, name);
-		}
+		public ExceptionWithNameTypeAndKeyBase(string name) => Message = string.Format(MessageWithName, name);
 
-		public ExceptionWithNameTypeAndKeyBase(string name, object key)
-		{
-			Message = string.Format(MessageWithNameAndKey, name, key);
-		}
+		public ExceptionWithNameTypeAndKeyBase(string name, object key) => Message = string.Format(MessageWithNameAndKey, name, key);
 
 		public override string Message { get; }
 	}

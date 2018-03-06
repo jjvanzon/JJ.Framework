@@ -62,7 +62,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new InvalidIndexException(() => index, () => list.Count);
 				},
-				"index 1 is an invalid index for list with count 0.");
+				"index of 1 is an invalid index for list with count 0.");
 		}
 
 		[TestMethod]

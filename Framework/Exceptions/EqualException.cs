@@ -6,10 +6,7 @@ namespace JJ.Framework.Exceptions
 	/// <inheritdoc />
 	public class EqualException : ComparativeExceptionBase
 	{
-		protected override string MessageTemplateWithAAndB => "{0} is equal to {1}.";
-		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} is equal to {2}.";
-		protected override string MessageTemplateWithNoAValueAndWithBValue => "{0} is equal to {1} of {2}.";
-		protected override string MessageTemplateWithTwoValuesAndTwoNames => "{0} of {1} is equal to {2} of {3}.";
+		protected override string MessageTemplate => "{0} is equal to {1}.";
 
 		/// <inheritdoc />
 		public EqualException(object a, object b)

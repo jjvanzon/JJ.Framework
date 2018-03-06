@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using JJ.Framework.Reflection;
 
 // ReSharper disable VirtualMemberCallInConstructor
 
@@ -8,65 +7,35 @@ namespace JJ.Framework.Exceptions
 {
 	public abstract class ComparativeExceptionBase : Exception
 	{
-		protected abstract string MessageTemplateWithAAndB { get; }
-		protected abstract string MessageTemplateWithAValueAndNoBValue { get; }
-		protected abstract string MessageTemplateWithNoAValueAndWithBValue { get; }
-		protected abstract string MessageTemplateWithTwoValuesAndTwoNames { get; }
+		protected abstract string MessageTemplate { get; }
 
 		/// <param name="a">Can be both the name or the value of the object.</param>
 		/// <param name="b">Can be both the name or the value of the object.</param>
 		public ComparativeExceptionBase(object a, object b) =>
-			Message = string.Format(MessageTemplateWithAAndB, a, b);
+			Message = string.Format(MessageTemplate, a, b);
 
 		public ComparativeExceptionBase(Expression<Func<object>> expressionA, Expression<Func<object>> expressionB)
 		{
-			string textA = ExpressionHelper.GetText(expressionA);
-			string textB = ExpressionHelper.GetText(expressionB);
-			object a = ExpressionHelper.GetValue(expressionA);
-			object b = ExpressionHelper.GetValue(expressionB);
+			string textA = ExceptionHelper.GetTextWithValue(expressionA);
+			string textB = ExceptionHelper.GetTextWithValue(expressionB);
 
-			Message = FormatMessage(textA, a, textB, b);
+			Message = string.Format(MessageTemplate, textA, textB);
 		}
 
 		/// <param name="b">Can be both the name or the value of the object.</param>
 		public ComparativeExceptionBase(Expression<Func<object>> expressionA, object b)
 		{
-			string textA = ExpressionHelper.GetText(expressionA);
-			object a = ExpressionHelper.GetValue(expressionA);
+			string textA = ExceptionHelper.GetTextWithValue(expressionA);
 
-			Message = FormatMessage(textA, a, b, null);
+			Message = string.Format(MessageTemplate, textA, b);
 		}
 
 		/// <param name="a">Can be both the name or the value of the object.</param>
 		public ComparativeExceptionBase(object a, Expression<Func<object>> expressionB)
 		{
-			string textB = ExpressionHelper.GetText(expressionB);
-			object b = ExpressionHelper.GetValue(expressionB);
+			string textB = ExceptionHelper.GetTextWithValue(expressionB);
 
-			Message = FormatMessage(a, null, textB, b);
-		}
-
-		private string FormatMessage(object textA, object a, object textB, object b)
-		{
-			bool mustShowValueA = a != null && ReflectionHelper.IsSimpleType(a);
-			bool mustShowValueB = b != null && ReflectionHelper.IsSimpleType(b);
-
-			if (mustShowValueA && mustShowValueB)
-			{
-				return string.Format(MessageTemplateWithTwoValuesAndTwoNames, textA, a, textB, b);
-			}
-
-			if (mustShowValueA)
-			{
-				return string.Format(MessageTemplateWithAValueAndNoBValue, textA, a, textB);
-			}
-
-			if (mustShowValueB)
-			{
-				return string.Format(MessageTemplateWithNoAValueAndWithBValue, textA, textB, b);
-			}
-
-			return string.Format(MessageTemplateWithAAndB, textA, textB);
+			Message = string.Format(MessageTemplate, a, textB);
 		}
 
 		public override string Message { get; }

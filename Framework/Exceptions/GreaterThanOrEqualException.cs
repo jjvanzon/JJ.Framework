@@ -6,10 +6,7 @@ namespace JJ.Framework.Exceptions
 	/// <inheritdoc />
 	public class GreaterThanOrEqualException : ComparativeExceptionBase
 	{
-		protected override string MessageTemplateWithAAndB => "{0} is greater than or equal to {1}.";
-		protected override string MessageTemplateWithAValueAndNoBValue => "{0} of {1} is greater than or equal to {2}.";
-		protected override string MessageTemplateWithNoAValueAndWithBValue => "{0} is greater than or equal to {1} of {2}.";
-		protected override string MessageTemplateWithTwoValuesAndTwoNames => "{0} of {1} is greater than or equal to {2} of {3}.";
+		protected override string MessageTemplate => "{0} is greater than or equal to {1}.";
 
 		/// <inheritdoc />
 		public GreaterThanOrEqualException(object a, object b)

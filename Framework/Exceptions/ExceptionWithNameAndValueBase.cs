@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
@@ -12,30 +11,14 @@ namespace JJ.Framework.Exceptions
 	{
 		/// <summary>The passed lambda expression's text is incorporated in the exception message as well as the value if applicable..</summary>
 		/// <param name="expression">Pass e.g. () => myParam.MyProperty</param>
-		public ExceptionWithNameAndValueBase(
-			string messageFormatWithName,
-			string messageTemplateWithNameAndValue,
-			Expression<Func<object>> expression)
+		public ExceptionWithNameAndValueBase(string messageTemplate, Expression<Func<object>> expression)
 		{
-			string text = ExpressionHelper.GetText(expression);
-			object value = ExpressionHelper.GetValue(expression);
-			bool mustShowValue = value != null && ReflectionHelper.IsSimpleType(value);
-
-			if (mustShowValue)
-			{
-				Message = string.Format(messageTemplateWithNameAndValue, text, value);
-			}
-			else
-			{
-				Message = string.Format(messageFormatWithName, text);
-			}
+			string text = ExceptionHelper.GetTextWithValue(expression);
+			Message = string.Format(messageTemplate, text);
 		}
 
 		/// <param name="name">Pass e.g. nameof(myParam)</param>
-		public ExceptionWithNameAndValueBase(string messageFormatWithName, string name)
-		{
-			Message = string.Format(messageFormatWithName, name);
-		}
+		public ExceptionWithNameAndValueBase(string messageTemplate, string name) => Message = string.Format(messageTemplate, name);
 
 		public override string Message { get; }
 	}

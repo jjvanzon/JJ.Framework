@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq.Expressions;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Exceptions
 {
@@ -11,5 +13,14 @@ namespace JJ.Framework.Exceptions
 		public static string TryFormatShortTypeName(Type type) => type == null ? "<null>" : type.Name;
 
 		public static string FormatValue(object value) => value == null ? "<null>" : $"{value}";
+
+		public static string GetTextWithValue(Expression<Func<object>> expression)
+		{
+			string text = ExpressionHelper.GetText(expression);
+			object value = ExpressionHelper.GetValue(expression);
+			bool mustShowValue = value != null && ReflectionHelper.IsSimpleType(value);
+			if (mustShowValue) text += $" of {value}";
+			return text;
+		}
 	}
 }
