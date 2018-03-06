@@ -38,12 +38,13 @@
 
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JJ.Framework.Exceptions.Basic;
 // ReSharper disable LocalNameCapturedOnly
 
 namespace JJ.Framework.Exceptions.Tests
 {
 	[TestClass]
-	public class SimpleExceptionTests
+	public class BasicExceptionTests
 	{
 		private static readonly TestItem _testItem = new TestItem { Parent = new TestItem() };
 

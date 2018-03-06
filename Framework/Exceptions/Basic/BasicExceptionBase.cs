@@ -19,7 +19,7 @@ namespace JJ.Framework.Exceptions.Basic
 
 		/// <param name="indicator">
 		/// A name, value or anonymous type, that indicates the object it is about.
-		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }","10".
+		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }", "10".
 		/// The anonymous types translate to e.g. "{ customerNumber = 1234, customerType = Subscriber }" in the message.
 		/// </param>
 		public BasicExceptionBase(string messageTemplate, object indicator) => Message = string.Format(messageTemplate, indicator);

@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Testing;
+﻿using JJ.Framework.Exceptions.TypeChecking;
+using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable LocalNameCapturedOnly
 // ReSharper disable RedundantAssignment

@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Testing;
+﻿using JJ.Framework.Exceptions.Aggregates;
+using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable ConvertToConstant.Local
 // ReSharper disable LocalNameCapturedOnly

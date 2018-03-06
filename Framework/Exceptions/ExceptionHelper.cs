@@ -14,6 +14,11 @@ namespace JJ.Framework.Exceptions
 
 		public static string FormatValue(object value) => value == null ? "<null>" : $"{value}";
 
+		/// <summary>
+		/// Will return a string in the format "{something} of {value}", e.g. "height of 0".
+		/// Will extract the text and the value from the expression.
+		/// If the value is a simple type and not empty, it will be put in the returned text.
+		/// </summary>
 		public static string GetTextWithValue(Expression<Func<object>> expression)
 		{
 			string text = ExpressionHelper.GetText(expression);

@@ -12,6 +12,7 @@ namespace JJ.Framework.Exceptions.TypeChecking
 	/// </summary>
 	public class UnexpectedTypeException : Exception
 	{
+		/// <param name="expression">Pass e.g. () => myParam.MyProperty</param>
 		public UnexpectedTypeException(Expression<Func<object>> expression)
 		{
 			string name = ExpressionHelper.GetText(expression);

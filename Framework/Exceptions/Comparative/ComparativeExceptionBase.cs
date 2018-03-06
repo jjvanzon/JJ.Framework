@@ -11,12 +11,12 @@ namespace JJ.Framework.Exceptions.Comparative
 
 		/// <param name="a">
 		/// A name, value or anonymous type, that indicates the object it is about.
-		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }","10".
+		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }", "10".
 		/// The anonymous types translate to e.g. "{ customerNumber = 1234, customerType = Subscriber }" in the message.
 		/// </param>
 		/// <param name="b">
 		/// A name, value or anonymous type, that indicates the object it is about.
-		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }","10".
+		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }", "10".
 		/// The anonymous types translate to e.g. "{ customerNumber = 1234, customerType = Subscriber }" in the message.
 		/// </param>
 		public ComparativeExceptionBase(object a, object b) =>
@@ -32,7 +32,7 @@ namespace JJ.Framework.Exceptions.Comparative
 
 		/// <param name="b">
 		/// A name, value or anonymous type, that indicates the object it is about.
-		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }","10".
+		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }", "10".
 		/// The anonymous types translate to e.g. "{ customerNumber = 1234, customerType = Subscriber }" in the message.
 		/// </param>
 		public ComparativeExceptionBase(Expression<Func<object>> expressionA, object b)
@@ -44,7 +44,7 @@ namespace JJ.Framework.Exceptions.Comparative
 
 		/// <param name="a">
 		/// A name, value or anonymous type, that indicates the object it is about.
-		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }","10".
+		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }", "10".
 		/// The anonymous types translate to e.g. "{ customerNumber = 1234, customerType = Subscriber }" in the message.
 		/// </param>
 		public ComparativeExceptionBase(object a, Expression<Func<object>> expressionB)

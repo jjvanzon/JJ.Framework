@@ -8,11 +8,22 @@ namespace JJ.Framework.Exceptions.Aggregates
 		protected override string MessageWithName => "{0} not unique.";
 		protected override string MessageWithNameAndKey => "{0} with key {1} not unique.";
 
+		/// <inheritdoc />
 		public NotUniqueException(Expression<Func<object>> expression) : base(expression) { }
+
+		/// <inheritdoc />
 		public NotUniqueException(Expression<Func<object>> expression, object key) : base(expression, key) { }
+
+		/// <inheritdoc />
 		public NotUniqueException(Type type) : base(type) { }
+
+		/// <inheritdoc />
 		public NotUniqueException(Type type, object key) : base(type, key) { }
-		public NotUniqueException(string name) : base(name) { }
-		public NotUniqueException(string name, object key) : base(name, key) { }
+
+		/// <inheritdoc />
+		public NotUniqueException(string typeName) : base(typeName) { }
+
+		/// <inheritdoc />
+		public NotUniqueException(string typeName, object key) : base(typeName, key) { }
 	}
 }
