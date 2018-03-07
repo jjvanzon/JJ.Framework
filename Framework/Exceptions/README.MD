@@ -12,7 +12,8 @@ There are several advantages over using these exception types.
 
 * Error messages are clear.
 * Concise syntax, without sacrificing performance.
-* You can pass an expression, whose text becomes part of the message.
+* You can pass an expression, whose text becomes part of the message
+* Invalid value is automatically mentioned in the exception message.
 * Lose no time typing and trying to come up with a good message.
 
 For example:
@@ -51,8 +52,8 @@ Those produce the exception messages:
 
 Here is an example with the value check in it:
 
-	if (height < 0) throw new LessThanException(nameof(height), 0);
+	if (height < 10) throw new LessThanException(nameof(height), 10);
 
 This produces the exception message:
 				
-	height is less than 0.
+	height of 2 is less than 10.
