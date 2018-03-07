@@ -12,7 +12,7 @@ There are several advantages over using these exception types.
 
 * Error messages are clear.
 * Concise syntax, without sacrificing performance.
-* You can pass an expression, whose text becomes part of the message
+* You can pass an expression, whose text becomes part of the message.
 * Invalid value is automatically mentioned in the exception message.
 * Lose no time typing and trying to come up with a good message.
 
