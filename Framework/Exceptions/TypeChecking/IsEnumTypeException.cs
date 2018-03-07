@@ -6,6 +6,10 @@ namespace JJ.Framework.Exceptions.TypeChecking
 	{
 		private const string MESSAGE_TEMPLATE = "Type {0} cannot be an enum.";
 
+		/// <summary>
+		/// throw new IsEnumTypeException(myType)
+		/// will have message: "Type Customer cannot be an enum."
+		/// </summary>
 		public IsEnumTypeException(Type type)
 		{
 			string typeName = ExceptionHelper.TryFormatShortTypeName(type);

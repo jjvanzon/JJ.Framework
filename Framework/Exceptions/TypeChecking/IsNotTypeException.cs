@@ -12,16 +12,32 @@ namespace JJ.Framework.Exceptions.TypeChecking
 	/// </summary>
 	public class IsNotTypeException : Exception
 	{
-		/// <summary>The passed lambda expression's text is incorporated in the exception message as well as the value if applicable.</summary>
-		/// <param name="expression">Pass e.g. () => myParam.MyProperty</param>
+		/// <summary>
+		/// These will all have message: "Dog room.MyPet is not of type Cat.":
+		/// throw new IsNotTypeException&lt;Cat&gt;(() => room.MyPet);
+		/// throw new IsNotTypeException(() => room.MyPet, typeof(Cat));
+		/// throw new IsNotTypeException(() => room.MyPet, "Cat");
+		/// These will all have message: "{ number = A } is not of type Int32.":
+		/// throw new IsNotTypeException&lt;int&gt;(new { number });
+		/// throw new IsNotTypeException(new { number }, typeof(int));
+		/// throw new IsNotTypeException(new { number }, "Int32"));
+		/// </summary>
 		public IsNotTypeException(Expression<Func<object>> expression, Type expectedType)
 			: this(expression, ExceptionHelper.TryFormatShortTypeName(expectedType)) { }
 
-		/// <summary>The passed lambda expression's text is incorporated in the exception message as well as the value if applicable.</summary>
-		/// <param name="expression">Pass e.g. () => myParam.MyProperty</param>
+		/// <summary>
+		/// These will all have message: "Dog room.MyPet is not of type Cat.":
+		/// throw new IsNotTypeException&lt;Cat&gt;(() => room.MyPet);
+		/// throw new IsNotTypeException(() => room.MyPet, typeof(Cat));
+		/// throw new IsNotTypeException(() => room.MyPet, "Cat");
+		/// These will all have message: "{ number = A } is not of type Int32.":
+		/// throw new IsNotTypeException&lt;int&gt;(new { number });
+		/// throw new IsNotTypeException(new { number }, typeof(int));
+		/// throw new IsNotTypeException(new { number }, "Int32"));
+		/// </summary>
 		public IsNotTypeException(Expression<Func<object>> expression, string expectedTypeName)
 		{
-			string name = ExpressionHelper.GetText(expression);
+			string name = ExceptionHelper.GetTextWithValue(expression);
 			object value = ExpressionHelper.GetValue(expression);
 
 			Type concreteType = value?.GetType();
@@ -30,19 +46,29 @@ namespace JJ.Framework.Exceptions.TypeChecking
 			Message = $"{concreteTypeName} {name} is not of type {expectedTypeName}.";
 		}
 
-		/// <param name="indicator">
-		/// A name, value or anonymous type, that indicates the object it is about.
-		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }", "10".
-		/// The anonymous types translate to e.g. "{ customerNumber = 1234, customerType = Subscriber }" in the message.
-		/// </param>
+		/// <summary>
+		/// These will all have message: "Dog room.MyPet is not of type Cat.":
+		/// throw new IsNotTypeException&lt;Cat&gt;(() => room.MyPet);
+		/// throw new IsNotTypeException(() => room.MyPet, typeof(Cat));
+		/// throw new IsNotTypeException(() => room.MyPet, "Cat");
+		/// These will all have message: "{ number = A } is not of type Int32.":
+		/// throw new IsNotTypeException&lt;int&gt;(new { number });
+		/// throw new IsNotTypeException(new { number }, typeof(int));
+		/// throw new IsNotTypeException(new { number }, "Int32"));
+		/// </summary>
 		public IsNotTypeException(object indicator, Type expectedType)
 			: this(indicator, ExceptionHelper.TryFormatShortTypeName(expectedType)) { }
 
-		/// <param name="indicator">
-		/// A name, value or anonymous type, that indicates the object it is about.
-		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }", "10".
-		/// The anonymous types translate to e.g. "{ customerNumber = 1234, customerType = Subscriber }" in the message.
-		/// </param>
+		/// <summary>
+		/// These will all have message: "Dog room.MyPet is not of type Cat.":
+		/// throw new IsNotTypeException&lt;Cat&gt;(() => room.MyPet);
+		/// throw new IsNotTypeException(() => room.MyPet, typeof(Cat));
+		/// throw new IsNotTypeException(() => room.MyPet, "Cat");
+		/// These will all have message: "{ number = A } is not of type Int32.":
+		/// throw new IsNotTypeException&lt;int&gt;(new { number });
+		/// throw new IsNotTypeException(new { number }, typeof(int));
+		/// throw new IsNotTypeException(new { number }, "Int32"));
+		/// </summary>
 		public IsNotTypeException(object indicator, string expectedTypeName) => Message = $"{indicator} is not of type {expectedTypeName}.";
 
 		public override string Message { get; }

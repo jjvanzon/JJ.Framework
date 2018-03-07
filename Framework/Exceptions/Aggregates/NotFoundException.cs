@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 
 namespace JJ.Framework.Exceptions.Aggregates
 {
+	/// <inheritdoc />
 	public class NotFoundException : ExceptionWithNameTypeAndKeyBase
 	{
 		protected override string MessageWithName => "{0} not found.";
@@ -21,9 +22,9 @@ namespace JJ.Framework.Exceptions.Aggregates
 		public NotFoundException(Type type, object key) : base(type, key) { }
 
 		/// <inheritdoc />
-		public NotFoundException(string typeName) : base(typeName) { }
+		public NotFoundException(string name) : base(name) { }
 
 		/// <inheritdoc />
-		public NotFoundException(string typeName, object key) : base(typeName, key) { }
+		public NotFoundException(string name, object key) : base(name, key) { }
 	}
 }

@@ -9,19 +9,25 @@ namespace JJ.Framework.Exceptions.Comparative
 	{
 		protected abstract string MessageTemplate { get; }
 
-		/// <param name="a">
-		/// A name, value or anonymous type, that indicates the object it is about.
-		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }", "10".
-		/// The anonymous types translate to e.g. "{ customerNumber = 1234, customerType = Subscriber }" in the message.
-		/// </param>
-		/// <param name="b">
-		/// A name, value or anonymous type, that indicates the object it is about.
-		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }", "10".
-		/// The anonymous types translate to e.g. "{ customerNumber = 1234, customerType = Subscriber }" in the message.
-		/// </param>
+		/// <summary>
+		/// throw new LessThanException(() => item.Height, 10);
+		/// will have message: "item.Height of 2 is less than 10."
+		/// throw new NotContainsException(() => TheList, new { customerNumber, customerType });
+		/// will have message: "TheList does not contain { customerNumber = 1234, customerType = Subscriber }."
+		/// throw new NotEqualException(() => item1.Height, () => item2.Height);
+		/// will have message: "item1.Height of 2 does not equal item2.Height of 10."
+		/// </summary>
 		public ComparativeExceptionBase(object a, object b) =>
 			Message = string.Format(MessageTemplate, a, b);
 
+		/// <summary>
+		/// throw new LessThanException(() => item.Height, 10);
+		/// will have message: "item.Height of 2 is less than 10."
+		/// throw new NotContainsException(() => TheList, new { customerNumber, customerType });
+		/// will have message: "TheList does not contain { customerNumber = 1234, customerType = Subscriber }."
+		/// throw new NotEqualException(() => item1.Height, () => item2.Height);
+		/// will have message: "item1.Height of 2 does not equal item2.Height of 10."
+		/// </summary>
 		public ComparativeExceptionBase(Expression<Func<object>> expressionA, Expression<Func<object>> expressionB)
 		{
 			string textA = ExceptionHelper.GetTextWithValue(expressionA);
@@ -30,11 +36,14 @@ namespace JJ.Framework.Exceptions.Comparative
 			Message = string.Format(MessageTemplate, textA, textB);
 		}
 
-		/// <param name="b">
-		/// A name, value or anonymous type, that indicates the object it is about.
-		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }", "10".
-		/// The anonymous types translate to e.g. "{ customerNumber = 1234, customerType = Subscriber }" in the message.
-		/// </param>
+		/// <summary>
+		/// throw new LessThanException(() => item.Height, 10);
+		/// will have message: "item.Height of 2 is less than 10."
+		/// throw new NotContainsException(() => TheList, new { customerNumber, customerType });
+		/// will have message: "TheList does not contain { customerNumber = 1234, customerType = Subscriber }."
+		/// throw new NotEqualException(() => item1.Height, () => item2.Height);
+		/// will have message: "item1.Height of 2 does not equal item2.Height of 10."
+		/// </summary>
 		public ComparativeExceptionBase(Expression<Func<object>> expressionA, object b)
 		{
 			string textA = ExceptionHelper.GetTextWithValue(expressionA);
@@ -42,11 +51,14 @@ namespace JJ.Framework.Exceptions.Comparative
 			Message = string.Format(MessageTemplate, textA, b);
 		}
 
-		/// <param name="a">
-		/// A name, value or anonymous type, that indicates the object it is about.
-		/// Examples: "nameof(myParam)", "new { customerNumber, customerType }", "10".
-		/// The anonymous types translate to e.g. "{ customerNumber = 1234, customerType = Subscriber }" in the message.
-		/// </param>
+		/// <summary>
+		/// throw new LessThanException(() => item.Height, 10);
+		/// will have message: "item.Height of 2 is less than 10."
+		/// throw new NotContainsException(() => TheList, new { customerNumber, customerType });
+		/// will have message: "TheList does not contain { customerNumber = 1234, customerType = Subscriber }."
+		/// throw new NotEqualException(() => item1.Height, () => item2.Height);
+		/// will have message: "item1.Height of 2 does not equal item2.Height of 10."
+		/// </summary>
 		public ComparativeExceptionBase(object a, Expression<Func<object>> expressionB)
 		{
 			string textB = ExceptionHelper.GetTextWithValue(expressionB);

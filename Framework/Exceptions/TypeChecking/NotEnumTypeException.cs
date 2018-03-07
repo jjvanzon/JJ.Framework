@@ -6,6 +6,10 @@ namespace JJ.Framework.Exceptions.TypeChecking
 	{
 		private const string MESSAGE_TEMPLATE = "Type {0} is not an enum.";
 
+		/// <summary>
+		/// throw new NotEnumTypeException(typeof(Customer));
+		/// will have message: "Type Customer is not an enum."
+		/// </summary>
 		public NotEnumTypeException(Type type)
 		{
 			string typeName =  ExceptionHelper.TryFormatShortTypeName(type);

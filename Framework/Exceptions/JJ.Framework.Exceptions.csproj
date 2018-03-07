@@ -57,7 +57,7 @@
       <DependentUpon>BasicExceptions.tt</DependentUpon>
     </Compile>
     <Compile Include="Basic\BasicExceptionBase.cs" />
-    <Compile Include="Files\FileAlreadyExistException.cs" />
+    <Compile Include="Files\FileAlreadyExistsException.cs" />
     <Compile Include="Files\FileDoesNotExistException.cs" />
     <Compile Include="Files\FolderAlreadyExistsException.cs" />
     <Compile Include="Files\FolderDoesNotExistException.cs" />

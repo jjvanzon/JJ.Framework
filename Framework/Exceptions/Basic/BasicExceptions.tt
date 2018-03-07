@@ -43,13 +43,13 @@ namespace JJ.Framework.Exceptions.Basic
 		/// <inheritdoc />
 		public class <#= exception #> : BasicExceptionBase
 		{
-			private const string MESSAGE_TEMPLATE = "<#= message #>";
+			protected override string MessageTemplate => "<#= message #>";
 
 			/// <inheritdoc />
-			public <#= exception #>(Expression<Func<object>> expression) : base(MESSAGE_TEMPLATE, expression) { }
+			public <#= exception #>(Expression<Func<object>> expression) : base(expression) { }
 
 			/// <inheritdoc />
-			public <#= exception #>(object indicator) : base(MESSAGE_TEMPLATE, indicator) { }
+			public <#= exception #>(object indicator) : base(indicator) { }
 		}
 
 <#

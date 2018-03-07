@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 
 namespace JJ.Framework.Exceptions.Aggregates
 {
+	/// <inheritdoc />
 	public class NotUniqueException : ExceptionWithNameTypeAndKeyBase
 	{
 		protected override string MessageWithName => "{0} not unique.";
@@ -21,9 +22,9 @@ namespace JJ.Framework.Exceptions.Aggregates
 		public NotUniqueException(Type type, object key) : base(type, key) { }
 
 		/// <inheritdoc />
-		public NotUniqueException(string typeName) : base(typeName) { }
+		public NotUniqueException(string name) : base(name) { }
 
 		/// <inheritdoc />
-		public NotUniqueException(string typeName, object key) : base(typeName, key) { }
+		public NotUniqueException(string name, object key) : base(name, key) { }
 	}
 }

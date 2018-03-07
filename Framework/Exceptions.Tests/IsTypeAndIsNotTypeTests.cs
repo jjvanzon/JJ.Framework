@@ -21,7 +21,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new IsNotTypeException(() => testInt, typeof(TestItem));
 				},
-				"Int32 testInt is not of type TestItem.");
+				"Int32 testInt of 1 is not of type TestItem.");
 		}
 
 		[TestMethod]
@@ -34,7 +34,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new IsNotTypeException(() => testInt, "TestItem");
 				},
-				"Int32 testInt is not of type TestItem.");
+				"Int32 testInt of 1 is not of type TestItem.");
 		}
 
 		[TestMethod]
@@ -73,7 +73,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new IsNotTypeException<TestItem>(() => testInt);
 				},
-				"Int32 testInt is not of type TestItem.");
+				"Int32 testInt of 1 is not of type TestItem.");
 		}
 
 		[TestMethod]
@@ -86,7 +86,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new IsTypeException(() => testInt, typeof(TestItem));
 				},
-				"testInt cannot be of type TestItem.");
+				"testInt of 1 cannot be of type TestItem.");
 		}
 
 		[TestMethod]
@@ -99,7 +99,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new IsTypeException(() => testInt, "TestItem");
 				},
-				"testInt cannot be of type TestItem.");
+				"testInt of 1 cannot be of type TestItem.");
 		}
 
 		[TestMethod]
@@ -138,7 +138,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 					throw new IsTypeException<TestItem>(() => testInt);
 				},
-				"testInt cannot be of type TestItem.");
+				"testInt of 1 cannot be of type TestItem.");
 		}
 	}
 }

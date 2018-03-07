@@ -1,8 +1,8 @@
 ﻿
 
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JJ.Framework.Exceptions.Basic;
 // ReSharper disable LocalNameCapturedOnly
 
 namespace JJ.Framework.Exceptions.Tests

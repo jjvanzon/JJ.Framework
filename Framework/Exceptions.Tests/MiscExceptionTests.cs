@@ -21,8 +21,8 @@ namespace JJ.Framework.Exceptions.Tests
 		{
 			const string filePath = "test.txt";
 
-			AssertHelper.ThrowsException<FileAlreadyExistException>(
-				() => throw new FileAlreadyExistException(filePath),
+			AssertHelper.ThrowsException<FileAlreadyExistsException>(
+				() => throw new FileAlreadyExistsException(filePath),
 				"File 'test.txt' already exists.");
 		}
 

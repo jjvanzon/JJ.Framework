@@ -6,6 +6,10 @@ namespace JJ.Framework.Exceptions.InvalidValues
 	{
 		private const string MESSAGE_TEMPLATE = "Invalid {0} value: '{1}'.";
 
+		/// <summary>
+		/// throw new InvalidValueException(customerType);
+		/// will have message: "Invalid CustomerType value: 'Undefined'."
+		/// </summary>
 		public InvalidValueException(object value)
 		{
 			Type type = value?.GetType();
