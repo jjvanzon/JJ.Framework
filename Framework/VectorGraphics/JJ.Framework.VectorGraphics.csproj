@@ -84,6 +84,7 @@
     <Compile Include="Models\Elements\PointPosition.cs" />
     <Compile Include="Models\Elements\RectangleStyle.cs" />
     <Compile Include="Models\Styling\PictureStyle.cs" />
+    <Compile Include="Models\Styling\StyleWithVisibleBase.cs" />
     <Compile Include="Positioners\FlowPositionerRightAligned.cs" />
     <Compile Include="Positioners\FlowPositionerLeftAligned.cs" />
     <Compile Include="Positioners\IPositioner.cs" />

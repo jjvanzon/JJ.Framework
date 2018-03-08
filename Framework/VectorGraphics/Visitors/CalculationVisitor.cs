@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Exceptions.Misc;
 using JJ.Framework.Mathematics;
@@ -94,12 +93,13 @@ namespace JJ.Framework.VectorGraphics.Visitors
 			// but apparently this works too.
 
 			element.CalculatedValues.Visible = element.Visible;
+
 			if (element.Parent != null)
 			{
 				element.CalculatedValues.Visible &= element.Parent.CalculatedValues.Visible;
 			}
 
-			element.CalculatedValues.Enabled = element.Enabled;
+			element.CalculatedValues.Enabled = element.Enabled && element.Visible;
 			if (element.Parent != null)
 			{
 				element.CalculatedValues.Enabled &= element.Parent.CalculatedValues.Enabled;
@@ -127,6 +127,20 @@ namespace JJ.Framework.VectorGraphics.Visitors
 			element.CalculatedValues.HeightInPixels = BoundsHelper.CorrectLength(element.CalculatedValues.HeightInPixels);
 
 			base.VisitPolymorphic(element);
+		}
+
+		protected override void VisitPoint(Point element)
+		{
+			element.CalculatedValues.Visible &= element.PointStyle.Visible;
+
+			base.VisitPoint(element);
+		}
+
+		protected override void VisitLine(Line element)
+		{
+			element.CalculatedValues.Visible &= element.LineStyle.Visible;
+
+			base.VisitLine(element);
 		}
 
 		protected override void VisitChildren(Element parentElement)

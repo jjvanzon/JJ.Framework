@@ -2,9 +2,8 @@
 
 namespace JJ.Framework.VectorGraphics.Models.Styling
 {
-	public class BackStyle
+	public class BackStyle : StyleWithVisibleBase
 	{
-		public bool Visible { get; set; } = true;
 		public int Color { get; set; } = ColorHelper.White;
 	}
 }

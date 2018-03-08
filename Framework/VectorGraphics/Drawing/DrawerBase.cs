@@ -1,5 +1,4 @@
 ﻿using System;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.VectorGraphics.Models.Styling;
@@ -87,7 +86,7 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawPoint(Point sourcePoint)
 		{
-			if (!sourcePoint.CalculatedValues.Visible || !sourcePoint.PointStyle.Visible)
+			if (!sourcePoint.CalculatedValues.Visible)
 			{
 				return;
 			}
@@ -103,7 +102,7 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 		private void DrawLine(Line sourceLine)
 		{
-			if (!sourceLine.CalculatedValues.Visible || !sourceLine.LineStyle.Visible)
+			if (!sourceLine.CalculatedValues.Visible)
 			{
 				return;
 			}

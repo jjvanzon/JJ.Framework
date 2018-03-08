@@ -42,6 +42,11 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 			_diagramRelationship.Parent = null;
 		}
 
+		/// <summary>
+		/// Visible = false effectively means Enabled = false.
+		/// (Yyou will not see that in the Enabled property. You will see that in the CalculatedValues.Enabled property.)
+		/// If you want to receive events from an invisible element, use the Visible property of the style objects instead.
+		/// </summary>
 		public bool Visible { get; set; }
 		public int ZIndex { get; set; }
 		public object Tag { get; set; }
