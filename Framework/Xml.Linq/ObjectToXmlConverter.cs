@@ -94,6 +94,7 @@ namespace JJ.Framework.Xml.Linq
 			_nameManager = new NameManager(casing, mustGenerateNamespaces, mustGenerateNilAttributes, customArrayItemNameMappings);
 		}
 
+		/// <summary> Bytes are UTF-8 encoded. </summary>
 		public byte[] ConvertToBytes(object sourceObject)
 		{
 			string text = ConvertToString(sourceObject);
@@ -101,9 +102,7 @@ namespace JJ.Framework.Xml.Linq
 			return destBytes;
 		}
 
-		/// <summary>
-		/// UTF-8 encoding is assumed.
-		/// </summary>
+		/// <summary> Stream is UTF-8 encoded. </summary>
 		public Stream ConvertToStream(object sourceObject)
 		{
 			string text = ConvertToString(sourceObject);
