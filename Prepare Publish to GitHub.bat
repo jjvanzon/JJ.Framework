@@ -2,7 +2,7 @@ prompt @
 echo off
 cls
 
-chdir "D:\JJ\Dev\1. Products\2. Code\1. Software System\X"
+chdir "D:\JJ\Dev\1. Products\2. Code\1. Software System"
 
 rem /s: Removes all directories and files in the specified directory in addition to the directory itself.  Used to remove a directory tree.
 rem /q: Quiet mode, do not ask if ok to remove a directory tree with /s
