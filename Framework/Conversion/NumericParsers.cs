@@ -1,19 +1,16 @@
-﻿
-
-using System;
+﻿using System;
 using System.Globalization;
-using JJ.Framework.Common;
 
 namespace JJ.Framework.Conversion
 {
-	
-		/// <summary>
-		/// For instance making it easier to parse nullable Decimal.
-		/// Static classes cannot get extension members.
-		/// Otherwise these would have been extensions.
-		/// Instead we have the DecimalParser class for extra static members.
-		/// </summary>
-		public static class DecimalParser
+
+	/// <summary>
+	/// For instance making it easier to parse nullable Decimal.
+	/// Static classes cannot get extension members.
+	/// Otherwise these would have been extensions.
+	/// Instead we have the DecimalParser class for extra static members.
+	/// </summary>
+	public static class DecimalParser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Number;
 

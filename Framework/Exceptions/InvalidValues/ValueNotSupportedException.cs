@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JJ.Framework.Exceptions.Misc
+namespace JJ.Framework.Exceptions.InvalidValues
 {
 	public class ValueNotSupportedException : Exception
 	{

@@ -1,6 +1,5 @@
-﻿using JJ.Framework.Exceptions;
-using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.Exceptions.Misc;
+﻿using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.VectorGraphics.Enums;
 using JJ.Framework.VectorGraphics.Helpers;
 
