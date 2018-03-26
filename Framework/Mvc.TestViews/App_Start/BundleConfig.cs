@@ -1,6 +1,4 @@
-﻿using System.Web.Optimization;
-
-namespace JJ.Framework.Mvc.TestViews
+﻿namespace JJ.Framework.Mvc.TestViews
 {
 	public class BundleConfig
 	{

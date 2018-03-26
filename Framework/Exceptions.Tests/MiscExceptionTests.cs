@@ -2,7 +2,6 @@
 using JJ.Framework.Exceptions.Aggregates;
 using JJ.Framework.Exceptions.Files;
 using JJ.Framework.Exceptions.InvalidValues;
-using JJ.Framework.Exceptions.Misc;
 using JJ.Framework.Exceptions.TypeChecking;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

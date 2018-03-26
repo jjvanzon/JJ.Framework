@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-using JJ.Framework.Exceptions;
-using JJ.Framework.Exceptions.Misc;
+using JJ.Framework.Exceptions.InvalidValues;
 
 namespace JJ.Framework.Security
 {

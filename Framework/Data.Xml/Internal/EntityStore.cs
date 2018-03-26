@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.Exceptions.Misc;
+using JJ.Framework.Exceptions.InvalidValues;
 
 namespace JJ.Framework.Data.Xml.Internal
 {

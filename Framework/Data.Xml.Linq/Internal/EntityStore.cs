@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Xml.Linq;
 using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.Exceptions.Misc;
+using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Xml.Linq;
 
