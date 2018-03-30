@@ -2,30 +2,30 @@ prompt @
 echo off
 cls
 
-chdir "D:\JJ\Dev\1. Products\2. Code\1. Software System"
+chdir "D:\Source\JJs Software"
 
 rem /s: Removes all directories and files in the specified directory in addition to the directory itself.  Used to remove a directory tree.
 rem /q: Quiet mode, do not ask if ok to remove a directory tree with /s
 
 echo DELETE DOCS
-rd /s /q "9. JJ Git\Architecture"
+rd /s /q "JJ GitHub\Architecture"
 
 echo DELETE CODE FOLDERS
-rd /s /q "9. JJ Git\Business"
-rd /s /q "9. JJ Git\Data"
-rd /s /q "9. JJ Git\Database"
-rd /s /q "9. JJ Git\Demos"
-rd /s /q "9. JJ Git\Framework"
-rd /s /q "9. JJ Git\Presentation"
+rd /s /q "JJ GitHub\Business"
+rd /s /q "JJ GitHub\Data"
+rd /s /q "JJ GitHub\Database"
+rd /s /q "JJ GitHub\Demos"
+rd /s /q "JJ GitHub\Framework"
+rd /s /q "JJ GitHub\Presentation"
 
 rem /q: Quiet mode, do not ask if ok to delete on global wildcard
 rem /f: Force deleting of read-only files.
 
 echo DELETE CODE FILES IN ROOT
-del /q /f "9. JJ Git\*.sln"
-del /q /f "9. JJ Git\*.txt"
-del /q /f "9. JJ Git\*.md"
-del /q /f "9. JJ Git\*.png"
+del /q /f "JJ GitHub\*.sln"
+del /q /f "JJ GitHub\*.txt"
+del /q /f "JJ GitHub\*.md"
+del /q /f "JJ GitHub\*.png"
 
 rem /s: Copies directories and subdirectories except empty ones.
 rem /v: Verifies the size of each new file.
@@ -34,59 +34,56 @@ rem /q: Does not display file names while copying
 rem Slash at the end of dest is needed, otherwise it asks if it is a directory or file.
 rem Slash should not be put at the end of source, because then it gives an error message.
 
-echo COPY DOCS
-xcopy /s /v /r /q "D:\JJ\Dev\1. Products\1. Docs\2. Software Architecture" "9. JJ Git\Architecture\"
-
 echo COPY CODE FOLDERS
-xcopy /s /v /r /q "9. JJ\Demos" "9. JJ Git\Demos\"
-xcopy /s /v /r /q "9. JJ\Framework" "9. JJ Git\Framework\"
-mkdir "9. JJ Git\Business\"
-xcopy /s /v /r /q "9. JJ\Business\Canonical" "9. JJ Git\Business\Canonical\"
-xcopy /s /v /r /q "9. JJ\Business\SaveText" "9. JJ Git\Business\SaveText\"
-mkdir "9. JJ Git\Data\"
-xcopy /s /v /r /q "9. JJ\Data\Canonical" "9. JJ Git\Data\Canonical\"
-xcopy /s /v /r /q "9. JJ\Data\SaveText" "9. JJ Git\Data\SaveText\"
-xcopy /s /v /r /q "9. JJ\Data\SaveText.DefaultRepositories" "9. JJ Git\Data\SaveText.DefaultRepositories\"
-xcopy /s /v /r /q "9. JJ\Data\SaveText.EntityFramework5" "9. JJ Git\Data\SaveText.EntityFramework5\"
-xcopy /s /v /r /q "9. JJ\Data\SaveText.Memory" "9. JJ Git\Data\SaveText.Memory\"
-xcopy /s /v /r /q "9. JJ\Data\SaveText.NHibernate" "9. JJ Git\Data\SaveText.NHibernate\"
-xcopy /s /v /r /q "9. JJ\Data\SaveText.Xml" "9. JJ Git\Data\SaveText.Xml\"
-xcopy /s /v /r /q "9. JJ\Data\SaveText.Xml.Linq" "9. JJ Git\Data\SaveText.Xml.Linq\"
-mkdir "9. JJ Git\Database\"
-xcopy /s /v /r /q "9. JJ\Database\SaveTextDB" "9. JJ Git\Database\SaveTextDB\"
-mkdir "9. JJ Git\Presentation\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText" "9. JJ Git\Presentation\SaveText\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Android" "9. JJ Git\Presentation\SaveText.Android\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.AppService" "9. JJ Git\Presentation\SaveText.AppService\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.AppService.Client" "9. JJ Git\Presentation\SaveText.AppService.Client\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.AppService.Interface" "9. JJ Git\Presentation\SaveText.AppService.Interface\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.AppService.Tests" "9. JJ Git\Presentation\SaveText.AppService.Tests\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.AppService.Tests.SoapUI" "9. JJ Git\Presentation\SaveText.AppService.Tests.SoapUI\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Html" "9. JJ Git\Presentation\SaveText.Html\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Interface" "9. JJ Git\Presentation\SaveText.Interface\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Mvc" "9. JJ Git\Presentation\SaveText.Mvc\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Unity.DotNet.Offline" "9. JJ Git\Presentation\SaveText.Unity.DotNet.Offline\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Unity.DotNet.OfflineWithSync" "9. JJ Git\Presentation\SaveText.Unity.DotNet.OfflineWithSync\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Unity.DotNet.Online" "9. JJ Git\Presentation\SaveText.Unity.DotNet.Online\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Unity.DotNet.Online.WwwObject" "9. JJ Git\Presentation\SaveText.Unity.DotNet.Online.WwwObject\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Unity.Offline" "9. JJ Git\Presentation\SaveText.Unity.Offline\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Unity.OfflineWithSync" "9. JJ Git\Presentation\SaveText.Unity.OfflineWithSync\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Unity.Online" "9. JJ Git\Presentation\SaveText.Unity.Online\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.Unity.Online.WwwObject" "9. JJ Git\Presentation\SaveText.Unity.Online.WwwObject\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.WinForms.Offline" "9. JJ Git\Presentation\SaveText.WinForms.Offline\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.WinForms.OfflineWithSync" "9. JJ Git\Presentation\SaveText.WinForms.OfflineWithSync\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.WinForms.Online" "9. JJ Git\Presentation\SaveText.WinForms.Online\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.WinForms.Online.CustomSoapClient" "9. JJ Git\Presentation\SaveText.WinForms.Online.CustomSoapClient\"
-xcopy /s /v /r /q "9. JJ\Presentation\SaveText.WinForms.OnlineOfflineSwitched" "9. JJ Git\Presentation\SaveText.WinForms.OnlineOfflineSwitched\"
+xcopy /s /v /r /q "JJ TFS\Demos" "JJ GitHub\Demos\"
+xcopy /s /v /r /q "JJ TFS\Framework" "JJ GitHub\Framework\"
+mkdir "JJ GitHub\Business\"
+xcopy /s /v /r /q "JJ TFS\Business\Canonical" "JJ GitHub\Business\Canonical\"
+xcopy /s /v /r /q "JJ TFS\Business\SaveText" "JJ GitHub\Business\SaveText\"
+mkdir "JJ GitHub\Data\"
+xcopy /s /v /r /q "JJ TFS\Data\Canonical" "JJ GitHub\Data\Canonical\"
+xcopy /s /v /r /q "JJ TFS\Data\SaveText" "JJ GitHub\Data\SaveText\"
+xcopy /s /v /r /q "JJ TFS\Data\SaveText.DefaultRepositories" "JJ GitHub\Data\SaveText.DefaultRepositories\"
+xcopy /s /v /r /q "JJ TFS\Data\SaveText.EntityFramework5" "JJ GitHub\Data\SaveText.EntityFramework5\"
+xcopy /s /v /r /q "JJ TFS\Data\SaveText.Memory" "JJ GitHub\Data\SaveText.Memory\"
+xcopy /s /v /r /q "JJ TFS\Data\SaveText.NHibernate" "JJ GitHub\Data\SaveText.NHibernate\"
+xcopy /s /v /r /q "JJ TFS\Data\SaveText.Xml" "JJ GitHub\Data\SaveText.Xml\"
+xcopy /s /v /r /q "JJ TFS\Data\SaveText.Xml.Linq" "JJ GitHub\Data\SaveText.Xml.Linq\"
+mkdir "JJ GitHub\Database\"
+xcopy /s /v /r /q "JJ TFS\Database\SaveTextDB" "JJ GitHub\Database\SaveTextDB\"
+mkdir "JJ GitHub\Presentation\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText" "JJ GitHub\Presentation\SaveText\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Android" "JJ GitHub\Presentation\SaveText.Android\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.AppService" "JJ GitHub\Presentation\SaveText.AppService\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.AppService.Client" "JJ GitHub\Presentation\SaveText.AppService.Client\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.AppService.Interface" "JJ GitHub\Presentation\SaveText.AppService.Interface\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.AppService.Tests" "JJ GitHub\Presentation\SaveText.AppService.Tests\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.AppService.Tests.SoapUI" "JJ GitHub\Presentation\SaveText.AppService.Tests.SoapUI\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Html" "JJ GitHub\Presentation\SaveText.Html\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Interface" "JJ GitHub\Presentation\SaveText.Interface\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Mvc" "JJ GitHub\Presentation\SaveText.Mvc\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Unity.DotNet.Offline" "JJ GitHub\Presentation\SaveText.Unity.DotNet.Offline\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Unity.DotNet.OfflineWithSync" "JJ GitHub\Presentation\SaveText.Unity.DotNet.OfflineWithSync\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Unity.DotNet.Online" "JJ GitHub\Presentation\SaveText.Unity.DotNet.Online\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Unity.DotNet.Online.WwwObject" "JJ GitHub\Presentation\SaveText.Unity.DotNet.Online.WwwObject\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Unity.Offline" "JJ GitHub\Presentation\SaveText.Unity.Offline\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Unity.OfflineWithSync" "JJ GitHub\Presentation\SaveText.Unity.OfflineWithSync\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Unity.Online" "JJ GitHub\Presentation\SaveText.Unity.Online\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.Unity.Online.WwwObject" "JJ GitHub\Presentation\SaveText.Unity.Online.WwwObject\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.WinForms.Offline" "JJ GitHub\Presentation\SaveText.WinForms.Offline\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.WinForms.OfflineWithSync" "JJ GitHub\Presentation\SaveText.WinForms.OfflineWithSync\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.WinForms.Online" "JJ GitHub\Presentation\SaveText.WinForms.Online\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.WinForms.Online.CustomSoapClient" "JJ GitHub\Presentation\SaveText.WinForms.Online.CustomSoapClient\"
+xcopy /s /v /r /q "JJ TFS\Presentation\SaveText.WinForms.OnlineOfflineSwitched" "JJ GitHub\Presentation\SaveText.WinForms.OnlineOfflineSwitched\"
 
 echo COPY CODE FILES IN ROOT
-xcopy /v /r /q "9. JJ\JJ.Demos.sln" "9. JJ Git"
-xcopy /v /r /q "9. JJ\JJ.Framework.sln" "9. JJ Git"
-xcopy /v /r /q "9. JJ\JJ.SaveText.sln" "9. JJ Git"
-xcopy /v /r /q "9. JJ\LICENSE.TXT" "9. JJ Git"
-xcopy /v /r /q "9. JJ\README.MD" "9. JJ Git"
-xcopy /v /r /q "9. JJ\THIRD PARTY LICENSE.TXT" "9. JJ Git"
-xcopy /v /r /q "9. JJ\*.png" "9. JJ Git"
+xcopy /v /r /q "JJ TFS\JJ.Demos.sln" "JJ GitHub"
+xcopy /v /r /q "JJ TFS\JJ.Framework.sln" "JJ GitHub"
+xcopy /v /r /q "JJ TFS\JJ.SaveText.sln" "JJ GitHub"
+xcopy /v /r /q "JJ TFS\LICENSE.TXT" "JJ GitHub"
+xcopy /v /r /q "JJ TFS\README.MD" "JJ GitHub"
+xcopy /v /r /q "JJ TFS\THIRD PARTY LICENSE.TXT" "JJ GitHub"
+xcopy /v /r /q "JJ TFS\*.png" "JJ GitHub"
 
 echo WARNING: CANONICAL DATA / BUSINESS IS PUBLISHED.
 echo CONSIDER IF IT CONTAINS DATA MODELING YOU DO NOT WANT TO OPEN SOURCE.
