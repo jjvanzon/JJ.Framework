@@ -1,6 +1,5 @@
 Applies to:
 - JJ.Framework
-- JJ's Reference Architecture
 - JJ.Demos
 - SaveText prototype application
 
