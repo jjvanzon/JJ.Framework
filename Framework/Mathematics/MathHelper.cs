@@ -75,6 +75,16 @@ namespace JJ.Framework.Mathematics
 			return ratio;
 		}
 
+		/// <summary> source: https://stackoverflow.com/questions/374316/round-a-double-to-x-significant-figures </summary>
+		public static double RoundToSignificantDigits(double value, int digitCount)
+		{
+			// ReSharper disable once CompareOfFloatsByEqualityOperator
+			if (value == 0) return 0;
+
+			double scale = Math.Pow(10, Math.Floor(Math.Log10(Math.Abs(value))) + 1);
+			return scale * Math.Round(value / scale, digitCount);
+		}
+
 		/// <summary>
 		/// Rounds to multiples of step, with an offset.
 		/// It uses Math.Round as a helper, which supports a wide range of values.
