@@ -18,15 +18,15 @@ namespace JJ.Framework.VectorGraphics.Helpers
 		}
 
 		/// <inheritdoc />
-		public (float widthInPixels, float heightInPixels) GetTextSize(string text, Font font, float lineWidth)
+		public (float widthInPixels, float heightInPixels) GetTextSize(string text, Font font, float lineWidthInPixels)
 		{
 			(float width, float height) sizeWithoutWrapping = GetTextSize(text, font);
 
-			int lineCount = (int)Math.Ceiling(sizeWithoutWrapping.width / lineWidth);
+			int lineCount = (int)Math.Ceiling(sizeWithoutWrapping.width / lineWidthInPixels);
 			float lineHeight = GetTextHeight(font);
 			float height = lineHeight * lineCount;
 
-			return (lineWidth, height);
+			return (lineWidthInPixels, height);
 		}
 
 		/// <summary> Returns an approximate width of the string according to the specified font. </summary>

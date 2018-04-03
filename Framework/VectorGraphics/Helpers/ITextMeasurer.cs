@@ -13,7 +13,7 @@ namespace JJ.Framework.VectorGraphics.Helpers
 		/// The returned text height can be more than one line height,
 		/// due to text wrapping.
 		/// </summary>
-		/// <param name="lineWidth">When wrapping text, the provided width influences the height of the measured text.</param>
-		(float widthInPixels, float heightInPixels) GetTextSize(string text, Font font, float lineWidth);
+		/// <param name="lineWidthInPixels">When wrapping text, the provided width influences the height of the measured text.</param>
+		(float widthInPixels, float heightInPixels) GetTextSize(string text, Font font, float lineWidthInPixels);
 	}
 }

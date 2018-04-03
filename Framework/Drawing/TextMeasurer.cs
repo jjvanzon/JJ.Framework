@@ -20,9 +20,9 @@ namespace JJ.Framework.Drawing
 			return (sizeF.Width, sizeF.Height);
 		}
 
-		public (float widthInPixels, float heightInPixels) GetTextSize(string text, Font font, float lineWidth)
+		public (float widthInPixels, float heightInPixels) GetTextSize(string text, Font font, float lineWidthInPixels)
 		{
-			SizeF sizeF = _graphics.MeasureString(text, font.ToSystemDrawing(DpiHelper.DEFAULT_DPI), (int)lineWidth);
+			SizeF sizeF = _graphics.MeasureString(text, font.ToSystemDrawing(DpiHelper.DEFAULT_DPI), (int)lineWidthInPixels);
 			return (sizeF.Width, sizeF.Height);
 		}
 	}
