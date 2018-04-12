@@ -80,7 +80,7 @@ namespace JJ.Framework.Testing
 
 		public static void IsNullOrEmpty(Expression<Func<string>> expression)
 		{
-			Check(x => string.IsNullOrEmpty(x), "IsNullOrEmpty", expression);
+			Check(string.IsNullOrEmpty, "IsNullOrEmpty", expression);
 		}
 
 		public static void NotNullOrEmpty(Expression<Func<string>> expression)

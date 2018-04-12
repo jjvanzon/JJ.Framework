@@ -6,36 +6,12 @@ using JJ.Framework.Common;
 
 namespace JJ.Framework.Reflection
 {
-	[Obsolete("May not give much performance gain because the dictionaries use complex keys. You might want to use ReflectionCache instead.")]
 	public static class StaticReflectionCache
 	{
 		// TODO: The use of these Tuples as keys might not be fast dictionary keys.
 		// Use a different approach to reflection caching (like in ReflectionCacheDemo) and test what happens when you use .NET's own Tuple class.
 
 		// Fields
-
-		private static readonly Dictionary<Tuple<Type, BindingFlags>, FieldInfo[]> _fieldsIndex = new Dictionary<Tuple<Type, BindingFlags>, FieldInfo[]>();
-		private static readonly object _fieldsIndexLock = new object();
-
-		public static FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
-		{
-			if (type == null) throw new ArgumentNullException(nameof(type));
-
-			lock (_fieldsIndexLock)
-			{
-				var key = new Tuple<Type, BindingFlags>(type, bindingFlags);
-				if (_fieldsIndex.ContainsKey(key))
-				{
-					return _fieldsIndex[key];
-				}
-				else
-				{
-					FieldInfo[] fields = type.GetFields(bindingFlags);
-					_fieldsIndex[key] = fields;
-					return fields;
-				}
-			}
-		}
 
 		private static readonly Dictionary<Tuple<Type, string>, FieldInfo> _fieldIndex = new Dictionary<Tuple<Type, string>, FieldInfo>();
 		private static readonly object _fieldIndexLock = new object();
@@ -71,29 +47,6 @@ namespace JJ.Framework.Reflection
 		}
 
 		// Properties
-
-		private static readonly Dictionary<Tuple<Type, BindingFlags>, PropertyInfo[]> _propertiesIndex = new Dictionary<Tuple<Type, BindingFlags>, PropertyInfo[]>();
-		private static readonly object _propertiesIndexLock = new object();
-
-		public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
-		{
-			if (type == null) throw new ArgumentNullException(nameof(type));
-
-			lock (_propertiesIndexLock)
-			{
-				var key = new Tuple<Type, BindingFlags>(type, bindingFlags);
-				if (_propertiesIndex.ContainsKey(key))
-				{
-					return _propertiesIndex[key];
-				}
-				else
-				{
-					PropertyInfo[] properties = type.GetProperties(bindingFlags);
-					_propertiesIndex[key] = properties;
-					return properties;
-				}
-			}
-		}
 
 		private static readonly Dictionary<Tuple<Type, string>, PropertyInfo> _propertyIndex = new Dictionary<Tuple<Type, string>, PropertyInfo>();
 		private static readonly object _propertyIndexLock = new object();
@@ -149,6 +102,7 @@ namespace JJ.Framework.Reflection
 			if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
 			if (parameterTypes.Length == 0) throw new Exception("parameterTypes.Length is 0."); 
 
+			// ReSharper disable once CoVariantArrayConversion
 			string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
 
 			lock (_indexerIndexLock)
@@ -216,6 +170,7 @@ namespace JJ.Framework.Reflection
 			if (type == null) throw new ArgumentNullException(nameof(type));
 			if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
 			
+			// ReSharper disable once CoVariantArrayConversion
 			string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
 
 			lock (_methodDictionaryLock)
@@ -232,6 +187,20 @@ namespace JJ.Framework.Reflection
 					return method;
 				}
 			}
+		}
+
+		// Obsolete
+
+		[Obsolete("Use ReflectionCache.GetFields instead.", true)]
+		public static FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
+		{
+			throw new NotSupportedException("Use ReflectionCache.GetFields instead.");
+		}
+
+		[Obsolete("Use ReflectionCache.GetProperties instead.", true)]
+		public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
+		{
+			throw new NotSupportedException("Use ReflectionCache.GetProperties instead.");
 		}
 	}
 }

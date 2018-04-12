@@ -192,7 +192,7 @@ namespace JJ.Framework.Mathematics
 		/// </summary>
 		public static int FromBase(string input, int b)
 		{
-			int result = FromBase(input, b, chr => CharToDigitValue(chr));
+			int result = FromBase(input, b, CharToDigitValue);
 			return result;
 		}
 

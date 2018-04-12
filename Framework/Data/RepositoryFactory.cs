@@ -45,7 +45,7 @@ namespace JJ.Framework.Data
 		{
 			if (repositoryAssemblyNames == null) throw new NullException(() => repositoryAssemblyNames);
 
-			Assembly[] repositoryAssemblies = repositoryAssemblyNames.Select(x => Assembly.Load(x)).ToArray();
+			Assembly[] repositoryAssemblies = repositoryAssemblyNames.Select(Assembly.Load).ToArray();
 
 			return CreateRepository<TRepositoryInterface>(context, repositoryAssemblies);
 		}

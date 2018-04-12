@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettingsReaderHelper.cs" />
     <Compile Include="AppSettingsReaderOfT.cs" />
     <Compile Include="CustomConfigurationManager.cs" />
     <Compile Include="ConfigurationSectionHandler.cs" />

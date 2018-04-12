@@ -13,7 +13,7 @@ namespace JJ.Framework.Reflection
 
 		// Properties
 
-		private readonly IDictionary<Type, PropertyInfo[]> _propertiesDictionary = new Dictionary<Type, PropertyInfo[]>();
+		private readonly Dictionary<Type, PropertyInfo[]> _propertiesDictionary = new Dictionary<Type, PropertyInfo[]>();
 		private readonly object _propertiesDictionaryLock = new object();
 
 		public PropertyInfo[] GetProperties(Type type)
@@ -32,15 +32,15 @@ namespace JJ.Framework.Reflection
 
 		// PropertyDictionaries
 
-		private readonly IDictionary<Type, IDictionary<string, PropertyInfo>> _propertyDictionaryDictionary = new Dictionary<Type, IDictionary<string, PropertyInfo>>();
+		private readonly Dictionary<Type, Dictionary<string, PropertyInfo>> _propertyDictionaryDictionary = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 		private readonly object _propertyDictionaryDictionaryLock = new object();
 
-		public IDictionary<string, PropertyInfo> GetPropertyDictionary(Type type)
+		public Dictionary<string, PropertyInfo> GetPropertyDictionary(Type type)
 		{
 			lock (_propertyDictionaryDictionaryLock)
 			{
 				// ReSharper disable once InvertIf
-				if (!_propertyDictionaryDictionary.TryGetValue(type, out IDictionary<string, PropertyInfo> propertyDictionary))
+				if (!_propertyDictionaryDictionary.TryGetValue(type, out Dictionary<string, PropertyInfo> propertyDictionary))
 				{
 					propertyDictionary = type.GetProperties(_bindingFlags).ToDictionary(x => x.Name);
 					_propertyDictionaryDictionary.Add(type, propertyDictionary);
@@ -51,7 +51,7 @@ namespace JJ.Framework.Reflection
 
 		// Fields
 
-		private readonly IDictionary<Type, FieldInfo[]> _fieldsDictionary = new Dictionary<Type, FieldInfo[]>();
+		private readonly Dictionary<Type, FieldInfo[]> _fieldsDictionary = new Dictionary<Type, FieldInfo[]>();
 		private readonly object _fieldsDictionaryLock = new object();
 
 		public FieldInfo[] GetFields(Type type)
@@ -70,7 +70,7 @@ namespace JJ.Framework.Reflection
 
 		// Types
 
-		private readonly IDictionary<string, Type[]> _typeByShortNameDictionary = new Dictionary<string, Type[]>();
+		private readonly Dictionary<string, Type[]> _typeByShortNameDictionary = new Dictionary<string, Type[]>();
 		private readonly object _typeByShortNameDictionaryLock = new object();
 
 		public Type GetTypeByShortName(string shortTypeName)

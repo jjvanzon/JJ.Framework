@@ -209,6 +209,7 @@ namespace JJ.Framework.Reflection
 			string propertyName = method.Name.TrimStart("get_").TrimStart("set_");
 
 			Type type = method.DeclaringType;
+			// ReSharper disable once PossibleNullReferenceException
 			var defaultMemberAttribute = (DefaultMemberAttribute)type.GetCustomAttributes(typeof(DefaultMemberAttribute), inherit: true).SingleOrDefault();
 			if (defaultMemberAttribute == null)
 			{

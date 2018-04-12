@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Text;
 using System.Linq.Expressions;
+using System.Text;
 
 namespace JJ.Framework.Reflection
 {
@@ -113,6 +113,11 @@ namespace JJ.Framework.Reflection
 
 			if (node.Member.IsStatic())
 			{
+				if (node.Member.DeclaringType == null)
+				{
+					throw new Exception("node.Member.DeclaringType is null");
+				}
+
 				_sb.Append(node.Member.DeclaringType.Name);
 			}
 
@@ -125,6 +130,11 @@ namespace JJ.Framework.Reflection
 		{
 			if (node.Method.IsStatic)
 			{
+				if (node.Method.DeclaringType == null)
+				{
+					throw new Exception("node.Method.DeclaringType is null");
+				}
+
 				_sb.Append(node.Method.DeclaringType.Name);
 			}
 			else
