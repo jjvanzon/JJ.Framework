@@ -7,9 +7,6 @@ chdir "D:\Source\JJs Software"
 rem /s: Removes all directories and files in the specified directory in addition to the directory itself.  Used to remove a directory tree.
 rem /q: Quiet mode, do not ask if ok to remove a directory tree with /s
 
-echo DELETE DOCS
-rd /s /q "JJ GitHub\Architecture"
-
 echo DELETE CODE FOLDERS
 rd /s /q "JJ GitHub\Business"
 rd /s /q "JJ GitHub\Data"

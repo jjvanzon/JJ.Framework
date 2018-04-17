@@ -17,11 +17,13 @@
 
 		<dependencies>
 			<dependency id="System.ValueTuple" version="4.3.0" />
-			<dependency id="JJ.Framework.Text" version="[1.2,1.3)" />
-			<dependency id="JJ.Framework.Reflection" version="[1.2,1.3)" />
+			<dependency id="JJ.Framework.Text" version="[1.3,1.4)" />
+			<dependency id="JJ.Framework.Reflection" version="[1.3,1.4)" />
 		</dependencies>
 
 		<summary>
+			# JJ.Framework.Exceptions
+
 Contains many exception classes for common basic errors, for instance:
 
 * Null errors, null or white space errors, collection contains nulls, etc.
@@ -34,7 +36,7 @@ There are several advantages over using these exception types.
 
 * Error messages are clear.
 * Concise syntax, without sacrificing performance.
-* You can pass an expression, whose text becomes part of the message
+* You can pass an expression, whose text becomes part of the message.
 * Invalid value is automatically mentioned in the exception message.
 * Lose no time typing and trying to come up with a good message.
 
@@ -44,7 +46,7 @@ For example:
 
 Will produce an exception message:
 
-	&quot;myParent.MyChildren[0].MyProperty is null.&quot;
+	"myParent.MyChildren[0].MyProperty is null."
 
 This is where it surpasses the possibilities of the C#6 nameof operator, which can only mention a name, not a whole expression.
 
@@ -54,7 +56,7 @@ Another example:
 
 will produce an exception message:
 
-	&quot;Customer with key { customerNumber = 1234, customerType = Subscriber } not found.&quot;
+	"Customer with key { customerNumber = 1234, customerType = Subscriber } not found."
 
 As such it is fit for use with any composite key you might have.
 			
@@ -62,19 +64,19 @@ Some more examples:
 			
 	throw new NotUniqueException&lt;Product&gt;(productNumber);
 	throw new ValueNotSupportedException(myCountryEnumValue);
-	throw new FileAlreadyExistsException(&quot;text.txt&quot;);
-	throw new NullOrWhiteSpaceException(() =&gt; myParam.MyProp);
+	throw new FileAlreadyExistsException("text.txt");
+	throw new NullOrWhiteSpaceException(nameof(myParam));
 
 Those produce the exception messages:
 			
 	Product with key A123 not unique.
-	Country value &#39;Undefined&#39; is not supported.
-	File &#39;test.txt&#39; already exists.
-	myParam.MyProp is null or white space.
+	Country value 'Undefined' is not supported.
+	File 'test.txt' already exists.
+	myParam is null or white space.
 
 Here is an example with the value check in it:
 
-	if (height &lt; 10) throw new LessThanException(nameof(height), 10);
+	if (height &lt; 10) throw new LessThanException(() =&gt; height, 10);
 
 This produces the exception message:
 				

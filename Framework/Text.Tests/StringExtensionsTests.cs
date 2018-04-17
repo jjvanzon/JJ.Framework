@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 // ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Text.Tests
@@ -7,22 +8,6 @@ namespace JJ.Framework.Text.Tests
 	[TestClass]
 	public class StringExtensionsTests
 	{
-		[TestMethod]
-		public void Test_StringExtensions_CutRightUntil()
-		{
-			string input = "abcdefg";
-			string output = input.TrimEndUntil("de");
-			Assert.AreEqual("abcde", output);
-		}
-
-		[TestMethod]
-		public void Test_StringExtensions_CutLeftUntil()
-		{
-			string input = "abcdefg";
-			string output = input.TrimStartUntil("de");
-			Assert.AreEqual("defg", output);
-		}
-
 		[TestMethod]
 		public void Test_StringExtensions_Left_NotEnoughCharacters_ThrowsException()
 		{
@@ -36,31 +21,67 @@ namespace JJ.Framework.Text.Tests
 		}
 
 		[TestMethod]
-		public void Test_StringExtensions_TakeLeft()
+		public void Test_StringExtensions_TakeEnd()
 		{
-			string output = "12345".TakeLeft(4);
-			AssertHelper.AreEqual("1234", () => output);
-		}
-
-		[TestMethod]
-		public void Test_StringExtensions_TakeLeft_NotEnoughCharacters_ReturnsLessCharacters()
-		{
-			string output = "1234".TakeLeft(5);
-			AssertHelper.AreEqual("1234", () => output);
-		}
-
-		[TestMethod]
-		public void Test_StringExtensions_TakeRight()
-		{
-			string output = "12345".TakeRight(4);
+			string output = "12345".TakeEnd(4);
 			AssertHelper.AreEqual("2345", () => output);
 		}
 
 		[TestMethod]
-		public void Test_StringExtensions_TakeRight_NotEnoughCharacters_ReturnsLessCharacters()
+		public void Test_StringExtensions_TakeEnd_NotEnoughCharacters_ReturnsLessCharacters()
 		{
-			string output = "1234".TakeRight(5);
+			string output = "1234".TakeEnd(5);
 			AssertHelper.AreEqual("1234", () => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TakeEndUntil()
+		{
+			string output = "12345".TakeEndUntil("3");
+			AssertHelper.AreEqual("45", () => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TakeEndUntil_NegativeMatch_ReturnsNullOrEmpty()
+		{
+			string output = "12345".TakeEndUntil("6");
+			AssertHelper.IsNullOrEmpty(() => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TakeStart()
+		{
+			string output = "12345".TakeStart(4);
+			AssertHelper.AreEqual("1234", () => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TakeStart_NotEnoughCharacters_ReturnsLessCharacters()
+		{
+			string output = "1234".TakeStart(5);
+			AssertHelper.AreEqual("1234", () => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TakeStartUntil()
+		{
+			string output = "12345".TakeStartUntil("4");
+			AssertHelper.AreEqual("123", () => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TakeStartUntil_NegativeMatch_ReturnsNullOrEmpty()
+		{
+			string output = "12345".TakeStartUntil("6");
+			AssertHelper.IsNullOrEmpty(() => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TrimEnd_MultipleOccurrences()
+		{
+			string input = "LalaBlaBlaBla";
+			string output = input.TrimEnd("Bla");
+			AssertHelper.AreEqual("Lala", () => output);
 		}
 
 		[TestMethod]
@@ -72,10 +93,34 @@ namespace JJ.Framework.Text.Tests
 		}
 
 		[TestMethod]
-		public void Test_StringExtensions_TrimEnd_MultipleOccurrences()
+		public void Test_StringExtensions_TrimEndUntil()
 		{
-			string input = "LalaBlaBlaBla";
-			string output = input.TrimEnd("Bla");
+			string input = "abcdefg";
+			string output = input.TrimEndUntil("de");
+			Assert.AreEqual("abcde", output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TrimFirst()
+		{
+			string input = "BlaBlaLala";
+			string output = input.TrimFirst("Bla");
+			AssertHelper.AreEqual("BlaLala", () => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TrimLast()
+		{
+			string input = "LalaBlaBla";
+			string output = input.TrimLast("Bla");
+			AssertHelper.AreEqual("LalaBla", () => output);
+		}
+
+		[TestMethod]
+		public void Test_StringExtensions_TrimStart_MultipleOccurrences()
+		{
+			string input = "BlaBlaBlaLala";
+			string output = input.TrimStart("Bla");
 			AssertHelper.AreEqual("Lala", () => output);
 		}
 
@@ -88,11 +133,11 @@ namespace JJ.Framework.Text.Tests
 		}
 
 		[TestMethod]
-		public void Test_StringExtensions_TrimStart_MultipleOccurrences()
+		public void Test_StringExtensions_TrimStartUntil()
 		{
-			string input = "BlaBlaBlaLala";
-			string output = input.TrimStart("Bla");
-			AssertHelper.AreEqual("Lala", () => output);
+			string input = "abcdefg";
+			string output = input.TrimStartUntil("de");
+			Assert.AreEqual("defg", output);
 		}
 	}
 }

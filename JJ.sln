@@ -300,7 +300,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Introduction.txt = Introduction.txt
 		LICENSE.TXT = LICENSE.TXT
 		Framework\nugetpack.ps1 = Framework\nugetpack.ps1
-		Publish to Git.bat = Publish to Git.bat
+		Prepare Publish to GitHub.bat = Prepare Publish to GitHub.bat
 		README.MD = README.MD
 		THIRD PARTY LICENSE.TXT = THIRD PARTY LICENSE.TXT
 	EndProjectSection

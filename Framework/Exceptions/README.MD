@@ -41,18 +41,18 @@ Some more examples:
 	throw new NotUniqueException<Product>(productNumber);
 	throw new ValueNotSupportedException(myCountryEnumValue);
 	throw new FileAlreadyExistsException("text.txt");
-	throw new NullOrWhiteSpaceException(() => myParam.MyProp);
+	throw new NullOrWhiteSpaceException(nameof(myParam));
 
 Those produce the exception messages:
 			
 	Product with key A123 not unique.
 	Country value 'Undefined' is not supported.
 	File 'test.txt' already exists.
-	myParam.MyProp is null or white space.
+	myParam is null or white space.
 
 Here is an example with the value check in it:
 
-	if (height < 10) throw new LessThanException(nameof(height), 10);
+	if (height < 10) throw new LessThanException(() => height, 10);
 
 This produces the exception message:
 				
