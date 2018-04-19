@@ -29,6 +29,8 @@ Basic helpers for working with text. For instance:
 			* TakeStartUntil * TakeEndUntil
 			* Rename TakeLeft to TakeStart
 			* Rename TakeRight to TakeEnd
+			2018-04-19:
+			* Make obsolete TakeLeft and TakeRight cause compiler error, instead of just throwing an exception at run time.
 		</releaseNotes>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>

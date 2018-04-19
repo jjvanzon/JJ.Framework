@@ -94,10 +94,10 @@ namespace JJ.Framework.Text
 		/// </summary>
 		public static string TakeEndUntil(this string input, char until) => TakeEndUntil(input, until.ToString());
 
-		[Obsolete("Use TakeStart instead.")]
+		[Obsolete("Use TakeStart instead.", true)]
 		public static string TakeLeft(this string input, int length) => throw new NotSupportedException("Use TakeStart instead.");
 
-		[Obsolete("Use TakeEnd instead.")]
+		[Obsolete("Use TakeEnd instead.", true)]
 		public static string TakeRight(this string input, int length) => throw new NotSupportedException("Use TakeEnd instead.");
 
 		/// <summary>
