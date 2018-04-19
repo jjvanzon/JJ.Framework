@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using JJ.Framework.Exceptions.Aggregates;
 using JJ.Framework.Reflection;
+#pragma warning disable 1584, 1711, 1572, 1581, 1580
 
 namespace JJ.Framework.Collections
 {
@@ -373,7 +374,10 @@ namespace JJ.Framework.Collections
 		/// <param name="keyIndicator">
 		/// Not used for filtering, only used in the exception message. 
 		/// </param>
-		public static T SingleOrDefaultWithClearException<T>(this IEnumerable<T> collection, Func<T, bool> predicate, Expression<Func<object>> keyIndicator)
+		public static T SingleOrDefaultWithClearException<T>(
+			this IEnumerable<T> collection,
+			Func<T, bool> predicate,
+			Expression<Func<object>> keyIndicator)
 		{
 			string keyIndicatorString = ExpressionHelper.GetText(keyIndicator);
 			return SingleOrDefaultWithClearException(collection, predicate, keyIndicatorString);
@@ -476,7 +480,9 @@ namespace JJ.Framework.Collections
 			return new HashSet<T>(source);
 		}
 
-		public static Dictionary<TKey, IList<TItem>> ToNonUniqueDictionary<TKey, TItem>(this IEnumerable<TItem> sourceCollection, Func<TItem, TKey> keySelector)
+		public static Dictionary<TKey, IList<TItem>> ToNonUniqueDictionary<TKey, TItem>(
+			this IEnumerable<TItem> sourceCollection,
+			Func<TItem, TKey> keySelector)
 		{
 			if (sourceCollection == null) throw new ArgumentNullException(nameof(sourceCollection));
 			if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
@@ -635,5 +641,28 @@ namespace JJ.Framework.Collections
 		}
 
 		public static IEnumerable<T> Union<T>(this T x, IEnumerable<T> enumerable) => new[] { x }.Union(enumerable);
+
+		/// <summary>
+		/// Overload of Zip when you do not want to produce a result,
+		/// you just want to process two collections side by side in another way.
+		/// </summary>
+		/// <see cref="Enumerable.Zip"/>
+		public static void Zip<TFirst, TSecond>(this IEnumerable<TFirst> first, IEnumerable<TSecond> second, Action<TFirst, TSecond> action)
+		{
+			if (first == null) throw new ArgumentNullException(nameof(first));
+			if (second == null) throw new ArgumentNullException(nameof(second));
+			if (action == null) throw new ArgumentNullException(nameof(action));
+
+			// Little dirty to do ToArray, whatevs.
+			TFirst[] firstArray = first as TFirst[] ?? first.ToArray();
+			TSecond[] secondArray = second as TSecond[] ?? second.ToArray();
+
+			int count = Math.Min(firstArray.Length, secondArray.Length);
+
+			for (int i = 0; i < count; i++)
+			{
+				action(firstArray[i], secondArray[i]);
+			}
+		}
 	}
 }
