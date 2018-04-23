@@ -40,7 +40,7 @@ namespace JJ.Framework.Conversion
 					return null;
 				}
 
-				type = type.GetUnderlyingNullableType();
+				type = type.GetUnderlyingNullableTypeFast();
 			}
 
 			if (type.IsEnum)
@@ -90,7 +90,7 @@ namespace JJ.Framework.Conversion
 
 			if (type.IsNullableType())
 			{
-				type = type.GetUnderlyingNullableType();
+				type = type.GetUnderlyingNullableTypeFast();
 			}
 
 			return Convert.ChangeType(input, type);

@@ -60,7 +60,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 					return null;
 				}
 
-				type = type.GetUnderlyingNullableType();
+				type = type.GetUnderlyingNullableTypeFast();
 			}
 
 			if (type.IsEnum)

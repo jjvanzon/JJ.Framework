@@ -272,7 +272,7 @@ namespace JJ.Framework.Reflection
 
 			if (type.IsNullableType())
 			{
-				Type underlyingType = type.GetUnderlyingNullableType();
+				Type underlyingType = type.GetUnderlyingNullableTypeFast();
 				return IsSimpleType(underlyingType);
 			}
 
@@ -295,7 +295,10 @@ namespace JJ.Framework.Reflection
 			return types;
 		}
 
-		public static Type GetUnderlyingNullableType(this Type type)
+		/// <summary>
+		/// Slightly faster than Nullable.GetUnderlyingType, but gives false positives if the type is not nullable to begin with.
+		/// </summary>
+		public static Type GetUnderlyingNullableTypeFast(this Type type)
 		{
 			if (type == null) throw new ArgumentNullException(nameof(type));
 
