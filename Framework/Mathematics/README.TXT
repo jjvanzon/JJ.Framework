@@ -1,1 +1,0 @@
-﻿JJ.Framework.Mathematics contains helpers for calculations. It contains simple geometric calculations, interpolations, helpers for working with base-n numbering systems, special rounding methods, a class for working more easily with the Random class and some other basic math helpers.

@@ -38,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Release\JJ.Framework.Mathematics.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -50,7 +51,7 @@
     <Compile Include="Geometry.cs" />
     <Compile Include="Interpolator.cs" />
     <Compile Include="MathHelper.cs" />
-    <Compile Include="NumberingSystems.cs" />
+    <Compile Include="NumberBases.cs" />
     <Compile Include="Randomizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,7 +66,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT" />
+    <None Include="JJ.Framework.Mathematics.nuspec" />
+    <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

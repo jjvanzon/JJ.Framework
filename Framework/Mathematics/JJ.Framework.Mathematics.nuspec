@@ -1,0 +1,43 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<copyright>$copyright$</copyright>
+		<description>$description$</description>
+
+		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Mathematics</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
+
+		<tags>
+			mathematics math maths interpolation interpolator number bases geometry random randomizer helpers
+			hermite cubic bezier smooth hex spread sheet column letters round significant digits scale spread
+		</tags>
+
+		<summary>
+Helpers for calculations.
+
+* Interpolation
+* Base-n numbering systems
+* Special rounding methods
+* Use the `Random` class more easily
+* Simple geometric calculations
+* Other basic math helpers.
+		</summary>
+
+		<dependencies>
+			<dependency id="JJ.Framework.Exceptions" version="[1.3,1.4)" />
+			<dependency id="JJ.Framework.Reflection" version="[1.3,1.4)" />
+		</dependencies>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	</metadata>
+
+	<files>
+		<file src="README.MD" target="" />
+	</files>
+</package>

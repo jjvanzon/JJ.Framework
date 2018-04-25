@@ -5,7 +5,7 @@ using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Mathematics
 {
-	public static class NumberingSystems
+	public static class NumberBases
 	{
 		// The general formula for a digit value is:
 		//
@@ -47,7 +47,7 @@ namespace JJ.Framework.Mathematics
 		/// <summary>
 		/// Calculates an array of digit values that represent a number in a base-b numbering system.
 		/// </summary>
-		private static int[] GetDigitValues(int number, int b)
+		public static int[] ToBaseDigitValues(int number, int b)
 		{
 			if (number < 0) throw new ArgumentException("number must be larger than 0.");
 			if (b < 2) throw new ArgumentException("b must be 2 or higher.");
@@ -109,7 +109,7 @@ namespace JJ.Framework.Mathematics
 			if (digitChars == null) throw new NullException(() => digitChars);
 			if (digitChars.Length < b) throw new ArgumentException("digitChars.Length must have at least b elements.");
 
-			int[] digitValues = GetDigitValues(number, b);
+			int[] digitValues = ToBaseDigitValues(number, b);
 			char[] digits = digitValues.Select(x => DigitValueToChar(x, digitChars)).ToArray();
 			string result = new string(digits);
 			return result;
@@ -122,7 +122,7 @@ namespace JJ.Framework.Mathematics
 		/// </summary>
 		public static string ToBase(int number, int b, char firstChar)
 		{
-			int[] digitValues = GetDigitValues(number, b);
+			int[] digitValues = ToBaseDigitValues(number, b);
 			char[] digits = digitValues.Select(x => DigitValueToChar(x, firstChar)).ToArray();
 			string result = new string(digits);
 			return result;

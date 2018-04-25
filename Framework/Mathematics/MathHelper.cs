@@ -19,13 +19,13 @@ namespace JJ.Framework.Mathematics
 		/// that only works for non-negative exponents.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int Pow(int n, int e)
+		public static int Pow(int @base, int exponent)
 		{
 			// I doubt this is actually faster than just using the standard Math.Pow that takes double.
 			int x = 1;
-			for (int i = 0; i < e; i++)
+			for (int i = 0; i < exponent; i++)
 			{
-				x *= n;
+				x *= @base;
 			}
 
 			return x;
@@ -35,7 +35,7 @@ namespace JJ.Framework.Mathematics
 		/// Integer variation of the Math.Log function.
 		/// It will only return integers,
 		/// but will prevent rounding erros such as
-		/// 1000 log 10 = 2.99999999996
+		/// 1000 log 10 = 2.99999999996.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static int Log(int value, int n)
@@ -51,12 +51,13 @@ namespace JJ.Framework.Mathematics
 			return i;
 		}
 
+		/// <summary>
+		/// With help of:
+		/// http://www.lomont.org/Software/Misc/FFT/LomontFFT.html
+		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool IsPowerOf2(int x)
 		{
-			// With help of:
-			// http://www.lomont.org/Software/Misc/FFT/LomontFFT.html
-
 			bool isPowerOf2 = (x & (x - 1)) == 0;
 			return isPowerOf2;
 		}
@@ -76,6 +77,7 @@ namespace JJ.Framework.Mathematics
 		}
 
 		/// <summary> source: https://stackoverflow.com/questions/374316/round-a-double-to-x-significant-figures </summary>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static double RoundToSignificantDigits(double value, int digitCount)
 		{
 			// ReSharper disable once CompareOfFloatsByEqualityOperator
@@ -225,6 +227,10 @@ namespace JJ.Framework.Mathematics
 			return (long)temp * step;
 		}
 
+		/// <summary>
+		/// Converts one range of numbers to another,
+		/// by both making a number bigger or smaller and shifting it over.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static double ScaleLinearly(
 			double input,
@@ -240,11 +246,19 @@ namespace JJ.Framework.Mathematics
 			return result;
 		}
 
+		/// <summary>
+		/// Converts one range of numbers to another,
+		/// by both making a number bigger or smaller and shifting it over.
+		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static double ScaleLinearly(double input, double sourceValueA, double targetValueA, double slope) 
 			=> (input - sourceValueA) * slope + targetValueA;
 
-		/// <summary> Equally spreads out a number indices over a different number of indices. </summary>
+		/// <summary>
+		/// Equally spreads out a number indices over a different number of indices.
+		/// For instance the numbers {1,2,3} could be spread over 10 items,
+		/// the first ones getting 1, the middle ones getter 2 and the last ones getting 3.
+		/// </summary>
 		public static Dictionary<int, int> SpreadIntegers(int sourceIndex1, int sourceIndex2, int destIndex1, int destIndex2)
 		{
 			// TODO: There seem to be a lot of repeated principles here, compared to the overload that takes 2 int's.
@@ -259,21 +273,11 @@ namespace JJ.Framework.Mathematics
 			return dictionary;
 		}
 
-		/// <summary> Equally spreads out items over another set of items. </summary>
-		public static Dictionary<TSource, TDest> SpreadItems<TSource, TDest>(IList<TSource> sourceList, IList<TDest> destList)
-		{
-			if (sourceList == null) throw new NullException(() => sourceList);
-			if (destList == null) throw new NullException(() => destList);
-
-			// TODO: This unncessarily created an intermediate dictionary, but at least it reuses code.
-			Dictionary<int, int> intDictionary = SpreadIntegers(sourceList.Count, destList.Count);
-
-			Dictionary<TSource, TDest> destDictionary = intDictionary.ToDictionary(x => sourceList[x.Key], x => destList[x.Value]);
-
-			return destDictionary;
-		}
-
-		/// <summary> Equally spreads out a number indices over a different number of indices. </summary>
+		/// <summary>
+		/// Equally spreads out a number indices over a different number of indices.
+		/// For instance the numbers {1,2,3} could be spread over 10 items,
+		/// the first ones getting 1, the middle ones getter 2 and the last ones getting 3.
+		/// </summary>
 		[SuppressMessage("ReSharper", "RedundantCast")]
 		public static Dictionary<int, int> SpreadIntegers(int sourceCount, int destCount)
 		{
@@ -307,21 +311,40 @@ namespace JJ.Framework.Mathematics
 			return dictionary;
 		}
 
-		public static double[] SpreadDoubles(double xSpan, int pointCount)
+		/// <summary>
+		/// Equally spreads out items over another set of items.
+		/// For instance the numbers {1,2,3} could be spread over 10 items,
+		/// the first ones getting 1, the middle ones getter 2 and the last ones getting 3.
+		/// </summary>
+		public static Dictionary<TSource, TDest> SpreadItems<TSource, TDest>(IList<TSource> sourceList, IList<TDest> destList)
 		{
-			if (xSpan <= 0) throw new LessThanOrEqualException(() => xSpan, 0);
+			if (sourceList == null) throw new NullException(() => sourceList);
+			if (destList == null) throw new NullException(() => destList);
+
+			// TODO: This unncessarily created an intermediate dictionary, but at least it reuses code.
+			Dictionary<int, int> intDictionary = SpreadIntegers(sourceList.Count, destList.Count);
+
+			Dictionary<TSource, TDest> destDictionary = intDictionary.ToDictionary(x => sourceList[x.Key], x => destList[x.Value]);
+
+			return destDictionary;
+		}
+
+		/// <summary> Equally spreads out a number of points over a span. </summary>
+		public static double[] SpreadDoubles(double valueSpan, int pointCount)
+		{
+			if (valueSpan <= 0) throw new LessThanOrEqualException(() => valueSpan, 0);
 			if (pointCount < 2) throw new LessThanException(() => pointCount, 2);
 
-			var xValues = new double[pointCount];
-			double x = 0;
-			double dx = xSpan / (pointCount - 1);
+			var values = new double[pointCount];
+			double value = 0;
+			double dx = valueSpan / (pointCount - 1);
 			for (int i = 0; i < pointCount; i++)
 			{
-				xValues[i] = x;
-				x += dx;
+				values[i] = value;
+				value += dx;
 			}
 
-			return xValues;
+			return values;
 		}
 	}
 }

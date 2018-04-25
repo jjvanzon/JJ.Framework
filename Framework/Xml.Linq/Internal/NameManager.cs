@@ -357,7 +357,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 
 			foreach (string xmlNamespaceString in _xmlNamespaceStrings)
 			{
-				string namespacePrefix = NumberingSystems.ToLetterSequence(i, 'a', 'z');
+				string namespacePrefix = NumberBases.ToLetterSequence(i, 'a', 'z');
 
 				yield return new XAttribute(XNamespace.Xmlns + namespacePrefix, xmlNamespaceString);
 

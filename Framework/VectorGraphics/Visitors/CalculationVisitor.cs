@@ -245,7 +245,7 @@ namespace JJ.Framework.VectorGraphics.Visitors
 
 		private void UpdateCurvePoint(Point destPoint, float ax, float acx, float bcx, float bx, float ay, float acy, float bcy, float by, float t)
 		{
-			Interpolator.Cubic_FromT(ax, acx, bcx, bx, ay, acy, bcy, by, t, out float x, out float y);
+			Interpolator.CubicFromT(ax, acx, bcx, bx, ay, acy, bcy, by, t, out float x, out float y);
 
 			CalculatedValues destPointCalculatedValues = destPoint.CalculatedValues;
 			destPointCalculatedValues.XInPixels = x;

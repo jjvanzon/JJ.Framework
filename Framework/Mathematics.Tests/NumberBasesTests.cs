@@ -11,14 +11,14 @@ namespace JJ.Framework.Mathematics.Tests
 		[TestMethod]
 		public void Test_NumberingSystems_ToBaseNNumber_Base26_RandomNumber()
 		{
-			int number = Randomizer.GetInt32(Int32.MaxValue - 1);
-			string output = NumberingSystems.ToBase(number, 26, 'a');
+			int number = Randomizer.GetInt32(int.MaxValue - 1);
+			string output = NumberBases.ToBase(number, 26, 'a');
 		}
 
 		[TestMethod]
 		public void Test_NumberingSystems_ToBaseNNumber_DecimalSystem_1234()
 		{
-			string output = NumberingSystems.ToBase(1234, 10);
+			string output = NumberBases.ToBase(1234, 10);
 			Assert.AreEqual("1234", output);
 		}
 
@@ -27,7 +27,7 @@ namespace JJ.Framework.Mathematics.Tests
 		{
 			for (int i = 0; i <= 100; i++)
 			{
-				string output = NumberingSystems.ToBase(i, 10);
+				string output = NumberBases.ToBase(i, 10);
 				Assert.AreEqual(i.ToString(), output);
 			}
 		}
@@ -36,7 +36,7 @@ namespace JJ.Framework.Mathematics.Tests
 		public void Test_NumberingSystems_ToHex_1234()
 		{
 			int number = 1234;
-			string output = NumberingSystems.ToHex(number);
+			string output = NumberBases.ToHex(number);
 		}
 
 		[TestMethod]
@@ -45,7 +45,7 @@ namespace JJ.Framework.Mathematics.Tests
 			for (int i = 0; i <= 9; i++)
 			{
 				string expected = i.ToString();
-				string actual = NumberingSystems.ToHex(i);
+				string actual = NumberBases.ToHex(i);
 				Assert.AreEqual(expected, actual);
 			}
 		}
@@ -57,7 +57,7 @@ namespace JJ.Framework.Mathematics.Tests
 			{
 				char expectedChar = (char)(i - 10 + 'A');
 				string expected = Convert.ToString(expectedChar);
-				string actual = NumberingSystems.ToHex(i);
+				string actual = NumberBases.ToHex(i);
 				Assert.AreEqual(expected, actual);
 			}
 		}
@@ -68,9 +68,9 @@ namespace JJ.Framework.Mathematics.Tests
 			for (int i = 16; i <= 25; i++)
 			{
 				char expectedSecondChar = (char)(i - 16 + '0');
-				char[] expectedChars = new char[] { '1', expectedSecondChar };
-				string expected = new String(expectedChars);
-				string actual = NumberingSystems.ToHex(i);
+				char[] expectedChars = new[] { '1', expectedSecondChar };
+				string expected = new string(expectedChars);
+				string actual = NumberBases.ToHex(i);
 				Assert.AreEqual(expected, actual);
 			}
 		}
@@ -81,9 +81,9 @@ namespace JJ.Framework.Mathematics.Tests
 			for (int i = 26; i <= 31; i++)
 			{
 				char expectedSecondChar = (char)(i - 26 + 'A');
-				char[] expectedChars = new char[] { '1', expectedSecondChar };
-				string expected = new String(expectedChars);
-				string actual = NumberingSystems.ToHex(i);
+				char[] expectedChars = new[] { '1', expectedSecondChar };
+				string expected = new string(expectedChars);
+				string actual = NumberBases.ToHex(i);
 				Assert.AreEqual(expected, actual);
 			}
 		}
@@ -97,7 +97,7 @@ namespace JJ.Framework.Mathematics.Tests
 			{
 				char expectedChar = (char)('a' + i);
 				string expected = expectedChar.ToString();
-				string actual = NumberingSystems.ToBase(i, 26, 'a');
+				string actual = NumberBases.ToBase(i, 26, 'a');
 				Assert.AreEqual(expected, actual);
 			}
 
@@ -111,8 +111,8 @@ namespace JJ.Framework.Mathematics.Tests
 				// and after Z comes BA, not AA.
 				// So Excel column numerals do not map nicely to a base-n numbering system after all.
 				
-				string expected = new String(new char[] { 'b', expectedSecondChar });
-				string actual = NumberingSystems.ToBase(i, 26, 'a');
+				string expected = new string(new[] { 'b', expectedSecondChar });
+				string actual = NumberBases.ToBase(i, 26, 'a');
 				Assert.AreEqual(expected, actual);
 			}
 		}
@@ -121,7 +121,7 @@ namespace JJ.Framework.Mathematics.Tests
 		public void Test_NumberingSystems_FromBaseNNumber_DecimalSystem_1234()
 		{
 			string input = "1234";
-			int output = NumberingSystems.FromBase(input, 10);
+			int output = NumberBases.FromBase(input, 10);
 			Assert.AreEqual(1234, output);
 		}
 
@@ -129,7 +129,7 @@ namespace JJ.Framework.Mathematics.Tests
 		public void Test_NumberingSystems_FromHex()
 		{
 			string hex = "E124B";
-			int number = NumberingSystems.FromHex(hex);
+			int number = NumberBases.FromHex(hex);
 		}
 
 		// Letter Sequences
@@ -141,11 +141,11 @@ namespace JJ.Framework.Mathematics.Tests
 						26 * 26 +
 						26 * 26 * 26;
 
-			string[] results = new string[count];
+			var results = new string[count];
 
 			for (int i = 0; i < count; i++)
 			{
-				string letters = NumberingSystems.ToLetterSequence(i, '0', '9');
+				string letters = NumberBases.ToLetterSequence(i, '0', '9');
 
 				results[i] = i.ToString().PadLeft(5) + " - " + letters;
 			}
@@ -159,12 +159,12 @@ namespace JJ.Framework.Mathematics.Tests
 			// This test depends on that ToLetterSequence works correctly.
 			int count = 100000;
 
-			string[] results = new string[count];
+			var results = new string[count];
 
 			for (int i = 0; i < count; i++)
 			{
-				string letters = NumberingSystems.ToLetterSequence(i, '0', '9'); 
-				int value = NumberingSystems.FromLetterSequence(letters, '0', '9');
+				string letters = NumberBases.ToLetterSequence(i, '0', '9'); 
+				int value = NumberBases.FromLetterSequence(letters, '0', '9');
 
 				Assert.AreEqual(i, value);
 			}
