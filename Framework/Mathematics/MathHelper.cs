@@ -257,7 +257,7 @@ namespace JJ.Framework.Mathematics
 		/// <summary>
 		/// Equally spreads out a number indices over a different number of indices.
 		/// For instance the numbers {1,2,3} could be spread over 10 items,
-		/// the first ones getting 1, the middle ones getter 2 and the last ones getting 3.
+		/// the first ones getting 1, the middle ones getting 2 and the last ones being assigned 3.
 		/// </summary>
 		public static Dictionary<int, int> SpreadIntegers(int sourceIndex1, int sourceIndex2, int destIndex1, int destIndex2)
 		{
@@ -276,7 +276,7 @@ namespace JJ.Framework.Mathematics
 		/// <summary>
 		/// Equally spreads out a number indices over a different number of indices.
 		/// For instance the numbers {1,2,3} could be spread over 10 items,
-		/// the first ones getting 1, the middle ones getter 2 and the last ones getting 3.
+		/// the first ones getting 1, the middle ones getting 2 and the last ones being assigned 3.
 		/// </summary>
 		[SuppressMessage("ReSharper", "RedundantCast")]
 		public static Dictionary<int, int> SpreadIntegers(int sourceCount, int destCount)
@@ -314,7 +314,7 @@ namespace JJ.Framework.Mathematics
 		/// <summary>
 		/// Equally spreads out items over another set of items.
 		/// For instance the numbers {1,2,3} could be spread over 10 items,
-		/// the first ones getting 1, the middle ones getter 2 and the last ones getting 3.
+		/// the first ones getting 1, the middle ones getting 2 and the last ones being assigned 3.
 		/// </summary>
 		public static Dictionary<TSource, TDest> SpreadItems<TSource, TDest>(IList<TSource> sourceList, IList<TDest> destList)
 		{

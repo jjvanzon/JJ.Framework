@@ -9,6 +9,7 @@ using JJ.Framework.Common;
 using JJ.Framework.Conversion;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.IO;
+using JJ.Framework.Mathematics;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 using JJ.Framework.Testing;
@@ -122,6 +123,12 @@ namespace JJ.Demos.NuGetTest
 			var item = new Item { Parent = new Item() };
 
 			IList<Item> ancestorsAndSelf = item.SelfAndAncestors(x => x.Parent).ToArray();
+		}
+
+		[TestMethod]
+		public void Test_NuGetReference_JJ_Framework_Mathematics()
+		{
+			double hermite4Pt3oX = Interpolator.Hermite4pt3oX(0, 1, -2, -1, 0.231);
 		}
 	}
 }
