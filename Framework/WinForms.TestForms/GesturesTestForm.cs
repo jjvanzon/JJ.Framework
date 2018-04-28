@@ -50,6 +50,7 @@ namespace JJ.Framework.WinForms.TestForms
 			DoubleClickGesture doubleClickGesture = diagramControl1.CreateDoubleClickGesture();
 			doubleClickGesture.DoubleClick += DoubleClickGesture_DoubleClick;
 
+			// ReSharper disable once JoinDeclarationAndInitializer
 			Rectangle rectangle;
 
 			float currentY = VectorGraphicsHelper.SPACING;

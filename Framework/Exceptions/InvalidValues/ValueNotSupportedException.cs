@@ -7,7 +7,7 @@ namespace JJ.Framework.Exceptions.InvalidValues
 		private const string MESSAGE_TEMPLATE = "{0} value '{1}' is not supported.";
 
 		/// <summary>
-		/// throw new InvalidValueException(customerType);
+		/// throw new ValueNotSupportedException(customerType);
 		/// will have message: "CustomerType value 'Subscriber' is not supported."
 		/// </summary>
 		public ValueNotSupportedException(object value)

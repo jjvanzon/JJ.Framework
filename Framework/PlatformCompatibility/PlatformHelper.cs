@@ -24,32 +24,16 @@ namespace JJ.Framework.PlatformCompatibility
 		{
 			if (memberInfo == null) throw new ArgumentNullException(nameof(memberInfo));
 
-			if (memberInfo is PropertyInfo)
+			switch (memberInfo)
 			{
-				return MemberTypes_PlatformSafe.Property;
+				case PropertyInfo _: return MemberTypes_PlatformSafe.Property;
+				case FieldInfo _: return MemberTypes_PlatformSafe.Field;
+				case MethodBase _: return MemberTypes_PlatformSafe.Method;
+				case EventInfo _: return MemberTypes_PlatformSafe.Event;
+				case Type _: return MemberTypes_PlatformSafe.TypeInfo;
 			}
 
-			if (memberInfo is FieldInfo)
-			{
-				return MemberTypes_PlatformSafe.Field;
-			}
-
-			if (memberInfo is MethodBase)
-			{
-				return MemberTypes_PlatformSafe.Method;
-			}
-
-			if (memberInfo is EventInfo)
-			{
-				return MemberTypes_PlatformSafe.Event;
-			}
-
-			if (memberInfo is Type)
-			{
-				return MemberTypes_PlatformSafe.TypeInfo;
-			}
-
-			throw new Exception($"memberInfo has the unsupported type: '{memberInfo.GetType()}'");
+			throw new Exception($"{nameof(memberInfo)} has the unsupported type: '{memberInfo.GetType()}'");
 		}
 
 		/// <summary>
@@ -57,20 +41,14 @@ namespace JJ.Framework.PlatformCompatibility
 		/// CultureInfo.GetCultureInfo(string name) is not supported on Windows Phone 8.
 		/// Use 'new CultureInfo(string name)' or call this method instead.
 		/// </summary>
-		public static CultureInfo CultureInfo_GetCultureInfo_PlatformSafe(string name)
-		{
-			return new CultureInfo(name);
-		}
+		public static CultureInfo CultureInfo_GetCultureInfo_PlatformSafe(string name) => new CultureInfo(name);
 
 		/// <summary>
 		/// Windows Phone 8 compatibility:
 		/// Type.GetInterface(string name) is not supported on Windows Phone 8.
 		/// Use the overload 'Type.GetInterface(string name, bool ingoreCase)' or call this method instead.
 		/// </summary>
-		public static Type Type_GetInterface_PlatformSafe(Type type, string name)
-		{
-			return type.GetInterface(name, ignoreCase: false);
-		}
+		public static Type Type_GetInterface_PlatformSafe(Type type, string name) => type.GetInterface(name, ignoreCase: false);
 
 		/// <summary>
 		/// Windows Phone 8 compatibility:

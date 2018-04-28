@@ -331,20 +331,21 @@ namespace JJ.Framework.Xml
 			Type destPropertyType = destProperty.PropertyType;
 			object destPropertyValue = ConvertAttribute(sourceXmlAttribute, destProperty.PropertyType);
 
-			// Check nullability
-			if (destPropertyValue == null)
+			if (destPropertyValue != null)
 			{
-				if (IsNullable(destPropertyType))
-				{
-					// If nullable and attribute is null or empty, leave property's default value in tact.
-					return;
-				}
-
-				// If not nullable and attribute is null or empty, throw an exception.
-				throw new Exception($"XML node '{sourceParentElement.Name}' does not specify the required attribute '{sourceXmlAttributeName}'.");
+				destProperty.SetValue(destParentObject, destPropertyValue);
+				return;
 			}
 
-			destProperty.SetValue(destParentObject, destPropertyValue);
+			// Check nullability
+			if (IsNullable(destPropertyType))
+			{
+				// If nullable and attribute is null or empty, leave property's default value in tact.
+				return;
+			}
+
+			// If not nullable and attribute is null or empty, throw an exception.
+			throw new Exception($"XML node '{sourceParentElement.Name}' does not specify the required attribute '{sourceXmlAttributeName}'.");
 		}
 
 		/// <summary>

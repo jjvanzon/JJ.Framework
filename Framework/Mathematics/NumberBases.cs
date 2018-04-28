@@ -70,6 +70,7 @@ namespace JJ.Framework.Mathematics
 
 		private static int GetDigitCount(int number, int b)
 		{
+			// ReSharper disable once ConvertIfStatementToSwitchStatement
 			if (number == 0)
 			{
 				return 1;

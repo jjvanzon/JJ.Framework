@@ -1,4 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
+// ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable InconsistentNaming
 
 namespace JJ.Framework.Mathematics
 {
@@ -253,12 +256,6 @@ namespace JJ.Framework.Mathematics
 
 			return (a, b, c);
 		}
-
-
-
-
-
-
 
 		// Cubic Smooth Slope (float)
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using JJ.Framework.Exceptions.Aggregates;
 using JJ.Framework.Reflection;
+
 #pragma warning disable 1584, 1711, 1572, 1581, 1580
 
 namespace JJ.Framework.Collections
@@ -328,9 +329,7 @@ namespace JJ.Framework.Collections
 		public static void Remove<T>(this Queue<T> stack) => stack.Dequeue();
 
 		public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)
-		{
-			return collection.Select(selector).Product();
-		}
+			=> collection.Select(selector).Product();
 
 		public static double Product(this IEnumerable<double> collection)
 		{
@@ -473,11 +472,17 @@ namespace JJ.Framework.Collections
 
 		public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
 		{
-			if (source == null) throw new ArgumentNullException(nameof(source));
+			switch (source)
+			{
+				case null:
+					throw new ArgumentNullException(nameof(source));
 
-			if (source is HashSet<T> hashSet) return hashSet;
+				case HashSet<T> hashSet:
+					return hashSet;
 
-			return new HashSet<T>(source);
+				default:
+					return new HashSet<T>(source);
+			}
 		}
 
 		public static Dictionary<TKey, IList<TItem>> ToNonUniqueDictionary<TKey, TItem>(
