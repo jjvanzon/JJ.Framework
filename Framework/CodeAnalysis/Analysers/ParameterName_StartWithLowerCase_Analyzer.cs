@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using JetBrains.Annotations;
 using JJ.Framework.CodeAnalysis.Helpers;
 using JJ.Framework.CodeAnalysis.Names;
 using Microsoft.CodeAnalysis;
@@ -9,6 +10,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Framework.CodeAnalysis.Analysers
 {
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[UsedImplicitly]
 	public class ParameterName_StartWithLowerCase_Analyzer : DiagnosticAnalyzer
 	{
 		private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(

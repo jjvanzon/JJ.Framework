@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Business
 {
+	[PublicAPI]
 	public class EntityStatusManagerByID
 	{
 		// TODO: Tuples as keys might not be fast.

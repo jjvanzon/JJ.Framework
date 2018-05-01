@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Reflection;
 using System.Xml;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Xml;
 
@@ -36,6 +37,7 @@ namespace JJ.Framework.Configuration
 	/// 
 	/// The composite types in the object structure must have parameterless constructors.
 	/// </summary>
+	[PublicAPI]
 	public static class CustomConfigurationManager
 	{
 		private static readonly object _sectionDictionaryLock = new object();

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Business
@@ -9,6 +10,7 @@ namespace JJ.Framework.Business
 	/// Manages the inverse property in a one to n relation ship.
 	/// Don't forget to use _parent in your method implementations.
 	/// </summary>
+	[PublicAPI]
 	public abstract class OneToManyRelationship<TParent, TChild>
 		where TParent : class
 		where TChild : class

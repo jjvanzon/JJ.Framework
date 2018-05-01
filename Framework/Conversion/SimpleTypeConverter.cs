@@ -1,10 +1,12 @@
 ﻿using System;
+using JetBrains.Annotations;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Conversion
 {
 	/// <summary> Makes it easier to convert simple types. </summary>
+	[PublicAPI]
 	public static class SimpleTypeConverter
 	{
 		/// <summary>

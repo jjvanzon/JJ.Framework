@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Collections
 {
+	[PublicAPI]
 	public static class CollectionHelper
 	{
 		/// <summary>

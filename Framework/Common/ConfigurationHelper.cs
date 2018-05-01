@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Common
 {
 	/// <summary>
 	/// For using configuration settings when you cannot be dependent on System.Configuration.
 	/// </summary>
+	[PublicAPI]
 	public static class ConfigurationHelper
 	{
 		private static readonly object _sectionsLock = new object();

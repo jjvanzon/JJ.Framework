@@ -2,6 +2,7 @@
 {
 	internal enum PropertyStatusEnum
 	{
+		// ReSharper disable once UnusedMember.Global
 		Clean,
 		Dirty
 	}

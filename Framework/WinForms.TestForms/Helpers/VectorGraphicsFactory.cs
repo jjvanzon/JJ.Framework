@@ -1,5 +1,6 @@
 ﻿using JJ.Framework.VectorGraphics.Gestures;
 using JJ.Framework.VectorGraphics.Models.Elements;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Framework.WinForms.TestForms.Helpers
 {
@@ -31,10 +32,10 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 			{
 				PointA = point1,
 				PointB = point2,
-				LineStyle = VectorGraphicsHelper.DefaultLineStyle
+				LineStyle = VectorGraphicsHelper.DefaultLineStyle,
+				ZIndex = -1
 			};
 
-			line.ZIndex = -1;
 
 			return diagram;
 		}

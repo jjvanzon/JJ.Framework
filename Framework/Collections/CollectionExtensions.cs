@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Aggregates;
 using JJ.Framework.Reflection;
-
 #pragma warning disable 1584, 1711, 1572, 1581, 1580
 
 namespace JJ.Framework.Collections
 {
+	[PublicAPI]
 	public static class CollectionExtensions
 	{
 		public static void Add<T>(this IList<T> collection, params T[] items)

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Common
 {
+	[PublicAPI]
 	public static class EnumHelper
 	{
 		public static IList<TEnum> GetValues<TEnum>()

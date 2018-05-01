@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Globalization;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Common
 {
 	[Obsolete("Use JJ.Framework.Conversion.Int32Parser instead.", true)]
+	[PublicAPI]
 	public static class Int32Helper
 	{
 		public static bool TryParse(string s, IFormatProvider provider, out int result)

@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Business
 {
+	[PublicAPI]
 	public interface IResult
 	{
 		bool Successful { get; set; }

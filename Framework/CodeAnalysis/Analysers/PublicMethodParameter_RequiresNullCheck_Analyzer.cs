@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Immutable;
 using System.Linq;
+using JetBrains.Annotations;
 using JJ.Framework.CodeAnalysis.Names;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -10,6 +11,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace JJ.Framework.CodeAnalysis.Analysers
 {
 	[DiagnosticAnalyzer(LanguageNames.CSharp)]
+	[UsedImplicitly]
 	public class PublicMethodParameter_RequiresNullCheck_Analyzer : DiagnosticAnalyzer
 	{
 		private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
@@ -51,28 +53,25 @@ namespace JJ.Framework.CodeAnalysis.Analysers
 
 		private static bool IsApplicableType(BaseMethodDeclarationSyntax baseMethodDeclarationSyntax)
 		{
-			if (baseMethodDeclarationSyntax is MethodDeclarationSyntax)
+			switch (baseMethodDeclarationSyntax)
 			{
-				return true;
+				case MethodDeclarationSyntax _:
+				case ConstructorDeclarationSyntax _:
+					return true;
+
+
+				// TODO: Contemplate whether we need to handle more types,
+				// or if BaseMethodDeclarationSyntax could ever be of a non-applicable type at all.
+
+				default:
+					return false;
 			}
-
-			if (baseMethodDeclarationSyntax is ConstructorDeclarationSyntax)
-			{
-				return true;
-			}
-
-			// TODO: Contemplate whether we need to handle more types,
-			// or if BaseMethodDeclarationSyntax could ever be of a non-applicable type at all.
-
-			return false;
 		}
 
 		private static bool HasApplicableAccessLevel(BaseMethodDeclarationSyntax baseMethodDeclarationSyntax)
 		{
 			// TODO: Maybe this could be done faster.
-			bool isPrivate = baseMethodDeclarationSyntax.ChildTokens()
-														.Where(x => x.IsKind(SyntaxKind.PrivateKeyword))
-														.Any();
+			bool isPrivate = baseMethodDeclarationSyntax.ChildTokens().Any(x => x.IsKind(SyntaxKind.PrivateKeyword));
 			if (isPrivate)
 			{
 				return false;
@@ -125,8 +124,7 @@ namespace JJ.Framework.CodeAnalysis.Analysers
 
 		private static bool IsString(ITypeSymbol typeSymbol)
 		{
-			var namedTypeSymbol = typeSymbol as INamedTypeSymbol;
-			if (namedTypeSymbol == null)
+			if (!(typeSymbol is INamedTypeSymbol namedTypeSymbol))
 			{
 				return false;
 			}

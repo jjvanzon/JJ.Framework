@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Common
 {
+	[PublicAPI]
 	public static class CultureHelper
 	{
 		public static void SetCurrentCultureName(string cultureName)

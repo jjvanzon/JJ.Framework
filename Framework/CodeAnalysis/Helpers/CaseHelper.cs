@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace JJ.Framework.CodeAnalysis.Helpers
+﻿namespace JJ.Framework.CodeAnalysis.Helpers
 {
-	internal class CaseHelper
+	internal static class CaseHelper
 	{
 		public static bool StartsWithUpperCase(string value)
 		{

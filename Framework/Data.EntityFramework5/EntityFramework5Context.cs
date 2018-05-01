@@ -3,11 +3,13 @@ using System.Data;
 using System.Data.Entity;
 using System.Reflection;
 using System.Transactions;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Data.EntityFramework5
 {
+	[UsedImplicitly]
 	public class EntityFramework5Context : ContextBase
 	{
 		private TransactionScope _transactionScope;
@@ -76,7 +78,7 @@ namespace JJ.Framework.Data.EntityFramework5
 		{
 			_transactionScope = new TransactionScope();
 
-			DbContext context = UnderlyingEntityFramework5ContextFactory.CreateContext(Location, ModelAssembly, MappingAssembly);
+			DbContext context = UnderlyingEntityFramework5ContextFactory.CreateContext(Location, MappingAssembly);
 			context.Database.Connection.Open();
 			//_transaction = context.Database.Connection.BeginTransaction();
 			return context;

@@ -2,6 +2,7 @@
 {
 	internal enum EntityStatusEnum
 	{
+		// ReSharper disable once UnusedMember.Global
 		Clean,
 		New,
 		Dirty,

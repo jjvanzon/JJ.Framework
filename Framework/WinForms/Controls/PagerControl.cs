@@ -102,6 +102,7 @@ namespace JJ.Framework.WinForms.Controls
 			}
 
 			// Rearrange controls in flowLayoutPanel
+			// ReSharper disable once UseObjectOrCollectionInitializer
 			var childControls = new List<Control>(_pageNumberLinkLabels.Count + 6);
 			childControls.Add(linkLabelGoToFirstPage);
 			childControls.Add(linkLabelGoToPreviousPage);

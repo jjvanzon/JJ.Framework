@@ -1,9 +1,11 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Common
 {
+	[PublicAPI]
 	public static class EmbeddedResourceHelper
 	{
 		public static string GetEmbeddedResourceText(Assembly assembly, string fileName) 

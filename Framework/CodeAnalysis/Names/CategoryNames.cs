@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.CodeAnalysis.Names
+﻿// ReSharper disable InconsistentNaming
+namespace JJ.Framework.CodeAnalysis.Names
 {
 	internal static class CategoryNames
 	{

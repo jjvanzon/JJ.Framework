@@ -16,7 +16,10 @@
 
 using System;
 using System.Globalization;
-using JJ.Framework.Common;
+using JetBrains.Annotations;
+#pragma warning disable IDE0012 // Simplify Names
+#pragma warning disable IDE0013 // Simplify Names
+// ReSharper disable BuiltInTypeReferenceStyle
 
 namespace JJ.Framework.Conversion
 {
@@ -28,6 +31,7 @@ namespace JJ.Framework.Conversion
 		/// Otherwise these would have been extensions.
 		/// Instead we have the <#=numType#>Parser class for extra static members.
 		/// </summary>
+		[PublicAPI]
 		public static class <#=numType#>Parser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = <#= defaultNumberStyles #>;

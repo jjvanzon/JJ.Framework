@@ -6,7 +6,7 @@ using JJ.Framework.VectorGraphics.Helpers;
 using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.VectorGraphics.Models.Styling;
 using JJ.Framework.VectorGraphics.Positioners;
-using Rectangle = JJ.Framework.VectorGraphics.Models.Elements.Rectangle;
+
 // ReSharper disable once VirtualMemberCallInConstructor
 
 namespace JJ.Framework.WinForms.TestForms
@@ -46,8 +46,10 @@ namespace JJ.Framework.WinForms.TestForms
 
 			for (int i = 0; i < itemCount; i++)
 			{
-				var rectangle = new Rectangle(_frameRectangle);
-				rectangle.Style.BackStyle = rectangleBackStyle;
+				var rectangle = new Rectangle(_frameRectangle)
+				{
+					Style = { BackStyle = rectangleBackStyle }
+				};
 				_rectangles.Add(rectangle);
 			}
 
@@ -58,7 +60,7 @@ namespace JJ.Framework.WinForms.TestForms
 			diagramControl.Diagram = diagram;
 			diagramControl.Left = 0;
 			diagramControl.Top = 0;
-			
+
 			PositionControls();
 		}
 
@@ -74,7 +76,8 @@ namespace JJ.Framework.WinForms.TestForms
 			positioner.Calculate(_rectangles);
 		}
 
-		protected virtual IPositioner CreatePositioner(float rowWidth, float rowHeight, float spacing, IList<float> itemWidths) => throw new NotImplementedException();
+		protected virtual IPositioner CreatePositioner(float rowWidth, float rowHeight, float spacing, IList<float> itemWidths)
+			=> throw new NotImplementedException();
 
 		private IList<float> GenerateItemWidths(int itemCount)
 		{

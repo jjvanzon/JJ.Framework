@@ -151,10 +151,11 @@ namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 		{
 			if (sourceTextStyle == null) throw new NullException(() => sourceTextStyle);
 
-			var destStringFormat = new StringFormat();
-
-			destStringFormat.Alignment = sourceTextStyle.HorizontalAlignmentEnum.ToSystemDrawing();
-			destStringFormat.LineAlignment = sourceTextStyle.VerticalAlignmentEnum.ToSystemDrawing();
+			var destStringFormat = new StringFormat
+			{
+				Alignment = sourceTextStyle.HorizontalAlignmentEnum.ToSystemDrawing(),
+				LineAlignment = sourceTextStyle.VerticalAlignmentEnum.ToSystemDrawing()
+			};
 
 			if (sourceTextStyle.Wrap == false)
 			{

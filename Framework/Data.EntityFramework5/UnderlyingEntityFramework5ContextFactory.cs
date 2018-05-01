@@ -8,9 +8,7 @@ namespace JJ.Framework.Data.EntityFramework5
 {
 	internal static class UnderlyingEntityFramework5ContextFactory
 	{
-		// TODO: If model assembly is not required the don't make it a parameter.
-		// Also: if it is not required, don't check it for null in the ContextBase class.
-		public static DbContext CreateContext(string connectionString, Assembly modelAssembly, Assembly mappingAssembly)
+		public static DbContext CreateContext(string connectionString, Assembly mappingAssembly)
 		{
 			Type dbContextType = mappingAssembly.GetImplementation<DbContext>();
 			string modelName = GetEntityFrameworkModelName(mappingAssembly);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Reflection;
 
@@ -13,7 +14,7 @@ namespace JJ.Framework.Business
 	[Obsolete("Use your own custom-programmed EntityStatusManager instead. " + 
 			  "Then you can give it a more specific interface like: IsNew(Order) and NameIsDirty(Customer) " + 
 			  "So writers and readers know what to do and what to expect.")]
-	
+	[PublicAPI]	
 	public class EntityStatusManager
 	{
 		// TODO: Tuples as keys might not be fast.

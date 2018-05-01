@@ -1,16 +1,23 @@
-﻿using System;
+﻿
+
+using System;
 using System.Globalization;
+using JetBrains.Annotations;
+#pragma warning disable IDE0012 // Simplify Names
+#pragma warning disable IDE0013 // Simplify Names
+// ReSharper disable BuiltInTypeReferenceStyle
 
 namespace JJ.Framework.Conversion
 {
-
-	/// <summary>
-	/// For instance making it easier to parse nullable Decimal.
-	/// Static classes cannot get extension members.
-	/// Otherwise these would have been extensions.
-	/// Instead we have the DecimalParser class for extra static members.
-	/// </summary>
-	public static class DecimalParser
+	
+		/// <summary>
+		/// For instance making it easier to parse nullable Decimal.
+		/// Static classes cannot get extension members.
+		/// Otherwise these would have been extensions.
+		/// Instead we have the DecimalParser class for extra static members.
+		/// </summary>
+		[PublicAPI]
+		public static class DecimalParser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Number;
 
@@ -83,6 +90,7 @@ namespace JJ.Framework.Conversion
 		/// Otherwise these would have been extensions.
 		/// Instead we have the DoubleParser class for extra static members.
 		/// </summary>
+		[PublicAPI]
 		public static class DoubleParser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Any;
@@ -156,6 +164,7 @@ namespace JJ.Framework.Conversion
 		/// Otherwise these would have been extensions.
 		/// Instead we have the Int16Parser class for extra static members.
 		/// </summary>
+		[PublicAPI]
 		public static class Int16Parser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Integer;
@@ -229,6 +238,7 @@ namespace JJ.Framework.Conversion
 		/// Otherwise these would have been extensions.
 		/// Instead we have the Int32Parser class for extra static members.
 		/// </summary>
+		[PublicAPI]
 		public static class Int32Parser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Integer;
@@ -302,6 +312,7 @@ namespace JJ.Framework.Conversion
 		/// Otherwise these would have been extensions.
 		/// Instead we have the Int64Parser class for extra static members.
 		/// </summary>
+		[PublicAPI]
 		public static class Int64Parser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Integer;
@@ -375,6 +386,7 @@ namespace JJ.Framework.Conversion
 		/// Otherwise these would have been extensions.
 		/// Instead we have the SingleParser class for extra static members.
 		/// </summary>
+		[PublicAPI]
 		public static class SingleParser
 		{
 			public const NumberStyles DEFAULT_NUMBER_STYLES = NumberStyles.Any;
