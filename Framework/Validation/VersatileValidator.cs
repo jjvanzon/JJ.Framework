@@ -6,6 +6,7 @@ using JJ.Framework.Collections;
 using JJ.Framework.Common;
 using JJ.Framework.Conversion;
 using JJ.Framework.Exceptions.Basic;
+// ReSharper disable UnusedMethodReturnValue.Global
 
 namespace JJ.Framework.Validation
 {
@@ -81,7 +82,6 @@ namespace JJ.Framework.Validation
 
 			return this;
 		}
-
 		
 		public VersatileValidator IsNullOrEmpty()
 		{
