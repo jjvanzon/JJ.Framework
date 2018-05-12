@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Exceptions.Comparative;
 using JJ.Framework.VectorGraphics.Models.Styling;
@@ -9,10 +11,21 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 	/// Represents a curved line going from one point to the next,
 	/// going into the direction of two other control points.
 	/// </summary>
+	[PublicAPI]
 	public class Curve : Element
 	{
 		/// <inheritdoc />
 		public Curve(Element parent) : base(parent) => Position = new CurvePosition(this);
+
+		public override void Dispose()
+		{
+			base.Dispose();
+
+			foreach (IDisposable calculatedLine in _calculatedLines)
+			{
+				calculatedLine.Dispose();
+			}
+		}
 
 		private int _segmentCount = 20;
 

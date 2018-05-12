@@ -211,6 +211,7 @@ namespace JJ.Framework.VectorGraphics.Visitors
 				}
 			}
 
+			// Update
 			CalculatedValues sourceCurvePointA_CalculatedValues = sourceCurvePointA.CalculatedValues;
 			CalculatedValues sourceCurvePointB_CalculatedValues = sourceCurvePointB.CalculatedValues;
 			CalculatedValues sourceCurveControlPointA_CalculatedValues = sourceCurveControlPointA.CalculatedValues;
@@ -224,7 +225,6 @@ namespace JJ.Framework.VectorGraphics.Visitors
 			float bcy = sourceCurveControlPointB_CalculatedValues.YInPixels;
 			float by = sourceCurvePointB_CalculatedValues.YInPixels;
 
-			// Update
 			float step = 1f / newLineCount;
 			float t = 0;
 			for (int i = 0; i < newLineCount; i++)
