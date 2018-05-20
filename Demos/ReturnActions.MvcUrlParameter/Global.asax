@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="JJ.Demos.ReturnActions.MvcUrlParameter.MvcApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.MvcApplication" Language="C#" %>

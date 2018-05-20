@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace JJ.Demos.ReturnActions.MvcUrlParameter
+namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings
 {
 	public class FilterConfig
 	{

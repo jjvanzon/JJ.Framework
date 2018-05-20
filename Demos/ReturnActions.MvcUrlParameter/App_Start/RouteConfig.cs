@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace JJ.Demos.ReturnActions.MvcUrlParameter
+namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings
 {
 	public class RouteConfig
 	{

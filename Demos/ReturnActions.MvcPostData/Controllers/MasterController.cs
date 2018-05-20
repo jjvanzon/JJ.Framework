@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using JJ.Demos.ReturnActions.MvcPostData.Names;
+using JJ.Demos.ReturnActions.MvcPostDataViewMappings.Names;
 
-namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
+namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 {
 	public class MasterController : Controller
 	{

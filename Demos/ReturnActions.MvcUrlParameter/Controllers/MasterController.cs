@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using JJ.Demos.ReturnActions.MvcUrlParameter.Names;
+using JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Names;
 
-namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
+namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Controllers
 {
 	public class MasterController : Controller
 	{

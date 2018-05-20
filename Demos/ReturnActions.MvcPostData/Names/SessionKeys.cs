@@ -1,4 +1,4 @@
-﻿namespace JJ.Demos.ReturnActions.MvcPostData.Names
+﻿namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Names
 {
 	internal static class SessionKeys
 	{

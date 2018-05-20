@@ -1,5 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
-namespace JJ.Demos.ReturnActions.MvcUrlParameter.Names
+namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Names
 {
 	public static class ControllerNames
 	{

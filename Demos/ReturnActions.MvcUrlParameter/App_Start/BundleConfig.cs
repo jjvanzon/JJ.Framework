@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace JJ.Demos.ReturnActions.MvcUrlParameter
+namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings
 {
 	public static class BundleConfig
 	{

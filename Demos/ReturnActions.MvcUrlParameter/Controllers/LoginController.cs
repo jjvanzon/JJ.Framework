@@ -1,11 +1,11 @@
 ﻿using System.Web.Mvc;
-using JJ.Demos.ReturnActions.MvcUrlParameter.Names;
+using JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Names;
 using JJ.Demos.ReturnActions.Presenters;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Presentation;
 using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
 
-namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
+namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Controllers
 {
 	public class LoginController : MasterController
 	{

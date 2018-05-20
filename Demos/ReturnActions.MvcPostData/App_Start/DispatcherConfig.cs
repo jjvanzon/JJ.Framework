@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
 
-namespace JJ.Demos.ReturnActions.MvcPostData.App_Start
+namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings
 {
 	internal static class DispatcherConfig
 	{

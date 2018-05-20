@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace JJ.Demos.ReturnActions.MvcPostData
+namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings
 {
 	public static class WebApiConfig
 	{

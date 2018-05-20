@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace JJ.Demos.ReturnActions.MvcPostData
+namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings
 {
 	public class FilterConfig
 	{

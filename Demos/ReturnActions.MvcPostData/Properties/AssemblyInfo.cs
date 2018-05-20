@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JJ.Demos.ReturnActions.MvcPostData")]
+[assembly: AssemblyTitle("JJ.Demos.ReturnActions.MvcPostDataViewMappings")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JJ.Demos.ReturnActions.MvcPostData")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyProduct("JJ.Demos.ReturnActions.MvcPostDataViewMappings")]
+[assembly: AssemblyCopyright("Copyright © 2015 - 2018 Jan-Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

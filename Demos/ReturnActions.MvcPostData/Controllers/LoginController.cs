@@ -1,17 +1,16 @@
 ﻿using System.Web.Mvc;
-using JJ.Demos.ReturnActions.MvcPostData.Names;
+using JJ.Demos.ReturnActions.MvcPostDataViewMappings.Names;
 using JJ.Demos.ReturnActions.Presenters;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Mvc;
 
-namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
+namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 {
 	public class LoginController : MasterController
 	{
 		public ActionResult Index()
 		{
-			object viewModel;
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
+			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
 			{
 				var presenter = new LoginPresenter();
 				viewModel = presenter.Show();

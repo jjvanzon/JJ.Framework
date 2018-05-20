@@ -2,7 +2,7 @@
 
 using JJ.Framework.Exceptions;
 
-namespace JJ.Demos.ReturnActions.MvcUrlParameter.Names
+namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Names
 {
 	internal static class SessionKeys
 	{
