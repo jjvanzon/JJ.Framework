@@ -1,7 +1,7 @@
 ﻿using JJ.Demos.ReturnActions.Helpers;
 using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Demos.ReturnActions.ViewModels.Entities;
 using JJ.Framework.Presentation;
+// ReSharper disable MemberCanBeMadeStatic.Global
 
 namespace JJ.Demos.ReturnActions.Presenters
 {
@@ -11,7 +11,7 @@ namespace JJ.Demos.ReturnActions.Presenters
 		{
 			return new ListViewModel
 			{
-				List = new EntityViewModel[]
+				List = new []
 				{
 					MockViewModelFactory.CreateEntityViewModel(),
 					MockViewModelFactory.CreateEntityViewModel2()

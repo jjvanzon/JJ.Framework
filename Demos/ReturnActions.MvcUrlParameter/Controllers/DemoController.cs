@@ -4,6 +4,7 @@ using JJ.Demos.ReturnActions.Presenters;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Presentation;
 using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
+// ReSharper disable InvertIf
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
 {

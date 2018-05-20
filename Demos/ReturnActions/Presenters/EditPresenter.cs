@@ -1,28 +1,20 @@
-﻿using JJ.Demos.ReturnActions.Helpers;
+﻿using JJ.Demos.ReturnActions.Extensions;
+using JJ.Demos.ReturnActions.Helpers;
 using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Framework.Presentation;
-using JJ.Framework.Exceptions;
-using JJ.Demos.ReturnActions.Extensions;
-using System;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Presentation;
 
 namespace JJ.Demos.ReturnActions.Presenters
 {
 	public class EditPresenter
 	{
-		private string _authenticatedUserName;
-		private static ActionInfo _defaultReturnAction;
+		private static readonly ActionInfo _defaultReturnAction;
+		private readonly string _authenticatedUserName;
 
-		static EditPresenter()
-		{
-			_defaultReturnAction = ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show());
-		}
+		static EditPresenter() => _defaultReturnAction = ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show());
 
 		/// <param name="authenticatedUserName">nullable</param>
-		public EditPresenter(string authenticatedUserName)
-		{
-			_authenticatedUserName = authenticatedUserName;
-		}
+		public EditPresenter(string authenticatedUserName) => _authenticatedUserName = authenticatedUserName;
 
 		public object Show(int id, ActionInfo returnAction = null)
 		{
@@ -56,10 +48,6 @@ namespace JJ.Demos.ReturnActions.Presenters
 			return ActionDispatcher.Dispatch(viewModel.ReturnAction, new { authenticatedUserName = _authenticatedUserName });
 		}
 
-		public LoginViewModel Logout()
-		{
-			var presenter2 = new LoginPresenter();
-			return presenter2.Show();
-		}
+		public LoginViewModel Logout() => new LoginPresenter().Show();
 	}
 }

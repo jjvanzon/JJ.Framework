@@ -1,35 +1,25 @@
-﻿using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Framework.Presentation;
-using JJ.Framework.Exceptions;
-using JJ.Demos.ReturnActions.Extensions;
-using System;
+﻿using JJ.Demos.ReturnActions.Extensions;
+using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Presentation;
+
+// ReSharper disable MemberCanBeMadeStatic.Global
 
 namespace JJ.Demos.ReturnActions.Presenters
 {
 	public class LoginPresenter
 	{
-		private ActionInfo _defaultReturnAction;
+		private readonly ActionInfo _defaultReturnAction;
 
-		public LoginPresenter()
-		{
-			_defaultReturnAction = ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show());
-		}
+		public LoginPresenter() => _defaultReturnAction = ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show());
 
-		public object Logout()
-		{
-			var presenter2 = new ListPresenter();
-			object viewModel = presenter2.Show();
-			return viewModel;
-		}
-					
+		public object Logout() => new ListPresenter().Show();
+
 		public LoginViewModel Show(ActionInfo returnAction = null)
-		{
-			return new LoginViewModel
+			=> new LoginViewModel
 			{
 				ReturnAction = returnAction ?? _defaultReturnAction
 			};
-		}
 
 		public object Login(LoginViewModel viewModel)
 		{
