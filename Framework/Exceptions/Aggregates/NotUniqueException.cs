@@ -22,7 +22,7 @@ namespace JJ.Framework.Exceptions.Aggregates
 		public NotUniqueException(Type type, object key) : base(type, key) { }
 
 		/// <inheritdoc />
-		public NotUniqueException(string name) : base(name) { }
+		public NotUniqueException(object indicator) : base(indicator) { }
 
 		/// <inheritdoc />
 		public NotUniqueException(string name, object key) : base(name, key) { }

@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Mvc.Tests.Names
+﻿// ReSharper disable InconsistentNaming
+namespace JJ.Framework.Mvc.Tests.Names
 {
 	internal static class ActionNames
 	{

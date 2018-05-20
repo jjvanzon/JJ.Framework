@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using JJ.Framework.Configuration.Tests.Settings;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Framework.Configuration.Tests
 {

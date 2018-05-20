@@ -1,11 +1,15 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JJ.Framework.Configuration;
-using JJ.Framework.Data.Tests.Model;
-using JJ.Framework.Testing;
-using JJ.Framework.Logging;
-using JJ.Framework.Data.Tests.Helpers;
 using System.Data.SqlClient;
+using JJ.Framework.Configuration;
+using JJ.Framework.Data.Tests.Helpers;
+using JJ.Framework.Data.Tests.Model;
+using JJ.Framework.Logging;
+using JJ.Framework.Testing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+// ReSharper disable UnusedVariable
+// ReSharper disable AccessToDisposedClosure
+// ReSharper disable JoinDeclarationAndInitializer
 
 namespace JJ.Framework.Data.Tests
 {
@@ -40,8 +44,7 @@ namespace JJ.Framework.Data.Tests
 
 		private void Test_Persistence_CreateContext(string contextType)
 		{
-			using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
-			{ }
+			using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType)) { }
 		}
 
 		// Get
@@ -58,10 +61,7 @@ namespace JJ.Framework.Data.Tests
 		{
 			string contextType = GetNPersistContextType();
 
-			TestHelper.WithNPersistInconclusiveAssertion(() =>
-			{
-				Test_Persistence_Get(contextType);
-			});
+			TestHelper.WithNPersistInconclusiveAssertion(() => { Test_Persistence_Get(contextType); });
 		}
 
 		[TestMethod]
@@ -101,10 +101,7 @@ namespace JJ.Framework.Data.Tests
 		{
 			string contextType = GetNPersistContextType();
 
-			TestHelper.WithNPersistInconclusiveAssertion(() =>
-			{
-				Test_Persistence_TryGet(contextType);
-			});
+			TestHelper.WithNPersistInconclusiveAssertion(() => { Test_Persistence_TryGet(contextType); });
 		}
 
 		[TestMethod]
@@ -127,7 +124,7 @@ namespace JJ.Framework.Data.Tests
 
 				// Try get non-existent
 				entity = context.TryGet<Thing>(NON_EXISTENT_THING_ID);
-				Assert.IsNull(entity);				
+				Assert.IsNull(entity);
 			}
 		}
 
@@ -145,10 +142,7 @@ namespace JJ.Framework.Data.Tests
 		{
 			string contextType = GetNPersistContextType();
 
-			TestHelper.WithNPersistInconclusiveAssertion(() =>
-			{
-				Test_Persistence_Create(contextType);
-			});
+			TestHelper.WithNPersistInconclusiveAssertion(() => { Test_Persistence_Create(contextType); });
 		}
 
 		[TestMethod]
@@ -162,7 +156,7 @@ namespace JJ.Framework.Data.Tests
 		{
 			using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
 			{
-				Thing entity = context.Create<Thing>();
+				var entity = context.Create<Thing>();
 				entity.Name = "Thing was created";
 				context.Commit();
 			}
@@ -182,10 +176,7 @@ namespace JJ.Framework.Data.Tests
 		{
 			string contextType = GetNPersistContextType();
 
-			TestHelper.WithNPersistInconclusiveAssertion(() =>
-			{
-				Test_Persistence_Insert(contextType);
-			});
+			TestHelper.WithNPersistInconclusiveAssertion(() => { Test_Persistence_Insert(contextType); });
 		}
 
 		[TestMethod]
@@ -199,7 +190,7 @@ namespace JJ.Framework.Data.Tests
 		{
 			using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
 			{
-				Thing entity = new Thing { Name = "Thing was inserted" };
+				var entity = new Thing { Name = "Thing was inserted" };
 				context.Insert(entity);
 				context.Commit();
 			}
@@ -219,10 +210,7 @@ namespace JJ.Framework.Data.Tests
 		{
 			string contextType = GetNPersistContextType();
 
-			TestHelper.WithNPersistInconclusiveAssertion(() =>
-			{
-				Test_Persistence_Update(contextType);
-			});
+			TestHelper.WithNPersistInconclusiveAssertion(() => { Test_Persistence_Update(contextType); });
 		}
 
 		[TestMethod]
@@ -230,6 +218,7 @@ namespace JJ.Framework.Data.Tests
 		{
 			Assert.Inconclusive("I think my EntityFramework5 stuff stopped working since some Visual Studio update?");
 
+			// ReSharper disable once HeuristicUnreachableCode
 			string contextType = GetEntityFramework5ContextType();
 			Test_Persistence_Update(contextType);
 		}
@@ -238,7 +227,7 @@ namespace JJ.Framework.Data.Tests
 		{
 			using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
 			{
-				Thing entity = context.Get<Thing>(1);
+				var entity = context.Get<Thing>(1);
 				entity.Name += "Thing was updated";
 				context.Update(entity);
 			}
@@ -258,10 +247,7 @@ namespace JJ.Framework.Data.Tests
 		{
 			string contextType = GetNPersistContextType();
 
-			TestHelper.WithNPersistInconclusiveAssertion(() =>
-			{
-				Test_Persistence_Delete(contextType);
-			});
+			TestHelper.WithNPersistInconclusiveAssertion(() => { Test_Persistence_Delete(contextType); });
 		}
 
 		[TestMethod]
@@ -276,7 +262,7 @@ namespace JJ.Framework.Data.Tests
 			int id;
 			using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
 			{
-				Thing entity = context.Create<Thing>();
+				var entity = context.Create<Thing>();
 				entity.Name = "Thing was created";
 				context.Commit();
 				id = entity.ID;
@@ -284,7 +270,7 @@ namespace JJ.Framework.Data.Tests
 
 			using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
 			{
-				Thing entity = context.Get<Thing>(id);
+				var entity = context.Get<Thing>(id);
 				context.Delete(entity);
 				context.Commit();
 			}
@@ -327,10 +313,7 @@ namespace JJ.Framework.Data.Tests
 		{
 			string contextType = GetNPersistContextType();
 
-			TestHelper.WithNPersistInconclusiveAssertion(() =>
-			{
-				Test_Persistence_Query(contextType);
-			});
+			TestHelper.WithNPersistInconclusiveAssertion(() => { Test_Persistence_Query(contextType); });
 		}
 
 		[TestMethod]
@@ -354,24 +337,9 @@ namespace JJ.Framework.Data.Tests
 
 		// Helpers
 
-		private string GetNHibernateContextType()
-		{
-			return GetConfiguration().NHibernateContextType;
-		}
-
-		private string GetNPersistContextType()
-		{
-			return GetConfiguration().NPersistContextType;
-		}
-
-		private string GetEntityFramework5ContextType()
-		{
-			return GetConfiguration().EntityFramework5ContextType;
-		}
-
-		private ConfigurationSection GetConfiguration()
-		{
-			return CustomConfigurationManager.GetSection<ConfigurationSection>();
-		}
+		private string GetNHibernateContextType() => GetConfiguration().NHibernateContextType;
+		private string GetNPersistContextType() => GetConfiguration().NPersistContextType;
+		private string GetEntityFramework5ContextType() => GetConfiguration().EntityFramework5ContextType;
+		private ConfigurationSection GetConfiguration() => CustomConfigurationManager.GetSection<ConfigurationSection>();
 	}
 }

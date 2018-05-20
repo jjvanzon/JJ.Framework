@@ -1,5 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
+// ReSharper disable MemberCanBeMadeStatic.Global
+// ReSharper disable UnusedParameter.Global
+// ReSharper disable InconsistentNaming
+// ReSharper disable MemberCanBePrivate.Global
+#pragma warning disable 649
 
 namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {

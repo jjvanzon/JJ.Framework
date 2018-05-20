@@ -237,6 +237,10 @@
     <Content Include="Views\Shared\NotAuthorized.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
+      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
+      <Name>JJ.Framework.Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Mvc\JJ.Framework.Mvc.csproj">
       <Project>{fed3c829-d92a-4800-9462-a175ccac4c70}</Project>
       <Name>JJ.Framework.Mvc</Name>

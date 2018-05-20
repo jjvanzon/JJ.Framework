@@ -1,4 +1,4 @@
-﻿namespace JJ.Framework.Configuration.Tests
+﻿namespace JJ.Framework.Configuration.Tests.Settings
 {
 	public interface IMySettings
 	{

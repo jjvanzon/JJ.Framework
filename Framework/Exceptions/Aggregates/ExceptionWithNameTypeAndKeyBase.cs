@@ -166,7 +166,7 @@ namespace JJ.Framework.Exceptions.Aggregates
 		/// throw new NotUniqueException(nameof(customer), new { customerNumber, customerType });
 		/// will have message: "customer with key { customerNumber = 1234, customerType = Subscriber } not unique."
 		/// </summary>
-		public ExceptionWithNameTypeAndKeyBase(string name) => Message = string.Format(MessageWithName, name);
+		public ExceptionWithNameTypeAndKeyBase(object indicator) => Message = string.Format(MessageWithName, indicator);
 
 		/// <summary>
 		/// throw new NotFoundException&lt;Customer&gt;(10);

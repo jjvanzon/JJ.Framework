@@ -13,7 +13,7 @@ namespace JJ.Framework.Data.Tests.Helpers
 		{
 			try
 			{
-				ConfigurationSection configuration = CustomConfigurationManager.GetSection<ConfigurationSection>();
+				var configuration = CustomConfigurationManager.GetSection<ConfigurationSection>();
 
 				string modelAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
 				string mappingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;

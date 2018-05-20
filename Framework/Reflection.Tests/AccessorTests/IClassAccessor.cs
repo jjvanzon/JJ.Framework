@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Reflection.Tests.AccessorTests
+﻿// ReSharper disable UnusedMemberInSuper.Global
+namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
 	/// <summary>
 	/// Gives the two accessors (using strings and using expressions)

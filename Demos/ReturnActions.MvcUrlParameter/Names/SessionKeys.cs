@@ -1,7 +1,11 @@
-﻿namespace JJ.Demos.ReturnActions.MvcUrlParameter.Names
+﻿// ReSharper disable InconsistentNaming
+
+using JJ.Framework.Exceptions;
+
+namespace JJ.Demos.ReturnActions.MvcUrlParameter.Names
 {
 	internal static class SessionKeys
 	{
-		public const string AuthenticatedUserName = "AuthenticatedUserName";
+		public static string AuthenticatedUserName => throw new NameOfOnlyException();
 	}
 }

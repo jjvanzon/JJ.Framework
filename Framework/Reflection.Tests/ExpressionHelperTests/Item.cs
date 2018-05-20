@@ -16,24 +16,12 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		public int Property { get; set; }
 
 		[IndexerName("Indexer")]
-		public string this[int index]
-		{
-			get { return "IndexerResult"; }
-		}
+		public string this[int index] => "IndexerResult";
 
-		public string MethodWithoutParameter()
-		{
-			return "MethodWithoutParameterResult";
-		}
+		public string MethodWithoutParameter() => "MethodWithoutParameterResult";
 
-		public string MethodWithParameter(int parameter)
-		{
-			return "MethodWithParameterResult";
-		}
+		public string MethodWithParameter(int parameter) => "MethodWithParameterResult";
 
-		public string MethodWithParams(params int[] array)
-		{
-			return "MethodWithParamsResult";
-		}
+		public string MethodWithParams(params int[] array) => "MethodWithParamsResult";
 	}
 }

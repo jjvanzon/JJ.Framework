@@ -58,11 +58,12 @@ namespace JJ.Framework.WinForms.Controls
 			labelFilePath.Location = new Point(SPACING, y);
 
 			int textBoxFilePathWidth = SPACING + labelFilePath.Width + SPACING;
+			int textBoxTop = y;
 			textBoxFilePath.Location = new Point(textBoxFilePathWidth, y);
 			textBoxFilePath.Width = Width - SPACING - textBoxFilePathWidth;
 
 			labelDescription.Location = new Point(SPACING, SPACING);
-			labelDescription.Size = new Size(Width - SPACING - SPACING, Height - textBoxFilePath.Top - SPACING - SPACING);
+			labelDescription.Size = new Size(Width - SPACING - SPACING, Height - textBoxTop - SPACING - SPACING);
 		}
 
 		private void Start()

@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace JJ.Framework.Data.Tests.EntityFramework5
+namespace JJ.Framework.Data.Tests.EntityFramework
 {
 	public class Model1Context : DbContext
 	{

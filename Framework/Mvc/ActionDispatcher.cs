@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 using JJ.Framework.Collections;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Presentation;
 using JJ.Framework.Reflection;
@@ -22,7 +21,7 @@ namespace JJ.Framework.Mvc
 		/// Just for checking if the assembly was already registerd, so we can generate a meaningful exception message.
 		/// No locking. You must not change the mappings after one-time initialization. 
 		/// </summary>
-		private static HashSet<Assembly> _registeredAssemblies = new HashSet<Assembly>();
+		private static readonly HashSet<Assembly> _registeredAssemblies = new HashSet<Assembly>();
 
 		/// <summary>
 		/// No locking. You must not change the mappings after one-time initialization. 
@@ -51,7 +50,7 @@ namespace JJ.Framework.Mvc
 
 			if (_registeredAssemblies.Contains(assembly))
 			{
-				throw new Exception(string.Format("Assembly '{0}' was already registered in the ActionDispatcher.", assembly.FullName));
+				throw new Exception($"Assembly '{assembly.FullName}' was already registered in the ActionDispatcher.");
 			}
 
 			IList<Type> types = assembly.GetImplementations<IViewMapping>();
@@ -59,12 +58,13 @@ namespace JJ.Framework.Mvc
 			_mappingsByViewModelType = viewMappings.ToNonUniqueDictionary(x => x.ViewModelType);
 			_mappingsByControllerActionKey = viewMappings.ToNonUniqueDictionary(x => GetActionKey(x.ControllerName, x.ControllerGetActionName));
 			_mappingsByPresenterActionKey = viewMappings.ToNonUniqueDictionary(x => GetActionKey(x.PresenterName, x.PresenterActionName));
+
+			_registeredAssemblies.Add(assembly);
 		}
 
 		// Dispatch
 
-		private static string _tempDataKey = "vm-b5b9-20e1e86a12d8";
-		public static string TempDataKey => _tempDataKey;
+		public static string TempDataKey { get; } = "vm-b5b9-20e1e86a12d8";
 
 		public static ActionResult Dispatch(Controller sourceController, string sourceActionName, object viewModel)
 		{
@@ -74,7 +74,7 @@ namespace JJ.Framework.Mvc
 
 			IViewMapping destMapping = GetViewMappingByViewModel(viewModel);
 
-			ControllerAccessor sourceControllerAccessor = new ControllerAccessor(sourceController);
+			var sourceControllerAccessor = new ControllerAccessor(sourceController);
 			string sourceControllerName = GetControllerName(sourceController);
 
 			bool hasActionName = !string.IsNullOrEmpty(destMapping.ControllerGetActionName);
@@ -108,8 +108,7 @@ namespace JJ.Framework.Mvc
 
 		private static IViewMapping GetViewMappingByViewModel(object viewModel)
 		{
-			IList<IViewMapping> mappings;
-			if (!_mappingsByViewModelType.TryGetValue(viewModel.GetType(), out mappings))
+			if (!_mappingsByViewModelType.TryGetValue(viewModel.GetType(), out IList<IViewMapping> mappings))
 			{
 				throw new ViewMappingNotFoundException(viewModel.GetType().FullName);
 			}
@@ -255,8 +254,7 @@ namespace JJ.Framework.Mvc
 			// Keep working with a non-unique dictionary, even though you can only have one mapping per key,
 			// otherwise a programmer gets to see an incomprehendable error message.
 			string key = GetActionKey(controllerActionInfo.PresenterName, controllerActionInfo.ActionName);
-			IList<IViewMapping> mappings;
-			if (!_mappingsByControllerActionKey.TryGetValue(key, out mappings))
+			if (!_mappingsByControllerActionKey.TryGetValue(key, out IList<IViewMapping> mappings))
 			{
 				throw new ViewMappingNotFoundException(key);
 			}
@@ -357,8 +355,7 @@ namespace JJ.Framework.Mvc
 			// Keep working with a non-unique dictionary, even though you can only have one mapping per key,
 			// otherwise a programmer gets to see an incomprehendable error message.
 			string key = GetActionKey(presenterActionInfo.PresenterName, presenterActionInfo.ActionName);
-			IList<IViewMapping> mappings;
-			if (!_mappingsByPresenterActionKey.TryGetValue(key, out mappings))
+			if (!_mappingsByPresenterActionKey.TryGetValue(key, out IList<IViewMapping> mappings))
 			{
 				throw new ViewMappingNotFoundException(key);
 			}
@@ -372,7 +369,7 @@ namespace JJ.Framework.Mvc
 					throw new ViewMappingNotFoundException(key);
 
 				default:
-					throw new Exception(string.Format("Presenter action '{0}' has multiple mappings.", key));
+					throw new Exception($"Presenter action '{key}' has multiple mappings.");
 			}
 		}
 
@@ -386,7 +383,7 @@ namespace JJ.Framework.Mvc
 
 		private static string GetActionKey(string controllerName, string actionName)
 		{
-			string key = string.Format("{0}/{1}", controllerName, actionName);
+			string key = $"{controllerName}/{actionName}";
 			return key;
 		}
 	}

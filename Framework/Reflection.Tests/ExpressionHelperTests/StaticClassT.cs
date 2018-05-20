@@ -1,43 +1,22 @@
-﻿namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
+﻿// ReSharper disable UnusedMember.Global
+// ReSharper disable StaticMemberInGenericType
+// ReSharper disable UnusedTypeParameter
+// ReSharper disable UnusedParameter.Global
+// ReSharper disable FieldCanBeMadeReadOnly.Global
+
+namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {
 	internal static class StaticClass<T>
 	{
 		public static string Name { get; set; }
 		public static int Index { get; set; }
-
 		public static Item Parent { get; set; }
-
-		public static ComplexItem ComplexItem
-		{
-			get { return new ComplexItem(); }
-		}
-
+		public static ComplexItem ComplexItem => new ComplexItem();
 		public static string _field = "FieldResult";
-
-		public static string Property
-		{
-			get { return "PropertyResult"; }
-		}
-
-		private static readonly int[] _array = { 10, 11, 12 };
-		public static int[] Array
-		{
-			get { return _array; }
-		}
-
-		public static string MethodWithoutParameter()
-		{
-			return "MethodWithoutParameterResult";
-		}
-
-		public static string MethodWithParameter(int parameter)
-		{
-			return "MethodWithParameterResult";
-		}
-
-		public static string MethodWithParams(params int[] array)
-		{
-			return "MethodWithParamsResult";
-		}
+		public static string Property => "PropertyResult";
+		public static int[] Array { get; } = { 10, 11, 12 };
+		public static string MethodWithoutParameter() => "MethodWithoutParameterResult";
+		public static string MethodWithParameter(int parameter) => "MethodWithParameterResult";
+		public static string MethodWithParams(params int[] array) => "MethodWithParamsResult";
 	}
 }

@@ -16,9 +16,9 @@ JJ.Framework.Cookie.tryGet = function (name) {
         for (var i = 0; i < splitCookiesString.length; i++) {
             var cookieString = splitCookiesString[i];
             var splitCookieString = cookieString.split("=");
-            var name = splitCookieString[0];
+            var name2 = splitCookieString[0];
             var value = splitCookieString[1];
-            if (name == name) {
+            if (name2 === name) {
                 return value;
             }
         }

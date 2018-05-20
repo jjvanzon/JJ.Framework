@@ -22,7 +22,7 @@ namespace JJ.Framework.Exceptions.Aggregates
 		public NotFoundException(Type type, object key) : base(type, key) { }
 
 		/// <inheritdoc />
-		public NotFoundException(string name) : base(name) { }
+		public NotFoundException(object indicator) : base(indicator) { }
 
 		/// <inheritdoc />
 		public NotFoundException(string name, object key) : base(name, key) { }

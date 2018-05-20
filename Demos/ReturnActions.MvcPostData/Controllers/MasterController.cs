@@ -1,5 +1,5 @@
-﻿using JJ.Demos.ReturnActions.MvcPostData.Names;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using JJ.Demos.ReturnActions.MvcPostData.Names;
 
 namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
 {
@@ -7,12 +7,12 @@ namespace JJ.Demos.ReturnActions.MvcPostData.Controllers
 	{
 		protected string GetAuthenticatedUserName()
 		{
-			return (string)Session[SessionKeys.AuthenticatedUserName];
+			return (string)Session[nameof(SessionKeys.AuthenticatedUserName)];
 		}
 
 		protected void SetAuthenticatedUserName(string value)
 		{
-			Session[SessionKeys.AuthenticatedUserName] = value;
+			Session[nameof(SessionKeys.AuthenticatedUserName)] = value;
 		}
 	}
 }

@@ -8,14 +8,14 @@
 
 		public override int MemberToHide
 		{
-			get { return (int)_accessor.GetPropertyValue("MemberToHide"); }
-			set { _accessor.SetPropertyValue("MemberToHide", value); }
+			get => (int)_accessor.GetPropertyValue("MemberToHide");
+			set => _accessor.SetPropertyValue("MemberToHide", value);
 		}
 
 		public override int Base_MemberToHide
 		{
-			get { return (int)_baseAccessor.GetPropertyValue("MemberToHide"); }
-			set { _baseAccessor.SetPropertyValue("MemberToHide", value); }
+			get => (int)_baseAccessor.GetPropertyValue("MemberToHide");
+			set => _baseAccessor.SetPropertyValue("MemberToHide", value);
 		}
 	}
 }
