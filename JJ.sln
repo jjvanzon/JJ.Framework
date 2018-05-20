@@ -313,7 +313,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Exceptions.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.CreateFileInEmptyFoldersRecursive", "Utilities\CreateFileInEmptyFoldersRecursive\JJ.Utilities.CreateFileInEmptyFoldersRecursive.csproj", "{1835DD57-CA09-43A2-A015-577568E8BFEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.QuestionAndAnswer.Import.Language", "Business\QuestionAndAnswer.Import.Words\JJ.Business.QuestionAndAnswer.Import.Language.csproj", "{E850BB7E-ECE9-454B-B1F5-92E7E555E67B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Business.QuestionAndAnswer.Import.Language", "Business\QuestionAndAnswer.Import.Language\JJ.Business.QuestionAndAnswer.Import.Language.csproj", "{E850BB7E-ECE9-454B-B1F5-92E7E555E67B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -3804,9 +3804,9 @@ Global
 		SccProjectTopLevelParentUniqueName142 = JJ.sln
 		SccProjectName142 = Utilities/CreateFileInEmptyFoldersRecursive
 		SccLocalPath142 = Utilities\\CreateFileInEmptyFoldersRecursive
-		SccProjectUniqueName143 = Business\\QuestionAndAnswer.Import.Words\\JJ.Business.QuestionAndAnswer.Import.Language.csproj
+		SccProjectUniqueName143 = Business\\QuestionAndAnswer.Import.Language\\JJ.Business.QuestionAndAnswer.Import.Language.csproj
 		SccProjectTopLevelParentUniqueName143 = JJ.sln
-		SccProjectName143 = Business/QuestionAndAnswer.Import.Words
-		SccLocalPath143 = Business\\QuestionAndAnswer.Import.Words
+		SccProjectName143 = Business/QuestionAndAnswer.Import.Language
+		SccLocalPath143 = Business\\QuestionAndAnswer.Import.Language
 	EndGlobalSection
 EndGlobal
