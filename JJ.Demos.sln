@@ -29,11 +29,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.JavaScript", "Demo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions", "Demos\ReturnActions\JJ.Demos.ReturnActions.csproj", "{757F8B06-8527-4DAA-A206-E26EB167CA13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcPostData", "Demos\ReturnActions.MvcPostData\JJ.Demos.ReturnActions.MvcPostData.csproj", "{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcPostDataViewMappings", "Demos\ReturnActions.MvcPostDataViewMappings\JJ.Demos.ReturnActions.MvcPostDataViewMappings.csproj", "{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.Misc", "Demos\Misc\JJ.Demos.Misc.csproj", "{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcUrlParameter", "Demos\ReturnActions.MvcUrlParameter\JJ.Demos.ReturnActions.MvcUrlParameter.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcUrlParameterViewMappings", "Demos\ReturnActions.MvcUrlParameterViewMappings\JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Exceptions", "Framework\Exceptions\JJ.Framework.Exceptions.csproj", "{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}"
 EndProject
@@ -663,15 +663,15 @@ Global
 		SccProjectUniqueName12 = Demos\\ReturnActions\\JJ.Demos.ReturnActions.csproj
 		SccProjectName12 = Demos/ReturnActions
 		SccLocalPath12 = Demos\\ReturnActions
-		SccProjectUniqueName13 = Demos\\ReturnActions.MvcPostData\\JJ.Demos.ReturnActions.MvcPostData.csproj
-		SccProjectName13 = Demos/ReturnActions.MvcPostData
-		SccLocalPath13 = Demos\\ReturnActions.MvcPostData
+		SccProjectUniqueName13 = Demos\\ReturnActions.MvcPostDataViewMappings\\JJ.Demos.ReturnActions.MvcPostDataViewMappings.csproj
+		SccProjectName13 = Demos/ReturnActions.MvcPostDataViewMappings
+		SccLocalPath13 = Demos\\ReturnActions.MvcPostDataViewMappings
 		SccProjectUniqueName14 = Demos\\Misc\\JJ.Demos.Misc.csproj
 		SccProjectName14 = Demos/Misc
 		SccLocalPath14 = Demos\\Misc
-		SccProjectUniqueName15 = Demos\\ReturnActions.MvcUrlParameter\\JJ.Demos.ReturnActions.MvcUrlParameter.csproj
-		SccProjectName15 = Demos/ReturnActions.MvcUrlParameter
-		SccLocalPath15 = Demos\\ReturnActions.MvcUrlParameter
+		SccProjectUniqueName15 = Demos\\ReturnActions.MvcUrlParameterViewMappings\\JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.csproj
+		SccProjectName15 = Demos/ReturnActions.MvcUrlParameterViewMappings
+		SccLocalPath15 = Demos\\ReturnActions.MvcUrlParameterViewMappings
 		SccProjectUniqueName16 = Framework\\Exceptions\\JJ.Framework.Exceptions.csproj
 		SccProjectTopLevelParentUniqueName16 = JJ.Demos.sln
 		SccProjectName16 = Framework/Exceptions

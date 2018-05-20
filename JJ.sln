@@ -209,11 +209,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Presentation.QuestionAnd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions", "Demos\ReturnActions\JJ.Demos.ReturnActions.csproj", "{757F8B06-8527-4DAA-A206-E26EB167CA13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcPostData", "Demos\ReturnActions.MvcPostData\JJ.Demos.ReturnActions.MvcPostData.csproj", "{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcPostDataViewMappings", "Demos\ReturnActions.MvcPostDataViewMappings\JJ.Demos.ReturnActions.MvcPostDataViewMappings.csproj", "{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.Misc", "Demos\Misc\JJ.Demos.Misc.csproj", "{62CA5AED-85D7-43CA-9410-7C6E7CDB4A34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcUrlParameter", "Demos\ReturnActions.MvcUrlParameter\JJ.Demos.ReturnActions.MvcUrlParameter.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcUrlParameterViewMappings", "Demos\ReturnActions.MvcUrlParameterViewMappings\JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mvc.Tests", "Framework\Mvc.Tests\JJ.Framework.Mvc.Tests.csproj", "{2D46AA63-78C8-4905-BF83-D08A058CCBED}"
 EndProject
@@ -3620,18 +3620,18 @@ Global
 		SccProjectTopLevelParentUniqueName96 = JJ.sln
 		SccProjectName96 = Demos/ReturnActions
 		SccLocalPath96 = Demos\\ReturnActions
-		SccProjectUniqueName97 = Demos\\ReturnActions.MvcPostData\\JJ.Demos.ReturnActions.MvcPostData.csproj
+		SccProjectUniqueName97 = Demos\\ReturnActions.MvcPostDataViewMappings\\JJ.Demos.ReturnActions.MvcPostDataViewMappings.csproj
 		SccProjectTopLevelParentUniqueName97 = JJ.sln
-		SccProjectName97 = Demos/ReturnActions.MvcPostData
-		SccLocalPath97 = Demos\\ReturnActions.MvcPostData
+		SccProjectName97 = Demos/ReturnActions.MvcPostDataViewMappings
+		SccLocalPath97 = Demos\\ReturnActions.MvcPostDataViewMappings
 		SccProjectUniqueName98 = Demos\\Misc\\JJ.Demos.Misc.csproj
 		SccProjectTopLevelParentUniqueName98 = JJ.sln
 		SccProjectName98 = Demos/Misc
 		SccLocalPath98 = Demos\\Misc
-		SccProjectUniqueName99 = Demos\\ReturnActions.MvcUrlParameter\\JJ.Demos.ReturnActions.MvcUrlParameter.csproj
+		SccProjectUniqueName99 = Demos\\ReturnActions.MvcUrlParameterViewMappings\\JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.csproj
 		SccProjectTopLevelParentUniqueName99 = JJ.sln
-		SccProjectName99 = Demos/ReturnActions.MvcUrlParameter
-		SccLocalPath99 = Demos\\ReturnActions.MvcUrlParameter
+		SccProjectName99 = Demos/ReturnActions.MvcUrlParameterViewMappings
+		SccLocalPath99 = Demos\\ReturnActions.MvcUrlParameterViewMappings
 		SccProjectUniqueName100 = Framework\\Mvc.Tests\\JJ.Framework.Mvc.Tests.csproj
 		SccProjectTopLevelParentUniqueName100 = JJ.sln
 		SccProjectName100 = Framework/Mvc.Tests
