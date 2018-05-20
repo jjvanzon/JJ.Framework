@@ -11,8 +11,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
 	{
 		public ActionResult Index()
 		{
-			object viewModel;
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
+			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
 			{
 				var presenter = new ListPresenter();
 				viewModel = presenter.Show();
@@ -23,8 +22,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
 
 		public ActionResult Details(int id)
 		{
-			object viewModel;
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
+			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
 			{
 				var presenter = new DetailsPresenter();
 				viewModel = presenter.Show(id);
@@ -35,8 +33,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
 
 		public ActionResult Edit(int id, string ret = null)
 		{
-			object viewModel;
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
+			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
 			{
 				var presenter = new EditPresenter(GetAuthenticatedUserName());
 				ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
@@ -58,8 +55,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
 
 		public ActionResult Logout()
 		{
-			object viewModel;
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
+			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
 			{
 				var presenter = new LoginPresenter();
 				viewModel = presenter.Logout();

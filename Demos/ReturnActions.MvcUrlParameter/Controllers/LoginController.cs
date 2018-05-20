@@ -11,8 +11,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameter.Controllers
 	{
 		public ActionResult Index(string ret = null)
 		{
-			object viewModel;
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out viewModel))
+			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
 			{
 				var presenter = new LoginPresenter();
 				ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
