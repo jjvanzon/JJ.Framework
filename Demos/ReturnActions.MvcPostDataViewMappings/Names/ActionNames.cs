@@ -1,12 +1,12 @@
-﻿namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Names
+﻿using JJ.Demos.ReturnActions.WithViewMapping.Mvc.Names;
+using JJ.Demos.ReturnActions.WithViewMappings.MvcBase.Names;
+using JJ.Framework.Exceptions;
+
+namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Names
 {
-	public static class ActionNames
+	public abstract class ActionNames : ActionNamesBase
 	{
-		public const string Index = "Index";
-		public const string Details = "Details";
-		public const string Edit = "Edit";
-		public const string EditFromIndex = "EditFromIndex";
-		public const string EditFromDetails = "EditFromDetails";
-		public const string Logout = "Logout";
+		public static void EditFromIndex() => throw new NameOfOnlyException();
+		public static void EditFromDetails() => throw new NameOfOnlyException();
 	}
 }

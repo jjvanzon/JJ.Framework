@@ -1,5 +1,5 @@
-﻿using JJ.Demos.ReturnActions.ViewModels.Entities;
-using System;
+﻿using System;
+using JJ.Demos.ReturnActions.ViewModels.Entities;
 
 namespace JJ.Demos.ReturnActions.Helpers
 {
@@ -24,7 +24,7 @@ namespace JJ.Demos.ReturnActions.Helpers
 					return CreateEntityViewModel2();
 
 				default:
-					throw new Exception(string.Format("id '{0}' is not a supported value.", id));
+					throw new Exception($"id '{id}' is not a supported value.");
 			}
 		}
 
@@ -33,7 +33,7 @@ namespace JJ.Demos.ReturnActions.Helpers
 			var viewModel = new EntityViewModel
 			{
 				ID = DEFAULT_ID,
-				Name = MockViewModelFactory.DEFAULT_NAME
+				Name = DEFAULT_NAME
 			};
 			return viewModel;
 		}
@@ -43,7 +43,7 @@ namespace JJ.Demos.ReturnActions.Helpers
 			var viewModel = new EntityViewModel
 			{
 				ID = DEFAULT_ID_2,
-				Name = MockViewModelFactory.DEFAULT_NAME_2
+				Name = DEFAULT_NAME_2
 			};
 			return viewModel;
 		}

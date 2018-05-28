@@ -1,10 +1,12 @@
-﻿namespace JJ.Demos.ReturnActions.Names
+﻿using JJ.Framework.Exceptions;
+
+namespace JJ.Demos.ReturnActions.Names
 {
-	public static class PresenterNames
+	public abstract class PresenterNames
 	{
-		public const string DetailsPresenter = "DetailsPresenter";
-		public const string EditPresenter = "EditPresenter";
-		public const string ListPresenter = "ListPresenter";
-		public const string LoginPresenter = "LoginPresenter";
+		public static void DetailsPresenter() => throw new NameOfOnlyException();
+		public static void EditPresenter() => throw new NameOfOnlyException();
+		public static void ListPresenter() => throw new NameOfOnlyException();
+		public static void LoginPresenter() => throw new NameOfOnlyException();
 	}
 }

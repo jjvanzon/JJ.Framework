@@ -12,19 +12,20 @@
 */
 
 using System;
-using System.Xml;
 using System.IO;
-using System.Text;
 using System.Reflection;
+using System.Text;
+using System.Xml;
 
-namespace Sgml {
+namespace Sgml
+{
 
-    /// <summary>
-    /// SGML is case insensitive, so here you can choose between converting
-    /// to lower case or upper case tags.  "None" means that the case is left
-    /// alone, except that end tags will be folded to match the start tags.
-    /// </summary>
-    public enum CaseFolding {
+	/// <summary>
+	/// SGML is case insensitive, so here you can choose between converting
+	/// to lower case or upper case tags.  "None" means that the case is left
+	/// alone, except that end tags will be folded to match the start tags.
+	/// </summary>
+	public enum CaseFolding {
         None,
         ToUpper,
         ToLower
@@ -1690,10 +1691,5 @@ namespace Sgml {
                 }
             }
         }
-
-	    public void Dispose()
-	    {
-		    throw new NotImplementedException();
-	    }
-    }
+	}
 }

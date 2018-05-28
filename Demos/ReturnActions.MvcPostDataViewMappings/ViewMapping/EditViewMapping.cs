@@ -1,21 +1,14 @@
-﻿using JJ.Demos.ReturnActions.MvcPostDataViewMappings.Names;
-using JJ.Demos.ReturnActions.Names;
+﻿using JetBrains.Annotations;
 using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Framework.Mvc;
+using JJ.Demos.ReturnActions.WithViewMappings.MvcBase.ViewMapping;
+
+// ReSharper disable AccessToStaticMemberViaDerivedType
 
 namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.ViewMapping
 {
-	public class EditViewMapping : ViewMapping<EditViewModel>
+	[UsedImplicitly]
+	public class EditViewMapping : EditViewMappingBase
 	{
-		public EditViewMapping()
-		{
-			MapController(ControllerNames.Demo, ActionNames.Edit, ViewNames.Edit);
-			MapPresenter(PresenterNames.EditPresenter, PresenterActionNames.Show);
-		}
-
-		protected override object GetRouteValues(EditViewModel viewModel)
-		{
-			return new { id = viewModel.Entity.ID };
-		}
+		protected override object GetRouteValues(EditViewModel viewModel) => new { id = viewModel.Entity.ID };
 	}
 }

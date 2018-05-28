@@ -1,24 +1,12 @@
-﻿using JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Names;
-using JJ.Demos.ReturnActions.Names;
+﻿using JetBrains.Annotations;
 using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Framework.Mvc;
+using JJ.Demos.ReturnActions.WithViewMappings.MvcBase.ViewMapping;
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.ViewMapping
 {
-	public class LoginViewMapping : ViewMapping<LoginViewModel>
+	[UsedImplicitly]
+	public class LoginViewMapping : LoginViewMappingBase
 	{
-		public LoginViewMapping()
-		{
-			MapController(ControllerNames.Login, ActionNames.Index, ViewNames.Index);
-			MapPresenter(PresenterNames.LoginPresenter, PresenterActionNames.Show);
-		}
-
-		protected override object GetRouteValues(LoginViewModel viewModel)
-		{
-			return new
-			{
-				ret = TryGetReturnUrl(viewModel.ReturnAction)
-			};
-		}
+		protected override object GetRouteValues(LoginViewModel viewModel) => new { ret = TryGetReturnUrl(viewModel.ReturnAction) };
 	}
 }

@@ -1,27 +1,29 @@
-﻿@model DetailsViewModel
+﻿@* ReSharper disable AccessToStaticMemberViaDerivedType *@
+
+@model DetailsViewModel
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Details</h2>
 
 <fieldset>
-    <legend>Details</legend>
-    <p>
-        <strong>ID: </strong> @Model.Entity.ID
-    </p>
-    <p>
-        <strong>Name: </strong> @Model.Entity.Name
-    </p>
+	<legend>Details</legend>
+	<p>
+		<strong>ID: </strong> @Model.Entity.ID
+	</p>
+	<p>
+		<strong>Name: </strong> @Model.Entity.Name
+	</p>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", ActionNames.Edit, new
-    {
-        id = Model.Entity.ID,
-        ret = Url.ReturnAction(ActionNames.Details, ControllerNames.Demo, new { id = Model.Entity.ID })
-    }) |
-    @Html.ActionLink("Back to List", ActionNames.Index)
-    @Html.ActionLink("Logout", ActionNames.Logout)
+	@Html.ActionLink("Edit", nameof(ActionNames.Edit), new
+	{
+		id = Model.Entity.ID,
+		ret = Url.ReturnAction(nameof(ActionNames.Details), nameof(ControllerNames.Demo), new { id = Model.Entity.ID })
+	}) |
+	@Html.ActionLink("Back to List", nameof(ActionNames.Index))
+	@Html.ActionLink("Logout", nameof(ActionNames.Logout))
 </p>

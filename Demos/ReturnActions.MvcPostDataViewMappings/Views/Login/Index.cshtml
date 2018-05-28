@@ -1,33 +1,35 @@
-﻿@model LoginViewModel
+﻿@* ReSharper disable AccessToStaticMemberViaDerivedType *@
+
+@model LoginViewModel
 
 @{
-    ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Login";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @using (Html.BeginForm())
 {
 
-    <h2>Login</h2>
+	<h2>Login</h2>
 
-    <p>
-        UserName
-        @Html.TextBoxFor(x => x.UserName)
-    </p>
+	<p>
+		UserName
+		@Html.TextBoxFor(x => x.UserName)
+	</p>
 
-    <p>
-        Password
-        @Html.PasswordFor(x => x.Password)
-    </p>
+	<p>
+		Password
+		@Html.PasswordFor(x => x.Password)
+	</p>
 
-    <input type="submit" value="LogIn" />
-    
-    <br />
-    
-    @Html.ActionLink("Back to List", ActionNames.Index, ControllerNames.Demo)
+	<input type="submit" value="LogIn" />
 
-    using (Html.BeginItem(() => Model.ReturnAction))
-    {
-        @Html.Partial(ViewNames._ActionInfo, Model.ReturnAction);
-    }
+	<br />
+
+	@Html.ActionLink("Back to List", nameof(ActionNames.Index), nameof(ControllerNames.Demo))
+
+	using (Html.BeginItem(() => Model.ReturnAction))
+	{
+		@Html.Partial(nameof(ViewNames._ActionInfo), Model.ReturnAction)
+	}
 }

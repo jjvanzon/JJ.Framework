@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Names;
+using JJ.Demos.ReturnActions.WithViewMappings.MvcBase.Names;
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Controllers
 {

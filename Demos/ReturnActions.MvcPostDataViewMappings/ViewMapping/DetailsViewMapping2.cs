@@ -4,5 +4,6 @@ using JJ.Demos.ReturnActions.WithViewMappings.MvcBase.ViewMapping;
 namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.ViewMapping
 {
 	[UsedImplicitly]
-	public class LoginViewMapping : LoginViewMappingBase { }
+	public class DetailsViewMapping : DetailsViewMappingBase
+	{ }
 }

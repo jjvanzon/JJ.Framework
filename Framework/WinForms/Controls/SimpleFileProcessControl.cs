@@ -82,20 +82,20 @@ namespace JJ.Framework.WinForms.Controls
 		{
 			IsRunning = true;
 
-			try
+			if (!MustShowExceptions)
 			{
 				OnRunProcess?.Invoke(this, EventArgs.Empty);
 			}
-			catch (Exception ex)
+			else
 			{
-				if (MustShowExceptions)
+				try
+				{
+					OnRunProcess?.Invoke(this, EventArgs.Empty);
+				}
+				catch (Exception ex)
 				{
 					string exception = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
 					OnUiThread(() => MessageBox.Show(exception));
-				}
-				else
-				{
-					throw;
 				}
 			}
 

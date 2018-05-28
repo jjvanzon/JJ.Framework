@@ -1,15 +1,8 @@
-﻿using JJ.Demos.ReturnActions.MvcPostDataViewMappings.Names;
-using JJ.Framework.Mvc;
-using JJ.Framework.Presentation;
+﻿using JetBrains.Annotations;
+using JJ.Demos.ReturnActions.WithViewMappings.MvcBase.ViewMapping;
 
 namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.ViewMapping
 {
-	public class NotAuthorizedViewMapping : ViewMapping<NotAuthorizedViewModel>
-	{
-		public NotAuthorizedViewMapping()
-			: base()
-		{
-			ViewName = ViewNames.NotAuthorized;
-		}
-	}
+	[UsedImplicitly]
+	public class NotAuthorizedViewMapping : NotAuthorizedViewMappingBase { }
 }

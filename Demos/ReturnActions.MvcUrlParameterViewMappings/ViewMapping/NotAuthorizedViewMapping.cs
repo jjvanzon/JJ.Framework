@@ -1,14 +1,8 @@
-﻿using JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Names;
-using JJ.Framework.Mvc;
-using JJ.Framework.Presentation;
+﻿using JetBrains.Annotations;
+using JJ.Demos.ReturnActions.WithViewMappings.MvcBase.ViewMapping;
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.ViewMapping
 {
-	public class NotAuthorizedViewMapping : ViewMapping<NotAuthorizedViewModel>
-	{
-		public NotAuthorizedViewMapping()
-		{
-			ViewName = ViewNames.NotAuthorized;
-		}
-	}
+	[UsedImplicitly]
+	public class NotAuthorizedViewMapping : NotAuthorizedViewMappingBase { }
 }

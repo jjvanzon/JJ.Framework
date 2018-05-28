@@ -5,9 +5,6 @@ namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings
 {
 	internal static class DispatcherConfig
 	{
-		public static void AddMappings()
-		{
-			ActionDispatcher.RegisterAssembly(Assembly.GetExecutingAssembly());
-		}
+		public static void AddMappings() => ActionDispatcher.RegisterAssembly(Assembly.GetExecutingAssembly());
 	}
 }

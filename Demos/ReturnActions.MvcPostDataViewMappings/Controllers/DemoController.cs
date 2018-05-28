@@ -3,6 +3,7 @@ using JJ.Demos.ReturnActions.MvcPostDataViewMappings.Names;
 using JJ.Demos.ReturnActions.Presenters;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Mvc;
+// ReSharper disable AccessToStaticMemberViaDerivedType
 
 namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 {
@@ -16,7 +17,7 @@ namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 				viewModel = presenter.Show();
 			}
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel);
 		}
 
 		public ActionResult Details(int id)
@@ -27,7 +28,7 @@ namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 				viewModel = presenter.Show(id);
 			}
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Details, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Details), viewModel);
 		}
 
 		public ActionResult Edit(int id)
@@ -38,7 +39,7 @@ namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 				viewModel = presenter.Show(id);
 			}
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Edit, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel);
 		}
 
 		[HttpPost]
@@ -47,7 +48,7 @@ namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 			var presenter = new EditPresenter(GetAuthenticatedUserName());
 			object viewModel2 = presenter.Save(viewModel);
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Edit, viewModel2);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel2);
 		}
 
 		public ActionResult Logout()
@@ -60,7 +61,7 @@ namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 
 			SetAuthenticatedUserName(null);
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Logout, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Logout), viewModel);
 		}
 
 		// These methods are hacks necessary to make multi-level return actions
@@ -75,7 +76,7 @@ namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 				viewModel = presenter.Edit(id, GetAuthenticatedUserName());
 			}
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Edit, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel);
 		}
 
 		[HttpPost]
@@ -83,7 +84,7 @@ namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 		{
 			var presenter = new EditPresenter(GetAuthenticatedUserName());
 			object viewModel2 = presenter.Save(viewModel);
-			return ActionDispatcher.Dispatch(this, ActionNames.Edit, viewModel2);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel2);
 		}
 
 		public ActionResult EditFromDetails(int id)
@@ -94,7 +95,7 @@ namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 				viewModel = presenter.Edit(id, GetAuthenticatedUserName());
 			}
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Edit, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel);
 		}
 
 		[HttpPost]
@@ -102,7 +103,7 @@ namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Controllers
 		{
 			var presenter = new EditPresenter(GetAuthenticatedUserName());
 			object viewModel2 = presenter.Save(viewModel);
-			return ActionDispatcher.Dispatch(this, ActionNames.Edit, viewModel2);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel2);
 		}
 	}
 }

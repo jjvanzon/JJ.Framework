@@ -1,23 +1,25 @@
-﻿@model ActionInfo
+﻿@* ReSharper disable AccessToStaticMemberViaDerivedType *@
+
+@model ActionInfo
 
 @Html.HiddenFor(x => x.PresenterName)
 @Html.HiddenFor(x => x.ActionName)
 
 @using (Html.BeginCollection(() => Model.Parameters))
 {
-    foreach (var parameter in Model.Parameters)
-    {
-        using (Html.BeginCollectionItem())
-        {
-            @Html.Partial(ViewNames._ActionParameterInfo, parameter);
-        }
-    }
+	foreach (var parameter in Model.Parameters)
+	{
+		using (Html.BeginCollectionItem())
+		{
+			@Html.Partial(nameof(ViewNames._ActionParameterInfo), parameter)
+		}
+	}
 }
 
 @if (Model.ReturnAction != null)
 {
-    using (Html.BeginItem(() => Model.ReturnAction))
-    {
-        @Html.Partial(ViewNames._ActionInfo, Model.ReturnAction);
-    }
+	using (Html.BeginItem(() => Model.ReturnAction))
+	{
+		@Html.Partial(nameof(ViewNames._ActionInfo), Model.ReturnAction)
+	}
 }

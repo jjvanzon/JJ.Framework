@@ -1,12 +1,11 @@
-﻿namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Names
+﻿using JJ.Demos.ReturnActions.WithViewMappings.MvcBase.Names;
+using JJ.Framework.Exceptions;
+
+namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.Names
 {
-	public static class ViewNames
+	public abstract class ViewNames : ViewNamesBase
 	{
-		public const string Edit = "Edit";
-		public const string Details = "Details";
-		public const string Index = "Index";
-		public const string _ActionInfo = "_ActionInfo";
-		public const string _ActionParameterInfo = "_ActionParameterInfo";
-		public const string NotAuthorized = "NotAuthorized";
+		public static void _ActionInfo() => throw new NameOfOnlyException();
+		public static void _ActionParameterInfo() => throw new NameOfOnlyException();
 	}
 }

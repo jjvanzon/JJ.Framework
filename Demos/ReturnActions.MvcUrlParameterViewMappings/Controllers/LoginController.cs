@@ -4,6 +4,7 @@ using JJ.Demos.ReturnActions.Presenters;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Presentation;
 using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
+// ReSharper disable AccessToStaticMemberViaDerivedType
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Controllers
 {
@@ -18,7 +19,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Controllers
 				viewModel = presenter.Show(returnAction);
 			}
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel);
 		}
 
 		[HttpPost]
@@ -34,7 +35,7 @@ namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Controllers
 				SetAuthenticatedUserName(viewModel.UserName);
 			}
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel2);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel2);
 		}
 	}
 }

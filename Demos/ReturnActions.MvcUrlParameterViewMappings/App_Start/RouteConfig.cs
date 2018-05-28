@@ -3,7 +3,7 @@ using System.Web.Routing;
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings
 {
-	public class RouteConfig
+	public static class RouteConfig
 	{
 		public static void RegisterRoutes(RouteCollection routes)
 		{

@@ -1,20 +1,8 @@
 ﻿using JetBrains.Annotations;
-using JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Names;
-using JJ.Demos.ReturnActions.Names;
-using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Framework.Mvc;
+using JJ.Demos.ReturnActions.WithViewMappings.MvcBase.ViewMapping;
 
 namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.ViewMapping
 {
 	[UsedImplicitly]
-	public class DetailsViewMapping : ViewMapping<DetailsViewModel>
-	{
-		public DetailsViewMapping()
-		{
-			MapController(ControllerNames.Demo, ActionNames.Details, ViewNames.Details);
-			MapPresenter(PresenterNames.DetailsPresenter, PresenterActionNames.Show);
-		}
-
-		protected override object GetRouteValues(DetailsViewModel viewModel) => new { id = viewModel.Entity.ID };
-	}
+	public class DetailsViewMapping : DetailsViewMappingBase { }
 }

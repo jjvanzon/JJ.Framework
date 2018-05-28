@@ -1,7 +1,9 @@
-﻿namespace JJ.Demos.ReturnActions.Names
+﻿using JJ.Framework.Exceptions;
+
+namespace JJ.Demos.ReturnActions.Names
 {
-	public static class PresenterActionNames
+	public abstract class PresenterActionNames
 	{
-		public const string Show = "Show";
+		public static void Show() => throw new NameOfOnlyException();
 	}
 }

@@ -1,13 +1,8 @@
-﻿// ReSharper disable InconsistentNaming
+﻿using JJ.Demos.ReturnActions.WithViewMappings.MvcBase.Names;
+// ReSharper disable InconsistentNaming
+
 namespace JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.Names
 {
-	public static class ViewNames
-	{
-		public const string Edit = "Edit";
-		public const string Details = "Details";
-		public const string Index = "Index";
-		public const string _ActionInfo = "_ActionInfo";
-		public const string _ActionParameterInfo = "_ActionParameterInfo";
-		public const string NotAuthorized = "NotAuthorized";
-	}
+	public abstract class ViewNames : ViewNamesBase 
+	{ }
 }

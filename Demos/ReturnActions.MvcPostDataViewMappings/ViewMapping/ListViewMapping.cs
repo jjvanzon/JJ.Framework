@@ -1,16 +1,10 @@
-﻿using JJ.Demos.ReturnActions.MvcPostDataViewMappings.Names;
-using JJ.Demos.ReturnActions.Names;
-using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Framework.Mvc;
+﻿using JetBrains.Annotations;
+using JJ.Demos.ReturnActions.MvcUrlParameterViewMappings.ViewMapping;
+
+// ReSharper disable AccessToStaticMemberViaDerivedType
 
 namespace JJ.Demos.ReturnActions.MvcPostDataViewMappings.ViewMapping
 {
-	public class ListViewMapping : ViewMapping<ListViewModel>
-	{
-		public ListViewMapping()
-		{
-			MapController(ControllerNames.Demo, ActionNames.Index, ViewNames.Index);
-			MapPresenter(PresenterNames.ListPresenter, PresenterActionNames.Show);
-		}
-	}
+	[UsedImplicitly]
+	public class ListViewMapping : ListViewMappingBase { }
 }

@@ -8,9 +8,6 @@ DECLARE @fileDate VARCHAR(20) -- used for file name
 -- specify database backup directory
 SET @path = 'E:\Database Snapshots\'  
  
--- specify filename format
-SELECT @fileDate = CONVERT(VARCHAR(20),GETDATE(),112) 
- 
 DECLARE db_cursor CURSOR READ_ONLY FOR  
 SELECT name 
 FROM master.dbo.sysdatabases 
@@ -21,7 +18,7 @@ FETCH NEXT FROM db_cursor INTO @name
  
 WHILE @@FETCH_STATUS = 0   
 BEGIN   
-   SET @fileName = @path + @name + '_' + @fileDate + '.BAK'  
+   SET @fileName = @path + @name + '.BAK'  
    BACKUP DATABASE @name TO DISK = @fileName  
  
    FETCH NEXT FROM db_cursor INTO @name   

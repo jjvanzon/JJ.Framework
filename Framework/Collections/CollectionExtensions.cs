@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Aggregates;
 using JJ.Framework.Reflection;
+
 #pragma warning disable 1584, 1711, 1572, 1581, 1580
 
 namespace JJ.Framework.Collections
@@ -53,14 +54,11 @@ namespace JJ.Framework.Collections
 
 		public static List<TItem> AsList<TItem>(this TItem item) => new List<TItem> { item };
 
-		public static IEnumerable<T> Concat<T>(this IEnumerable<T> enumerable, T x)
-		{
-			if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+		public static IEnumerable<T> Concat<T>(this IEnumerable<T> first, T second) => first.Concat(new[] { second });
 
-			return enumerable.Concat(new[] { x });
-		}
+		public static IEnumerable<T> Concat<T>(this IEnumerable<T> first, params T[] second) => first.Concat((IEnumerable<T>)second);
 
-		public static IEnumerable<T> Concat<T>(this T x, IEnumerable<T> enumerable) => new[] { x }.Concat(enumerable);
+		public static IEnumerable<T> Concat<T>(this T first, IEnumerable<T> second) => new[] { first }.Concat(second);
 
 		public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey> keySelector)
 		{
@@ -639,14 +637,11 @@ namespace JJ.Framework.Collections
 			return true;
 		}
 
-		public static IEnumerable<T> Union<T>(this IEnumerable<T> enumerable, T x)
-		{
-			if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+		public static IEnumerable<T> Union<T>(this IEnumerable<T> first, T second) => first.Union(new[] { second });
 
-			return enumerable.Union(new[] { x });
-		}
+		public static IEnumerable<T> Union<T>(this IEnumerable<T> first, params T[] second) => first.Union((IEnumerable<T>)second);
 
-		public static IEnumerable<T> Union<T>(this T x, IEnumerable<T> enumerable) => new[] { x }.Union(enumerable);
+		public static IEnumerable<T> Union<T>(this T first, IEnumerable<T> second) => new[] { first }.Union(second);
 
 		/// <summary>
 		/// Overload of Zip when you do not want to produce a result,
