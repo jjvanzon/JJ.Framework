@@ -1,0 +1,29 @@
+﻿@using JJ.Demos.ReturnActions.MvcUrlParameter.Names
+@model LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+
+    <h2>Login</h2>
+
+    <p>
+        UserName
+        @Html.TextBoxFor(x => x.UserName)
+    </p>
+
+    <p>
+        Password
+        @Html.PasswordFor(x => x.Password)
+    </p>
+
+    <input type="submit" value="LogIn" />
+    
+    <br />
+    
+    @Html.ActionLink("Back to List", ActionNames.Index, ControllerNames.Demo)
+}

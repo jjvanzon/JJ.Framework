@@ -1,0 +1,39 @@
+﻿@using JJ.Demos.ReturnActions.MvcUrlParameter.Names
+@model ListViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model.List) {
+        <tr>
+            <td>
+                @item.ID
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @Html.ActionLink("Edit", ActionNames.Edit, new 
+                {
+                    id = item.ID,
+                    ret = Url.ReturnAction(ActionNames.Index, ControllerNames.Demo)
+                }) |
+                @Html.ActionLink("Details", ActionNames.Details, new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Logout", ActionNames.Logout)
