@@ -14,6 +14,7 @@
 		public static string Delete => CommonResources.Delete;
 		public static string Delete_WithName(string name) => string.Format(CommonResources.Delete_WithName, name);
 		public static string Details_WithName(string name) => string.Format(CommonResources.Details_WithName, name);
+		public static string Description => CommonResources.Description;
 		public static string Edit => CommonResources.Edit;
 		public static string Edit_WithName(string name) => string.Format(CommonResources.Edit_WithName, name);
 		public static string False => CommonResources.False;
@@ -44,6 +45,7 @@
 		public static string OK => CommonResources.OK;
 		public static string OneOrTheOtherMustBeFilledIn(string name1, string name2) => string.Format(CommonResources.OneOrTheOtherMustBeFilledIn, name1, name2);
 		public static string Open => CommonResources.Open;
+	    public static string Password => CommonResources.Password;
 		public static string Properties => CommonResources.Properties;
 		public static string Properties_WithName(string name) => string.Format(CommonResources.Properties_WithName, name);
 		public static string Redo => CommonResources.Redo;
@@ -56,6 +58,7 @@
 		public static string True => CommonResources.True;
 		public static string Type => CommonResources.Type;
 		public static string Undo => CommonResources.Undo;
+	    public static string UserName => CommonResources.UserName;
 		public static string WantToSaveChanges => CommonResources.WantToSaveChanges;
 		public static string Yes => CommonResources.Yes;
 	}

@@ -51,7 +51,7 @@ namespace JJ.Framework.Security
 		public string GenerateSalt()
 		{
 			var randomNumberCrypto = new RNGCryptoServiceProvider();
-			byte[] saltBytes = new byte[SALT_BYTES_LENGTH];
+			var saltBytes = new byte[SALT_BYTES_LENGTH];
 			randomNumberCrypto.GetBytes(saltBytes);
 			string saltString = Convert.ToBase64String(saltBytes);
 			return saltString;

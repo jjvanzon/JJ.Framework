@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+// ReSharper disable InconsistentNaming
 
 namespace JJ.Framework.Mvc
 {

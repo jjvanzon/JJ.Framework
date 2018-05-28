@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading;
 using System.Web.Mvc;
+// ReSharper disable RedundantNameQualifier
 
 namespace JJ.Framework.Mvc
 {
@@ -52,8 +53,7 @@ namespace JJ.Framework.Mvc
 			{
 				int key = Thread.CurrentThread.ManagedThreadId;
 
-				Qualifier qualifier;
-				if (!_qualifierDictionary.TryGetValue(key, out qualifier))
+			    if (!_qualifierDictionary.TryGetValue(key, out Qualifier qualifier))
 				{
 					qualifier = new Qualifier();
 					_qualifierDictionary[key] = qualifier;

@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Security
+﻿// ReSharper disable InconsistentNaming
+namespace JJ.Framework.Security
 {
 	public enum AuthenticationTypeEnum
 	{

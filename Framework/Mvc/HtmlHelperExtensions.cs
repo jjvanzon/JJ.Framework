@@ -8,10 +8,11 @@ using System.Web.Mvc.Html;
 using System.Web.Routing;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
+// ReSharper disable RedundantNameQualifier
 
 namespace JJ.Framework.Mvc
 {
-	public static partial class HtmlHelperExtensions
+	public static class HtmlHelperExtensions
 	{
 		public static MvcHtmlString ActionLinkWithCollection<T>(this HtmlHelper htmlHelper, string linkText, string actionName, string controllerName, string parameterName, IEnumerable<T> collection)
 		{
