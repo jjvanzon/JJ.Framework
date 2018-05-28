@@ -7,176 +7,177 @@ using JJ.Framework.Logging;
 
 namespace JJ.Framework.WinForms.Controls
 {
-	public partial class SimpleFileProcessControl : UserControl
-	{
-		private const int SPACING = 16;
+    public partial class SimpleFileProcessControl : UserControl
+    {
+        private const int SPACING = 16;
 
-		private bool _isLoaded;
+        private bool _isLoaded;
 
-		public event EventHandler OnRunProcess;
+        public event EventHandler OnRunProcess;
 
-		public SimpleFileProcessControl()
-		{
-			InitializeComponent();
+        public SimpleFileProcessControl()
+        {
+            InitializeComponent();
 
-			_isRunning = false;
-		}
+            _isRunning = false;
+        }
 
-		private void SimpleFileProcessControl_Load(object sender, EventArgs e)
-		{
-			_isLoaded = true;
+        private void SimpleFileProcessControl_Load(object sender, EventArgs e)
+        {
+            _isLoaded = true;
 
-			ApplyIsRunning();
+            ApplyIsRunning();
 
-			PositionControls();
-		}
+            PositionControls();
+        }
 
-		private void buttonStart_Click(object sender, EventArgs e) => Start();
+        private void buttonStart_Click(object sender, EventArgs e) => Start();
 
-		private void buttonCancel_Click(object sender, EventArgs e) => Cancel();
+        private void buttonCancel_Click(object sender, EventArgs e) => Cancel();
 
-		private void SimpleFileProcessControl_Resize(object sender, EventArgs e) => PositionControls();
+        private void SimpleFileProcessControl_Resize(object sender, EventArgs e) => PositionControls();
 
-		private void PositionControls()
-		{
-			int y = Height;
+        private void PositionControls()
+        {
+            int y = Height;
 
-			y -= labelProgress.Height;
+            y -= labelProgress.Height;
 
-			labelProgress.Location = new Point(0, y);
-			labelProgress.Width = Width;
+            labelProgress.Location = new Point(0, y);
+            labelProgress.Width = Width;
 
-			y -= SPACING;
-			y -= buttonStart.Height;
+            y -= SPACING;
+            y -= buttonStart.Height;
 
-			buttonStart.Location = new Point(SPACING, y);
-			buttonCancel.Location = new Point(Width - SPACING - buttonCancel.Width, y);
+            buttonStart.Location = new Point(SPACING, y);
+            buttonCancel.Location = new Point(Width - SPACING - buttonCancel.Width, y);
 
-			y -= SPACING;
-			y -= textBoxFilePath.Height;
+            y -= SPACING;
+            y -= textBoxFilePath.Height;
 
-			labelFilePath.Location = new Point(SPACING, y);
+            labelFilePath.Location = new Point(SPACING, y);
 
-			int textBoxFilePathWidth = SPACING + labelFilePath.Width + SPACING;
-			int textBoxTop = y;
-			textBoxFilePath.Location = new Point(textBoxFilePathWidth, y);
-			textBoxFilePath.Width = Width - SPACING - textBoxFilePathWidth;
+            int textBoxFilePathWidth = SPACING + labelFilePath.Width + SPACING;
+            int textBoxTop = y;
+            textBoxFilePath.Location = new Point(textBoxFilePathWidth, y);
+            textBoxFilePath.Width = Width - SPACING - textBoxFilePathWidth;
 
-			labelDescription.Location = new Point(SPACING, SPACING);
-			labelDescription.Size = new Size(Width - SPACING - SPACING, Height - textBoxTop - SPACING - SPACING);
-		}
+            labelDescription.Location = new Point(SPACING, SPACING);
+            labelDescription.Size = new Size(Width - SPACING - SPACING, Height - textBoxTop - SPACING - SPACING);
+        }
 
-		private void Start()
-		{
-			if (MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
-			{
-				Async(RunProcess);
-			}
-		}
+        private void Start()
+        {
+            if (MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Async(RunProcess);
+            }
+        }
 
-		private void Cancel() => IsRunning = false;
+        private void Cancel() => IsRunning = false;
 
-		// Processing
+        // Processing
 
-		private void RunProcess()
-		{
-			IsRunning = true;
+        private void RunProcess()
+        {
+            IsRunning = true;
 
-			if (!MustShowExceptions)
-			{
-				OnRunProcess?.Invoke(this, EventArgs.Empty);
-			}
-			else
-			{
-				try
-				{
-					OnRunProcess?.Invoke(this, EventArgs.Empty);
-				}
-				catch (Exception ex)
-				{
-					string exception = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
-					OnUiThread(() => MessageBox.Show(exception));
-				}
-			}
+            if (!MustShowExceptions)
+            {
+                OnRunProcess?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                try
+                {
+                    OnRunProcess?.Invoke(this, EventArgs.Empty);
+                }
+                catch (Exception ex)
+                {
+                    string exception = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
+                    OnUiThread(() => MessageBox.Show(exception));
+                }
+            }
 
-			IsRunning = false;
-		}
+            IsRunning = false;
+        }
 
-		// Progress Label
+        // Progress Label
 
-		public void ShowProgress(string message) => OnUiThread(() => labelProgress.Text = message);
+        public void ShowProgress(string message) => OnUiThread(() => labelProgress.Text = message);
 
-		// IsRunning
+        // IsRunning
 
-		private volatile bool _isRunning;
-		
-		[Browsable(false)]
-		public bool IsRunning
-		{
-			get => _isRunning;
-			set 
-			{
-				_isRunning = value;
-				ApplyIsRunning();
-			}
-		}
+        private volatile bool _isRunning;
 
-		private void ApplyIsRunning()
-		{
-			OnUiThread(() =>
-			{
-				buttonStart.Enabled = !_isRunning;
-				buttonCancel.Enabled = _isRunning;
-				textBoxFilePath.Enabled = !_isRunning;
-			});
-		}
+        [Browsable(false)]
+        public bool IsRunning
+        {
+            get => _isRunning;
+            set
+            {
+                _isRunning = value;
+                ApplyIsRunning();
+            }
+        }
 
-		// Other Properties
+        private void ApplyIsRunning()
+        {
+            OnUiThread(
+                () =>
+                {
+                    buttonStart.Enabled = !_isRunning;
+                    buttonCancel.Enabled = _isRunning;
+                    textBoxFilePath.Enabled = !_isRunning;
+                });
+        }
 
-		public string FilePath
-		{
-			get => textBoxFilePath.Text;
-			set => textBoxFilePath.Text = value;
-		}
+        // Other Properties
 
-		[Editor(
-			"System.ComponentModel.Design.MultilineStringEditor, System.Design",
-			"System.Drawing.Design.UITypeEditor")]
-		public string Description
-		{
-			get => labelDescription.Text;
-			set => labelDescription.Text = value;
-		}
+        public string FilePath
+        {
+            get => textBoxFilePath.Text;
+            set => textBoxFilePath.Text = value;
+        }
 
-		[DefaultValue(true)]
-		public bool MustShowExceptions { get; set; }
+        [Editor(
+            "System.ComponentModel.Design.MultilineStringEditor, System.Design",
+            "System.Drawing.Design.UITypeEditor")]
+        public string Description
+        {
+            get => labelDescription.Text;
+            set => labelDescription.Text = value;
+        }
 
-		// Helpers
+        [DefaultValue(true)]
+        public bool MustShowExceptions { get; set; }
 
-		private void OnUiThread(Action action)
-		{
-			if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
-			{
-				return;
-			}
+        // Helpers
 
-			if (DesignMode)
-			{
-				return;
-			}
+        private void OnUiThread(Action action)
+        {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+            {
+                return;
+            }
 
-			if (!_isLoaded)
-			{
-				return;
-			}
+            if (DesignMode)
+            {
+                return;
+            }
 
-			BeginInvoke(action);
-		}
+            if (!_isLoaded)
+            {
+                return;
+            }
 
-		private void Async(Action action)
-		{
-			var thread = new Thread(new ThreadStart(action));
-			thread.Start();
-		}
-	}
+            BeginInvoke(action);
+        }
+
+        private void Async(Action action)
+        {
+            var thread = new Thread(new ThreadStart(action));
+            thread.Start();
+        }
+    }
 }
