@@ -316,4 +316,35 @@
   <data name="Description" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Date and time</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Next_WithName" xml:space="preserve">
+    <value>Next {0}</value>
+    <comment>{0} = name</comment>
+  </data>
+  <data name="NotAuthorizedMessage" xml:space="preserve">
+    <value>You are not authorized to view this content.</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>URL</value>
+  </data>
 </root>

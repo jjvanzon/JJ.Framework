@@ -88,6 +88,15 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back to List.
+        /// </summary>
+        internal static string BackToList {
+            get {
+                return ResourceManager.GetString("BackToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string Cancel {
@@ -142,11 +151,38 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        internal static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of {0}.
         /// </summary>
         internal static string Count_WithNamePlural {
             get {
                 return ResourceManager.GetString("Count_WithNamePlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        internal static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date and time.
+        /// </summary>
+        internal static string DateTime {
+            get {
+                return ResourceManager.GetString("DateTime", resourceCulture);
             }
         }
         
@@ -219,6 +255,15 @@ namespace JJ.Framework.Resources {
         internal static string FilePath {
             get {
                 return ResourceManager.GetString("FilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        internal static string General {
+            get {
+                return ResourceManager.GetString("General", resourceCulture);
             }
         }
         
@@ -349,6 +394,15 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next {0}.
+        /// </summary>
+        internal static string Next_WithName {
+            get {
+                return ResourceManager.GetString("Next_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string No {
@@ -381,6 +435,15 @@ namespace JJ.Framework.Resources {
         internal static string NotAuthorized {
             get {
                 return ResourceManager.GetString("NotAuthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not authorized to view this content..
+        /// </summary>
+        internal static string NotAuthorizedMessage {
+            get {
+                return ResourceManager.GetString("NotAuthorizedMessage", resourceCulture);
             }
         }
         
@@ -538,6 +601,24 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selection.
+        /// </summary>
+        internal static string Selection {
+            get {
+                return ResourceManager.GetString("Selection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        internal static string Text {
+            get {
+                return ResourceManager.GetString("Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to True.
         /// </summary>
         internal static string True {
@@ -561,6 +642,15 @@ namespace JJ.Framework.Resources {
         internal static string Undo {
             get {
                 return ResourceManager.GetString("Undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to URL.
+        /// </summary>
+        internal static string Url {
+            get {
+                return ResourceManager.GetString("Url", resourceCulture);
             }
         }
         

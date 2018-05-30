@@ -298,4 +298,34 @@
   <data name="Description" xml:space="preserve">
     <value>Omschrijving</value>
   </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Terug naar lijst</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Bevestigen</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Datum en tijd</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="Next_WithName" xml:space="preserve">
+    <value>Volgende {0}</value>
+  </data>
+  <data name="NotAuthorizedMessage" xml:space="preserve">
+    <value>U bent niet gemachtigd om deze inhoud te zien.</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>Selectie</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>URL</value>
+  </data>
 </root>
