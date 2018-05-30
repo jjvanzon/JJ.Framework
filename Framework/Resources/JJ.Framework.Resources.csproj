@@ -56,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CommonResources.pl-PL.resx" />
     <EmbeddedResource Include="CommonResources.nl-NL.resx" />
     <EmbeddedResource Include="CommonResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

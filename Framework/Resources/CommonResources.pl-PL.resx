@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="AlreadyExists_WithType_AndName" xml:space="preserve">
+    <value>{0} {1} już istnieje.</value>
+  </data>
+  <data name="AreYouSureYouWishToDelete_WithType_AndName" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć {0} {1}?</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>Powrót do listy</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="CannotDelete_WithName" xml:space="preserve">
+    <value>Nie można usunąć {0}.</value>
+  </data>
+  <data name="CannotDelete_WithName_AndDependentItem" xml:space="preserve">
+    <value>Nie można usunąć {0}, ponieważ jest nadal używany przez następujące: {1}.</value>
+  </data>
+  <data name="CannotDelete_WithType_AndName" xml:space="preserve">
+    <value>Nie można usunąć {0} {1}.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Blisko</value>
+  </data>
+  <data name="Close_WithName" xml:space="preserve">
+    <value>Zamknij {0}</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Potwierdzać</value>
+  </data>
+  <data name="Count_WithNamePlural" xml:space="preserve">
+    <value>Liczba {0}</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="DateTime" xml:space="preserve">
+    <value>Data i godzina</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Kasować</value>
+  </data>
+  <data name="Delete_WithName" xml:space="preserve">
+    <value>Usuń {0}</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Opis</value>
+  </data>
+  <data name="Details_WithName" xml:space="preserve">
+    <value>{0} szczegóły</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edytować</value>
+  </data>
+  <data name="Edit_WithName" xml:space="preserve">
+    <value>Edycja {0}</value>
+  </data>
+  <data name="False" xml:space="preserve">
+    <value>Fałszywy</value>
+  </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>Ścieżka pliku</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Generał</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="ID_WithName" xml:space="preserve">
+    <value>{0} ID</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Aktywny</value>
+  </data>
+  <data name="IsDeleted_WithName" xml:space="preserve">
+    <value>{0} zostało usunięte.</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Pozycja</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Język</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Zaloguj się</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Wyloguj</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Wiadomości</value>
+  </data>
+  <data name="Move" xml:space="preserve">
+    <value>Przesuń</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="Names" xml:space="preserve">
+    <value>Nazwy</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Nowy</value>
+  </data>
+  <data name="Next_WithName" xml:space="preserve">
+    <value>Dalej {0}</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nie</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Żaden</value>
+  </data>
+  <data name="NoObject_WithName" xml:space="preserve">
+    <value>Nie {0}</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>Nieautoryzowany</value>
+  </data>
+  <data name="NotAuthorizedMessage" xml:space="preserve">
+    <value>Nie masz uprawnień do wyświetlania tej treści.</value>
+  </data>
+  <data name="NotFound_WithItemName_ID_AndListName" xml:space="preserve">
+    <value>{0} o identyfikatorze {1} nie znaleziono na liście {2}.</value>
+  </data>
+  <data name="NotFound_WithName" xml:space="preserve">
+    <value>Nie znaleziono {0}.</value>
+  </data>
+  <data name="NotFound_WithName_AndID" xml:space="preserve">
+    <value>{0} o identyfikatorze {1} nie znaleziono.</value>
+  </data>
+  <data name="NotFound_WithType_AndName" xml:space="preserve">
+    <value>Nie znaleziono {1} {1}.</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OneOrTheOtherMustBeFilledIn" xml:space="preserve">
+    <value>Musisz wypełnić {0} lub {1}.</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Otwarty</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Hasło</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Nieruchomości</value>
+  </data>
+  <data name="Properties_WithName" xml:space="preserve">
+    <value>{0} Właściwości</value>
+  </data>
+  <data name="Redo" xml:space="preserve">
+    <value>Przerobić</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>Odświeżać</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Usunąć</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Zapisać</value>
+  </data>
+  <data name="Save_WithName" xml:space="preserve">
+    <value>Zapisz {0}</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Szukaj</value>
+  </data>
+  <data name="Selection" xml:space="preserve">
+    <value>Wybór</value>
+  </data>
+  <data name="Select_WithName" xml:space="preserve">
+    <value>Wybierz {0}</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="True" xml:space="preserve">
+    <value>Prawdziwe</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Rodzaj</value>
+  </data>
+  <data name="Undo" xml:space="preserve">
+    <value>Cofnij</value>
+  </data>
+  <data name="Url" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Nazwa Użytkownika</value>
+  </data>
+  <data name="WantToSaveChanges" xml:space="preserve">
+    <value>Czy chcesz zachować zmiany?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Tak</value>
+  </data>
+</root>
