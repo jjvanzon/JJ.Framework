@@ -1,0 +1,38 @@
+﻿@* ReSharper disable AccessToStaticMemberViaDerivedType *@
+
+@using JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Names
+@model JJ.Demos.ReturnActions.WithViewMapping.ViewModels.ListViewModel
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Action</th>
+	</tr>
+
+	@foreach (var item in Model.List)
+	{
+		<tr>
+			<td>
+				@item.ID
+			</td>
+			<td>
+				@item.Name
+			</td>
+			<td>
+				@Html.ActionLink("Edit", nameof(ActionNames.EditFromIndex), new { id = item.ID }) |
+				@Html.ActionLink("Details", nameof(ActionNames.Details), new { id = item.ID })
+			</td>
+		</tr>
+	}
+
+</table>
+
+@Html.ActionLink("Logout", nameof(ActionNames.Logout))
