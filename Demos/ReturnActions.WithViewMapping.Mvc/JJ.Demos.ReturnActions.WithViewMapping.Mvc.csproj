@@ -64,12 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DispatcherConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Names\ActionNamesBase.cs" />
-    <Compile Include="Names\ControllerNames.cs" />
     <Compile Include="Names\SessionKeys.cs" />
     <Compile Include="Names\ViewNamesBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +86,10 @@
     <ProjectReference Include="..\..\Framework\Presentation\JJ.Framework.Presentation.csproj">
       <Project>{79B0EAC3-5159-4FC8-B3D8-53315B205444}</Project>
       <Name>JJ.Framework.Presentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReturnActions.Mvc\JJ.Demos.ReturnActions.Mvc.csproj">
+      <Project>{6EF04A89-7C2E-4EEB-B6A7-5C34DE83DF73}</Project>
+      <Name>JJ.Demos.ReturnActions.Mvc</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReturnActions.WithViewMapping\JJ.Demos.ReturnActions.WithViewMapping.csproj">
       <Project>{757F8B06-8527-4DAA-A206-E26EB167CA13}</Project>

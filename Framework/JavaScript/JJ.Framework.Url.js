@@ -1,4 +1,6 @@
-﻿var JJ = JJ || {};
+﻿// WARNING: File is always overwritten. Edit it in JJ.Framework.JavaScript.
+
+var JJ = JJ || {};
 JJ.Framework = JJ.Framework || {};
 JJ.Framework.Url = JJ.Framework.Url || {};
 

@@ -1,4 +1,6 @@
-﻿// Depends on JJ.Framework.Assert
+﻿// WARNING: File is always overwritten. Edit it in JJ.Framework.JavaScript.
+
+// Depends on JJ.Framework.Assert
 // Depends on JJ.Framework.Check
 // Depends on JJ.Framework.Cookie
 // Depends on jQuery.

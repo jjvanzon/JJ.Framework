@@ -1,4 +1,6 @@
-﻿// Dependens on JJ.Framework.Check
+﻿// WARNING: File is always overwritten. Edit it in JJ.Framework.JavaScript.
+
+// Dependens on JJ.Framework.Check
 
 // This script defines functions to check the type of variables and do other checks
 // and throw exceptions if conditions are not met.

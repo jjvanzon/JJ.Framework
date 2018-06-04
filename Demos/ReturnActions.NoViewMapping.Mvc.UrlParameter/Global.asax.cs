@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using JJ.Demos.ReturnActions.Mvc;
 
 namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter
 {
@@ -14,7 +15,6 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter
 		{
 			AreaRegistration.RegisterAllAreas();
 
-			WebApiConfig.Register(GlobalConfiguration.Configuration);
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);

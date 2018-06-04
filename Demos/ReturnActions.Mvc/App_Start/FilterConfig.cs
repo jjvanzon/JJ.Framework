@@ -1,12 +1,12 @@
 ﻿using System.Web.Mvc;
 
-namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter
+namespace JJ.Demos.ReturnActions.Mvc
 {
 	public static class FilterConfig
 	{
 		public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-		{
-			filters.Add(new HandleErrorAttribute());
-		}
+	    {
+	        filters.Add(new HandleErrorAttribute());
+	    }
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc
+namespace JJ.Demos.ReturnActions.Mvc
 {
 	public static class BundleConfig
 	{

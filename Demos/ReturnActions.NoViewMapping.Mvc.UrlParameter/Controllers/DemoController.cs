@@ -17,7 +17,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 				viewModel = presenter.Show();
 			}
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Index, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel);
 		}
 
 		public ActionResult Details(int id)
@@ -28,7 +28,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 				viewModel = presenter.Show(id);
 			}
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Details, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Details), viewModel);
 		}
 
 		public ActionResult Edit(int id, string ret = null)
@@ -39,7 +39,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 				viewModel = presenter.Show(id, ret);
 			}
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Edit, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel);
 		}
 
 		[HttpPost]
@@ -49,7 +49,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 			viewModel.ReturnAction = ret;
 			object viewModel2 = presenter.Save(viewModel);
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Edit, viewModel2);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel2);
 		}
 
 		public ActionResult Logout()
@@ -62,7 +62,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 
 			SetAuthenticatedUserName(null);
 
-			return ActionDispatcher.Dispatch(this, ActionNames.Logout, viewModel);
+			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Logout), viewModel);
 		}
 	}
 }

@@ -1,4 +1,5 @@
-﻿
+﻿// WARNING: File is always overwritten. Edit it in JJ.Framework.JavaScript.
+
 // TODO: For every method in JJ.Framework.Assert there must be a corresponding method here,
 // because you'll need it at some point.
 
