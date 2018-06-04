@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ActionInfo.cs" />
     <Compile Include="ActionDispatcher.cs" />
+    <Compile Include="AuthenticatedViewModel.cs" />
     <Compile Include="NoViewModel.cs" />
     <Compile Include="NotAuthorizedViewModel.cs" />
     <Compile Include="ActionParameterInfo.cs" />
