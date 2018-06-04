@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using JJ.Demos.ReturnActions.Mvc.Controllers;
 using JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Names;
 using JJ.Demos.ReturnActions.NoViewMapping.Presenters;
 using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
@@ -10,7 +11,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 	{
 		public ActionResult Index(string ret = null)
 		{
-			if (!TempData.TryGetValue(TempDataKeys.ViewModel, out object viewModel))
+			if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
 			{
 				var presenter = new LoginPresenter();
 				viewModel = presenter.Show(ret);

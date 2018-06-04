@@ -134,8 +134,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Names\ActionNamesBase.cs" />
     <Compile Include="Names\ControllerNames.cs" />
+    <Compile Include="Names\SessionKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,5 @@
 ﻿using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
-using JJ.Demos.ReturnActions.NoViewMapping.ViewModels.Entities;
+using JJ.Demos.ReturnActions.ViewModels;
 
 // ReSharper disable TailRecursiveCall
 

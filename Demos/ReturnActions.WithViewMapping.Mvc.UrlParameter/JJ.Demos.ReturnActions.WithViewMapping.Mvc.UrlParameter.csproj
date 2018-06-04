@@ -133,7 +133,6 @@
   <ItemGroup>
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +189,10 @@
     <ProjectReference Include="..\ReturnActions.WithViewMapping\JJ.Demos.ReturnActions.WithViewMapping.csproj">
       <Project>{757f8b06-8527-4daa-a206-e26eb167ca13}</Project>
       <Name>JJ.Demos.ReturnActions.WithViewMapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReturnActions\JJ.Demos.ReturnActions.csproj">
+      <Project>{054214D2-0B1F-4ADD-BC45-E8A49C20F219}</Project>
+      <Name>JJ.Demos.ReturnActions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

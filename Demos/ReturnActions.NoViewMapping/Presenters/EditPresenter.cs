@@ -1,6 +1,6 @@
 ﻿using System;
+using JJ.Demos.ReturnActions.Helpers;
 using JJ.Demos.ReturnActions.NoViewMapping.Extensions;
-using JJ.Demos.ReturnActions.NoViewMapping.Helpers;
 using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Presentation;
@@ -50,7 +50,5 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Presenters
 			throw new NotImplementedException();
 			//return ActionDispatcher.Dispatch(viewModel.ReturnAction, new { authenticatedUserName = _authenticatedUserName });
 		}
-
-		public LoginViewModel Logout() => new LoginPresenter().Show();
 	}
 }

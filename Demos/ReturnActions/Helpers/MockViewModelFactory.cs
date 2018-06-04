@@ -1,12 +1,10 @@
 ﻿using System;
-using JJ.Demos.ReturnActions.WithViewMapping.ViewModels.Entities;
+using JJ.Demos.ReturnActions.ViewModels;
 
-namespace JJ.Demos.ReturnActions.WithViewMapping.Helpers
+namespace JJ.Demos.ReturnActions.Helpers
 {
-	/// <summary>
-	/// For creating mock view models.
-	/// </summary>
-	internal static class MockViewModelFactory
+	/// <summary> For creating mock view models. </summary>
+	public static class MockViewModelFactory
 	{
 		private const int DEFAULT_ID = 1;
 		private const int DEFAULT_ID_2 = 2;

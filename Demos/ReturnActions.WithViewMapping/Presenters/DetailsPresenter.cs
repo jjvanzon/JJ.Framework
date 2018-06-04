@@ -1,4 +1,4 @@
-﻿using JJ.Demos.ReturnActions.WithViewMapping.Helpers;
+﻿using JJ.Demos.ReturnActions.Helpers;
 using JJ.Demos.ReturnActions.WithViewMapping.ViewModels;
 using JJ.Framework.Presentation;
 
@@ -15,7 +15,5 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Presenters
 			var presenter2 = new EditPresenter(authenticatedUserName);
 			return presenter2.Show(id, returnAction: ActionDispatcher.CreateActionInfo<DetailsPresenter>(x => x.Show(id)));
 		}
-
-		public LoginViewModel Logout() => new LoginPresenter().Show();
 	}
 }

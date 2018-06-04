@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using JJ.Demos.ReturnActions.Mvc.Controllers;
 using JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Names;
 using JJ.Demos.ReturnActions.NoViewMapping.Presenters;
 using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
@@ -11,7 +12,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 	{
 		public ActionResult Index()
 		{
-			if (!TempData.TryGetValue(TempDataKeys.ViewModel, out object viewModel))
+			if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
 			{
 				var presenter = new ListPresenter();
 				viewModel = presenter.Show();
@@ -22,7 +23,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 
 		public ActionResult Details(int id)
 		{
-			if (!TempData.TryGetValue(TempDataKeys.ViewModel, out object viewModel))
+			if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
 			{
 				var presenter = new DetailsPresenter();
 				viewModel = presenter.Show(id);
@@ -33,7 +34,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 
 		public ActionResult Edit(int id, string ret = null)
 		{
-			if (!TempData.TryGetValue(TempDataKeys.ViewModel, out object viewModel))
+			if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
 			{
 				var presenter = new EditPresenter(GetAuthenticatedUserName());
 				viewModel = presenter.Show(id, ret);
@@ -54,7 +55,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 
 		public ActionResult Logout()
 		{
-			if (!TempData.TryGetValue(TempDataKeys.ViewModel, out object viewModel))
+			if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
 			{
 				var presenter = new LoginPresenter();
 				viewModel = presenter.Logout();

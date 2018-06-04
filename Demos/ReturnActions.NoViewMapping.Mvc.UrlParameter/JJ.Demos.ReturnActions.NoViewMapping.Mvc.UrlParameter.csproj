@@ -133,15 +133,13 @@
   <ItemGroup>
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Names\TempDataKeys.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ActionDispatcher.cs" />
     <Compile Include="Names\ActionNames.cs" />
-    <Compile Include="Names\SessionKeys.cs" />
-    <Compile Include="Names\ViewNames.cs" />
+    <Compile Include="Names\2018-06-04 Backup of ViewNames.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +188,10 @@
     <ProjectReference Include="..\ReturnActions.NoViewMapping\JJ.Demos.ReturnActions.NoViewMapping.csproj">
       <Project>{fd0dd364-d5da-48d2-9a3e-a08bb31c8dd1}</Project>
       <Name>JJ.Demos.ReturnActions.NoViewMapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReturnActions\JJ.Demos.ReturnActions.csproj">
+      <Project>{054214D2-0B1F-4ADD-BC45-E8A49C20F219}</Project>
+      <Name>JJ.Demos.ReturnActions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

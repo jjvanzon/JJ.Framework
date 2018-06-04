@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using JJ.Demos.ReturnActions.NoViewMapping.ViewModels.Entities;
 
-namespace JJ.Demos.ReturnActions.NoViewMapping.ViewModels
+namespace JJ.Demos.ReturnActions.ViewModels
 {
 	public sealed class ListViewModel
 	{

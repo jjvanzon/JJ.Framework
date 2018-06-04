@@ -1,9 +1,9 @@
-﻿// ReSharper disable InconsistentNaming
+﻿using JJ.Framework.Exceptions;
 
 namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Names
 {
-	internal static class TempDataKeys
+	internal abstract class TempDataKeys
 	{
-		public const string ViewModel = "ViewModel";
+	    public static void ViewModel() => throw new NameOfOnlyException();
 	}
 }

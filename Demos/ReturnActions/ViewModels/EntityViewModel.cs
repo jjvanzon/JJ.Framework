@@ -1,4 +1,4 @@
-﻿namespace JJ.Demos.ReturnActions.NoViewMapping.ViewModels.Entities
+﻿namespace JJ.Demos.ReturnActions.ViewModels
 {
 	public sealed class EntityViewModel
 	{

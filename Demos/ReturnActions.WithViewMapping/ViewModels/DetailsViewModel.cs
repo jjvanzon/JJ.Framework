@@ -1,4 +1,4 @@
-﻿using JJ.Demos.ReturnActions.WithViewMapping.ViewModels.Entities;
+﻿using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Presentation;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.ViewModels
