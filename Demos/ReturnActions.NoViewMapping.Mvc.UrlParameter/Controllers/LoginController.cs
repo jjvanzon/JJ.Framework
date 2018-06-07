@@ -4,6 +4,7 @@ using JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Names;
 using JJ.Demos.ReturnActions.NoViewMapping.Presenters;
 using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
 using JJ.Framework.Presentation;
+using JJ.Framework.Web;
 using ActionDispatcher = JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Helpers.ActionDispatcher;
 
 namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
@@ -18,7 +19,9 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 				viewModel = presenter.Show(ret);
 			}
 
-			return ActionDispatcher.Dispatch(this, viewModel);
+		    Response.StatusCode = HttpStatusCodes.NOT_AUTHENTICATED_401;
+            
+            return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
 		[HttpPost]

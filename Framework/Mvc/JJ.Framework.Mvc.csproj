@@ -53,6 +53,7 @@
     <Compile Include="ActionInfoToUrlConverter.cs" />
     <Compile Include="ActionParameterMapping.cs" />
     <Compile Include="ControllerExtensions.cs" />
+    <Compile Include="BasicHandleErrorAttribute.cs" />
     <Compile Include="ViewMapping.cs" />
     <Compile Include="ControllerAccessor.cs" />
     <Compile Include="IViewMapping.cs" />

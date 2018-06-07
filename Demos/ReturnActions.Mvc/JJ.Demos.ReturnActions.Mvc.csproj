@@ -134,7 +134,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Attributes\ErrorFilterAttribute.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Names\ActionNamesBase.cs" />
     <Compile Include="Names\ControllerNames.cs" />
@@ -175,6 +174,10 @@
     <ProjectReference Include="..\..\Framework\Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Web\JJ.Framework.Web.csproj">
+      <Project>{164520AA-2DB7-4405-9AE5-EB515527A33B}</Project>
+      <Name>JJ.Framework.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReturnActions.NoViewMapping\JJ.Demos.ReturnActions.NoViewMapping.csproj">
       <Project>{fd0dd364-d5da-48d2-9a3e-a08bb31c8dd1}</Project>

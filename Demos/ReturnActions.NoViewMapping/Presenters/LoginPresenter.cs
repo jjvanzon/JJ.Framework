@@ -1,5 +1,4 @@
-﻿using System;
-using JJ.Demos.ReturnActions.NoViewMapping.Helpers;
+﻿using JJ.Demos.ReturnActions.NoViewMapping.Helpers;
 using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Exceptions.Basic;

@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -62,6 +65,9 @@
       <Project>{054214D2-0B1F-4ADD-BC45-E8A49C20F219}</Project>
       <Name>JJ.Demos.ReturnActions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

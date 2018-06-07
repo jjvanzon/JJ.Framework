@@ -188,6 +188,10 @@
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Web\JJ.Framework.Web.csproj">
+      <Project>{164520AA-2DB7-4405-9AE5-EB515527A33B}</Project>
+      <Name>JJ.Framework.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReturnActions.Mvc\JJ.Demos.ReturnActions.Mvc.csproj">
       <Project>{6ef04a89-7c2e-4eeb-b6a7-5c34de83df73}</Project>
       <Name>JJ.Demos.ReturnActions.Mvc</Name>
