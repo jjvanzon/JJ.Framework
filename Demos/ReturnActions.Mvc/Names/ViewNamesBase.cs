@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Exceptions;
 
-namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.Names
+namespace JJ.Demos.ReturnActions.Mvc.Names
 {
 	public abstract class ViewNamesBase
 	{

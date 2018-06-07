@@ -134,15 +134,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\ErrorFilterAttribute.cs" />
     <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Names\ActionNamesBase.cs" />
     <Compile Include="Names\ControllerNames.cs" />
     <Compile Include="Names\SessionKeys.cs" />
+    <Compile Include="Names\ViewNamesBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

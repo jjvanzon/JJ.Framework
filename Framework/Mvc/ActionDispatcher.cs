@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Web.Mvc;
 using JJ.Framework.Collections;
 using JJ.Framework.Exceptions.Basic;
@@ -66,8 +67,8 @@ namespace JJ.Framework.Mvc
 
 		public static string TempDataKey { get; } = "vm-b5b9-20e1e86a12d8";
 
-		public static ActionResult Dispatch(Controller sourceController, string sourceActionName, object viewModel)
-		{
+		public static ActionResult Dispatch(Controller sourceController, object viewModel, [CallerMemberName] string sourceActionName = "")
+        {
 			if (sourceController == null) throw new NullException(() => sourceController);
 			if (string.IsNullOrEmpty(sourceActionName)) throw new NullOrEmptyException(() => sourceActionName);
 			if (viewModel == null) throw new NullException(() => viewModel);
@@ -75,7 +76,7 @@ namespace JJ.Framework.Mvc
 			IViewMapping destMapping = GetViewMappingByViewModel(viewModel);
 
 			var sourceControllerAccessor = new ControllerAccessor(sourceController);
-			string sourceControllerName = GetControllerName(sourceController);
+			string sourceControllerName = sourceController.GetControllerName();
 
 			bool hasActionName = !string.IsNullOrEmpty(destMapping.ControllerGetActionName);
 			if (!hasActionName)
@@ -101,7 +102,7 @@ namespace JJ.Framework.Mvc
 			{
 				sourceController.TempData[TempDataKey] = viewModel;
 
-				object parameters = destMapping.GetRouteValues(viewModel);
+				object parameters = destMapping.TryGetRouteValues(viewModel);
 				return sourceControllerAccessor.RedirectToAction(destMapping.ControllerGetActionName, destMapping.ControllerName, parameters);
 			}
 		}
@@ -374,12 +375,6 @@ namespace JJ.Framework.Mvc
 		}
 
 		// Helpers
-
-		private static string GetControllerName(Controller sourceController)
-		{
-			string controllerName = (string)sourceController.ControllerContext.RequestContext.RouteData.Values["controller"];
-			return controllerName;
-		}
 
 		private static string GetActionKey(string controllerName, string actionName)
 		{

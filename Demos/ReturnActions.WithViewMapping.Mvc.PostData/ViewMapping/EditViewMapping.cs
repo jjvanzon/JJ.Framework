@@ -9,6 +9,6 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.ViewMapping
 	[UsedImplicitly]
 	public class EditViewMapping : EditViewMappingBase
 	{
-		protected override object GetRouteValues(EditViewModel viewModel) => new { id = viewModel.Entity.ID };
+		protected override object TryGetRouteValues(EditViewModel viewModel) => new { id = viewModel.Entity.ID };
 	}
 }

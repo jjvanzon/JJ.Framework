@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ViewModel_NullCoalesce_Extensions.cs" />
+    <Compile Include="Helpers\SecurityAsserter.cs" />
     <Compile Include="Presenters\DetailsPresenter.cs" />
     <Compile Include="Presenters\EditPresenter.cs" />
     <Compile Include="Presenters\ListPresenter.cs" />

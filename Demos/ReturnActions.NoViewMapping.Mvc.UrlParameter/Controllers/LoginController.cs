@@ -3,6 +3,7 @@ using JJ.Demos.ReturnActions.Mvc.Controllers;
 using JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Names;
 using JJ.Demos.ReturnActions.NoViewMapping.Presenters;
 using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
+using JJ.Framework.Presentation;
 using ActionDispatcher = JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Helpers.ActionDispatcher;
 
 namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
@@ -17,7 +18,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 				viewModel = presenter.Show(ret);
 			}
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel);
+			return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
 		[HttpPost]
@@ -25,15 +26,11 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 		{
 			var presenter = new LoginPresenter();
 			viewModel.ReturnAction = ret;
-			object viewModel2 = presenter.Login(viewModel);
+			AuthenticatedViewModel viewModel2 = presenter.Login(viewModel);
 
-			// TODO: This is dirty.
-			if (!(viewModel2 is LoginViewModel))
-			{
-				SetAuthenticatedUserName(viewModel.UserName);
-			}
+			SetAuthenticatedUserName(viewModel.UserName);
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel2);
+			return ActionDispatcher.Dispatch(this, viewModel2);
 		}
 	}
 }

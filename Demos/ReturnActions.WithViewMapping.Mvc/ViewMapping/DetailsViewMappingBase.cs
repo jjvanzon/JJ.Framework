@@ -15,6 +15,6 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.ViewMapping
             MapPresenter(nameof(PresenterNames.DetailsPresenter), nameof(PresenterActionNames.Show));
         }
 
-        protected sealed override object GetRouteValues(DetailsViewModel viewModel) => new { id = viewModel.Entity.ID };
+        protected sealed override object TryGetRouteValues(DetailsViewModel viewModel) => new { id = viewModel.Entity.ID };
     }
 }

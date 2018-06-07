@@ -1,4 +1,4 @@
-﻿using JJ.Demos.ReturnActions.WithViewMapping.Mvc.Names;
+﻿using JJ.Demos.ReturnActions.Mvc.Names;
 
 // ReSharper disable InconsistentNaming
 

@@ -19,7 +19,7 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Controllers
 				viewModel = presenter.Show();
 			}
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel);
+			return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
 		public ActionResult Details(int id)
@@ -30,7 +30,7 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Controllers
 				viewModel = presenter.Show(id);
 			}
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Details), viewModel);
+			return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
 		public ActionResult Edit(int id)
@@ -41,7 +41,7 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Controllers
 				viewModel = presenter.Show(id);
 			}
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel);
+			return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
 		[HttpPost]
@@ -50,7 +50,7 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Controllers
 			var presenter = new EditPresenter(GetAuthenticatedUserName());
 			object viewModel2 = presenter.Save(viewModel);
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel2);
+			return ActionDispatcher.Dispatch(this, viewModel2);
 		}
 
 		public ActionResult Logout()
@@ -63,7 +63,7 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Controllers
 
 			SetAuthenticatedUserName(null);
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Logout), viewModel);
+			return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
 		// These methods are hacks necessary to make multi-level return actions
@@ -78,7 +78,7 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Controllers
 				viewModel = presenter.Edit(id, GetAuthenticatedUserName());
 			}
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel);
+			return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
 		[HttpPost]
@@ -86,7 +86,7 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Controllers
 		{
 			var presenter = new EditPresenter(GetAuthenticatedUserName());
 			object viewModel2 = presenter.Save(viewModel);
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel2);
+			return ActionDispatcher.Dispatch(this, viewModel2);
 		}
 
 		public ActionResult EditFromDetails(int id)
@@ -97,7 +97,7 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Controllers
 				viewModel = presenter.Edit(id, GetAuthenticatedUserName());
 			}
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel);
+			return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
 		[HttpPost]
@@ -105,7 +105,7 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Controllers
 		{
 			var presenter = new EditPresenter(GetAuthenticatedUserName());
 			object viewModel2 = presenter.Save(viewModel);
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Edit), viewModel2);
+			return ActionDispatcher.Dispatch(this, viewModel2);
 		}
 	}
 }

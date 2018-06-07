@@ -20,12 +20,24 @@ namespace JJ.Framework.Exceptions
 		/// If the value is a simple type and not empty, it will be put in the returned text.
 		/// </summary>
 		public static string GetTextWithValue(Expression<Func<object>> expression)
-		{
-			string text = ExpressionHelper.GetText(expression);
-			object value = ExpressionHelper.GetValue(expression);
-			bool mustShowValue = ReflectionHelper.IsSimpleType(value) && !string.IsNullOrEmpty(Convert.ToString(value));
-			if (mustShowValue) text += $" of {value}";
-			return text;
-		}
+        {
+            string text = ExpressionHelper.GetText(expression);
+            object value = ExpressionHelper.GetValue(expression);
+            bool mustShowValue = GetMustShowValue(value);
+            if (mustShowValue) text += $" of {value}";
+            return text;
+        }
+
+        private static bool GetMustShowValue(object value)
+        {
+            if (ReflectionHelper.IsSimpleType(value) && !string.IsNullOrEmpty(Convert.ToString(value)))
+            {
+                return true;
+            }
+
+            bool isType = value?.GetType() == typeof(Type);
+
+            return isType;
+        }
 	}
 }

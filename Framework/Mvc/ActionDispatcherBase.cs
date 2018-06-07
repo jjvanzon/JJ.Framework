@@ -1,31 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Web.Mvc;
-using JJ.Demos.ReturnActions.Mvc.Names;
-using JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Names;
-using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
-using JJ.Demos.ReturnActions.ViewModels;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Exceptions.Comparative;
-using JJ.Framework.Mvc;
 
-namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Helpers
+// ReSharper disable VirtualMemberCallInConstructor
+
+namespace JJ.Framework.Mvc
 {
-    // TODO: Use ActionDispatcherBase from JJ.Framework.Mvc.
-    public static class ActionDispatcher
+    [PublicAPI]
+    public abstract class ActionDispatcherBase
     {
-        private static readonly Dictionary<Type, (string controllerName, string httpGetActionName, string viewName)>
-            _viewModelTypeToActionTupleDictionary =
-                new Dictionary<Type, (string controllerName, string httpGetActionName, string viewName)>
-                {
-                    [typeof(ListViewModel)] = (nameof(ControllerNames.Demo), nameof(ActionNames.Index), nameof(ViewNames.Index)),
-                    [typeof(DetailsViewModel)] = (nameof(ControllerNames.Demo), nameof(ActionNames.Details), nameof(ViewNames.Details)),
-                    [typeof(EditViewModel)] = (nameof(ControllerNames.Demo), nameof(ActionNames.Edit), nameof(ViewNames.Edit)),
-                    [typeof(LoginViewModel)] = (nameof(ControllerNames.Login), nameof(ActionNames.Index), nameof(ViewNames.Index))
-                };
+        public const string TEMP_DATA_KEY = "vm-b5b9-20e1e86a12d8";
 
-        public static ActionResult Dispatch(
+        public ActionDispatcherBase()
+            => _viewModelTypeToActionTupleDictionary = GetDispatchTuples()
+                   .ToDictionary(
+                       x => x.viewModelType,
+                       x => (x.controllerName, x.httpGetActionName, x.viewName));
+
+        protected abstract IList<(Type viewModelType, string controllerName, string httpGetActionName, string viewName)>
+            GetDispatchTuples();
+
+        private readonly Dictionary<Type, (string controllerName, string httpGetActionName, string viewName)>
+            _viewModelTypeToActionTupleDictionary;
+
+        public ActionResult Dispatch(
             Controller sourceController,
             object viewModel,
             [CallerMemberName] string sourceActionName = "")
@@ -67,24 +70,14 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Helpers
                 return sourceControllerAccessor.View(destViewName, viewModel);
             }
 
-            sourceController.TempData[nameof(TempDataKeys.ViewModel)] = viewModel;
+            sourceController.TempData[TEMP_DATA_KEY] = viewModel;
 
             object parameters = TryGetRouteValues(viewModel);
 
             return sourceControllerAccessor.RedirectToAction(destHttpGetActionName, destControllerName, parameters);
         }
 
-        private static object TryGetRouteValues(object viewModel)
-        {
-            switch (viewModel)
-            {
-                case DetailsViewModel viewModel2: return new { id = viewModel2.Entity.ID };
-                case EditViewModel viewModel2: return new { id = viewModel2.Entity.ID };
-            }
-
-            return null;
-        }
-
-        private static IList<string> GetValidationMesssages(object viewModel) => new string[0];
+        protected abstract object TryGetRouteValues(object viewModel);
+        protected abstract IList<string> GetValidationMesssages(object viewModel);
     }
 }

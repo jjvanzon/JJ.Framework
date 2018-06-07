@@ -7,6 +7,6 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter.ViewMapping
 	[UsedImplicitly]
 	public class LoginViewMapping : LoginViewMappingBase
 	{
-		protected override object GetRouteValues(LoginViewModel viewModel) => new { ret = TryGetReturnUrl(viewModel.ReturnAction) };
+		protected override object TryGetRouteValues(LoginViewModel viewModel) => new { ret = TryGetReturnUrl(viewModel.ReturnAction) };
 	}
 }

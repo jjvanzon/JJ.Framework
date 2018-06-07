@@ -19,7 +19,7 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Controllers
 				viewModel = presenter.Show();
 			}
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel);
+			return ActionDispatcher.Dispatch(this, viewModel);
 		}
 
 		[HttpPost]
@@ -34,7 +34,7 @@ namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.Controllers
 				SetAuthenticatedUserName(viewModel.UserName);
 			}
 
-			return ActionDispatcher.Dispatch(this, nameof(ActionNames.Index), viewModel2);
+			return ActionDispatcher.Dispatch(this, viewModel2);
 		}
 	}
 }

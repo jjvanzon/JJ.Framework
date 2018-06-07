@@ -1,11 +1,13 @@
 ﻿using System.Reflection;
 using System.Web.Mvc;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Mvc
 {
-    internal class ControllerAccessor
+    [PublicAPI]
+    public class ControllerAccessor
     {
         private static readonly MethodInfo _viewMethodInfo;
         private static readonly MethodInfo _redirectToAction_MethodInfo_With2Parameters;
