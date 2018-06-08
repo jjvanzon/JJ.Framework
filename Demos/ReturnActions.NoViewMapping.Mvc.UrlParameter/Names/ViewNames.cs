@@ -6,5 +6,6 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Names
     public abstract class ViewNames : ViewNamesBase
     {
         public void Error() => throw new NameOfOnlyException();
+        public void NotFound() => throw new NameOfOnlyException();
     }
 }

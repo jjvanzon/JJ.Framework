@@ -5,12 +5,12 @@ using JJ.Framework.Web;
 
 namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 {
-    public class NotAuthorizedController : MasterController
+    public class NotFoundController : MasterController
     {
         public ActionResult Index()
         {
-            Response.StatusCode = HttpStatusCodes.NOT_AUTHORIZED_403;
-            return View(nameof(ViewNames.NotAuthorized));
+            Response.StatusCode = HttpStatusCodes.NOT_FOUND_404;
+            return View(nameof(ViewNames.NotFound));
         }
     }
 }

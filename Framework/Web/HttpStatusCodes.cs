@@ -7,6 +7,7 @@ namespace JJ.Framework.Web
     {
         public const int NOT_AUTHENTICATED_401 = 401;
         public const int NOT_AUTHORIZED_403 = 403;
+        public const int NOT_FOUND_404 = 404;
         public const int INTERNAL_SERVER_ERROR_500 = 500;
     }
 }

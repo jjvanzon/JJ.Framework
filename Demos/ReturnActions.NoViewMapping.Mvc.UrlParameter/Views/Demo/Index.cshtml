@@ -16,7 +16,8 @@
         <th>Action</th>
     </tr>
 
-    @foreach (var item in Model.List) {
+    @foreach (var item in Model.List)
+    {
         <tr>
             <td>
                 @item.ID
@@ -25,7 +26,7 @@
                 @item.Name
             </td>
             <td>
-                @Html.ActionLink("Edit", nameof(ActionNames.Edit), new 
+                @Html.ActionLink("Edit", nameof(ActionNames.Edit), new
                 {
                     id = item.ID,
                     ret = Url.Action(nameof(ActionNames.Index), nameof(ControllerNames.Demo))
@@ -38,3 +39,12 @@
 </table>
 
 @Html.ActionLink("Logout", nameof(ActionNames.Logout))
+<br />
+<br />
+@Html.ActionLink("Generate Authentication Error", nameof(ActionNames.GenerateAthenticationError))
+<br />
+@Html.ActionLink("Generate Authorization Error", nameof(ActionNames.GenerateAuthorizationError))
+<br />
+@Html.ActionLink("Generate Not Found Error", nameof(ActionNames.GenerateNotFoundError))
+<br />
+@Html.ActionLink("Generate Arbitrary Error", nameof(ActionNames.GenerateArbitraryError))
