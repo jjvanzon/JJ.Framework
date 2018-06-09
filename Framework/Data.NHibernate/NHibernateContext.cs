@@ -178,7 +178,7 @@ namespace JJ.Framework.Data.NHibernate
 				throw new Exception("sessionImplementor.GetEntityPersister returned null.");
 			}
 
-			object id = entityPersister.GetIdentifier(obj, EntityMode.Poco);
+			object id = entityPersister.GetIdentifier(obj);
 			return id;
 		}
 
