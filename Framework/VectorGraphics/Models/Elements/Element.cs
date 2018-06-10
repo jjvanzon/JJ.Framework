@@ -100,12 +100,9 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 			}
 		}
 
-		internal void NullifyParent()
-		{
-			_parentRelationship.Parent = null;
-		}
+		internal void NullifyParent() => _parentRelationship.Parent = null;
 
-		public ElementChildren Children { get; }
+	    public ElementChildren Children { get; }
 
 		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}

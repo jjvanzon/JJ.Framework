@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
+namespace JJ.Framework.Reflection.PerformanceTests.Translators
 {
 	/// <summary>
 	/// Used to create generic ExpressionHelpers for variations that do not have a ToStringTranslator.

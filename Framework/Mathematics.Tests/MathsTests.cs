@@ -16,9 +16,6 @@ namespace JJ.Framework.Mathematics.Tests
 		}
 
 		[TestMethod]
-		public void Test_Maths_Pow_WithNegativeExponent_AlwaysReturns1()
-		{
-			AssertHelper.AreEqual(1, () => MathHelper.Pow(2, -1));
-		}
+		public void Test_Maths_Pow_WithNegativeExponent_AlwaysReturns1() => AssertHelper.AreEqual(1, () => MathHelper.Pow(2, -1));
 	}
 }

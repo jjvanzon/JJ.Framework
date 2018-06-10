@@ -6,12 +6,9 @@ namespace JJ.Framework.VectorGraphics.Gestures
 	/// <summary> Base class for gestures. </summary>
 	public abstract class GestureBase
 	{
-		public GestureBase()
-		{
-			Internals = new GestureInternals(this);
-		}
+		public GestureBase() => Internals = new GestureInternals(this);
 
-		/// <summary> Base member does nothing. </summary>
+	    /// <summary> Base member does nothing. </summary>
 		protected virtual void HandleMouseDown(object sender, MouseEventArgs e)
 		{ }
 

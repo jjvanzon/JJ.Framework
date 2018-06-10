@@ -35,14 +35,8 @@ namespace JJ.Framework.WinForms.Extensions
 			}
 		}
 
-		public static IList<TControl> GetDescendantsOfType<TControl>(this Control control)
-		{
-			return ControlHelper.GetDescendantsOfType<TControl>(control);
-		}
+		public static IList<TControl> GetDescendantsOfType<TControl>(this Control control) => ControlHelper.GetDescendantsOfType<TControl>(control);
 
-		public static UserControl GetAncestorUserControl(this Control control)
-		{
-			return ControlHelper.GetAncestorUserControl(control);
-		}
+	    public static UserControl GetAncestorUserControl(this Control control) => ControlHelper.GetAncestorUserControl(control);
 	}
 }

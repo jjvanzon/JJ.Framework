@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Text;
 using System.Linq.Expressions;
+using System.Text;
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
+namespace JJ.Framework.Reflection.PerformanceTests.Translators
 {
 	public class ExpressionToStringCustomTranslator_EntryPointExpensive : IExpressionToStringTranslator
 	{
@@ -10,17 +10,11 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
 		public string Result => _stringBuilder.ToString().Substring(1);
 
-		public void Visit<T>(Expression<Func<T>> expression)
-		{
-			Visit((LambdaExpression)expression);
-		}
+		public void Visit<T>(Expression<Func<T>> expression) => Visit((LambdaExpression)expression);
 
-		public void Visit(LambdaExpression expression)
-		{
-			Visit(expression.Body);
-		}
+	    public void Visit(LambdaExpression expression) => Visit(expression.Body);
 
-		public void Visit(Expression node)
+	    public void Visit(Expression node)
 		{
 			switch (node.NodeType)
 			{

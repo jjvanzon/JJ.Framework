@@ -52,8 +52,7 @@ namespace JJ.Framework.Exceptions.Tests
 
 			[TestMethod]
 			public void Test_<#= codeName #>Exception_WithNameOf()
-			{
-				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+				=> AssertHelper.ThrowsException<<#= codeName #>Exception>(
 					() =>
 					{
 						object value;
@@ -61,12 +60,10 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new <#= codeName #>Exception(nameof(value));
 					},
 					"value <#= displayText #>.");
-			}
 
 			[TestMethod]
 			public void Test_<#= codeName #>Exception_WithExpression_WithSinglePart()
-			{
-				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+				=> AssertHelper.ThrowsException<<#= codeName #>Exception>(
 					() =>
 					{
 						object value = 1;
@@ -74,12 +71,10 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new <#= codeName #>Exception(() => value);
 					},
 					"value of 1 <#= displayText #>.");
-			}
 
 			[TestMethod]
 			public void Test_<#= codeName #>Exception_WithExpression_WithMultipleParts()
-			{
-				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+				=> AssertHelper.ThrowsException<<#= codeName #>Exception>(
 					() => 
 					{
 						TestItem testItem = _testItem;
@@ -87,21 +82,18 @@ namespace JJ.Framework.Exceptions.Tests
 						throw new <#= codeName #>Exception(() => testItem.Parent);
 					},
 					"testItem.Parent <#= displayText #>.");
-			}
 
 			[TestMethod]
 			public void Test_<#= codeName #>Exception_WithAnonymousType()
-			{
-				AssertHelper.ThrowsException<<#= codeName #>Exception>(
+				=> AssertHelper.ThrowsException<<#= codeName #>Exception>(
 					() =>
 					{
 						int customerNumber = 1234;
-						TestEnum customerType = TestEnum.Subscriber;
+						var customerType = TestEnum.Subscriber;
 
 						throw new <#= codeName #>Exception(new { customerNumber, customerType });
 					},
 					"{ customerNumber = 1234, customerType = Subscriber } <#= displayText #>.");
-			}
 
 		<# } #>
 

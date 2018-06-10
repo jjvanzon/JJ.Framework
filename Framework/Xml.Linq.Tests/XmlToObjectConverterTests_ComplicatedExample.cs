@@ -3,6 +3,7 @@ using JJ.Framework.Xml.Linq.Tests.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Reflection;
 using JJ.Framework.Xml.Linq.Tests.Helpers;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Framework.Xml.Linq.Tests
 {
@@ -12,7 +13,7 @@ namespace JJ.Framework.Xml.Linq.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_ComplicatedExample()
 		{
-			string xml = EmbeddedResourceHelper.GetEmbeddedResourceText(Assembly.GetExecutingAssembly(), "TestResources", "ComplicatedExample.xml"); ;
+			string xml = EmbeddedResourceHelper.GetEmbeddedResourceText(Assembly.GetExecutingAssembly(), "TestResources", "ComplicatedExample.xml");
 			var converter = new XmlToObjectConverter<ComplicatedElement>(cultureInfo: TestHelper.FormattingCulture);
 			ComplicatedElement destObject = converter.Convert(xml);
 		}

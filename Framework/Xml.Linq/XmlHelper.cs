@@ -1,12 +1,13 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Xml.Linq
 {
+    [PublicAPI]
 	public static class XmlHelper
 	{
 		// Elements

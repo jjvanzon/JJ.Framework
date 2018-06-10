@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Reflection;
 using System.Transactions;
@@ -9,123 +8,116 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Data.EntityFramework5
 {
-	[UsedImplicitly]
-	public class EntityFramework5Context : ContextBase
-	{
-		private TransactionScope _transactionScope;
-		//private IDbTransaction _transaction;
+    [UsedImplicitly]
+    public class EntityFramework5Context : ContextBase
+    {
+        private TransactionScope _transactionScope;
+        //private IDbTransaction _transaction;
 
-		public DbContext Context { get; private set; }
+        public DbContext Context { get; private set; }
 
-		public EntityFramework5Context(string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
-			: base(persistenceLocation, modelAssembly, mappingAssembly, dialect)
-		{
-			Context = OpenContext();
-		}
+        public EntityFramework5Context(string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
+            : base(persistenceLocation, modelAssembly, mappingAssembly, dialect)
+            => Context = OpenContext();
 
-		public override TEntity TryGet<TEntity>(object id)
-		{
-			// EntityFramework will return an entity with ID 0 
-			// if there is an uncommitted, non-flushed object,
-			// which is inconsistent with other ORM's.
-			// You would expect null to be returned.
-			// TODO: Performance penalty?
-			// TODO: I am not sure this is the right fix for this.
-			if (id == null) throw new NullException(() => id);
+        public override TEntity TryGet<TEntity>(object id)
+        {
+            // EntityFramework will return an entity with ID 0 
+            // if there is an uncommitted, non-flushed object,
+            // which is inconsistent with other ORM's.
+            // You would expect null to be returned.
+            // TODO: Performance penalty?
+            // TODO: I am not sure this is the right fix for this.
+            if (id == null) throw new NullException(() => id);
 
-			bool isDefault = ReflectionHelper.IsDefault(id);
-			if (isDefault)
-			{
-				return null;
-			}
+            bool isDefault = ReflectionHelper.IsDefault(id);
 
-			return Context.Set<TEntity>().Find(id);
-		}
+            if (isDefault)
+            {
+                return null;
+            }
 
-		public override TEntity Create<TEntity>()
-		{
-			var entity = new TEntity();
-			Context.Set<TEntity>().Add(entity);
-			return entity;
-		}
+            return Context.Set<TEntity>().Find(id);
+        }
 
-		public override void Insert(object entity)
-		{
-			if (entity == null) throw new NullException(() => entity);
-			Context.Set(entity.GetType()).Add(entity);
-		}
+        public override TEntity Create<TEntity>()
+        {
+            var entity = new TEntity();
+            Context.Set<TEntity>().Add(entity);
+            return entity;
+        }
 
-		public override void Update(object entity)
-		{
-			if (entity == null) throw new NullException(() => entity);
-			Context.Entry(entity.GetType()).State = EntityState.Modified;
-		}
+        public override void Insert(object entity)
+        {
+            if (entity == null) throw new NullException(() => entity);
+            Context.Set(entity.GetType()).Add(entity);
+        }
 
-		public override void Delete(object entity)
-		{
-			if (entity == null) throw new NullException(() => entity);
-			Context.Set(entity.GetType()).Remove(entity);
-		}
+        public override void Update(object entity)
+        {
+            if (entity == null) throw new NullException(() => entity);
+            Context.Entry(entity.GetType()).State = EntityState.Modified;
+        }
 
-		public override IEnumerable<TEntity> Query<TEntity>()
-		{
-			return Context.Set<TEntity>();
-		}
+        public override void Delete(object entity)
+        {
+            if (entity == null) throw new NullException(() => entity);
+            Context.Set(entity.GetType()).Remove(entity);
+        }
 
-		// Transactions
+        public override IEnumerable<TEntity> Query<TEntity>() => Context.Set<TEntity>();
 
-		private DbContext OpenContext()
-		{
-			_transactionScope = new TransactionScope();
+        // Transactions
 
-			DbContext context = UnderlyingEntityFramework5ContextFactory.CreateContext(Location, MappingAssembly);
-			context.Database.Connection.Open();
-			//_transaction = context.Database.Connection.BeginTransaction();
-			return context;
-		}
+        private DbContext OpenContext()
+        {
+            _transactionScope = new TransactionScope();
 
-		private void CloseContext(DbContext underlyingContext)
-		{
-			//if (_transaction != null)
-			//{
-			//	_transaction.Rollback();
-			//}
+            DbContext context = UnderlyingEntityFramework5ContextFactory.CreateContext(Location, MappingAssembly);
+            context.Database.Connection.Open();
+            //_transaction = context.Database.Connection.BeginTransaction();
+            return context;
+        }
 
-			underlyingContext?.Dispose();
+        private void CloseContext(DbContext underlyingContext)
+        {
+            //if (_transaction != null)
+            //{
+            //	_transaction.Rollback();
+            //}
 
-			_transactionScope?.Dispose();
+            underlyingContext?.Dispose();
 
-			_transactionScope = null;
-		}
+            _transactionScope?.Dispose();
 
-		public override void Commit()
-		{
-			Flush();
+            _transactionScope = null;
+        }
 
-			//_transaction.Commit();
-			_transactionScope.Complete();
+        public override void Commit()
+        {
+            Flush();
 
-			CloseContext(Context);
-			Context = OpenContext();
-		}
+            //_transaction.Commit();
+            _transactionScope.Complete();
 
-		public override void Flush()
-		{
-			Context.SaveChanges();
-		}
+            CloseContext(Context);
+            Context = OpenContext();
+        }
 
-		public override void Rollback()
-		{
-			CloseContext(Context);
-			Context = OpenContext();
-		}
+        public override void Flush() => Context.SaveChanges();
 
-		public override void Dispose()
-		{
-			if (Context != null)
-			{
-				CloseContext(Context);
-			}
-		}
-	}
+        public override void Rollback()
+        {
+            CloseContext(Context);
+            Context = OpenContext();
+        }
+
+        public override void Dispose()
+        {
+            if (Context != null)
+            {
+                CloseContext(Context);
+            }
+        }
+    }
 }

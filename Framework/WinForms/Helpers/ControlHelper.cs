@@ -14,12 +14,9 @@ namespace JJ.Framework.WinForms.Helpers
 		/// Alternative form Graphics.MeasureString, that uses FontScaling.
 		/// LIMITATION: Only works if the control is placed inside a UserControl.
 		/// </summary>
-		public static SizeF MeasureStringWithFontScaling(Graphics graphics, Control control)
-		{
-			return MeasureStringWithFontScaling(graphics, control.Font, control.Text, control);
-		}
+		public static SizeF MeasureStringWithFontScaling(Graphics graphics, Control control) => MeasureStringWithFontScaling(graphics, control.Font, control.Text, control);
 
-		/// <summary>
+	    /// <summary>
 		/// Alternative form Graphics.MeasureString that uses Font scaling (behavior similar to Form.AutoScaleMode = Font).
 		/// LIMITATION: Only works if the control is placed inside a UserControl
 		/// and only after the ParentForm has been assigned.
@@ -72,14 +69,9 @@ namespace JJ.Framework.WinForms.Helpers
 			throw new Exception($"No ancestor UserControl found for Control '{control.Name}'.");
 		}
 
-		public static Control GetAncestorForm(Control control)
-		{
-			//if (control.Parent)
-			//control.Parent
-			throw new NotImplementedException();
-		}
+		public static Control GetAncestorForm(Control control) => throw new NotImplementedException();
 
-		public static IList<TControl> GetDescendantsOfType<TControl>(Control control)
+	    public static IList<TControl> GetDescendantsOfType<TControl>(Control control)
 		{
 			if (control == null) throw new NullException(() => control);
 

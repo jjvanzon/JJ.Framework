@@ -11,36 +11,21 @@ namespace JJ.Framework.Xml.Tests
 	public class XmlToObjectConverterTests_Collections
 	{
 		[TestMethod]
-		public void Test_XmlToObjectConverter_Collection_Array()
-		{
-			TestHelper.Test_XmlToObjectConverter_Collection<int[]>();
-		}
+		public void Test_XmlToObjectConverter_Collection_Array() => TestHelper.Test_XmlToObjectConverter_Collection<int[]>();
 
-		[TestMethod]
-		public void Test_XmlToObjectConverter_Collection_ListOfT()
-		{
-			TestHelper.Test_XmlToObjectConverter_Collection<List<int>>();
-		}
+	    [TestMethod]
+		public void Test_XmlToObjectConverter_Collection_ListOfT() => TestHelper.Test_XmlToObjectConverter_Collection<List<int>>();
 
-		[TestMethod]
-		public void Test_XmlToObjectConverter_Collection_IListOfT()
-		{
-			TestHelper.Test_XmlToObjectConverter_Collection<IList<int>>();
-		}
+	    [TestMethod]
+		public void Test_XmlToObjectConverter_Collection_IListOfT() => TestHelper.Test_XmlToObjectConverter_Collection<IList<int>>();
 
-		[TestMethod]
-		public void Test_XmlToObjectConverter_Collection_ICollectionOfT()
-		{
-			TestHelper.Test_XmlToObjectConverter_Collection<ICollection<int>>();
-		}
+	    [TestMethod]
+		public void Test_XmlToObjectConverter_Collection_ICollectionOfT() => TestHelper.Test_XmlToObjectConverter_Collection<ICollection<int>>();
 
-		[TestMethod]
-		public void Test_XmlToObjectConverter_Collection_IEnumerableOfT()
-		{
-			TestHelper.Test_XmlToObjectConverter_Collection<IEnumerable<int>>();
-		}
+	    [TestMethod]
+		public void Test_XmlToObjectConverter_Collection_IEnumerableOfT() => TestHelper.Test_XmlToObjectConverter_Collection<IEnumerable<int>>();
 
-		[TestMethod]
+	    [TestMethod]
 		public void Test_XmlToObjectConverter_Array_WithExplicitAnnotation()
 		{
 			string xml = @"

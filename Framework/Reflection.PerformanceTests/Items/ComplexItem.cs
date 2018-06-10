@@ -1,9 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
+// ReSharper disable InconsistentNaming
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Items
+namespace JJ.Framework.Reflection.PerformanceTests.Items
 {
-	[DebuggerDisplay("Item {Name} [{Index}] = {Value}")]
+	[DebuggerDisplay("Item {Name} [{Index}]")]
 	public class ComplexItem
 	{
 		public string Name;
@@ -11,25 +12,13 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Items
 
 		public string Field = "FieldResult";
 
-		public ComplexItem Property
-		{
-			get { return new ComplexItem { Name = "PropertyResult" }; }
-		}
+		public ComplexItem Property => new ComplexItem { Name = "PropertyResult" };
 
-		public ComplexItem Method(int parameter)
-		{
-			return new ComplexItem { Name = "MethodResult" };
-		}
+        public ComplexItem Method(int parameter) => new ComplexItem { Name = "MethodResult" };
 
-		public ComplexItem MethodWithParams(params int[] array)
-		{
-			return new ComplexItem { Name = "MethodWithParamsResult" };
-		}
+        public ComplexItem MethodWithParams(params int[] array) => new ComplexItem { Name = "MethodWithParamsResult" };
 
-		[IndexerName("Indexer")]
-		public ComplexItem this[int index]
-		{
-			get { return new ComplexItem { Name = "IndexerResult" }; }
-		}
+        [IndexerName("Indexer")]
+		public ComplexItem this[int index] => new ComplexItem { Name = "IndexerResult" };
 	}
 }

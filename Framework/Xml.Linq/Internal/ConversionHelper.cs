@@ -5,6 +5,8 @@ using System.Xml;
 using System.Xml.Serialization;
 using JJ.Framework.Conversion;
 using JJ.Framework.Reflection;
+// ReSharper disable ConvertIfStatementToSwitchStatement
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
 
 namespace JJ.Framework.Xml.Linq.Internal
 {
@@ -68,7 +70,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 				return Enum.Parse(type, input);
 			}
 
-			if (_xmlConvertFuncDictionary.TryGetValue(type, out var func))
+			if (_xmlConvertFuncDictionary.TryGetValue(type, out Func<string, object> func))
 			{
 				return func(input);
 			}
@@ -165,7 +167,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// Returns whether the type should be handled as an XML Array.
 		/// This means whether it is Array or List&lt;T&gt;-assignable.
 		/// </summary>
-		public static bool IsSupportedCollectionType(Type type)
+		private static bool IsSupportedCollectionType(Type type)
 		{
 			bool isArray = type.IsAssignableTo(typeof(Array));
 			if (isArray)

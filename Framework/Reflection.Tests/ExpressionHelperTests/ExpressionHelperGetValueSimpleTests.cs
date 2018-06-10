@@ -20,14 +20,14 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		[TestMethod]
 		public void Test_ExpressionHelpers_GetValue_Field()
 		{
-			Item item = new Item { _field = 1 };
+			var item = new Item { _field = 1 };
 			Assert.AreEqual(1, ExpressionHelper.GetValue(() => item._field));
 		}
 
 		[TestMethod]
 		public void Test_ExpressionHelpers_GetValue_Property()
 		{
-			Item item = new Item { Property = 1 };
+			var item = new Item { Property = 1 };
 			Assert.AreEqual(1, ExpressionHelper.GetValue(() => item.Property));
 		}
 
@@ -41,9 +41,9 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		[TestMethod]
 		public void Test_ExpressionHelpers_GetValue_WithQualifier()
 		{
-			Item grandParentItem = new Item { Index = 10 };
-			Item parentItem = new Item { Parent = grandParentItem };
-			Item item = new Item { Parent = parentItem };
+			var grandParentItem = new Item { Index = 10 };
+			var parentItem = new Item { Parent = grandParentItem };
+			var item = new Item { Parent = parentItem };
 
 			Assert.AreEqual(10, ExpressionHelper.GetValue(() => item.Parent.Parent.Index));
 		}

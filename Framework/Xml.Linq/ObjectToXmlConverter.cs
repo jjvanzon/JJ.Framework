@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.IO;
@@ -20,6 +21,7 @@ namespace JJ.Framework.Xml.Linq
 	/// Under certain platforms standard XML serialization may not be available 
 	/// or may not be the best option. That is why this class exists.
 	/// </summary>
+	[PublicAPI]
 	public class ObjectToXmlConverter
 	{
 		private readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
@@ -84,9 +86,7 @@ namespace JJ.Framework.Xml.Linq
 			string rootElementName = "root",
 			IEnumerable<CustomArrayItemNameMapping> customArrayItemNameMappings = null)
 		{
-			if (rootElementName == null) throw new NullException(() => rootElementName);
-
-			_rootElementName = rootElementName;
+		    _rootElementName = rootElementName ?? throw new NullException(() => rootElementName);
 			_mustGenerateNilAttributes = mustGenerateNilAttributes;
 			_mustSortElementsByName = mustSortElementsByName;
 			_cultureInfo = cultureInfo;
@@ -142,7 +142,7 @@ namespace JJ.Framework.Xml.Linq
 		/// </summary>
 		private XElement CreateRootElement()
 		{
-			XElement rootElement = new XElement(_rootElementName);
+			var rootElement = new XElement(_rootElementName);
 
 			foreach (XAttribute namespaceDeclarationAttribute in _nameManager.GetNamespaceDeclarationAttributes())
 			{
@@ -273,7 +273,7 @@ namespace JJ.Framework.Xml.Linq
 		private XElement ConvertToLeafElement(object sourceValue, XName destXName)
 		{
 			object destValue = ConversionHelper.FormatValue(sourceValue, _cultureInfo);
-			XElement destElement = new XElement(destXName, destValue);
+			var destElement = new XElement(destXName, destValue);
 			return destElement;
 		}
 
@@ -335,7 +335,7 @@ namespace JJ.Framework.Xml.Linq
 				throw new Exception($"Collection of type '{sourceCollectionProperty.PropertyType}' does not implement IList.");
 			}
 
-			IList sourceCollection = (IList)sourceCollectionObject;
+			var sourceCollection = (IList)sourceCollectionObject;
 
 			XName destXName = _nameManager.GetXmlArrayXName(sourceCollectionProperty);
 

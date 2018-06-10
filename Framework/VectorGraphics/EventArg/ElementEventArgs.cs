@@ -8,9 +8,6 @@ namespace JJ.Framework.VectorGraphics.EventArg
 	{
 		public Element Element { get; }
 
-		public ElementEventArgs(Element element)
-		{
-			Element = element ?? throw new NullException(() => element);
-		}
+		public ElementEventArgs(Element element) => Element = element ?? throw new NullException(() => element);
 	}
 }

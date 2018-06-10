@@ -56,112 +56,79 @@ namespace JJ.Framework.Exceptions.Tests
 		}
 
 		[TestMethod]
-		public void Test_InvalidIndexException()
-		{
-			AssertHelper.ThrowsException<InvalidIndexException>(
-				() =>
-				{
-					int index = 1;
-					var list = new List<int>();
+		public void Test_InvalidIndexException() => AssertHelper.ThrowsException<InvalidIndexException>(
+		    () =>
+		    {
+		        int index = 1;
+		        var list = new List<int>();
 
-					throw new InvalidIndexException(() => index, () => list.Count);
-				},
-				"index of 1 is an invalid index for list with count 0.");
-		}
+		        throw new InvalidIndexException(() => index, () => list.Count);
+		    },
+		    "index of 1 is an invalid index for list with count 0.");
 
-		[TestMethod]
-		public void Test_InvalidValueException()
-		{
-			AssertHelper.ThrowsException<InvalidValueException>(
-				() =>
-				{
-					var testEnum = TestEnum.Subscriber;
+	    [TestMethod]
+		public void Test_InvalidValueException() => AssertHelper.ThrowsException<InvalidValueException>(
+	        () =>
+	        {
+	            var testEnum = TestEnum.Subscriber;
 
-					throw new InvalidValueException(testEnum);
-				},
-				"Invalid TestEnum value: 'Subscriber'.");
-		}
+	            throw new InvalidValueException(testEnum);
+	        },
+	        "Invalid TestEnum value: 'Subscriber'.");
 
-		[TestMethod]
-		public void Test_IsEnumTypeException()
-		{
-			AssertHelper.ThrowsException<IsEnumTypeException>(
-				() => throw new IsEnumTypeException(typeof(TestItem)),
-				"Type TestItem cannot be an enum.");
-		}
+	    [TestMethod]
+		public void Test_IsEnumTypeException() => AssertHelper.ThrowsException<IsEnumTypeException>(
+	        () => throw new IsEnumTypeException(typeof(TestItem)),
+	        "Type TestItem cannot be an enum.");
 
-		[TestMethod]
-		public void Test_IsEnumTypeExceptionOfT()
-		{
-			AssertHelper.ThrowsException<IsEnumTypeException<TestItem>>(
-				() => throw new IsEnumTypeException<TestItem>(),
-				"Type TestItem cannot be an enum.");
-		}
+	    [TestMethod]
+		public void Test_IsEnumTypeExceptionOfT() => AssertHelper.ThrowsException<IsEnumTypeException<TestItem>>(
+	        () => throw new IsEnumTypeException<TestItem>(),
+	        "Type TestItem cannot be an enum.");
 
-		[TestMethod]
-		public void Test_NotEnumTypeException()
-		{
-			AssertHelper.ThrowsException<NotEnumTypeException>(
-				() => throw new NotEnumTypeException(typeof(TestItem)),
-				"Type TestItem is not an enum.");
-		}
+	    [TestMethod]
+		public void Test_NotEnumTypeException() => AssertHelper.ThrowsException<NotEnumTypeException>(
+	        () => throw new NotEnumTypeException(typeof(TestItem)),
+	        "Type TestItem is not an enum.");
 
-		[TestMethod]
-		public void Test_NotEnumTypeExceptionOfT()
-		{
-			AssertHelper.ThrowsException<NotEnumTypeException<TestItem>>(
-				() => throw new NotEnumTypeException<TestItem>(),
-				"Type TestItem is not an enum.");
-		}
+	    [TestMethod]
+		public void Test_NotEnumTypeExceptionOfT() => AssertHelper.ThrowsException<NotEnumTypeException<TestItem>>(
+	        () => throw new NotEnumTypeException<TestItem>(),
+	        "Type TestItem is not an enum.");
 
-		[TestMethod]
-		public void Test_PropertyNotFoundException()
-		{
-			AssertHelper.ThrowsException<PropertyNotFoundException>(
-				() => throw new PropertyNotFoundException(typeof(TestItem), "MyProperty"),
-				"Property 'MyProperty' not found on type 'JJ.Framework.Exceptions.Tests.TestItem'.");
-		}
+	    [TestMethod]
+		public void Test_PropertyNotFoundException() => AssertHelper.ThrowsException<PropertyNotFoundException>(
+	        () => throw new PropertyNotFoundException(typeof(TestItem), "MyProperty"),
+	        "Property 'MyProperty' not found on type 'JJ.Framework.Exceptions.Tests.TestItem'.");
 
-		[TestMethod]
-		public void Test_PropertyNotFoundExceptionOfT()
-		{
-			AssertHelper.ThrowsException<PropertyNotFoundException<TestItem>>(
-				() => throw new PropertyNotFoundException<TestItem>("MyProperty"),
-				"Property 'MyProperty' not found on type 'JJ.Framework.Exceptions.Tests.TestItem'.");
-		}
+	    [TestMethod]
+		public void Test_PropertyNotFoundExceptionOfT() => AssertHelper.ThrowsException<PropertyNotFoundException<TestItem>>(
+	        () => throw new PropertyNotFoundException<TestItem>("MyProperty"),
+	        "Property 'MyProperty' not found on type 'JJ.Framework.Exceptions.Tests.TestItem'.");
 
-		[TestMethod]
-		public void Test_TypeNotFoundException()
-		{
-			AssertHelper.ThrowsException<TypeNotFoundException>(
-				() => throw new TypeNotFoundException("TestItemSomething"),
-				"Type 'TestItemSomething' not found.");
-		}
+	    [TestMethod]
+		public void Test_TypeNotFoundException() => AssertHelper.ThrowsException<TypeNotFoundException>(
+	        () => throw new TypeNotFoundException("TestItemSomething"),
+	        "Type 'TestItemSomething' not found.");
 
-		[TestMethod]
-		public void Test_UnexpectedTypeException()
-		{
-			AssertHelper.ThrowsException<UnexpectedTypeException>(
-				() =>
-				{
-					int testInt = 1;
+	    [TestMethod]
+		public void Test_UnexpectedTypeException() => AssertHelper.ThrowsException<UnexpectedTypeException>(
+	        () =>
+	        {
+	            int testInt = 1;
 
-					throw new UnexpectedTypeException(() => testInt);
-				},
-				"testInt has an unexpected type: Int32.");
-		}
+	            throw new UnexpectedTypeException(() => testInt);
+	        },
+	        "testInt has an unexpected type: Int32.");
 
-		[TestMethod]
-		public void Test_ValueNotSupportedException()
-		{
-			AssertHelper.ThrowsException<ValueNotSupportedException>(
-				() =>
-				{
-					var testEnum = TestEnum.Undefined;
+	    [TestMethod]
+		public void Test_ValueNotSupportedException() => AssertHelper.ThrowsException<ValueNotSupportedException>(
+	        () =>
+	        {
+	            var testEnum = TestEnum.Undefined;
 
-					throw new ValueNotSupportedException(testEnum);
-				},
-				"TestEnum value 'Undefined' is not supported.");
-		}
+	            throw new ValueNotSupportedException(testEnum);
+	        },
+	        "TestEnum value 'Undefined' is not supported.");
 	}
 }

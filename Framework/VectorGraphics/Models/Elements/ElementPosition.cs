@@ -9,12 +9,9 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 	{
 		private readonly Element _element;
 
-		internal ElementPosition(Element element)
-		{
-			_element = element ?? throw new NullException(() => element);
-		}
+		internal ElementPosition(Element element) => _element = element ?? throw new NullException(() => element);
 
-		/// <summary> X-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
+	    /// <summary> X-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>
 		public abstract float X { get; set; }
 
 		/// <summary> Y-coordinate relative to the parent. Scaled depending on Diagram.ScaleModeEnum. </summary>

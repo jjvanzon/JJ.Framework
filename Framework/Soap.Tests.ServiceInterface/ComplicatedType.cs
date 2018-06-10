@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+// ReSharper disable InconsistentNaming
 
 namespace JJ.Framework.Soap.Tests.ServiceInterface
 {

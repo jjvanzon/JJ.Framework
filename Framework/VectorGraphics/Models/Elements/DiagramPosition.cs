@@ -9,12 +9,9 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 	{
 		private readonly Diagram _diagram;
 
-		internal DiagramPosition(Diagram diagram)
-		{
-			_diagram = diagram ?? throw new NullException(() => diagram);
-		}
+		internal DiagramPosition(Diagram diagram) => _diagram = diagram ?? throw new NullException(() => diagram);
 
-		private float _widthInPixels = 1;
+	    private float _widthInPixels = 1;
 		/// <summary> non-zero </summary>
 		public float WidthInPixels
 		{
@@ -60,7 +57,7 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 						throw new ValueNotSupportedException(ScaleModeEnum);
 				}
 			}
-			set { _scaledX = value; }
+			set => _scaledX = value;
 		}
 
 		private float _scaledY;
@@ -81,7 +78,7 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 						throw new ValueNotSupportedException(ScaleModeEnum);
 				}
 			}
-			set { _scaledY = value; }
+			set => _scaledY = value;
 		}
 
 		private float _scaledWidth = 1;

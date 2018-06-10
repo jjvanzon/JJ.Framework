@@ -1,6 +1,7 @@
-﻿using JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators;
+﻿using JJ.Framework.Reflection.PerformanceTests.Translators;
+// ReSharper disable UnusedMember.Global
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Helpers
+namespace JJ.Framework.Reflection.PerformanceTests.Helpers
 {
 	public static class ExpressionHelpers
 	{

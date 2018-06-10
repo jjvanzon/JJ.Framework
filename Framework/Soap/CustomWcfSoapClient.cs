@@ -71,7 +71,7 @@ namespace JJ.Framework.Soap
 		public TResult Invoke<TResult>(string operationName, params SoapParameter[] parameters)
 			where TResult : class, new()
 		{
-			string soapAction = string.Format("http://tempuri.org/{0}/{1}", _serviceInterfaceName, operationName);
+			string soapAction = $"http://tempuri.org/{_serviceInterfaceName}/{operationName}";
 			return _client.Invoke<TResult>(soapAction, operationName, parameters);
 		}
 

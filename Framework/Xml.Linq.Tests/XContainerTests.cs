@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Linq;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Framework.Xml.Linq.Tests
 {
@@ -9,7 +10,7 @@ namespace JJ.Framework.Xml.Linq.Tests
 		[TestMethod]
 		public void Test_XContainer_Element_None_ReturnsNull()
 		{
-			string xml = @"
+			var xml = @"
 				<root>
 				</root>";
 
@@ -21,7 +22,7 @@ namespace JJ.Framework.Xml.Linq.Tests
 		[TestMethod]
 		public void Test_XContainer_Element_Single_ReturnsOne()
 		{
-			string xml = @"
+			var xml = @"
 				<root>
 					<x />
 				</root>";
@@ -34,7 +35,7 @@ namespace JJ.Framework.Xml.Linq.Tests
 		[TestMethod]
 		public void Test_XContainer_Element_Multiple_ReturnsOne()
 		{
-			string xml = @"
+			var xml = @"
 				<root>
 					<x />
 					<x />

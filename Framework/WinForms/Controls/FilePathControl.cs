@@ -131,12 +131,9 @@ namespace JJ.Framework.WinForms.Controls
 			timerPositionControls.Enabled = true;
 		}
 
-		private void timerPositionControls_Tick(object sender, EventArgs e)
-		{
-			PositionControls();
-		}
+		private void timerPositionControls_Tick(object sender, EventArgs e) => PositionControls();
 
-		private void PositionControls()
+	    private void PositionControls()
 		{
 			try
 			{
@@ -210,9 +207,6 @@ namespace JJ.Framework.WinForms.Controls
 			RequestPositionControls();
 		}
 
-		private void textBox_TextChanged(object sender, EventArgs e)
-		{
-			toolTip.SetToolTip(textBox, textBox.Text);
-		}
+		private void textBox_TextChanged(object sender, EventArgs e) => toolTip.SetToolTip(textBox, textBox.Text);
 	}
 }

@@ -37,12 +37,9 @@ namespace JJ.Framework.WinForms.Helpers
 			}
 		}
 
-		private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
-		{
-			ShowMessageBox(e.Exception);
-		}
+		private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e) => ShowMessageBox(e.Exception);
 
-		/// <summary>
+	    /// <summary>
 		/// Some threads' exceptions don't appear to be handled by the standard WinForms hooks.
 		/// For instance a separate Windows message loop running on another thread for Midi device processing
 		/// would not have its exceptions handled automatically.

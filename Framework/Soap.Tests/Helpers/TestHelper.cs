@@ -1,12 +1,13 @@
 ﻿using JJ.Framework.Soap.Tests.ServiceInterface;
 using System;
 using System.Collections.Generic;
-using JJ.Framework.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 using JJ.Framework.Logging;
 using System.ServiceModel;
 using JJ.Framework.Exceptions.Basic;
+// ReSharper disable BuiltInTypeReferenceStyle
+#pragma warning disable IDE0012 // Simplify Names
 
 namespace JJ.Framework.Soap.Tests.Helpers
 {
@@ -54,11 +55,11 @@ namespace JJ.Framework.Soap.Tests.Helpers
 				NullableEnumType = EnumType.EnumMember2,
 
 				// Collections
-				Array = new int[] { 2, 2 },
+				Array = new[] { 2, 2 },
 				ListOfT = new List<int> { 2, 2 },
-				IListOfT = new int[] { 2, 2 },
-				ICollectionOfT = new int[] { 2, 2 },
-				IEnumerableOfT = new int[] { 2, 2 },
+				IListOfT = new[] { 2, 2 },
+				ICollectionOfT = new[] { 2, 2 },
+				IEnumerableOfT = new[] { 2, 2 },
 
 				// Composite
 				RecursiveObject = new RecursiveType
@@ -76,7 +77,7 @@ namespace JJ.Framework.Soap.Tests.Helpers
 
 				// Collections with Different Item Types
 
-				ListOfCompositeObjects = new CompositeType[]
+				ListOfCompositeObjects = new[]
 				{
 					new CompositeType { BoolValue = false, StringValue = null },
 					new CompositeType { BoolValue = false, StringValue = "Hello" },
@@ -84,23 +85,23 @@ namespace JJ.Framework.Soap.Tests.Helpers
 					new CompositeType { BoolValue = true, StringValue = "Hello" },
 				},
 
-				ArrayOfBoolean = new bool[] { true, false },
+				ArrayOfBoolean = new[] { true, false },
 				//ArrayOfByte = new byte[] { 0x10, 0x20 },
 				ArrayOfSByte = new sbyte[] { -2, 2 },
-				ArrayOfInt16 = new Int16[] { -2, 2 },
-				ArrayOfUInt16 = new UInt16[] { 1, 2 },
-				ArrayOfInt32 = new Int32[] { -2, 2 },
+                ArrayOfInt16 = new Int16[] { -2, 2 },
+                ArrayOfUInt16 = new UInt16[] { 1, 2 },
+				ArrayOfInt32 = new[] { -2, 2 },
 				ArrayOfUInt32 = new UInt32[] { 1, 2 },
 				ArrayOfInt64 = new Int64[] { -2, 2 },
 				ArrayOfUInt64 = new UInt64[] { 1, 2 },
-				ArrayOfChar = new char[] { 'a', 'b' },
-				ArrayOfDouble = new double[] { 1.23E4, 2.34E5 },
-				ArrayOfSingle = new float[] { 1.23E4f, 2.34E5f },
-				ArrayOfString = new string[] { "Hello", "world", "!" },
-				ArrayOfGuid = new Guid[] { Guid.NewGuid(), Guid.NewGuid() },
-				ArrayOfTimeSpan = new TimeSpan[] { TimeSpan.Parse("01:00"), TimeSpan.Parse("02:00") },
-				ArrayOfDateTime = new DateTime[] { DateTime.Parse("2001-02-03 04:05"), DateTime.Parse("2006-07-08 09:10") },
-				ArrayOfEnumType = new EnumType[] { EnumType.EnumMember1, EnumType.EnumMember2 },
+				ArrayOfChar = new[] { 'a', 'b' },
+				ArrayOfDouble = new[] { 1.23E4, 2.34E5 },
+				ArrayOfSingle = new[] { 1.23E4f, 2.34E5f },
+				ArrayOfString = new[] { "Hello", "world", "!" },
+				ArrayOfGuid = new[] { Guid.NewGuid(), Guid.NewGuid() },
+				ArrayOfTimeSpan = new[] { TimeSpan.Parse("01:00"), TimeSpan.Parse("02:00") },
+				ArrayOfDateTime = new[] { DateTime.Parse("2001-02-03 04:05"), DateTime.Parse("2006-07-08 09:10") },
+				ArrayOfEnumType = new[] { EnumType.EnumMember1, EnumType.EnumMember2 },
 
 
 				//ArrayOfNullableBoolean = new bool?[] { null, true, false },

@@ -11,7 +11,7 @@ namespace JJ.Framework.Xml.Linq.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_RecursiveElement()
 		{
-			string xml = @"
+			var xml = @"
 			<root>
 				<element>
 					<element />

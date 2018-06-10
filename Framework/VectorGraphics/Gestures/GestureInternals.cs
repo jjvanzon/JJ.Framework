@@ -11,12 +11,9 @@ namespace JJ.Framework.VectorGraphics.Gestures
 	{
 		private readonly GestureBase _gestureBase;
 
-		internal GestureInternals(GestureBase gestureBase)
-		{
-			_gestureBase = gestureBase ?? throw new NullException(() => gestureBase);
-		}
+		internal GestureInternals(GestureBase gestureBase) => _gestureBase = gestureBase ?? throw new NullException(() => gestureBase);
 
-		public void HandleMouseDown(object sender, MouseEventArgs e) => _gestureBase.InternalHandleMouseDown(sender, e);
+	    public void HandleMouseDown(object sender, MouseEventArgs e) => _gestureBase.InternalHandleMouseDown(sender, e);
 		public void HandleMouseMove(object sender, MouseEventArgs e) => _gestureBase.InternalHandleMouseMove(sender, e);
 		public void HandleMouseUp(object sender, MouseEventArgs e) => _gestureBase.InternalHandleMouseUp(sender, e);
 		public void HandleKeyDown(object sender, KeyEventArgs e) => _gestureBase.InternalHandleKeyDown(sender, e);

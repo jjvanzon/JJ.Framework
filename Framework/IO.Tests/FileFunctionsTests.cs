@@ -44,7 +44,7 @@ namespace JJ.Framework.IO.Tests
 		public void Test_FileFunctions_ClearFolder_DirectoryInfo()
 		{
 			string folderPath = TestHelper.GenerateFolderName(MethodBase.GetCurrentMethod());
-			DirectoryInfo directory = new DirectoryInfo(folderPath);
+			var directory = new DirectoryInfo(folderPath);
 			Test_FileFunctions_ClearFolder(folderPath, () => FileHelper.ClearFolder(directory));
 		}
 
@@ -116,14 +116,9 @@ namespace JJ.Framework.IO.Tests
 		// ApplicationPath
 
 		[TestMethod]
-		public void Test_FileFunctions_ApplicationPath()
-		{
-			Assert.Inconclusive("Cannot determine validity, because the application path cannot (easily) be determined in the test engine.");
-			//string binName = Assembly.GetCallingAssembly().ManifestModule.Name;
-			//Assert.IsTrue(File.Exists(Path.Combine(FileHelper.ApplicationFolderPath, binName)));
-		}
+		public void Test_FileFunctions_ApplicationPath() => Assert.Inconclusive("Cannot determine validity, because the application path cannot (easily) be determined in the test engine.");
 
-		// IsFolder
+	    // IsFolder
 
 		[TestMethod]
 		public void Test_FileFunctions_IsFolder_True_Existing()
@@ -240,12 +235,12 @@ namespace JJ.Framework.IO.Tests
 			{
 				Directory.CreateDirectory(folderPath);
 
-				using (var writer = File.CreateText(filePath1))
+				using (StreamWriter writer = File.CreateText(filePath1))
 				{
 					writer.Write("1234567890");
 				}
 
-				using (var writer = File.CreateText(filePath2))
+				using (StreamWriter writer = File.CreateText(filePath2))
 				{
 					writer.Write("12345");
 				}
@@ -606,7 +601,7 @@ namespace JJ.Framework.IO.Tests
 				File.Create(filePath).Close();
 				using (new FileLock(filePath, LockEnum.Write))
 				{
-					AssertHelper.ThrowsException<IOException>(() => { File.ReadAllText(filePath); });
+					AssertHelper.ThrowsException<IOException>(() => File.ReadAllText(filePath));
 				}
 			}
 			finally
@@ -643,7 +638,7 @@ namespace JJ.Framework.IO.Tests
 				using (new FileLock(filePath, LockEnum.Write))
 				{
 					// ReSharper disable once RedundantArgumentDefaultValue
-					AssertHelper.ThrowsException<IOException>(() => { FileHelper.ReadAllText(filePath, requireWriteAccess: true); });
+					AssertHelper.ThrowsException<IOException>(() => FileHelper.ReadAllText(filePath, requireWriteAccess: true));
 				}
 			}
 			finally
@@ -661,7 +656,7 @@ namespace JJ.Framework.IO.Tests
 				File.Create(filePath).Close();
 				using (new FileLock(filePath, LockEnum.Write))
 				{
-					AssertHelper.ThrowsException<IOException>(() => { FileHelper.ReadAllText(filePath); });
+					AssertHelper.ThrowsException<IOException>(() => FileHelper.ReadAllText(filePath));
 				}
 			}
 			finally
@@ -683,7 +678,7 @@ namespace JJ.Framework.IO.Tests
 
 				using (new FileLock(filePath, LockEnum.Write))
 				{
-					AssertHelper.ThrowsException<IOException>(() => { File.ReadAllLines(filePath); });
+					AssertHelper.ThrowsException<IOException>(() => File.ReadAllLines(filePath));
 				}
 			}
 			finally
@@ -723,11 +718,7 @@ namespace JJ.Framework.IO.Tests
 
 				using (new FileLock(filePath, LockEnum.Write))
 				{
-					AssertHelper.ThrowsException<IOException>(() =>
-					{
-						// ReSharper disable once RedundantArgumentDefaultValue
-						FileHelper.ReadAllLines(filePath, requireWriteAccess: true);
-					});
+					AssertHelper.ThrowsException<IOException>(() => FileHelper.ReadAllLines(filePath, requireWriteAccess: true));
 				}
 			}
 			finally
@@ -747,10 +738,7 @@ namespace JJ.Framework.IO.Tests
 
 				using (new FileLock(filePath, LockEnum.Write))
 				{
-					AssertHelper.ThrowsException<IOException>(() =>
-					{
-						FileHelper.ReadAllLines(filePath);
-					});
+					AssertHelper.ThrowsException<IOException>(() => FileHelper.ReadAllLines(filePath));
 				}
 			}
 			finally
@@ -778,7 +766,7 @@ namespace JJ.Framework.IO.Tests
 				() => FileHelper.FolderIsEmpty((string)null),
 				() => FileHelper.FolderIsEmpty("")};
 
-			foreach (var action in folderPathActions)
+			foreach (Action action in folderPathActions)
 			{
 				AssertHelper.ThrowsException(() => action(), "folderPath is null or empty.");
 			}
@@ -797,7 +785,7 @@ namespace JJ.Framework.IO.Tests
 				() => FileHelper.ShowFile((string)null),
 				() => FileHelper.ShowFile("")};
 
-			foreach (var action in filePathActions)
+			foreach (Action action in filePathActions)
 			{
 				AssertHelper.ThrowsException(() => action(), "filePath is null or empty.");
 			}
@@ -816,7 +804,7 @@ namespace JJ.Framework.IO.Tests
 				() => FileHelper.CountFilesRecursive(folderPath),
 				() => FileHelper.FolderIsEmpty(folderPath)};
 
-			foreach (var action in folderPathActions)
+			foreach (Action action in folderPathActions)
 			{
 				AssertHelper.ThrowsException(
 					() => action(),
@@ -833,7 +821,7 @@ namespace JJ.Framework.IO.Tests
 				() => FileHelper.MakeWritable(filePath),
 				() => FileHelper.IsReadOnly(filePath)};
 
-			foreach (var action in filePathActions)
+			foreach (Action action in filePathActions)
 			{
 				AssertHelper.ThrowsException(
 					() => action(),
@@ -852,7 +840,7 @@ namespace JJ.Framework.IO.Tests
 				() => FileHelper.CountFilesRecursive((DirectoryInfo)null),
 				() => FileHelper.FolderIsEmpty((DirectoryInfo)null)};
 
-			foreach (var action in directoryActions)
+			foreach (Action action in directoryActions)
 			{
 				AssertHelper.ThrowsException(
 					() => action(),
@@ -867,7 +855,7 @@ namespace JJ.Framework.IO.Tests
 				() => FileHelper.MakeWritable((FileInfo)null),
 				() => FileHelper.IsReadOnly((FileInfo)null)};
 
-			foreach (var action in fileActions)
+			foreach (Action action in fileActions)
 			{
 				AssertHelper.ThrowsException(
 					() => action(),
@@ -953,12 +941,9 @@ namespace JJ.Framework.IO.Tests
 		}
 
 		[TestMethod]
-		public void Test_FileFunctions_ToAbsolutePath_OverloadWithSingleStringParameter()
-		{
-			Assert.Inconclusive("Test not implemented yet.");
-		}
+		public void Test_FileFunctions_ToAbsolutePath_OverloadWithSingleStringParameter() => Assert.Inconclusive("Test not implemented yet.");
 
-		// Helpers
+	    // Helpers
 
 		private void DeleteFileOrFolder(string path)
 		{

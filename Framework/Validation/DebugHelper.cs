@@ -9,7 +9,7 @@ namespace JJ.Framework.Validation
 		{
 			if (validationMessages == null) throw new NullException(() => validationMessages);
 
-			return String.Join(Environment.NewLine, validationMessages);
+			return string.Join(Environment.NewLine, validationMessages);
 		}
 	}
 }

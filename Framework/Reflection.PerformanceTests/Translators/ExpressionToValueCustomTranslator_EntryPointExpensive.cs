@@ -2,23 +2,17 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
+namespace JJ.Framework.Reflection.PerformanceTests.Translators
 {
 	public class ExpressionToValueCustomTranslator_EntryPointExpensive : IExpressionToValueTranslator
 	{
 		public object Result { get; private set; }
 
-		public void Visit<T>(Expression<Func<T>> expression)
-		{
-			Visit((LambdaExpression)expression);
-		}
+		public void Visit<T>(Expression<Func<T>> expression) => Visit((LambdaExpression)expression);
 
-		public void Visit(LambdaExpression expression)
-		{
-			Visit(expression.Body);
-		}
- 
-		public void Visit(Expression node)
+	    public void Visit(LambdaExpression expression) => Visit(expression.Body);
+
+	    public void Visit(Expression node)
 		{
 			switch (node.NodeType)
 			{
@@ -57,7 +51,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 							var memberExpression = (MemberExpression)unaryExpression.Operand;
 							VisitMember(memberExpression);
 
-							Array array = (Array)Result;
+							var array = (Array)Result;
 							Result = array.Length;
 							return;
 						}

@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Framework.Logging.Tests
 {

@@ -37,7 +37,7 @@ namespace JJ.Framework.Web
 				}
 
 				default:
-					throw new Exception(string.Format("url cannot contain more than one ':'. url = '{0}'.", url));
+					throw new Exception($"url cannot contain more than one ':'. url = '{url}'.");
 			}
 		}
 

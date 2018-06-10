@@ -13,7 +13,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 		{
 			Type baseType = typeof(XmlMapping<>).MakeGenericType(entityType);
 			Type derivedType = mappingAssembly.GetImplementation(baseType);
-			IXmlMapping instance = (IXmlMapping)Activator.CreateInstance(derivedType);
+			var instance = (IXmlMapping)Activator.CreateInstance(derivedType);
 			return instance;
 		}
 	}

@@ -1,84 +1,91 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
+namespace JJ.Framework.Reflection.PerformanceTests.Translators
 {
-	public class ExpressionToValueTranslator_UsingFuncCache : IExpressionToValueTranslator
-	{
-		public object Result { get; private set; }
+    public class ExpressionToValueTranslator_UsingFuncCache : IExpressionToValueTranslator
+    {
+        public object Result { get; private set; }
 
-		public void Visit<T>(Expression<Func<T>> expression)
-		{
-			if (expression.Body is MemberExpression memberExpression)
-			{
-				Result = GetValueFromMemberExpression(expression, memberExpression);
-			}
+        public void Visit<T>(Expression<Func<T>> expression)
+        {
+            switch (expression.Body)
+            {
+                case MemberExpression memberExpression:
+                    Result = GetValueFromMemberExpression(expression, memberExpression);
+                    break;
 
-			if (expression.Body is UnaryExpression unaryExpression)
-			{
-				Result = GetValueFromUnaryExpression(expression, unaryExpression);
-			}
+                case UnaryExpression unaryExpression:
+                    Result = GetValueFromUnaryExpression(expression, unaryExpression);
+                    break;
+            }
 
-			throw new ArgumentException($"Value cannot be obtained from {expression.Body.GetType().Name}.");
-		}
+            throw new ArgumentException($"Value cannot be obtained from {expression.Body.GetType().Name}.");
+        }
 
-		private static T GetValueFromUnaryExpression<T>(Expression<Func<T>> expression, UnaryExpression unaryExpression)
-		{
-			MemberExpression memberExpression = null;
+        private static T GetValueFromUnaryExpression<T>(Expression<Func<T>> expression, UnaryExpression unaryExpression)
+        {
+            MemberExpression memberExpression;
 
-			switch (unaryExpression.NodeType)
-			{
-				case ExpressionType.Convert:
-				case ExpressionType.ConvertChecked:
-					memberExpression = unaryExpression.Operand as MemberExpression;
-					if (memberExpression != null)
-					{
-						return GetValueFromMemberExpression(expression, memberExpression);
-					}
-					break;
+            switch (unaryExpression.NodeType)
+            {
+                case ExpressionType.Convert:
+                case ExpressionType.ConvertChecked:
+                    memberExpression = unaryExpression.Operand as MemberExpression;
+                    if (memberExpression != null)
+                    {
+                        return GetValueFromMemberExpression(expression, memberExpression);
+                    }
 
-				case ExpressionType.ArrayLength:
-					memberExpression = unaryExpression.Operand as MemberExpression;
-					if (memberExpression != null)
-					{
-						return GetValueFromMemberExpression(expression, memberExpression);
-					}
-					break;
+                    break;
 
-				case ExpressionType.MemberAccess:
-					memberExpression = unaryExpression.Operand as MemberExpression;
-					if (memberExpression != null)
-					{
-						return GetValueFromMemberExpression(expression, memberExpression);
-					}
-					break;
-			}
+                case ExpressionType.ArrayLength:
+                    memberExpression = unaryExpression.Operand as MemberExpression;
+                    if (memberExpression != null)
+                    {
+                        return GetValueFromMemberExpression(expression, memberExpression);
+                    }
 
-			throw new ArgumentException($"Value cannot be obtained from {unaryExpression.Operand.GetType().Name}.");
-		}
+                    break;
 
-		private static readonly object _funcCacheLock = new object();
+                case ExpressionType.MemberAccess:
+                    memberExpression = unaryExpression.Operand as MemberExpression;
+                    if (memberExpression != null)
+                    {
+                        return GetValueFromMemberExpression(expression, memberExpression);
+                    }
 
-		private static T GetValueFromMemberExpression<T>(Expression<Func<T>> expression, MemberExpression memberExpression)
-		{
-			Func<T> function;
+                    break;
+            }
 
-			object cacheKey = memberExpression.ToString();
+            throw new ArgumentException($"Value cannot be obtained from {unaryExpression.Operand.GetType().Name}.");
+        }
 
-			lock (_funcCacheLock)
-			{
-				if (FuncCache<T>.ContainsKey(cacheKey))
-				{
-					function = FuncCache<T>.GetItem(cacheKey);
-				}
-				else
-				{
-					function = expression.Compile();
-					FuncCache<T>.SetItem(cacheKey, function);
-				}
-			}
-			T value = function();
-			return value;
-		}
-	}
+        private static readonly object _funcCacheLock = new object();
+
+        private static T GetValueFromMemberExpression<T>(
+            Expression<Func<T>> expression,
+            MemberExpression memberExpression)
+        {
+            Func<T> function;
+
+            object cacheKey = memberExpression.ToString();
+
+            lock (_funcCacheLock)
+            {
+                if (FuncCache<T>.ContainsKey(cacheKey))
+                {
+                    function = FuncCache<T>.GetItem(cacheKey);
+                }
+                else
+                {
+                    function = expression.Compile();
+                    FuncCache<T>.SetItem(cacheKey, function);
+                }
+            }
+
+            T value = function();
+            return value;
+        }
+    }
 }

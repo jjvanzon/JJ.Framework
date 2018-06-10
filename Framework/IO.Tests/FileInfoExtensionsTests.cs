@@ -9,12 +9,9 @@ namespace JJ.Framework.IO.Tests
 	{
 		private readonly FileFunctionsTests _base;
 
-		public FileInfoExtensionsTests()
-		{
-			_base = new FileFunctionsTests();
-		}
+		public FileInfoExtensionsTests() => _base = new FileFunctionsTests();
 
-		[TestMethod]
+	    [TestMethod]
 		public void Test_FileInfoExtensions_Hide_Show()
 		{
 			string filePath = TestHelper.GenerateFileName(MethodBase.GetCurrentMethod());

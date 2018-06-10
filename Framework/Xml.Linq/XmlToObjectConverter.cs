@@ -5,9 +5,11 @@ using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.Reflection;
 using JJ.Framework.Xml.Linq.Internal;
+// ReSharper disable ConvertIfStatementToSwitchStatement
 
 namespace JJ.Framework.Xml.Linq
 {
@@ -42,6 +44,7 @@ namespace JJ.Framework.Xml.Linq
 	/// 
 	/// The composite types in the object structure must have parameterless constructors.
 	/// </summary>
+	[PublicAPI]
 	public class XmlToObjectConverter<TDestObject>
 		where TDestObject : new()
 	{
@@ -126,7 +129,7 @@ namespace JJ.Framework.Xml.Linq
 
 		public TDestObject Convert(XElement sourceElement)
 		{
-			TDestObject destObject = new TDestObject();
+			var destObject = new TDestObject();
 			ConvertProperties(sourceElement, destObject);
 			return destObject;
 		}
@@ -225,12 +228,9 @@ namespace JJ.Framework.Xml.Linq
 			}
 
 			// If element not null, convert the element.
-			if (sourceElement != null)
-			{
-				Type destPropertyType = destProperty.PropertyType;
-				object destPropertyValue = ConvertElement(sourceElement, destPropertyType);
-				destProperty.SetValue(destParentObject, destPropertyValue);
-			}
+			Type destPropertyType = destProperty.PropertyType;
+			object destPropertyValue = ConvertElement(sourceElement, destPropertyType);
+			destProperty.SetValue(destParentObject, destPropertyValue);
 		}
 
 
@@ -415,10 +415,10 @@ namespace JJ.Framework.Xml.Linq
 			int count = sourceXmlArrayItems.Count;
 
 			Type destConcreteCollectionType = destCollectionType;
-			IList destCollection = (IList)Activator.CreateInstance(destConcreteCollectionType, count);
+			var destCollection = (IList)Activator.CreateInstance(destConcreteCollectionType, count);
 
 			Type destItemType = destCollectionType.GetElementType();
-			for (int i = 0; i < count; i++)
+			for (var i = 0; i < count; i++)
 			{
 				XElement sourceXmlArrayItem = sourceXmlArrayItems[i];
 
@@ -447,7 +447,7 @@ namespace JJ.Framework.Xml.Linq
 
 			Type destItemType = destCollectionType.GetItemType();
 			Type destConcreteCollectionType = typeof(List<>).MakeGenericType(destItemType);
-			IList destCollection = (IList)Activator.CreateInstance(destConcreteCollectionType, count);
+			var destCollection = (IList)Activator.CreateInstance(destConcreteCollectionType, count);
 
 			foreach (XElement sourceXmlArrayItem in sourceXmlArrayItems)
 			{
@@ -499,9 +499,6 @@ namespace JJ.Framework.Xml.Linq
 		/// Returns whether the type is considered nullable in general.
 		/// Concretely this means any reference type and any Nullable&lt;T&gt;.
 		/// </summary>
-		private bool IsNullable(Type type)
-		{
-			return type.IsReferenceType() || type.IsNullableType();
-		}
+		private bool IsNullable(Type type) => type.IsReferenceType() || type.IsNullableType();
 	}
 }

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
+using JetBrains.Annotations;
 using JJ.Framework.Presentation;
 using JJ.Framework.WinForms.EventArg;
 using JJ.Framework.WinForms.Extensions;
 
 namespace JJ.Framework.WinForms.Controls
 {
+    [PublicAPI]
 	public partial class PagerControl : UserControl
 	{
 		private PagerViewModel _viewModel;
@@ -43,8 +45,8 @@ namespace JJ.Framework.WinForms.Controls
 		[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 		public PagerViewModel PagerViewModel
 		{
-			get { return _viewModel; }
-			set
+			get => _viewModel;
+		    set
 			{
 				if (_viewModel == value) return;
 

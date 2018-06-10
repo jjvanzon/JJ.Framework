@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.Mathematics;
 using JJ.Framework.Reflection;
@@ -336,7 +337,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// <summary>
 		/// Adds an extra XML namespace on top of the ones generated on-the-fly.
 		/// </summary>
-		public void AddXmlNamespaceString(string xmlNamespaceString)
+		private void AddXmlNamespaceString(string xmlNamespaceString)
 		{
 			if (!_xmlNamespaceStrings.Contains(xmlNamespaceString))
 			{
@@ -353,7 +354,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// </summary>
 		public IEnumerable<XAttribute> GetNamespaceDeclarationAttributes()
 		{
-			int i = 0;
+			var i = 0;
 
 			foreach (string xmlNamespaceString in _xmlNamespaceStrings)
 			{
@@ -372,7 +373,11 @@ namespace JJ.Framework.Xml.Linq.Internal
 		{
 			if (_mustGenerateNamespaces)
 			{
-				return GetXNameForNamespace(name, property.DeclaringType.Namespace);
+			    Type propertyDeclaringType = property.DeclaringType;
+
+			    if (propertyDeclaringType == null) throw new NullException(() => property.DeclaringType);
+
+			    return GetXNameForNamespace(name, propertyDeclaringType.Namespace);
 			}
 			else
 			{
@@ -396,7 +401,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 			}
 		}
 
-		public XName GetXNameForNamespace(string name, string dotNetNamespace)
+	    private XName GetXNameForNamespace(string name, string dotNetNamespace)
 		{
 			string xmlNamespaceString = WCF_SOAP_NAMESPACE_START + dotNetNamespace;
 

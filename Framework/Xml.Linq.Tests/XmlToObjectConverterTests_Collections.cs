@@ -11,39 +11,24 @@ namespace JJ.Framework.Xml.Linq.Tests
 	public class XmlToObjectConverterTests_Collections
 	{
 		[TestMethod]
-		public void Test_XmlToObjectConverter_Collection_Array()
-		{
-			TestHelper.Test_XmlToObjectConverter_Collection<int[]>();
-		}
+		public void Test_XmlToObjectConverter_Collection_Array() => TestHelper.Test_XmlToObjectConverter_Collection<int[]>();
 
-		[TestMethod]
-		public void Test_XmlToObjectConverter_Collection_ListOfT()
-		{
-			TestHelper.Test_XmlToObjectConverter_Collection<List<int>>();
-		}
+	    [TestMethod]
+		public void Test_XmlToObjectConverter_Collection_ListOfT() => TestHelper.Test_XmlToObjectConverter_Collection<List<int>>();
 
-		[TestMethod]
-		public void Test_XmlToObjectConverter_Collection_IListOfT()
-		{
-			TestHelper.Test_XmlToObjectConverter_Collection<IList<int>>();
-		}
+	    [TestMethod]
+		public void Test_XmlToObjectConverter_Collection_IListOfT() => TestHelper.Test_XmlToObjectConverter_Collection<IList<int>>();
 
-		[TestMethod]
-		public void Test_XmlToObjectConverter_Collection_ICollectionOfT()
-		{
-			TestHelper.Test_XmlToObjectConverter_Collection<ICollection<int>>();
-		}
+	    [TestMethod]
+		public void Test_XmlToObjectConverter_Collection_ICollectionOfT() => TestHelper.Test_XmlToObjectConverter_Collection<ICollection<int>>();
 
-		[TestMethod]
-		public void Test_XmlToObjectConverter_Collection_IEnumerableOfT()
-		{
-			TestHelper.Test_XmlToObjectConverter_Collection<IEnumerable<int>>();
-		}
+	    [TestMethod]
+		public void Test_XmlToObjectConverter_Collection_IEnumerableOfT() => TestHelper.Test_XmlToObjectConverter_Collection<IEnumerable<int>>();
 
-		[TestMethod]
+	    [TestMethod]
 		public void Test_XmlToObjectConverter_Array_WithExplicitAnnotation()
 		{
-			string xml = @"
+			var xml = @"
 			<root>
 				<array_WithExplicitAnnotation>
 					<item>0</item>
@@ -64,7 +49,7 @@ namespace JJ.Framework.Xml.Linq.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_Collection_Nullability()
 		{
-			string xml = @"<root />";
+			var xml = @"<root />";
 
 			var converter = new XmlToObjectConverter<Element_WithCollection<int[]>>(cultureInfo: TestHelper.FormattingCulture);
 			Element_WithCollection<int[]> destObject = converter.Convert(xml);
@@ -76,7 +61,7 @@ namespace JJ.Framework.Xml.Linq.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_Collection_WithoutExplicitItemName()
 		{
-			string xml = @"
+			var xml = @"
 			<root>
 				<collection>
 					<int32>0</int32>

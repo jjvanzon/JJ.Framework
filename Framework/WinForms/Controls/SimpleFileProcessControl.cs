@@ -121,16 +121,13 @@ namespace JJ.Framework.WinForms.Controls
             }
         }
 
-        private void ApplyIsRunning()
-        {
-            OnUiThread(
-                () =>
-                {
-                    buttonStart.Enabled = !_isRunning;
-                    buttonCancel.Enabled = _isRunning;
-                    textBoxFilePath.Enabled = !_isRunning;
-                });
-        }
+        private void ApplyIsRunning() => OnUiThread(
+            () =>
+            {
+                buttonStart.Enabled = !_isRunning;
+                buttonCancel.Enabled = _isRunning;
+                textBoxFilePath.Enabled = !_isRunning;
+            });
 
         // Other Properties
 

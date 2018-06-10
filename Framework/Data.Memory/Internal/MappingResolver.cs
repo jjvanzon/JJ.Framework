@@ -13,7 +13,7 @@ namespace JJ.Framework.Data.Memory.Internal
 		{
 			Type baseType = typeof(MemoryMapping<>).MakeGenericType(entityType);
 			Type derivedType = mappingAssembly.GetImplementation(baseType);
-			IMemoryMapping instance = (IMemoryMapping)Activator.CreateInstance(derivedType);
+			var instance = (IMemoryMapping)Activator.CreateInstance(derivedType);
 			return instance;
 		}
 	}

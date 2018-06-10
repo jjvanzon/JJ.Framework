@@ -59,22 +59,13 @@ namespace JJ.Framework.VectorGraphics.Gestures
 			DoStartDrag(e);
 		}
 
-		private void _diagram_MouseMove(object sender, MouseEventArgs e)
-		{
-			DoDragging(sender, e);
-		}
+		private void _diagram_MouseMove(object sender, MouseEventArgs e) => DoDragging(sender, e);
 
-		protected override void HandleMouseUp(object sender, MouseEventArgs e)
-		{
-			DoDragCancelled(sender);
-		}
+	    protected override void HandleMouseUp(object sender, MouseEventArgs e) => DoDragCancelled(sender);
 
-		private void _background_MouseUp(object sender, MouseEventArgs e)
-		{
-			DoDragCancelled(sender);
-		}
+	    private void _background_MouseUp(object sender, MouseEventArgs e) => DoDragCancelled(sender);
 
-		private void DoInitializeDiagram(MouseEventArgs e)
+	    private void DoInitializeDiagram(MouseEventArgs e)
 		{
 			if (e.Element != null)
 			{

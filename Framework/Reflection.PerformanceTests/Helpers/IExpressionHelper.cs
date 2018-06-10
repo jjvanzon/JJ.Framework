@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Helpers
+namespace JJ.Framework.Reflection.PerformanceTests.Helpers
 {
 	public interface IExpressionHelper
 	{

@@ -7,9 +7,6 @@ namespace JJ.Framework.VectorGraphics.Gestures
 	{
 		public event EventHandler<MouseEventArgs> MouseDown;
 
-		protected override void HandleMouseDown(object sender, MouseEventArgs e)
-		{
-			MouseDown?.Invoke(sender, e);
-		}
+		protected override void HandleMouseDown(object sender, MouseEventArgs e) => MouseDown?.Invoke(sender, e);
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Demos.GetNames
 {
@@ -21,7 +22,7 @@ namespace JJ.Demos.GetNames
 
 			string propertyName = method.Name.CutLeft("get_").CutLeft("set_");
 
-			Type type = method.DeclaringType;
+			Type type = method.DeclaringType ?? throw new NullException(() => method.DeclaringType);
 			var defaultMemberAttribute = (DefaultMemberAttribute)type.GetCustomAttributes(typeof(DefaultMemberAttribute), inherit: true).SingleOrDefault();
 			if (defaultMemberAttribute == null)
 			{

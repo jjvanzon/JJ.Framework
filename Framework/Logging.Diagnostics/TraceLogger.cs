@@ -1,38 +1,22 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text;
+using JetBrains.Annotations;
 
-namespace JJ.Framework.Logging
+namespace JJ.Framework.Logging.Diagnostics
 {
-	/// <summary>
-	/// Logs a debug trace. Well usable in unit tests to log detailed performance info and other messages.
-	/// </summary>
+	/// <summary> Logs a debug trace. Well usable in unit tests to log detailed performance info and other messages. </summary>
+	[PublicAPI]
 	public static class TraceLogger
 	{
-		public static void Message(string message)
-		{
-			Trace.WriteLine(message);
-		}
+		public static void Message(string message) => Trace.WriteLine(message);
+	    public static void LogValue(string name, object value) => Message($"{name}: {value}");
+	    public static void LogPerformance(Stopwatch stopwatch) => LogPerformance(null, stopwatch, 1);
+	    public static void LogPerformance(Stopwatch stopwatch, int repeats) => LogPerformance(null, stopwatch, repeats);
 
-		public static void LogValue(string name, object value)
-		{
-			TraceLogger.Message(string.Format("{0}: {1}", name, value));
-		}
-
-		public static void LogPerformance(Stopwatch stopwatch)
-		{
-			TraceLogger.LogPerformance(null, stopwatch, 1);
-		}
-
-		public static void LogPerformance(Stopwatch stopwatch, int repeats)
-		{
-			TraceLogger.LogPerformance(null, stopwatch, repeats);
-		}
-
-		public static void LogPerformance(string name, Stopwatch stopwatch = null, int repeats = 0)
+	    public static void LogPerformance(string name, Stopwatch stopwatch = null, int repeats = 0)
 		{
 			bool hasText = false;
-			StringBuilder sb = new StringBuilder();
+			var sb = new StringBuilder();
 
 			if (!string.IsNullOrEmpty(name))
 			{
@@ -44,9 +28,7 @@ namespace JJ.Framework.Logging
 			{
 				if (hasText) sb.Append(" ");
 
-				sb.Append(
-					string.Format("({0} repeats)", 
-					FormatNumber(repeats)));
+				sb.Append($"({FormatNumber(repeats)} repeats)");
 
 				hasText = true;
 			}
@@ -55,9 +37,7 @@ namespace JJ.Framework.Logging
 			{
 				if (hasText) sb.Append(": ");
 
-				sb.Append(
-					string.Format("{0} ms", 
-					FormatNumber(stopwatch.ElapsedMilliseconds)));
+				sb.Append($"{FormatNumber(stopwatch.ElapsedMilliseconds)} ms");
 
 				hasText = true;
 
@@ -65,24 +45,16 @@ namespace JJ.Framework.Logging
 				{
 					if (hasText) sb.Append(", ");
 
-					sb.Append(
-						string.Format("{0} ticks",
-						FormatNumber(stopwatch.ElapsedTicks)));
+					sb.Append($"{FormatNumber(stopwatch.ElapsedTicks)} ticks");
 				}
 
 				hasText = true;
 			}
 
-			TraceLogger.Message(sb.ToString());
+			Message(sb.ToString());
 		}
 
-		private static string FormatNumber(long number)
-		{
-			return number.ToString("###,###,###,###,###,##0");
-		}
-
-		private static string FormatNumber(int number)
-		{
-			return number.ToString("###,###,###,###,###,##0");
-		}
-	}}
+        private static string FormatNumber(long number) => number.ToString("###,###,###,###,###,##0");
+        private static string FormatNumber(int number) => number.ToString("###,###,###,###,###,##0");
+    }
+}

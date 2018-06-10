@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -260,7 +259,7 @@ namespace JJ.Framework.IO.Tests
 			{
 				CreateTempFile(tempFilePath);
 
-				using (FileLock fileLock = new FileLock(tempFilePath, LockEnum.None))
+				using (var fileLock = new FileLock(tempFilePath, LockEnum.None))
 				{
 					// Check no lock
 					AssertFileCanBeRead(tempFilePath);
@@ -593,24 +592,15 @@ namespace JJ.Framework.IO.Tests
 
 		// File Helpers
 
-		private void CreateTempFile(string filePath)
-		{
-			File.Create(filePath).Close();
-		}
+		private void CreateTempFile(string filePath) => File.Create(filePath).Close();
 
-		private void DeleteTempFile(string filePath)
+	    private void DeleteTempFile(string filePath)
 		{
 			if (File.Exists(filePath)) File.Delete(filePath);
 		}
 
-		private void AssertFileCanBeRead(string filePath)
-		{
-			File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite).Close();
-		}
+		private void AssertFileCanBeRead(string filePath) => File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite).Close();
 
-		private void AssertFileCanBeWritten(string filePath)
-		{
-			File.Open(filePath, FileMode.Open, FileAccess.Write, FileShare.ReadWrite).Close();
-		}
+	    private void AssertFileCanBeWritten(string filePath) => File.Open(filePath, FileMode.Open, FileAccess.Write, FileShare.ReadWrite).Close();
 	}
 }

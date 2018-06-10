@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Mvc.TestViews.ViewModels
+﻿// ReSharper disable InconsistentNaming
+namespace JJ.Framework.Mvc.TestViews.ViewModels
 {
 	public static class PropertyNames
 	{

@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" Inherits="System.Web.Mvc.ViewUserControl<JJ.Framework.Mvc.TestViews.ViewModels.ItemViewModel>" %>
+<%@ Import Namespace="JJ.Framework.Mvc.TestViews.ViewModels" %>
 <%@ Import Namespace="JJ.Framework.Mvc.TestViews.Views" %>
 
 <li>
@@ -6,7 +7,7 @@
 
     <ul>
 
-        <% foreach (var child in Model.Children) { %>
+        <% foreach (ItemViewModel child in Model.Children) { %>
 
             <% Html.RenderPartial(ViewNames._DetailsItem, child); %>
 

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Exceptions.InvalidValues;
+using JJ.Framework.Exceptions.TypeChecking;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Xml.Linq;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace JJ.Framework.Data.Xml.Linq.Internal
 {
@@ -26,8 +27,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 
 		public EntityStore(string filePath, IXmlMapping mapping)
 		{
-			if (mapping == null) throw new NullException(() => mapping);
-			_mapping = mapping;
+		    _mapping = mapping ?? throw new NullException(() => mapping);
 
 			Accessor = new XmlElementAccessor(filePath, ROOT_ELEMENT_NAME, _mapping.ElementName);
 			Converter = new XmlToEntityConverter();
@@ -47,7 +47,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 			{
 				return null;
 			}
-			TEntity destEntity = Converter.ConvertXmlElementToEntity<TEntity>(sourceXmlElement);
+			var destEntity = Converter.ConvertXmlElementToEntity<TEntity>(sourceXmlElement);
 			return destEntity;
 		}
 
@@ -61,7 +61,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 			object id = GetNewIdentity();
 			XmlHelper.SetAttributeValue(element, _mapping.IdentityPropertyName, Convert.ToString(id));
 
-			TEntity entity = new TEntity();
+			var entity = new TEntity();
 			SetIDOfEntity(entity, id);
 			return entity;
 		}
@@ -91,19 +91,16 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 			Accessor.DeleteElement(destXmlElement);
 		}
 
-		public void Commit()
-		{
-			Accessor.SaveDocument();
-		}
+        public void Commit() => Accessor.SaveDocument();
 
-		// Helpers
+        // Helpers
 
-		private object GetIDFromEntity(TEntity entity)
+        private object GetIDFromEntity(TEntity entity)
 		{
-			PropertyInfo property = entity.GetType().GetProperty(_mapping.IdentityPropertyName);
+			PropertyInfo property = typeof(TEntity).GetProperty(_mapping.IdentityPropertyName);
 			if (property == null)
 			{
-				throw new Exception(string.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entity.GetType().Name));
+			    throw new PropertyNotFoundException(typeof(TEntity), _mapping.IdentityPropertyName);
 			}
 
 			return property.GetValue_PlatformSafe(entity);
@@ -111,12 +108,12 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 
 		private void SetIDOfEntity(TEntity entity, object id)
 		{
-			PropertyInfo property = entity.GetType().GetProperty(_mapping.IdentityPropertyName);
+			PropertyInfo property = typeof(TEntity).GetProperty(_mapping.IdentityPropertyName);
 			if (property == null)
 			{
-				throw new Exception(string.Format("Property '{0}' not found on type '{1}'.", _mapping.IdentityPropertyName, entity.GetType().Name));
+			    throw new PropertyNotFoundException(typeof(TEntity), _mapping.IdentityPropertyName);
 			}
-			property.SetValue(entity, id, null);
+            property.SetValue(entity, id, null);
 		}
 
 		private IEnumerable<string> GetEntityPropertyNames()
@@ -145,7 +142,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 			}
 		}
 
-		private int _maxID = 0;
+		private int _maxID;
 
 		private int GetMaxID()
 		{
@@ -159,7 +156,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 
 			if (!string.IsNullOrEmpty(maxIDString))
 			{
-				_maxID = Int32.Parse(maxIDString);
+				_maxID = int.Parse(maxIDString);
 			}
 			else
 			{
@@ -169,26 +166,11 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
 			return _maxID;
 		}
 
-		// IEntityStore
+        // IEntityStore
 
-		void IEntityStore.Commit()
-		{
-			Commit();
-		}
-
-		void IEntityStore.Insert(object entity)
-		{
-			Insert((TEntity)entity);
-		}
-
-		void IEntityStore.Update(object entity)
-		{
-			Update((TEntity)entity);
-		}
-
-		void IEntityStore.Delete(object entity)
-		{
-			Delete((TEntity)entity);
-		}
-	}
+        void IEntityStore.Commit() => Commit();
+        void IEntityStore.Insert(object entity) => Insert((TEntity)entity);
+        void IEntityStore.Update(object entity) => Update((TEntity)entity);
+        void IEntityStore.Delete(object entity) => Delete((TEntity)entity);
+    }
 }

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq.Expressions;
-using JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Reflection.PerformanceTests.Translators;
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Helpers
+namespace JJ.Framework.Reflection.PerformanceTests.Helpers
 {
 	public class ExpressionHelper<TExpressionToStringTranslator, TExpressionToValueTranslator> : IExpressionHelper
 		where TExpressionToStringTranslator : IExpressionToStringTranslator, new()

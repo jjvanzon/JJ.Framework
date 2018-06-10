@@ -2,6 +2,7 @@
 using JJ.Framework.Soap.Tests.Helpers;
 using JJ.Framework.Soap.Tests.ServiceInterface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Framework.Soap.Tests
 {

@@ -19,12 +19,9 @@ namespace JJ.Framework.VectorGraphics.Gestures
 			InitializeMouseMoveGesture();
 		}
 
-		~GestureHandler()
-		{
-			FinalizeMouseMoveGesture();
-		}
+		~GestureHandler() => FinalizeMouseMoveGesture();
 
-		// MouseDown
+	    // MouseDown
 
 		public void HandleMouseDown(MouseEventArgs e)
 		{
@@ -115,12 +112,9 @@ namespace JJ.Framework.VectorGraphics.Gestures
 			}
 		}
 
-		public void HandleMouseMove(MouseEventArgs e)
-		{
-			_mouseMoveGesture.Internals.HandleMouseMove(this, e);
-		}
+		public void HandleMouseMove(MouseEventArgs e) => _mouseMoveGesture.Internals.HandleMouseMove(this, e);
 
-		private void mouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
+	    private void mouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
 		{
 			IEnumerable<Element> zOrdereredElements = _diagram.ElementsOrderedByZIndex;
 		

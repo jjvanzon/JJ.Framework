@@ -8,11 +8,9 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 
 		internal LinePosition(Line line)
 			: base(line)
-		{
-			_line = line;
-		}
+		    => _line = line;
 
-		public override float X
+	    public override float X
 		{
 			get
 			{

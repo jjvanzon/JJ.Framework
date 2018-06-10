@@ -1,50 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
+using JetBrains.Annotations;
 using Puzzle.NPersist.Framework;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace JJ.Framework.Data.NPersist
 {
+    [UsedImplicitly]
 	public class NPersistContext : ContextBase
 	{
-		public Context Context { get; private set; }
+		protected Context Context { get; private set; }
 
 		public NPersistContext(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
 			: base(location, modelAssembly, mappingAssembly, dialect)
-		{
-			Context = OpenContext();
-		}
+		    => Context = OpenContext();
 
-		public override TEntity Create<TEntity>()
-		{
-			return Context.CreateObject<TEntity>();
-		}
+	    public override TEntity Create<TEntity>() => Context.CreateObject<TEntity>();
+	    public override TEntity TryGet<TEntity>(object id) => Context.TryGetObjectById<TEntity>(id);
+	    public override void Insert(object entity) => Context.AttachObject(entity);
+	    public override void Update(object entity) => Context.AttachObject(entity);
+	    public override void Delete(object entity) => Context.DeleteObject(entity);
+	    public override IEnumerable<TEntity> Query<TEntity>() => Context.Repository<TEntity>();
 
-		public override TEntity TryGet<TEntity>(object id)
-		{
-			return Context.TryGetObjectById<TEntity>(id);
-		}
-
-		public override void Insert(object entity)
-		{
-			Context.AttachObject(entity);
-		}
-
-		public override void Update(object entity)
-		{
-			Context.AttachObject(entity);
-		}
-
-		public override void Delete(object entity)
-		{
-			Context.DeleteObject(entity);
-		}
-
-		public override IEnumerable<TEntity> Query<TEntity>()
-		{
-			return Context.Repository<TEntity>();
-		}
-
-		// Transactions
+	    // Transactions
 
 		private Context OpenContext()
 		{
@@ -52,12 +30,9 @@ namespace JJ.Framework.Data.NPersist
 			return context;
 		}
 
-		private void CloseContext(Context context)
-		{
-			context.Dispose();
-		}
+		private void CloseContext(Context context) => context.Dispose();
 
-		public override void Commit()
+	    public override void Commit()
 		{
 			Context.Commit();
 

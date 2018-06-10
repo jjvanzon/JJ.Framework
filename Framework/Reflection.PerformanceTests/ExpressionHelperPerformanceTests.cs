@@ -1,437 +1,445 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Diagnostics;
+using System.Linq.Expressions;
+using JJ.Framework.Logging.Diagnostics;
+using JJ.Framework.Reflection.PerformanceTests.Helpers;
+using JJ.Framework.Reflection.PerformanceTests.Items;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using JJ.OneOff.ExpressionTranslatorPerformanceTests.Items;
-using JJ.OneOff.ExpressionTranslatorPerformanceTests.Helpers;
-using JJ.Framework.Logging;
-using JJ.Framework.Reflection;
+// ReSharper disable UnusedVariable
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests
+namespace JJ.Framework.Reflection.PerformanceTests
 {
-	[TestClass]
-	public class ExpressionHelperPerformanceTests
-	{
-		private const int REPEATS = 100000;
+    [TestClass]
+    public class ExpressionHelperPerformanceTests
+    {
+        private const int REPEATS = 100000;
 
-		// GetString Simple
+        // GetString Simple
 
-		[TestMethod]
-		public void Test_ExpressionHelper_Performance_GetString_Simple()
-		{
-			Item item = CreateItem();
-			Expression<Func<Item>> expression = () => item;
+        [TestMethod]
+        public void Test_ExpressionHelper_Performance_GetString_Simple()
+        {
+            Item item = CreateItem();
+            Expression<Func<Item>> expression = () => item;
 
-			Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
-			Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
-			Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingTranslators);
-			Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
-			Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.Dummies);
-			//Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
-			//Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
-			//Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
-		}
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingTranslators);
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.Dummies);
+            //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
+            //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
+            //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
+        }
 
-		// GetValue Simple
+        // GetValue Simple
 
-		[TestMethod]
-		public void Test_ExpressionHelper_Performance_GetValue_Simple()
-		{
-			Item item = CreateItem();
-			Expression<Func<Item>> expression = () => item;
+        [TestMethod]
+        public void Test_ExpressionHelper_Performance_GetValue_Simple()
+        {
+            Item item = CreateItem();
+            Expression<Func<Item>> expression = () => item;
 
-			Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
-			Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
-			Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingTranslators);
-			Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
-			Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.Dummies);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingFuncCache);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
-		}
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingTranslators);
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.Dummies);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingFuncCache);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
+        }
 
-		// GetString Composite
+        // GetString Composite
 
-		[TestMethod]
-		public void Test_ExpressionHelper_Performance_GetString_Composite()
-		{
-			Item item = CreateItem();
-			Expression<Func<string>> expression = () => item.Parent.Name;
+        [TestMethod]
+        public void Test_ExpressionHelper_Performance_GetString_Composite()
+        {
+            Item item = CreateItem();
+            Expression<Func<string>> expression = () => item.Parent.Name;
 
-			Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
-			Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
-			Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingTranslators);
-			Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
-			Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.Dummies);
-			//Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
-			//Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
-			//Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
-		}
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingTranslators);
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.Dummies);
+            //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
+            //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
+            //Test_ExpressionHelper_Performance_GetString_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
+        }
 
-		// GetValue Composite
+        // GetValue Composite
 
-		[TestMethod]
-		public void Test_ExpressionHelper_Performance_GetValue_Composite()
-		{
-			Item item = CreateItem();
-			Expression<Func<string>> expression = () => item.Parent.Name;
+        [TestMethod]
+        public void Test_ExpressionHelper_Performance_GetValue_Composite()
+        {
+            Item item = CreateItem();
+            Expression<Func<string>> expression = () => item.Parent.Name;
 
-			Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
-			Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
-			Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingTranslators);
-			Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
-			Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.Dummies);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingFuncCache);
-			//Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
-		}
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingTranslators);
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.Dummies);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingFuncCache);
+            //Test_ExpressionHelper_Performance_GetValue_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
+        }
 
-		// NotNull Simple
+        // NotNull Simple
 
-		[TestMethod]
-		public void Test_ExpressionHelper_Performance_NotNull_Simple()
-		{
-			Item item = CreateItem();
-			Expression<Func<Item>> expression = () => item;
+        [TestMethod]
+        public void Test_ExpressionHelper_Performance_NotNull_Simple()
+        {
+            Item item = CreateItem();
+            Expression<Func<Item>> expression = () => item;
 
-			Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
-			Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
-			Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingTranslators);
-			Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
-			Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.Dummies);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingFuncCache);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
-		}
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingTranslators);
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.Dummies);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingFuncCache);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
+        }
 
-		// NotNull Composite
+        // NotNull Composite
 
-		[TestMethod]
-		public void Test_ExpressionHelper_Performance_NotNull_Composite()
-		{
-			Item item = CreateItem();
-			Expression<Func<string>> expression = () => item.Parent.Name;
+        [TestMethod]
+        public void Test_ExpressionHelper_Performance_NotNull_Composite()
+        {
+            Item item = CreateItem();
+            Expression<Func<string>> expression = () => item.Parent.Name;
 
-			Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
-			Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
-			Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingTranslators);
-			Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
-			Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.Dummies);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingFuncCache);
-			//Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
-		}
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingTranslators_Simple);
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_Simple);
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingTranslators);
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+            Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.Dummies);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingFuncCache);
+            //Test_ExpressionHelper_Performance_NotNull_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
+        }
 
-		// Not Postponing String Retrieval Simple
+        // Not Postponing String Retrieval Simple
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Simple()
-		//{
-		//	Item item = CreateItem();
-		//	Expression<Func<Item>> expression = () => item;
-		//
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingFuncCache);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingExpressionTranslators);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
-		//}
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Simple()
+        //{
+        //	Item item = CreateItem();
+        //	Expression<Func<Item>> expression = () => item;
+        //
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingFuncCache);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingExpressionTranslators);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
+        //}
 
-		// Not Postponing String Retrieval Composite
+        // Not Postponing String Retrieval Composite
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Composite()
-		//{
-		//	Item item = CreateItem();
-		//	Expression<Func<string>> expression = () => item.Parent.Name;
-		//
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingFuncCache);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingExpressionTranslators);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
-		//	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
-		//}
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Composite()
+        //{
+        //	Item item = CreateItem();
+        //	Expression<Func<string>> expression = () => item.Parent.Name;
+        //
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingPureCompilation);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingFuncCache);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingFuncCacheAndConstantHashCode);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingMemberInfos);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingExpressionTranslators);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_EntryPointExpensive);
+        //	Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base(expression, () => ExpressionHelpers.UsingCustomTranslators_WithLessMethods);
+        //}
 
-		// Reusable methods
+        // Reusable methods
 
-		private void Test_ExpressionHelper_Performance_GetString_Base<T>(
-			Expression<Func<T>> expression,
-			Expression<Func<IExpressionHelper>> expressionHelperExpression)
-		{
-			IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
-			string text = ExpressionHelper.GetText(expressionHelperExpression);
+        private void Test_ExpressionHelper_Performance_GetString_Base<T>(
+            Expression<Func<T>> expression,
+            Expression<Func<IExpressionHelper>> expressionHelperExpression)
+        {
+            IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
+            string text = ExpressionHelper.GetText(expressionHelperExpression);
 
-			Stopwatch stopwatch = Stopwatch.StartNew();
-			for (int i = 0; i < REPEATS; i++)
-			{
-				expressionHelper.GetString(expression);
-			}
-			stopwatch.Stop();
-			TraceLogger.LogPerformance(text, stopwatch, REPEATS);
-		}
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
+            for (var i = 0; i < REPEATS; i++)
+            {
+                expressionHelper.GetString(expression);
+            }
 
-		public void Test_ExpressionHelper_Performance_GetValue_Base<T>(
-			Expression<Func<T>> expression,
-			Expression<Func<IExpressionHelper>> expressionHelperExpression)
-		{
-			IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
-			string text = ExpressionHelper.GetText(expressionHelperExpression);
+            stopwatch.Stop();
+            TraceLogger.LogPerformance(text, stopwatch, REPEATS);
+        }
 
-			Stopwatch stopwatch = Stopwatch.StartNew();
-			for (int i = 0; i < REPEATS; i++)
-			{
-				expressionHelper.GetValue(expression);
-			}
-			stopwatch.Stop();
-			TraceLogger.LogPerformance(text, stopwatch, REPEATS);
-		}
+        public void Test_ExpressionHelper_Performance_GetValue_Base<T>(
+            Expression<Func<T>> expression,
+            Expression<Func<IExpressionHelper>> expressionHelperExpression)
+        {
+            IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
+            string text = ExpressionHelper.GetText(expressionHelperExpression);
 
-		public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base<T>(
-			Expression<Func<T>> expression,
-			Expression<Func<IExpressionHelper>> expressionHelperExpression)
-		{
-			IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
-			string text = ExpressionHelper.GetText(expressionHelperExpression);
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
-			Item item = CreateItem();
-			Stopwatch stopwatch = Stopwatch.StartNew();
-			for (int i = 0; i < REPEATS; i++)
-			{
-				NotNull_NotPostponingStringRetrieval(expression, expressionHelper);
-			}
-			stopwatch.Stop();
-			TraceLogger.LogPerformance(text, stopwatch, REPEATS);
-		}
+            for (var i = 0; i < REPEATS; i++)
+            {
+                expressionHelper.GetValue(expression);
+            }
 
-		private void NotNull_NotPostponingStringRetrieval<T>(Expression<Func<T>> expression, IExpressionHelper expressionHelper)
-		{
-			string text = expressionHelper.GetString(expression);
-			if (expressionHelper.GetValue(expression) == null)
-			{
-				throw new Exception($"{text} cannot be null.");
-			}
-		}
+            stopwatch.Stop();
+            TraceLogger.LogPerformance(text, stopwatch, REPEATS);
+        }
 
-		public void Test_ExpressionHelper_Performance_NotNull_Base<T>(
-			Expression<Func<T>> expression,
-			Expression<Func<IExpressionHelper>> expressionHelperExpression)
-		{
-			IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
-			string text = ExpressionHelper.GetText(expressionHelperExpression);
+        public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Base<T>(
+            Expression<Func<T>> expression,
+            Expression<Func<IExpressionHelper>> expressionHelperExpression)
+        {
+            IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
+            string text = ExpressionHelper.GetText(expressionHelperExpression);
 
-			Stopwatch stopwatch = Stopwatch.StartNew();
-			for (int i = 0; i < REPEATS; i++)
-			{
-				NotNull_Base(expression, expressionHelper);
-			}
-			stopwatch.Stop();
-			TraceLogger.LogPerformance(text, stopwatch, REPEATS);
-		}
+            Item item = CreateItem();
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
-		private void NotNull_Base<T>(Expression<Func<T>> expression, IExpressionHelper expressionHelper)
-		{
-			if (expressionHelper.GetValue(expression) == null)
-			{
-				throw new Exception($"{expressionHelper.GetString(expression)} cannot be null.");
-			}
-		}
+            for (var i = 0; i < REPEATS; i++)
+            {
+                NotNull_NotPostponingStringRetrieval(expression, expressionHelper);
+            }
 
-		// Helpers
+            stopwatch.Stop();
+            TraceLogger.LogPerformance(text, stopwatch, REPEATS);
+        }
 
-		private Item CreateItem()
-		{
-			Item parent = new Item();
+        private void NotNull_NotPostponingStringRetrieval<T>(Expression<Func<T>> expression, IExpressionHelper expressionHelper)
+        {
+            string text = expressionHelper.GetString(expression);
 
-			Item item = new Item { Parent = parent };
+            if (expressionHelper.GetValue(expression) == null)
+            {
+                throw new Exception($"{text} cannot be null.");
+            }
+        }
 
-			parent.Name = "Parent";
-			
-			return item;
-		}
+        public void Test_ExpressionHelper_Performance_NotNull_Base<T>(
+            Expression<Func<T>> expression,
+            Expression<Func<IExpressionHelper>> expressionHelperExpression)
+        {
+            IExpressionHelper expressionHelper = ExpressionHelper.GetValue(expressionHelperExpression);
+            string text = ExpressionHelper.GetText(expressionHelperExpression);
 
-		// Not normalizable
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_GetValue_Simple_UsingFunc()
-		//{
-		//	Item item = CreateItem();
-		//	Stopwatch stopwatch = Stopwatch.StartNew();
-		//	for (int i = 0; i < Repeats; i++)
-		//	{
-		//		ExpressionHelper_UsingFunc.GetValue(() => item);
-		//	}
-		//	stopwatch.Stop();
-		//	Log.Performance(stopwatch, Repeats);
-		//}
+            for (var i = 0; i < REPEATS; i++)
+            {
+                NotNull_Base(expression, expressionHelper);
+            }
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_GetValue_Composite_UsingFunc()
-		//{
-		//	Item item = CreateItem();
-		//	Stopwatch stopwatch = Stopwatch.StartNew();
-		//	for (int i = 0; i < Repeats; i++)
-		//	{
-		//		ExpressionHelper_UsingFunc.GetValue(() => item.Parent.Name);
-		//	}
-		//	stopwatch.Stop();
-		//	Log.Performance(stopwatch, Repeats);
-		//}
+            stopwatch.Stop();
+            TraceLogger.LogPerformance(text, stopwatch, REPEATS);
+        }
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_NotNull_Simple_UsingObjectAndString()
-		//{
-		//	Item item = CreateItem();
-		//	Stopwatch stopwatch = Stopwatch.StartNew();
-		//	for (int i = 0; i < Repeats; i++)
-		//	{
-		//		NotNull_UsingObjectAndString(item, "item");
-		//	}
-		//	stopwatch.Stop();
-		//	Log.Performance(stopwatch, Repeats);
-		//}
+        private void NotNull_Base<T>(Expression<Func<T>> expression, IExpressionHelper expressionHelper)
+        {
+            if (expressionHelper.GetValue(expression) == null)
+            {
+                throw new Exception($"{expressionHelper.GetString(expression)} cannot be null.");
+            }
+        }
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_NotNull_Simple_UsingFunc()
-		//{
-		//	Item item = CreateItem();
-		//	Stopwatch stopwatch = Stopwatch.StartNew();
-		//	for (int i = 0; i < Repeats; i++)
-		//	{
-		//		NotNull_UsingFunc(() => item, "item");
-		//	}
-		//	stopwatch.Stop();
-		//	Log.Performance(stopwatch, Repeats);
-		//}
+        // Helpers
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_NotNull_Composite_UsingObjectAndString()
-		//{
-		//	Item item = CreateItem();
-		//	Stopwatch stopwatch = Stopwatch.StartNew();
-		//	for (int i = 0; i < Repeats; i++)
-		//	{
-		//		NotNull_UsingObjectAndString(item.Parent.Name, "item.Parent.Name");
-		//	}
-		//	stopwatch.Stop();
-		//	Log.Performance(stopwatch, Repeats);
-		//}
+        private Item CreateItem()
+        {
+            var parent = new Item();
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_NotNull_Composite_UsingFunc()
-		//{
-		//	Item item = CreateItem();
-		//	Stopwatch stopwatch = Stopwatch.StartNew();
-		//	for (int i = 0; i < Repeats; i++)
-		//	{
-		//		NotNull_UsingFunc(() => item.Parent.Name, "item.Parent.Name");
-		//	}
-		//	stopwatch.Stop();
-		//	Log.Performance(stopwatch, Repeats);
-		//}
+            var item = new Item { Parent = parent };
 
-		//private void NotNull_UsingObjectAndString(object obj, string text)
-		//{
-		//	if (obj == null)
-		//	{
-		//		throw new IsNullException(text);
-		//	}
-		//}
+            parent.Name = "Parent";
 
-		//private void NotNull_UsingFunc(Func<object> obj, string text)
-		//{
-		//	if (obj() == null)
-		//	{
-		//		throw new IsNullException(text);
-		//	}
-		//}
+            return item;
+        }
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Simple_UsingObjectAndString()
-		//{
-		//	Item item = CreateItem();
-		//	Stopwatch stopwatch = Stopwatch.StartNew();
-		//	for (int i = 0; i < Repeats; i++)
-		//	{
-		//		NotNull_NotPostponingStringRetrieval_UsingObjectAndString(item, "item");
-		//	}
-		//	stopwatch.Stop();
-		//	Log.Performance(stopwatch, Repeats);
-		//}
+        // Not normalizable
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Simple_UsingFunc()
-		//{
-		//	Item item = CreateItem();
-		//	Stopwatch stopwatch = Stopwatch.StartNew();
-		//	for (int i = 0; i < Repeats; i++)
-		//	{
-		//		NotNull_NotPostponingStringRetrieval_UsingFunc(() => item, "item");
-		//	}
-		//	stopwatch.Stop();
-		//	Log.Performance(stopwatch, Repeats);
-		//}
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_GetValue_Simple_UsingFunc()
+        //{
+        //	Item item = CreateItem();
+        //	Stopwatch stopwatch = Stopwatch.StartNew();
+        //	for (int i = 0; i < Repeats; i++)
+        //	{
+        //		ExpressionHelper_UsingFunc.GetValue(() => item);
+        //	}
+        //	stopwatch.Stop();
+        //	Log.Performance(stopwatch, Repeats);
+        //}
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Composite_UsingObjectAndString()
-		//{
-		//	Item item = CreateItem();
-		//	Stopwatch stopwatch = Stopwatch.StartNew();
-		//	for (int i = 0; i < Repeats; i++)
-		//	{
-		//		NotNull_NotPostponingStringRetrieval_UsingObjectAndString(item.Parent.Name, "item.Parent.Name");
-		//	}
-		//	stopwatch.Stop();
-		//	Log.Performance(stopwatch, Repeats);
-		//}
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_GetValue_Composite_UsingFunc()
+        //{
+        //	Item item = CreateItem();
+        //	Stopwatch stopwatch = Stopwatch.StartNew();
+        //	for (int i = 0; i < Repeats; i++)
+        //	{
+        //		ExpressionHelper_UsingFunc.GetValue(() => item.Parent.Name);
+        //	}
+        //	stopwatch.Stop();
+        //	Log.Performance(stopwatch, Repeats);
+        //}
 
-		//[TestMethod]
-		//public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Composite_UsingFunc()
-		//{
-		//	Item item = CreateItem();
-		//	Stopwatch stopwatch = Stopwatch.StartNew();
-		//	for (int i = 0; i < Repeats; i++)
-		//	{
-		//		NotNull_NotPostponingStringRetrieval_UsingFunc(() => item.Parent.Name, "item.Parent.Name");
-		//	}
-		//	stopwatch.Stop();
-		//	Log.Performance(stopwatch, Repeats);
-		//}
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_NotNull_Simple_UsingObjectAndString()
+        //{
+        //	Item item = CreateItem();
+        //	Stopwatch stopwatch = Stopwatch.StartNew();
+        //	for (int i = 0; i < Repeats; i++)
+        //	{
+        //		NotNull_UsingObjectAndString(item, "item");
+        //	}
+        //	stopwatch.Stop();
+        //	Log.Performance(stopwatch, Repeats);
+        //}
 
-		//private void NotNull_NotPostponingStringRetrieval_UsingObjectAndString(object obj, string text)
-		//{
-		//	if (obj == null)
-		//	{
-		//		throw new IsNullException(text);
-		//	}
-		//}
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_NotNull_Simple_UsingFunc()
+        //{
+        //	Item item = CreateItem();
+        //	Stopwatch stopwatch = Stopwatch.StartNew();
+        //	for (int i = 0; i < Repeats; i++)
+        //	{
+        //		NotNull_UsingFunc(() => item, "item");
+        //	}
+        //	stopwatch.Stop();
+        //	Log.Performance(stopwatch, Repeats);
+        //}
 
-		//private void NotNull_NotPostponingStringRetrieval_UsingFunc(Func<object> obj, string text)
-		//{
-		//	if (obj() == null)
-		//	{
-		//		throw new IsNullException(text);
-		//	}
-		//}
-	}
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_NotNull_Composite_UsingObjectAndString()
+        //{
+        //	Item item = CreateItem();
+        //	Stopwatch stopwatch = Stopwatch.StartNew();
+        //	for (int i = 0; i < Repeats; i++)
+        //	{
+        //		NotNull_UsingObjectAndString(item.Parent.Name, "item.Parent.Name");
+        //	}
+        //	stopwatch.Stop();
+        //	Log.Performance(stopwatch, Repeats);
+        //}
+
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_NotNull_Composite_UsingFunc()
+        //{
+        //	Item item = CreateItem();
+        //	Stopwatch stopwatch = Stopwatch.StartNew();
+        //	for (int i = 0; i < Repeats; i++)
+        //	{
+        //		NotNull_UsingFunc(() => item.Parent.Name, "item.Parent.Name");
+        //	}
+        //	stopwatch.Stop();
+        //	Log.Performance(stopwatch, Repeats);
+        //}
+
+        //private void NotNull_UsingObjectAndString(object obj, string text)
+        //{
+        //	if (obj == null)
+        //	{
+        //		throw new IsNullException(text);
+        //	}
+        //}
+
+        //private void NotNull_UsingFunc(Func<object> obj, string text)
+        //{
+        //	if (obj() == null)
+        //	{
+        //		throw new IsNullException(text);
+        //	}
+        //}
+
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Simple_UsingObjectAndString()
+        //{
+        //	Item item = CreateItem();
+        //	Stopwatch stopwatch = Stopwatch.StartNew();
+        //	for (int i = 0; i < Repeats; i++)
+        //	{
+        //		NotNull_NotPostponingStringRetrieval_UsingObjectAndString(item, "item");
+        //	}
+        //	stopwatch.Stop();
+        //	Log.Performance(stopwatch, Repeats);
+        //}
+
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Simple_UsingFunc()
+        //{
+        //	Item item = CreateItem();
+        //	Stopwatch stopwatch = Stopwatch.StartNew();
+        //	for (int i = 0; i < Repeats; i++)
+        //	{
+        //		NotNull_NotPostponingStringRetrieval_UsingFunc(() => item, "item");
+        //	}
+        //	stopwatch.Stop();
+        //	Log.Performance(stopwatch, Repeats);
+        //}
+
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Composite_UsingObjectAndString()
+        //{
+        //	Item item = CreateItem();
+        //	Stopwatch stopwatch = Stopwatch.StartNew();
+        //	for (int i = 0; i < Repeats; i++)
+        //	{
+        //		NotNull_NotPostponingStringRetrieval_UsingObjectAndString(item.Parent.Name, "item.Parent.Name");
+        //	}
+        //	stopwatch.Stop();
+        //	Log.Performance(stopwatch, Repeats);
+        //}
+
+        //[TestMethod]
+        //public void Test_ExpressionHelper_Performance_NotNull_NotPostponingStringRetrieval_Composite_UsingFunc()
+        //{
+        //	Item item = CreateItem();
+        //	Stopwatch stopwatch = Stopwatch.StartNew();
+        //	for (int i = 0; i < Repeats; i++)
+        //	{
+        //		NotNull_NotPostponingStringRetrieval_UsingFunc(() => item.Parent.Name, "item.Parent.Name");
+        //	}
+        //	stopwatch.Stop();
+        //	Log.Performance(stopwatch, Repeats);
+        //}
+
+        //private void NotNull_NotPostponingStringRetrieval_UsingObjectAndString(object obj, string text)
+        //{
+        //	if (obj == null)
+        //	{
+        //		throw new IsNullException(text);
+        //	}
+        //}
+
+        //private void NotNull_NotPostponingStringRetrieval_UsingFunc(Func<object> obj, string text)
+        //{
+        //	if (obj() == null)
+        //	{
+        //		throw new IsNullException(text);
+        //	}
+        //}
+    }
 }

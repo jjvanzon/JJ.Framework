@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.CodeAnalysis.TestCode
+﻿// ReSharper disable UnusedMember.Global
+#pragma warning disable 169
+namespace JJ.Framework.CodeAnalysis.TestCode
 {
 	internal class Fields_ThatAreNotPrivate
 	{

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using JJ.Framework.Testing;
@@ -124,7 +123,7 @@ namespace JJ.Framework.IO.Tests
 			{
 				Directory.CreateDirectory(folderPath);
 
-				for (int i = 1; i <= fileCount; i++)
+				for (var i = 1; i <= fileCount; i++)
 				{
 					string filePath = FileHelper.GetNumberedFilePath(baseFilePath);
 					File.Create(filePath).Close();

@@ -1,9 +1,13 @@
 ﻿using System.Diagnostics;
 using System.Runtime.CompilerServices;
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnassignedField.Global
+// ReSharper disable UnusedMember.Global
+// ReSharper disable MemberCanBePrivate.Global
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Items
+namespace JJ.Framework.Reflection.PerformanceTests.Items
 {
-	[DebuggerDisplay("Item {Name} [{Index}] = {Value}")]
+	[DebuggerDisplay("Item {Name} [{Index}]")]
 	public class Item //: IItem
 	{
 		public string Name;

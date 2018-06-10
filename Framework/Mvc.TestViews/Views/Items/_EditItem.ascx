@@ -8,7 +8,7 @@
 
     <ul>
 
-        <% foreach (var child in Model.Children) { %>
+        <% foreach (ItemViewModel child in Model.Children) { %>
 
             <% using (Html.BeginCollectionItem(PropertyNames.Children)) { %>
 

@@ -2,105 +2,104 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reflection;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Demos.ReflectionCache.Tests
 {
-	public class HisTests
-	{
-		public static void Execute()
-		{
-			const int iterations = 1000;
+    public static class HisTests
+    {
+        public static void Execute()
+        {
+            const int iterations = 1000;
 
-			Console.WriteLine();
+            Console.WriteLine();
 
-			Console.WriteLine("His Tests Comparing Property Get Methods");
+            Console.WriteLine("His Tests Comparing Property Get Methods");
 
-			long direct = TestGetPropertiesDirect(iterations);
-			long cached = TestGetPropertiesCached(iterations);
+            long direct = TestGetPropertiesDirect(iterations);
+            long cached = TestGetPropertiesCached(iterations);
 
-			Console.WriteLine(
-				"Cached access is {0} times faster than reflection access",
-				(double)direct / (double)cached);
-		}
+            Console.WriteLine(
+                "Cached access is {0} times faster than reflection access",
+                direct / (double)cached);
+        }
 
-		private static long TestGetPropertiesDirect(int iterations)
-		{
-			Console.WriteLine("TestGetPropertiesDirect...");
+        private static long TestGetPropertiesDirect(int iterations)
+        {
+            Console.WriteLine("TestGetPropertiesDirect...");
 
-			Type[] types = GetTestTypes();
-			int gets = 0;
+            Type[] types = GetTestTypes();
+            var gets = 0;
 
-			var sw = Stopwatch.StartNew();
-			for (int i = 0; i < iterations; i++)
-			{
-				foreach (Type type in types)
-				{
-					PropertyInfo[] properties = type.GetProperties();
-					gets++;
-				}
-			}
-			sw.Stop();
+            Stopwatch sw = Stopwatch.StartNew();
+            for (var i = 0; i < iterations; i++)
+            {
+                foreach (Type type in types)
+                {
+                    PropertyInfo[] properties = type.GetProperties();
+                    gets++;
+                }
+            }
 
-			Console.WriteLine("type.GetProperties(): {0} ms / {1}x", sw.ElapsedMilliseconds, gets);
+            sw.Stop();
 
-			return sw.ElapsedMilliseconds;
-		}
+            Console.WriteLine("type.GetProperties(): {0} ms / {1}x", sw.ElapsedMilliseconds, gets);
 
-		private static long TestGetPropertiesCached(int iterations)
-		{
-			Console.WriteLine("TestGetPropertiesCached...");
+            return sw.ElapsedMilliseconds;
+        }
 
-			Type[] types = GetTestTypes();
-			int gets = 0;
+        private static long TestGetPropertiesCached(int iterations)
+        {
+            Console.WriteLine("TestGetPropertiesCached...");
 
-			Stopwatch sw = Stopwatch.StartNew();
-			for (int i = 0; i < iterations; i++)
-			{
-				foreach (Type type in types)
-				{
-					PropertyInfo[] properties = GetCachedProperties(type);
-					gets++;
-				}
-			}
-			sw.Stop();
+            Type[] types = GetTestTypes();
+            var gets = 0;
 
-			Console.WriteLine("ReflectionCache.GetProperties(): {0} ms / {1}x", sw.ElapsedMilliseconds, gets);
+            Stopwatch sw = Stopwatch.StartNew();
+            for (var i = 0; i < iterations; i++)
+            {
+                foreach (Type type in types)
+                {
+                    PropertyInfo[] properties = GetCachedProperties(type);
+                    gets++;
+                }
+            }
 
-			return sw.ElapsedMilliseconds;
-		}
+            sw.Stop();
 
-		// Caching
+            Console.WriteLine("ReflectionCache.GetProperties(): {0} ms / {1}x", sw.ElapsedMilliseconds, gets);
 
-		//private static ReflectionCache_Adapted _cache = new ReflectionCache_Adapted(BindingFlags.Public | BindingFlags.Instance);
+            return sw.ElapsedMilliseconds;
+        }
 
-		private static Dictionary<Type, PropertyInfo[]> _propertyDictionary =
-				   new Dictionary<Type, PropertyInfo[]>();
+        // Caching
 
-		private static object _propertyDictionaryLock = new object();
+        //private static ReflectionCache_Adapted _cache = new ReflectionCache_Adapted(BindingFlags.Public | BindingFlags.Instance);
 
-		private static PropertyInfo[] GetCachedProperties(Type type)
-		{
-			//return _cache.GetProperties(type);
+        private static readonly Dictionary<Type, PropertyInfo[]> _propertyDictionary =
+            new Dictionary<Type, PropertyInfo[]>();
 
-			lock (_propertyDictionaryLock)
-			{
-				PropertyInfo[] properties;
-				if (_propertyDictionary.TryGetValue(type, out properties) == false)
-				{
-					properties = type.GetProperties();
-					_propertyDictionary.Add(type, properties);
-				}
+        private static readonly object _propertyDictionaryLock = new object();
 
-				return properties;
-			}
-		}
+        private static PropertyInfo[] GetCachedProperties(Type type)
+        {
+            //return _cache.GetProperties(type);
 
-		/// <summary>
-		/// Returns a list of types to use for the subsequent tests
-		/// </summary>
-		private static Type[] GetTestTypes()
-		{
-			return typeof(string).Assembly.GetTypes();
-		}
-	}
+            lock (_propertyDictionaryLock)
+            {
+                if (_propertyDictionary.TryGetValue(type, out PropertyInfo[] properties) == false)
+                {
+                    properties = type.GetProperties();
+                    _propertyDictionary.Add(type, properties);
+                }
+
+                return properties;
+            }
+        }
+
+        /// <summary>
+        /// Returns a list of types to use for the subsequent tests
+        /// </summary>
+        private static Type[] GetTestTypes() => typeof(string).Assembly.GetTypes();
+    }
 }

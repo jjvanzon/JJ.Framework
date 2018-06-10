@@ -28,12 +28,9 @@ namespace JJ.Framework.IO.Tests
 		}
 
 		[TestCleanup]
-		public void Cleanup()
-		{
-			FinalizeFolderPath();
-		}
+		public void Cleanup() => FinalizeFolderPath();
 
-		[TestMethod]
+	    [TestMethod]
 		public void Test_SafeFileOverwriter_Example()
 		{
 			lock (_testLock)
@@ -500,7 +497,7 @@ namespace JJ.Framework.IO.Tests
 					FileSecurity security = fileInfo.GetAccessControl();
 					int originalAccessRuleCount = security.GetAccessRules(true, false, typeof(SecurityIdentifier)).Count;
 
-					FileSystemAccessRule rule = new FileSystemAccessRule(identity, FileSystemRights.WriteAttributes, AccessControlType.Deny);
+					var rule = new FileSystemAccessRule(identity, FileSystemRights.WriteAttributes, AccessControlType.Deny);
 					security.SetAccessRule(rule);
 					int newAccessRuleCount1 = security.GetAccessRules(true, false, typeof(SecurityIdentifier)).Count;
 					AssertHelper.NotEqual(originalAccessRuleCount, () => newAccessRuleCount1);
@@ -556,12 +553,9 @@ namespace JJ.Framework.IO.Tests
 
 		private string _filePath;
 
-		private void InitializeFilePath()
-		{
-			_filePath = Path.Combine(_folderPath, FILE_NAME);
-		}
+		private void InitializeFilePath() => _filePath = Path.Combine(_folderPath, FILE_NAME);
 
-		// File Helpers
+	    // File Helpers
 
 		private const string ORIGINAL_FILE_CONTENT = "This is the original file.";
 		private const string NEW_FILE_CONTENT = "This is the new file.";

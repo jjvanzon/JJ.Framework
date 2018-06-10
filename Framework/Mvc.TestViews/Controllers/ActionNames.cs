@@ -1,8 +1,11 @@
-﻿namespace JJ.Framework.Mvc.TestViews.Controllers
+﻿
+// ReSharper disable InconsistentNaming
+
+namespace JJ.Framework.Mvc.TestViews.Controllers
 {
-	public static class ActionNames
-	{
-		public const string Details = "Details";
-		public const string Edit = "Edit";
-	}
+    public abstract class ActionNames
+    {
+        public const string Details = nameof(Details);
+        public const string Edit = nameof(Details);
+    }
 }

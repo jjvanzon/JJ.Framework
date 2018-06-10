@@ -6,9 +6,6 @@ namespace JJ.Framework.WinForms.EventArg
 	{
 		public int PageNumber { get; }
 
-		public PageNumberEventArgs(int pageNumber)
-		{
-			PageNumber = pageNumber;
-		}
+		public PageNumberEventArgs(int pageNumber) => PageNumber = pageNumber;
 	}
 }

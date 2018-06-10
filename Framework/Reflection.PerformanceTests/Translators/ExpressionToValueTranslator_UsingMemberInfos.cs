@@ -2,117 +2,111 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
+namespace JJ.Framework.Reflection.PerformanceTests.Translators
 {
-	public class ExpressionToValueTranslator_UsingMemberInfos : IExpressionToValueTranslator
-	{
-		public object Result { get; private set; }
+    public class ExpressionToValueTranslator_UsingMemberInfos : IExpressionToValueTranslator
+    {
+        public object Result { get; private set; }
 
-		public void Visit<T>(Expression<Func<T>> expression)
-		{
-			Result = GetValue(expression);
-		}
+        public void Visit<T>(Expression<Func<T>> expression) => Result = GetValue(expression);
 
-		private T GetValue<T>(Expression<Func<T>> expression)
-		{
-			if (expression == null)
-			{
-				throw new NullException(() => expression);
-			}
+        private T GetValue<T>(Expression<Func<T>> expression)
+        {
+            if (expression == null)
+            {
+                throw new NullException(() => expression);
+            }
 
-			return (T)GetValueFromExpressionOfFunc(expression);
-		}
+            return (T)GetValueFromExpressionOfFunc(expression);
+        }
 
-		private object GetValueFromExpressionOfFunc<T>(Expression<Func<T>> expression)
-		{
-			if (expression.Body is MemberExpression memberExpression)
-			{
-				return GetValueFromMemberExpression(memberExpression);
-			}
+        private object GetValueFromExpressionOfFunc<T>(Expression<Func<T>> expression)
+        {
+            switch (expression.Body)
+            {
+                case MemberExpression memberExpression: return GetValueFromMemberExpression(memberExpression);
+                case UnaryExpression unaryExpression: return GetValueFromUnaryExpression(unaryExpression);
+            }
 
-			if (expression.Body is UnaryExpression unaryExpression)
-			{
-				return GetValueFromUnaryExpression(unaryExpression);
-			}
+            throw new ArgumentException($"Value cannot be obtained from {expression.Body.GetType().Name}.");
+        }
 
-			throw new ArgumentException($"Value cannot be obtained from {expression.Body.GetType().Name}.");
-		}
+        private object GetValueFromUnaryExpression(UnaryExpression unaryExpression)
+        {
+            MemberExpression memberExpression;
 
-		private object GetValueFromUnaryExpression(UnaryExpression unaryExpression)
-		{
-			MemberExpression memberExpression = null;
+            switch (unaryExpression.NodeType)
+            {
+                case ExpressionType.Convert:
+                case ExpressionType.ConvertChecked:
+                    memberExpression = unaryExpression.Operand as MemberExpression;
+                    if (memberExpression != null)
+                    {
+                        return GetValueFromMemberExpression(memberExpression);
+                    }
 
-			switch (unaryExpression.NodeType)
-			{
-				case ExpressionType.Convert:
-				case ExpressionType.ConvertChecked:
-					memberExpression = unaryExpression.Operand as MemberExpression;
-					if (memberExpression != null)
-					{
-						return GetValueFromMemberExpression(memberExpression);
-					}
-					break;
+                    break;
 
-				case ExpressionType.ArrayLength:
-					memberExpression = unaryExpression.Operand as MemberExpression;
-					if (memberExpression != null)
-					{
-						Array array = (Array)GetValueFromMemberExpression(memberExpression);
-						return array.Length;
-					}
-					break;
-			}
+                case ExpressionType.ArrayLength:
+                    memberExpression = unaryExpression.Operand as MemberExpression;
+                    if (memberExpression != null)
+                    {
+                        var array = (Array)GetValueFromMemberExpression(memberExpression);
+                        return array.Length;
+                    }
 
-			throw new ArgumentException($"Value cannot be obtained from {unaryExpression.Operand.GetType().Name}.");
-		}
+                    break;
+            }
 
-		private object GetValueFromMemberExpression(MemberExpression memberExpression)
-		{
-			var members = new List<MemberInfo>();
+            throw new ArgumentException($"Value cannot be obtained from {unaryExpression.Operand.GetType().Name}.");
+        }
 
-			object constant = GetOuterMostConstantAndAddMembers(memberExpression, members);
+        private object GetValueFromMemberExpression(MemberExpression memberExpression)
+        {
+            var members = new List<MemberInfo>();
 
-			object value = constant;
+            object constant = GetOuterMostConstantAndAddMembers(memberExpression, members);
 
-			foreach (MemberInfo member in members)
-			{
-				switch (member.MemberType)
-				{
-					case MemberTypes.Field:
-						var field = (FieldInfo)member;
-						value = field.GetValue(value);
-						break;
+            object value = constant;
 
-					case MemberTypes.Property:
-						var property = (PropertyInfo)member;
-						value = property.GetValue(value, null);
-						break;
+            foreach (MemberInfo member in members)
+            {
+                switch (member.MemberType)
+                {
+                    case MemberTypes.Field:
+                        var field = (FieldInfo)member;
+                        value = field.GetValue(value);
+                        break;
 
-					case MemberTypes.Method:
-						throw new NotSupportedException("Retrieving values from expressions with method calls in it, is not supported.");
-				}
-			}
+                    case MemberTypes.Property:
+                        var property = (PropertyInfo)member;
+                        value = property.GetValue(value, null);
+                        break;
 
-			return value;
-		}
+                    case MemberTypes.Method:
+                        throw new NotSupportedException(
+                            "Retrieving values from expressions with method calls in it, is not supported.");
+                }
+            }
 
-		private object GetOuterMostConstantAndAddMembers(Expression expression, List<MemberInfo> members)
-		{
-			if (expression is ConstantExpression constantExpression)
-			{
-				return constantExpression.Value;
-			}
+            return value;
+        }
 
-			if (expression is MemberExpression memberExpression)
-			{
-				members.Insert(0, memberExpression.Member);
-				return GetOuterMostConstantAndAddMembers(memberExpression.Expression, members);
-			}
+        private object GetOuterMostConstantAndAddMembers(Expression expression, List<MemberInfo> members)
+        {
+            switch (expression)
+            {
+                case ConstantExpression constantExpression:
+                    return constantExpression.Value;
 
-			throw new Exception("OuterMostConstantExpression could not be retrieved.");
-		}
-	}
+                case MemberExpression memberExpression:
+                    members.Insert(0, memberExpression.Member);
+                    return GetOuterMostConstantAndAddMembers(memberExpression.Expression, members);
+            }
+
+            throw new Exception("OuterMostConstantExpression could not be retrieved.");
+        }
+    }
 }

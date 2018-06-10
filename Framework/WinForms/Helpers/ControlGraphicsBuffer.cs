@@ -31,12 +31,9 @@ namespace JJ.Framework.WinForms.Helpers
 			_graphicsBuffer.StartBuffering(_control.Width, _control.Height);
 		}
 
-		~ControlGraphicsBuffer()
-		{
-			Dispose();
-		}
+		~ControlGraphicsBuffer() => Dispose();
 
-		public void Dispose()
+	    public void Dispose()
 		{
 			_controlGraphics.Dispose();
 
@@ -49,14 +46,8 @@ namespace JJ.Framework.WinForms.Helpers
 		public Graphics Graphics => _graphicsBuffer.Graphics;
 
 		/// <summary> Displays buffered graphics onto the control. </summary>
-		public void DrawBuffer()
-		{
-			_graphicsBuffer.DrawBuffer();
-		}
+		public void DrawBuffer() => _graphicsBuffer.DrawBuffer();
 
-		private void _control_SizeChanged(object sender, EventArgs e)
-		{
-			_graphicsBuffer.StartBuffering(_control.Width, _control.Height);
-		}
+	    private void _control_SizeChanged(object sender, EventArgs e) => _graphicsBuffer.StartBuffering(_control.Width, _control.Height);
 	}
 }

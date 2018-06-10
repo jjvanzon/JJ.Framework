@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 {
@@ -11,7 +12,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		[TestMethod]
 		public void Test_ExpressionHelpers_GetValues_ComplexExample()
 		{
-			ComplexItem item = new ComplexItem();
+			var item = new ComplexItem();
 			Expression<Func<string>> expression = () =>
 				item
 				.Property

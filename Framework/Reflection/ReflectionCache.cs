@@ -98,7 +98,7 @@ namespace JJ.Framework.Reflection
 				default:
 					throw new Exception(
 						$"Type with short name '{shortTypeName}' found multiple times in the AppDomain's assemblies. " + 
-						$"Found types:{Environment.NewLine}{String.Join(Environment.NewLine, types.Select(x => x.FullName))}");
+						$"Found types:{Environment.NewLine}{string.Join(Environment.NewLine, types.Select(x => x.FullName))}");
 			}
 		}
 

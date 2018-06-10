@@ -15,12 +15,9 @@ namespace JJ.Framework.VectorGraphics.Gestures
 			: this((IList<DragGesture>)dragGestures)
 		{ }
 
-		public DropGesture(IList<DragGesture> dragGestures)
-		{
-			_dragGestures = dragGestures ?? throw new NullException(() => dragGestures);
-		}
+		public DropGesture(IList<DragGesture> dragGestures) => _dragGestures = dragGestures ?? throw new NullException(() => dragGestures);
 
-		protected override void HandleMouseUp(object sender, MouseEventArgs e)
+	    protected override void HandleMouseUp(object sender, MouseEventArgs e)
 		{
 			foreach (DragGesture dragGesture in _dragGestures)
 			{

@@ -2,6 +2,7 @@
 using JJ.Framework.Configuration;
 using JJ.Framework.Soap.Tests.ServiceInterface;
 using JJ.Framework.Soap.Tests.Helpers;
+// ReSharper disable UnusedVariable
 
 namespace JJ.Framework.Soap.Tests
 {
@@ -26,7 +27,7 @@ namespace JJ.Framework.Soap.Tests
 		{
 			string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
 			var client = new CustomWcfSoapClient<ITestService>(url);
-			CompositeType obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
+			var obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
 
 			TestHelper.WithInconclusiveConnectionAssertion(() =>
 			{
@@ -39,7 +40,7 @@ namespace JJ.Framework.Soap.Tests
 		{
 			string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
 			var client = new CustomWcfSoapClient<ITestService>(url);
-			TypeWithCollection obj1 = new TypeWithCollection { StringList = new string[] { "Hi", "there", "!" } };
+			var obj1 = new TypeWithCollection { StringList = new[] { "Hi", "there", "!" } };
 
 			TestHelper.WithInconclusiveConnectionAssertion(() =>
 			{

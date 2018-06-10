@@ -94,7 +94,10 @@ Or rather:
 			string fullName = htmlHelper.ViewData.TemplateInfo.GetFullHtmlFieldName(name);
 			string fullID = htmlHelper.ViewData.TemplateInfo.GetFullHtmlFieldId(name);
 
-			string html = string.Format(@"<input name=""{0}"" id=""{1}"" type=""hidden"" value=""{2}"" autocomplete=""off""/>", htmlHelper.Encode(fullName), htmlHelper.Encode(fullID), htmlHelper.Encode(value));
+			string html =
+			    $@"<input name=""{htmlHelper.Encode(fullName)}"" id=""{htmlHelper.Encode(fullID)}"" type=""hidden"" value=""{
+			        htmlHelper.Encode(value)
+			    }"" autocomplete=""off""/>";
 			return new MvcHtmlString(html);
 		}
 	}

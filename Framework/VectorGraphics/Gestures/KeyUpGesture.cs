@@ -9,9 +9,6 @@ namespace JJ.Framework.VectorGraphics.Gestures
 		// ReSharper disable once EventNeverSubscribedTo.Global
 		public event EventHandler<KeyEventArgs> KeyUp;
 
-		protected override void HandleKeyUp(object sender, KeyEventArgs e)
-		{
-			KeyUp?.Invoke(sender, e);
-		}
+		protected override void HandleKeyUp(object sender, KeyEventArgs e) => KeyUp?.Invoke(sender, e);
 	}
 }

@@ -111,9 +111,6 @@ namespace JJ.Framework.VectorGraphics.Helpers
 			return sb.ToString();
 		}
 
-		public static string GetDebuggerDisplay(ElementPosition elementPosition)
-		{
-			return $"X={elementPosition.X}, Y={elementPosition.Y}, Width={elementPosition.Width}, Height={elementPosition.Height}";
-		}
+		public static string GetDebuggerDisplay(ElementPosition elementPosition) => $"X={elementPosition.X}, Y={elementPosition.Y}, Width={elementPosition.Width}, Height={elementPosition.Height}";
 	}
 }

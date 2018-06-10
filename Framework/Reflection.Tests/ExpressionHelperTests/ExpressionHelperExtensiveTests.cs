@@ -53,8 +53,6 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		[TestMethod]
 		public void Test_ExpressionHelpers_Constant()
 		{
-			Item item = new Item();
-
 			Assert.AreEqual("1", ExpressionHelper.GetText(() => 1));
 			Assert.AreEqual(1, ExpressionHelper.GetValue(() => 1));
 		}
@@ -70,7 +68,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		public void Test_ExpressionHelpers_Conversion_Numeric()
 		{
 			// ReSharper disable once ConvertToConstant.Local
-			int value = 1;
+			var value = 1;
 			Assert.AreEqual("value", ExpressionHelper.GetText(() => (long)value));
 			Assert.AreEqual(1, ExpressionHelper.GetValue(() => (long)value));
 		}
@@ -78,7 +76,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		[TestMethod]
 		public void Test_ExpressionHelpers_Conversion_DirectCast()
 		{
-			Item item = new Item();
+			var item = new Item();
 
 			Assert.AreEqual("item", ExpressionHelper.GetText(() => (IItem)item));
 			Assert.AreSame(item, ExpressionHelper.GetValue(() => (IItem)item));
@@ -87,7 +85,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		[TestMethod]
 		public void Test_ExpressionHelpers_MethodCall_WithoutParameter()
 		{
-			Item item = new Item();
+			var item = new Item();
 
 			Assert.AreEqual("item.MethodWithoutParameter()", ExpressionHelper.GetText(() => item.MethodWithoutParameter()));
 			Assert.AreEqual("MethodWithoutParameterResult", ExpressionHelper.GetValue(() => item.MethodWithoutParameter()));
@@ -110,7 +108,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		[TestMethod]
 		public void Test_ExpressionHelpers_MethodCall_WithParameter()
 		{
-			Item item = new Item();
+			var item = new Item();
 
 			Assert.AreEqual("item.MethodWithParameter(1)", ExpressionHelper.GetText(() => item.MethodWithParameter(1)));
 			Assert.AreEqual("MethodWithParameterResult", ExpressionHelper.GetValue(() => item.MethodWithParameter(1)));
@@ -133,7 +131,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		[TestMethod]
 		public void Test_ExpressionHelpers_Indexer()
 		{
-			Item item = new Item();
+			var item = new Item();
 
 			Assert.AreEqual("item[1]", ExpressionHelper.GetText(() => item[1]));
 			Assert.AreEqual("IndexerResult", ExpressionHelper.GetValue(() => item[1]));
@@ -167,7 +165,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		{
 			int[] array = { 10, 11, 12 };
 			// ReSharper disable once ConvertToConstant.Local
-			int i = 2;
+			var i = 2;
 			Assert.AreEqual("array[i]", ExpressionHelper.GetText(() => array[i]));
 			Assert.AreEqual(12, ExpressionHelper.GetValue(() => array[i]));
 		}
@@ -191,7 +189,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		[TestMethod]
 		public void Test_ExpressionHelpers_ArrayInit()
 		{
-			Item item = new Item();
+			var item = new Item();
 
 			Assert.AreEqual("item.MethodWithParams(1, 2, 3)", ExpressionHelper.GetText(() => item.MethodWithParams(1, 2, 3)));
 			Assert.AreEqual("MethodWithParamsResult", ExpressionHelper.GetValue(() => item.MethodWithParams(1, 2, 3)));
@@ -214,7 +212,7 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		[TestMethod]
 		public void Test_ExpressionHelpers_ComplexExample()
 		{
-			ComplexItem item = new ComplexItem();
+			var item = new ComplexItem();
 			Expression<Func<string>> expression = () =>
 				item.Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4].Property.MethodWithParameter(1).MethodWithParams(1, 2, 3)[4]._field;
 

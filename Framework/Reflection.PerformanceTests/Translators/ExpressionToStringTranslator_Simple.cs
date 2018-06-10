@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Text;
 using System.Linq.Expressions;
-using JJ.Framework.Common;
+using System.Text;
 using JJ.Framework.Text;
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
+namespace JJ.Framework.Reflection.PerformanceTests.Translators
 {
 	public class ExpressionToStringTranslator_Simple : ExpressionVisitor, IExpressionToStringTranslator
 	{
@@ -12,17 +11,11 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
 		public string Result => _sb.ToString().TrimStart(".");
 
-		public void Visit<T>(Expression<Func<T>> expression)
-		{
-			Visit((LambdaExpression)expression);
-		}
+		public void Visit<T>(Expression<Func<T>> expression) => Visit((LambdaExpression)expression);
 
-		public void Visit(LambdaExpression expression)
-		{
-			Visit(expression.Body);
-		}
+	    public void Visit(LambdaExpression expression) => Visit(expression.Body);
 
-		public override Expression Visit(Expression node)
+	    public override Expression Visit(Expression node)
 		{
 			switch (node.NodeType)
 			{

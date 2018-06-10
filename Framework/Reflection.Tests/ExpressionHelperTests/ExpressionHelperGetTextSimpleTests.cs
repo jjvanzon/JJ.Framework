@@ -14,21 +14,21 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		public void Test_ExpressionHelpers_GetText_LocalVariable()
 		{
 			// ReSharper disable once ConvertToConstant.Local
-			int variable = 1;
+			var variable = 1;
 			Assert.AreEqual("variable", ExpressionHelper.GetText(() => variable));
 		}
 
 		[TestMethod]
 		public void Test_ExpressionHelpers_GetText_Field()
 		{
-			Item item = new Item { _field = 1 };
+			var item = new Item { _field = 1 };
 			Assert.AreEqual("item._field", ExpressionHelper.GetText(() => item._field));
 		}
 
 		[TestMethod]
 		public void Test_ExpressionHelpers_GetText_Property()
 		{
-			Item item = new Item { Property = 1 };
+			var item = new Item { Property = 1 };
 			Assert.AreEqual("item.Property", ExpressionHelper.GetText(() => item.Property));
 		}
 
@@ -42,9 +42,9 @@ namespace JJ.Framework.Reflection.Tests.ExpressionHelperTests
 		[TestMethod]
 		public void Test_ExpressionHelpers_GetText_WithQualifier()
 		{
-			Item grandParentItem = new Item { Index = 10 };
-			Item parentItem = new Item { Parent = grandParentItem };
-			Item item = new Item { Parent = parentItem };
+			var grandParentItem = new Item { Index = 10 };
+			var parentItem = new Item { Parent = grandParentItem };
+			var item = new Item { Parent = parentItem };
 
 			Assert.AreEqual("item.Parent.Parent.Index", ExpressionHelper.GetText(() => item.Parent.Parent.Index));
 		}

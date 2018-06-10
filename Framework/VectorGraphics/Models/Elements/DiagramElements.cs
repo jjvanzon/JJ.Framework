@@ -11,12 +11,9 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 
 		private readonly DiagramToElementsRelationship _relationship;
 
-		internal DiagramElements(Diagram diagram)
-		{
-			_relationship = new DiagramToElementsRelationship(diagram, _elements);
-		}
+		internal DiagramElements(Diagram diagram) => _relationship = new DiagramToElementsRelationship(diagram, _elements);
 
-		public int Count => _elements.Count;
+	    public int Count => _elements.Count;
 
 		internal void Add(Element element) => _relationship.Add(element);
 

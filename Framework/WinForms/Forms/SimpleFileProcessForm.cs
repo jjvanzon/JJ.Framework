@@ -21,7 +21,8 @@ namespace JJ.Framework.WinForms.Forms
 		}
 
 		// ReSharper disable once ValueParameterNotUsed
-		public new string Text { get { return null; } set { } }
+		public new string Text { get => null;
+		    set { } }
 
 		public event EventHandler OnRunProcess;
 
@@ -32,12 +33,9 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleFileProcessControl.IsRunning = value;
 		}
 
-		public void ShowProgress(string message)
-		{
-			simpleFileProcessControl.ShowProgress(message);
-		}
+		public void ShowProgress(string message) => simpleFileProcessControl.ShowProgress(message);
 
-		public string FilePath
+	    public string FilePath
 		{
 			get => simpleFileProcessControl.FilePath;
 			set => simpleFileProcessControl.FilePath = value;
@@ -67,14 +65,8 @@ namespace JJ.Framework.WinForms.Forms
 			simpleFileProcessControl.Size = new Size(ClientRectangle.Width, ClientRectangle.Height);
 		}
 
-		private void simpleProcessControl_OnRunProcess(object sender, EventArgs e)
-		{
-			OnRunProcess?.Invoke(sender, e);
-		}
+		private void simpleProcessControl_OnRunProcess(object sender, EventArgs e) => OnRunProcess?.Invoke(sender, e);
 
-		private void Base_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			e.Cancel = simpleFileProcessControl.IsRunning;
-		}
+	    private void Base_FormClosing(object sender, FormClosingEventArgs e) => e.Cancel = simpleFileProcessControl.IsRunning;
 	}
 }

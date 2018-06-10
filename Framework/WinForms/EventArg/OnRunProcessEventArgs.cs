@@ -9,9 +9,6 @@ namespace JJ.Framework.WinForms.EventArg
 		public OnRunProcessEventArgs()
 		{ }
 
-		public OnRunProcessEventArgs(string filePath)
-		{
-			FilePath = filePath;
-		}
+		public OnRunProcessEventArgs(string filePath) => FilePath = filePath;
 	}
 }

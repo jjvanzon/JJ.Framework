@@ -1,8 +1,7 @@
 ﻿using System;
-using JJ.Framework.Exceptions;
 using JJ.Framework.Exceptions.Basic;
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Helpers
+namespace JJ.Framework.Reflection.PerformanceTests.Helpers
 {
 	public static class ExpressionHelper_UsingFunc
 	{

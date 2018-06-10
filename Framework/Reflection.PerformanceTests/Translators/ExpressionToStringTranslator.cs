@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Text;
-using JJ.Framework.Reflection;
 using JJ.Framework.Text;
+// ReSharper disable PossibleNullReferenceException
+// ReSharper disable MemberCanBePrivate.Global
 
-namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
+namespace JJ.Framework.Reflection.PerformanceTests.Translators
 {
 	public class ExpressionToStringTranslator : ExpressionVisitor, IExpressionToStringTranslator
 	{
@@ -15,17 +16,11 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 								   .Replace("(.", "(")
 								   .Replace("[.", "[");
 
-		public void Visit<T>(Expression<Func<T>> expression)
-		{
-			Visit((LambdaExpression)expression);
-		}
+		public void Visit<T>(Expression<Func<T>> expression) => Visit((LambdaExpression)expression);
 
-		public void Visit(LambdaExpression expression)
-		{
-			Visit(expression.Body);
-		}
- 
-		public override Expression Visit(Expression node)
+	    public void Visit(LambdaExpression expression) => Visit(expression.Body);
+
+	    public override Expression Visit(Expression node)
 		{
 			switch (node.NodeType)
 			{
@@ -115,7 +110,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 			if (node.Method.IsIndexer())
 			{
 				_sb.Append("[");
-				for (int i = 0; i < node.Arguments.Count - 1; i++)
+				for (var i = 0; i < node.Arguments.Count - 1; i++)
 				{
 					Visit(node.Arguments[i]);
 					_sb.Append(", ");
@@ -128,7 +123,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 				_sb.Append(".");
 				_sb.Append(node.Method.Name);
 				_sb.Append("(");
-				for (int i = 0; i < node.Arguments.Count - 1; i++)
+				for (var i = 0; i < node.Arguments.Count - 1; i++)
 				{
 					Visit(node.Arguments[i]);
 					_sb.Append(", ");
@@ -186,7 +181,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 			_sb.Append("[");
 
 			var constantExpression = (ConstantExpression)node.Right;
-			int index = (int)constantExpression.Value;
+			var index = (int)constantExpression.Value;
 			_sb.Append(index);
 
 			_sb.Append("]");
@@ -194,7 +189,7 @@ namespace JJ.OneOff.ExpressionTranslatorPerformanceTests.Translators
 
 		protected override Expression VisitNewArray(NewArrayExpression node)
 		{
-			for (int i = 0; i < node.Expressions.Count - 1; i++)
+			for (var i = 0; i < node.Expressions.Count - 1; i++)
 			{
 				Visit(node.Expressions[i]);
 				_sb.Append(", ");

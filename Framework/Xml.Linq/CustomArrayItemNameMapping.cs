@@ -1,5 +1,4 @@
-﻿using JJ.Framework.Exceptions;
-using System;
+﻿using System;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Xml.Linq

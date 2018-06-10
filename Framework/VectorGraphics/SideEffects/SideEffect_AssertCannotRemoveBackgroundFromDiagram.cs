@@ -9,12 +9,9 @@ namespace JJ.Framework.VectorGraphics.SideEffects
 	{
 		private readonly Element _element;
 
-		public SideEffect_AssertCannotRemoveBackgroundFromDiagram(Element element)
-		{
-			_element = element ?? throw new NullException(() => element);
-		}
+		public SideEffect_AssertCannotRemoveBackgroundFromDiagram(Element element) => _element = element ?? throw new NullException(() => element);
 
-		public void Execute()
+	    public void Execute()
 		{
 			if (_element == _element.Diagram.Background)
 			{
