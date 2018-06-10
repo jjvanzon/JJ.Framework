@@ -61,33 +61,21 @@ namespace Puzzle.NPersist.Framework.Querying
 		{
 		}
 
-		public override string ToSqlScalar()
-		{
-			return Convert.ToString(Query);
-		}
+		public override string ToSqlScalar() => Convert.ToString(Query);
 
-		public override string ToSqlScalar(Type primaryType)
-		{
-			return Convert.ToString(Query);
-		}
+	    public override string ToSqlScalar(Type primaryType) => Convert.ToString(Query);
 
-		public override string ToSqlScalar(Type primaryType, IContext ctx)
-		{
-			return Convert.ToString(Query);
-		}
+	    public override string ToSqlScalar(Type primaryType, IContext ctx) => Convert.ToString(Query);
 
-		public override string ToSqlScalar(Type primaryType, IContext ctx, ref IList outParameters, IList inParameters)
+	    public override string ToSqlScalar(Type primaryType, IContext ctx, ref IList outParameters, IList inParameters)
 		{
 			outParameters = new ArrayList() ;
 			return Convert.ToString(Query);
 		}
 
-		public override string ToSql()
-		{
-			return Convert.ToString(Query);
-		}
+		public override string ToSql() => Convert.ToString(Query);
 
-		public override string ToSql(Type primaryType, IContext ctx, ref IList idColumns, ref IList typeColumns, ref Hashtable propertyColumnMap, ref IList outParameters, IList inParameters)
+	    public override string ToSql(Type primaryType, IContext ctx, ref IList idColumns, ref IList typeColumns, ref Hashtable propertyColumnMap, ref IList outParameters, IList inParameters)
 		{
 			outParameters = new ArrayList(); 
 			IClassMap classMap;

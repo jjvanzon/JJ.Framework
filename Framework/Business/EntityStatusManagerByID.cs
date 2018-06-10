@@ -17,89 +17,47 @@ namespace JJ.Framework.Business
 
 		// IsDirty
 
-		public bool IsDirty<TEntity>(object id)
-		{
-			return IsDirty(typeof(TEntity), id);
-		}
+		public bool IsDirty<TEntity>(object id) => IsDirty(typeof(TEntity), id);
 
-		public bool IsDirty(Type entityType, object id)
-		{
-			return GetStatus(entityType, id) == EntityStatusEnum.Dirty;
-		}
+	    public bool IsDirty(Type entityType, object id) => GetStatus(entityType, id) == EntityStatusEnum.Dirty;
 
-		/// <summary> For properties. </summary>
-		public bool IsDirty<T>(object id, Expression<Func<T>> propertyExpression)
-		{
-			return GetStatus(id, propertyExpression) == PropertyStatusEnum.Dirty;
-		}
+	    /// <summary> For properties. </summary>
+		public bool IsDirty<T>(object id, Expression<Func<T>> propertyExpression) => GetStatus(id, propertyExpression) == PropertyStatusEnum.Dirty;
 
-		// SetIsDirty
+	    // SetIsDirty
 
-		public void SetIsDirty<TEntity>(object id)
-		{
-			SetIsDirty(typeof(TEntity), id);
-		}
+		public void SetIsDirty<TEntity>(object id) => SetIsDirty(typeof(TEntity), id);
 
-		public void SetIsDirty(Type entityType, object id)
-		{
-			SetStatus(entityType, id,  EntityStatusEnum.Dirty);
-		}
+	    public void SetIsDirty(Type entityType, object id) => SetStatus(entityType, id,  EntityStatusEnum.Dirty);
 
-		/// <summary> For properties. </summary>
-		public void SetIsDirty<T>(object id, Expression<Func<T>> propertyExpression)
-		{
-			SetStatus(id, propertyExpression, PropertyStatusEnum.Dirty);
-		}
+	    /// <summary> For properties. </summary>
+		public void SetIsDirty<T>(object id, Expression<Func<T>> propertyExpression) => SetStatus(id, propertyExpression, PropertyStatusEnum.Dirty);
 
-		// IsNew
+	    // IsNew
 
-		public bool IsNew<TEntity>(object id)
-		{
-			return IsNew(typeof(TEntity), id);
-		}
+		public bool IsNew<TEntity>(object id) => IsNew(typeof(TEntity), id);
 
-		public bool IsNew(Type entityType, object id)
-		{
-			return GetStatus(entityType, id) == EntityStatusEnum.New;
-		}
+	    public bool IsNew(Type entityType, object id) => GetStatus(entityType, id) == EntityStatusEnum.New;
 
-		// SetIsNew
+	    // SetIsNew
 
-		public void SetIsNew<TEntity>(object id)
-		{
-			SetIsNew(typeof(TEntity), id);
-		}
+		public void SetIsNew<TEntity>(object id) => SetIsNew(typeof(TEntity), id);
 
-		public void SetIsNew(Type entityType, object id)
-		{
-			SetStatus(entityType, id, EntityStatusEnum.Dirty);
-		}
+	    public void SetIsNew(Type entityType, object id) => SetStatus(entityType, id, EntityStatusEnum.Dirty);
 
-		// IsDeleted
+	    // IsDeleted
 
-		public bool IsDeleted<TEntity>(object id)
-		{
-			return IsDeleted(typeof(TEntity), id);
-		}
+		public bool IsDeleted<TEntity>(object id) => IsDeleted(typeof(TEntity), id);
 
-		public bool IsDeleted(Type entityType, object id)
-		{
-			return GetStatus(entityType, id) == EntityStatusEnum.Deleted;
-		}
+	    public bool IsDeleted(Type entityType, object id) => GetStatus(entityType, id) == EntityStatusEnum.Deleted;
 
-		// SetIsDeleted
+	    // SetIsDeleted
 
-		public void SetIsDeleted<TEntity>(object id)
-		{
-			SetIsDeleted(typeof(TEntity), id);
-		}
+		public void SetIsDeleted<TEntity>(object id) => SetIsDeleted(typeof(TEntity), id);
 
-		public void SetIsDeleted(Type entityType, object id)
-		{
-			SetStatus(entityType, id, EntityStatusEnum.Dirty);
-		}
+	    public void SetIsDeleted(Type entityType, object id) => SetStatus(entityType, id, EntityStatusEnum.Dirty);
 
-		// Generalized methods
+	    // Generalized methods
 
 		// TODO: I am not happy about type argument T.
 		// ExpressionHelper does not always work in case of <object>,

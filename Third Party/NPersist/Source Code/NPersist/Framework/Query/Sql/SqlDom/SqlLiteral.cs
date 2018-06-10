@@ -18,34 +18,22 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 	/// </summary>
 	public abstract class SqlLiteral : SqlExpression 
 	{
-		protected SqlLiteral(object value)
-		{
-			this.value = value;
-		}
+		protected SqlLiteral(object value) => this.value = value;
 
-		protected SqlLiteral(DateTime value)
-		{
-			this.DateTimeValue = value;
-		}
+	    protected SqlLiteral(DateTime value) => this.DateTimeValue = value;
 
-		protected SqlLiteral(bool value)
-		{
-			this.BooleanValue = value;
-		}
+	    protected SqlLiteral(bool value) => this.BooleanValue = value;
 
-		protected SqlLiteral(decimal value)
-		{
-			this.DecimalValue = value;
-		}
+	    protected SqlLiteral(decimal value) => this.DecimalValue = value;
 
-		#region Property  Value
+	    #region Property  Value
 		
 		private object value;
 		
 		public object Value
 		{
-			get { return this.value; }
-			set { this.value = value; }
+			get => this.value;
+		    set => this.value = value;
 		}
 		
 		#endregion
@@ -56,8 +44,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public DateTime DateTimeValue
 		{
-			get { return this.dateTime; }
-			set { this.dateTime = value; }
+			get => this.dateTime;
+		    set => this.dateTime = value;
 		}
 		
 		#endregion
@@ -68,8 +56,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public bool BooleanValue
 		{
-			get { return this.boolean; }
-			set { this.boolean = value; }
+			get => this.boolean;
+		    set => this.boolean = value;
 		}
 		
 		#endregion
@@ -80,8 +68,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public decimal DecimalValue
 		{
-			get { return this.decimalValue; }
-			set { this.decimalValue = value; }
+			get => this.decimalValue;
+		    set => this.decimalValue = value;
 		}
 		
 		#endregion

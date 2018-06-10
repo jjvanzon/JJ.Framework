@@ -21,23 +21,15 @@ namespace JJ.Framework.Mathematics
 		/// <summary>
 		/// Gets a random Int32 between Int32.MinValue and Int32.MaxValue - 1.
 		/// </summary>
-		public static int GetInt32()
-		{
-			// Int32.MaxValue without the - 1 can produce an overflow error.
-			// ReSharper disable once IntroduceOptionalParameters.Global
-			return GetInt32(int.MinValue, int.MaxValue - 1);
-		}
+		public static int GetInt32() => GetInt32(int.MinValue, int.MaxValue - 1);
 
-		/// <summary>
+	    /// <summary>
 		/// Gets a random Int32 between 0 and the specified value.
 		/// max must at most be Int32.MaxValue - 1 or an overflow exception could occur.
 		/// </summary>
-		public static int GetInt32(int max)
-		{
-			return GetInt32(0, max);
-		}
+		public static int GetInt32(int max) => GetInt32(0, max);
 
-		/// <summary>
+	    /// <summary>
 		/// Gets a random Int32 between between a minimum and a maximum.
 		/// Both the minimum and the maximum are included.
 		/// max must at most be Int32.MaxValue - 1 or an overflow exception could occur.

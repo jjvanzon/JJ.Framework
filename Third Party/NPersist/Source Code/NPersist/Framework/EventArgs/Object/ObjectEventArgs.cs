@@ -20,14 +20,8 @@ namespace Puzzle.NPersist.Framework.EventArguments
 		{
 		}
 
-		public ObjectEventArgs(object obj) : base()
-		{
-			m_EventObject = obj;
-		}
+		public ObjectEventArgs(object obj) : base() => m_EventObject = obj;
 
-		public object EventObject
-		{
-			get { return m_EventObject; }
-		}
+	    public object EventObject => m_EventObject;
 	}
 }

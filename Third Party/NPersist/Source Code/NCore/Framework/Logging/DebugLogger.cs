@@ -37,9 +37,6 @@ namespace Puzzle.NCore.Framework.Logging
         {
         }
 
-        protected override void WriteLine(LoggingLevel level, string text)
-        {
-            System.Diagnostics.Debug.WriteLine(text, level.ToString());
-        }
+        protected override void WriteLine(LoggingLevel level, string text) => System.Diagnostics.Debug.WriteLine(text, level.ToString());
     }
 }

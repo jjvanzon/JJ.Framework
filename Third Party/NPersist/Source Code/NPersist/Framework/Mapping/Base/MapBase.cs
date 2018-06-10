@@ -26,12 +26,9 @@ namespace Puzzle.NPersist.Framework.Mapping
 
 		public abstract void Accept(IMapVisitor mapVisitor);
 
-		public virtual IMap GetParent()
-		{
-			return null; 
-		} 
+		public virtual IMap GetParent() => null;
 
-		public virtual bool IsInParents(IMap possibleParent)
+	    public virtual bool IsInParents(IMap possibleParent)
 		{
 			if (possibleParent == null)
 				return false;
@@ -51,32 +48,17 @@ namespace Puzzle.NPersist.Framework.Mapping
 
 		public virtual string Name
 		{
-			get
-			{
-				return m_Name;
-			}
-			set
-			{
-				m_Name = value;
-			}
+			get => m_Name;
+		    set => m_Name = value;
 		}
 
-		public virtual string GetKey()
-		{
-			return this.Name;
-		}
+		public virtual string GetKey() => this.Name;
 
-		public virtual IMap Clone()
-		{
-			return null;
-		}
+	    public virtual IMap Clone() => null;
 
-		public virtual IMap DeepClone()
-		{
-			return null;
-		}
+	    public virtual IMap DeepClone() => null;
 
-		public abstract void Copy(IMap mapObject);
+	    public abstract void Copy(IMap mapObject);
 
 		public abstract void DeepCopy(IMap mapObject);
 
@@ -117,14 +99,8 @@ namespace Puzzle.NPersist.Framework.Mapping
 		[XmlArrayItem(typeof (MetaDataValue))]
 		public virtual ArrayList MetaData
 		{
-			get
-			{
-				return m_MetaData;
-			}
-			set
-			{
-				m_MetaData = value;
-			}
+			get => m_MetaData;
+		    set => m_MetaData = value;
 		}
 
 		public virtual void SetMetaData(string key, object value)
@@ -195,12 +171,9 @@ namespace Puzzle.NPersist.Framework.Mapping
 			}
 		}
 
-		public virtual void UnFixate()
-		{
-			m_FixedValues = null;
-		}
+		public virtual void UnFixate() => m_FixedValues = null;
 
-		//[DebuggerStepThrough()]
+	    //[DebuggerStepThrough()]
 		public virtual bool IsFixed()
 		{
 			if (m_FixedValues == null)

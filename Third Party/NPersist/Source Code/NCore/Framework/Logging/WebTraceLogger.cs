@@ -38,10 +38,7 @@ namespace Puzzle.NCore.Framework.Logging
         {
         }
 
-        protected virtual void WriteLine(LoggingLevel level, string text)
-        {
-            HttpContext.Current.Trace.Write(level.ToString(), text);
-        }
+        protected virtual void WriteLine(LoggingLevel level, string text) => HttpContext.Current.Trace.Write(level.ToString(), text);
 
         protected virtual void WriteLine(LoggingLevel level, string text, object sender)
         {

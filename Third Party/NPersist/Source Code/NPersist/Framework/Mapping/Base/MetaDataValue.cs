@@ -17,14 +17,14 @@ namespace Puzzle.NPersist.Framework.Mapping
 
 		public string Key
 		{
-			get { return m_Key; }
-			set { m_Key = value; }
+			get => m_Key;
+		    set => m_Key = value;
 		}
 
 		public object Value
 		{
-			get { return m_Value; }
-			set { m_Value = value; }
+			get => m_Value;
+		    set => m_Value = value;
 		}
 	}
 }

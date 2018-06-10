@@ -49,14 +49,14 @@ namespace Puzzle.NPersist.Framework.Mapping
 
 		public IMap MapObject
 		{
-			get { return m_mapObject; }
-			set { m_mapObject = value; }
+			get => m_mapObject;
+		    set => m_mapObject = value;
 		}
 
 		public string Setting
 		{
-			get { return m_Setting; }
-			set { m_Setting = value; }
+			get => m_Setting;
+		    set => m_Setting = value;
 		}
 	}
 }

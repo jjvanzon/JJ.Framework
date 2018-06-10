@@ -94,17 +94,14 @@ namespace JJ.Framework.Data.SqlClient
 			return obj;
 		}
 
-		private static bool IsSimpleType(Type type)
-		{
-			return type.IsPrimitive ||
-				   type.IsEnum ||
-				   type == typeof(string) ||
-				   type == typeof(DateTime) ||
-				   type == typeof(TimeSpan) ||
-				   type == typeof(Guid);
-		}
+		private static bool IsSimpleType(Type type) => type.IsPrimitive ||
+		                                               type.IsEnum ||
+		                                               type == typeof(string) ||
+		                                               type == typeof(DateTime) ||
+		                                               type == typeof(TimeSpan) ||
+		                                               type == typeof(Guid);
 
-		private static string GetSql(object sqlEnum)
+	    private static string GetSql(object sqlEnum)
 		{
 			if (sqlEnum == null) throw new NullException(() => sqlEnum);
 
@@ -129,13 +126,9 @@ namespace JJ.Framework.Data.SqlClient
 			}
 		}
 
-		private static object ConvertValue(object value, Type type)
-		{
-			// TODO: Add more conversion types as needed.
-			return Convert.ChangeType(value, type);
-		}
+		private static object ConvertValue(object value, Type type) => Convert.ChangeType(value, type);
 
-		/// <summary>
+	    /// <summary>
 		/// SqlClient places a lot of special requirements onto nullability of parameters.
 		/// As soon as you want to pass null, you have to specify all sorts of additional data.
 		/// This method still only handles a select set of types correctly and should be extended in the future.

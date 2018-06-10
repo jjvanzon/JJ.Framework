@@ -13,12 +13,9 @@ namespace JJ.Framework.Security
 		public abstract bool PasswordIsRequired { get; }
 		public abstract bool IsAuthentic(string passwordFromClient, string tokenFromClient, string passwordFromServer, IList<string> valuesToHashFromServer);
 
-		public virtual string GetToken(string password, IList<string> valuesToHash)
-		{
-			return null;
-		}
+		public virtual string GetToken(string password, IList<string> valuesToHash) => null;
 
-		public void Authenticate(string passwordFromClient, string tokenFromClient, string passwordFromServer, IList<string> valuesToHashFromServer)
+	    public void Authenticate(string passwordFromClient, string tokenFromClient, string passwordFromServer, IList<string> valuesToHashFromServer)
 		{
 			if (!IsAuthentic(passwordFromClient, tokenFromClient, passwordFromServer, valuesToHashFromServer))
 			{
@@ -28,17 +25,11 @@ namespace JJ.Framework.Security
 
 		// Overloads with params
 
-		public bool IsAuthentic(string passwordFromClient, string tokenFromClient, string passwordFromServer, params string[] valuesToHashFromServer)
-		{
-			return IsAuthentic(passwordFromClient, tokenFromClient, passwordFromServer, (IList<string>)valuesToHashFromServer);
-		}
+		public bool IsAuthentic(string passwordFromClient, string tokenFromClient, string passwordFromServer, params string[] valuesToHashFromServer) => IsAuthentic(passwordFromClient, tokenFromClient, passwordFromServer, (IList<string>)valuesToHashFromServer);
 
-		public void Authenticate(string passwordFromClient, string tokenFromClient, string passwordFromServer, params string[] valuesToHashFromServer)
-		{
-			Authenticate(passwordFromClient, tokenFromClient, passwordFromServer, (IList<string>)valuesToHashFromServer);
-		}
+	    public void Authenticate(string passwordFromClient, string tokenFromClient, string passwordFromServer, params string[] valuesToHashFromServer) => Authenticate(passwordFromClient, tokenFromClient, passwordFromServer, (IList<string>)valuesToHashFromServer);
 
-		public string GetToken(string password, params string[] valuesToHash)
+	    public string GetToken(string password, params string[] valuesToHash)
 		{
 			if (valuesToHash == null)
 			{

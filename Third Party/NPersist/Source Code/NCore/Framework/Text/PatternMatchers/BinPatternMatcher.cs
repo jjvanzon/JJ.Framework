@@ -37,9 +37,6 @@ namespace Puzzle.NCore.Framework.Text.PatternMatchers
         }
 
         //patterns that trigger this matcher
-        public override string[] DefaultPrefixes
-        {
-            get { return new string[] {"0", "1"}; }
-        }
+        public override string[] DefaultPrefixes => new string[] {"0", "1"};
     }
 }

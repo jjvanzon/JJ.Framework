@@ -40,9 +40,6 @@ namespace Puzzle.NPersist.Framework.Aop.Mixins
             }
         }
 
-        public void SetProxy(Puzzle.NAspect.Framework.IAopProxy target)
-        {
-            this.target = target;
-        }
+        public void SetProxy(Puzzle.NAspect.Framework.IAopProxy target) => this.target = target;
     }
 }

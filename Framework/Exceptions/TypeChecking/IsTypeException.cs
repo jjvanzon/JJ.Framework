@@ -34,12 +34,9 @@ namespace JJ.Framework.Exceptions.TypeChecking
 		/// throw new IsTypeException(new { number }, typeof(int));
 		/// throw new IsTypeException(new { number }, "Int32"));
 		/// </summary>
-		public IsTypeException(Expression<Func<object>> expression, string typeName)
-		{
-			Message = string.Format(MESSAGE_TEMPLATE, ExceptionHelper.GetTextWithValue(expression), typeName);
-		}
+		public IsTypeException(Expression<Func<object>> expression, string typeName) => Message = string.Format(MESSAGE_TEMPLATE, ExceptionHelper.GetTextWithValue(expression), typeName);
 
-		/// <summary>
+	    /// <summary>
 		/// throw new IsTypeException&lt;Cat&gt;(() => room.MyPet);
 		/// throw new IsTypeException(() => room.MyPet, typeof(Cat));
 		/// throw new IsTypeException(() => room.MyPet, "Cat");
@@ -66,11 +63,8 @@ namespace JJ.Framework.Exceptions.TypeChecking
 		/// throw new IsTypeException(new { number }, "Int32"));
 		/// will all have message: "{ number = 10 } cannot be of type Int32."
 		/// </summary>
-		public IsTypeException(object indicator, string typeName)
-		{
-			Message = string.Format(MESSAGE_TEMPLATE, indicator, typeName);
-		}
+		public IsTypeException(object indicator, string typeName) => Message = string.Format(MESSAGE_TEMPLATE, indicator, typeName);
 
-		public override string Message { get; }
+	    public override string Message { get; }
 	}
 }

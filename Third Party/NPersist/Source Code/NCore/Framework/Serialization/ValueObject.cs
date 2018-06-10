@@ -7,10 +7,7 @@ namespace Puzzle.NCore.Runtime.Serialization
     {
         public string Value;
 
-        public override string ToString()
-        {
-            return string.Format("'{0}' : {1}", Value, Type.Name);
-        }
+        public override string ToString() => string.Format("'{0}' : {1}", Value, Type.Name);
 
         public override void Serialize(XmlTextWriter xml)
         {

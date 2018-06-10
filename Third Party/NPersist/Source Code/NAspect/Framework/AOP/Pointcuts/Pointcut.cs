@@ -26,30 +26,21 @@ namespace Puzzle.NAspect.Framework.Aop
         /// SignaturePointcut ctor. 
         /// </summary>
         /// <param name="interceptors">Untyped list of <c>IInterceptor</c>s to be applied to by this pointcut</param>
-        public Pointcut(IList interceptors)
-        {
-            Interceptors = interceptors;
-        }
+        public Pointcut(IList interceptors) => Interceptors = interceptors;
 
-        /// <summary>
+	    /// <summary>
         /// SignaturePointcut ctor.
         /// </summary>
         /// <param name="interceptors">Array of <c>IInterceptors</c> to be applied by this pointcut</param>
-        public Pointcut(IInterceptor[] interceptors)
-        {
-            Interceptors = new ArrayList(interceptors);
-        }
+        public Pointcut(IInterceptor[] interceptors) => Interceptors = new ArrayList(interceptors);
 
-        /// <summary>
+	    /// <summary>
         /// SignaturePointcut ctor.
         /// </summary>
         /// <param name="interceptor">a single <c>IInterceptor</c> that should be applied by this pointcut</param>
-        public Pointcut(IInterceptor interceptor)
-        {
-            Interceptors = new ArrayList(new IInterceptor[] { interceptor });
-        }
+        public Pointcut(IInterceptor interceptor) => Interceptors = new ArrayList(new IInterceptor[] { interceptor });
 
-        /// <summary>
+	    /// <summary>
         /// SignaturePointcut ctor.
         /// </summary>
         /// <param name="interceptor">Interceptor delegate to apply on matched methods, valid delegates are <c>BeforeDelegate</c>, <c>AroundDelegate</c> and <c>AfterDelegate</c></param>

@@ -22,21 +22,15 @@ namespace Puzzle.NPersist.Framework.Aop
     public class DatabindingAspect : IGenericAspect
     {
         private IContext context;
-        public DatabindingAspect(IContext context)
-        {
-            this.context = context;
-        }
+        public DatabindingAspect(IContext context) => this.context = context;
 
         public string Name
         {
-            get { return "DatabindingAspect"; }
-            set { throw new IAmOpenSourcePleaseImplementMeException(); }
+            get => "DatabindingAspect";
+            set => throw new IAmOpenSourcePleaseImplementMeException();
         }
 
-        public bool IsMatch(Type type)
-        {
-            return (context.DomainMap.GetClassMap(type) != null);
-        }
+        public bool IsMatch(Type type) => (context.DomainMap.GetClassMap(type) != null);
 
         public IList Mixins
         {
@@ -62,9 +56,6 @@ namespace Puzzle.NPersist.Framework.Aop
         }
 
         private IList targets = new ArrayList();
-        public IList Targets
-        {
-            get { return targets; }
-        }
+        public IList Targets => targets;
     }
 }

@@ -24,16 +24,9 @@ namespace Puzzle.NPersist.Framework.Linq
     {
         public List<object> Parameters = new List<object>();
 
-        public string ConvertToString<T>(Expression<T> expression)
-        {
-            return ConvertExpression(expression);
-        }
+        public string ConvertToString<T>(Expression<T> expression) => ConvertExpression(expression);
 
-        public string ConvertExpression<T>(Expression<T> expression)
-        {
-            return ConvertExpression(expression.Body);
-           
-        }
+        public string ConvertExpression<T>(Expression<T> expression) => ConvertExpression(expression.Body);
 
         public string ConvertExpression(Expression expression)
         {
@@ -116,12 +109,7 @@ namespace Puzzle.NPersist.Framework.Linq
 
 
 
-        private string ConvertParameterExpression(ParameterExpression expression)
-        {
-            return expression.Type.Name;
-            //return "";
-          //  return expression.Name;
-        }
+        private string ConvertParameterExpression(ParameterExpression expression) => expression.Type.Name;
 
         private string ConvertMemberExpression(MemberExpression expression)
         {

@@ -34,10 +34,7 @@ namespace Puzzle.NPersist.Framework.Linq
             }
         }
 
-        void DataBindingList_AddingNew(object sender, AddingNewEventArgs e)
-        {
-            e.NewObject = context.CreateObject<T>();
-        }
+        void DataBindingList_AddingNew(object sender, AddingNewEventArgs e) => e.NewObject = context.CreateObject<T>();
 
         protected override void RemoveItem(int index)
         {
@@ -46,19 +43,7 @@ namespace Puzzle.NPersist.Framework.Linq
             context.DeleteObject(entity);
         }
 
-        protected override bool SupportsSearchingCore
-        {
-            get
-            {
-                return false;
-            }
-        }
-        protected override bool SupportsSortingCore
-        {
-            get
-            {
-                return false;
-            }
-        }
+        protected override bool SupportsSearchingCore => false;
+        protected override bool SupportsSortingCore => false;
     }
 }

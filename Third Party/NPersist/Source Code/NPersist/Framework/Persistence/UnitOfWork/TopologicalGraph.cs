@@ -22,14 +22,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 	{
         private Hashtable graph = new Hashtable();
 
-        public Hashtable Graph
-        {
-            get { return graph; }
-        }
+        public Hashtable Graph => graph;
 
-
-
-        public void AddNode(object obj, object waitFor)
+	    public void AddNode(object obj, object waitFor)
         {
             TopologicalNode node = GetNode(obj);
             TopologicalNode waitForNode = GetNode(waitFor);
@@ -65,9 +60,6 @@ namespace Puzzle.NPersist.Framework.Persistence
             return false;
         }
 
-        public virtual void Clear()
-        {
-            this.graph.Clear();
-        }
-    }
+        public virtual void Clear() => this.graph.Clear();
+	}
 }

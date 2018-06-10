@@ -37,13 +37,13 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 
 		public SqlColumn SqlColumn
 		{
-			get { return this.sqlColumn; }
-			set { this.sqlColumn = value; }
+			get => this.sqlColumn;
+		    set => this.sqlColumn = value;
 		}
 
-		public SqlTableAlias SqlTableAlias { get { return this.Parent as SqlTableAlias; } }
+		public SqlTableAlias SqlTableAlias => this.Parent as SqlTableAlias;
 
-		#region Property  Alias
+	    #region Property  Alias
 		
 		private string alias;
 		
@@ -66,10 +66,6 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 			visitor.Visited(this);	
 		}
 
-		public override string ToString()
-		{
-			return this.sqlColumn.Name + " as " + this.alias;
-		}
-
+		public override string ToString() => this.sqlColumn.Name + " as " + this.alias;
 	}
 }

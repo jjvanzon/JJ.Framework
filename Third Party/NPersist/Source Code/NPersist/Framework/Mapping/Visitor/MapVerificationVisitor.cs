@@ -28,12 +28,9 @@ namespace Puzzle.NPersist.Framework.Mapping.Visitor
 		{			
 		}
 
-		public MapVerificationVisitor(bool recursive)
-		{		
-			this.recursive = recursive;
-		}
+		public MapVerificationVisitor(bool recursive) => this.recursive = recursive;
 
-		public MapVerificationVisitor(bool recursive, bool checkOrmMappings)
+	    public MapVerificationVisitor(bool recursive, bool checkOrmMappings)
 		{		
 			this.recursive = recursive;
 			this.checkOrmMappings = checkOrmMappings;
@@ -47,8 +44,8 @@ namespace Puzzle.NPersist.Framework.Mapping.Visitor
 		
 		public IList Exceptions
 		{
-			get { return this.exceptions; }
-			set { this.exceptions = value; }
+			get => this.exceptions;
+		    set => this.exceptions = value;
 		}
 		
 		#endregion
@@ -59,8 +56,8 @@ namespace Puzzle.NPersist.Framework.Mapping.Visitor
 		
 		public bool Recursive
 		{
-			get { return this.recursive; }
-			set { this.recursive = value; }
+			get => this.recursive;
+		    set => this.recursive = value;
 		}
 		
 		#endregion
@@ -71,8 +68,8 @@ namespace Puzzle.NPersist.Framework.Mapping.Visitor
 		
 		public bool CheckOrmMappings
 		{
-			get { return this.checkOrmMappings; }
-			set { this.checkOrmMappings = value; }
+			get => this.checkOrmMappings;
+		    set => this.checkOrmMappings = value;
 		}
 		
 		#endregion
@@ -95,56 +92,32 @@ namespace Puzzle.NPersist.Framework.Mapping.Visitor
 
 		#region IMapVisitor
 
-		public virtual void Visit(IDomainMap domainMap)
-		{
-			VerifyDomainMap(domainMap);
-		}
+		public virtual void Visit(IDomainMap domainMap) => VerifyDomainMap(domainMap);
 
-		public virtual void Visit(ICodeMap codeMap)
-		{
-			VerifyCodeMap(codeMap);
-		}
+	    public virtual void Visit(ICodeMap codeMap) => VerifyCodeMap(codeMap);
 
-		public virtual void Visit(IClassListMap classListMap)
+	    public virtual void Visit(IClassListMap classListMap)
 		{
 		}
 
-		public virtual void Visit(IClassMap classMap)
-		{
-			VerifyClassMap(classMap);
-		}
+		public virtual void Visit(IClassMap classMap) => VerifyClassMap(classMap);
 
-		public virtual void Visit(IPropertyMap propertyMap)
-		{
-			VerifyPropertyMap(propertyMap);
-		}
+	    public virtual void Visit(IPropertyMap propertyMap) => VerifyPropertyMap(propertyMap);
 
-		public virtual void Visit(ISourceListMap sourceListMap)
+	    public virtual void Visit(ISourceListMap sourceListMap)
 		{
 
 		}
 
-		public virtual void Visit(ISourceMap sourceMap)
-		{
-			VerifySourceMap(sourceMap);
-		}
+		public virtual void Visit(ISourceMap sourceMap) => VerifySourceMap(sourceMap);
 
-		public virtual void Visit(ITableMap tableMap)
-		{
-			VerifyTableMap(tableMap);
-		}
+	    public virtual void Visit(ITableMap tableMap) => VerifyTableMap(tableMap);
 
-		public virtual void Visit(IColumnMap columnMap)
-		{
-			VerifyColumnMap(columnMap);
-		}
+	    public virtual void Visit(IColumnMap columnMap) => VerifyColumnMap(columnMap);
 
-		public virtual void Visit(IEnumValueMap enumValueMap)
-		{
-			VerifyEnumValueMap(enumValueMap);
-		}
+	    public virtual void Visit(IEnumValueMap enumValueMap) => VerifyEnumValueMap(enumValueMap);
 
-		#endregion
+	    #endregion
 
 		#region Verification
 

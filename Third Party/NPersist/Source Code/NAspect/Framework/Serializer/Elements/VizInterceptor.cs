@@ -37,8 +37,8 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// </summary>
         public virtual string Name
         {
-            get { return name; }
-            set { name = value; }
+            get => name;
+            set => name = value;
         }
 
         #endregion
@@ -52,8 +52,8 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// </summary>
         public virtual string TypeName
         {
-            get { return typeName; }
-            set { typeName = value; }
+            get => typeName;
+            set => typeName = value;
         }
 
         #endregion
@@ -67,8 +67,8 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// </summary>
         public virtual VizInterceptorType InterceptorType
         {
-            get { return interceptorType; }
-            set { interceptorType = value; }
+            get => interceptorType;
+            set => interceptorType = value;
         }
 
         #endregion
@@ -82,8 +82,8 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// </summary>
         public bool MayBreakFlow
         {
-            get { return mayBreakFlow; }
-            set { mayBreakFlow = value; }
+            get => mayBreakFlow;
+            set => mayBreakFlow = value;
         }
 
         #endregion
@@ -97,8 +97,8 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// </summary>
         public bool IsRequired
         {
-            get { return isRequired; }
-            set { isRequired = value; }
+            get => isRequired;
+            set => isRequired = value;
         }
 
         #endregion
@@ -110,10 +110,7 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// <summary>
         /// 
         /// </summary>
-        public List<string> ThrowsExceptionTypes
-        {
-            get { return throwsExceptionTypes; }
-        }
+        public List<string> ThrowsExceptionTypes => throwsExceptionTypes;
 
         #endregion
 
@@ -121,9 +118,6 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format("{0} : {1}", TypeName, InterceptorType);
-        }
+        public override string ToString() => string.Format("{0} : {1}", TypeName, InterceptorType);
     }
 }

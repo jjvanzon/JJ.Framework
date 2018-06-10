@@ -33,12 +33,9 @@ namespace JJ.Framework.Collections
 	{
 		private RedBlackTreeNode<TKey, TValue> _root;
 
-		private static RedBlackTreeColorEnum NullCoalescedNodeColor(RedBlackTreeNode<TKey, TValue> node)
-		{
-			return node?.Color ?? RedBlackTreeColorEnum.Black;
-		}
+		private static RedBlackTreeColorEnum NullCoalescedNodeColor(RedBlackTreeNode<TKey, TValue> node) => node?.Color ?? RedBlackTreeColorEnum.Black;
 
-		public TValue Lookup(TKey key)
+	    public TValue Lookup(TKey key)
 		{
 			RedBlackTreeNode<TKey, TValue> node = LookupNode(key);
 

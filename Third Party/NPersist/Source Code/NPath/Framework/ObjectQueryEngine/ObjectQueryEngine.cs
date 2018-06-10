@@ -29,23 +29,17 @@ namespace Puzzle.NPath.Framework
 
 		public IObjectQueryEngineHelper ObjectQueryEngineHelper
 		{
-			get { return this.objectQueryEngineHelper; }
-			set { this.objectQueryEngineHelper = value; }
+			get => this.objectQueryEngineHelper;
+		    set => this.objectQueryEngineHelper = value;
 		}
 
 		#endregion
 
-		public virtual IList GetObjectsByNPath(string npathQuery, IList sourceList)
-		{
-			return GetObjectsByNPath(npathQuery, sourceList, new ArrayList());
-		}
+		public virtual IList GetObjectsByNPath(string npathQuery, IList sourceList) => GetObjectsByNPath(npathQuery, sourceList, new ArrayList());
 
-		public virtual DataTable GetDataTableByNPath(string npathQuery, IList sourceList)
-		{
-			return GetDataTableByNPath(npathQuery, sourceList, new ArrayList());
-		}
+	    public virtual DataTable GetDataTableByNPath(string npathQuery, IList sourceList) => GetDataTableByNPath(npathQuery, sourceList, new ArrayList());
 
-		public virtual IList GetObjectsByNPath(string npathQuery, IList sourceList, IList parameters)
+	    public virtual IList GetObjectsByNPath(string npathQuery, IList sourceList, IList parameters)
 		{
 			NPathSelectQuery query = Parse(npathQuery, parameters);
 			return GetObjects(query, sourceList);
@@ -58,14 +52,9 @@ namespace Puzzle.NPath.Framework
 		}
 
 		//transforms all * fields into real property path fields
-		private void FixQuery(NPathSelectQuery query)
-		{
-			ObjectQueryEngineHelper.ExpandWildcards(query);
+		private void FixQuery(NPathSelectQuery query) => ObjectQueryEngineHelper.ExpandWildcards(query);
 
-
-		}
-
-		public virtual DataTable GetDataTable(NPathSelectQuery query, IList sourceList)
+	    public virtual DataTable GetDataTable(NPathSelectQuery query, IList sourceList)
 		{
 			FixQuery(query);
 			DataTable resultTable = new DataTable();
@@ -456,17 +445,11 @@ namespace Puzzle.NPath.Framework
 			return true;
 		}
 
-		protected virtual bool EvalNotExpression(object item, NPathNotExpression notExpression)
-		{
-			return !EvalExpression(item, notExpression.Expression);
-		}
+		protected virtual bool EvalNotExpression(object item, NPathNotExpression notExpression) => !EvalExpression(item, notExpression.Expression);
 
-		protected virtual bool EvalParenthesisExpression(object item, NPathParenthesisGroup parenthesisGroup)
-		{
-			return EvalExpression(item, parenthesisGroup.Expression);
-		}
+	    protected virtual bool EvalParenthesisExpression(object item, NPathParenthesisGroup parenthesisGroup) => EvalExpression(item, parenthesisGroup.Expression);
 
-		protected virtual object EvalMathExpression(object item, NPathMathExpression mathExpression)
+	    protected virtual object EvalMathExpression(object item, NPathMathExpression mathExpression)
 		{
 			object leftValue = EvalValue(item, mathExpression.LeftOperand);
 			object rightValue = EvalValue(item, mathExpression.RightOperand);
@@ -532,12 +515,9 @@ namespace Puzzle.NPath.Framework
 			throw new Exception("unknown expression"); // do not localize
 		}
 
-		protected virtual bool IsStringOrNull(object value)
-		{
-			return (value is string || value == null);
-		}
+		protected virtual bool IsStringOrNull(object value) => (value is string || value == null);
 
-		protected virtual bool EvalCompareExpression(object item, NPathCompareExpression compareExpression)
+	    protected virtual bool EvalCompareExpression(object item, NPathCompareExpression compareExpression)
 		{
 			object leftValue = null; //EvalValue(item, compareExpression.LeftOperand);
 			object rightValue = null; // EvalValue(item, compareExpression.RightOperand);

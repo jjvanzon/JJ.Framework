@@ -56,15 +56,9 @@ namespace Puzzle.NCore.Framework.Text.PatternMatchers
         }
 
 
-        private bool IsWildcard(char c)
-        {
-            return c == '*' || c == '¤';
-        }
+        private bool IsWildcard(char c) => c == '*' || c == '¤';
 
-        private bool IsSeparator(char c)
-        {
-            return c == '.';
-        }
+        private bool IsSeparator(char c) => c == '.';
 
         private bool IsValidStartChar(char c)
         {

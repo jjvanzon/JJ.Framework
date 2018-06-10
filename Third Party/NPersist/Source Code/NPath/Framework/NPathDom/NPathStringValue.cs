@@ -18,8 +18,8 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public virtual string Value
 		{
-			get { return value; }
-			set { this.value = value; }
+			get => value;
+		    set => this.value = value;
 		}
 
 		#endregion

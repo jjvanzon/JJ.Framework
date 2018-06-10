@@ -36,11 +36,8 @@ namespace Puzzle.NPersist.Framework.Mapping
 		{
 			//[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			get
-			{
-				return m_ClassMap;
-			}
-			//[DebuggerHidden()]
+			get => m_ClassMap;
+		    //[DebuggerHidden()]
 			//[DebuggerStepThrough()]
 			set
 			{
@@ -62,18 +59,15 @@ namespace Puzzle.NPersist.Framework.Mapping
 		
 		public int Index
 		{
-			get { return this.index; }
-			set { this.index = value; }
+			get => this.index;
+		    set => this.index = value;
 		}
 		
 		#endregion
 
-		public override void Accept(IMapVisitor mapVisitor)
-		{
-			mapVisitor.Visit(this);
-		}
+		public override void Accept(IMapVisitor mapVisitor) => mapVisitor.Visit(this);
 
-		#region Cloning
+	    #region Cloning
 
 		public override IMap Clone()
 		{
@@ -109,12 +103,9 @@ namespace Puzzle.NPersist.Framework.Mapping
 			return true;
 		}
 
-		public override void DeepMerge(IMap mapObject)
-		{
-			Copy(mapObject);
-		}
+		public override void DeepMerge(IMap mapObject) => Copy(mapObject);
 
-		public override void Copy(IMap mapObject)
+	    public override void Copy(IMap mapObject)
 		{
 			IEnumValueMap enumValueMap = (IEnumValueMap) mapObject;
 			enumValueMap.Name = this.Name;

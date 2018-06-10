@@ -17,9 +17,6 @@ namespace Puzzle.NCore.Framework.Text.PatternMatchers
         public object Tag = null;
 
 
-        public PatternMatchReference(IPatternMatcher matcher)
-        {
-            Matcher = matcher;
-        }
+        public PatternMatchReference(IPatternMatcher matcher) => Matcher = matcher;
     }
 }

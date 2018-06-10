@@ -20,27 +20,17 @@ namespace Puzzle.NAspect.Framework
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Method | AttributeTargets.Property, AllowMultiple = true, Inherited = true)]
 	public class FixedInterceptorAttribute : Attribute 
 	{
-        public FixedInterceptorAttribute(Type type) 
-        {
-            this.types.Add(type);
-        }
+        public FixedInterceptorAttribute(Type type) => this.types.Add(type);
 
-        public FixedInterceptorAttribute(IList types)
-        {
-            this.types = types;
-        }
+	    public FixedInterceptorAttribute(IList types) => this.types = types;
 
-        public FixedInterceptorAttribute(params Type[] types)
+	    public FixedInterceptorAttribute(params Type[] types)
         {
             foreach (Type type in types)
             this.types.Add(type);
         }
 
         private IList types = new ArrayList();
-        public virtual IList Types
-        {
-            get { return types; }
-        }
-
+        public virtual IList Types => types;
 	}
 }

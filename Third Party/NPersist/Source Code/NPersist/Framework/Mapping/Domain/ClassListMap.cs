@@ -57,8 +57,8 @@ namespace Puzzle.NPersist.Framework.Mapping
 		[XmlArrayItem(typeof (ClassMap))]
 		public virtual ArrayList ClassMaps
 		{
-			get { return m_ClassMaps; }
-			set { m_ClassMaps = value; }
+			get => m_ClassMaps;
+		    set => m_ClassMaps = value;
 		}
 
 		public virtual IClassMap GetClassMap(string findName)

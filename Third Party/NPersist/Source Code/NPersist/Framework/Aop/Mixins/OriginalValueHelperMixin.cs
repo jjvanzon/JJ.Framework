@@ -26,29 +26,14 @@ namespace Puzzle.NPersist.Framework.Aop.Mixins
 		{
 		}
 
-		public object GetOriginalPropertyValue(string propertyName)
-		{
-			return status[propertyName];
-		}
+		public object GetOriginalPropertyValue(string propertyName) => status[propertyName];
 
-		public void SetOriginalPropertyValue(string propertyName, object value)
-		{
-			status[propertyName] = value;
-		}
+	    public void SetOriginalPropertyValue(string propertyName, object value) => status[propertyName] = value;
 
-		public void RemoveOriginalValues(string propertyName)
-		{
-			status.Remove(propertyName) ;
-		}
+	    public void RemoveOriginalValues(string propertyName) => status.Remove(propertyName);
 
-		public bool HasOriginalValues()
-		{
-			return status.Count > 0;
-		}
+	    public bool HasOriginalValues() => status.Count > 0;
 
-		public bool HasOriginalValues(string propertyName)
-		{
-			return status.ContainsKey(propertyName) ;
-		}
+	    public bool HasOriginalValues(string propertyName) => status.ContainsKey(propertyName);
 	}
 }

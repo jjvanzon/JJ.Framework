@@ -38,13 +38,13 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlTable SqlTable
 		{
-			get { return this.sqlTable; }
-			set { this.sqlTable = value; }
+			get => this.sqlTable;
+		    set => this.sqlTable = value;
 		}
 
-		public SqlDatabase SqlDatabase { get { return this.Parent as SqlDatabase; } }
+		public SqlDatabase SqlDatabase => this.Parent as SqlDatabase;
 
-		#region Property  Alias
+	    #region Property  Alias
 		
 		private string alias;
 		
@@ -57,7 +57,7 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 				else
 					return this.alias;
 			}
-			set { this.alias = value; }
+			set => this.alias = value;
 		}
 		
 		#endregion
@@ -68,8 +68,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public IList SqlColumnAliases
 		{
-			get { return this.sqlColumnAliases; }
-			set { this.sqlColumnAliases = value; }
+			get => this.sqlColumnAliases;
+		    set => this.sqlColumnAliases = value;
 		}
 		
 		#endregion
@@ -77,17 +77,11 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 
 		#region Get ColumnAlias
 
-		public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap)
-		{
-			return GetSqlColumnAlias(columnMap, "");
-		}
+		public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap) => GetSqlColumnAlias(columnMap, "");
 
-		public SqlColumnAlias GetSqlColumnAlias(string name)
-		{
-			return GetSqlColumnAlias(name, "");
-		}
+	    public SqlColumnAlias GetSqlColumnAlias(string name) => GetSqlColumnAlias(name, "");
 
-		public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap, string alias)
+	    public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap, string alias)
 		{
             if (columnMap == null)
                 throw new ArgumentNullException("columnMap");

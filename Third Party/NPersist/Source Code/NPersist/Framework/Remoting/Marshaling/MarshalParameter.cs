@@ -28,16 +28,16 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public string Name
 		{
-			get { return this.name; }
-			set { this.name = value; }
+			get => this.name;
+		    set => this.name = value;
 		}
 
 		private string value;
 		
 		public string Value
 		{
-			get { return this.value; }
-			set { this.value = value; }
+			get => this.value;
+		    set => this.value = value;
 		}
 
 		#region Property  ReferenceValue
@@ -46,8 +46,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public MarshalReferenceValue ReferenceValue
 		{
-			get { return this.referenceValue; }
-			set { this.referenceValue = value; }
+			get => this.referenceValue;
+		    set => this.referenceValue = value;
 		}
 		
 		#endregion
@@ -58,8 +58,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public DbType DbType
 		{
-			get { return this.dbType; }
-			set { this.dbType = value; }
+			get => this.dbType;
+		    set => this.dbType = value;
 		}
 		
 		#endregion

@@ -32,8 +32,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </summary>
         public virtual int Index
         {
-            get { return index; }
-            set { index = value; }
+            get => index;
+            set => index = value;
         }
 
         #endregion
@@ -65,8 +65,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </example>
         public virtual Type TargetAttribute
         {
-            get { return targetAttribute; }
-            set { targetAttribute = value; }
+            get => targetAttribute;
+            set => targetAttribute = value;
         }
 
         #endregion
@@ -100,8 +100,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </example>
         public virtual string TargetSignature
         {
-            get { return targetSignature; }
-            set { targetSignature = value; }
+            get => targetSignature;
+            set => targetSignature = value;
         }
 
         #endregion
@@ -154,8 +154,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </example>
         public virtual Type MixinType
         {
-            get { return mixinType; }
-            set { mixinType = value; }
+            get => mixinType;
+            set => mixinType = value;
         }
 
         #endregion
@@ -172,10 +172,7 @@ namespace Puzzle.NAspect.Framework.Aop
         /// public class MyAspect : ITypedAspect ...
         /// </code>
         /// </example>
-        public MixinAttribute(Type mixinType)
-        {
-            MixinType = mixinType;
-        }
+        public MixinAttribute(Type mixinType) => MixinType = mixinType;
     }
 
     /// <summary>
@@ -210,8 +207,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </example>
         public virtual Type TargetAttribute
         {
-            get { return targetAttribute; }
-            set { targetAttribute = value; }
+            get => targetAttribute;
+            set => targetAttribute = value;
         }
 
         #endregion
@@ -231,8 +228,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </example>
         public virtual Type TargetInterface
         {
-            get { return targetInterface; }
-            set { targetInterface = value; }
+            get => targetInterface;
+            set => targetInterface = value;
         }
 
         #endregion
@@ -253,8 +250,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </example>
         public virtual string TargetSignature
         {
-            get { return targetSignature; }
-            set { targetSignature = value; }
+            get => targetSignature;
+            set => targetSignature = value;
         }
 
         #endregion
@@ -275,8 +272,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </example> 
         public virtual Type TargetType
         {
-            get { return targetType; }
-            set { targetType = value; }
+            get => targetType;
+            set => targetType = value;
         }
 
         #endregion

@@ -31,16 +31,16 @@ namespace Puzzle.NCore.Framework.Collections
 
         public object Item
         {
-            get { return item; }
-            set { item = value; }
+            get => item;
+            set => item = value;
         }
 
         private int index;
 
         public int Index
         {
-            get { return index; }
-            set { index = value; }
+            get => index;
+            set => index = value;
         }
     }
 

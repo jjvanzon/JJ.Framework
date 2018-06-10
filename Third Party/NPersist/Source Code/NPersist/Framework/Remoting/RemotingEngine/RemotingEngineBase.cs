@@ -30,21 +30,17 @@ namespace Puzzle.NPersist.Framework.Remoting
 		{			
 		}
 
-		public RemotingEngineBase(IFormatter formater)
-		{
-			this.formatter = formater;			
-		}
+		public RemotingEngineBase(IFormatter formater) => this.formatter = formater;
 
-		
-		private IFormatter formatter = null;
+	    private IFormatter formatter = null;
 		private ArrayList listInsert = new ArrayList();
 		private ArrayList listUpdate = new ArrayList();
 		private ArrayList listRemove = new ArrayList();
 
 		public IFormatter Formatter
 		{
-			get { return this.formatter; }
-			set { this.formatter = value; }
+			get => this.formatter;
+		    set => this.formatter = value;
 		}
 
 		public abstract void Begin();
@@ -165,22 +161,13 @@ namespace Puzzle.NPersist.Framework.Remoting
 
 		public abstract void LoadObjectByKey(ref object obj, string keyPropertyName, object keyValue);
 
-		public virtual void InsertObject(object obj, IList stillDirty)
-		{
-			listInsert.Add(obj);
-		}
+		public virtual void InsertObject(object obj, IList stillDirty) => listInsert.Add(obj);
 
-		public virtual void UpdateObject(object obj, IList stillDirty)
-		{
-			listUpdate.Add(obj);			
-		}
+	    public virtual void UpdateObject(object obj, IList stillDirty) => listUpdate.Add(obj);
 
-		public virtual void RemoveObject(object obj)
-		{
-			listRemove.Add(obj);						
-		}
+	    public virtual void RemoveObject(object obj) => listRemove.Add(obj);
 
-		public abstract void LoadProperty(object obj, string propertyName);
+	    public abstract void LoadProperty(object obj, string propertyName);
 
 		public abstract IList GetObjectsOfClassWithUniReferencesToObject(Type type, object obj);
 

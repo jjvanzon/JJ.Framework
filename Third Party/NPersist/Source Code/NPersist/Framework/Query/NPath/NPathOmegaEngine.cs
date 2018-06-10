@@ -34,17 +34,11 @@ namespace Puzzle.NPersist.Framework.NPath
 			return ToScalarSql(npath, type, ref parameters, new ArrayList());
 		}
 
-		public virtual string ToSql(string npath, Type type, ref Hashtable propertyColumnMap, ref IList outParameters)
-		{
-			return ToSql(npath, type, ref propertyColumnMap, ref outParameters, new ArrayList() );
-		}
+		public virtual string ToSql(string npath, Type type, ref Hashtable propertyColumnMap, ref IList outParameters) => ToSql(npath, type, ref propertyColumnMap, ref outParameters, new ArrayList() );
 
-		public virtual string ToScalarSql(string npath, Type type, ref IList outParameters)
-		{
-			return ToScalarSql(npath, type, ref outParameters, new ArrayList() );
-		}
+	    public virtual string ToScalarSql(string npath, Type type, ref IList outParameters) => ToScalarSql(npath, type, ref outParameters, new ArrayList() );
 
-		public virtual string ToSql(string npath, Type type, ref Hashtable propertyColumnMap, ref IList outParameters, IList inParameters)
+	    public virtual string ToSql(string npath, Type type, ref Hashtable propertyColumnMap, ref IList outParameters, IList inParameters)
 		{
 			NPathQueryType queryType = GetNPathQueryType(npath);
 			return ToSql (npath,queryType,type,ref propertyColumnMap,ref outParameters,inParameters);
@@ -116,17 +110,14 @@ namespace Puzzle.NPersist.Framework.NPath
 			return npathQueryType;
 		}
 
-		private NPathQueryType GetNPathQueryType(NPathSelectQuery query)
-		{
-			return SqlEmitter.DeduceQueryType(query);
-		}
+		private NPathQueryType GetNPathQueryType(NPathSelectQuery query) => SqlEmitter.DeduceQueryType(query);
 
-        private IList resultParameters = new ArrayList();
+	    private IList resultParameters = new ArrayList();
 
         public IList ResultParameters
         {
-            get { return this.resultParameters; }
-            set { this.resultParameters = value; }
+            get => this.resultParameters;
+            set => this.resultParameters = value;
         }
 
 	}

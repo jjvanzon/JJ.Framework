@@ -23,24 +23,15 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		{
 		}
 
-		public UnresolvedConflictsException(string message, IList conflicts) : base(message)
-		{
-			this.conflicts = conflicts;
-		}
+		public UnresolvedConflictsException(string message, IList conflicts) : base(message) => this.conflicts = conflicts;
 
-		public UnresolvedConflictsException(string message, Exception innerException, IList conflicts) : base(message, innerException)
-		{
-			this.conflicts = conflicts;
-		}
+	    public UnresolvedConflictsException(string message, Exception innerException, IList conflicts) : base(message, innerException) => this.conflicts = conflicts;
 
-		public UnresolvedConflictsException(SerializationInfo info, StreamingContext context) : base(info, context)
+	    public UnresolvedConflictsException(SerializationInfo info, StreamingContext context) : base(info, context)
 		{
 		}
 
 		private IList conflicts;
-		public IList Conflicts
-		{
-			get { return this.conflicts; }
-		}
+		public IList Conflicts => this.conflicts;
 	}
 }

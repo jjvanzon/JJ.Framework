@@ -22,12 +22,9 @@ namespace Puzzle.NPersist.Framework.Aop
 	{
 		private IEngine aopEngine;
 
-		public AopObjectFactory() 
-		{
-			aopEngine = ApplicationContext.Configure();
-		}
+		public AopObjectFactory() => aopEngine = ApplicationContext.Configure();
 
-		public object CreateInstance(Type type, object[] ctorParams)
+	    public object CreateInstance(Type type, object[] ctorParams)
 		{
 			if (type == null)
 				throw new NullReferenceException("type may not be null");

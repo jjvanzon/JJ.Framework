@@ -105,37 +105,25 @@ namespace Puzzle.NPath.Framework
 		/// <summary>
 		/// Whether or not the Property supports read access.
 		/// </summary>
-		public bool CanRead
-		{
-			get { return this.mCanRead; }
-		}
+		public bool CanRead => this.mCanRead;
 
-		/// <summary>
+	    /// <summary>
 		/// Whether or not the Property supports write access.
 		/// </summary>
-		public bool CanWrite
-		{
-			get { return this.mCanWrite; }
-		}
+		public bool CanWrite => this.mCanWrite;
 
-		/// <summary>
+	    /// <summary>
 		/// The Type of object this property accessor was
 		/// created for.
 		/// </summary>
-		public Type TargetType
-		{
-			get { return this.mTargetType; }
-		}
+		public Type TargetType => this.mTargetType;
 
-		/// <summary>
+	    /// <summary>
 		/// The Type of the Property being accessed.
 		/// </summary>
-		public Type PropertyType
-		{
-			get { return this.mPropertyType; }
-		}
+		public Type PropertyType => this.mPropertyType;
 
-		private Type mTargetType;
+	    private Type mTargetType;
 		private string mProperty;
 		private Type mPropertyType;
 		private IPropertyAccessor mEmittedPropertyAccessor;

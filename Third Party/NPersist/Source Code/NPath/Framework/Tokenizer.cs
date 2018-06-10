@@ -116,27 +116,15 @@ namespace Puzzle.NPath.Framework
 		private int currentIndex = 0;
 		private IList tokens = null;
 
-		public void Tokenize(string code)
-		{
-			tokens = GetTokens(code);
-		}
+		public void Tokenize(string code) => tokens = GetTokens(code);
 
-		public Token GetPreviousToken()
-		{
-			return this[currentIndex - 1];
-		}
+	    public Token GetPreviousToken() => this[currentIndex - 1];
 
-		public Token GetCurrentToken()
-		{
-			return this[currentIndex];
-		}
+	    public Token GetCurrentToken() => this[currentIndex];
 
-		public Token GetNextToken()
-		{
-			return this[currentIndex + 1];
-		}
+	    public Token GetNextToken() => this[currentIndex + 1];
 
-		public Token GetCurrentToken(string ensureType, string expected)
+	    public Token GetCurrentToken(string ensureType, string expected)
 		{
 			Token tokenFound = GetCurrentToken();
 			Token tokenNear = GetPreviousToken();
@@ -198,17 +186,11 @@ namespace Puzzle.NPath.Framework
 			return true;
 		}
 
-		public bool EOF
-		{
-			get { return currentIndex >= tokens.Count; }
-		}
+		public bool EOF => currentIndex >= tokens.Count;
 
-		public bool BOF
-		{
-			get { return currentIndex <= 0; }
-		}
+	    public bool BOF => currentIndex <= 0;
 
-		public Token this[int index]
+	    public Token this[int index]
 		{
 			get
 			{
@@ -222,12 +204,9 @@ namespace Puzzle.NPath.Framework
 			}
 		}
 
-		public int Count
-		{
-			get { return tokens.Count; }
-		}
+		public int Count => tokens.Count;
 
-		private IList GetTokens(string code)
+	    private IList GetTokens(string code)
 		{
 			ArrayList tokens = new ArrayList();
 			MatchResult match;

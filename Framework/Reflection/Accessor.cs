@@ -38,12 +38,9 @@ namespace JJ.Framework.Reflection
 		}
 
 		/// <summary> Use this constructor to access static members. </summary>
-		public Accessor(Type objectType)
-		{
-			_objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
-		}
+		public Accessor(Type objectType) => _objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
 
-		/// <summary> Use this constructor to access members of the base class. </summary>
+	    /// <summary> Use this constructor to access members of the base class. </summary>
 		public Accessor(object obj, Type objectType)
 		{
 			_object = obj ?? throw new ArgumentNullException(nameof(obj));
@@ -124,21 +121,15 @@ namespace JJ.Framework.Reflection
 		/// An expression from which the member name will be extracted. 
 		/// Only the last name in the expression will be used, nothing else.
 		/// </param>
-		public void InvokeMethod(Expression<Action> nameExpression, params object[] parameters)
-		{
-			InvokeMethod((LambdaExpression)nameExpression, parameters);
-		}
+		public void InvokeMethod(Expression<Action> nameExpression, params object[] parameters) => InvokeMethod((LambdaExpression)nameExpression, parameters);
 
-		/// <param name="nameExpression">
+	    /// <param name="nameExpression">
 		/// An expression from which the member name will be extracted. 
 		/// Only the last name in the expression will be used, nothing else.
 		/// </param>
-		public T InvokeMethod<T>(Expression<Func<T>> nameExpression, params object[] parameters)
-		{
-			return (T)InvokeMethod((LambdaExpression)nameExpression, parameters);
-		}
+		public T InvokeMethod<T>(Expression<Func<T>> nameExpression, params object[] parameters) => (T)InvokeMethod((LambdaExpression)nameExpression, parameters);
 
-		/// <param name="nameExpression">
+	    /// <param name="nameExpression">
 		/// An expression from which the member name will be extracted. 
 		/// Only the last name in the expression will be used, nothing else.
 		/// </param>

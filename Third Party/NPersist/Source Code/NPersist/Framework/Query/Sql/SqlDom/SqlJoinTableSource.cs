@@ -26,16 +26,16 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 			this.sqlJoinType = joinType;
 		}
 
-		public SqlFromClause SqlFromClause { get { return this.Parent as SqlFromClause; } }
+		public SqlFromClause SqlFromClause => this.Parent as SqlFromClause;
 
-		#region Property  SqlJoinType
+	    #region Property  SqlJoinType
 		
 		private SqlJoinType sqlJoinType = SqlJoinType.Inner ;
 		
 		public SqlJoinType SqlJoinType
 		{
-			get { return this.sqlJoinType; }
-			set { this.sqlJoinType = value; }
+			get => this.sqlJoinType;
+		    set => this.sqlJoinType = value;
 		}
 		
 		#endregion
@@ -46,8 +46,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlTableAlias LeftSqlTableAlias
 		{
-			get { return this.leftSqlTableAlias; }
-			set { this.leftSqlTableAlias = value; }
+			get => this.leftSqlTableAlias;
+		    set => this.leftSqlTableAlias = value;
 		}
 		
 		#endregion
@@ -58,8 +58,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlTableAlias RightTableAlias 
 		{
-			get { return this.rightTableAlias ; }
-			set { this.rightTableAlias  = value; }
+			get => this.rightTableAlias;
+		    set => this.rightTableAlias  = value;
 		}
 		
 		#endregion
@@ -70,8 +70,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlSearchCondition SqlSearchCondition
 		{
-			get { return this.sqlSearchCondition; }
-			set { this.sqlSearchCondition = value; }
+			get => this.sqlSearchCondition;
+		    set => this.sqlSearchCondition = value;
 		}
 		
 		#endregion

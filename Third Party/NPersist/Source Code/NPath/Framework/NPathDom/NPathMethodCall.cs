@@ -20,8 +20,8 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public NPathIdentifier PropertyPath
 		{
-			get { return this.propertyPath; }
-			set { this.propertyPath = value; }
+			get => this.propertyPath;
+		    set => this.propertyPath = value;
 		}
 
 		#endregion
@@ -32,8 +32,8 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public string MethodName
 		{
-			get { return this.methodName; }
-			set { this.methodName = value; }
+			get => this.methodName;
+		    set => this.methodName = value;
 		}
 
 		#endregion
@@ -42,11 +42,8 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		private IList parameters = new ArrayList();
 
-		public IList Parameters
-		{
-			get { return this.parameters; }
-		}
+		public IList Parameters => this.parameters;
 
-		#endregion
+	    #endregion
 	}
 }

@@ -100,10 +100,7 @@ namespace Puzzle.NCore.Framework.Compression
             }
         }
 
-        private void BuildNodeMasks()
-        {
-            BuildNodeMask(rootNode, 0, 0);
-        }
+        private void BuildNodeMasks() => BuildNodeMask(rootNode, 0, 0);
 
         private void BuildNodeMask(HuffmanNode node, int lastMask, int bits)
         {
@@ -148,10 +145,7 @@ namespace Puzzle.NCore.Framework.Compression
         }
 
 
-        private void SortFlatNodes()
-        {
-            flatNodes.Sort(new HuffmanNodeComparer());
-        }
+        private void SortFlatNodes() => flatNodes.Sort(new HuffmanNodeComparer());
 
         private void BuildNodes()
         {

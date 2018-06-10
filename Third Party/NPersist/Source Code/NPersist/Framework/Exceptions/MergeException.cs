@@ -47,8 +47,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public object CachedValue
 		{
-			get { return this.cachedValue; }
-			set { this.cachedValue = value; }
+			get => this.cachedValue;
+		    set => this.cachedValue = value;
 		}
 		
 		#endregion
@@ -59,8 +59,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public object MergeValue
 		{
-			get { return this.mergeValue; }
-			set { this.mergeValue = value; }
+			get => this.mergeValue;
+		    set => this.mergeValue = value;
 		}
 		
 		#endregion
@@ -71,8 +71,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public object CachedObject
 		{
-			get { return this.cachedObject; }
-			set { this.cachedObject = value; }
+			get => this.cachedObject;
+		    set => this.cachedObject = value;
 		}
 		
 		#endregion
@@ -83,8 +83,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public object MergeObject
 		{
-			get { return this.mergeObject; }
-			set { this.mergeObject = value; }
+			get => this.mergeObject;
+		    set => this.mergeObject = value;
 		}
 		
 		#endregion
@@ -95,8 +95,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public bool IsOriginalValue
 		{
-			get { return this.isOriginalValue; }
-			set { this.isOriginalValue = value; }
+			get => this.isOriginalValue;
+		    set => this.isOriginalValue = value;
 		}
 		
 		#endregion

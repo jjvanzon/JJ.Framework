@@ -64,9 +64,7 @@ namespace Sgml {
             }
         }
 
-        public int LinePosition {
-            get { return this.absolutePos - this.lineStart + 1; }
-        }
+        public int LinePosition => this.absolutePos - this.lineStart + 1;
 
         public char ReadChar() {
             char ch = (char)this.stm.Read();
@@ -179,10 +177,8 @@ namespace Sgml {
             }
         }
 
-        public Encoding GetEncoding(){
-            return this.encoding;
-        }
-        
+        public Encoding GetEncoding() => this.encoding;
+
         public void Close() {
             if (this.weOwnTheStream) 
                 this.stm.Close();
@@ -360,22 +356,16 @@ namespace Sgml {
                                              339, 157, 382, 376
                                          };
 
-        public void Error(string msg) {
-            throw new Exception(msg);
-        }
+        public void Error(string msg) => throw new Exception(msg);
 
         public void Error(string msg, char ch) {
             string str = (ch == Entity.EOF) ? "EOF" : char.ToString(ch);            
             throw new Exception(string.Format(msg, str));
         }
 
-        public void Error(string msg, int x) {
-            throw new Exception(string.Format(msg, x));
-        }
+        public void Error(string msg, int x) => throw new Exception(string.Format(msg, x));
 
-        public void Error(string msg, string arg) {
-            throw new Exception(string.Format(msg, arg));
-        }
+        public void Error(string msg, string arg) => throw new Exception(string.Format(msg, arg));
 
         public string Context() {
             Entity p = this;
@@ -394,9 +384,7 @@ namespace Sgml {
             return sb.ToString();
         }
 
-        public static bool IsLiteralType(string token) {
-            return (token == "CDATA" || token == "SDATA" || token == "PI");
-        }
+        public static bool IsLiteralType(string token) => (token == "CDATA" || token == "SDATA" || token == "PI");
 
         public void SetLiteralType(string token) {
             switch (token) {
@@ -463,11 +451,7 @@ namespace Sgml {
             
         }
 
-        public Encoding Encoding {
-            get {
-                return this.encoding;
-            }
-        }
+        public Encoding Encoding => this.encoding;
 
         Stream CopyToMemoryStream(Stream s){
             int size = 100000; // large heap is more efficient
@@ -779,9 +763,8 @@ namespace Sgml {
             return 0;
         }
 
-        public override int ReadBlock(char[] buffer, int index, int count) {
-            return Read(buffer, index, count);
-        }
+        public override int ReadBlock(char[] buffer, int index, int count) => Read(buffer, index, count);
+
         // Read up to end of line, or full buffer, whichever comes first.
         public int ReadLine(char[] buffer, int start, int length) {
             int i = 0;
@@ -816,16 +799,12 @@ namespace Sgml {
             }
             return sb.ToString();
         }
-        public override void Close() {
-            stm.Close();
-        }
+        public override void Close() => stm.Close();
     }
     internal abstract class Ucs4Decoder : Decoder {
         internal byte[] temp = new byte[4];
         internal int tempBytes = 0;
-        public override int GetCharCount(byte[] bytes, int index, int count) {
-            return (count + tempBytes) / 4;
-        }
+        public override int GetCharCount(byte[] bytes, int index, int count) => (count + tempBytes) / 4;
         internal abstract int GetFullChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex);
         public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex) {
             int i = tempBytes;
@@ -932,9 +911,7 @@ namespace Sgml {
         public string[] Exclusions;
         public AttList AttList;
 
-        public AttDef FindAttribute(string name){
-            return AttList[name.ToUpper()];
-        }
+        public AttDef FindAttribute(string name) => AttList[name.ToUpper()];
 
         public void AddAttDefs(AttList list)
         {
@@ -988,10 +965,7 @@ namespace Sgml {
         public int CurrentDepth;
         public Group Model;
 
-        public ContentModel()
-        {
-            Model = new Group(null);
-        }
+        public ContentModel() => Model = new Group(null);
 
         public void PushGroup()
         {
@@ -1008,20 +982,11 @@ namespace Sgml {
             return CurrentDepth;
         }
 
-        public void AddSymbol(string sym)
-        {
-            Model.AddSymbol(sym);
-        }
+        public void AddSymbol(string sym) => Model.AddSymbol(sym);
 
-        public void AddConnector(char c)
-        {
-            Model.AddConnector(c);
-        }
+        public void AddConnector(char c) => Model.AddConnector(c);
 
-        public void AddOccurrence(char c)
-        {
-            Model.AddOccurrence(c);
-        }
+        public void AddOccurrence(char c) => Model.AddOccurrence(c);
 
         public void SetDeclaredContent(string dc)
         {
@@ -1067,9 +1032,7 @@ namespace Sgml {
         public Occurrence Occurrence;
         public bool Mixed;
 
-        public bool TextOnly {
-            get { return this.Mixed && Members.Count == 0; }
-        }
+        public bool TextOnly => this.Mixed && Members.Count == 0;
 
         public Group(Group parent)
         {
@@ -1078,10 +1041,8 @@ namespace Sgml {
             this.GroupType = GroupType.None;
             Occurrence = Occurrence.Required;
         }
-        public void AddGroup(Group g)
-        {
-            Members.Add(g);
-        }
+        public void AddGroup(Group g) => Members.Add(g);
+
         public void AddSymbol(string sym)
         {
             if (sym == "#PCDATA") 
@@ -1202,11 +1163,7 @@ namespace Sgml {
         public string Default;
         public AttributePresence Presence;
 
-        public AttDef(string name)
-        {
-            Name = name;
-        }
-
+        public AttDef(string name) => Name = name;
 
         public void SetType(string type)
         {
@@ -1288,28 +1245,13 @@ namespace Sgml {
     {
         readonly Hashtable AttDefs;
         
-        public AttList()
-        {
-            AttDefs = new Hashtable();
-        }
+        public AttList() => AttDefs = new Hashtable();
 
-        public void Add(AttDef a)
-        {
-            AttDefs.Add(a.Name, a);
-        }
+        public void Add(AttDef a) => AttDefs.Add(a.Name, a);
 
-        public AttDef this[string name]
-        {
-            get 
-            {
-                return (AttDef)AttDefs[name];
-            }
-        }
+        public AttDef this[string name] => (AttDef)AttDefs[name];
 
-        public IEnumerator GetEnumerator()
-        {
-            return AttDefs.Values.GetEnumerator();
-        }
+        public IEnumerator GetEnumerator() => AttDefs.Values.GetEnumerator();
     }
 
     public class SgmlDtd
@@ -1333,7 +1275,7 @@ namespace Sgml {
             this.sb = new StringBuilder();
         }
 
-        public XmlNameTable NameTable { get { return this.nameTable; } }
+        public XmlNameTable NameTable => this.nameTable;
 
         public static SgmlDtd Parse(Uri baseUri, string name, string pubid, string url, string subset, string proxy, XmlNameTable nt)
         {
@@ -1371,15 +1313,9 @@ namespace Sgml {
             return dtd;
         }
 
-        public Entity FindEntity(string name)
-        {
-            return (Entity)this.entities[name];
-        }
+        public Entity FindEntity(string name) => (Entity)this.entities[name];
 
-        public ElementDecl FindElement(string name)
-        {
-            return (ElementDecl)this.elements[name.ToUpper()];
-        }
+        public ElementDecl FindElement(string name) => (ElementDecl)this.elements[name.ToUpper()];
 
         //-------------------------------- Parser -------------------------
         void PushEntity(Uri baseUri, Entity e)
@@ -1525,10 +1461,7 @@ namespace Sgml {
             }
         }
 
-        void ParseIncludeSection()
-        {
-            throw new NotImplementedException("Include Section");
-        }
+        void ParseIncludeSection() => throw new NotImplementedException("Include Section");
 
         void ParseIgnoreSection()
         {
@@ -2059,8 +1992,6 @@ namespace Sgml {
     }   
 
     class StringUtilities {
-        public static bool EqualsIgnoreCase(string a, string b){
-            return string.Compare(a, b, true, CultureInfo.InvariantCulture) == 0;
-        }
+        public static bool EqualsIgnoreCase(string a, string b) => string.Compare(a, b, true, CultureInfo.InvariantCulture) == 0;
     }
 }

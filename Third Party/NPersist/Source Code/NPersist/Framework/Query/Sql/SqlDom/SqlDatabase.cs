@@ -41,13 +41,13 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 
 		public ISourceMap SourceMap
 		{
-			get { return this.sourceMap; }
-			set { this.sourceMap = value; }
+			get => this.sourceMap;
+		    set => this.sourceMap = value;
 		}
 
-		public SqlStatement SqlStatement { get { return this.Parent as SqlStatement; } }
+		public SqlStatement SqlStatement => this.Parent as SqlStatement;
 
-		public string Name
+	    public string Name
 		{
 			get { 
 				if ( this.sourceMap != null ) 
@@ -62,8 +62,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public IList SqlTables
 		{
-			get { return this.sqlTables; }
-			set { this.sqlTables = value; }
+			get => this.sqlTables;
+		    set => this.sqlTables = value;
 		}
 		
 		#endregion
@@ -74,8 +74,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public IList SqlTableAliases
 		{
-			get { return this.sqlTableAliases; }
-			set { this.sqlTableAliases = value; }
+			get => this.sqlTableAliases;
+		    set => this.sqlTableAliases = value;
 		}
 		
 		#endregion
@@ -141,17 +141,11 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 
 		#region Get TableAlias
 
-		public SqlTableAlias GetSqlTableAlias(ITableMap tableMap)
-		{
-			return GetSqlTableAlias(tableMap, "");
-		}
+		public SqlTableAlias GetSqlTableAlias(ITableMap tableMap) => GetSqlTableAlias(tableMap, "");
 
-		public SqlTableAlias GetSqlTableAlias(string name)
-		{
-			return GetSqlTableAlias(name, "");
-		}
+	    public SqlTableAlias GetSqlTableAlias(string name) => GetSqlTableAlias(name, "");
 
-		public SqlTableAlias GetSqlTableAlias(ITableMap tableMap, string alias)
+	    public SqlTableAlias GetSqlTableAlias(ITableMap tableMap, string alias)
 		{
 			SqlTableAlias sqlTableAlias = FindSqlTableAlias(tableMap.Name, alias) ;
 			if (sqlTableAlias == null)
@@ -197,27 +191,15 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 
 		#region Get ColumnAlias
 
-		public SqlColumnAlias GetSqlColumnAlias(string name, string tableName)
-		{
-			return GetSqlColumnAlias(name, tableName, "", tableName);
-		}
+		public SqlColumnAlias GetSqlColumnAlias(string name, string tableName) => GetSqlColumnAlias(name, tableName, "", tableName);
 
-		public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap)
-		{
-			return GetSqlColumnAlias(columnMap, "", columnMap.TableMap.Name);
-		}
+	    public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap) => GetSqlColumnAlias(columnMap, "", columnMap.TableMap.Name);
 
-		public SqlColumnAlias GetSqlColumnAlias(string name, string tableName, string alias)
-		{
-			return GetSqlColumnAlias(name, tableName, alias, tableName);
-		}
+	    public SqlColumnAlias GetSqlColumnAlias(string name, string tableName, string alias) => GetSqlColumnAlias(name, tableName, alias, tableName);
 
-		public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap, string alias)
-		{
-			return GetSqlColumnAlias(columnMap, alias, columnMap.TableMap.Name);
-		}
+	    public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap, string alias) => GetSqlColumnAlias(columnMap, alias, columnMap.TableMap.Name);
 
-		public SqlColumnAlias GetSqlColumnAlias(string name, string tableName, string alias, string tableAlias)
+	    public SqlColumnAlias GetSqlColumnAlias(string name, string tableName, string alias, string tableAlias)
 		{
 			SqlTableAlias sqlTableAlias = GetSqlTableAlias(tableName, tableAlias);
 			SqlColumnAlias sqlColumnAlias = FindSqlColumnAlias(sqlTableAlias, name, alias, tableAlias) ;

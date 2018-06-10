@@ -21,22 +21,19 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 		{
 		}
 
-		public ContextChild(IContext ctx)
-		{
-			this.context = ctx;
-		}
+		public ContextChild(IContext ctx) => this.context = ctx;
 
-		private IContext context;
+	    private IContext context;
 
 		
 		public virtual IContext Context
 		{
 			//[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			get { return this.context; }
-			//[DebuggerHidden()]
+			get => this.context;
+		    //[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			set { this.context = value; }
+			set => this.context = value;
 		}
 
 	}

@@ -13,14 +13,8 @@ namespace Puzzle.NPersist.Framework.Linq
         private bool isLoaded;
         public virtual bool IsLoaded
         {
-            get
-            {
-                return this.isLoaded;
-            }
-            set
-            {
-                this.isLoaded = value;
-            }
+            get => this.isLoaded;
+            set => this.isLoaded = value;
         }
         #endregion
 
@@ -28,14 +22,8 @@ namespace Puzzle.NPersist.Framework.Linq
         private bool isDirty = true;
         public virtual bool IsDirty
         {
-            get
-            {
-                return this.isDirty;
-            }
-            set
-            {
-                this.isDirty = value;
-            }
+            get => this.isDirty;
+            set => this.isDirty = value;
         }
         #endregion
 
@@ -43,14 +31,8 @@ namespace Puzzle.NPersist.Framework.Linq
        private LinqQuery<T> query = new LinqQuery<T> ();
        public virtual LinqQuery<T> Query
        {
-           get
-           {
-               return this.query;
-           }
-           set
-           {
-               this.query = value;
-           }
+           get => this.query;
+           set => this.query = value;
        }
        #endregion
 
@@ -58,14 +40,8 @@ namespace Puzzle.NPersist.Framework.Linq
        private LinqToNPathConverter converter = new LinqToNPathConverter();
        public virtual LinqToNPathConverter Converter
        {
-           get
-           {
-               return this.converter;
-           }
-           set
-           {
-               this.converter = value;
-           }
+           get => this.converter;
+           set => this.converter = value;
        }
        #endregion
 

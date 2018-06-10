@@ -10,20 +10,17 @@ namespace Puzzle.NCore.Runtime.Serialization.Xml
 
         public SerializationBinder Binder
         {
-            get { throw new Exception("The method or operation is not implemented."); }
-            set { throw new Exception("The method or operation is not implemented."); }
+            get => throw new Exception("The method or operation is not implemented.");
+            set => throw new Exception("The method or operation is not implemented.");
         }
 
         public StreamingContext Context
         {
-            get { throw new Exception("The method or operation is not implemented."); }
-            set { throw new Exception("The method or operation is not implemented."); }
+            get => throw new Exception("The method or operation is not implemented.");
+            set => throw new Exception("The method or operation is not implemented.");
         }
 
-        public object Deserialize(Stream serializationStream)
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
+        public object Deserialize(Stream serializationStream) => throw new Exception("The method or operation is not implemented.");
 
         public void Serialize(Stream output, object graph)
         {
@@ -33,8 +30,8 @@ namespace Puzzle.NCore.Runtime.Serialization.Xml
 
         public ISurrogateSelector SurrogateSelector
         {
-            get { throw new Exception("The method or operation is not implemented."); }
-            set { throw new Exception("The method or operation is not implemented."); }
+            get => throw new Exception("The method or operation is not implemented.");
+            set => throw new Exception("The method or operation is not implemented.");
         }
 
         #endregion

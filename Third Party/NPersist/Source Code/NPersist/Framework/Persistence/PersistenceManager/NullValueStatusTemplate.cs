@@ -22,14 +22,8 @@ namespace Puzzle.NPersist.Framework.Persistence
         private ArrayList properties = new ArrayList ();
         public ArrayList Properties
         {
-            get
-            {
-                return this.properties;
-            }
-            set
-            {
-                this.properties = value;
-            }
+            get => this.properties;
+            set => this.properties = value;
         }                        
         #endregion
 	}

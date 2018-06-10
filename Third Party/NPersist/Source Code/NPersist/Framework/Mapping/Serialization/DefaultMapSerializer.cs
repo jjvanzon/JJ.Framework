@@ -38,12 +38,9 @@ namespace Puzzle.NPersist.Framework.Mapping.Serialization
 			return DeserializeDomainMap(xmlDom);
 		}
 
-		public override string Serialize(IDomainMap domainMap)
-		{
-			return SerializeDomainMap(domainMap);
-		}
+		public override string Serialize(IDomainMap domainMap) => SerializeDomainMap(domainMap);
 
-		protected virtual string SerializeDomainMap(IDomainMap domainMap)
+	    protected virtual string SerializeDomainMap(IDomainMap domainMap)
 		{
 			StringBuilder xml = new StringBuilder();
 			xml.Append("<?xml version=\"1.0\" encoding=\"utf-8\" ?>\r\n"); // do not localize

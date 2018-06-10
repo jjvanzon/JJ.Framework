@@ -9,10 +9,7 @@ namespace Puzzle.NCore.Runtime.Serialization
         public Array Items;
 
 
-        public override string ToString()
-        {
-            return string.Format("Count = {0} : {1}", Items.Length, Type.Name);
-        }
+        public override string ToString() => string.Format("Count = {0} : {1}", Items.Length, Type.Name);
 
         public override void Serialize(XmlTextWriter xml)
         {
@@ -82,11 +79,7 @@ namespace Puzzle.NCore.Runtime.Serialization
             return true;
         }
 
-        public override void SerializeReference(XmlTextWriter xml)
-        {
-            xml.WriteAttributeString("id-ref", ID.ToString());
-        }
-
+        public override void SerializeReference(XmlTextWriter xml) => xml.WriteAttributeString("id-ref", ID.ToString());
 
         public override object GetValue()
         {

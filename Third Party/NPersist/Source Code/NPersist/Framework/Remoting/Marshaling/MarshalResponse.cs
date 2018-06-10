@@ -26,8 +26,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public ArrayList Parameters
 		{
-			get { return this.parameters; }
-			set { this.parameters = value; }
+			get => this.parameters;
+		    set => this.parameters = value;
 		}
 
 		public MarshalParameter GetParameter(string name)

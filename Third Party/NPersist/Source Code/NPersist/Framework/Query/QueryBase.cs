@@ -25,17 +25,11 @@ namespace Puzzle.NPersist.Framework.Querying
 		{
 		}
 
-		protected QueryBase(string query) : base()
-		{
-			m_Query = query;
-		}
+		protected QueryBase(string query) : base() => m_Query = query;
 
-		protected QueryBase(string query, IContext ctx) : base(ctx)
-		{
-			m_Query = query;
-		}
+	    protected QueryBase(string query, IContext ctx) : base(ctx) => m_Query = query;
 
-		protected QueryBase(string query, Type primaryType, IContext ctx) : this(query, primaryType, null, RefreshBehaviorType.DefaultBehavior, ctx)
+	    protected QueryBase(string query, Type primaryType, IContext ctx) : this(query, primaryType, null, RefreshBehaviorType.DefaultBehavior, ctx)
 		{
 		}
 
@@ -75,21 +69,21 @@ namespace Puzzle.NPersist.Framework.Querying
 
 		public object Query
 		{
-			get { return m_Query; }
-			set { m_Query = Convert.ToString(value); }
+			get => m_Query;
+		    set => m_Query = Convert.ToString(value);
 		}
 
 
 		public Type PrimaryType
 		{
-			get { return m_PrimaryType; }
-			set { m_PrimaryType = value; }
+			get => m_PrimaryType;
+		    set => m_PrimaryType = value;
 		}
 
 		public IList Parameters
 		{
-			get { return this.parameters; }
-			set { this.parameters = value; }
+			get => this.parameters;
+		    set => this.parameters = value;
 		}
 
 
@@ -99,40 +93,22 @@ namespace Puzzle.NPersist.Framework.Querying
 		
 		public RefreshBehaviorType RefreshBehavior
 		{
-			get { return this.refreshBehavior; }
-			set { this.refreshBehavior = value; }
+			get => this.refreshBehavior;
+		    set => this.refreshBehavior = value;
 		}
 		
 		#endregion
 
-		public virtual string ToSqlScalar()
-		{
-			return "";
-		}
+		public virtual string ToSqlScalar() => "";
 
-		public virtual string ToSqlScalar(Type primaryType)
-		{
-			return "";
-		}
+	    public virtual string ToSqlScalar(Type primaryType) => "";
 
-		public virtual string ToSqlScalar(Type primaryType, IContext ctx)
-		{
-			return "";
-		}
+	    public virtual string ToSqlScalar(Type primaryType, IContext ctx) => "";
 
-		public virtual string ToSqlScalar(Type primaryType, IContext ctx, ref IList outParameters, IList inParameters)
-		{
-			return "";
-		}
+	    public virtual string ToSqlScalar(Type primaryType, IContext ctx, ref IList outParameters, IList inParameters) => "";
 
-		public virtual string ToSql()
-		{
-			return "";
-		}
+	    public virtual string ToSql() => "";
 
-		public virtual string ToSql(Type primaryType, IContext ctx, ref IList idColumns, ref IList typeColumns, ref Hashtable propertyColumnMap, ref IList outParameters, IList inParameters)
-		{
-			return "";
-		}
+	    public virtual string ToSql(Type primaryType, IContext ctx, ref IList idColumns, ref IList typeColumns, ref Hashtable propertyColumnMap, ref IList outParameters, IList inParameters) => "";
 	}
 }

@@ -52,19 +52,10 @@ namespace Puzzle.NPersist.Framework.Linq
             return "?";
         }
 
-        private string ConvertDouble(ConstantExpression expression)
-        {
-            return string.Format(NumberFormatInfo.InvariantInfo, "{0}", expression.Value);
-        }
+        private string ConvertDouble(ConstantExpression expression) => string.Format(NumberFormatInfo.InvariantInfo, "{0}", expression.Value);
 
-        private string ConvertInt(ConstantExpression expression)
-        {
-            return string.Format(NumberFormatInfo.InvariantInfo, "{0}", expression.Value);
-        }
+        private string ConvertInt(ConstantExpression expression) => string.Format(NumberFormatInfo.InvariantInfo, "{0}", expression.Value);
 
-        private string ConvertString(ConstantExpression expression)
-        {
-            return string.Format("\"{0}\"", expression.Value);
-        }
+        private string ConvertString(ConstantExpression expression) => string.Format("\"{0}\"", expression.Value);
     }
 }

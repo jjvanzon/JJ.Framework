@@ -6,10 +6,7 @@ namespace Puzzle.NCore.Runtime.Serialization
     {
         public static readonly NullObject Default = new NullObject();
 
-        public override string ToString()
-        {
-            return "{null}";
-        }
+        public override string ToString() => "{null}";
 
         public override void Serialize(XmlTextWriter xml)
         {
@@ -17,14 +14,8 @@ namespace Puzzle.NCore.Runtime.Serialization
             //xml.WriteEndElement ();
         }
 
-        public override void SerializeReference(XmlTextWriter xml)
-        {
-            xml.WriteAttributeString("null", "true");
-        }
+        public override void SerializeReference(XmlTextWriter xml) => xml.WriteAttributeString("null", "true");
 
-        public override object GetValue()
-        {
-            return null;
-        }
+        public override object GetValue() => null;
     }
 }

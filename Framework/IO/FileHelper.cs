@@ -327,12 +327,9 @@ namespace JJ.Framework.IO
 			return lines.ToArray();
 		}
 
-		public static string ToAbsolutePath(string path)
-		{
-			return ToAbsolutePath(null, path);
-		}
+		public static string ToAbsolutePath(string path) => ToAbsolutePath(null, path);
 
-		public static string ToAbsolutePath(string basePath, string path)
+	    public static string ToAbsolutePath(string basePath, string path)
 		{
 			basePath = basePath ?? "";
 			path = path ?? "";
@@ -340,12 +337,9 @@ namespace JJ.Framework.IO
 			return Path.GetFullPath(Path.Combine(basePath, path));
 		}
 
-		public static string ToRelativePath(string path)
-		{
-			return ToRelativePath(null, path);
-		}
+		public static string ToRelativePath(string path) => ToRelativePath(null, path);
 
-		public static string ToRelativePath(string basePath, string path)
+	    public static string ToRelativePath(string basePath, string path)
 		{
 			if (string.IsNullOrEmpty(basePath))
 			{

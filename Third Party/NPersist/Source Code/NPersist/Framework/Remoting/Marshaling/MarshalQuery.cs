@@ -30,8 +30,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 
 		[XmlArrayItem(typeof(MarshalParameter))] public ArrayList Parameters
 		{
-			get { return this.parameters; }
-			set { this.parameters = value; }
+			get => this.parameters;
+		    set => this.parameters = value;
 		}	
 
 		#region Property  PrimitiveType
@@ -40,8 +40,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public string PrimitiveType
 		{
-			get { return this.primitiveType; }
-			set { this.primitiveType = value; }
+			get => this.primitiveType;
+		    set => this.primitiveType = value;
 		}
 		
 		#endregion
@@ -52,8 +52,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public string QueryType
 		{
-			get { return this.queryType; }
-			set { this.queryType = value; }
+			get => this.queryType;
+		    set => this.queryType = value;
 		}
 		
 		#endregion
@@ -64,8 +64,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public string QueryString
 		{
-			get { return this.queryString; }
-			set { this.queryString = value; }
+			get => this.queryString;
+		    set => this.queryString = value;
 		}
 		
 		#endregion

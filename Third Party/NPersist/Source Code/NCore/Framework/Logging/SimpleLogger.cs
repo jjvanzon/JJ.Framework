@@ -81,9 +81,6 @@ namespace Puzzle.NCore.Framework.Logging
 
         #endregion
 
-        protected virtual void WriteLine(LoggingLevel level, string text)
-        {
-            Console.WriteLine(text);
-        }
+        protected virtual void WriteLine(LoggingLevel level, string text) => Console.WriteLine(text);
     }
 }

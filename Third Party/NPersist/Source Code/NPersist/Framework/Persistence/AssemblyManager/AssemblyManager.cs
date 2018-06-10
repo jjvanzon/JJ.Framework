@@ -197,12 +197,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 		
-		public static Type GetBaseType(object obj)
-		{
-			return GetBaseType(obj.GetType() );
-		}
+		public static Type GetBaseType(object obj) => GetBaseType(obj.GetType() );
 
-		public static Type GetBaseType(Type type)
+	    public static Type GetBaseType(Type type)
 		{
 			Type tmp = type;
 

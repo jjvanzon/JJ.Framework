@@ -19,19 +19,16 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 	/// </summary>
 	public class SqlExistsPredicate : SqlPredicate
 	{
-		public SqlExistsPredicate(SqlSearchCondition sqlSearchCondition) : base(sqlSearchCondition)
-		{
-			this.sqlSelectStatement = new SqlSelectStatement(this);
-		}
+		public SqlExistsPredicate(SqlSearchCondition sqlSearchCondition) : base(sqlSearchCondition) => this.sqlSelectStatement = new SqlSelectStatement(this);
 
-		#region Property  SqlSelectStatement
+	    #region Property  SqlSelectStatement
 		
 		private SqlSelectStatement sqlSelectStatement;
 		
 		public SqlSelectStatement SqlSelectStatement
 		{
-			get { return this.sqlSelectStatement; }
-			set { this.sqlSelectStatement = value; }
+			get => this.sqlSelectStatement;
+		    set => this.sqlSelectStatement = value;
 		}
 		
 		#endregion

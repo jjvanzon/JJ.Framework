@@ -29,14 +29,8 @@ namespace Puzzle.NPersist.Framework.Aop.Mixins
 		}
 
 		
-		public ObjectStatus GetObjectStatus()
-		{
-			return status;
-		}
+		public ObjectStatus GetObjectStatus() => status;
 
-		public void SetObjectStatus(ObjectStatus value)
-		{
-			status = value;
-		}
+	    public void SetObjectStatus(ObjectStatus value) => status = value;
 	}
 }

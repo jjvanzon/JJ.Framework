@@ -18,8 +18,8 @@ namespace Puzzle.NPersist.Framework.NPathEngine.CodeDom
 
 		public virtual object Expression
 		{
-			get { return expression; }
-			set { expression = value; }
+			get => expression;
+		    set => expression = value;
 		}
 
 		#endregion

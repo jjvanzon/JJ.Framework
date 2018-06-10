@@ -36,36 +36,36 @@ namespace Puzzle.NPersist.Framework.Persistence
         private object obj;
         public virtual object Obj
         {
-            get { return obj; }
-            set { obj = value; }
+            get => obj;
+            set => obj = value;
         }
 
         private string propertyName;
         public virtual string PropertyName
         {
-            get { return propertyName; }
-            set { propertyName = value; }
+            get => propertyName;
+            set => propertyName = value;
         }
 
         private object cachedOriginalValue;
         public virtual object CachedOriginalValue
         {
-            get { return cachedOriginalValue; }
-            set { cachedOriginalValue = value; }
+            get => cachedOriginalValue;
+            set => cachedOriginalValue = value;
         }
 
         private object cachedValue;
         public virtual object CachedValue
         {
-            get { return cachedValue; }
-            set { cachedValue = value; }
+            get => cachedValue;
+            set => cachedValue = value;
         }
 
         private object freshValue;
         public virtual object FreshValue
         {
-            get { return freshValue; }
-            set { freshValue = value; }
+            get => freshValue;
+            set => freshValue = value;
         }
 
         public void Resolve(ConflictResolution resolution)
@@ -106,24 +106,18 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 
-        protected void UseCachedValue()
-        {
-            this.Context.ObjectManager.SetOriginalPropertyValue(obj, propertyName, freshValue);
-        }
+        protected void UseCachedValue() => this.Context.ObjectManager.SetOriginalPropertyValue(obj, propertyName, freshValue);
 
-        protected void UseFreshValue()
+	    protected void UseFreshValue()
         {
             this.Context.ObjectManager.SetPropertyValue(obj, propertyName, freshValue);
             this.Context.ObjectManager.SetOriginalPropertyValue(obj, propertyName, freshValue);
         }
 
 
-		protected void UseCachedValueList()
-		{
-			OverwriteOriginalList();
-		}
+		protected void UseCachedValueList() => OverwriteOriginalList();
 
-		protected void UseFreshValueList()
+	    protected void UseFreshValueList()
 		{
 			OverwriteList();
 			OverwriteOriginalList();

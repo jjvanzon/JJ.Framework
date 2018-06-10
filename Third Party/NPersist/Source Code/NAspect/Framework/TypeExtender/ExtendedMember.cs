@@ -13,14 +13,8 @@ namespace Puzzle.NAspect.Framework
         /// </summary>        
         public string Name
         {
-            get
-            {
-                return this.name;
-            }
-            set
-            {
-                this.name = value;
-            }
+            get => this.name;
+            set => this.name = value;
         }
         #endregion
 

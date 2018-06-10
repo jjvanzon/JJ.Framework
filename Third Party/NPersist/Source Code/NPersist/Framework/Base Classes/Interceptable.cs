@@ -23,18 +23,12 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 		/// Gets the interceptor.
 		/// </summary>
 		/// <returns><c>IInterceptable</c></returns>
-		public virtual IInterceptor GetInterceptor()
-		{
-			return m_Interceptor;
-		}
+		public virtual IInterceptor GetInterceptor() => m_Interceptor;
 
-		/// <summary>
+	    /// <summary>
 		/// Sets the interceptor.
 		/// </summary>
 		/// <param name="value">The new interceptor</param>
-		public virtual void SetInterceptor(IInterceptor value)
-		{
-			m_Interceptor = value;
-		}
+		public virtual void SetInterceptor(IInterceptor value) => m_Interceptor = value;
 	}
 }

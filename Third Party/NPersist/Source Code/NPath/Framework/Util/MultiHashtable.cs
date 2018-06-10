@@ -34,13 +34,9 @@ namespace Puzzle.NPath.Framework.Utility
 			return hash;
 		}
 
-		public override int GetHashCode()
-		{
-			return hashCode;
-		}
+		public override int GetHashCode() => hashCode;
 
-
-		public override bool Equals(object obj)
+	    public override bool Equals(object obj)
 		{
 			KeyStruct other = (KeyStruct) obj;
 
@@ -59,12 +55,9 @@ namespace Puzzle.NPath.Framework.Utility
 	{
 		private Hashtable baseLookup = new Hashtable();
 
-		public bool ContainsKeys(params object[] keys)
-		{
-			return false;
-		}
+		public bool ContainsKeys(params object[] keys) => false;
 
-		public void Add(object value, object[] keys)
+	    public void Add(object value, object[] keys)
 		{
 			KeyStruct key = new KeyStruct(keys);
 			baseLookup[key] = value;
@@ -84,8 +77,8 @@ namespace Puzzle.NPath.Framework.Utility
 
 		public object this[params object[] keys]
 		{
-			get { return GetValue(keys); }
-			set { Add(value, keys); }
+			get => GetValue(keys);
+		    set => Add(value, keys);
 		}
 	}
 }

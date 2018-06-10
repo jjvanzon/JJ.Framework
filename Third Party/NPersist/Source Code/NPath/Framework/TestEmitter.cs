@@ -158,12 +158,9 @@ namespace Puzzle.NPath.Framework
 			Write(")");
 		}
 
-		protected virtual void EmitNullValue(NPathNullValue nullValue)
-		{
-			Write("null");
-		}
+		protected virtual void EmitNullValue(NPathNullValue nullValue) => Write("null");
 
-		protected virtual void EmitFunction(NPathFunction function)
+	    protected virtual void EmitFunction(NPathFunction function)
 		{
 			if (function is NPathSumStatement)
 				Write("sum");
@@ -183,12 +180,9 @@ namespace Puzzle.NPath.Framework
 			Write(")");
 		}
 
-		protected virtual void EmitParameter(NPathParameter parameter)
-		{
-			Write("?");
-		}
+		protected virtual void EmitParameter(NPathParameter parameter) => Write("?");
 
-		protected virtual void EmitBetween(NPathBetweenExpression betweenExpression)
+	    protected virtual void EmitBetween(NPathBetweenExpression betweenExpression)
 		{
 			EmitExpression(betweenExpression.TestExpression);
 			Write(" between "); // do not localize
@@ -291,12 +285,9 @@ namespace Puzzle.NPath.Framework
 			Write(value.Value);
 		}
 
-		protected virtual void EmitBooleanValue(NPathBooleanValue value)
-		{
-			Write(value.Value);
-		}
+		protected virtual void EmitBooleanValue(NPathBooleanValue value) => Write(value.Value);
 
-		protected virtual void EmitFrom(NPathSelectQuery query)
+	    protected virtual void EmitFrom(NPathSelectQuery query)
 		{
 			Write("from "); // do not localize
 			foreach (NPathClassName className in query.From.Classes)
@@ -358,22 +349,13 @@ namespace Puzzle.NPath.Framework
 			WriteLine();
 		}
 
-		protected virtual void Write(string text)
-		{
-			code.Append(text);
-		}
+		protected virtual void Write(string text) => code.Append(text);
 
-		protected virtual void Write(object value)
-		{
-			code.Append(value.ToString());
-		}
+	    protected virtual void Write(object value) => code.Append(value.ToString());
 
-		protected virtual void Write(string text, params object[] args)
-		{
-			code.AppendFormat(text, args);
-		}
+	    protected virtual void Write(string text, params object[] args) => code.AppendFormat(text, args);
 
-		protected virtual void WriteLine(string text)
+	    protected virtual void WriteLine(string text)
 		{
 			code.Append(text);
 			code.Append(Environment.NewLine);
@@ -391,10 +373,6 @@ namespace Puzzle.NPath.Framework
 			code.Append(Environment.NewLine);
 		}
 
-		protected virtual void WriteLine()
-		{
-			code.Append(Environment.NewLine);
-		}
-
+		protected virtual void WriteLine() => code.Append(Environment.NewLine);
 	}
 }

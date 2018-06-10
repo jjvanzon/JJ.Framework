@@ -57,8 +57,8 @@ namespace Puzzle.NPersist.Framework.Attributes
 				
 		public PersistenceType PersistenceType
 		{
-			get { return this.m_PersistenceType; }
-			set { this.m_PersistenceType = value; }
+			get => this.m_PersistenceType;
+		    set => this.m_PersistenceType = value;
 		}
 		
 		#endregion
@@ -67,8 +67,8 @@ namespace Puzzle.NPersist.Framework.Attributes
 				
 		public bool Compute
 		{
-			get { return this.m_Compute; }
-			set { this.m_Compute = value; }
+			get => this.m_Compute;
+		    set => this.m_Compute = value;
 		}
 		
 		#endregion
@@ -79,56 +79,56 @@ namespace Puzzle.NPersist.Framework.Attributes
 
 		public virtual string Name
 		{
-			get { return m_name; }
-			set { m_name = value; }
+			get => m_name;
+		    set => m_name = value;
 		}
 
 		public virtual SourceType SourceType
 		{
-			get { return m_SourceType; }
-			set { m_SourceType = value; }
+			get => m_SourceType;
+		    set => m_SourceType = value;
 		}
 
 		public virtual ProviderType ProviderType
 		{
-			get { return m_ProviderType; }
-			set { m_ProviderType = value; }
+			get => m_ProviderType;
+		    set => m_ProviderType = value;
 		}
 
 		public virtual string ConnectionString
 		{
-			get { return m_ConnectionString; }
-			set { m_ConnectionString = value; }
+			get => m_ConnectionString;
+		    set => m_ConnectionString = value;
 		}
 
 		public virtual string Schema
 		{
-			get { return m_Schema; }
-			set { m_Schema = value; }
+			get => m_Schema;
+		    set => m_Schema = value;
 		}
 
 		public virtual string Catalog
 		{
-			get { return m_Catalog; }
-			set { m_Catalog = value; }
+			get => m_Catalog;
+		    set => m_Catalog = value;
 		}
 
 		public virtual string ProviderAssemblyPath
 		{
-			get { return m_ProviderAssemblyPath; }
-			set { m_ProviderAssemblyPath = value; }
+			get => m_ProviderAssemblyPath;
+		    set => m_ProviderAssemblyPath = value;
 		}
 
 		public virtual string ProviderConnectionTypeName
 		{
-			get { return m_ProviderConnectionTypeName; }
-			set { m_ProviderConnectionTypeName = value; }
+			get => m_ProviderConnectionTypeName;
+		    set => m_ProviderConnectionTypeName = value;
 		}
 
 		public virtual string LockTable
 		{
-			get { return m_LockTable; }
-			set { m_LockTable = value; }
+			get => m_LockTable;
+		    set => m_LockTable = value;
 		}
 
 		#endregion
@@ -141,20 +141,20 @@ namespace Puzzle.NPersist.Framework.Attributes
 		
 		public virtual string DocPath
 		{
-			get { return m_DocPath; }
-			set { m_DocPath = value; }
+			get => m_DocPath;
+		    set => m_DocPath = value;
 		}
 		
 		public virtual string DocRoot
 		{
-			get { return m_DocRoot; }
-			set { m_DocRoot = value; }
+			get => m_DocRoot;
+		    set => m_DocRoot = value;
 		}
 
 		public virtual string DocEncoding
 		{
-			get { return m_DocEncoding; }
-			set { m_DocEncoding = value; }
+			get => m_DocEncoding;
+		    set => m_DocEncoding = value;
 		}
 
 		#endregion
@@ -163,14 +163,14 @@ namespace Puzzle.NPersist.Framework.Attributes
 
 		public string Url
 		{
-			get { return this.m_Url; }
-			set { this.m_Url = value; }
+			get => this.m_Url;
+		    set => this.m_Url = value;
 		}
 
 		public string DomainKey
 		{
-			get { return this.m_DomainKey; }
-			set { this.m_DomainKey = value; }
+			get => this.m_DomainKey;
+		    set => this.m_DomainKey = value;
 		}
 
 		#endregion

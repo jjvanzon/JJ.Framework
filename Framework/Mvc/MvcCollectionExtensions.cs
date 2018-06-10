@@ -100,10 +100,7 @@ namespace JJ.Framework.Mvc
                 htmlHelper.ViewData.TemplateInfo.HtmlFieldPrefix = FormatHtmlFieldPrefix();
             }
 
-            public void AddCollectionNode(string identifier)
-            {
-                _nodes.Push(new CollectionNode(identifier));
-            }
+            public void AddCollectionNode(string identifier) => _nodes.Push(new CollectionNode(identifier));
 
             public void IncrementIndex(HtmlHelper htmlHelper)
             {
@@ -151,10 +148,7 @@ namespace JJ.Framework.Mvc
                 return output;
             }
 
-            public string FormatHtmlFieldPrefix()
-            {
-                return string.Join(".", _nodes.Select(x => x.FormatText()).Reverse());
-            }
+            public string FormatHtmlFieldPrefix() => string.Join(".", _nodes.Select(x => x.FormatText()).Reverse());
 
             public void Dispose()
             {
@@ -189,10 +183,7 @@ namespace JJ.Framework.Mvc
         {
             public string Identifier { get; }
 
-            public Node(string identifier)
-            {
-                Identifier = identifier;
-            }
+            public Node(string identifier) => Identifier = identifier;
 
             public abstract string FormatText();
         }
@@ -202,31 +193,20 @@ namespace JJ.Framework.Mvc
             public ItemNode(string identifier)
                 : base(identifier) { }
 
-            public override string FormatText()
-            {
-                return Identifier;
-            }
+            public override string FormatText() => Identifier;
         }
 
         private class CollectionNode : Node
         {
             public CollectionNode(string identifier)
                 : base(identifier)
-            {
-                Index = -1;
-            }
+                => Index = -1;
 
             public int Index { get; private set; }
 
-            public void IncrementIndex()
-            {
-                Index++;
-            }
+            public void IncrementIndex() => Index++;
 
-            public override string FormatText()
-            {
-                return Identifier + "[" + Index + "]";
-            }
+            public override string FormatText() => Identifier + "[" + Index + "]";
         }
 
         private class DummyDisposable : IDisposable

@@ -242,86 +242,38 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return null;
 		}
 
-        public virtual void TouchTable(ITableMap tableMap, int exceptionLimit)
-        {
-            GetPersistenceEngine(tableMap.SourceMap).TouchTable(tableMap, exceptionLimit);
-        }
+        public virtual void TouchTable(ITableMap tableMap, int exceptionLimit) => GetPersistenceEngine(tableMap.SourceMap).TouchTable(tableMap, exceptionLimit);
 
-		public virtual void LoadObject(ref object obj)
-		{
-			GetPersistenceEngine(GetSourceMap(obj)).LoadObject(ref obj);
-		}
+	    public virtual void LoadObject(ref object obj) => GetPersistenceEngine(GetSourceMap(obj)).LoadObject(ref obj);
 
-		public virtual void LoadObjectByKey(ref object obj, string keyPropertyName, object keyValue)
-		{
-			GetPersistenceEngine(GetSourceMap(obj)).LoadObjectByKey(ref obj, keyPropertyName, keyValue);
-		}
+	    public virtual void LoadObjectByKey(ref object obj, string keyPropertyName, object keyValue) => GetPersistenceEngine(GetSourceMap(obj)).LoadObjectByKey(ref obj, keyPropertyName, keyValue);
 
-		public virtual void InsertObject(object obj, IList stillDirty)
-		{
-			GetPersistenceEngine(GetSourceMap(obj)).InsertObject(obj, stillDirty);
-		}
+	    public virtual void InsertObject(object obj, IList stillDirty) => GetPersistenceEngine(GetSourceMap(obj)).InsertObject(obj, stillDirty);
 
-		public virtual void RemoveObject(object obj)
-		{
-			GetPersistenceEngine(GetSourceMap(obj)).RemoveObject(obj);
-		}
+	    public virtual void RemoveObject(object obj) => GetPersistenceEngine(GetSourceMap(obj)).RemoveObject(obj);
 
-		public virtual void UpdateObject(object obj, IList stillDirty)
-		{
-			GetPersistenceEngine(GetSourceMap(obj)).UpdateObject(obj, stillDirty);
-		}
+	    public virtual void UpdateObject(object obj, IList stillDirty) => GetPersistenceEngine(GetSourceMap(obj)).UpdateObject(obj, stillDirty);
 
-		public virtual void LoadProperty(object obj, string propertyName)
-		{
-			GetPersistenceEngine(GetSourceMap(obj, propertyName)).LoadProperty(obj, propertyName);
-		}
+	    public virtual void LoadProperty(object obj, string propertyName) => GetPersistenceEngine(GetSourceMap(obj, propertyName)).LoadProperty(obj, propertyName);
 
+	    public virtual IList GetObjectsOfClassWithUniReferencesToObject(Type type, object obj) => GetPersistenceEngine(GetSourceMap(obj)).GetObjectsOfClassWithUniReferencesToObject(type, obj);
 
-		public virtual IList GetObjectsOfClassWithUniReferencesToObject(Type type, object obj)
-		{
-			return GetPersistenceEngine(GetSourceMap(obj)).GetObjectsOfClassWithUniReferencesToObject(type, obj);
-		}
+	    #region Query
 
+		public IList LoadObjects(IQuery query, IList listToFill) => GetPersistenceEngine(GetSourceMap(query.PrimaryType)).LoadObjects(query, listToFill);
 
-		#region Query
+	    public IList LoadObjects(Type type, RefreshBehaviorType refreshBehavior, IList listToFill) => GetPersistenceEngine(GetSourceMap(type)).LoadObjects(type, refreshBehavior, listToFill);
 
-		public IList LoadObjects(IQuery query, IList listToFill)
-		{
-			return GetPersistenceEngine(GetSourceMap(query.PrimaryType)).LoadObjects(query, listToFill);
-		}
+	    public DataTable LoadDataTable(IQuery query) => GetPersistenceEngine(GetSourceMap(query.PrimaryType)).LoadDataTable(query);
 
-        public IList LoadObjects(Type type, RefreshBehaviorType refreshBehavior, IList listToFill)
-        {
-            return GetPersistenceEngine(GetSourceMap(type)).LoadObjects(type, refreshBehavior, listToFill);
-        }
-		
-		public DataTable LoadDataTable(IQuery query)
-		{
-			return GetPersistenceEngine(GetSourceMap(query.PrimaryType)).LoadDataTable(query);
-		}
+	    public IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior, IList listToFill) => GetPersistenceEngine(GetSourceMap(type)).GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, parameters, refreshBehavior, listToFill);
 
-		public IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior, IList listToFill)
-		{
-			return GetPersistenceEngine(GetSourceMap(type)).GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, parameters, refreshBehavior, listToFill);			
-		}
+	    #endregion
 
-		#endregion
+		protected virtual ISourceMap GetSourceMap(object obj) => this.Context.DomainMap.MustGetClassMap(obj.GetType()).GetSourceMap();
 
-		protected virtual ISourceMap GetSourceMap(object obj)
-		{
-			return this.Context.DomainMap.MustGetClassMap(obj.GetType()).GetSourceMap();
-		}
+	    protected virtual ISourceMap GetSourceMap(Type type) => this.Context.DomainMap.MustGetClassMap(type).GetSourceMap();
 
-		protected virtual ISourceMap GetSourceMap(Type type)
-		{
-			return this.Context.DomainMap.MustGetClassMap(type).GetSourceMap();
-		}
-
-		protected virtual ISourceMap GetSourceMap(object obj, string propertyName)
-		{
-			return this.Context.DomainMap.MustGetClassMap(obj.GetType()).MustGetPropertyMap(propertyName).GetSourceMap();
-		}
-
+	    protected virtual ISourceMap GetSourceMap(object obj, string propertyName) => this.Context.DomainMap.MustGetClassMap(obj.GetType()).MustGetPropertyMap(propertyName).GetSourceMap();
 	}
 }

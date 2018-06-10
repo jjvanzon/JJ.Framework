@@ -45,12 +45,9 @@ namespace Puzzle.NPersist.Framework.Aop.Mixins
 
         #region IEditableObject Members
 
-		public void EndEdit()
-		{
-			propertyStore.Clear ();
-		}
+		public void EndEdit() => propertyStore.Clear ();
 
-		public void CancelEdit()
+        public void CancelEdit()
 		{
 			foreach (PropertyInfo property in properties.Values)
 			{
@@ -75,11 +72,7 @@ namespace Puzzle.NPersist.Framework.Aop.Mixins
         #region IProxyAware Members
 
 
-        public void SetProxy(IAopProxy target)
-        {            
-            this.target = target;
-            
-        }
+        public void SetProxy(IAopProxy target) => this.target = target;
 
         private void InitProperties()
         {

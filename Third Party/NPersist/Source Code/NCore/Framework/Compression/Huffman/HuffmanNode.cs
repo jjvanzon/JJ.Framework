@@ -26,9 +26,6 @@ namespace Puzzle.NCore.Framework.Compression
         public HuffmanNode LeftNode;
         public HuffmanNode RightNode;
 
-        public override string ToString()
-        {
-            return string.Format("{0} - {1}", Data, Occurrences);
-        }
+        public override string ToString() => string.Format("{0} - {1}", Data, Occurrences);
     }
 }

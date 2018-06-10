@@ -40,17 +40,11 @@ namespace Puzzle.NPersist.Framework.Remoting.WebService.Client
 		{
 		}
 
-		public WebServiceRemotingEngine(string url) : base(new XmlFormatter())
-		{
-			this.url = url;
-		}
-		
-		public WebServiceRemotingEngine(IFormatter formatter, string url) : base(formatter)
-		{
-			this.url = url;
-		}
-		
-		public WebServiceRemotingEngine(IFormatter formatter, string url, string domainKey) : base(formatter)
+		public WebServiceRemotingEngine(string url) : base(new XmlFormatter()) => this.url = url;
+
+	    public WebServiceRemotingEngine(IFormatter formatter, string url) : base(formatter) => this.url = url;
+
+	    public WebServiceRemotingEngine(IFormatter formatter, string url, string domainKey) : base(formatter)
 		{
 			this.url = url;
 			this.domainKey = domainKey;
@@ -76,32 +70,32 @@ namespace Puzzle.NPersist.Framework.Remoting.WebService.Client
  
 		public IWebServiceCompressor Compressor
 		{
-			get { return this.compressor; }
-			set { this.compressor = value; }
+			get => this.compressor;
+		    set => this.compressor = value;
 		}
 
 		private string url = "";
 
 		public virtual string Url
 		{
-			get { return this.url; }
-			set { this.url = value; }
+			get => this.url;
+		    set => this.url = value;
 		}
 
 		private string domainKey = "";
 
 		public virtual string DomainKey
 		{
-			get { return this.domainKey; }
-			set { this.domainKey = value; }
+			get => this.domainKey;
+		    set => this.domainKey = value;
 		}
 
 		private bool useCompression = true;
 
 		public virtual bool UseCompression
 		{
-			get { return this.useCompression; }
-			set { this.useCompression = value; }
+			get => this.useCompression;
+		    set => this.useCompression = value;
 		}
 
 		public IDomainMap GetMap()
@@ -378,45 +372,10 @@ namespace Puzzle.NPersist.Framework.Remoting.WebService.Client
 			return listToFill;
 		}
 
-		public override DataTable LoadDataTable(IQuery query)
-		{
-			return null;
-//			if (this.url.Length < 1)
-//				throw new NPersistException("You must specify an url to your NPersist Web Service in your WebServiceRemotingEngine!");
-//			RemotingService rs = new RemotingService(this.Context, url);
-//			IMarshalingTransformer transformer = new MarshalingTransformer(Context);
-//			MarshalQuery mq = transformer.FromQuery(query);
-//			string xmlQuery = (string) Formatter.Serialize(mq);
-//
-//			if (useCompression && this.compressor != null)
-//				xmlQuery = this.compressor.Compress(xmlQuery);
-//
-//			bool doUseCompression = this.useCompression ;
-//			if (this.compressor == null)
-//				doUseCompression = false;
-//
-//			string result = rs.LoadObjects(xmlQuery, this.domainKey, doUseCompression);
-//
-//			if (useCompression && this.compressor != null)
-//				result = this.compressor.Decompress(result);
-//
-//			MarshalObjectList mol = (MarshalObjectList) Formatter.Deserialize(result, typeof(MarshalObjectList));
-//			IList resultList = transformer.ToObjectList(mol, query.RefreshBehavior);
-//			return resultList;
-		}
+		public override DataTable LoadDataTable(IQuery query) => null;
 
-		
-		public override IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior, IList listToFill)
-		{
-			throw new IAmOpenSourcePleaseImplementMeException("Query capabilities not implemented in DocumentPersistenceEngine! Please load the entire set that you need to search into memory and use the IContext.FilterObjects() method instead.");			
-			//return null;
-		}
+	    public override IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior, IList listToFill) => throw new IAmOpenSourcePleaseImplementMeException("Query capabilities not implemented in DocumentPersistenceEngine! Please load the entire set that you need to search into memory and use the IContext.FilterObjects() method instead.");
 
-
-		public override IList GetObjectsOfClassWithUniReferencesToObject(Type type, object obj)
-		{
-			throw new IAmOpenSourcePleaseImplementMeException("");			
-		}
-
+	    public override IList GetObjectsOfClassWithUniReferencesToObject(Type type, object obj) => throw new IAmOpenSourcePleaseImplementMeException("");
 	}
 }

@@ -58,8 +58,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public Guid OldTransactionGuid
 		{
-			get { return this.oldTransactionGuid; }
-			set { this.oldTransactionGuid = value; }
+			get => this.oldTransactionGuid;
+		    set => this.oldTransactionGuid = value;
 		}
 		
 		#endregion
@@ -70,8 +70,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public Guid NewTransactionGuid
 		{
-			get { return this.newTransactionGuid; }
-			set { this.newTransactionGuid = value; }
+			get => this.newTransactionGuid;
+		    set => this.newTransactionGuid = value;
 		}
 		
 		#endregion

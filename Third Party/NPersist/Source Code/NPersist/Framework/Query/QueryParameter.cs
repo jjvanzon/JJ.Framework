@@ -43,33 +43,30 @@ namespace Puzzle.NPersist.Framework.Querying
 			this.value = value;
 		}
 
-		public QueryParameter(object value)
-		{
-			this.value = value;
-		}
+		public QueryParameter(object value) => this.value = value;
 
-		private string name = "";
+	    private string name = "";
 		
 		public string Name
 		{
-			get { return this.name; }
-			set { this.name = value; }
+			get => this.name;
+		    set => this.name = value;
 		}
 
 		private object value = null;
 		
 		public object Value
 		{
-			get { return this.value; }
-			set { this.value = value; }
+			get => this.value;
+		    set => this.value = value;
 		}
 
 		private DbType dbType;
 		
 		public DbType DbType
 		{
-			get { return this.dbType; }
-			set { this.dbType = value; }
+			get => this.dbType;
+		    set => this.dbType = value;
 		}
 
 		public void AddToDbCommand(IDbCommand dbCommand)

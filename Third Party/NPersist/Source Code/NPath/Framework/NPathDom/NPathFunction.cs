@@ -18,8 +18,8 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public virtual bool Distinct
 		{
-			get { return distinct; }
-			set { distinct = value; }
+			get => distinct;
+		    set => distinct = value;
 		}
 
 		#endregion
@@ -30,8 +30,8 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public virtual IValue Expression
 		{
-			get { return expression; }
-			set { expression = value; }
+			get => expression;
+		    set => expression = value;
 		}
 
 		#endregion
@@ -42,8 +42,8 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public virtual bool IsNegative
 		{
-			get { return isNegative; }
-			set { isNegative = value; }
+			get => isNegative;
+		    set => isNegative = value;
 		}
 
 		#endregion

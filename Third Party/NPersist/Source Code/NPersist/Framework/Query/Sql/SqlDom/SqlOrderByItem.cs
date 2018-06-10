@@ -29,16 +29,16 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 			this.descending = descending;
 		}
 
-		public SqlOrderByClause SqlOrderByClause { get { return this.Parent as SqlOrderByClause; } }
+		public SqlOrderByClause SqlOrderByClause => this.Parent as SqlOrderByClause;
 
-		#region Property  Descending
+	    #region Property  Descending
 		
 		private bool descending;
 		
 		public bool Descending
 		{
-			get { return this.descending; }
-			set { this.descending = value; }
+			get => this.descending;
+		    set => this.descending = value;
 		}
 		
 		#endregion
@@ -49,8 +49,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlExpression SqlExpression 
 		{
-			get { return this.sqlExpression ; }
-			set { this.sqlExpression  = value; }
+			get => this.sqlExpression;
+		    set => this.sqlExpression  = value;
 		}
 		
 		#endregion

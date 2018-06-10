@@ -19,12 +19,9 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		{
 		}
 
-		public NPersistException(object obj) : base()
-		{
-			this.obj = obj;
-		}
+		public NPersistException(object obj) : base() => this.obj = obj;
 
-		public NPersistException(object obj, string propertyName) : base()
+	    public NPersistException(object obj, string propertyName) : base()
 		{
 			this.obj = obj;
 			this.propertyName = propertyName;
@@ -34,12 +31,9 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		{
 		}
 
-		public NPersistException(string message, object obj) : base(message)
-		{
-			this.obj = obj;
-		}
+		public NPersistException(string message, object obj) : base(message) => this.obj = obj;
 
-		public NPersistException(string message, object obj, string propertyName) : base(message)
+	    public NPersistException(string message, object obj, string propertyName) : base(message)
 		{
 			this.obj = obj;
 			this.propertyName = propertyName;
@@ -49,12 +43,9 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		{
 		}
 
-		public NPersistException(string message, Exception innerException, object obj) : base(message, innerException)
-		{
-			this.obj = obj;
-		}
+		public NPersistException(string message, Exception innerException, object obj) : base(message, innerException) => this.obj = obj;
 
-		public NPersistException(string message, Exception innerException, object obj, string propertyName) : base(message, innerException)
+	    public NPersistException(string message, Exception innerException, object obj, string propertyName) : base(message, innerException)
 		{
 			this.obj = obj;
 			this.propertyName = propertyName;
@@ -71,8 +62,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public object Obj
 		{
-			get { return this.obj; }
-			set { this.obj = value; }
+			get => this.obj;
+		    set => this.obj = value;
 		}
 		
 		#endregion
@@ -83,8 +74,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public string PropertyName
 		{
-			get { return this.propertyName; }
-			set { this.propertyName = value; }
+			get => this.propertyName;
+		    set => this.propertyName = value;
 		}
 		
 		#endregion

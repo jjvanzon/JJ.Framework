@@ -32,25 +32,18 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		{
 		}
 
-		public CompositeException(IList innerExceptions) : base("One or more exceptions were encountered during an operation that required atomicity. Please inspect the InnerExceptions property of this exception to see the exceptions that were encountered.")
-		{
-			this.innerExceptions = innerExceptions;
-		}
+		public CompositeException(IList innerExceptions) : base("One or more exceptions were encountered during an operation that required atomicity. Please inspect the InnerExceptions property of this exception to see the exceptions that were encountered.") => this.innerExceptions = innerExceptions;
 
-		public CompositeException(string message, IList innerExceptions) : base(message)
-		{
-			this.innerExceptions = innerExceptions;
-		}
+	    public CompositeException(string message, IList innerExceptions) : base(message) => this.innerExceptions = innerExceptions;
 
-		
-		#region Property  InnerExceptions
+	    #region Property  InnerExceptions
 		
 		private IList innerExceptions = null ;
 		
 		public IList InnerExceptions
 		{
-			get { return this.innerExceptions; }
-			set { this.innerExceptions = value; }
+			get => this.innerExceptions;
+		    set => this.innerExceptions = value;
 		}
 		
 		#endregion

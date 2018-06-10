@@ -22,23 +22,17 @@ namespace Puzzle.NPersist.Framework.Aop
     public class EntityAspect : IGenericAspect
 	{
 		private IContext context;
-		public EntityAspect(IContext context)
-		{
-			this.context = context;
-		}		
+		public EntityAspect(IContext context) => this.context = context;
 
-		public string Name
+	    public string Name
 		{
-			get { return "NPersistEntityAspect"; }
-			set { throw new IAmOpenSourcePleaseImplementMeException(); }
-		}
+			get => "NPersistEntityAspect";
+	        set => throw new IAmOpenSourcePleaseImplementMeException();
+	    }
 
-		public bool IsMatch(Type type)
-		{
-			return (context.DomainMap.GetClassMap(type) != null);
-		}
+		public bool IsMatch(Type type) => (context.DomainMap.GetClassMap(type) != null);
 
-		public IList Mixins
+	    public IList Mixins
 		{
 			get 
 			{
@@ -71,9 +65,6 @@ namespace Puzzle.NPersist.Framework.Aop
 		}
 
         private IList targets = new ArrayList();
-        public IList Targets
-        {
-            get { return targets; }
-        }
-    }
+        public IList Targets => targets;
+	}
 }

@@ -6,17 +6,11 @@ namespace JJ.Framework.Mvc
 {
 	public static class UrlHelperExtensions
 	{
-		public static string ActionWithCollection<T>(this UrlHelper urlHelper, string actionName, string controllerName, string parameterName, IEnumerable<T> collection)
-		{
-			return UrlHelpers.ActionWithCollection(actionName, controllerName, parameterName, collection);
-		}
+		public static string ActionWithCollection<T>(this UrlHelper urlHelper, string actionName, string controllerName, string parameterName, IEnumerable<T> collection) => UrlHelpers.ActionWithCollection(actionName, controllerName, parameterName, collection);
 
-		public static string ActionWithParams(this UrlHelper urlHelper, string actionName, string controllerName, params object[] parameterNamesAndValues)
-		{
-			return UrlHelpers.ActionWithParams(actionName, controllerName, parameterNamesAndValues);
-		}
+	    public static string ActionWithParams(this UrlHelper urlHelper, string actionName, string controllerName, params object[] parameterNamesAndValues) => UrlHelpers.ActionWithParams(actionName, controllerName, parameterNamesAndValues);
 
-		/// <summary>
+	    /// <summary>
 		/// The difference with Url.Action is that Url.ReturnAction will produce
 		/// a URL that does not fallback to default actions,
 		/// nor uses parameters as URL path parts,
@@ -24,12 +18,9 @@ namespace JJ.Framework.Mvc
 		/// That kind of URL is better interpretable by the Presentation framework,
 		/// that needs to convert it to presenter information.
 		/// </summary>
-		public static string ReturnAction(this UrlHelper urlHelper, string actionName, string controllerName, object routeValues = null)
-		{
-			return UrlHelpers.ReturnAction(actionName, controllerName, routeValues);
-		}
+		public static string ReturnAction(this UrlHelper urlHelper, string actionName, string controllerName, object routeValues = null) => UrlHelpers.ReturnAction(actionName, controllerName, routeValues);
 
-		/// <summary>
+	    /// <summary>
 		/// Converts presenter action info to an MVC URL.
 		/// Stacks up return URL parameters as follows:
 		/// Questions/Details?id=1
@@ -37,9 +28,6 @@ namespace JJ.Framework.Mvc
 		/// Login/Index&amp;ret=Questions%2FEdit%3Fid%3D1%26ret%3DQuestions%252FDetails%253Fid%253D1
 		/// Returns null if actionInfo is null.
 		/// </summary>
-		public static string ReturnAction(this UrlHelper urlHelper, ActionInfo presenterActionInfo, string returnUrlParameterName = "ret")
-		{
-			return UrlHelpers.ReturnAction(presenterActionInfo, returnUrlParameterName);
-		}
+		public static string ReturnAction(this UrlHelper urlHelper, ActionInfo presenterActionInfo, string returnUrlParameterName = "ret") => UrlHelpers.ReturnAction(presenterActionInfo, returnUrlParameterName);
 	}
 }

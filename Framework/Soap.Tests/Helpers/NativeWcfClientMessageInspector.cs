@@ -11,12 +11,9 @@ namespace JJ.Framework.Soap.Tests.Helpers
 		{
 		}
 
-		public void ApplyClientBehavior(ServiceEndpoint endpoint, ClientRuntime clientRuntime)
-		{
-			clientRuntime.MessageInspectors.Add(this);
-		}
+		public void ApplyClientBehavior(ServiceEndpoint endpoint, ClientRuntime clientRuntime) => clientRuntime.MessageInspectors.Add(this);
 
-		public void ApplyDispatchBehavior(ServiceEndpoint endpoint, EndpointDispatcher endpointDispatcher)
+	    public void ApplyDispatchBehavior(ServiceEndpoint endpoint, EndpointDispatcher endpointDispatcher)
 		{
 		}
 
@@ -28,9 +25,6 @@ namespace JJ.Framework.Soap.Tests.Helpers
 		{
 		}
 
-		public object BeforeSendRequest(ref Message request, IClientChannel channel)
-		{
-			return null;
-		}
+		public object BeforeSendRequest(ref Message request, IClientChannel channel) => null;
 	}
 }

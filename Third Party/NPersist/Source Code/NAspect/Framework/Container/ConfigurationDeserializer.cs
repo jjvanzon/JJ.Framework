@@ -23,8 +23,8 @@ namespace Puzzle.NAspect.Framework
         private bool useTypePlaceHolders;
         public bool UseTypePlaceHolders
         {
-            get { return useTypePlaceHolders; }
-            set { useTypePlaceHolders = value; }
+            get => useTypePlaceHolders;
+            set => useTypePlaceHolders = value;
         }
 	
         /// <summary>
@@ -32,10 +32,7 @@ namespace Puzzle.NAspect.Framework
         /// </summary>
         /// <param name="xmlRoot">xml node to deserialize</param>
         /// <returns>a configured <c>IEngine</c></returns>
-        public IEngine Configure(XmlElement xmlRoot)
-        {
-            return Configure(xmlRoot, "App.config");
-        }
+        public IEngine Configure(XmlElement xmlRoot) => Configure(xmlRoot, "App.config");
 
         public IEngine Configure(XmlElement xmlRoot, string configName)
         {
@@ -61,10 +58,7 @@ namespace Puzzle.NAspect.Framework
             return engine;
         }
 
-        public IEngine Configure(XmlNode xmlRoot, string configName)
-        {
-            return Configure(xmlRoot, configName, false);
-        }
+        public IEngine Configure(XmlNode xmlRoot, string configName) => Configure(xmlRoot, configName, false);
 
         public IEngine Configure(XmlNode xmlRoot, string configName, bool useTypePlaceHolders)
         {

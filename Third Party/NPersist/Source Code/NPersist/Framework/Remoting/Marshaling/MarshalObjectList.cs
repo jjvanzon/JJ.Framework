@@ -27,8 +27,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 
 		[XmlArrayItem(typeof(MarshalObject))] public ArrayList Objects
 		{
-			get { return this.objects; }
-			set { this.objects = value; }
+			get => this.objects;
+		    set => this.objects = value;
 		}
 	}
 }

@@ -8,12 +8,9 @@ namespace JJ.Framework.Common
 	[PublicAPI]
 	public static class Int32Helper
 	{
-		public static bool TryParse(string s, IFormatProvider provider, out int result)
-		{
-			return int.TryParse(s, NumberStyles.Integer, provider, out result);
-		}
+		public static bool TryParse(string s, IFormatProvider provider, out int result) => int.TryParse(s, NumberStyles.Integer, provider, out result);
 
-		public static int? ParseNullable(string input)
+	    public static int? ParseNullable(string input)
 		{
 			if (string.IsNullOrWhiteSpace(input))
 			{

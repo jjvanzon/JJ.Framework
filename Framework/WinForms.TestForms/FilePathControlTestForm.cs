@@ -7,10 +7,6 @@ namespace JJ.Framework.WinForms.TestForms
 	{
 		public FilePathControlTestForm() => InitializeComponent();
 
-		private void filePathControl1_Browsed(object sender, FilePathEventArgs e)
-		{
-			// ReSharper disable once LocalizableElement
-			MessageBox.Show("Browsed event went off!");
-		}
+		private void filePathControl1_Browsed(object sender, FilePathEventArgs e) => MessageBox.Show("Browsed event went off!");
 	}
 }

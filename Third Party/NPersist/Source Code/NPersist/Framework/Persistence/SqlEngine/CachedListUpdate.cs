@@ -41,40 +41,18 @@ namespace Puzzle.NPersist.Framework.Persistence
 		private object obj;
 		private string propertyName;
 
-		public virtual IList CachedList
-		{
-			get { return cachedList; }
-		}
-	
-		public virtual IList OriginalList
-		{
-			get { return originalList; }
-		}
-	
-		public virtual IList FreshList
-		{
-			get { return freshList; }
-		}
+		public virtual IList CachedList => cachedList;
 
-		public virtual PropertyStatus PropertyStatus
-		{
-			get { return propertyStatus; }
-		}
+	    public virtual IList OriginalList => originalList;
 
-		public virtual RefreshBehaviorType RefreshBehavior
-		{
-			get { return refreshBehavior; }
-		}
+	    public virtual IList FreshList => freshList;
 
-		public virtual object Obj
-		{
-			get { return obj; }
-		}
+	    public virtual PropertyStatus PropertyStatus => propertyStatus;
 
-		public virtual string PropertyName
-		{
-			get { return propertyName; }
-		}
+	    public virtual RefreshBehaviorType RefreshBehavior => refreshBehavior;
 
+	    public virtual object Obj => obj;
+
+	    public virtual string PropertyName => propertyName;
 	}
 }

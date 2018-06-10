@@ -132,21 +132,15 @@ namespace JJ.Framework.Mathematics
 		/// <summary>
 		/// Convers a number to its hexadecimal representation.
 		/// </summary>
-		public static string ToHex(int input)
-		{
-			return ToBase(input, 16, _defaultDigitChars);
-		}
+		public static string ToHex(int input) => ToBase(input, 16, _defaultDigitChars);
 
-		/// <summary>
+	    /// <summary>
 		/// Produces a string that represents the number in a base-b numbering system.
 		/// The digits are 0-9 and then A-Z. Higher digits are not allowed.
 		/// </summary>
-		public static string ToBase(int number, int b)
-		{
-			return ToBase(number, b, _defaultDigitChars);
-		}
+		public static string ToBase(int number, int b) => ToBase(number, b, _defaultDigitChars);
 
-		// From Base
+	    // From Base
 
 		/// <summary>
 		/// Converts a base-b number to an integer.
@@ -182,12 +176,9 @@ namespace JJ.Framework.Mathematics
 		/// <summary>
 		/// Coverts a string with a hexadecimal number in it to an integer.
 		/// </summary>
-		public static int FromHex(string hex)
-		{
-			return FromBase(hex, 16);
-		}
+		public static int FromHex(string hex) => FromBase(hex, 16);
 
-		/// <summary>
+	    /// <summary>
 		/// Converts a base-b number to an int.
 		/// The digits are 0-9 and then A-Z. Higher digits are not allowed.
 		/// </summary>
@@ -232,30 +223,17 @@ namespace JJ.Framework.Mathematics
 
 		// Digit Value to Char
 
-		private static char DigitValueToChar(int digitValue, char[] digitChars)
-		{
-			return digitChars[digitValue];
-		}
+		private static char DigitValueToChar(int digitValue, char[] digitChars) => digitChars[digitValue];
 
-		private static char DigitValueToChar(int digitValue, char firstChar)
-		{
-			return (char)(firstChar + digitValue);
-		}
+	    private static char DigitValueToChar(int digitValue, char firstChar) => (char)(firstChar + digitValue);
 
-		// Char to Digit Value
+	    // Char to Digit Value
 
-		private static int CharToDigitValue(char chr, IList<char> digitChars)
-		{
-			// TODO: This does not look fast.
-			return digitChars.IndexOf(chr);
-		}
+		private static int CharToDigitValue(char chr, IList<char> digitChars) => digitChars.IndexOf(chr);
 
-		private static int CharToDigitValue(char chr, char firstChar)
-		{
-			return chr - firstChar;
-		}
+	    private static int CharToDigitValue(char chr, char firstChar) => chr - firstChar;
 
-		private static int CharToDigitValue(char chr)
+	    private static int CharToDigitValue(char chr)
 		{
 			if (chr >= '0' && chr <= '9')
 			{

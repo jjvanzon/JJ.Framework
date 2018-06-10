@@ -32,27 +32,15 @@ namespace Puzzle.NPersist.Framework.Persistence
 		private OptimisticConcurrencyBehaviorType m_UpdateOptimisticConcurrencyBehavior = OptimisticConcurrencyBehaviorType.DefaultBehavior;
 		private OptimisticConcurrencyBehaviorType m_DeleteOptimisticConcurrencyBehavior = OptimisticConcurrencyBehaviorType.DefaultBehavior;
 
-		public virtual object GetObject(object identity, Type type, bool lazy)
-		{
-			return this.Context.IdentityMap.GetObject(identity, type, lazy);			
-		}
+		public virtual object GetObject(object identity, Type type, bool lazy) => this.Context.IdentityMap.GetObject(identity, type, lazy);
 
-		public virtual object GetObject(object identity, Type type, bool lazy, bool ignoreObjectNotFound)
-		{
-			return this.Context.IdentityMap.GetObject(identity, type, lazy, ignoreObjectNotFound);
-		}
+	    public virtual object GetObject(object identity, Type type, bool lazy, bool ignoreObjectNotFound) => this.Context.IdentityMap.GetObject(identity, type, lazy, ignoreObjectNotFound);
 
-		public virtual object GetObjectByKey(string keyPropertyName, object keyValue, Type type)
-		{
-			return this.Context.IdentityMap.GetObjectByKey(keyPropertyName, keyValue, type);
-		}
+	    public virtual object GetObjectByKey(string keyPropertyName, object keyValue, Type type) => this.Context.IdentityMap.GetObjectByKey(keyPropertyName, keyValue, type);
 
-		public virtual object GetObjectByKey(string keyPropertyName, object keyValue, Type type, bool ignoreObjectNotFound)
-		{
-			return this.Context.IdentityMap.GetObjectByKey(keyPropertyName, keyValue, type, ignoreObjectNotFound);
-		}
+	    public virtual object GetObjectByKey(string keyPropertyName, object keyValue, Type type, bool ignoreObjectNotFound) => this.Context.IdentityMap.GetObjectByKey(keyPropertyName, keyValue, type, ignoreObjectNotFound);
 
-        public void LoadProperty(object obj, string propertyName)
+	    public void LoadProperty(object obj, string propertyName)
 		{
 			ObjectStatus objStatus = this.Context.ObjectManager.GetObjectStatus(obj);
 			IPropertyMap propertyMap;
@@ -101,12 +89,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			CascadeCreate(obj);
 		}
 
-		public virtual void CommitObject(object obj, int exceptionLimit)
-		{
-			this.Context.UnitOfWork.CommitObject(obj, exceptionLimit);
-		}
+		public virtual void CommitObject(object obj, int exceptionLimit) => this.Context.UnitOfWork.CommitObject(obj, exceptionLimit);
 
-		public virtual void DeleteObject(object obj)
+	    public virtual void DeleteObject(object obj)
 		{
 			CascadeDelete(obj);
 			this.Context.InverseManager.RemoveAllReferencesToObject(obj);
@@ -120,12 +105,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 
-		public virtual object ManageLoadedValue(object obj, IPropertyMap propertyMap, object value)
-		{
-			return ManageLoadedValue(obj, propertyMap, value, null);
-		}
+		public virtual object ManageLoadedValue(object obj, IPropertyMap propertyMap, object value) => ManageLoadedValue(obj, propertyMap, value, null);
 
-		public virtual object ManageLoadedValue(object obj, IPropertyMap propertyMap, object value, object discriminator)
+	    public virtual object ManageLoadedValue(object obj, IPropertyMap propertyMap, object value, object discriminator)
 		{
             try
             {
@@ -189,22 +171,13 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return value;
 		}
 
-		public virtual object ManageReferenceValue(object obj, string propertyName, object value)
-		{
-			return ManageReferenceValue(obj, propertyName, value, null);
-		}
+		public virtual object ManageReferenceValue(object obj, string propertyName, object value) => ManageReferenceValue(obj, propertyName, value, null);
 
-		public virtual object ManageReferenceValue(object obj, string propertyName, object value, object discriminator)
-		{
-			return ManageReferenceValue(obj, this.Context.DomainMap.MustGetClassMap(obj.GetType()).MustGetPropertyMap(propertyName), value, discriminator);
-		}
+	    public virtual object ManageReferenceValue(object obj, string propertyName, object value, object discriminator) => ManageReferenceValue(obj, this.Context.DomainMap.MustGetClassMap(obj.GetType()).MustGetPropertyMap(propertyName), value, discriminator);
 
-		public virtual object ManageReferenceValue(object obj, IPropertyMap propertyMap, object value)
-		{
-			return ManageReferenceValue(obj, propertyMap, value, null);
-		}
+	    public virtual object ManageReferenceValue(object obj, IPropertyMap propertyMap, object value) => ManageReferenceValue(obj, propertyMap, value, null);
 
-		//if value is a list, values in list come in the same order as columns are returned from propertymap.refClassMap.GetIdentityCols! garantueed order !
+	    //if value is a list, values in list come in the same order as columns are returned from propertymap.refClassMap.GetIdentityCols! garantueed order !
 		//type column value must have been extracted from list in advance and should be passed to discriminator param
 		public virtual object ManageReferenceValue(object obj, IPropertyMap propertyMap, object value, object discriminator)
 		{
@@ -748,35 +721,35 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 		public virtual RefreshBehaviorType RefreshBehavior
 		{
-			get { return m_RefreshBehavior; }
-			set { m_RefreshBehavior = value; }
+			get => m_RefreshBehavior;
+		    set => m_RefreshBehavior = value;
 		}
 
 		
 		public virtual MergeBehaviorType MergeBehavior
 		{
-			get { return m_MergeBehavior; }
-			set { m_MergeBehavior = value; }
+			get => m_MergeBehavior;
+		    set => m_MergeBehavior = value;
 		}
 
 		public virtual OptimisticConcurrencyBehaviorType UpdateOptimisticConcurrencyBehavior
 		{
-			get { return m_UpdateOptimisticConcurrencyBehavior; }
-			set { m_UpdateOptimisticConcurrencyBehavior = value; }
+			get => m_UpdateOptimisticConcurrencyBehavior;
+		    set => m_UpdateOptimisticConcurrencyBehavior = value;
 		}
 
 		public virtual OptimisticConcurrencyBehaviorType DeleteOptimisticConcurrencyBehavior
 		{
-			get { return m_DeleteOptimisticConcurrencyBehavior; }
-			set { m_DeleteOptimisticConcurrencyBehavior = value; }
+			get => m_DeleteOptimisticConcurrencyBehavior;
+		    set => m_DeleteOptimisticConcurrencyBehavior = value;
 		}
 
 		private LoadBehavior listCountLoadBehavior = LoadBehavior.Default;
 
 		public LoadBehavior ListCountLoadBehavior 
 		{
-			get { return listCountLoadBehavior; }
-			set { listCountLoadBehavior = value; }
+			get => listCountLoadBehavior;
+		    set => listCountLoadBehavior = value;
 		}
 
         private Hashtable nullValueStatusTemplateCache = new Hashtable();

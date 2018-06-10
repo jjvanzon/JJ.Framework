@@ -29,12 +29,9 @@ namespace Puzzle.NPersist.Framework.Aop.Mixins
 
         #region IProxyAware Members
 
-        public void SetProxy(Puzzle.NAspect.Framework.IAopProxy target)
-        {
-            this.target = target;
-        }
+        public void SetProxy(Puzzle.NAspect.Framework.IAopProxy target) => this.target = target;
 
-        #endregion
+	    #endregion
 
         #region IInverseHelper Members
 
@@ -96,12 +93,9 @@ namespace Puzzle.NPersist.Framework.Aop.Mixins
         //we expect all client code to do this. Perf optimisation,
         //based on how all scenarios using this would have to check
         //HasCount first.
-        public int GetCount(string propertyName)
-        {
-            return (int)counts[propertyName];
-        }
+        public int GetCount(string propertyName) => (int)counts[propertyName];
 
-        public int GetCount(string propertyName, ITransaction transaction)
+	    public int GetCount(string propertyName, ITransaction transaction)
         {
             if (transaction == null)
                 return GetCount(propertyName);
@@ -109,12 +103,9 @@ namespace Puzzle.NPersist.Framework.Aop.Mixins
             return (int)((Hashtable)txCounts[transaction])[propertyName];
         }
 
-        public void SetCount(string propertyName, int count)
-        {
-            Counts[propertyName] = count;
-        }
+        public void SetCount(string propertyName, int count) => Counts[propertyName] = count;
 
-        public void SetCount(string propertyName, int count, ITransaction transaction)
+	    public void SetCount(string propertyName, int count, ITransaction transaction)
         {
 			if (transaction == null)
 			{
@@ -197,12 +188,9 @@ namespace Puzzle.NPersist.Framework.Aop.Mixins
             }
         }
 
-		public void CheckPartiallyLoadedList(string propertyName)
-		{
-			CheckPartiallyLoadedList(propertyName, null);
-		}
+		public void CheckPartiallyLoadedList(string propertyName) => CheckPartiallyLoadedList(propertyName, null);
 
-		public void CheckPartiallyLoadedList(string propertyName, ITransaction transaction)
+	    public void CheckPartiallyLoadedList(string propertyName, ITransaction transaction)
 		{
 			IList partialList = GetPartiallyLoadedList(propertyName, transaction);
 			int count = GetCount(propertyName, transaction);

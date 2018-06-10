@@ -30,23 +30,17 @@ namespace Puzzle.NPersist.Framework.Persistence
 		
 		}
 
-		public virtual IList CreateList(object obj, IPropertyMap propertyMap)
-		{
-			return CreateList(obj, propertyMap.Name);
-		}
+		public virtual IList CreateList(object obj, IPropertyMap propertyMap) => CreateList(obj, propertyMap.Name);
 
-		public virtual IList CreateList(object obj, string propertyName)
+	    public virtual IList CreateList(object obj, string propertyName)
 		{
 			Type listType = obj.GetType().GetProperty(propertyName).PropertyType;
 			return CreateList(listType, obj, propertyName);
 		}
 
-		public virtual IList CreateList(Type listType, object obj, IPropertyMap propertyMap)
-		{
-			return CreateList(listType, obj, propertyMap.Name);
-		}
+		public virtual IList CreateList(Type listType, object obj, IPropertyMap propertyMap) => CreateList(listType, obj, propertyMap.Name);
 
-		public virtual IList CreateList(Type listType, object obj, string propertyName)
+	    public virtual IList CreateList(Type listType, object obj, string propertyName)
 		{
 			IList newList = null;
 			IInterceptableList mList;

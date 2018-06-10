@@ -18,8 +18,8 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public string PropertyPath
 		{
-			get { return this.propertyPath; }
-			set { this.propertyPath = value; }
+			get => this.propertyPath;
+		    set => this.propertyPath = value;
 		}
 
 		#endregion
@@ -30,8 +30,8 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public NPathPropertyPathReferenceLocation ReferenceLocation
 		{
-			get { return this.referenceLocation; }
-			set { this.referenceLocation = value; }
+			get => this.referenceLocation;
+		    set => this.referenceLocation = value;
 		}
 
 		#endregion

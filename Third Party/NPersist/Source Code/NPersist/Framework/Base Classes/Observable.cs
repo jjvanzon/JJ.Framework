@@ -27,9 +27,6 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 			}
 		}
 
-		public ArrayList GetEventListeners()
-		{
-			return m_EventListeners;
-		}
+		public ArrayList GetEventListeners() => m_EventListeners;
 	}
 }

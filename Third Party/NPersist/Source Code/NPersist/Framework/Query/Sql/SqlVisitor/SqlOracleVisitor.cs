@@ -33,8 +33,8 @@ namespace Puzzle.NPersist.Framework.Sql.Visitor
 		
 		public override string LeftEncapsulator
 		{
-			get { return this.leftEncapsulator; }
-			set { this.leftEncapsulator = value; }
+			get => this.leftEncapsulator;
+		    set => this.leftEncapsulator = value;
 		}
 		
 		#endregion
@@ -45,8 +45,8 @@ namespace Puzzle.NPersist.Framework.Sql.Visitor
 		
 		public override string RightEncapsulator
 		{
-			get { return this.rightEncapsulator; }
-			set { this.rightEncapsulator = value; }
+			get => this.rightEncapsulator;
+		    set => this.rightEncapsulator = value;
 		}
 		
 		#endregion
@@ -57,8 +57,8 @@ namespace Puzzle.NPersist.Framework.Sql.Visitor
 		
 		public override string ColumnAliasKeyword
 		{
-			get { return this.columnAliasKeyword; }
-			set { this.columnAliasKeyword = value; }
+			get => this.columnAliasKeyword;
+		    set => this.columnAliasKeyword = value;
 		}
 		
 		#endregion
@@ -69,8 +69,8 @@ namespace Puzzle.NPersist.Framework.Sql.Visitor
 		
 		public override string TableAliasKeyword
 		{
-			get { return this.tableAliasKeyword; }
-			set { this.tableAliasKeyword = value; }
+			get => this.tableAliasKeyword;
+		    set => this.tableAliasKeyword = value;
 		}
 		
 		#endregion

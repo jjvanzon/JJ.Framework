@@ -54,12 +54,9 @@ namespace JJ.Framework.Data
 			return CreateContext(persistenceContextType, location, modelAssembly, mappingAssembly, dialect);
 		}
 
-		public static IContext CreateContext(Type persistenceContextType, string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
-		{
-			return (IContext)Activator.CreateInstance(persistenceContextType, persistenceLocation, modelAssembly, mappingAssembly, dialect);
-		}
+		public static IContext CreateContext(Type persistenceContextType, string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect) => (IContext)Activator.CreateInstance(persistenceContextType, persistenceLocation, modelAssembly, mappingAssembly, dialect);
 
-		private static readonly object _contextTypeDictionaryLock = new object();
+	    private static readonly object _contextTypeDictionaryLock = new object();
 		private static readonly Dictionary<string, Type> _contextTypeDictionary = new Dictionary<string, Type>();
 
 		private static Type ResolveContextType(string contextTypeName)

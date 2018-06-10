@@ -56,12 +56,9 @@ namespace JJ.Framework.WinForms.TestForms.VectorGraphicsWithFlatClone
 
 		// Style Values
 
-		public static Color ToSystemDrawing(this int color)
-		{
-			return Color.FromArgb(color);
-		}
+		public static Color ToSystemDrawing(this int color) => Color.FromArgb(color);
 
-		public static StringAlignment ToSystemDrawing(this HorizontalAlignmentEnum horizontalAlignmentEnum)
+	    public static StringAlignment ToSystemDrawing(this HorizontalAlignmentEnum horizontalAlignmentEnum)
 		{
 			switch (horizontalAlignmentEnum)
 			{

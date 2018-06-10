@@ -124,10 +124,7 @@ namespace Puzzle.NPersist.Framework.Linq
         }
 
 
-        public static BindingList<T> ToBindingList<T>(this ITable<T> source)
-        {
-            return new EntityBindingList<T>(source,source.Query.Context);           
-        }
+        public static BindingList<T> ToBindingList<T>(this ITable<T> source) => new EntityBindingList<T>(source,source.Query.Context);
     }
 }
 

@@ -19,12 +19,9 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 	public class SqlDistinctFunction : SqlFunction
 	{
 
-		public SqlDistinctFunction(SqlExpression sqlExpression) : base()
-		{
-			this.sqlExpression = sqlExpression;
-		}
+		public SqlDistinctFunction(SqlExpression sqlExpression) : base() => this.sqlExpression = sqlExpression;
 
-		public override void Accept(ISqlVisitor visitor)
+	    public override void Accept(ISqlVisitor visitor)
 		{
 			visitor.Visiting(this);	
 			visitor.Visited(this);	
@@ -36,8 +33,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlExpression SqlExpression
 		{
-			get { return this.sqlExpression; }
-			set { this.sqlExpression = value; }
+			get => this.sqlExpression;
+		    set => this.sqlExpression = value;
 		}
 		
 		#endregion

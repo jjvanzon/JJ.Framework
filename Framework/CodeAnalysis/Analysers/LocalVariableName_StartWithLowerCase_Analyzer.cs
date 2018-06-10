@@ -26,12 +26,9 @@ namespace JJ.Framework.CodeAnalysis.Analysers
 
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => _supportedDiagnostics;
 
-		public override void Initialize(AnalysisContext context)
-		{
-			context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, SyntaxKind.LocalDeclarationStatement);
-		}
+		public override void Initialize(AnalysisContext context) => context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, SyntaxKind.LocalDeclarationStatement);
 
-		private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+	    private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
 		{
 			var castedSyntaxNode = (LocalDeclarationStatementSyntax)context.Node;
 

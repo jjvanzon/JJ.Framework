@@ -181,12 +181,9 @@ namespace Puzzle.NPersist.Framework.Mapping.Transformation
 			}
 		}
 
-		private static string AddCode(string declaration, string endDeclaration, ICodeMap codeMap)
-		{
-			return declaration + Environment.NewLine + codeMap.Code + Environment.NewLine + endDeclaration + Environment.NewLine;
-		}
+		private static string AddCode(string declaration, string endDeclaration, ICodeMap codeMap) => declaration + Environment.NewLine + codeMap.Code + Environment.NewLine + endDeclaration + Environment.NewLine;
 
-		private string GetNamespaceDeclaration(IDomainMap domainMap, ICodeMap codeMap)
+	    private string GetNamespaceDeclaration(IDomainMap domainMap, ICodeMap codeMap)
 		{
 			if (codeMap.CodeLanguage == CodeLanguage.CSharp)
 				return "namespace " + domainMap.RootNamespace + " {";
@@ -306,12 +303,9 @@ namespace Puzzle.NPersist.Framework.Mapping.Transformation
 		#region ToCode
 
 
-		public String ToCode(CodeCompileUnit compileunit, CodeDomProvider provider)
-		{
-			return ToCode(compileunit, provider);
-		}
+		public String ToCode(CodeCompileUnit compileunit, CodeDomProvider provider) => ToCode(compileunit, provider);
 
-		public String ToCode(CodeCompileUnit compileunit, CodeDomProvider provider, IDomainMap domainMap)
+	    public String ToCode(CodeCompileUnit compileunit, CodeDomProvider provider, IDomainMap domainMap)
 		{
 
 			StringBuilder sb = new StringBuilder() ;
@@ -368,18 +362,11 @@ namespace Puzzle.NPersist.Framework.Mapping.Transformation
 			return code; 
 		}
 
-		public String ToCode(IDomainMap domainMap)
-		{
-			return ToCSharpCode(domainMap);
-		}
+		public String ToCode(IDomainMap domainMap) => ToCSharpCode(domainMap);
 
-		public String ToCode(IClassMap classMap)
-		{
-			return ToCSharpCode(classMap);
-		}
+	    public String ToCode(IClassMap classMap) => ToCSharpCode(classMap);
 
-
-		public String ToCode(IDomainMap domainMap, CodeDomProvider provider)
+	    public String ToCode(IDomainMap domainMap, CodeDomProvider provider)
 		{
 			CodeCompileUnit compileunit = ToCodeCompileUnit(domainMap);
 			return ToCode(compileunit, provider, domainMap);

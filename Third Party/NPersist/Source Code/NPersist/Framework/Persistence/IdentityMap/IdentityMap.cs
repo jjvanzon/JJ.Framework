@@ -28,12 +28,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 	public class IdentityMap : ContextChild, IIdentityMap
 	{
 
-		public virtual IObjectCache GetObjectCache()
-		{
-			return this.Context.GetObjectCache(); 
-		}
+		public virtual IObjectCache GetObjectCache() => this.Context.GetObjectCache();
 
-		public virtual void UnRegisterCreatedObject(object obj)
+	    public virtual void UnRegisterCreatedObject(object obj)
 		{
 			if (obj == null)
 				throw new NullReferenceException("Can't unregister null object!"); // do not localize
@@ -258,12 +255,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			}
 		}
 
-        public virtual object GetObject(object identity, Type type, bool lazy)
-		{
-			return GetObject(identity, type, lazy, false);			
-		}
+        public virtual object GetObject(object identity, Type type, bool lazy) => GetObject(identity, type, lazy, false);
 
-        public virtual object GetObject(object identity, Type type, bool lazy, bool ignoreObjectNotFound)
+	    public virtual object GetObject(object identity, Type type, bool lazy, bool ignoreObjectNotFound)
 		{
             type = AssemblyManager.GetBaseType(type);
 			KeyStruct key = GetKey(type, identity);
@@ -431,12 +425,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 
 
-		public virtual object GetObjectByKey(string keyPropertyName, object keyValue, Type type)
-		{
-			return GetObjectByKey(keyPropertyName, keyValue, type, false);			
-		}
+		public virtual object GetObjectByKey(string keyPropertyName, object keyValue, Type type) => GetObjectByKey(keyPropertyName, keyValue, type, false);
 
-		public virtual object GetObjectByKey(string keyPropertyName, object keyValue, Type type, bool ignoreObjectNotFound)
+	    public virtual object GetObjectByKey(string keyPropertyName, object keyValue, Type type, bool ignoreObjectNotFound)
 		{
             type = AssemblyManager.GetBaseType(type);
 			object obj;

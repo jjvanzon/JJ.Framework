@@ -17,8 +17,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </summary>
         public IList Interceptors
         {
-            get { return interceptors; }
-            set { interceptors = value; }
+            get => interceptors;
+            set => interceptors = value;
         }
 
         /// <summary>
@@ -46,15 +46,15 @@ namespace Puzzle.NAspect.Framework.Aop
 
         public IList Targets 
         {
-            get { return targets; }
-            set { targets = value; }
+            get => targets;
+            set => targets = value;
         }
 
         private string name = "Pointcut";
         public virtual string Name
         {
-            get { return name; }
-            set { name = value; }
+            get => name;
+            set => name = value;
         }
     }
 }

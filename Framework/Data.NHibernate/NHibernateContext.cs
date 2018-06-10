@@ -79,12 +79,9 @@ namespace JJ.Framework.Data.NHibernate
 			_entityDictionary.TryRemove(entity, id);
 		}
 
-		public override IEnumerable<TEntity> Query<TEntity>()
-		{
-			throw new Exception("Use ISession.QueryOver<TEntity> instead.");
-		}
+		public override IEnumerable<TEntity> Query<TEntity>() => throw new Exception("Use ISession.QueryOver<TEntity> instead.");
 
-		// Transactions
+	    // Transactions
 
 		private ISession OpenSession()
 		{
@@ -98,12 +95,9 @@ namespace JJ.Framework.Data.NHibernate
 			return session;
 		}
 
-		private void CloseSession(ISession session)
-		{
-			session.Dispose();
-		}
+		private void CloseSession(ISession session) => session.Dispose();
 
-		public override void Commit()
+	    public override void Commit()
 		{
 			Flush();
 

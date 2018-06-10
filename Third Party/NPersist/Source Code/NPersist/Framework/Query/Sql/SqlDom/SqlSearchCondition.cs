@@ -19,17 +19,11 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 	/// </summary>
 	public class SqlSearchCondition : SqlExpression, ISqlConditionChainPart
 	{
-		public SqlSearchCondition(ISqlNode parent)
-		{
-			this.Parent = parent;
-		}
+		public SqlSearchCondition(ISqlNode parent) => this.Parent = parent;
 
-		public SqlSearchCondition(SqlWhereClause sqlWhereClause)
-		{
-			this.Parent = sqlWhereClause;
-		}
+	    public SqlSearchCondition(SqlWhereClause sqlWhereClause) => this.Parent = sqlWhereClause;
 
-		public SqlSearchCondition(SqlSearchCondition sqlSearchCondition, bool isSubClause)
+	    public SqlSearchCondition(SqlSearchCondition sqlSearchCondition, bool isSubClause)
 		{
 			this.Parent = sqlSearchCondition;
 			this.isSubClause = isSubClause;
@@ -57,9 +51,9 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 			} 
 		}
 
-		public SqlWhereClause SqlWhereClause { get { return this.Parent as SqlWhereClause; } }
+		public SqlWhereClause SqlWhereClause => this.Parent as SqlWhereClause;
 
-		public SqlComparePredicate GetSqlComparePredicate(SqlExpression leftExpression, SqlCompareOperatorType sqlCompareOperatorType, SqlExpression rightExpression)
+	    public SqlComparePredicate GetSqlComparePredicate(SqlExpression leftExpression, SqlCompareOperatorType sqlCompareOperatorType, SqlExpression rightExpression)
 		{
 			SqlComparePredicate newSqlComparePredicate = new SqlComparePredicate(this, leftExpression, sqlCompareOperatorType, rightExpression) ;
 			this.sqlPredicate = newSqlComparePredicate;
@@ -85,12 +79,9 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 			return GetSqlComparePredicate(leftSqlColumnAliasReference, sqlCompareOperatorType, rightSqlColumnAliasReference);
 		}
 
-		public SqlBetweenPredicate GetSqlBetweenPredicate(SqlExpression leftExpression, SqlExpression middleExpression, SqlExpression rightExpression)
-		{
-			return GetSqlBetweenPredicate(leftExpression, middleExpression, rightExpression, false);
-		}
+		public SqlBetweenPredicate GetSqlBetweenPredicate(SqlExpression leftExpression, SqlExpression middleExpression, SqlExpression rightExpression) => GetSqlBetweenPredicate(leftExpression, middleExpression, rightExpression, false);
 
-		public SqlBetweenPredicate GetSqlBetweenPredicate(SqlExpression leftExpression, SqlExpression middleExpression, SqlExpression rightExpression, bool negative)
+	    public SqlBetweenPredicate GetSqlBetweenPredicate(SqlExpression leftExpression, SqlExpression middleExpression, SqlExpression rightExpression, bool negative)
 		{
 			SqlBetweenPredicate newSqlBetweenPredicate = new SqlBetweenPredicate(this, leftExpression, middleExpression, rightExpression, negative) ;
 			this.sqlPredicate = newSqlBetweenPredicate;
@@ -98,12 +89,9 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		}
 
 
-		public SqlIsNullPredicate GetSqlIsNullPredicate(SqlExpression leftExpression)
-		{
-			return GetSqlIsNullPredicate(leftExpression, false);
-		}
+		public SqlIsNullPredicate GetSqlIsNullPredicate(SqlExpression leftExpression) => GetSqlIsNullPredicate(leftExpression, false);
 
-		public SqlIsNullPredicate GetSqlIsNullPredicate(SqlColumnAlias leftColumnAlias)
+	    public SqlIsNullPredicate GetSqlIsNullPredicate(SqlColumnAlias leftColumnAlias)
 		{
 			SqlColumnAliasReference leftSqlColumnAliasReference = new SqlColumnAliasReference(leftColumnAlias) ;
 			return GetSqlIsNullPredicate(leftSqlColumnAliasReference, false);
@@ -148,17 +136,11 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 			return GetSqlFreeTextPredicate(leftSqlColumnAliasReference, rightExpression);
 		}
 
-		public SqlLikePredicate GetSqlLikePredicate(SqlExpression leftExpression, SqlExpression rightExpression)
-		{
-			return GetSqlLikePredicate(leftExpression, rightExpression, false, "");
-		}
+		public SqlLikePredicate GetSqlLikePredicate(SqlExpression leftExpression, SqlExpression rightExpression) => GetSqlLikePredicate(leftExpression, rightExpression, false, "");
 
-		public SqlLikePredicate GetSqlLikePredicate(SqlExpression leftExpression, SqlExpression rightExpression, bool negative)
-		{
-			return GetSqlLikePredicate(leftExpression, rightExpression, negative, "");
-		}
-		
-		public SqlLikePredicate GetSqlLikePredicate(SqlExpression leftExpression, SqlExpression rightExpression, bool negative, string escapeCharacter)
+	    public SqlLikePredicate GetSqlLikePredicate(SqlExpression leftExpression, SqlExpression rightExpression, bool negative) => GetSqlLikePredicate(leftExpression, rightExpression, negative, "");
+
+	    public SqlLikePredicate GetSqlLikePredicate(SqlExpression leftExpression, SqlExpression rightExpression, bool negative, string escapeCharacter)
 		{
 			SqlLikePredicate newSqlLikePredicate = new SqlLikePredicate(this, leftExpression, rightExpression, negative, escapeCharacter) ;
 			this.sqlPredicate = newSqlLikePredicate;
@@ -183,12 +165,9 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 			return GetSqlLikePredicate(leftSqlColumnAliasReference, rightExpression, negative, escapeCharacter);
 		}
 
-		public SqlInPredicate GetSqlInPredicate(SqlExpression leftExpression)
-		{
-			return GetSqlInPredicate(leftExpression, false);
-		}
+		public SqlInPredicate GetSqlInPredicate(SqlExpression leftExpression) => GetSqlInPredicate(leftExpression, false);
 
-		public SqlInPredicate GetSqlInPredicate(SqlExpression leftExpression, bool negative)
+	    public SqlInPredicate GetSqlInPredicate(SqlExpression leftExpression, bool negative)
 		{
 			SqlInPredicate newSqlInPredicate = new SqlInPredicate(this, leftExpression, negative) ;
 			this.sqlPredicate = newSqlInPredicate;
@@ -255,8 +234,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public bool Negative
 		{
-			get { return this.negative; }
-			set { this.negative = value; }
+			get => this.negative;
+		    set => this.negative = value;
 		}
 		
 		#endregion
@@ -267,8 +246,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlPredicate SqlPredicate
 		{
-			get { return this.sqlPredicate; }
-			set { this.sqlPredicate = value; }
+			get => this.sqlPredicate;
+		    set => this.sqlPredicate = value;
 		}
 		
 		#endregion
@@ -279,8 +258,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlSearchCondition SubSqlSearchCondition
 		{
-			get { return this.subSqlSearchCondition; }
-			set { this.subSqlSearchCondition = value; }
+			get => this.subSqlSearchCondition;
+		    set => this.subSqlSearchCondition = value;
 		}
 		
 		#endregion
@@ -291,11 +270,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public bool OrNext
 		{
-			get { return this.orNext; }
-			set
-			{
-				this.orNext = value;
-			}
+			get => this.orNext;
+		    set => this.orNext = value;
 		}
 		
 		#endregion
@@ -306,8 +282,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlSearchCondition NextSqlSearchCondition
 		{
-			get { return this.nextSqlSearchCondition; }
-			set { this.nextSqlSearchCondition = value; }
+			get => this.nextSqlSearchCondition;
+		    set => this.nextSqlSearchCondition = value;
 		}
 		
 		#endregion

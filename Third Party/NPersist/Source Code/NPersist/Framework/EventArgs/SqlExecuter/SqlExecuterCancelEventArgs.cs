@@ -31,8 +31,8 @@ namespace Puzzle.NPersist.Framework.EventArguments
 
 		public bool Cancel
 		{
-			get { return m_Cancel; }
-			set { m_Cancel = value; }
+			get => m_Cancel;
+		    set => m_Cancel = value;
 		}
 	}
 }

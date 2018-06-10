@@ -57,104 +57,57 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlDatabase SqlDatabase
 		{
-			get { return this.sqlDatabase; }
-			set { this.sqlDatabase = value; }
+			get => this.sqlDatabase;
+		    set => this.sqlDatabase = value;
 		}
 		
 		#endregion
 
 		#region GetTable
 
-		public SqlTable GetSqlTable(ITableMap tableMap)
-		{
-			return this.sqlDatabase.GetSqlTable(tableMap);
-		}
+		public SqlTable GetSqlTable(ITableMap tableMap) => this.sqlDatabase.GetSqlTable(tableMap);
 
-		public SqlTable GetSqlTable(string name)
-		{
-			return this.sqlDatabase.GetSqlTable(name);
-		}
+	    public SqlTable GetSqlTable(string name) => this.sqlDatabase.GetSqlTable(name);
 
-		#endregion
+	    #endregion
 
 		#region GetColumn
 
-		public SqlColumn GetSqlColumn(string name, string tableName)
-		{
-			return this.sqlDatabase.GetSqlColumn(name, tableName);
-		}
+		public SqlColumn GetSqlColumn(string name, string tableName) => this.sqlDatabase.GetSqlColumn(name, tableName);
 
-		public SqlColumn GetSqlColumn(IColumnMap columnMap)
-		{
-			return this.sqlDatabase.GetSqlColumn(columnMap);
-		}
+	    public SqlColumn GetSqlColumn(IColumnMap columnMap) => this.sqlDatabase.GetSqlColumn(columnMap);
 
-		#endregion
+	    #endregion
 		
 		#region Get TableAlias
 
-		public SqlTableAlias GetSqlTableAlias(SqlTable sqlTable)
-		{
-			return this.sqlDatabase.GetSqlTableAlias(sqlTable.Name);
-		}
+		public SqlTableAlias GetSqlTableAlias(SqlTable sqlTable) => this.sqlDatabase.GetSqlTableAlias(sqlTable.Name);
 
-		public SqlTableAlias GetSqlTableAlias(ITableMap tableMap)
-		{
-			return this.sqlDatabase.GetSqlTableAlias(tableMap);
-		}
+	    public SqlTableAlias GetSqlTableAlias(ITableMap tableMap) => this.sqlDatabase.GetSqlTableAlias(tableMap);
 
-		public SqlTableAlias GetSqlTableAlias(string name)
-		{
-			return this.sqlDatabase.GetSqlTableAlias(name);
-		}
+	    public SqlTableAlias GetSqlTableAlias(string name) => this.sqlDatabase.GetSqlTableAlias(name);
 
-		public SqlTableAlias GetSqlTableAlias(ITableMap tableMap, string alias)
-		{
-			return this.sqlDatabase.GetSqlTableAlias(tableMap, alias);
-		}
+	    public SqlTableAlias GetSqlTableAlias(ITableMap tableMap, string alias) => this.sqlDatabase.GetSqlTableAlias(tableMap, alias);
 
-		public SqlTableAlias GetSqlTableAlias(string name, string alias)
-		{
-			return this.sqlDatabase.GetSqlTableAlias(name, alias);
-		}
+	    public SqlTableAlias GetSqlTableAlias(string name, string alias) => this.sqlDatabase.GetSqlTableAlias(name, alias);
 
-		#endregion
+	    #endregion
 
 		#region Get ColumnAlias
 	
-		public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap)
-		{
-			return this.sqlDatabase.GetSqlColumnAlias(columnMap);
-		}
+		public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap) => this.sqlDatabase.GetSqlColumnAlias(columnMap);
 
-		public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap, string alias)
-		{
-			return this.sqlDatabase.GetSqlColumnAlias(columnMap, alias);
-		}
+	    public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap, string alias) => this.sqlDatabase.GetSqlColumnAlias(columnMap, alias);
 
-		public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap, string alias, string tableAlias)
-		{
-			return this.sqlDatabase.GetSqlColumnAlias(columnMap, alias, tableAlias);
-		}
+	    public SqlColumnAlias GetSqlColumnAlias(IColumnMap columnMap, string alias, string tableAlias) => this.sqlDatabase.GetSqlColumnAlias(columnMap, alias, tableAlias);
 
-	
-		public SqlColumnAlias GetSqlColumnAlias(string name, string tableName)
-		{
-			return this.sqlDatabase.GetSqlColumnAlias(name, tableName);
-		}
+	    public SqlColumnAlias GetSqlColumnAlias(string name, string tableName) => this.sqlDatabase.GetSqlColumnAlias(name, tableName);
 
-		public SqlColumnAlias GetSqlColumnAlias(string name, string tableName, string alias)
-		{
-			return this.sqlDatabase.GetSqlColumnAlias(name, tableName, alias);
-		}
+	    public SqlColumnAlias GetSqlColumnAlias(string name, string tableName, string alias) => this.sqlDatabase.GetSqlColumnAlias(name, tableName, alias);
 
-		public SqlColumnAlias GetSqlColumnAlias(string name, string tableName, string alias, string tableAlias)
-		{
-			return this.sqlDatabase.GetSqlColumnAlias(name, tableName, alias, tableAlias);
-		}
+	    public SqlColumnAlias GetSqlColumnAlias(string name, string tableName, string alias, string tableAlias) => this.sqlDatabase.GetSqlColumnAlias(name, tableName, alias, tableAlias);
 
-
-		#endregion
+	    #endregion
 
 		#region Property  SqlAliasGenerator
 		
@@ -162,8 +115,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public ISqlAliasGenerator SqlAliasGenerator
 		{
-			get { return this.sqlAliasGenerator; }
-			set { this.sqlAliasGenerator = value; }
+			get => this.sqlAliasGenerator;
+		    set => this.sqlAliasGenerator = value;
 		}
 		
 		#endregion
@@ -174,35 +127,23 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public IList SqlParameters
 		{
-			get { return this.sqlParameters; }
-			set { this.sqlParameters = value; }
+			get => this.sqlParameters;
+		    set => this.sqlParameters = value;
 		}
 		
 		#endregion
 
 		#region AddSqlParameter method
 
-		public SqlParameter AddSqlParameter(string name)
-		{
-			return AddSqlParameter(name, DbType.AnsiString, null );
-		}
+		public SqlParameter AddSqlParameter(string name) => AddSqlParameter(name, DbType.AnsiString, null );
 
-		public SqlParameter AddSqlParameter(DbType dbType)
-		{
-			return AddSqlParameter("", dbType, null);
-		}
+	    public SqlParameter AddSqlParameter(DbType dbType) => AddSqlParameter("", dbType, null);
 
-		public SqlParameter AddSqlParameter(DbType dbType, object value)
-		{
-			return AddSqlParameter("", dbType, value);
-		}
+	    public SqlParameter AddSqlParameter(DbType dbType, object value) => AddSqlParameter("", dbType, value);
 
-		public SqlParameter AddSqlParameter(string name, DbType dbType)
-		{
-			return AddSqlParameter(name, dbType, null);
-		}
+	    public SqlParameter AddSqlParameter(string name, DbType dbType) => AddSqlParameter(name, dbType, null);
 
-		public SqlParameter AddSqlParameter(string name, DbType dbType, object value)
+	    public SqlParameter AddSqlParameter(string name, DbType dbType, object value)
 		{
 			SqlParameter sqlParameter = new SqlParameter(this, value, dbType, name);
 			this.sqlParameters.Add(sqlParameter);

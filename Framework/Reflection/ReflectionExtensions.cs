@@ -105,12 +105,9 @@ namespace JJ.Framework.Reflection
 			return types[0];
 		}
 
-		public static Type[] GetImplementations(this IEnumerable<Assembly> assemblies, Type baseType)
-		{
-			return assemblies.SelectMany(x => GetImplementations(x, baseType)).ToArray();
-		}
+		public static Type[] GetImplementations(this IEnumerable<Assembly> assemblies, Type baseType) => assemblies.SelectMany(x => GetImplementations(x, baseType)).ToArray();
 
-		public static Type[] GetImplementations(this Assembly assembly, Type baseType)
+	    public static Type[] GetImplementations(this Assembly assembly, Type baseType)
 		{
 			if (assembly == null) throw new ArgumentNullException(nameof(assembly));
 			if (baseType == null) throw new ArgumentNullException(nameof(baseType));
@@ -133,35 +130,19 @@ namespace JJ.Framework.Reflection
 			}
 		}
 
-		private static string GetImplementationsDictionaryKey(this Assembly assembly, Type baseType)
-		{
-			// TODO: Is it not a bad plan to hash a large string?
-			return assembly.FullName + "$" + baseType.FullName + "$" + baseType.Assembly.FullName;
-		}
+		private static string GetImplementationsDictionaryKey(this Assembly assembly, Type baseType) => assembly.FullName + "$" + baseType.FullName + "$" + baseType.Assembly.FullName;
 
-		// Generic overloads
+	    // Generic overloads
 
-		public static Type GetImplementation<TBaseType>(this Assembly assembly)
-		{
-			return GetImplementation(assembly, typeof(TBaseType));
-		}
+		public static Type GetImplementation<TBaseType>(this Assembly assembly) => GetImplementation(assembly, typeof(TBaseType));
 
-		public static Type TryGetImplementation<TBaseType>(this Assembly assembly)
-		{
-			return TryGetImplementation(assembly, typeof(TBaseType));
-		}
+	    public static Type TryGetImplementation<TBaseType>(this Assembly assembly) => TryGetImplementation(assembly, typeof(TBaseType));
 
-		public static IList<Type> GetImplementations<TBaseType>(this Assembly assembly)
-		{
-			return GetImplementations(assembly, typeof(TBaseType));
-		}
+	    public static IList<Type> GetImplementations<TBaseType>(this Assembly assembly) => GetImplementations(assembly, typeof(TBaseType));
 
-		public static IList<Type> GetImplementations<TBaseType>(this IEnumerable<Assembly> assemblies)
-		{
-			return GetImplementations(assemblies, typeof(TBaseType));
-		}
+	    public static IList<Type> GetImplementations<TBaseType>(this IEnumerable<Assembly> assemblies) => GetImplementations(assemblies, typeof(TBaseType));
 
-		// Misc
+	    // Misc
 
 		public static bool IsAssignableTo(this Type type, Type otherType)
 		{

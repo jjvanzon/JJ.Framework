@@ -34,38 +34,20 @@ namespace Puzzle.NPersist.Framework.Aop
 		//	this.context = context;
 		}
 
-		public IList Interceptors
-		{
-			get 
-			{
-				return interceptors;
-			}
-		}
+		public IList Interceptors => interceptors;
 
-        public bool IsMatch(MethodBase method, Type type)
-		{
-			return (method.Name.StartsWith(".ctor"));
-		}
+	    public bool IsMatch(MethodBase method, Type type) => (method.Name.StartsWith(".ctor"));
 
-        private IList targets = new ArrayList();
+	    private IList targets = new ArrayList();
         public IList Targets
         {
-            get
-            {
-                return targets; ;
-            }
-            set
-            {
-                targets = value;
-            }
+            get => targets;
+            set => targets = value;
         }
 
         public string Name
         {
-            get
-            {
-                return "";
-            }
+            get => "";
             set
             {
                 ;

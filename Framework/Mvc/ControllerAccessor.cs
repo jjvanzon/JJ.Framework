@@ -31,10 +31,7 @@ namespace JJ.Framework.Mvc
                 typeof(object));
         }
 
-        public ControllerAccessor(Controller controller)
-        {
-            _controller = controller ?? throw new NullException(() => controller);
-        }
+        public ControllerAccessor(Controller controller) => _controller = controller ?? throw new NullException(() => controller);
 
         public ActionResult View(string viewName, object viewModel)
             => (ActionResult)_viewMethodInfo.Invoke(_controller, new[] { viewName, viewModel });

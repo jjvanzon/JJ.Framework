@@ -20,31 +20,22 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 	/// </summary>
 	public class SqlDefaultAliasGenerator : ISqlAliasGenerator
 	{
-		public SqlDefaultAliasGenerator(SqlStatement sqlStatement)
-		{
-			this.sqlStatement = sqlStatement; 
-		}
+		public SqlDefaultAliasGenerator(SqlStatement sqlStatement) => this.sqlStatement = sqlStatement;
 
-		#region Property  SqlStatement
+	    #region Property  SqlStatement
 		
 		private SqlStatement sqlStatement;
 		
 		public SqlStatement SqlStatement
 		{
-			get { return this.sqlStatement; }
-			set { this.sqlStatement = value; }
+			get => this.sqlStatement;
+		    set => this.sqlStatement = value;
 		}
 		
 		#endregion
 
-		public string GenerateAlias(SqlTable sqlTable)
-		{
-			throw new IAmOpenSourcePleaseImplementMeException();
-		}
+		public string GenerateAlias(SqlTable sqlTable) => throw new IAmOpenSourcePleaseImplementMeException();
 
-		public string GenerateAlias(SqlColumn sqlColumn)
-		{
-			throw new IAmOpenSourcePleaseImplementMeException();
-		}
+	    public string GenerateAlias(SqlColumn sqlColumn) => throw new IAmOpenSourcePleaseImplementMeException();
 	}
 }

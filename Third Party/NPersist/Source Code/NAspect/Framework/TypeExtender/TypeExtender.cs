@@ -13,14 +13,9 @@ namespace Puzzle.NAspect.Framework
 
         #region Property Members
         private ArrayList members = new ArrayList();
-        public IList Members
-        {
-            get
-            {
-                return members;
-            }
-        }
-        #endregion
+        public IList Members => members;
+
+	    #endregion
 
 		private bool IsDirty = false;
         public Type Extend(Type baseType)

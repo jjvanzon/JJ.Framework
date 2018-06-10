@@ -68,9 +68,6 @@ namespace JJ.Framework.Drawing
 		}
 
 		/// <summary> Displays buffered graphics onto the target graphics. </summary>
-		public void DrawBuffer()
-		{
-			_bufferedGraphics.Render(_targetGraphics);
-		}
+		public void DrawBuffer() => _bufferedGraphics.Render(_targetGraphics);
 	}
 }

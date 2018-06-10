@@ -29,8 +29,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public string Url
 		{
-			get { return this.url; }
-			set { this.url = value; }
+			get => this.url;
+		    set => this.url = value;
 		}
 		
 		#endregion
@@ -41,8 +41,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public string Key
 		{
-			get { return this.key; }
-			set { this.key = value; }
+			get => this.key;
+		    set => this.key = value;
 		}
 		
 		#endregion
@@ -53,8 +53,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public string Id
 		{
-			get { return this.id; }
-			set { this.id = value; }
+			get => this.id;
+		    set => this.id = value;
 		}
 		
 		#endregion
@@ -65,8 +65,8 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public string Type
 		{
-			get { return this.type; }
-			set { this.type = value; }
+			get => this.type;
+		    set => this.type = value;
 		}
 		
 		#endregion

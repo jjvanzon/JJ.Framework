@@ -19,30 +19,21 @@ namespace Puzzle.NAspect.Framework
         /// Create an AopEngine from app or web.config.
         /// </summary>
         /// <returns></returns>
-        public static IEngine FromAppConfig()
-        {
-            return ApplicationContext.Configure();
-        }
+        public static IEngine FromAppConfig() => ApplicationContext.Configure();
 
         /// <summary>
         /// Not yet implemented
         /// </summary>
         /// <param name="subSectionName">Name of a subsection in the config.</param>
         /// <returns></returns>
-        public static IEngine FromAppConfig(string subSectionName)
-        {
-            return ApplicationContext.Configure();
-        }
+        public static IEngine FromAppConfig(string subSectionName) => ApplicationContext.Configure();
 
         /// <summary>
         /// Not yet implemented
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public static IEngine FromFile(string fileName)
-        {
-            return ApplicationContext.Configure(fileName);
-        }
+        public static IEngine FromFile(string fileName) => ApplicationContext.Configure(fileName);
 
         /// <summary>
         /// 
@@ -50,10 +41,7 @@ namespace Puzzle.NAspect.Framework
         /// <param name="fileName"></param>
         /// <param name="useTypePlaceHolders"></param>
         /// <returns></returns>
-        public static IEngine FromFile(string fileName, bool useTypePlaceHolders)
-        {
-            return ApplicationContext.Configure(fileName, useTypePlaceHolders);
-        }
+        public static IEngine FromFile(string fileName, bool useTypePlaceHolders) => ApplicationContext.Configure(fileName, useTypePlaceHolders);
 
         /// <summary>
         /// Not yet implemented
@@ -61,9 +49,6 @@ namespace Puzzle.NAspect.Framework
         /// <param name="fileName"></param>
         /// <param name="subSectionName"></param>
         /// <returns></returns>
-        public static IEngine FromFile(string fileName, string subSectionName)
-        {
-            return null;
-        }
+        public static IEngine FromFile(string fileName, string subSectionName) => null;
     }
 }

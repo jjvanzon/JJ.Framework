@@ -36,11 +36,7 @@ namespace Puzzle.NCore.Framework.Collections
             return hash;
         }
 
-        public override int GetHashCode()
-        {
-            return hashCode;
-        }
-
+        public override int GetHashCode() => hashCode;
 
         public override bool Equals(object obj)
         {
@@ -79,10 +75,7 @@ namespace Puzzle.NCore.Framework.Collections
     {
         private Hashtable baseLookup = new Hashtable();
 
-        public bool ContainsKeys(params object[] keys)
-        {
-            return false;
-        }
+        public bool ContainsKeys(params object[] keys) => false;
 
         public void Add(object value, object[] keys)
         {
@@ -104,8 +97,8 @@ namespace Puzzle.NCore.Framework.Collections
 
         public object this[params object[] keys]
         {
-            get { return GetValue(keys); }
-            set { Add(value, keys); }
+            get => GetValue(keys);
+            set => Add(value, keys);
         }
     }
 }

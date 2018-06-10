@@ -7,21 +7,18 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 	{
 		private readonly Accessor _accessor;
 
-		public Element_Accessor(Element element)
-		{
-			_accessor = new Accessor(element, typeof(Element));
-		}
+		public Element_Accessor(Element element) => _accessor = new Accessor(element, typeof(Element));
 
-		public float CalculatedX
+	    public float CalculatedX
 		{
-			get { return _accessor.GetPropertyValue(() => CalculatedX); }
-			set { _accessor.SetPropertyValue(() => CalculatedX, value); }
-		}
+			get => _accessor.GetPropertyValue(() => CalculatedX);
+	        set => _accessor.SetPropertyValue(() => CalculatedX, value);
+	    }
 
 		public float CalculatedY
 		{
-			get { return _accessor.GetPropertyValue(() => CalculatedY); }
-			set { _accessor.SetPropertyValue(() => CalculatedY, value); }
+			get => _accessor.GetPropertyValue(() => CalculatedY);
+		    set => _accessor.SetPropertyValue(() => CalculatedY, value);
 		}
 	}
 }

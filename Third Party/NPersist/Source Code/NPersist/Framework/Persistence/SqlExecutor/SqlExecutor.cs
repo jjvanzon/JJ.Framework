@@ -27,60 +27,29 @@ namespace Puzzle.NPersist.Framework.Persistence
 		private ExecutionMode m_ExecutionMode = ExecutionMode.DirectExecution;
 		private Hashtable m_BatchStatements = new Hashtable();
 
-		public virtual object ExecuteScalar(string sql)
-		{
-			return ExecuteScalar(sql, this.Context.GetDataSource(), new ArrayList());
-		}
+		public virtual object ExecuteScalar(string sql) => ExecuteScalar(sql, this.Context.GetDataSource(), new ArrayList());
 
-		public virtual int ExecuteNonQuery(string sql)
-		{
-			return ExecuteNonQuery(sql,this.Context.GetDataSource(), new ArrayList() );
-		}
+	    public virtual int ExecuteNonQuery(string sql) => ExecuteNonQuery(sql,this.Context.GetDataSource(), new ArrayList() );
 
-		//public virtual IDataReader ExecuteReader(string sql, IDataSource dataSource, IDbConnection connection)
-		public virtual IDataReader ExecuteReader(string sql)
-		{
-			return ExecuteReader(sql, this.Context.GetDataSource(), new ArrayList() )	;		
-		}
+	    //public virtual IDataReader ExecuteReader(string sql, IDataSource dataSource, IDbConnection connection)
+		public virtual IDataReader ExecuteReader(string sql) => ExecuteReader(sql, this.Context.GetDataSource(), new ArrayList() );
 
-		public virtual object ExecuteArray(string sql)
-		{
-			return ExecuteArray(sql, this.Context.GetDataSource(), new ArrayList() );
-		}
+	    public virtual object ExecuteArray(string sql) => ExecuteArray(sql, this.Context.GetDataSource(), new ArrayList() );
 
-		public virtual DataTable ExecuteDataTable(string sql)
-		{
-			return ExecuteDataTable(sql, this.Context.GetDataSource(), new ArrayList() );
-		}
+	    public virtual DataTable ExecuteDataTable(string sql) => ExecuteDataTable(sql, this.Context.GetDataSource(), new ArrayList() );
 
+	    public virtual object ExecuteScalar(string sql, IDataSource dataSource) => ExecuteScalar(sql, dataSource, new ArrayList());
 
-		public virtual object ExecuteScalar(string sql, IDataSource dataSource)
-		{
-			return ExecuteScalar(sql, dataSource, new ArrayList());
-		}
+	    public virtual int ExecuteNonQuery(string sql, IDataSource dataSource) => ExecuteNonQuery(sql, dataSource, new ArrayList() );
 
-		public virtual int ExecuteNonQuery(string sql, IDataSource dataSource)
-		{
-			return ExecuteNonQuery(sql, dataSource, new ArrayList() );
-		}
+	    //public virtual IDataReader ExecuteReader(string sql, IDataSource dataSource, IDbConnection connection)
+		public virtual IDataReader ExecuteReader(string sql, IDataSource dataSource) => ExecuteReader(sql, dataSource, new ArrayList() );
 
-		//public virtual IDataReader ExecuteReader(string sql, IDataSource dataSource, IDbConnection connection)
-		public virtual IDataReader ExecuteReader(string sql, IDataSource dataSource)
-		{
-			return ExecuteReader(sql, dataSource, new ArrayList() )	;		
-		}
+	    public virtual object ExecuteArray(string sql, IDataSource dataSource) => ExecuteArray(sql, dataSource, new ArrayList() );
 
-		public virtual object ExecuteArray(string sql, IDataSource dataSource)
-		{
-			return ExecuteArray(sql, dataSource, new ArrayList() );
-		}
+	    public virtual DataTable ExecuteDataTable(string sql, IDataSource dataSource) => ExecuteDataTable(sql, dataSource, new ArrayList() );
 
-		public virtual DataTable ExecuteDataTable(string sql, IDataSource dataSource)
-		{
-			return ExecuteDataTable(sql, dataSource, new ArrayList() );
-		}
-
-		public virtual object ExecuteScalar(string sql, IDataSource dataSource, IList parameters)
+	    public virtual object ExecuteScalar(string sql, IDataSource dataSource, IList parameters)
 		{
             LogMessage message = new LogMessage("Executing scalar sql query");
             LogMessage verbose = new LogMessage ("Sql: {0}" , sql);
@@ -381,8 +350,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 		public virtual ExecutionMode ExecutionMode
 		{
-			get { return m_ExecutionMode; }
-			set { m_ExecutionMode = value; }
+			get => m_ExecutionMode;
+		    set => m_ExecutionMode = value;
 		}
 
 		public virtual ArrayList GetBatchedStatements(IDataSource dataSource)
@@ -478,15 +447,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 			}
 		}
 
-		public void CleatBatchedStatements()
-		{
-			this.m_BatchStatements.Clear() ;
-		}
+		public void CleatBatchedStatements() => this.m_BatchStatements.Clear();
 
-        public virtual void Clear()
-        {
-		    m_BatchStatements.Clear();
-        }
-
+	    public virtual void Clear() => m_BatchStatements.Clear();
 	}
 }

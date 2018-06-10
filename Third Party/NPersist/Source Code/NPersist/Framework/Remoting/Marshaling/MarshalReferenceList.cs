@@ -29,20 +29,20 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 
 		public string Name
 		{
-			get{ return this.name; } 
-			set{ this.name = value; }
+			get => this.name;
+		    set => this.name = value;
 		}
 
 		[XmlArrayItem(typeof(MarshalReferenceValue))] public ArrayList Values
 		{
-			get { return this.values; }
-			set { this.values = value; }
+			get => this.values;
+		    set => this.values = value;
 		}
 
 		[XmlArrayItem(typeof(MarshalReferenceValue))] public ArrayList OriginalValues
 		{
-			get { return this.originalValues; }
-			set { this.originalValues = value; }
+			get => this.originalValues;
+		    set => this.originalValues = value;
 		}
 	}
 }

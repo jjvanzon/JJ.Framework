@@ -363,12 +363,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 		#region Unloading
 
-		protected virtual void UnloadAllExpired()
-		{
-			UnloadAllExpired(0);
-		}
+		protected virtual void UnloadAllExpired() => UnloadAllExpired(0);
 
-		protected virtual void UnloadAllExpired(long max)
+	    protected virtual void UnloadAllExpired(long max)
 		{
 			long cntUnloaded = 0;
 			foreach (ReadOnlyClone clone in ReadOnlyObjectCache.ObjectCache.Values)

@@ -52,8 +52,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 		
 		public virtual AutoIncreaserStrategy AutoIncreaserStrategy
 		{
-			get { return this.autoIncreaserStrategy; }
-			set { this.autoIncreaserStrategy = value; }
+			get => this.autoIncreaserStrategy;
+		    set => this.autoIncreaserStrategy = value;
 		}
 		
 		#endregion
@@ -64,20 +64,17 @@ namespace Puzzle.NPersist.Framework.Persistence
 		
 		public virtual string SelectNewIdentity
 		{
-			get { return this.selectNewIdentity; }
-			set { this.selectNewIdentity = value; }
+			get => this.selectNewIdentity;
+		    set => this.selectNewIdentity = value;
 		}
 		
 		#endregion
 
 		#region Method  SelectNextSequence
 				
-		public virtual string GetSelectNextSequence(string sequenceName)
-		{
-			return "SELECT " + sequenceName + ".nextval FROM dual";
-		}
-		
-		#endregion
+		public virtual string GetSelectNextSequence(string sequenceName) => "SELECT " + sequenceName + ".nextval FROM dual";
+
+	    #endregion
 
 		#region Property  StatementDelimiter
 		
@@ -85,8 +82,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 		
 		public string StatementDelimiter
 		{
-			get { return this.statementDelimiter; }
-			set { this.statementDelimiter = value; }
+			get => this.statementDelimiter;
+		    set => this.statementDelimiter = value;
 		}
 		
 		#endregion
@@ -97,14 +94,14 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 		public virtual string DateDelimiter
 		{
-			get { return m_DateDelimiter; }
-			set { m_DateDelimiter = value; }
+			get => m_DateDelimiter;
+		    set => m_DateDelimiter = value;
 		}
 
 		public virtual ISqlEngineManager SqlEngineManager
 		{
-			get { return m_SqlEngineManager; }
-			set { m_SqlEngineManager = value; }
+			get => m_SqlEngineManager;
+		    set => m_SqlEngineManager = value;
 		}
 
 		public virtual void LoadObject(ref object obj)
@@ -1063,12 +1060,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return WrapValue(obj, propertyMap, value, columnMap, ref compareOp, noNullStatusCheck);
 		}
 
-		protected virtual string WrapValue(object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap, ref string compareOp)
-		{
-			return WrapValue(obj, propertyMap, value, columnMap, ref compareOp, false);
-		}
+		protected virtual string WrapValue(object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap, ref string compareOp) => WrapValue(obj, propertyMap, value, columnMap, ref compareOp, false);
 
-		protected virtual string WrapValue(object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap, ref string compareOp, bool noNullStatusCheck)
+	    protected virtual string WrapValue(object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap, ref string compareOp, bool noNullStatusCheck)
 		{
 			string dateFormat;
 			DbType dataType = columnMap.DataType;
@@ -1188,12 +1182,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			AddParameter(parameters, paramName, obj, propertyMap, value, columnMap, ref compareOp, noNullStatusCheck);
 		}
 
-		protected virtual void AddParameter(IList parameters, string paramName, object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap, ref string compareOp)
-		{
-			AddParameter(parameters, paramName, obj, propertyMap, value, columnMap, ref compareOp, false);
-		}
+		protected virtual void AddParameter(IList parameters, string paramName, object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap, ref string compareOp) => AddParameter(parameters, paramName, obj, propertyMap, value, columnMap, ref compareOp, false);
 
-		protected virtual void AddParameter(IList parameters, string paramName, object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap, ref string compareOp, bool noNullStatusCheck)
+	    protected virtual void AddParameter(IList parameters, string paramName, object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap, ref string compareOp, bool noNullStatusCheck)
 		{
 			DbType dataType = columnMap.DataType;
 			IPropertyMap idPropertyMap;
@@ -1267,12 +1258,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 		
-		protected virtual SqlParameter AddSqlParameter(SqlStatement sqlStatement, IList parameters, string paramName, object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap)
-		{
-			return AddSqlParameter(sqlStatement, parameters, paramName, obj, propertyMap, value, columnMap, false);
-		}
+		protected virtual SqlParameter AddSqlParameter(SqlStatement sqlStatement, IList parameters, string paramName, object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap) => AddSqlParameter(sqlStatement, parameters, paramName, obj, propertyMap, value, columnMap, false);
 
-		protected virtual SqlParameter AddSqlParameter(SqlStatement sqlStatement, IList parameters, string paramName, object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap, bool noNullStatusCheck)
+	    protected virtual SqlParameter AddSqlParameter(SqlStatement sqlStatement, IList parameters, string paramName, object obj, IPropertyMap propertyMap, object value, IColumnMap columnMap, bool noNullStatusCheck)
 		{
 			DbType dataType = columnMap.DataType;
 			IPropertyMap idPropertyMap;
@@ -1468,12 +1456,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return GenerateSql(insert);
 		}
 
-		protected virtual string GetSelectStatement(object obj, ArrayList propertyNames, IList parameters)
-		{
-			return GetSelectStatement(obj, propertyNames, "", "", parameters);
-		}
+		protected virtual string GetSelectStatement(object obj, ArrayList propertyNames, IList parameters) => GetSelectStatement(obj, propertyNames, "", "", parameters);
 
-        //NOTE: shouldnt this also load related tables in inheritance scenarios? , eg classtable inheritance?
+	    //NOTE: shouldnt this also load related tables in inheritance scenarios? , eg classtable inheritance?
 		protected virtual string GetSelectStatement(object obj, ArrayList propertyNames, string keyPropertyName, object keyValue, IList parameters)
 		{
 			IPropertyMap propertyMap;
@@ -3435,12 +3420,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return GenerateSql(delete);
 		}
 
-		protected virtual string GetParameterName(IPropertyMap propertyMap)
-		{
-			return GetParameterName(propertyMap, "");			
-		}
+		protected virtual string GetParameterName(IPropertyMap propertyMap) => GetParameterName(propertyMap, "");
 
-		protected virtual string GetParameterName(IPropertyMap propertyMap, string prefix)
+	    protected virtual string GetParameterName(IPropertyMap propertyMap, string prefix)
 		{
 			string name = prefix;
 			name = name + propertyMap.Name;
@@ -3448,17 +3430,11 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return name;
 		}
 
-		protected virtual long GetNextParamNr()
-		{
-			return this.Context.GetNextParamNr();
-		}
+		protected virtual long GetNextParamNr() => this.Context.GetNextParamNr();
 
-		protected virtual string GetParameterName(IClassMap classMap)
-		{
-			return GetParameterName(classMap, "");			
-		}
+	    protected virtual string GetParameterName(IClassMap classMap) => GetParameterName(classMap, "");
 
-		protected virtual string GetParameterName(IClassMap classMap, string prefix)
+	    protected virtual string GetParameterName(IClassMap classMap, string prefix)
 		{
 			string name = prefix;
 			name = name + classMap.Name;
@@ -3467,12 +3443,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return name;
 		}
 
-		protected virtual string GetParameterName(IPropertyMap propertyMap, IColumnMap columnMap)
-		{
-			return GetParameterName(propertyMap, columnMap, "");			
-		}
+		protected virtual string GetParameterName(IPropertyMap propertyMap, IColumnMap columnMap) => GetParameterName(propertyMap, columnMap, "");
 
-		protected virtual string GetParameterName(IPropertyMap propertyMap, IColumnMap columnMap, string prefix)
+	    protected virtual string GetParameterName(IPropertyMap propertyMap, IColumnMap columnMap, string prefix)
 		{
 			string name = prefix;
 			name = name + propertyMap.Name;
@@ -3488,12 +3461,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return visitor.Sql;
 		}
 
-		protected virtual ISqlVisitor GetVisitor()
-		{
-			return new SqlVisitorBase();
-		}
+		protected virtual ISqlVisitor GetVisitor() => new SqlVisitorBase();
 
-		#endregion 
+	    #endregion 
 
 		#region Query
 

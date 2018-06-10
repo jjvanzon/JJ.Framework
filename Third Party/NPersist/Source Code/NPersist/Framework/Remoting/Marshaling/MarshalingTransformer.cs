@@ -37,12 +37,9 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		{
 		}
 
-		public virtual void ToObject(MarshalObject marshalObject, ref object targetObject)
-		{
-			ToObject(marshalObject, ref targetObject, 0, RefreshBehaviorType.DefaultBehavior);
-		}
+		public virtual void ToObject(MarshalObject marshalObject, ref object targetObject) => ToObject(marshalObject, ref targetObject, 0, RefreshBehaviorType.DefaultBehavior);
 
-		//pass 0 = get all properties (for ToObject overload) , pass 1 = get only primitive props, pass 2 = get only ref props
+	    //pass 0 = get all properties (for ToObject overload) , pass 1 = get only primitive props, pass 2 = get only ref props
 		public virtual void ToObject(MarshalObject marshalObject, ref object targetObject, int pass, RefreshBehaviorType refreshBehavior)
 		{
 			IClassMap classMap = Context.DomainMap.MustGetClassMap(targetObject.GetType());
@@ -84,12 +81,9 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 			return targetObject;
 		}
 
-		public virtual MarshalObject FromObject(object sourceObject)
-		{
-			return FromObject(sourceObject, false);
-		}
+		public virtual MarshalObject FromObject(object sourceObject) => FromObject(sourceObject, false);
 
-		public virtual MarshalObject FromObject(object sourceObject, bool upForCreation)
+	    public virtual MarshalObject FromObject(object sourceObject, bool upForCreation)
 		{
 			IClassMap classMap = Context.DomainMap.MustGetClassMap(sourceObject.GetType());
 			MarshalObject mo = new MarshalObject();
@@ -476,13 +470,9 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 			return Context.GetObjectById(identity, realType, true);
 		}
 
-		public object ToPropertyValue(object targetObject, string value, MarshalProperty mp, IPropertyMap propertyMap)
-		{
-			return ToValue(propertyMap, value);
-		}
+		public object ToPropertyValue(object targetObject, string value, MarshalProperty mp, IPropertyMap propertyMap) => ToValue(propertyMap, value);
 
-		
-		public string FromPropertyValue(object sourceObject, object value, IPropertyMap propertyMap)
+	    public string FromPropertyValue(object sourceObject, object value, IPropertyMap propertyMap)
 		{
 			if (Type.GetType(propertyMap.DataType) == typeof(System.Byte[]))
 				return Convert.ToBase64String((byte[]) value);
@@ -555,18 +545,11 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 			return mq;
 		}
 
-		public string FromParameterValue(IQueryParameter parameter)
-		{
-			return Convert.ToString(parameter.Value);
-		}
+		public string FromParameterValue(IQueryParameter parameter) => Convert.ToString(parameter.Value);
 
-		public object ToParameterValue(MarshalParameter parameter)
-		{
-			return ToValue(parameter.DbType, parameter.Value);
-		}
+	    public object ToParameterValue(MarshalParameter parameter) => ToValue(parameter.DbType, parameter.Value);
 
-
-		public virtual IQuery ToQuery(MarshalQuery marshalQuery)
+	    public virtual IQuery ToQuery(MarshalQuery marshalQuery)
 		{
 			IQuery query = null;
 			IContext ctx = this.Context;

@@ -80,12 +80,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return key;
 		}
 
-		public virtual string GetObjectIdentity(object obj)
-		{
-			return GetObjectIdentity(obj, null, null);
-		}
+		public virtual string GetObjectIdentity(object obj) => GetObjectIdentity(obj, null, null);
 
-		public virtual string GetObjectIdentity(object obj, IPropertyMap newPropertyMap, object newValue)
+	    public virtual string GetObjectIdentity(object obj, IPropertyMap newPropertyMap, object newValue)
 		{
 			string id = BuildObjectIdentity(obj, newPropertyMap, newValue);
 			return id;
@@ -188,17 +185,11 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 
-		public virtual IList GetObjectIdentityKeyParts(object obj)
-		{
-			return GetObjectIdentityKeyParts(obj, null, null);
-		}
+		public virtual IList GetObjectIdentityKeyParts(object obj) => GetObjectIdentityKeyParts(obj, null, null);
 
-		public virtual IList GetObjectIdentityKeyParts(object obj, IPropertyMap newPropertyMap, object newValue)
-		{
-			return BuildObjectIdentityKeyParts(obj, newPropertyMap, newValue);
-		}
+	    public virtual IList GetObjectIdentityKeyParts(object obj, IPropertyMap newPropertyMap, object newValue) => BuildObjectIdentityKeyParts(obj, newPropertyMap, newValue);
 
-		private IList BuildObjectIdentityKeyParts(object obj, IPropertyMap newPropertyMap, object newValue)
+	    private IList BuildObjectIdentityKeyParts(object obj, IPropertyMap newPropertyMap, object newValue)
 		{
 			IIdentityHelper identityHelper = obj as IIdentityHelper;
 			if (identityHelper != null)
@@ -335,24 +326,14 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 
-		public virtual string GetPropertyDisplayName(object obj, string propertyName)
-		{
-			return propertyName;
-		}
+		public virtual string GetPropertyDisplayName(object obj, string propertyName) => propertyName;
 
-		public virtual string GetPropertyDescription(object obj, string propertyName)
-		{
-			return "";
-		}
+	    public virtual string GetPropertyDescription(object obj, string propertyName) => "";
 
+	    //[DebuggerStepThrough()]
+		public virtual object GetPropertyValue(object obj, string propertyName) => GetPropertyValue(obj, obj.GetType(), propertyName);
 
-		//[DebuggerStepThrough()]
-		public virtual object GetPropertyValue(object obj, string propertyName)
-		{
-			return GetPropertyValue(obj, obj.GetType(), propertyName);
-		}
-
-		public virtual object GetPropertyValue(object obj, Type type, string propertyName)
+	    public virtual object GetPropertyValue(object obj, Type type, string propertyName)
 		{
 #if NET2
             FastFieldGetter getter = GetFastGetter(obj, propertyName);
@@ -368,12 +349,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 #endif
 		}
 
-		public virtual void SetPropertyValue(object obj, string propertyName, object value)
-		{
-			SetPropertyValue(true, obj, propertyName, value);
-		}
+		public virtual void SetPropertyValue(object obj, string propertyName, object value) => SetPropertyValue(true, obj, propertyName, value);
 
-		public virtual void SetPropertyValue(bool ensureReadConsistency, object obj, string propertyName, object value)
+	    public virtual void SetPropertyValue(bool ensureReadConsistency, object obj, string propertyName, object value)
 		{
 			if (ensureReadConsistency)
 				EnsureReadConsistency(obj, propertyName);
@@ -510,12 +488,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 
 		//[DebuggerStepThrough()]
-		public virtual ObjectStatus GetObjectStatus(object obj)
-		{
-			return ((IObjectStatusHelper) obj).GetObjectStatus() ;
-		}
+		public virtual ObjectStatus GetObjectStatus(object obj) => ((IObjectStatusHelper) obj).GetObjectStatus();
 
-		public virtual void SetObjectStatus(object obj, ObjectStatus value)
+	    public virtual void SetObjectStatus(object obj, ObjectStatus value)
 		{
 			this.Context.ObjectCloner.EnsureIsClonedIfEditing(obj);
 			((IObjectStatusHelper) obj).SetObjectStatus(value);
@@ -544,33 +519,21 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return PropertyStatus.NotLoaded;
 		}
 
-		public virtual object GetOriginalPropertyValue(object obj, string propertyName)
-		{
-			return ((IOriginalValueHelper) obj).GetOriginalPropertyValue(propertyName);
-		}
+		public virtual object GetOriginalPropertyValue(object obj, string propertyName) => ((IOriginalValueHelper) obj).GetOriginalPropertyValue(propertyName);
 
-		public virtual void SetOriginalPropertyValue(object obj, string propertyName, object value)
+	    public virtual void SetOriginalPropertyValue(object obj, string propertyName, object value)
 		{
 			this.Context.ObjectCloner.EnsureIsClonedIfEditing(obj);
 			((IOriginalValueHelper) obj).SetOriginalPropertyValue(propertyName, value);
 		}
 
-		public virtual void RemoveOriginalValues(object obj, string propertyName)
-		{
-			((IOriginalValueHelper) obj).RemoveOriginalValues(propertyName);
-		}
+		public virtual void RemoveOriginalValues(object obj, string propertyName) => ((IOriginalValueHelper) obj).RemoveOriginalValues(propertyName);
 
-		public virtual bool HasOriginalValues(object obj)
-		{
-			return ((IOriginalValueHelper) obj).HasOriginalValues();
-		}
+	    public virtual bool HasOriginalValues(object obj) => ((IOriginalValueHelper) obj).HasOriginalValues();
 
-		public virtual bool HasOriginalValues(object obj, string propertyName)
-		{
-			return ((IOriginalValueHelper) obj).HasOriginalValues(propertyName);
-		}
+	    public virtual bool HasOriginalValues(object obj, string propertyName) => ((IOriginalValueHelper) obj).HasOriginalValues(propertyName);
 
-		public virtual bool IsDirtyProperty(object obj, string propertyName)
+	    public virtual bool IsDirtyProperty(object obj, string propertyName)
 		{				
 			if (!GetUpdatedStatus(obj, propertyName))
 				return false;
@@ -738,25 +701,18 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 		
-		public virtual bool GetUpdatedStatus(object obj, string propertyName)
-		{
-			return ((IUpdatedPropertyTracker) obj).GetUpdatedStatus(propertyName);
-		}
+		public virtual bool GetUpdatedStatus(object obj, string propertyName) => ((IUpdatedPropertyTracker) obj).GetUpdatedStatus(propertyName);
 
-		//[DebuggerStepThrough()]
+	    //[DebuggerStepThrough()]
 		public virtual void SetUpdatedStatus(object obj, string propertyName, bool value)
 		{
 			this.Context.ObjectCloner.EnsureIsClonedIfEditing(obj);
 			((IUpdatedPropertyTracker) obj).SetUpdatedStatus(propertyName, value);
 		}
 
-		public virtual void ClearUpdatedStatuses(object obj)
-		{
-			((IUpdatedPropertyTracker) obj).ClearUpdatedStatuses();
-		}
+		public virtual void ClearUpdatedStatuses(object obj) => ((IUpdatedPropertyTracker) obj).ClearUpdatedStatuses();
 
-
-		public virtual void EnsurePropertyIsLoaded(object obj, string propertyName)
+	    public virtual void EnsurePropertyIsLoaded(object obj, string propertyName)
 		{
 			IPropertyMap propertyMap = this.Context.DomainMap.MustGetClassMap(obj.GetType()).MustGetPropertyMap(propertyName);
 			EnsurePropertyIsLoaded(obj, propertyMap);
@@ -926,12 +882,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return loadBehavior;			
 		}
 
-		public virtual object ConvertValueToType(object obj, IPropertyMap propertyMap, string value)
-		{
-			return ConvertValueToType(obj.GetType(), propertyMap, value);
-		}
+		public virtual object ConvertValueToType(object obj, IPropertyMap propertyMap, string value) => ConvertValueToType(obj.GetType(), propertyMap, value);
 
-		public virtual object ConvertValueToType(Type type, IPropertyMap propertyMap, string value)
+	    public virtual object ConvertValueToType(Type type, IPropertyMap propertyMap, string value)
 		{
 			Type propType = type.GetProperty(propertyMap.Name).PropertyType;
 			if (propType == typeof(String) || propType.IsSubclassOf(typeof(String)))

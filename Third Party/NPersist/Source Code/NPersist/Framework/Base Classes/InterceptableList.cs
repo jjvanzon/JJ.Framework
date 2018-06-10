@@ -21,43 +21,31 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 	{
 		private IListInterceptor interceptor = new ListInterceptor();
 
-		public InterceptableList() : base()
-		{
-			interceptor.List = this;
-		}
+		public InterceptableList() : base() => interceptor.List = this;
 
-		public InterceptableList(IInterceptable interceptable, string propertyName) : this()
+	    public InterceptableList(IInterceptable interceptable, string propertyName) : this()
 		{
 			Interceptable = interceptable;
 			PropertyName = propertyName;
 		}
 
-		public IListInterceptor Interceptor
-		{
-			get {return interceptor; }
-		}
+		public IListInterceptor Interceptor => interceptor;
 
-		public virtual IInterceptable Interceptable
+	    public virtual IInterceptable Interceptable
 		{
-			get { return interceptor.Interceptable; }
-			set { interceptor.Interceptable = value; }
-		}
+			get => interceptor.Interceptable;
+	        set => interceptor.Interceptable = value;
+	    }
 
 		public string PropertyName
 		{
-			get { return interceptor.PropertyName; }
-			set { interceptor.PropertyName = value; }
+			get => interceptor.PropertyName;
+		    set => interceptor.PropertyName = value;
 		}
 
-		public IContext Context
-		{
-			get
-			{
-				return ((IContextChild) Interceptable).Context;
-			}
-		}
+		public IContext Context => ((IContextChild) Interceptable).Context;
 
-		private IClassMap classMap = null;
+	    private IClassMap classMap = null;
 		public IClassMap ClassMap 
 		{
 			get
@@ -82,8 +70,8 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 
 		public bool MuteNotify
 		{
-			get { return interceptor.MuteNotify; }
-			set { interceptor.MuteNotify = value; }
+			get => interceptor.MuteNotify;
+		    set => interceptor.MuteNotify = value;
 		}
 
         public virtual void EnsureLoaded()
@@ -207,10 +195,8 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 
 		public override object this[int index]
 		{
-            get { return IListThisGet(index); }
-			set {
-                IListThisSet(index, value);
-			}
+            get => IListThisGet(index);
+		    set => IListThisSet(index, value);
 		}
 
         protected virtual void IListThisSet(int index, object value)
@@ -220,12 +206,9 @@ namespace Puzzle.NPersist.Framework.BaseClasses
             base[index] = value;
         }
 
-        protected virtual object IListThisGet(int index)
-        {
-            return base[index];
-        }
+        protected virtual object IListThisGet(int index) => base[index];
 
-		public override void Remove(object obj)
+	    public override void Remove(object obj)
 		{
 			interceptor.BeforeCall() ;
 			base.Remove(obj);

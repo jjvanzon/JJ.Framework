@@ -7,12 +7,9 @@ namespace JJ.Framework.Data
 	{
 		protected IContext _context;
 
-		public RepositoryBase(IContext context)
-		{
-			_context = context ?? throw new NullException(() => context);
-		}
+		public RepositoryBase(IContext context) => _context = context ?? throw new NullException(() => context);
 
-		public virtual TEntity TryGet(TID id) => _context.TryGet<TEntity>(id);
+	    public virtual TEntity TryGet(TID id) => _context.TryGet<TEntity>(id);
 		public virtual TEntity Get(TID id) => _context.Get<TEntity>(id);
 		public virtual TEntity Create() => _context.Create<TEntity>();
 		public virtual void Insert(TEntity entity) => _context.Insert(entity);

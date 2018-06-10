@@ -84,11 +84,7 @@ namespace Puzzle.NAspect.Framework
         private ArrayList wrapperMethods = new ArrayList();
         private Hashtable mixinsForType = new Hashtable();
 
-        private SubclassProxyFactory(Engine engine)
-        {
-            this.engine = engine;
-        }
-
+        private SubclassProxyFactory(Engine engine) => this.engine = engine;
 
         private AssemblyBuilder GetAssemblyBuilder()
         {
@@ -497,10 +493,7 @@ namespace Puzzle.NAspect.Framework
             il.Emit(OpCodes.Ret);
         }
 
-        private static bool IsExplicitInterfaceMethod(MethodBase method)
-        {
-            return method.IsPrivate;
-        }
+        private static bool IsExplicitInterfaceMethod(MethodBase method) => method.IsPrivate;
 
         private FieldBuilder GetMixinField(Type mixinType)
         {

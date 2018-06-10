@@ -20,15 +20,12 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public virtual IList Classes
 		{
-			get { return classes; }
-			set { classes = value; }
+			get => classes;
+		    set => classes = value;
 		}
 
 		#endregion
 
-		public NPathFromClause()
-		{
-			classes = new ArrayList();
-		}
+		public NPathFromClause() => classes = new ArrayList();
 	}
 }

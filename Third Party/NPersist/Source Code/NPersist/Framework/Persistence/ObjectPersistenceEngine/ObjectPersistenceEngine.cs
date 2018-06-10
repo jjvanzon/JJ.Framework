@@ -34,16 +34,13 @@ namespace Puzzle.NPersist.Framework.Persistence
 		private ArrayList listRemove = new ArrayList();
 		private Hashtable hashInserted = new Hashtable();
 
-		public ObjectPersistenceEngine(IContext sourceContext) : base()
-		{
-			this.sourceContext = sourceContext;
-		}
+		public ObjectPersistenceEngine(IContext sourceContext) : base() => this.sourceContext = sourceContext;
 
-		public IContext SourceContext
+	    public IContext SourceContext
 		{
-			get { return this.sourceContext; }
-			set { this.sourceContext = value; }
-		}
+			get => this.sourceContext;
+	        set => this.sourceContext = value;
+	    }
 
 		public void Begin()
 		{
@@ -215,12 +212,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			}
 		}
 
-		public virtual void InsertObject(object obj, IList stillDirty)
-		{
-			listInsert.Add(obj);
-		}
+		public virtual void InsertObject(object obj, IList stillDirty) => listInsert.Add(obj);
 
-		public virtual void DoInsertObject(object obj)
+	    public virtual void DoInsertObject(object obj)
 		{
 			if (!Monitor.TryEnter(sourceContext, this.Context.Timeout))
 				throw new NPersistTimeoutException("Could not aquire exclusive lock on root context before timeout: " + this.Context.Timeout.ToString() + " ms" );
@@ -270,12 +264,9 @@ namespace Puzzle.NPersist.Framework.Persistence
         }
 
 
-		public virtual void RemoveObject(object obj)
-		{
-			listRemove.Add(obj);
-		}
+		public virtual void RemoveObject(object obj) => listRemove.Add(obj);
 
-		public virtual void DoRemoveObject(object obj)
+	    public virtual void DoRemoveObject(object obj)
 		{
 			if (!Monitor.TryEnter(sourceContext, this.Context.Timeout))
 				throw new NPersistTimeoutException("Could not aquire exclusive lock on root context before timeout: " + this.Context.Timeout.ToString() + " ms" );
@@ -298,12 +289,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 
-		public virtual void UpdateObject(object obj, IList stillDirty)
-		{
-			listUpdate.Add(obj);
-		}
+		public virtual void UpdateObject(object obj, IList stillDirty) => listUpdate.Add(obj);
 
-		public virtual void DoUpdateObject(object obj)
+	    public virtual void DoUpdateObject(object obj)
 		{
 			if (!Monitor.TryEnter(sourceContext, this.Context.Timeout))
 				throw new NPersistTimeoutException("Could not aquire exclusive lock on root context before timeout: " + this.Context.Timeout.ToString() + " ms" );
@@ -379,13 +367,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 
-		public virtual IList GetObjectsOfClassWithUniReferencesToObject(Type type, object obj)
-		{
-			throw new IAmOpenSourcePleaseImplementMeException("");			
-		}
-		
+		public virtual IList GetObjectsOfClassWithUniReferencesToObject(Type type, object obj) => throw new IAmOpenSourcePleaseImplementMeException("");
 
-		//Refresh Issues!!
+	    //Refresh Issues!!
 		public virtual IList LoadObjects(IQuery query, IList listToFill)
 		{
 			if (!Monitor.TryEnter(sourceContext, this.Context.Timeout))
@@ -470,24 +454,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			}			
 		}
 
-		protected virtual Type GetTypeFromSource(object source)
-		{
-			return source.GetType() ;	
-//			//This one is actually impossible if many leaf classes can map to the same root class!
-//			IDomainMap domainMap = this.sourceContext.DomainMap;
-//			IClassMap sourceClassMap = domainMap.GetClassMap(source.GetType());
-//			IClassMap classMap = sourceClassMap.GetSourceClassMapOrSelf();
-//			if (sourceClassMap == classMap)
-//			{
-//				return source.GetType() ;	
-//			}
-//			else
-//			{
-//				return this.Context.AssemblyManager.GetTypeFromClassMap(classMap);
-//			}			
-		}
+		protected virtual Type GetTypeFromSource(object source) => source.GetType();
 
-        protected virtual void LoadObject(object obj, object source, RefreshBehaviorType refreshBehavior)
+	    protected virtual void LoadObject(object obj, object source, RefreshBehaviorType refreshBehavior)
 		{
 			if (!Monitor.TryEnter(sourceContext, this.Context.Timeout))
 				throw new NPersistTimeoutException("Could not aquire exclusive lock on root context before timeout: " + this.Context.Timeout.ToString() + " ms" );
@@ -823,12 +792,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 
-		private Type ToLeafType(object refObject)
-		{
-			return ToLeafType(refObject.GetType());
-		}
+		private Type ToLeafType(object refObject) => ToLeafType(refObject.GetType());
 
-		private Type ToLeafType(Type type)
+	    private Type ToLeafType(Type type)
 		{
 			IClassMap sourceRefClassMap = this.sourceContext.DomainMap.MustGetClassMap(type );
 			IClassMap leafRefClassMap = this.Context.DomainMap.MustGetClassMap(sourceRefClassMap.Name );
@@ -836,12 +802,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 		//Optimistic Concurrency Issues!!
-		protected virtual void SaveObject(object obj, object source)
-		{
-			SaveObject(obj, source, false);
-		}
+		protected virtual void SaveObject(object obj, object source) => SaveObject(obj, source, false);
 
-		protected virtual void SaveObject(object obj, object source, bool creating)
+	    protected virtual void SaveObject(object obj, object source, bool creating)
 		{
 			if (!Monitor.TryEnter(sourceContext, this.Context.Timeout))
 				throw new NPersistTimeoutException("Could not aquire exclusive lock on root context before timeout: " + this.Context.Timeout.ToString() + " ms" );
@@ -1107,12 +1070,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			}	
 		}
 
-		private Type ToSourceType(object refObject)
-		{
-			return ToSourceType(refObject.GetType() );
-		}
+		private Type ToSourceType(object refObject) => ToSourceType(refObject.GetType() );
 
-		private Type ToSourceType(Type type)
+	    private Type ToSourceType(Type type)
 		{
 			IClassMap leafRefClassMap = this.Context.DomainMap.MustGetClassMap(type );
 			IClassMap sourceRefClassMap = this.sourceContext.DomainMap.MustGetClassMap(leafRefClassMap.Name );
@@ -1147,12 +1107,9 @@ namespace Puzzle.NPersist.Framework.Persistence
         //    return this.Context.ListManager.CompareLists(orgValue, currValue);
         //}
 
-        private bool CompareListsById(IList orgValue, IList currValue)
-        {
-            return this.Context.ListManager.CompareListsById(orgValue, currValue);
-        }
+        private bool CompareListsById(IList orgValue, IList currValue) => this.Context.ListManager.CompareListsById(orgValue, currValue);
 
-        public virtual void TouchTable(ITableMap tableMap, int exceptionLimit) { ; }
+	    public virtual void TouchTable(ITableMap tableMap, int exceptionLimit) { ; }
 
     }
 }

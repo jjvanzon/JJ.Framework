@@ -41,14 +41,14 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 		// ReSharper disable once InconsistentNaming
 		public static int _staticField
 		{
-			get { return _staticAccessor.GetFieldValue(() => _staticField); }
-			set { _staticAccessor.SetFieldValue(() => _staticField, value); }
+			get => _staticAccessor.GetFieldValue(() => _staticField);
+		    set => _staticAccessor.SetFieldValue(() => _staticField, value);
 		}
 
 		public static int StaticProperty
 		{
-			get { return _staticAccessor.GetPropertyValue(() => StaticProperty); }
-			set { _staticAccessor.SetPropertyValue(() => StaticProperty, value); }
+			get => _staticAccessor.GetPropertyValue(() => StaticProperty);
+		    set => _staticAccessor.SetPropertyValue(() => StaticProperty, value);
 		}
 
 		public static int StaticMethod(int parameter) => _staticAccessor.InvokeMethod(() => StaticMethod(0), parameter);

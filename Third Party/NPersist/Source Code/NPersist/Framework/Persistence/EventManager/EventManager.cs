@@ -47,79 +47,79 @@ namespace Puzzle.NPersist.Framework.Persistence
 		{
 			//[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			get { return m_Observer; }
-			//[DebuggerHidden()]
+			get => m_Observer;
+		    //[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			set { m_Observer = value; }
+			set => m_Observer = value;
 		}
 
 		public virtual IValidationManager ValidationManager
 		{
 			//[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			get { return m_ValidationManager; }
-			//[DebuggerHidden()]
+			get => m_ValidationManager;
+		    //[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			set { m_ValidationManager = value; }
+			set => m_ValidationManager = value;
 		}
 
 		public virtual bool RaiseEvents
 		{
-			get { return m_RaiseEvents; }
-			set { m_RaiseEvents = value; }
+			get => m_RaiseEvents;
+		    set => m_RaiseEvents = value;
 		}
 
 		public virtual bool RaiseBeforeEvents
 		{
-			get { return m_RaiseBeforeEvents; }
-			set { m_RaiseBeforeEvents = value; }
+			get => m_RaiseBeforeEvents;
+		    set => m_RaiseBeforeEvents = value;
 		}
 
 		public virtual bool RaiseAfterEvents
 		{
-			get { return m_RaiseAfterEvents; }
-			set { m_RaiseAfterEvents = value; }
+			get => m_RaiseAfterEvents;
+		    set => m_RaiseAfterEvents = value;
 		}
 
 		public virtual bool RaiseSqlExecutorEvents
 		{
-			get { return m_RaiseSqlExecutorEvents; }
-			set { m_RaiseSqlExecutorEvents = value; }
+			get => m_RaiseSqlExecutorEvents;
+		    set => m_RaiseSqlExecutorEvents = value;
 		}
 		public virtual bool RaiseWebServiceEvents
 		{
-			get { return m_RaiseWebServiceEvents; }
-			set { m_RaiseWebServiceEvents = value; }
+			get => m_RaiseWebServiceEvents;
+		    set => m_RaiseWebServiceEvents = value;
 		}
 
 		public virtual bool RaiseTransactionEvents
 		{
-			get { return m_RaiseTransactionEvents; }
-			set { m_RaiseTransactionEvents = value; }
+			get => m_RaiseTransactionEvents;
+		    set => m_RaiseTransactionEvents = value;
 		}
 
 		public virtual bool RaiseExceptionEvents
 		{
-			get { return m_RaiseExceptionEvents; }
-			set { m_RaiseExceptionEvents = value; }
+			get => m_RaiseExceptionEvents;
+		    set => m_RaiseExceptionEvents = value;
 		}
 
 		public virtual bool RaiseObjectEvents
 		{
-			get { return m_RaiseObjectEvents; }
-			set { m_RaiseObjectEvents = value; }
+			get => m_RaiseObjectEvents;
+		    set => m_RaiseObjectEvents = value;
 		}
 
 		public virtual bool RaiseContextEvents
 		{
-			get { return m_RaiseContextEvents; }
-			set { m_RaiseContextEvents = value; }
+			get => m_RaiseContextEvents;
+		    set => m_RaiseContextEvents = value;
 		}
 
 		public virtual bool RaisePropertyEvents
 		{
-			get { return m_RaisePropertyEvents; }
-			set { m_RaisePropertyEvents = value; }
+			get => m_RaisePropertyEvents;
+		    set => m_RaisePropertyEvents = value;
 		}
 
 
@@ -1713,12 +1713,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 		//[DebuggerStepThrough()]
-		private IList GetTypeObservers(object obj)
-		{
-            return GetTypeObservers(obj.GetType());
-		}
+		private IList GetTypeObservers(object obj) => GetTypeObservers(obj.GetType());
 
-		//[DebuggerStepThrough()]
+	    //[DebuggerStepThrough()]
 		private IList GetObjectObservers(object obj)
 		{
 			ArrayList result = (ArrayList) m_ObjectObservers[obj];
@@ -1729,22 +1726,13 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return m_EmptyList ;			
 		}
 
-		public void AddContextObserver(IObserver observer)
-		{
-			m_ContextObservers.Add(observer);
-		}
+		public void AddContextObserver(IObserver observer) => m_ContextObservers.Add(observer);
 
-		public void AddAllTypeObserver(IObserver observer)
-		{
-			m_AllTypeObservers.Add(observer);
-		}
+	    public void AddAllTypeObserver(IObserver observer) => m_AllTypeObservers.Add(observer);
 
-		public void AddObserver(IObserver observer)
-		{
-			m_Observers.Add(observer);
-		}
-		
-		public void AddObserver(IObserver observer, ObserverTarget observerTarget)
+	    public void AddObserver(IObserver observer) => m_Observers.Add(observer);
+
+	    public void AddObserver(IObserver observer, ObserverTarget observerTarget)
 		{
 			switch (observerTarget)
 			{
@@ -1803,18 +1791,11 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 
-		public IList GetAllObservers()
-		{
-			//TODO: Add all observers to a list and return
-			return m_Observers;
-		}
+		public IList GetAllObservers() => m_Observers;
 
-		public IList GetObservers()
-		{
-			return m_Observers;
-		}
+	    public IList GetObservers() => m_Observers;
 
-		public IList GetObservers(ObserverTarget observerTarget)
+	    public IList GetObservers(ObserverTarget observerTarget)
 		{
 			switch (observerTarget)
 			{
@@ -1829,19 +1810,11 @@ namespace Puzzle.NPersist.Framework.Persistence
 			}
 		}
 
-		public IList GetObservers(Type type)
-		{
-			return GetTypeObservers(type);
-		}
+		public IList GetObservers(Type type) => GetTypeObservers(type);
 
-		public IList GetObservers(object obj)
-		{
-			return GetObjectObservers(obj);
-		}
+	    public IList GetObservers(object obj) => GetObjectObservers(obj);
 
-
-
-		protected virtual void EvaluatePropertySpecialBehavior(object obj, IPropertyMap propertyMap, PropertySpecialBehaviorType specialBehavior, IObjectManager om)
+	    protected virtual void EvaluatePropertySpecialBehavior(object obj, IPropertyMap propertyMap, PropertySpecialBehaviorType specialBehavior, IObjectManager om)
 		{
 			bool wrote = false;
 			if (specialBehavior == PropertySpecialBehaviorType.Increase)

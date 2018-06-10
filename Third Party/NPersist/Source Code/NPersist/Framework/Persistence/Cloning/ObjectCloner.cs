@@ -35,8 +35,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 		
 		public IList ClonedObjects
 		{
-			get { return this.clonedObjects; }
-			set { this.clonedObjects = value; }
+			get => this.clonedObjects;
+		    set => this.clonedObjects = value;
 		}
 		
 		#endregion
@@ -58,13 +58,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			this.clonedObjects.Clear() ;
 		}
 
-		public void EndEdit()
-		{
-			this.clonedObjects.Clear() ;
-		}
+		public void EndEdit() => this.clonedObjects.Clear();
 
-
-		public IObjectClone CloneObject(object obj)
+	    public IObjectClone CloneObject(object obj)
 		{
 			IObjectManager om = this.Context.ObjectManager ;
 			IObjectClone clone = new ObjectClone();

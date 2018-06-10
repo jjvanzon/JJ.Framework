@@ -48,12 +48,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 		#region Xml Document Cache
 
 		//non-cached
-		protected virtual string LoadFile(object obj, string fileName)
-		{
-            return LoadFile(obj.GetType(), fileName);
-		}
+		protected virtual string LoadFile(object obj, string fileName) => LoadFile(obj.GetType(), fileName);
 
-        //non-cached
+	    //non-cached
         protected virtual string LoadFile(Type type, string fileName)
         {
             LogMessage message = new LogMessage("Loading objects from file");
@@ -279,12 +276,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 		#region IPersistenceEngine
 
 		
-		public void Begin()
-		{
-			cachedXmlDocuments.Clear();
-		}
+		public void Begin() => cachedXmlDocuments.Clear();
 
-		public void Commit()
+	    public void Commit()
 		{
             //TODO
 			//lock all files
@@ -308,12 +302,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			//un-lock all files
 		}
 
-		public void Abort()
-		{
-			cachedXmlDocuments.Clear();
-		}
+		public void Abort() => cachedXmlDocuments.Clear();
 
-		public virtual void LoadObject(ref object obj)
+	    public virtual void LoadObject(ref object obj)
 		{
             LogMessage message = new LogMessage("Loading object by id");
             LogMessage verbose = new LogMessage ("Type: {0}" , obj.GetType());
@@ -339,12 +330,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 				this.Context.IdentityMap.RegisterLoadedObject(obj);
 		}
 
-		public virtual void LoadObjectByKey(ref object obj, string keyPropertyName, object keyValue)
-		{
-			throw new NPersistException("Can't load objects by key using DocumentPersistenceEngine!"); // do not localize
-		}
+		public virtual void LoadObjectByKey(ref object obj, string keyPropertyName, object keyValue) => throw new NPersistException("Can't load objects by key using DocumentPersistenceEngine!");
 
-		public virtual void InsertObject(object obj, IList stillDirty)
+	    public virtual void InsertObject(object obj, IList stillDirty)
 		{
             LogMessage message = new LogMessage("Inserting object");
             LogMessage verbose = new LogMessage("Type: {0}" , obj.GetType());
@@ -486,17 +474,11 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return this.Context.FilterIntoDataTable(allObjects, npath);
 		}
 
-		public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior, IList listToFill)
-		{
-            throw new NPersistException("Sql query capabilities not implemented in DocumentPersistenceEngine! Please use NPath queries instead.");
-		}
+		public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior, IList listToFill) => throw new NPersistException("Sql query capabilities not implemented in DocumentPersistenceEngine! Please use NPath queries instead.");
 
-		public virtual IList GetObjectsOfClassWithUniReferencesToObject(Type type, object obj)
-		{
-			throw new IAmOpenSourcePleaseImplementMeException("");			
-		}
+	    public virtual IList GetObjectsOfClassWithUniReferencesToObject(Type type, object obj) => throw new IAmOpenSourcePleaseImplementMeException("");
 
-		public virtual void TouchTable(ITableMap tableMap, int exceptionLimit) { ; }
+	    public virtual void TouchTable(ITableMap tableMap, int exceptionLimit) { ; }
 
 		#endregion
 
@@ -842,12 +824,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 		#region Serialization
 
-		protected virtual void SerializeObject(XmlNode xmlObject, object obj, IClassMap classMap, bool creating)
-		{
-			SerializeObject(xmlObject, obj, classMap, creating, false);
-		}
+		protected virtual void SerializeObject(XmlNode xmlObject, object obj, IClassMap classMap, bool creating) => SerializeObject(xmlObject, obj, classMap, creating, false);
 
-		protected virtual void SerializeObject(XmlNode xmlObject, object obj, IClassMap classMap, bool creating, bool specifyClass)
+	    protected virtual void SerializeObject(XmlNode xmlObject, object obj, IClassMap classMap, bool creating, bool specifyClass)
 		{
 			if (specifyClass)
 				SetAttributeValue(xmlObject, "class", classMap.GetFullName() );
@@ -1112,17 +1091,11 @@ namespace Puzzle.NPersist.Framework.Persistence
 			this.Context.UnitOfWork.RegisterClean(value);
 		}
 
-		protected virtual string SerializeProperty(object obj)
-		{
-			return "";
-		}
+		protected virtual string SerializeProperty(object obj) => "";
 
-		protected virtual string SerializeValue(object obj)
-		{
-			return "";
-		}
+	    protected virtual string SerializeValue(object obj) => "";
 
-		#endregion
+	    #endregion
 
 		#region Deserialization
 
@@ -1238,12 +1211,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			listToFill.Add(obj);
 		}
 
-		protected virtual void DeserializeObject(object obj, IClassMap classMap, XmlNode xmlObject)
-		{
-			DeserializeObject(obj, classMap, xmlObject, false);
-		}
+		protected virtual void DeserializeObject(object obj, IClassMap classMap, XmlNode xmlObject) => DeserializeObject(obj, classMap, xmlObject, false);
 
-		protected virtual void DeserializeObject(object obj, IClassMap classMap, XmlNode xmlObject, bool idOnly)
+	    protected virtual void DeserializeObject(object obj, IClassMap classMap, XmlNode xmlObject, bool idOnly)
 		{
 			foreach (IPropertyMap propertyMap in classMap.GetAllPropertyMaps())
 			{

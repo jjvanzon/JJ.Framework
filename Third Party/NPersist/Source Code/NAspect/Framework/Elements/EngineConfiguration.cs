@@ -28,8 +28,8 @@ namespace Puzzle.NAspect.Framework.ConfigurationElements
         /// </summary>
         public IList TypeExtenders
         {
-            get { return typeExtenders; }
-            set { typeExtenders = value; }
+            get => typeExtenders;
+            set => typeExtenders = value;
         }
 
         #endregion
@@ -44,8 +44,8 @@ namespace Puzzle.NAspect.Framework.ConfigurationElements
         /// </summary>
         public IList Aspects
         {
-            get { return aspects; }
-            set { aspects = value; }
+            get => aspects;
+            set => aspects = value;
         }
 
         #endregion
@@ -59,8 +59,8 @@ namespace Puzzle.NAspect.Framework.ConfigurationElements
         /// </summary>
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get => name;
+            set => name = value;
         }
 
         #endregion

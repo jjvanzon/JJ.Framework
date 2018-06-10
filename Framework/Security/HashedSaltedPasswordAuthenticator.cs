@@ -12,12 +12,9 @@ namespace JJ.Framework.Security
 
 		private readonly AuthenticationTypeEnum _authenticationType;
 
-		internal HashedSaltedPasswordAuthenticator(AuthenticationTypeEnum authenticationType)
-		{ 
-			_authenticationType = authenticationType;
-		}
+		internal HashedSaltedPasswordAuthenticator(AuthenticationTypeEnum authenticationType) => _authenticationType = authenticationType;
 
-		public override bool PasswordIsRequired => true;
+	    public override bool PasswordIsRequired => true;
 
 		public override bool IsAuthentic(string passwordFromClient, string tokenFromClient, string passwordFromServer, IList<string> tokenValuesFromServer)
 		{
@@ -43,12 +40,9 @@ namespace JJ.Framework.Security
 			return true;
 		}
 
-		public override string GetToken(string password, IList<string> valuesToHash)
-		{
-			return null;
-		}
+		public override string GetToken(string password, IList<string> valuesToHash) => null;
 
-		public string GenerateSalt()
+	    public string GenerateSalt()
 		{
 			var randomNumberCrypto = new RNGCryptoServiceProvider();
 			var saltBytes = new byte[SALT_BYTES_LENGTH];

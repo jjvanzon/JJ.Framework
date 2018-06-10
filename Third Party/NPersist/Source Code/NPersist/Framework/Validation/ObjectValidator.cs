@@ -46,12 +46,9 @@ namespace Puzzle.NPersist.Framework.Validation
 			return exceptions.Count > 0;			
 		}
 
-		public void ValidateObject(object obj)
-		{
-			ValidateObject(obj, null);
-		}
+		public void ValidateObject(object obj) => ValidateObject(obj, null);
 
-		public void ValidateObject(object obj, IList exceptions)
+	    public void ValidateObject(object obj, IList exceptions)
 		{
 			IObjectManager om = this.Context.ObjectManager;
 			IClassMap classMap = this.Context.DomainMap.MustGetClassMap(obj.GetType());
@@ -91,24 +88,18 @@ namespace Puzzle.NPersist.Framework.Validation
             }
 		}
 		
-		public void ValidateProperty(object obj, string propertyName)
-		{
-			ValidateProperty(obj, propertyName, null);
-		}
+		public void ValidateProperty(object obj, string propertyName) => ValidateProperty(obj, propertyName, null);
 
-		public void ValidateProperty(object obj, string propertyName, IList exceptions)
+	    public void ValidateProperty(object obj, string propertyName, IList exceptions)
 		{
 			IClassMap classMap = this.Context.DomainMap.MustGetClassMap(obj.GetType());
 			IPropertyMap propertyMap = classMap.MustGetPropertyMap(propertyName);			
 			DoValidateProperty(obj, propertyMap, exceptions);
 		}
 
-		private void HandleException(object obj, string propertyName, IList exceptions, Exception exception)
-		{
-			HandleException(obj, propertyName, exceptions, exception, null, null, null);
-		}
+		private void HandleException(object obj, string propertyName, IList exceptions, Exception exception) => HandleException(obj, propertyName, exceptions, exception, null, null, null);
 
-		private void HandleException(object obj, string propertyName, IList exceptions, Exception exception, object limit, object actual, object value)
+	    private void HandleException(object obj, string propertyName, IList exceptions, Exception exception, object limit, object actual, object value)
 		{
 			if (exceptions == null)
 			{
@@ -530,18 +521,12 @@ namespace Puzzle.NPersist.Framework.Validation
 		}
 		
 		//[DebuggerStepThrough()]
-		public virtual MethodInfo GetMethod(object obj, string methodName)
-		{
-			return GetMethod(obj, obj.GetType(), methodName);
-		}
+		public virtual MethodInfo GetMethod(object obj, string methodName) => GetMethod(obj, obj.GetType(), methodName);
 
-		//[DebuggerStepThrough()]
-		public virtual MethodInfo GetMethod(object obj, Type type, string methodName)
-		{
-			return ReflectionHelper.GetMethodInfo(type,methodName);
-		}
+	    //[DebuggerStepThrough()]
+		public virtual MethodInfo GetMethod(object obj, Type type, string methodName) => ReflectionHelper.GetMethodInfo(type,methodName);
 
-        public virtual ValidationMode GetValidationMode(object obj)
+	    public virtual ValidationMode GetValidationMode(object obj)
         {
             IClassMap classMap = this.Context.DomainMap.MustGetClassMap(obj.GetType());
             return GetValidationMode(classMap);

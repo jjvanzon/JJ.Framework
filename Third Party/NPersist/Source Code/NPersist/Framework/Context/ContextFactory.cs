@@ -27,29 +27,23 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 		{
 		}
 		
-		public ContextFactory(string mapPath)
-		{
-			this.mapPath = mapPath;
-		}
+		public ContextFactory(string mapPath) => this.mapPath = mapPath;
 
-		public string MapPath
+	    public string MapPath
 		{
-			get { return this.mapPath; }
-			set { this.mapPath = value; }
-		}
+			get => this.mapPath;
+	        set => this.mapPath = value;
+	    }
 
 		public string ConnectionString
 		{
-			get { return this.connectionString; }
-			set { this.connectionString = value; }
+			get => this.connectionString;
+		    set => this.connectionString = value;
 		}
 
-		public IContext GetContext()
-		{
-			return GetContext("");
-		}
+		public IContext GetContext() => GetContext("");
 
-		public IContext GetContext(string domainKey)
+	    public IContext GetContext(string domainKey)
 		{
 			string useMapPath = this.mapPath;
 			string useConnectionString = this.connectionString;

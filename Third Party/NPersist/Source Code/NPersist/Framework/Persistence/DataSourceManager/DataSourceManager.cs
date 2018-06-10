@@ -47,12 +47,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return (IDataSource) m_hashDataSources[name];
 		}
 
-		public virtual void Setup()
-		{
-			InitDataSources();
-		}
+		public virtual void Setup() => InitDataSources();
 
-		protected virtual void InitDataSources()
+	    protected virtual void InitDataSources()
 		{
 			IDataSource ds;
 			foreach (ISourceMap sourceMap in this.Context.DomainMap.SourceMaps)

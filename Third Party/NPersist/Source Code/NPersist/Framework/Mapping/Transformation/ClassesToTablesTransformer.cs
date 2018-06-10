@@ -31,12 +31,9 @@ namespace Puzzle.NPersist.Framework.Mapping.Transformation
 		private int m_MaxColumnLength = 0;
 		private int m_DefaultStringLength = 0;
 
-		public virtual string GetTableNameForClass(IClassMap classMap)
-		{
-			return GetTableNameForClass(classMap, false);
-		}
+		public virtual string GetTableNameForClass(IClassMap classMap) => GetTableNameForClass(classMap, false);
 
-		public virtual string GetTableNameForClass(IClassMap classMap, bool useThisClass)
+	    public virtual string GetTableNameForClass(IClassMap classMap, bool useThisClass)
 		{
 			string name;
 			IClassMap useClassMap = classMap;
@@ -215,50 +212,32 @@ namespace Puzzle.NPersist.Framework.Mapping.Transformation
 
 		public virtual string TablePrefix 
 		{
-			get { return m_TablePrefix; }
-			set { m_TablePrefix = value; }
+			get => m_TablePrefix;
+		    set => m_TablePrefix = value;
 		}
 
 		public virtual string TableSuffix 
 		{
-			get { return m_TableSuffix; }
-			set { m_TableSuffix = value; }
+			get => m_TableSuffix;
+		    set => m_TableSuffix = value;
 		}
 
 		public virtual int MaxColumnLength 
 		{
-			get 
-			{
-				return m_MaxColumnLength;
-			}
-			set 
-			{
-				m_MaxColumnLength = value;
-			}
+			get => m_MaxColumnLength;
+		    set => m_MaxColumnLength = value;
 		}
 
 		public virtual int MaxTableLength 
 		{
-			get 
-			{
-				return m_MaxTableLength;
-			}
-			set 
-			{
-				m_MaxTableLength = value;
-			}
+			get => m_MaxTableLength;
+		    set => m_MaxTableLength = value;
 		}
 
 		public virtual int DefaultStringLength 
 		{
-			get 
-			{
-				return m_DefaultStringLength;
-			}
-			set 
-			{
-				m_DefaultStringLength = value;
-			}
+			get => m_DefaultStringLength;
+		    set => m_DefaultStringLength = value;
 		}
 
 		public virtual System.Data.DbType GetColumnTypeForProperty(Puzzle.NPersist.Framework.Mapping.IPropertyMap propertyMap)
@@ -726,17 +705,11 @@ namespace Puzzle.NPersist.Framework.Mapping.Transformation
 			return scale;
 		}
 
-		public virtual void GenerateTablesForClasses(IDomainMap sourceDomainMap, IDomainMap targetDomainMap)
-		{
-			GenerateTablesForClasses(sourceDomainMap, targetDomainMap, false);
-		}
+		public virtual void GenerateTablesForClasses(IDomainMap sourceDomainMap, IDomainMap targetDomainMap) => GenerateTablesForClasses(sourceDomainMap, targetDomainMap, false);
 
-		public virtual void GenerateTablesForClasses(IDomainMap sourceDomainMap, IDomainMap targetDomainMap, bool generateMappings)
-		{
-			GenerateTablesForClasses(sourceDomainMap, targetDomainMap, false, false);
-		}
+	    public virtual void GenerateTablesForClasses(IDomainMap sourceDomainMap, IDomainMap targetDomainMap, bool generateMappings) => GenerateTablesForClasses(sourceDomainMap, targetDomainMap, false, false);
 
-		public virtual void GenerateTablesForClasses(IDomainMap sourceDomainMap, IDomainMap targetDomainMap, bool generateMappings, bool onlyForComputed)
+	    public virtual void GenerateTablesForClasses(IDomainMap sourceDomainMap, IDomainMap targetDomainMap, bool generateMappings, bool onlyForComputed)
 		{
 			IList propertyMaps = new ArrayList();
 			IList allPropertyMaps;

@@ -167,17 +167,11 @@ namespace JJ.Framework.Presentation
 			return viewModel;
 		}
 
-		public static ActionInfo CreateActionInfo<TPresenter>(Expression<Func<TPresenter, object>> methodCallExpression)
-		{
-			return CreateActionInfo(typeof(TPresenter), methodCallExpression);
-		}
+		public static ActionInfo CreateActionInfo<TPresenter>(Expression<Func<TPresenter, object>> methodCallExpression) => CreateActionInfo(typeof(TPresenter), methodCallExpression);
 
-		public static ActionInfo CreateActionInfo(Type presenterType, Expression<Func<object>> methodCallExpression)
-		{
-			return CreateActionInfo(presenterType, (LambdaExpression)methodCallExpression);
-		}
+	    public static ActionInfo CreateActionInfo(Type presenterType, Expression<Func<object>> methodCallExpression) => CreateActionInfo(presenterType, (LambdaExpression)methodCallExpression);
 
-		public static ActionInfo CreateActionInfo(Type presenterType, LambdaExpression methodCallExpression)
+	    public static ActionInfo CreateActionInfo(Type presenterType, LambdaExpression methodCallExpression)
 		{
 			if (presenterType == null) throw new NullException(() => presenterType);
 

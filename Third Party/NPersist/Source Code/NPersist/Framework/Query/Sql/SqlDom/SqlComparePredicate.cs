@@ -36,8 +36,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlExpression LeftExpression
 		{
-			get { return this.leftExpression; }
-			set { this.leftExpression = value; }
+			get => this.leftExpression;
+		    set => this.leftExpression = value;
 		}
 		
 		#endregion
@@ -48,8 +48,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlCompareOperator SqlCompareOperator
 		{
-			get { return this.sqlCompareOperator; }
-			set { this.sqlCompareOperator = value; }
+			get => this.sqlCompareOperator;
+		    set => this.sqlCompareOperator = value;
 		}
 		
 		#endregion
@@ -60,8 +60,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlExpression RightExpression
 		{
-			get { return this.rightExpression; }
-			set { this.rightExpression = value; }
+			get => this.rightExpression;
+		    set => this.rightExpression = value;
 		}
 		
 		#endregion

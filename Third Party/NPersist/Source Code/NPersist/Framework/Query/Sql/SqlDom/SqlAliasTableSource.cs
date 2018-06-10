@@ -18,19 +18,16 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 	/// </summary>
 	public class SqlAliasTableSource : SqlTableSource 
 	{
-		public SqlAliasTableSource(SqlFromClause sqlFromClause, SqlTableAlias sqlTableAlias) : base(sqlFromClause)
-		{
-			this.sqlTableAlias = sqlTableAlias;
-		}
+		public SqlAliasTableSource(SqlFromClause sqlFromClause, SqlTableAlias sqlTableAlias) : base(sqlFromClause) => this.sqlTableAlias = sqlTableAlias;
 
-		#region Property  SqlTableAlias 
+	    #region Property  SqlTableAlias 
 		
 		private SqlTableAlias sqlTableAlias ;
 		
 		public SqlTableAlias SqlTableAlias 
 		{
-			get { return this.sqlTableAlias ; }
-			set { this.sqlTableAlias  = value; }
+			get => this.sqlTableAlias;
+		    set => this.sqlTableAlias  = value;
 		}
 		
 		#endregion

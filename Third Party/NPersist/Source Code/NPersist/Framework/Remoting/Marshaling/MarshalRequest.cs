@@ -26,16 +26,16 @@ namespace Puzzle.NPersist.Framework.Remoting.Marshaling
 		
 		public string Method
 		{
-			get { return this.method; }
-			set { this.method = value; }
+			get => this.method;
+		    set => this.method = value;
 		}
 
 		private ArrayList parameters;
 		
 		public ArrayList Parameters
 		{
-			get { return this.parameters; }
-			set { this.parameters = value; }
+			get => this.parameters;
+		    set => this.parameters = value;
 		}
 
 		public MarshalParameter GetParameter(string name)

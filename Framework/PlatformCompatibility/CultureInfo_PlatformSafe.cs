@@ -12,9 +12,6 @@ namespace JJ.Framework.PlatformCompatibility
 		/// CultureInfo.GetCultureInfo is not supported on Windows Phone 8.
 		/// Use 'new CultureInfo(string)' as an alternative or call this method instead.
 		/// </summary>
-		public static CultureInfo GetCultureInfo(string name)
-		{
-			return PlatformHelper.CultureInfo_GetCultureInfo_PlatformSafe(name);
-		}
+		public static CultureInfo GetCultureInfo(string name) => PlatformHelper.CultureInfo_GetCultureInfo_PlatformSafe(name);
 	}
 }

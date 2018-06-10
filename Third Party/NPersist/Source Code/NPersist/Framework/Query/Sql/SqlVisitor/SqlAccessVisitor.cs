@@ -23,19 +23,10 @@ namespace Puzzle.NPersist.Framework.Sql.Visitor
 		}
 
 		
-		public override void Visiting(SqlColumn column)
-		{
-			SqlBuilder.Append(Encapsulate(column.Name));
-		}
+		public override void Visiting(SqlColumn column) => SqlBuilder.Append(Encapsulate(column.Name));
 
-		protected override string EncapsulateDateTime(string content)
-		{
-			return "#" + content + "#";								
-		}	
+	    protected override string EncapsulateDateTime(string content) => "#" + content + "#";
 
-		public override void Visiting(SqlParameter parameter)
-		{
-			SqlBuilder.Append("?");			
-		}
+	    public override void Visiting(SqlParameter parameter) => SqlBuilder.Append("?");
 	}
 }

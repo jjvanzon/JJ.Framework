@@ -30,8 +30,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public IList SqlOrderByItems
 		{
-			get { return this.sqlOrderByItems; }
-			set { this.sqlOrderByItems = value; }
+			get => this.sqlOrderByItems;
+		    set => this.sqlOrderByItems = value;
 		}
 		
 		#endregion
@@ -43,35 +43,26 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 			return sqlOrderByItem;
 		}
 
-		public SqlOrderByItem AddSqlOrderByItem(SqlExpression sqlExpression)
-		{
-			return AddSqlOrderByItem(sqlExpression, false);
-		}
+		public SqlOrderByItem AddSqlOrderByItem(SqlExpression sqlExpression) => AddSqlOrderByItem(sqlExpression, false);
 
-		public SqlOrderByItem AddSqlOrderByItem(SqlColumnAlias sqlColumnAlias, bool descending)
+	    public SqlOrderByItem AddSqlOrderByItem(SqlColumnAlias sqlColumnAlias, bool descending)
 		{
 			SqlColumnAliasReference sqlColumnAliasReference = new SqlColumnAliasReference(sqlColumnAlias);
 			return AddSqlOrderByItem(sqlColumnAliasReference, descending);
 		}
 
-		public SqlOrderByItem AddSqlOrderByItem(SqlColumnAlias sqlColumnAlias)
-		{
-			return AddSqlOrderByItem(sqlColumnAlias, false);
-		}
+		public SqlOrderByItem AddSqlOrderByItem(SqlColumnAlias sqlColumnAlias) => AddSqlOrderByItem(sqlColumnAlias, false);
 
-		public SqlOrderByItem AddSqlOrderByItem(IColumnMap columnMap, bool descending)
+	    public SqlOrderByItem AddSqlOrderByItem(IColumnMap columnMap, bool descending)
 		{
 			SqlColumnAlias sqlColumnAlias = this.SqlStatement.GetSqlColumnAlias(columnMap);
 			SqlColumnAliasReference sqlColumnAliasReference = new SqlColumnAliasReference(sqlColumnAlias);
 			return AddSqlOrderByItem(sqlColumnAliasReference, descending);
 		}
 
-		public SqlOrderByItem AddSqlOrderByItem(IColumnMap columnMap)
-		{
-			return AddSqlOrderByItem(columnMap, false);
-		}
+		public SqlOrderByItem AddSqlOrderByItem(IColumnMap columnMap) => AddSqlOrderByItem(columnMap, false);
 
-		public override void Accept(ISqlVisitor visitor)
+	    public override void Accept(ISqlVisitor visitor)
 		{
 			visitor.Visiting(this);	
 			foreach (SqlOrderByItem sqlOrderByItem in this.sqlOrderByItems)

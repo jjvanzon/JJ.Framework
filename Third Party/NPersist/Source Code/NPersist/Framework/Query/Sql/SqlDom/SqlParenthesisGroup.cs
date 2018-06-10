@@ -29,14 +29,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		private SqlExpression expression;
 		public SqlExpression Expression
 		{
-			get
-			{
-				return this.expression;
-			}
-			set
-			{
-				this.expression = value;
-			}
+			get => this.expression;
+		    set => this.expression = value;
 		}
 		#endregion
 
@@ -44,14 +38,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		private bool isNegative;
 		public bool IsNegative
 		{
-			get
-			{
-				return this.isNegative;
-			}
-			set
-			{
-				this.isNegative = value;
-			}
+			get => this.isNegative;
+		    set => this.isNegative = value;
 		}
 		#endregion
 

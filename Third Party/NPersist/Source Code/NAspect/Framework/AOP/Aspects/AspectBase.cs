@@ -47,8 +47,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </summary>
         public string Name
         {
-            get { return name; }
-            set { name = value; }
+            get => name;
+            set => name = value;
         }
 
 
@@ -57,8 +57,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </summary>
         public IList Mixins
         {
-            get { return mixins; }
-            set { mixins = value; }
+            get => mixins;
+            set => mixins = value;
         }
 
         /// <summary>
@@ -66,8 +66,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </summary>
         public IList TypeExtenders
         {
-            get { return typeExtenders; }
-            set { typeExtenders = value; }
+            get => typeExtenders;
+            set => typeExtenders = value;
         }
 
         /// <summary>
@@ -77,8 +77,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </summary>
         public IList Pointcuts
         {
-            get { return pointcuts; }
-            set { pointcuts = value; }
+            get => pointcuts;
+            set => pointcuts = value;
         }
 
         /// <summary>
@@ -86,8 +86,8 @@ namespace Puzzle.NAspect.Framework.Aop
         /// </summary>
         public IList Targets 
         {
-            get { return targets; }
-            set { targets = value; }
+            get => targets;
+            set => targets = value;
         }
 
         /// <summary>

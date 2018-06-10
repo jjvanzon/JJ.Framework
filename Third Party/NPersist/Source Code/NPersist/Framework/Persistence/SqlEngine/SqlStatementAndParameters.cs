@@ -33,16 +33,16 @@ namespace Puzzle.NPersist.Framework.Persistence
 		
 		public string SqlStatement
 		{
-			get { return this.sqlStatement; }
-			set { this.sqlStatement = value; }
+			get => this.sqlStatement;
+		    set => this.sqlStatement = value;
 		}
 		
 		private IList dbParameters;
 		
 		public IList DbParameters
 		{
-			get { return this.dbParameters; }
-			set { this.dbParameters = value; }
+			get => this.dbParameters;
+		    set => this.dbParameters = value;
 		}
 
 	}

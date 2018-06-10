@@ -37,14 +37,8 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 		private string propertyName;
 		public virtual string PropertyName
 		{
-			get
-			{
-				return propertyName;
-			}
-			set
-			{
-				propertyName = value;
-			}
+			get => propertyName;
+		    set => propertyName = value;
 		}
 		#endregion
 
@@ -52,14 +46,8 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 		private IInterceptable interceptable;
 		public virtual IInterceptable Interceptable
 		{
-			get
-			{
-				return interceptable;
-			}
-			set
-			{
-				interceptable = value;
-			}
+			get => interceptable;
+		    set => interceptable = value;
 		}
 		#endregion
 
@@ -67,14 +55,8 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 		private bool muteNotify;
 		public virtual bool MuteNotify
 		{
-			get
-			{
-				return muteNotify;
-			}
-			set
-			{
-				muteNotify = value;
-			}
+			get => muteNotify;
+		    set => muteNotify = value;
 		}
 		#endregion
 
@@ -82,14 +64,8 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 		private IList list;
 		public virtual IList List
 		{
-			get
-			{
-				return list;
-			}
-			set
-			{
-				list = value;
-			}
+			get => list;
+		    set => list = value;
 		}
 		#endregion
 
@@ -97,14 +73,8 @@ namespace Puzzle.NPersist.Framework.BaseClasses
 		private IList oldList;
 		public virtual IList OldList
 		{
-			get
-			{
-				return oldList;
-			}
-			set
-			{
-				oldList = value;
-			}
+			get => oldList;
+		    set => oldList = value;
 		}
 		#endregion
 

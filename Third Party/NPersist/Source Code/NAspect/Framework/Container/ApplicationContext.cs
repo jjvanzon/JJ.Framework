@@ -90,10 +90,7 @@ namespace Puzzle.NAspect.Framework
             }
         }
 
-        public static IEngine Configure(string fileName)
-        {
-            return Configure(fileName, false);
-        }
+        public static IEngine Configure(string fileName) => Configure(fileName, false);
 
         public static IEngine Configure(string fileName, bool useTypePlaceHolders)
         {

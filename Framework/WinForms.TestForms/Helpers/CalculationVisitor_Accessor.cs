@@ -8,14 +8,8 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 	{
 		private readonly Accessor _accessor;
 
-		public CalculationVisitor_Accessor()
-		{
-			_accessor = new Accessor("JJ.Framework.VectorGraphics.Visitors.CalculationVisitor, JJ.Framework.VectorGraphics");
-		}
+		public CalculationVisitor_Accessor() => _accessor = new Accessor("JJ.Framework.VectorGraphics.Visitors.CalculationVisitor, JJ.Framework.VectorGraphics");
 
-		public IList<Element> Execute(Diagram diagram)
-		{
-			return (IList<Element>)_accessor.InvokeMethod("Execute", diagram);
-		}
+	    public IList<Element> Execute(Diagram diagram) => (IList<Element>)_accessor.InvokeMethod("Execute", diagram);
 	}
 }

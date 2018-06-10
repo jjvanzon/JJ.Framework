@@ -34,8 +34,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 		public override IDbTransaction DbTransaction
 		{
-			get { return m_DbTransaction; }
-			set { m_DbTransaction = value; }
+			get => m_DbTransaction;
+		    set => m_DbTransaction = value;
 		}
 
         public override void Commit()
@@ -68,17 +68,11 @@ namespace Puzzle.NPersist.Framework.Persistence
 			this.Context.EventManager.OnCommittedTransaction(this, e2);
 		}
 
-        public override IDbConnection Connection
-		{
-			get { return m_DbTransaction.Connection; }
-		}
+        public override IDbConnection Connection => m_DbTransaction.Connection;
 
-        public override IsolationLevel IsolationLevel
-		{
-			get { return m_DbTransaction.IsolationLevel; }
-		}
+	    public override IsolationLevel IsolationLevel => m_DbTransaction.IsolationLevel;
 
-        public override void Rollback()
+	    public override void Rollback()
 		{
             base.Rollback();
 
@@ -110,8 +104,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 
         public override IDataSource DataSource
 		{
-			get { return m_DataSource; }
-			set { m_DataSource = value; }
-		}
+			get => m_DataSource;
+            set => m_DataSource = value;
+        }
 	}
 }

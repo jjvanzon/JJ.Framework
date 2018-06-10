@@ -114,62 +114,50 @@ namespace Puzzle.NPersist.Framework.NPath.Sql
 
 		#region Public Properties
 
-        public bool HasOrExpression
-        {
-            get
-            {
-                return orExpressionCount > 0;
-            }
-        }
-		
-		public string Sql
-		{
-			get { return this.sql; }
-		}
+        public bool HasOrExpression => orExpressionCount > 0;
 
-		public SqlSelectStatement Select
+	    public string Sql => this.sql;
+
+	    public SqlSelectStatement Select
 		{
-			get { return this.select; }
-			set { this.select = value; }
-		}
+			get => this.select;
+	        set => this.select = value;
+	    }
 
 		public INPathEngine NPathEngine
 		{
-			get { return this.npathEngine; }
-			set { this.npathEngine = value; }
+			get => this.npathEngine;
+		    set => this.npathEngine = value;
 		}
 
 		public IClassMap RootClassMap
 		{
-			get { return this.rootClassMap; }
-			set { this.rootClassMap = value; }
+			get => this.rootClassMap;
+		    set => this.rootClassMap = value;
 		}
 
 		public Hashtable PropertyColumnMap
 		{
-			get { return this.propertyColumnMap; }
-			set { this.propertyColumnMap = value; }
+			get => this.propertyColumnMap;
+		    set => this.propertyColumnMap = value;
 		}
 		public Hashtable TableAliases
 		{
-			get { return this.tableAliases; }
-			set { this.tableAliases = value; }
+			get => this.tableAliases;
+		    set => this.tableAliases = value;
 		}
 
 		public Hashtable ColumnAliases
 		{
-			get { return this.columnAliases; }
-			set { this.columnAliases = value; }
+			get => this.columnAliases;
+		    set => this.columnAliases = value;
 		}
 
 		//private IList resultParameters = new ArrayList() ;
 		
-		public IList ResultParameters
-		{
-			get { return this.NPathEngine.ResultParameters;  }
-		}
+		public IList ResultParameters => this.NPathEngine.ResultParameters;
 
-		#endregion
+	    #endregion
 
 		#region Public Methods
 				
@@ -1439,13 +1427,9 @@ namespace Puzzle.NPersist.Framework.NPath.Sql
 			return expression;
 		}
 
-		private SqlNullValue EvalNullValue()
-		{
-			return new SqlNullValue();
-		}
+		private SqlNullValue EvalNullValue() => new SqlNullValue();
 
-		
-		private SqlExpression EvalStringValue(NPathStringValue value)
+	    private SqlExpression EvalStringValue(NPathStringValue value)
 		{
 			SqlStringLiteral stringLiteral = new SqlStringLiteral(value.Value) ;
 			return stringLiteral;
@@ -1646,12 +1630,6 @@ namespace Puzzle.NPersist.Framework.NPath.Sql
 
 		#endregion
 
-		public bool IsSubquery
-		{
-			get
-			{
-				return this.parentQuery != null;
-			}
-		}
+		public bool IsSubquery => this.parentQuery != null;
 	}
 }

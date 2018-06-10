@@ -27,12 +27,9 @@ namespace Puzzle.NPersist.Framework.Aop
 		private Engine aopEngine;
 		private IContext context;
 
-		public AopProxyFactory()
-		{
-			aopEngine = new Engine("Puzzle.NPersist.Framework");			
-		}
+		public AopProxyFactory() => aopEngine = new Engine("Puzzle.NPersist.Framework");
 
-		public Puzzle.NPersist.Framework.Interfaces.IInterceptableList CreateListProxy(Type baseType, Puzzle.NPersist.Framework.Persistence.IObjectFactory objectFactory, params object[] ctorArgs)
+	    public Puzzle.NPersist.Framework.Interfaces.IInterceptableList CreateListProxy(Type baseType, Puzzle.NPersist.Framework.Persistence.IObjectFactory objectFactory, params object[] ctorArgs)
 		{
 		//	return Puzzle.NPersist.Framework.Proxy.ListProxyFactory.CreateProxy(baseType,objectFactory,ctorArgs) ;
 
@@ -70,12 +67,9 @@ namespace Puzzle.NPersist.Framework.Aop
 			return context.ObjectFactory.CreateInstance(proxyType,proxyArgs);
 		}
 
-		public Type GetEntityProxyType(Type baseType, Puzzle.NPersist.Framework.Mapping.IClassMap classMap)
-		{
-			return aopEngine.CreateProxyType(baseType);
-		}
+		public Type GetEntityProxyType(Type baseType, Puzzle.NPersist.Framework.Mapping.IClassMap classMap) => aopEngine.CreateProxyType(baseType);
 
-		public IContext Context
+	    public IContext Context
 		{
 			get { return context; }
 			set 

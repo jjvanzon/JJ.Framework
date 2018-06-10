@@ -104,61 +104,32 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return null;
 		}
 
-        public virtual void TouchTable(ITableMap tableMap, int exceptionLimit)
-        {
-            GetSqlEngine(tableMap.SourceMap.SourceType).TouchTable(tableMap, exceptionLimit);
-        }
+        public virtual void TouchTable(ITableMap tableMap, int exceptionLimit) => GetSqlEngine(tableMap.SourceMap.SourceType).TouchTable(tableMap, exceptionLimit);
 
+	    public virtual void LoadObject(ref object obj) => GetSqlEngine(GetSourceType(obj)).LoadObject(ref obj);
 
-		public virtual void LoadObject(ref object obj)
-		{
-			GetSqlEngine(GetSourceType(obj)).LoadObject(ref obj);
-		}
+	    public virtual void LoadObjectByKey(ref object obj, string keyPropertyName, object keyValue) => GetSqlEngine(GetSourceType(obj)).LoadObjectByKey(ref obj, keyPropertyName, keyValue);
 
-		public virtual void LoadObjectByKey(ref object obj, string keyPropertyName, object keyValue)
-		{
-			GetSqlEngine(GetSourceType(obj)).LoadObjectByKey(ref obj, keyPropertyName, keyValue);
-		}
+	    public virtual void InsertObject(object obj, IList stillDirty) => GetSqlEngine(GetSourceType(obj)).InsertObject(obj, stillDirty);
 
-		public virtual void InsertObject(object obj, IList stillDirty)
-		{
-			GetSqlEngine(GetSourceType(obj)).InsertObject(obj, stillDirty);
-		}
+	    public virtual void RemoveObject(object obj) => GetSqlEngine(GetSourceType(obj)).RemoveObject(obj);
 
-		public virtual void RemoveObject(object obj)
-		{
-			GetSqlEngine(GetSourceType(obj)).RemoveObject(obj);
-		}
+	    public IList GetObjectsOfClassWithUniReferencesToObject(Type type, object obj) => GetSqlEngine(GetSourceType(obj)).GetObjectsOfClassWithUniReferencesToObject(type, obj);
 
-		public IList GetObjectsOfClassWithUniReferencesToObject(Type type, object obj)
-		{
-			return GetSqlEngine(GetSourceType(obj)).GetObjectsOfClassWithUniReferencesToObject(type, obj);
-		}
+	    public virtual void UpdateObject(object obj, IList stillDirty) => GetSqlEngine(GetSourceType(obj)).UpdateObject(obj, stillDirty);
 
-		public virtual void UpdateObject(object obj, IList stillDirty)
-		{
-			GetSqlEngine(GetSourceType(obj)).UpdateObject(obj, stillDirty);
-		}
+	    public virtual void LoadProperty(object obj, string propertyName) => GetSqlEngine(GetSourceType(obj, propertyName)).LoadProperty(obj, propertyName);
 
-		public virtual void LoadProperty(object obj, string propertyName)
-		{
-			GetSqlEngine(GetSourceType(obj, propertyName)).LoadProperty(obj, propertyName);
-		}
-
-
-		#region Query
+	    #region Query
 
 		//		public IList LoadObjects(IQuery query, Type type, IList parameters, RefreshBehaviorType refreshBehavior)
 		//		{
 		//			return GetSqlEngine(GetSourceType(type)).LoadObjects(query, type, parameters, refreshBehavior);
 		//		}
 
-        public virtual IList LoadObjects(IQuery query, IList listToFill)
-		{
-			return GetSqlEngine(GetSourceType(query.PrimaryType)).LoadObjects(query, listToFill);
-		}
+        public virtual IList LoadObjects(IQuery query, IList listToFill) => GetSqlEngine(GetSourceType(query.PrimaryType)).LoadObjects(query, listToFill);
 
-        public virtual IList LoadObjects(Type type, RefreshBehaviorType refreshBehavior, IList listToFill)
+	    public virtual IList LoadObjects(Type type, RefreshBehaviorType refreshBehavior, IList listToFill)
         {
             if (type == null)
                 throw new ArgumentNullException("type");
@@ -168,17 +139,11 @@ namespace Puzzle.NPersist.Framework.Persistence
             return LoadObjects(new NPathQuery(npath, type, null, refreshBehavior), listToFill);
         }
 
-        public virtual DataTable LoadDataTable(IQuery query)
-		{
-			return GetSqlEngine(GetSourceType(query.PrimaryType)).LoadDataTable(query);
-		}
+        public virtual DataTable LoadDataTable(IQuery query) => GetSqlEngine(GetSourceType(query.PrimaryType)).LoadDataTable(query);
 
-        public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior, IList listToFill)
-		{
-			return GetSqlEngine(GetSourceType(type)).GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, parameters, refreshBehavior, listToFill);			
-		}
+	    public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior, IList listToFill) => GetSqlEngine(GetSourceType(type)).GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, parameters, refreshBehavior, listToFill);
 
-		#endregion
+	    #endregion
 
 		protected virtual ISqlEngine GetSqlEngineMSSqlServer()
 		{
@@ -220,21 +185,10 @@ namespace Puzzle.NPersist.Framework.Persistence
 			return m_SqlEngineOther;
 		}
 
-		protected virtual SourceType GetSourceType(object obj)
-		{
-			return this.Context.DomainMap.MustGetClassMap(obj.GetType()).GetSourceMap().SourceType;
-		}
+		protected virtual SourceType GetSourceType(object obj) => this.Context.DomainMap.MustGetClassMap(obj.GetType()).GetSourceMap().SourceType;
 
-		protected virtual SourceType GetSourceType(Type type)
-		{
-			return this.Context.DomainMap.MustGetClassMap(type).GetSourceMap().SourceType;
-		}
+	    protected virtual SourceType GetSourceType(Type type) => this.Context.DomainMap.MustGetClassMap(type).GetSourceMap().SourceType;
 
-		protected virtual SourceType GetSourceType(object obj, string propertyName)
-		{
-			return this.Context.DomainMap.MustGetClassMap(obj.GetType()).MustGetPropertyMap(propertyName).GetSourceMap().SourceType;
-		}
-
-
+	    protected virtual SourceType GetSourceType(object obj, string propertyName) => this.Context.DomainMap.MustGetClassMap(obj.GetType()).MustGetPropertyMap(propertyName).GetSourceMap().SourceType;
 	}
 }

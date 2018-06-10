@@ -44,20 +44,20 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 	
 		public ITableMap TableMap
 		{
-			get { return this.tableMap; }
-			set { this.tableMap = value; }
+			get => this.tableMap;
+		    set => this.tableMap = value;
 		}
 
-		public SqlDatabase SqlDatabase { get { return this.Parent as SqlDatabase; } }
+		public SqlDatabase SqlDatabase => this.Parent as SqlDatabase;
 
-		#region Property  SqlColumns
+	    #region Property  SqlColumns
 		
 		private IList sqlColumns = new ArrayList() ;
 		
 		public IList SqlColumns
 		{
-			get { return this.sqlColumns; }
-			set { this.sqlColumns = value; }
+			get => this.sqlColumns;
+		    set => this.sqlColumns = value;
 		}
 		
 		#endregion

@@ -26,8 +26,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public ISqlNode Parent
 		{
-			get { return this.parent; }
-			set { this.parent = value; }
+			get => this.parent;
+		    set => this.parent = value;
 		}
 		
 		#endregion

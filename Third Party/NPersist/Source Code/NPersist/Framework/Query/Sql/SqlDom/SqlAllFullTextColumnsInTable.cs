@@ -18,19 +18,16 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 	/// </summary>
 	public class SqlAllFullTextColumnsInTable : SqlExpression
 	{
-		public SqlAllFullTextColumnsInTable(SqlTableAliasReference sqlTableAliasReference)
-		{
-			this.sqlTableAliasReference = sqlTableAliasReference;
-		}
+		public SqlAllFullTextColumnsInTable(SqlTableAliasReference sqlTableAliasReference) => this.sqlTableAliasReference = sqlTableAliasReference;
 
-		#region Property  SqlTableAliasReference
+	    #region Property  SqlTableAliasReference
 		
 		private SqlTableAliasReference sqlTableAliasReference;
 		
 		public SqlTableAliasReference SqlTableAliasReference
 		{
-			get { return this.sqlTableAliasReference; }
-			set { this.sqlTableAliasReference = value; }
+			get => this.sqlTableAliasReference;
+		    set => this.sqlTableAliasReference = value;
 		}
 		
 		#endregion

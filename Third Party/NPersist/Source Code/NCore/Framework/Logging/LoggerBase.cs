@@ -257,34 +257,19 @@ namespace Puzzle.NCore.Framework.Logging
 
         public virtual bool IsVerboseEnabled
         {
-            get { return isVerboseEnabled; }
-            set { isVerboseEnabled = value; }
+            get => isVerboseEnabled;
+            set => isVerboseEnabled = value;
         }
 
-        public virtual bool IsDebugEnabled
-        {
-            get { return isDebugEnabled; }
-        }
+        public virtual bool IsDebugEnabled => isDebugEnabled;
 
-        public virtual bool IsInfoEnabled
-        {
-            get { return isInfoEnabled; }
-        }
+        public virtual bool IsInfoEnabled => isInfoEnabled;
 
-        public virtual bool IsWarnEnabled
-        {
-            get { return isWarnEnabled; }
-        }
+        public virtual bool IsWarnEnabled => isWarnEnabled;
 
-        public virtual bool IsErrorEnabled
-        {
-            get { return isErrorEnabled; }
-        }
+        public virtual bool IsErrorEnabled => isErrorEnabled;
 
-        public virtual bool IsFatalEnabled
-        {
-            get { return isFatalEnabled; }
-        }
+        public virtual bool IsFatalEnabled => isFatalEnabled;
 
         #endregion		
     }

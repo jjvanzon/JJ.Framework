@@ -42,13 +42,13 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 
 		public IColumnMap ColumnMap
 		{
-			get { return this.columnMap; }
-			set { this.columnMap = value; }
+			get => this.columnMap;
+		    set => this.columnMap = value;
 		}
 
-		public SqlTable SqlTable { get { return this.Parent as SqlTable; } }
+		public SqlTable SqlTable => this.Parent as SqlTable;
 
-		public string Name
+	    public string Name
 		{
 			get 
 			{ 

@@ -52,8 +52,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public object Limit
 		{
-			get { return this.limit; }
-			set { this.limit = value; }
+			get => this.limit;
+		    set => this.limit = value;
 		}
 		
 		#endregion
@@ -64,8 +64,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public object Actual
 		{
-			get { return this.actual; }
-			set { this.actual = value; }
+			get => this.actual;
+		    set => this.actual = value;
 		}
 		
 		#endregion
@@ -76,8 +76,8 @@ namespace Puzzle.NPersist.Framework.Exceptions
 		
 		public object Value
 		{
-			get { return this.value; }
-			set { this.value = value; }
+			get => this.value;
+		    set => this.value = value;
 		}
 		
 		#endregion

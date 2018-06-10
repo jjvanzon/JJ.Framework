@@ -55,8 +55,8 @@ namespace Puzzle.NAspect.Framework.Aop
         private bool exclude;
         public virtual bool Exclude
         {
-            get { return exclude; }
-            set { exclude = value; }
+            get => exclude;
+            set => exclude = value;
         }
 
         private string signature = "";
@@ -69,14 +69,14 @@ namespace Puzzle.NAspect.Framework.Aop
                         return signatureType.FullName;
                 return signature;
             }
-            set { signature = value; }
+            set => signature = value;
         }
 
         private PointcutTargetType targetType = PointcutTargetType.Signature;
         public virtual PointcutTargetType TargetType
         {
-            get { return targetType; }
-            set { targetType = value; }
+            get => targetType;
+            set => targetType = value;
         }
 
         private Type signatureType = null;

@@ -18,8 +18,8 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public virtual double Value
 		{
-			get { return value; }
-			set { this.value = value; }
+			get => value;
+		    set => this.value = value;
 		}
 
 		#endregion
@@ -30,8 +30,8 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public virtual bool IsNegative
 		{
-			get { return isNegative; }
-			set { isNegative = value; }
+			get => isNegative;
+		    set => isNegative = value;
 		}
 
 		#endregion

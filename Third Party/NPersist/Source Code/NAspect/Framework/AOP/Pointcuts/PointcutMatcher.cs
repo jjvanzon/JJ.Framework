@@ -34,10 +34,7 @@ namespace Puzzle.NAspect.Framework.Aop
         /// <param name="method">The method to match</param>
         /// <param name="aspects">Untyped list of <c>IAspects</c></param>
         /// <returns></returns>
-        public bool MethodShouldBeProxied(MethodBase method, IList aspects)
-        {
-            return MethodShouldBeProxied(method, aspects, null);
-        }
+        public bool MethodShouldBeProxied(MethodBase method, IList aspects) => MethodShouldBeProxied(method, aspects, null);
 
         public bool MethodShouldBeProxied(MethodBase method, IList aspects, Type baseType)
         {

@@ -11,23 +11,14 @@ namespace Puzzle.NPersist.Framework.NPath
 	
 	public class NPersistObjectQueryEngineHelper : IObjectQueryEngineHelper
 	{
-		public NPersistObjectQueryEngineHelper (IContext context)
-		{
-			this.Context = context;
-		}
+		public NPersistObjectQueryEngineHelper (IContext context) => this.Context = context;
 
-		#region Public Property Context
+	    #region Public Property Context
 		private IContext context;
 		public IContext Context
 		{
-			get
-			{
-				return this.context;
-			}
-			set
-			{
-				this.context = value;
-			}
+			get => this.context;
+		    set => this.context = value;
 		}
 		#endregion
 
@@ -82,12 +73,9 @@ namespace Puzzle.NPersist.Framework.NPath
 			query.Select.SelectFields = newSelectFieldList;
 		}
 
-		public bool GetNullValueStatus(object target, string property)
-		{
-			return Context.GetNullValueStatus(target,property);
-		}
+		public bool GetNullValueStatus(object target, string property) => Context.GetNullValueStatus(target,property);
 
-		public object EvalParameter(object item, NPathParameter parameter)
+	    public object EvalParameter(object item, NPathParameter parameter)
 		{
 			IQueryParameter iq = (IQueryParameter)parameter;
 			return iq.Value;

@@ -46,17 +46,11 @@ namespace Puzzle.NPersist.Framework.Persistence
 			;
 		}
 
-		public virtual void NotifyCommitted(object obj)
-		{
-			ClearActionsForMaster(obj);
-		}
+		public virtual void NotifyCommitted(object obj) => ClearActionsForMaster(obj);
 
-		public virtual void NotifyPropertyGet(object obj, string propertyName)
-		{
-			ExecuteInverseActions(obj, propertyName);
-		}
+	    public virtual void NotifyPropertyGet(object obj, string propertyName) => ExecuteInverseActions(obj, propertyName);
 
-		private void ExecuteInverseActions(object obj, string propertyName)
+	    private void ExecuteInverseActions(object obj, string propertyName)
 		{
 			ArrayList actions = GetActionsForProperty(obj, propertyName);
 			if (actions != null)
@@ -432,17 +426,11 @@ namespace Puzzle.NPersist.Framework.Persistence
 		}
 
 
-		public virtual void NotifyPropertySet(object obj, string propertyName, object value)
-		{
-			DoNotifyPropertySet(obj, propertyName, value, null, false);
-		}
+		public virtual void NotifyPropertySet(object obj, string propertyName, object value) => DoNotifyPropertySet(obj, propertyName, value, null, false);
 
-		public virtual void NotifyPropertySet(object obj, string propertyName, object value, object oldValue)
-		{
-			DoNotifyPropertySet(obj, propertyName, value, oldValue, true);
-		}
+	    public virtual void NotifyPropertySet(object obj, string propertyName, object value, object oldValue) => DoNotifyPropertySet(obj, propertyName, value, oldValue, true);
 
-		//[DebuggerStepThrough()]
+	    //[DebuggerStepThrough()]
 		protected virtual void DoNotifyPropertySet(object obj, string propertyName, object value, object oldValue, bool hasOldValue)
 		{
             
@@ -724,12 +712,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			masterActions.Add(action);
 		}
 
-		protected virtual ArrayList GetActionsForProperty(object obj, string propertyName)
-		{
-			return GetActionsForProperty(obj, propertyName, false);
-		}
+		protected virtual ArrayList GetActionsForProperty(object obj, string propertyName) => GetActionsForProperty(obj, propertyName, false);
 
-		protected virtual ArrayList GetActionsForProperty(object obj, string propertyName, bool keepMasters)
+	    protected virtual ArrayList GetActionsForProperty(object obj, string propertyName, bool keepMasters)
 		{
 			if (!(inverseActions.ContainsKey(obj)))
 				return null;

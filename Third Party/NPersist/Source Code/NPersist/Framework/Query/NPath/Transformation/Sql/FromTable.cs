@@ -35,8 +35,8 @@ namespace Puzzle.NPersist.Framework.NPath.Sql
 		
 		public SqlTableAlias Alias
 		{
-			get { return this.alias; }
-			set { this.alias = value; }
+			get => this.alias;
+		    set => this.alias = value;
 		}
 		
 		#endregion
@@ -47,8 +47,8 @@ namespace Puzzle.NPersist.Framework.NPath.Sql
 		
 		public SqlTableAlias LinksToAlias
 		{
-			get { return this.linksToAlias; }
-			set { this.linksToAlias = value; }
+			get => this.linksToAlias;
+		    set => this.linksToAlias = value;
 		}
 		
 		#endregion
@@ -59,8 +59,8 @@ namespace Puzzle.NPersist.Framework.NPath.Sql
 		
 		public IList Columns
 		{
-			get { return this.columns; }
-			set { this.columns = value; }
+			get => this.columns;
+		    set => this.columns = value;
 		}
 		
 		#endregion
@@ -71,8 +71,8 @@ namespace Puzzle.NPersist.Framework.NPath.Sql
 		
 		public IList LinksToColumns
 		{
-			get { return this.linksToColumns; }
-			set { this.linksToColumns = value; }
+			get => this.linksToColumns;
+		    set => this.linksToColumns = value;
 		}
 		
 		#endregion

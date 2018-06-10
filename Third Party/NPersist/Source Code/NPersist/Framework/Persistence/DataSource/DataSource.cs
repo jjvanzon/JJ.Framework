@@ -30,28 +30,25 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 		public virtual IDataSourceManager DataSourceManager
 		{
-			get { return m_DataSourceManager; }
-			set { m_DataSourceManager = value; }
+			get => m_DataSourceManager;
+		    set => m_DataSourceManager = value;
 		}
 
 		public virtual string Name
 		{
-			get { return m_Name; }
-			set { m_Name = value; }
+			get => m_Name;
+		    set => m_Name = value;
 		}
 
 		public virtual ISourceMap SourceMap
 		{
-			get { return m_SourceMap; }
-			set { m_SourceMap = value; }
+			get => m_SourceMap;
+		    set => m_SourceMap = value;
 		}
 
-        public virtual bool HasConnection()
-        {
-            return m_Connection != null;
-        }
+        public virtual bool HasConnection() => m_Connection != null;
 
-        public virtual bool HasOpenConnection()
+	    public virtual bool HasOpenConnection()
         {
             if (m_Connection == null)
                 return false;
@@ -82,8 +79,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 		public virtual bool KeepConnectionOpen
 		{
-			get { return m_KeepConnectionOpen; }
-			set
+			get => m_KeepConnectionOpen;
+		    set
 			{
 				m_KeepConnectionOpen = value;
 				if (!(m_KeepConnectionOpen))

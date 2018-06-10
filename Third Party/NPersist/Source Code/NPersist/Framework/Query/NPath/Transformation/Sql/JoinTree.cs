@@ -18,30 +18,24 @@ namespace Puzzle.NPersist.Framework.NPath.Sql
 	/// </summary>
 	public class JoinTree
 	{
-		public JoinTree(PropertyPathTraverser propertyPathTraverser)
-		{
-			this.propertyPathTraverser = propertyPathTraverser;
-		}
+		public JoinTree(PropertyPathTraverser propertyPathTraverser) => this.propertyPathTraverser = propertyPathTraverser;
 
-		private ArrayList tableJoins = new ArrayList();
+	    private ArrayList tableJoins = new ArrayList();
 		private ITableMap tableMap = null;
 		private PropertyPathTraverser propertyPathTraverser = null;
 
-		public PropertyPathTraverser PropertyPathTraverser
-		{
-			get { return this.propertyPathTraverser; }
-		}
+		public PropertyPathTraverser PropertyPathTraverser => this.propertyPathTraverser;
 
-		public ArrayList TableJoins
+	    public ArrayList TableJoins
 		{
-			get { return this.tableJoins; }
-			set { this.tableJoins = value; }
-		}
+			get => this.tableJoins;
+	        set => this.tableJoins = value;
+	    }
 
 		public ITableMap TableMap
 		{
-			get { return this.tableMap; }
-			set { this.tableMap = value; }
+			get => this.tableMap;
+		    set => this.tableMap = value;
 		}
 
 		public TableJoin GetTableJoinForPropertyPath(string propertyPath)
@@ -70,12 +64,9 @@ namespace Puzzle.NPersist.Framework.NPath.Sql
 		}
 
 
-		public void SetupJoin(IPropertyMap propertyMap, IPropertyMap parentMap, string propertyPath)
-		{
-			SetupJoin(propertyMap, parentMap, propertyPath, JoinType.InnerJoin);
-		}
+		public void SetupJoin(IPropertyMap propertyMap, IPropertyMap parentMap, string propertyPath) => SetupJoin(propertyMap, parentMap, propertyPath, JoinType.InnerJoin);
 
-		public void SetupJoin(IPropertyMap propertyMap, IPropertyMap parentMap, string propertyPath, JoinType joinType)
+	    public void SetupJoin(IPropertyMap propertyMap, IPropertyMap parentMap, string propertyPath, JoinType joinType)
 		{
 			TableJoin tableJoin = GetTableJoinForPropertyPath(propertyPath);
 			if (tableJoin == null)

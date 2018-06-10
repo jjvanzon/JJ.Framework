@@ -19,17 +19,11 @@ namespace Puzzle.NPersist.Framework.Mapping
 {
 	public class SourceMap : MapBase, ISourceMap
 	{				
-		public override void Accept(IMapVisitor visitor)
-		{
-			visitor.Visit(this);
-		}
-		
-		public override IMap GetParent()
-		{
-			return m_DomainMap; 
-		}
+		public override void Accept(IMapVisitor visitor) => visitor.Visit(this);
 
-		#region Private Member Variables
+	    public override IMap GetParent() => m_DomainMap;
+
+	    #region Private Member Variables
 
 		private PersistenceType m_PersistenceType = PersistenceType.Default;
 		private bool m_Compute = false;
@@ -64,12 +58,9 @@ namespace Puzzle.NPersist.Framework.Mapping
 		{
 		}
 
-		public SourceMap(string name) : base()
-		{
-			m_name = name;
-		}
+		public SourceMap(string name) : base() => m_name = name;
 
-		#endregion
+	    #endregion
 
 		#region General
 
@@ -77,8 +68,8 @@ namespace Puzzle.NPersist.Framework.Mapping
 				
 		public PersistenceType PersistenceType
 		{
-			get { return this.m_PersistenceType; }
-			set { this.m_PersistenceType = value; }
+			get => this.m_PersistenceType;
+		    set => this.m_PersistenceType = value;
 		}
 		
 		#endregion
@@ -87,8 +78,8 @@ namespace Puzzle.NPersist.Framework.Mapping
 				
 		public bool Compute
 		{
-			get { return this.m_Compute; }
-			set { this.m_Compute = value; }
+			get => this.m_Compute;
+		    set => this.m_Compute = value;
 		}
 		
 		#endregion
@@ -100,8 +91,8 @@ namespace Puzzle.NPersist.Framework.Mapping
 		[XmlIgnore()]
 		public virtual IDomainMap DomainMap
 		{
-			get { return m_DomainMap; }
-			set
+			get => m_DomainMap;
+		    set
 			{
 				if (m_DomainMap != null)
 				{
@@ -127,8 +118,8 @@ namespace Puzzle.NPersist.Framework.Mapping
 		[XmlArrayItem(typeof (TableMap))]
 		public virtual ArrayList TableMaps
 		{
-			get { return m_TableMaps; }
-			set { m_TableMaps = value; }
+			get => m_TableMaps;
+		    set => m_TableMaps = value;
 		}
 
         public ITableMap MustGetTableMap(string findName)
@@ -164,50 +155,50 @@ namespace Puzzle.NPersist.Framework.Mapping
 
 		public override string Name
 		{
-			get { return m_name; }
-			set { m_name = value; }
+			get => m_name;
+		    set => m_name = value;
 		}
 
 		public virtual SourceType SourceType
 		{
-			get { return m_SourceType; }
-			set { m_SourceType = value; }
+			get => m_SourceType;
+		    set => m_SourceType = value;
 		}
 
 		public virtual ProviderType ProviderType
 		{
-			get { return m_ProviderType; }
-			set { m_ProviderType = value; }
+			get => m_ProviderType;
+		    set => m_ProviderType = value;
 		}
 
 		public virtual string ConnectionString
 		{
-			get { return m_ConnectionString; }
-			set { m_ConnectionString = value; }
+			get => m_ConnectionString;
+		    set => m_ConnectionString = value;
 		}
 
 		public virtual string Schema
 		{
-			get { return m_Schema; }
-			set { m_Schema = value; }
+			get => m_Schema;
+		    set => m_Schema = value;
 		}
 
 		public virtual string Catalog
 		{
-			get { return m_Catalog; }
-			set { m_Catalog = value; }
+			get => m_Catalog;
+		    set => m_Catalog = value;
 		}
 
 		public virtual string ProviderAssemblyPath
 		{
-			get { return m_ProviderAssemblyPath; }
-			set { m_ProviderAssemblyPath = value; }
+			get => m_ProviderAssemblyPath;
+		    set => m_ProviderAssemblyPath = value;
 		}
 
 		public virtual string ProviderConnectionTypeName
 		{
-			get { return m_ProviderConnectionTypeName; }
-			set { m_ProviderConnectionTypeName = value; }
+			get => m_ProviderConnectionTypeName;
+		    set => m_ProviderConnectionTypeName = value;
 		}
 
 		public virtual void UpdateName(string newName)
@@ -246,8 +237,8 @@ namespace Puzzle.NPersist.Framework.Mapping
 
         public string LockTable 
         {
-            get { return m_LockTable; }
-            set { m_LockTable = value; }
+            get => m_LockTable;
+            set => m_LockTable = value;
         }
 
         public ITableMap MustGetLockTable()
@@ -308,14 +299,14 @@ namespace Puzzle.NPersist.Framework.Mapping
 		
 		public virtual string DocPath
 		{
-			get { return m_DocPath; }
-			set { m_DocPath = value; }
+			get => m_DocPath;
+		    set => m_DocPath = value;
 		}
 		
 		public virtual string DocRoot
 		{
-			get { return m_DocRoot; }
-			set { m_DocRoot = value; }
+			get => m_DocRoot;
+		    set => m_DocRoot = value;
 		}
 				
 		public virtual string GetDocRoot()
@@ -328,8 +319,8 @@ namespace Puzzle.NPersist.Framework.Mapping
 
 		public virtual string DocEncoding
 		{
-			get { return m_DocEncoding; }
-			set { m_DocEncoding = value; }
+			get => m_DocEncoding;
+		    set => m_DocEncoding = value;
 		}
 		
 		public virtual string GetDocEncoding()
@@ -346,14 +337,14 @@ namespace Puzzle.NPersist.Framework.Mapping
 
 		public string Url
 		{
-			get { return this.m_Url; }
-			set { this.m_Url = value; }
+			get => this.m_Url;
+		    set => this.m_Url = value;
 		}
 
 		public string DomainKey
 		{
-			get { return this.m_DomainKey; }
-			set { this.m_DomainKey = value; }
+			get => this.m_DomainKey;
+		    set => this.m_DomainKey = value;
 		}
 
 		#endregion
@@ -555,12 +546,9 @@ namespace Puzzle.NPersist.Framework.Mapping
 
 		#region IMap
 
-		public override string GetKey()
-		{
-			return m_DomainMap.Name + "." + this.Name;
-		}
+		public override string GetKey() => m_DomainMap.Name + "." + this.Name;
 
-		#endregion
+	    #endregion
 
 		#region IFixate
 

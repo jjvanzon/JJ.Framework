@@ -26,9 +26,6 @@ namespace JJ.Framework.Common
 
 		// ReSharper disable once UnusedParameter.Global
 		[Obsolete("Use SetCurrentCultureName instead.", true)]
-		public static void SetThreadCultureName(string cultureName)
-		{
-			throw new NotSupportedException("Use SetCurrentCultureName instead.");
-		}
+		public static void SetThreadCultureName(string cultureName) => throw new NotSupportedException("Use SetCurrentCultureName instead.");
 	}
 }

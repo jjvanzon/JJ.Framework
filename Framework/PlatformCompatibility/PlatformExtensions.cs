@@ -19,62 +19,42 @@ namespace JJ.Framework.PlatformCompatibility
 		/// "Method not found: 'System.Reflection.MemberTypes".
 		/// Use 'is PropertyInfo' and such or call this method instead.
 		/// </summary>
-		public static MemberTypes_PlatformSafe MemberType_PlatformSafe(this MemberInfo memberInfo)
-		{
-			return PlatformHelper.MemberInfo_MemberType_PlatformSafe(memberInfo);
-		}
+		public static MemberTypes_PlatformSafe MemberType_PlatformSafe(this MemberInfo memberInfo) => PlatformHelper.MemberInfo_MemberType_PlatformSafe(memberInfo);
 
-		/// <summary>
+	    /// <summary>
 		/// Windows Phone 8 compatibility:
 		/// Type.GetInterface(string name) is not supported on Windows Phone 8.
 		/// Use the overload 'Type.GetInterface(string name, bool ingoreCase)' or call this method instead.
 		/// </summary>
-		public static Type GetInterface_PlatformSafe(this Type type, string name)
-		{
-			return PlatformHelper.Type_GetInterface_PlatformSafe(type, name);
-		}
+		public static Type GetInterface_PlatformSafe(this Type type, string name) => PlatformHelper.Type_GetInterface_PlatformSafe(type, name);
 
-		/// <summary>
+	    /// <summary>
 		/// Windows Phone 8 compatibility:
 		/// XDocument.Save(string fileName) does not exist on Windows Phone 8.
 		/// Use 'XElement.Save(TextWriter)' or call this method instead.
 		/// Beware that this overload simply saves the root node
 		/// and does not the features unique to XDocument.
 		/// </summary>
-		public static void Save_PlatformSafe(this XDocument doc, string fileName)
-		{
-			PlatformHelper.XDocument_Save_PlatformSafe(doc, fileName);
-		}
+		public static void Save_PlatformSafe(this XDocument doc, string fileName) => PlatformHelper.XDocument_Save_PlatformSafe(doc, fileName);
 
-		/// <summary>
+	    /// <summary>
 		/// Windows Phone 8 compatibility:
 		/// XElement.Save(string fileName) does not exist on Windows Phone 8.
 		/// Use 'XElement.Save(TextWriter)' or call this method instead.
 		/// </summary>
-		public static void Save_PlatformSafe(this XElement element, string fileName)
-		{
-			PlatformHelper.XElement_Save_PlatformSafe(element, fileName);
-		}
+		public static void Save_PlatformSafe(this XElement element, string fileName) => PlatformHelper.XElement_Save_PlatformSafe(element, fileName);
 
-		/// <summary>
+	    /// <summary>
 		/// Windows Phone 8 compatibility:
 		/// XElement.Save(Stream) exists on Windows Phone 8, but not in .NET 3.5.
 		/// Use 'XElement.Save(TextWriter)' or call this method instead.
 		/// </summary>
-		public static void Save_PlatformSafe(this XElement element, Stream stream)
-		{
-			PlatformHelper.XElement_Save_PlatformSafe(element, stream);
-		}
+		public static void Save_PlatformSafe(this XElement element, Stream stream) => PlatformHelper.XElement_Save_PlatformSafe(element, stream);
 
-		/// <summary>
+	    /// <summary>
 		/// iOS compatibility: PropertyInfo.GetValue in Mono on a generic type may cause JIT compilation, which is not supported by iOS.
 		/// Use 'PropertyInfo.GetGetMethod().Invoke(object obj, params object[] parameters)' or call this method instead.
 		/// </summary>
-		public static object GetValue_PlatformSafe(this PropertyInfo propertyInfo, object obj, params object[] parameters)
-		{
-			// TODO: Is the original GetValue not without params. Why make a substitute different than what it substitutes?
-			return PlatformHelper.PropertyInfo_GetValue_PlatformSafe(propertyInfo, obj, parameters);
-		}
-
+		public static object GetValue_PlatformSafe(this PropertyInfo propertyInfo, object obj, params object[] parameters) => PlatformHelper.PropertyInfo_GetValue_PlatformSafe(propertyInfo, obj, parameters);
 	}
 }

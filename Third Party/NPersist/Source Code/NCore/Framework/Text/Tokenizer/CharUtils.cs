@@ -107,31 +107,16 @@ namespace Puzzle.NCore.Framework.Text
         }
 
         //This is 4.5 times faster than a standard char.ToUpper
-        public static char ToUpper(char c)
-        {
-            return UpperCharLookup[(int) c];
-        }
+        public static char ToUpper(char c) => UpperCharLookup[(int) c];
 
         //This is 4.5 times faster than a standard char.ToLower
-        public static char ToLower(char c)
-        {
-            return LowerCharLookup[(int) c];
-        }
+        public static char ToLower(char c) => LowerCharLookup[(int) c];
 
         //This is 2.4 times faster than a standard char.IsSeparator
-        public static bool IsSeparator(char c)
-        {
-            return SeparatorCharLookup[(int) c];
-        }
+        public static bool IsSeparator(char c) => SeparatorCharLookup[(int) c];
 
-        public static bool IsLetter(char c)
-        {
-            return IsLetterLookup[(int) c];
-        }
+        public static bool IsLetter(char c) => IsLetterLookup[(int) c];
 
-        public static bool IsLetterOrDigit(char c)
-        {
-            return IsLetterOrDigitLookup[(int) c];
-        }
+        public static bool IsLetterOrDigit(char c) => IsLetterOrDigitLookup[(int) c];
     }
 }

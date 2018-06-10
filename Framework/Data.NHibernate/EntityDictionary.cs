@@ -43,12 +43,9 @@ namespace JJ.Framework.Data.NHibernate
 		/// <summary>
 		/// 'IfNeeded' means: entity is not null, id is not default(TID).
 		/// </summary>
-		public void AddOrReplaceIfNeeded<TEntity>(object id, TEntity entity)
-		{
-			AddOrReplaceIfNeeded(typeof(TEntity), id, entity);
-		}
+		public void AddOrReplaceIfNeeded<TEntity>(object id, TEntity entity) => AddOrReplaceIfNeeded(typeof(TEntity), id, entity);
 
-		/// <summary>
+	    /// <summary>
 		/// 'IfNeeded' means: entity is not null, id is not default(TID).
 		/// </summary>
 		private void AddOrReplaceIfNeeded(Type type, object id, object entity)
@@ -97,9 +94,6 @@ namespace JJ.Framework.Data.NHibernate
 			nestedDictionary.Remove(id);
 		}
 
-		public void Clear()
-		{
-			_entityDictionary.Clear();
-		}
+		public void Clear() => _entityDictionary.Clear();
 	}
 }

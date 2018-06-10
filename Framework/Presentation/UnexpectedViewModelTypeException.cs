@@ -8,12 +8,9 @@ namespace JJ.Framework.Presentation
 
 		private readonly object _viewModel; 
 
-		public UnexpectedViewModelTypeException(object viewModel)
-		{
-			_viewModel = viewModel;
-		}
+		public UnexpectedViewModelTypeException(object viewModel) => _viewModel = viewModel;
 
-		public override string Message
+	    public override string Message
 		{
 			get
 			{

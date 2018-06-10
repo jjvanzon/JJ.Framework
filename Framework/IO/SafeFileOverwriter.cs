@@ -36,12 +36,9 @@ namespace JJ.Framework.IO
 			FileHelper.HideFile(_tempFilePath);
 		}
 
-		~SafeFileOverwriter()
-		{
-			Dispose();
-		}
+		~SafeFileOverwriter() => Dispose();
 
-		public void Dispose()
+	    public void Dispose()
 		{
 			if (_tempFileStream != null)
 			{

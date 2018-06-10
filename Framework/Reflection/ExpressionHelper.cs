@@ -119,21 +119,15 @@ namespace JJ.Framework.Reflection
 		/// If you set this to true, an expression like MyArray[i] will translate to e.g.
 		/// "MyArray[2]" instead of "MyArray[i]".
 		/// </param>
-		public static string GetText<T>(Expression<Func<T>> expression, bool showIndexerValues = false)
-		{
-			return GetText((LambdaExpression)expression, showIndexerValues);
-		}
+		public static string GetText<T>(Expression<Func<T>> expression, bool showIndexerValues = false) => GetText((LambdaExpression)expression, showIndexerValues);
 
-		/// <param name="showIndexerValues">
+	    /// <param name="showIndexerValues">
 		/// If you set this to true, an expression like MyArray[i] will translate to e.g.
 		/// "MyArray[2]" instead of "MyArray[i]".
 		/// </param>
-		public static string GetText(LambdaExpression expression, bool showIndexerValues = false)
-		{
-			return GetText(expression?.Body, showIndexerValues);
-		}
+		public static string GetText(LambdaExpression expression, bool showIndexerValues = false) => GetText(expression?.Body, showIndexerValues);
 
-		/// <param name="showIndexerValues">
+	    /// <param name="showIndexerValues">
 		/// If you set this to true, an expression like MyArray[i] will translate to e.g.
 		/// "MyArray[2]" instead of "MyArray[i]".
 		/// </param>

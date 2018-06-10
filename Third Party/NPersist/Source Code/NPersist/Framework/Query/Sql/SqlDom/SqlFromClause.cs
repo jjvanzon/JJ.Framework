@@ -30,8 +30,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public IList SqlTableSources
 		{
-			get { return this.sqlTableSources; }
-			set { this.sqlTableSources = value; }
+			get => this.sqlTableSources;
+		    set => this.sqlTableSources = value;
 		}
 		
 		#endregion
@@ -54,18 +54,11 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 			return AddSqlAliasTableSource(sqlTableAlias) ;
 		}
 
-		public SqlAliasTableSource AddSqlAliasTableSource(SqlTableAlias sqlTableAlias)
-		{
-			return new SqlAliasTableSource(this, sqlTableAlias) ;
-		}
+		public SqlAliasTableSource AddSqlAliasTableSource(SqlTableAlias sqlTableAlias) => new SqlAliasTableSource(this, sqlTableAlias);
 
-		public SqlJoinTableSource AddSqlJoinTableSource(SqlTableAlias leftTable, SqlTableAlias rightTable, SqlJoinType joinType)
-		{
-			return new SqlJoinTableSource(this, leftTable, rightTable, joinType) ;
-		}
+	    public SqlJoinTableSource AddSqlJoinTableSource(SqlTableAlias leftTable, SqlTableAlias rightTable, SqlJoinType joinType) => new SqlJoinTableSource(this, leftTable, rightTable, joinType);
 
-
-		public override void Accept(ISqlVisitor visitor)
+	    public override void Accept(ISqlVisitor visitor)
 		{
 			visitor.Visiting(this);	
 			visitor.Visited(this);	

@@ -16,10 +16,7 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// <summary>
         /// 
         /// </summary>
-        public virtual List<VizInterceptor> Interceptors
-        {
-            get { return interceptors; }
-        }
+        public virtual List<VizInterceptor> Interceptors => interceptors;
 
         #endregion
     }

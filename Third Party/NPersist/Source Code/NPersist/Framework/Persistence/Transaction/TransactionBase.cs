@@ -29,17 +29,14 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 		private Guid guid = Guid.NewGuid();
 
-		public Guid Guid 
-		{
-			get { return guid; }
-		}
+		public Guid Guid => guid;
 
-        private bool autoPersistAllOnCommit = true;
+	    private bool autoPersistAllOnCommit = true;
 
         public bool AutoPersistAllOnCommit
         {
-            get { return this.autoPersistAllOnCommit; }
-            set { this.autoPersistAllOnCommit = value; }
+            get => this.autoPersistAllOnCommit;
+            set => this.autoPersistAllOnCommit = value;
         }
 
         private Hashtable inverseHelpers;
@@ -81,13 +78,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 
         #region IDbTransaction Members
 
-        public virtual void Commit()
-        {
-            ClearInverseHelpers();
-			//this.Context.InverseManager.Clear(this);
-        }
+        public virtual void Commit() => ClearInverseHelpers();
 
-        public abstract IDbConnection Connection
+	    public abstract IDbConnection Connection
         {
             get;
         }
@@ -97,13 +90,9 @@ namespace Puzzle.NPersist.Framework.Persistence
             get; 
         }
 
-        public virtual void Rollback()
-        {
-            ClearInverseHelpers();
-			//this.Context.InverseManager.Clear(this);
-		}
+        public virtual void Rollback() => ClearInverseHelpers();
 
-        #endregion
+	    #endregion
 
         #region IDisposable Members
 

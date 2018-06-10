@@ -18,14 +18,11 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 	/// </summary>
 	public class SqlOldOuterJoin : SqlWhereClauseItem 
 	{
-		public SqlOldOuterJoin(SqlWhereClause sqlWhereClause)
-		{	
-			this.Parent = sqlWhereClause;
-		}
+		public SqlOldOuterJoin(SqlWhereClause sqlWhereClause) => this.Parent = sqlWhereClause;
 
-		public SqlWhereClause SqlWhereClause { get { return this.Parent as SqlWhereClause; } }
+	    public SqlWhereClause SqlWhereClause => this.Parent as SqlWhereClause;
 
-		public override void Accept(ISqlVisitor visitor)
+	    public override void Accept(ISqlVisitor visitor)
 		{
 			visitor.Visiting(this);	
 			visitor.Visited(this);	

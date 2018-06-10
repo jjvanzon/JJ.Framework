@@ -86,29 +86,18 @@ namespace Puzzle.NAspect.Framework
         /// <param name="methodId"></param>
         /// <returns></returns>
         [DebuggerStepThrough()]
-        public static MethodBase GetMethod(string methodId)
-        {
-            return (MethodBase) methodLookup[methodId];
-        }
-
-
+        public static MethodBase GetMethod(string methodId) => (MethodBase) methodLookup[methodId];
 
         private static Hashtable callInfoMapper = new Hashtable();
         private static ArrayList callInfos = new ArrayList();
         [DebuggerStepThrough()]
         [DebuggerHidden()]
-        internal static CallInfo GetCallInfo(int methodIndex)
-        {
-            return (CallInfo)callInfos[methodIndex];
-        }
+        internal static CallInfo GetCallInfo(int methodIndex) => (CallInfo)callInfos[methodIndex];
 
         [DebuggerStepThrough()]
         [DebuggerHidden()]
-        internal static CallInfo GetCallInfo(string methodId)
-        {
-            return (CallInfo)callInfoMapper[methodId];
-        }
-        
+        internal static CallInfo GetCallInfo(string methodId) => (CallInfo)callInfoMapper[methodId];
+
         internal static int AddCallInfo(CallInfo callInfo, string methodId)
         {
             int res;

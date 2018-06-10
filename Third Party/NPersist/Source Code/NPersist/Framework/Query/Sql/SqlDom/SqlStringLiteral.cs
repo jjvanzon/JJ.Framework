@@ -22,9 +22,9 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		{
 		}
 
-		public string StringValue { get { return this.Value as string; } }
-		
-		public override void Accept(ISqlVisitor visitor)
+		public string StringValue => this.Value as string;
+
+	    public override void Accept(ISqlVisitor visitor)
 		{
 			visitor.Visiting(this);	
 			visitor.Visited(this);	

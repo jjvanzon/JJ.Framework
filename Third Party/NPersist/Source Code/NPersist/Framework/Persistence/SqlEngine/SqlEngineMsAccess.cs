@@ -26,8 +26,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 
 		public override string DateDelimiter
 		{
-			get { return m_DateDelimiter; }
-			set { m_DateDelimiter = value; }
+			get => m_DateDelimiter;
+		    set => m_DateDelimiter = value;
 		}
 
 		public override void InsertObject(object obj, IList stillDirty)
@@ -142,12 +142,9 @@ namespace Puzzle.NPersist.Framework.Persistence
 			ctx.EventManager.OnInsertedObject(this, e2);
 		}
 
-		protected string GetInsertStatement(object obj, ArrayList propertyNames, IList stillDirty, ArrayList nonPrimaryPropertyMaps, ArrayList collectionPropertyMaps, ref string sqlSelect, IList parameters)
-		{
-			return GetInsertStatementOnIdentity(obj, propertyNames, stillDirty, nonPrimaryPropertyMaps, collectionPropertyMaps, ref sqlSelect, parameters);
-		}
+		protected string GetInsertStatement(object obj, ArrayList propertyNames, IList stillDirty, ArrayList nonPrimaryPropertyMaps, ArrayList collectionPropertyMaps, ref string sqlSelect, IList parameters) => GetInsertStatementOnIdentity(obj, propertyNames, stillDirty, nonPrimaryPropertyMaps, collectionPropertyMaps, ref sqlSelect, parameters);
 
-		protected string GetInsertStatementOnIdentity(object obj, ArrayList propertyNames, IList stillDirty, ArrayList nonPrimaryPropertyMaps, ArrayList collectionPropertyMaps, ref string sqlSelect, IList parameters)
+	    protected string GetInsertStatementOnIdentity(object obj, ArrayList propertyNames, IList stillDirty, ArrayList nonPrimaryPropertyMaps, ArrayList collectionPropertyMaps, ref string sqlSelect, IList parameters)
 		{
 			sqlSelect = "Select @@IDENTITY"; // do not localize
 			return GetInsertStatement(obj, propertyNames, stillDirty, nonPrimaryPropertyMaps, collectionPropertyMaps, parameters);
@@ -290,39 +287,18 @@ namespace Puzzle.NPersist.Framework.Persistence
 			}
 		}
 
-		protected override string GetParameterName(IPropertyMap propertyMap)
-		{
-			return "?";			
-		}
+		protected override string GetParameterName(IPropertyMap propertyMap) => "?";
 
-		protected override string GetParameterName(IPropertyMap propertyMap, string prefix)
-		{
-			return "?";			
-		}
+	    protected override string GetParameterName(IPropertyMap propertyMap, string prefix) => "?";
 
-		protected override string GetParameterName(IClassMap classMap)
-		{
-			return "?";			
-		}
+	    protected override string GetParameterName(IClassMap classMap) => "?";
 
-		protected override string GetParameterName(IClassMap classMap, string prefix)
-		{
-			return "?";			
-		}
+	    protected override string GetParameterName(IClassMap classMap, string prefix) => "?";
 
-		protected override string GetParameterName(IPropertyMap propertyMap, IColumnMap columnMap)
-		{
-			return "?";			
-		}
+	    protected override string GetParameterName(IPropertyMap propertyMap, IColumnMap columnMap) => "?";
 
-		protected override string GetParameterName(IPropertyMap propertyMap, IColumnMap columnMap, string prefix)
-		{
-			return "?";			
-		}
+	    protected override string GetParameterName(IPropertyMap propertyMap, IColumnMap columnMap, string prefix) => "?";
 
-		protected override ISqlVisitor GetVisitor()
-		{
-			return new SqlAccessVisitor();
-		}
+	    protected override ISqlVisitor GetVisitor() => new SqlAccessVisitor();
 	}
 }

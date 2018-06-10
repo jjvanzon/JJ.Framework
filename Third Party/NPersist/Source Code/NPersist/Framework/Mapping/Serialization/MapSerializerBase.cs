@@ -28,22 +28,13 @@ namespace Puzzle.NPersist.Framework.Mapping.Serialization
 		{
 		}
 
-		protected MapSerializerBase(bool bareBones) : base()
-		{
-			m_BareBones = bareBones;
-		}
+		protected MapSerializerBase(bool bareBones) : base() => m_BareBones = bareBones;
 
-		public virtual IDomainMap Deserialize(string xml)
-		{
-			return null;
-		}
+	    public virtual IDomainMap Deserialize(string xml) => null;
 
-		public virtual string Serialize(IDomainMap domainMap)
-		{
-			return "";
-		}
+	    public virtual string Serialize(IDomainMap domainMap) => "";
 
-		public virtual IDomainMap Load(string fileName)
+	    public virtual IDomainMap Load(string fileName)
 		{
 			StreamReader reader = null;
 			string xml = "";
@@ -72,13 +63,9 @@ namespace Puzzle.NPersist.Framework.Mapping.Serialization
 		}
 
 		
-		public virtual IDomainMap LoadFromXml(string xml)
-		{
-			return Deserialize(xml);
-		}
+		public virtual IDomainMap LoadFromXml(string xml) => Deserialize(xml);
 
-
-		public virtual void Save(IDomainMap domainMap, string fileName)
+	    public virtual void Save(IDomainMap domainMap, string fileName)
 		{
 			string xml = Serialize(domainMap);
 			StreamWriter str = null;
@@ -106,8 +93,8 @@ namespace Puzzle.NPersist.Framework.Mapping.Serialization
 
 		public bool BareBones
 		{
-			get { return m_BareBones; }
-			set { m_BareBones = value; }
+			get => m_BareBones;
+		    set => m_BareBones = value;
 		}
 	}
 }

@@ -18,8 +18,8 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// </summary>
         public virtual string Name
         {
-            get { return name; }
-            set { name = value; }
+            get => name;
+            set => name = value;
         }
 
         #endregion
@@ -33,8 +33,8 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// </summary>
         public virtual string FullName
         {
-            get { return fullName; }
-            set { fullName = value; }
+            get => fullName;
+            set => fullName = value;
         }
 
         #endregion
@@ -48,8 +48,8 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// </summary>
         public virtual string BaseName
         {
-            get { return baseName; }
-            set { baseName = value; }
+            get => baseName;
+            set => baseName = value;
         }
 
         #endregion
@@ -61,10 +61,7 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// <summary>
         /// 
         /// </summary>
-        public virtual List<VizMethodBase> Methods
-        {
-            get { return methods; }
-        }
+        public virtual List<VizMethodBase> Methods => methods;
 
         #endregion
 
@@ -75,10 +72,7 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// <summary>
         /// 
         /// </summary>
-        public virtual List<VizMixin> Mixins
-        {
-            get { return mixins; }
-        }
+        public virtual List<VizMixin> Mixins => mixins;
 
         #endregion
 
@@ -89,10 +83,7 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// <summary>
         /// 
         /// </summary>
-        public virtual List<VizAspect> Aspects
-        {
-            get { return aspects; }
-        }
+        public virtual List<VizAspect> Aspects => aspects;
 
         #endregion
     }

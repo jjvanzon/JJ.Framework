@@ -23,12 +23,9 @@ namespace JJ.Framework.CodeAnalysis.Analysers
 
 		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => _supportedDiagnostics;
 
-		public override void Initialize(AnalysisContext context)
-		{
-			context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);
-		}
+		public override void Initialize(AnalysisContext context) => context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.Method);
 
-		private static void AnalyzeSymbol(SymbolAnalysisContext context)
+	    private static void AnalyzeSymbol(SymbolAnalysisContext context)
 		{
 			var methodSymbol = (IMethodSymbol)context.Symbol;
 

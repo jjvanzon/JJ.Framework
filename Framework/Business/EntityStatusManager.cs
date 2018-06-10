@@ -22,49 +22,25 @@ namespace JJ.Framework.Business
 		private readonly Dictionary<object, EntityStatusEnum> _entityStatuses = new Dictionary<object, EntityStatusEnum>();
 		private readonly Dictionary<Tuple<object, string>, PropertyStatusEnum> _propertyStatuses = new Dictionary<Tuple<object, string>, PropertyStatusEnum>();
 
-		public bool IsNew(object entity)
-		{
-			return GetStatus(entity) == EntityStatusEnum.New;
-		}
+		public bool IsNew(object entity) => GetStatus(entity) == EntityStatusEnum.New;
 
-		public void SetIsNew(object entity)
-		{
-			SetStatus(entity, EntityStatusEnum.New);
-		}
+	    public void SetIsNew(object entity) => SetStatus(entity, EntityStatusEnum.New);
 
-		public bool IsDirty(object entity)
-		{
-			return GetStatus(entity) == EntityStatusEnum.Dirty;
-		}
+	    public bool IsDirty(object entity) => GetStatus(entity) == EntityStatusEnum.Dirty;
 
-		public void SetIsDirty(object entity)
-		{
-			SetStatus(entity, EntityStatusEnum.Dirty);
-		}
+	    public void SetIsDirty(object entity) => SetStatus(entity, EntityStatusEnum.Dirty);
 
-		public bool IsDeleted(object entity)
-		{
-			return GetStatus(entity) == EntityStatusEnum.Deleted;
-		}
+	    public bool IsDeleted(object entity) => GetStatus(entity) == EntityStatusEnum.Deleted;
 
-		public void SetIsDeleted(object entity)
-		{
-			SetStatus(entity, EntityStatusEnum.Deleted);
-		}
+	    public void SetIsDeleted(object entity) => SetStatus(entity, EntityStatusEnum.Deleted);
 
-		/// <summary> For properties. </summary>
-		public bool IsDirty<T>(Expression<Func<T>> propertyExpression)
-		{
-			return GetStatus(propertyExpression) == PropertyStatusEnum.Dirty;
-		}
+	    /// <summary> For properties. </summary>
+		public bool IsDirty<T>(Expression<Func<T>> propertyExpression) => GetStatus(propertyExpression) == PropertyStatusEnum.Dirty;
 
-		/// <summary> For properties. </summary>
-		public void SetIsDirty<T>(Expression<Func<T>> propertyExpression)
-		{
-			SetStatus(propertyExpression, PropertyStatusEnum.Dirty);
-		}
+	    /// <summary> For properties. </summary>
+		public void SetIsDirty<T>(Expression<Func<T>> propertyExpression) => SetStatus(propertyExpression, PropertyStatusEnum.Dirty);
 
-		// TODO: I am not happy about type argument T.
+	    // TODO: I am not happy about type argument T.
 		// ExpressionHelper does not always work in case of <object>,
 		// because it tries to optimize performance by saving some handling of ConvertExpressions.
 		// But interface-wise I do not like it, and then performance gain might be trivial.
@@ -93,12 +69,9 @@ namespace JJ.Framework.Business
 			return propertyStatus;
 		}
 
-		private void SetStatus(object entity, EntityStatusEnum entityStatus)
-		{
-			_entityStatuses[entity] = entityStatus;
-		}
+		private void SetStatus(object entity, EntityStatusEnum entityStatus) => _entityStatuses[entity] = entityStatus;
 
-		/// <summary> For properties. </summary>
+	    /// <summary> For properties. </summary>
 		private void SetStatus<T>(Expression<Func<T>> propertyExpression, PropertyStatusEnum propertyStatus)
 		{
 			if (propertyExpression == null) throw new NullException(() => propertyExpression);

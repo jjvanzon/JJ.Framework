@@ -12,38 +12,25 @@ namespace Puzzle.NAspect.Debug.Serialization.Elements
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return string.Format(".ctor ({0})", GetParamTypes());
-        }
+        public override string ToString() => string.Format(".ctor ({0})", GetParamTypes());
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string GetCallSample()
-        {
-            return
-                string.Format("{0} My{2}Obj = engine.CreateProxy<{0}> ({1})", OwnerType.BaseName, GetParamTypes(),
-                              OwnerType.BaseName);
-        }
+        public override string GetCallSample() => string.Format("{0} My{2}Obj = engine.CreateProxy<{0}> ({1})", OwnerType.BaseName, GetParamTypes(),
+                                                                OwnerType.BaseName);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string GetProxyText()
-        {
-            return string.Format("Constructor {0} ({1})", OwnerType.Name, GetParamTypes());
-        }
+        public override string GetProxyText() => string.Format("Constructor {0} ({1})", OwnerType.Name, GetParamTypes());
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public override string GetRealText()
-        {
-            return string.Format("Constructor {0} ({1})", OwnerType.BaseName, GetParamTypes());
-        }
+        public override string GetRealText() => string.Format("Constructor {0} ({1})", OwnerType.BaseName, GetParamTypes());
     }
 }

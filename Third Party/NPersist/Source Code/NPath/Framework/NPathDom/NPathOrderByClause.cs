@@ -20,16 +20,13 @@ namespace Puzzle.NPath.Framework.CodeDom
 
 		public virtual IList SortProperties
 		{
-			get { return sortProperties; }
-			set { sortProperties = value; }
+			get => sortProperties;
+		    set => sortProperties = value;
 		}
 
 		#endregion
 
-		public NPathOrderByClause()
-		{
-			sortProperties = new ArrayList();
-		}
+		public NPathOrderByClause() => sortProperties = new ArrayList();
 	}
 
 	public class SortProperty

@@ -41,7 +41,7 @@ namespace Puzzle.NCore.Framework.Text
 
         public virtual string Separators
         {
-            get { return separators; }
+            get => separators;
             set
             {
                 separators = value;

@@ -35,9 +35,6 @@ namespace Puzzle.NPath.Framework
 			return Array.IndexOf(Types, type) >= 0;
 		}
 
-		public override string ToString()
-		{
-			return string.Format("{0}\t\t{1}", Text, Types);
-		}
+		public override string ToString() => string.Format("{0}\t\t{1}", Text, Types);
 	}
 }

@@ -43,21 +43,17 @@ namespace Sgml
         int count;
         readonly int growth;
 
-        public HWStack(int growth) {
-            this.growth = growth;
-        }
+        public HWStack(int growth) => this.growth = growth;
 
         public int Count {
-            get { return this.count; }
-            set { this.count = value; }
+            get => this.count;
+            set => this.count = value;
         }
-        public int Size {
-            get { return this.size; }
-        }
+        public int Size => this.size;
         // returns the item at the requested index or null if index is out of bounds
         public object this[int i] {
-            get { return (i>=0 && i < this.size) ? items[i] : null; }
-            set { this.items[i] = value; }
+            get => (i>=0 && i < this.size) ? items[i] : null;
+            set => this.items[i] = value;
         }
         public object Pop(){
             this.count--;
@@ -116,16 +112,10 @@ namespace Sgml
                     return this.DtdType.Default;
                 return null;
             }
-            set {
-                this.literalValue = value;
-            }
+            set => this.literalValue = value;
         }
 
-        public bool IsDefault {
-            get {
-                return (this.literalValue == null);
-            }
-        }
+        public bool IsDefault => (this.literalValue == null);
     }    
 
     /// <summary>
@@ -199,11 +189,7 @@ namespace Sgml
             }
         }
 
-        public int AttributeCount {
-            get {
-                return this.attributes.Count;
-            }
-        }
+        public int AttributeCount => this.attributes.Count;
 
         public int GetAttribute(string name) {
             for (int i = 0, n = this.attributes.Count; i < n; i++) {
@@ -299,7 +285,7 @@ namespace Sgml
                 LazyLoadDtd(this.baseUri);
                 return this.dtd; 
             }
-            set { this.dtd = value; }
+            set => this.dtd = value;
         }
 
         private void LazyLoadDtd(Uri baseUri) {
@@ -347,32 +333,32 @@ namespace Sgml
         /// The name of root element specified in the DOCTYPE tag.
         /// </summary>
         public string DocType {
-            get { return this.docType; }
-            set { this.docType = value; }
+            get => this.docType;
+            set => this.docType = value;
         }
 
         /// <summary>
         /// The PUBLIC identifier in the DOCTYPE tag
         /// </summary>
         public string PublicIdentifier {
-            get { return this.pubid; }
-            set { this.pubid = value; }
+            get => this.pubid;
+            set => this.pubid = value;
         }
 
         /// <summary>
         /// The SYSTEM literal in the DOCTYPE tag identifying the location of the DTD.
         /// </summary>
         public string SystemLiteral {
-            get { return this.syslit; }
-            set { this.syslit = value; }
+            get => this.syslit;
+            set => this.syslit = value;
         }
 
         /// <summary>
         /// The DTD internal subset in the DOCTYPE tag
         /// </summary>
         public string InternalSubset {
-            get { return this.subset; }
-            set { this.subset = value; }
+            get => this.subset;
+            set => this.subset = value;
         }
 
         /// <summary>
@@ -380,7 +366,7 @@ namespace Sgml
         /// You must specify this property or the Href property before calling Read().
         /// </summary>
         public TextReader InputStream {
-            get { return this.inputStream; }
+            get => this.inputStream;
             set { this.inputStream = value; Init();}
         }
 
@@ -389,8 +375,8 @@ namespace Sgml
         /// from outside the firewall.  For example: "itgproxy:80".
         /// </summary>
         public string WebProxy {
-            get { return this.proxy; }
-            set { this.proxy = value; }
+            get => this.proxy;
+            set => this.proxy = value;
         }
 
         /// <summary>
@@ -398,15 +384,13 @@ namespace Sgml
         /// Href properties.  This is a method because BaseURI is a read-only
         /// property on the base XmlReader class.
         /// </summary>
-        public void SetBaseUri(string uri)  {
-            this.baseUri = new Uri(uri);
-        }
+        public void SetBaseUri(string uri) => this.baseUri = new Uri(uri);
 
         /// <summary>
         /// Specify the location of the input SGML document as a URL.
         /// </summary>
         public string Href {
-            get { return this.href; }
+            get => this.href;
             set { this.href = value; 
                 Init();
                 if (this.baseUri == null) {
@@ -423,28 +407,28 @@ namespace Sgml
         /// Whether to strip out the DOCTYPE tag from the output (default true)
         /// </summary>
         public bool StripDocType {
-            get { return this.stripDocType; }
-            set { this.stripDocType = value; }
+            get => this.stripDocType;
+            set => this.stripDocType = value;
         }
 
         public CaseFolding CaseFolding {
-            get { return this.folding; }
-            set { this.folding = value; }
+            get => this.folding;
+            set => this.folding = value;
         }
 
         /// <summary>
         /// DTD validation errors are written to this stream.
         /// </summary>
         public TextWriter ErrorLog {
-            get { return this.log; }
-            set { this.log = value; }
+            get => this.log;
+            set => this.log = value;
         }
 
         /// <summary>
         /// DTD validation errors are written to this log file.
         /// </summary>
         public string ErrorLogFile {
-            get { return this.errorLogFile; }
+            get => this.errorLogFile;
             set { this.errorLogFile = value; 
                 this.ErrorLog = new StreamWriter(value); }
         }
@@ -469,10 +453,7 @@ namespace Sgml
                 }
             }
         }
-        void Log(string msg, char ch) {
-            Log(msg, ch.ToString());
-        }
-
+        void Log(string msg, char ch) => Log(msg, ch.ToString());
 
         void Init() {
             this.state = State.Initial;
@@ -555,11 +536,7 @@ namespace Sgml
             }
         }
 
-        public override string Name {
-            get {
-                return this.LocalName;
-            }
-        }
+        public override string Name => this.LocalName;
 
         public override string LocalName { 
             get {
@@ -588,12 +565,7 @@ namespace Sgml
             }
         }
 
-        public override string Prefix { 
-            get {
-                // SGML has no namespaces.
-                return string.Empty;
-            }
-        }
+        public override string Prefix => string.Empty;
 
         public override bool HasValue { 
             get {
@@ -625,11 +597,7 @@ namespace Sgml
             }
         }
 
-        public override string BaseURI { 
-            get {
-                return this.baseUri == null ? "" : this.baseUri.AbsoluteUri;
-            }
-        }
+        public override string BaseURI => this.baseUri == null ? "" : this.baseUri.AbsoluteUri;
 
         public override bool IsEmptyElement { 
             get {
@@ -676,12 +644,8 @@ namespace Sgml
         }
 
         public WhitespaceHandling WhitespaceHandling {
-            get {
-                return this.whitespaceHandling;
-            } 
-            set {
-                this.whitespaceHandling = value;
-            }
+            get => this.whitespaceHandling;
+            set => this.whitespaceHandling = value;
         }
 
         public override int AttributeCount { 
@@ -703,9 +667,7 @@ namespace Sgml
             return null;
         }
 
-        public override string GetAttribute(string name, string namespaceURI) {
-            return GetAttribute(name); // SGML has no namespaces.
-        }
+        public override string GetAttribute(string name, string namespaceURI) => GetAttribute(name);
 
         public override string GetAttribute(int i) {
             if (this.state != State.Attr && this.state != State.AttrValue) {
@@ -716,23 +678,11 @@ namespace Sgml
             throw new IndexOutOfRangeException();
         }
 
-        public override string this [ int i ] { 
-            get {
-                return GetAttribute(i);
-            }
-        }
+        public override string this [ int i ] => GetAttribute(i);
 
-        public override string this [ string name ] { 
-            get {
-                return GetAttribute(name);
-            }
-        }
+        public override string this [ string name ] => GetAttribute(name);
 
-        public override string this [ string name,string namespaceURI ] { 
-            get {
-                return GetAttribute(name, namespaceURI);
-            }
-        }
+        public override string this [ string name,string namespaceURI ] => GetAttribute(name, namespaceURI);
 
         public override bool MoveToAttribute(string name) {
             int i = this.node.GetAttribute(name);
@@ -743,9 +693,7 @@ namespace Sgml
             return false;
         }
 
-        public override bool MoveToAttribute(string name, string ns) {
-            return MoveToAttribute(name);
-        }
+        public override bool MoveToAttribute(string name, string ns) => MoveToAttribute(name);
 
         public override void MoveToAttribute(int i) {
             Attribute a = this.node.GetAttribute(i);
@@ -789,11 +737,7 @@ namespace Sgml
             return (this.node.NodeType == XmlNodeType.Element);
         }
 
-        bool IsHtml {
-            get {
-              return this.isHtml;
-            }
-        }
+        bool IsHtml => this.isHtml;
 
         public Encoding GetEncoding(){
             if (this.current == null) {
@@ -1505,11 +1449,7 @@ namespace Sgml
             }
         }
 
-        public override bool EOF { 
-            get {
-                return this.state == State.Eof;
-            }
-        }
+        public override bool EOF => this.state == State.Eof;
 
         public override void Close() {
             if (this.current != null) {
@@ -1583,20 +1523,11 @@ namespace Sgml
             return sw.ToString();
         }
 
-        public override XmlNameTable NameTable { 
-            get {
-                return this.nametable;
-            }
-        }
+        public override XmlNameTable NameTable => this.nametable;
 
-        public override string LookupNamespace(string prefix) {           
-            return null;// there are no namespaces in SGML.
-        }
+        public override string LookupNamespace(string prefix) => null;
 
-        public override void ResolveEntity() {
-            // We never return any entity reference nodes, so this should never be called.
-            throw new InvalidOperationException("Not on an entity reference.");
-        }
+        public override void ResolveEntity() => throw new InvalidOperationException("Not on an entity reference.");
 
         public override bool ReadAttributeValue() {
             if (this.state == State.Attr) {

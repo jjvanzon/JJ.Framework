@@ -24,7 +24,6 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 			sqlSearchCondition.SqlPredicate = this;
 		}
 
-		public SqlSearchCondition SqlSearchCondition { get { return this.Parent as SqlSearchCondition; } }
-
+		public SqlSearchCondition SqlSearchCondition => this.Parent as SqlSearchCondition;
 	}
 }

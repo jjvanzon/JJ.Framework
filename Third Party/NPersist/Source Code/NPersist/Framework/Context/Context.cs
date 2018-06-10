@@ -130,22 +130,13 @@ namespace Puzzle.NPersist.Framework
 			InitManagers();
 		}
 
-		public Context(string mapFilePath) : base()
-		{
-			InitManagers(mapFilePath);
-		}
+		public Context(string mapFilePath) : base() => InitManagers(mapFilePath);
 
-		public Context(Assembly asm) : base()
-		{
-			InitManagers(asm);
-		}
+	    public Context(Assembly asm) : base() => InitManagers(asm);
 
-		public Context(Assembly asm, string mapFileResourceName) : base()
-		{
-			InitManagers(asm, mapFileResourceName);
-		}
+	    public Context(Assembly asm, string mapFileResourceName) : base() => InitManagers(asm, mapFileResourceName);
 
-		public Context(IContext rootContext) : base()
+	    public Context(IContext rootContext) : base()
 		{
 			m_DomainMap = rootContext.DomainMap;
 			m_PersistenceEngine = new ObjectPersistenceEngine(rootContext);
@@ -196,12 +187,9 @@ namespace Puzzle.NPersist.Framework
 			InitManagers();
 		}
 
-		protected virtual void InitManagers()
-		{
-			InitManagers(false);
-		}
+		protected virtual void InitManagers() => InitManagers(false);
 
-		protected virtual void InitManagers(bool persistenceEngineIsSet)
+	    protected virtual void InitManagers(bool persistenceEngineIsSet)
 		{
 			m_Interceptor = new Interceptor();
 			m_Interceptor.Context = this;
@@ -268,8 +256,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IInterceptor Interceptor
 		{
-			get { return m_Interceptor; }
-			set 
+			get => m_Interceptor;
+		    set 
 			{ 
 				m_Interceptor = value; 
 				if (value != null)
@@ -279,8 +267,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IPersistenceManager PersistenceManager
 		{
-			get { return m_PersistenceManager; }
-			set
+			get => m_PersistenceManager;
+		    set
 			{
 				m_PersistenceManager = value;
 				if (value != null)
@@ -290,8 +278,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IProxyFactory ProxyFactory
 		{
-			get { return m_ProxyFactory; }
-			set
+			get => m_ProxyFactory;
+		    set
 			{
 				m_ProxyFactory = value;	
 				if (value != null)
@@ -303,8 +291,8 @@ namespace Puzzle.NPersist.Framework
 		{
 			//[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			get { return m_ObjectManager; }
-			//[DebuggerHidden()]
+			get => m_ObjectManager;
+		    //[DebuggerHidden()]
 			//[DebuggerStepThrough()]
 			set
 			{
@@ -316,8 +304,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IListManager ListManager
 		{
-			get { return m_ListManager; }
-			set 
+			get => m_ListManager;
+		    set 
 			{ 
 				m_ListManager = value; 
 				if (value != null)
@@ -330,19 +318,16 @@ namespace Puzzle.NPersist.Framework
 		{
 			//[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			get { return m_DomainMap; }
-			//[DebuggerHidden()]
+			get => m_DomainMap;
+		    //[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			set
-			{
-				m_DomainMap = value;
-			}
+			set => m_DomainMap = value;
 		}
 
 		public virtual IIdentityMap IdentityMap
 		{
-			get { return m_IdentityMap; }
-			set
+			get => m_IdentityMap;
+		    set
 			{
 				m_IdentityMap = value;
 				if (value != null)
@@ -352,8 +337,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IObjectCacheManager ObjectCacheManager
 		{
-			get { return m_ObjectCacheManager; }
-			set
+			get => m_ObjectCacheManager;
+		    set
 			{
 				m_ObjectCacheManager = value;
 				if (value != null)
@@ -363,8 +348,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IReadOnlyObjectCacheManager ReadOnlyObjectCacheManager
 		{
-			get { return m_ReadOnlyObjectCacheManager; }
-			set
+			get => m_ReadOnlyObjectCacheManager;
+		    set
 			{
 				m_ReadOnlyObjectCacheManager = value;
 				if (value != null)
@@ -374,8 +359,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IUnitOfWork UnitOfWork
 		{
-			get { return m_UnitOfWork; }
-			set
+			get => m_UnitOfWork;
+		    set
 			{
 				m_UnitOfWork = value;
 				if (value != null)
@@ -387,8 +372,8 @@ namespace Puzzle.NPersist.Framework
 		{
 			//[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			get { return m_InverseManager; }
-			//[DebuggerHidden()]
+			get => m_InverseManager;
+		    //[DebuggerHidden()]
 			//[DebuggerStepThrough()]
 			set
 			{
@@ -402,8 +387,8 @@ namespace Puzzle.NPersist.Framework
 		{
 			//[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			get { return m_EventManager; }
-			//[DebuggerHidden()]
+			get => m_EventManager;
+		    //[DebuggerHidden()]
 			//[DebuggerStepThrough()]
 			set
 			{
@@ -415,8 +400,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IDataSourceManager DataSourceManager
 		{
-			get { return m_DataSourceManager; }
-			set 
+			get => m_DataSourceManager;
+		    set 
 			{ 
 				m_DataSourceManager = value; 
 				if (value != null)
@@ -428,8 +413,8 @@ namespace Puzzle.NPersist.Framework
 		{
 			//[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			get { return this.m_PersistenceEngine; }
-			//[DebuggerHidden()]
+			get => this.m_PersistenceEngine;
+		    //[DebuggerHidden()]
 			//[DebuggerStepThrough()]
 			set
 			{
@@ -443,8 +428,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IPersistenceEngineManager PersistenceEngineManager
 		{
-			get { return m_PersistenceEngineManager; }
-			set 
+			get => m_PersistenceEngineManager;
+		    set 
 			{ 
 				m_PersistenceEngineManager = value; 
 				if (value != null)
@@ -454,8 +439,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual ISqlExecutor SqlExecutor
 		{
-			get { return m_SqlExecutor; }
-			set
+			get => m_SqlExecutor;
+		    set
 			{
 				m_SqlExecutor = value;
 				if (value != null)
@@ -465,8 +450,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual INPathEngine NPathEngine
 		{
-			get { return m_NPathEngine; }
-			set 
+			get => m_NPathEngine;
+		    set 
 			{ 
 				m_NPathEngine = value; 
 				if (value != null)
@@ -476,19 +461,14 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IObjectQueryEngine ObjectQueryEngine
 		{
-			get { return m_ObjectQueryEngine; }
-			set 
-			{ 
-				m_ObjectQueryEngine = value; 
-			//	if (value != null)
-			//		value.Context = this;
-			}
+			get => m_ObjectQueryEngine;
+		    set => m_ObjectQueryEngine = value;
 		}
 
 		public virtual IAssemblyManager AssemblyManager
 		{
-			get { return m_AssemblyManager; }
-			set 
+			get => m_AssemblyManager;
+		    set 
 			{ 
 				m_AssemblyManager = value; 
 				if (value != null)
@@ -498,8 +478,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IObjectFactory ObjectFactory
 		{
-			get { return m_ObjectFactory; }
-			set 
+			get => m_ObjectFactory;
+		    set 
 			{ 				
 				m_ObjectFactory = value; 
 
@@ -510,8 +490,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IObjectCloner ObjectCloner
 		{
-			get { return m_ObjectCloner; }
-			set 
+			get => m_ObjectCloner;
+		    set 
 			{ 				
 				m_ObjectCloner = value; 
 
@@ -522,8 +502,8 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual IObjectValidator ObjectValidator
 		{
-			get { return m_ObjectValidator; }
-			set 
+			get => m_ObjectValidator;
+		    set 
 			{ 				
 				m_ObjectValidator = value; 
 
@@ -534,29 +514,26 @@ namespace Puzzle.NPersist.Framework
 
 		public virtual ILogManager LogManager
 		{
-			get { return m_LogManager; }
-			set
-			{
-				m_LogManager = value;
-			}
+			get => m_LogManager;
+		    set => m_LogManager = value;
 		}
 
 		public Notification Notification
 		{
-			get { return this.Interceptor.Notification; }
-			set { this.Interceptor.Notification = value; }
+			get => this.Interceptor.Notification;
+		    set => this.Interceptor.Notification = value;
 		}
 
 		public bool AutoTransactions
 		{
-			get { return m_AutoTransactions; }
-			set { m_AutoTransactions = value; }			
+			get => m_AutoTransactions;
+		    set => m_AutoTransactions = value;
 		}
 
         public DeadlockStrategy DeadlockStrategy
         {
-            get { return m_DeadlockStrategy; }
-            set { m_DeadlockStrategy = value; }
+            get => m_DeadlockStrategy;
+            set => m_DeadlockStrategy = value;
         }
 
         public DeadlockStrategy GetDeadlockStrategy()
@@ -596,8 +573,8 @@ namespace Puzzle.NPersist.Framework
 		
 		public string DomainKey
 		{
-			get { return this.domainKey; }
-			set { this.domainKey = value; }
+			get => this.domainKey;
+		    set => this.domainKey = value;
 		}
 		
 		#endregion
@@ -608,8 +585,8 @@ namespace Puzzle.NPersist.Framework
 		
 		public OptimisticConcurrencyMode OptimisticConcurrencyMode
 		{
-			get { return this.optimisticConcurrencyMode; }
-			set { this.optimisticConcurrencyMode = value; }
+			get => this.optimisticConcurrencyMode;
+		    set => this.optimisticConcurrencyMode = value;
 		}
 		
 		#endregion
@@ -618,23 +595,17 @@ namespace Puzzle.NPersist.Framework
 		
 		private Hashtable identityGenerators = new Hashtable() ;
 		
-		public virtual Hashtable IdentityGenerators
-		{
-			get { return this.identityGenerators; }
-		}
-		
-		#endregion
+		public virtual Hashtable IdentityGenerators => this.identityGenerators;
+
+	    #endregion
 
 		#region Property  IsDisposed
 		
 		private bool isDisposed = false;
 		
-		public bool IsDisposed
-		{
-			get { return this.isDisposed; }
-		}
-		
-		#endregion
+		public bool IsDisposed => this.isDisposed;
+
+	    #endregion
 
 		#region Property  IsDirty
 		
@@ -661,8 +632,8 @@ namespace Puzzle.NPersist.Framework
 		
 		public int Timeout
 		{
-			get { return this.timeout; }
-			set { this.timeout = value; }
+			get => this.timeout;
+		    set => this.timeout = value;
 		}
 		
 		#endregion
@@ -673,8 +644,8 @@ namespace Puzzle.NPersist.Framework
 
         public long ParamCounter
         {
-            get { return this.paramCounter; }
-            set { this.paramCounter = value; }
+            get => this.paramCounter;
+            set => this.paramCounter = value;
         }
 
         #endregion
@@ -695,27 +666,15 @@ namespace Puzzle.NPersist.Framework
 
         #region Public Methods
 
-        public virtual ObjectStatus GetObjectStatus(object obj)
-		{
-			return m_ObjectManager.GetObjectStatus(obj);
-		}
+        public virtual ObjectStatus GetObjectStatus(object obj) => m_ObjectManager.GetObjectStatus(obj);
 
-		public virtual PropertyStatus GetPropertyStatus(object obj, string propertyName)
-		{
-			return m_ObjectManager.GetPropertyStatus(obj, propertyName);
-		}
+	    public virtual PropertyStatus GetPropertyStatus(object obj, string propertyName) => m_ObjectManager.GetPropertyStatus(obj, propertyName);
 
-		public virtual object TryGetObject(object identity, Type type)
-		{
-			return TryGetObjectById(identity, type);
-		}
+	    public virtual object TryGetObject(object identity, Type type) => TryGetObjectById(identity, type);
 
-		public virtual object TryGetObject(IQuery query)
-		{
-			return TryGetObjectByQuery(query);
-		}
+	    public virtual object TryGetObject(IQuery query) => TryGetObjectByQuery(query);
 
-		public virtual object TryGetObject(IQuery query, Type type)
+	    public virtual object TryGetObject(IQuery query, Type type)
 		{
 			query.PrimaryType = type;
 			return TryGetObjectByQuery(query);
@@ -752,64 +711,29 @@ namespace Puzzle.NPersist.Framework
 			}
 		}
 
-		public object TryGetObjectByNPath(NPathQuery npathQuery)
-		{
-			return TryGetObjectByQuery(npathQuery);
-		}
+		public object TryGetObjectByNPath(NPathQuery npathQuery) => TryGetObjectByQuery(npathQuery);
 
-		public object TryGetObjectByNPath(string npathQuery, Type type)
-		{
-			return TryGetObjectByNPath(npathQuery, type, null, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public object TryGetObjectByNPath(string npathQuery, Type type) => TryGetObjectByNPath(npathQuery, type, null, RefreshBehaviorType.DefaultBehavior);
 
-		public object TryGetObjectByNPath(string npathQuery, Type type, IList parameters)
-		{
-			return TryGetObjectByNPath(npathQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public object TryGetObjectByNPath(string npathQuery, Type type, IList parameters) => TryGetObjectByNPath(npathQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
 
-		public object TryGetObjectByNPath(string npathQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior)
-		{
-			return TryGetObjectByQuery(new NPathQuery(npathQuery, type, parameters, refreshBehavior, this));
-		}
+	    public object TryGetObjectByNPath(string npathQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior) => TryGetObjectByQuery(new NPathQuery(npathQuery, type, parameters, refreshBehavior, this));
 
-		public object TryGetObjectBySql(SqlQuery sqlQuery)
-		{
-			return TryGetObjectByQuery(sqlQuery);
-		}
+	    public object TryGetObjectBySql(SqlQuery sqlQuery) => TryGetObjectByQuery(sqlQuery);
 
-		public object TryGetObjectBySql(string sqlQuery, Type type)
-		{
-			return TryGetObjectBySql(sqlQuery, type, null, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public object TryGetObjectBySql(string sqlQuery, Type type) => TryGetObjectBySql(sqlQuery, type, null, RefreshBehaviorType.DefaultBehavior);
 
-		public object TryGetObjectBySql(string sqlQuery, Type type, IList parameters)
-		{
-			return TryGetObjectBySql(sqlQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public object TryGetObjectBySql(string sqlQuery, Type type, IList parameters) => TryGetObjectBySql(sqlQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
 
-		public object TryGetObjectBySql(string sqlQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior)
-		{
-			return TryGetObjectByQuery(new SqlQuery(sqlQuery, type, parameters, refreshBehavior, this));
-		}
+	    public object TryGetObjectBySql(string sqlQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior) => TryGetObjectByQuery(new SqlQuery(sqlQuery, type, parameters, refreshBehavior, this));
 
+	    public virtual object TryGetObjectByKey(string keyPropertyName, object keyValue, Type type) => m_PersistenceManager.GetObjectByKey(keyPropertyName, keyValue, type, true);
 
-		public virtual object TryGetObjectByKey(string keyPropertyName, object keyValue, Type type)
-		{
-			return m_PersistenceManager.GetObjectByKey(keyPropertyName, keyValue, type, true);
-		}
+	    public virtual object GetObject(object identity, Type type) => GetObjectById(identity, type, false);
 
-		
-		public virtual object GetObject(object identity, Type type)
-		{
-			return GetObjectById(identity, type, false);
-		}
+	    public virtual object GetObject(IQuery query) => GetObjectByQuery(query);
 
-		public virtual object GetObject(IQuery query)
-		{
-			return GetObjectByQuery(query);
-		}
-
-		public virtual object GetObject(IQuery query, Type type)
+	    public virtual object GetObject(IQuery query, Type type)
 		{
 			query.PrimaryType = type;
 			return GetObjectByQuery(query);
@@ -907,13 +831,9 @@ namespace Puzzle.NPersist.Framework
 			return id.ToString(); 
 		}
 
-		public virtual object GetObjectById(object identity, Type type, RefreshBehaviorType refreshBehavior)
-		{
-			throw new IAmOpenSourcePleaseImplementMeException("Feature not implemented yet!");
-		}
+		public virtual object GetObjectById(object identity, Type type, RefreshBehaviorType refreshBehavior) => throw new IAmOpenSourcePleaseImplementMeException("Feature not implemented yet!");
 
-
-		public object GetObjectByQuery(IQuery query)
+	    public object GetObjectByQuery(IQuery query)
 		{
 			IList listResults;
 			listResults = (IList) GetObjectsByQuery(query);
@@ -931,153 +851,65 @@ namespace Puzzle.NPersist.Framework
 			}
 		}
 
-		public object GetObjectByNPath(NPathQuery npathQuery)
-		{
-			return GetObjectByQuery(npathQuery);
-		}
+		public object GetObjectByNPath(NPathQuery npathQuery) => GetObjectByQuery(npathQuery);
 
-		public object GetObjectByNPath(string npathQuery, Type type)
-		{
-			return GetObjectByNPath(npathQuery, type, null, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public object GetObjectByNPath(string npathQuery, Type type) => GetObjectByNPath(npathQuery, type, null, RefreshBehaviorType.DefaultBehavior);
 
-		public object GetObjectByNPath(string npathQuery, Type type, IList parameters)
-		{
-			return GetObjectByNPath(npathQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public object GetObjectByNPath(string npathQuery, Type type, IList parameters) => GetObjectByNPath(npathQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
 
-		public object GetObjectByNPath(string npathQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior)
-		{
-			return GetObjectByQuery(new NPathQuery(npathQuery, type, parameters, refreshBehavior, this));
-		}
+	    public object GetObjectByNPath(string npathQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior) => GetObjectByQuery(new NPathQuery(npathQuery, type, parameters, refreshBehavior, this));
 
-		public object GetObjectBySql(SqlQuery sqlQuery)
-		{
-			return GetObjectByQuery(sqlQuery);
-		}
+	    public object GetObjectBySql(SqlQuery sqlQuery) => GetObjectByQuery(sqlQuery);
 
-		public object GetObjectBySql(string sqlQuery, Type type)
-		{
-			return GetObjectBySql(sqlQuery, type, null, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public object GetObjectBySql(string sqlQuery, Type type) => GetObjectBySql(sqlQuery, type, null, RefreshBehaviorType.DefaultBehavior);
 
-		public object GetObjectBySql(string sqlQuery, Type type, IList parameters)
-		{
-			return GetObjectBySql(sqlQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public object GetObjectBySql(string sqlQuery, Type type, IList parameters) => GetObjectBySql(sqlQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
 
-		public object GetObjectBySql(string sqlQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior)
-		{
-			return GetObjectByQuery(new SqlQuery(sqlQuery, type, parameters, refreshBehavior, this));
-		}
+	    public object GetObjectBySql(string sqlQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior) => GetObjectByQuery(new SqlQuery(sqlQuery, type, parameters, refreshBehavior, this));
 
-		public virtual object GetObjectByKey(string keyPropertyName, object keyValue, Type type)
-		{
-			return m_PersistenceManager.GetObjectByKey(keyPropertyName, keyValue, type);
-		}
+	    public virtual object GetObjectByKey(string keyPropertyName, object keyValue, Type type) => m_PersistenceManager.GetObjectByKey(keyPropertyName, keyValue, type);
 
-		public void LoadProperty(object obj, string propertyName)
-		{
-			m_PersistenceManager.LoadProperty(obj, propertyName);
-		}
-		
-		public IList GetObjectsByQuery(IQuery query, IList listToFill)
-		{
-			return this.PersistenceEngine.LoadObjects(query, listToFill);
-		}
+	    public void LoadProperty(object obj, string propertyName) => m_PersistenceManager.LoadProperty(obj, propertyName);
 
-		public IList GetObjectsByQuery(IQuery query)
-		{
-			return this.PersistenceEngine.LoadObjects(query, new ArrayList());
-		}
+	    public IList GetObjectsByQuery(IQuery query, IList listToFill) => this.PersistenceEngine.LoadObjects(query, listToFill);
 
-		public virtual IList GetObjectsByNPath(NPathQuery npathQuery)
-		{
-			return GetObjectsByQuery(npathQuery);
-		}
+	    public IList GetObjectsByQuery(IQuery query) => this.PersistenceEngine.LoadObjects(query, new ArrayList());
 
-		public virtual IList GetObjectsByNPath(NPathQuery npathQuery, IList listToFill)
-		{
-			return GetObjectsByQuery(npathQuery, listToFill);
-		}
+	    public virtual IList GetObjectsByNPath(NPathQuery npathQuery) => GetObjectsByQuery(npathQuery);
 
-		public virtual IList GetObjectsByNPath(string npathQuery, Type type)
-		{
-			return GetObjectsByNPath(npathQuery, type, null, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public virtual IList GetObjectsByNPath(NPathQuery npathQuery, IList listToFill) => GetObjectsByQuery(npathQuery, listToFill);
 
-		public virtual IList GetObjectsByNPath(string npathQuery, Type type, IList parameters)
-		{
-			return GetObjectsByNPath(npathQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public virtual IList GetObjectsByNPath(string npathQuery, Type type) => GetObjectsByNPath(npathQuery, type, null, RefreshBehaviorType.DefaultBehavior);
 
-		public virtual IList GetObjectsByNPath(string npathQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior)
-		{
-			return GetObjectsByQuery(new NPathQuery(npathQuery, type, parameters, refreshBehavior, this));
-		}
+	    public virtual IList GetObjectsByNPath(string npathQuery, Type type, IList parameters) => GetObjectsByNPath(npathQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
 
-		public virtual IList GetObjectsBySql(SqlQuery sqlQuery)
-		{
-			return GetObjectsByQuery(sqlQuery);
-		}
+	    public virtual IList GetObjectsByNPath(string npathQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior) => GetObjectsByQuery(new NPathQuery(npathQuery, type, parameters, refreshBehavior, this));
 
-		public virtual IList GetObjectsBySql(SqlQuery sqlQuery, IList listToFill)
-		{
-			return GetObjectsByQuery(sqlQuery, listToFill);
-		}
+	    public virtual IList GetObjectsBySql(SqlQuery sqlQuery) => GetObjectsByQuery(sqlQuery);
 
-		public virtual IList GetObjectsBySql(string sqlQuery, Type type)
-		{
-			return GetObjectsBySql(sqlQuery, type, null, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public virtual IList GetObjectsBySql(SqlQuery sqlQuery, IList listToFill) => GetObjectsByQuery(sqlQuery, listToFill);
 
-		public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList parameters)
-		{
-			return GetObjectsBySql(sqlQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public virtual IList GetObjectsBySql(string sqlQuery, Type type) => GetObjectsBySql(sqlQuery, type, null, RefreshBehaviorType.DefaultBehavior);
 
-		public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior)
-		{
-			return GetObjectsByQuery(new SqlQuery(sqlQuery, type, parameters, refreshBehavior, this));
-		}
+	    public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList parameters) => GetObjectsBySql(sqlQuery, type, parameters, RefreshBehaviorType.DefaultBehavior);
 
+	    public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList parameters, RefreshBehaviorType refreshBehavior) => GetObjectsByQuery(new SqlQuery(sqlQuery, type, parameters, refreshBehavior, this));
 
-		public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap)
-		{
-			return GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, new ArrayList(), RefreshBehaviorType.DefaultBehavior);
-		}
+	    public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap) => GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, new ArrayList(), RefreshBehaviorType.DefaultBehavior);
 
-		public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters)
-		{
-			return GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, parameters, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters) => GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, parameters, RefreshBehaviorType.DefaultBehavior);
 
-		public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior)
-		{
-			return GetPersistenceEngine().GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, parameters, refreshBehavior, new ArrayList() );
-		}
+	    public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior) => GetPersistenceEngine().GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, parameters, refreshBehavior, new ArrayList() );
 
-		public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior, IList listToFill)
-		{
-			return GetPersistenceEngine().GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, parameters, refreshBehavior, listToFill);
-		}
+	    public virtual IList GetObjectsBySql(string sqlQuery, Type type, IList idColumns, IList typeColumns, Hashtable propertyColumnMap, IList parameters, RefreshBehaviorType refreshBehavior, IList listToFill) => GetPersistenceEngine().GetObjectsBySql(sqlQuery, type, idColumns, typeColumns, propertyColumnMap, parameters, refreshBehavior, listToFill);
 
-		public IList GetObjects(Type type)
-		{
-			return GetObjects(type, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public IList GetObjects(Type type) => GetObjects(type, RefreshBehaviorType.DefaultBehavior);
 
-		public IList GetObjects(Type type, IList listToFill)
-		{
-			return GetObjects(type, RefreshBehaviorType.DefaultBehavior, listToFill);
-		}
+	    public IList GetObjects(Type type, IList listToFill) => GetObjects(type, RefreshBehaviorType.DefaultBehavior, listToFill);
 
-		public IList GetObjects(Type type, RefreshBehaviorType refreshBehavior)
-		{
-			return GetObjects(type, refreshBehavior, new ArrayList() );
-		}
+	    public IList GetObjects(Type type, RefreshBehaviorType refreshBehavior) => GetObjects(type, refreshBehavior, new ArrayList() );
 
-		public IList GetObjects(Type type, RefreshBehaviorType refreshBehavior, IList listToFill)
+	    public IList GetObjects(Type type, RefreshBehaviorType refreshBehavior, IList listToFill)
 		{
             if (type == null)
                 throw new ArgumentNullException("type");
@@ -1107,24 +939,13 @@ namespace Puzzle.NPersist.Framework
 			return GetObjectsByQuery(query);
 		}
 
-		public virtual IList FilterObjects(IList objects, NPathQuery query)
-		{
-			return ObjectQueryEngine.GetObjectsByNPath((string) query.Query, objects, query.Parameters);
-		}
+		public virtual IList FilterObjects(IList objects, NPathQuery query) => ObjectQueryEngine.GetObjectsByNPath((string) query.Query, objects, query.Parameters);
 
-		public virtual IList FilterObjects(IList objects, string npath, Type type)
-		{
-			return FilterObjects(objects, new NPathQuery(npath, type, this));
-		}
+	    public virtual IList FilterObjects(IList objects, string npath, Type type) => FilterObjects(objects, new NPathQuery(npath, type, this));
 
-		public virtual IList FilterObjects(IList objects, string npath, Type type, IList parameters)
-		{
-			return FilterObjects(objects, new NPathQuery(npath, type, parameters, this));
-		}
+	    public virtual IList FilterObjects(IList objects, string npath, Type type, IList parameters) => FilterObjects(objects, new NPathQuery(npath, type, parameters, this));
 
-
-
-		public IList FilterObjects(NPathQuery query)
+	    public IList FilterObjects(NPathQuery query)
 		{
 			if (query == null)
 				throw new ArgumentNullException("query");
@@ -1150,14 +971,9 @@ namespace Puzzle.NPersist.Framework
 			return FilterObjects(new NPathQuery(npath, type));
 		}
 
-		public IList FilterObjects(string npath, Type type, IList parameters)
-		{
-			return FilterObjects(new NPathQuery(npath, type, parameters));
-		}
+		public IList FilterObjects(string npath, Type type, IList parameters) => FilterObjects(new NPathQuery(npath, type, parameters));
 
-
-
-		public DataTable FilterIntoDataTable(IList objects, NPathQuery query)
+	    public DataTable FilterIntoDataTable(IList objects, NPathQuery query)
 		{
 			if (query == null)
 				throw new ArgumentNullException("query");
@@ -1195,33 +1011,15 @@ namespace Puzzle.NPersist.Framework
 		}
 
 
-		public DataTable FilterIntoDataTable(string npath, Type type)
-		{
-			return FilterIntoDataTable(new NPathQuery(npath, type));
-		}
+		public DataTable FilterIntoDataTable(string npath, Type type) => FilterIntoDataTable(new NPathQuery(npath, type));
 
+	    public DataTable FilterIntoDataTable(string npath, Type type, IList parameters) => FilterIntoDataTable(new NPathQuery(npath, type, parameters));
 
-		public DataTable FilterIntoDataTable(string npath, Type type, IList parameters)
-		{
-			return FilterIntoDataTable(new NPathQuery(npath, type, parameters));
-		}
+	    public DataTable GetDataTable(NPathQuery query) => this.PersistenceEngine.LoadDataTable(query);
 
-		public DataTable GetDataTable(NPathQuery query)
-		{
-			return this.PersistenceEngine.LoadDataTable(query);
-		}
+	    public DataTable GetDataTable(string npath, Type type) => GetDataTable(new NPathQuery(npath, type));
 
-
-		public DataTable GetDataTable(string npath, Type type)
-		{
-			return GetDataTable(new NPathQuery(npath, type));
-		}
-
-
-		public DataTable GetDataTable(string npath, Type type, IList parameters)
-		{
-			return GetDataTable(new NPathQuery(npath, type, parameters));
-		}
+	    public DataTable GetDataTable(string npath, Type type, IList parameters) => GetDataTable(new NPathQuery(npath, type, parameters));
 
 //		private DataTable FetchDataTable(NPathQuery query, Type type, IList parameters)
 //		{
@@ -1295,12 +1093,9 @@ namespace Puzzle.NPersist.Framework
 			}
 		}
 
-		protected virtual void RegisterObject(object obj)
-		{
-			RegisterObject(obj, ObjectStatus.UpForCreation);
-		}
+		protected virtual void RegisterObject(object obj) => RegisterObject(obj, ObjectStatus.UpForCreation);
 
-		protected virtual void RegisterNewObject(object obj)
+	    protected virtual void RegisterNewObject(object obj)
 		{
 			ObjectCancelEventArgs e = new ObjectCancelEventArgs(obj);
 			m_EventManager.OnCreatingObject(this, e);
@@ -1318,12 +1113,9 @@ namespace Puzzle.NPersist.Framework
 			m_EventManager.OnCreatedObject(this, e2);
 		}
 
-		public virtual void CommitObject(object obj)
-		{
-			CommitObject(obj, 1);
-		}
+		public virtual void CommitObject(object obj) => CommitObject(obj, 1);
 
-		public virtual void CommitObject(object obj, int exceptionLimit)
+	    public virtual void CommitObject(object obj, int exceptionLimit)
 		{
 			ObjectCancelEventArgs e = new ObjectCancelEventArgs(obj);
 			m_EventManager.OnCommittingObject(this, e);
@@ -1374,18 +1166,12 @@ namespace Puzzle.NPersist.Framework
 			m_EventManager.OnDeletedObject(this, e2);
 		}
 
-		public virtual void PersistAll()
-		{
-			Commit(1);
-		}
+		public virtual void PersistAll() => Commit(1);
 
-		//Default is to use exceptionLimit = 1. exceptionLimit = 0 means no limit.
-		public virtual void Commit()
-		{
-			Commit(1);
-		}
+	    //Default is to use exceptionLimit = 1. exceptionLimit = 0 means no limit.
+		public virtual void Commit() => Commit(1);
 
-		public virtual void Commit(int exceptionLimit)
+	    public virtual void Commit(int exceptionLimit)
 		{
 			ContextCancelEventArgs e = new ContextCancelEventArgs(this);
 			m_EventManager.OnCommitting(this, e);
@@ -1401,12 +1187,9 @@ namespace Puzzle.NPersist.Framework
 			m_EventManager.OnCommitted(this, e2);
 		}
 
-        public virtual void CommitRecursive()
-        {
-            CommitRecursive(1);
-        }
+        public virtual void CommitRecursive() => CommitRecursive(1);
 
-        public virtual void CommitRecursive(int exceptionLimit)
+	    public virtual void CommitRecursive(int exceptionLimit)
         {
             Commit(exceptionLimit);
 
@@ -1446,12 +1229,9 @@ namespace Puzzle.NPersist.Framework
 			GC.SuppressFinalize(this);
 		}
 
-		public virtual bool GetNullValueStatus(object obj, string propertyName)
-		{
-			return m_ObjectManager.GetNullValueStatus(obj, propertyName);
-		}
+		public virtual bool GetNullValueStatus(object obj, string propertyName) => m_ObjectManager.GetNullValueStatus(obj, propertyName);
 
-		public virtual void SetNullValueStatus(object obj, string propertyName, bool value)
+	    public virtual void SetNullValueStatus(object obj, string propertyName, bool value)
 		{
 			m_ObjectManager.SetNullValueStatus(obj, propertyName, value);
 			m_UnitOfWork.RegisterDirty(obj);
@@ -1801,12 +1581,9 @@ namespace Puzzle.NPersist.Framework
 			return GetConnectionString(sourceMap);
 		}
 
-		public virtual string GetConnectionString(ISourceMap sourceMap)
-		{
-			return sourceMap.ConnectionString;
-		}
+		public virtual string GetConnectionString(ISourceMap sourceMap) => sourceMap.ConnectionString;
 
-		public virtual void SetConnectionString(string value)
+	    public virtual void SetConnectionString(string value)
 		{
 			if (m_DomainMap == null)
 			{
@@ -1834,14 +1611,9 @@ namespace Puzzle.NPersist.Framework
 			SetConnectionString(value, sourceMap);
 		}
 
-		public virtual void SetConnectionString(string value, ISourceMap sourceMap)
-		{
-			sourceMap.ConnectionString = value;
-		}
+		public virtual void SetConnectionString(string value, ISourceMap sourceMap) => sourceMap.ConnectionString = value;
 
-
-
-		public virtual IDataSource GetDataSource()
+	    public virtual IDataSource GetDataSource()
 		{
 			if (m_DomainMap == null)
 			{
@@ -1903,36 +1675,15 @@ namespace Puzzle.NPersist.Framework
 			return sourceMap;
 		}
 
-		public virtual ITransaction BeginTransaction()
-		{
-			return BeginTransaction(IsolationLevel.ReadCommitted, true);
-//			IDataSource dataSource = GetDataSource();
-//			return BeginTransaction(dataSource, IsolationLevel.ReadCommitted, true);
-		}
+		public virtual ITransaction BeginTransaction() => BeginTransaction(IsolationLevel.ReadCommitted, true);
 
-		public virtual ITransaction BeginTransaction(IsolationLevel iso)
-		{
-			return BeginTransaction(iso, true);
-//			IDataSource dataSource = GetDataSource();
-//			return BeginTransaction(dataSource, iso, true);
-		}
+	    public virtual ITransaction BeginTransaction(IsolationLevel iso) => BeginTransaction(iso, true);
 
-		public virtual ITransaction BeginTransaction(bool commitTransactionOnCommittingContext)
-		{
-			return BeginTransaction(IsolationLevel.ReadCommitted, commitTransactionOnCommittingContext);
+	    public virtual ITransaction BeginTransaction(bool commitTransactionOnCommittingContext) => BeginTransaction(IsolationLevel.ReadCommitted, commitTransactionOnCommittingContext);
 
-//			IDataSource dataSource = GetDataSource();
-//			return BeginTransaction(dataSource, IsolationLevel.ReadCommitted, commitTransactionOnCommittingContext);
-		}
+	    public virtual ITransaction BeginTransaction(IsolationLevel iso, bool commitTransactionOnCommittingContext) => new CompositeTransaction(this, iso, commitTransactionOnCommittingContext);
 
-		public virtual ITransaction BeginTransaction(IsolationLevel iso, bool commitTransactionOnCommittingContext)
-		{
-			return new CompositeTransaction(this, iso, commitTransactionOnCommittingContext);
-//			IDataSource dataSource = GetDataSource();
-//			return BeginTransaction(dataSource, iso, commitTransactionOnCommittingContext);
-		}
-
-		public virtual ITransaction BeginTransaction(IDataSource dataSource)
+	    public virtual ITransaction BeginTransaction(IDataSource dataSource)
 		{
 			if (dataSource == null)
 				throw new ArgumentNullException("dataSource");
@@ -2044,12 +1795,9 @@ namespace Puzzle.NPersist.Framework
 			}
 		}
 
-		public virtual void SetTransaction(IDbConnection connection, ITransaction transaction)
-		{
-			m_Transactions[connection] = transaction;
-		}
+		public virtual void SetTransaction(IDbConnection connection, ITransaction transaction) => m_Transactions[connection] = transaction;
 
-		public virtual object ExecuteScalar(IQuery query)
+	    public virtual object ExecuteScalar(IQuery query)
 		{
 			IDataSource dataSource = GetDataSource();
 			return ExecuteScalar(query, dataSource);
@@ -2062,47 +1810,23 @@ namespace Puzzle.NPersist.Framework
 			return m_SqlExecutor.ExecuteScalar(sql, dataSource, outParameters);
 		}
 
-		public virtual object ExecuteScalar(string npath, Type type)
-		{
-			return ExecuteScalar(new NPathQuery(npath, type, this));
-		}
+		public virtual object ExecuteScalar(string npath, Type type) => ExecuteScalar(new NPathQuery(npath, type, this));
 
-		public virtual object ExecuteScalarByNPath(string npath, Type type)
-		{
-			return ExecuteScalar(new NPathQuery(npath, type, this));
-		}
+	    public virtual object ExecuteScalarByNPath(string npath, Type type) => ExecuteScalar(new NPathQuery(npath, type, this));
 
-		public virtual object ExecuteScalarByNPath(string npath, Type type, IList parameters )
-		{
-			return ExecuteScalar(new NPathQuery(npath, type, parameters, this));
-		}
+	    public virtual object ExecuteScalarByNPath(string npath, Type type, IList parameters ) => ExecuteScalar(new NPathQuery(npath, type, parameters, this));
 
-		public virtual object ExecuteScalarByNPath(string npath, Type type, IList parameters, IDataSource dataSource )
-		{
-			return ExecuteScalar(new NPathQuery(npath, type, parameters, this), dataSource );
-		}
+	    public virtual object ExecuteScalarByNPath(string npath, Type type, IList parameters, IDataSource dataSource ) => ExecuteScalar(new NPathQuery(npath, type, parameters, this), dataSource );
 
-		public virtual object ExecuteScalarBySql(string sql)
-		{
-			return ExecuteScalar(new SqlQuery(sql, this));
-		}
+	    public virtual object ExecuteScalarBySql(string sql) => ExecuteScalar(new SqlQuery(sql, this));
 
-		public virtual object ExecuteScalarBySql(string sql, IList parameters )
-		{
-			return ExecuteScalar(new SqlQuery(sql, parameters, this));
-		}
+	    public virtual object ExecuteScalarBySql(string sql, IList parameters ) => ExecuteScalar(new SqlQuery(sql, parameters, this));
 
-		public virtual object ExecuteScalarBySql(string sql, IList parameters, IDataSource dataSource )
-		{
-			return ExecuteScalar(new SqlQuery(sql, parameters, this), dataSource );
-		}
+	    public virtual object ExecuteScalarBySql(string sql, IList parameters, IDataSource dataSource ) => ExecuteScalar(new SqlQuery(sql, parameters, this), dataSource );
 
-		public virtual object AttachObject(object obj)
-		{
-			return AttachObject(obj, MergeBehaviorType.DefaultBehavior);
-		}
+	    public virtual object AttachObject(object obj) => AttachObject(obj, MergeBehaviorType.DefaultBehavior);
 
-		public virtual object AttachObject(object obj, MergeBehaviorType mergeBehavior)
+	    public virtual object AttachObject(object obj, MergeBehaviorType mergeBehavior)
 		{
 			//2-pass operation - first pass register in uow and id map, seond pass merge objects
 			// Collect the object to be merged in first pass (the objects already in the id map)
@@ -2114,17 +1838,11 @@ namespace Puzzle.NPersist.Framework
 			return this.GetObjectById(objId, obj.GetType());
 		}
 
-		public virtual IList AttachObjects(IList objects)
-		{
-			return AttachObjects(objects, MergeBehaviorType.DefaultBehavior);
-		}
+		public virtual IList AttachObjects(IList objects) => AttachObjects(objects, MergeBehaviorType.DefaultBehavior);
 
-		public virtual IList AttachObjects(IList objects, MergeBehaviorType mergeBehavior)
-		{
-			return null;
-		}
+	    public virtual IList AttachObjects(IList objects, MergeBehaviorType mergeBehavior) => null;
 
-		public virtual IIdentityGenerator GetIdentityGenerator(string name)
+	    public virtual IIdentityGenerator GetIdentityGenerator(string name)
 		{
 			string useName = name;
 			switch (useName.ToLower(CultureInfo.InvariantCulture))
@@ -2169,38 +1887,23 @@ namespace Puzzle.NPersist.Framework
 			return identityGenerator;
 		} 
 
-		public virtual void RefreshObject(object obj)
-		{
-			RefreshObject(obj, RefreshBehaviorType.DefaultBehavior);			
-		}
+		public virtual void RefreshObject(object obj) => RefreshObject(obj, RefreshBehaviorType.DefaultBehavior);
 
-		public virtual void RefreshObject(object obj, RefreshBehaviorType refreshBehavior)
-		{
-			RefreshObjectProperty(obj, refreshBehavior, "*");		
-		}
+	    public virtual void RefreshObject(object obj, RefreshBehaviorType refreshBehavior) => RefreshObjectProperty(obj, refreshBehavior, "*");
 
-		public virtual void RefreshObjects(IList objects)
-		{
-			RefreshObjects(objects, RefreshBehaviorType.DefaultBehavior);						
-		}
-			
-		public virtual void RefreshObjects(IList objects, RefreshBehaviorType refreshBehavior)
+	    public virtual void RefreshObjects(IList objects) => RefreshObjects(objects, RefreshBehaviorType.DefaultBehavior);
+
+	    public virtual void RefreshObjects(IList objects, RefreshBehaviorType refreshBehavior)
 		{
 			foreach(object obj in objects)
 				RefreshObject(obj, refreshBehavior);
 		}
 
-		public virtual void RefreshProperty(object obj, string propertyName)
-		{
-			RefreshProperty(obj, propertyName, RefreshBehaviorType.DefaultBehavior);			
-		}
+		public virtual void RefreshProperty(object obj, string propertyName) => RefreshProperty(obj, propertyName, RefreshBehaviorType.DefaultBehavior);
 
-		public virtual void RefreshProperty(object obj, string propertyName, RefreshBehaviorType refreshBehavior)
-		{
-			RefreshObjectProperty(obj, refreshBehavior, propertyName);
-		}
+	    public virtual void RefreshProperty(object obj, string propertyName, RefreshBehaviorType refreshBehavior) => RefreshObjectProperty(obj, refreshBehavior, propertyName);
 
-		protected virtual void RefreshObjectProperty(object obj, RefreshBehaviorType refreshBehavior, string propertyName)
+	    protected virtual void RefreshObjectProperty(object obj, RefreshBehaviorType refreshBehavior, string propertyName)
 		{
 			string span = propertyName;
 			if (span != "*")
@@ -2216,47 +1919,23 @@ namespace Puzzle.NPersist.Framework
 		}
 
 
-        public virtual void Invalidate()
-        {
-            this.ObjectManager.InvalidateObjectsInCache(false);
-        }
+        public virtual void Invalidate() => this.ObjectManager.InvalidateObjectsInCache(false);
 
-        public virtual void Invalidate(bool invalidateDirty)
-        {
-            this.ObjectManager.InvalidateObjectsInCache(invalidateDirty);
-        }
+	    public virtual void Invalidate(bool invalidateDirty) => this.ObjectManager.InvalidateObjectsInCache(invalidateDirty);
 
-		public virtual void Invalidate(IList objects)
-        {
-            this.ObjectManager.InvalidateObjects(objects, false);
-        }
+	    public virtual void Invalidate(IList objects) => this.ObjectManager.InvalidateObjects(objects, false);
 
-        public virtual void Invalidate(IList objects, bool invalidateDirty)
-        {
-            this.ObjectManager.InvalidateObjects(objects, invalidateDirty);
-        }
+	    public virtual void Invalidate(IList objects, bool invalidateDirty) => this.ObjectManager.InvalidateObjects(objects, invalidateDirty);
 
-		public virtual void Invalidate(object obj)
-        {
-            this.ObjectManager.InvalidateObject(obj, false);
-        }
+	    public virtual void Invalidate(object obj) => this.ObjectManager.InvalidateObject(obj, false);
 
-        public virtual void Invalidate(object obj, bool invalidateDirty)
-        {
-            this.ObjectManager.InvalidateObject(obj, invalidateDirty);
-        }
+	    public virtual void Invalidate(object obj, bool invalidateDirty) => this.ObjectManager.InvalidateObject(obj, invalidateDirty);
 
-		public virtual void Invalidate(object obj, string propertyName)
-        {
-            this.ObjectManager.InvalidateProperty(obj, propertyName, false);
-        }
+	    public virtual void Invalidate(object obj, string propertyName) => this.ObjectManager.InvalidateProperty(obj, propertyName, false);
 
-        public virtual void Invalidate(object obj, string propertyName, bool invalidateDirty)
-        {
-            this.ObjectManager.InvalidateProperty(obj, propertyName, invalidateDirty);
-        }
+	    public virtual void Invalidate(object obj, string propertyName, bool invalidateDirty) => this.ObjectManager.InvalidateProperty(obj, propertyName, invalidateDirty);
 
-        public virtual void Clear()
+	    public virtual void Clear()
         {
             this.IdentityMap.Clear();
             this.UnitOfWork.Clear();
@@ -2266,17 +1945,11 @@ namespace Puzzle.NPersist.Framework
         }
 
 
-		public virtual NPathQuery GetLoadObjectNPathQuery(object obj, RefreshBehaviorType refreshBehavior)
-		{
-			return GetLoadObjectNPathQuery(obj, "*", refreshBehavior);
-		}
+		public virtual NPathQuery GetLoadObjectNPathQuery(object obj, RefreshBehaviorType refreshBehavior) => GetLoadObjectNPathQuery(obj, "*", refreshBehavior);
 
-		public virtual NPathQuery GetLoadObjectNPathQuery(object obj, string span)
-		{
-			return GetLoadObjectNPathQuery(obj, span, RefreshBehaviorType.DefaultBehavior);
-		}
+	    public virtual NPathQuery GetLoadObjectNPathQuery(object obj, string span) => GetLoadObjectNPathQuery(obj, span, RefreshBehaviorType.DefaultBehavior);
 
-		public virtual NPathQuery GetLoadObjectNPathQuery(object obj, string span, RefreshBehaviorType refreshBehavior)
+	    public virtual NPathQuery GetLoadObjectNPathQuery(object obj, string span, RefreshBehaviorType refreshBehavior)
 		{
 			Type type = obj.GetType() ;
 			IClassMap classMap = m_DomainMap.MustGetClassMap(type );
@@ -2302,13 +1975,9 @@ namespace Puzzle.NPersist.Framework
 
 		private bool isEditing = false;
 
-		public virtual bool IsEditing
-		{
-			get { return this.isEditing; }						
-		}
-		
+		public virtual bool IsEditing => this.isEditing;
 
-		public virtual void BeginEdit()
+	    public virtual void BeginEdit()
 		{
 			if (this.isEditing) 
 				throw new EditException("Can't begin edit when already in editing mode!");
@@ -2338,19 +2007,16 @@ namespace Puzzle.NPersist.Framework
 			this.ObjectCloner.EndEdit();
 		}
 
-		public IObjectCache GetObjectCache()
-		{
-			return m_ObjectCacheManager.GetObjectCache() ;				
-		}
+		public IObjectCache GetObjectCache() => m_ObjectCacheManager.GetObjectCache();
 
-		#region Property  TimeToLive
+	    #region Property  TimeToLive
 		
 		private long timeToLive = -1;
 		
 		public long TimeToLive
 		{
-			get { return this.timeToLive; }
-			set { this.timeToLive = value; }
+			get => this.timeToLive;
+		    set => this.timeToLive = value;
 		}
 		
 		#endregion
@@ -2361,8 +2027,8 @@ namespace Puzzle.NPersist.Framework
 		
 		public TimeToLiveBehavior TimeToLiveBehavior
 		{
-			get { return this.timeToLiveBehavior; }
-			set { this.timeToLiveBehavior = value; }
+			get => this.timeToLiveBehavior;
+		    set => this.timeToLiveBehavior = value;
 		}
 		
 		#endregion
@@ -2373,8 +2039,8 @@ namespace Puzzle.NPersist.Framework
 		
 		public LoadBehavior LoadBehavior
 		{
-			get { return this.loadBehavior; }
-			set { this.loadBehavior = value; }
+			get => this.loadBehavior;
+		    set => this.loadBehavior = value;
 		}
 		
 		#endregion
@@ -2383,20 +2049,17 @@ namespace Puzzle.NPersist.Framework
 
 		public Hashtable LoadedInLatestQuery
 		{
-			get { return loadedInLatestQuery; }
-			set { loadedInLatestQuery = value; }
+			get => loadedInLatestQuery;
+		    set => loadedInLatestQuery = value;
 		}
 
 		#endregion
 
 		#region Exceptions
 
-		public IList Exceptions
-		{
-			get { return this.UnitOfWork.Exceptions; }	
-		}
+		public IList Exceptions => this.UnitOfWork.Exceptions;
 
-		#endregion
+	    #endregion
 
 		#endregion
 
@@ -2408,8 +2071,8 @@ namespace Puzzle.NPersist.Framework
 		
 		public ValidationMode ValidationMode
 		{
-			get { return this.validationMode; }
-			set { this.validationMode = value; }
+			get => this.validationMode;
+		    set => this.validationMode = value;
 		}
 		
 		#endregion
@@ -2420,8 +2083,8 @@ namespace Puzzle.NPersist.Framework
 		
 		public bool ValidateBeforeCommit
 		{
-			get { return this.validateBeforeCommit; }
-			set { this.validateBeforeCommit = value; }
+			get => this.validateBeforeCommit;
+		    set => this.validateBeforeCommit = value;
 		}
 		
 		#endregion
@@ -2441,12 +2104,9 @@ namespace Puzzle.NPersist.Framework
 		}
 
 
-		public virtual void ValidateCache()
-		{
-			ValidateCache(null);
-		}
+		public virtual void ValidateCache() => ValidateCache(null);
 
-		public virtual void ValidateCache(IList exceptions)
+	    public virtual void ValidateCache(IList exceptions)
 		{
 			foreach (object obj in this.IdentityMap.GetObjects () )
 			{
@@ -2454,12 +2114,9 @@ namespace Puzzle.NPersist.Framework
 			}			
 		}
 
-		public virtual void ValidateUnitOfWork()
-		{
-			ValidateUnitOfWork(null);
-		}
+		public virtual void ValidateUnitOfWork() => ValidateUnitOfWork(null);
 
-		public virtual void ValidateUnitOfWork(IList exceptions)
+	    public virtual void ValidateUnitOfWork(IList exceptions)
 		{
 			foreach (object obj in this.UnitOfWork.GetCreatedObjects() )
 			{
@@ -2476,17 +2133,11 @@ namespace Puzzle.NPersist.Framework
 		}
 
 				
-		public virtual bool IsValid(object obj)
-		{
-			return this.m_ObjectValidator.IsValid(obj);
-		}
+		public virtual bool IsValid(object obj) => this.m_ObjectValidator.IsValid(obj);
 
-		public virtual bool IsValid(object obj, string propertyName)
-		{
-			return this.m_ObjectValidator.IsValid(obj, propertyName);			
-		}
+	    public virtual bool IsValid(object obj, string propertyName) => this.m_ObjectValidator.IsValid(obj, propertyName);
 
-		public virtual void ValidateObjects(IList objects)
+	    public virtual void ValidateObjects(IList objects)
 		{
 			foreach (object obj in objects)
 				this.m_ObjectValidator.ValidateObject(obj);						
@@ -2498,27 +2149,15 @@ namespace Puzzle.NPersist.Framework
 				this.m_ObjectValidator.ValidateObject(obj, exceptions);				
 		}
 
-		public virtual void ValidateObject(object obj)
-		{
-			this.m_ObjectValidator.ValidateObject(obj);						
-		}
+		public virtual void ValidateObject(object obj) => this.m_ObjectValidator.ValidateObject(obj);
 
-		public virtual void ValidateObject(object obj, IList exceptions)
-		{
-			this.m_ObjectValidator.ValidateObject(obj, exceptions);				
-		}
-		
-		public virtual void ValidateProperty(object obj, string propertyName)
-		{
-			this.m_ObjectValidator.ValidateProperty(obj, propertyName);
-		}
+	    public virtual void ValidateObject(object obj, IList exceptions) => this.m_ObjectValidator.ValidateObject(obj, exceptions);
 
-		public virtual void ValidateProperty(object obj, string propertyName, IList exceptions)
-		{
-			this.m_ObjectValidator.ValidateProperty(obj, propertyName, exceptions);			
-		}
+	    public virtual void ValidateProperty(object obj, string propertyName) => this.m_ObjectValidator.ValidateProperty(obj, propertyName);
 
-		#endregion
+	    public virtual void ValidateProperty(object obj, string propertyName, IList exceptions) => this.m_ObjectValidator.ValidateProperty(obj, propertyName, exceptions);
+
+	    #endregion
 
 		#region Event Handlers
 
@@ -2813,31 +2452,24 @@ namespace Puzzle.NPersist.Framework
 
 		#endregion
 
-        public virtual IList Conflicts
-        {
-			get { return (IList) ((ArrayList) conflicts).Clone(); }
-		}
+        public virtual IList Conflicts => (IList) ((ArrayList) conflicts).Clone();
 
-		public virtual IList UnclonedConflicts
-		{
-			get { return conflicts; }
-		}
+	    public virtual IList UnclonedConflicts => conflicts;
 
-
-        private ConsistencyMode readConsistency = ConsistencyMode.Default;
+	    private ConsistencyMode readConsistency = ConsistencyMode.Default;
 
         public ConsistencyMode ReadConsistency
         {
-            get { return readConsistency; }
-            set { readConsistency = value; }
+            get => readConsistency;
+            set => readConsistency = value;
         }
 
         private ConsistencyMode writeConsistency = ConsistencyMode.Default;
 
         public ConsistencyMode WriteConsistency
         {
-            get { return writeConsistency; }
-            set { writeConsistency = value; }
+            get => writeConsistency;
+            set => writeConsistency = value;
         }
 
 		private IPersistenceEngine GetPersistenceEngine()
@@ -2868,12 +2500,9 @@ namespace Puzzle.NPersist.Framework
             return (T)o;
         }
 
-        public virtual T TryGetObjectByNPath<T>(string npathQuery)
-        {
-            return TryGetObjectByNPath<T>(npathQuery, new ArrayList());
-        }
+        public virtual T TryGetObjectByNPath<T>(string npathQuery) => TryGetObjectByNPath<T>(npathQuery, new ArrayList());
 
-        public virtual T TryGetObjectByNPath<T>(string npathQuery, params QueryParameter[] parameters)
+	    public virtual T TryGetObjectByNPath<T>(string npathQuery, params QueryParameter[] parameters)
         {
             IList parameterList = new ArrayList(parameters);
             return TryGetObjectByNPath<T>(npathQuery, parameterList);
@@ -2885,12 +2514,9 @@ namespace Puzzle.NPersist.Framework
             return (T)o;
         }
 
-        public virtual T GetObjectByNPath<T>(string npathQuery)
-        {
-            return GetObjectByNPath<T>(npathQuery, new ArrayList());
-        }
+        public virtual T GetObjectByNPath<T>(string npathQuery) => GetObjectByNPath<T>(npathQuery, new ArrayList());
 
-        public virtual T GetObjectByNPath<T>(string npathQuery, params QueryParameter[] parameters)
+	    public virtual T GetObjectByNPath<T>(string npathQuery, params QueryParameter[] parameters)
         {
             IList parameterList = new ArrayList(parameters);
             return GetObjectByNPath<T>(npathQuery, parameterList);
@@ -2945,12 +2571,9 @@ namespace Puzzle.NPersist.Framework
 #endregion
 
         #region GetArrayByNPath
-        public virtual T[] GetArrayByNPath<T>(string npathQuery)
-        {
-            return GetArrayByNPath<T>(npathQuery, new ArrayList());
-        }
+        public virtual T[] GetArrayByNPath<T>(string npathQuery) => GetArrayByNPath<T>(npathQuery, new ArrayList());
 
-        public virtual T[] GetArrayByNPath<T>(string npathQuery, IList parameters)
+	    public virtual T[] GetArrayByNPath<T>(string npathQuery, IList parameters)
         {
             DataTable res = this.GetDataTable(npathQuery, typeof(T), parameters);
             if (res.Columns.Count != 1)
@@ -2974,12 +2597,9 @@ namespace Puzzle.NPersist.Framework
 
         #region GetSnapshotObjectsByNPath
 
-        public virtual IList<snapT> GetSnapshotObjectsByNPath<snapT, sourceT>(string npathQuery)
-        {
-            return GetSnapshotObjectsByNPath<snapT, sourceT>(npathQuery, new ArrayList());
-        }
+        public virtual IList<snapT> GetSnapshotObjectsByNPath<snapT, sourceT>(string npathQuery) => GetSnapshotObjectsByNPath<snapT, sourceT>(npathQuery, new ArrayList());
 
-        public virtual IList<snapT> GetSnapshotObjectsByNPath<snapT, sourceT>(string npathQuery, IList parameters)
+	    public virtual IList<snapT> GetSnapshotObjectsByNPath<snapT, sourceT>(string npathQuery, IList parameters)
         {
             DataTable res = this.GetDataTable(npathQuery, typeof(sourceT), parameters);
             ConstructorInfo[] constructors = typeof(snapT).GetConstructors();

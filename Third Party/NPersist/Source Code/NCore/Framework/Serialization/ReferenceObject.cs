@@ -10,10 +10,7 @@ namespace Puzzle.NCore.Runtime.Serialization
         public bool IsEnumerable = false;
         public readonly IList Fields = new ArrayList();
 
-        public override string ToString()
-        {
-            return string.Format("{0}#{1}", Type.Name, ID);
-        }
+        public override string ToString() => string.Format("{0}#{1}", Type.Name, ID);
 
         public override void Serialize(XmlTextWriter xml)
         {
@@ -30,10 +27,7 @@ namespace Puzzle.NCore.Runtime.Serialization
             xml.WriteEndElement();
         }
 
-        public override void SerializeReference(XmlTextWriter xml)
-        {
-            xml.WriteAttributeString("id-ref", ID.ToString());
-        }
+        public override void SerializeReference(XmlTextWriter xml) => xml.WriteAttributeString("id-ref", ID.ToString());
 
         private object result;
         public override object GetValue()

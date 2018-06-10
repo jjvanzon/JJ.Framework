@@ -38,8 +38,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public bool Negative
 		{
-			get { return this.negative; }
-			set { this.negative = value; }
+			get => this.negative;
+		    set => this.negative = value;
 		}
 		
 		#endregion
@@ -50,8 +50,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public string EscapeCharacter
 		{
-			get { return this.escapeCharacter; }
-			set { this.escapeCharacter = value; }
+			get => this.escapeCharacter;
+		    set => this.escapeCharacter = value;
 		}
 		
 		#endregion

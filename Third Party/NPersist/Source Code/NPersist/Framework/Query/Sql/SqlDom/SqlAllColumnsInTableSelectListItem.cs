@@ -18,19 +18,16 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 	/// </summary>
 	public class SqlAllColumnsInTableSelectListItem : SqlSelectListItem 
 	{
-		public SqlAllColumnsInTableSelectListItem(SqlSelectClause sqlSelectClause, SqlTableAliasReference sqlTableAliasReference) : base(sqlSelectClause)
-		{
-			this.sqlTableAliasReference = sqlTableAliasReference;
-		}
+		public SqlAllColumnsInTableSelectListItem(SqlSelectClause sqlSelectClause, SqlTableAliasReference sqlTableAliasReference) : base(sqlSelectClause) => this.sqlTableAliasReference = sqlTableAliasReference;
 
-		#region Property  SqlTableAliasReference 
+	    #region Property  SqlTableAliasReference 
 		
 		private SqlTableAliasReference sqlTableAliasReference ;
 		
 		public SqlTableAliasReference SqlTableAliasReference 
 		{
-			get { return this.sqlTableAliasReference ; }
-			set { this.sqlTableAliasReference  = value; }
+			get => this.sqlTableAliasReference;
+		    set => this.sqlTableAliasReference  = value;
 		}
 		
 		#endregion

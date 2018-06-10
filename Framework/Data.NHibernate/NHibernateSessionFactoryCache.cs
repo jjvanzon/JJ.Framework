@@ -31,12 +31,9 @@ namespace JJ.Framework.Data.NHibernate
 			}
 		}
 
-		private static string GetKey(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
-		{
-			return connectionString + SEPARATOR + modelAssembly.FullName + SEPARATOR + mappingAssembly.FullName + SEPARATOR + dialect;
-		}
+		private static string GetKey(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect) => connectionString + SEPARATOR + modelAssembly.FullName + SEPARATOR + mappingAssembly.FullName + SEPARATOR + dialect;
 
-		private static ISessionFactory CreateSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
+	    private static ISessionFactory CreateSessionFactory(string connectionString, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
 		{
 			if (string.IsNullOrEmpty(dialect)) throw new ArgumentException("dialect cannot be null or empty.");
 

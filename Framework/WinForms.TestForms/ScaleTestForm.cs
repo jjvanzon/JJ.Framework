@@ -127,32 +127,17 @@ namespace JJ.Framework.WinForms.TestForms
 			diagramControl1.Height = ClientSize.Height;
 		}
 
-		private void mouseDownGesture_MouseDown(object sender, VectorGraphics.EventArg.MouseEventArgs e)
-		{
-			TrySetElementText(e.Element, "MouseDown");
-		}
+		private void mouseDownGesture_MouseDown(object sender, VectorGraphics.EventArg.MouseEventArgs e) => TrySetElementText(e.Element, "MouseDown");
 
-		private void mouseMoveGesture_MouseMove(object sender, VectorGraphics.EventArg.MouseEventArgs e)
-		{
-			TrySetElementText(e.Element, "MouseMove");
-		}
+	    private void mouseMoveGesture_MouseMove(object sender, VectorGraphics.EventArg.MouseEventArgs e) => TrySetElementText(e.Element, "MouseMove");
 
-		private void mouseUpGesture_MouseUp(object sender, VectorGraphics.EventArg.MouseEventArgs e)
-		{
-			TrySetElementText(e.Element, "MouseUp");
-		}
+	    private void mouseUpGesture_MouseUp(object sender, VectorGraphics.EventArg.MouseEventArgs e) => TrySetElementText(e.Element, "MouseUp");
 
-		private void mouseLeaveGesture_MouseLeave(object sender, VectorGraphics.EventArg.MouseEventArgs e)
-		{
-			TrySetElementText(e.Element, "MouseLeave");
-		}
+	    private void mouseLeaveGesture_MouseLeave(object sender, VectorGraphics.EventArg.MouseEventArgs e) => TrySetElementText(e.Element, "MouseLeave");
 
-		private void DoubleClickGesture_DoubleClick(object sender, ElementEventArgs e)
-		{
-			TrySetElementText(e.Element, "DoubleClicked");
-		}
+	    private void DoubleClickGesture_DoubleClick(object sender, ElementEventArgs e) => TrySetElementText(e.Element, "DoubleClicked");
 
-		private void TrySetElementText(Element element, string text)
+	    private void TrySetElementText(Element element, string text)
 		{
 			var label = element as Label;
 			if (label == null)

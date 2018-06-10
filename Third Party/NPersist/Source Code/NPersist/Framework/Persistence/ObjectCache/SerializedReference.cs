@@ -34,8 +34,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 		
 		public string Identity
 		{
-			get { return this.identity; }
-			set { this.identity = value; }
+			get => this.identity;
+		    set => this.identity = value;
 		}
 		
 		#endregion
@@ -46,8 +46,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 		
 		public string Type
 		{
-			get { return this.type; }
-			set { this.type = value; }
+			get => this.type;
+		    set => this.type = value;
 		}
 		
 		#endregion

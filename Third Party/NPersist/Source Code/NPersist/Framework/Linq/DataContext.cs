@@ -49,9 +49,6 @@ namespace Puzzle.NPersist.Framework.Linq
             }
         }
 
-        public virtual void SubmitChanges()
-        {
-            this.context.Commit ();
-        }
+        public virtual void SubmitChanges() => this.context.Commit ();
     }
 }

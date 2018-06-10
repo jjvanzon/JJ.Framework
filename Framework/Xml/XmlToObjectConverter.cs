@@ -634,12 +634,9 @@ namespace JJ.Framework.Xml
 		/// Returns whether the type is considered nullable in general.
 		/// Concretely this means any reference type and any Nullable&lt;T&gt;.
 		/// </summary>
-		private bool IsNullable(Type type)
-		{
-			return type.IsReferenceType() || type.IsNullableType();
-		}
+		private bool IsNullable(Type type) => type.IsReferenceType() || type.IsNullableType();
 
-		/// <summary>
+	    /// <summary>
 		/// Returns wheter a generic collection type is supported.
 		/// The supported types are List&lt;T&gt;, IList&lt;T&gt;, ICollection&lt;T&gt; and IEnumerable&lt;T&gt;.
 		/// </summary>

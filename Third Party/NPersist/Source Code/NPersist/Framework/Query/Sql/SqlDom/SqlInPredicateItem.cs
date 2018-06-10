@@ -30,16 +30,16 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 			this.sqlSelectStatement = sqlSelectStatement;
 		}
 
-		public SqlInPredicate SqlInPredicate { get { return this.Parent as SqlInPredicate; } }
-		
-		#region Property  SqlExpression
+		public SqlInPredicate SqlInPredicate => this.Parent as SqlInPredicate;
+
+	    #region Property  SqlExpression
 		
 		private SqlExpression sqlExpression;
 		
 		public SqlExpression SqlExpression
 		{
-			get { return this.sqlExpression; }
-			set { this.sqlExpression = value; }
+			get => this.sqlExpression;
+		    set => this.sqlExpression = value;
 		}
 		
 		#endregion
@@ -50,8 +50,8 @@ namespace Puzzle.NPersist.Framework.Sql.Dom
 		
 		public SqlSelectStatement SqlSelectStatement
 		{
-			get { return this.sqlSelectStatement; }
-			set { this.sqlSelectStatement = value; }
+			get => this.sqlSelectStatement;
+		    set => this.sqlSelectStatement = value;
 		}
 		
 		#endregion

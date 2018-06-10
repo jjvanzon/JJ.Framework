@@ -57,12 +57,9 @@ namespace JJ.Framework.PlatformCompatibility
 		/// Beware that this overload simply saves the root node
 		/// and does not the features unique to XDocument.
 		/// </summary>
-		public static void XDocument_Save_PlatformSafe(XDocument doc, string fileName)
-		{
-			XElement_Save_PlatformSafe(doc.Root, fileName);
-		}
+		public static void XDocument_Save_PlatformSafe(XDocument doc, string fileName) => XElement_Save_PlatformSafe(doc.Root, fileName);
 
-		/// <summary>
+	    /// <summary>
 		/// Windows Phone 8 compatibility:
 		/// XElement.Save(string fileName) does not exist on Windows Phone 8.
 		/// Use 'XElement.Save(TextWriter)' or call this method instead.

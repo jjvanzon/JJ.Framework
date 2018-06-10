@@ -37,12 +37,9 @@ namespace Puzzle.NPath.Framework
 		{
 		}
 
-		public NPathSelectQuery ParseSelectQuery(string code)
-		{
-			return ParseSelectQuery(code, new ArrayList());
-		}
+		public NPathSelectQuery ParseSelectQuery(string code) => ParseSelectQuery(code, new ArrayList());
 
-		public NPathSelectQuery ParseSelectQuery(string code, IList parameters)
+	    public NPathSelectQuery ParseSelectQuery(string code, IList parameters)
 		{
 			parameterQueue = new ArrayList(parameters);
 			queries = new Stack();
@@ -508,12 +505,9 @@ namespace Puzzle.NPath.Framework
 		}
 
 
-		private bool CurrentIsValue()
-		{
-			return tokenizer.GetCurrentToken().IsType("value") || (tokenizer.GetCurrentToken().IsType("sign") && tokenizer.GetNextToken().IsType("value") || (tokenizer.GetCurrentToken().IsType("not") && tokenizer.GetNextToken().IsType("value"))); // do not localize
-		}
+		private bool CurrentIsValue() => tokenizer.GetCurrentToken().IsType("value") || (tokenizer.GetCurrentToken().IsType("sign") && tokenizer.GetNextToken().IsType("value") || (tokenizer.GetCurrentToken().IsType("not") && tokenizer.GetNextToken().IsType("value")));
 
-		private NPathMathExpression ParseMathOperator(IValue leftOperand)
+	    private NPathMathExpression ParseMathOperator(IValue leftOperand)
 		{
 			NPathMathExpression math = new NPathMathExpression();
 			math.LeftOperand = leftOperand;

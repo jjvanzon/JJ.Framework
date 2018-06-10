@@ -28,8 +28,8 @@ namespace Puzzle.NAspect.Framework.Interception
         /// </summary>
         public string Reason
         {
-            get { return reason; }
-            set { reason = value; }
+            get => reason;
+            set => reason = value;
         }
 
         #endregion
@@ -45,10 +45,7 @@ namespace Puzzle.NAspect.Framework.Interception
         /// MayBreakFlowAttribute ctor.
         /// </summary>
         /// <param name="reason">Reason why the interceptor may break the flow.</param>
-        public MayBreakFlowAttribute(string reason)
-        {
-            Reason = reason;
-        }
+        public MayBreakFlowAttribute(string reason) => Reason = reason;
     }
 
     /// <summary>
@@ -67,8 +64,8 @@ namespace Puzzle.NAspect.Framework.Interception
         /// </summary>
         public bool Required
         {
-            get { return required; }
-            set { required = value; }
+            get => required;
+            set => required = value;
         }
 
         #endregion
@@ -84,10 +81,7 @@ namespace Puzzle.NAspect.Framework.Interception
         /// IsRequiredAttribute ctor.
         /// </summary>
         /// <param name="required">Set to true if the interceptor is required</param>
-        public IsRequiredAttribute(bool required)
-        {
-            Required = required;
-        }
+        public IsRequiredAttribute(bool required) => Required = required;
     }
 
     /// <summary>
@@ -106,8 +100,8 @@ namespace Puzzle.NAspect.Framework.Interception
         /// </summary>
         public Type ExceptionType
         {
-            get { return exceptionType; }
-            set { exceptionType = value; }
+            get => exceptionType;
+            set => exceptionType = value;
         }
 
         #endregion
@@ -116,10 +110,7 @@ namespace Puzzle.NAspect.Framework.Interception
         /// ThrowsAttribute ctor.
         /// </summary>
         /// <param name="exceptionType">Type of the exception the interceptor may throw</param>
-        public ThrowsAttribute(Type exceptionType)
-        {
-            ExceptionType = exceptionType;
-        }
+        public ThrowsAttribute(Type exceptionType) => ExceptionType = exceptionType;
     }
 
     /// <summary>
@@ -139,8 +130,8 @@ namespace Puzzle.NAspect.Framework.Interception
         /// </summary>
         public Type ExceptionType
         {
-            get { return exceptionType; }
-            set { exceptionType = value; }
+            get => exceptionType;
+            set => exceptionType = value;
         }
 
         #endregion
@@ -149,10 +140,7 @@ namespace Puzzle.NAspect.Framework.Interception
         /// CatchesAttribute ctor.
         /// </summary>
         /// <param name="exceptionType">The type of the exception that may be chaught</param>
-        public CatchesAttribute(Type exceptionType)
-        {
-            ExceptionType = exceptionType;
-        }
+        public CatchesAttribute(Type exceptionType) => ExceptionType = exceptionType;
     }
 
 
@@ -172,8 +160,8 @@ namespace Puzzle.NAspect.Framework.Interception
         /// </summary>
         public Type CatchType
         {
-            get { return catchType; }
-            set { catchType = value; }
+            get => catchType;
+            set => catchType = value;
         }
 
         #endregion
@@ -187,8 +175,8 @@ namespace Puzzle.NAspect.Framework.Interception
         /// </summary>
         public Type ThrowType
         {
-            get { return throwType; }
-            set { throwType = value; }
+            get => throwType;
+            set => throwType = value;
         }
 
         #endregion

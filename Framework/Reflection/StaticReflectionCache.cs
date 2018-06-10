@@ -192,15 +192,9 @@ namespace JJ.Framework.Reflection
 		// Obsolete
 
 		[Obsolete("Use ReflectionCache.GetFields instead.", true)]
-		public static FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
-		{
-			throw new NotSupportedException("Use ReflectionCache.GetFields instead.");
-		}
+		public static FieldInfo[] GetFields(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance) => throw new NotSupportedException("Use ReflectionCache.GetFields instead.");
 
-		[Obsolete("Use ReflectionCache.GetProperties instead.", true)]
-		public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance)
-		{
-			throw new NotSupportedException("Use ReflectionCache.GetProperties instead.");
-		}
+	    [Obsolete("Use ReflectionCache.GetProperties instead.", true)]
+		public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance) => throw new NotSupportedException("Use ReflectionCache.GetProperties instead.");
 	}
 }

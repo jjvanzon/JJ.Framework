@@ -58,8 +58,8 @@ namespace Puzzle.NPersist.Framework.Mapping
 		[XmlArrayItem(typeof (SourceMap))]
 		public virtual ArrayList SourceMaps
 		{
-			get { return m_SourceMaps; }
-			set { m_SourceMaps = value; }
+			get => m_SourceMaps;
+		    set => m_SourceMaps = value;
 		}
 
 		public virtual ISourceMap GetSourceMap(string findName)

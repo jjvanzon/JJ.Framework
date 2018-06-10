@@ -32,10 +32,10 @@ namespace Puzzle.NPersist.Framework.EventArguments
 		{
 			//[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			get { return m_Cancel; }
-			//[DebuggerHidden()]
+			get => m_Cancel;
+		    //[DebuggerHidden()]
 			//[DebuggerStepThrough()]
-			set { m_Cancel = value; }
+			set => m_Cancel = value;
 		}
 	}
 }

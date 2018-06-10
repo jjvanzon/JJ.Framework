@@ -23,17 +23,9 @@ namespace Puzzle.NPersist.Framework.Linq
     public class LoadSpan<T> : ILoadSpan
     {
         private string[] propertyPaths;
-        public string[] PropertyPaths
-        {
-            get
-            {
-                return propertyPaths;
-            }
-        }
-        public LoadSpan()
-        {
-            this.propertyPaths = new string[] { };
-        }
+        public string[] PropertyPaths => propertyPaths;
+
+        public LoadSpan() => this.propertyPaths = new string[] { };
 
         public LoadSpan(params string[] propertyPaths)
         {

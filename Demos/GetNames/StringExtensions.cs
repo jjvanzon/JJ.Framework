@@ -8,14 +8,8 @@
 			return str;
 		}
 
-		public static string CutLeft(this string str, int length)
-		{
-			return str.Right(str.Length - length);
-		}
+		public static string CutLeft(this string str, int length) => str.Right(str.Length - length);
 
-		public static string Right(this string str, int length)
-		{
-			return str.Substring(str.Length - length, length);
-		}
+	    public static string Right(this string str, int length) => str.Substring(str.Length - length, length);
 	}
 }

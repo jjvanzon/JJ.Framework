@@ -36,8 +36,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 		
 		public string Sql
 		{
-			get { return this.sql; }
-			set { this.sql = value; }
+			get => this.sql;
+		    set => this.sql = value;
 		}
 		
 		#endregion
@@ -48,8 +48,8 @@ namespace Puzzle.NPersist.Framework.Persistence
 		
 		public IList Parameters
 		{
-			get { return this.parameters; }
-			set { this.parameters = value; }
+			get => this.parameters;
+		    set => this.parameters = value;
 		}
 		
 		#endregion
