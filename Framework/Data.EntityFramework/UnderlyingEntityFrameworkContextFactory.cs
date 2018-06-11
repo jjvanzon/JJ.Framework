@@ -4,9 +4,9 @@ using System.Reflection;
 using JJ.Framework.Reflection;
 using JJ.Framework.Text;
 
-namespace JJ.Framework.Data.EntityFramework5
+namespace JJ.Framework.Data.EntityFramework
 {
-	internal static class UnderlyingEntityFramework5ContextFactory
+	internal static class UnderlyingEntityFrameworkContextFactory
 	{
 		public static DbContext CreateContext(string connectionString, Assembly mappingAssembly)
 		{

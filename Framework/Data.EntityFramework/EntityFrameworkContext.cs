@@ -6,17 +6,17 @@ using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Data.EntityFramework5
+namespace JJ.Framework.Data.EntityFramework
 {
     [UsedImplicitly]
-    public class EntityFramework5Context : ContextBase
+    public class EntityFrameworkContext : ContextBase
     {
         private TransactionScope _transactionScope;
         //private IDbTransaction _transaction;
 
         public DbContext Context { get; private set; }
 
-        public EntityFramework5Context(string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
+        public EntityFrameworkContext(string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
             : base(persistenceLocation, modelAssembly, mappingAssembly, dialect)
             => Context = OpenContext();
 
@@ -73,7 +73,7 @@ namespace JJ.Framework.Data.EntityFramework5
         {
             _transactionScope = new TransactionScope();
 
-            DbContext context = UnderlyingEntityFramework5ContextFactory.CreateContext(Location, MappingAssembly);
+            DbContext context = UnderlyingEntityFrameworkContextFactory.CreateContext(Location, MappingAssembly);
             context.Database.Connection.Open();
             //_transaction = context.Database.Connection.BeginTransaction();
             return context;

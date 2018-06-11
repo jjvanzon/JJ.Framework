@@ -44,7 +44,7 @@ xcopy /s /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Busi
 mkdir "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Data\"
 xcopy /s /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Data\SaveText" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Data\"
 xcopy /s /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Data\SaveText.DefaultRepositories" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Data\"
-xcopy /s /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Data\SaveText.EntityFramework5" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Data\"
+xcopy /s /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Data\SaveText.EntityFramework" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Data\"
 xcopy /s /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Data\SaveText.Memory" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Data\"
 xcopy /s /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Data\SaveText.NHibernate" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Data\"
 xcopy /s /v /r /q "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ\Data\SaveText.Xml" "D:\JJ\Dev\1. Products\2. Code\1. Software System\X\9. JJ Git\Data\"

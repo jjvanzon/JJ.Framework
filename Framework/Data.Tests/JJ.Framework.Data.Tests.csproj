@@ -123,9 +123,9 @@
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data.EntityFramework5\JJ.Framework.Data.EntityFramework5.csproj">
+    <ProjectReference Include="..\Data.EntityFramework\JJ.Framework.Data.EntityFramework.csproj">
       <Project>{9676e4c3-1a1f-45b8-8ffd-c398f14002e7}</Project>
-      <Name>JJ.Framework.Data.EntityFramework5</Name>
+      <Name>JJ.Framework.Data.EntityFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\Data.NHibernate\JJ.Framework.Data.NHibernate.csproj">
       <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
