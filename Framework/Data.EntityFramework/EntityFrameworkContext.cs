@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Reflection;
 using System.Transactions;
 using JetBrains.Annotations;
@@ -18,7 +19,13 @@ namespace JJ.Framework.Data.EntityFramework
 
         public EntityFrameworkContext(string persistenceLocation, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
             : base(persistenceLocation, modelAssembly, mappingAssembly, dialect)
-            => Context = OpenContext();
+        {
+            Context = OpenContext();
+
+            // the terrible hack
+            //SqlProviderServices ensureDLLIsCopied = System.Data.Entity.SqlServer.SqlProviderServices.Instance;
+
+        }
 
         public override TEntity TryGet<TEntity>(object id)
         {
