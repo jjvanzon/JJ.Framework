@@ -4,7 +4,6 @@ using System.Web;
 using System.Web.Mvc;
 using JJ.Demos.ReturnActions.Mvc.Controllers;
 using JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Helpers;
-using JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Names;
 using JJ.Demos.ReturnActions.NoViewMapping.Presenters;
 using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
 using JJ.Framework.Web;
@@ -18,7 +17,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
     {
         public ActionResult Index()
         {
-            if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
             {
                 var presenter = new ListPresenter();
                 viewModel = presenter.Show();
@@ -29,7 +28,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 
         public ActionResult Details(int id)
         {
-            if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
             {
                 var presenter = new DetailsPresenter();
                 viewModel = presenter.Show(id);
@@ -40,7 +39,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 
         public ActionResult Edit(int id, string ret = null)
         {
-            if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
             {
                 var presenter = new EditPresenter(GetAuthenticatedUserName());
                 viewModel = presenter.Show(id);
@@ -66,7 +65,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 
         public ActionResult Logout()
         {
-            if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
             {
                 viewModel = new LoginPresenter().Logout();
             }

@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="ActionInfo.cs" />
     <Compile Include="ActionDispatcher.cs" />
-    <Compile Include="2018-06-15 Backup of AuthenticatedViewModel.cs" />
     <Compile Include="NoViewModel.cs" />
     <Compile Include="NotAuthorizedViewModel.cs" />
     <Compile Include="ActionParameterInfo.cs" />

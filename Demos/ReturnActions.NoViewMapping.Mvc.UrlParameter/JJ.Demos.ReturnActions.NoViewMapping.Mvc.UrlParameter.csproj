@@ -137,7 +137,6 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NotAuthorizedController.cs" />
     <Compile Include="Controllers\NotFoundController.cs" />
-    <Compile Include="Names\TempDataKeys.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

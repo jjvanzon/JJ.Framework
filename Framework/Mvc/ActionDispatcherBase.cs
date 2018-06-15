@@ -14,30 +14,27 @@ namespace JJ.Framework.Mvc
     [PublicAPI]
     public abstract class ActionDispatcherBase
     {
-        public const string TEMP_DATA_KEY = "vm-b5b9-20e1e86a12d8";
+        public static string TempDataKey { get; } = "vm-b5b9-20e1e86a12d8";
 
         public ActionDispatcherBase()
-            => _viewModelTypeToActionTupleDictionary = GetDispatchTuples()
+            => _viewModelTypeToActionTupleDictionary = DispatchTuples
                    .ToDictionary(
                        x => x.viewModelType,
                        x => (x.controllerName, x.httpGetActionName, x.viewName));
 
-        protected abstract IList<(Type viewModelType, string controllerName, string httpGetActionName, string viewName)>
-            GetDispatchTuples();
+        protected abstract IList<(Type viewModelType, string controllerName, string httpGetActionName, string viewName)> DispatchTuples { get; }
 
         private readonly Dictionary<Type, (string controllerName, string httpGetActionName, string viewName)>
             _viewModelTypeToActionTupleDictionary;
 
-        public ActionResult Dispatch(
-            Controller sourceController,
-            object viewModel,
-            [CallerMemberName] string sourceActionName = "")
+        public ActionResult Dispatch(Controller sourceController, object viewModel, [CallerMemberName] string sourceActionName = "")
         {
             if (sourceController == null) throw new NullException(() => sourceController);
             if (string.IsNullOrEmpty(sourceActionName)) throw new NullOrEmptyException(() => sourceActionName);
             if (viewModel == null) throw new NullException(() => viewModel);
 
             Type viewModelType = viewModel.GetType();
+
             if (!_viewModelTypeToActionTupleDictionary.TryGetValue(viewModelType, out (string, string, string) tuple))
             {
                 throw new NotContainsException(nameof(_viewModelTypeToActionTupleDictionary), () => viewModelType);
@@ -49,6 +46,7 @@ namespace JJ.Framework.Mvc
             string sourceControllerName = sourceController.GetControllerName();
 
             bool hasActionName = !string.IsNullOrEmpty(destHttpGetActionName);
+
             if (!hasActionName)
             {
                 return sourceControllerAccessor.View(destViewName, viewModel);
@@ -58,6 +56,7 @@ namespace JJ.Framework.Mvc
                                              string.Equals(destHttpGetActionName, sourceActionName);
 
             bool mustReturnView = isSameControllerAndAction;
+
             if (mustReturnView)
             {
                 sourceController.ModelState.ClearModelErrors();
@@ -70,7 +69,7 @@ namespace JJ.Framework.Mvc
                 return sourceControllerAccessor.View(destViewName, viewModel);
             }
 
-            sourceController.TempData[TEMP_DATA_KEY] = viewModel;
+            sourceController.TempData[TempDataKey] = viewModel;
 
             object parameters = TryGetRouteValues(viewModel);
 
