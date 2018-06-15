@@ -35,7 +35,7 @@ namespace JJ.Framework.Exceptions
                 return true;
             }
 
-            bool isType = value?.GetType() == typeof(Type);
+            bool isType = value?.GetType().IsAssignableTo<Type>() ?? default;
 
             return isType;
         }

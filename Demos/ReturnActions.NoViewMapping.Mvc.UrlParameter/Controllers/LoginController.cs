@@ -1,39 +1,43 @@
 ﻿using System.Web.Mvc;
 using JJ.Demos.ReturnActions.Mvc.Controllers;
+using JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Helpers;
 using JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Names;
 using JJ.Demos.ReturnActions.NoViewMapping.Presenters;
 using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
-using JJ.Framework.Presentation;
 using JJ.Framework.Web;
-using ActionDispatcher = JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Helpers.ActionDispatcher;
+
+// ReSharper disable UnusedParameter.Global
 
 namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
 {
-	public class LoginController : MasterController
-	{
-		public ActionResult Index(string ret = null)
-		{
-			if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
-			{
-				var presenter = new LoginPresenter();
-				viewModel = presenter.Show(ret);
-			}
+    public class LoginController : MasterController
+    {
+        public ActionResult Index(string ret = null)
+        {
+            if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
+            {
+                var presenter = new LoginPresenter();
+                viewModel = presenter.Show();
+            }
 
-		    Response.StatusCode = HttpStatusCodes.NOT_AUTHENTICATED_401;
-            
+            Response.StatusCode = HttpStatusCodes.NOT_AUTHENTICATED_401;
+
             return ActionDispatcher.Dispatch(this, viewModel);
-		}
+        }
 
-		[HttpPost]
-		public ActionResult Index(LoginViewModel viewModel, string ret = null)
-		{
-			var presenter = new LoginPresenter();
-			viewModel.ReturnAction = ret;
-			AuthenticatedViewModel viewModel2 = presenter.Login(viewModel);
+        [HttpPost]
+        public ActionResult Index(LoginViewModel userInput, string ret = null)
+        {
+            var presenter = new LoginPresenter();
 
-			SetAuthenticatedUserName(viewModel.UserName);
+            LoginViewModel viewModel = presenter.Login(userInput);
 
-			return ActionDispatcher.Dispatch(this, viewModel2);
-		}
-	}
+            if (viewModel.IsAuthenticated)
+            {
+                SetAuthenticatedUserName(viewModel.UserName);
+            }
+
+            return Redirect(ret);
+        }
+    }
 }

@@ -2,289 +2,313 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using JetBrains.Annotations;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Text;
 
 namespace JJ.Framework.Reflection
 {
-	public static class ReflectionExtensions
-	{
-		// ItemType
+    [PublicAPI]
+    public static class ReflectionExtensions
+    {
+        // ItemType
 
-		private static readonly object _itemTypeDictionaryLock = new object();
-		private static readonly Dictionary<Type, Type> _itemTypeDictionary = new Dictionary<Type, Type>();
+        private static readonly object _itemTypeDictionaryLock = new object();
+        private static readonly Dictionary<Type, Type> _itemTypeDictionary = new Dictionary<Type, Type>();
 
-		public static Type GetItemType(this PropertyInfo collectionProperty)
-		{
-			if (collectionProperty == null) throw new ArgumentNullException(nameof(collectionProperty));
-			return GetItemType(collectionProperty.PropertyType);
-		}
+        public static Type GetItemType(this PropertyInfo collectionProperty)
+        {
+            if (collectionProperty == null) throw new ArgumentNullException(nameof(collectionProperty));
+            return GetItemType(collectionProperty.PropertyType);
+        }
 
-		public static Type GetItemType(this object collection)
-		{
-			if (collection == null) throw new ArgumentNullException(nameof(collection));
+        public static Type GetItemType(this object collection)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
 
-			return GetItemType(collection.GetType());
-		}
+            return GetItemType(collection.GetType());
+        }
 
-		public static Type GetItemType(this Type collectionType)
-		{
-			Type itemType = TryGetItemType(collectionType);
-			if (itemType == null)
-			{
-				throw new Exception($"Type '{collectionType}' has no item type.");
-			}
-			return itemType;
-		}
+        public static Type GetItemType(this Type collectionType)
+        {
+            Type itemType = TryGetItemType(collectionType);
 
-		public static Type TryGetItemType(this Type collectionType)
-		{
-			if (collectionType == null) throw new ArgumentNullException(nameof(collectionType));
+            if (itemType == null)
+            {
+                throw new Exception($"Type '{collectionType}' has no item type.");
+            }
 
-			lock (_itemTypeDictionaryLock)
-			{
-				if (_itemTypeDictionary.TryGetValue(collectionType, out Type itemType))
-				{
-					return itemType;
-				}
+            return itemType;
+        }
 
-				// This works for IEnumerable<T> itself.
-				if (collectionType.IsGenericType)
-				{
-					Type openGenericCollectionType = collectionType.GetGenericTypeDefinition();
-					if (openGenericCollectionType == typeof(IEnumerable<>))
-					{
-						itemType = collectionType.GetGenericArguments()[0];
-					}
-				}
+        public static Type TryGetItemType(this Type collectionType)
+        {
+            if (collectionType == null) throw new ArgumentNullException(nameof(collectionType));
 
-				// This works for types that implement IEnumerable<T> / have IEnumerable<T> as a base.
-				Type enumerableInterface = collectionType.GetInterface_PlatformSafe(typeof(IEnumerable<>).FullName);
-				if (enumerableInterface != null)
-				{
-					itemType = enumerableInterface.GetGenericArguments()[0];
-				}
+            lock (_itemTypeDictionaryLock)
+            {
+                if (_itemTypeDictionary.TryGetValue(collectionType, out Type itemType))
+                {
+                    return itemType;
+                }
 
-				_itemTypeDictionary.Add(collectionType, itemType);
+                // This works for IEnumerable<T> itself.
+                if (collectionType.IsGenericType)
+                {
+                    Type openGenericCollectionType = collectionType.GetGenericTypeDefinition();
 
-				return itemType;
-			}
-		}
+                    if (openGenericCollectionType == typeof(IEnumerable<>))
+                    {
+                        itemType = collectionType.GetGenericArguments()[0];
+                    }
+                }
 
-		// GetImplementation
+                // This works for types that implement IEnumerable<T> / have IEnumerable<T> as a base.
+                Type enumerableInterface = collectionType.GetInterface_PlatformSafe(typeof(IEnumerable<>).FullName);
 
-		private static readonly object _implementationsDictionaryLock = new object();
-		private static readonly Dictionary<string, Type[]> _implementationsDictionary = new Dictionary<string, Type[]>();
+                if (enumerableInterface != null)
+                {
+                    itemType = enumerableInterface.GetGenericArguments()[0];
+                }
 
-		public static Type GetImplementation(this Assembly assembly, Type baseType)
-		{
-			Type type = TryGetImplementation(assembly, baseType);
+                _itemTypeDictionary.Add(collectionType, itemType);
 
-			if (type == null)
-			{
-				throw new Exception($"No implementation of type '{baseType}' found in assembly '{assembly.GetName().Name}'.");
-			}
+                return itemType;
+            }
+        }
 
-			return type;
-		}
+        // GetImplementation
 
-		public static Type TryGetImplementation(this Assembly assembly, Type baseType)
-		{
-			Type[] types = GetImplementations(assembly, baseType);
+        private static readonly object _implementationsDictionaryLock = new object();
+        private static readonly Dictionary<string, Type[]> _implementationsDictionary = new Dictionary<string, Type[]>();
 
-			if (types.Length == 0)
-			{
-				return null;
-			}
+        public static Type GetImplementation(this Assembly assembly, Type baseType)
+        {
+            Type type = TryGetImplementation(assembly, baseType);
 
-			if (types.Length > 1)
-			{
-				throw new Exception($"Multiple implementations of type '{baseType}' found in assembly '{assembly.GetName().Name}'.");
-			}
+            if (type == null)
+            {
+                throw new Exception($"No implementation of type '{baseType}' found in assembly '{assembly.GetName().Name}'.");
+            }
 
-			return types[0];
-		}
+            return type;
+        }
 
-		public static Type[] GetImplementations(this IEnumerable<Assembly> assemblies, Type baseType) => assemblies.SelectMany(x => GetImplementations(x, baseType)).ToArray();
+        public static Type TryGetImplementation(this Assembly assembly, Type baseType)
+        {
+            Type[] types = GetImplementations(assembly, baseType);
 
-	    public static Type[] GetImplementations(this Assembly assembly, Type baseType)
-		{
-			if (assembly == null) throw new ArgumentNullException(nameof(assembly));
-			if (baseType == null) throw new ArgumentNullException(nameof(baseType));
+            if (types.Length == 0)
+            {
+                return null;
+            }
 
-			lock (_implementationsDictionaryLock)
-			{
-				string key = GetImplementationsDictionaryKey(assembly, baseType);
-				// ReSharper disable once InvertIf
-				if (!_implementationsDictionary.TryGetValue(key, out Type[] types))
-				{
-					types = assembly.GetTypes();
-					types = Enumerable.Union(
-						types.Where(x => x.GetBaseClasses().Contains(baseType)),
-						types.Where(x => x.GetInterface_PlatformSafe(baseType.Name) != null)).ToArray();
+            if (types.Length > 1)
+            {
+                throw new Exception($"Multiple implementations of type '{baseType}' found in assembly '{assembly.GetName().Name}'.");
+            }
 
-					_implementationsDictionary.Add(key, types);
-				}
+            return types[0];
+        }
 
-				return types;
-			}
-		}
+        public static Type[] GetImplementations(this IEnumerable<Assembly> assemblies, Type baseType)
+            => assemblies.SelectMany(x => GetImplementations(x, baseType)).ToArray();
 
-		private static string GetImplementationsDictionaryKey(this Assembly assembly, Type baseType) => assembly.FullName + "$" + baseType.FullName + "$" + baseType.Assembly.FullName;
+        public static Type[] GetImplementations(this Assembly assembly, Type baseType)
+        {
+            if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+            if (baseType == null) throw new ArgumentNullException(nameof(baseType));
 
-	    // Generic overloads
+            lock (_implementationsDictionaryLock)
+            {
+                string key = GetImplementationsDictionaryKey(assembly, baseType);
 
-		public static Type GetImplementation<TBaseType>(this Assembly assembly) => GetImplementation(assembly, typeof(TBaseType));
+                // ReSharper disable once InvertIf
+                if (!_implementationsDictionary.TryGetValue(key, out Type[] types))
+                {
+                    types = assembly.GetTypes();
 
-	    public static Type TryGetImplementation<TBaseType>(this Assembly assembly) => TryGetImplementation(assembly, typeof(TBaseType));
+                    types = types.Where(x => x.GetBaseClasses().Contains(baseType))
+                                 .Union(
+                                     types.Where(x => x.GetInterface_PlatformSafe(baseType.Name) != null))
+                                 .ToArray();
 
-	    public static IList<Type> GetImplementations<TBaseType>(this Assembly assembly) => GetImplementations(assembly, typeof(TBaseType));
+                    _implementationsDictionary.Add(key, types);
+                }
 
-	    public static IList<Type> GetImplementations<TBaseType>(this IEnumerable<Assembly> assemblies) => GetImplementations(assemblies, typeof(TBaseType));
+                return types;
+            }
+        }
 
-	    // Misc
+        private static string GetImplementationsDictionaryKey(this Assembly assembly, Type baseType)
+            => assembly.FullName + "$" + baseType.FullName + "$" + baseType.Assembly.FullName;
 
-		public static bool IsAssignableTo(this Type type, Type otherType)
-		{
-			if (otherType == null) throw new ArgumentNullException(nameof(otherType));
+        // Generic overloads
 
-			return otherType.IsAssignableFrom(type);
-		}
+        public static Type GetImplementation<TBaseType>(this Assembly assembly) => GetImplementation(assembly, typeof(TBaseType));
 
-		public static bool IsNullableType(this Type type)
-		{
-			if (type == null) throw new ArgumentNullException(nameof(type));
+        public static Type TryGetImplementation<TBaseType>(this Assembly assembly) => TryGetImplementation(assembly, typeof(TBaseType));
 
-			return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
-		}
+        public static IList<Type> GetImplementations<TBaseType>(this Assembly assembly) => GetImplementations(assembly, typeof(TBaseType));
 
-		public static bool IsReferenceType(this Type type)
-		{
-			if (type == null) throw new ArgumentNullException(nameof(type));
+        public static IList<Type> GetImplementations<TBaseType>(this IEnumerable<Assembly> assemblies)
+            => GetImplementations(assemblies, typeof(TBaseType));
 
-			return !type.IsValueType;
-		}
+        // Misc
 
-		public static bool IsProperty(this MethodBase method)
-		{
-			if (method == null) throw new ArgumentNullException(nameof(method));
+        public static bool IsAssignableFrom<T>(this Type type)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            return type.IsAssignableFrom(typeof(T));
+        }
 
-			bool isProperty = method.Name.StartsWith("get_") ||
-							  method.Name.StartsWith("set_");
-			return isProperty;
-		}
+        public static bool IsAssignableTo<T>(this Type type) => IsAssignableTo(type, typeof(T));
 
-		public static bool IsIndexer(this MethodBase method)
-		{
-			if (!method.IsSpecialName)
-			{
-				return false;
-			}
+        public static bool IsAssignableTo(this Type type, Type otherType)
+        {
+            if (otherType == null) throw new ArgumentNullException(nameof(otherType));
 
-			if (!method.Name.StartsWith("get_") &&
-				!method.Name.StartsWith("set_"))
-			{
-				return false;
-			}
+            return otherType.IsAssignableFrom(type);
+        }
 
-			string propertyName = method.Name.TrimStart("get_").TrimStart("set_");
+        public static bool IsNullableType(this Type type)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
-			Type type = method.DeclaringType;
-			// ReSharper disable once PossibleNullReferenceException
-			var defaultMemberAttribute = (DefaultMemberAttribute)type.GetCustomAttributes(typeof(DefaultMemberAttribute), inherit: true).SingleOrDefault();
-			if (defaultMemberAttribute == null)
-			{
-				return false;
-			}
+            return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
+        }
 
-			if (defaultMemberAttribute.MemberName == propertyName)
-			{
-				return true;
-			}
+        public static bool IsReferenceType(this Type type)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
 
-			return false;
-		}
+            return !type.IsValueType;
+        }
 
-		public static bool IsStatic(this MemberInfo member)
-		{
-			if (member == null) throw new ArgumentNullException(nameof(member));
+        public static bool IsProperty(this MethodBase method)
+        {
+            if (method == null) throw new ArgumentNullException(nameof(method));
 
-			MemberTypes_PlatformSafe memberType = member.MemberType_PlatformSafe();
+            bool isProperty = method.Name.StartsWith("get_") ||
+                              method.Name.StartsWith("set_");
 
-			switch (memberType)
-			{
-				case MemberTypes_PlatformSafe.Field:
-					var field = (FieldInfo)member;
-					return field.IsStatic;
+            return isProperty;
+        }
 
-				case MemberTypes_PlatformSafe.Method:
-					var method = (MethodInfo)member;
-					return method.IsStatic;
+        public static bool IsIndexer(this MethodBase method)
+        {
+            if (!method.IsSpecialName)
+            {
+                return false;
+            }
 
-				case MemberTypes_PlatformSafe.Property:
-					var property = (PropertyInfo)member;
-					// TODO: Check if this will work for public members.
-					MethodInfo getterOrSetter = property.GetGetMethod(nonPublic: true) ?? property.GetSetMethod(nonPublic: true);
-					return getterOrSetter.IsStatic;
+            if (!method.Name.StartsWith("get_") &&
+                !method.Name.StartsWith("set_"))
+            {
+                return false;
+            }
 
-				default:
-					throw new Exception($"IsStatic cannot be obtained from member of type '{member.GetType()}'.");
-			}
-		}
+            string propertyName = method.Name.TrimStart("get_").TrimStart("set_");
 
-		/// <summary>
-		/// A simple type can be a .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
-		/// the numeric types, their signed and unsigned variations, but also
-		/// String, Guid, DateTime, TimeSpan and Enum types.
-		/// </summary>
-		public static bool IsSimpleType(this Type type)
-		{
-			if (type == null) throw new ArgumentNullException(nameof(type));
+            Type type = method.DeclaringType;
 
-			if (type.IsPrimitive ||
-			    type.IsEnum ||
-			    type == typeof(string) ||
-			    type == typeof(Guid) ||
-			    type == typeof(DateTime) ||
-			    type == typeof(TimeSpan))
-			{
-				return true;
-			}
+            // ReSharper disable once PossibleNullReferenceException
+            var defaultMemberAttribute =
+                (DefaultMemberAttribute)type.GetCustomAttributes(typeof(DefaultMemberAttribute), true).SingleOrDefault();
 
-			if (type.IsNullableType())
-			{
-				Type underlyingType = type.GetUnderlyingNullableTypeFast();
-				return IsSimpleType(underlyingType);
-			}
+            if (defaultMemberAttribute == null)
+            {
+                return false;
+            }
 
-			return false;
-		}
+            if (defaultMemberAttribute.MemberName == propertyName)
+            {
+                return true;
+            }
 
-		public static IList<Type> GetBaseClasses(this Type type)
-		{
-			if (type == null) throw new ArgumentNullException(nameof(type));
+            return false;
+        }
 
-			var types = new List<Type>();
+        public static bool IsStatic(this MemberInfo member)
+        {
+            if (member == null) throw new ArgumentNullException(nameof(member));
 
-			while (type.BaseType != null)
-			{
-				types.Add(type.BaseType);
+            MemberTypes_PlatformSafe memberType = member.MemberType_PlatformSafe();
 
-				type = type.BaseType;
-			}
+            switch (memberType)
+            {
+                case MemberTypes_PlatformSafe.Field:
+                    var field = (FieldInfo)member;
+                    return field.IsStatic;
 
-			return types;
-		}
+                case MemberTypes_PlatformSafe.Method:
+                    var method = (MethodInfo)member;
+                    return method.IsStatic;
 
-		/// <summary>
-		/// Slightly faster than Nullable.GetUnderlyingType, but gives false positives if the type is not nullable to begin with.
-		/// </summary>
-		public static Type GetUnderlyingNullableTypeFast(this Type type)
-		{
-			if (type == null) throw new ArgumentNullException(nameof(type));
+                case MemberTypes_PlatformSafe.Property:
+                    var property = (PropertyInfo)member;
+                    // TODO: Check if this will work for public members.
+                    MethodInfo getterOrSetter = property.GetGetMethod(true) ?? property.GetSetMethod(true);
+                    return getterOrSetter.IsStatic;
 
-			// For performance, do not check if it is a nullable type.
-			return type.GetGenericArguments()[0];
-		}
-	}
+                default:
+                    throw new Exception($"IsStatic cannot be obtained from member of type '{member.GetType()}'.");
+            }
+        }
+
+        /// <summary>
+        /// A simple type can be a .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
+        /// the numeric types, their signed and unsigned variations, but also
+        /// String, Guid, DateTime, TimeSpan and Enum types.
+        /// </summary>
+        public static bool IsSimpleType(this Type type)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
+            if (type.IsPrimitive ||
+                type.IsEnum ||
+                type == typeof(string) ||
+                type == typeof(Guid) ||
+                type == typeof(DateTime) ||
+                type == typeof(TimeSpan))
+            {
+                return true;
+            }
+
+            if (type.IsNullableType())
+            {
+                Type underlyingType = type.GetUnderlyingNullableTypeFast();
+                return IsSimpleType(underlyingType);
+            }
+
+            return false;
+        }
+
+        public static IList<Type> GetBaseClasses(this Type type)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
+            var types = new List<Type>();
+
+            while (type.BaseType != null)
+            {
+                types.Add(type.BaseType);
+
+                type = type.BaseType;
+            }
+
+            return types;
+        }
+
+        /// <summary>
+        /// Slightly faster than Nullable.GetUnderlyingType, but gives false positives if the type is not nullable to begin with.
+        /// </summary>
+        public static Type GetUnderlyingNullableTypeFast(this Type type)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
+            // For performance, do not check if it is a nullable type.
+            return type.GetGenericArguments()[0];
+        }
+    }
 }

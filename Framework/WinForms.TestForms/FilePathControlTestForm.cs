@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using JJ.Framework.WinForms.EventArg;
+// ReSharper disable LocalizableElement
 
 namespace JJ.Framework.WinForms.TestForms
 {

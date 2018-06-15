@@ -9,6 +9,7 @@ using JJ.Demos.ReturnActions.NoViewMapping.Presenters;
 using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
 using JJ.Framework.Web;
 
+// ReSharper disable UnusedParameter.Global
 // ReSharper disable InvertIf
 
 namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
@@ -42,20 +43,25 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
             if (!TempData.TryGetValue(nameof(TempDataKeys.ViewModel), out object viewModel))
             {
                 var presenter = new EditPresenter(GetAuthenticatedUserName());
-                viewModel = presenter.Show(id, ret);
+                viewModel = presenter.Show(id);
             }
 
             return ActionDispatcher.Dispatch(this, viewModel);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, EditViewModel viewModel, string ret = null)
+        public ActionResult Edit(int id, EditViewModel userInput, string ret = null)
         {
             var presenter = new EditPresenter(GetAuthenticatedUserName());
-            viewModel.ReturnAction = ret;
-            object viewModel2 = presenter.Save(viewModel);
 
-            return ActionDispatcher.Dispatch(this, viewModel2);
+            EditViewModel viewModel = presenter.Save(userInput);
+
+            if (viewModel.Successful)
+            {
+                return Redirect(ret);
+            }
+
+            return ActionDispatcher.Dispatch(this, viewModel);
         }
 
         public ActionResult Logout()

@@ -16,14 +16,13 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Presenters
         /// <param name="authenticatedUserName">nullable</param>
         public EditPresenter(string authenticatedUserName) => _authenticatedUserName = authenticatedUserName;
 
-        public EditViewModel Show(int id, string returnAction = null, string thisAction = null)
+        public EditViewModel Show(int id)
         {
             _securityAsserter.Assert(_authenticatedUserName);
 
             return new EditViewModel
             {
                 Entity = MockViewModelFactory.CreateEntityViewModel(id),
-                ReturnAction = returnAction
             };
         }
 
@@ -33,6 +32,9 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Presenters
             viewModel.NullCoalesce();
 
             _securityAsserter.Assert(_authenticatedUserName);
+
+            // Fake Save
+            viewModel.Successful = true;
 
             return viewModel;
         }

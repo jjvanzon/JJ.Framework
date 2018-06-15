@@ -23,31 +23,23 @@ namespace JJ.Framework.Web
             return _defaultErrorRedirectUrl;
         }
 
-        private static Dictionary<int, string> _httpStatusCode_To_RedirectUrl_Dictionary = Create_HttpStatusCode_To_RedirectUrl_Dictionary();
-        private static string _defaultErrorRedirectUrl = GetDefaultErrorRedirectUrl();
+        private static readonly Dictionary<int, string> _httpStatusCode_To_RedirectUrl_Dictionary = Create_HttpStatusCode_To_RedirectUrl_Dictionary();
+        private static readonly string _defaultErrorRedirectUrl = GetDefaultErrorRedirectUrl();
 
         private static Dictionary<int, string> Create_HttpStatusCode_To_RedirectUrl_Dictionary()
         {
-            CustomErrorCollection customErrorCollection = GetCustomErrorCollection();
-            Dictionary<int, string> dictionary = customErrorCollection.AllKeys
-                                                                      .ToArray()
-                                                                      .Select(x => customErrorCollection[x])
-                                                                      .ToDictionary(x => x.StatusCode, x => x.Redirect);
+            CustomErrorsSection customErrorSection = GetCustomErrorsSection();
+
+            Dictionary<int, string> dictionary = customErrorSection.Errors
+                                                                   .Cast<CustomError>()
+                                                                   .ToDictionary(x => x.StatusCode, x => x.Redirect);
             return dictionary;
         }
 
         private static string GetDefaultErrorRedirectUrl()
         {
             CustomErrorsSection customErrorSection = GetCustomErrorsSection();
-            string defaultRedirectUrl = customErrorSection.DefaultRedirect;
-            return defaultRedirectUrl;
-        }
-
-        private static CustomErrorCollection GetCustomErrorCollection()
-        {
-            CustomErrorsSection customErrorSection = GetCustomErrorsSection();
-            CustomErrorCollection customErrorCollection = customErrorSection.Errors;
-            return customErrorCollection;
+            return customErrorSection.DefaultRedirect;
         }
 
         private static CustomErrorsSection GetCustomErrorsSection()

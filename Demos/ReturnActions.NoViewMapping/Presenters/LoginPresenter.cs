@@ -2,9 +2,8 @@
 using JJ.Demos.ReturnActions.NoViewMapping.ViewModels;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.Presentation;
-// ReSharper disable RedundantIfElseBlock
 
+// ReSharper disable RedundantIfElseBlock
 // ReSharper disable MemberCanBeMadeStatic.Global
 
 namespace JJ.Demos.ReturnActions.NoViewMapping.Presenters
@@ -15,20 +14,17 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Presenters
 
         public ListViewModel Logout() => new ListPresenter().Show();
 
-        public LoginViewModel Show(string returnAction = null)
-            => new LoginViewModel
-            {
-                ReturnAction = returnAction
-            };
+        public LoginViewModel Show() => new LoginViewModel();
 
-        public AuthenticatedViewModel Login(LoginViewModel viewModel)
+        public LoginViewModel Login(LoginViewModel userInput)
         {
-            if (viewModel == null) throw new NullException(() => viewModel);
+            if (userInput == null) throw new NullException(() => userInput);
 
-            // Fake authentication
-            _securityAsserter.Assert(viewModel.UserName);
+            _securityAsserter.Assert(userInput.UserName);
 
-            return new AuthenticatedViewModel { AuthenticatedUserName = viewModel.UserName };
+            var viewModel = new LoginViewModel { IsAuthenticated = true, UserName = userInput.UserName };
+
+            return viewModel;
         }
     }
 }
