@@ -69,8 +69,6 @@
     <Compile Include="ActionDispatcherBase.cs" />
     <Compile Include="ActionInfoToUrlConverter.cs" />
     <Compile Include="ActionParameterMapping.cs" />
-    <Compile Include="2018-06-19 Backup of BasicHandleErrorAttribute.cs" />
-    <Compile Include="2018-06-19 Backup of BasicHandleErrorAttribute %282%29.cs" />
     <Compile Include="ControllerExtensions.cs" />
     <Compile Include="BasicHandleErrorAttribute.cs" />
     <Compile Include="ViewMapping.cs" />
