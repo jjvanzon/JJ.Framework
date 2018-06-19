@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using System.Web;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Web
 {
+    [PublicAPI]
     public static class UrlBuilder
     {
         public static string BuildUrl(UrlInfo urlInfo)
@@ -20,6 +22,7 @@ namespace JJ.Framework.Web
             if (urlInfo.PathElements.Count != 0)
             {
                 int i;
+
                 for (i = 0; i < urlInfo.PathElements.Count - 1; i++)
                 {
                     sb.Append(HttpUtility.UrlEncode(urlInfo.PathElements[i]));
@@ -56,6 +59,7 @@ namespace JJ.Framework.Web
             }
 
             int i;
+
             for (i = 0; i < parameters.Count - 1; i++)
             {
                 // Inlined for performance
@@ -76,5 +80,14 @@ namespace JJ.Framework.Web
 
         public static string BuildParameter(UrlParameterInfo parameter)
             => $"{HttpUtility.UrlEncode(parameter.Name)}={HttpUtility.UrlEncode(parameter.Value)}";
+
+        /// <summary> Perhaps a little quicker than complete parsing and rebuilding the URL. </summary>
+        public static string AddUrlParameter(string url, string parameterName, string parameterValue)
+        {
+            url = url ?? "";
+            bool isFirstUrlParameter = !url.Contains("?");
+            url += (isFirstUrlParameter ? "?" : "&") + HttpUtility.UrlEncode(parameterName) + "=" + HttpUtility.UrlEncode(parameterValue);
+            return url;
+        }
     }
 }

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
+using JetBrains.Annotations;
 using JJ.Framework.Text;
 
 // ReSharper disable ForCanBeConvertedToForeach
 
 namespace JJ.Framework.Web
 {
+    [PublicAPI]
 	public class UrlParser
 	{
 		/// <summary>

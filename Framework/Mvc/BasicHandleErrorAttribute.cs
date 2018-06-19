@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Authentication;
-using System.Web;
 using System.Web.Mvc;
+using JJ.Framework.Collections;
 using JJ.Framework.Web;
 
 namespace JJ.Framework.Mvc
@@ -58,17 +59,45 @@ namespace JJ.Framework.Mvc
             // Try Add ReturnParameter
             if (!string.IsNullOrWhiteSpace(_returnParameterName))
             {
-                bool isFirstUrlParameter = !redirectUrl.Contains("?");
+                // Check if the current URL (minus the return URL) is already the redirect URL.
+                // Then you are just redirecting to the same page again and again.
+                // This is most common in Login views.
+                // If you do not check, you will just get ret upon ret upon ret just login URL's stacked on top of eachother.
 
-                redirectUrl += (isFirstUrlParameter ? "?" : "&") +
-                               HttpUtility.UrlEncode(_returnParameterName) + "=" +
-                               HttpUtility.UrlEncode(filterContext.HttpContext.Request.RawUrl);
+                string currentUrl = filterContext.HttpContext.Request.RawUrl;
+                string currentUrlMinusReturnUrl = RemoveReturnUrl(currentUrl);
+
+                if (string.Equals(redirectUrl, currentUrlMinusReturnUrl))
+                {
+                    redirectUrl = currentUrl;
+                }
+                else
+                {
+                    redirectUrl = UrlBuilder.AddUrlParameter(redirectUrl, _returnParameterName, currentUrl);
+                }
             }
 
             // Redirect
             filterContext.HttpContext.Response.StatusCode = httpErrorStatusCode.Value;
             filterContext.HttpContext.Response.Redirect(redirectUrl);
             filterContext.ExceptionHandled = true;
+        }
+
+        private string RemoveReturnUrl(string url)
+        {
+            UrlInfo urlInfo = new UrlParser().Parse(url);
+
+            urlInfo.Parameters = urlInfo.Parameters.Except(x => string.Equals(x.Name, _returnParameterName)).ToArray();
+
+            string urlMinusReturnUrl = UrlBuilder.BuildUrl(urlInfo);
+
+            // HACK: UrlBuilder has this minor bug.
+            if (!urlMinusReturnUrl.StartsWith("/"))
+            {
+                return '/' + urlMinusReturnUrl;
+            }
+
+            return urlMinusReturnUrl;
         }
     }
 }

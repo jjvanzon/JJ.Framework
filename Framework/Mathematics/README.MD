@@ -60,7 +60,7 @@ Misc math helpers.
 
 * `Pow` with integers
 * `Log` with integers
-	* It will only return integers, but will prevent rounding erros such as 1000 log 10 = 2.99999999996.
+	* It will only return integers, but will prevent rounding errors such as 1000 log 10 = 2.99999999996.
 * `IsPowerOf2`
 	* With help of: http://www.lomont.org/Software/Misc/FFT/LomontFFT.html
 * `LogRatio`

@@ -34,7 +34,7 @@ namespace JJ.Framework.Mathematics
 		/// <summary>
 		/// Integer variation of the Math.Log function.
 		/// It will only return integers,
-		/// but will prevent rounding erros such as
+		/// but will prevent rounding errors such as
 		/// 1000 log 10 = 2.99999999996.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -262,8 +262,8 @@ namespace JJ.Framework.Mathematics
 		public static Dictionary<int, int> SpreadIntegers(int sourceIndex1, int sourceIndex2, int destIndex1, int destIndex2)
 		{
 			// TODO: There seem to be a lot of repeated principles here, compared to the overload that takes 2 int's.
-			if (sourceIndex2 < sourceIndex1) throw new LessThanOrEqualException(() => sourceIndex2, () => sourceIndex1);
-			if (destIndex2 < destIndex1) throw new LessThanOrEqualException(() => destIndex2, () => destIndex1);
+			if (sourceIndex2 < sourceIndex1) throw new LessThanException(() => sourceIndex2, () => sourceIndex1);
+			if (destIndex2 < destIndex1) throw new LessThanException(() => destIndex2, () => destIndex1);
 
 			IList<int> sourceRange = Enumerable.Range(sourceIndex1, sourceIndex2).ToArray();
 			IList<int> destRange = Enumerable.Range(destIndex1, destIndex2).ToArray();
