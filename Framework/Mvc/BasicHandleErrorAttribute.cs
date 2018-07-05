@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Security.Authentication;
 using System.Web.Mvc;
 using JJ.Framework.Collections;
+using JJ.Framework.Exceptions.Aggregates;
 using JJ.Framework.Web;
 
 namespace JJ.Framework.Mvc
 {
     /// <summary>
-    /// Upon error this will use some of the things you can specify in the customErrors config element,
+    /// Upon exceptions this will use some of the things you can specify in the customErrors config element,
     /// to redirect to the right error page. Some common exceptions are handled to redirect to a specific page
     /// related to an HTTP status code in the config file.
-    /// (I heard this is supposed to go automatically some how, but I could not get it to work and went for this alternative.)
+    /// (I heard this is supposed to go automatically somehow, but I could not get it to work and went for this alternative.)
     /// </summary>
     public class BasicHandleErrorAttribute : HandleErrorAttribute
     {
@@ -38,6 +40,10 @@ namespace JJ.Framework.Mvc
 
                 case UnauthorizedAccessException _:
                     httpErrorStatusCode = HttpStatusCodes.NOT_AUTHORIZED_403;
+                    break;
+
+                case NotFoundException _:
+                    httpErrorStatusCode = HttpStatusCodes.NOT_FOUND_404;
                     break;
             }
 

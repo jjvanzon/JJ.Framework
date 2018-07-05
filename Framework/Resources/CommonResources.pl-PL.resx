@@ -324,4 +324,10 @@
   <data name="Yes" xml:space="preserve">
     <value>Tak</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Błąd</value>
+  </data>
+  <data name="ErrorOccurred" xml:space="preserve">
+    <value>Wystąpił błąd. Spróbuj ponownie później.</value>
+  </data>
 </root>

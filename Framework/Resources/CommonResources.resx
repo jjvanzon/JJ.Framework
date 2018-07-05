@@ -347,4 +347,10 @@
   <data name="Url" xml:space="preserve">
     <value>URL</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorOccurred" xml:space="preserve">
+    <value>An error ocurred. Please try again later.</value>
+  </data>
 </root>

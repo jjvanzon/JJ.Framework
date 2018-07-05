@@ -14,6 +14,7 @@ namespace JJ.Framework.Mvc
     /// <summary>
     /// Used for mapping view models to MVC actions, so we can dynamically redirect a view model to a controller action.
     /// </summary>
+    [Obsolete("Instead, use your own specialized ActionDispatcher class that derives from ActionDispatcherBase.")]
     public static class ActionDispatcher
     {
         // Dictionaries

@@ -74,5 +74,7 @@ namespace JJ.Framework.Resources
 	    public static string UserName => CommonResources.UserName;
 		public static string WantToSaveChanges => CommonResources.WantToSaveChanges;
 		public static string Yes => CommonResources.Yes;
-	}
+	    public static string Error => CommonResources.Error;
+	    public static string ErrorOccurred => CommonResources.ErrorOccurred;
+    }
 }

@@ -11,6 +11,29 @@ using JJ.Framework.Exceptions.Comparative;
 
 namespace JJ.Framework.Mvc
 {
+    /// <summary>
+    /// Used for consistent, easier handling of redirection to either View() or RedirectToAction().
+    /// In some cases the bureaucracy of that in MVC can be replaced
+    /// by simple ActionDispatcher calls at the end of your controller action methods.
+    /// 
+    /// Make your own class ActionDispatcher, which derives from ActionDispatcherBase.
+    /// 
+    /// You can call ActionDispatcher.Dispatch() at the end of your Controller action, and pass it the viewModel.
+    /// The ActionDispatcher will determine the ActionResult to return.
+    ///
+    /// For your ActionDispatcher to know which ActionResult to return, you would override
+    /// the property DispatchTuples to return tuples of
+    /// view model type, controller name, HTTP-get action name, view name.
+    /// 
+    /// You can also return the route values to use for each view model, by overriding the method
+    /// TryGetRouteValues(object viewModel). There you could switch on the view model's type
+    /// to determine the route values to return.
+    ///
+    /// Do note that you can not specify multiple MVC actions for the same ViewModel type.
+    /// You would have to solve that differently,
+    /// for instance by making due with the same MVC action for a single view model type,
+    /// or fake it by making two view models, that look the same.
+    /// </summary>
     [PublicAPI]
     public abstract class ActionDispatcherBase
     {
@@ -22,6 +45,7 @@ namespace JJ.Framework.Mvc
                        x => x.viewModelType,
                        x => (x.controllerName, x.httpGetActionName, x.viewName));
 
+        /// <summary> httpGetActionName is optional </summary>
         protected abstract IList<(Type viewModelType, string controllerName, string httpGetActionName, string viewName)> DispatchTuples { get; }
 
         private readonly Dictionary<Type, (string controllerName, string httpGetActionName, string viewName)>

@@ -12,10 +12,10 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Helpers
 {
     public class ActionDispatcher : ActionDispatcherBase
     {
-        private static ActionDispatcherBase Singleton { get; } = new ActionDispatcher();
+        private static readonly ActionDispatcherBase _singleton = new ActionDispatcher();
 
         public new static ActionResult Dispatch(Controller sourceController, object viewModel, [CallerMemberName] string sourceActionName = "")
-            => Singleton.Dispatch(sourceController, viewModel, sourceActionName);
+            => _singleton.Dispatch(sourceController, viewModel, sourceActionName);
 
         protected override IList<(Type viewModelType, string controllerName, string httpGetActionName, string viewName)> DispatchTuples { get; }
             = new[]
