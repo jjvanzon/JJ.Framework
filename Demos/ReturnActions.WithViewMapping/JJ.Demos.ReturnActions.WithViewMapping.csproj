@@ -64,6 +64,10 @@
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ReturnActions.WithViewMapping.Framework.Presentation\JJ.Demos.ReturnActions.Framework.Presentation.csproj">
+      <Project>{E36E358C-435E-4038-B49C-EE80BE57C72E}</Project>
+      <Name>JJ.Demos.ReturnActions.Framework.Presentation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReturnActions\JJ.Demos.ReturnActions.csproj">
       <Project>{054214D2-0B1F-4ADD-BC45-E8A49C20F219}</Project>
       <Name>JJ.Demos.ReturnActions</Name>

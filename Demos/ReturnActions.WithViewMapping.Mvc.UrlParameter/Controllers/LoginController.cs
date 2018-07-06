@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
+using JJ.Demos.ReturnActions.Framework.Presentation;
 using JJ.Demos.ReturnActions.Mvc.Controllers;
 using JJ.Demos.ReturnActions.WithViewMapping.Presenters;
 using JJ.Demos.ReturnActions.WithViewMapping.ViewModels;
-using JJ.Framework.Presentation;
-using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
+using ActionDispatcher = JJ.Demos.ReturnActions.Framework.Mvc.ActionDispatcher;
 // ReSharper disable AccessToStaticMemberViaDerivedType
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter.Controllers

@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Exceptions.Basic;
 
-namespace JJ.Framework.Mvc
+namespace JJ.Demos.ReturnActions.Framework.Mvc
 {
     public class ActionParameterMapping
     {

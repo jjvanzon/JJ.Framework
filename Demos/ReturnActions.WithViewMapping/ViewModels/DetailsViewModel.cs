@@ -1,5 +1,5 @@
-﻿using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Framework.Presentation;
+﻿using JJ.Demos.ReturnActions.Framework.Presentation;
+using JJ.Demos.ReturnActions.ViewModels;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.ViewModels
 {

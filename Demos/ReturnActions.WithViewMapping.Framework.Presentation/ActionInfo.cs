@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
 
-namespace JJ.Framework.Presentation
+namespace JJ.Demos.ReturnActions.Framework.Presentation
 {
 	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public sealed class ActionInfo

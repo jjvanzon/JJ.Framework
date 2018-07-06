@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace JJ.Framework.Presentation
+namespace JJ.Demos.ReturnActions.Framework.Presentation
 {
 	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public sealed class ActionParameterInfo

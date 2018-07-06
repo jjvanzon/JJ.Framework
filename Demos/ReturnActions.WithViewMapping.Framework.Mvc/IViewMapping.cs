@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace JJ.Framework.Mvc
+namespace JJ.Demos.ReturnActions.Framework.Mvc
 {
 	/// <summary>
 	/// We need this interface to have a mutual type, because the ViewMapping base class is generic.

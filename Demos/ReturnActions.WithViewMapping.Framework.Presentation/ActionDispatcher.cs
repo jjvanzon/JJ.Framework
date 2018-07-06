@@ -9,7 +9,7 @@ using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Presentation
+namespace JJ.Demos.ReturnActions.Framework.Presentation
 {
 	/// <summary>
 	/// This is the platform-independent action dispatcher.

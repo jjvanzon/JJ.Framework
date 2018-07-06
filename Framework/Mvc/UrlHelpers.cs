@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using JJ.Framework.Common;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.Presentation;
-using JJ.Framework.Reflection;
 using JJ.Framework.Web;
 
 namespace JJ.Framework.Mvc
@@ -18,8 +14,6 @@ namespace JJ.Framework.Mvc
     /// </summary>
     public static class UrlHelpers
     {
-        private static readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
-
         public static string ActionWithCollection<T>(
             string actionName,
             string controllerName,
@@ -37,6 +31,7 @@ namespace JJ.Framework.Mvc
                     Name = parameterName,
                     Value = Convert.ToString(value)
                 };
+
                 urlInfo.Parameters.Add(parameter);
             }
 
@@ -51,6 +46,7 @@ namespace JJ.Framework.Mvc
             var urlInfo = new UrlInfo(controllerName, actionName);
 
             IList<KeyValuePair<string, object>> keyValuePairs = KeyValuePairHelper.ConvertNamesAndValuesListToKeyValuePairs(parameterNamesAndValues);
+
             // ReSharper disable once SuggestVarOrType_Elsewhere
             foreach (var entry in keyValuePairs)
             {
@@ -59,68 +55,12 @@ namespace JJ.Framework.Mvc
                     Name = entry.Key,
                     Value = Convert.ToString(entry.Value)
                 };
+
                 urlInfo.Parameters.Add(parameter);
             }
 
             string url = UrlBuilder.BuildUrl(urlInfo);
             return '/' + url;
-        }
-
-        /// <summary>
-        /// Converts presenter action info to an MVC URL.
-        /// Stacks up return URL parameters as follows:
-        /// Questions/Details?id=1
-        /// Questions/Edit?id=1&amp;ret=Questions%2FDetails%3Fid%3D1
-        /// Login/Index&amp;ret=Questions%2FEdit%3Fid%3D1%26ret%3DQuestions%252FDetails%253Fid%253D1
-        /// Returns null if actionInfo is null.
-        /// </summary>
-        public static string ReturnAction(ActionInfo presenterActionInfo, string returnUrlParameterName = "ret")
-        {
-            if (presenterActionInfo == null)
-            {
-                return null;
-            }
-
-            return ActionDispatcher.GetUrl(presenterActionInfo, returnUrlParameterName);
-        }
-
-        /// <summary>
-        /// The difference with Url.Action is that Url.ReturnAction will produce
-        /// a URL that does not fallback to default actions,
-        /// nor uses parameters as URL path parts,
-        /// but instead returns then as regular URL parameters.
-        /// That kind of URL is better interpretable by the Presentation framework,
-        /// that needs to convert it to presenter information.
-        /// </summary>
-        public static string ReturnAction(string actionName, string controllerName, object routeValues = null)
-        {
-            var actionInfo = new ActionInfo
-            {
-                PresenterName = controllerName,
-                ActionName = actionName
-            };
-
-            if (routeValues == null)
-            {
-                actionInfo.Parameters = new ActionParameterInfo[0];
-            }
-            else
-            {
-                actionInfo.Parameters = _reflectionCache.GetProperties(routeValues.GetType())
-                                                        .Select(
-                                                            x => new ActionParameterInfo
-                                                            {
-                                                                Name = x.Name,
-                                                                Value = Convert.ToString(x.GetValue(routeValues, null))
-                                                            })
-                                                        .ToArray();
-            }
-
-            string returnUrl =
-                ActionInfoToUrlConverter.ConvertActionInfoToUrl(
-                    actionInfo,
-                    returnUrlParameterName: "ret"); // returnUrlParameterName does not matter here.
-            return returnUrl;
         }
     }
 }

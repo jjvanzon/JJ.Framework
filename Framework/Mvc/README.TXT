@@ -19,5 +19,3 @@ You have to wrap every level in the tree structure in a using block, as demonstr
 	}
 
 Unfortunately it still contains bugs. I know which ones. Hopefully I will find time to solve them.
-
-Next to that awsome idea, this project also contains a terrible idea: ViewMapping. Don't look there. I will refactor that out eventually.

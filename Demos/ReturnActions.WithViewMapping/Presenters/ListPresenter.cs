@@ -1,6 +1,6 @@
-﻿using JJ.Demos.ReturnActions.Helpers;
+﻿using JJ.Demos.ReturnActions.Framework.Presentation;
+using JJ.Demos.ReturnActions.Helpers;
 using JJ.Demos.ReturnActions.ViewModels;
-using JJ.Framework.Presentation;
 
 // ReSharper disable MemberCanBeMadeStatic.Global
 

@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using ActionDispatcher = JJ.Framework.Mvc.ActionDispatcher;
+using ActionDispatcher = JJ.Demos.ReturnActions.Framework.Mvc.ActionDispatcher;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc
 {

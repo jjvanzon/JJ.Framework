@@ -4,17 +4,18 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Web.Mvc;
+using JJ.Demos.ReturnActions.Framework.Presentation;
 using JJ.Framework.Collections;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Mvc;
 using JJ.Framework.Presentation;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Mvc
+namespace JJ.Demos.ReturnActions.Framework.Mvc
 {
     /// <summary>
     /// Used for mapping view models to MVC actions, so we can dynamically redirect a view model to a controller action.
     /// </summary>
-    [Obsolete("Instead, use your own specialized ActionDispatcher class that derives from ActionDispatcherBase.")]
     public static class ActionDispatcher
     {
         // Dictionaries

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using JJ.Demos.ReturnActions.Framework.Presentation;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Presentation;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable MemberCanBeProtected.Global
 
-namespace JJ.Framework.Mvc
+namespace JJ.Demos.ReturnActions.Framework.Mvc
 {
     public abstract class ViewMapping<TViewModel> : IViewMapping
     {

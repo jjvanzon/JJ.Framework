@@ -1,6 +1,6 @@
-﻿using JJ.Demos.ReturnActions.Mvc.Names;
-using JJ.Framework.Mvc;
-using JJ.Framework.Presentation;
+﻿using JJ.Demos.ReturnActions.Framework.Mvc;
+using JJ.Demos.ReturnActions.Framework.Presentation;
+using JJ.Demos.ReturnActions.Mvc.Names;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.ViewMapping
 {

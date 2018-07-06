@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using JJ.Demos.ReturnActions.Framework.Presentation;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Demos.ReturnActions.WithViewMapping.ViewModels;
-using JJ.Framework.Presentation;
 
 // ReSharper disable TailRecursiveCall
 

@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
+using JJ.Demos.ReturnActions.Framework.Mvc;
 using JJ.Demos.ReturnActions.Mvc.Controllers;
 using JJ.Demos.ReturnActions.WithViewMapping.Presenters;
 using JJ.Demos.ReturnActions.WithViewMapping.ViewModels;
-using JJ.Framework.Mvc;
 
 // ReSharper disable AccessToStaticMemberViaDerivedType
 

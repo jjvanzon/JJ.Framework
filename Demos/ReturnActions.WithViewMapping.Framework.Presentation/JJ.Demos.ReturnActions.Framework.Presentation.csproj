@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79B0EAC3-5159-4FC8-B3D8-53315B205444}</ProjectGuid>
+    <ProjectGuid>{E36E358C-435E-4038-B49C-EE80BE57C72E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Presentation</RootNamespace>
-    <AssemblyName>JJ.Framework.Presentation</AssemblyName>
+    <RootNamespace>JJ.Demos.ReturnActions.Framework.Presentation</RootNamespace>
+    <AssemblyName>JJ.Demos.ReturnActions.Framework.Presentation</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -47,40 +47,33 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="2018-07-06 Backup of NoViewModel.cs" />
-    <Compile Include="PagerViewModel.cs" />
-    <Compile Include="PagerViewModelFactory.cs" />
-    <Compile Include="2018-07-06 Backup of PreviousViewModel.cs" />
+    <Compile Include="ActionDispatcher.cs" />
+    <Compile Include="ActionInfo.cs" />
+    <Compile Include="ActionParameterInfo.cs" />
+    <Compile Include="NotAuthorizedViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="2018-07-06 Backup of UnexpectedViewModelTypeException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Collections\JJ.Framework.Collections.csproj">
+    <ProjectReference Include="..\..\Framework\Collections\JJ.Framework.Collections.csproj">
       <Project>{5d06a212-5459-47f3-8109-e012c5fc9e3a}</Project>
       <Name>JJ.Framework.Collections</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">
+    <ProjectReference Include="..\..\Framework\Common\JJ.Framework.Common.csproj">
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj">
+    <ProjectReference Include="..\..\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
       <Project>{fa44aba2-8e13-402c-a5a0-8d73c74b5181}</Project>
       <Name>JJ.Framework.Exceptions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
+    <ProjectReference Include="..\..\Framework\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
       <Project>{59622a6e-a9ae-438c-a164-05dea2fcf8cf}</Project>
       <Name>JJ.Framework.PlatformCompatibility</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Reflection\JJ.Framework.Reflection.csproj">
+    <ProjectReference Include="..\..\Framework\Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="README.TXT" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

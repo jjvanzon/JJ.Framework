@@ -1,7 +1,7 @@
-﻿using JJ.Demos.ReturnActions.Mvc.Names;
+﻿using JJ.Demos.ReturnActions.Framework.Mvc;
+using JJ.Demos.ReturnActions.Mvc.Names;
 using JJ.Demos.ReturnActions.ViewModels;
 using JJ.Demos.ReturnActions.WithViewMapping.Names;
-using JJ.Framework.Mvc;
 
 // ReSharper disable AccessToStaticMemberViaDerivedType
 
