@@ -47,12 +47,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="2018-07-06 Backup of NoViewModel.cs" />
     <Compile Include="PagerViewModel.cs" />
     <Compile Include="PagerViewModelFactory.cs" />
-    <Compile Include="2018-07-06 Backup of PreviousViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="2018-07-06 Backup of UnexpectedViewModelTypeException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Collections\JJ.Framework.Collections.csproj">
