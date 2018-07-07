@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Authentication;
+using System.Web;
 using System.Web.Mvc;
 using JJ.Framework.Collections;
 using JJ.Framework.Exceptions.Aggregates;
@@ -43,6 +44,10 @@ namespace JJ.Framework.Mvc
 
                 case NotFoundException _:
                     httpErrorStatusCode = HttpStatusCodes.NOT_FOUND_404;
+                    break;
+
+                case HttpException httpException:
+                    httpErrorStatusCode = httpException.GetHttpCode();
                     break;
             }
 
