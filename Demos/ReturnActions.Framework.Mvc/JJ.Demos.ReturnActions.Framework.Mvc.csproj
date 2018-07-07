@@ -105,7 +105,7 @@
       <Project>{164520aa-2db7-4405-9ae5-eb515527a33b}</Project>
       <Name>JJ.Framework.Web</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ReturnActions.WithViewMapping.Framework.Presentation\JJ.Demos.ReturnActions.Framework.Presentation.csproj">
+    <ProjectReference Include="..\ReturnActions.Framework.Presentation\JJ.Demos.ReturnActions.Framework.Presentation.csproj">
       <Project>{e36e358c-435e-4038-b49c-ee80be57c72e}</Project>
       <Name>JJ.Demos.ReturnActions.Framework.Presentation</Name>
     </ProjectReference>
