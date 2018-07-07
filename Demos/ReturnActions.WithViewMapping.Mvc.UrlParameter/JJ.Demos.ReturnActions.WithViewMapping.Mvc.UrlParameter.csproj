@@ -167,11 +167,11 @@
       <Project>{6ef04a89-7c2e-4eeb-b6a7-5c34de83df73}</Project>
       <Name>JJ.Demos.ReturnActions.Mvc</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ReturnActions.WithViewMapping.Framework.Mvc\JJ.Demos.ReturnActions.Framework.Mvc.csproj">
+    <ProjectReference Include="..\ReturnActions.Framework.Mvc\JJ.Demos.ReturnActions.Framework.Mvc.csproj">
       <Project>{f8953473-d5f5-404e-89b0-70ba384b61fc}</Project>
       <Name>JJ.Demos.ReturnActions.Framework.Mvc</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ReturnActions.WithViewMapping.Framework.Presentation\JJ.Demos.ReturnActions.Framework.Presentation.csproj">
+    <ProjectReference Include="..\ReturnActions.Framework.Presentation\JJ.Demos.ReturnActions.Framework.Presentation.csproj">
       <Project>{E36E358C-435E-4038-B49C-EE80BE57C72E}</Project>
       <Name>JJ.Demos.ReturnActions.Framework.Presentation</Name>
     </ProjectReference>

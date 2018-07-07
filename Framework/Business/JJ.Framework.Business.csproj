@@ -47,18 +47,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="2018-05-22 Backup of EntityCache.cs" />
-    <Compile Include="EntityStatusEnum.cs" />
     <Compile Include="EntityStatusHelper.cs" />
-    <Compile Include="EntityStatusManager.cs" />
-    <Compile Include="EntityStatusManagerByID.cs" />
     <Compile Include="Helpers\DebuggerDisplayFormatter.cs" />
     <Compile Include="IResult.cs" />
     <Compile Include="ISideEffect.cs" />
     <Compile Include="ManyToOneRelationship.cs" />
     <Compile Include="OneToManyRelationship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyStatusEnum.cs" />
     <Compile Include="ResultBase.cs" />
     <Compile Include="ResultT.cs" />
     <Compile Include="VoidResult.cs" />
