@@ -63,6 +63,10 @@
     <Compile Include="VectorGraphicsTests_Positioning.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj">
+      <Project>{fa44aba2-8e13-402c-a5a0-8d73c74b5181}</Project>
+      <Name>JJ.Framework.Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VectorGraphics\JJ.Framework.VectorGraphics.csproj">
       <Project>{52e03e08-331a-4ca7-8d8f-6f598c94eed4}</Project>
       <Name>JJ.Framework.VectorGraphics</Name>
