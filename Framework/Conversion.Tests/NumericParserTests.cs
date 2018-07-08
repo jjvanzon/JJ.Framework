@@ -3,6 +3,8 @@
 using System;
 using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+#pragma warning disable IDE0012 // Simplify Names
+// ReSharper disable BuiltInTypeReferenceStyle
 
 namespace JJ.Framework.Conversion.Tests
 {
