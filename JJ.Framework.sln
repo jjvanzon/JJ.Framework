@@ -1607,13 +1607,9 @@ Global
 		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.NPDebug|x86.ActiveCfg = Debug|Any CPU
 		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.NPDebug|x86.Build.0 = Debug|Any CPU
 		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Release|Any CPU.ActiveCfg = Release|x86
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Release|Any CPU.Build.0 = Release|x86
 		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Release|Mixed Platforms.Build.0 = Release|x86
 		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Release|x64.ActiveCfg = Release|x86
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Release|x64.Build.0 = Release|x86
 		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Release|x86.ActiveCfg = Release|x86
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
