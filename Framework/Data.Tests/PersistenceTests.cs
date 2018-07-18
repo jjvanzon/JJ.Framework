@@ -53,7 +53,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_NHibernate_Get()
         {
             string contextType = GetNHibernateContextType();
-            TestHelper.WithNPersistInconclusiveAssertion(() => Test_Persistence_Get(contextType));
+            TestHelper.WithConnectionInconclusiveAssertion(() => Test_Persistence_Get(contextType));
         }
 
         [TestMethod]
@@ -67,7 +67,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_EntityFramework_Get()
         {
             string contextType = GetEntityFrameworkContextType();
-            TestHelper.WithNPersistInconclusiveAssertion(() => Test_Persistence_Get(contextType));
+            TestHelper.WithConnectionInconclusiveAssertion(() => Test_Persistence_Get(contextType));
         }
 
         private void Test_Persistence_Get(string contextType)
@@ -92,7 +92,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_NHibernate_TryGet()
         {
             string contextType = GetNHibernateContextType();
-            TestHelper.WithNPersistInconclusiveAssertion(() => Test_Persistence_TryGet(contextType));
+            TestHelper.WithConnectionInconclusiveAssertion(() => Test_Persistence_TryGet(contextType));
         }
 
         [TestMethod]
@@ -106,7 +106,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_EntityFramework_TryGet()
         {
             string contextType = GetEntityFrameworkContextType();
-            TestHelper.WithNPersistInconclusiveAssertion(() => Test_Persistence_TryGet(contextType));
+            TestHelper.WithConnectionInconclusiveAssertion(() => Test_Persistence_TryGet(contextType));
         }
 
         private void Test_Persistence_TryGet(string contextType)
@@ -132,7 +132,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_NHibernate_Create()
         {
             string contextType = GetNHibernateContextType();
-            TestHelper.WithNPersistInconclusiveAssertion(() => Test_Persistence_Create(contextType));
+            TestHelper.WithConnectionInconclusiveAssertion(() => Test_Persistence_Create(contextType));
         }
 
         [TestMethod]
@@ -165,7 +165,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_NHibernate_Insert()
         {
             string contextType = GetNHibernateContextType();
-            TestHelper.WithNPersistInconclusiveAssertion(() => Test_Persistence_Insert(contextType));
+            TestHelper.WithConnectionInconclusiveAssertion(() => Test_Persistence_Insert(contextType));
         }
 
         [TestMethod]
@@ -198,7 +198,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_NHibernate_Update()
         {
             string contextType = GetNHibernateContextType();
-            TestHelper.WithNPersistInconclusiveAssertion(() => Test_Persistence_Update(contextType));
+            TestHelper.WithConnectionInconclusiveAssertion(() => Test_Persistence_Update(contextType));
         }
 
         [TestMethod]
@@ -231,7 +231,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_NHibernate_Delete()
         {
             string contextType = GetNHibernateContextType();
-            TestHelper.WithNPersistInconclusiveAssertion(() => Test_Persistence_Delete(contextType));
+            TestHelper.WithConnectionInconclusiveAssertion(() => Test_Persistence_Delete(contextType));
         }
 
         [TestMethod]
@@ -245,7 +245,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_EntityFramework_Delete()
         {
             string contextType = GetEntityFrameworkContextType();
-            Test_Persistence_Delete(contextType);
+            TestHelper.WithConnectionInconclusiveAssertion(() => Test_Persistence_Delete(contextType));
         }
 
         private void Test_Persistence_Delete(string contextType)
