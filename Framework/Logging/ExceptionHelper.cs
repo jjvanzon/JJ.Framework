@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
+using JJ.Framework.Collections;
 using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Logging
@@ -46,5 +48,13 @@ namespace JJ.Framework.Logging
 
 			return exception;
 		}
+
+        public static bool HasExceptionOrInnerExceptionsOfType<T>(Exception exception)
+        {
+            if (exception == null) throw new ArgumentNullException(nameof(exception));
+
+            bool any = exception.SelfAndAncestors(x => x.InnerException).OfType<T>().Any();
+            return any;
+        }
 	}
 }

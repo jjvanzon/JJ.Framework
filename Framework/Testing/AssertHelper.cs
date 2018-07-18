@@ -16,22 +16,6 @@ namespace JJ.Framework.Testing
     [PublicAPI]
     public static class AssertHelper
     {
-        public static void ThrowsException(Action action)
-        {
-            if (action == null) throw new NullException(() => action);
-
-            try
-            {
-                action();
-            }
-            catch
-            {
-                return;
-            }
-
-            throw new Exception("An exception should have been thrown.");
-        }
-
         // TODO: This code was ported out of a code base from 2010 to a code base from 2014, without any refactoring.
         // By attempting to normalize the methods, a lot of anti-patterns were introduced,
         // among other things delegitis, parametritis and scattering of cause and effect.
@@ -78,6 +62,22 @@ namespace JJ.Framework.Testing
         }
 
         // ThrowsException Checks
+
+        public static void ThrowsException(Action action)
+        {
+            if (action == null) throw new NullException(() => action);
+
+            try
+            {
+                action();
+            }
+            catch
+            {
+                return;
+            }
+
+            throw new Exception("An exception should have been thrown.");
+        }
 
         public static void ThrowsException(Action statement, string expectedMessage)
         {

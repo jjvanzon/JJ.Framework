@@ -1,77 +1,60 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Reflection;
-using JJ.Framework.Logging;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Puzzle.NPersist.Framework.Exceptions;
+using Puzzle.NPersist.Framework.Mapping;
 
 namespace JJ.Framework.Data.Tests.Helpers
 {
-	internal static class TestHelper
-	{
-	    public static void WithConnectionInconclusiveAssertion(Action action)
-	    {
-	        if (action == null) throw new NullException(() => action);
+    internal static class TestHelper
+    {
+        public static void WithConnectionInconclusiveAssertion(Action action)
+        {
+            if (action == null) throw new NullException(() => action);
 
-	        try
-	        {
-	            action();
-	        }
-	        catch (Exception ex)
-	        {
-	            Exception innerMostException = ExceptionHelper.GetInnermostException(ex);
+            try
+            {
+                action();
+            }
+            catch (NPersistException ex)
+            {
+                AssertNPersistInconclusive(ex);
+            }
+            catch (TargetInvocationException ex) when (ex.InnerException is MappingException)
+            {
+                AssertNPersistInconclusive(ex);
+            }
+            catch (SqlException ex)
+            {
+                AssertInconclusive(ex);
+            }
+            catch (Exception ex) when (ex.InnerException is SqlException)
+            {
+                AssertInconclusive(ex);
+            }
+            catch (Exception ex) when (ExceptionHelper.HasExceptionOrInnerExceptionsOfType<SqlException>(ex))
+            {
+                AssertInconclusive(ex);
+            }
+            catch (Exception ex) when (ExceptionHelper.HasExceptionOrInnerExceptionsOfType<TimeoutException>(ex))
+            {
+                AssertInconclusive(ex);
+            }
+        }
 
-	            if (innerMostException is TimeoutException)
-	            {
-	                AssertInconclusive(ex);
-	            }
-	        }
-	    }
+        private static void AssertInconclusive(Exception ex)
+        {
+            string message = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, false);
+            Assert.Inconclusive(message);
+        }
 
-	    private static void AssertInconclusive(Exception ex)
-	    {
-	        string message = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
-	        Assert.Inconclusive(message);
-	    }
-
-        public static void WithNPersistInconclusiveAssertion(Action action)
-		{
-			if (action == null) throw new NullException(() => action);
-
-			try
-			{
-				action();
-			}
-			catch (NPersistException ex)
-			{
-				AssertNPersistInconclusive(ex);
-			}
-			catch (TargetInvocationException ex) when
-			(
-				ex.InnerException != null &&
-				ex.InnerException is Puzzle.NPersist.Framework.Mapping.MappingException
-			)
-			{
-				AssertNPersistInconclusive(ex);
-			}
-			catch (Exception ex)
-			{
-				Exception innerMostException = ExceptionHelper.GetInnermostException(ex);
-				if (innerMostException is SqlException)
-				{
-					string message = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
-					Assert.Inconclusive(message);
-				}
-
-				throw;
-			}
-		}
-
-		private static void AssertNPersistInconclusive(Exception ex)
-		{
-			string message = "Known error. Cannot get NPersist to work. " + ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
-			Assert.Inconclusive(message);
-		}
-	}
+        private static void AssertNPersistInconclusive(Exception ex)
+        {
+            string message = "Known error. Cannot get NPersist to work. " + ExceptionHelper.FormatExceptionWithInnerExceptions(ex, false);
+            Assert.Inconclusive(message);
+        }
+    }
 }
