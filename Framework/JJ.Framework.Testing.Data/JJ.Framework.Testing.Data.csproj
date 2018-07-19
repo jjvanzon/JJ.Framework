@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F6E87698-B73B-43F5-AFF2-54C2F219334E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JJ.Framework.Testing.Data</RootNamespace>
+    <AssemblyName>JJ.Framework.Testing.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=11.1.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.11.1.0\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Common, Version=1.3.6681.33418, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.1.3.6681.33418\lib\net45\JJ.Framework.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Exceptions, Version=1.3.6681.33422, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Exceptions.1.3.6681.33422\lib\net45\JJ.Framework.Exceptions.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.PlatformCompatibility, Version=1.3.6681.33417, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.1.3.6681.33417\lib\net45\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Reflection, Version=1.3.6681.33420, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.1.3.6681.33420\lib\net45\JJ.Framework.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Text, Version=1.3.6683.35352, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Text.1.3.6683.35352\lib\net45\JJ.Framework.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AssertInconclusiveHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Third Party\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj">
+      <Project>{E6C03D2A-D150-4473-9439-D300746A1390}</Project>
+      <Name>Puzzle.NPersist.Framework.NET 3.5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logging\JJ.Framework.Logging.csproj">
+      <Project>{CEEB755D-DE12-4E70-816E-546C429B44B7}</Project>
+      <Name>JJ.Framework.Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

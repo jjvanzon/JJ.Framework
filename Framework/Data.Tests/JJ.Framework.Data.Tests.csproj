@@ -95,7 +95,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\Model1Context.cs" />
-    <Compile Include="Helpers\TestHelper.cs" />
     <Compile Include="NHibernate\ThingMapping.cs" />
     <Compile Include="Helpers\PersistenceHelper.cs" />
     <Compile Include="PersistenceTests.cs" />
@@ -142,6 +141,10 @@
     <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj">
       <Project>{fa44aba2-8e13-402c-a5a0-8d73c74b5181}</Project>
       <Name>JJ.Framework.Exceptions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Testing.Data\JJ.Framework.Testing.Data.csproj">
+      <Project>{F6E87698-B73B-43F5-AFF2-54C2F219334E}</Project>
+      <Name>JJ.Framework.Testing.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logging\JJ.Framework.Logging.csproj">
       <Project>{ceeb755d-de12-4e70-816e-546c429b44b7}</Project>

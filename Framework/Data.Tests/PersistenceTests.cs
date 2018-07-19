@@ -3,6 +3,7 @@ using JJ.Framework.Configuration;
 using JJ.Framework.Data.Tests.Helpers;
 using JJ.Framework.Data.Tests.Model;
 using JJ.Framework.Testing;
+using JJ.Framework.Testing.Data;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable UnusedVariable
@@ -29,7 +30,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_EntityFramework_CreateContext() => Test_Persistence_CreateContext(GetEntityFrameworkContextType());
 
         private void Test_Persistence_CreateContext(string contextType)
-            => TestHelper.WithConnectionInconclusiveAssertion(
+            => AssertInconclusiveHelper.WithConnectionInconclusiveAssertion(
                 () =>
                 {
                     using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType)) { }
@@ -47,7 +48,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_EntityFramework_Get() => Test_Persistence_Get(GetEntityFrameworkContextType());
 
         private void Test_Persistence_Get(string contextType)
-            => TestHelper.WithConnectionInconclusiveAssertion(
+            => AssertInconclusiveHelper.WithConnectionInconclusiveAssertion(
                 () =>
                 {
                     using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
@@ -76,7 +77,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_EntityFramework_TryGet() => Test_Persistence_TryGet(GetEntityFrameworkContextType());
 
         private void Test_Persistence_TryGet(string contextType)
-            => TestHelper.WithConnectionInconclusiveAssertion(
+            => AssertInconclusiveHelper.WithConnectionInconclusiveAssertion(
                 () =>
                 {
                     using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
@@ -106,7 +107,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_EntityFramework_Create() => Test_Persistence_Create(GetEntityFrameworkContextType());
 
         private void Test_Persistence_Create(string contextType)
-            => TestHelper.WithConnectionInconclusiveAssertion(
+            => AssertInconclusiveHelper.WithConnectionInconclusiveAssertion(
                 () =>
                 {
                     using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
@@ -129,7 +130,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_EntityFramework_Insert() => Test_Persistence_Insert(GetEntityFrameworkContextType());
 
         private void Test_Persistence_Insert(string contextType)
-            => TestHelper.WithConnectionInconclusiveAssertion(
+            => AssertInconclusiveHelper.WithConnectionInconclusiveAssertion(
                 () =>
                 {
                     using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
@@ -152,7 +153,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_EntityFramework_Update() => Test_Persistence_Update(GetEntityFrameworkContextType());
 
         private void Test_Persistence_Update(string contextType)
-            => TestHelper.WithConnectionInconclusiveAssertion(
+            => AssertInconclusiveHelper.WithConnectionInconclusiveAssertion(
                 () =>
                 {
                     using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
@@ -175,7 +176,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_EntityFramework_Delete() => Test_Persistence_Delete(GetEntityFrameworkContextType());
 
         private void Test_Persistence_Delete(string contextType)
-            => TestHelper.WithConnectionInconclusiveAssertion(
+            => AssertInconclusiveHelper.WithConnectionInconclusiveAssertion(
                 () =>
                 {
                     int id;
@@ -237,7 +238,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_EntityFramework_Query() => Test_Persistence_Query(GetEntityFrameworkContextType());
 
         private void Test_Persistence_Query(string contextType)
-            => TestHelper.WithConnectionInconclusiveAssertion(
+            => AssertInconclusiveHelper.WithConnectionInconclusiveAssertion(
                 () =>
                 {
                     using (IContext context = PersistenceHelper.CreatePersistenceContext(contextType))
