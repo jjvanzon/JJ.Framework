@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Text;
 using JJ.Framework.Collections;
-using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Logging
 {
@@ -25,7 +24,7 @@ namespace JJ.Framework.Logging
 
 		public static string FormatException(Exception ex, bool includeStackTrace)
 		{
-			if (ex == null) throw new NullException(() => ex);
+			if (ex == null) throw new ArgumentNullException(nameof(ex));
 
 			string message = ex.Message;
 			if (includeStackTrace)
