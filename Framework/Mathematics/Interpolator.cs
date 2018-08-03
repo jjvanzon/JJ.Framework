@@ -25,7 +25,7 @@ namespace JJ.Framework.Mathematics
         public static double Hermite4pt3oX(double yMinus1, double y0, double y1, double y2, double t)
         {
             (double c0, double c1, double c2, double c3) = Hermite4pt3oX_PrecalculateVariables(yMinus1, y0, y1, y2);
-            return Hermite4pt4oX_FromPrecalculatedVariables(c0, c1, c2, c3, t);
+            return Hermite4pt3oX_FromPrecalculatedVariables(c0, c1, c2, c3, t);
         }
 
         /// <summary>
@@ -34,15 +34,15 @@ namespace JJ.Framework.Mathematics
         /// http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
         /// </summary>
         public static (double c0, double c1, double c2, double c3) Hermite4pt3oX_PrecalculateVariables(
-            double xMinus1,
-            double x0,
-            double x1,
-            double x2)
+            double yMinus1,
+            double y0,
+            double y1,
+            double y2)
         {
-            double c0 = x0;
-            double c1 = .5 * (x1 - xMinus1);
-            double c2 = xMinus1 - 2.5 * x0 + 2 * x1 - .5 * x2;
-            double c3 = .5 * (x2 - xMinus1) + 1.5 * (x0 - x1);
+            double c0 = y0;
+            double c1 = .5 * (y1 - yMinus1);
+            double c2 = yMinus1 - 2.5 * y0 + 2 * y1 - .5 * y2;
+            double c3 = .5 * (y2 - yMinus1) + 1.5 * (y0 - y1);
 
             return (c0, c1, c2, c3);
         }
@@ -53,7 +53,7 @@ namespace JJ.Framework.Mathematics
         /// http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
         /// </summary>
         /// <param name="t">The point between 0 and 1 between x0 and x1.</param>
-        public static double Hermite4pt4oX_FromPrecalculatedVariables(double c0, double c1, double c2, double c3, double t)
+        public static double Hermite4pt3oX_FromPrecalculatedVariables(double c0, double c1, double c2, double c3, double t)
             => ((c3 * t + c2) * t + c1) * t + c0;
 
         // Hermite (float)
@@ -68,7 +68,7 @@ namespace JJ.Framework.Mathematics
         public static float Hermite4pt3oX(float yMinus1, float y0, float y1, float y2, float t)
         {
             (float c0, float c1, float c2, float c3) = Hermite4pt3oX_PrecalculateVariables(yMinus1, y0, y1, y2);
-            return Hermite4pt4oX_FromPrecalculatedVariables(c0, c1, c2, c3, t);
+            return Hermite4pt3oX_FromPrecalculatedVariables(c0, c1, c2, c3, t);
         }
 
         /// <summary>
@@ -77,15 +77,15 @@ namespace JJ.Framework.Mathematics
         /// http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
         /// </summary>
         public static (float c0, float c1, float c2, float c3) Hermite4pt3oX_PrecalculateVariables(
-            float xMinus1,
-            float x0,
-            float x1,
-            float x2)
+            float yMinus1,
+            float y0,
+            float y1,
+            float y2)
         {
-            float c0 = x0;
-            float c1 = .5f * (x1 - xMinus1);
-            float c2 = xMinus1 - 2.5f * x0 + 2f * x1 - .5f * x2;
-            float c3 = .5f * (x2 - xMinus1) + 1.5f * (x0 - x1);
+            float c0 = y0;
+            float c1 = .5f * (y1 - yMinus1);
+            float c2 = yMinus1 - 2.5f * y0 + 2f * y1 - .5f * y2;
+            float c3 = .5f * (y2 - yMinus1) + 1.5f * (y0 - y1);
 
             return (c0, c1, c2, c3);
         }
@@ -96,7 +96,7 @@ namespace JJ.Framework.Mathematics
         /// http://stackoverflow.com/questions/1125666/how-do-you-do-bicubic-or-other-non-linear-interpolation-of-re-sampled-audio-da
         /// </summary>
         /// <param name="t">The point between 0 and 1 between x0 and x1.</param>
-        public static float Hermite4pt4oX_FromPrecalculatedVariables(float c0, float c1, float c2, float c3, float t)
+        public static float Hermite4pt3oX_FromPrecalculatedVariables(float c0, float c1, float c2, float c3, float t)
             => ((c3 * t + c2) * t + c1) * t + c0;
 
         // CubicFromT (Bezier Curves)
