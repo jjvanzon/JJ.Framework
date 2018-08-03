@@ -44,9 +44,19 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 			set => X = value - Width / 2f;
 		}
 
-		public float AbsoluteX => ScaleHelper.RelativeToAbsoluteX(_element, 0);
-		public float AbsoluteY => ScaleHelper.RelativeToAbsoluteY(_element, 0);
-		public float AbsoluteRight => AbsoluteX + Width;
+		public float AbsoluteX
+		{
+		    get => ScaleHelper.RelativeToAbsoluteX(_element, 0);
+		    set => X = ScaleHelper.AbsoluteToRelativeX(_element, value);
+        }
+
+	    public float AbsoluteY
+		{
+		    get => ScaleHelper.RelativeToAbsoluteY(_element, 0);
+            set => Y = ScaleHelper.AbsoluteToRelativeY(_element, value);
+        }
+
+	    public float AbsoluteRight => AbsoluteX + Width;
 		public float AbsoluteBottom => AbsoluteY + Height;
 		public float AbsoluteCenterX => AbsoluteX + Width / 2f;
 		public float AbsoluteCenterY => AbsoluteY + Height / 2f;
