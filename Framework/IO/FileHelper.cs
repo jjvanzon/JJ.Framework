@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Exceptions.Files;
 using JJ.Framework.Text;
 
 namespace JJ.Framework.IO
 {
+    [PublicAPI]
 	public static class FileHelper
 	{
 		/// <summary>
@@ -22,8 +24,8 @@ namespace JJ.Framework.IO
 		public static string GetNumberedFilePath(
 			string originalFilePath,
 			string numberPrefix = " (",
-			string numberFormatString = "#",
-			string numberSuffix = ")",
+            string numberFormatString = "#",
+            string numberSuffix = ")",
 			bool mustNumberFirstFile = false)
 		{
 			if (string.IsNullOrEmpty(originalFilePath)) throw new NullOrEmptyException(() => originalFilePath);

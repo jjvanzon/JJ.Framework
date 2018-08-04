@@ -4,8 +4,8 @@ using System.Text;
 
 namespace JJ.Framework.Text
 {
-	public class StringBuilderWithIndentation
-	{
+    public class StringBuilderWithIndentation
+    {
 		public StringBuilderWithIndentation(string tabString = "\t") => _tabString = tabString;
 
 	    private readonly string _tabString;
