@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using JetBrains.Annotations;
 
 namespace JJ.Framework.Mathematics
 {
-    [PublicAPI]
     public static class Geometry
     {
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
