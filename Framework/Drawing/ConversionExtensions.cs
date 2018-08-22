@@ -9,150 +9,152 @@ using Font = System.Drawing.Font;
 
 namespace JJ.Framework.Drawing
 {
-	public static class ConversionExtensions
-	{
-		// Style Values
+    public static class ConversionExtensions
+    {
+        // Style Values
 
-		public static Color ToSystemDrawing(this int color) => Color.FromArgb(color);
+        public static Color ToSystemDrawing(this int color) => Color.FromArgb(color);
 
-		public static StringAlignment ToSystemDrawing(this HorizontalAlignmentEnum horizontalAlignmentEnum)
-		{
-			switch (horizontalAlignmentEnum)
-			{
-				case HorizontalAlignmentEnum.Center:
-					return StringAlignment.Center;
+        public static int ToVectorGrahics(this Color systemDrawingColor) => systemDrawingColor.ToArgb();
 
-				case HorizontalAlignmentEnum.Left:
-					return StringAlignment.Near;
+        public static StringAlignment ToSystemDrawing(this HorizontalAlignmentEnum horizontalAlignmentEnum)
+        {
+            switch (horizontalAlignmentEnum)
+            {
+                case HorizontalAlignmentEnum.Center:
+                    return StringAlignment.Center;
 
-				case HorizontalAlignmentEnum.Right:
-					return StringAlignment.Far;
+                case HorizontalAlignmentEnum.Left:
+                    return StringAlignment.Near;
 
-				default:
-					throw new InvalidValueException(horizontalAlignmentEnum);
-			}
-		}
+                case HorizontalAlignmentEnum.Right:
+                    return StringAlignment.Far;
 
-		public static StringAlignment ToSystemDrawing(this VerticalAlignmentEnum verticalAlignmentEnum)
-		{
-			switch (verticalAlignmentEnum)
-			{
-				case VerticalAlignmentEnum.Center:
-					return StringAlignment.Center;
+                default:
+                    throw new InvalidValueException(horizontalAlignmentEnum);
+            }
+        }
 
-				case VerticalAlignmentEnum.Top:
-					return StringAlignment.Near;
+        public static StringAlignment ToSystemDrawing(this VerticalAlignmentEnum verticalAlignmentEnum)
+        {
+            switch (verticalAlignmentEnum)
+            {
+                case VerticalAlignmentEnum.Center:
+                    return StringAlignment.Center;
 
-				case VerticalAlignmentEnum.Bottom:
-					return StringAlignment.Far;
+                case VerticalAlignmentEnum.Top:
+                    return StringAlignment.Near;
 
-				default:
-					throw new InvalidValueException(verticalAlignmentEnum);
-			}
-		}
+                case VerticalAlignmentEnum.Bottom:
+                    return StringAlignment.Far;
 
-		// Style Objects
+                default:
+                    throw new InvalidValueException(verticalAlignmentEnum);
+            }
+        }
 
-		public static Pen ToSystemDrawing(this LineStyle sourceLineStyle)
-		{
-			if (sourceLineStyle == null) throw new NullException(() => sourceLineStyle);
+        // Style Objects
 
-			float lineWidth = BoundsHelper.CorrectLength(sourceLineStyle.Width);
+        public static Pen ToSystemDrawing(this LineStyle sourceLineStyle)
+        {
+            if (sourceLineStyle == null) throw new NullException(() => sourceLineStyle);
 
-			Color destColor = sourceLineStyle.Color.ToSystemDrawing();
-			var destPen = new Pen(destColor, lineWidth);
+            float lineWidth = BoundsHelper.CorrectLength(sourceLineStyle.Width);
 
-			switch (sourceLineStyle.DashStyleEnum)
-			{
-				case DashStyleEnum.Dotted:
-					destPen.DashStyle = DashStyle.Dot;
-					destPen.DashPattern = new[] { 1, 1.5f };
-					break;
+            Color destColor = sourceLineStyle.Color.ToSystemDrawing();
+            var destPen = new Pen(destColor, lineWidth);
 
-				case DashStyleEnum.Dashed:
-					destPen.DashStyle = DashStyle.Dash;
-					destPen.DashPattern = new float[] { 3, 1 };
-					break;
+            switch (sourceLineStyle.DashStyleEnum)
+            {
+                case DashStyleEnum.Dotted:
+                    destPen.DashStyle = DashStyle.Dot;
+                    destPen.DashPattern = new[] { 1, 1.5f };
+                    break;
 
-				case DashStyleEnum.Solid:
-					destPen.DashStyle = DashStyle.Solid;
-					break;
+                case DashStyleEnum.Dashed:
+                    destPen.DashStyle = DashStyle.Dash;
+                    destPen.DashPattern = new float[] { 3, 1 };
+                    break;
 
-				default:
-					throw new InvalidValueException(sourceLineStyle.DashStyleEnum);
-			}
+                case DashStyleEnum.Solid:
+                    destPen.DashStyle = DashStyle.Solid;
+                    break;
 
-			return destPen;
-		}
+                default:
+                    throw new InvalidValueException(sourceLineStyle.DashStyleEnum);
+            }
 
-		public static Brush ToSystemDrawing(this BackStyle sourceBackStyle)
-		{
-			if (sourceBackStyle == null) throw new NullException(() => sourceBackStyle);
+            return destPen;
+        }
 
-			Color destColor = sourceBackStyle.Color.ToSystemDrawing();
-			Brush destBrush = new SolidBrush(destColor);
-			return destBrush;
-		}
+        public static Brush ToSystemDrawing(this BackStyle sourceBackStyle)
+        {
+            if (sourceBackStyle == null) throw new NullException(() => sourceBackStyle);
 
-		public static StringFormat ToSystemDrawingStringFormat(this TextStyle sourceTextStyle)
-		{
-			if (sourceTextStyle == null) throw new NullException(() => sourceTextStyle);
+            Color destColor = sourceBackStyle.Color.ToSystemDrawing();
+            Brush destBrush = new SolidBrush(destColor);
+            return destBrush;
+        }
 
-			var destStringFormat = new StringFormat
-			{
-				Alignment = sourceTextStyle.HorizontalAlignmentEnum.ToSystemDrawing(),
-				LineAlignment = sourceTextStyle.VerticalAlignmentEnum.ToSystemDrawing()
-			};
+        public static StringFormat ToSystemDrawingStringFormat(this TextStyle sourceTextStyle)
+        {
+            if (sourceTextStyle == null) throw new NullException(() => sourceTextStyle);
 
-			if (sourceTextStyle.Wrap == false)
-			{
-				destStringFormat.FormatFlags |= StringFormatFlags.NoWrap;
-			}
+            var destStringFormat = new StringFormat
+            {
+                Alignment = sourceTextStyle.HorizontalAlignmentEnum.ToSystemDrawing(),
+                LineAlignment = sourceTextStyle.VerticalAlignmentEnum.ToSystemDrawing()
+            };
 
-			if (sourceTextStyle.Clip == false)
-			{
-				destStringFormat.FormatFlags |= StringFormatFlags.NoClip;
-			}
+            if (sourceTextStyle.Wrap == false)
+            {
+                destStringFormat.FormatFlags |= StringFormatFlags.NoWrap;
+            }
 
-			destStringFormat.Trimming = sourceTextStyle.Abbreviate ? StringTrimming.EllipsisCharacter : StringTrimming.None;
+            if (sourceTextStyle.Clip == false)
+            {
+                destStringFormat.FormatFlags |= StringFormatFlags.NoClip;
+            }
 
-			return destStringFormat;
-		}
+            destStringFormat.Trimming = sourceTextStyle.Abbreviate ? StringTrimming.EllipsisCharacter : StringTrimming.None;
 
-		public static Brush ToSystemDrawingBrush(this TextStyle sourceTextStyle)
-		{
-			if (sourceTextStyle == null) throw new NullException(() => sourceTextStyle);
+            return destStringFormat;
+        }
 
-			Color destColor = sourceTextStyle.Color.ToSystemDrawing();
-			Brush destBrush = new SolidBrush(destColor);
+        public static Brush ToSystemDrawingBrush(this TextStyle sourceTextStyle)
+        {
+            if (sourceTextStyle == null) throw new NullException(() => sourceTextStyle);
 
-			return destBrush;
-		}
+            Color destColor = sourceTextStyle.Color.ToSystemDrawing();
+            Brush destBrush = new SolidBrush(destColor);
 
-		public static Font ToSystemDrawing(this VectorGraphics.Models.Styling.Font sourceFont, float dpi)
-		{
-			if (sourceFont == null) throw new NullException(() => sourceFont);
+            return destBrush;
+        }
 
-			FontStyle destFontStyle = 0;
+        public static Font ToSystemDrawing(this VectorGraphics.Models.Styling.Font sourceFont, float dpi)
+        {
+            if (sourceFont == null) throw new NullException(() => sourceFont);
 
-			if (sourceFont.Bold)
-			{
-				destFontStyle |= FontStyle.Bold;
-			}
+            FontStyle destFontStyle = 0;
 
-			if (sourceFont.Italic)
-			{
-				destFontStyle |= FontStyle.Italic;
-			}
+            if (sourceFont.Bold)
+            {
+                destFontStyle |= FontStyle.Bold;
+            }
 
-			float fontSize = BoundsHelper.CorrectLength(sourceFont.Size);
+            if (sourceFont.Italic)
+            {
+                destFontStyle |= FontStyle.Italic;
+            }
 
-			// Get rid of Windows DPI scaling.
-			float antiDpiFactor = DpiHelper.GetAntiDpiFactor(dpi);
-			float destFontSize = fontSize * antiDpiFactor;
+            float fontSize = BoundsHelper.CorrectLength(sourceFont.Size);
 
-			var destFont = new Font(sourceFont.Name, destFontSize, destFontStyle);
-			return destFont;
-		}
-	}
+            // Get rid of Windows DPI scaling.
+            float antiDpiFactor = DpiHelper.GetAntiDpiFactor(dpi);
+            float destFontSize = fontSize * antiDpiFactor;
+
+            var destFont = new Font(sourceFont.Name, destFontSize, destFontStyle);
+            return destFont;
+        }
+    }
 }
