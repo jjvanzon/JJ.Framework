@@ -6,6 +6,7 @@ namespace JJ.Framework.VectorGraphics.EventArg
 {
 	public class MouseEventArgs : EventArgs
 	{
+        /// <summary> nullable </summary>
 		public Element Element { get; }
 		public float XInPixels { get; }
 		public float YInPixels { get; }
