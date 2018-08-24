@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using JJ.Framework.Drawing;
+using JJ.Framework.VectorGraphics.Enums;
 using JJ.Framework.VectorGraphics.Gestures;
 using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.WinForms.Extensions;
@@ -61,7 +62,26 @@ namespace JJ.Framework.WinForms.Controls
 			Refresh();
 		}
 
-		protected override void OnKeyDown(KeyEventArgs e)
+	    protected override void OnMouseLeave(EventArgs e)
+	    {
+	        if (Diagram == null) return;
+
+            // HACK: Low priority: Fake a mouse move outside the bounds of the diagram to e.g. make MouseLeave go off for tool tips.
+
+            var e2 = new VectorGraphics.EventArg.MouseEventArgs(
+	            null,
+	            Diagram.Position.WidthInPixels * 2,
+	            Diagram.Position.HeightInPixels * 2,
+	            MouseButtonEnum.None);
+
+            Diagram.GestureHandling.HandleMouseMove(e2);
+
+            base.OnMouseLeave(e);
+
+	        Refresh();
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
 		{
 			Diagram?.GestureHandling.HandleKeyDown(e.ToVectorGraphics());
 
