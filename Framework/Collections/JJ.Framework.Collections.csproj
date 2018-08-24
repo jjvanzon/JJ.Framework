@@ -38,7 +38,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>latest</LangVersion>
     <DocumentationFile>bin\Release\JJ.Framework.Collections.xml</DocumentationFile>
-    <NoWarn>1591</NoWarn>
+    <NoWarn>1591,1573</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="JetBrains.Annotations, Version=2018.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">

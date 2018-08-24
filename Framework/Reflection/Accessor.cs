@@ -65,12 +65,13 @@ namespace JJ.Framework.Reflection
 			return field.GetValue(_object);
 		}
 
-		/// <param name="nameExpression">
-		/// An expression from which the member name will be extracted. 
-		/// Only the last name in the expression will be used, nothing else.
-		/// </param>
-		public void SetFieldValue<T>(Expression<Func<T>> nameExpression, object value)
-		{
+
+        /// <param name="nameExpression">
+        /// An expression from which the member name will be extracted. 
+        /// Only the last name in the expression will be used, nothing else.
+        /// </param>
+        public void SetFieldValue<T>(Expression<Func<T>> nameExpression, object value)
+        {
 			string name = ExpressionHelper.GetName(nameExpression);
 			SetFieldValue(name, value);
 		}
