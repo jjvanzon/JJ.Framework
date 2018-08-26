@@ -51,7 +51,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 		internal bool InternalMouseCaptureRequired
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get { return MouseCaptureRequired; }
+			get => MouseCaptureRequired;
 		}
 	}
 }
