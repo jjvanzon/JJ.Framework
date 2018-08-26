@@ -334,4 +334,11 @@
   <data name="ErrorOccurred" xml:space="preserve">
     <value>Er is een fout opgetreden. Probeert u het later opnieuw.</value>
   </data>
+  <data name="TreeStructure" xml:space="preserve">
+    <value>Boomstructuur</value>
+  </data>
+  <data name="Rename_WithName" xml:space="preserve">
+    <value>{0} hernoemen</value>
+    <comment>{0} = name</comment>
+  </data>
 </root>
