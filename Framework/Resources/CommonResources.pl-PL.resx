@@ -330,4 +330,10 @@
   <data name="ErrorOccurred" xml:space="preserve">
     <value>Wystąpił błąd. Spróbuj ponownie później.</value>
   </data>
+  <data name="TreeStructure" xml:space="preserve">
+    <value>Struktura drzewa</value>
+  </data>
+  <data name="Rename_WithName" xml:space="preserve">
+    <value>Zmień nazwę {0}</value>
+  </data>
 </root>

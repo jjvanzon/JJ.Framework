@@ -583,6 +583,15 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rename {0}.
+        /// </summary>
+        internal static string Rename_WithName {
+            get {
+                return ResourceManager.GetString("Rename_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Save {
@@ -633,6 +642,15 @@ namespace JJ.Framework.Resources {
         internal static string Text {
             get {
                 return ResourceManager.GetString("Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree.
+        /// </summary>
+        internal static string TreeStructure {
+            get {
+                return ResourceManager.GetString("TreeStructure", resourceCulture);
             }
         }
         
