@@ -353,4 +353,11 @@
   <data name="ErrorOccurred" xml:space="preserve">
     <value>An error ocurred. Please try again later.</value>
   </data>
+  <data name="TreeStructure" xml:space="preserve">
+    <value>Tree</value>
+  </data>
+  <data name="Rename_WithName" xml:space="preserve">
+    <value>Rename {0}</value>
+    <comment>{0} = name</comment>
+  </data>
 </root>
