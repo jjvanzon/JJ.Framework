@@ -360,4 +360,11 @@
     <value>Rename {0}</value>
     <comment>{0} = name</comment>
   </data>
+  <data name="Clone" xml:space="preserve">
+    <value>Clone</value>
+  </data>
+  <data name="Clone_WithName" xml:space="preserve">
+    <value>Clone {0}</value>
+    <comment>{0} = name</comment>
+  </data>
 </root>

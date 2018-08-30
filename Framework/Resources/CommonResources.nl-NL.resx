@@ -248,25 +248,21 @@
   </data>
   <data name="OneOrTheOtherMustBeFilledIn" xml:space="preserve">
     <value>{0} of {1} moet zijn ingevuld.</value>
-    <comment>{0} = name of first thing, {1} = name of second thing</comment>
   </data>
   <data name="Names" xml:space="preserve">
     <value>Namen</value>
   </data>
   <data name="CannotDelete_WithName_AndDependentItem" xml:space="preserve">
     <value>Kan {0} niet verwijderen, want het wordt nog gebruikt door het volgende: {1}.</value>
-    <comment>{0} = name, {1} = dependent item</comment>
   </data>
   <data name="Select_WithName" xml:space="preserve">
     <value>{0} selecteren</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="AlreadyExists_WithType_AndName" xml:space="preserve">
     <value>{0} {1} bestaat al.</value>
   </data>
   <data name="CannotDelete_WithName" xml:space="preserve">
     <value>{0} kan niet worden verwijderd.</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Openen</value>
@@ -339,6 +335,11 @@
   </data>
   <data name="Rename_WithName" xml:space="preserve">
     <value>{0} hernoemen</value>
-    <comment>{0} = name</comment>
+  </data>
+  <data name="Clone" xml:space="preserve">
+    <value>Dupliceren</value>
+  </data>
+  <data name="Clone_WithName" xml:space="preserve">
+    <value>{0} dupliceren</value>
   </data>
 </root>
