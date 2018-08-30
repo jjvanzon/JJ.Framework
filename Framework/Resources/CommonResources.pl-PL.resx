@@ -336,4 +336,10 @@
   <data name="Rename_WithName" xml:space="preserve">
     <value>Zmień nazwę {0}</value>
   </data>
+  <data name="Clone" xml:space="preserve">
+    <value>Duplikować</value>
+  </data>
+  <data name="Clone_WithName" xml:space="preserve">
+    <value>Duplikuj {0}</value>
+  </data>
 </root>

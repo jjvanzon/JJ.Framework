@@ -13,7 +13,9 @@ namespace JJ.Framework.Resources
 		public static string CannotDelete_WithName(string name) => string.Format(CommonResources.CannotDelete_WithName, name);
 		public static string CannotDelete_WithType_AndName(string type, string name) => string.Format(CommonResources.CannotDelete_WithType_AndName, type, name);
 		public static string CannotDelete_WithName_AndDependentItem(string name, string dependentItem) => string.Format(CommonResources.CannotDelete_WithName_AndDependentItem, name, dependentItem);
-		public static string Close => CommonResources.Close;
+	    public static string Clone => CommonResources.Clone;
+	    public static string Clone_WithName(string name) => string.Format(CommonResources.Clone_WithName, name);
+	    public static string Close => CommonResources.Close;
 		public static string Close_WithName(string name) => string.Format(CommonResources.Close_WithName, name);
         public static string Confirm => CommonResources.Confirm;
 	    public static string Date => CommonResources.Date;

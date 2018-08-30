@@ -133,6 +133,24 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clone.
+        /// </summary>
+        internal static string Clone {
+            get {
+                return ResourceManager.GetString("Clone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clone {0}.
+        /// </summary>
+        internal static string Clone_WithName {
+            get {
+                return ResourceManager.GetString("Clone_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         internal static string Close {
