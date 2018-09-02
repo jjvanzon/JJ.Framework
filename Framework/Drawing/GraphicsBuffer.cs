@@ -21,13 +21,13 @@ namespace JJ.Framework.Drawing
 		private BufferedGraphics _bufferedGraphics;
 
 		/// <summary> 
-		/// The previous width and height are remembed, 
+		/// The previous width and height are remembered, 
 		/// to see if we need to create a new buffer with a new size.
 		/// </summary>
 		private int _width;
 
 		/// <summary>
-		/// The previous width and height are remembed,
+		/// The previous width and height are remembered,
 		/// to see if we need to create a new buffer with a new size.
 		/// </summary>
 		private int _height;

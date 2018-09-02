@@ -144,7 +144,7 @@ namespace JJ.Framework.Data.NHibernate
 
 		private object GetID(object obj)
 		{
-			// TODO: Trying to use what happens here in NHibernte:
+			// TODO: Trying to use what happens here in NHibernate:
 			//
 			//	  AbstractEntityTuplizer.GetIdentifier(...
 			//	  {

@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace JJ.Framework.Common
 {
 	/// <summary>
-	/// Static classes cannot get extension membrers.
+	/// Static classes cannot get extension members.
 	/// Instead we have the DoubleHelper class for extra static members.
 	/// </summary>
 	[PublicAPI]
