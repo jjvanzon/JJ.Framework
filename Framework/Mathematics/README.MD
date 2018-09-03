@@ -78,5 +78,5 @@ Misc math helpers.
 * `SpreadIntegers`
 	* Equally spreads out a number of indices over a different number of indices. For instance the numbers {1,2,3} could be spread over 10 items, the first ones getting 1, the middle ones getting 2 and the last ones being assigned 3.
 * `SpreadDoubles`
-	* Equally spreads out a number of points over a span.
-	* It takes a `valueSpan` and `pointCount` and returns a `double[]`.
+	* Equally spreads out a number of points over a range of values.
+	* It takes a `startValue`, `endValue` and `pointCount` and returns a `double[]`.
