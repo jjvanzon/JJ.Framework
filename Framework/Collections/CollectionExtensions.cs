@@ -60,7 +60,27 @@ namespace JJ.Framework.Collections
 
 		public static IEnumerable<T> Concat<T>(this T first, IEnumerable<T> second) => new[] { first }.Concat(second);
 
-		public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey> keySelector)
+	    public static IEnumerable<(T1, T2)> CrossJoin<T1, T2>(this IEnumerable<T1> collection1, IEnumerable<T2> collection2)
+	        => CrossJoin(collection1, collection2, (x, y) => (x, y));
+
+	    public static IEnumerable<TResult> CrossJoin<T1, T2, TResult>(this IEnumerable<T1> collection1, IEnumerable<T2> collection2, Func<T1, T2, TResult> resultSelector)
+	    {
+	        if (collection1 == null) throw new ArgumentNullException(nameof(collection1));
+	        if (collection2 == null) throw new ArgumentNullException(nameof(collection2));
+	        if (resultSelector == null) throw new ArgumentNullException(nameof(resultSelector));
+
+	        foreach (T1 item1 in collection1)
+	        {
+	            // ReSharper disable once PossibleMultipleEnumeration
+	            foreach (T2 item2 in collection2)
+	            {
+	                TResult resultItem = resultSelector(item1, item2);
+	                yield return resultItem;
+	            }
+	        }
+	    }
+
+        public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey> keySelector)
 		{
 			if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
 			if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
