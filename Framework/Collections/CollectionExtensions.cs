@@ -663,27 +663,32 @@ namespace JJ.Framework.Collections
 
 		public static IEnumerable<T> Union<T>(this T first, IEnumerable<T> second) => new[] { first }.Union(second);
 
-		/// <summary>
-		/// Overload of Zip when you do not want to produce a result,
-		/// you just want to process two collections side by side in another way.
-		/// </summary>
-		/// <see cref="Enumerable.Zip"/>
-		public static void Zip<TFirst, TSecond>(this IEnumerable<TFirst> first, IEnumerable<TSecond> second, Action<TFirst, TSecond> action)
-		{
-			if (first == null) throw new ArgumentNullException(nameof(first));
-			if (second == null) throw new ArgumentNullException(nameof(second));
-			if (action == null) throw new ArgumentNullException(nameof(action));
+	    /// <summary>
+	    /// Overload of Zip when you do not want to produce a result,
+	    /// you just want to process two collections side by side in another way.
+	    /// </summary>
+	    /// <see cref="Enumerable.Zip"/>
+	    public static void Zip<TFirst, TSecond>(this IEnumerable<TFirst> first, IEnumerable<TSecond> second, Action<TFirst, TSecond> action)
+	    {
+	        if (first == null) throw new ArgumentNullException(nameof(first));
+	        if (second == null) throw new ArgumentNullException(nameof(second));
+	        if (action == null) throw new ArgumentNullException(nameof(action));
 
-			// Little dirty to do ToArray, whatevs.
-			TFirst[] firstArray = first as TFirst[] ?? first.ToArray();
-			TSecond[] secondArray = second as TSecond[] ?? second.ToArray();
+	        // Little dirty to do ToArray, whatevs.
+	        TFirst[] firstArray = first as TFirst[] ?? first.ToArray();
+	        TSecond[] secondArray = second as TSecond[] ?? second.ToArray();
 
-			int count = Math.Min(firstArray.Length, secondArray.Length);
+	        int count = Math.Min(firstArray.Length, secondArray.Length);
 
-			for (int i = 0; i < count; i++)
-			{
-				action(firstArray[i], secondArray[i]);
-			}
-		}
+	        for (int i = 0; i < count; i++)
+	        {
+	            action(firstArray[i], secondArray[i]);
+	        }
+	    }
+
+	    /// <summary> Overload of Zip without a result selector that returns tuples. </summary>
+	    /// <see cref="Enumerable.Zip"/>
+	    public static IEnumerable<(TFirst, TSecond)> Zip<TFirst, TSecond>(this IEnumerable<TFirst> first, IEnumerable<TSecond> second)
+	        => first.Zip(second, (x, y) => (x, y));
 	}
 }
