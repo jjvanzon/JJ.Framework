@@ -56,6 +56,7 @@
     <Compile Include="CollectionExtensions_Recursive_IList.cs" />
     <Compile Include="CollectionExtensions_Recursive_IEnumerable.cs" />
     <Compile Include="CollectionHelper.cs" />
+    <Compile Include="NestedEnumerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedBlackTree.cs" />
     <Compile Include="RedBlackTreeColorEnum.cs" />
