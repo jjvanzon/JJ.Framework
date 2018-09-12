@@ -70,6 +70,10 @@
     <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">
+      <Project>{44FD9133-5FE7-4824-BD35-27273706D127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj">
       <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
       <Name>JJ.Framework.Exceptions</Name>
