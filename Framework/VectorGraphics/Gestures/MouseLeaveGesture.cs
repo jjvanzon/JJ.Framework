@@ -42,7 +42,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 			}
 
 			// We bind to the first diagram we encounter,
-			// because we do not want to burdon the interface with passing a Diagram to the constructor.
+			// because we do not want to burden the interface with passing a Diagram to the constructor.
 			if (_diagram == null)
 			{
 				if (e.Element.Diagram != null)

@@ -310,5 +310,20 @@ namespace JJ.Framework.Reflection
             // For performance, do not check if it is a nullable type.
             return type.GetGenericArguments()[0];
         }
+
+        public static PropertyInfo GetPropertyOrException(this Type type, string name)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            PropertyInfo property = type.GetProperty(name);
+            if (property == null) throw new Exception($"Property '{name}' not found on type '{type}'.");
+            return property;
+        }
+
+        /// <summary> For static properties it will work without an object parameter. </summary>
+        public static object GetValue(this PropertyInfo property)
+        {
+            if (property == null) throw new ArgumentNullException(nameof(property));
+            return property.GetValue(null);
+        }
     }
 }

@@ -286,7 +286,7 @@ namespace JJ.Framework.Xml
 		/// Gets the XML element name for a property.
 		/// By default this is the property name converted to camel case 
 		/// e.g. MyProperty -&gt; myProperty.
-		/// You can also specify the expected XML element name explicity
+		/// You can also specify the expected XML element name explicitly
 		/// by marking the property with the XmlElement attribute and specifying the
 		/// name with it e.g. [XmlElement("myElement")].
 		/// </summary>
@@ -370,7 +370,7 @@ namespace JJ.Framework.Xml
 		/// Gets the XML attribute name for a property.
 		/// By default this is the property name converted to camel case 
 		/// e.g. MyProperty -&gt; myProperty.
-		/// You can also specify the expected XML element name explicity,
+		/// You can also specify the expected XML element name explicitly,
 		/// by marking the property with the XmlAttribute attribute and specifying the
 		/// name with it e.g. [XmlAttribute("myAttribute")].
 		/// </summary>
@@ -539,7 +539,7 @@ namespace JJ.Framework.Xml
 		/// destCollectionProperty is used to get the expected XML array element name.
 		/// By default this is the property name converted to camel case 
 		/// e.g. MyCollection -&gt; myCollection.
-		/// You can also specify the expected XML element name explicity,
+		/// You can also specify the expected XML element name explicitly,
 		/// by marking the property with the XmlArray attribute and specifying the
 		/// name with it e.g. [XmlArray("myCollection")].
 		/// </summary>
@@ -568,7 +568,7 @@ namespace JJ.Framework.Xml
 		/// Gets the Array XML element name for a collection property.
 		/// By default this is the property name converted to camel case 
 		/// e.g. MyCollection -&gt; myCollection.
-		/// You can also specify the expected XML element name explicity,
+		/// You can also specify the expected XML element name explicitly,
 		/// by marking the property with the XmlArray attribute and specifying the
 		/// name with it e.g. [XmlArray("myCollection")].
 		/// </summary>
@@ -599,7 +599,7 @@ namespace JJ.Framework.Xml
 		/// <summary>
 		/// Gets the XML element name for an array item for the given collection property.
 		/// By default this is the collection property's item type name converted to camel case e.g. MyElementType -&gt; myElementType.
-		/// You can also specify the expected XML element name explicity,
+		/// You can also specify the expected XML element name explicitly,
 		/// by marking the collection property with the XmlArrayItem attribute and specifying the
 		/// name with it e.g. [XmlArrayItem("myElementType")].
 		/// </summary>
@@ -637,7 +637,7 @@ namespace JJ.Framework.Xml
 		private bool IsNullable(Type type) => type.IsReferenceType() || type.IsNullableType();
 
 	    /// <summary>
-		/// Returns wheter a generic collection type is supported.
+		/// Returns whether a generic collection type is supported.
 		/// The supported types are List&lt;T&gt;, IList&lt;T&gt;, ICollection&lt;T&gt; and IEnumerable&lt;T&gt;.
 		/// </summary>
 		private bool IsSupportedGenericCollectionType(Type type)

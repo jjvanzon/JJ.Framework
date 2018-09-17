@@ -15,7 +15,7 @@ namespace JJ.Framework.Drawing
 
         public static Color ToSystemDrawing(this int color) => Color.FromArgb(color);
 
-        public static int ToVectorGrahics(this Color systemDrawingColor) => systemDrawingColor.ToArgb();
+        public static int ToVectorGraphics(this Color systemDrawingColor) => systemDrawingColor.ToArgb();
 
         public static StringAlignment ToSystemDrawing(this HorizontalAlignmentEnum horizontalAlignmentEnum)
         {

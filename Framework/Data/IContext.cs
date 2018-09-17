@@ -18,9 +18,9 @@ namespace JJ.Framework.Data
 		void Commit();
 
 		/// <summary>
-		/// Flush might execute all pending (insert, update) statements to the datastore,
+		/// Flush might execute all pending (insert, update) statements to the data store,
 		/// without actually committing the transaction.
-		/// ALWAYS add comment explaining why you flush, for instance: Need datastore generated ID's for reason x,
+		/// ALWAYS add comment explaining why you flush, for instance: Need data store generated ID's for reason x,
 		/// or: LINQ query later must retrieve stuff by alternative keys that were changed.
 		/// </summary>
 		void Flush();
