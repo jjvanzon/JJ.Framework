@@ -6,7 +6,7 @@ using JJ.Framework.VectorGraphics.Models.Styling;
 namespace JJ.Framework.VectorGraphics.Drawing
 {
 	/// <summary>
-	/// The base will corect coordinates and sizes to be within
+	/// The base will correct coordinates and sizes to be within
 	/// certain bounds and sizes to be a minimum positive value.
 	/// Coordinates minimally -100,000 and maximally 100,000
 	/// Sizes at least 0.0001.
@@ -78,7 +78,7 @@ namespace JJ.Framework.VectorGraphics.Drawing
 					DrawPicture(sourcePicture);
 					break;
 
-				// Curves are not drawn explitly: only indirectly through their generated segement lines.
+				// Curves are not drawn explicitly: only indirectly through their generated segment lines.
 				// Another element type can be just a custom programmed composite element.
 			}
 		}
@@ -193,7 +193,7 @@ namespace JJ.Framework.VectorGraphics.Drawing
 
 			// NOTE: Used to call CorrectCoordinate here
 			// because apparently System.Drawing hates it when I correct 0 to 1E-9f.
-			// But now they are correcte to 1E-5. Not sure if that helps. Also not sure anymore at what precise point System.Drawing hated it.
+			// But now they are corrected to 1E-5. Not sure if that helps. Also not sure anymore at what precise point System.Drawing hated it.
 			float width = sourceLabel.CalculatedValues.WidthInPixels;
 			float height = sourceLabel.CalculatedValues.HeightInPixels;
 

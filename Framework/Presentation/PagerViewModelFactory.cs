@@ -61,7 +61,7 @@ namespace JJ.Framework.Presentation
 				// Numbers do not fit.
 
 				// The -1 is the selected page.
-				int numberOfPagesOnLeftSide = (maxVisiblePageNumbers - 1) / 2; // Sneekily make use of integer division to get less on the left side in case of an even number of visible pages.
+				int numberOfPagesOnLeftSide = (maxVisiblePageNumbers - 1) / 2; // Sneakily make use of integer division to get less on the left side in case of an even number of visible pages.
 				int numberOfPagesOnRightSide = maxVisiblePageNumbers - numberOfPagesOnLeftSide - 1;
 
 				bool isLeftBound = selectedPageIndex - numberOfPagesOnLeftSide <= 0;

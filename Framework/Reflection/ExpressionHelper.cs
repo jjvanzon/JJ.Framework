@@ -69,7 +69,7 @@ namespace JJ.Framework.Reflection
 
 		/// <summary>
 		/// Gets a value from an expression.
-		/// Supports field access, propert access, method calls with parameters,
+		/// Supports field access, property access, method calls with parameters,
 		/// indexers, array lengths, conversion expressions, params (variable amount of arguments),
 		/// and both static and instance member access.
 		/// </summary>
@@ -77,7 +77,7 @@ namespace JJ.Framework.Reflection
 
 		/// <summary>
 		/// Gets a value from an expression.
-		/// Supports field access, propert access, method calls with parameters,
+		/// Supports field access, property access, method calls with parameters,
 		/// indexers, array lengths, conversion expressions, params (variable amount of arguments),
 		/// and both static and instance member access.
 		/// </summary>
@@ -85,7 +85,7 @@ namespace JJ.Framework.Reflection
 
 		/// <summary>
 		/// Gets a value from an expression.
-		/// Supports field access, propert access, method calls with parameters,
+		/// Supports field access, property access, method calls with parameters,
 		/// indexers, array lengths, conversion expressions, params (variable amount of arguments),
 		/// and both static and instance member access.
 		/// </summary>

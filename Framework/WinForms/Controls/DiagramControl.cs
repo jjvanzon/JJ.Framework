@@ -97,7 +97,7 @@ namespace JJ.Framework.WinForms.Controls
 
 		public override void Refresh() => Draw();
 
-		// Unfortunatly Draw might go off twice when making the control bigger,
+		// Unfortunately Draw might go off twice when making the control bigger,
 		// and once when making the control smaller,
 		// because making it bigger will trigger a Paint event,
 		// while making it smaller does not.

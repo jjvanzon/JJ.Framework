@@ -12,7 +12,7 @@ namespace JJ.Framework.Data
 		/// Creates a context using the values out of the config file.
 		/// A configuration example can be found in your bin directory.
 		/// The repository implementation should be present in one of the repository assemblies mentioned in the config file.
-		/// The repository implementation must have a constructor that takes a single paramter of type IContext.
+		/// The repository implementation must have a constructor that takes a single parameter of type IContext.
 		/// </summary>
 		/// <typeparam name="TRepositoryInterface">The repository interface type.</typeparam>
 		public static TRepositoryInterface CreateRepositoryFromConfiguration<TRepositoryInterface>(IContext context, PersistenceConfiguration configuration)
@@ -25,7 +25,7 @@ namespace JJ.Framework.Data
 		/// Creates a context using the values out of the config file.
 		/// A configuration example can be found in your bin directory.
 		/// The repository implementation should be present in one of the repository assemblies mentioned in the config file.
-		/// The repository implementation must have a constructor that takes a single paramter of type IContext.
+		/// The repository implementation must have a constructor that takes a single parameter of type IContext.
 		/// </summary>
 		/// <typeparam name="TRepositoryInterface">The repository interface type.</typeparam>
 		public static TRepositoryInterface CreateRepositoryFromConfiguration<TRepositoryInterface>(IContext context)
@@ -38,7 +38,7 @@ namespace JJ.Framework.Data
 		/// <summary>
 		/// Create a repository from one of the supplied repository assemblies, that implements the given interface.
 		/// Each assembly should at most contain one implementation of the repository interface.
-		/// The repository type must have a constructor that takes a single paramter of type IContext.
+		/// The repository type must have a constructor that takes a single parameter of type IContext.
 		/// </summary>
 		/// <typeparam name="TRepositoryInterface">The repository interface type.</typeparam>
 		public static TRepositoryInterface CreateRepository<TRepositoryInterface>(IContext context, params string[] repositoryAssemblyNames)
@@ -53,7 +53,7 @@ namespace JJ.Framework.Data
 		/// <summary>
 		/// Create a repository from one of the supplied repository assemblies, that implements the given interface.
 		/// Each assembly should at most contain one implementation of the repository interface.
-		/// The repository type must have a constructor that takes a single paramter of type IContext.
+		/// The repository type must have a constructor that takes a single parameter of type IContext.
 		/// </summary>
 		/// <typeparam name="TRepositoryInterface">The repository interface type.</typeparam>
 		public static TRepositoryInterface CreateRepository<TRepositoryInterface>(IContext context, params Assembly[] repositoryAssemblies)
