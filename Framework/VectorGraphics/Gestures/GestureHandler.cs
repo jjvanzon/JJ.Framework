@@ -25,21 +25,21 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 		public void HandleMouseDown(MouseEventArgs e)
 		{
-			_mouseMoveGesture.Internals.HandleMouseDown(this, e);
+			_mouseMoveGesture.Internals.HandleMouseDown(_diagram, e);
 
-			IEnumerable<Element> zOrdereredElements = _diagram.ElementsOrderedByZIndex;
+			IEnumerable<Element> zOrderedElements = _diagram.ElementsOrderedByZIndex;
 
-			Element hitElement = TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
+			Element hitElement = TryGetHitElement(zOrderedElements, e.XInPixels, e.YInPixels);
 
-			if (hitElement != null)
+		    var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
+
+		    foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
+		    {
+		        diagramGesture.Internals.HandleMouseDown(hitElement, e);
+		    }
+
+            if (hitElement != null)
 			{
-				var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
-
-				foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
-				{
-					diagramGesture.Internals.HandleMouseDown(hitElement, e);
-				}
-
 				foreach (GestureBase gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
 				{
 					gesture.Internals.HandleMouseDown(hitElement, e2);
@@ -112,23 +112,23 @@ namespace JJ.Framework.VectorGraphics.Gestures
 			}
 		}
 
-		public void HandleMouseMove(MouseEventArgs e) => _mouseMoveGesture.Internals.HandleMouseMove(this, e);
+		public void HandleMouseMove(MouseEventArgs e) => _mouseMoveGesture.Internals.HandleMouseMove(_diagram, e);
 
 	    private void mouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
 		{
-			IEnumerable<Element> zOrdereredElements = _diagram.ElementsOrderedByZIndex;
+			IEnumerable<Element> zOrderedElements = _diagram.ElementsOrderedByZIndex;
 		
-			Element hitElement = _mouseCapturingElement ?? TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
+			Element hitElement = _mouseCapturingElement ?? TryGetHitElement(zOrderedElements, e.XInPixels, e.YInPixels);
 
-			if (hitElement != null)
+		    var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
+
+		    foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
+		    {
+		        diagramGesture.Internals.HandleMouseMove(hitElement, e2);
+		    }
+
+            if (hitElement != null)
 			{
-				var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
-
-				foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
-				{
-					diagramGesture.Internals.HandleMouseMove(hitElement, e2);
-				}
-
 				foreach (GestureBase gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
 				{
 					gesture.Internals.HandleMouseMove(hitElement, e2);
@@ -171,21 +171,21 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 		public void HandleMouseUp(MouseEventArgs e)
 		{
-			_mouseMoveGesture.Internals.HandleMouseUp(this, e);
+			_mouseMoveGesture.Internals.HandleMouseUp(_diagram, e);
 
-			IEnumerable<Element> zOrdereredElements = _diagram.ElementsOrderedByZIndex;
+			IEnumerable<Element> zOrderedElements = _diagram.ElementsOrderedByZIndex;
 
-			Element hitElement = _mouseCapturingElement ?? TryGetHitElement(zOrdereredElements, e.XInPixels, e.YInPixels);
+			Element hitElement = _mouseCapturingElement ?? TryGetHitElement(zOrderedElements, e.XInPixels, e.YInPixels);
 
-			if (hitElement != null)
+		    var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
+
+		    foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
+		    {
+		        diagramGesture.Internals.HandleMouseUp(hitElement, e2);
+		    }
+
+            if (hitElement != null)
 			{
-				var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
-
-				foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
-				{
-					diagramGesture.Internals.HandleMouseUp(hitElement, e2);
-				}
-
 				foreach (GestureBase gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
 				{
 					gesture.Internals.HandleMouseUp(hitElement, e2);

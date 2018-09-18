@@ -7,7 +7,7 @@ namespace JJ.Framework.IO
 	/// <summary> Contains some methods for reading and writing structs to a stream. </summary>
 	public static class BinaryWriterExtensions
 	{
-		public static void WriteStruct<T>(this BinaryWriter writer, T strct)
+		public static void WriteStruct<T>(this BinaryWriter writer, T @struct)
 			where T : struct
 		{
 			if (writer == null) throw new NullException(() => writer);
@@ -15,7 +15,7 @@ namespace JJ.Framework.IO
 			int size = Marshal.SizeOf(typeof(T));
 			var buffer = new byte[size];
 			GCHandle gcHandle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-			Marshal.StructureToPtr(strct, gcHandle.AddrOfPinnedObject(), true);
+			Marshal.StructureToPtr(@struct, gcHandle.AddrOfPinnedObject(), true);
 			writer.BaseStream.Write(buffer, 0, buffer.Length);
 			gcHandle.Free();
 		}

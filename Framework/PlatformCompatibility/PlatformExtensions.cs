@@ -24,7 +24,7 @@ namespace JJ.Framework.PlatformCompatibility
 	    /// <summary>
 		/// Windows Phone 8 compatibility:
 		/// Type.GetInterface(string name) is not supported on Windows Phone 8.
-		/// Use the overload 'Type.GetInterface(string name, bool ingoreCase)' or call this method instead.
+		/// Use the overload 'Type.GetInterface(string name, bool ignoreCase)' or call this method instead.
 		/// </summary>
 		public static Type GetInterface_PlatformSafe(this Type type, string name) => PlatformHelper.Type_GetInterface_PlatformSafe(type, name);
 

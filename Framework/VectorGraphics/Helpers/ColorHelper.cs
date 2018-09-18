@@ -1,11 +1,14 @@
-﻿using JJ.Framework.Exceptions.Comparative;
+﻿using JetBrains.Annotations;
+using JJ.Framework.Exceptions.Comparative;
 
 namespace JJ.Framework.VectorGraphics.Helpers
 {
+    [PublicAPI]
 	public static class ColorHelper
 	{
 		public static int Black { get; } = GetColor(0, 0, 0);
 		public static int White { get; } = GetColor(255, 255, 255);
+	    public static int Transparent { get; } = GetColor(0, 0, 0, 0);
 
 		public static int GetColor(uint unsignedInteger)
 		{

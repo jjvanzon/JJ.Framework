@@ -13,7 +13,9 @@ namespace JJ.Framework.Resources
 		public static string CannotDelete_WithName(string name) => string.Format(CommonResources.CannotDelete_WithName, name);
 		public static string CannotDelete_WithType_AndName(string type, string name) => string.Format(CommonResources.CannotDelete_WithType_AndName, type, name);
 		public static string CannotDelete_WithName_AndDependentItem(string name, string dependentItem) => string.Format(CommonResources.CannotDelete_WithName_AndDependentItem, name, dependentItem);
-		public static string Close => CommonResources.Close;
+	    public static string Clone => CommonResources.Clone;
+	    public static string Clone_WithName(string name) => string.Format(CommonResources.Clone_WithName, name);
+	    public static string Close => CommonResources.Close;
 		public static string Close_WithName(string name) => string.Format(CommonResources.Close_WithName, name);
         public static string Confirm => CommonResources.Confirm;
 	    public static string Date => CommonResources.Date;
@@ -61,13 +63,15 @@ namespace JJ.Framework.Resources
 		public static string Redo => CommonResources.Redo;
 		public static string Refresh => CommonResources.Refresh;
 		public static string Remove => CommonResources.Remove;
-		public static string Save => CommonResources.Save;
+	    public static string Rename_WithName(string name) => string.Format(CommonResources.Rename_WithName, name);
+        public static string Save => CommonResources.Save;
 		public static string Save_WithName(string name) => string.Format(CommonResources.Save_WithName, name);
 		public static string Select_WithName(string name) => string.Format(CommonResources.Select_WithName, name);
         public static string Selection => CommonResources.Selection;
 		public static string Search => CommonResources.Search;
         public static string Text => CommonResources.Text;
-		public static string True => CommonResources.True;
+	    public static string TreeStructure => CommonResources.TreeStructure;
+        public static string True => CommonResources.True;
 		public static string Type => CommonResources.Type;
 		public static string Undo => CommonResources.Undo;
 	    public static string Url => CommonResources.Url;
@@ -76,5 +80,5 @@ namespace JJ.Framework.Resources
 		public static string Yes => CommonResources.Yes;
 	    public static string Error => CommonResources.Error;
 	    public static string ErrorOccurred => CommonResources.ErrorOccurred;
-    }
+	}
 }

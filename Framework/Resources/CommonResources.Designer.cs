@@ -133,6 +133,24 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clone.
+        /// </summary>
+        internal static string Clone {
+            get {
+                return ResourceManager.GetString("Clone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clone {0}.
+        /// </summary>
+        internal static string Clone_WithName {
+            get {
+                return ResourceManager.GetString("Clone_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         internal static string Close {
@@ -583,6 +601,15 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rename {0}.
+        /// </summary>
+        internal static string Rename_WithName {
+            get {
+                return ResourceManager.GetString("Rename_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         internal static string Save {
@@ -633,6 +660,15 @@ namespace JJ.Framework.Resources {
         internal static string Text {
             get {
                 return ResourceManager.GetString("Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree.
+        /// </summary>
+        internal static string TreeStructure {
+            get {
+                return ResourceManager.GetString("TreeStructure", resourceCulture);
             }
         }
         

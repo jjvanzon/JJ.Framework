@@ -163,7 +163,7 @@ namespace JJ.Framework.Text
 			return output;
 		}
 
-		/// <summary> Will trim off at most one occurrent of a value from the given string. </summary>
+		/// <summary> Will trim off at most one occurrence of a value from the given string. </summary>
 		public static string TrimFirst(this string input, string start)
 		{
 			if (string.IsNullOrEmpty(start)) throw new Exception($"{nameof(start)} is null or empty.");
@@ -176,7 +176,7 @@ namespace JJ.Framework.Text
 			return input;
 		}
 
-		/// <summary> Will trim off at most one occurrent of a value from the given string. </summary>
+		/// <summary> Will trim off at most one occurrence of a value from the given string. </summary>
 		public static string TrimLast(this string input, string end)
 		{
 			if (string.IsNullOrEmpty(end)) throw new Exception($"{nameof(end)} is null or empty.");

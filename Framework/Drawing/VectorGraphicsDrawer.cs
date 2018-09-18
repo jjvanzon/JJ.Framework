@@ -25,7 +25,7 @@ namespace JJ.Framework.Drawing
 		{
 			using (Brush destBrush = backStyle.ToSystemDrawing())
 			{
-				_destGraphics.FillRectangle(destBrush, x, y, width, height);
+				_destGraphics.FillRectangle(destBrush, x - 0.5f, y - 0.5f, width, height);
 			}
 		}
 
@@ -33,7 +33,7 @@ namespace JJ.Framework.Drawing
 		{
 			using (Pen destPen = lineStyle.ToSystemDrawing())
 			{
-				_destGraphics.DrawRectangle(destPen, x, y, width, height);
+				_destGraphics.DrawRectangle(destPen, x - 0.5f, y - 0.5f, width, height);
 			}
 		}
 
