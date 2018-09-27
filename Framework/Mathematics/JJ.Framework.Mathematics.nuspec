@@ -30,7 +30,8 @@ Helpers for calculations.
 		</summary>
 
 		<dependencies>
-			<dependency id="JJ.Framework.Exceptions" version="[1.3,1.4)" />
+      <dependency id="JJ.Framework.Common" version="[1.3,1.4)" />
+      <dependency id="JJ.Framework.Exceptions" version="[1.3,1.4)" />
 			<dependency id="JJ.Framework.Reflection" version="[1.3,1.4)" />
 		</dependencies>
 
