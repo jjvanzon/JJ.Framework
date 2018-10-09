@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPersist.Framework.NET 3.5", "Framework\Puzzle.NPersist.Framework.NET 3.5.csproj", "{E6C03D2A-D150-4473-9439-D300746A1390}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NCore.Framework NET 3.5", "..\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj", "{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPath.Framework.NET 3.5", "..\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj", "{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NAspect.Framework.NET 3.5", "..\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj", "{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPersist.Samples.Northwind.Domain.NET 3.5", "Samples\Northwind\Domain\NET 3.5\Puzzle.NPersist.Samples.Northwind.Domain.NET 3.5.csproj", "{D1836646-6373-4785-B1B1-AC5C6A4BF50F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		NPDebug|Any CPU = NPDebug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6C03D2A-D150-4473-9439-D300746A1390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6C03D2A-D150-4473-9439-D300746A1390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6C03D2A-D150-4473-9439-D300746A1390}.NPDebug|Any CPU.ActiveCfg = NPDebug|Any CPU
+		{E6C03D2A-D150-4473-9439-D300746A1390}.NPDebug|Any CPU.Build.0 = NPDebug|Any CPU
+		{E6C03D2A-D150-4473-9439-D300746A1390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6C03D2A-D150-4473-9439-D300746A1390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D08F9A33-6D4E-43E9-86F2-8E79EC115B9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1836646-6373-4785-B1B1-AC5C6A4BF50F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1836646-6373-4785-B1B1-AC5C6A4BF50F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1836646-6373-4785-B1B1-AC5C6A4BF50F}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1836646-6373-4785-B1B1-AC5C6A4BF50F}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{D1836646-6373-4785-B1B1-AC5C6A4BF50F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1836646-6373-4785-B1B1-AC5C6A4BF50F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Puzzle.NPersist.NET 3.52.vsmdi
+	EndGlobalSection
+EndGlobal

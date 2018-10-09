@@ -10,9 +10,6 @@ namespace JJ.Framework.Data.Tests.Helpers
 		[XmlAttribute("nhibernateContextType")]
 		public string NHibernateContextType { get; set; }
 
-		[XmlAttribute("npersistContextType")]
-		public string NPersistContextType { get; set; }
-
 		[XmlAttribute]
 		public string EntityFrameworkContextType { get; set; }
 

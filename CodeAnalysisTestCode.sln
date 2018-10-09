@@ -19,13 +19,4 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://jjs-server:8080/tfs/defaultcollection
-		SccProjectUniqueName0 = Analysis\\TestCode\\JJ.Analysis.TestCode.csproj
-		SccProjectName0 = Analysis/TestCode
-		SccLocalPath0 = Analysis\\TestCode
-		SccLocalPath1 = .
-	EndGlobalSection
 EndGlobal

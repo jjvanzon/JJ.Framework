@@ -1,0 +1,9 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" />
+  <Config name="Debug" binpathtype="Auto">
+    <assembly path="Northwind\bin\Debug\Puzzle.NPersist.Tests.Northwind.dll" />
+    <assembly path="Main\bin\Debug\Puzzle.NPersist.Tests.Main.dll" />
+    <assembly path="ODMappingTests\bin\Debug\ODMappingTests.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto" />
+</NUnitProject>

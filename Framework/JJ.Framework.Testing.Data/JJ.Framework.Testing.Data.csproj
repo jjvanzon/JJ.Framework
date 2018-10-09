@@ -62,10 +62,6 @@
     <Compile Include="AssertInconclusiveHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Third Party\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj">
-      <Project>{E6C03D2A-D150-4473-9439-D300746A1390}</Project>
-      <Name>Puzzle.NPersist.Framework.NET 3.5</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Logging\JJ.Framework.Logging.csproj">
       <Project>{CEEB755D-DE12-4E70-816E-546C429B44B7}</Project>
       <Name>JJ.Framework.Logging</Name>
