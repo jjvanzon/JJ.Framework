@@ -45,7 +45,7 @@ namespace JJ.Framework.Collections
             }
         }
 
-        /// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for IList&lt;T&gt;. </summary>
+        /// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for IEnumerable&lt;T&gt;. </summary>
         public static void AddRange<T>(this IList<T> collection, IEnumerable<T> items)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
@@ -57,13 +57,22 @@ namespace JJ.Framework.Collections
             }
         }
 
-        /// <summary> Converts a single item to an array. (The names 'ToArray' and 'ToList' conflicted with other overloads.)</summary>
+        /// <summary>
+        /// Converts a single item to an array. Example: int[] myInts = 3.AsArray();
+        /// (The names 'ToArray' and 'ToList' conflicted with other overloads.)
+        /// </summary>
         public static TItem[] AsArray<TItem>(this TItem item) => new[] { item };
 
-        /// <summary> Converts a single item to an enumerable. </summary>
+        /// <summary>
+        /// Converts a single item to an enumerable.
+        /// Example: IEnumerable&lt;int&gt; myEnumerable = 3.AsEnumerable();
+        /// </summary>
         public static IEnumerable<TItem> AsEnumerable<TItem>(this TItem item) => new[] { item };
 
-        /// <summary> Converts a single item to a list. (The names 'ToArray' and 'ToList' conflicted with other overloads.)</summary>
+        /// <summary>
+        /// Converts a single item to a list. Example: List&lt;int&gt; myInts = 3.AsList();
+        /// (The names 'ToArray' and 'ToList' conflicted with other overloads.)
+        /// </summary>
         public static List<TItem> AsList<TItem>(this TItem item) => new List<TItem> { item };
 
         /// <summary> Overload of Concat that takes a single item, e.g. myCollection.Concat(myItem); </summary>
@@ -73,7 +82,7 @@ namespace JJ.Framework.Collections
         public static IEnumerable<T> Concat<T>(this IEnumerable<T> first, params T[] second) => first.Concat((IEnumerable<T>)second);
 
         /// <summary>
-        /// Overload of Concat that takes starts with a single item and then adds a collection to it e.g.
+        /// Overload of Concat that starts with a single item and then adds a collection to it e.g.
         /// myItem.Concat(myCollection);
         /// </summary>
         public static IEnumerable<T> Concat<T>(this T first, IEnumerable<T> second) => new[] { first }.Concat(second);
@@ -147,6 +156,7 @@ namespace JJ.Framework.Collections
 
         /// <summary>
         /// Distinct that takes a key selector that determines what makes an item unique, e.g. myItems.Distinct(x => x.LastName);
+        /// For multi-part as keys, use `myItems.Distinct(x => new { x.FirstName, x.LastName });`
         /// </summary>
         public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey> keySelector)
         {
@@ -167,22 +177,22 @@ namespace JJ.Framework.Collections
         }
 
         /// <summary>
-        /// Returns distinct arrays. So checks the equality of all items in several sets of arrays.
-        /// (Actually, not only arrays, any enumerable.)
+        /// Returns distinct arrays. So checks the equality of all items in the arrays and returns the unique arrays.
+        /// (Actually, not only arrays, any enumerable.) E.g. severalArrays.Distinct();
         /// </summary>
         public static IEnumerable<TItem[]> DistinctMany<TItem>(this IEnumerable<TItem[]> enumerables)
             => DistinctMany<TItem[], TItem>(enumerables);
 
         /// <summary>
-        /// Returns distinct arrays. So checks the equality of all items in several sets of arrays.
-        /// (Actually, not only arrays, any enumerable.)
+        /// Returns distinct arrays. So checks the equality of all items in the arrays and returns the unique arrays.
+        /// (Actually, not only arrays, any enumerable.) E.g. severalArrays.Distinct();
         /// </summary>
         public static IEnumerable<IEnumerable<TItem>> DistinctMany<TItem>(this IEnumerable<IEnumerable<TItem>> enumerables)
             => DistinctMany<IEnumerable<TItem>, TItem>(enumerables);
 
         /// <summary>
-        /// Returns distinct arrays. So checks the equality of all items in several sets of arrays.
-        /// (Actually, not only arrays, any enumerable.)
+        /// Returns distinct arrays. So checks the equality of all items in the arrays and returns the unique arrays.
+        /// (Actually, not only arrays, any enumerable.) E.g. severalArrays.Distinct();
         /// </summary>
         public static IEnumerable<TEnumerable> DistinctMany<TEnumerable, TItem>(this IEnumerable<TEnumerable> enumerables)
             where TEnumerable : IEnumerable<TItem>
@@ -245,8 +255,8 @@ namespace JJ.Framework.Collections
         /// <summary>
         /// A regular First() will give you an exception if there are no elements in the collection.
         /// But not a very clear exception, like 'Sequence contains no elements.'
-        /// FirstWithClearException() will allow you to do a First, 
-        /// but get a clearer exception message e.g. 'Product not with key { group = "Shoes" } not found.'
+        /// FirstWithClearException() will allow you to do a First,
+        /// but get a clearer exception message e.g. 'Product with key { group = "Shoes" } not found.'
         /// Only really works if you filtered by something.
         /// </summary>
         /// <param name="keyIndicator">
@@ -271,8 +281,8 @@ namespace JJ.Framework.Collections
         /// <summary>
         /// A regular First() will give you an exception if there are no elements in the collection.
         /// But not a very clear exception, like 'Sequence contains no elements.'
-        /// FirstWithClearException() will allow you to do a First, 
-        /// but get a clearer exception message e.g. 'Product not with key { group = "Shoes" } not found.'
+        /// FirstWithClearException() will allow you to do a First,
+        /// but get a clearer exception message e.g. 'Product with key { group = "Shoes" } not found.'
         /// Only really works if you filtered by something.
         /// </summary>
         /// <param name="keyIndicator">
@@ -295,7 +305,10 @@ namespace JJ.Framework.Collections
             return item;
         }
 
-        /// <summary> Not all collection types have the ForEach method. Here you have an overload for IEnumerable&lt;T&gt;. </summary>
+        /// <summary>
+        /// Not all collection types have the ForEach method. Here you have an overload for IEnumerable&lt;T&gt; so you
+        /// can use it for more collection types.
+        /// </summary>
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
@@ -326,6 +339,7 @@ namespace JJ.Framework.Collections
 
         /// <summary>
         /// Returns the list index of the first item that matches the predicate.
+        /// E.g. int index = items.IndexOf(x => x.ID == 3);
         /// Does not check duplicates, because that would make it slower.
         /// (List&lt;T&gt; has FindIndex natively, but other collection types do not.)
         /// </summary>
@@ -481,6 +495,9 @@ namespace JJ.Framework.Collections
         public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)
             => collection.Select(selector).Product();
 
+        /// <summary>
+        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
+        /// </summary>
         public static double Product(this IEnumerable<double> collection)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
@@ -496,9 +513,102 @@ namespace JJ.Framework.Collections
         }
 
         /// <summary>
+        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
+        /// </summary>
+        public static float Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, float> selector)
+            => collection.Select(selector).Product();
+
+        /// <summary>
+        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
+        /// </summary>
+        public static float Product(this IEnumerable<float> collection)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+
+            float product = collection.FirstOrDefault();
+
+            foreach (float value in collection.Skip(1))
+            {
+                product *= value;
+            }
+
+            return product;
+        }
+
+        /// <summary>
+        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
+        /// </summary>
+        public static int Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, int> selector)
+            => collection.Select(selector).Product();
+
+        /// <summary>
+        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
+        /// </summary>
+        public static int Product(this IEnumerable<int> collection)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+
+            int product = collection.FirstOrDefault();
+
+            foreach (int value in collection.Skip(1))
+            {
+                product *= value;
+            }
+
+            return product;
+        }
+
+        /// <summary>
+        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
+        /// </summary>
+        public static long Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, long> selector)
+            => collection.Select(selector).Product();
+
+        /// <summary>
+        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
+        /// </summary>
+        public static long Product(this IEnumerable<long> collection)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+
+            long product = collection.FirstOrDefault();
+
+            foreach (long value in collection.Skip(1))
+            {
+                product *= value;
+            }
+
+            return product;
+        }
+
+        /// <summary>
+        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
+        /// </summary>
+        public static decimal Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, decimal> selector)
+            => collection.Select(selector).Product();
+
+        /// <summary>
+        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
+        /// </summary>
+        public static decimal Product(this IEnumerable<decimal> collection)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+
+            decimal product = collection.FirstOrDefault();
+
+            foreach (decimal value in collection.Skip(1))
+            {
+                product *= value;
+            }
+
+            return product;
+        }
+
+        /// <summary>
         /// Removes the first occurrence that matches the predicate.
         /// Throws an exception no item matches the predicate.
         /// Does not check duplicates, which makes it faster if you are sure only one item is in it.
+        /// Example: myCollection.RemoveFirst(x => x.ID == 3);
         /// </summary>
         public static void RemoveFirst<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
@@ -508,7 +618,11 @@ namespace JJ.Framework.Collections
             collection.RemoveAt(index);
         }
 
-        /// <summary> Repeats a collection a number of times and returns a new collection. </summary>
+        /// <summary>
+        /// Repeats a collection a number of times and returns a new collection.
+        /// E.g. new[] { 1, 2 }.Repeat(3);
+        /// Returns a collection { 1, 2, 1, 2, 1, 2 }
+        /// </summary>
         public static IEnumerable<T> Repeat<T>(this IEnumerable<T> collection, int count)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
@@ -525,8 +639,8 @@ namespace JJ.Framework.Collections
         /// <summary>
         /// A regular SingleOrDefault() will give you an exception if there are multiple elements in the collection.
         /// But not a very clear exception, like 'The input sequence contains more than one element.'
-        /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault, 
-        /// but get a clearer exception message e.g. 'Product not with key { productNumber = 1234 } not unique.'
+        /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault,
+        /// but get a clearer exception message e.g. 'Product with key { productNumber = 1234 } not unique.'
         /// Only really works if you filtered by something.
         /// </summary>
         /// <param name="keyIndicator">
@@ -543,8 +657,8 @@ namespace JJ.Framework.Collections
         /// <summary>
         /// A regular SingleOrDefault() will give you an exception if there are multiple elements in the collection.
         /// But not a very clear exception, like 'The input sequence contains more than one element.'
-        /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault, 
-        /// but get a clearer exception message e.g. 'Product not with key { productNumber = 1234 } not unique.'
+        /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault,
+        /// but get a clearer exception message e.g. 'Product with key { productNumber = 123 } not unique.'
         /// Only really works if you filtered by something.
         /// </summary>
         /// <param name="keyIndicator">
@@ -564,8 +678,8 @@ namespace JJ.Framework.Collections
         /// <summary>
         /// A regular SingleOrDefault() will give you an exception if there are multiple elements in the collection.
         /// But not a very clear exception, like 'The input sequence contains more than one element.'
-        /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault, 
-        /// but get a clearer exception message e.g. 'Product not with key { productNumber = 1234 } not unique.'
+        /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault,
+        /// but get a clearer exception message e.g. 'Product with key { productNumber = 123 } not unique.'
         /// Only really works if you filtered by something.
         /// </summary>
         /// <param name="keyIndicator">
@@ -590,8 +704,8 @@ namespace JJ.Framework.Collections
         /// <summary>
         /// A regular SingleOrDefault() will give you an exception if there are multiple elements in the collection.
         /// But not a very clear exception, like 'The input sequence contains more than one element.'
-        /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault, 
-        /// but get a clearer exception message e.g. 'Product not with key { productNumber = 1234 } not unique.'
+        /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault,
+        /// but get a clearer exception message e.g. 'Product with key { productNumber = 123 } not unique.'
         /// Only really works if you filtered by something.
         /// </summary>
         /// <param name="keyIndicator">
@@ -620,8 +734,8 @@ namespace JJ.Framework.Collections
         /// <summary>
         /// A regular Single() will give you an exception if there are no elements or multiple elements in the collection.
         /// But not a very clear exception, like 'The input sequence contains more than one element.'
-        /// SingleWithClearException() will allow you to do a Single, 
-        /// but get a clearer exception message e.g. 'Product not with key { productNumber = 1234 } not unique.'
+        /// SingleWithClearException() will allow you to do a Single,
+        /// but get a clearer exception message e.g. 'Product with key { productNumber = 123 } not unique.'
         /// Only really works if you filtered by something.
         /// </summary>
         /// <param name="keyIndicator">
@@ -638,8 +752,8 @@ namespace JJ.Framework.Collections
         /// <summary>
         /// A regular Single() will give you an exception if there are no elements or multiple elements in the collection.
         /// But not a very clear exception, like 'The input sequence contains more than one element.'
-        /// SingleWithClearException() will allow you to do a Single, 
-        /// but get a clearer exception message e.g. 'Product not with key { productNumber = 1234 } not unique.'
+        /// SingleWithClearException() will allow you to do a Single,
+        /// but get a clearer exception message e.g. 'Product with key { productNumber = 123 } not unique.'
         /// Only really works if you filtered by something.
         /// </summary>
         /// <param name="keyIndicator">
@@ -659,8 +773,8 @@ namespace JJ.Framework.Collections
         /// <summary>
         /// A regular Single() will give you an exception if there are no elements or multiple elements in the collection.
         /// But not a very clear exception, like 'The input sequence contains more than one element.'
-        /// SingleWithClearException() will allow you to do a Single, 
-        /// but get a clearer exception message e.g. 'Product not with key { productNumber = 1234 } not unique.'
+        /// SingleWithClearException() will allow you to do a Single,
+        /// but get a clearer exception message e.g. 'Product with key { productNumber = 123 } not unique.'
         /// Only really works if you filtered by something.
         /// </summary>
         /// <param name="keyIndicator">
@@ -685,8 +799,8 @@ namespace JJ.Framework.Collections
         /// <summary>
         /// A regular Single() will give you an exception if there are no elements or multiple elements in the collection.
         /// But not a very clear exception, like 'The input sequence contains more than one element.'
-        /// SingleWithClearException() will allow you to do a Single, 
-        /// but get a clearer exception message e.g. 'Product not with key { productNumber = 1234 } not unique.'
+        /// SingleWithClearException() will allow you to do a Single,
+        /// but get a clearer exception message e.g. 'Product with key { productNumber = 123 } not unique.'
         /// Only really works if you filtered by something.
         /// </summary>
         /// <param name="keyIndicator">
@@ -743,7 +857,10 @@ namespace JJ.Framework.Collections
             return sourceCollection.ToNonUniqueDictionary(keySelector, x => x);
         }
 
-        /// <summary> GroupBy might allow grouping by a non-unique key, but converting it to a Dictionary might make for a faster lookup. </summary>
+        /// <summary>
+        /// GroupBy might allow grouping by a non-unique key, but converting it to a Dictionary might make for a faster
+        /// lookup.
+        /// </summary>
         public static Dictionary<TKey, IList<TElement>> ToNonUniqueDictionary<TKey, TElement>(
             this IEnumerable<IGrouping<TKey, TElement>> sourceGroups)
         {
@@ -881,6 +998,7 @@ namespace JJ.Framework.Collections
         /// Does nothing if no item matches the predicate.
         /// Does not check duplicates, which makes it faster if you are sure only one item is in it.
         /// Returns whether an item was actually removed from the collection.
+        /// Example: myCollection.TryRemoveFirst(x => x.ID == 3);
         /// </summary>
         public static bool TryRemoveFirst<TSource>(this IList<TSource> collection, Func<TSource, bool> predicate)
         {
