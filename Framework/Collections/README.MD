@@ -6,7 +6,7 @@ Basic helpers for working with lists of information.
 * Recursive collection extensions.
 * A port of a RedBlackTree collection.
 
-## CollectionExtensions
+## Collection Extensions
 
 Many of these methods are variations on the already existing LINQ methods. You might expect these to have been present in the .NET Framework already, but you sometimes miss a few.
 
@@ -68,3 +68,65 @@ Many of these methods are variations on the already existing LINQ methods. You m
 * `Zip` variations:
 	* Without a result, when you just want to process two collections side by side in another way.
 	* Without a result selector and returns tuples instead.
+
+
+## Recursive Collection Extensions
+
+LINQ methods allow you to process a whole collection of items in one blow. Process a whole *tree* of items in one blow? For many cases these *Recursive Collection Extensions* offer a one-line solution.
+
+### Enumerate Descendants
+
+This line of code:
+
+	var allItems = root.UnionRecursive(x => x.Children);
+
+Gives you a list of all the nodes in a tree structure like the following:
+
+	var root = new Item
+	{
+		Children = new[]
+		{
+			new Item()
+			new Item
+			{
+				Children = new[]
+				{
+					new Item()
+				}
+			},
+			new Item
+			{
+				Children = new[]
+				{
+					new Item(),
+					new Item(),
+				}
+			},
+		}
+	};
+
+There is also a `SelectRecursive` method:
+
+	var allItemsExceptRoot = root.SelectRecursive(x => x.Children);
+
+The difference with `UnionRecursive` is that it does not include the root in the result collection.
+
+You can also use a collection as a starting point:
+
+	var allItems = myRootItems.UnionRecursive(x => x.Children);
+
+And there are other overloads for specialized use-cases.
+
+### Enumerate Ancestors
+
+On top of enumerating descendants you can also enumerate ancestors:
+
+	var ancestors = child.SelectAncestors(x => x.Parent);
+
+A variation on that, which includes the child node:
+
+	var items = child.SelfAndAncestors(x => x.Parent);
+
+### Circular References / Graphs
+
+Circularities in the structure are gracefully handled, so you can also recursively process non-tree graphs, procesing all the items in one blow.
