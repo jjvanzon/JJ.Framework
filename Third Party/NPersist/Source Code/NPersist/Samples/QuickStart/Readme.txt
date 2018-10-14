@@ -1,3 +1,0 @@
-Begin by creating an Sql Server database called QuickStart, then run the script in the database.sql file against it to set up the tables. Then open the QuickStart.sln file in VS2003 (or VS2005, in which case you should allow the wizard to convert the project). Finally update the connection string found in the Form1.cs file (look for the connectionString variable) to point at your database and run the application to try it out. 
-
-/Mats

@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7F415FBF-21FA-4E00-82DE-AAD8CEECC84B}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Puzzle.NPath.Framework.NET3.5</AssemblyName>
+    <AssemblyOriginatorKeyFile>PuzzleKey.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Puzzle.NPath.Framework</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>http://localhost/Puzzle.NPath.Framework.NET2/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SignAssembly>true</SignAssembly>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;DEBUG;NET2</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE;NET2</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions\NPathException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\IValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathAvgExpression.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathBetweenExpression.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathBooleanExpression.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathBooleanValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathBracketGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathClassName.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathCompareExpression.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathCountStatement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathDateTimeValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathDecimalValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathExpression.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathFromClause.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathFunction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathGuidValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathIdentifier.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathInExpression.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathIsNullStatement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathMathExpression.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathMaxStatement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathMethodCall.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathMinStatement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathNotExpression.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathNullValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathOrderByClause.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathParenthesisGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathPropertyFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathPropertyPathReference.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathSearchFunction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathSelectClause.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathSelectField.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathSelectQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathSelectScalarClause.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathSoundexStatement.cs" />
+    <Compile Include="NPathDom\NPathStringValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathSumStatement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathDom\NPathWhereClause.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NPathParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjectQueryEngine\DefaultObjectQueryEngineHelper.cs" />
+    <Compile Include="ObjectQueryEngine\IObjectQueryEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjectQueryEngine\IObjectQueryEngineHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjectQueryEngine\IPropertyAccessor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjectQueryEngine\ObjectQueryEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjectQueryEngine\PropertyAccessor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjectQueryEngine\PropertyAccessorException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjectQueryEngine\SimpleEngine.cs" />
+    <Compile Include="ObjectQueryEngine\SortOrderComparer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TestEmitter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Token.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tokenizer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util\MultiHashtable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj">
+      <Project>{5FB1569E-253E-42A7-A4E8-B4651FC6DCA2}</Project>
+      <Name>Puzzle.NCore.Framework NET 3.5</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PuzzleKey.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

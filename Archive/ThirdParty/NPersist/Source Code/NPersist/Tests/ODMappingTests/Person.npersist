@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<domain name="Person" assembly="ODMappingTests" root="ODMappingTests" source="XmlData" >
+  <class name="Person" >
+    <property name="Id" id="true" type="System.Guid" />
+    <property name="FirstName" type="System.String" />
+    <property name="LastName" type="System.String" />
+  </class>
+  <source name="XmlData" persistence-type="ObjectDocument" doc-path="C:\Test\Xml" />
+</domain>

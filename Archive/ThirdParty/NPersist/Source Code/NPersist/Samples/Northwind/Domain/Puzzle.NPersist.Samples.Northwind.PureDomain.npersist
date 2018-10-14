@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<domain name="Puzzle.NPersist.Samples.Northwind.Domain" assembly="Puzzle.NPersist.Samples.Northwind.Domain" root="Puzzle.NPersist.Samples.Northwind.Domain" source="Puzzle.NPersist.Samples.Northwind.Domain" target-languages="cs">
+  <class name="Category" table="Categories">
+    <property name="Id" id="true" columns="CategoryID" type="System.Int32" />
+    <property name="CategoryName" columns="CategoryName" type="System.String" />
+    <property name="Description" columns="Description" type="System.String" />
+    <property name="Picture" columns="Picture" type="System.Byte[]" />
+    <property name="Products" table="Products" id-columns="CategoryID" list="true" item-type="Product" read-only="true" slave="true" ref="ManyToOne" inverse="Category" inherits-inverse="true" />
+  </class>
+  <class name="Customer" table="Customers" validate="Validate">
+    <property name="Id" id="true" columns="CustomerID" type="System.String" />
+    <property name="Address" columns="Address" type="System.String" />
+    <property name="City" columns="City" type="System.String" />
+    <property name="CompanyName" columns="CompanyName" type="System.String" />
+    <property name="ContactName" columns="ContactName" type="System.String" />
+    <property name="ContactTitle" columns="ContactTitle" type="System.String" />
+    <property name="Country" columns="Country" type="System.String" />
+    <property name="CustomerDemographics" table="CustomerCustomerDemo" columns="CustomerTypeID" id-columns="CustomerID" list="true" item-type="CustomerDemographic" read-only="true" slave="true" ref="ManyToMany" inverse="Customers" inherits-inverse="true" />
+    <property name="Fax" columns="Fax" type="System.String" />
+    <property name="Orders" table="Orders" id-columns="CustomerID" list="true" item-type="Order" read-only="true" slave="true" ref="ManyToOne" inverse="Customer" inherits-inverse="true" />
+    <property name="Phone" columns="Phone" type="System.String" />
+    <property name="PostalCode" columns="PostalCode" type="System.String" />
+    <property name="Region" columns="Region" type="System.String" />
+  </class>
+  <class name="CustomerDemographic" table="CustomerDemographics">
+    <property name="Id" id="true" columns="CustomerTypeID" type="System.String" />
+    <property name="CustomerDesc" columns="CustomerDesc" type="System.String" />
+    <property name="Customers" table="CustomerCustomerDemo" columns="CustomerID" id-columns="CustomerTypeID" list="true" item-type="Customer" ref="ManyToMany" inverse="CustomerDemographics" />
+  </class>
+  <class name="Employee" table="Employees">
+    <property name="Id" id="true" columns="EmployeeID" type="System.Int32" source-assigned="true" />
+    <property name="Address" columns="Address" type="System.String" nullable="true" />
+    <property name="BirthDate" columns="BirthDate" type="System.DateTime" nullable="true" />
+    <property name="City" columns="City" type="System.String" nullable="true" />
+    <property name="Country" columns="Country" type="System.String" nullable="true" />
+    <property name="Employees" table="Employees" id-columns="ReportsTo" list="true" item-type="Employee" read-only="true" slave="true" ref="ManyToOne" inverse="ReportsTo" inherits-inverse="true" />
+    <property name="Extension" columns="Extension" type="System.String" nullable="true" />
+    <property name="FirstName" columns="FirstName" type="System.String" />
+    <property name="HireDate" columns="HireDate" type="System.DateTime" nullable="true" />
+    <property name="HomePhone" columns="HomePhone" type="System.String" nullable="true" />
+    <property name="LastName" columns="LastName" type="System.String" nullable="true" />
+    <property name="Notes" columns="Notes" type="System.String" nullable="true" />
+    <property name="Orders" table="Orders" id-columns="EmployeeID" list="true" item-type="Order" read-only="true" slave="true" ref="ManyToOne" inverse="Employee" inherits-inverse="true" />
+    <property name="Photo" columns="Photo" type="System.Byte[]" nullable="true" />
+    <property name="PhotoPath" columns="PhotoPath" type="System.String" nullable="true" />
+    <property name="PostalCode" columns="PostalCode" type="System.String" nullable="true" />
+    <property name="Region" columns="Region" type="System.String" nullable="true" />
+    <property name="ReportsTo" columns="ReportsTo" ref="OneToMany" inverse="Employees" type="Employee" nullable="true" />
+    <property name="Territories" table="EmployeeTerritories" columns="TerritoryID" id-columns="EmployeeID" list="true" item-type="Territory" read-only="true" slave="true" ref="ManyToMany" inverse="Employees" inherits-inverse="true" />
+    <property name="Title" columns="Title" type="System.String" nullable="true" />
+    <property name="TitleOfCourtesy" columns="TitleOfCourtesy" type="System.String" nullable="true" />
+  </class>
+  <class name="Order" table="Orders" validate="Validate" commit-regions="*, Customer.*, Customer.Orders.*">
+    <property name="Id" id="true" columns="OrderID" type="System.Int32" />
+    <property name="Customer" columns="CustomerID" ref="OneToMany" inverse="Orders" type="Customer" />
+    <property name="Employee" columns="EmployeeID" ref="OneToMany" inverse="Orders" type="Employee" />
+    <property name="Freight" columns="Freight" type="System.Decimal" />
+    <property name="OrderDate" columns="OrderDate" type="System.DateTime" />
+    <property name="OrderDetails" table="Order Details" id-columns="OrderID" list="true" item-type="OrderDetail" read-only="true" slave="true" ref="ManyToOne" inverse="Order" inherits-inverse="true" />
+    <property name="RequiredDate" columns="RequiredDate" type="System.DateTime" />
+    <property name="ShipAddress" columns="ShipAddress" type="System.String" />
+    <property name="ShipCity" columns="ShipCity" type="System.String" />
+    <property name="ShipCountry" columns="ShipCountry" type="System.String" />
+    <property name="ShipName" columns="ShipName" type="System.String" />
+    <property name="ShippedDate" columns="ShippedDate" type="System.DateTime" />
+    <property name="ShipPostalCode" columns="ShipPostalCode" type="System.String" />
+    <property name="ShipRegion" columns="ShipRegion" type="System.String" />
+    <property name="ShipVia" columns="ShipVia" ref="OneToMany" inverse="Orders" type="Shipper" />
+  </class>
+  <class name="OrderDetail" table="Order Details" commit-regions="Order.*, Order.OrderDetails.*">
+    <property name="Order" id="true" id-index="0" columns="OrderID" ref="OneToMany" inverse="OrderDetails" type="Order" />
+    <property name="Product" id="true" id-index="1" columns="ProductID" ref="OneToMany" inverse="OrderDetails" type="Product" />
+    <property name="Discount" columns="Discount" type="System.Single" />
+    <property name="Quantity" columns="Quantity" type="System.Int16" />
+    <property name="UnitPrice" columns="UnitPrice" type="System.Decimal" />
+  </class>
+  <class name="Product" table="Products">
+    <property name="Id" id="true" columns="ProductID" type="System.Int32" />
+    <property name="Category" columns="CategoryID" ref="OneToMany" inverse="Products" type="Category" />
+    <property name="Discontinued" columns="Discontinued" type="System.Boolean" />
+    <property name="OrderDetails" table="Order Details" id-columns="ProductID" list="true" item-type="OrderDetail" read-only="true" slave="true" ref="ManyToOne" inverse="Product" inherits-inverse="true" />
+    <property name="ProductName" columns="ProductName" type="System.String" />
+    <property name="QuantityPerUnit" columns="QuantityPerUnit" type="System.String" />
+    <property name="ReorderLevel" columns="ReorderLevel" type="System.Int16" />
+    <property name="Supplier" columns="SupplierID" ref="OneToMany" inverse="Products" type="Supplier" />
+    <property name="UnitPrice" columns="UnitPrice" type="System.Decimal" />
+    <property name="UnitsInStock" columns="UnitsInStock" type="System.Int16" />
+    <property name="UnitsOnOrder" columns="UnitsOnOrder" type="System.Int16" />
+  </class>
+  <class name="Region" table="Region">
+    <property name="Id" id="true" columns="RegionID" type="System.Int32" />
+    <property name="RegionDescription" columns="RegionDescription" type="System.String" />
+    <property name="Territories" table="Territories" id-columns="RegionID" list="true" item-type="Territory" read-only="true" slave="true" ref="ManyToOne" inverse="Region" inherits-inverse="true" />
+  </class>
+  <class name="Shipper" table="Shippers">
+    <property name="Id" id="true" columns="ShipperID" type="System.Int32" />
+    <property name="CompanyName" columns="CompanyName" type="System.String" />
+    <property name="Orders" table="Orders" id-columns="ShipVia" list="true" item-type="Order" read-only="true" slave="true" ref="ManyToOne" inverse="ShipVia" inherits-inverse="true" />
+    <property name="Phone" columns="Phone" type="System.String" />
+  </class>
+  <class name="Supplier" table="Suppliers">
+    <property name="Id" id="true" columns="SupplierID" type="System.Int32" />
+    <property name="Address" columns="Address" type="System.String" />
+    <property name="City" columns="City" type="System.String" />
+    <property name="CompanyName" columns="CompanyName" type="System.String" />
+    <property name="ContactName" columns="ContactName" type="System.String" />
+    <property name="ContactTitle" columns="ContactTitle" type="System.String" />
+    <property name="Country" columns="Country" type="System.String" />
+    <property name="Fax" columns="Fax" type="System.String" />
+    <property name="HomePage" columns="HomePage" type="System.String" />
+    <property name="Phone" columns="Phone" type="System.String" />
+    <property name="PostalCode" columns="PostalCode" type="System.String" />
+    <property name="Products" table="Products" id-columns="SupplierID" list="true" item-type="Product" read-only="true" slave="true" ref="ManyToOne" inverse="Supplier" inherits-inverse="true" />
+    <property name="Region" columns="Region" type="System.String" />
+  </class>
+  <class name="Territory" table="Territories">
+    <property name="Id" id="true" columns="TerritoryID" type="System.String" />
+    <property name="Employees" table="EmployeeTerritories" columns="EmployeeID" id-columns="TerritoryID" list="true" item-type="Employee" ref="ManyToMany" inverse="Territories" />
+    <property name="Region" columns="RegionID" ref="OneToMany" inverse="Territories" type="Region" />
+    <property name="TerritoryDescription" columns="TerritoryDescription" type="System.String" />
+  </class>
+  <source compute="true" name="Puzzle.NPersist.Samples.Northwind.Domain" type="MSSqlServer" provider="SqlClient" schema="dbo">
+  </source>
+</domain>

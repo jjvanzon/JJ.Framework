@@ -468,7 +468,7 @@ namespace JJ.Framework.Xml.Linq
 		/// destCollectionProperty is used to get the expected XML array element name.
 		/// By default this is the property name converted to camel case 
 		/// e.g. MyCollection -&gt; myCollection.
-		/// You can also specify the expected XML element name explicity,
+		/// You can also specify the expected XML element name explicitly,
 		/// by marking the property with the XmlArray attribute and specifying the
 		/// name with it e.g. [XmlArray("myCollection")].
 		/// </summary>

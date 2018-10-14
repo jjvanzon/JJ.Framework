@@ -43,32 +43,32 @@ namespace JJ.Framework.Web
 			}
 		}
 
-		private UrlInfo ParseUrlWithoutProtocol(string urlWithoutProcol)
+		private UrlInfo ParseUrlWithoutProtocol(string urlWithoutProtocol)
 		{
-			string[] split = urlWithoutProcol.Split('?');
+			string[] split = urlWithoutProtocol.Split('?');
 
 			switch (split.Length)
 			{
 				case 1:
 				{
-					UrlInfo urlInfo = ParseUrlWithoutProtocolWithoutParmeters(split[0]);
+					UrlInfo urlInfo = ParseUrlWithoutProtocolWithoutParameters(split[0]);
 					return urlInfo;
 				}
 
 				case 2:
 				{
-					UrlInfo urlInfo = ParseUrlWithoutProtocolWithoutParmeters(split[0]);
+					UrlInfo urlInfo = ParseUrlWithoutProtocolWithoutParameters(split[0]);
 					urlInfo.Parameters = ParseQueryString(split[1]);
 					return urlInfo;
 				}
 
 				default:
 					throw new Exception(
-						$"urlWithoutProcol cannot contain more than one '?'. urlWithoutProcol = '{urlWithoutProcol}'. fullUrl = '{_fullUrl}'.");
+						$"urlWithoutProcol cannot contain more than one '?'. urlWithoutProcol = '{urlWithoutProtocol}'. fullUrl = '{_fullUrl}'.");
 			}
 		}
 
-		private UrlInfo ParseUrlWithoutProtocolWithoutParmeters(string urlWithoutProtocolWithoutParameters)
+		private UrlInfo ParseUrlWithoutProtocolWithoutParameters(string urlWithoutProtocolWithoutParameters)
 		{
 			string[] split = urlWithoutProtocolWithoutParameters.Split('/', StringSplitOptions.RemoveEmptyEntries);
 

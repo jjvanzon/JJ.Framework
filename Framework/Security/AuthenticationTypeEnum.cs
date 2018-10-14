@@ -4,7 +4,7 @@ namespace JJ.Framework.Security
 	public enum AuthenticationTypeEnum
 	{
 		/// <summary>
-		/// This authentication type does not store the passwords literly on the server,
+		/// This authentication type does not store the passwords literally on the server,
 		/// but hashes them with the SHA256 algorithm.
 		/// 'Salt' is appended to the password before hashing.
 		/// The salt is stored on the server next to the hashed password.
@@ -19,7 +19,7 @@ namespace JJ.Framework.Security
 		HashedSaltedPasswordSHA256,
 
 		/// <summary>
-		/// Compares the password the user sent to the password as it is literly stored in the data store.
+		/// Compares the password the user sent to the password as it is literally stored in the data store.
 		/// </summary>
 		LiteralPassword
 	}

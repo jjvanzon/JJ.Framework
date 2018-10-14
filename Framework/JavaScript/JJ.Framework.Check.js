@@ -29,7 +29,7 @@ JJ.Framework.Check.isDate = function (value) {
 
 JJ.Framework.Check.isNullOrEmpty = function (value) {
     if (value === null) return true;
-    // TODO: This sucks. Check should be delegated to Assert, but this woul make Check dependent on Assert, but assert is also dependent on check.
+    // TODO: This sucks. Check should be delegated to Assert, but this would make Check dependent on Assert, but assert is also dependent on check.
     if (!JJ.Framework.Check.isString(value)) throw name + " is not a String.";
     if (value === "") return true;
     return false;

@@ -229,7 +229,7 @@ namespace JJ.Framework.IO.Tests
 		}
 
 		[TestMethod]
-		public void Test_SafeFileOverwriter_Save_OverwiteFile()
+		public void Test_SafeFileOverwriter_Save_OverwriteFile()
 		{
 			lock (_testLock)
 			{

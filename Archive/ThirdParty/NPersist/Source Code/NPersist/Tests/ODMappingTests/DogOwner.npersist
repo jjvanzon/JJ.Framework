@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<domain name="DogOwner" assembly="ODMappingTests" root="ODMappingTests" source="XmlData" >
+  <class name="DogOwner" doc-element="dog-owner">
+    <property name="Id" id="true" doc-attribute="id" type="System.Guid" />
+    <property name="Name" doc-attribute="name" type="System.String" />
+    <property name="Dogs" list="true" item-type="Dog" ref="ManyToOne" inverse="DogOwner" doc-element="dogs" />
+    <property name="Profile" doc-attribute="profile" type="Profile" ref="OneToOne" inverse="DogOwner" doc-mode="Inline" nullable="true" />
+  </class>
+  <class name="Dog" >
+    <property name="Id" id="true" doc-attribute="id" type="System.Guid" />
+    <property name="Name" doc-attribute="name" type="System.String" />
+    <property name="DogOwner" doc-attribute="dog-owner" type="DogOwner" ref="OneToMany" inverse="Dogs" doc-mode="ByReference" />
+  </class>
+  <class name="Profile" doc-parent="DogOwner">
+    <property name="Id" id="true" doc-attribute="id" type="System.Guid" />
+    <property name="Email" doc-attribute="email" type="System.String" />	    
+    <property name="DogOwner" doc-attribute="dog-owner" type="DogOwner" ref="OneToOne" inverse="Profile"  />
+    <property name="PhoneNumbers" list="true" item-type="PhoneNumber" read-only="true" ref="ManyToOne" inverse="Profile" doc-element="phone-numbers" />
+  </class>
+  <class name="PhoneNumber">
+    <property name="Id" id="true" doc-attribute="id" type="System.Guid" />
+    <property name="Number" doc-attribute="number" type="System.String" />
+    <property name="Profile" doc-attribute="profile" type="Profile" ref="OneToMany" inverse="PhoneNumbers"  />
+  </class>
+  <class name="PerClassX" doc-mode="PerClass" doc-element="per-classX" doc-root="per-classes">
+    <property name="Id" id="true" doc-attribute="id" type="System.Guid" />
+    <property name="Name" doc-attribute="name" type="System.String" />
+  </class>
+  <class name="PerDomainA" doc-mode="PerDomain">
+    <property name="Id" id="true" doc-attribute="id" type="System.Guid" />
+    <property name="Name" doc-attribute="name" type="System.String" />
+  </class>
+  <class name="PerDomainB" doc-mode="PerDomain">
+    <property name="Id" id="true" doc-attribute="id" type="System.Guid" />
+    <property name="Name" doc-attribute="name" type="System.String" />
+  </class>
+  <source name="XmlData" persistence-type="ObjectDocument" doc-path="C:\Test\Xml" />
+</domain>

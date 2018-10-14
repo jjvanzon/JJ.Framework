@@ -102,22 +102,6 @@
     <Compile Include="Model\Thing.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Third Party\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj">
-      <Project>{d08f9a33-6d4e-43e9-86f2-8e79ec115b9e}</Project>
-      <Name>Puzzle.NAspect.Framework.NET 3.5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Third Party\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj">
-      <Project>{5fb1569e-253e-42a7-a4e8-b4651fc6dca2}</Project>
-      <Name>Puzzle.NCore.Framework NET 3.5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Third Party\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj">
-      <Project>{7f415fbf-21fa-4e00-82de-aad8ceecc84b}</Project>
-      <Name>Puzzle.NPath.Framework.NET 3.5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Third Party\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj">
-      <Project>{e6c03d2a-d150-4473-9439-d300746a1390}</Project>
-      <Name>Puzzle.NPersist.Framework.NET 3.5</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Configuration\JJ.Framework.Configuration.csproj">
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
@@ -129,10 +113,6 @@
     <ProjectReference Include="..\Data.NHibernate\JJ.Framework.Data.NHibernate.csproj">
       <Project>{db783ed9-fde6-458f-a094-457b7f4283a0}</Project>
       <Name>JJ.Framework.Data.NHibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Data.NPersist\JJ.Framework.Data.NPersist.csproj">
-      <Project>{35fc288e-5a6f-4db9-ae54-1b721735ed7d}</Project>
-      <Name>JJ.Framework.Data.NPersist</Name>
     </ProjectReference>
     <ProjectReference Include="..\Data\JJ.Framework.Data.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
@@ -168,8 +148,6 @@
     <None Include="EntityFramework\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
-    <EmbeddedResource Include="NPersist\PersistenceTests.npersist" />
-    <None Include="NPersist\PersistenceTests.omproj" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

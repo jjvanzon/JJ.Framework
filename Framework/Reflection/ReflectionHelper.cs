@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 
 namespace JJ.Framework.Reflection
@@ -16,21 +17,11 @@ namespace JJ.Framework.Reflection
 
 		public static Type[] TypesFromObjects(params object[] objects)
 		{
-			var types = new Type[objects.Length];
-			for (int i = 0; i < objects.Length; i++)
-			{
-				object parameter = objects[i];
+		    if (objects == null) throw new ArgumentNullException(nameof(objects));
 
-				if (parameter != null)
-				{
-					types[i] = parameter.GetType();
-				}
-				else
-				{
-					types[i] = typeof(object);
-				}
-			}
-			return types;
+		    Type[] types = objects.Select(x => x?.GetType() ?? typeof(object)).ToArray();
+
+		    return types;
 		}
 
 		public static bool IsDefault(object value)
@@ -66,6 +57,7 @@ namespace JJ.Framework.Reflection
 			return type.IsSimpleType();
 		}
 
+        /// <summary> A variation on the existing Type.CreateInstance, that takes a type name as a string, instead of a Type. </summary>
 		public static object CreateInstance(string typeName, params object[] args)
 		{
 			Type type = Type.GetType(typeName);

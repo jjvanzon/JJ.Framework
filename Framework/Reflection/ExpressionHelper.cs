@@ -140,10 +140,28 @@ namespace JJ.Framework.Reflection
 
 			string result = translator.Execute(expression);
 			return result;
-		}
+        }
 
 		// GetMethodCallInfo
 
+        /// <summary>
+        /// For instance:
+        ///
+        /// 	ExpressionHelper.GetMethodCallInfo(() => MyMethod(3));
+        ///
+        /// Will return:
+        ///
+        /// 	MethodCallInfo
+        /// 	{
+        /// 		Name = "MyMethod",
+        /// 		Parameters = 
+        /// 		{
+        /// 			ParameterType = typeof(int),
+        /// 			Name = "myParameter",
+        /// 			Value = 3
+        /// 		}
+        /// 	};
+        /// </summary>
 		public static MethodCallInfo GetMethodCallInfo(LambdaExpression expression)
 		{
 			if (expression == null) throw new ArgumentNullException(nameof(expression));

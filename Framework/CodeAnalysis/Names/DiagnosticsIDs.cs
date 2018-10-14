@@ -16,7 +16,7 @@ namespace JJ.Framework.CodeAnalysis.Names
 		public const string PropertyNameStartWithUpperCase = nameof(PropertyNameStartWithUpperCase);
 		public const string PropertyNameAbbreviationCasing = nameof(PropertyNameAbbreviationCasing);
 		public const string PublicMethodParameterRequiresNullCheck = nameof(PublicMethodParameterRequiresNullCheck);
-		public const string TypeNameAbreviationCasing = nameof(TypeNameAbreviationCasing);
+		public const string TypeNameAbbreviationCasing = nameof(TypeNameAbbreviationCasing);
 		public const string TypeNameStartWithUpperCase = nameof(TypeNameStartWithUpperCase);
 	}
 }

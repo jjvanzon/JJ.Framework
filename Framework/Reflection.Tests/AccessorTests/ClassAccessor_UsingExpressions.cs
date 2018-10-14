@@ -28,15 +28,15 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
 		public override void VoidMethod() => _accessor.InvokeMethod(() => VoidMethod());
 
-		public override void VoidMethodInt(int parameter) => _accessor.InvokeMethod(() => VoidMethodInt(0), parameter);
+		public override void VoidMethodInt(int parameter) => _accessor.InvokeMethod(() => VoidMethodInt(default), parameter);
 
-		public override void VoidMethodIntInt(int parameter1, int parameter2) => _accessor.InvokeMethod(() => VoidMethodIntInt(0, 0), parameter1, parameter2);
+		public override void VoidMethodIntInt(int parameter1, int parameter2) => _accessor.InvokeMethod(() => VoidMethodIntInt(default, default), parameter1, parameter2);
 
 		public override int IntMethod() => _accessor.InvokeMethod(() => IntMethod());
 
-		public override int IntMethodInt(int parameter) => _accessor.InvokeMethod(() => IntMethodInt(0), parameter);
+		public override int IntMethodInt(int parameter) => _accessor.InvokeMethod(() => IntMethodInt(default), parameter);
 
-		public override int IntMethodIntInt(int parameter1, int parameter2) => _accessor.InvokeMethod(() => IntMethodIntInt(0, 0), parameter1, parameter2);
+		public override int IntMethodIntInt(int parameter1, int parameter2) => _accessor.InvokeMethod(() => IntMethodIntInt(default, default), parameter1, parameter2);
 
 		// ReSharper disable once InconsistentNaming
 		public static int _staticField
@@ -51,6 +51,6 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 		    set => _staticAccessor.SetPropertyValue(() => StaticProperty, value);
 		}
 
-		public static int StaticMethod(int parameter) => _staticAccessor.InvokeMethod(() => StaticMethod(0), parameter);
+		public static int StaticMethod(int parameter) => _staticAccessor.InvokeMethod(() => StaticMethod(default), parameter);
 	}
 }

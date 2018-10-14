@@ -72,7 +72,7 @@ namespace JJ.Framework.Mvc
                 // Check if the current URL (minus the return URL) is already the redirect URL.
                 // Then you are just redirecting to the same page again and again.
                 // This is most common in Login views.
-                // If you do not check, you will just get ret upon ret upon ret just login URL's stacked on top of eachother.
+                // If you do not check, you will just get ret upon ret upon ret just login URL's stacked on top of each other.
 
                 string currentUrl = filterContext.HttpContext.Request.RawUrl;
                 string currentUrlMinusReturnUrl = RemoveReturnUrl(currentUrl);

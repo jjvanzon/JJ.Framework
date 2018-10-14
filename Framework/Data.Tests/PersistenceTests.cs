@@ -24,9 +24,6 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_NHibernate_CreateContext() => Test_Persistence_CreateContext(GetNHibernateContextType());
 
         [TestMethod]
-        public void Test_Persistence_NPersist_CreateContext() => Test_Persistence_CreateContext(GetNPersistContextType());
-
-        [TestMethod]
         public void Test_Persistence_EntityFramework_CreateContext() => Test_Persistence_CreateContext(GetEntityFrameworkContextType());
 
         private void Test_Persistence_CreateContext(string contextType)
@@ -40,9 +37,6 @@ namespace JJ.Framework.Data.Tests
 
         [TestMethod]
         public void Test_Persistence_NHibernate_Get() => Test_Persistence_Get(GetNHibernateContextType());
-
-        [TestMethod]
-        public void Test_Persistence_NPersist_Get() => Test_Persistence_Get(GetNPersistContextType());
 
         [TestMethod]
         public void Test_Persistence_EntityFramework_Get() => Test_Persistence_Get(GetEntityFrameworkContextType());
@@ -69,9 +63,6 @@ namespace JJ.Framework.Data.Tests
 
         [TestMethod]
         public void Test_Persistence_NHibernate_TryGet() => Test_Persistence_TryGet(GetNHibernateContextType());
-
-        [TestMethod]
-        public void Test_Persistence_NPersist_TryGet() => Test_Persistence_TryGet(GetNPersistContextType());
 
         [TestMethod]
         public void Test_Persistence_EntityFramework_TryGet() => Test_Persistence_TryGet(GetEntityFrameworkContextType());
@@ -101,9 +92,6 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_NHibernate_Create() => Test_Persistence_Create(GetNHibernateContextType());
 
         [TestMethod]
-        public void Test_Persistence_NPersist_Create() => Test_Persistence_Create(GetNPersistContextType());
-
-        [TestMethod]
         public void Test_Persistence_EntityFramework_Create() => Test_Persistence_Create(GetEntityFrameworkContextType());
 
         private void Test_Persistence_Create(string contextType)
@@ -122,9 +110,6 @@ namespace JJ.Framework.Data.Tests
 
         [TestMethod]
         public void Test_Persistence_NHibernate_Insert() => Test_Persistence_Insert(GetNHibernateContextType());
-
-        [TestMethod]
-        public void Test_Persistence_NPersist_Insert() => Test_Persistence_Insert(GetNPersistContextType());
 
         [TestMethod]
         public void Test_Persistence_EntityFramework_Insert() => Test_Persistence_Insert(GetEntityFrameworkContextType());
@@ -147,9 +132,6 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_NHibernate_Update() => Test_Persistence_Update(GetNHibernateContextType());
 
         [TestMethod]
-        public void Test_Persistence_NPersist_Update() => Test_Persistence_Update(GetNPersistContextType());
-
-        [TestMethod]
         public void Test_Persistence_EntityFramework_Update() => Test_Persistence_Update(GetEntityFrameworkContextType());
 
         private void Test_Persistence_Update(string contextType)
@@ -168,9 +150,6 @@ namespace JJ.Framework.Data.Tests
 
         [TestMethod]
         public void Test_Persistence_NHibernate_Delete() => Test_Persistence_Delete(GetNHibernateContextType());
-
-        [TestMethod]
-        public void Test_Persistence_NPersist_Delete() => Test_Persistence_Delete(GetNPersistContextType());
 
         [TestMethod]
         public void Test_Persistence_EntityFramework_Delete() => Test_Persistence_Delete(GetEntityFrameworkContextType());
@@ -210,7 +189,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_NHibernate_Query()
         {
             // AssertHelper.ThrowsException cannot help you here,
-            // beause if test is inconclusive due to database connection problems,
+            // because if test is inconclusive due to database connection problems,
             // there is an inconclusive exception, not the exception expected here.
 
             try
@@ -232,9 +211,6 @@ namespace JJ.Framework.Data.Tests
         }
 
         [TestMethod]
-        public void Test_Persistence_NPersist_Query() => Test_Persistence_Query(GetNPersistContextType());
-
-        [TestMethod]
         public void Test_Persistence_EntityFramework_Query() => Test_Persistence_Query(GetEntityFrameworkContextType());
 
         private void Test_Persistence_Query(string contextType)
@@ -254,7 +230,6 @@ namespace JJ.Framework.Data.Tests
         // Helpers
 
         private string GetNHibernateContextType() => GetConfiguration().NHibernateContextType;
-        private string GetNPersistContextType() => GetConfiguration().NPersistContextType;
         private string GetEntityFrameworkContextType() => GetConfiguration().EntityFrameworkContextType;
         private ConfigurationSection GetConfiguration() => CustomConfigurationManager.GetSection<ConfigurationSection>();
     }

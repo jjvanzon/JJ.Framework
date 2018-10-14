@@ -82,6 +82,10 @@ namespace JJ.Framework.Reflection
         private static readonly object _implementationsDictionaryLock = new object();
         private static readonly Dictionary<string, Type[]> _implementationsDictionary = new Dictionary<string, Type[]>();
 
+        /// <summary>
+        /// Allows you to retrieve implementations of a specified base class or interface from an assembly,
+        /// which is useful for plug-in development.
+        /// </summary>
         public static Type GetImplementation(this Assembly assembly, Type baseType)
         {
             Type type = TryGetImplementation(assembly, baseType);
@@ -94,6 +98,10 @@ namespace JJ.Framework.Reflection
             return type;
         }
 
+        /// <summary>
+        /// Allows you to retrieve implementations of a specified base class or interface from an assembly,
+        /// which is useful for plug-in development.
+        /// </summary>
         public static Type TryGetImplementation(this Assembly assembly, Type baseType)
         {
             Type[] types = GetImplementations(assembly, baseType);
@@ -111,9 +119,17 @@ namespace JJ.Framework.Reflection
             return types[0];
         }
 
+        /// <summary>
+        /// Allows you to retrieve implementations of a specified base class or interface from an assembly,
+        /// which is useful for plug-in development.
+        /// </summary>
         public static Type[] GetImplementations(this IEnumerable<Assembly> assemblies, Type baseType)
             => assemblies.SelectMany(x => GetImplementations(x, baseType)).ToArray();
 
+        /// <summary>
+        /// Allows you to retrieve implementations of a specified base class or interface from an assembly,
+        /// which is useful for plug-in development.
+        /// </summary>
         public static Type[] GetImplementations(this Assembly assembly, Type baseType)
         {
             if (assembly == null) throw new ArgumentNullException(nameof(assembly));
@@ -156,6 +172,54 @@ namespace JJ.Framework.Reflection
 
         // Misc
 
+
+        /// <summary> Returns a type's base type and its base type etc. </summary>
+        public static IList<Type> GetBaseClasses(this Type type)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
+            var types = new List<Type>();
+
+            while (type.BaseType != null)
+            {
+                types.Add(type.BaseType);
+
+                type = type.BaseType;
+            }
+
+            return types;
+        }
+
+        /// <summary>
+        /// Type.GetProperty returns null if the property does not exist.
+        /// This method is a little safer than that and throws a clear exception if the property does not exist.
+        /// </summary>
+        public static PropertyInfo GetPropertyOrException(this Type type, string name)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            PropertyInfo property = type.GetProperty(name);
+            if (property == null) throw new Exception($"Property '{name}' not found on type '{type}'.");
+            return property;
+        }
+
+        /// <summary>
+        /// Slightly faster than Nullable.GetUnderlyingType, but gives false positives if the type is not nullable to begin with.
+        /// </summary>
+        public static Type GetUnderlyingNullableTypeFast(this Type type)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
+            // For performance, do not check if it is a nullable type.
+            return type.GetGenericArguments()[0];
+        }
+
+        /// <summary> For static properties it will work without an object parameter. </summary>
+        public static object GetValue(this PropertyInfo property)
+        {
+            if (property == null) throw new ArgumentNullException(nameof(property));
+            return property.GetValue(null);
+        }
+
         public static bool IsAssignableFrom<T>(this Type type)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
@@ -169,30 +233,6 @@ namespace JJ.Framework.Reflection
             if (otherType == null) throw new ArgumentNullException(nameof(otherType));
 
             return otherType.IsAssignableFrom(type);
-        }
-
-        public static bool IsNullableType(this Type type)
-        {
-            if (type == null) throw new ArgumentNullException(nameof(type));
-
-            return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
-        }
-
-        public static bool IsReferenceType(this Type type)
-        {
-            if (type == null) throw new ArgumentNullException(nameof(type));
-
-            return !type.IsValueType;
-        }
-
-        public static bool IsProperty(this MethodBase method)
-        {
-            if (method == null) throw new ArgumentNullException(nameof(method));
-
-            bool isProperty = method.Name.StartsWith("get_") ||
-                              method.Name.StartsWith("set_");
-
-            return isProperty;
         }
 
         public static bool IsIndexer(this MethodBase method)
@@ -229,6 +269,30 @@ namespace JJ.Framework.Reflection
             return false;
         }
 
+        public static bool IsNullableType(this Type type)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
+            return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
+        }
+
+        public static bool IsReferenceType(this Type type)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
+            return !type.IsValueType;
+        }
+
+        public static bool IsProperty(this MethodBase method)
+        {
+            if (method == null) throw new ArgumentNullException(nameof(method));
+
+            bool isProperty = method.Name.StartsWith("get_") ||
+                              method.Name.StartsWith("set_");
+
+            return isProperty;
+        }
+
         public static bool IsStatic(this MemberInfo member)
         {
             if (member == null) throw new ArgumentNullException(nameof(member));
@@ -257,7 +321,8 @@ namespace JJ.Framework.Reflection
         }
 
         /// <summary>
-        /// A simple type can be a .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr
+        /// Tells you if a Type is a 'simple type'.
+        /// A simple type can be a .NET primitive types: Boolean, Char, Byte, IntPtr, UIntPtr,
         /// the numeric types, their signed and unsigned variations, but also
         /// String, Guid, DateTime, TimeSpan and Enum types.
         /// </summary>
@@ -282,48 +347,6 @@ namespace JJ.Framework.Reflection
             }
 
             return false;
-        }
-
-        public static IList<Type> GetBaseClasses(this Type type)
-        {
-            if (type == null) throw new ArgumentNullException(nameof(type));
-
-            var types = new List<Type>();
-
-            while (type.BaseType != null)
-            {
-                types.Add(type.BaseType);
-
-                type = type.BaseType;
-            }
-
-            return types;
-        }
-
-        /// <summary>
-        /// Slightly faster than Nullable.GetUnderlyingType, but gives false positives if the type is not nullable to begin with.
-        /// </summary>
-        public static Type GetUnderlyingNullableTypeFast(this Type type)
-        {
-            if (type == null) throw new ArgumentNullException(nameof(type));
-
-            // For performance, do not check if it is a nullable type.
-            return type.GetGenericArguments()[0];
-        }
-
-        public static PropertyInfo GetPropertyOrException(this Type type, string name)
-        {
-            if (type == null) throw new ArgumentNullException(nameof(type));
-            PropertyInfo property = type.GetProperty(name);
-            if (property == null) throw new Exception($"Property '{name}' not found on type '{type}'.");
-            return property;
-        }
-
-        /// <summary> For static properties it will work without an object parameter. </summary>
-        public static object GetValue(this PropertyInfo property)
-        {
-            if (property == null) throw new ArgumentNullException(nameof(property));
-            return property.GetValue(null);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
 		private int IntMethodInt(int parameter) => 1;
 
-		private int IntMethodIntInt(int parameter1, int paremeter2) => 1;
+		private int IntMethodIntInt(int parameter1, int parameter2) => 1;
 
 		private readonly Dictionary<int, int> _intDictionary = new Dictionary<int, int>();
 

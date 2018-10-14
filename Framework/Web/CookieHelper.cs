@@ -6,7 +6,7 @@ namespace JJ.Framework.Web
 {
 	public static class CookieHelper
 	{
-		private const int DEFAULT_COOKIE_EXPERIATION_YEARS = 20;
+		private const int DEFAULT_COOKIE_EXPIRATION_YEARS = 20;
 
 		public static string TryGetCookieValue(HttpRequestBase request, string cookieName)
 		{
@@ -24,7 +24,7 @@ namespace JJ.Framework.Web
 			response.Cookies.Remove(cookieName);
 			var cookie = new HttpCookie(cookieName, value)
 			{
-				Expires = DateTime.Now.AddYears(DEFAULT_COOKIE_EXPERIATION_YEARS)
+				Expires = DateTime.Now.AddYears(DEFAULT_COOKIE_EXPIRATION_YEARS)
 			};
 			response.Cookies.Add(cookie);
 		}
