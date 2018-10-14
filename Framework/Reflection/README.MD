@@ -55,34 +55,23 @@ For instance if you have the following private method in a class:
         }
     }
 
-The following code will allow you to run that private method, that would otherwise not be available:
+You can run that private method, that would otherwise not be available:
 
     var myObject = new MyClass();
-    var accessor = new Accessor(myObject);
-    int myInt = (int)accessor.InvokeMethod("MyPrivateMethod", 1);
+    var accessor = new MyAccessor(myObject);
+    int myInt = accessor.MyPrivateMethod(1);
 
-You can also make your own wrapper class:
+You can do that by writing the following wrapper class:
 
     class MyAccessor
     {
         Accessor _accessor;
 
-        public MyAccessor(MyClass myObject)
-        {
-            _accessor = new Accessor(myObject);
-        }
+        public MyAccessor(MyClass myObject) => _accessor = new Accessor(myObject);
 
-        public int MyPrivateMethod(int myParameter)
-        {
-            return _accessor.InvokeMethod(() => MyPrivateMethod(default), myParameter);
-        }
+        public int MyPrivateMethod(int myParameter) 
+			=> _accessor.InvokeMethod(() => MyPrivateMethod(default), myParameter);
     }
-
-That makes calling the accessor a little easier:
-
-    var myObject = new MyClass();
-    var accessor = new MyAccessor(myObject);
-    int myInt = accessor.MyPrivateMethod(1);
 
 ## ReflectionCache
 

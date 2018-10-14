@@ -38,15 +38,9 @@ namespace JJ.Demos.Accessors
     {
         Accessor _accessor;
 
-        public MyAccessor(MyClass myObject)
-        {
-            _accessor = new Accessor(myObject);
-        }
+        public MyAccessor(MyClass myObject) => _accessor = new Accessor(myObject);
 
-        public int MyPrivateMethod(int myParameter)
-        {
-            return _accessor.InvokeMethod(() => MyPrivateMethod(default), myParameter);
-        }
+        public int MyPrivateMethod(int myParameter) => _accessor.InvokeMethod(() => MyPrivateMethod(default), myParameter);
 
         // Note: Improvements to the Accessor class might be made in the future.
         // - The lambda is only used to determine the name and return value.
