@@ -4,7 +4,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
 	internal abstract class ClassAccessorBase : IClassAccessor
 	{
-		protected Accessor _accessor;
+		protected readonly Accessor _accessor;
 
 		public ClassAccessorBase(Class obj) => _accessor = new Accessor(obj);
 

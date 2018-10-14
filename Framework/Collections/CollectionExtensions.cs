@@ -33,6 +33,18 @@ namespace JJ.Framework.Collections
             }
         }
 
+        /// <summary>
+        /// For some polymorphism between Lists, Stacks and Queues, there are these Add and Remove extension methods,
+        /// in place of Push, Pop, Enqueue and Dequeue.
+        /// </summary>
+        public static void Add<T>(this Stack<T> stack, T item) => stack.Push(item);
+
+        /// <summary>
+        /// For some polymorphism between Lists, Stacks and Queues, there are these Add and Remove extension methods,
+        /// in place of Push, Pop, Enqueue and Dequeue.
+        /// </summary>
+        public static void Add<T>(this Queue<T> stack, T item) => stack.Enqueue(item);
+
         /// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for HashSet&lt;T&gt;. </summary>
         public static void AddRange<T>(this HashSet<T> dest, IEnumerable<T> source)
         {
@@ -466,30 +478,6 @@ namespace JJ.Framework.Collections
         }
 
         /// <summary>
-        /// For some polymorphism between Lists, Stacks and Queues, there are these Add and Remove extension methods,
-        /// in place of Push, Pop, Enqueue and Dequeue.
-        /// </summary>
-        public static void Add<T>(this Stack<T> stack, T item) => stack.Push(item);
-
-        /// <summary>
-        /// For some polymorphism between Lists, Stacks and Queues, there are these Add and Remove extension methods,
-        /// in place of Push, Pop, Enqueue and Dequeue.
-        /// </summary>
-        public static void Remove<T>(this Stack<T> stack) => stack.Pop();
-
-        /// <summary>
-        /// For some polymorphism between Lists, Stacks and Queues, there are these Add and Remove extension methods,
-        /// in place of Push, Pop, Enqueue and Dequeue.
-        /// </summary>
-        public static void Add<T>(this Queue<T> stack, T item) => stack.Enqueue(item);
-
-        /// <summary>
-        /// For some polymorphism between Lists, Stacks and Queues, there are these Add and Remove extension methods,
-        /// in place of Push, Pop, Enqueue and Dequeue.
-        /// </summary>
-        public static void Remove<T>(this Queue<T> stack) => stack.Dequeue();
-
-        /// <summary>
         /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
         /// </summary>
         public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)
@@ -603,6 +591,18 @@ namespace JJ.Framework.Collections
 
             return product;
         }
+
+        /// <summary>
+        /// For some polymorphism between Lists, Stacks and Queues, there are these Add and Remove extension methods,
+        /// in place of Push, Pop, Enqueue and Dequeue.
+        /// </summary>
+        public static void Remove<T>(this Stack<T> stack) => stack.Pop();
+
+        /// <summary>
+        /// For some polymorphism between Lists, Stacks and Queues, there are these Add and Remove extension methods,
+        /// in place of Push, Pop, Enqueue and Dequeue.
+        /// </summary>
+        public static void Remove<T>(this Queue<T> stack) => stack.Dequeue();
 
         /// <summary>
         /// Removes the first occurrence that matches the predicate.

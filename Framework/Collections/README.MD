@@ -30,7 +30,7 @@ Many of these methods are variations on the already existing LINQ methods. You m
 	`myItems.Distinct(x => x.LastName);` For multi-part as keys, use:
     `myItems.Distinct(x => new { x.FirstName, x.LastName });`
 * `DistinctMany`
-	* Returns distinct arrays. So checks the equality of all items in the arrays and returns the unique arrays. (Actually, not only arrays, any enumerable.) E.g. `severalArrays.Distinct();`
+	* Returns distinct arrays. So checks the equality of all items in the arrays and returns the unique arrays. (Actually, not only arrays, any enumerable.) E.g. `severalArrays.DistinctMany();`
 * `Except` variations with:
 	* A single item, e.g. `myCollection.Except(myItem);`
 	* A predicate, e.g. `myCollection.Except(x => string.Equals("Blah"));`
