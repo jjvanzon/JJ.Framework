@@ -85,7 +85,7 @@ namespace JJ.Framework.Mvc
             {
                 sourceController.ModelState.ClearModelErrors();
 
-                foreach (string message in GetValidationMesssages(viewModel))
+                foreach (string message in GetValidationMessages(viewModel))
                 {
                     sourceController.ModelState.AddModelError(nameof(message), message);
                 }
@@ -101,6 +101,6 @@ namespace JJ.Framework.Mvc
         }
 
         protected abstract object TryGetRouteValues(object viewModel);
-        protected abstract IList<string> GetValidationMesssages(object viewModel);
+        protected abstract IList<string> GetValidationMessages(object viewModel);
     }
 }

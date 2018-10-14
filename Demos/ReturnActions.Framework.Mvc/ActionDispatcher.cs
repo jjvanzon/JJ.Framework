@@ -20,7 +20,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         // Dictionaries
 
         /// <summary>
-        /// Just for checking if the assembly was already registerd, so we can generate a meaningful exception message.
+        /// Just for checking if the assembly was already registered, so we can generate a meaningful exception message.
         /// No locking. You must not change the mappings after one-time initialization.
         /// </summary>
         private static readonly HashSet<Assembly> _registeredAssemblies = new HashSet<Assembly>();
@@ -100,7 +100,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
             if (mustReturnView)
             {
                 sourceController.ModelState.ClearModelErrors();
-                foreach (string message in destMapping.GetValidationMesssages(viewModel))
+                foreach (string message in destMapping.GetValidationMessages(viewModel))
                 {
                     sourceController.ModelState.AddModelError(nameof(message), message);
                 }
@@ -164,7 +164,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
 
             if (string.IsNullOrEmpty(mvcUrl))
             {
-                // There must be null-tollerance here, for brevity in calls to the ActionDispatcher.
+                // There must be null-tolerance here, for brevity in calls to the ActionDispatcher.
                 return null;
             }
 
@@ -277,7 +277,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         private static IViewMapping GetViewMappingByControllerActionInfo(ActionInfo controllerActionInfo)
         {
             // Keep working with a non-unique dictionary, even though you can only have one mapping per key,
-            // otherwise a programmer gets to see an incomprehendable error message.
+            // otherwise a programmer gets to see an incomprehensible error message.
             string key = GetActionKey(controllerActionInfo.PresenterName, controllerActionInfo.ActionName);
             if (!_mappingsByControllerActionKey.TryGetValue(key, out IList<IViewMapping> mappings))
             {
@@ -387,7 +387,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         private static IViewMapping GetViewMappingByPresenterActionInfo(ActionInfo presenterActionInfo)
         {
             // Keep working with a non-unique dictionary, even though you can only have one mapping per key,
-            // otherwise a programmer gets to see an incomprehendable error message.
+            // otherwise a programmer gets to see an incomprehensible error message.
             string key = GetActionKey(presenterActionInfo.PresenterName, presenterActionInfo.ActionName);
             if (!_mappingsByPresenterActionKey.TryGetValue(key, out IList<IViewMapping> mappings))
             {

@@ -18,7 +18,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
 		IList<ActionParameterMapping> ParameterMappings { get; }
 
 		object TryGetRouteValues(object viewModel);
-		ICollection<string> GetValidationMesssages(object viewModel);
+		ICollection<string> GetValidationMessages(object viewModel);
 		bool Predicate(object viewModel);
 	}
 }

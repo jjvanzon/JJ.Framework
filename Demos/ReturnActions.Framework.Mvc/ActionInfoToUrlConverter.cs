@@ -88,7 +88,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         /// Questions/Edit?id=1&amp;ret=Questions%2FDetails%3Fid%3D1
         /// Login/Index&amp;ret=Questions%2FEdit%3Fid%3D1%26ret%3DQuestions%252FDetails%253Fid%253D1
         /// Converts it to an ActionInfo object with possibly its ReturnAction assigned,
-        /// with possibly its ReturnAction assigned, etcetera.
+        /// with possibly its ReturnAction assigned, et cetera.
         /// Returns null if returnUrl is null or empty.
         /// NOTE: If a URL contains more than one path element,
         /// the 3rd path element and onward are returned as parameters without names.

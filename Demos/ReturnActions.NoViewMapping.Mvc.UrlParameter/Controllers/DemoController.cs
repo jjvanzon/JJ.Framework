@@ -75,7 +75,7 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Controllers
             return ActionDispatcher.Dispatch(this, viewModel);
         }
 
-        public ActionResult GenerateAthenticationError() => throw new AuthenticationException();
+        public ActionResult GenerateAuthenticationError() => throw new AuthenticationException();
         public ActionResult GenerateAuthorizationError() => throw new UnauthorizedAccessException();
         public ActionResult GenerateArbitraryError() => throw new Exception("An error occurred.");
         public ActionResult GenerateNotFoundError() => throw new HttpException(HttpStatusCodes.NOT_FOUND_404, "Not found.");

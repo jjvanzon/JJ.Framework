@@ -135,7 +135,7 @@ namespace JJ.Framework.Mvc
                         }"" autocomplete=""off""/>";
 
                 // TODO: Check if you have already added the hidden field with this name and value. 
-                // You can get duplicates if you do not use straightforeward nested loops.
+                // You can get duplicates if you do not use straightforward nested loops.
                 // It might be to expensive to do this, though.
 
                 writer.Write(html);

@@ -208,7 +208,7 @@ namespace JJ.Demos.ReturnActions.Framework.Presentation
 		// TODO: Let one overload delegate to the other.
 
 		/// <summary>
-		/// TODO: This oveload does not handle return ActionInfo parameters.
+		/// TODO: This overload does not handle return ActionInfo parameters.
 		/// </summary>
 		public static ActionInfo CreateActionInfo(string presenterName, string actionName, params object[] parameterNamesAndValues)
 		{

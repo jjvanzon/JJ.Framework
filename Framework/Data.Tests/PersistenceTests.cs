@@ -189,7 +189,7 @@ namespace JJ.Framework.Data.Tests
         public void Test_Persistence_NHibernate_Query()
         {
             // AssertHelper.ThrowsException cannot help you here,
-            // beause if test is inconclusive due to database connection problems,
+            // because if test is inconclusive due to database connection problems,
             // there is an inconclusive exception, not the exception expected here.
 
             try

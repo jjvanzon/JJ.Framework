@@ -37,6 +37,6 @@ namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.Helpers
             return null;
         }
 
-        protected override IList<string> GetValidationMesssages(object viewModel) => new string[0];
+        protected override IList<string> GetValidationMessages(object viewModel) => new string[0];
     }
 }

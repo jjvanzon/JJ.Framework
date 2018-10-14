@@ -75,7 +75,7 @@ namespace JJ.Framework.Xml.Linq
 		/// This is a feature required for various SOAP implementations.
 		/// The names will be put in an XML namespace that WCF expects:
 		/// "http://schemas.microsoft.com/2003/10/Serialization/Arrays".
-		/// If you need a different namespace, you must translate the namespace youself.
+		/// If you need a different namespace, you must translate the namespace yourself.
 		/// </param>
 		public ObjectToXmlConverter(
 			XmlCasingEnum casing = XmlCasingEnum.CamelCase, 
@@ -220,7 +220,7 @@ namespace JJ.Framework.Xml.Linq
 
 			if (_mustGenerateNilAttributes)
 			{
-				return ConvertToElement_WithNillAttribute(sourceObject, sourceProperty);
+				return ConvertToElement_WithNilAttribute(sourceObject, sourceProperty);
 			}
 
 			if (sourceObject == null)
@@ -233,7 +233,7 @@ namespace JJ.Framework.Xml.Linq
 			return destElement;
 		}
 
-		private XElement ConvertToElement_WithNillAttribute(object sourceObject, PropertyInfo sourceProperty)
+		private XElement ConvertToElement_WithNilAttribute(object sourceObject, PropertyInfo sourceProperty)
 		{
 			XName destXName = _nameManager.GetElementXName(sourceProperty);
 

@@ -1,7 +1,7 @@
 ﻿namespace JJ.Demos.ReflectionCache
 {
     /// <summary>
-    /// A subsitute for Tuple&lt;T1, T2&gt; for use in .NET versions lower than 4.0.
+    /// A substitute for Tuple&lt;T1, T2&gt; for use in .NET versions lower than 4.0.
     /// </summary>
     internal struct Tuple<T1, T2>
     {

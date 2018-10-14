@@ -185,7 +185,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		}
 
 		/// <summary>
-		/// Returns wheter a generic collection type is supported.
+		/// Returns whether a generic collection type is supported.
 		/// The supported types are List&lt;T&gt;, IList&lt;T&gt;, ICollection&lt;T&gt; and IEnumerable&lt;T&gt;.
 		/// </summary>
 		public static bool IsSupportedGenericCollectionType(Type type)

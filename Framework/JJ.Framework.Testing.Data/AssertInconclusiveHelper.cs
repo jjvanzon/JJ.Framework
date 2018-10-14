@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SqlClient;
-using System.Reflection;
 using JetBrains.Annotations;
 using JJ.Framework.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

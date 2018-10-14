@@ -22,7 +22,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         protected virtual object TryGetRouteValues(TViewModel viewModel) => null;
 
         /// <summary> not nullable </summary>
-        protected virtual ICollection<string> GetValidationMesssages(TViewModel viewModel) => new string[0];
+        protected virtual ICollection<string> GetValidationMessages(TViewModel viewModel) => new string[0];
 
         protected virtual bool Predicate(TViewModel viewModel) => true;
 
@@ -90,7 +90,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         bool IViewMapping.Predicate(object viewModel) => Predicate((TViewModel)viewModel);
         Type IViewMapping.ViewModelType => typeof(TViewModel);
 
-        ICollection<string> IViewMapping.GetValidationMesssages(object viewModel)
-            => GetValidationMesssages((TViewModel)viewModel);
+        ICollection<string> IViewMapping.GetValidationMessages(object viewModel)
+            => GetValidationMessages((TViewModel)viewModel);
     }
 }

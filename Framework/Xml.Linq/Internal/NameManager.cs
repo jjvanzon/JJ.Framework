@@ -28,7 +28,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 		/// This is a feature required for various SOAP implementations.
 		/// The names will be put in an XML namespace that WCF expects:
 		/// "http://schemas.microsoft.com/2003/10/Serialization/Arrays".
-		/// If you need a different namespace, you must translate the namespace youself.
+		/// If you need a different namespace, you must translate the namespace yourself.
 		/// </summary>
 		private Dictionary<Type, string> _customArrayItemNameDictionary;
 
@@ -59,7 +59,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 
 		/// <summary>
 		/// Gets the XML element name for a property.
-		/// You can specify the XML element name explicity
+		/// You can specify the XML element name explicitly
 		/// by marking the property with the XmlElement attribute and specifying the
 		/// name with it e.g. [XmlElement("myElement")].
 		/// If no name is supplied there, 
@@ -75,7 +75,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 
 		/// <summary>
 		/// Gets the XML element name for a property.
-		/// You can specify the XML element name explicity
+		/// You can specify the XML element name explicitly
 		/// by marking the property with the XmlElement attribute and specifying the
 		/// name with it e.g. [XmlElement("myElement")].
 		/// If no name is supplied there, 
@@ -115,7 +115,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 
 		/// <summary>
 		/// Gets the XML attribute name for a property.
-		/// You can specify the expected XML attribute name explicity,
+		/// You can specify the expected XML attribute name explicitly,
 		/// by marking the property with the XmlAttribute attribute and specifying the
 		/// name with it e.g. [XmlAttribute("myAttribute")].
 		/// If no name is specified there, the XML attribute name will bet 
@@ -131,7 +131,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 
 		/// <summary>
 		/// Gets the XML attribute name for a property.
-		/// You can specify the expected XML attribute name explicity,
+		/// You can specify the expected XML attribute name explicitly,
 		/// by marking the property with the XmlAttribute attribute and specifying the
 		/// name with it e.g. [XmlAttribute("myAttribute")].
 		/// If no name is specified there, the XML attribute name will bet 
@@ -171,7 +171,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 
 		/// <summary>
 		/// Gets the Array XML name for a collection property.
-		/// You can also specify the expected XML element name explicity,
+		/// You can also specify the expected XML element name explicitly,
 		/// by marking the property with the XmlArray attribute and specifying the
 		/// name with it e.g. [XmlArray("myCollection")].
 		/// If no name is specified there the name will be 
@@ -187,7 +187,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 
 		/// <summary>
 		/// Gets the Array XML name for a collection property.
-		/// You can also specify the expected XML element name explicity,
+		/// You can also specify the expected XML element name explicitly,
 		/// by marking the property with the XmlArray attribute and specifying the
 		/// name with it e.g. [XmlArray("myCollection")].
 		/// If no name is specified there the name will be 
@@ -244,7 +244,7 @@ namespace JJ.Framework.Xml.Linq.Internal
 
 			// Then try get element name from XmlArrayItem attribute.
 			// Otherwise the property type name converted to the expected casing (e.g. camel-case).
-			name = GetXmlArayItemNameFromCollectionProperty(collectionProperty);
+			name = GetXmlArrayItemNameFromCollectionProperty(collectionProperty);
 			XName xname = GetXNameWithConditionallyANamespace(name, sourceItemType);
 			return xname;
 		}
@@ -272,10 +272,10 @@ namespace JJ.Framework.Xml.Linq.Internal
 
 			// Then try get element name from XmlArrayItem attribute.
 			// Otherwise the property type name converted to the expected casing (e.g. camel-case).
-			return GetXmlArayItemNameFromCollectionProperty(collectionProperty);
+			return GetXmlArrayItemNameFromCollectionProperty(collectionProperty);
 		}
 
-		private string GetXmlArayItemNameFromCollectionProperty(PropertyInfo collectionProperty)
+		private string GetXmlArrayItemNameFromCollectionProperty(PropertyInfo collectionProperty)
 		{
 			// Then try get element name from XmlArrayItem attribute.
 			string name = TryGetXmlArrayItemNameFromAttribute(collectionProperty);
