@@ -16,9 +16,9 @@ Many of these methods are variations on the already existing LINQ methods. You m
 * `Add` / `Remove`
 	* For some polymorphism between `Lists`, `Stacks` and `Queues`, there are these `Add` and `Remove` extension methods, in place of `Push`, `Pop`, `Enqueue` and `Dequeue`.
 * `AddRange`
-	* `AddRange` is a member of `List<T>`. Here are variations for `IEnumerable<T>` and `HashSet<T>`.
+	* `AddRange` is a member of `List`<`T`>. Here are variations for `IEnumerable`<`T`> and `HashSet`<`T`>.
 * `AsArray`, `AsList`, `AsEnumerable`
-	* Converts a single item to an array, list or enumerable. Example: `List<int> myInts = 3.AsList();` (The names `ToArray` and `ToList` conflicted with other overloads.)
+	* Converts a single item to an array, list or enumerable. Example: `List`<`int`>` myInts = 3.AsList();` (The names `ToArray` and `ToList` conflicted with other overloads.)
 * `Concat` variations with:
 	* A comma separated argument list, e.g. `myCollection.Concat(4, 7, 12);`
 	* A single item, e.g. `myCollection.Concat(myItem);`
@@ -27,21 +27,21 @@ Many of these methods are variations on the already existing LINQ methods. You m
 	* Returns all combinations of items combining one from collection 1 with one from collection 2, one from collection 3, etc.
 * `Distinct`
 	* Variation that takes a key selector that determines what makes an item unique, e.g.
-	`myItems.Distinct(x => x.LastName);` For multi-part as keys, use:
-    `myItems.Distinct(x => new { x.FirstName, x.LastName });`
+	`myItems.Distinct(x =`>` x.LastName);` For multi-part as keys, use:
+    `myItems.Distinct(x =`>` new { x.FirstName, x.LastName });`
 * `DistinctMany`
 	* Returns distinct arrays. So checks the equality of all items in the arrays and returns the unique arrays. (Actually, not only arrays, any enumerable.) E.g. `severalArrays.DistinctMany();`
 * `Except` variations with:
 	* A single item, e.g. `myCollection.Except(myItem);`
-	* A predicate, e.g. `myCollection.Except(x => string.Equals("Blah"));`
+	* A predicate, e.g. `myCollection.Except(x =`>` string.Equals("Blah"));`
     * The choice to keep duplicates. (The original `Except` method from .NET automatically does a distinct, which is something you do not always want.)
 * `FirstWithClearException` / `SingleOrDefaultWithClearException` / `SingleWithClearException`
 	* The regular `First`, `Single` or `SingleOrDefault` methods will give you an exception for instance when there are no items in the collection or if there are multiple items in the collection. But not a very clear exception, like *'Sequence contains no elements.'* The `WithClearException` variations will allow you to do a `First`, `Single` or `SingleOrDefault`, but get a clearer exception message e.g. *'Product with key { productNumber = 123 } not unique.'*
 * `ForEach`
-	* Not all collection types have the `ForEach` method. Here you have an overload for `IEnumerable<T>` so you can use it for more collection types.
+	* Not all collection types have the `ForEach` method. Here you have an overload for `IEnumerable`<`T`> so you can use it for more collection types.
 * `IndexOf` variations for:
-	* Collection types other than `List<T>`.
-	* One that takes a predicate. E.g. `int index = items.IndexOf(x => x.ID == 3);` (like the `List<T>.FindIndex` method)
+	* Collection types other than `List`<`T`>.
+	* One that takes a predicate. E.g. `int index = items.IndexOf(x =`>` x.ID == 3);` (like the `List`<`T`>`.FindIndex` method)
 * `TryGetIndexOf`
 	* Similar to `IndexOf`, but returns null if the item is not found.
 * `MinOrDefault` / `MaxOrDefault`
@@ -52,7 +52,7 @@ Many of these methods are variations on the already existing LINQ methods. You m
 	* Works similar to `Sum`, but instead of adding up all the numbers, all the numbers are multiplied.
 * `RemoveFirst` / `TryRemoveFirst`
 	* Removes the first occurrence that matches the predicate. Example:
-	`myCollection.RemoveFirst(x => x.ID == 3);`
+	`myCollection.RemoveFirst(x =`>` x.ID == 3);`
 * `Repeat`
 	* Repeats a collection a number of times and returns a new collection. E.g. `new[] { 1, 2 }.Repeat(3);` returns a collection `{ 1, 2, 1, 2, 1, 2 }`
 * `ToHashSet`
