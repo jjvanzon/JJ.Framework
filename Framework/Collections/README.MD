@@ -129,4 +129,4 @@ A variation on that, which includes the child node:
 
 ### Circular References / Graphs
 
-Circularities in the structure are gracefully handled, so you can also recursively process non-tree graphs, procesing all the items in one blow.
+Circularities in the structure are gracefully handled, so you can also recursively process non-tree graphs, processing all the items in one blow.

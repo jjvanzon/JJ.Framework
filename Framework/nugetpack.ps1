@@ -1,5 +1,5 @@
 ﻿D:
-$codeRootFolderPath="D:\Source\JJs Software\JJ TFS"
+$codeRootFolderPath="D:\Source\JJs Software\JJ"
 $releaseFolderPath="$($codeRootFolderPath)\Releases"
 
 cd "$($codeRootFolderPath)\Framework\Text"
@@ -17,9 +17,6 @@ nuget pack -build JJ.Framework.Reflection.csproj -Prop Configuration=Release -Ou
 cd "$($codeRootFolderPath)\Framework\Exceptions"
 nuget pack -build JJ.Framework.Exceptions.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"
 
-cd "$($codeRootFolderPath)\Framework\Mathematics"
-nuget pack -build JJ.Framework.Mathematics.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"
-
 cd "$($codeRootFolderPath)\Framework\Conversion"
 nuget pack -build JJ.Framework.Conversion.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"
 
@@ -31,3 +28,6 @@ nuget pack -build JJ.Framework.IO.csproj -Prop Configuration=Release -OutputDire
 
 cd "$($codeRootFolderPath)\Framework\Collections"
 nuget pack -build JJ.Framework.Collections.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"
+
+cd "$($codeRootFolderPath)\Framework\Mathematics"
+nuget pack -build JJ.Framework.Mathematics.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"

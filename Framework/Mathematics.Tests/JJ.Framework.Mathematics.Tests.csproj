@@ -43,6 +43,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -57,7 +60,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MathsTests.cs" />
+    <Compile Include="TextPlotterTests.cs" />
+    <Compile Include="MathHelperTests.cs" />
     <Compile Include="NumberBasesTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,6 +74,9 @@
       <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
       <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

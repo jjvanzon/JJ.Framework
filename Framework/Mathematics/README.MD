@@ -2,12 +2,40 @@
 
 Helpers for calculations.
 
+* Plotting graphs in text output.
 * Interpolation
 * Base-n numbering systems
 * Special rounding methods
 * Use the `Random` class more easily
 * Simple geometric calculations
 * Other basic math helpers.
+
+## TextPlotter
+
+Plot function output in text mode. Example call:
+
+```
+IList<string> plot = TextPlotter.Plot(
+	new[] { 0.0, 0.7, 1.0, 0.7, 0.0, -0.7, -1.0, -0.7, 0.0 }, 
+	columnCount: 5, 
+	lineCount: 7);
+```
+
+Example output:
+
+```
+      ■■■■■■                       
+    ■■      ■■                     
+   ■          ■                    
+ ■■            ■■                  
+■                ■                ■
+                  ■■            ■■ 
+                    ■          ■   
+                     ■■      ■■    
+                       ■■■■■■      
+```
+
+(There is also a variation that takes x and y coordinates.)
 
 ## Interpolator
 
