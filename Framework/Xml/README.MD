@@ -1,7 +1,5 @@
 ﻿JJ.Framework.Xml contains a class XmlHelper that gives access to XML, using XmlDocument as the underlying .NET API. But then it does it in a null-safe and multiplicity-safe way.
 
-There is also the HtmlToXmlConverter class, which steals from SgmlReader (see external components and license files if applicable). It does what it says.
-
 But most of all: JJ.Framework.Xml's main class is XmlToObjectConverter. It converts an XmlDocument or string to an object whose class you supply. The way to map XML to classes is easier than the classic ways in .NET. The class summary says it all, litterly:
 
 Converts an XML structure to an object tree.

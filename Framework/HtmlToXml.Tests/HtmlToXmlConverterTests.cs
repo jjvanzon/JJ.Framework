@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Xml.Tests
+namespace JJ.Framework.HtmlToXml.Tests
 {
     [TestClass]
     public class HtmlToXmlConverterTests

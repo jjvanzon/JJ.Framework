@@ -58,7 +58,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="HtmlToXmlConverterTests.cs" />
     <Compile Include="Mocks\Element_WithCollection_WithoutExplicitItemName.cs" />
     <Compile Include="XmlToObjectConverterTests_ComplicatedExample.cs" />
     <Compile Include="XmlToObjectConverterTests_RecursiveElement.cs" />

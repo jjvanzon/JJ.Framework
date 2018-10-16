@@ -6,10 +6,12 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Xml")]
 [assembly: AssemblyDescription("")]
+
+
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan-Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
