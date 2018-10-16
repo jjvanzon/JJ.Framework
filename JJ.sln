@@ -314,6 +314,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.HtmlToXml", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.HtmlToXml.Tests", "Framework\HtmlToXml.Tests\JJ.Framework.HtmlToXml.Tests.csproj", "{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Conversion.Tests", "Framework\Conversion.Tests\JJ.Framework.Conversion.Tests.csproj", "{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1168,6 +1170,12 @@ Global
 		{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1315,6 +1323,7 @@ Global
 		{499527FF-AE52-450F-B3E3-4AD53E1712AD} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{8B3013DC-1F0E-4BBC-BB58-EE28CFDD1E77} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{F8AE7B1B-A583-4BA8-86BE-CBB436DF4EC3} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{36EDCE56-8B4B-4F8A-ABE6-DB6357848B9C} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A44537B0-5317-422A-ADAF-38A036CD8468}
