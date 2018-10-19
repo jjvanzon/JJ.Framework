@@ -62,38 +62,38 @@ You can easily work with composite types.
 XML:
 	
 	<myRoot>
-	  <myObject1 value="3">
+	  <myObject1 value="3" />
 	  <myObject2>
-		<myArray>
-		  <item name="Name1" value="1" />
-		  <item name="Name2" value="2" >
-		    <childItem name="Child" value="3" />
-		  </item>
-		<myArray
-	  </items>
+	    <myArray>
+	      <item name="Name1" value="1" />
+	      <item name="Name2" value="2" >
+	        <childItem name="Child" value="3" />
+	      </item>
+	    </myArray>
+	  </myObject2>
 	</myRoot>
 
 C#:
 
-	class MyRoot
-	{
-		public MyClass MyObject1 { get; set; }
-		public MyClass MyObject2 { get; set; }
-	}
+    class MyRoot
+    {
+        public MyClass MyObject1 { get; set; }
+        public MyClass MyObject2 { get; set; }
+    }
 
-	class MyClass
-	{
-		[XmlAttribute]
-		public string Name { get; set; }
+    class MyClass
+    {
+        [XmlAttribute]
+        public string Name { get; set; }
 
-		[XmlAttribute]
-		public int Value { get; set; }
+        [XmlAttribute]
+        public int? Value { get; set; }
 
-		[XmlArrayItem("item")]
-		public MyClass[] MyArray { get; set; }
+        [XmlArrayItem("item")]
+        public MyClass[] MyArray { get; set; }
 
-		public MyClass ChildItem { get; set; }
-	}
+        public MyClass ChildItem { get; set; }
+    }
 
 The composite types in the object structure must have parameterless constructors.
 
@@ -101,7 +101,7 @@ C#:
 
 	class MyClass
 	{
-		// Having this constructor with a constructor parameter causes an exception.
+		// Having this constructor with a parameter causes an error.
 		public MyClass(int myConstructorParameter)
 		{
 		}
@@ -109,8 +109,7 @@ C#:
 
 XML:
 
-	<myClass>
-	</myClass>
+	<myClass />
 
 ### Value Types
 
