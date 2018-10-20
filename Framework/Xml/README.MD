@@ -4,11 +4,27 @@ Helpers for working with XML.
 
 ## XmlHelper
 
-A class that gives access to XML. It does so in a null-safe and multiplicity-safe way. It uses XmlDocument as the underlying .NET API. 
+A class that gives access to XML. It does so in a null-safe and multiplicity-safe way. It uses `XmlDocument` as the underlying .NET API.
+
+Members:
+
+* `SelectNode` / `TrySelectNode`
+	* Select a node by XPath.
+* `GetElement` / `TryGetElement` / `GetElements`
+	* Get child elements by name.
+* `GetAttribute` / `TryGetAttribute`
+	* Get attributes by name.
+* `GetAttributeValue` / `TryGetAttributeValue` / `SetAttributeValue`
+	* Get and set attribute values.
+
+Remarks:
+* The `Try` variations can return null.
+* The non-`Try` variations *cannot* return null, but when nothing is found, will throw a clear exception instead.
+* The singular (non-plural) variations will throw a clear exception, when the item is not unique.
 
 ## XmlToObjectConverter
 
-Converts an XmlDocument or string to an object graph. The way to map to classes is easier than the classic ways in .NET. The idea was to make XML mapping intuitive and clean. (Also: At the time on certain platforms standard XML serialization was not available or not be the best option.)
+Converts an `XmlDocument` or `string` to an object graph. The way to map to classes is easier than the classic ways in .NET. The idea was to make XML mapping intuitive and clean. (Also: At the time on certain platforms standard XML serialization was not available or not be the best option.)
 
 ### Elements
 
@@ -111,10 +127,6 @@ XML:
 
 	<myClass />
 
-### Value Types
-
-Recognized values are the .NET primitive types: `Boolean`, `Char`, `Byte`, `IntPtr`, `UIntPtr`, the numeric types, their signed and unsigned variations and `String`, `Guid`, `DateTime`, `TimeSpan` and `Enum` types.
-
 ### Standard Naming
 
 By default the names in the XML are the camel-case version of the property names.
@@ -209,7 +221,7 @@ XML:
 
 #### Nullability for Value Types
 
-Value types are optional only if they are nullable.
+Value types are optional, only if they are nullable.
 
 C#:
 
@@ -222,7 +234,8 @@ C#:
 XML:
 
 	<myRoot>
-	  <!-- myElement van be left out. Then MyElement in the C# code will be null. -->
+	  <!-- myElement van be left out. -->
+	  <!-- Then the MyElement property in the C# code will be null. -->
 	</myRoot>
 
 C#:
@@ -256,7 +269,8 @@ If the parent element is missing from the XML, the collection will be null.
 XML:
 
 	<myRoot>
-	  <!-- myArray can be left out, but then MyArray in the C# code will be null. -->
+	  <!-- myArray can be left out, -->
+	  <!-- but then MyArray in the C# code will be null. -->
 	</myRoot>
 
 If only the parent element is present, an empty collection will be assigned.
@@ -267,6 +281,10 @@ XML:
 	  <!-- MyArray in the C# code will not be null, but an empty collection. -->
 	  <myArray />
 	</myRoot>
+
+### Value Types
+
+Recognized values are the .NET primitive types: `Boolean`, `Char`, `Byte`, `IntPtr`, `UIntPtr`, the numeric types, their signed and unsigned variations and `String`, `Guid`, `DateTime`, `TimeSpan` and `Enum` types.
 
 ### Performance
 

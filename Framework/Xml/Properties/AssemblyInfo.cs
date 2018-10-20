@@ -5,8 +5,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Xml")]
-[assembly: AssemblyDescription("")]
-
+[assembly: AssemblyDescription(@"Helpers for working with XML.
+The class XmlHelper gives access to XML, using XmlDocument as the underlying .NET API. 
+But then it does it in a null-safe and multiplicity-safe way.
+The class XmlToObjectConverter converts an XmlDocument or string to an object graph.
+The way to map XML to classes is easier than the classic ways in .NET.
+")]
 
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
