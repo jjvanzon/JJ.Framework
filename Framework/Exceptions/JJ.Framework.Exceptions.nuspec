@@ -17,8 +17,8 @@
 
 		<dependencies>
 			<dependency id="System.ValueTuple" version="4.3.0" />
-			<dependency id="JJ.Framework.Text" version="[1.3,1.4)" />
-			<dependency id="JJ.Framework.Reflection" version="[1.3,1.4)" />
+			<dependency id="JJ.Framework.Text" version="[1.4,1.5)" />
+			<dependency id="JJ.Framework.Reflection" version="[1.4,1.5)" />
 		</dependencies>
 
 		<summary>
@@ -47,49 +47,8 @@ For example:
 Will produce an exception message:
 
 	"myParent.MyChildren[0].MyProperty is null."
-
-This is where it surpasses the possibilities of the C#6 nameof operator, which can only mention a name, not a whole expression.
-
-Another example:
-
-	throw new NotFoundException&lt;Customer&gt;(new { customerNumber, customerType });
-
-will produce an exception message:
-
-	"Customer with key { customerNumber = 1234, customerType = Subscriber } not found."
-
-As such it is fit for use with any composite key you might have.
-			
-Some more examples:
-			
-	throw new NotUniqueException&lt;Product&gt;(productNumber);
-	throw new ValueNotSupportedException(myCountryEnumValue);
-	throw new FileAlreadyExistsException("text.txt");
-	throw new NullOrWhiteSpaceException(nameof(myParam));
-
-Those produce the exception messages:
-			
-	Product with key A123 not unique.
-	Country value 'Undefined' is not supported.
-	File 'test.txt' already exists.
-	myParam is null or white space.
-
-Here is an example with the value check in it:
-
-	if (height &lt; 10) throw new LessThanException(() =&gt; height, 10);
-
-This produces the exception message:
-				
-	height of 2 is less than 10.
 			</summary>
 
-		<releaseNotes>
-2018-03-07:
-* Make exceptions determine whether to show invalid values in messages automatically.
-* Subdivide into sub-namespaces.
-* Make exceptions take object instead of string, so it can be anonymous type too.
-* More useful member summaries.
-		</releaseNotes>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>
 

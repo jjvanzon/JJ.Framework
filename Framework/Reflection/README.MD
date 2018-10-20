@@ -18,7 +18,7 @@ Similarly you can retrieve its value:
 
 	ExpressionHelper.GetValue(() => myParam.MyProperty.MyList[i].MySomething)
 
-Might return:
+which can return:
 
 	3
 
@@ -80,7 +80,7 @@ Makes using reflection much faster in certain cases. For instance the `GetProper
 Example:
 
 	private static readonly ReflectionCache _reflectionCache 
-					  = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
+		= new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
 
 	PropertyInfo[] properties = _reflectionCache.GetProperties(typeof(MyClass));
 
@@ -107,7 +107,7 @@ Various helper methods, but one of the most useful features is the `GetImplement
 * `GetValue`
 	* Similar to `PropertyInfo.GetValue`, but for static properties you can now omit the object parameter. 
 * `IsAssignableFrom` / `IsAssignableTo`
-	* Similar to the original `Type.IsAssignableFrom`, but now also an `IsAssignableTo` variation, if you find that more intuitive. Also has variations with a type argument e.g. `myInterfaceType.IsAssignableFrom<MyClass>();`
+	* Similar to the original `Type.IsAssignableFrom`, but now also an `IsAssignableTo` variation, if you find that more intuitive. Also has variations with a type argument e.g. `myInterfaceType.IsAssignableFrom`<`MyClass`>`();`
 * `IsIndexer`
 	* Can tell you if a `MethodBase` points to an indexer property.
 * `IsNullableType`

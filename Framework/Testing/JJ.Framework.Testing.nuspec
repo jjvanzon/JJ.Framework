@@ -19,13 +19,9 @@ Helper for unit tests. Mimics the Assert class, but will display the tested expr
 It also offers methods to evaluate if the right exception goes off in the right spot with the right exception type and / or the right message.
 		</summary>
 
-		<releaseNotes>
-2018-03-07: Uses new JJ.Framework.Exceptions.
-		</releaseNotes>
-
 		<dependencies>
-			<dependency id="JJ.Framework.Reflection" version="[1.3,1.4)" />
-			<dependency id="JJ.Framework.Exceptions" version="[1.3,1.4)" />
+			<dependency id="JJ.Framework.Reflection" version="[1.4,1.5)" />
+			<dependency id="JJ.Framework.Exceptions" version="[1.4,1.5)" />
 		</dependencies>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>

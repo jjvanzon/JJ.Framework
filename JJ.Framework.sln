@@ -133,7 +133,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Conversion.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.CodeAnalysis.Vsix", "Framework\CodeAnalysis.Vsix\JJ.Framework.CodeAnalysis.Vsix.csproj", "{B01FC573-D952-41D4-A4FB-81B343EB8E1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Data", "Framework\JJ.Framework.Testing.Data\JJ.Framework.Testing.Data.csproj", "{F6E87698-B73B-43F5-AFF2-54C2F219334E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Data", "Framework\Testing.Data\JJ.Framework.Testing.Data.csproj", "{F6E87698-B73B-43F5-AFF2-54C2F219334E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

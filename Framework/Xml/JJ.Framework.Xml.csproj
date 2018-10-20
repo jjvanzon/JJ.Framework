@@ -38,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Release\JJ.Framework.Xml.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -45,17 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HtmlToXmlConverter.cs" />
     <Compile Include="Internal\NodeTypeEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlHelper.cs" />
     <Compile Include="XmlToObjectConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Third Party\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj">
-      <Project>{499527ff-ae52-450f-b3e3-4ad53e1712ad}</Project>
-      <Name>SgmlReaderDll</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Conversion\JJ.Framework.Conversion.csproj">
       <Project>{BA9EC027-FE36-4FE8-AD96-D0A534FA35A4}</Project>
       <Name>JJ.Framework.Conversion</Name>
@@ -78,7 +74,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT" />
+    <None Include="JJ.Framework.Xml.nuspec" />
+    <None Include="README.MD" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

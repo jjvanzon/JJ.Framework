@@ -24,13 +24,9 @@ Makes it easier to convert simple types.
 * `EnumParser`: Make it a little easier to use enum parsing.
 		</summary>
 
-		<releaseNotes>
-2018-03-07: Uses new JJ.Framework.Exceptions.
-		</releaseNotes>
-
 		<dependencies>
-			<dependency id="JJ.Framework.Common" version="[1.3,1.4)" />
-			<dependency id="JJ.Framework.Reflection" version="[1.3,1.4)" />
+			<dependency id="JJ.Framework.Common" version="[1.4,1.5)" />
+			<dependency id="JJ.Framework.Reflection" version="[1.4,1.5)" />
 		</dependencies>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>

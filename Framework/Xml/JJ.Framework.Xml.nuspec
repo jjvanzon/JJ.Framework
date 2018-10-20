@@ -1,0 +1,43 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<copyright>$copyright$</copyright>
+		<description>$description$</description>
+
+		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Xml</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
+
+		<tags>
+      xml serialization serializer deserialization helper utility
+      xmldocument null-safe multiplicity-safe xml-to-object-converter xmltoobjectconverter
+      nullability graph map mapping classes xpath
+    </tags>
+		<summary>
+      * Helpers for working with XML.
+      * XmlHelper gives access to XML. It does so in a null-safe and multiplicity-safe way. 
+		  It uses XmlDocument as the underlying .NET API.
+      * XmlToObjectConverter converts an XmlDocument or string to an object graph. 
+		  The way to map classes is easier than the classic ways in .NET.
+    </summary>
+
+		<dependencies>
+      <dependency id="JJ.Framework.Conversion" version="[1.4,1.5)" />
+      <dependency id="JJ.Framework.Exceptions" version="[1.4,1.5)" />
+      <dependency id="JJ.Framework.PlatformCompatibility" version="[1.4,1.5)" />
+      <dependency id="JJ.Framework.Reflection" version="[1.4,1.5)" />
+      <dependency id="JJ.Framework.Text" version="[1.4,1.5)" />
+		</dependencies>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	</metadata>
+
+	<files>
+		<file src="README.MD" target="" />
+	</files>
+</package>
