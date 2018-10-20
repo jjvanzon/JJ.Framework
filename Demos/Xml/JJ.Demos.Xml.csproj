@@ -37,12 +37,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="XmlToObjectConverter_CustomNamingForAttributes_DemoTests.cs" />
+    <Compile Include="XmlToObjectConverter_CustomNamingForArrays_DemoTests .cs" />
+    <Compile Include="XmlToObjectConverter_NullabilityForCollections_DemoTests.cs" />
+    <Compile Include="XmlToObjectConverter_NullabilityForValueTypes_NotNull_DemoTests.cs" />
+    <Compile Include="XmlToObjectConverter_NullabilityForValueTypes_IsNull_DemoTests.cs" />
+    <Compile Include="XmlToObjectConverter_NullabilityForReferenceTypes_DemoTests.cs" />
+    <Compile Include="XmlToObjectConverter_StandardNamingForCollections_DemoTests.cs" />
+    <Compile Include="XmlToObjectConverter_CustomNamingForElements_DemoTests.cs" />
+    <Compile Include="XmlToObjectConverter_StandardNaming_DemoTests.cs" />
     <Compile Include="XmlToObjectConverter_CompositeTypes_DemoTests.cs" />
     <Compile Include="XmlToObjectConverter_Collections_DemoTests.cs" />
     <Compile Include="XmlToObjectConverter_Attributes_DemoTests.cs" />
@@ -59,6 +70,9 @@
       <Project>{F6EA0941-40FF-4679-A1A6-EACD5C9BA42B}</Project>
       <Name>JJ.Framework.Xml</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.MD" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

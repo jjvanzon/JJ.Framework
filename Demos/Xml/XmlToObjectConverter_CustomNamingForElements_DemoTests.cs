@@ -2,28 +2,32 @@
 using JJ.Framework.Testing;
 using JJ.Framework.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace JJ.Demos.Xml
 {
     [TestClass]
-    public class XmlToObjectConverter_Attributes_DemoTests
+    public class XmlToObjectConverter_CustomNamingForElements_DemoTests
     {
         private class MyRoot
         {
-            [XmlAttribute]
-            public int MyAttribute { get; set; }
+            [XmlElement("Elm")]
+            public int MyElement { get; set; }
         }
 
         [TestMethod]
-        public void Demo_XmlToObjectConverter_Attributes()
+        public void Demo_XmlToObjectConverter_CustomNamingForElements()
         {
-            const string xml = @"<root myAttribute=""3"" />";
+            const string xml = @"
+                <root>
+	              <Elm>3</Elm>
+                </root>";
 
             var converter = new XmlToObjectConverter<MyRoot>();
             MyRoot root = converter.Convert(xml);
 
             AssertHelper.IsNotNull(() => root);
-            AssertHelper.AreEqual(3, () => root.MyAttribute);
+            AssertHelper.AreEqual(3, () => root.MyElement);
         }
     }
 }

@@ -99,13 +99,13 @@ The composite types in the object structure must have parameterless constructors
 
 C#:
 
-	class MyClass
-	{
-		// Having this constructor with a parameter causes an error.
-		public MyClass(int myConstructorParameter)
+    class MyClass
+    {
+        // Having this constructor with a parameter causes an exception.
+        public MyClass(int myConstructorParameter)
 		{
 		}
-	}
+    }
 
 XML:
 
@@ -121,11 +121,13 @@ By default the names in the XML are the camel-case version of the property names
 
 C#:
 
-	MyElement { get; set; }
+	public int MyElement { get; set; }
 
 XML:
 
-	<myElement>
+	<myElement>3</myElement>
+
+#### Standard Naming for Collections
 
 For XML array items, however, it is not the property name, but the camel case version of collection property's item type.
 
