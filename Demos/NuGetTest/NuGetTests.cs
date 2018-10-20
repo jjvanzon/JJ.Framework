@@ -144,7 +144,6 @@ namespace JJ.Demos.NuGetTest
 	    public void Test_NuGetReference_JJ_Framework_Xml()
         {
             string xml = @"<root myInt=""3"" />";
-
             MyClass myObject = new XmlToObjectConverter<MyClass>().Convert(xml);
         }
 	}
