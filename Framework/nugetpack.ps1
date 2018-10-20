@@ -1,4 +1,6 @@
-﻿D:
+﻿# Execute this in a PowerShell command console
+
+D:
 $codeRootFolderPath="D:\Source\JJs Software\JJ"
 $releaseFolderPath="$($codeRootFolderPath)\Releases"
 
@@ -31,3 +33,6 @@ nuget pack -build JJ.Framework.Collections.csproj -Prop Configuration=Release -O
 
 cd "$($codeRootFolderPath)\Framework\Mathematics"
 nuget pack -build JJ.Framework.Mathematics.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"
+
+cd "$($codeRootFolderPath)\Framework\Xml"
+nuget pack -build JJ.Framework.Xml.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"
