@@ -19,11 +19,7 @@
       nullability graph map mapping classes xpath
     </tags>
 		<summary>
-      * Helpers for working with XML.
-      * XmlHelper gives access to XML. It does so in a null-safe and multiplicity-safe way. 
-		  It uses XmlDocument as the underlying .NET API.
-      * XmlToObjectConverter converts an XmlDocument or string to an object graph. 
-		  The way to map classes is easier than the classic ways in .NET.
+* Helpers for working with XML. * XmlHelper gives access to XML. It does so in a null-safe and multiplicity-safe way. It uses XmlDocument as the underlying .NET API. * XmlToObjectConverter converts an XmlDocument or string to an object graph. The way to map classes is easier than the classic ways in .NET.
     </summary>
 
 		<dependencies>

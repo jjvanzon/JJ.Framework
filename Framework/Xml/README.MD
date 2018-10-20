@@ -38,6 +38,7 @@ XML:
 
 	<myElement>3</myElement>
 
+
 ### Attributes
 
 To map to XML attributes, mark a property with the `XmlAttribute` attribute.
@@ -50,6 +51,7 @@ C#:
 XML:
 
 	myAttribute="3"
+
 
 ### Collections
 
@@ -127,6 +129,7 @@ XML:
 
 	<myClass />
 
+
 ### Standard Naming
 
 By default the names in the XML are the camel-case version of the property names.
@@ -138,6 +141,7 @@ C#:
 XML:
 
 	<myElement>3</myElement>
+
 
 #### Standard Naming for Collections
 
@@ -155,6 +159,7 @@ XML:
 	  <int32>5</int32>
 	</myArray>
 
+
 ### Custom Naming
 
 To diverge from the standard naming , you can specify the node name explicitly by using the following .NET attributes on the properties: `XmlElement`, `XmlAttribute`, `XmlArray` and `XmlArrayItem`.
@@ -169,6 +174,7 @@ C#:
 XML:
 
 	<Elm>3</Elm>
+
 
 #### Custom Naming for Attributes
 
@@ -197,6 +203,7 @@ XML:
 	  <Item>5</Item>
 	</Arr>
 
+
 ### Nullability
 
 Effort was made to make nullability as intuitive as possible.
@@ -218,6 +225,7 @@ XML:
 	<myRoot>
 	  <!-- No myObject element here, so the MyObject property in C# will be null. -->
 	</myRoot>
+
 
 #### Nullability for Value Types
 
@@ -253,6 +261,7 @@ XML:
 	  <myElement>3</myElement>
 	</myRoot>
 
+
 #### Nullability for Collections
 
 Collection types are always optional.
@@ -282,9 +291,14 @@ XML:
 	  <myArray />
 	</myRoot>
 
+
 ### Value Types
 
 Recognized values are the .NET primitive types: `Boolean`, `Char`, `Byte`, `IntPtr`, `UIntPtr`, the numeric types, their signed and unsigned variations and `String`, `Guid`, `DateTime`, `TimeSpan` and `Enum` types.
+
+### Error Messages
+
+Effort was put into making the exception messages clear and accurate if there are structure mismatches.
 
 ### Performance
 
