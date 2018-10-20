@@ -2,6 +2,7 @@
 using JJ.Framework.Testing;
 using JJ.Framework.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable ArrangeTypeMemberModifiers
 
 namespace JJ.Demos.Xml
 {

@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable ArrangeTypeMemberModifiers
 // ReSharper disable UnusedMember.Local
 // ReSharper disable ClassNeverInstantiated.Local
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace JJ.Demos.Xml
 {

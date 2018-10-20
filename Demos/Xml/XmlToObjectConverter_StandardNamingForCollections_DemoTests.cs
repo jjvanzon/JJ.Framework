@@ -2,13 +2,14 @@
 using JJ.Framework.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable UnusedAutoPropertyAccessor.Local
+// ReSharper disable ArrangeTypeMemberModifiers
 
 namespace JJ.Demos.Xml
 {
     [TestClass]
     public class XmlToObjectConverter_StandardNamingForCollections_DemoTests
     {
-        private class MyRoot
+        class MyRoot
         {
             public int[] MyArray { get; set; }
         }
