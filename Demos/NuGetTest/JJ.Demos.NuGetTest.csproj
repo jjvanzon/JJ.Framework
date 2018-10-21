@@ -68,8 +68,8 @@
     <Reference Include="JJ.Framework.Text, Version=1.4.6862.40435, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Text.1.4.6862.40435\lib\net461\JJ.Framework.Text.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Xml, Version=1.4.6867.38409, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Xml.1.4.6867.38409\lib\net461\JJ.Framework.Xml.dll</HintPath>
+    <Reference Include="JJ.Framework.Xml, Version=1.4.6867.38923, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Xml.1.4.6867.38923\lib\net461\JJ.Framework.Xml.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -84,7 +84,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
