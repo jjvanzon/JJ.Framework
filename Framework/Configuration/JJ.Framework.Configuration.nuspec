@@ -1,0 +1,37 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<copyright>$copyright$</copyright>
+		<description>$description$</description>
+
+		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Configuration</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
+
+		<tags>
+      configuration config app.config web.config appSettings configurationmanager section getsection strongly-typed xml mapping
+    </tags>
+		<summary>
+Allows you to work with complex configuration structures in your app.config or web.config files. Doing it the classic way with System.Configuration is difficult and error prone. JJ.Framework.Configuration makes it super easy.
+    </summary>
+
+		<dependencies>
+      <dependency id="JJ.Framework.Common" version="[1.4,1.5)" />
+      <dependency id="JJ.Framework.Conversion" version="[1.4,1.5)" />
+      <dependency id="JJ.Framework.Exceptions" version="[1.4,1.5)" />
+      <dependency id="JJ.Framework.Reflection" version="[1.4,1.5)" />
+      <dependency id="JJ.Framework.Xml" version="[1.4,1.5)" />
+		</dependencies>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	</metadata>
+
+	<files>
+		<file src="README.MD" target="" />
+	</files>
+</package>

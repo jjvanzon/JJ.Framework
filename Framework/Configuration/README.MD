@@ -64,7 +64,7 @@ Access some data:
 
 ## XML Mapping Details
 
-Here is the documentation about how to map the XML. (Source: https://www.nuget.org/packages/JJ.Framework.Xml/)
+Here is the documentation about how to map the XML. (Source: [https://www.nuget.org/packages/JJ.Framework.Xml/](https://www.nuget.org/packages/JJ.Framework.Xml/))
 
 ### Elements
 

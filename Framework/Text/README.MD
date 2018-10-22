@@ -74,4 +74,4 @@ You would think `StringBuilder` might have an `Indent` and an `Unindent` method.
 
 ## StringHelper.Join
 
-A variation on `String.Join`, but thakes `char` as the separator instead of `String`.
+A variation on `String.Join`, but takes `char` as the separator instead of `String`.
