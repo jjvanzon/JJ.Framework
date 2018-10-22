@@ -8,18 +8,16 @@ For reading out &lt;`appSettings`&gt; in a strongly-typed way, cleanly, without 
 
 Example config:
 
-	<configuration>
-	  <appSettings>
-		<add key="MySetting" value="20"/>
-	  </appSettings>
-	</configuration>
+	<appSettings>
+	  <add key="MySetting" value="20"/>
+	</appSettings>
 
 Helper C# interface:
 
-	interface IMySettings
-	{
-		int MySetting { get; }
-	}
+    interface IMySettings
+    {
+        int MySetting { get; }
+    }
 
 Call:
 
@@ -44,17 +42,17 @@ Example config:
 
 Helper classes:
 	
-	class ConfigurationSection
-	{
-		public Item[] Items { get; set; }
-	}
+    class ConfigurationSection
+    {
+        public Item[] Items { get; set; }
+    }
 
-	class Item
-	{
-		[XmlAttribute]
-		public string Value { get; set; }
-		public Item Child { get; set; }
-	}
+    class Item
+    {
+        [XmlAttribute]
+        public int Value { get; set; }
+        public Item Child { get; set; }
+    }
 
 Read the config:
 	
@@ -62,7 +60,7 @@ Read the config:
 
 Access some data:
 
-	int value = config.Items[1].ChildItem.Value;
+	int value = config.Items[1].Child.Value;
 
 ## XML Mapping Details
 

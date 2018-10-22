@@ -6,9 +6,8 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Xml")]
 [assembly: AssemblyDescription("XmlToObjectConverter converts an XmlDocument or string to an object graph. " +
-                               "The way to map XML to classes is easier than the classic ways in .NET." +
-                               "XmlHelper gives access to XML. " +
-                               "It does so in a null-safe and multiplicity-safe way. " +
+                               "The way to map XML to classes is easier than the classic ways in .NET. " +
+                               "XmlHelper allows you to access XML in a null-safe and multiplicity-safe way. " +
                                "It uses XmlDocument as the underlying .NET API. ")]
 
 [assembly: AssemblyConfiguration("")]
