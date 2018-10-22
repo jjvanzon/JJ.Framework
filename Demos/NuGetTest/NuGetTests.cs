@@ -8,6 +8,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using JJ.Framework.Collections;
 using JJ.Framework.Common;
+using JJ.Framework.Configuration;
 using JJ.Framework.Conversion;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.IO;
@@ -140,11 +141,23 @@ namespace JJ.Demos.NuGetTest
             public int MyInt { get; set; }
         }
 
-        [TestMethod]
+	    [TestMethod]
 	    public void Test_NuGetReference_JJ_Framework_Xml()
-        {
-            string xml = @"<root myInt=""3"" />";
-            MyClass myObject = new XmlToObjectConverter<MyClass>().Convert(xml);
-        }
-	}
+	    {
+	        string xml = @"<root myInt=""3"" />";
+	        MyClass myObject = new XmlToObjectConverter<MyClass>().Convert(xml);
+	    }
+
+	    [TestMethod]
+	    public void Test_NuGetReference_JJ_Framework_Configuration()
+	    {
+	        int value = AppSettingsReader<IMySettings>.Get(x => x.MySetting);
+	        Assert.AreEqual(20, value);
+	    }
+    }
+
+    interface IMySettings
+    {
+        int MySetting { get; }
+    }
 }
