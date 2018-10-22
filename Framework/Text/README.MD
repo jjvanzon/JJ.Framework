@@ -22,38 +22,38 @@ Allows you to parse CSV-like lines including quotation for the ability to includ
 	* Trims and replaces sequences of two or more white space characters by a single space.
 * `Repeat`
 	* Repeat a string a number of times, returning a single string.
-* Replace
-	* Variation on String.Replace with the ability to ignore case.
-* Right
+* `Replace`
+	* Variation on `String.Replace` with the ability to ignore case.
+* `Right`
 	* Returns the right part of a string. Throws an exception if the string has less characters than the length provided.
-* TakeEnd
+* `TakeEnd`
 	* Returns the left part of a string. Can return less characters than the length provided, if string is shorter.
-* TakeEndUntil
+* `TakeEndUntil`
 	* Takes the part of a string until the specified delimiter. Excludes the delimiter itself.
-* TakeStart
+* `TakeStart`
 	* Returns the left part of a string. Can return less characters than the length provided if string is shorter.
-* TakeStartUntil
+* `TakeStartUntil`
 	* Takes the part of a string until the specified delimiter. Excludes the delimiter itself.
-* TrimEnd
-	* Will trim off repetitions of the same value from the given string. These are variations of String.TrimEnd that take a string or a length, whereas the standard String.TrimEnd takes char[].
-* TrimEndUntil
+* `TrimEnd`
+	* Will trim off repetitions of the same value from the given string. These are variations of `String.TrimEnd` that take a string or a length, whereas the standard `String.TrimEnd` takes `char[]`.
+* `TrimEndUntil`
 	* Cuts off the part of a string until the specified delimiter and returns what remains including the delimiter itself.
-* TrimFirst
+* `TrimFirst`
 	* Will trim off at most one occurrence of a value from the given string.
-* TrimLast
+* `TrimLast`
 	* Will trim off at most one occurrence of a value from the given string.
-* TrimStart
-	* Will trim off repetitions of the same value from the given string. These are variations of String.TrimStart that take a string or a length, whereas the standard String.TrimStart takes char[].
-* TrimStartUntil
+* `TrimStart`
+	* Will trim off repetitions of the same value from the given string. These are variations of `String.TrimStart` that take a string or a length, whereas the standard `String.TrimStart` takes `char[]`.
+* `TrimStartUntil`
 	* Cuts off the part of a string until the specified delimiter and returns what remains including the delimiter itself.
 
 ## String Extensions for Case Formatting
 
-* StartWithCap
+* `StartWithCap`
 	* Turns the first character into a capital letter.
-* StartWithLowerCase
+* `StartWithLowerCase`
 	* Turns the first character into a lower-case letter.
-* ToCamelCase
+* `ToCamelCase`
 	* Converts e.g. *"This is a sentence."* to *"thisIsASentence"* so it can be used in code.
 
 ## String Split Variations
@@ -68,7 +68,7 @@ A variation on `String.Join`, but thakes `char` as the separator instead of `Str
 
 ## StringBuilderWithIndentation
 
-You would think StringBuilder might have an Indent and Unindent method. It doesn't. Here's one that does:
+You would think `StringBuilder` might have an `Indent` and an `Unindent` method. It doesn't. Here's one that does:
 
 	var sb = new StringBuilderWithIndentation();
 
