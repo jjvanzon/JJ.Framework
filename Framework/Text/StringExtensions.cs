@@ -5,6 +5,9 @@ namespace JJ.Framework.Text
 {
 	public static class StringExtensions
 	{
+        /// <summary>
+        /// Takes the middle of a string by specifying the 0-based start index and the end index.
+        /// </summary>
 		public static string FromTill(this string input, int startIndex, int endIndex) => input.Substring(startIndex, endIndex - startIndex + 1);
 
 		/// <summary>
@@ -27,6 +30,9 @@ namespace JJ.Framework.Text
 			return text;
 		}
 
+        /// <summary>
+        /// Repeat a string a number of times, returning a single string.
+        /// </summary>
 		public static string Repeat(this string stringToRepeat, int repeatCount)
 		{
 			if (stringToRepeat == null) throw new ArgumentNullException(nameof(stringToRepeat));
@@ -46,6 +52,9 @@ namespace JJ.Framework.Text
 			return destString;
 		}
 
+        /// <summary>
+        /// Variation on String.Replace with the ability to ignore case.
+        /// </summary>
 		public static string Replace(this string input, string oldValue, string newValue, bool ignoreCase)
 		{
 			RegexOptions options = default;
@@ -67,7 +76,7 @@ namespace JJ.Framework.Text
 
 		/// <summary>
 		/// Returns the left part of a string.
-		/// Can return less characters than the length provided if string is shorter.
+		/// Can return less characters than the length provided, if string is shorter.
 		/// </summary>
 		public static string TakeEnd(this string input, int length)
 		{
@@ -128,8 +137,11 @@ namespace JJ.Framework.Text
 		/// </summary>
 		public static string TakeStartUntil(this string input, char until) => TakeStartUntil(input, until.ToString());
 
-		/// <summary> Will trim off repetitions of the same value from the given string. </summary>
-		public static string TrimEnd(this string input, string end)
+        /// <summary>
+        /// Will trim off repetitions of the same value from the given string.
+        /// These are variations of String.TrimEnd that take a string or a length, whereas the standard String.TrimEnd takes char[].
+        /// </summary>
+        public static string TrimEnd(this string input, string end)
 		{
 			if (string.IsNullOrEmpty(end)) throw new Exception($"{nameof(end)} is null or empty.");
 
@@ -143,8 +155,11 @@ namespace JJ.Framework.Text
 			return temp;
 		}
 
-		/// <summary> Will trim off repetitions of the same value from the given string. </summary>
-		public static string TrimEnd(this string input, int length) => input.Left(input.Length - length);
+        /// <summary>
+        /// Will trim off repetitions of the same value from the given string.
+        /// These are variations of String.TrimEnd that take a string or a length, whereas the standard String.TrimEnd takes char[].
+        /// </summary>
+        public static string TrimEnd(this string input, int length) => input.Left(input.Length - length);
 
 		/// <summary>
 		/// Cuts off the part of a string until the specified delimiter and returns what remains including the delimiter itself.
@@ -189,8 +204,11 @@ namespace JJ.Framework.Text
 			return input;
 		}
 
-		/// <summary> Will trim off repetitions of the same value from the given string. </summary>
-		public static string TrimStart(this string input, string start)
+        /// <summary>
+        /// Will trim off repetitions of the same value from the given string.
+        /// These are variations of String.TrimStart that take a string or a length, whereas the standard String.TrimStart takes char[].
+        /// </summary>
+        public static string TrimStart(this string input, string start)
 		{
 			if (string.IsNullOrEmpty(start)) throw new Exception($"{nameof(start)} is null or empty.");
 
