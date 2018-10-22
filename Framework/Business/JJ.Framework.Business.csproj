@@ -59,10 +59,6 @@
     <Compile Include="VoidResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\JJ.Framework.Data.csproj">
-      <Project>{7ADEDDCE-6903-4A58-94F5-D0B39B21330F}</Project>
-      <Name>JJ.Framework.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj">
       <Project>{fa44aba2-8e13-402c-a5a0-8d73c74b5181}</Project>
       <Name>JJ.Framework.Exceptions</Name>

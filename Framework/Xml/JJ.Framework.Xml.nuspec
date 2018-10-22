@@ -17,7 +17,7 @@
       xml serialization serializer deserialization helper utility xmldocument null safe nullability multiplicity safe xmltoobjectconverter xmlhelper graph map mapping classes xpath
     </tags>
 		<summary>
-* XmlHelper gives access to XML. It does so in a null-safe and multiplicity-safe way. It uses XmlDocument as the underlying .NET API. * XmlToObjectConverter converts an XmlDocument or string to an object graph. The way to map classes is easier than the classic ways in .NET.
+* XmlToObjectConverter converts an XmlDocument or string to an object graph. The way to map classes is easier than the classic ways in .NET. * XmlHelper gives access to XML. It does so in a null-safe and multiplicity-safe way. It uses XmlDocument as the underlying .NET API.
     </summary>
 
 		<dependencies>
