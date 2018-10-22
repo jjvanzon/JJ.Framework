@@ -75,7 +75,7 @@ namespace JJ.Framework.Text
 		public static string Right(this string input, int length) => input.Substring(input.Length - length, length);
 
 		/// <summary>
-		/// Returns the left part of a string.
+		/// Returns the right part of a string.
 		/// Can return less characters than the length provided, if string is shorter.
 		/// </summary>
 		public static string TakeEnd(this string input, int length)
@@ -139,7 +139,7 @@ namespace JJ.Framework.Text
 
         /// <summary>
         /// Will trim off repetitions of the same value from the given string.
-        /// These are variations of String.TrimEnd that take a string or a length, whereas the standard String.TrimEnd takes char[].
+        /// These are variations of the standard .NET methods that instead of just taking char[] can take a string or a length.
         /// </summary>
         public static string TrimEnd(this string input, string end)
 		{
@@ -157,7 +157,7 @@ namespace JJ.Framework.Text
 
         /// <summary>
         /// Will trim off repetitions of the same value from the given string.
-        /// These are variations of String.TrimEnd that take a string or a length, whereas the standard String.TrimEnd takes char[].
+        /// These are variations of the standard .NET methods that instead of just taking char[] can take a string or a length.
         /// </summary>
         public static string TrimEnd(this string input, int length) => input.Left(input.Length - length);
 
@@ -206,7 +206,7 @@ namespace JJ.Framework.Text
 
         /// <summary>
         /// Will trim off repetitions of the same value from the given string.
-        /// These are variations of String.TrimStart that take a string or a length, whereas the standard String.TrimStart takes char[].
+        /// These are variations of the standard .NET methods that instead of just taking char[] can take a string or a length.
         /// </summary>
         public static string TrimStart(this string input, string start)
 		{
@@ -222,8 +222,11 @@ namespace JJ.Framework.Text
 			return temp;
 		}
 
-		/// <summary> Will trim off repetitions of the same value from the given string. </summary>
-		public static string TrimStart(this string input, int length) => input.Right(input.Length - length);
+        /// <summary>
+        /// Will trim off repetitions of the same value from the given string.
+        /// These are variations of the standard .NET methods that instead of just taking char[] can take a string or a length.
+        /// </summary>
+        public static string TrimStart(this string input, int length) => input.Right(input.Length - length);
 
 		/// <summary>
 		/// Cuts off the part of a string until the specified delimiter and returns what remains including the delimiter itself.

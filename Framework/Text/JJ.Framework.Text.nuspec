@@ -14,13 +14,8 @@
 
 		<tags>text utility string extensions split casing stringbuilder indentation indent tab</tags>
 		<summary>
-Basic helpers for working with text. For instance:
-* String extensions for trimming and cutting.
-* Case formatting
-* `String.Split` overloads
-* `SplitWithQuotation`: Allows you to parse CSV-like lines including quotation for the ability to include the separator character in the values themselves.
-* `StringBuilderWithIndentation`
-		</summary>
+* SplitWithQuotation * StringBuilderWithIndentation * ToCamelCase * RemoveExcessiveWhiteSpace * Left * Right * FromTill * TakeStart * TakeEnd * TakeStartUntil * TakeEndUntil * TrimStartUntil * TrimEndUntil * TrimFirst * TrimLast * StartWithCap * StartWithLowerCase * Repeat * Overloads for: * Split * Replace * TrimStart * TrimEnd
+    </summary>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>

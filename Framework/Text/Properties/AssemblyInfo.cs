@@ -5,7 +5,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Text")]
-[assembly: AssemblyDescription("Basic helpers for working with text.")]
+[assembly: AssemblyDescription(
+    "* SplitWithQuotation * StringBuilderWithIndentation * ToCamelCase * RemoveExcessiveWhiteSpace " +
+    "* Left * Right * FromTill * TakeStart * TakeEnd " +
+    "* TakeStartUntil * TakeEndUntil * TrimStartUntil * TrimEndUntil * TrimFirst * TrimLast " +
+    "* StartWithCap * StartWithLowerCase * Repeat " +
+    "* Overloads for: * Split * Replace * TrimStart * TrimEnd")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
