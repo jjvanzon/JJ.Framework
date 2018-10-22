@@ -14,7 +14,7 @@
 
 		<tags>text utility string extensions split casing stringbuilder indentation indent tab</tags>
 		<summary>
-* SplitWithQuotation * StringBuilderWithIndentation * ToCamelCase * RemoveExcessiveWhiteSpace * Left * Right * FromTill * TakeStart * TakeEnd * TakeStartUntil * TakeEndUntil * TrimStartUntil * TrimEndUntil * TrimFirst * TrimLast * StartWithCap * StartWithLowerCase * Repeat * Overloads for: * Split * Replace * TrimStart * TrimEnd
+Left Right FromTill TakeStart TakeEnd TakeStartUntil TakeEndUntil TrimStartUntil TrimEndUntil TrimFirst TrimLast StartWithCap StartWithLowerCase Repeat SplitWithQuotation StringBuilderWithIndentation ToCamelCase RemoveExcessiveWhiteSpace, overloads for: Split Replace TrimStart TrimEnd
     </summary>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>

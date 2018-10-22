@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Text")]
 [assembly: AssemblyDescription(
-    "* SplitWithQuotation * StringBuilderWithIndentation * ToCamelCase * RemoveExcessiveWhiteSpace " +
-    "* Left * Right * FromTill * TakeStart * TakeEnd " +
-    "* TakeStartUntil * TakeEndUntil * TrimStartUntil * TrimEndUntil * TrimFirst * TrimLast " +
-    "* StartWithCap * StartWithLowerCase * Repeat " +
-    "* Overloads for: * Split * Replace * TrimStart * TrimEnd")]
+    "Left Right FromTill TakeStart TakeEnd " +
+    "TakeStartUntil TakeEndUntil TrimStartUntil TrimEndUntil TrimFirst TrimLast " +
+    "StartWithCap StartWithLowerCase Repeat " +
+    "SplitWithQuotation StringBuilderWithIndentation ToCamelCase RemoveExcessiveWhiteSpace, " +
+    "overloads for: Split Replace TrimStart TrimEnd")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
