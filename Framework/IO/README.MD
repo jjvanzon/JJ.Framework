@@ -14,6 +14,6 @@ Contains various file functions, functions for working with streams and working 
 * `FolderIsEmpty` method.
 * Easily working with file attributes.
 * Converting between relative path and absolute path.
-* A method for comparing two paths, regardess of them being absolute or relative.
+* A method for comparing two paths, regardless of them being absolute or relative.
 * `PathParser`: Neatly splits up a file path into its smaller parts.
 * `SafeFileOverwriter`: First writes to a temporary file and only when all went well, the original file is overwritten. The security settings and file attributes and file properties are retained as the temp file replaces the original.

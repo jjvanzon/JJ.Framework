@@ -4,7 +4,7 @@ Allows you to work with complex configuration structures in your *app.config* or
 
 ## AppSettingsReader<T>
 
-For reading out &lt;`appSettings`&gt; in a strongly-typed way, cleanly, without generate code.
+For reading out <`appSettings`> in a strongly-typed way, cleanly, without generated code.
 
 Example config:
 
