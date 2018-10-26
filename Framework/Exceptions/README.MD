@@ -24,7 +24,7 @@ Will produce an exception message:
 
 	"myParent.MyChildren[0].MyProperty is null."
 
-This is where it surpasses the possibilities of the C#6 nameof operator, which can only mention a name, not a whole expression.
+This is where it surpasses the possibilities of the C# 6 nameof operator, which can only mention a name, not a whole expression.
 
 Another example:
 

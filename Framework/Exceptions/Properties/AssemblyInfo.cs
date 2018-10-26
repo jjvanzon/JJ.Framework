@@ -5,7 +5,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Exceptions")]
-[assembly: AssemblyDescription("Contains many exception classes for common basic errors.")]
+[assembly: AssemblyDescription(
+@"Contains many exception classes for common basic errors. Clear messages, concise syntax, strongly-typed, good performance. Generates messages like ""myParent.MyChildren[0].MyProperty is null."", ""Customer with key { customerNumber = 1234, customerType = Subscriber } not found."" and ""height of 2 is less than 10.""")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

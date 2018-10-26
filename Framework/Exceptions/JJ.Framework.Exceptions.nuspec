@@ -7,7 +7,8 @@
 		<authors>$author$</authors>
 		<owners>$author$</owners>
 		<copyright>$copyright$</copyright>
-		<description>$description$</description>
+    <description>$description$</description>
+    <summary>$description$</summary>
 
 		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Exceptions</projectUrl>
@@ -20,34 +21,6 @@
 			<dependency id="JJ.Framework.Text" version="[1.4,1.5)" />
 			<dependency id="JJ.Framework.Reflection" version="[1.4,1.5)" />
 		</dependencies>
-
-		<summary>
-			# JJ.Framework.Exceptions
-
-Contains many exception classes for common basic errors, for instance:
-
-* Null errors, null or white space errors, collection contains nulls, etc.
-* Parsing errors, type casting errors
-* Not found, not unique errors
-* Greater than or equal errors and the like
-* Files not found, folder already exists, etc.
-
-There are several advantages over using these exception types.
-
-* Error messages are clear.
-* Concise syntax, without sacrificing performance.
-* You can pass an expression, whose text becomes part of the message.
-* Invalid value is automatically mentioned in the exception message.
-* Lose no time typing and trying to come up with a good message.
-
-For example:
-
-	throw new NullException(() =&gt; myParent.MyChildren[0].MyProperty);
-
-Will produce an exception message:
-
-	"myParent.MyChildren[0].MyProperty is null."
-			</summary>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>
