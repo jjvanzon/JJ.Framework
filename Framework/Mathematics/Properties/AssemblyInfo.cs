@@ -5,7 +5,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Mathematics")]
-[assembly: AssemblyDescription("Contains helpers for calculations.")]
+[assembly: AssemblyDescription(
+@"Interpolator Smooth Bezier Cubic Hermite TextPlotter NumberBases ToBase FromBase ToHex FromHex ToLetterSequence FromLetterSequence Randomizer GetRandomItem GetInt32 GetDouble GetSingle IsInRectangle GetCenter AbsoluteDistance IsPowerOf2 LogRatio RoundToSignificantDigits RoundWithStep ScaleLinearly SpeadItems SpreadIntegers SpreadDoubles. Integer variation of Pow and Log.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

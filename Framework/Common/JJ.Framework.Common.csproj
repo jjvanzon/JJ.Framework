@@ -51,13 +51,16 @@
   <ItemGroup>
     <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="CultureHelper.cs" />
-    <Compile Include="EventArgsOfT.cs" />
-    <Compile Include="Int32Helper.cs" />
     <Compile Include="DoubleHelper.cs" />
+    <Compile Include="Obsolete\CultureHelper.Obsolete.cs" />
+    <Compile Include="Obsolete\EnumHelper.Obsolete.cs" />
+    <Compile Include="EventArgsOfT.cs" />
+    <Compile Include="Obsolete\Int32Helper.Obsolete.cs" />
     <Compile Include="EmbeddedResourceHelper.cs" />
     <Compile Include="KeyHelper.cs" />
-    <Compile Include="KeyValuePairHelper.cs" />
+    <Compile Include="Obsolete\KeyValuePairHelper.Obsolete.cs" />
     <Compile Include="EnumHelper.cs" />
+    <Compile Include="Obsolete\DoubleHelper.Obsolete.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

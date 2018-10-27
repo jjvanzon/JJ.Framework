@@ -52,10 +52,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionExtensions.cs" />
+    <Compile Include="CollectionExtensions_BinarySearchInexact1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CollectionExtensions_BinarySearchInexact.tt</DependentUpon>
+    </Compile>
     <Compile Include="CollectionExtensions_Recursive_Ancestors.cs" />
     <Compile Include="CollectionExtensions_Recursive_IList.cs" />
     <Compile Include="CollectionExtensions_Recursive_IEnumerable.cs" />
+    <Compile Include="CollectionHelper.BinarySearchInexact1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CollectionHelper.BinarySearchInexact.tt</DependentUpon>
+    </Compile>
     <Compile Include="CollectionHelper.cs" />
+    <Compile Include="KeyValuePairHelper.cs" />
     <Compile Include="NestedEnumerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedBlackTree.cs" />
@@ -82,6 +93,19 @@
       <Project>{1A8E047C-7893-4918-B415-CE3928E815D8}</Project>
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CollectionExtensions_BinarySearchInexact.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CollectionExtensions_BinarySearchInexact1.cs</LastGenOutput>
+    </Content>
+    <Content Include="CollectionHelper.BinarySearchInexact.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CollectionHelper.BinarySearchInexact1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

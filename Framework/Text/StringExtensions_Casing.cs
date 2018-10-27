@@ -31,6 +31,9 @@ namespace JJ.Framework.Text
 			'_'
 		};
 
+        /// <summary>
+        /// Turns the first character into a capital letter.
+        /// </summary>
 		public static string StartWithCap(this string input)
 		{
 			if (input.Length == 0)
@@ -41,6 +44,9 @@ namespace JJ.Framework.Text
 			return input.Left(1).ToUpper() + input.TrimStart(1);
 		}
 
+	    /// <summary>
+	    /// Turns the first character into a lower-case letter.
+	    /// </summary>
 		public static string StartWithLowerCase(this string input)
 		{
 			if (input.Length == 0)
@@ -52,6 +58,7 @@ namespace JJ.Framework.Text
 		}
 
 		/// <summary>
+		/// Converts e.g. "This is a sentence." to "thisIsASentence" so it can be used in code.
 		/// A little more restrictive than actual C# camel case.
 		/// Only latin accent-free characters, digits and _ will be kept in tact.
 		/// Other characters will be escaped in the form "u" + hex unicode character code.

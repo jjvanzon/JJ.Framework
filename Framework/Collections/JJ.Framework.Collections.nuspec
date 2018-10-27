@@ -8,19 +8,13 @@
 		<owners>$author$</owners>
 		<copyright>$copyright$</copyright>
 		<description>$description$</description>
+	  <summary>$description$</summary>
 
-		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Collections</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
 		<tags>collections lists helpers extensions recursion recursive redblacktree red black tree</tags>
-		<summary>
-Basic helpers for working with lists of information.
-
-* Handy LINQ-style extension methods.
-* Recursive collection extensions.
-* A port of a RedBlackTree collection.
-		</summary>
 
 		<dependencies>
       <dependency id="JJ.Framework.Common" version="[1.4,1.5)" />

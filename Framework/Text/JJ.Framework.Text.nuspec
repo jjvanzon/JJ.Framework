@@ -6,21 +6,14 @@
 		<authors>$author$</authors>
 		<owners>$author$</owners>
 		<copyright>$copyright$</copyright>
-		<description>$description$</description>
+    <description>$description$</description>
+    <summary>$description$</summary>
 
 		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Text</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
 		<tags>text utility string extensions split casing stringbuilder indentation indent tab</tags>
-		<summary>
-Basic helpers for working with text. For instance:
-* String extensions for trimming and cutting.
-* Case formatting
-* `String.Split` overloads
-* `SplitWithQuotation`: Allows you to parse CSV-like lines including quotation for the ability to include the separator character in the values themselves.
-* `StringBuilderWithIndentation`
-		</summary>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>

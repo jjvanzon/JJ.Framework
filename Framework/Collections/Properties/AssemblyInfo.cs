@@ -5,7 +5,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Collections")]
-[assembly: AssemblyDescription("Basic helpers for working with lists of information.")]
+[assembly: AssemblyDescription(
+@"LINQ overloads. SelectRecursive SelectAncestors Add Remove AddRange Concat CrossJoin Distinct DistinctMany Except FirstWithClearException SingleOrDefaultWithClearException SingleWithClearException ForEach IndexOf TryGetIndexOf MinOrDefault MaxOrDefault PeekOrDefault PopOrDefault Product RemoveFirst Repeat ToHashSet ToNonUniqueDictionary TrimAll TryRemoveFirst Union Zip item.AsArray item.AsList item.AsEnumerable. Also a RedBlackTree and KeyValuePairHelper ConvertNamesAndValuesListToKeyValuePairs and ConvertNamesAndValuesListToDictionary.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

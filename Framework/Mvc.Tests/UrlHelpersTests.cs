@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using JJ.Framework.Common;
+using JJ.Framework.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable PossibleMultipleEnumeration
 

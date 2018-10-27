@@ -5,11 +5,13 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Configuration")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription(
+    "Allows you to work with complex configuration structures in your app.config or web.config files. " +
+    "Doing it the classic way with System.Configuration is difficult and error prone. JJ.Framework.Configuration makes it super easy.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan-Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

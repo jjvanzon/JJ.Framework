@@ -1,6 +1,8 @@
-﻿namespace JJ.Framework.Configuration.Tests.Settings
+﻿// ReSharper disable ArrangeTypeModifiers
+
+namespace JJ.Framework.Configuration.Tests.Settings
 {
-	public interface IMySettings
+	interface IMySettings
 	{
 		int MySetting { get; }
 	}

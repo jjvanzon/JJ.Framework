@@ -36,3 +36,6 @@ nuget pack -build JJ.Framework.Mathematics.csproj -Prop Configuration=Release -O
 
 cd "$($codeRootFolderPath)\Framework\Xml"
 nuget pack -build JJ.Framework.Xml.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"
+
+cd "$($codeRootFolderPath)\Framework\Configuration"
+nuget pack -build JJ.Framework.Configuration.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"

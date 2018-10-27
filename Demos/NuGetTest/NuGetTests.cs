@@ -4,8 +4,11 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml;
+using System.Xml.Serialization;
 using JJ.Framework.Collections;
 using JJ.Framework.Common;
+using JJ.Framework.Configuration;
 using JJ.Framework.Conversion;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.IO;
@@ -14,6 +17,7 @@ using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 using JJ.Framework.Testing;
 using JJ.Framework.Text;
+using JJ.Framework.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable UnusedAutoPropertyAccessor.Local
@@ -130,5 +134,30 @@ namespace JJ.Demos.NuGetTest
 		{
 			double hermite4Pt3oX = Interpolator.Hermite4pt3oX(0, 1, -2, -1, 0.231);
 		}
-	}
+
+        private class MyClass
+        {
+            [XmlAttribute]
+            public int MyInt { get; set; }
+        }
+
+	    [TestMethod]
+	    public void Test_NuGetReference_JJ_Framework_Xml()
+	    {
+	        string xml = @"<root myInt=""3"" />";
+	        MyClass myObject = new XmlToObjectConverter<MyClass>().Convert(xml);
+	    }
+
+	    [TestMethod]
+	    public void Test_NuGetReference_JJ_Framework_Configuration()
+	    {
+	        int value = AppSettingsReader<IMySettings>.Get(x => x.MySetting);
+	        Assert.AreEqual(20, value);
+	    }
+    }
+
+    interface IMySettings
+    {
+        int MySetting { get; }
+    }
 }

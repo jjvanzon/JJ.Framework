@@ -5,8 +5,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.IO")]
-[assembly: AssemblyDescription("Contains various basic file functions, " +
-							   "functions for working with streams and working with CSV's.")]
+[assembly: AssemblyDescription(
+    "CsvReader FileLock PathParser SafeFileOverwriter GetNumberedFilePath " +
+    "StreamToBytes BytesToStream StreamToString StringToStream StringToBytes BytesToString " +
+    "ReadStruct WriteStruct ClearFolder ClearFolderRecursive GetFolderSize GetFolderSizeRecursive CountFilesRecursive " +
+    "IsFolder IsFile FolderIsEmpty IsReadOnly IsHidden MakeReadOnly MakeWritable ShowFile HideFile " +
+    "ToAbsolutePath ToRelativePath PathsAreEqual AssertFileExists")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

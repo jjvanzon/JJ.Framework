@@ -6,18 +6,14 @@
 		<authors>$author$</authors>
 		<owners>$author$</owners>
 		<copyright>$copyright$</copyright>
-		<description>$description$</description>
+    <description>$description$</description>
+		<summary>$description$</description>
 
 		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Testing</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
 		<tags>unit tests testing assert expression clear error exception</tags>
-		<summary>
-Helper for unit tests. Mimics the Assert class, but will display the tested expression in error messages, instead of being vague about it or laborious to program.
-
-It also offers methods to evaluate if the right exception goes off in the right spot with the right exception type and / or the right message.
-		</summary>
 
 		<dependencies>
 			<dependency id="JJ.Framework.Reflection" version="[1.4,1.5)" />

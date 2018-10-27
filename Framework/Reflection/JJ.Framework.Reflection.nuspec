@@ -8,31 +8,13 @@
 		<owners>$author$</owners>
 		<copyright>$copyright$</copyright>
 		<description>$description$</description>
+	  <summary>$description$</summary>
 
-		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Reflection</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
 		<tags>reflection extensions expressions lambda text accessor implementations</tags>
-
-		<summary>
-Extensions to the System.Reflection and System.Linq.Expressions namespaces.
-
-Highlights:
-
-* `ExpressionHelper`: Converts many types of lambda expressions into text or retrieves its resulting value. It can also give you method info, parameter names and parameter value info from lambda expressions.
-* `Accessor`: Allows easy access to the internal, private or protected elements of an assembly or class.
-* `ReflectionCache`: Makes using reflection much faster in certain cases. For instance the GetProperties method can be expensive, which is much faster through the ReflectionCache class.
-* `ReflectionExtensions`: Various helper methods, but one of the most useful features is the GetImplementation method and variations thereof, which allow you to retrieve implementations of a specified base class or interface from an assembly, which is useful for plug-in development.
-
-For instance:
-
-	ExpressionHelper.GetText(() =&gt; myParam.MyProperty.MyList[i].MySomething)
-
-Will return :
-
-	"myParam.MyProperty.MyList[i].MySomething"
-		</summary>
 
 		<dependencies>
 			<dependency id="JJ.Framework.Common" version="[1.4,1.5)" />

@@ -5,7 +5,8 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Reflection")]
-[assembly: AssemblyDescription("Extensions to the System.Reflection and System.Linq.Expressions namespaces.")]
+[assembly: AssemblyDescription(
+@"Expressions like ""myParam.MyList[i].MyProperty"" can be converted to text or their value retrieved or info like { ""MyMethod"", Parameters = { ""myParameter"", int, 3 } } Accessor IsIndexer IsNullableType IsProperty IsReferenceType IsStatic IsSimpleType IsDefault GetBaseClasses GetImplementations GetItemType GetPropertyOrException GetUnderlyingNullableTypeFast TypesFromObjects. ReflectionCache with fast GetProperties GetFields GetConstructor GetTypeByShortName. Overloads for PropertInfo.GetValue IsAssignableFrom IsAssignableTo CreateInstance.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

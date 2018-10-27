@@ -33,7 +33,7 @@ Many of these methods are variations on the already existing LINQ methods. You m
 	* Returns distinct arrays. So checks the equality of all items in the arrays and returns the unique arrays. (Actually, not only arrays, any enumerable.) E.g. `severalArrays.DistinctMany();`
 * `Except` variations with:
 	* A single item, e.g. `myCollection.Except(myItem);`
-	* A predicate, e.g. `myCollection.Except(x =`>` string.Equals("Blah"));`
+	* A predicate, e.g. `myCollection.Except(x =`>` string.Equals(`"`Blah`"`));`
     * The choice to keep duplicates. (The original `Except` method from .NET automatically does a distinct, which is something you do not always want.)
 * `FirstWithClearException` / `SingleOrDefaultWithClearException` / `SingleWithClearException`
 	* The regular `First`, `Single` or `SingleOrDefault` methods will give you an exception for instance when there are no items in the collection or if there are multiple items in the collection. But not a very clear exception, like *'Sequence contains no elements.'* The `WithClearException` variations will allow you to do a `First`, `Single` or `SingleOrDefault`, but get a clearer exception message e.g. *'Product with key { productNumber = 123 } not unique.'*
@@ -68,7 +68,6 @@ Many of these methods are variations on the already existing LINQ methods. You m
 * `Zip` variations:
 	* Without a result, when you just want to process two collections side by side in another way.
 	* Without a result selector and returns tuples instead.
-
 
 ## Recursive Collection Extensions
 
@@ -130,3 +129,17 @@ A variation on that, which includes the child node:
 ### Circular References / Graphs
 
 Circularities in the structure are gracefully handled, so you can also recursively process non-tree graphs, processing all the items in one blow.
+
+### KeyValuePairHelper
+
+Converts a single array to `KeyValuePair` or `Dictionary`, where the first item is a name, the second a value, the third a name, the fourth a value. This can be useful to be able to specify name/value pairs as `params` (variable amount of arguments). For instance:
+
+    void MyMethod(params object[] namesAndValues)
+    {
+        var dictionary = KeyValuePairHelper.ConvertNamesAndValuesListToDictionary(namesAndValues);
+        // ...
+    }
+
+Calling MyMethod  looks like this:
+
+	MyMethod("Name1", 3, "Name2", 5, "Name3", 6);

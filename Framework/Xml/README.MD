@@ -118,14 +118,8 @@ C#:
     class MyClass
     {
         // Having this constructor with a parameter causes an exception.
-        public MyClass(int myConstructorParameter)
-		{
-		}
+        public MyClass(int myConstructorParameter) { }
     }
-
-XML:
-
-	<myClass />
 
 ### Standard Naming
 
@@ -252,7 +246,7 @@ XML:
 	  <!-- myElement is required, otherwise you will get an exception. -->
 	  <myElement>3</myElement>
 	</myRoot>
-
+	
 #### Nullability for Collections
 
 Collection types are always optional.
@@ -281,10 +275,14 @@ XML:
 	  <!-- MyArray in the C# code will not be null, but an empty collection. -->
 	  <myArray />
 	</myRoot>
-
+	
 ### Value Types
 
 Recognized values are the .NET primitive types: `Boolean`, `Char`, `Byte`, `IntPtr`, `UIntPtr`, the numeric types, their signed and unsigned variations and `String`, `Guid`, `DateTime`, `TimeSpan` and `Enum` types.
+
+### Error Messages
+
+Effort was put into making the exception messages clear and accurate if there are structure mismatches.
 
 ### Performance
 
