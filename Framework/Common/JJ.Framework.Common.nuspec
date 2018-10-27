@@ -7,24 +7,14 @@
 		<authors>$author$</authors>
 		<owners>$author$</owners>
 		<copyright>$copyright$</copyright>
-		<description>$description$</description>
+    <description>$description$</description>
+    <summary>$description$</summary>
 
-		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+    <licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Common</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
 		<tags>common culture embedded resources eventargs</tags>
-		<summary>
-Some basic helpers, for instance:
-
-* `ConfigurationHelper`: For using configuration settings when you cannot be dependent on System.Configuration.
-* `CultureHelper`: For instance to set thread culture with a single code line.
-* `EmbeddedResourceHelper`: Make it a little easier to get embedded resource Streams, bytes and strings.
-* `EnumHelper`: Make it a little easier to check the validitiy of enum values.
-* `EventArgs`&lt;`T`&gt;: A generic version of event args. If you use a C# 7 tuple for T you can basically use it for everything.
-
-NOTE: Some of the parsing methods were moved to `JJ.Framework.Conversion`.
-			</summary>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>

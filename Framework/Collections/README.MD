@@ -69,7 +69,6 @@ Many of these methods are variations on the already existing LINQ methods. You m
 	* Without a result, when you just want to process two collections side by side in another way.
 	* Without a result selector and returns tuples instead.
 
-
 ## Recursive Collection Extensions
 
 LINQ methods allow you to process a whole collection of items in one blow. Process a whole *tree* of items in one blow? For many cases these *Recursive Collection Extensions* offer a one-line solution.
@@ -130,3 +129,17 @@ A variation on that, which includes the child node:
 ### Circular References / Graphs
 
 Circularities in the structure are gracefully handled, so you can also recursively process non-tree graphs, processing all the items in one blow.
+
+### KeyValuePairHelper
+
+Converts a single array to `KeyValuePair` or `Dictionary`, where the first item is a name, the second a value, the third a name, the fourth a value. This can be useful to be able to specify name/value pairs as `params` (variable amount of arguments). For instance:
+
+    void MyMethod(params object[] namesAndValues)
+    {
+        var dictionary = KeyValuePairHelper.ConvertNamesAndValuesListToDictionary(namesAndValues);
+        // ...
+    }
+
+Calling MyMethod  looks like this:
+
+	MyMethod("Name1", 3, "Name2", 5, "Name3", 6);

@@ -6,7 +6,7 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
-using JJ.Framework.Common;
+using JJ.Framework.Collections;
 using JJ.Framework.Reflection;
 // ReSharper disable RedundantNameQualifier
 

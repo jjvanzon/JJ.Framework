@@ -49,6 +49,7 @@
     <Compile Include="CollectionExtensions_Recursive_Ancestors.cs" />
     <Compile Include="CollectionExtensions_Recursive_IEnumerable_Tests.cs" />
     <Compile Include="CollectionExtensions_Recursive_IList_Tests.cs" />
+    <Compile Include="KeyValuePairHelperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

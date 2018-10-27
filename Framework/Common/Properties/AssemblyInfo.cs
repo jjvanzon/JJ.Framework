@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Common")]
-[assembly: AssemblyDescription("Some basic helpers with very few dependencies.")]
+[assembly: AssemblyDescription("Basic helpers with very few dependencies. EmbeddedResourceHelper EnumHelper.GetValues<TEnum> EnumHelper.IsValidEnum EventArgs<T> DoubleHelper.IsSpecialValue CultureHelper GetCurrentCulture SetCurrentCulture GetCurrentCultureName SetCurrentCultureName KeyHelper.CreateKey")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

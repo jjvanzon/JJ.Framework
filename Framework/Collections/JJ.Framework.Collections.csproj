@@ -66,6 +66,7 @@
       <DependentUpon>CollectionHelper.BinarySearchInexact.tt</DependentUpon>
     </Compile>
     <Compile Include="CollectionHelper.cs" />
+    <Compile Include="KeyValuePairHelper.cs" />
     <Compile Include="NestedEnumerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RedBlackTree.cs" />
