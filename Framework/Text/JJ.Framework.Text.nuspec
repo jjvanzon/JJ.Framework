@@ -6,16 +6,14 @@
 		<authors>$author$</authors>
 		<owners>$author$</owners>
 		<copyright>$copyright$</copyright>
-		<description>$description$</description>
+    <description>$description$</description>
+    <summary>$description$</summary>
 
 		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Text</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
 		<tags>text utility string extensions split casing stringbuilder indentation indent tab</tags>
-		<summary>
-Left Right FromTill TakeStart TakeEnd TakeStartUntil TakeEndUntil TrimStartUntil TrimEndUntil TrimFirst TrimLast StartWithCap StartWithLowerCase Repeat SplitWithQuotation StringBuilderWithIndentation ToCamelCase RemoveExcessiveWhiteSpace, overloads for: Split Replace TrimStart TrimEnd
-    </summary>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>

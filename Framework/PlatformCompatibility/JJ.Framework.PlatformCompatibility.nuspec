@@ -6,16 +6,14 @@
 		<authors>$author$</authors>
 		<owners>$author$</owners>
 		<copyright>$copyright$</copyright>
-		<description>$description$</description>
+	  <description>$description$</description>
+		<summary>$description$</summary>
 
 		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/PlatformCompatibility</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
 		<tags>platform compatibility multi-platform</tags>
-		<summary>
-Contains alternatives for any class or method that proved to have compatibility problems when trying to deploy code to iOS, Android and Windows Phone 8. May have been surpassed by .NET Standard, but this code was from before that.
-		</summary>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>

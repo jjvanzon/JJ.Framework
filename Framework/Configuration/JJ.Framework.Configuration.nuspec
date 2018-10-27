@@ -7,7 +7,8 @@
 		<authors>$author$</authors>
 		<owners>$author$</owners>
 		<copyright>$copyright$</copyright>
-		<description>$description$</description>
+    <description>$description$</description>
+    <summary>$description$</summary>
 
 		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Configuration</projectUrl>
@@ -16,9 +17,6 @@
 		<tags>
       configuration config app.config web.config appSettings configurationmanager section getsection strongly-typed xml mapping
     </tags>
-		<summary>
-Allows you to work with complex configuration structures in your app.config or web.config files. Doing it the classic way with System.Configuration is difficult and error prone. JJ.Framework.Configuration makes it super easy.
-    </summary>
 
 		<dependencies>
       <dependency id="JJ.Framework.Common" version="[1.4,1.5)" />
