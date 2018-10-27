@@ -60,7 +60,11 @@
     <Compile Include="CollectionExtensions_Recursive_Ancestors.cs" />
     <Compile Include="CollectionExtensions_Recursive_IList.cs" />
     <Compile Include="CollectionExtensions_Recursive_IEnumerable.cs" />
-    <Compile Include="CollectionHelper.BinarySearchInexact.cs" />
+    <Compile Include="CollectionHelper.BinarySearchInexact1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CollectionHelper.BinarySearchInexact.tt</DependentUpon>
+    </Compile>
     <Compile Include="CollectionHelper.cs" />
     <Compile Include="NestedEnumerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +97,10 @@
     <Content Include="CollectionExtensions_BinarySearchInexact.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CollectionExtensions_BinarySearchInexact1.cs</LastGenOutput>
+    </Content>
+    <Content Include="CollectionHelper.BinarySearchInexact.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CollectionHelper.BinarySearchInexact1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,130 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ output extension=".cs" #>
+
+<#
+	var numTypes = new string[]
+	{
+		"Decimal",
+		"Double", 
+		"Int16",
+		"Int32",
+		"Int64",
+		"Single"
+	};
+
+	string summaryBase =
+        "Searches a sorted collection in an efficient way. " +
+        "Returns the value before and the value after, " + 
+		"if a value to search is in between two values in the list. " +
+        "Will only return a meaningful result if the collection is sorted.";
+
+	string summaryForExtraParameters =
+		"Overload with more values you supply yourself: halfLength, min and max, " +
+        "that you could cache yourself for performance.";
+
+	string paramDoc = "Not checked for null, for performance.";
+#>
+
+using System;
+using System.Runtime.CompilerServices;
+// ReSharper disable BuiltInTypeReferenceStyle
+// ReSharper disable MemberCanBePrivate.Global
+#pragma warning disable IDE0049 // Simplify Names
+
+namespace JJ.Framework.Collections
+{
+	// Do not use JetBrains.Annotations, because this code is statically compiled into code that does not support it.
+
+	public static partial class CollectionHelper
+	{
+		<# foreach (string numType in numTypes) { #>
+
+			// <#=numType#>
+
+			/// <summary> <#=summaryBase#> </summary>
+			/// <param name="sortedArray"> <#=paramDoc#> </param>
+			public static (<#=numType#> valueBefore, <#=numType#> valueAfter) BinarySearchInexact(<#=numType#>[] sortedArray, <#=numType#> input)
+			{
+				BinarySearchInexact(sortedArray, input, out <#=numType#> valueBefore, out <#=numType#> valueAfter);
+				return (valueBefore, valueAfter);
+			}
+
+			/// <summary> <#=summaryBase#> </summary>
+			/// <param name="sortedArray"> <#=paramDoc#> </param>
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void BinarySearchInexact(
+				<#=numType#>[] sortedArray,
+				<#=numType#> input,
+				out <#=numType#> valueBefore,
+				out <#=numType#> valueAfter)
+			{
+				int count = sortedArray.Length;
+				<#=numType#> min = sortedArray[0];
+				<#=numType#> max = sortedArray[count - 1];
+				int halfCount = count >> 1;
+
+				BinarySearchInexact(sortedArray, halfCount, min, max, input, out valueBefore, out valueAfter);
+			}
+
+			/// <summary>
+			/// <#=summaryBase#>
+			/// <#=summaryForExtraParameters#>
+			/// </summary>
+			/// <param name="sortedArray"> <#=paramDoc#> </param>
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static (<#=numType#> valueBefore, <#=numType#> valueAfter) BinarySearchInexact(
+				<#=numType#>[] sortedArray,
+				int halfCount,
+				<#=numType#> min,
+				<#=numType#> max,
+				<#=numType#> input)
+			{
+				BinarySearchInexact(sortedArray, halfCount, min, max, input, out <#=numType#> valueBefore, out <#=numType#> valueAfter);
+				return (valueBefore, valueAfter);
+			}
+
+			/// <summary>
+			/// <#=summaryBase#>
+			/// <#=summaryForExtraParameters#>
+			/// </summary>
+			/// <param name="sortedArray"> <#=paramDoc#> </param>
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			public static void BinarySearchInexact(
+				<#=numType#>[] sortedArray,
+				int halfCount,
+				<#=numType#> min,
+				<#=numType#> max,
+				<#=numType#> input,
+				out <#=numType#> valueBefore,
+				out <#=numType#> valueAfter)
+			{
+				int sampleIndex = halfCount;
+				int jump = halfCount;
+
+				valueBefore = min;
+				valueAfter = max;
+
+				while (jump != 0)
+				{
+					<#=numType#> sample = sortedArray[sampleIndex];
+
+					jump = jump >> 1;
+
+					if (input >= sample)
+					{
+						valueBefore = sample;
+
+						sampleIndex += jump;
+					}
+					else
+					{
+						valueAfter = sample;
+
+						sampleIndex -= jump;
+					}
+				}
+			}
+	<# } #>
+	}
+}

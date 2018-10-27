@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 // ReSharper disable MemberCanBePrivate.Global
 
 namespace JJ.Framework.Collections
@@ -108,5 +106,5 @@ namespace JJ.Framework.Collections
                 }
             }
         }
-   }
+    }
 }
