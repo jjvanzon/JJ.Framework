@@ -40,14 +40,17 @@ namespace JJ.Framework.Collections
 			// <#=numType#>
 
 			<#=docComment#>
+			[Obsolete("Consider not using this. It only approximates the correct result.")]
 			public static (<#=numType#> valueBefore, <#=numType#> valueAfter) BinarySearchInexact(this IEnumerable<<#=numType#>> sortedCollection, <#=numType#> input)
 				=> CollectionHelper.BinarySearchInexact(sortedCollection.ToArray(), input);
 
 			<#=docComment#>
+			[Obsolete("Consider not using this. It only approximates the correct result.")]
 			public static (<#=numType#> valueBefore, <#=numType#> valueAfter) BinarySearchInexact(this <#=numType#>[] sortedCollection, <#=numType#> input)
 				=> CollectionHelper.BinarySearchInexact(sortedCollection, input);
 
 			<#=docComment#>
+			[Obsolete("Consider not using this. It only approximates the correct result.")]
 			public static (<#=numType#> valueBefore, <#=numType#> valueAfter) BinarySearchInexact(
 				this IEnumerable<<#=numType#>> sortedCollection,
 				int halfCount,
@@ -57,6 +60,7 @@ namespace JJ.Framework.Collections
 				=> CollectionHelper.BinarySearchInexact(sortedCollection.ToArray(), halfCount, min, max, input);
 
 			<#=docComment#>
+			[Obsolete("Consider not using this. It only approximates the correct result.")]
 			public static (<#=numType#> valueBefore, <#=numType#> valueAfter) BinarySearchInexact(
 				this <#=numType#>[] sortedCollection,
 				int halfCount,

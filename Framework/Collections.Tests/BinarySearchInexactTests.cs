@@ -1,4 +1,5 @@
 ﻿//using System;
+//using JJ.Framework.Testing;
 //using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 //namespace JJ.Framework.Collections.Tests
@@ -7,55 +8,84 @@
 //    public class BinarySearchInexactTests
 //    {
 //        [TestMethod]
-//        public void Test_BinarySearchInexact_InCollectionExtensions_WithArray() => throw new NotImplementedException();
+//        public void Test_BinarySearchInexact_JumpsAlignWithIndices_ExactMatch()
+//        {
+//            var values = new[] { 1, 5, 9, 14, 19, 60, 128, 200 };
+
+//            (int before, int after) = values.BinarySearchInexact(14);
+
+//            AssertHelper.AreEqual(14, () => before);
+//            AssertHelper.AreEqual(14, () => after);
+//        }
 
 //        [TestMethod]
-//        public void Test_BinarySearchInexact_InCollectionExtensions_WithArray_AndPrecalculatedValues() => throw new NotImplementedException();
+//        public void Test_BinarySearchInexact_JumpsAlignWithIndices_InexactMatch()
+//        {
+//            var values = new[] { 1, 5, 9, 14, 19, 60, 128, 200 };
+
+//            (int before, int after) = values.BinarySearchInexact(15);
+
+//            AssertHelper.AreEqual(14, () => before);
+//            AssertHelper.AreEqual(19, () => after);
+//        }
 
 //        [TestMethod]
-//        public void Test_BinarySearchInexact_InCollectionExtensions_WithIEnumerable() => throw new NotImplementedException();
+//        public void Test_BinarySearchInexact_JumpsNotAlignedWithIndices_ExactMatch()
+//        {
+//            var values = new[] { 1, 5, 9, 14, 19, 60 };
+
+//            (int before, int after) = values.BinarySearchInexact(5);
+
+//            AssertHelper.AreEqual(5, () => before);
+//            AssertHelper.AreEqual(5, () => after);
+//        }
 
 //        [TestMethod]
-//        public void Test_BinarySearchInexact_InCollectionExtensions_WithIEnumerable_AndPrecalculatedValues() => throw new NotImplementedException();
+//        public void Test_BinarySearchInexact_JumpsNotAlignedWithIndices_InexactMatch()
+//        {
+//            var values = new[] { 1, 5, 9, 14, 19, 60 };
 
-//        [TestMethod]
-//        public void Test_BinarySearchInexact_InCollectionHelper_WithTuples() => throw new NotImplementedException();
+//            (int before, int after) = values.BinarySearchInexact(6);
 
-//        [TestMethod]
-//        public void Test_BinarySearchInexact_InCollectionHelper_WithTuples_AndPrecalculatedValues() => throw new NotImplementedException();
-
-//        [TestMethod]
-//        public void Test_BinarySearchInexact_InCollectionHelper_WithOutVariables() => throw new NotImplementedException();
-
-//        [TestMethod]
-//        public void Test_BinarySearchInexact_InCollectionHelper_WithOutVariables_AndPrecalculatedValues() => throw new NotImplementedException();
-
-//        [TestMethod]
-//        public void Test_BinarySearchInexact_Aligned_ExactMatch() => throw new NotImplementedException();
-
-//        [TestMethod]
-//        public void Test_BinarySearchInexact_Aligned_InexactMatch() => throw new NotImplementedException();
-
-//        [TestMethod]
-//        public void Test_BinarySearchInexact_NotAligned_ExactMatch() => throw new NotImplementedException();
-
-//        [TestMethod]
-//        public void Test_BinarySearchInexact_NotAligned_InexactMatch() => throw new NotImplementedException();
-
-//        [TestMethod]
-//        public void Test_BinarySearchInexact_ProvokeIntegerRoundOffError_ExactMatch() => throw new NotImplementedException();
-
-//        [TestMethod]
-//        public void Test_BinarySearchInexact_ProvokeIntegerRoundOffError_InexactMatch() => throw new NotImplementedException();
+//            AssertHelper.AreEqual(5, () => before);
+//            AssertHelper.AreEqual(9, () => after);
+//        }
 
 //        [TestMethod]
 //        public void Test_BinarySearchInexact_ArbitrarySituation()
 //        {
-//            var ints = new [] { 1, 5, 9, 14, 19, 60 };
+//            var values = new[] { 1, 5, 9, 14, 19, 60 };
 
-//            (int before, int after) = ints.BinarySearchInexact(3);
+//            (int before, int after) = values.BinarySearchInexact(6);
 
-//            throw new NotImplementedException();
+//            AssertHelper.AreEqual(5, () => before);
+//            AssertHelper.AreEqual(9, () => after);
 //        }
+
+//        // Test the Overloads
+
+//        //[TestMethod]
+//        //public void Test_BinarySearchInexact_InCollectionExtensions_WithArray() => throw new NotImplementedException();
+
+//        //[TestMethod]
+//        //public void Test_BinarySearchInexact_InCollectionExtensions_WithArray_AndPrecalculatedValues() => throw new NotImplementedException();
+
+//        //[TestMethod]
+//        //public void Test_BinarySearchInexact_InCollectionExtensions_WithIEnumerable() => throw new NotImplementedException();
+
+//        //[TestMethod]
+//        //public void Test_BinarySearchInexact_InCollectionExtensions_WithIEnumerable_AndPrecalculatedValues() => throw new NotImplementedException();
+
+//        //[TestMethod]
+//        //public void Test_BinarySearchInexact_InCollectionHelper_WithTuples() => throw new NotImplementedException();
+
+//        //[TestMethod]
+//        //public void Test_BinarySearchInexact_InCollectionHelper_WithTuples_AndPrecalculatedValues() => throw new NotImplementedException();
+
+//        //[TestMethod]
+//        //public void Test_BinarySearchInexact_InCollectionHelper_WithOutVariables() => throw new NotImplementedException();
+
+//        //[TestMethod]
+//        //public void Test_BinarySearchInexact_InCollectionHelper_WithOutVariables_AndPrecalculatedValues() => throw new NotImplementedException();
 //    }
 //}

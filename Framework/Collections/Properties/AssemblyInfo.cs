@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Collections")]
 [assembly: AssemblyDescription(
-@"LINQ overloads. SelectRecursive SelectAncestors Add Remove AddRange BinarySearchInexact Concat CrossJoin Distinct DistinctMany Except FirstWithClearException SingleOrDefaultWithClearException SingleWithClearException ForEach IndexOf TryGetIndexOf MinOrDefault MaxOrDefault PeekOrDefault PopOrDefault Product RemoveFirst Repeat ToHashSet ToNonUniqueDictionary TrimAll TryRemoveFirst Union Zip item.AsArray item.AsList item.AsEnumerable. Also a RedBlackTree.")]
+@"LINQ overloads. SelectRecursive SelectAncestors Add Remove AddRange Concat CrossJoin Distinct DistinctMany Except FirstWithClearException SingleOrDefaultWithClearException SingleWithClearException ForEach IndexOf TryGetIndexOf MinOrDefault MaxOrDefault PeekOrDefault PopOrDefault Product RemoveFirst Repeat ToHashSet ToNonUniqueDictionary TrimAll TryRemoveFirst Union Zip item.AsArray item.AsList item.AsEnumerable. Also a RedBlackTree.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

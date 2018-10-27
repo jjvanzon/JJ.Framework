@@ -44,6 +44,7 @@ namespace JJ.Framework.Collections
 
 			/// <summary> <#=summaryBase#> </summary>
 			/// <param name="sortedArray"> <#=paramDoc#> </param>
+			[Obsolete("Consider not using this. It only approximates the correct result.")]
 			public static (<#=numType#> valueBefore, <#=numType#> valueAfter) BinarySearchInexact(<#=numType#>[] sortedArray, <#=numType#> input)
 			{
 				BinarySearchInexact(sortedArray, input, out <#=numType#> valueBefore, out <#=numType#> valueAfter);
@@ -53,6 +54,7 @@ namespace JJ.Framework.Collections
 			/// <summary> <#=summaryBase#> </summary>
 			/// <param name="sortedArray"> <#=paramDoc#> </param>
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			[Obsolete("Consider not using this. It only approximates the correct result.")]
 			public static void BinarySearchInexact(
 				<#=numType#>[] sortedArray,
 				<#=numType#> input,
@@ -73,6 +75,7 @@ namespace JJ.Framework.Collections
 			/// </summary>
 			/// <param name="sortedArray"> <#=paramDoc#> </param>
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			[Obsolete("Consider not using this. It only approximates the correct result.")]
 			public static (<#=numType#> valueBefore, <#=numType#> valueAfter) BinarySearchInexact(
 				<#=numType#>[] sortedArray,
 				int halfCount,
@@ -90,6 +93,7 @@ namespace JJ.Framework.Collections
 			/// </summary>
 			/// <param name="sortedArray"> <#=paramDoc#> </param>
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			[Obsolete("Consider not using this. It only approximates the correct result.")]
 			public static void BinarySearchInexact(
 				<#=numType#>[] sortedArray,
 				int halfCount,
@@ -111,17 +115,20 @@ namespace JJ.Framework.Collections
 
 					jump = jump >> 1;
 
-					if (input >= sample)
+					if (input > sample)
 					{
 						valueBefore = sample;
-
 						sampleIndex += jump;
+					}
+					else if (input < sample)
+					{
+						valueAfter = sample;
+						sampleIndex -= jump;
 					}
 					else
 					{
+						valueBefore = sample;
 						valueAfter = sample;
-
-						sampleIndex -= jump;
 					}
 				}
 			}

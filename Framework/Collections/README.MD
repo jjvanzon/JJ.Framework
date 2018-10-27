@@ -19,8 +19,6 @@ Many of these methods are variations on the already existing LINQ methods. You m
 	* `AddRange` is a member of `List`<`T`>. Here are variations for `IEnumerable`<`T`> and `HashSet`<`T`>.
 * `AsArray`, `AsList`, `AsEnumerable`
 	* Converts a single item to an array, list or enumerable. Example: `List`<`int`>` myInts = 3.AsList();` (The names `ToArray` and `ToList` conflicted with other overloads.)
-* `BinarySearchInexact`
-	* Searches a sorted collection in an efficient way. Returns the value before and the value after if a value to search is in between two values in the list.
 * `Concat` variations with:
 	* A comma separated argument list, e.g. `myCollection.Concat(4, 7, 12);`
 	* A single item, e.g. `myCollection.Concat(myItem);`
