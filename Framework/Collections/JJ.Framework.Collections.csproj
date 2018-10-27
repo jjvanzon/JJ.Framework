@@ -52,9 +52,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionExtensions.cs" />
+    <Compile Include="CollectionExtensions_BinarySearchInexact.cs" />
     <Compile Include="CollectionExtensions_Recursive_Ancestors.cs" />
     <Compile Include="CollectionExtensions_Recursive_IList.cs" />
     <Compile Include="CollectionExtensions_Recursive_IEnumerable.cs" />
+    <Compile Include="CollectionHelper.BinarySearchInexact.cs" />
     <Compile Include="CollectionHelper.cs" />
     <Compile Include="NestedEnumerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
