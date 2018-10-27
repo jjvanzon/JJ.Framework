@@ -87,6 +87,52 @@ namespace JJ.Framework.Collections
         /// </summary>
         public static List<TItem> AsList<TItem>(this TItem item) => new List<TItem> { item };
 
+        /// <summary>
+        /// Searches a sorted collection in an efficient way.
+        /// Returns the value before and the value after if a value to search is in between two values in the list.
+        /// Will only return a meaningful result if the collection is sorted.
+        /// </summary>
+        /// <param name="sortedArray"> Not checked for null, for performance. </param>
+        public static (double valueBefore, double valueAfter) BinarySearchInexact(this IEnumerable<double> sortedCollection, double input)
+            => CollectionHelper.BinarySearchInexact(sortedCollection.ToArray(), input);
+
+        /// <summary>
+        /// Searches a sorted collection in an efficient way.
+        /// Returns the value before and the value after if a value to search is in between two values in the list.
+        /// Will only return a meaningful result if the collection is sorted.
+        /// </summary>
+        /// <param name="sortedArray"> Not checked for null, for performance. </param>
+        public static (double valueBefore, double valueAfter) BinarySearchInexact(this double[] sortedArray, double input)
+            => CollectionHelper.BinarySearchInexact(sortedArray, input);
+
+        /// <summary>
+        /// Searches a sorted collection in an efficient way.
+        /// Returns the value before and the value after if a value to search is in between two values in the list.
+        /// Will only return a meaningful result if the collection is sorted.
+        /// </summary>
+        /// <param name="sortedArray"> Not checked for null, for performance. </param>
+        public static (double valueBefore, double valueAfter) BinarySearchInexact(
+            this IEnumerable<double> sortedCollection,
+            int halfCount,
+            double min,
+            double max,
+            double input)
+            => CollectionHelper.BinarySearchInexact(sortedCollection.ToArray(), halfCount, min, max, input);
+
+        /// <summary>
+        /// Searches a sorted collection in an efficient way.
+        /// Returns the value before and the value after if a value to search is in between two values in the list.
+        /// Will only return a meaningful result if the collection is sorted.
+        /// </summary>
+        /// <param name="sortedArray"> Not checked for null, for performance. </param>
+        public static (double valueBefore, double valueAfter) BinarySearchInexact(
+            this double[] sortedArray,
+            int halfCount,
+            double min,
+            double max,
+            double input)
+            => CollectionHelper.BinarySearchInexact(sortedArray, halfCount, min, max, input);
+
         /// <summary> Overload of Concat that takes a single item, e.g. myCollection.Concat(myItem); </summary>
         public static IEnumerable<T> Concat<T>(this IEnumerable<T> first, T second) => first.Concat(new[] { second });
 

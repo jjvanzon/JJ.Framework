@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Exceptions")]
 [assembly: AssemblyDescription(
-@"Contains many exception classes for common basic errors. Clear messages, concise syntax, strongly-typed, good performance. Generates messages like ""myParent.MyChildren[0].MyProperty is null."", ""Customer with key { customerNumber = 1234, customerType = Subscriber } not found."" and ""height of 2 is less than 10.""")]
+@"Contains many exception classes for common basic errors. Clear messages, concise syntax, strongly-typed, good performance. Generates messages like ""myParent.MyChildren[0].MyProperty is null."", ""height of 2 is less than 10."", ""Customer with key { customerNumber = 1234, customerType = Subscriber } not found.""")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
