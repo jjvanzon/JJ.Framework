@@ -5,9 +5,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Testing")]
-[assembly: AssemblyDescription("Helper for unit tests. Mimics the Assert class, " +
-							   "but will display the tested expression in error messages, " +
-							   "instead of being vague about it or laborious to program.")]
+[assembly: AssemblyDescription(
+"Helper for unit tests. Mimics the Assert class, " +
+"but will display the tested expression in error messages, " +
+"instead of being vague about it or laborious to program.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
@@ -32,4 +33,4 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.4.*")]
+[assembly: AssemblyVersion("1.5.*")]
