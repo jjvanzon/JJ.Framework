@@ -5,9 +5,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Testing")]
-[assembly: AssemblyDescription("Helper for unit tests. Mimics the Assert class, " +
-							   "but will display the tested expression in error messages, " +
-							   "instead of being vague about it or laborious to program.")]
+[assembly: AssemblyDescription(
+"Helper for unit tests. Mimics the Assert class, " +
+"but will display the tested expression in error messages, " +
+"instead of being vague about it or laborious to program.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

@@ -7,7 +7,7 @@
 		<owners>$author$</owners>
 		<copyright>$copyright$</copyright>
     <description>$description$</description>
-		<summary>$description$</description>
+		<summary>$description$</summary>
 
 		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Testing</projectUrl>
