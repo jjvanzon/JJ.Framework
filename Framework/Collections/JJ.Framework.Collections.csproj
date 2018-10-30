@@ -95,14 +95,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CollectionExtensions_BinarySearchInexact.tt">
+    <None Include="CollectionExtensions_BinarySearchInexact.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CollectionExtensions_BinarySearchInexact1.cs</LastGenOutput>
-    </Content>
-    <Content Include="CollectionHelper.BinarySearchInexact.tt">
+    </None>
+    <None Include="CollectionHelper.BinarySearchInexact.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CollectionHelper.BinarySearchInexact1.cs</LastGenOutput>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

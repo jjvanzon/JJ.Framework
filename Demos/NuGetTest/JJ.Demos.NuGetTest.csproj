@@ -38,8 +38,8 @@
     <Reference Include="JetBrains.Annotations, Version=2018.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JetBrains.Annotations.2018.2.1\lib\net20\JetBrains.Annotations.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Collections, Version=1.4.6862.41385, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Collections.1.4.6862.41385\lib\net461\JJ.Framework.Collections.dll</HintPath>
+    <Reference Include="JJ.Framework.Collections, Version=1.4.6870.36368, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Collections.1.4.6870.36368\lib\net461\JJ.Framework.Collections.dll</HintPath>
     </Reference>
     <Reference Include="JJ.Framework.Common, Version=1.4.6862.40439, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Common.1.4.6862.40439\lib\net461\JJ.Framework.Common.dll</HintPath>
@@ -50,29 +50,29 @@
     <Reference Include="JJ.Framework.Conversion, Version=1.4.6862.40448, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Conversion.1.4.6862.40448\lib\net461\JJ.Framework.Conversion.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Exceptions, Version=1.4.6862.40443, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Exceptions.1.4.6862.40443\lib\net461\JJ.Framework.Exceptions.dll</HintPath>
+    <Reference Include="JJ.Framework.Exceptions, Version=1.4.6873.32508, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Exceptions.1.4.6873.32508\lib\net461\JJ.Framework.Exceptions.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.IO, Version=1.4.6862.41384, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.IO.1.4.6862.41384\lib\net461\JJ.Framework.IO.dll</HintPath>
+    <Reference Include="JJ.Framework.IO, Version=1.4.6870.34059, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.IO.1.4.6870.34059\lib\net461\JJ.Framework.IO.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Mathematics, Version=1.4.6862.41387, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Mathematics.1.4.6862.41387\lib\net461\JJ.Framework.Mathematics.dll</HintPath>
+    <Reference Include="JJ.Framework.Mathematics, Version=1.4.6873.32669, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Mathematics.1.4.6873.32669\lib\net461\JJ.Framework.Mathematics.dll</HintPath>
     </Reference>
     <Reference Include="JJ.Framework.PlatformCompatibility, Version=1.4.6862.40437, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.1.4.6862.40437\lib\net461\JJ.Framework.PlatformCompatibility.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Reflection, Version=1.4.6862.40441, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Reflection.1.4.6862.40441\lib\net461\JJ.Framework.Reflection.dll</HintPath>
+    <Reference Include="JJ.Framework.Reflection, Version=1.4.6874.33783, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.1.4.6874.33783\lib\net461\JJ.Framework.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="JJ.Framework.Testing, Version=1.4.6862.40450, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Testing.1.4.6862.40450\lib\net461\JJ.Framework.Testing.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Text, Version=1.4.6862.40435, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Text.1.4.6862.40435\lib\net461\JJ.Framework.Text.dll</HintPath>
+    <Reference Include="JJ.Framework.Text, Version=1.4.6869.43189, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Text.1.4.6869.43189\lib\net461\JJ.Framework.Text.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Xml, Version=1.4.6867.38923, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Xml.1.4.6867.38923\lib\net461\JJ.Framework.Xml.dll</HintPath>
+    <Reference Include="JJ.Framework.Xml, Version=1.4.6869.42104, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Xml.1.4.6869.42104\lib\net461\JJ.Framework.Xml.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
