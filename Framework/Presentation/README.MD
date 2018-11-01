@@ -5,9 +5,9 @@ Easily construct a pager view model with properties like `CanGoToFirstPage`, `Ca
 Example call:
 
 	PagerViewModelFactory.Create(
-		pageNumber: 3, 
+		selectedPageNumber: 3, 
 		pageSize: 10, 
-		count: 200, 
+		itemCount: 200, 
 		maxVisiblePageNumbers: 5);
 
 This returns:
@@ -28,11 +28,11 @@ This returns:
 		CanGoToLastPage = true
 	}
 
-You can render it any way you want. But you might present it as follows:
+You can render it any way you want, but you might present it as follows:
 
 	<<  <  1 2 [3] 4 5 ...  >  >>
 
-Here is an example of how you could render it with a StringBuilder:
+Here is an example of how you could render it with a `StringBuilder`:
 
     var sb = new StringBuilder();
 

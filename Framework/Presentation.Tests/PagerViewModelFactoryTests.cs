@@ -11,19 +11,19 @@ namespace JJ.Framework.Presentation.Tests
         public void Test_PagerViewModelFactory_Exception_PageNumber_LessThan1()
             => AssertHelper.ThrowsException<LessThanException>(
                 () => PagerViewModelFactory.Create(
-                    pageNumber: 0,
+                    selectedPageNumber: 0,
                     pageSize: 10,
-                    count: 195,
+                    itemCount: 195,
                     maxVisiblePageNumbers: 5),
-                "pageNumber of 0 is less than 1.");
+                "selectedPageNumber of 0 is less than 1.");
 
         [TestMethod]
         public void Test_PagerViewModelFactory_Exception_PageSize_LessThan1()
             => AssertHelper.ThrowsException<LessThanException>(
                 () => PagerViewModelFactory.Create(
-                    pageNumber: 1,
+                    selectedPageNumber: 1,
                     pageSize: 0,
-                    count: 195,
+                    itemCount: 195,
                     maxVisiblePageNumbers: 5),
                 "pageSize of 0 is less than 1.");
 
@@ -31,19 +31,19 @@ namespace JJ.Framework.Presentation.Tests
         public void Test_PagerViewModelFactory_Exception_Count_LessThan0()
             => AssertHelper.ThrowsException<LessThanException>(
                 () => PagerViewModelFactory.Create(
-                    pageNumber: 1,
+                    selectedPageNumber: 1,
                     pageSize: 10,
-                    count: -1,
+                    itemCount: -1,
                     maxVisiblePageNumbers: 5),
-                "count of -1 is less than 0.");
+                "itemCount of -1 is less than 0.");
 
         [TestMethod]
         public void Test_PagerViewModelFactory_Exception_MaxVisiblePageNumbers_LessThan1()
             => AssertHelper.ThrowsException<LessThanException>(
                 () => PagerViewModelFactory.Create(
-                    pageNumber: 1,
+                    selectedPageNumber: 1,
                     pageSize: 10,
-                    count: 195,
+                    itemCount: 195,
                     maxVisiblePageNumbers: 0),
                 "maxVisiblePageNumbers of 0 is less than 1.");
 
@@ -51,19 +51,19 @@ namespace JJ.Framework.Presentation.Tests
         public void Test_PagerViewModelFactory_Exception_PageNumberGreaterThanPageCount()
             => AssertHelper.ThrowsException<GreaterThanException>(
                 () => PagerViewModelFactory.Create(
-                    pageNumber: 21,
+                    selectedPageNumber: 21,
                     pageSize: 10,
-                    count: 195,
+                    itemCount: 195,
                     maxVisiblePageNumbers: 5),
                 "pageNumber of 21 is greater than pageCount of 20.");
 
         [TestMethod]
-        public void Test_PagerViewModelFactory_CountIs0()
+        public void Test_PagerViewModelFactory_ItemCountIs0()
         {
             PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
-                pageNumber: 1,
+                selectedPageNumber: 1,
                 pageSize: 10,
-                count: 0,
+                itemCount: 0,
                 maxVisiblePageNumbers: 5);
 
             AssertHelper.AreEqual(0, () => pagerViewModel.PageCount);
@@ -85,9 +85,9 @@ namespace JJ.Framework.Presentation.Tests
         public void Test_PagerViewModelFactory_WithPageNumbersOutOfView_FirstPage_LeftBound()
         {
             PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
-                pageNumber: 1,
+                selectedPageNumber: 1,
                 pageSize: 10,
-                count: 195,
+                itemCount: 195,
                 maxVisiblePageNumbers: 5);
 
             AssertHelper.AreEqual(20, () => pagerViewModel.PageCount);
@@ -115,9 +115,9 @@ namespace JJ.Framework.Presentation.Tests
         public void Test_PagerViewModelFactory_WithPageNumbersOutOfView_LastPage_RightBound()
         {
             PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
-                pageNumber: 20,
+                selectedPageNumber: 20,
                 pageSize: 10,
-                count: 195,
+                itemCount: 195,
                 maxVisiblePageNumbers: 5);
 
             AssertHelper.AreEqual(20, () => pagerViewModel.PageCount);
@@ -145,9 +145,9 @@ namespace JJ.Framework.Presentation.Tests
         public void Test_PagerViewModelFactory_WithPageNumbersOutOfView_InTheMiddle()
         {
             PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
-                pageNumber: 10,
+                selectedPageNumber: 10,
                 pageSize: 10,
-                count: 195,
+                itemCount: 195,
                 maxVisiblePageNumbers: 5);
 
             AssertHelper.AreEqual(20, () => pagerViewModel.PageCount);
@@ -175,9 +175,9 @@ namespace JJ.Framework.Presentation.Tests
         public void Test_PagerViewModelFactory_AllPageNumbersAreVisible_FirstPage()
         {
             PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
-                pageNumber: 1,
+                selectedPageNumber: 1,
                 pageSize: 10,
-                count: 45,
+                itemCount: 45,
                 maxVisiblePageNumbers: 5);
 
             AssertHelper.AreEqual(5, () => pagerViewModel.PageCount);
@@ -205,9 +205,9 @@ namespace JJ.Framework.Presentation.Tests
         public void Test_PagerViewModelFactory_AllPageNumbersAreVisible_LastPage()
         {
             PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
-                pageNumber: 5,
+                selectedPageNumber: 5,
                 pageSize: 10,
-                count: 45,
+                itemCount: 45,
                 maxVisiblePageNumbers: 5);
 
             AssertHelper.AreEqual(5, () => pagerViewModel.PageCount);
@@ -235,9 +235,9 @@ namespace JJ.Framework.Presentation.Tests
         public void Test_PagerViewModelFactory_LessPageNumbers_ThanMaxVisiblePageCount()
         {
             PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
-                pageNumber: 1,
+                selectedPageNumber: 1,
                 pageSize: 10,
-                count: 35,
+                itemCount: 35,
                 maxVisiblePageNumbers: 5);
 
             AssertHelper.AreEqual(4, () => pagerViewModel.PageCount);
@@ -264,9 +264,9 @@ namespace JJ.Framework.Presentation.Tests
         public void Test_PagerViewModelFactory_BanalExample()
         {
             PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
-                pageNumber: 1,
+                selectedPageNumber: 1,
                 pageSize: 10,
-                count: 195,
+                itemCount: 195,
                 maxVisiblePageNumbers: 5);
 
             AssertHelper.AreEqual(20, () => pagerViewModel.PageCount);
@@ -294,9 +294,9 @@ namespace JJ.Framework.Presentation.Tests
         public void Test_PagerViewModelFactory_DocumentationExample()
         {
             PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
-                pageNumber: 3,
+                selectedPageNumber: 3,
                 pageSize: 10,
-                count: 195,
+                itemCount: 200,
                 maxVisiblePageNumbers: 5);
 
             AssertHelper.AreEqual(20, () => pagerViewModel.PageCount);

@@ -9,34 +9,34 @@ namespace JJ.Framework.Presentation
     [PublicAPI]
 	public static class PagerViewModelFactory
 	{
-		public static PagerViewModel Create(int pageNumber, int pageSize, int count, int maxVisiblePageNumbers)
+		public static PagerViewModel Create(int selectedPageNumber, int pageSize, int itemCount, int maxVisiblePageNumbers)
 		{
-			if (pageNumber < 1) throw new LessThanException(() => pageNumber, 1);
+			if (selectedPageNumber < 1) throw new LessThanException(() => selectedPageNumber, 1);
             if (pageSize < 1) throw new LessThanException(() => pageSize, 1);
-			if (count < 0) throw new LessThanException(() => count, 0);
+			if (itemCount < 0) throw new LessThanException(() => itemCount, 0);
 			if (maxVisiblePageNumbers < 1) throw new LessThanException(() => maxVisiblePageNumbers, 1);
 
-            if (count == 0)
+            if (itemCount == 0)
             {
                 return new PagerViewModel { VisiblePageNumbers = new List<int>() };
             }
 
-			var pageCount = (int)Math.Ceiling((decimal)count / (decimal)pageSize);
-			if (pageNumber > pageCount)
+			var pageCount = (int)Math.Ceiling((decimal)itemCount / (decimal)pageSize);
+			if (selectedPageNumber > pageCount)
 			{
-			    throw new GreaterThanException(() => pageNumber, () => pageCount);
+			    throw new GreaterThanException(() => selectedPageNumber, () => pageCount);
 			}
 
 			bool hasPages = pageCount != 0;
-			bool isFirstPage = pageNumber == 1;
-			bool isLastPage = pageNumber == pageCount;
+			bool isFirstPage = selectedPageNumber == 1;
+			bool isLastPage = selectedPageNumber == pageCount;
 
 			var viewModel = new PagerViewModel
 			{
 				PageCount = pageCount,
 				CanGoToPreviousPage = hasPages && !isFirstPage,
 				CanGoToNextPage = hasPages && !isLastPage,
-			    PageNumber = pageNumber,
+			    PageNumber = selectedPageNumber,
 			    VisiblePageNumbers = new List<int>(maxVisiblePageNumbers)
 			};
 
@@ -73,8 +73,8 @@ namespace JJ.Framework.Presentation
 				int numberOfPagesOnLeftSide = (maxVisiblePageNumbers - 1) / 2; // Sneakily make use of integer division to get less on the left side in case of an even number of visible pages.
 				int numberOfPagesOnRightSide = maxVisiblePageNumbers - numberOfPagesOnLeftSide - 1;
 
-				bool isLeftBound = pageNumber - numberOfPagesOnLeftSide <= 1;
-				bool isRightBound = pageNumber + numberOfPagesOnRightSide > pageCount;
+				bool isLeftBound = selectedPageNumber - numberOfPagesOnLeftSide <= 1;
+				bool isRightBound = selectedPageNumber + numberOfPagesOnRightSide > pageCount;
 
 				if (isLeftBound)
 				{
@@ -89,8 +89,8 @@ namespace JJ.Framework.Presentation
 				else
 				{
 					// Is is somewhere in the middle.
-					firstVisiblePageNumber = pageNumber - numberOfPagesOnLeftSide;
-					lastVisiblePageNumber = pageNumber + numberOfPagesOnRightSide;
+					firstVisiblePageNumber = selectedPageNumber - numberOfPagesOnLeftSide;
+					lastVisiblePageNumber = selectedPageNumber + numberOfPagesOnRightSide;
 				}
 			}
 
