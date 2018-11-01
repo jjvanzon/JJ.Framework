@@ -6,20 +6,20 @@ This library is more generally named `JJ.Framework.Presentation`, because this i
 
 Example:
 
-	PagerViewModelFactory.Create(pageIndex: 0, pageSize: 10, count: 100, maxVisiblePageNumbers = 5);
+	PagerViewModelFactory.Create(pageNumber: 3, pageSize: 10, count: 200, maxVisiblePageNumbers: 5);
 
 Returns:
 
 	PagerViewModel
 	{
-		PageCount = 10
-		CanGoToFirstPage = false,
-		CanGoToPreviousPage = false,
+		PageCount = 20
+		CanGoToFirstPage = true,
+		CanGoToPreviousPage = true,
 		MustShowLeftEllipsis = false,
 
 		VisiblePageNumbers = { 1, 2, 3, 4, 5 },
 
-		PageNumber = 1,
+		PageNumber = 3,
 
 		MustShowRightEllipsis = true,
 		CanGoToNextPage = true, 
