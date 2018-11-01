@@ -11,50 +11,28 @@ namespace JJ.Framework.Presentation.Helpers
 
             var sb = new StringBuilder();
 
-            if (pagerViewModel.CanGoToFirstPage)
-            {
-                sb.Append("<<  ");
-            }
-
-            if (pagerViewModel.CanGoToFirstPage)
-            {
-                sb.Append("<  ");
-            }
-
-            if (pagerViewModel.MustShowLeftEllipsis)
-            {
-                sb.Append("... ");
-            }
+            if (pagerViewModel.CanGoToFirstPage) sb.Append("<<  ");
+            if (pagerViewModel.CanGoToPreviousPage) sb.Append("<  ");
+            if (pagerViewModel.MustShowLeftEllipsis) sb.Append("... ");
 
             if (pagerViewModel.VisiblePageNumbers != null)
             { 
-                foreach (int visiblePageNumber in pagerViewModel.VisiblePageNumbers)
+                foreach (int i in pagerViewModel.VisiblePageNumbers)
                 {
-                    if (visiblePageNumber == pagerViewModel.PageNumber)
+                    if (i == pagerViewModel.PageNumber)
                     {
-                        sb.Append($"[{visiblePageNumber}] ");
+                        sb.Append($"[{i}] ");
                     }
                     else
                     {
-                        sb.Append($"{visiblePageNumber} ");
+                        sb.Append($"{i} ");
                     }
                 }
             }
 
-            if (pagerViewModel.MustShowRightEllipsis)
-            {
-                sb.Append("... ");
-            }
-
-            if (pagerViewModel.CanGoToNextPage)
-            {
-                sb.Append(" >  ");
-            }
-
-            if (pagerViewModel.CanGoToLastPage)
-            {
-                sb.Append(">>  ");
-            }
+            if (pagerViewModel.MustShowRightEllipsis) sb.Append("... ");
+            if (pagerViewModel.CanGoToNextPage) sb.Append(" >  ");
+            if (pagerViewModel.CanGoToLastPage) sb.Append(">>  ");
 
             sb.Append($"({nameof(pagerViewModel.PageCount)} = {pagerViewModel.PageCount}) ");
 
