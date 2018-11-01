@@ -9,22 +9,22 @@ namespace JJ.Framework.Presentation
     [PublicAPI]
 	public static class PagerViewModelFactory
 	{
-		public static PagerViewModel Create(int selectedPageNumber, int pageSize, int count, int maxVisiblePageNumbers)
+		public static PagerViewModel Create(int pageNumber, int pageSize, int count, int maxVisiblePageNumbers)
 		{
             if (pageSize < 1) throw new LessThanException(() => pageSize, 1);
-			if (selectedPageNumber < 1) throw new LessThanException(() => selectedPageNumber, 1);
+			if (pageNumber < 1) throw new LessThanException(() => pageNumber, 1);
 			if (count < 0) throw new LessThanException(() => count, 0);
 			if (maxVisiblePageNumbers < 1) throw new LessThanException(() => maxVisiblePageNumbers, 1);
 
 			var pageCount = (int)Math.Ceiling((decimal)count / (decimal)pageSize);
-			if (selectedPageNumber > pageCount)
+			if (pageNumber > pageCount)
 			{
-			    throw new GreaterThanException(() => selectedPageNumber, () => pageCount);
+			    throw new GreaterThanException(() => pageNumber, () => pageCount);
 			}
 
 			bool hasPages = pageCount != 0;
-			bool isFirstPage = selectedPageNumber == 1;
-			bool isLastPage = selectedPageNumber == pageCount;
+			bool isFirstPage = pageNumber == 1;
+			bool isLastPage = pageNumber == pageCount;
 
 			var viewModel = new PagerViewModel
 			{
@@ -66,8 +66,8 @@ namespace JJ.Framework.Presentation
 				int numberOfPagesOnLeftSide = (maxVisiblePageNumbers - 1) / 2; // Sneakily make use of integer division to get less on the left side in case of an even number of visible pages.
 				int numberOfPagesOnRightSide = maxVisiblePageNumbers - numberOfPagesOnLeftSide - 1;
 
-				bool isLeftBound = selectedPageNumber - numberOfPagesOnLeftSide <= 1;
-				bool isRightBound = selectedPageNumber + numberOfPagesOnRightSide > pageCount;
+				bool isLeftBound = pageNumber - numberOfPagesOnLeftSide <= 1;
+				bool isRightBound = pageNumber + numberOfPagesOnRightSide > pageCount;
 
 				if (isLeftBound)
 				{
@@ -82,19 +82,19 @@ namespace JJ.Framework.Presentation
 				else
 				{
 					// Is is somewhere in the middle.
-					firstVisiblePageNumber = selectedPageNumber - numberOfPagesOnLeftSide + 1;
-					lastVisiblePageNumber = selectedPageNumber + numberOfPagesOnRightSide + 1;
+					firstVisiblePageNumber = pageNumber - numberOfPagesOnLeftSide + 1;
+					lastVisiblePageNumber = pageNumber + numberOfPagesOnRightSide + 1;
 				}
 			}
 
 			// Create page number view models
 			viewModel.VisiblePageNumbers = new List<int>(maxVisiblePageNumbers);
-			for (int pageNumber = firstVisiblePageNumber; pageNumber <= lastVisiblePageNumber; pageNumber++)
+			for (int i = firstVisiblePageNumber; i <= lastVisiblePageNumber; i++)
 			{
-				viewModel.VisiblePageNumbers.Add(pageNumber);
+				viewModel.VisiblePageNumbers.Add(i);
 			}
 
-			viewModel.PageNumber = selectedPageNumber;
+			viewModel.PageNumber = pageNumber;
 
 			viewModel.MustShowLeftEllipsis = firstVisiblePageNumber != 1;
 			viewModel.MustShowRightEllipsis = lastVisiblePageNumber != pageCount;
