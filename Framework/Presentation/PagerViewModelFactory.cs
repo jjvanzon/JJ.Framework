@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Comparative;
 
 namespace JJ.Framework.Presentation
 {
+    [PublicAPI]
 	public static class PagerViewModelFactory
 	{
 		public static PagerViewModel Create(int selectedPageIndex, int pageSize, int count, int maxVisiblePageNumbers)
@@ -17,7 +19,7 @@ namespace JJ.Framework.Presentation
 			int pageCount = (int)Math.Ceiling((decimal)count / (decimal)pageSize);
 			if (selectedPageIndex > pageCount)
 			{
-				throw new Exception($"pageIndex {selectedPageIndex} is larger than pageCount {pageCount}.");
+				throw new Exception($"selectedPageIndex {selectedPageIndex} is larger than pageCount {pageCount}.");
 			}
 
 			bool hasPages = pageCount != 0;
