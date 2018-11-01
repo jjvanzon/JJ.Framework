@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Comparative;
+// ReSharper disable RedundantCast
 
 namespace JJ.Framework.Presentation
 {
     [PublicAPI]
 	public static class PagerViewModelFactory
 	{
-		public static PagerViewModel Create(int selectedPageIndex, int pageSize, int count, int maxVisiblePageNumbers)
+		public static PagerViewModel Create(int selectedPageNumber, int pageSize, int count, int maxVisiblePageNumbers)
 		{
+		    int selectedPageIndex = selectedPageNumber - 1;
+
 			if (pageSize < 1) throw new LessThanException(() => pageSize, 1);
 			if (selectedPageIndex < 0) throw new LessThanException(() => selectedPageIndex, 0);
 			if (count < 0) throw new LessThanException(() => count, 0);
 			if (maxVisiblePageNumbers < 1) throw new LessThanException(() => maxVisiblePageNumbers, 1);
 
-			// ReSharper disable RedundantCast
-			int pageCount = (int)Math.Ceiling((decimal)count / (decimal)pageSize);
+			var pageCount = (int)Math.Ceiling((decimal)count / (decimal)pageSize);
 			if (selectedPageIndex > pageCount)
 			{
-				throw new Exception($"selectedPageIndex {selectedPageIndex} is larger than pageCount {pageCount}.");
+			    throw new GreaterThanException(() => selectedPageIndex, () => pageCount);
 			}
 
 			bool hasPages = pageCount != 0;
