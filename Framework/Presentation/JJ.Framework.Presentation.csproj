@@ -47,6 +47,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\DebuggerDisplayFormatter.cs" />
     <Compile Include="PagerViewModel.cs" />
     <Compile Include="PagerViewModelFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

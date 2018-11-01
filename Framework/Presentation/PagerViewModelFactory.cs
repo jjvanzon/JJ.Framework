@@ -11,10 +11,15 @@ namespace JJ.Framework.Presentation
 	{
 		public static PagerViewModel Create(int pageNumber, int pageSize, int count, int maxVisiblePageNumbers)
 		{
-            if (pageSize < 1) throw new LessThanException(() => pageSize, 1);
 			if (pageNumber < 1) throw new LessThanException(() => pageNumber, 1);
+            if (pageSize < 1) throw new LessThanException(() => pageSize, 1);
 			if (count < 0) throw new LessThanException(() => count, 0);
 			if (maxVisiblePageNumbers < 1) throw new LessThanException(() => maxVisiblePageNumbers, 1);
+
+            if (count == 0)
+            {
+                return new PagerViewModel { VisiblePageNumbers = new List<int>() };
+            }
 
 			var pageCount = (int)Math.Ceiling((decimal)count / (decimal)pageSize);
 			if (pageNumber > pageCount)
@@ -31,6 +36,8 @@ namespace JJ.Framework.Presentation
 				PageCount = pageCount,
 				CanGoToPreviousPage = hasPages && !isFirstPage,
 				CanGoToNextPage = hasPages && !isLastPage,
+			    PageNumber = pageNumber,
+			    VisiblePageNumbers = new List<int>(maxVisiblePageNumbers)
 			};
 
 			viewModel.CanGoToFirstPage = viewModel.CanGoToPreviousPage;
@@ -82,19 +89,16 @@ namespace JJ.Framework.Presentation
 				else
 				{
 					// Is is somewhere in the middle.
-					firstVisiblePageNumber = pageNumber - numberOfPagesOnLeftSide + 1;
-					lastVisiblePageNumber = pageNumber + numberOfPagesOnRightSide + 1;
+					firstVisiblePageNumber = pageNumber - numberOfPagesOnLeftSide;
+					lastVisiblePageNumber = pageNumber + numberOfPagesOnRightSide;
 				}
 			}
 
 			// Create page number view models
-			viewModel.VisiblePageNumbers = new List<int>(maxVisiblePageNumbers);
 			for (int i = firstVisiblePageNumber; i <= lastVisiblePageNumber; i++)
 			{
 				viewModel.VisiblePageNumbers.Add(i);
 			}
-
-			viewModel.PageNumber = pageNumber;
 
 			viewModel.MustShowLeftEllipsis = firstVisiblePageNumber != 1;
 			viewModel.MustShowRightEllipsis = lastVisiblePageNumber != pageCount;
