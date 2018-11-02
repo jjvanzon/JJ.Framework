@@ -14,7 +14,7 @@
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Presentation</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
-		<tags></tags>
+		<tags>pager view model presentation</tags>
 
 		<dependencies>
 			<dependency id="JJ.Framework.Exceptions" version="[1.5,1.6)" />

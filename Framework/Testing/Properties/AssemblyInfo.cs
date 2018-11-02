@@ -6,9 +6,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Testing")]
 [assembly: AssemblyDescription(
-"Helper for unit tests. Mimics the Assert class, " +
-"but will display the tested expression in error messages, " +
-"instead of being vague about it or laborious to program.")]
+"Helper for unit tests. Mimics the Assert class, but will display the tested expression in error messages, instead of being vague about it or laborious to program. It also offers methods to evaluate if the right exception goes off in the right spot with the right exception type and / or the right message.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
