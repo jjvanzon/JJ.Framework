@@ -48,14 +48,14 @@ namespace JJ.Framework.Presentation.Tests
                 "maxVisiblePageNumbers of 0 is less than 1.");
 
         [TestMethod]
-        public void Test_PagerViewModelFactory_Exception_PageNumberGreaterThanPageCount()
+        public void Test_PagerViewModelFactory_Exception_SelectedPageNumberGreaterThanPageCount()
             => AssertHelper.ThrowsException<GreaterThanException>(
                 () => PagerViewModelFactory.Create(
                     selectedPageNumber: 21,
                     pageSize: 10,
                     itemCount: 195,
                     maxVisiblePageNumbers: 5),
-                "pageNumber of 21 is greater than pageCount of 20.");
+                "selectedPageNumber of 21 is greater than pageCount of 20.");
 
         [TestMethod]
         public void Test_PagerViewModelFactory_ItemCountIs0()
@@ -107,6 +107,66 @@ namespace JJ.Framework.Presentation.Tests
             AssertHelper.AreEqual(1, () => pagerViewModel.PageNumber);
 
             AssertHelper.AreEqual(true, () => pagerViewModel.MustShowRightEllipsis);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToNextPage);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToLastPage);
+        }
+
+        [TestMethod]
+        public void Test_PagerViewModelFactory_WithPageNumbersOutOfView_SecondPage_LeftBound()
+        {
+            PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
+                selectedPageNumber: 2,
+                pageSize: 10,
+                itemCount: 195,
+                maxVisiblePageNumbers: 5);
+
+            AssertHelper.AreEqual(20, () => pagerViewModel.PageCount);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToFirstPage);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToPreviousPage);
+            AssertHelper.AreEqual(false, () => pagerViewModel.MustShowLeftEllipsis);
+
+            AssertHelper.IsNotNull(() => pagerViewModel.VisiblePageNumbers);
+            AssertHelper.AreEqual(5, () => pagerViewModel.VisiblePageNumbers.Count);
+
+            AssertHelper.AreEqual(1, () => pagerViewModel.VisiblePageNumbers[0]);
+            AssertHelper.AreEqual(2, () => pagerViewModel.VisiblePageNumbers[1]);
+            AssertHelper.AreEqual(3, () => pagerViewModel.VisiblePageNumbers[2]);
+            AssertHelper.AreEqual(4, () => pagerViewModel.VisiblePageNumbers[3]);
+            AssertHelper.AreEqual(5, () => pagerViewModel.VisiblePageNumbers[4]);
+
+            AssertHelper.AreEqual(2, () => pagerViewModel.PageNumber);
+
+            AssertHelper.AreEqual(true, () => pagerViewModel.MustShowRightEllipsis);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToNextPage);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToLastPage);
+        }
+
+        [TestMethod]
+        public void Test_PagerViewModelFactory_WithPageNumbersOutOfView_SecondLastPage_RightBound()
+        {
+            PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
+                selectedPageNumber: 19,
+                pageSize: 10,
+                itemCount: 195,
+                maxVisiblePageNumbers: 5);
+
+            AssertHelper.AreEqual(20, () => pagerViewModel.PageCount);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToFirstPage);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToPreviousPage);
+            AssertHelper.AreEqual(true, () => pagerViewModel.MustShowLeftEllipsis);
+
+            AssertHelper.IsNotNull(() => pagerViewModel.VisiblePageNumbers);
+            AssertHelper.AreEqual(5, () => pagerViewModel.VisiblePageNumbers.Count);
+
+            AssertHelper.AreEqual(16, () => pagerViewModel.VisiblePageNumbers[0]);
+            AssertHelper.AreEqual(17, () => pagerViewModel.VisiblePageNumbers[1]);
+            AssertHelper.AreEqual(18, () => pagerViewModel.VisiblePageNumbers[2]);
+            AssertHelper.AreEqual(19, () => pagerViewModel.VisiblePageNumbers[3]);
+            AssertHelper.AreEqual(20, () => pagerViewModel.VisiblePageNumbers[4]);
+
+            AssertHelper.AreEqual(19, () => pagerViewModel.PageNumber);
+
+            AssertHelper.AreEqual(false, () => pagerViewModel.MustShowRightEllipsis);
             AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToNextPage);
             AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToLastPage);
         }
@@ -195,6 +255,66 @@ namespace JJ.Framework.Presentation.Tests
             AssertHelper.AreEqual(5, () => pagerViewModel.VisiblePageNumbers[4]);
 
             AssertHelper.AreEqual(1, () => pagerViewModel.PageNumber);
+
+            AssertHelper.AreEqual(false, () => pagerViewModel.MustShowRightEllipsis);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToNextPage);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToLastPage);
+        }
+
+        [TestMethod]
+        public void Test_PagerViewModelFactory_AllPageNumbersAreVisible_SecondPage()
+        {
+            PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
+                selectedPageNumber: 2,
+                pageSize: 10,
+                itemCount: 45,
+                maxVisiblePageNumbers: 5);
+
+            AssertHelper.AreEqual(5, () => pagerViewModel.PageCount);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToFirstPage);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToPreviousPage);
+            AssertHelper.AreEqual(false, () => pagerViewModel.MustShowLeftEllipsis);
+
+            AssertHelper.IsNotNull(() => pagerViewModel.VisiblePageNumbers);
+            AssertHelper.AreEqual(5, () => pagerViewModel.VisiblePageNumbers.Count);
+
+            AssertHelper.AreEqual(1, () => pagerViewModel.VisiblePageNumbers[0]);
+            AssertHelper.AreEqual(2, () => pagerViewModel.VisiblePageNumbers[1]);
+            AssertHelper.AreEqual(3, () => pagerViewModel.VisiblePageNumbers[2]);
+            AssertHelper.AreEqual(4, () => pagerViewModel.VisiblePageNumbers[3]);
+            AssertHelper.AreEqual(5, () => pagerViewModel.VisiblePageNumbers[4]);
+
+            AssertHelper.AreEqual(2, () => pagerViewModel.PageNumber);
+
+            AssertHelper.AreEqual(false, () => pagerViewModel.MustShowRightEllipsis);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToNextPage);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToLastPage);
+        }
+
+        [TestMethod]
+        public void Test_PagerViewModelFactory_AllPageNumbersAreVisible_SecondLastPage()
+        {
+            PagerViewModel pagerViewModel = PagerViewModelFactory.Create(
+                selectedPageNumber: 4,
+                pageSize: 10,
+                itemCount: 45,
+                maxVisiblePageNumbers: 5);
+
+            AssertHelper.AreEqual(5, () => pagerViewModel.PageCount);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToFirstPage);
+            AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToPreviousPage);
+            AssertHelper.AreEqual(false, () => pagerViewModel.MustShowLeftEllipsis);
+
+            AssertHelper.IsNotNull(() => pagerViewModel.VisiblePageNumbers);
+            AssertHelper.AreEqual(5, () => pagerViewModel.VisiblePageNumbers.Count);
+
+            AssertHelper.AreEqual(1, () => pagerViewModel.VisiblePageNumbers[0]);
+            AssertHelper.AreEqual(2, () => pagerViewModel.VisiblePageNumbers[1]);
+            AssertHelper.AreEqual(3, () => pagerViewModel.VisiblePageNumbers[2]);
+            AssertHelper.AreEqual(4, () => pagerViewModel.VisiblePageNumbers[3]);
+            AssertHelper.AreEqual(5, () => pagerViewModel.VisiblePageNumbers[4]);
+
+            AssertHelper.AreEqual(4, () => pagerViewModel.PageNumber);
 
             AssertHelper.AreEqual(false, () => pagerViewModel.MustShowRightEllipsis);
             AssertHelper.AreEqual(true, () => pagerViewModel.CanGoToNextPage);
