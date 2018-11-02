@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
+using JJ.Framework.Presentation.Helpers;
 
 namespace JJ.Framework.Presentation
 {
+    [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 	public sealed class PagerViewModel
 	{
 		public int PageCount { get; set; }
@@ -18,5 +21,7 @@ namespace JJ.Framework.Presentation
 		public bool MustShowRightEllipsis { get; set; }
 		public bool CanGoToNextPage { get; set; }
 		public bool CanGoToLastPage { get; set; }
+
+	    private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}
 }

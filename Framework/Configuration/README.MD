@@ -33,10 +33,10 @@ Example config:
 
 	<jj.demos.configuration>
 	  <items>
-		<item value="1" />
-		<item value="2" >
-		  <child value="3" />
-		</item>
+	    <item value="1" />
+	    <item value="2" >
+	      <child value="3" />
+	    </item>
 	  </items>
 	</jj.demos.configuration>
 

@@ -135,6 +135,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.CodeAnalysis.V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Data", "Framework\Testing.Data\JJ.Framework.Testing.Data.csproj", "{F6E87698-B73B-43F5-AFF2-54C2F219334E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Tests", "Framework\Presentation.Tests\JJ.Framework.Presentation.Tests.csproj", "{ECB34220-FE94-4094-8FFB-826082A28CC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1516,6 +1518,30 @@ Global
 		{F6E87698-B73B-43F5-AFF2-54C2F219334E}.Release|x64.Build.0 = Release|Any CPU
 		{F6E87698-B73B-43F5-AFF2-54C2F219334E}.Release|x86.ActiveCfg = Release|Any CPU
 		{F6E87698-B73B-43F5-AFF2-54C2F219334E}.Release|x86.Build.0 = Release|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Debug|x64.Build.0 = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Debug|x86.Build.0 = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.NPDebug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.NPDebug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.NPDebug|x64.ActiveCfg = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.NPDebug|x64.Build.0 = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Release|x64.ActiveCfg = Release|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Release|x64.Build.0 = Release|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Release|x86.ActiveCfg = Release|Any CPU
+		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

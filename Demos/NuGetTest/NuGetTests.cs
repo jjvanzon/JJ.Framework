@@ -121,15 +121,22 @@ namespace JJ.Demos.NuGetTest
 			}
 		}
 
-		[TestMethod]
-		public void Test_NuGetReference_JJ_Framework_Collections()
-		{
-			var item = new Item { Parent = new Item() };
+	    [TestMethod]
+	    public void Test_NuGetReference_JJ_Framework_Collections()
+	    {
+	        var item = new Item { Parent = new Item() };
 
-			IList<Item> ancestorsAndSelf = item.SelfAndAncestors(x => x.Parent).ToArray();
-		}
+	        IList<Item> selfAndAncestors = item.SelfAndAncestors(x => x.Parent).ToArray();
+	    }
 
-		[TestMethod]
+	    [TestMethod]
+	    public void Test_NuGetReference_JJ_Framework_Collections_BinarySearchInexactDeprecated()
+	    {
+	        var items = new[] { 2, 3, 5, 7, 11, 13, 17, 19 };
+	        (int valueBefore, int valueAfter) = items.BinarySearchInexact(3);
+	    }
+
+        [TestMethod]
 		public void Test_NuGetReference_JJ_Framework_Mathematics()
 		{
 			double hermite4Pt3oX = Interpolator.Hermite4pt3oX(0, 1, -2, -1, 0.231);
