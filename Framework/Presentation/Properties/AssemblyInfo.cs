@@ -5,11 +5,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Presentation")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription(
+    @"Easily construct a pager view model with properties like CanGoToFirstPage, CanGoToPreviousPage, CanGoToNextPage, CanGoToLastPage. &lt;&lt;  &lt;  1 2 [3] 4 5 ...  &gt;  &gt;&gt;")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan-Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
