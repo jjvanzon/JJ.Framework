@@ -19,6 +19,9 @@ nuget pack -build JJ.Framework.Reflection.csproj -Prop Configuration=Release -Ou
 cd "$($codeRootFolderPath)\Framework\Exceptions"
 nuget pack -build JJ.Framework.Exceptions.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"
 
+cd "$($codeRootFolderPath)\Framework\Presentation"
+nuget pack -build JJ.Framework.Presentation.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"
+
 cd "$($codeRootFolderPath)\Framework\Conversion"
 nuget pack -build JJ.Framework.Conversion.csproj -Prop Configuration=Release -OutputDirectory "$releaseFolderPath"
 

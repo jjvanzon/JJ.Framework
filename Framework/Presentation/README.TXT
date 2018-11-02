@@ -1,1 +1,0 @@
-﻿JJ.Framework.Presentation contains some general things to support a presentation layer. It contains a couple of commonly used ViewModels. (All views in our architecture are backed by ViewModels.) For instance a PagerViewModel.
