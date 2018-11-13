@@ -77,7 +77,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT" />
+    <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

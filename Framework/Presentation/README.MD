@@ -4,33 +4,33 @@ Easily construct a pager view model with properties like `CanGoToFirstPage`, `Ca
 
 Example call:
 
-	PagerViewModelFactory.Create(
-		selectedPageNumber: 3, 
-		pageSize: 10, 
-		itemCount: 200, 
-		maxVisiblePageNumbers: 5);
+    PagerViewModelFactory.Create(
+        selectedPageNumber: 3, 
+        pageSize: 10, 
+        itemCount: 200, 
+        maxVisiblePageNumbers: 5);
 
 This returns:
 
-	PagerViewModel
-	{
-		PageCount = 20,
-		CanGoToFirstPage = true,
-		CanGoToPreviousPage = true,
-		MustShowLeftEllipsis = false,
+    PagerViewModel
+    {
+        PageCount = 20,
+        CanGoToFirstPage = true,
+        CanGoToPreviousPage = true,
+        MustShowLeftEllipsis = false,
 
-		VisiblePageNumbers = { 1, 2, 3, 4, 5 },
+        VisiblePageNumbers = { 1, 2, 3, 4, 5 },
 
-		PageNumber = 3,
+        PageNumber = 3,
 
-		MustShowRightEllipsis = true,
-		CanGoToNextPage = true, 
-		CanGoToLastPage = true
-	}
+        MustShowRightEllipsis = true,
+        CanGoToNextPage = true, 
+        CanGoToLastPage = true
+    }
 
 You can render it any way you want, but you might present it as follows:
 
-	<<  <  1 2 [3] 4 5 ...  >  >>
+    <<  <  1 2 [3] 4 5 ...  >  >>
 
 Here is an example of how you could render it with a `StringBuilder`:
 
