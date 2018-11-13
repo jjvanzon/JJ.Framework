@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Business")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Classes to support a business logic layer or an API. Keep child-parent relationships in sync. Wrap a result with data along with a Successful flag and a list of messages. Keep business logic units separate, implementing ISideEffect. Check whether a list is dirty.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Jan-Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright © 2014 - 2018 Jan-Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
