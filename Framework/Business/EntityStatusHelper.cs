@@ -7,15 +7,16 @@ namespace JJ.Framework.Business
 {
 	public static class EntityStatusHelper
 	{
-		/// <summary>
-		/// Determines whether a list is dirty.
-		/// This means that it checks whether items were removed,
-		/// added or changed.
-		/// 
-		/// The changing of items does not mean that the entities themselves
-		/// are dirty, it means that a list position now points to another object.
-		/// </summary>
-		public static bool GetListIsDirty<TViewModel, TEntity>(
+        /// <summary>
+        /// Compares two lists (a source list of data and a destination list of data).
+        /// Determines whether a list is dirty.
+        /// This means that it checks whether items were removed,
+        /// added or changed.
+        /// 
+        /// The changing of items does not mean that the entities themselves
+        /// are dirty, it means that a list position now points to another object.
+        /// </summary>
+        public static bool GetListIsDirty<TViewModel, TEntity>(
 			IList<TViewModel> list1, Func<TViewModel, object> getKey1,
 			IList<TEntity> list2, Func<TEntity, object> getKey2,
 			bool ignoreOrder = false)

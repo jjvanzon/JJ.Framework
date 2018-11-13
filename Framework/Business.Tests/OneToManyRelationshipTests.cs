@@ -17,8 +17,7 @@ namespace JJ.Framework.Business.Tests
     {
         class ParentToChildrenRelationship : OneToManyRelationship<Element, Element>
         {
-            public ParentToChildrenRelationship(Element parent)
-                : base(parent) { }
+            public ParentToChildrenRelationship(Element parent) : base(parent) { }
 
             protected override void SetParent(Element child) => child.Parent = _parent;
             protected override void NullifyParent(Element child) => child.Parent = null;
@@ -26,8 +25,7 @@ namespace JJ.Framework.Business.Tests
 
         class ChildToParentRelationship : ManyToOneRelationship<Element, Element>
         {
-            public ChildToParentRelationship(Element child)
-                : base(child) { }
+            public ChildToParentRelationship(Element child) : base(child) { }
 
             protected override bool Contains(Element parent) => parent.Children.Contains(_child);
             protected override void Add(Element parent) => parent.Children.Add(_child);
