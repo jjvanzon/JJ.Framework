@@ -77,7 +77,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT" />
+    <None Include="JJ.Framework.Business.nuspec" />
+    <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

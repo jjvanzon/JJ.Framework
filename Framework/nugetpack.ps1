@@ -1,4 +1,6 @@
-﻿# Execute this in a PowerShell command console
+﻿# Deprecated. Using Azure DevOps to pack NuGet packages instead.
+
+# Execute this in a PowerShell command console
 
 D:
 $codeRootFolderPath="D:\Source\JJs Software\JJ"

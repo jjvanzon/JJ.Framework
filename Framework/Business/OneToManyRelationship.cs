@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using JetBrains.Annotations;
@@ -11,14 +12,15 @@ namespace JJ.Framework.Business
 	/// Don't forget to use _parent in your method implementations.
 	/// </summary>
 	[PublicAPI]
-	public abstract class OneToManyRelationship<TParent, TChild>
+	public abstract class OneToManyRelationship<TParent, TChild> : IEnumerable<TChild>
 		where TParent : class
 		where TChild : class
 	{
 		protected readonly TParent _parent;
 		private readonly ICollection<TChild> _children;
 
-		[DebuggerHidden]
+	    public OneToManyRelationship(TParent parent) : this(parent, new List<TChild>()) { }
+
 		public OneToManyRelationship(TParent parent, ICollection<TChild> children)
 		{
 			_parent = parent ?? throw new NullException(() => parent);
@@ -50,12 +52,17 @@ namespace JJ.Framework.Business
 			NullifyParent(child);
 		}
 
-		public void Clear()
+        public void Clear()
 		{
 			foreach (TChild child in _children.ToArray())
 			{
 				Remove(child);
 			}
 		}
-	}
+
+	    public int Count => _children.Count;
+	    public bool Contains(TChild child) => _children.Contains(child);
+	    public IEnumerator<TChild> GetEnumerator() => _children.GetEnumerator();
+	    IEnumerator IEnumerable.GetEnumerator() => _children.GetEnumerator();
+    }
 }
