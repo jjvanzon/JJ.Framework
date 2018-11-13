@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
-using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Business
 {
@@ -11,18 +11,19 @@ namespace JJ.Framework.Business
 	/// Don't forget to use _parent in your method implementations.
 	/// </summary>
 	[PublicAPI]
-	public abstract class OneToManyRelationship<TParent, TChild>
+	public abstract class OneToManyRelationship<TParent, TChild> : IEnumerable<TChild>
 		where TParent : class
 		where TChild : class
 	{
 		protected readonly TParent _parent;
 		private readonly ICollection<TChild> _children;
 
-		[DebuggerHidden]
+	    public OneToManyRelationship(TParent parent) : this(parent, new List<TChild>()) { }
+
 		public OneToManyRelationship(TParent parent, ICollection<TChild> children)
 		{
-			_parent = parent ?? throw new NullException(() => parent);
-			_children = children ?? throw new NullException(() => children);
+			_parent = parent ?? throw new ArgumentNullException(nameof(parent));
+			_children = children ?? throw new ArgumentNullException(nameof(children));
 		}
 
 		protected abstract void SetParent(TChild child);
@@ -30,7 +31,7 @@ namespace JJ.Framework.Business
 
 		public void Add(TChild child)
 		{
-			if (child == null) throw new NullException(() => child);
+			if (child == null) throw new ArgumentNullException(nameof(child));
 
 			if (_children.Contains(child)) return;
 
@@ -41,7 +42,7 @@ namespace JJ.Framework.Business
 
 		public void Remove(TChild child)
 		{
-			if (child == null) throw new NullException(() => child);
+			if (child == null) throw new ArgumentNullException(nameof(child));
 
 			if (!_children.Contains(child)) return;
 
@@ -50,12 +51,17 @@ namespace JJ.Framework.Business
 			NullifyParent(child);
 		}
 
-		public void Clear()
+        public void Clear()
 		{
 			foreach (TChild child in _children.ToArray())
 			{
 				Remove(child);
 			}
 		}
-	}
+
+	    public int Count => _children.Count;
+	    public bool Contains(TChild child) => _children.Contains(child);
+	    public IEnumerator<TChild> GetEnumerator() => _children.GetEnumerator();
+	    IEnumerator IEnumerable.GetEnumerator() => _children.GetEnumerator();
+    }
 }

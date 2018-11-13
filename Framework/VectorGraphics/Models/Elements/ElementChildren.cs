@@ -37,9 +37,7 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		}
 
 		internal void Remove(Element child) => _childrenRelationship.Remove(child);
-
 		public bool Contains(Element child) => _list.Contains(child);
-
 		public Element this[int i] => _list[i];
 
 		// IEnumerable

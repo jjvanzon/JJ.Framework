@@ -14,6 +14,7 @@ using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.IO;
 using JJ.Framework.Mathematics;
 using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.Presentation;
 using JJ.Framework.Reflection;
 using JJ.Framework.Testing;
 using JJ.Framework.Text;
@@ -160,6 +161,12 @@ namespace JJ.Demos.NuGetTest
 	    {
 	        int value = AppSettingsReader<IMySettings>.Get(x => x.MySetting);
 	        Assert.AreEqual(20, value);
+	    }
+
+	    [TestMethod]
+	    public void Test_NuGetReference_JJ_Framework_Presentation()
+	    {
+	        PagerViewModel pagerViewModel = PagerViewModelFactory.Create(2, 10, 100, 5);
 	    }
     }
 

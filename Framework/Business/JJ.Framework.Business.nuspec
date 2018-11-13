@@ -1,0 +1,29 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<copyright>$copyright$</copyright>
+		<description>$description$</description>
+	  <summary>$description$</summary>
+
+    <licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Business</projectUrl>
+		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
+
+		<tags>inverse properties relationship one-to-many many-to-one parent child relationship children many 1-to-n n-to-1 side effect successful flag list dirty check validation messages</tags>
+
+	  <dependencies>
+      <dependency id="JJ.Framework.Text" version="[1.5,1.6)" />
+    </dependencies>
+
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+	</metadata>
+
+	<files>
+		<file src="README.MD" target="" />
+	</files>
+</package>

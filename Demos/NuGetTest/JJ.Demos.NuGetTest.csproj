@@ -62,11 +62,14 @@
     <Reference Include="JJ.Framework.PlatformCompatibility, Version=1.5.6877.41323, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.1.5.6877.41323\lib\net461\JJ.Framework.PlatformCompatibility.dll</HintPath>
     </Reference>
+    <Reference Include="JJ.Framework.Presentation, Version=1.5.6883.36449, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Presentation.1.5.6883.36449\lib\net461\JJ.Framework.Presentation.dll</HintPath>
+    </Reference>
     <Reference Include="JJ.Framework.Reflection, Version=1.5.6877.41324, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Reflection.1.5.6877.41324\lib\net461\JJ.Framework.Reflection.dll</HintPath>
     </Reference>
-    <Reference Include="JJ.Framework.Testing, Version=1.5.6877.41333, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\JJ.Framework.Testing.1.5.6877.41333\lib\net461\JJ.Framework.Testing.dll</HintPath>
+    <Reference Include="JJ.Framework.Testing, Version=1.5.6883.34520, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Testing.1.5.6883.34520\lib\net461\JJ.Framework.Testing.dll</HintPath>
     </Reference>
     <Reference Include="JJ.Framework.Text, Version=1.5.6877.41321, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Text.1.5.6877.41321\lib\net461\JJ.Framework.Text.dll</HintPath>

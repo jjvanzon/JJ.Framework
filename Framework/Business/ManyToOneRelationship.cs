@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using JJ.Framework.Exceptions.Basic;
+﻿using System;
+using System.Diagnostics;
 
 namespace JJ.Framework.Business
 {
@@ -14,7 +14,7 @@ namespace JJ.Framework.Business
 		private TParent _parent;
 
 		[DebuggerHidden]
-		public ManyToOneRelationship(TChild child) => _child = child ?? throw new NullException(() => child);
+		public ManyToOneRelationship(TChild child) => _child = child ?? throw new ArgumentNullException(nameof(child));
 
 		public TParent Parent 
 		{
