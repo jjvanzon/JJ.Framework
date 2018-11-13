@@ -324,6 +324,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.Configuration", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Tests", "Framework\Presentation.Tests\JJ.Framework.Presentation.Tests.csproj", "{ECB34220-FE94-4094-8FFB-826082A28CC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Tests", "Framework\Business.Tests\JJ.Framework.Business.Tests.csproj", "{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1208,6 +1210,12 @@ Global
 		{ECB34220-FE94-4094-8FFB-826082A28CC2}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECB34220-FE94-4094-8FFB-826082A28CC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1360,6 +1368,7 @@ Global
 		{65A3FC03-F348-4582-94F1-230414DD15FB} = {5CD0B8A9-AA4E-4967-BB77-08580CF54F58}
 		{6721E20A-8970-4A1F-93DE-1D8D450A777E} = {5CD0B8A9-AA4E-4967-BB77-08580CF54F58}
 		{ECB34220-FE94-4094-8FFB-826082A28CC2} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A44537B0-5317-422A-ADAF-38A036CD8468}
