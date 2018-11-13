@@ -1,9 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using JetBrains.Annotations;
-using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Framework.Business
 {
@@ -23,8 +22,8 @@ namespace JJ.Framework.Business
 
 		public OneToManyRelationship(TParent parent, ICollection<TChild> children)
 		{
-			_parent = parent ?? throw new NullException(() => parent);
-			_children = children ?? throw new NullException(() => children);
+			_parent = parent ?? throw new ArgumentNullException(nameof(parent));
+			_children = children ?? throw new ArgumentNullException(nameof(children));
 		}
 
 		protected abstract void SetParent(TChild child);
@@ -32,7 +31,7 @@ namespace JJ.Framework.Business
 
 		public void Add(TChild child)
 		{
-			if (child == null) throw new NullException(() => child);
+			if (child == null) throw new ArgumentNullException(nameof(child));
 
 			if (_children.Contains(child)) return;
 
@@ -43,7 +42,7 @@ namespace JJ.Framework.Business
 
 		public void Remove(TChild child)
 		{
-			if (child == null) throw new NullException(() => child);
+			if (child == null) throw new ArgumentNullException(nameof(child));
 
 			if (!_children.Contains(child)) return;
 

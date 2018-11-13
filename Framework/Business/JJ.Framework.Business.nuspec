@@ -16,7 +16,11 @@
 
 		<tags>inverse properties relationship one-to-many many-to-one parent child relationship children many 1-to-n n-to-1 side effect successful flag list dirty check validation messages</tags>
 
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	  <dependencies>
+      <dependency id="JJ.Framework.Text" version="[1.5,1.6)" />
+    </dependencies>
+
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>
 
 	<files>
