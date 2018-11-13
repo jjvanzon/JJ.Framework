@@ -43,13 +43,13 @@ You may have noticed the `Element` class in the example above. This would be you
         }
     }
 
-The code above works, because ParentToChildrenRelationship class can be accessed as if it is a collection:
+The code above works, because `ParentToChildrenRelationship` class can be accessed, as if it is a collection:
 
-	foreach (var x in ParentToChildrenRelationship) { }
+	foreach (var x in element.Children) { }
 
-The ChildToParentRelationship wraps the parent, which can be accessed as follows:
+The `ChildToParentRelationship` wraps the parent, which can be accessed as follows:
 
-	ChildToParentRelationship.Parent
+	_parentRelationship.Parent
 
 Your `Relationship` classes need some more work. You have to implement some methods. Their implementation is trivial:
 
@@ -70,7 +70,7 @@ Your `Relationship` classes need some more work. You have to implement some meth
         protected override void Remove(Element parent) => parent.Children.Remove(_child);
     }
 
-So perhaps a little boilerplating to get it done, but the boilerplating is trivial, internally the `OneToManyRelationship` and `ManyToOneRelationship` are simple and it gives you exactly what you need, without being too obscure about what is going on, to keep your inverse properties in sync.
+So perhaps a little boilerplating to get it done. But the code is trivial. Internally the `OneToManyRelationship` and `ManyToOneRelationship` are simple. To keep your inverse properties in sync, it gives you exactly what you need, without being too obscure about what is going on.
 
 There are edge cases under which the `OneToManyRelationship` and `ManyToOneRelationship` still work:
 
@@ -81,4 +81,4 @@ There are edge cases under which the `OneToManyRelationship` and `ManyToOneRelat
 * You can control the underlying collection type of the children, if you want.
 * Using different property names than Parent and Children in your model.
 
-They all require a slightly different usage of the `OneToManyRelationship` and `ManyToOneRelationship` classes. The example above is just the simplest example.
+They all require a slightly different code. The example above is just the simplest example.
