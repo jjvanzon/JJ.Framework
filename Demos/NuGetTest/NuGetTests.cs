@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
+using JJ.Framework.Business;
 using JJ.Framework.Collections;
 using JJ.Framework.Common;
 using JJ.Framework.Configuration;
@@ -168,6 +169,12 @@ namespace JJ.Demos.NuGetTest
 	    {
 	        PagerViewModel pagerViewModel = PagerViewModelFactory.Create(2, 10, 100, 5);
 	    }
+
+        [TestMethod]
+        public void Test_NuGetReference_JJ_Framework_Business()
+        {
+            var result = new VoidResult();
+        }
     }
 
     interface IMySettings
