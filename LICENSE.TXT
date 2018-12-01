@@ -1,7 +1,6 @@
 Applies to:
 - JJ.Framework
 - JJ.Demos
-- SaveText prototype application
 
 Copyright (c) 2013 - 2018 Jan-Joost van Zon
 
