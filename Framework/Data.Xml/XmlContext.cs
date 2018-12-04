@@ -37,6 +37,7 @@ namespace JJ.Framework.Data.Xml
                 if (!_entityStoreDictionary.TryGetValue(entityType, out IEntityStore entityStore))
                 {
                     string entityName = entityType.Name;
+
                     string filePath = Path.Combine(Location, entityName) + ".xml";
                     IXmlMapping xmlMapping = XmlMappingResolver.GetXmlMapping(entityType, MappingAssembly);
 
