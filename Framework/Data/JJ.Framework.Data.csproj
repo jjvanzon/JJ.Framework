@@ -45,10 +45,12 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachedContext.cs" />
     <Compile Include="ContextBase.cs" />
     <Compile Include="ContextFactory.cs" />
     <Compile Include="DialectNames.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="LoadedContext.cs" />
     <Compile Include="PersistenceConfiguration.cs" />
     <Compile Include="IContext.cs" />
     <Compile Include="PersistenceConfigurationHelper.cs" />
