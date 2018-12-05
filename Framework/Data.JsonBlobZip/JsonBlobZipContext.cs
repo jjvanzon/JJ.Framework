@@ -16,7 +16,7 @@ namespace JJ.Framework.Data.JsonBlobZip
 
         private CachedContext _underlyingContext;
 
-        public JsonZipContext(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
+        public JsonBlobZipContext(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
             : base(location, modelAssembly, mappingAssembly, dialect)
         {
             _underlyingContext = new CachedContext(
