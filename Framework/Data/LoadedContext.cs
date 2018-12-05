@@ -10,31 +10,43 @@ namespace JJ.Framework.Data
     /// for instance by deserializing object structures from data stores,
     /// or fully indexing entities from the data store into dictionaries.
     /// </summary>
-    [Obsolete("Not obsolete, but not finished either.")]
-    public class LoadedContext<TUnderlyingContext> : ContextBase
-        where TUnderlyingContext : IContext
+    public class LoadedContext : ContextBase
     {
-        protected LoadedContext(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
-            : base(location, modelAssembly, mappingAssembly, dialect) { }
+        private readonly IContext _underlyingContext;
+        private readonly Action _loadDelegate;
 
-        public override TEntity TryGet<TEntity>(object id) => throw new NotImplementedException();
+        public LoadedContext(IContext underlyingContext, Action loadDelegate)
+            : base(default, default, default, default)
+        {
+            _underlyingContext = underlyingContext ?? throw new ArgumentNullException(nameof(underlyingContext));
+            _loadDelegate = loadDelegate ?? throw new ArgumentNullException(nameof(loadDelegate));
 
-        public override TEntity Create<TEntity>() => throw new NotImplementedException();
+            _loadDelegate();
+        }
 
-        public override void Insert(object entity) => throw new NotImplementedException();
+        public override TEntity TryGet<TEntity>(object id) => _underlyingContext.TryGet<TEntity>(id);
 
-        public override void Update(object entity) => throw new NotImplementedException();
+        public override TEntity Create<TEntity>() => _underlyingContext.Create<TEntity>();
 
-        public override void Delete(object entity) => throw new NotImplementedException();
+        public override void Insert(object entity) => _underlyingContext.Insert(entity);
 
-        public override IEnumerable<TEntity> Query<TEntity>() => throw new NotImplementedException();
+        public override void Update(object entity) => _underlyingContext.Update(entity);
 
-        public override void Commit() => throw new NotImplementedException();
+        public override void Delete(object entity) => _underlyingContext.Delete(entity);
 
-        public override void Flush() => throw new NotImplementedException();
+        public override IEnumerable<TEntity> Query<TEntity>() => _underlyingContext.Query<TEntity>();
 
-        public override void Dispose() => throw new NotImplementedException();
+        public override void Commit()
+        {
+            _underlyingContext.Commit();
+
+            // TODO: SaveDelegate?
+        }
+
+        public override void Flush() { }
 
         public override void Rollback() => throw new NotImplementedException();
+
+        public override void Dispose() => Rollback();
     }
 }

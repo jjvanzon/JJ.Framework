@@ -14,10 +14,15 @@ namespace JJ.Framework.Data.JsonZip
         private object _rootObject;
         private string _filePath;
 
-        private CachedContext<MemoryContext, LoadedContext<MemoryContext>> _underlyingContext;
+        private CachedContext _underlyingContext;
 
         public JsonZipContext(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
-            : base(location, modelAssembly, mappingAssembly, dialect) { }
+            : base(location, modelAssembly, mappingAssembly, dialect)
+        {
+            _underlyingContext = new CachedContext(
+                new MemoryContext(default, default, default, default),
+                new LoadedContext(new MemoryContext(default, default, default, default), Load));
+        }
 
         public override TEntity TryGet<TEntity>(object id) => throw new NotImplementedException();
 
@@ -31,10 +36,12 @@ namespace JJ.Framework.Data.JsonZip
 
         public override IEnumerable<TEntity> Query<TEntity>() => throw new NotImplementedException();
 
-        public override void Commit()
+        public override void Commit() => Save();
+
+        private void Load() => throw new NotImplementedException();
+
+        private void Save()
         {
-            //_underlyingContext.
-            
             string json = JsonConvert.SerializeObject(_rootObject); // TODO: Stream instead.
 
             using (var safeFileOverwriter = new SafeFileOverwriter(_filePath))

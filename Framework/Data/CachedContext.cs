@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 
 namespace JJ.Framework.Data
 {
@@ -13,45 +13,51 @@ namespace JJ.Framework.Data
     /// a little more easily if you derive from this class and give it your own name e.g. 'MyContext'.
     /// This saves you from using a full .NET type string, which gets messy in case of type arguments.
     /// </summary>
-    [Obsolete("Not obsolete, but not finished either.")]
-    public class CachedContext<TTemporaryContext, TUnderlyingContext> : ContextBase
-        where TTemporaryContext : IContext
-        where TUnderlyingContext : IContext
+    public class CachedContext : ContextBase
     {
-        private TTemporaryContext _temporaryContext;
-        private TUnderlyingContext _underlyingContext;
+        private readonly IContext _temporaryContext;
+        private readonly IContext _underlyingContext;
 
-        public CachedContext(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
-            : base(location, modelAssembly, mappingAssembly, dialect) { }
-
-        public override TEntity TryGet<TEntity>(object id)
+        public CachedContext(IContext temporaryContext, IContext underlyingContext)
+            : base(default, default, default, default)
         {
-            var entity = _temporaryContext.TryGet<TEntity>(id);
-
-            if (entity == null)
-            {
-                entity = _underlyingContext.TryGet<TEntity>(id);
-            }
-
-            return entity;
+            _temporaryContext = temporaryContext ?? throw new ArgumentNullException(nameof(temporaryContext));
+            _underlyingContext = underlyingContext ?? throw new ArgumentNullException(nameof(underlyingContext));
         }
 
-        public override TEntity Create<TEntity>() => throw new NotImplementedException();
+        public override TEntity TryGet<TEntity>(object id)
+            => _temporaryContext.TryGet<TEntity>(id) ??
+               _underlyingContext.TryGet<TEntity>(id);
 
-        public override void Insert(object entity) => throw new NotImplementedException();
+        public override TEntity Create<TEntity>() => _temporaryContext.Create<TEntity>();
 
-        public override void Update(object entity) => throw new NotImplementedException();
+        public override void Insert(object entity) => _temporaryContext.Insert(entity);
 
-        public override void Delete(object entity) => throw new NotImplementedException();
+        public override void Update(object entity) => _temporaryContext.Update(entity);
 
-        public override IEnumerable<TEntity> Query<TEntity>() => throw new NotImplementedException();
+        public override void Delete(object entity) => _temporaryContext.Delete(entity);
 
-        public override void Commit() => throw new NotImplementedException();
+        public override IEnumerable<TEntity> Query<TEntity>()
+            => _temporaryContext.Query<TEntity>().Union(_underlyingContext.Query<TEntity>());
 
-        public override void Flush() => throw new NotImplementedException();
+        public override void Rollback()
+        {
+            // TODO: Clear the temporary context.
+        }
 
-        public override void Dispose() => throw new NotImplementedException();
+        public override void Commit()
+        {
+            // TODO: transfer objects from temporary context to underlying context.
+            // Whoops. Thinking error. It's not just loose objects you have to think about.
+            // Graph changes should be cached too.
+        }
 
-        public override void Rollback() => throw new NotImplementedException();
+        public override void Flush()
+        {
+            // No implementation needed.
+        }
+
+        /// <summary> Always rollback in the base class? </summary>
+        public override void Dispose() => Rollback();
     }
 }
