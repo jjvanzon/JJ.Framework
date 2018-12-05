@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 
 namespace JJ.Framework.Data.JsonBlobZip
 {
-    [Obsolete("Not obsolete, but not finished either.")]
     public class JsonBlobZipContext : ContextBase
     {
         private object _rootObject;
