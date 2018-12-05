@@ -184,7 +184,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Tests", "Framework\Business.Tests\JJ.Framework.Business.Tests.csproj", "{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.JsonZip", "Framework\Data.JsonZip\JJ.Framework.Data.JsonZip.csproj", "{C5521723-3438-42CF-9B21-0248D444C034}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.JsonBlobZip", "Framework\Data.JsonBlobZip\JJ.Framework.Data.JsonBlobZip.csproj", "{C5521723-3438-42CF-9B21-0248D444C034}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

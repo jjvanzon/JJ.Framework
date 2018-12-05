@@ -6,10 +6,10 @@ using JJ.Framework.Data.Memory;
 using JJ.Framework.IO;
 using Newtonsoft.Json;
 
-namespace JJ.Framework.Data.JsonZip
+namespace JJ.Framework.Data.JsonBlobZip
 {
     [Obsolete("Not obsolete, but not finished either.")]
-    public class JsonZipContext : ContextBase
+    public class JsonBlobZipContext : ContextBase
     {
         private object _rootObject;
         private string _filePath;
