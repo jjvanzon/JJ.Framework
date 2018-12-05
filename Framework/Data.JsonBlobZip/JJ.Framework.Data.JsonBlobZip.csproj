@@ -47,6 +47,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Collections\JJ.Framework.Collections.csproj">
+      <Project>{5D06A212-5459-47F3-8109-E012C5FC9E3A}</Project>
+      <Name>JJ.Framework.Collections</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Data.Memory\JJ.Framework.Data.Memory.csproj">
       <Project>{86348B50-ECA9-4849-A221-73F0ED31713B}</Project>
       <Name>JJ.Framework.Data.Memory</Name>
