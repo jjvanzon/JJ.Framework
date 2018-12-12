@@ -25,7 +25,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_NotUniqueException_WithExpression_AndKey() => AssertHelper.ThrowsException<NotUniqueException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 	            var testItem = new TestItem();
 
 	            throw new NotUniqueException(() => testItem, new { testInt });
@@ -36,7 +36,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_NotUniqueException_WithType() => AssertHelper.ThrowsException<NotUniqueException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new NotUniqueException(typeof(TestItem));
 	        },
@@ -46,7 +46,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_NotUniqueException_WithType_AndKey() => AssertHelper.ThrowsException<NotUniqueException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new NotUniqueException(typeof(TestItem), new { testInt });
 	        },
@@ -66,7 +66,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_NotUniqueException_WithNameOf_AndKey() => AssertHelper.ThrowsException<NotUniqueException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 	            var testItem = new TestItem();
 
 	            throw new NotUniqueException(nameof(testItem), new { testInt });
@@ -82,7 +82,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_NotUniqueExceptionOfT_WithKey() => AssertHelper.ThrowsException<NotUniqueException<TestItem>>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new NotUniqueException<TestItem>(new { testInt });
 	        },

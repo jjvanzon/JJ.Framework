@@ -51,7 +51,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
             ActionInfo actionInfo = actionInfos[0];
             string url = ConvertActionInfoToUrl_NonRecursive(actionInfo);
 
-            for (int i = 1; i < actionInfos.Count; i++)
+            for (var i = 1; i < actionInfos.Count; i++)
             {
                 ActionInfo actionInfo2 = actionInfos[i];
                 string url2 = ConvertActionInfoToUrl_NonRecursive(actionInfo2);
@@ -114,7 +114,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
 
             // If a URL contains more than one path element,
             // the 3rd path element and onward are returned as parameters without names.
-            for (int i = 2; i < sourceUrlInfo.PathElements.Count; i++)
+            for (var i = 2; i < sourceUrlInfo.PathElements.Count; i++)
             {
                 var destActionParameterInfo = new ActionParameterInfo
                 {
@@ -123,7 +123,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
                 mvcActionInfo.Parameters.Add(destActionParameterInfo);
             }
 
-            for (int i = 0; i < sourceUrlInfo.Parameters.Count; i++)
+            for (var i = 0; i < sourceUrlInfo.Parameters.Count; i++)
             {
                 UrlParameterInfo sourceUrlParameterInfo = sourceUrlInfo.Parameters[i];
 

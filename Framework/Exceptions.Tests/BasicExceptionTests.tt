@@ -88,7 +88,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<<#= codeName #>Exception>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new <#= codeName #>Exception(new { customerNumber, customerType });

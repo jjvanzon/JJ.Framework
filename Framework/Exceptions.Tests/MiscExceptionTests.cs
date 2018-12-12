@@ -59,7 +59,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_InvalidIndexException() => AssertHelper.ThrowsException<InvalidIndexException>(
 		    () =>
 		    {
-		        int index = 1;
+		        var index = 1;
 		        var list = new List<int>();
 
 		        throw new InvalidIndexException(() => index, () => list.Count);
@@ -115,7 +115,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_UnexpectedTypeException() => AssertHelper.ThrowsException<UnexpectedTypeException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new UnexpectedTypeException(() => testInt);
 	        },

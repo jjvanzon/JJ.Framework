@@ -78,7 +78,7 @@ namespace JJ.Demos.ReturnActions.Framework.Presentation
 
 			IList<ParameterInfo> parameters = constructor.GetParameters();
 			var parameterValues = new object[parameters.Count];
-			for (int i = 0; i < parameters.Count; i++)
+			for (var i = 0; i < parameters.Count; i++)
 			{
 				ParameterInfo parameter = parameters[i];
 
@@ -119,7 +119,7 @@ namespace JJ.Demos.ReturnActions.Framework.Presentation
 			IList<ParameterInfo> parameters = method.GetParameters();
 			var parameterValues = new object[parameters.Count];
 
-			for (int i = 0; i < parameters.Count; i++)
+			for (var i = 0; i < parameters.Count; i++)
 			{
 				ParameterInfo parameter = parameters[i];
 

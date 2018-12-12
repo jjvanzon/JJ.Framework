@@ -40,7 +40,7 @@
 			// for the next word, so maxCapitalsInARow is 1 more than maxAbbreviationLength.
 			int maxCapitalsInARow = maxAbbreviationLength + 1;
 
-			int capitalsInARow = 0;
+			var capitalsInARow = 0;
 
 			for (int i = firstIndex; i < name.Length; i++)
 			{

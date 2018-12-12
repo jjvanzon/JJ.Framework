@@ -31,7 +31,7 @@ namespace JJ.Framework.CodeAnalysis.Analyzers
 
 			string name = castedSymbol.Name;
 
-			int firstIndex = 0;
+			var firstIndex = 0;
 			if (castedSymbol.TypeKind == TypeKind.Interface)
 			{
 				firstIndex = 1;

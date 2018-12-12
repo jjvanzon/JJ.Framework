@@ -10,7 +10,7 @@ namespace JJ.Framework.Xml.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_ExplicitNames_Element()
 		{
-			string xml = @"
+			var xml = @"
 			<root>
 				<Element_WithExplicitName>2</Element_WithExplicitName>
 			</root>";
@@ -25,7 +25,7 @@ namespace JJ.Framework.Xml.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_ExplicitNames_Attribute()
 		{
-			string xml = @"<root Attribute_WithExplicitName=""2"" />";
+			var xml = @"<root Attribute_WithExplicitName=""2"" />";
 
 			var converter = new XmlToObjectConverter<Element_WithAttribute_WithExplicitName>();
 			Element_WithAttribute_WithExplicitName destObject = converter.Convert(xml);
@@ -37,7 +37,7 @@ namespace JJ.Framework.Xml.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_ExplicitNames_Array()
 		{
-			string xml = @"
+			var xml = @"
 			<root>
 				<Array_WithExplicitName>
 					<item>0</item>

@@ -222,7 +222,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
             // is the first parameter.
             ActionParameterInfo[] unnamedControllerActionParameters =
                 controllerActionInfo.Parameters.Where(x => string.IsNullOrEmpty(x.Name)).ToArray();
-            for (int i = 0; i < unnamedControllerActionParameters.Length; i++)
+            for (var i = 0; i < unnamedControllerActionParameters.Length; i++)
             {
                 ActionParameterInfo controllerParameterInfo = unnamedControllerActionParameters[i];
                 ActionParameterMapping parameterMapping = viewMapping.ParameterMappings.ElementAtOrDefault(i);

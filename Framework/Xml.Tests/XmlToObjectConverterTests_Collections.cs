@@ -28,7 +28,7 @@ namespace JJ.Framework.Xml.Tests
 	    [TestMethod]
 		public void Test_XmlToObjectConverter_Array_WithExplicitAnnotation()
 		{
-			string xml = @"
+			var xml = @"
 			<root>
 				<array_WithExplicitAnnotation>
 					<item>0</item>
@@ -49,7 +49,7 @@ namespace JJ.Framework.Xml.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_Collection_Nullability()
 		{
-			string xml = @"<root />";
+			var xml = @"<root />";
 
 			var converter = new XmlToObjectConverter<ElementWithCollection<int[]>>();
 			ElementWithCollection<int[]> destObject = converter.Convert(xml);
@@ -61,7 +61,7 @@ namespace JJ.Framework.Xml.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_Collection_WithoutExplicitItemName()
 		{
-			string xml = @"
+			var xml = @"
 			<root>
 				<collection>
 					<int32>0</int32>

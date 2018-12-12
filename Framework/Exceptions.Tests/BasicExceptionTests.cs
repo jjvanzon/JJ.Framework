@@ -51,7 +51,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NullException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NullException(new { customerNumber, customerType });
@@ -97,7 +97,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<CollectionEmptyException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new CollectionEmptyException(new { customerNumber, customerType });
@@ -143,7 +143,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<CollectionNotEmptyException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new CollectionNotEmptyException(new { customerNumber, customerType });
@@ -189,7 +189,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<HasNullsException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new HasNullsException(new { customerNumber, customerType });
@@ -235,7 +235,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<HasValueException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new HasValueException(new { customerNumber, customerType });
@@ -281,7 +281,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<InfinityException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new InfinityException(new { customerNumber, customerType });
@@ -327,7 +327,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<InvalidReferenceException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new InvalidReferenceException(new { customerNumber, customerType });
@@ -373,7 +373,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<IsDateTimeException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new IsDateTimeException(new { customerNumber, customerType });
@@ -419,7 +419,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<IsDecimalException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new IsDecimalException(new { customerNumber, customerType });
@@ -465,7 +465,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<IsDoubleException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new IsDoubleException(new { customerNumber, customerType });
@@ -511,7 +511,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<IsIntegerException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new IsIntegerException(new { customerNumber, customerType });
@@ -557,7 +557,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NaNException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NaNException(new { customerNumber, customerType });
@@ -603,7 +603,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NotDateTimeException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NotDateTimeException(new { customerNumber, customerType });
@@ -649,7 +649,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NotDecimalException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NotDecimalException(new { customerNumber, customerType });
@@ -695,7 +695,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NotDoubleException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NotDoubleException(new { customerNumber, customerType });
@@ -741,7 +741,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NotHasValueException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NotHasValueException(new { customerNumber, customerType });
@@ -787,7 +787,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NotInfinityException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NotInfinityException(new { customerNumber, customerType });
@@ -833,7 +833,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NotIntegerException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NotIntegerException(new { customerNumber, customerType });
@@ -879,7 +879,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NotNaNException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NotNaNException(new { customerNumber, customerType });
@@ -925,7 +925,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NotNullException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NotNullException(new { customerNumber, customerType });
@@ -971,7 +971,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NotNullOrEmptyException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NotNullOrEmptyException(new { customerNumber, customerType });
@@ -1017,7 +1017,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NotNullOrWhiteSpaceException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NotNullOrWhiteSpaceException(new { customerNumber, customerType });
@@ -1063,7 +1063,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NullOrEmptyException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NullOrEmptyException(new { customerNumber, customerType });
@@ -1109,7 +1109,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<NullOrWhiteSpaceException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new NullOrWhiteSpaceException(new { customerNumber, customerType });
@@ -1155,7 +1155,7 @@ namespace JJ.Framework.Exceptions.Tests
 				=> AssertHelper.ThrowsException<ZeroException>(
 					() =>
 					{
-						int customerNumber = 1234;
+						var customerNumber = 1234;
 						var customerType = TestEnum.Subscriber;
 
 						throw new ZeroException(new { customerNumber, customerType });

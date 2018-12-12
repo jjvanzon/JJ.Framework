@@ -27,7 +27,7 @@ namespace JJ.Framework.Xml.Tests.Helpers
 		public static void Test_XmlToObjectConverter_Collection<TCollection>()
 			where TCollection : IEnumerable
 		{
-			string xml = @"
+			var xml = @"
 			<root>
 				<collection>
 					<item>0</item>

@@ -15,7 +15,7 @@ namespace JJ.Framework.Logging.Diagnostics
 
 	    public static void LogPerformance(string name, Stopwatch stopwatch = null, int repeats = 0)
 		{
-			bool hasText = false;
+			var hasText = false;
 			var sb = new StringBuilder();
 
 			if (!string.IsNullOrEmpty(name))

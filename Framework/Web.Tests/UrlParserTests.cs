@@ -9,7 +9,7 @@ namespace JJ.Framework.Web.Tests
 		[TestMethod]
 		public void Test_UrlParser_Protocol_MultiplePathElements_Parameters()
 		{
-			string input = "http://www.jj.com/doc?param1=1&param2=2";
+			var input = "http://www.jj.com/doc?param1=1&param2=2";
 
 			var urlParser = new UrlParser();
 			UrlInfo urlInfo = urlParser.Parse(input);
@@ -31,7 +31,7 @@ namespace JJ.Framework.Web.Tests
 		[TestMethod]
 		public void Test_UrlParser_Protocol_SinglePathElements_Parameters()
 		{
-			string input = "http://www.jj.com?param1=1&param2=2";
+			var input = "http://www.jj.com?param1=1&param2=2";
 
 			var urlParser = new UrlParser();
 			UrlInfo urlInfo = urlParser.Parse(input);
@@ -52,7 +52,7 @@ namespace JJ.Framework.Web.Tests
 		[TestMethod]
 		public void Test_UrlParser_NoProtocol_SinglePathElements_NoParameters()
 		{
-			string input = "www.jj.com";
+			var input = "www.jj.com";
 
 			var urlParser = new UrlParser();
 			UrlInfo urlInfo = urlParser.Parse(input);
@@ -68,7 +68,7 @@ namespace JJ.Framework.Web.Tests
 		[TestMethod]
 		public void Test_UrlParser_NoProtocol_SinglePathElements_Parameters()
 		{
-			string input = "www.jj.com?param1=1&param2=2";
+			var input = "www.jj.com?param1=1&param2=2";
 
 			var urlParser = new UrlParser();
 			UrlInfo urlInfo = urlParser.Parse(input);
@@ -88,7 +88,7 @@ namespace JJ.Framework.Web.Tests
 		[TestMethod]
 		public void Test_UrlParser_NoProtocol_SinglePathElements_NullParameter()
 		{
-			string input = "www.jj.com?param1=";
+			var input = "www.jj.com?param1=";
 
 			var urlParser = new UrlParser();
 			UrlInfo urlInfo = urlParser.Parse(input);
@@ -106,7 +106,7 @@ namespace JJ.Framework.Web.Tests
 		[TestMethod]
 		public void Test_UrlParser_UrlDecoding()
 		{
-			string input = "http%26://www.jj.com%26/doc%26?param1%26=1%26&param2%26=2%26";
+			var input = "http%26://www.jj.com%26/doc%26?param1%26=1%26&param2%26=2%26";
 
 			var urlParser = new UrlParser();
 			UrlInfo urlInfo = urlParser.Parse(input);
@@ -129,7 +129,7 @@ namespace JJ.Framework.Web.Tests
 		public void Test_UrlParser_NoException_RepeatedAmpersands()
 		{
 			var urlParser = new UrlParser();
-			string input = "www.jj.com?param1=1&&param2=2&&";
+			var input = "www.jj.com?param1=1&&param2=2&&";
 			UrlInfo urlInfo = urlParser.Parse(input);
 
 			AssertHelper.AreEqual(2, () => urlInfo.Parameters.Count);
@@ -153,7 +153,7 @@ namespace JJ.Framework.Web.Tests
 		public void Test_UrlParser_Exception_MoreThanOneColon()
 		{
 			var urlParser = new UrlParser();
-			string input = "http://http://";
+			var input = "http://http://";
 			AssertHelper.ThrowsException(() => urlParser.Parse(input));
 		}
 
@@ -161,7 +161,7 @@ namespace JJ.Framework.Web.Tests
 		public void Test_UrlParser_Exception_MoreThanOneQuestionMark()
 		{
 			var urlParser = new UrlParser();
-			string input = "www.jj.com?param1=1?param2=2";
+			var input = "www.jj.com?param1=1?param2=2";
 			AssertHelper.ThrowsException(() => urlParser.Parse(input));
 		}
 
@@ -169,7 +169,7 @@ namespace JJ.Framework.Web.Tests
 		public void Test_UrlParser_Exception_Parameter_HasMoreThanOneEqualsSign()
 		{
 			var urlParser = new UrlParser();
-			string input = "www.jj.com?param1==1";
+			var input = "www.jj.com?param1==1";
 			AssertHelper.ThrowsException(() => urlParser.Parse(input));
 		}
 
@@ -177,7 +177,7 @@ namespace JJ.Framework.Web.Tests
 		public void Test_UrlParser_Exception_Parameter_HasNoEqualsSign()
 		{
 			var urlParser = new UrlParser();
-			string input = "www.jj.com?param1";
+			var input = "www.jj.com?param1";
 			AssertHelper.ThrowsException(() => urlParser.Parse(input));
 		}
 
@@ -185,7 +185,7 @@ namespace JJ.Framework.Web.Tests
 		public void Test_UrlParser_Exception_Parameter_HasNoName()
 		{
 			var urlParser = new UrlParser();
-			string input = "www.jj.com?=1";
+			var input = "www.jj.com?=1";
 			AssertHelper.ThrowsException(() => urlParser.Parse(input));
 		}
 	}

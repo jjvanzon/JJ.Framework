@@ -10,7 +10,7 @@ namespace JJ.Framework.Mvc
         public static string GetControllerName(this Controller controller)
         {
             if (controller == null) throw new ArgumentNullException(nameof(controller));
-            string controllerName = (string)controller.ControllerContext.RequestContext.RouteData.Values["controller"];
+            var controllerName = (string)controller.ControllerContext.RequestContext.RouteData.Values["controller"];
             return controllerName;
         }
     }

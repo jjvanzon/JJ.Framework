@@ -15,7 +15,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_IsNotTypeException_WithExpression_AndType() => AssertHelper.ThrowsException<IsNotTypeException>(
 		    () =>
 		    {
-		        int testInt = 1;
+		        var testInt = 1;
 
 		        throw new IsNotTypeException(() => testInt, typeof(TestItem));
 		    },
@@ -25,7 +25,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_IsNotTypeException_WithExpression_AndTypeName() => AssertHelper.ThrowsException<IsNotTypeException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new IsNotTypeException(() => testInt, "TestItem");
 	        },
@@ -35,7 +35,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_IsNotTypeException_WithNameOf_AndType() => AssertHelper.ThrowsException<IsNotTypeException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new IsNotTypeException(nameof(testInt), typeof(TestItem));
 	        },
@@ -45,7 +45,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_IsNotTypeException_WithNameOf_AndTypeName() => AssertHelper.ThrowsException<IsNotTypeException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new IsNotTypeException(nameof(testInt), "TestItem");
 	        },
@@ -55,7 +55,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_IsNotTypeExceptionOfT() => AssertHelper.ThrowsException<IsNotTypeException<TestItem>>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new IsNotTypeException<TestItem>(() => testInt);
 	        },
@@ -65,7 +65,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_IsTypeException_WithExpression_AndType() => AssertHelper.ThrowsException<IsTypeException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new IsTypeException(() => testInt, typeof(TestItem));
 	        },
@@ -75,7 +75,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_IsTypeException_WithExpression_AndTypeName() => AssertHelper.ThrowsException<IsTypeException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new IsTypeException(() => testInt, "TestItem");
 	        },
@@ -85,7 +85,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_IsTypeException_WithNameOf_AndType() => AssertHelper.ThrowsException<IsTypeException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new IsTypeException(nameof(testInt), typeof(TestItem));
 	        },
@@ -95,7 +95,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_IsTypeException_WithNameOf_TypeName() => AssertHelper.ThrowsException<IsTypeException>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new IsTypeException(nameof(testInt), "TestItem");
 	        },
@@ -105,7 +105,7 @@ namespace JJ.Framework.Exceptions.Tests
 		public void Test_IsTypeExceptionOfT() => AssertHelper.ThrowsException<IsTypeException<TestItem>>(
 	        () =>
 	        {
-	            int testInt = 1;
+	            var testInt = 1;
 
 	            throw new IsTypeException<TestItem>(() => testInt);
 	        },

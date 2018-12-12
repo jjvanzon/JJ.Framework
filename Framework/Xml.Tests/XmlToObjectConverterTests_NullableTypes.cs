@@ -122,7 +122,7 @@ namespace JJ.Framework.Xml.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_NullableAttribute_Omitted()
 		{
-			string xml = @"<root />";
+			var xml = @"<root />";
 
 			var converter = new XmlToObjectConverter<Element_WithAttribute<int?>>();
 			Element_WithAttribute<int?> destObject = converter.Convert(xml);
@@ -134,7 +134,7 @@ namespace JJ.Framework.Xml.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_NullableAttribute_LeftBlank()
 		{
-			string xml = @"<root attribute="""" />";
+			var xml = @"<root attribute="""" />";
 
 			var converter = new XmlToObjectConverter<Element_WithAttribute<int?>>();
 			Element_WithAttribute<int?> destObject = converter.Convert(xml);

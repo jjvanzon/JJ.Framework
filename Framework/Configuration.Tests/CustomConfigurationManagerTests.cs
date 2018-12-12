@@ -98,7 +98,7 @@ namespace JJ.Framework.Configuration.Tests
 		{
 			var configuration = CustomConfigurationManager.GetSection<TestConfiguration>();
 
-			int i = 0;
+			var i = 0;
 			string arrayItem_0_Value = configuration.Array[i];
 			Assert.AreEqual("arrayItem_0_Value", arrayItem_0_Value);
 		}

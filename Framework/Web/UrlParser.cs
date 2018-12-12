@@ -77,7 +77,7 @@ namespace JJ.Framework.Web
 				PathElements = new List<string>(split.Length)
 			};
 
-			for (int i = 0; i < split.Length; i++)
+			for (var i = 0; i < split.Length; i++)
 			{
 				string pathElement = HttpUtility.UrlDecode(split[i]);
 				urlInfo.PathElements.Add(pathElement);

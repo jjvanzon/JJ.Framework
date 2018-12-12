@@ -10,7 +10,7 @@ namespace JJ.Framework.Xml.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_Basics_SimpleElement()
 		{
-			string xml = @"
+			var xml = @"
 			<root>
 				<simpleElement>2</simpleElement>
 			</root>";
@@ -25,7 +25,7 @@ namespace JJ.Framework.Xml.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_Basics_ElementWithExplicitAnnotation()
 		{
-			string xml = @"
+			var xml = @"
 			<root>
 				<element_WithExplicitAnnotation>2</element_WithExplicitAnnotation>
 			</root>";
@@ -40,7 +40,7 @@ namespace JJ.Framework.Xml.Tests
 		[TestMethod]
 		public void Test_XmlToObjectConverter_Basics_Attribute()
 		{
-			string xml = @"<root attribute=""2"" />";
+			var xml = @"<root attribute=""2"" />";
 
 			var converter = new XmlToObjectConverter<Element_WithAttribute<int>>();
 			Element_WithAttribute<int> destObject = converter.Convert(xml);
