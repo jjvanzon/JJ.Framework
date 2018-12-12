@@ -44,7 +44,7 @@ namespace JJ.Framework.WinForms.TestForms
 				Color = ColorHelper.SetOpacity(ColorHelper.Black, 128)
 			};
 
-			for (int i = 0; i < itemCount; i++)
+			for (var i = 0; i < itemCount; i++)
 			{
 				var rectangle = new Rectangle(_frameRectangle)
 				{
@@ -83,7 +83,7 @@ namespace JJ.Framework.WinForms.TestForms
 		{
 			var itemWidths = new float[itemCount];
 
-			for (int i = 0; i < itemCount; i++)
+			for (var i = 0; i < itemCount; i++)
 			{
 				float itemWidth = Randomizer.GetSingle(MIN_ITEM_WIDTH, MAX_ITEM_WIDTH);
 				itemWidths[i] = itemWidth;

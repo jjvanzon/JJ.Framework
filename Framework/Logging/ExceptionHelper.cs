@@ -38,7 +38,7 @@ namespace JJ.Framework.Logging
 		{
 			const int maxIterations = 100;
 
-			int i = 0;
+			var i = 0;
 			while (exception.InnerException != null && i < maxIterations)
 			{
 				exception = exception.InnerException;

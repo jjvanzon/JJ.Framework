@@ -34,7 +34,7 @@ namespace JJ.Framework.Data.SqlClient
 			if (parameters != null)
 			{
 				IList<PropertyInfo> properties = _reflectionCache.GetProperties(parameters.GetType());
-				for (int i = 0; i < properties.Count; i++)
+				for (var i = 0; i < properties.Count; i++)
 				{
 					PropertyInfo property = properties[i];
 
@@ -83,7 +83,7 @@ namespace JJ.Framework.Data.SqlClient
 			var obj = new T();
 
 			IList<PropertyInfo> properties = _reflectionCache.GetProperties(typeof(T));
-			for (int i = 0; i < properties.Count; i++)
+			for (var i = 0; i < properties.Count; i++)
 			{
 				PropertyInfo property = properties[i];
 				object value = reader[property.Name];

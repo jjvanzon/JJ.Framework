@@ -23,7 +23,7 @@ namespace JJ.Framework.Collections
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
 
 			int count = sourceCollection.Count;
-			for (int i = 0; i < count; i++)
+			for (var i = 0; i < count; i++)
 			{
 				T sourceItem = sourceCollection[i];
 				if (sourceItem != null)
@@ -67,7 +67,7 @@ namespace JJ.Framework.Collections
 			if (selector == null) throw new ArgumentNullException(nameof(selector));
 
 			int count = sourceCollection.Count;
-			for (int i = 0; i < count; i++)
+			for (var i = 0; i < count; i++)
 			{
 				T sourceItem = sourceCollection[i];
 				if (!destHashSet.Add(sourceItem))

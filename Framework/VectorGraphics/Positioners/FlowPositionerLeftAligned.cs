@@ -36,9 +36,9 @@ namespace JJ.Framework.VectorGraphics.Positioners
 			float x = 0;
 			float y = 0;
 
-			bool isFirstItem = true;
+			var isFirstItem = true;
 
-			for (int i = 0; i < count; i++)
+			for (var i = 0; i < count; i++)
 			{
 				float itemWidth = _itemWidths[i];
 

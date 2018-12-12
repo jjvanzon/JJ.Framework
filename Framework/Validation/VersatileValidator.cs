@@ -415,7 +415,7 @@ namespace JJ.Framework.Validation
 			// "Every enumeration type has an underlying type, which can be any integral type except char."
 			// (https://msdn.microsoft.com/en-us/library/sbbt4032.aspx)
 			decimal[] underlyingValues = enumValues.Select(x => (decimal)Convert.ChangeType(x, typeof(decimal))).ToArray();
-			decimal underlyingValue = (decimal)Convert.ChangeType(value, typeof(decimal));
+			var underlyingValue = (decimal)Convert.ChangeType(value, typeof(decimal));
 
 			bool isEnum = underlyingValues.Contains(underlyingValue);
 			return isEnum;

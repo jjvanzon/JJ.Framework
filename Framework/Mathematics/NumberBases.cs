@@ -112,7 +112,7 @@ namespace JJ.Framework.Mathematics
 
 			int[] digitValues = ToBaseDigitValues(number, b);
 			char[] digits = digitValues.Select(x => DigitValueToChar(x, digitChars)).ToArray();
-			string result = new string(digits);
+			var result = new string(digits);
 			return result;
 		}
 
@@ -125,7 +125,7 @@ namespace JJ.Framework.Mathematics
 		{
 			int[] digitValues = ToBaseDigitValues(number, b);
 			char[] digits = digitValues.Select(x => DigitValueToChar(x, firstChar)).ToArray();
-			string result = new string(digits);
+			var result = new string(digits);
 			return result;
 		}
 
@@ -152,8 +152,8 @@ namespace JJ.Framework.Mathematics
 			if (b < 2) throw new ArgumentException("b must be 2 or higher.");
 			if (charToDigitValueDelegate == null) throw new NullException(() => charToDigitValueDelegate);
 
-			int result = 0;
-			int pow = 1;
+			var result = 0;
+			var pow = 1;
 			for (int i = input.Length - 1; i >= 0; i--)
 			{
 				checked
@@ -286,7 +286,7 @@ namespace JJ.Framework.Mathematics
 		public static string ToLetterSequence(int value, int b, char firstChar = 'A')
 		{
 			int ceiling = b;
-			int i = 1;
+			var i = 1;
 			int temp = value;
 
 			while (true)
@@ -339,9 +339,9 @@ namespace JJ.Framework.Mathematics
 			int value = FromBase(input, b, firstChar);
 
 			// Calculate the part you get for free (see summary).
-			int extra = 0;
-			int pow = 1;
-			for (int i = 0; i < input.Length - 1; i++)
+			var extra = 0;
+			var pow = 1;
+			for (var i = 0; i < input.Length - 1; i++)
 			{
 				pow *= b;
 				extra += pow;

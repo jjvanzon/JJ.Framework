@@ -43,12 +43,12 @@ namespace JJ.Framework.Text
 			int destLength = sourceLength * repeatCount;
 			var destChars = new char[destLength];
 
-			for (int i = 0; i < destLength; i += sourceLength)
+			for (var i = 0; i < destLength; i += sourceLength)
 			{
 				Array.Copy(sourceChars, 0, destChars, i, sourceLength);
 			}
 
-			string destString = new string(destChars);
+			var destString = new string(destChars);
 			return destString;
 		}
 

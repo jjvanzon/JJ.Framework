@@ -12,7 +12,7 @@ namespace JJ.Framework.VectorGraphics.Helpers
 
 		public static int GetColor(uint unsignedInteger)
 		{
-			int color = unchecked((int)unsignedInteger);
+			var color = unchecked((int)unsignedInteger);
 			return color;
 		}
 
@@ -33,7 +33,7 @@ namespace JJ.Framework.VectorGraphics.Helpers
 			if (blue < 0) throw new LessThanException(() => blue, 0);
 			if (blue > 255) throw new GreaterThanException(() => blue, 255);
 
-			int color = 0;
+			var color = 0;
 			color |= opacity;
 
 			color = color << 8;

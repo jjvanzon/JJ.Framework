@@ -156,7 +156,7 @@ namespace JJ.Framework.Reflection
 				_stack.Push(null);
 			}
 
-			for (int i = 0; i < node.Arguments.Count; i++)
+			for (var i = 0; i < node.Arguments.Count; i++)
 			{
 				Visit(node.Arguments[i]);
 			}
@@ -236,7 +236,7 @@ namespace JJ.Framework.Reflection
 
 		protected virtual void VisitNewArray(NewArrayExpression node)
 		{
-			for (int i = 0; i < node.Expressions.Count; i++)
+			for (var i = 0; i < node.Expressions.Count; i++)
 			{
 				Visit(node.Expressions[i]);
 			}

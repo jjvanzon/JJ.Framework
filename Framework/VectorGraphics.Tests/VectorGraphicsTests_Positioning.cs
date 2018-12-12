@@ -14,7 +14,7 @@ namespace JJ.Framework.VectorGraphics.Tests
 		[TestMethod]
 		public void Test_VectorGraphics_CalculationVisitor_RelativeCoordinates()
 		{
-			int zindex = 1;
+			var zindex = 1;
 
 			var diagram = new Diagram();
 

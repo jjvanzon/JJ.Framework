@@ -86,7 +86,7 @@ namespace JJ.Framework.WinForms.Controls
 			_pageNumberLinkLabels.Clear();
 
 			// Create new _pageNumberLinkLabels
-			int i = 1;
+			var i = 1;
 			foreach (int pageNumber in _viewModel.VisiblePageNumbers)
 			{
 				var pageNumberLinkLabel = new LinkLabel
@@ -116,7 +116,7 @@ namespace JJ.Framework.WinForms.Controls
 
 			flowLayoutPanel.Controls.Clear();
 
-			for (int j = 0; j < childControls.Count; j++)
+			for (var j = 0; j < childControls.Count; j++)
 			{
 				Control childControl = childControls[j];
 				flowLayoutPanel.Controls.Add(childControl);
