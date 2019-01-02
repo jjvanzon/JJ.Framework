@@ -15,15 +15,15 @@ namespace JJ.Framework.Data.JsonBlobZip
     {
         private const string JSON_FILE_NAME = "content.json";
 
-        private readonly MemoryContext _memoryContext;
+        private MemoryContext _memoryContext;
 
         private string _jsonString;
-        private TRootObject _rootObject;
+        public TRootObject RootObject { get; private set; }
 
         public JsonBlobZipContext(string location, Assembly modelAssembly, Assembly mappingAssembly, string dialect)
             : base(location, modelAssembly, mappingAssembly, dialect)
         {
-            _memoryContext = new MemoryContext(null, modelAssembly, mappingAssembly, dialect);
+            _memoryContext = CreateMemoryContext();
 
             Load();
         }
@@ -39,9 +39,11 @@ namespace JJ.Framework.Data.JsonBlobZip
 
         public override void Rollback()
         {
-            _rootObject = Deserialize(_jsonString);
+            RootObject = Deserialize(_jsonString);
 
-            // TODO: Memory context must also be cleared.
+            _memoryContext = CreateMemoryContext();
+
+            FillMemoryContext(RootObject, _memoryContext);
         }
 
         public override void Commit() => Save();
@@ -52,11 +54,14 @@ namespace JJ.Framework.Data.JsonBlobZip
 
             TRootObject rootObject = Deserialize(jsonString);
 
-            _jsonString = jsonString;
-            _rootObject = rootObject;
+            FillMemoryContext(rootObject, _memoryContext);
 
-            // TODO: Fill the memory context up.
+            _jsonString = jsonString;
+            RootObject = rootObject;
         }
+
+        /// <summary> base does nothing </summary>
+        protected virtual void FillMemoryContext(TRootObject sourceRootObject, IContext destMemoryContext) { }
 
         private TRootObject Deserialize(string jsonString) => JsonConvert.DeserializeObject<TRootObject>(jsonString);
 
@@ -64,6 +69,7 @@ namespace JJ.Framework.Data.JsonBlobZip
         {
             using (var zipFile = ZipFile.Read(filePath))
             {
+
                 ZipEntry jsonZipEntry = zipFile.Entries
                                                .Where(x => string.Equals(x.FileName, JSON_FILE_NAME))
                                                .SingleWithClearException(new { FileName = JSON_FILE_NAME });
@@ -79,7 +85,7 @@ namespace JJ.Framework.Data.JsonBlobZip
 
         private void Save()
         {
-            string json = JsonConvert.SerializeObject(_rootObject);
+            string json = JsonConvert.SerializeObject(RootObject);
 
             using (var safeFileOverwriter = new SafeFileOverwriter(Location))
             {
@@ -94,5 +100,7 @@ namespace JJ.Framework.Data.JsonBlobZip
 
             _jsonString = json;
         }
+
+        private MemoryContext CreateMemoryContext() => new MemoryContext(null, ModelAssembly, MappingAssembly, Dialect);
     }
 }
