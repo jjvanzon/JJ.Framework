@@ -2,11 +2,11 @@
 
 *Jan-Joost van Zon, 2018-12-02*
 
+Everything works to some extent, but the quality of the components varies. The ones with the highest quality made it to [NuGet](https://www.nuget.org/profiles/jjvanzon). Others might need some more unit testing and some bugs resolved.
+
 `JJ.Framework` contains reusable software components written in C# that are extensions or replacements of parts of the *Microsoft .NET Framework*. In this framework I and our team put any reusable code not related to a particular business domain. There is a separate assembly for each part of .NET that is extended or a separate assembly for each technical aspect. That allows us to be specific about which parts of .NET and other API's we make our applications dependent on, which is a good plan for platform compatibility.
 
 I started programming this framework at home in 2013. Some code is even ported from my previous code base that I started in 2010. I have also used a variation of this code at work in a team of 7 that I lead.
-
-Everything works to some extent, but the quality of the components varies. The ones with the highest quality made it to [NuGet](https://www.nuget.org/profiles/jjvanzon). Others might need some more unit testing and some bugs resolved.
 
 ## Quirks when Checking Out Old Commits
 
