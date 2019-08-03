@@ -294,6 +294,26 @@ namespace JJ.Framework.Collections
         /// A regular First() will give you an exception if there are no elements in the collection.
         /// But not a very clear exception, like 'Sequence contains no elements.'
         /// FirstWithClearException() will allow you to do a First,
+        /// but get a clearer exception message e.g. 'Product not found.'
+        /// </summary>
+        public static T FirstWithClearException<T>(this IEnumerable<T> collection)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+
+            T item = collection.FirstOrDefault();
+
+            if (item == null)
+            {
+                throw new NotFoundException<T>();
+            }
+
+            return item;
+        }
+
+        /// <summary>
+        /// A regular First() will give you an exception if there are no elements in the collection.
+        /// But not a very clear exception, like 'Sequence contains no elements.'
+        /// FirstWithClearException() will allow you to do a First,
         /// but get a clearer exception message e.g. 'Product with key { group = "Shoes" } not found.'
         /// Only really works if you filtered by something.
         /// </summary>
@@ -312,6 +332,27 @@ namespace JJ.Framework.Collections
             if (item == null)
             {
                 throw new NotFoundException<T>(keyIndicator);
+            }
+
+            return item;
+        }
+
+        /// <summary>
+        /// A regular First() will give you an exception if there are no elements in the collection.
+        /// But not a very clear exception, like 'Sequence contains no elements.'
+        /// FirstWithClearException() will allow you to do a First,
+        /// but get a clearer exception message e.g. 'Product with key not found.'
+        /// </summary>
+        public static T FirstWithClearException<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+
+            T item = collection.Where(predicate).FirstOrDefault();
+
+            if (item == null)
+            {
+                throw new NotFoundException<T>();
             }
 
             return item;
@@ -658,6 +699,15 @@ namespace JJ.Framework.Collections
         /// A regular SingleOrDefault() will give you an exception if there are multiple elements in the collection.
         /// But not a very clear exception, like 'The input sequence contains more than one element.'
         /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault,
+        /// but get a clearer exception message e.g. 'Product not unique.'
+        /// </summary>
+        public static T SingleOrDefaultWithClearException<T>(this IEnumerable<T> collection) 
+            => SingleOrDefaultWithClearException(collection);
+
+        /// <summary>
+        /// A regular SingleOrDefault() will give you an exception if there are multiple elements in the collection.
+        /// But not a very clear exception, like 'The input sequence contains more than one element.'
+        /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault,
         /// but get a clearer exception message e.g. 'Product with key { productNumber = 123 } not unique.'
         /// Only really works if you filtered by something.
         /// </summary>
@@ -673,6 +723,27 @@ namespace JJ.Framework.Collections
         {
             string keyIndicatorString = ExpressionHelper.GetText(keyIndicator);
             return SingleOrDefaultWithClearException(collection, predicate, keyIndicatorString);
+        }
+
+        /// <summary>
+        /// A regular SingleOrDefault() will give you an exception if there are multiple elements in the collection.
+        /// But not a very clear exception, like 'The input sequence contains more than one element.'
+        /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault,
+        /// but get a clearer exception message e.g. 'Product with key { productNumber = 123 } not unique.'
+        /// </summary>
+        public static T SingleOrDefaultWithClearException<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+
+            IList<T> items = collection.Where(predicate).ToArray();
+
+            switch (items.Count)
+            {
+                case 0: return default;
+                case 1: return items[0];
+                default: throw new NotUniqueException<T>();
+            }
         }
 
         /// <summary>
@@ -800,6 +871,26 @@ namespace JJ.Framework.Collections
         /// A regular Single() will give you an exception if there are no elements or multiple elements in the collection.
         /// But not a very clear exception, like 'The input sequence contains more than one element.'
         /// SingleWithClearException() will allow you to do a Single,
+        /// but get a clearer exception message e.g. 'Product not unique.'
+        /// </summary>
+        public static T SingleWithClearException<T>(this IEnumerable<T> collection)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+
+            IList<T> items = collection.ToArray();
+
+            switch (items.Count)
+            {
+                case 0: throw new NotFoundException<T>();
+                case 1: return items[0];
+                default: throw new NotUniqueException<T>();
+            }
+        }
+
+        /// <summary>
+        /// A regular Single() will give you an exception if there are no elements or multiple elements in the collection.
+        /// But not a very clear exception, like 'The input sequence contains more than one element.'
+        /// SingleWithClearException() will allow you to do a Single,
         /// but get a clearer exception message e.g. 'Product with key { productNumber = 123 } not unique.'
         /// Only really works if you filtered by something.
         /// </summary>
@@ -820,6 +911,27 @@ namespace JJ.Framework.Collections
                 case 0: throw new NotFoundException<T>(keyIndicator);
                 case 1: return items[0];
                 default: throw new NotUniqueException<T>(keyIndicator);
+            }
+        }
+
+        /// <summary>
+        /// A regular Single() will give you an exception if there are no elements or multiple elements in the collection.
+        /// But not a very clear exception, like 'The input sequence contains more than one element.'
+        /// SingleWithClearException() will allow you to do a Single,
+        /// but get a clearer exception message e.g. 'Product not unique.'
+        /// </summary>
+        public static T SingleWithClearException<T>(this IEnumerable<T> collection, Func<T, bool> predicate)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+
+            IList<T> items = collection.Where(predicate).ToArray();
+
+            switch (items.Count)
+            {
+                case 0: throw new NotFoundException<T>();
+                case 1: return items[0];
+                default: throw new NotUniqueException<T>();
             }
         }
 

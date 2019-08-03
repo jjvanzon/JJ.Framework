@@ -29,7 +29,7 @@ namespace JJ.Framework.Collections
 
 			if (namesAndValues.Count % 2 != 0) throw new Exception("namesAndValues.Count must be a multiple of 2.");
 
-			for (int i = 0; i < namesAndValues.Count; i += 2)
+			for (var i = 0; i < namesAndValues.Count; i += 2)
 			{
 				object name = namesAndValues[i];
 				object value = namesAndValues[i + 1];

@@ -494,7 +494,7 @@ namespace JJ.Framework.Xml
 			var destCollection = (IList)Activator.CreateInstance(destConcreteCollectionType, count);
 
 			Type destItemType = destCollectionType.GetItemType();
-			for (int i = 0; i < count; i++)
+			for (var i = 0; i < count; i++)
 			{
 				XmlElement sourceXmlArrayItem = sourceXmlArrayItems[i];
 				object destValue = ConvertElement(sourceXmlArrayItem, destItemType);

@@ -145,7 +145,7 @@ namespace JJ.Framework.Reflection
 			if (node.Method.IsIndexer())
 			{
 				_sb.Append("[");
-				for (int i = 0; i < node.Arguments.Count - 1; i++)
+				for (var i = 0; i < node.Arguments.Count - 1; i++)
 				{
 					VisitIndexerValue(node.Arguments[i]);
 					_sb.Append(", ");
@@ -162,7 +162,7 @@ namespace JJ.Framework.Reflection
 				_sb.Append(".");
 				_sb.Append(node.Method.Name);
 				_sb.Append("(");
-				for (int i = 0; i < node.Arguments.Count - 1; i++)
+				for (var i = 0; i < node.Arguments.Count - 1; i++)
 				{
 					Visit(node.Arguments[i]);
 					_sb.Append(", ");
@@ -215,7 +215,7 @@ namespace JJ.Framework.Reflection
 
 		protected virtual void VisitNewArray(NewArrayExpression node)
 		{
-			for (int i = 0; i < node.Expressions.Count - 1; i++)
+			for (var i = 0; i < node.Expressions.Count - 1; i++)
 			{
 				Visit(node.Expressions[i]);
 				_sb.Append(", ");

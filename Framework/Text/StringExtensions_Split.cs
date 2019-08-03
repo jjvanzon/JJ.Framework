@@ -53,12 +53,12 @@ namespace JJ.Framework.Text
 
 			IList<string> values = new List<string>();
 
-			bool inQuote = false;
-			int startPos = 0;
+			var inQuote = false;
+			var startPos = 0;
 
 			int forEnd = input.Length - separator.Length;
 
-			for (int pos = 0; pos <= forEnd; pos++)
+			for (var pos = 0; pos <= forEnd; pos++)
 			{
 				char chr = input[pos];
 

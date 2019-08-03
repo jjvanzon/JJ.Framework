@@ -174,7 +174,7 @@ namespace JJ.Framework.Reflection
 
 					IList<ParameterInfo> parameters = methodCallExpression.Method.GetParameters();
 
-					for (int i = 0; i < parameters.Count; i++)
+					for (var i = 0; i < parameters.Count; i++)
 					{
 						ParameterInfo parameter = parameters[i];
 						Expression argumentExpression = methodCallExpression.Arguments[i];
