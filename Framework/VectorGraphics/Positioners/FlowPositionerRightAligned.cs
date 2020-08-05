@@ -32,13 +32,13 @@ namespace JJ.Framework.VectorGraphics.Positioners
 
 			var rectangles = new(float x, float y, float width, float height)[count];
 
-			bool isFirstItem = true;
-			int firstIndexInRow = 0;
+			var isFirstItem = true;
+			var firstIndexInRow = 0;
 
 			float x = 0;
 			float y = 0;
 
-			for (int i = 0; i < count; i++)
+			for (var i = 0; i < count; i++)
 			{
 				float itemWidth = _itemWidths[i];
 

@@ -2,6 +2,7 @@
 using System.Text;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.VectorGraphics.Models.Elements;
+// ReSharper disable SuggestVarOrType_BuiltInTypes
 
 namespace JJ.Framework.VectorGraphics.Helpers
 {

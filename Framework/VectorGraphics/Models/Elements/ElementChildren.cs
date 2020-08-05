@@ -1,15 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using JJ.Framework.Collections;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.VectorGraphics.Relationships;
 using JJ.Framework.VectorGraphics.SideEffects;
 
 namespace JJ.Framework.VectorGraphics.Models.Elements
 {
-	/// <summary>
-	/// Note that there is no Remove method, because this would orphan the child.
-	/// To remove a child, change its parent instead.
-	/// </summary>
 	public class ElementChildren : IEnumerable<Element>
 	{
 		private readonly Element _parent;
@@ -44,5 +42,13 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 
 		public IEnumerator<Element> GetEnumerator() => _list.GetEnumerator();
 		IEnumerator IEnumerable.GetEnumerator() => _list.GetEnumerator();
-	}
+
+        public void Clear()
+        {
+			foreach (Element child in this.ToArray())
+			{
+				child.Dispose();
+			}
+        }
+    }
 }

@@ -14,7 +14,7 @@ namespace JJ.Framework.VectorGraphics.Positioners
 
 			IList<(float x, float y, float width, float height)> tuples = Calculate();
 
-			int i = 0;
+			var i = 0;
 			foreach (Element element in elements)
 			{
 				ElementPosition elementPosition = element.Position;

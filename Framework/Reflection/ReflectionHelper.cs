@@ -60,7 +60,7 @@ namespace JJ.Framework.Reflection
         /// <summary> A variation on the existing Type.CreateInstance, that takes a type name as a string, instead of a Type. </summary>
 		public static object CreateInstance(string typeName, params object[] args)
 		{
-			Type type = Type.GetType(typeName);
+			var type = Type.GetType(typeName);
 
 			if (type == null)
 			{

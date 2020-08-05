@@ -70,7 +70,7 @@ namespace JJ.Framework.VectorGraphics.Visitors
 			IList<Element> orderedElements = diagram.Elements.OrderBy(x => x.ZIndex)
 															 .ThenBy(x => x.CalculatedValues.ZIndex)
 															 .ToArray();
-			int i = 1;
+			var i = 1;
 			foreach (Element element in orderedElements)
 			{
 				element.CalculatedValues.ZIndex = i++;
@@ -227,7 +227,7 @@ namespace JJ.Framework.VectorGraphics.Visitors
 
 			float step = 1f / newLineCount;
 			float t = 0;
-			for (int i = 0; i < newLineCount; i++)
+			for (var i = 0; i < newLineCount; i++)
 			{
 				Line destLine = destLines[i];
 				UpdateCurveLine(sourceCurve, destLine);

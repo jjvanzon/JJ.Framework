@@ -22,7 +22,7 @@ namespace JJ.Framework.VectorGraphics.Helpers
 		{
 			(float width, float height) sizeWithoutWrapping = GetTextSize(text, font);
 
-			int lineCount = (int)Math.Ceiling(sizeWithoutWrapping.width / lineWidthInPixels);
+			var lineCount = (int)Math.Ceiling(sizeWithoutWrapping.width / lineWidthInPixels);
 			float lineHeight = GetTextHeight(font);
 			float height = lineHeight * lineCount;
 

@@ -102,7 +102,12 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 
 		internal void NullifyParent() => _parentRelationship.Parent = null;
 
-	    public ElementChildren Children { get; }
+		/// <summary>
+		/// Note that there is no Remove method, because this would orphan the child.
+		/// To remove a child, try setting the parent to null or call dispose on the child,
+		/// so the element is cleaned up neatly.
+		/// </summary>
+		public ElementChildren Children { get; }
 
 		private string DebuggerDisplay => DebuggerDisplayFormatter.GetDebuggerDisplay(this);
 	}

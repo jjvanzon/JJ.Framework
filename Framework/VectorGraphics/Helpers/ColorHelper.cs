@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Comparative;
+// ReSharper disable SuggestVarOrType_BuiltInTypes
 
 namespace JJ.Framework.VectorGraphics.Helpers
 {
