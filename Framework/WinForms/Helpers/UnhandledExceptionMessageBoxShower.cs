@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 using JJ.Framework.Logging;
+// ReSharper disable SuggestVarOrType_BuiltInTypes
 
 namespace JJ.Framework.WinForms.Helpers
 {

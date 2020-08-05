@@ -149,14 +149,14 @@ namespace JJ.Framework.WinForms.Controls
 				// on top of this.
 
 				const int y = 0;
-				int x = 0;
+				var x = 0;
 				int height = textBox.Height; // We cannot size a TextBox's height, so we're stuck with it.
 
 				// label
 				if (!string.IsNullOrEmpty(label.Text))
 				{
 					float textWidth = ControlHelper.MeasureStringWithFontScaling(_graphics, label).Width;
-					int labelWidth = (int)Math.Ceiling(textWidth);
+					var labelWidth = (int)Math.Ceiling(textWidth);
 					labelWidth += 2; // MeasureText and Label.Width do not seem to want to work together...
 					label.Location = new Point(x, y);
 					label.Size = new Size(labelWidth, height);

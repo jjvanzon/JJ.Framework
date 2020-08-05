@@ -27,15 +27,14 @@ namespace JJ.Framework.Presentation
 			    throw new GreaterThanException(() => selectedPageNumber, () => pageCount);
 			}
 
-			bool hasPages = pageCount != 0;
 			bool isFirstPage = selectedPageNumber == 1;
 			bool isLastPage = selectedPageNumber == pageCount;
 
 			var viewModel = new PagerViewModel
 			{
 				PageCount = pageCount,
-				CanGoToPreviousPage = hasPages && !isFirstPage,
-				CanGoToNextPage = hasPages && !isLastPage,
+				CanGoToPreviousPage = !isFirstPage,
+				CanGoToNextPage = !isLastPage,
 			    PageNumber = selectedPageNumber,
 			    VisiblePageNumbers = new List<int>(maxVisiblePageNumbers)
 			};
