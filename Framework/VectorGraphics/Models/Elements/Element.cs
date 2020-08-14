@@ -51,10 +51,7 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 		public int ZIndex { get; set; }
 		public object Tag { get; set; }
 
-		/// <summary>
-		/// Typically assign as follows in the constructor of your derived class:
-		/// Position = new RectanglePosition(this);
-		/// </summary>
+		/// <inheritdoc cref="ElementPosition"/>
 		public abstract ElementPosition Position { get; }
 
 		public CalculatedValues CalculatedValues { get; } = new CalculatedValues();

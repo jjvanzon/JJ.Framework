@@ -5,7 +5,14 @@ using JJ.Framework.VectorGraphics.Helpers;
 
 namespace JJ.Framework.VectorGraphics.Models.Elements
 {
-	public class DiagramPosition
+	/// <summary>
+	/// Could be used to set the diagram's size in pixels and its scaled coordinates.
+	/// When using a DiagramControl the size in pixels might be set automatically.
+	/// Scaled coordinates might be something that you could set.
+	/// There would be different scaling modes that can be used.
+	/// This object can also help convert between coordinate systems.
+	/// </summary>
+    public class DiagramPosition
 	{
 		private readonly Diagram _diagram;
 

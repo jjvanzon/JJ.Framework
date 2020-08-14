@@ -23,8 +23,18 @@ namespace JJ.Framework.VectorGraphics.Models.Elements
 
 		private readonly CalculationVisitor _calculationVisitor = new CalculationVisitor();
 
+		/// <summary>
+		/// Might be not much use setting coordinates of this element,
+		/// since the scaled coordinates are taken over from the Diagram
+		/// upon recalculation.
+		/// This property may be used to style the back ground.
+		/// It also could serve as the parent element for elements that might otherwise not have one.
+		/// Also, gestures might be set to operate on this background element.
+		/// </summary>
 		public Rectangle Background { get; }
 		public DiagramElements Elements { get; }
+
+		/// <inheritdoc cref="DiagramPosition"/>
 		public DiagramPosition Position { get; }
 		public IList<Element> ElementsOrderedByZIndex { get; private set; } = new Element[0];
 

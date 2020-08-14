@@ -10,12 +10,18 @@ using JJ.Framework.WinForms.Helpers;
 
 namespace JJ.Framework.WinForms.Controls
 {
+	/// <summary>
+	/// This could be placed on your Windows Form UserControl or Form.
+	/// DiagramControl.Diagram might be assigned to get started.
+	/// </summary>
 	public partial class DiagramControl : UserControl
 	{
 		private readonly ControlGraphicsBuffer _graphicsBuffer;
 		private Diagram _diagram;
 
-		/// <summary> nullable </summary>
+		/// <summary>
+		/// Nullable. To get started this might be assigned a new Diagram.
+		/// </summary>
 		public Diagram Diagram 
 		{
 			get => _diagram;
