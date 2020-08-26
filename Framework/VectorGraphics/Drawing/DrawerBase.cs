@@ -6,38 +6,51 @@ using JJ.Framework.VectorGraphics.Models.Styling;
 namespace JJ.Framework.VectorGraphics.Drawing
 {
 	/// <summary>
+	/// This class can be derived from to make JJ.Framework.VectorGraphics work for specific presentation technology.
+	/// JJ.Framework implements such derived class inside JJ.Framework.Drawing
+	/// to support System.Drawing and System.Windows.Forms.
+	/// This base aims to help with some hassle that then might not have to be thought about when implementing a derived class.
 	/// The base will correct coordinates and sizes to be within
-	/// certain bounds and sizes to be a minimum positive value.
-	/// Coordinates minimally -100,000 and maximally 100,000
-	/// Sizes at least 0.0001.
+	/// certain pixel bounds and sizes to be a minimum positive value.
+	/// Coordinates minimally -100,000 and maximally 100,000. Sizes at least 0.0001.
+	/// Also, the base hides details to do with (more complex) vector graphics element drawing
+	/// and translates those details to drawing primitives: methods that are closer to what you might do with a drawing API.
 	/// </summary>
 	public abstract class DrawerBase
 	{
+		/// <inheritdoc cref="FillRectangle"/>
 		protected abstract void DrawLine(float x1, float y1, float x2, float y2, LineStyle lineStyle);
+		/// <summary>
+		/// Overrides might draw with specific presentation technology such as System.Drawing.
+		/// Overrides might have a little more work converting styles to something usable for that presentation technology.
+		/// </summary>
 		protected internal abstract void FillRectangle(float x, float y, float width, float height, BackStyle backStyle);
+		/// <inheritdoc cref="FillRectangle"/>
 		protected internal abstract void DrawRectangle(float x, float y, float width, float height, LineStyle lineStyle);
+		/// <inheritdoc cref="FillRectangle"/>
 		protected abstract void DrawLabel(string text, float x, float y, float width, float height, TextStyle textStyle);
+		/// <inheritdoc cref="FillRectangle"/>
 		protected abstract void DrawEllipse(float x, float y, float width, float height, LineStyle lineStyle);
+		/// <inheritdoc cref="FillRectangle"/>
 		protected internal abstract void FillEllipse(float x, float y, float width, float height, BackStyle backStyle);
+		/// <inheritdoc cref="FillRectangle"/>
 		protected abstract void DrawPictureUnscaledUnclipped(object picture, int x, int y);
+		/// <inheritdoc cref="FillRectangle"/>
 		protected abstract void DrawPictureClipped(object picture, int x, int y, int width, int height);
+		/// <inheritdoc cref="FillRectangle"/>
 		protected abstract void DrawPictureScaled(object picture, int x, int y, int width, int height);
+		/// <inheritdoc cref="FillRectangle"/>
 		protected abstract void DrawPictureScaledWithColorMatrix(object picture, int x, int y, int width, int height, float[][] colorMatrix);
+		/// <inheritdoc cref="FillRectangle"/>
 		protected abstract void DrawPictureClippedWithColorMatrix(object picture, int x, int y, int width, int height, float[][] colorMatrix);
+		/// <inheritdoc cref="FillRectangle"/>
 		protected abstract void DrawPictureUnscaledUnclippedWithColorMatrix(object picture, int x, int y, float[][] colorMatrix);
 
-		public static bool MustDrawCoordinateIndicatorsForPrimitives
-		{
-			get => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForPrimitives;
-			set => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForPrimitives = value;
-		}
-
-		public static bool MustDrawCoordinateIndicatorsForComposites
-		{
-			get => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForComposites;
-			set => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForComposites = value;
-		}
-
+		/// <summary>
+		/// The choice when to draw out the vector graphics might be made
+		/// when implementing JJ.Framework.VectorGraphics for specific presentation technology.
+		/// the DiagramControl class in JJ.Framework.WinForms calls it at specific times.
+		/// </summary>
 		public void Draw(Diagram diagram)
 		{
 			if (diagram == null) throw new ArgumentNullException(nameof(diagram));
@@ -82,7 +95,6 @@ namespace JJ.Framework.VectorGraphics.Drawing
 				// Another element type can be just a custom programmed composite element.
 			}
 		}
-
 
 		private void DrawPoint(Point sourcePoint)
 		{
