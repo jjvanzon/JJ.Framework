@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.VectorGraphics.Models.Elements;
 using JJ.Framework.VectorGraphics.Models.Styling;
@@ -47,9 +48,35 @@ namespace JJ.Framework.VectorGraphics.Drawing
 		protected abstract void DrawPictureUnscaledUnclippedWithColorMatrix(object picture, int x, int y, float[][] colorMatrix);
 
 		/// <summary>
+		/// Static method for turning coordinate indicators on and off:
+		/// shaded overlays indicating elements' positions.
+		/// That turned out to be practical for debugging positioning efforts.
+		/// The coordinates of elements may not always be obvious from just the drawn elements themselves.
+		/// There may be two properties as such: one for 'primitives', like lines and ellipses,
+		/// and another property for 'composites': elements that would be made up of just other elements.
+		/// It may have been a design choice to try and not make JJ.Framework.VectorGraphics too dependent on config files.
+		/// So an option might be to assign a value yourself from settings somewhere centrally.
+		/// </summary>
+		[PublicAPI]
+		public static bool MustDrawCoordinateIndicatorsForPrimitives
+		{
+			get => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForPrimitives;
+			set => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForPrimitives = value;
+		}
+
+		/// <inheritdoc cref="MustDrawCoordinateIndicatorsForPrimitives"/>
+		[PublicAPI]
+		public static bool MustDrawCoordinateIndicatorsForComposites
+		{
+			get => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForComposites;
+			set => CoordinateIndicatorHelper.MustDrawCoordinateIndicatorsForComposites = value;
+		}
+
+        /// <summary>
+		/// Can be called to draw the vector graphics.
 		/// The choice when to draw out the vector graphics might be made
 		/// when implementing JJ.Framework.VectorGraphics for specific presentation technology.
-		/// the DiagramControl class in JJ.Framework.WinForms calls it at specific times.
+		/// For instance the DiagramControl class in JJ.Framework.WinForms may call it at specific times.
 		/// </summary>
 		public void Draw(Diagram diagram)
 		{
