@@ -18,15 +18,10 @@ namespace JJ.Framework.VectorGraphics.EventArg
         /// </summary>
         public Element ElementBeingDragged { get; }
 
-        /// <summary>
-        /// Indicates the current position of the (mouse) cursor in pixels.
-        /// When you might need scaled coordinates for instance,
-        /// you might use Diagram.Position members which may allow you to
-        /// convert between coordinate systems.
-        /// </summary>
+        /// <inheritdoc cref="MouseEventArgs.XInPixels" />
         public float XInPixels { get; }
 
-        /// <inheritdoc cref="XInPixels" />
+        /// <inheritdoc cref="MouseEventArgs.YInPixels" />
         public float YInPixels { get; }
 
         /// <inheritdoc cref="DraggingEventArgs"/>

@@ -6,7 +6,8 @@ namespace JJ.Framework.VectorGraphics.EventArg
 {
 	/// <summary>
 	/// This EventArgs class might be fit for events
-	/// that can make due with just passing an Element along with the event args.
+	/// that can make due with just passing an Element along as the EventArgs.
+	/// The Element here would not be nullable.
 	/// </summary>
 	public class ElementEventArgs : EventArgs
 	{
