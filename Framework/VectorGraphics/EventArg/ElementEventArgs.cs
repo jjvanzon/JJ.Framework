@@ -4,10 +4,18 @@ using JJ.Framework.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.VectorGraphics.EventArg
 {
+	/// <summary>
+	/// This EventArgs class might be fit for events
+	/// that can make due with just passing an Element along with the event args.
+	/// </summary>
 	public class ElementEventArgs : EventArgs
 	{
+		/// <summary>
+		/// The element that might be relevant to the event. Not nullable.
+		/// </summary>
 		public Element Element { get; }
 
+		/// <inheritdoc cref="ElementEventArgs"/>>
 		public ElementEventArgs(Element element) => Element = element ?? throw new NullException(() => element);
 	}
 }
