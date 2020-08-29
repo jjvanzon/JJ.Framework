@@ -22,6 +22,8 @@ namespace JJ.Framework.VectorGraphics.EventArg
 		public Element DroppedOnElement { get; }
 
 		/// <inheritdoc cref="DroppedEventArgs"/>
+		/// <param name="draggedElement"> See DraggedElement property.</param>
+		/// <param name="droppedOnElement"> See DroppedOnElement property.</param>
 		public DroppedEventArgs(Element draggedElement, Element droppedOnElement)
 		{
 			DraggedElement = draggedElement ?? throw new NullException(() => draggedElement);

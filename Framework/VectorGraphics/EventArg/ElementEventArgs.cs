@@ -17,6 +17,7 @@ namespace JJ.Framework.VectorGraphics.EventArg
 		public Element Element { get; }
 
 		/// <inheritdoc cref="ElementEventArgs"/>>
+		/// <param name="element"> See Element property. </param>
 		public ElementEventArgs(Element element) => Element = element ?? throw new NullException(() => element);
 	}
 }

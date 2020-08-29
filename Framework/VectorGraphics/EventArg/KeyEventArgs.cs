@@ -7,15 +7,6 @@ namespace JJ.Framework.VectorGraphics.EventArg
 	/// <summary> Would contain properties that might be passed along with keyboard events. </summary>
 	public class KeyEventArgs : EventArgs
 	{
-		/// <inheritdoc cref="KeyEventArgs" />
-		public KeyEventArgs(KeyCodeEnum keyCode, bool shift, bool ctrl, bool alt)
-		{
-			KeyCode = keyCode;
-			Shift = shift;
-			Ctrl = ctrl;
-			Alt = alt;
-		}
-
 		/// <inheritdoc cref="KeyCodeEnum" />
 		public KeyCodeEnum KeyCode { get; }
 
@@ -36,5 +27,18 @@ namespace JJ.Framework.VectorGraphics.EventArg
 		/// </summary>
 		[PublicAPI]
 		public bool Alt { get; }
+
+		/// <inheritdoc cref="KeyEventArgs" />
+		/// <param name="keyCode"> See KeyCode property. </param>
+		/// <param name="shift"> See Shift property. </param>
+		/// <param name="ctrl"> See Ctrl property. </param>
+		/// <param name="alt"> See Alt property. </param>
+		public KeyEventArgs(KeyCodeEnum keyCode, bool shift, bool ctrl, bool alt)
+		{
+			KeyCode = keyCode;
+			Shift = shift;
+			Ctrl = ctrl;
+			Alt = alt;
+		}
 	}
 }

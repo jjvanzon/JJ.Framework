@@ -17,6 +17,7 @@ namespace JJ.Framework.VectorGraphics.EventArg
 
 		/// <summary>
 		/// Indicates the current position of the (mouse) cursor in pixels.
+		/// Those would be the amount of pixels from to the top left corner from the Diagram.
 		/// When you might need scaled coordinates for instance,
 		/// you might use Diagram.Position members which may allow you to convert.
 		/// </summary>
@@ -27,11 +28,15 @@ namespace JJ.Framework.VectorGraphics.EventArg
 		[PublicAPI]
 		public float YInPixels { get; }
 
-		/// <inheritdoc cref="Enums.MouseButtonEnum"/>
+		/// <inheritdoc cref="Enums.MouseButtonEnum" />
 		[PublicAPI]
 		public MouseButtonEnum MouseButtonEnum { get; }
 
-		/// <param name="element">nullable</param>
+		/// <inheritdoc cref="MouseEventArgs" />
+		/// <param name="element"> nullable </param>
+		/// <param name="xInPixels"> See XInPixels property. </param>
+		/// <param name="yInPixels"> See YinPixels property. </param>
+		/// <param name="mouseButtonEnum"> See MouseButtonEnum. </param>
 		public MouseEventArgs(Element element, float xInPixels, float yInPixels, MouseButtonEnum mouseButtonEnum)
 		{
 			Element = element;

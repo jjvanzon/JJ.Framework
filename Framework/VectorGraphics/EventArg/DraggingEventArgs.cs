@@ -25,6 +25,9 @@ namespace JJ.Framework.VectorGraphics.EventArg
         public float YInPixels { get; }
 
         /// <inheritdoc cref="DraggingEventArgs"/>
+        /// <param name="elementBeingDragged"> See ElementBeingDragged property. </param>
+        /// <param name="xInPixels"> See XInPixels property. </param>
+        /// <param name="yInPixels"> See YInPixels property. </param>
         public DraggingEventArgs(Element elementBeingDragged, float xInPixels, float yInPixels)
         {
             ElementBeingDragged = elementBeingDragged ?? throw new NullException(() => elementBeingDragged);
