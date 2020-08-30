@@ -5,14 +5,21 @@ using JJ.Framework.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.VectorGraphics.Gestures
 {
+	/// <inheritdoc />
 	public class ClickGesture : GestureBase
 	{
+		/// <summary> Goes off when a user clicked an element, </summary>
 		public event EventHandler<ElementEventArgs> Click;
 
 		private Element _mouseDownElement;
 
+		/// <inheritdoc />
 		protected override bool MouseCaptureRequired => true;
 
+		/// <summary>
+		/// For the Clicked event to be triggered, the cursor should be over the same element
+		/// upon both mouse down as well as mouse up.
+		/// </summary>
 		protected override void HandleMouseDown(object sender, MouseEventArgs e)
 		{
 			if (Click == null) return;
@@ -23,6 +30,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 			}
 		}
 
+		/// <inheritdoc cref="HandleMouseDown" />
 		protected override void HandleMouseUp(object sender, MouseEventArgs e)
 		{
 			if (Click == null) return;

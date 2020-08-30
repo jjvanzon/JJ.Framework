@@ -4,6 +4,7 @@ using JJ.Framework.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.VectorGraphics.Gestures
 {
+	/// <inheritdoc />
 	public class DragGesture : GestureBase
 	{
 		public event EventHandler<DraggingEventArgs> Dragging;

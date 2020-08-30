@@ -10,7 +10,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 	/// </para>
 	/// 
 	/// <para>
-	/// A derived gesture might have a single event like Click for simplicity.
+	/// A derived gesture might have a single event like Click for instance for simplicity.
 	/// Sometimes a derived gesture might have properties to control some things
 	/// or constructors to initialize some things.
 	/// </para>
@@ -21,22 +21,21 @@ namespace JJ.Framework.VectorGraphics.Gestures
 	/// 2) Using its event.
 	/// 3) Add it to the Element.Gestures.
 	/// 4) Or add it to the Diagram.Gestures.
-	/// That way gestures might be assigned specifically to (multiple) elements
+	/// That way gestures might be assigned specifically to (multiple) Elements
 	/// or 'global' gestures might be assigned to the Diagram too.
 	/// </para>
 	/// 
 	/// <para>
-	/// The public GestureBase.Internals would make it possible to not only respond to users,
+	/// The public Internals member would make it possible to not only respond to users,
 	/// but trigger events programmatically, mimicking a user.
 	/// Similarly, a Diagram.GestureHandling might allow mimicking the user events as well,
-	/// but now sending primitive gestures to the Diagram, as if the user did it, instead of specific elements.
+	/// but now sending primitive gestures to the Diagram, not specifying a specific Element.
 	/// </para>
 	/// 
 	/// <para>
 	/// GestureBase would be the common base type for the Gestures.
-	/// It would aim to make implementing a custom gesture a bit easier,
-	/// by offering a set of overrides that might be used to pick up basic events:
-	/// overrides like HandleMouseDown or HandleKeyUp.
+	/// One of its aims might be to make implementing a custom Gesture a bit easier,
+	/// by offering a set of overrides like HandleMouseDown or HandleKeyUp to pick up basic events.
 	/// </para>
 	/// </summary>
 	public abstract class GestureBase
@@ -59,8 +58,28 @@ namespace JJ.Framework.VectorGraphics.Gestures
 		/// <summary> Base member does nothing. </summary>
 		protected virtual void HandleKeyUp(object sender, KeyEventArgs e) { }
 
+		/// <summary>
+		/// <para>
+		/// Mouse capturing might be for instance when a MouseDown event
+		/// would create a certain fixation on the Element.
+		/// No matter where the mouse arrow goes,
+		/// no matter if it leaves the area of the captured Element,
+		/// the events that follow might apply until the mouse button is let go of.
+		/// </para>
+		///
+		/// <para>
+		/// The MoveGesture might be an example where MouseCapture is true.
+		/// That gesture allows allows moving an Element around on screen,
+		/// </para>
+		/// </summary>
 		protected virtual bool MouseCaptureRequired => false;
 
+		/// <summary>
+		/// Would make it possible to not only respond to users,
+		/// but trigger events programmatically, mimicking a user.
+		/// Similarly, a Diagram.GestureHandling might allow mimicking the user events as well,
+		/// but now sending primitive gestures to the Diagram, not specifying a specific Element).
+		/// </summary>
 		public GestureInternals Internals { get; }
 
 		// These are here for GestureInternals to delegate to, all to make the interface look clean.
