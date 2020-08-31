@@ -5,12 +5,14 @@ using JJ.Framework.VectorGraphics.EventArg;
 
 namespace JJ.Framework.VectorGraphics.Gestures
 {
+	/// <inheritdoc />
 	public class DropGesture : GestureBase
 	{
 		public event EventHandler<DroppedEventArgs> Dropped;
 
 		private readonly IList<DragGesture> _dragGestures;
 
+		/// <inheritdoc cref="DropGesture" />
 		public DropGesture(params DragGesture[] dragGestures)
 			: this((IList<DragGesture>)dragGestures)
 		{ }
