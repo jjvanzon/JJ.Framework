@@ -4,14 +4,48 @@ using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Mathematics;
 using JJ.Framework.VectorGraphics.EventArg;
 using JJ.Framework.VectorGraphics.Models.Elements;
+// ReSharper disable TailRecursiveCall
+// ReSharper disable LoopCanBeConvertedToQuery
 
 namespace JJ.Framework.VectorGraphics.Gestures
 {
+	/// <summary>
+	/// <para>
+	/// Called by Diagram.GestureHandling.
+	/// Would figure out which vector graphics Elements to involve in the user's gesture.
+	/// Aims to call the involved gesture objects for processing the details.
+	/// </para>
+	///
+	/// <para>
+	/// GestureHandler would figure out things like:
+	/// </para>
+	/// 
+	/// <para>
+	/// * Hit testing: Which element was hit. Based on coordinates and how elements overlap each other.
+	/// (Currently only checks hits within rectangles disregarding the shape of an ellipse for instance.).
+	/// </para>
+	/// 
+	/// <para>
+	/// * Bubbling: When events might bubble upward to parents.
+	/// </para>
+	/// 
+	/// <para>
+	/// * Mouse capturing: When a MouseDown might fix the involved element
+	/// no matter where the mouse arrow goes until you let go of the mouse button.
+	/// </para>
+	/// 
+	/// <para>
+	/// Keyboard gestures are currently only usable on the Diagram level or Diagram.BackGround level,
+	/// so not related to an element. (That might require focus handling.
+	/// Focus is not a feature of this API (yet).)
+	/// </para>
+	/// </summary>
 	internal class GestureHandler
 	{
 		private readonly Diagram _diagram;
 		private Element _mouseCapturingElement;
 
+		/// <inheritdoc cref="GestureHandler" />
 		public GestureHandler(Diagram diagram)
 		{
 			_diagram = diagram ?? throw new NullException(() => diagram);
@@ -21,7 +55,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 		~GestureHandler() => FinalizeMouseMoveGesture();
 
-	    // MouseDown
+		// MouseDown
 
 		public void HandleMouseDown(MouseEventArgs e)
 		{
@@ -31,16 +65,17 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 			Element hitElement = TryGetHitElement(zOrderedElements, e.XInPixels, e.YInPixels);
 
-		    var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
+			var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-		    foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
-		    {
-		        diagramGesture.Internals.HandleMouseDown(hitElement, e);
-		    }
-
-            if (hitElement != null)
+			foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
 			{
-				foreach (GestureBase gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+				diagramGesture.Internals.HandleMouseDown(hitElement, e);
+			}
+
+			if (hitElement != null)
+			{
+				foreach (GestureBase gesture in hitElement.Gestures.ToArray()
+				) // The ToArray is a safety measure in case delegates modify the gesture collection.
 				{
 					gesture.Internals.HandleMouseDown(hitElement, e2);
 				}
@@ -75,7 +110,8 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 			var e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-			foreach (GestureBase gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+			foreach (GestureBase gesture in parent.Gestures.ToArray()
+			) // The ToArray is a safety measure in case delegates modify the gesture collection.
 			{
 				gesture.Internals.HandleMouseDown(sender, e2);
 			}
@@ -114,22 +150,23 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 		public void HandleMouseMove(MouseEventArgs e) => _mouseMoveGesture.Internals.HandleMouseMove(_diagram, e);
 
-	    private void mouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
+		private void mouseMoveGesture_MouseMove(object sender, MouseEventArgs e)
 		{
 			IEnumerable<Element> zOrderedElements = _diagram.ElementsOrderedByZIndex;
-		
+
 			Element hitElement = _mouseCapturingElement ?? TryGetHitElement(zOrderedElements, e.XInPixels, e.YInPixels);
 
-		    var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
+			var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-		    foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
-		    {
-		        diagramGesture.Internals.HandleMouseMove(hitElement, e2);
-		    }
-
-            if (hitElement != null)
+			foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
 			{
-				foreach (GestureBase gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+				diagramGesture.Internals.HandleMouseMove(hitElement, e2);
+			}
+
+			if (hitElement != null)
+			{
+				foreach (GestureBase gesture in hitElement.Gestures.ToArray()
+				) // The ToArray is a safety measure in case delegates modify the gesture collection.
 				{
 					gesture.Internals.HandleMouseMove(hitElement, e2);
 				}
@@ -159,7 +196,8 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 			var e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-			foreach (GestureBase gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+			foreach (GestureBase gesture in parent.Gestures.ToArray()
+			) // The ToArray is a safety measure in case delegates modify the gesture collection.
 			{
 				gesture.Internals.HandleMouseMove(sender, e2);
 			}
@@ -177,16 +215,17 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 			Element hitElement = _mouseCapturingElement ?? TryGetHitElement(zOrderedElements, e.XInPixels, e.YInPixels);
 
-		    var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
+			var e2 = new MouseEventArgs(hitElement, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-		    foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
-		    {
-		        diagramGesture.Internals.HandleMouseUp(hitElement, e2);
-		    }
-
-            if (hitElement != null)
+			foreach (GestureBase diagramGesture in _diagram.Gestures.ToArray())
 			{
-				foreach (GestureBase gesture in hitElement.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+				diagramGesture.Internals.HandleMouseUp(hitElement, e2);
+			}
+
+			if (hitElement != null)
+			{
+				foreach (GestureBase gesture in hitElement.Gestures.ToArray()
+				) // The ToArray is a safety measure in case delegates modify the gesture collection.
 				{
 					gesture.Internals.HandleMouseUp(hitElement, e2);
 				}
@@ -218,7 +257,8 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 			var e2 = new MouseEventArgs(parent, e.XInPixels, e.YInPixels, e.MouseButtonEnum);
 
-			foreach (GestureBase gesture in parent.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+			foreach (GestureBase gesture in parent.Gestures.ToArray()
+			) // The ToArray is a safety measure in case delegates modify the gesture collection.
 			{
 				gesture.Internals.HandleMouseUp(sender, e2);
 			}
@@ -235,7 +275,8 @@ namespace JJ.Framework.VectorGraphics.Gestures
 				gesture.Internals.HandleKeyDown(_diagram, e);
 			}
 
-			foreach (GestureBase gesture in _diagram.Background.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+			foreach (GestureBase gesture in _diagram.Background.Gestures.ToArray()
+			) // The ToArray is a safety measure in case delegates modify the gesture collection.
 			{
 				gesture.Internals.HandleKeyDown(_diagram.Background, e);
 			}
@@ -248,7 +289,8 @@ namespace JJ.Framework.VectorGraphics.Gestures
 				gesture.Internals.HandleKeyUp(_diagram, e);
 			}
 
-			foreach (GestureBase gesture in _diagram.Background.Gestures.ToArray()) // The ToArray is a safety measure in case delegates modify the gesture collection.
+			foreach (GestureBase gesture in _diagram.Background.Gestures.ToArray()
+			) // The ToArray is a safety measure in case delegates modify the gesture collection.
 			{
 				gesture.Internals.HandleKeyUp(_diagram.Background, e);
 			}
@@ -266,11 +308,11 @@ namespace JJ.Framework.VectorGraphics.Gestures
 				}
 
 				bool isInRectangle = Geometry.IsInRectangle(
-					pointerXInPixels, 
+					pointerXInPixels,
 					pointerYInPixels,
-					element.CalculatedValues.XInPixels, 
+					element.CalculatedValues.XInPixels,
 					element.CalculatedValues.YInPixels,
-					element.CalculatedValues.XInPixels + element.CalculatedValues.WidthInPixels, 
+					element.CalculatedValues.XInPixels + element.CalculatedValues.WidthInPixels,
 					element.CalculatedValues.YInPixels + element.CalculatedValues.HeightInPixels);
 
 				if (isInRectangle)
