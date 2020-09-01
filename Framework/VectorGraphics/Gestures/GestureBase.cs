@@ -16,7 +16,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 	/// </para>
 	/// 
 	/// <para>
-	/// Using a gesture for the vector graphics would happen by:
+	/// Using a gesture for the vector graphics would happen like this:
 	/// 1) Instantiating a Gesture object.
 	/// 2) Using its event.
 	/// 3) Add it to the Element.Gestures.
@@ -26,16 +26,18 @@ namespace JJ.Framework.VectorGraphics.Gestures
 	/// </para>
 	/// 
 	/// <para>
-	/// The public Internals member would make it possible to not only respond to users,
+	/// The Internals member would make it possible to not only respond to users,
 	/// but trigger events programmatically, mimicking a user.
-	/// Similarly, a Diagram.GestureHandling might allow mimicking the user events as well,
+	/// Similarly, Diagram.GestureHandling might allow mimicking the user events as well,
 	/// but now sending primitive gestures to the Diagram, not specifying a specific Element.
 	/// </para>
 	/// 
 	/// <para>
 	/// GestureBase would be the common base type for the Gestures.
-	/// One of its aims might be to make implementing a custom Gesture a bit easier,
-	/// by offering a set of overrides like HandleMouseDown or HandleKeyUp to pick up basic events.
+	/// One of its aims might be making custom Gesture implementation a slight bit easier,
+	/// offering a set of overrides like HandleMouseDown or HandleKeyUp.
+	/// The overrides might have the relevant Element passed along,
+	/// picked out by internal gesture management.
 	/// </para>
 	/// </summary>
 	public abstract class GestureBase
