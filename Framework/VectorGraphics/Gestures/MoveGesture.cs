@@ -5,6 +5,9 @@ using JJ.Framework.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.VectorGraphics.Gestures
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class MoveGesture : GestureBase
 	{
 		public event EventHandler<ElementEventArgs> Moving;

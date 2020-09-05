@@ -1,16 +1,23 @@
 ﻿using System;
+using JetBrains.Annotations;
 using JJ.Framework.Mathematics;
 using JJ.Framework.VectorGraphics.Enums;
 using JJ.Framework.VectorGraphics.EventArg;
+
+// ReSharper disable InvertIf
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
 
 namespace JJ.Framework.VectorGraphics.Gestures
 {
 	/// <summary>
-	/// A simple grid snap implementation. When a move gesture is associated with a grid snap gesture,
-	/// the coordinates snap to grid upon moving. It doesn't show a grid nor makes it optional to snap with like a Ctrl key or something.
-	/// NOTE: This is not a Gesture you can tie to an element. You pass a MoveGesture with the constructor instead.
+	/// A relatively simple grid snap implementation.
+	/// When a move gesture would be associated with a grid snap gesture,
+	/// the coordinates of an element may snap to grid.
+	/// It would not show a grid nor make it optional to snap with like a Ctrl key or something.
+	/// NOTE: This may not be a gesture that might be tied to an element.
+	/// A MoveGesture may be passed to the constructor instead.
+	/// It might not derive from GestureBase either.
 	/// </summary>
 	public class GridSnapGesture
 	{
@@ -18,6 +25,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 		private readonly MoveGesture _moveGesture;
 
+		/// <inheritdoc cref="GridSnapGesture" />
 		public GridSnapGesture(MoveGesture moveGesture)
 		{
 			_moveGesture = moveGesture ?? throw new ArgumentNullException(nameof(moveGesture));
@@ -25,6 +33,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 			_moveGesture.Moved += _moveGesture_Moved;
 		}
 
+		/// <summary> Aims to clean up events that would be tied to the associated move gesture. </summary>
 		~GridSnapGesture()
 		{
 			if (_moveGesture != null)
@@ -34,33 +43,56 @@ namespace JJ.Framework.VectorGraphics.Gestures
 			}
 		}
 
-		public float SnapX { get; set; } = DEFAULT_SNAP;
-		public float SnapY { get; set; } = DEFAULT_SNAP;
+		/// <summary> Would be the width or height between grid points. Default = 8. </summary>
+		[PublicAPI]
+		public float SnapWidth { get; set; } = DEFAULT_SNAP;
+
+		/// <inheritdoc cref="SnapWidth" />
+		[PublicAPI]
+		public float SnapHeight { get; set; } = DEFAULT_SNAP;
+
+		/// <summary>
+		/// In case the grid would not start at point (0, 0) you might shift it using these Offset properties.
+		/// </summary>
+		[PublicAPI]
 		public float OffsetX { get; set; }
+
+		/// <inheritdoc cref="OffsetX" />
+		[PublicAPI]
 		public float OffsetY { get; set; }
+
+		/// <summary>
+		/// Would indicate that an element's position might snap to a grid position
+		/// while dragging, or after the lifting a finger. Default = WhileMoving.
+		/// </summary>
+		[PublicAPI]
 		public GridSnapModeEnum GridSnapModeEnum { get; set; } = GridSnapModeEnum.WhileMoving;
 
+		/// <inheritdoc cref="SnapWidth" />
 		public float? Snap
 		{
+			[PublicAPI]
 			get
 			{
-				if (SnapX == SnapY) return SnapX;
+				if (SnapWidth == SnapHeight) return SnapWidth;
 				return null;
 			}
 			set
 			{
 				if (!value.HasValue)
 				{
-					SnapX = default;
-					SnapY = default;
+					SnapWidth = default;
+					SnapHeight = default;
 					return;
 				}
 
-				SnapX = value.Value;
-				SnapY = value.Value;
+				SnapWidth = value.Value;
+				SnapHeight = value.Value;
 			}
 		}
 
+		/// <inheritdoc cref="OffsetX" />
+		[PublicAPI]
 		public float? Offset
 		{
 			get
@@ -104,8 +136,8 @@ namespace JJ.Framework.VectorGraphics.Gestures
 
 		private void DoGridSnap(ElementEventArgs e)
 		{
-			e.Element.Position.X = MathHelper.RoundWithStep(e.Element.Position.X, SnapX, OffsetX);
-			e.Element.Position.Y = MathHelper.RoundWithStep(e.Element.Position.Y, SnapY, OffsetY);
+			e.Element.Position.X = MathHelper.RoundWithStep(e.Element.Position.X, SnapWidth, OffsetX);
+			e.Element.Position.Y = MathHelper.RoundWithStep(e.Element.Position.Y, SnapHeight, OffsetY);
 		}
 	}
 }

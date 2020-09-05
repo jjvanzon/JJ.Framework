@@ -6,7 +6,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 	/// <summary>
 	/// <para>
 	/// A gesture might be something a user could perform,
-	/// for instance with a mouse or keyboard or tapping perhaps.
+	/// for instance with mouse or keyboard or tapping perhaps.
 	/// </para>
 	/// 
 	/// <para>

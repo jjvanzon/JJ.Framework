@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using JJ.Framework.VectorGraphics.Enums;
 using JJ.Framework.VectorGraphics.Models.Elements;
+// ReSharper disable InconsistentNaming
 
 namespace JJ.Framework.VectorGraphics.EventArg
 {
