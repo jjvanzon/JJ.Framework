@@ -1,0 +1,2514 @@
+# Turn JJ repo into JJ.Framework repo
+
+# Try using a RAM drive with the tool ImDisk (for Windows).
+
+git remote remove origin
+git filter-branch --tree-filter 'rm -rf Business' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter 'rm -rf Presentation' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+# This line did not work
+# git filter-branch --tree-filter 'rm -rf "Archive/2017-06-29 SaveText.Unity.Offline Deployment*"' --prune-empty HEAD --all
+# This line did not work
+# git filter-branch --tree-filter 'rm -rf "Archive/2017-06-29 SaveText.Unity.Offline Deployment\*"' --prune-empty HEAD --all
+# This line works, but I feel weirded out by that last warning. I do see that the folder is removed and I have the head of the master branch checked out, so I do not see hot it was 'unchanged'.
+git filter-branch --tree-filter 'rm -rf "Archive/2017-06-29 SaveText.Unity.Offline Deployment Windows Phone"' --prune-empty HEAD --all
+
+	...
+	Ref 'refs/heads/master' was rewritten
+	Ref 'refs/heads/develop' was rewritten
+	Ref 'refs/heads/feature/generalize-interpolators-and-followers' was rewritten
+	Ref 'refs/heads/feature/synth-reduce-presentation-boilerplating' was rewritten
+	WARNING: Ref 'refs/heads/master' is unchanged
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter 'rm -rf "Archive/2017-06-29 SaveText.Unity.Offline Deployment iOS"' --prune-empty HEAD --all
+
+	...
+	Rewrite 7600e437fc21d16a8e41bcfc86dcf8cbfe443384 (1548/1548) (3792 seconds passed, remaining 0 predicted)
+	Ref 'refs/heads/master' was rewritten
+	Ref 'refs/heads/develop' was rewritten
+	Ref 'refs/heads/feature/generalize-interpolators-and-followers' was rewritten
+	Ref 'refs/heads/feature/synth-reduce-presentation-boilerplating' was rewritten
+	WARNING: Ref 'refs/heads/master' is unchanged
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+# This turned 1,1 GB into 1,0 GB. Not much of a difference.
+git gc
+
+git filter-branch --tree-filter 'rm -rf "Archive/2018-03-03 Backup of packages"' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git repack
+
+git filter-branch --tree-filter 'rm -rf Data' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter 'rm -rf Apps' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter 'rm -rf Models' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+# Little effect
+git gc
+git repack
+
+git filter-branch --tree-filter 'rm -rf Persistence' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+# Some old folder with Synth functionality in it.
+git filter-branch --tree-filter 'rm -rf Infrastructure' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+# Little effect
+git gc
+git repack
+
+git filter-branch --tree-filter 'rm -rf Database/SynthesizerDB' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf Database/SaveTextDB
+rm -rf Utilities/Synthesizer.DataMigration
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git ls-tree -r master --name-only
+
+git filter-branch --tree-filter '
+rm -rf "Third Party/Asio.Net"
+rm -rf "Third Party/Asio4All"
+rm -rf "Third Party/ikvm-7.2.4630.5"
+rm -rf "Third Party/Lomont"
+rm -rf "Third Party/Mono"
+rm -rf "Third Party/soapobject_339"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+git gc
+git repack
+
+git filter-branch --tree-filter '
+rm -rf "Demos/TryUnityWww"
+rm -rf "Demos/SvnAndTfsToGitMigrationScripts"
+rm -rf "Demos/Misc"
+rm -rf "Demos/JavaScript"
+rm -rf "Demos/IndexersProposal"
+rm -rf "Demos/CollectionConversion"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+git gc
+git repack
+
+git filter-branch --tree-filter '
+rm -rf "Demos/2013-01-11 Recursion.cs"
+rm -rf "Archive/2015-02-10 Validation code with property key prefixes/QuestionCategoryViewModelValidator.cs"
+rm -rf "Archive/2015-02-10 Validation code with property key prefixes/QuestionEditPresenter.cs"
+rm -rf "Archive/2015-02-10 Validation code with property key prefixes/QuestionEditViewModelValidator.cs"
+rm -rf "Archive/2015-02-10 Validation code with property key prefixes/QuestionLinkViewModelValidator.cs"
+rm -rf "Archive/2015-02-10 Validation code with property key prefixes/QuestionViewModelValidator.cs"
+rm -rf "Archive/2015-03-08 Backup of JJ.Infrastructure.Synthesizer"
+rm -rf "Archive/2015-04-12 JJ.Business.Synthesizer.Tests"
+rm -rf "Archive/2017-01-31 Backup of Synthesizer Calculation Curves"
+rm -rf "Archive/2017-01-31 Backup of Synthesizer Calculation Samples"
+rm -rf "Archive/2017-02-16 Backup of Synthesizer Polyphonic Patch and Single Threaded Calculation"
+rm -rf "Archive/2017-04-03 JJ.Data.Synthesizer.DefaultRepositories"
+rm -rf "Archive/2017-10-18 Synthesizer.Api"
+rm -rf "Archive/2017-10-18 Synthesizer.Memory"
+rm -rf "Archive/2017-10-18 Synthesizer.Memory"
+rm -rf "Archive/2018-04-01 Backup of Synthesizer Alternative Configs"
+rm -rf "Archive/QuestionAndAnswer.AppService"
+rm -rf "Archive/QuestionAndAnswer.AppService.DemoClient"
+rm -rf "Archive/QuestionAndAnswer.MvcAspx"
+rm -rf "Archive/QuestionAndAnswer.NPersist"
+rm -rf "Archive/QuestionAndAnswer.WinForms"
+rm -rf "Archive/Synthesizer.WinForms.Resources"
+rm -rf "Archive/2016-10-20 Backup of SetText.WinForms.Online.GeneratedServiceClient.zip"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+git gc
+git repack
+
+git ls-tree -r master --name-only
+
+git filter-branch --tree-filter '
+rm -rf "Archive/JJ.Framework.Data.NPersist/obj"
+rm -rf "Archive/JJ.Framework.Data.NPersist/bin"
+rm -rf "Archive/2013-09-21 010 QuestionAndAnswerDB TextualQuestionCategory.sql"
+rm -rf "Archive/2016-10-24 Backup of Add_OperatorCalculator_8Vars (2).cs"
+rm -rf "Archive/2016-10-24 Backup of Add_OperatorCalculator_8Vars.cs"
+rm -rf "Archive/2016-10-24 Backup of Add_OperatorCalculator_VarA_ConstB (2).cs"
+rm -rf "Archive/2016-10-24 Backup of Add_OperatorCalculator_VarA_ConstB.cs"
+rm -rf "Archive/2016-10-24 Backup of Add_OperatorCalculator_VarA_VarB (2).cs"
+rm -rf "Archive/2016-10-24 Backup of Add_OperatorCalculator_VarA_VarB.cs"
+rm -rf "Archive/2016-10-24 Backup of Add_OperatorDto_ConstA_ConstB.cs"
+rm -rf "Archive/2016-10-24 Backup of Add_OperatorDto_ConstA_VarB.cs"
+rm -rf "Archive/2016-10-24 Backup of Add_OperatorDto_VarA_ConstB.cs"
+rm -rf "Archive/2016-10-24 Backup of Add_OperatorDto_VarA_VarB.cs"
+rm -rf "Archive/2016-10-24 Backup of IOperatorCalculator_8Vars.cs"
+rm -rf "Archive/2016-10-25 Backup of IOperatorCalculator Vars 1Const.cs"
+rm -rf "Archive/2016-10-25 Backup of IOperatorCalculator Vars 1Const.tt"
+rm -rf "Archive/2016-10-25 Backup of IOperatorCalculator Vars.cs"
+rm -rf "Archive/2016-10-25 Backup of IOperatorCalculator Vars.tt"
+rm -rf "Archive/2016-10-25 Backup of InletDto.cs"
+rm -rf "Archive/2017-01-05 Backup of LibraryGridUserControl.Designer.cs"
+rm -rf "Archive/2017-01-05 Backup of LibraryGridUserControl.cs"
+rm -rf "Archive/2017-01-05 Backup of LibraryGridUserControl.resx"
+rm -rf "Archive/2017-01-09 Backup of DeleteRelatedEntitiesExtensions.cs"
+rm -rf "Archive/2017-06-21 Backup of OperatorPropertiesUserControl_WithOutletCount.Designer.cs"
+rm -rf "Archive/2017-06-21 Backup of OperatorPropertiesUserControl_WithOutletCount.cs"
+rm -rf "Archive/2017-06-21 Backup of OperatorPropertiesUserControl_WithOutletCount.resx"
+rm -rf "Archive/2017-06-21 Backup of OperatorPropertiesViewModel_WithInletCount.cs"
+rm -rf "Archive/2017-06-21 Backup of OperatorPropertiesViewModel_WithOutletCount.cs"
+rm -rf "Archive/2017-06-23 Backup of InletOrOutletTuple.cs"
+rm -rf "Archive/2017-06-23 Backup of InletOutletMatcher (with RepetitionPosition matching).cs"
+rm -rf "Archive/2017-06-23 Backup of InletOutletMatcher (with repeated inlet handling).cs"
+rm -rf "Archive/2017-06-23 Backup of InletOutletMatcher.cs"
+rm -rf "Archive/2017-06-23 Backup of OperatorValidator_Base.cs"
+rm -rf "Archive/2017-06-23 Backup of OutletListValidator_WithUnderlyingPatch.cs"
+rm -rf "Archive/2017-06-23 Backup of OutletValidator_WithUnderlyingPatch.cs"
+rm -rf "Archive/2017-06-30 Backup of Add_OperatorValidator.cs"
+rm -rf "Archive/2017-06-30 Backup of Add_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-01 Backup of Add_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-01 Backup of InletOutletMatcher (2).cs"
+rm -rf "Archive/2017-07-01 Backup of InletOutletMatcher.cs"
+rm -rf "Archive/2017-07-02 Backup of DataMigrationExecutor.cs"
+rm -rf "Archive/2017-07-02 Backup of Divide_OperatorValidator.cs"
+rm -rf "Archive/2017-07-02 Backup of Divide_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-02 Backup of Divide_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-02 Backup of MultiplyWithOrigin OperatorDto Classes.cs"
+rm -rf "Archive/2017-07-02 Backup of MultiplyWithOrigin_OperatorValidator.cs"
+rm -rf "Archive/2017-07-02 Backup of MultiplyWithOrigin_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-02 Backup of MultiplyWithOrigin_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-02 Backup of Multiply_OperatorValidator.cs"
+rm -rf "Archive/2017-07-02 Backup of Multiply_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-02 Backup of Multiply_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-02 Backup of OperatorWrapperBase_WithAAndB.cs"
+rm -rf "Archive/2017-07-02 Backup of OperatorWrapperBase_WithABAndOrigin.cs"
+rm -rf "Archive/2017-07-02 Backup of OperatorWrapperBase_WithNumberInletAndNumberOutlet.cs"
+rm -rf "Archive/2017-07-05 Backup of MultiplyWithOrigin OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-07-05 Backup of OneOverX OperatorDto Classes.cs"
+rm -rf "Archive/2017-07-05 Backup of OneOverX_OperatorCalculator.cs"
+rm -rf "Archive/2017-07-06 Backup of If_OperatorValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of If_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of If_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-06 Backup of Noise_OperatorValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of Noise_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-06 Backup of Pulse_OperatorValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of Pulse_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of Pulse_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-06 Backup of SawDown_OperatorValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of SawDown_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of SawDown_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-06 Backup of SawUp_OperatorValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of SawUp_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of SawUp_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-06 Backup of Square_OperatorValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of Square_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of Square_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-06 Backup of Triangle_OperatorValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of Triangle_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-06 Backup of Triangle_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-07 Backup of AllPassFilter_OperatorValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of AllPassFilter_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of AllPassFilter_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-07 Backup of BandPassFilterConstantPeakGain_OperatorValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of BandPassFilterConstantPeakGain_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of BandPassFilterConstantPeakGain_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-07 Backup of BandPassFilterConstantTransitionGain_OperatorValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of BandPassFilterConstantTransitionGain_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of BandPassFilterConstantTransitionGain_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-07 Backup of HighPassFilter_OperatorValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of HighPassFilter_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of HighPassFilter_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-07 Backup of HighShelfFilter_OperatorValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of HighShelfFilter_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of HighShelfFilter_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-07 Backup of LowPassFilter_OperatorValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of LowPassFilter_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of LowPassFilter_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-07 Backup of LowShelfFilter_OperatorValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of LowShelfFilter_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of LowShelfFilter_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-07 Backup of NotchFilter_OperatorValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of NotchFilter_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of NotchFilter_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-07 Backup of OperatorWrapperBase_BandPassFilter.cs"
+rm -rf "Archive/2017-07-07 Backup of OperatorWrapperBase_ShelfFilter.cs"
+rm -rf "Archive/2017-07-07 Backup of OperatorWrapperBase_WithSoundOutlet.cs"
+rm -rf "Archive/2017-07-07 Backup of PeakingEQFilter_OperatorValidator.cs"
+rm -rf "Archive/2017-07-07 Backup of PeakingEQFilter_OperatorWarningValidator.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+git gc
+git repack
+
+git filter-branch --tree-filter '
+rm -rf "Archive/2017-07-07 Backup of PeakingEQFilter_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-08 Backup of AverageOverInlets_OperatorValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of AverageOverInlets_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of AverageOverInlets_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-08 Backup of ClosestOverInletsExp_OperatorValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of ClosestOverInletsExp_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of ClosestOverInletsExp_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-08 Backup of ClosestOverInlets_OperatorValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of ClosestOverInlets_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of ClosestOverInlets_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-08 Backup of DimensionToOutlets_OperatorValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of DimensionToOutlets_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of DimensionToOutlets_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-08 Backup of InletsToDimension_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of MaxOverInlets_OperatorValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of MaxOverInlets_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of MaxOverInlets_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-08 Backup of MinOverInlets_OperatorValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of MinOverInlets_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of MinOverInlets_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-08 Backup of OperatorValidator_Base_ClosestOverInlets.cs"
+rm -rf "Archive/2017-07-08 Backup of OperatorWrapperBase_VariableInletCountOneOutlet.cs"
+rm -rf "Archive/2017-07-08 Backup of OperatorWrapperBase_VariableInletCountResultOutlet.cs"
+rm -rf "Archive/2017-07-08 Backup of OperatorWrapperBase_VariableInletCountSignalOutlet.cs"
+rm -rf "Archive/2017-07-08 Backup of RangeOverOutlets_OperatorValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of RangeOverOutlets_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-08 Backup of SortOverInlets_OperatorValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of SortOverInlets_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-08 Backup of SortOverInlets_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of AverageFollower_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of AverageFollower_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of AverageFollower_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of AverageOverDimension_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of AverageOverDimension_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of AverageOverDimension_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of ClosestOverDimensionExp_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of ClosestOverDimensionExp_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of ClosestOverDimensionExp_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of ClosestOverDimension_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of ClosestOverDimension_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of ClosestOverDimension_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of MaxFollower_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of MaxFollower_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of MaxFollower_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of MaxOverDimension_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of MaxOverDimension_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of MaxOverDimension_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of MinFollower_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of MinFollower_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of MinFollower_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of MinOverDimension_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of MinOverDimension_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of MinOverDimension_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of OperatorValidator_Base_VariableInletCountOneOutlet.cs"
+rm -rf "Archive/2017-07-09 Backup of OperatorValidator_SetInletCount_WithOperatorType_ExceptCustomOperator.cs"
+rm -rf "Archive/2017-07-09 Backup of OperatorValidator_SetInletCount_WithUnderlyingPatch.cs"
+rm -rf "Archive/2017-07-09 Backup of OperatorValidator_SetOutletCount_WithOperatorType_ExceptCustomOperator.cs"
+rm -rf "Archive/2017-07-09 Backup of OperatorValidator_SetOutletCount_WithUnderlyingPatch.cs"
+rm -rf "Archive/2017-07-09 Backup of OperatorWrapperBase_VariableOutletCount.cs"
+rm -rf "Archive/2017-07-09 Backup of RangeOverDimension_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of RangeOverDimension_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of RangeOverDimension_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of RangeOverOutlets_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of SortOverDimension_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of SortOverDimension_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of SortOverDimension_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of SumFollower_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of SumFollower_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of SumFollower_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup of SumOverDimension_OperatorValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of SumOverDimension_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-09 Backup of SumOverDimension_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-09 Backup ofOperatorWrapperBase_AggregateFollower.cs"
+rm -rf "Archive/2017-07-12 Backup of ChangeTrigger_OperatorValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of ChangeTrigger_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of ChangeTrigger_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-12 Backup of GetDimension_OperatorValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of GetDimension_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-12 Backup of Hold_OperatorValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of Hold_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of Hold_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-12 Backup of PulseTrigger_OperatorValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of PulseTrigger_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of PulseTrigger_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-12 Backup of Round_OperatorValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of Round_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of Round_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-12 Backup of SetDimension_OperatorValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of SetDimension_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-12 Backup of Spectrum_OperatorValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of Spectrum_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-12 Backup of ToggleTrigger_OperatorValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of ToggleTrigger_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-12 Backup of ToggleTrigger_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-13 Backup of Interpolate_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-13 Backup of OperatorValidator_FromSystemDocument.cs"
+rm -rf "Archive/2017-07-13 Backup of OperatorWarningValidator_Base_AnyInletsFilledInOrHaveDefaults.cs"
+rm -rf "Archive/2017-07-14 Backup of Exponent OperatorDto Classes.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+git gc --aggressive --prune=all
+git repack
+
+git filter-branch --tree-filter '
+rm -rf "Archive/2017-07-14 Backup of Exponent_OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-07-14 Backup of Exponent_OperatorValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Exponent_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Exponent_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-14 Backup of OperatorWrapperBase_Trigger.cs"
+rm -rf "Archive/2017-07-14 Backup of OperatorWrapperBase_WithFrequency.cs"
+rm -rf "Archive/2017-07-14 Backup of Reverse_OperatorValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Reverse_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Reverse_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-14 Backup of Scaler OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-07-14 Backup of Scaler OperatorDto Classes.cs"
+rm -rf "Archive/2017-07-14 Backup of Scaler_OperatorValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Scaler_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Shift_OperatorValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Shift_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Shift_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-14 Backup of Squash_OperatorValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Squash_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Squash_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-14 Backup of StretchOrSquash_OperatorWrapperBase.cs"
+rm -rf "Archive/2017-07-14 Backup of Stretch_OperatorValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Stretch_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of Stretch_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-14 Backup of TimePower_OperatorValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of TimePower_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-14 Backup of TimePower_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-15 Backup of InletOutletMatcher.cs"
+rm -rf "Archive/2017-07-15 Backup of Loop_ OperatorValidator.cs"
+rm -rf "Archive/2017-07-15 Backup of Loop_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-15 Backup of Loop_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-15 Backup of OperatorValidator_Base_WithOperatorType.cs"
+rm -rf "Archive/2017-07-15 Backup of OperatorValidator_Base_WithoutData.cs"
+rm -rf "Archive/2017-07-15 Backup of OperatorWarningValidator_Base_AllInletsFilledInOrHaveDefaults.cs"
+rm -rf "Archive/2017-07-15 Backup of OperatorWarningValidator_Base_FirstXInletsFilledInOrHaveDefaults.cs"
+rm -rf "Archive/2017-07-15 Backup of OperatorWrapperBase_WithNumberOutlet.cs"
+rm -rf "Archive/2017-07-15 Backup of OperatorWrapperBase_WithOneOutlet.cs"
+rm -rf "Archive/2017-07-15 Backup of OperatorWrapperBase_WithSignalOutlet.cs"
+rm -rf "Archive/2017-07-15 Backup of PatchInlet_OperatorValidator.cs"
+rm -rf "Archive/2017-07-15 Backup of PatchOutlet_OperatorValidator.cs"
+rm -rf "Archive/2017-07-15 Backup of PatchOutlet_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-15 Backup of Random_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-15 Backup of RepeatInfoValidator.cs"
+rm -rf "Archive/2017-07-15 Backup of Reset_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-16 Backup of CreateOperatorEventArgs.cs"
+rm -rf "Archive/2017-07-16 Backup of CustomOperator_OperatorValidator.cs"
+rm -rf "Archive/2017-07-16 Backup of CustomOperator_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-07-16 Backup of IOperatorTypeRepository.cs"
+rm -rf "Archive/2017-07-16 Backup of InletValidator_WithOperatorType_ExceptCustomOperator.cs"
+rm -rf "Archive/2017-07-16 Backup of OperatorType.cs"
+rm -rf "Archive/2017-07-16 Backup of OperatorTypeMapping (2).cs"
+rm -rf "Archive/2017-07-16 Backup of OperatorTypeMapping.cs"
+rm -rf "Archive/2017-07-16 Backup of OperatorTypeRepository (2).cs"
+rm -rf "Archive/2017-07-16 Backup of OperatorTypeRepository.cs"
+rm -rf "Archive/2017-07-16 Backup of OperatorValidator_Basic.cs"
+rm -rf "Archive/2017-07-16 Backup of OperatorWrapperBase.cs"
+rm -rf "Archive/2017-07-16 Backup of OutletValidator_WithOperatorType_ExceptCustomOperator.cs"
+rm -rf "Archive/2017-07-16 Backup of PatchInletOrOutlet_OperatorWrapper.cs"
+rm -rf "Archive/2017-07-17 Backup of InheritExtensions.cs"
+rm -rf "Archive/2017-07-20 Backup of InheritExtensions.cs"
+rm -rf "Archive/2017-07-20 Backup of Shift OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-07-20 Backup of Shift OperatorDto Classes.cs"
+rm -rf "Archive/2017-07-21 Backup of OperatorDtoVisitor_BooleanBoundaries.cs"
+rm -rf "Archive/2017-07-21 Backup of OperatorDtoVisitor_MachineOptimization.cs"
+rm -rf "Archive/2017-07-21 Backup of TimePower OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-07-21 Backup of TimePower OperatorDto Classes.cs"
+rm -rf "Archive/2017-07-21 Backup of TimePower_OperatorCalculator_Helper.cs"
+rm -rf "Archive/2017-08-06 Backup of OperatorDtoVisitor_OperationIdentities (1).cs"
+rm -rf "Archive/2017-08-06 Backup of OperatorDtoVisitor_OperationIdentities (2).cs"
+rm -rf "Archive/2017-08-06 Backup of OperatorDtoVisitor_OperationIdentities (3).cs"
+rm -rf "Archive/2017-08-07 Backup of OperatorDtoVisitor_OperationIdentityAssignment (1).cs"
+rm -rf "Archive/2017-08-07 Backup of OperatorDtoVisitor_OperationIdentityAssignment (2).cs"
+rm -rf "Archive/2017-08-07 Backup of OperatorDtoVisitor_OperationIdentityAssignment.cs"
+rm -rf "Archive/2017-08-08 Backup of InputDto.cs"
+rm -rf "Archive/2017-08-08 Backup of Loop OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorDtoBase With A B and Origin Classes.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorDtoBase_ConstA_ConstB.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorDtoBase_ConstA_VarB.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorDtoBase_ConstFrequency.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorDtoBase_ConstInput.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorDtoBase_ConstNumber.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorDtoBase_ConstSignal.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorDtoBase_VarA_ConstB.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorDtoBase_WithNumberInput.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorDtoBase_WithoutInputOperatorDtos.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorDtoVisitor_ClassSpecializationBase.cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorEntityToDtoVisitor (1).cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorEntityToDtoVisitor (2).cs"
+rm -rf "Archive/2017-08-08 Backup of OperatorEntityToDtoVisitor (3).cs"
+rm -rf "Archive/2017-08-08 Backup of Sample_OperatorDtoBase_ConstFrequency.cs"
+rm -rf "Archive/2017-08-09 Backup of Divide OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-09 Backup of DtoCloner.cs"
+rm -rf "Archive/2017-08-09 Backup of OperatorDtoVisitorBase.cs"
+rm -rf "Archive/2017-08-09 Backup of OperatorDtoVisitor_MathPropertiesAssignment.cs"
+rm -rf "Archive/2017-08-09 Backup of OperatorDtoVisitor_MathSimplification.cs"
+rm -rf "Archive/2017-08-09 Backup of Squash OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-09 Backup of Stretch OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-12 Backup of OperatorDtoBase_ConstSound.cs"
+rm -rf "Archive/2017-08-12 Backup of OperatorDtoBase_ZeroFrequency.cs"
+rm -rf "Archive/2017-08-12 Backup of OperatorDtoVisitorBase_AfterCodeGenerationSimplification.cs"
+rm -rf "Archive/2017-08-12 Backup of OperatorDtoVisitor_CodeGenerationSimplification.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/2017-08-12 Backup of Power OperatorCalculator Classes (with _Exponent2 variations etc).cs"
+rm -rf "Archive/2017-08-12 Backup of Power OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-12 Backup of Pulse OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-12 Backup of Reverse OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-12 Backup of Reverse OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-12 Backup of SawDown OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-12 Backup of SawDown OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-12 Backup of SawUp OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-12 Backup of SawUp OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-13 Backup of Pulse OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-13 Backup of Pulse OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-13 Backup of Square OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-13 Backup of Square OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-14 Backup of OperatorDtoBase_Consts.cs"
+rm -rf "Archive/2017-08-14 Backup of OperatorDtoBase_Vars.cs"
+rm -rf "Archive/2017-08-14 Backup of OperatorDtoBase_Vars_1Const.cs"
+rm -rf "Archive/2017-08-14 Backup of OperatorDtoBase_Vars_Consts.cs"
+rm -rf "Archive/2017-08-14 Backup of OperatorDtoVisitor_MathSimplification.cs"
+rm -rf "Archive/2017-08-15 Backup of OperatorDtoVisitor_MathSimplification.cs"
+rm -rf "Archive/2017-08-17 Backup of Number_OperatorCalculator_One.cs"
+rm -rf "Archive/2017-08-17 Backup of Number_OperatorCalculator_Zero.cs"
+rm -rf "Archive/2017-08-17 Backup of Sine OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-17 Backup of Stretch OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-17 Backup of Stretch OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-17 Backup of Triangle OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-18 Backup of StretchOrSquash OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-20 Backup of OperatorDtoVisitor_OperationIdentityAssignment.cs"
+rm -rf "Archive/2017-08-20 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (1).cs"
+rm -rf "Archive/2017-08-20 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (2).cs"
+rm -rf "Archive/2017-08-21 Backup of Curve OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-21 Backup of Noise_OperatorCalculator.cs"
+rm -rf "Archive/2017-08-21 Backup of OperatorCalculator_AroundDimensionStack.cs"
+rm -rf "Archive/2017-08-21 Backup of OperatorDtoToCalculatorVisitorBase.cs"
+rm -rf "Archive/2017-08-21 Backup of OperatorDtoVisitorBase_AfterTransformationsToPositionInputs.cs"
+rm -rf "Archive/2017-08-21 Backup of OperatorDtoVisitor_TransformationsToPositionInputs.cs"
+rm -rf "Archive/2017-08-21 Backup of Random OperatorCalculator Classes, Block and Stripe Interpolation.cs"
+rm -rf "Archive/2017-08-21 Backup of Random OperatorCalculator Classes, Other Interpolations - Copy.cs"
+rm -rf "Archive/2017-08-21 Backup of SampleWithRate1 OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-21 Backup of TriangleWithoutFrequency_OperatorCalculator.cs"
+rm -rf "Archive/2017-08-22 Backup of OperatorDtoToRawCSharpVisitor.cs"
+rm -rf "Archive/2017-08-25 Backup of Loop_OperatorCalculator_AllVars - Copy.cs"
+rm -rf "Archive/2017-08-25 Backup of Loop_OperatorCalculator_Base.cs"
+rm -rf "Archive/2017-08-25 Backup of Loop_OperatorCalculator_ConstSkip_WhichEqualsLoopStartMarker_ConstLoopEndMarker_NoNoteDuration.cs"
+rm -rf "Archive/2017-08-25 Backup of Loop_OperatorCalculator_ConstSkip_WhichEqualsLoopStartMarker_VarLoopEndMarker_NoNoteDuration.cs"
+rm -rf "Archive/2017-08-25 Backup of Loop_OperatorCalculator_ManyConstants.cs"
+rm -rf "Archive/2017-08-25 Backup of Loop_OperatorCalculator_NoSkipOrRelease.cs"
+rm -rf "Archive/2017-08-25 Backup of Loop_OperatorCalculator_NoSkipOrRelease_ManyConstants.cs"
+rm -rf "Archive/2017-08-26 Backup of DimensionStack.cs"
+rm -rf "Archive/2017-08-26 Backup of DimensionStackCollection.cs"
+rm -rf "Archive/2017-08-26 Backup of DimensionStack_AroundOperatorCalculator.cs"
+rm -rf "Archive/2017-08-26 Backup of InletsToDimension_OperatorCalculator_OtherInterpolationTypes.cs"
+rm -rf "Archive/2017-08-26 Backup of Loop OperatorCalculator Classes (before remove distinction between base and derived).cs"
+rm -rf "Archive/2017-08-26 Backup of Loop OperatorDto Classes.cs"
+rm -rf "Archive/2017-08-26 Backup of Loop_OperatorCalculator_Helper.cs"
+rm -rf "Archive/2017-08-26 Backup of OperatorDtoToCalculatorVisitorBase (before refactor away DimensionStack).cs"
+rm -rf "Archive/2017-08-26 Backup of Random OperatorCalculator Classes, Other Interpolations.cs"
+rm -rf "Archive/2017-08-28 Backup of OperatorDtoVisitor_TransformationsToPositionInputs.cs"
+rm -rf "Archive/2017-08-29 Backup of AllPassFilter OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-29 Backup of BandPassFilterConstantPeakGain OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-29 Backup of BandPassFilterConstantTransitionGain OperatorCalculator Classes - Copy.cs"
+rm -rf "Archive/2017-08-29 Backup of Divide OperatorCalculator Classes - Copy.cs"
+rm -rf "Archive/2017-08-29 Backup of Equal OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-29 Backup of HighShelfFilter OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-29 Backup of IPositionTransformer.cs"
+rm -rf "Archive/2017-08-29 Backup of If OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-29 Backup of LowShelfFilter OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-29 Backup of NotchFilter OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-29 Backup of PeakingEQFilter OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-29 Backup of Squash OperatorCalculator Classes - Copy.cs"
+rm -rf "Archive/2017-08-31 Backup of Add OperatorCalculator Classes Vars.cs"
+rm -rf "Archive/2017-08-31 Backup of Add OperatorCalculator Classes Vars.tt"
+rm -rf "Archive/2017-08-31 Backup of Add OperatorCalculator Classes Vars_1Const.cs"
+rm -rf "Archive/2017-08-31 Backup of Add OperatorCalculator Classes Vars_1Const.tt"
+rm -rf "Archive/2017-08-31 Backup of Add_OperatorCalculator_VarArray_1Const.cs"
+rm -rf "Archive/2017-08-31 Backup of ClosestOverInlets OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-31 Backup of ClosestOverInletsExp OperatorCalculators.cs"
+rm -rf "Archive/2017-08-31 Backup of MaxOverInlets OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-31 Backup of MinOverInlets OperatorCalculators Classes.cs"
+rm -rf "Archive/2017-08-31 Backup of Multiply OperatorCalculator Classes Vars.cs"
+rm -rf "Archive/2017-08-31 Backup of Multiply OperatorCalculator Classes Vars.tt"
+rm -rf "Archive/2017-08-31 Backup of Multiply OperatorCalculator Classes Vars_1Const.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/2017-08-31 Backup of Multiply OperatorCalculator Classes Vars_1Const.tt"
+rm -rf "Archive/2017-08-31 Backup of Multiply_OperatorCalculator_VarArray_1Const.cs"
+rm -rf "Archive/2017-08-31 Backup of OperatorCalculatorFactory.CreateAddCalculatorWithConst.cs"
+rm -rf "Archive/2017-08-31 Backup of OperatorCalculatorFactory.CreateAddCalculatorWithConst.tt"
+rm -rf "Archive/2017-08-31 Backup of OperatorCalculatorFactory.CreateAddCalculator_Vars.cs"
+rm -rf "Archive/2017-08-31 Backup of OperatorCalculatorFactory.CreateAddCalculator_Vars.tt"
+rm -rf "Archive/2017-08-31 Backup of OperatorCalculatorFactory.CreateMultiplyCalculatorOnlyVars.cs"
+rm -rf "Archive/2017-08-31 Backup of OperatorCalculatorFactory.CreateMultiplyCalculatorOnlyVars.tt"
+rm -rf "Archive/2017-08-31 Backup of OperatorCalculatorFactory.CreateMultiplyCalculatorWithConst.cs"
+rm -rf "Archive/2017-08-31 Backup of OperatorCalculatorFactory.CreateMultiplyCalculatorWithConst.tt"
+rm -rf "Archive/2017-08-31 Backup of RangeOverDimension OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-08-31 Backup of Squash OperatorCalculator Classes.cs"
+rm -rf "Archive/2017-09-02 Backup of OperatorDtoVisitor_DimensionStackLevels.cs"
+rm -rf "Archive/2017-09-05 Backup of SetDimension_OperatorCalculator.cs"
+rm -rf "Archive/2017-09-11 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (1).cs"
+rm -rf "Archive/2017-09-11 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (2).cs"
+rm -rf "Archive/2017-09-11 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (3).cs"
+rm -rf "Archive/2017-09-11 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (4).cs"
+rm -rf "Archive/2017-09-11 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (5).cs"
+rm -rf "Archive/2017-09-12 Backup of OperatorDtoVisitor_TransformationsToPositionInputs.cs"
+rm -rf "Archive/2017-09-14 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (1).cs"
+rm -rf "Archive/2017-09-14 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (2).cs"
+rm -rf "Archive/2017-09-14 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (3).cs"
+rm -rf "Archive/2017-09-26 Backup of OperatorDtoVisitorBase.cs"
+rm -rf "Archive/2017-09-26 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (1).cs"
+rm -rf "Archive/2017-09-26 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (2).cs"
+rm -rf "Archive/2017-09-26 Backup of OperatorDtoVisitor_TransformationsToPositionInputs (3).cs"
+rm -rf "Archive/2017-09-26 Backup of SetDimension_OperatorDto.cs"
+rm -rf "Archive/2017-09-28 Backup of OperatorDtoVisitor_TransformationsToPositionInputs.cs"
+rm -rf "Archive/2017-10-02 Backup of LibraryPatchGridPresenter.cs"
+rm -rf "Archive/2017-10-02 Backup of LibraryPatchGridUserControl.Designer.cs"
+rm -rf "Archive/2017-10-02 Backup of LibraryPatchGridUserControl.cs"
+rm -rf "Archive/2017-10-02 Backup of LibraryPatchGridUserControl.resx"
+rm -rf "Archive/2017-10-02 Backup of LibraryPatchGridViewModel.cs"
+rm -rf "Archive/2017-10-04 Backup of LibraryPatchPropertiesPresenter.cs"
+rm -rf "Archive/2017-10-04 Backup of LibraryPatchPropertiesUserControl.Designer.cs"
+rm -rf "Archive/2017-10-04 Backup of LibraryPatchPropertiesUserControl.cs"
+rm -rf "Archive/2017-10-04 Backup of LibraryPatchPropertiesUserControl.resx"
+rm -rf "Archive/2017-10-04 Backup of LibraryPatchPropertiesViewModel.cs"
+rm -rf "Archive/2017-10-05 Backup of LibraryGridPresenter.cs"
+rm -rf "Archive/2017-10-05 Backup of LibraryGridViewModel.cs"
+rm -rf "Archive/2017-10-05 Backup of LibraryListItemViewModel.cs"
+rm -rf "Archive/2017-10-07 Backup of OperatorEntityAndViewModel.cs"
+rm -rf "Archive/2017-10-07 Backup of PatchGridPresenter.cs"
+rm -rf "Archive/2017-10-07 Backup of PatchGridUserControl.Designer.cs"
+rm -rf "Archive/2017-10-07 Backup of PatchGridUserControl.cs"
+rm -rf "Archive/2017-10-07 Backup of PatchGridUserControl.resx"
+rm -rf "Archive/2017-10-07 Backup of PatchGridViewModel.cs"
+rm -rf "Archive/2017-10-07 Backup of PatchGroupDto_WithUsedIn.cs"
+rm -rf "Archive/2017-10-07 Backup of PatchListItemViewModel.cs"
+rm -rf "Archive/2017-10-12 Backup of DataMigrationExecutor.cs"
+rm -rf "Archive/2017-10-12 Backup of SampleValidator_Delete.cs"
+rm -rf "Archive/2017-10-12 Backup of SampleValidator_InDocument.cs"
+rm -rf "Archive/2017-10-12 Backup of SampleValidator_UniqueName.cs"
+rm -rf "Archive/2017-10-12 Backup of Sample_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-10-12 Backup of Sample_SideEffect_GenerateName.cs"
+rm -rf "Archive/2017-10-14 Backup of HardCodedOperatorCalculator.cs"
+rm -rf "Archive/2017-10-14 Backup of PropertyNames.cs"
+rm -rf "Archive/2017-10-14 Backup of SampleApi.cs"
+rm -rf "Archive/2017-10-14 Backup of SampleGridPresenter.cs"
+rm -rf "Archive/2017-10-14 Backup of SampleGridUserControl.Designer.cs"
+rm -rf "Archive/2017-10-14 Backup of SampleGridUserControl.cs"
+rm -rf "Archive/2017-10-14 Backup of SampleGridUserControl.resx"
+rm -rf "Archive/2017-10-14 Backup of SampleGridViewModel.cs"
+rm -rf "Archive/2017-10-14 Backup of SampleListItemViewModel.cs"
+rm -rf "Archive/2017-10-14 Backup of SamplePropertiesPresenter.cs"
+rm -rf "Archive/2017-10-14 Backup of SamplePropertiesUserControl.Designer.cs"
+rm -rf "Archive/2017-10-14 Backup of SamplePropertiesUserControl.cs"
+rm -rf "Archive/2017-10-14 Backup of SamplePropertiesUserControl.resx"
+rm -rf "Archive/2017-10-14 Backup of SamplePropertiesViewModel.cs"
+rm -rf "Archive/2017-10-14 Backup of SampleTests.cs"
+rm -rf "Archive/2017-10-14 Backup of Sample_OperatorWrapper.cs"
+rm -rf "Archive/2017-10-18 Backup of App (Synth Dev Memory).config"
+rm -rf "Archive/2017-10-18 Backup of ConfigurationSection.cs"
+rm -rf "Archive/2017-10-19 Backup of CurveGridViewModel.cs"
+rm -rf "Archive/2017-10-19 Backup of CurveListItemViewModel.cs"
+rm -rf "Archive/2017-10-19 Backup of CurvePropertiesViewModel.cs"
+rm -rf "Archive/2017-10-19 Backup of CurveValidator_Delete.cs"
+rm -rf "Archive/2017-10-19 Backup of CurveValidator_InDocument.cs"
+rm -rf "Archive/2017-10-19 Backup of Curve_OperatorWarningValidator.cs"
+rm -rf "Archive/2017-10-19 Backup of Curve_OperatorWrapper.cs"
+rm -rf "Archive/2017-10-19 Backup of Curve_SideEffect_GenerateName.cs"
+rm -rf "Archive/2017-10-19 Backup of PatchRepositories.cs"
+rm -rf "Archive/2017-10-20 Backup of CurveGridPresenter.cs"
+rm -rf "Archive/2017-10-20 Backup of CurvePropertiesPresenter.cs"
+rm -rf "Archive/2017-10-21 Backup of CurveGridUserControl.Designer.cs"
+rm -rf "Archive/2017-10-21 Backup of CurveGridUserControl.cs"
+rm -rf "Archive/2017-10-21 Backup of CurveGridUserControl.resx"
+rm -rf "Archive/2017-10-21 Backup of CurvePropertiesUserControl.Designer.cs"
+rm -rf "Archive/2017-10-21 Backup of CurvePropertiesUserControl.cs"
+rm -rf "Archive/2017-10-21 Backup of CurvePropertiesUserControl.resx"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/2017-10-23 Backup of UsedInDto.cs"
+rm -rf "Archive/2017-11-01 Backup of ExpandPatchGesture.cs"
+rm -rf "Archive/2017-11-16 Backup of UndoStack (2).cs"
+rm -rf "Archive/2017-11-16 Backup of UndoStack.cs"
+rm -rf "Archive/2017-11-20 Backup of MainPresenter.Actions (1).cs"
+rm -rf "Archive/2017-11-20 Backup of MainPresenter.Actions (2).cs"
+rm -rf "Archive/2017-12-31 Backup of NodeInfo.cs"
+rm -rf "Archive/2018-01-03 Backup of DocumentReferenceValidator_Versatile.cs"
+rm -rf "Archive/2018-01-08 Backup of EntityPositionFacade.cs"
+rm -rf "Archive/2018-01-08 Backup of EntityPositionRepository.cs"
+rm -rf "Archive/2018-01-08 Backup of EntityPosition_DeleteOrphans.sql"
+rm -rf "Archive/2018-01-09 Backup of 2018-01-09 090 SynthesizerDB insert missing Operator EntityPositions.sql"
+rm -rf "Archive/2018-01-12 Backup of SelectOperatorGesture.cs"
+rm -rf "Archive/2018-01-13 Backup of VectorGraphicsTagHelper.cs"
+rm -rf "Archive/2018-01-18 Backup of ExpandNodeKeyboardGesture.cs"
+rm -rf "Archive/2018-01-18 Backup of ExpandNodeMouseGesture.cs"
+rm -rf "Archive/2018-01-20 Backup of ToLookupViewModelExtensions.cs"
+rm -rf "Archive/2018-01-21 Backup of MidiToDimensionConverter.cs"
+rm -rf "Archive/2018-01-22 Backup of MidiMappingConverter.cs"
+rm -rf "Archive/2018-01-28 Backup of MidiMappingElementValidator (2).cs"
+rm -rf "Archive/2018-01-28 Backup of MidiMappingElementValidator.cs"
+rm -rf "Archive/2018-01-29 Backup of ScaleExtensions.cs"
+rm -rf "Archive/2018-01-31 Backup of Tone_SideEffect_SetDefaults_Exponent (1).cs"
+rm -rf "Archive/2018-01-31 Backup of Tone_SideEffect_SetDefaults_Exponent (2).cs"
+rm -rf "Archive/2018-01-31 Backup of Tone_SideEffect_SetDefaults_Factor.cs"
+rm -rf "Archive/2018-02-01 Backup of Tone_SideEffect_SetDefaults_SemiTone.cs"
+rm -rf "Archive/2018-02-09 Backup of SectionNames.cs"
+rm -rf "Archive/2018-02-10 Backup of CurrentInstrumentPatchElement (1).cs"
+rm -rf "Archive/2018-02-10 Backup of CurrentInstrumentPatchElement (2).cs"
+rm -rf "Archive/2018-02-10 Backup of CurrentInstrumentViewModelToDiagramConverter.cs"
+rm -rf "Archive/2018-02-10 Backup of CurrentInstrumentViewModelToDiagramConverterPatchResultItem.cs"
+rm -rf "Archive/2018-02-18 Backup of CurrentInstrumentViewModelToDiagramConverter.cs"
+rm -rf "Archive/2018-02-18 Backup of CurrentInstrumentViewModelToDiagramConverterPatchResultItem.cs"
+rm -rf "Archive/2018-02-18 Backup of CurrentInstrumentViewModelToDiagramConverterResult.cs"
+rm -rf "Archive/2018-02-18 Backup of CurrentPatchLabelConverter.cs"
+rm -rf "Archive/2018-02-18 Backup of CurrentPatchPictureButtonConverter.cs"
+rm -rf "Archive/2018-02-18 Backup of CurrentPatchRectangleConverter.cs"
+rm -rf "Archive/2018-02-19 Backup of CurrentInstrumentItemUserControl.Designer.cs"
+rm -rf "Archive/2018-02-19 Backup of CurrentInstrumentItemUserControl.cs"
+rm -rf "Archive/2018-02-19 Backup of CurrentInstrumentItemUserControl.resx"
+rm -rf "Archive/2018-02-19 Backup of CurrentInstrumentMidiMappingElementElement.cs"
+rm -rf "Archive/2018-02-19 Backup of CurrentInstrumentUserControl.Designer.cs"
+rm -rf "Archive/2018-02-19 Backup of CurrentInstrumentUserControl.cs"
+rm -rf "Archive/2018-02-19 Backup of CurrentInstrumentUserControl.resx"
+rm -rf "Archive/2018-02-20 Backup of ToScreenViewModelExtensions.cs"
+rm -rf "Archive/2018-03-09 Backup of ScalesTreeNodeViewModel.cs"
+rm -rf "Archive/2018-03-26 Backup of ScaleGridPresenter.cs"
+rm -rf "Archive/2018-03-26 Backup of ScaleGridUserControl.Designer.cs"
+rm -rf "Archive/2018-03-26 Backup of ScaleGridUserControl.cs"
+rm -rf "Archive/2018-03-26 Backup of ScaleGridUserControl.resx"
+rm -rf "Archive/2018-03-26 Backup of ScaleGridViewModel.cs"
+rm -rf "Archive/2018-04-01 Backup of ConversionHelper.cs"
+rm -rf "Archive/2018-04-01 Backup of MidiMappingGroupWarningValidator_WithRelatedEntities.cs"
+rm -rf "Archive/2018-04-01 Backup of MidiMappingWarningValidator.cs"
+rm -rf "Archive/2018-04-02 Backup of ScaleValidator_Delete.cs"
+rm -rf "Archive/2018-04-05 Backup of DelayedControlInvoker (1).cs"
+rm -rf "Archive/2018-04-05 Backup of DelayedControlInvoker (2) (With WinForms Timer).cs"
+rm -rf "Archive/2018-04-05 Backup of DelayedControlInvoker (3) (With busy bool).cs"
+rm -rf "Archive/2018-04-05 Backup of DelayedControlInvoker (4) (With Lock and Busy Bool).cs"
+rm -rf "Archive/2018-04-05 Backup of DelayedControlInvoker (5) (With Lock and Busy Bool).cs"
+rm -rf "Archive/2018-04-05 Backup of DelayedControlInvoker (6) (With Lock and Busy Bool).cs"
+rm -rf "Archive/2018-04-05 Backup of Interpolate_OperatorCalculator_Base_LookAhead.cs"
+rm -rf "Archive/2018-04-06 Backup of DelayedControlInvoker (7) (With Debug.WriteLine).cs"
+rm -rf "Archive/2018-04-06 Backup of MidiMappingCalculator.cs"
+rm -rf "Archive/2018-04-07 Backup of MidiInputProcessor.cs"
+rm -rf "Archive/2018-04-07 Backup of MidiMappingCalculator (1).cs"
+rm -rf "Archive/2018-04-07 Backup of MidiMappingCalculator (2).cs"
+rm -rf "Archive/2018-04-07 Backup of MidiMappingCalculator (3).cs"
+rm -rf "Archive/2018-04-07 Backup of MidiMappingCalculator (4).cs"
+rm -rf "Archive/2018-04-07 Backup of MidiMappingCalculatorResult.cs"
+rm -rf "Archive/2018-04-09 Backup of ScaleToDtoConverter (1).cs"
+rm -rf "Archive/2018-04-09 Backup of ScaleToDtoConverter (2).cs"
+rm -rf "Archive/2018-04-09 Backup of ScaleToDtoConverter (3).cs"
+rm -rf "Archive/2018-04-09 Backup of ToneCalculator.cs"
+rm -rf "Archive/2018-04-10 Backup of ScaleDto.cs"
+rm -rf "Archive/2018-04-10 Backup of ScaleToDtoConverter.cs"
+rm -rf "Archive/2018-04-12 Backup of DatabaseContextTests.cs"
+rm -rf "Archive/2018-04-12 Backup of OperatorDtoVisitorBase_AfterProgrammerLaziness.cs"
+rm -rf "Archive/2018-04-12 Backup of OperatorDtoVisitor_ProgrammerLaziness.cs"
+rm -rf "Archive/2018-04-16 Backup of Absolute_OperatorCalculator.cs"
+rm -rf "Archive/2018-04-16 Backup of Random_OperatorValidator.cs"
+rm -rf "Archive/2018-04-16 Backup of Random_OperatorWrapper.cs"
+rm -rf "Archive/2018-04-17 Backup of Absolute_OperatorDto.cs"
+rm -rf "Archive/2018-04-17 Backup of InletsToDimension_OperatorValidator.cs"
+rm -rf "Archive/2018-04-17 Backup of InletsToDimension_OperatorWrapper.cs"
+rm -rf "Archive/2018-04-21 Backup of Interpolate_OperatorCalculator_CubicAbruptSlope.cs"
+rm -rf "Archive/2018-04-21 Backup of ResampleInterpolationTypeEnum.cs"
+rm -rf "Archive/2018-04-22 Backup of ResampleInterpolationType_DataProperty_Validator.cs"
+rm -rf "Archive/2018-04-23 Backup of Interpolate_OperatorCalculator_Cubic_LagBehind_ConstSamplingRate (1).cs"
+rm -rf "Archive/2018-04-23 Backup of Interpolate_OperatorCalculator_Cubic_LagBehind_ConstSamplingRate (2).cs"
+rm -rf "Archive/2018-04-23 Backup of Interpolate_OperatorCalculator_Cubic_LagBehind_SamplingRateOne.cs"
+rm -rf "Archive/2018-04-23 Backup of Interpolate_OperatorCalculator_Line_LagBehind_ConstSamplingRate.cs"
+rm -rf "Archive/2018-04-27 Backup of DocumentReferencePatchGroupDto.cs"
+rm -rf "Archive/2018-04-27 Backup of GetPosition_OperatorCalculator.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/2018-04-27 Backup of IMidiMappingExtensions.cs"
+rm -rf "Archive/2018-04-27 Backup of IOperatorDto_WithOutletPosition.cs"
+rm -rf "Archive/2018-04-27 Backup of OperatorCalculatorHelper.cs"
+rm -rf "Archive/2018-04-27 Backup of OperatorDtoBase_WithFrequency.cs"
+rm -rf "Archive/2018-04-27 Backup of RangeOverOutlets_OperatorCalculator.cs"
+rm -rf "Archive/2018-04-28 Backup of IMidiMapping.cs"
+rm -rf "Archive/2018-04-28 Backup of IOperatorDto_WithTargetChannelCount.cs"
+rm -rf "Archive/2018-04-29 Backup of DummyViewModel.cs"
+rm -rf "Archive/2018-04-29 Backup of EntityFactory (JJ.Business.Synthesizer.Tests).cs"
+rm -rf "Archive/2018-04-29 Backup of ITestOperatorCalculator.cs"
+rm -rf "Archive/2018-04-29 Backup of TablePositionHelper.cs"
+rm -rf "Archive/2018-04-29 Backup of ViewModelNotFoundByIDException.cs"
+rm -rf "Archive/2018-04-29 Backup of violin_16bit_mono (Synthesizer TestResources).raw"
+rm -rf "Archive/2018-04-29 Backup of violin_16bit_mono_44100 (Synthesizer TestResources).wav"
+rm -rf "Archive/2018-05-01 Backup of IDNameAndObjectType.cs"
+rm -rf "Archive/2018-05-03 Backup of Interpolate_OperatorCalculator_Base_4Point.cs"
+rm -rf "Archive/2018-05-05 Backup of Interpolate_OperatorCalculator_Base_2X1Y_LookAhead.cs"
+rm -rf "Archive/2018-05-13 Backup of MaxOrMinFollower_OperatorCalculatorBase.cs"
+rm -rf "Archive/2018-05-20 Backup of CookieNames.cs"
+rm -rf "Archive/2018-05-20 Backup of HttpHeaderNames.cs"
+rm -rf "Archive/2018-07-03 Backup of LoginIndexViewMapping.cs"
+rm -rf "Archive/2018-07-03 Backup of NotAuthorizedViewMapping.cs"
+rm -rf "Archive/2018-07-03 Backup of QuestionCreateViewMapping.cs"
+rm -rf "Archive/2018-07-03 Backup of QuestionDeletedViewMapping.cs"
+rm -rf "Archive/2018-07-03 Backup of QuestionEditViewMapping.cs"
+rm -rf "Archive/2018-07-03 Backup of QuestionNotFoundPresenter.cs"
+rm -rf "Archive/2018-07-03 Backup of QuestionNotFoundViewMapping.cs"
+rm -rf "Archive/2018-07-03 Backup of QuestionsController.cs"
+rm -rf "Archive/2018-07-04 Backup of CategoryIndexViewMapping.cs"
+rm -rf "Archive/2018-07-04 Backup of DispatchHelper.cs"
+rm -rf "Archive/2018-07-04 Backup of QuestionDeleteViewMapping.cs"
+rm -rf "Archive/2018-07-04 Backup of QuestionDetailsViewMapping.cs"
+rm -rf "Archive/2018-07-04 Backup of QuestionIndexViewMapping.cs"
+rm -rf "Archive/2018-07-04 Backup of QuestionRandomViewMapping.cs"
+rm -rf "Archive/2018-07-05 Backup of DispatcherConfig.cs"
+rm -rf "Archive/2018-07-05 Backup of RouteConfig.cs"
+rm -rf "Archive/2018-07-05 Backup of ViewDataKeys.cs"
+rm -rf "Archive/2018-07-07 Backup of LoginIndexViewMapping.cs"
+rm -rf "Archive/2018-07-07 Backup of QuestionDetailsViewMapping.cs"
+rm -rf "Archive/2018-07-07 Backup of QuestionEditViewMapping.cs"
+rm -rf "Archive/2018-08-01 Backup of INodeTypeRepository.cs"
+rm -rf "Archive/2018-08-01 Backup of NodeType.cs"
+rm -rf "Archive/2018-08-01 Backup of NodeTypeEnum.cs"
+rm -rf "Archive/2018-08-01 Backup of NodeTypeMapping.cs"
+rm -rf "Archive/2018-08-01 Backup of NodeTypeRepository.cs"
+rm -rf "Archive/2018-08-02 Backup of InterpretedCurveCalculator (with block or stripe boundary determination).cs"
+rm -rf "Archive/2018-08-26 Backup of ButtonBarUserControl.Designer.cs"
+rm -rf "Archive/2018-08-26 Backup of ButtonBarUserControl.cs"
+rm -rf "Archive/2018-08-26 Backup of ButtonBarUserControl.resx"
+rm -rf "Archive/2018-08-27 Backup of InstrumentBarUserControl.Designer.cs"
+rm -rf "Archive/2018-08-27 Backup of InstrumentBarUserControl.cs"
+rm -rf "Archive/2018-08-27 Backup of InstrumentBarUserControl.resx"
+rm -rf "Archive/2018-08-27 Backup of MenuPresenter.cs"
+rm -rf "Archive/2018-08-27 Backup of MenuUserControl.Designer.cs"
+rm -rf "Archive/2018-08-27 Backup of MenuUserControl.cs"
+rm -rf "Archive/2018-08-27 Backup of MenuUserControl.resx"
+rm -rf "Archive/2018-08-27 Backup of MenuViewModel.cs"
+rm -rf "Archive/2018-08-28 Backup of MenuItemViewModel.cs"
+rm -rf "Archive/2018-09-01 Backup of And_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of BooleanToDouble_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of Divide_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of DoubleToBoolean_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of Equal_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of Factorial_OperatorCalculator.cs"
+rm -rf "Archive/2018-09-01 Backup of GreaterThanOrEqual_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of GreaterThan_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of LessThanOrEqual_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of LessThan_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of Negative_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of NotEqual_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of Not_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of NthRoot_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of OperatorDtoBase_Trigonometric.cs"
+rm -rf "Archive/2018-09-01 Backup of Or_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of Remainder_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of Subtract_OperatorDto.cs"
+rm -rf "Archive/2018-09-01 Backup of Trigonometric OperatorDto Classes.cs"
+rm -rf "Archive/2018-09-02 Backup of TrigonometryTests (2).cs"
+rm -rf "Archive/2018-09-02 Backup of TrigonometryTests.cs"
+rm -rf "Archive/2018-09-04 Backup of TestExecutor (2).cs"
+rm -rf "Archive/2018-09-04 Backup of TestExecutor.cs"
+rm -rf "Archive/2018-09-05 Backup of TestExecutor (1).cs"
+rm -rf "Archive/2018-09-05 Backup of TestExecutor (2).cs"
+rm -rf "Archive/2018-09-05 Backup of TestExecutor (3).cs"
+rm -rf "Archive/2018-09-05 Backup of TestExecutor (4).cs"
+rm -rf "Archive/2018-09-07 Backup of TestExecutor (1).cs"
+rm -rf "Archive/2018-09-07 Backup of TestExecutor (2).cs"
+rm -rf "Archive/2018-09-07 Backup of TestExecutor (3).cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/2018-09-07 Backup of TestExecutor (4).cs"
+rm -rf "Archive/2018-09-07 Backup of TestExecutor (5).cs"
+rm -rf "Archive/2018-09-08 Backup of Synthesizer_SimpleArithmeticWith2Inputs_Tests (1).cs"
+rm -rf "Archive/2018-09-08 Backup of Synthesizer_SimpleArithmeticWith2Inputs_Tests (2).cs"
+rm -rf "Archive/2018-09-08 Backup of TestExecutor.cs"
+rm -rf "Archive/2018-09-13 Backup of OperatorDtoBase_WithInput.cs"
+rm -rf "Archive/2018-09-14 Backup of OperatorEntityToCalculatorExecutor.cs"
+rm -rf "Archive/2018-09-22 Backup of DimensionInfo.cs"
+rm -rf "Archive/2018-09-22 Backup of TestMessageFormatter.cs"
+rm -rf "Archive/2018-09-23 Backup of Synthesizer_Interpolate_Tests.cs"
+rm -rf "Archive/2018-10-01 Backup of Synthesizer_Interpolate_Line_Tests.cs"
+rm -rf "Archive/2018-10-01 Backup of Synthesizer_Interpolate_Stripe_Tests.cs"
+rm -rf "Archive/2018-10-01 Backup of Synthesizer_Interpolate_Tests_Base.cs"
+rm -rf "Archive/2018-10-02 Backup of Synthesizer_Interpolate_Cubic_Tests.cs"
+rm -rf "Archive/2018-10-03 Backup of Synthesizer_Interpolate_Cubic_Tests.cs"
+rm -rf "Archive/2018-10-06 Backup of Interpolate_OperatorCalculator_Base.cs"
+rm -rf "Archive/2018-10-06 Backup of Interpolate_OperatorCalculator_Base_2X1Y.cs"
+rm -rf "Archive/2018-11-01 Backup of QuestionAndAnswerSqlExecutor.cs"
+rm -rf "Archive/2018-11-01 Backup of Question_GetPageOfIDs.sql"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/IMPORTANT 2016-01-27 Backup of InterpretedPatchCalculator.cs"
+rm -rf "Archive/IMPORTANT 2017-08-26 Backup of OperatorEntityToCalculatorDirectlyVisitor.cs"
+rm -rf "Archive/IMPORTANT 2018-04-12 Backup of GeneratedMethodInfo (before revert uninlining).cs"
+rm -rf "Archive/IMPORTANT 2018-04-12 Backup of GeneratedParameterInfo (before revert uninlining).cs"
+rm -rf "Archive/IMPORTANT 2018-04-12 Backup of OperatorDtoToRawCSharpVisitor (before revert uninlining).cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-03-01 Backup of OldAdapter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-07-03 Backup of Delegates.cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-07-04 Backup of Response (with logging).cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-07-08 Backup of BoxPositioning.CalculateBorderLines (using same LineEndPositioning for all corners).txt"
+rm -rf "Archive/Backups of Loose Source Files/2011-07-11 Backup of ButtonStyle (before making ButtonStateStyle non-events).cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-07-11 Backup of ButtonStyle (multi-state management with interception).cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-07-11 Backup of ButtonStyle All property changed event responses before normalization.txt"
+rm -rf "Archive/Backups of Loose Source Files/2011-07-21 GraphicsHelper.DrawImage_Org.txt"
+rm -rf "Archive/Backups of Loose Source Files/2011-08-08 Backup of Scale (with its own index implementation).cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-08-09 Backup of GraphicsHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-08-09 IIndex.cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-08-10 Backup of Picture (with non-graphics operator).cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-08-10 Backup of PictureStyle (with non-graphics operator).cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-08-10 Backup of WinFormsScreen (before removing some code).cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-09-16 Backup of ValueBinder.cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-10-01 Response org, see line 240.txt"
+rm -rf "Archive/Backups of Loose Source Files/2011-10-03 Backup of Response (before reverting bad attempt to prevent auto-creation).cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-10-03 Backup of Response (before trying if old type to follow function worked).cs"
+rm -rf "Archive/Backups of Loose Source Files/2011-11-25 Backup of Unique.txt"
+rm -rf "Archive/Backups of Loose Source Files/2011-12-23 Circle.Code.Conditions.UnitTest.IsUniqueTestsBase (old test for var amount of args).txt"
+rm -rf "Archive/Backups of Loose Source Files/2011-12-23 Circle.Data.Concepts.UnitTest.UniqueByKeyTests (old Test_Validate_IsUnique_VariableAmountOfArguments).txt"
+rm -rf "Archive/Backups of Loose Source Files/2011-12-23 Circle.Data.Validation.UnitTest.IsUniqueTestsBase (non-working or non-workable tests).cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-01-23 Backup of FileSaver (before removing more publics).cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-02-06 FileFunctionsTests (before removing preventive cleaning).cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-03-06 Circle.AppsAndMedia.Sound (original).xsd"
+rm -rf "Archive/Backups of Loose Source Files/2012-04-14 Backup of DocumentReferenceXml.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-07-18 Backup of multiple outlets classes.zip"
+rm -rf "Archive/Backups of Loose Source Files/2012-08-18 Backup of New Computer 2012-07.doc"
+rm -rf "Archive/Backups of Loose Source Files/2012-10-11 Backup of Conditions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-11-13 Backup of Union.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-11-13 Backup of UnionAccessor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-11-17 Backup of DocumentInstance.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-11-17 Backup of DocumentOperator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-11-19 Backup of Adder.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-11-25 Backup of DocumentOperatorXml_Original.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-11-25 Backup of DocumentXml_Original.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-11-25 Backup of PatchOperatorInletNamedReferenceXml.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-11-25 Backup of PatchOperatorInletReferenceXml.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-11-25 Backup of PatchOperatorOutletNamedReferenceXml.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-12-11 Backup of DocumentParameters.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-12-13 Backup of PatchOutletReferenceXml.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-12-13 Backup of PatchTypedOperatorNamedReferenceXml.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-12-13 Backup of PatchTypedOperatorReferenceXml.cs"
+rm -rf "Archive/Backups of Loose Source Files/2012-12-15 Backup of PatchInletNamedReferenceXml.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-0-29 Backup of CategoryEnum.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-0-29 Backup of QuestionCategoryExtensions.Enums.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-01-02 Backup of QuestionLinkExtensions.txt"
+rm -rf "Archive/Backups of Loose Source Files/2013-01-07 Backup of QuestionDetailPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-02-11 Backup of ExpressionHelper (before split up).cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-02-12 Backup of ExpressionToValueTranslator2 (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-02-12 Backup of ExpressionToValueTranslator2.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-02-13 Backup of ExpressionHelper_UsingCustomExpressionVisitors_UsingStack.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-02-13 Backup of ExpressionToValueTranslator2_UsingStack.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-02-14 Backup of ExpressionToValueTranslator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-02-20 Backup of Assert (before normalized methods).cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-06-18 Backup of DinnersController.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-06-19 Backup of ViewDataKeys.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-09-09 Backup of AnswerBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-09-09 Backup of QuestionBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-09-29 Backup of QuestionSelector.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-10-06 Backup of QuestionAboutCategories.aspx"
+rm -rf "Archive/Backups of Loose Source Files/2013-10-06 Backup of _Question.ascx"
+rm -rf "Archive/Backups of Loose Source Files/2013-10-28 Backup of _AvailableCategory.ascx"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2013-10-28 Backup of _SelectedCategory.ascx"
+rm -rf "Archive/Backups of Loose Source Files/2013-11-03 Backup o CategoryNodeViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-11-21 Backup of DefinitionSelector (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-11-21 Backup of DefinitionSelector.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-12-09 Backup of Absolute.Master"
+rm -rf "Archive/Backups of Loose Source Files/2013-12-24 Backup of QuestionFlagPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2014-01-01 Edit (JJ.Apps.QuestionAndAnswer.AspNetMvc4, Views, Questions).aspx"
+rm -rf "Archive/Backups of Loose Source Files/2014-01-10 Backup QuestionsController (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2014-01-10 QuestionsController.cs"
+rm -rf "Archive/Backups of Loose Source Files/2014-02-05 Backup of EntityRepository_Original.cs"
+rm -rf "Archive/Backups of Loose Source Files/2014-02-05 Backup of Entity_Generic.xml"
+rm -rf "Archive/Backups of Loose Source Files/2014-02-05 Backup of Entity_Original.xml"
+rm -rf "Archive/Backups of Loose Source Files/2014-02-06 Backup of RandomQuestionRepositories.cs"
+rm -rf "Archive/Backups of Loose Source Files/2014-04-01 Backup of SetTextWithSyncPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2014-05-13 Backup of SetTextViewCode.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-03 Backup of ViewModelExtensions_IsDirty.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-03 Backup of ViewModelExtensions_IsNew.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-12 Backup of OperatorCalculatorBase_WithChildCalculators_WithPhaseTracking (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-12 Backup of OperatorCalculatorBase_WithPhaseTracking (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-14 Backup of AuthenticatedViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-16 Backup of ListViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-16 Backup of LoginPartialController.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-16 Backup of LoginPartialPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-20 Backup of LanguageSelectorPartialPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-22 Backup of CookieWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-22 Backup of HttpHeaderWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-03 Backup of QuestionRepository (SqlClient).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-03 Backup of SqlExecutor (QuestionAndAnswer SqlClient).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-11 Backup of AutoCreateRelatedEntitiesExtensions (QuestionAndAnswer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-11 Backup of EnumEntityHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-16 Backup of _EditQuestion.cshtml"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-28 Backup of MasterController (QuestionAndAnswer) (before removing GetActionResult).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-01 Backup of ActionDispatcherHelper (QuestionAndAnswer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-03 Backup of AddOperatorValidator_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-03 Backup of GenericOperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-05 Backup of IRepository (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-05 Backup of RepositoryBase (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-07 Backup of SampleValidator2.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of ISampleChannelRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of SampleChannel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of SampleChannelMapping.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of SampleChannelRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of SampleChannelValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of SampleChannelWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of UnlinkExtensions (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of UnlinkRelatedEntitiesExtensions (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-12 Backup of PatchInletCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-12 Backup of PatchOutletCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-12 Backup of SignalPassthroughCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-13 Backup of SampleOperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-13 Backup of TimeDivideCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-14 Check SpeakerSetupChannel data.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-17 Backup of DivideWithOriginCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-17 Backup of DivideWithoutOriginCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-17 Backup of TimeMultiplyWithOriginCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-17 Backup of TimeMultiplyWithoutOriginCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-04 Backup of ToViewModelExtensions (Svg).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-05 Backup of MoveOperatorGesture.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-06 Backup of ToEntityExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-10 Backup of OperatorElementsPositioner.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of CurveIn.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of CurveInMapping (Memory).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of CurveInMapping (NHibernate).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of CurveInRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of CurveInValidator_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of CurveInWarningValidator_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of CurveInWrapper_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of IAppSettings.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ICurveInRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ISampleOperatorRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of IValueOperatorRepository.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorMapping (Memory).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorMapping (NHibernate).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorValidator_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorWarningValidator_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorWrapper_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorMapping (Memory).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorMapping (NHibernate).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorValidator_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorWarningValidator_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorWrapper_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-13 23.10 DEV_SynthesizerDB (before removing CurveIn, SampleOperator and ValueOperator tables.bak.zip"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-13 Copy ValueOperator.Value to Operator.Data.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-15 Backup of InletToolTipRectangleConverter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-25 Backup of Document.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-25 Backup of LibraryReference.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-25 Backup of Transport.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-25 Backup of Workspace.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-26 Backup of CurveListItemViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-26 Backup of DocumentListItemViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-27 Backup of PatchDetailsForm.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-27 Backup of PatchDetailsForm.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-27 Backup of PatchDetailsForm.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-27 Backup of PatchDetailsForm_Old.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-27 Backup of PatchDetailsForm_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-29 Backup of MenuControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-29 Backup of MenuItemViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-29 Backup of MenuViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-29 Backup of ViewMenuViewModel (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-30 Backup of DocumentListUserControl.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-30 Backup of DocumentListUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-30 Backup of DocumentListUserControl.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of CannotDeletePresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of CannotDeleteViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentConfirmDeleteEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentDetailsEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentListForm.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentListForm.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentListForm.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentListUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of AudioFileOutput_Count.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of AudioFileOutput_GetPageOfIDs.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Curve_Count.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Curve_GetPageOfIDs.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Document_CountRootDocuments.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Document_GetPageOfInstrumentIDs.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Patch_Count.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Patch_GetPageOfIDs.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Sample_Count.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Sample_GetPageOfIDs.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of EffectListViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of SamplePropertiesViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of TagHelper (Synthesizer.WinForms).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of TestListUserControl.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of TestListUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of TestListUserControl.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-19 Backup of ToDeleteViewModelExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-19 Backup of ToDetailsOrPropertiesViewModelExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-19 Backup of ToDocumentTreeViewModelExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-25 Backup of DefaultConstants (Business.Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-25 Backup of DocumentIDEventArgs (Synthesizer.WinForms).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-25 Backup of IDEventArgs (Synthesizer.WinForms).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-25 Backup of PageEventArgs (Synthesizer.WinForms).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-01 Backup of IDNameAndListIndexViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-02 Backup of ViewModelHelper.KeyViewModels (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-04 Backup of EffectListPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-04 Backup of InstrumentListPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of AudioFileOutputListForm.Designer.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git log --pretty=format: --name-status | cut -f2- | sort -u
+git log --pretty=format: --name-status | cut -f2- | sort -u > allfiles.log
+
+#git filter-branch --tree-filter 'rm -rf "Third Party/Roslyn"' --prune-empty HEAD --all
+#git filter-branch --tree-filter 'rm -rf "Third Party/Roslyn"' HEAD --all
+
+git filter-branch --tree-filter '
+rm -rf "External Components/Roslyn"
+rm -rf "Third Party/Roslyn"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf ".packages"
+rm -rf ".tfignore"
+rm -rf "Demos/JJ.Demos.JavaScript"
+rm -rf "Demos/JJ.Demos.Synthesizer.Inlining"
+rm -rf "Demos/Synthesizer.Inlining"
+rm -rf "Demos/Synthesizer.NanoOptimization"
+rm -rf "External Components/Asio.Net"
+rm -rf "External Components/ikvm-7.2.4630.5"
+rm -rf "External Components/Lomont"
+rm -rf "External Components/Mono"
+rm -rf "External Components/NAudio"
+rm -rf "NuGetTest/packages"
+rm -rf "OneOff/JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss21BoxModel"
+rm -rf "OneOff/JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3PropertyIndex"
+rm -rf "OneOff/JJ.OneOff.QuestionAndAnswer.ImportW3CSpecCss3SelectorIndex"
+rm -rf "OneOff/JJ.OneOff.Synthesizer.DataMigration"
+rm -rf "OneOff/JJ.OneOff.TryUnityWww"
+rm -rf "OneOff/Synthesizer.DataMigration"
+rm -rf "OneOff/TryUnityWww"
+rm -rf "packages"
+rm -rf "Third Party/NAudio"
+rm -rf "UpgradeLog.htm"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorMapping (Memory).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorMapping (NHibernate).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorValidator_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorWarningValidator_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of SampleOperatorWrapper_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorMapping (Memory).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorMapping (NHibernate).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorValidator_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorWarningValidator_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-12 Backup of ValueOperatorWrapper_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-13 23.10 DEV_SynthesizerDB (before removing CurveIn, SampleOperator and ValueOperator tables.bak.zip"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-13 Copy ValueOperator.Value to Operator.Data.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-15 Backup of InletToolTipRectangleConverter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-25 Backup of Document.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-25 Backup of LibraryReference.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-25 Backup of Transport.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-25 Backup of Workspace.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-26 Backup of CurveListItemViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-26 Backup of DocumentListItemViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-27 Backup of PatchDetailsForm.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-27 Backup of PatchDetailsForm.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-27 Backup of PatchDetailsForm.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-27 Backup of PatchDetailsForm_Old.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-27 Backup of PatchDetailsForm_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-29 Backup of MenuControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-29 Backup of MenuItemViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-29 Backup of MenuViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-29 Backup of ViewMenuViewModel (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-30 Backup of DocumentListUserControl.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-30 Backup of DocumentListUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-04-30 Backup of DocumentListUserControl.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of CannotDeletePresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of CannotDeleteViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentConfirmDeleteEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentDetailsEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentListForm.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentListForm.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentListForm.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-05 Backup of DocumentListUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of AudioFileOutput_Count.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of AudioFileOutput_GetPageOfIDs.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Curve_Count.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Curve_GetPageOfIDs.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Document_CountRootDocuments.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Document_GetPageOfInstrumentIDs.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Patch_Count.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Patch_GetPageOfIDs.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Sample_Count.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-14 Backup of Sample_GetPageOfIDs.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of EffectListViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of SamplePropertiesViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of TagHelper (Synthesizer.WinForms).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of TestListUserControl.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of TestListUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-18 Backup of TestListUserControl.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-19 Backup of ToDeleteViewModelExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-19 Backup of ToDetailsOrPropertiesViewModelExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-19 Backup of ToDocumentTreeViewModelExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-25 Backup of DefaultConstants (Business.Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-25 Backup of DocumentIDEventArgs (Synthesizer.WinForms).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-25 Backup of IDEventArgs (Synthesizer.WinForms).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-05-25 Backup of PageEventArgs (Synthesizer.WinForms).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-01 Backup of IDNameAndListIndexViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-02 Backup of ViewModelHelper.KeyViewModels (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-04 Backup of EffectListPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-04 Backup of InstrumentListPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of AudioFileOutputListForm.Designer.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of AudioFileOutputListForm.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of AudioFileOutputListForm.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of CurveListForm.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of CurveListForm.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of CurveListForm.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of PatchListForm.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of PatchListForm.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of PatchListForm.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of SampleListForm.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of SampleListForm.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-05 Backup of SampleListForm.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-20 Backup of AudioFileOutputPropertiesForm.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-20 Backup of AudioFileOutputPropertiesForm.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-20 Backup of AudioFileOutputPropertiesForm.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-23 SynthesizerDB migrate Operator.OperatorTypeName to Operator.OperatorTypeID.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-25 Backup of OperatorCalculatorBase_Accessor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-25 Backup of OperatorCalculatorNew_Accessor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-06-25 Backup of WhiteNoise_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-08 Backup of EntityFactory (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-08 Backup of JJ.Presentation.Synthesizer.WinForms.Forms.~PatchDetailsForm.resources"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-08 Backup of PersistenceWrapper (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-08 Synthesizer Get Max ID.sql"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of AudioFileOutputChannelKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of AudioFileOutputKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of AudioFileOutputListKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of ChildDocumentEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of ChildDocumentHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of ChildDocumentKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of ChildDocumentSubListItemEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of CurveKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of CurveListKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of DocumentKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of InletKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of InletOrOutletKey.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of NodeKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of OperatorKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of OutletKey.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of OutletKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of PatchKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of PatchListKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of PlayHelper (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of ReferencedDocumentKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of SampleKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of SampleListKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-12 Backup of ViewModelEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-29 Backup of ChildDocumentGridKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-07-29 Backup of ChildDocumentTreeNodeKeysViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-11 Backup of EffectGridUserControl.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-11 Backup of EffectGridUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-11 Backup of EffectGridUserControl.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-16 Backup of OperatorHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-21 Backup of DocumentRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-23 Backup of DocumentRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-23 Backup of GuidEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-23 Backup of NullableInt32EventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-23 Backup of SelectOperatorEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-23 Backup of SetValueEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-30 Backup of SynthesizerContext (before introducing check if read bytes equals bytes to save).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-08-30 Backup of SynthesizerContext (before removing useless check if read bytes equals bytes to save).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-03 Backup of MainPresenter (Synthesizer).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-05 Backup of Operator_SideEffect_UpdateDependentCustomOperators.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-11 Backup of AddLineGesture.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-11 Backup of LineGesture.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-15 Backup of ViewModelToDiagramConverter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-21 Backup of CurveFactory.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-21 Backup of OperatorFactory.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-22 Backup of AudioFileOutputRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-22 Backup of CurveRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-22 Backup of PatchRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-23 Backup of ChildDocumentListItemViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-23 Backup of CurveListItemViewModel.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2015-09-23 Backup of PatchListItemViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-17 Backup of CurveDetailsViewModelToDiagramConverter_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-20 Backup of Sine_OperatorCalculator_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of CurveCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of SawTooth_WithConstPitch_WithoutPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of SawTooth_WithVarPitch_WithoutPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of SquareWave_WithConstPitch_WithoutPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of SquareWave_WithVarPitch_WithoutPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of TriangleWave_WithVarPitch_WithoutPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of TriangleWave_WithVarPitch_WithoutPhaseShift_OperatorCalculator_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-26 Backup of OperatorWrapperBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-31 Backup of MainForm.Actions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Add_WithConstOperandA_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Add_WithConstOperandB_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Delay_WithConstTimeDifference_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithConstOrigin_AndDenominator_OperatorCalculator .cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithConstOrigin_AndNumerator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithConstOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithOrigin_AndConstDenominator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithOrigin_AndConstNumerator_AndDenominator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithOrigin_AndConstNumerator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithoutOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithoutOrigin_WithConstDenominator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithoutOrigin_WithConstNumerator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithConstOrigin_AndOperandA_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithConstOrigin_AndOperandB_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithConstOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithOrigin_AndConstOperandA_AndOperandB_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithOrigin_AndConstOperandA_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithOrigin_AndConstOperandB_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithoutOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithoutOrigin_WithConstOperandA_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithoutOrigin_WithConstOperandB_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Power_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Power_WithConstBase_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Power_WithConstExponent_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of AudioFileOutputCalculatorBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Sample_MonoToStereo_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Sample_StereoToMono_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SawTooth_WithConstPitch_WithConstPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SawTooth_WithConstPitch_WithVarPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SawTooth_WithVarPitch_WithConstPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SawTooth_WithVarPitch_WithVarPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Sine_WithOrigin_AndPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Sine_WithOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Sine_WithPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SlowDown_WithConstOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SlowDown_WithOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SlowDown_WithOrigin_WithConstTimeMultiplier_OperatorCalculator.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Framework/JJ.Framework.Reflection/obj"
+rm -rf "Framework/JJ.Framework.Persistence/obj"
+rm -rf "Framework/JJ.Framework.Persistence.NHibernate/obj"
+rm -rf "Framework/JJ.Framework.Configuration/obj"
+rm -rf "Framework/JJ.Framework.Common/obj"
+rm -rf "Framework/JJ.Framework.Common/bin"
+rm -rf "Framework/JJ.Framework.Configuration/bin"
+rm -rf "Framework/JJ.Framework.Persistence.NHibernate/bin"
+rm -rf "Framework/JJ.Framework.Persistence/bin"
+rm -rf "Framework/JJ.Framework.Reflection/bin"
+rm -rf ".vs"
+rm -rf "External Components/Asio4All"
+rm -rf "External Components/soapobject_339"
+rm -rf "Demos/JJ.Demos.CollectionConversion"
+rm -rf "Demos/JJ.Demos.Misc"
+rm -rf "Database/SQL/Inspect Questions with Categories.sql"
+rm -rf "Database/SQL/Inspect Questions with Categories.sql"
+rm -rf "Database/SQL/QuestionAndAnswerDB Inspect Questions with Categories.sql"
+rm -rf "Database/SQL/Look up operators.sql"
+rm -rf "Database/SQL/QuestionAndAnswerDB Select Empty Categories.sql"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SlowDown_WithoutOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SlowDown_WithoutOrigin_WithConstTimeMultiplier_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SpeedUp_WithConstOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SpeedUp_WithOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SpeedUp_WithOrigin_WithConstTimeDivider_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SpeedUp_WithoutOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SpeedUp_WithoutOrigin_WithConstTimeDivider_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SquareWave_WithConstPitch_WithConstPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SquareWave_WithConstPitch_WithVarPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SquareWave_WithVarPitch_WithConstPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SquareWave_WithVarPitch_WithVarPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Substract_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Substract_WithConstOperandA_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Substract_WithConstOperandB_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of TimePower_WithOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of TimePower_WithoutOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of TimeSubstract_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of TimeSubstract_WithConstTimeDifference_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of TriangleWave_WithConstPitch_WithConstPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of TriangleWave_WithConstPitch_WithVarPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of TriangleWave_WithVarPitch_WithConstPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of TriangleWave_WithVarPitch_WithVarPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-10 Backup of GeneralConfiguration.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-10 Backup of TestingConfiguration.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-13 Backup of SineCalculator2.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-15 Backup of CurveValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-15 Backup of DocumentValidator_UniqueCurveNames.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-15 Backup of DocumentValidator_UniqueScaleNames.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-17 Backup of DocumentExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-21 Backup of OutletValidator_Basic.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-21 Backup of PatchGridPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-21 Backup of PatchGridUserControl.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-21 Backup of PatchGridUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-21 Backup of PatchGridUserControl.resx"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-21 Backup of PatchGridViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-21 Backupf of InletValidator_Basic.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-26 Backup of ChildDocumentType.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-26 Backup of ChildDocumentTypeEnum.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-26 Backup of ChildDocumentTypeMapping.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-26 Backup of ChildDocumentTypeMappings.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-26 Backup of ChildDocumentTypeRepository (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-26 Backup of ChildDocumentTypeRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-26 Backup of IChildDocumentTypeRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-12-05 Backup of PatchManager.AutoPatch.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-12-23 Backup of SampleProvider (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-12-23 Backup of SampleProvider.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-12-29 Backup of DocumentRepository (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-12-29 Backup of DocumentRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-12-30 Backup of SampleProvider.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-12-31 Backup of PatchManager.AutoPatch.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-02 Backup of OperatorValidator_PatchInlet_Inlet.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-02 Backup of Operator_SideEffect_CopyPatchInletPropertiesToItsInlet.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-04 Backup of Operator_SideEffect_GenerateName.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-05 Backup of CurveViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-06 Backup of PatchCalculatorTypeEnum.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-06 Backup of ResultHelper.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Third Party/FluentNHibernate/Source Code/1.3/.gitattributes"
+rm -rf "External Components/FluentNHibernate/Source Code/1.3/.gitattributes"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-08 Backup of AutoPatchPolyphonicResult (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-08 Backup of AutoPatchPolyphonicResult.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-08 Backup of PatchManager.AutoPatch.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of Add_OperatorCalculator Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of Delay OperatorCalculator Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of Earlier OperatorCalculator Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of IPatchCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of InterpretedPatchCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of MidiInputProcessor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of OperatorCalculatorBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of OperatorCalculatorBase_WithChildCalculators.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of OperatorCalculatorBase_WithChildCalculators_WithPhaseTracking.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of OperatorCalculatorBase_WithPhaseTracking.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of OptimizedPatchCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of PatchCalculatorContainer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-12 Backup of Resample_OperatorCalculator_CubicRamses.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-17 Backup of IPatchCalculatorValues.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-17 Backup of PatchCalculatorContainer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-17 Backup of PolyphonyCalculatorContainer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-24 Backup of AudioOutputSampleProvider.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-26 Backup of InterpretedPatchCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-26 Backup of Spectrum_OperatorCalculator (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-27 Backup of PatchCalculatorTypeEnum.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-28 Backup of Spectrum_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-01-30 Backup of Pulse OperatorCalculator Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-03 Backup of DoubleBinaryTree.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-04 Backup of Maximum_OperatorCalculator (old).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-04 Backup of Maximum_OperatorCalculator_RedBlackTree.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-04 Backup of Minimum_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-07 Backup of Resample_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-09 Backup of Resample_OperatorCalculator_Block (out of control with neg rate and forward time).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-09 Backup of Resample_OperatorCalculator_Block (with many specialized cases).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-10 Backup of OperatorPropertiesPresenterBase_WithDefaultUpdate.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-10 Backup of Random_OperatorCalculator_Stripe.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-12 Backup of OptimizedPatchCalculatorVisitor.ComparisonOperators.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-16 Backup of ArrayCalculatorBase_Channels.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-16 Backup of ArrayCalculatorBase_MinTime_Channels.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-16 Backup of ArrayCalculator_Block_MinTime_Channels.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-16 Backup of ArrayCalculator_Line_Channels.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-16 Backup of ArrayCalculator_Line_MinTime_Channels.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-17 Backup of ArrayCalculatorBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-17 Backup of ArrayCalculatorBase_MinTime.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-18 Backup of CurveCalculator IMPORTANT.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-18 Backup of IArrayCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-18 Backup of RandomCalculatorFactory.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-19 Backup of SampleCalculator_BlockInterpolation_Base.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-19 Backup of SampleCalculator_BlockInterpolation_Byte.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-19 Backup of SampleCalculator_BlockInterpolation_Int16.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-19 Backup of SampleCalculator_Byte_Mono_Block.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-19 Backup of SampleCalculator_Byte_Mono_Line.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-19 Backup of SampleCalculator_Int16_Mono_Block.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-19 Backup of SampleCalculator_Int16_Mono_Line (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-19 Backup of SampleCalculator_Int16_Mono_Line.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-19 Backup of SampleCalculator_LineInterpolation_Base.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-19 Backup of SampleCalculator_LineInterpolation_Byte.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git gc --aggressive --prune=all
+git repack
+
+# https://duckduckgo.com/?q=git+pack+stays+large&t=opera&ia=web
+# >
+# https://stackoverflow.com/questions/24693360/git-large-pack-file-delete-and-rewrite
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2016-02-19 Backup of SampleCalculator_LineInterpolation_Int16.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-20 Backup of NotFoundPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-02-20 Backup of NotFoundViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-03 Backup of NodeValidator_Delete.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-06 Backup of MenuUserControl.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-06 Backup of MenuUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-06 Backup of MenuUserControl.resx"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-13 Backup of OperatorToolTipRectangleConverter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-24 Backup of OperatorPropertiesPresenter_ForAggregate.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-24 Backup of OperatorPropertiesUserControl_ForAggregate.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-24 Backup of OperatorPropertiesUserControl_ForAggregate.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-24 Backup of OperatorPropertiesUserControl_ForAggregate.resx"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-24 Backup of OperatorValidator_Base_Aggregate.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-30 Backup of OperatorPropertiesPresenter_ForSpectrum.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-30 Backup of OperatorPropertiesUserControl_ForSpectrum.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-30 Backup of OperatorPropertiesUserControl_ForSpectrum.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-30 Backup of OperatorPropertiesUserControl_ForSpectrum.resx"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-30 Backup of OperatorPropertiesViewModel_ForSpectrum.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-03-30 Backup of OperatorWarningValidator_Cache.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-03 IMPORTANT Backup of PatchManager.AutoPatch (before removing Delay and NoteStart from AutoPatchPolyphonic).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-05 Backup of SlowDown OperatorCalculator Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-05 Backup of SpeedUp OperatorCalculator Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-10 Backup of IOutletTypeRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-10 Backup of OperatorPropertiesViewModel_ForAggregate.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-10 Backup of OutletType.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-10 Backup of OutletTypeEnum.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-10 Backup of OutletTypeMapping (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-10 Backup of OutletTypeMapping.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-10 Backup of OutletTypeRepository (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-10 Backup of OutletTypeRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-16 Backup of AudioOutputValidator_InDocument.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-19 Backup of AudioOutputSampleProvider (with outcommented checks).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-19 Backup of TempNAudioCodeExample.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-21 Backup of MultiThreadedPatchCalculator_WithTasks.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-22 Backup of AudioOutputProcessor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-22 Backup of MultiThreadedPatchCalculatorContainer_WithThreads.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-22 Backup of MultiThreadedPatchCalculator_WithThreads.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-23 Backup of AudioFileOutputChannel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-23 Backup of AudioFileOutputChannelMapping (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-23 Backup of AudioFileOutputChannelMapping.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-23 Backup of AudioFileOutputChannelRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-23 Backup of AudioFileOutputManager.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-23 Backup of IAudioFileOutputChannelRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-24 Backup of AudioFileOutputChannelUserControl.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-24 Backup of AudioFileOutputChannelUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-24 Backup of AudioFileOutputChannelUserControl.resx"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-24 Backup of AudioFileOutputChannelViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-24 Backup of AudioFileOutputChannelWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-24 Backup of AudioFileOutputChannelsUserControl.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-24 Backup of AudioFileOutputChannelsUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-04-24 Backup of AudioFileOutputChannelsUserControl.resx"
+rm -rf "Archive/Backups of Loose Source Files/2016-05-04 Backup of nuget.config"
+rm -rf "Archive/Backups of Loose Source Files/2016-05-08 Backup of OperatorTypeViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-05-10 Backup of Multiply OperatorCalculator Classes (With Generics).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-05-10 Backup of OptimizedPatchCalculatorVisitor (With Generics).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-05-12 Backup of Add OperatorCalculator Classes (with Generics).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-12 Backup of OperatorPropertiesPresenter_ForRandom.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2016-06-12 Backup of OperatorPropertiesUserControl_ForResample.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-12 Backup of OperatorPropertiesUserControl_ForResample.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-12 Backup of OperatorPropertiesUserControl_ForResample.resx"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-15 Backup of InletsValidator_ListIndexConsecutive.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-15 Backup of OperatorPropertiesViewModel_ForResample.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-17 Backup of AverageDiscrete_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-19 Backup of Add_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-19 Backup of Add_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-19 Backup of Add_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-19 Backup of Add_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-21 Backup of Add OperatorCalculator Classes 3 Or More Operands.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-21 Backup of Add OperatorCalculator Classes 3 Or More Operands.tt"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-21 Backup of Add OperatorCalculator Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-21 Backup of OptimizedPatchCalculatorVisitor.CreateAddCalculator_WithThreeOrMoreOperands.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-21 Backup of OptimizedPatchCalculatorVisitor.CreateAddCalculator_WithThreeOrMoreOperands.tt"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-23 Backup of MaxContinuous_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-23 Backup of MinContinuous_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-24 Backup of OperatorWrapperBase_WithDimension.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-24 Backup of OperatorWrapperBase_WithDimensionAndResampleInterpolationType.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-25 Backup of GetDimension_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-06-25 Backup of SetDimension_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-02 Backup of OperatorValidator_Base_FilterWithFrequencyAndBandWidth.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-03 Backup of BiQuadFilter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-04 Backup of OperatorWrapperBase_FilterWithFrequencyAndBandWidth.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of FilterTypeEnum.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of FilterType_OperatorData_Validator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of Filter_ManyConstants_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of Filter_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of Filter_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of Filter_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of OperatorCalculatorBase_Filter_ConstFrequency_ConstBandWidth.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of OperatorCalculatorBase_Filter_VarFrequency_VarBandWidth.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of OperatorPropertiesPresenter_ForFilter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of OperatorPropertiesUserControl_ForFilter.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of OperatorPropertiesUserControl_ForFilter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of OperatorPropertiesUserControl_ForFilter.resx"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-05 Backup of OperatorPropertiesViewModel_ForFilter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-06 Backup of Document_GetPageOfRootDocumentIDsOrderedByName.sql"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-08 Backup of UserControlBaseOfT.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of Delay_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of Delay_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of Delay_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of Earlier OperatorCalculator Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of Earlier_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of Earlier_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of Earlier_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of SlowDown OperatorCalculator Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of SlowDown_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of SlowDown_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of SlowDown_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of SpeedUp OperatorCalculator Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of SpeedUp_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of SpeedUp_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of SpeedUp_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-09 Backup of ToEntityHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-14 Backup of Resample_OperatorCalculator_LineRememberT1_Org.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2016-07-14 Backup of Resample_OperatorCalculator_LineWithVaryingAlignment.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-14 Backup of TitlesFormatter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-17 Backup of InletPointConverter (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-17 Backup of InletPointConverter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-22 Backup of Dimension_DataProperty_Validator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-22 Backup of OperatorValidator_Base_WithDimension.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-27 Backup of ShowNodePropertiesGesture.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-30 Backup of InletValidator_ForCustomOperator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-30 Backup of OperatorValidator_Base.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-30 Backup of OutletValidator_ForCustomOperator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-30 Backup of Sine_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-31 Backup of PatchManager.CreateOperator (1).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-07-31 Backup of PatchManager.CreateOperator (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-03 Backup of MustNotConvertToInletViewModelException.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-03 Backup of MustNotConvertToOutletViewModelException.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-19 Backup of Generic_SideEffect_GenerateNameBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-21 Backup of Curve_SideEffect_SetDefaults_Basic.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-24 Backup of Int32EventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-24 Backup of StringEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-25 Backup of ChildDocument_DocumentValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-25 Backup of CurrentPatchItemViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-25 Backup of CurveValidator_UniqueName.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-25 Backup of Document_SideEffect_GenerateChildDocumentName.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-25 Backup of PatchDocumentViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-25 Backup of PatchIDAndNameViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-25 Backup of RootDocument_DocumentValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-26 Backup of TagHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-27 Backup of DetailsOrPropertiesUserControlBaseOfTKey.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-27 Backup of DocumentAndChildEntityEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-27 Backup of SampleUsedInDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-27 Backup of ToIDAndNameExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-28 Backup of DimensionStackCollection.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-29 Backup of OperatorPropertiesViewModel_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-30 Backup of OperatorPropertiesPresenter_WithDimension.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-30 Backup of OperatorPropertiesUserControl_WithDimension.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-30 Backup of OperatorPropertiesUserControl_WithDimension.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-30 Backup of OperatorPropertiesUserControl_WithDimension.resx"
+rm -rf "Archive/Backups of Loose Source Files/2016-08-30 Backup of OperatorPropertiesViewModel_WithDimension.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-09-03 Backup of OperatorValidator_NoDimension.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-09-14 Backup of OperatorWarningValidator_Base_SpecificInletsFilledInOrHaveDefaults.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-09-16 Backup of MaxOrMinOverDimension_OperatorCalculatorBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-09-24 Backup of Interpolate_OperatorCalculator_LineRememberX0.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-10-09 Backup of OperatorCalculatorBase_WithChildCalculators.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-10-09 Backup of Sine_OperatorCalculator_ConstFrequency_WithOriginShifting (Inlining Demo).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-10-09 Backup of StructTests.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-10-14 Backup of MathPropertyDtoVisitor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-01 Backup of OperatorDtoToOperatorCalculatorVisitor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-02 Backup of OperatorDtoToCSharpVisitor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-09 Backup of SingleChannelPatchCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-10 Backup of MultiChannelPatchCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Add_OperatorDto (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Add_OperatorDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Add_OperatorDto_Vars (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Add_OperatorDto_Vars.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Add_OperatorDto_Vars_1Const (1).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Add_OperatorDto_Vars_1Const.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Multiply_OperatorDto (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Multiply_OperatorDto.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Multiply_OperatorDto_ConstA_ConstB (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Multiply_OperatorDto_ConstA_VarB (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Multiply_OperatorDto_VarA_ConstB (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Multiply_OperatorDto_VarA_VarB (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Multiply_OperatorDto_Vars.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Multiply_OperatorDto_Vars_1Const.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Number_OperatorDto (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Number_OperatorDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Number_OperatorDto_NaN (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Number_OperatorDto_NaN.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Number_OperatorDto_One (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Number_OperatorDto_One.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Number_OperatorDto_Zero (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Number_OperatorDto_Zero.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of SawUp_OperatorDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of SawUp_OperatorDto_ConstFrequency_NoOriginShifting.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of SawUp_OperatorDto_ConstFrequency_WithOriginShifting.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of SawUp_OperatorDto_VarFrequency_NoPhaseTracking.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of SawUp_OperatorDto_VarFrequency_WithPhaseTracking.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Shift_OperatorDto (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Shift_OperatorDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Shift_OperatorDto_ConstSignal_ConstDistance (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Shift_OperatorDto_ConstSignal_ConstDistance.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Shift_OperatorDto_ConstSignal_VarDistance (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Shift_OperatorDto_ConstSignal_VarDistance.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Shift_OperatorDto_VarSignal_ConstDistance (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Shift_OperatorDto_VarSignal_ConstDistance.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Shift_OperatorDto_VarSignal_VarDistance (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Shift_OperatorDto_VarSignal_VarDistance.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Sine_OperatorDto (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Sine_OperatorDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Sine_OperatorDto_ConstFrequency_NoOriginShifting (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Sine_OperatorDto_ConstFrequency_NoOriginShifting.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Sine_OperatorDto_ConstFrequency_WithOriginShifting.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Sine_OperatorDto_VarFrequency_NoPhaseTracking (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Sine_OperatorDto_VarFrequency_NoPhaseTracking.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Sine_OperatorDto_VarFrequency_WithPhaseTracking (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Sine_OperatorDto_VarFrequency_WithPhaseTracking.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Subtract_OperatorDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Subtract_OperatorDto_ConstA_ConstB.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Subtract_OperatorDto_ConstA_VarB.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Subtract_OperatorDto_VarA_ConstB.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Subtract_OperatorDto_VarA_VarB.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Triangle_OperatorDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Triangle_OperatorDto_ConstFrequency_NoOriginShifting.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Triangle_OperatorDto_ConstFrequency_WithOriginShifting.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Triangle_OperatorDto_VarFrequency_NoPhaseTracking.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-13 Backup of Triangle_OperatorDto_VarFrequency_WithPhaseTracking.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-14 Backup of OperatorDtoBase (attempt get InputOperatorDtos with reflection).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-19 Backup of OperatorDtoBase_NoVars_NoConsts (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-19 Backup of OperatorDtoBase_NoVars_NoConsts.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-19 Backup of OperatorDtoVisitorBase (1).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-19 Backup of OperatorDtoVisitorBase (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-19 Backup of OperatorDtoVisitorBase (3).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-19 Backup of OperatorNames.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-11-29 Backup of Sample OperatorDto Classes.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2016-12-14 Backup of Cache OperatorDto Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-15 Backup of RandomCalculator_LineInterpolation.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-17 Backup of PatchCalculatorVisitor (with invar bundle index experiment).cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of Bundle_OperatorDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of Bundle_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of Bundle_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of Bundle_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of OperatorPropertiesPresenter_ForBundle.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of OperatorPropertiesUserControl_ForBundle.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of OperatorPropertiesUserControl_ForBundle.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of OperatorPropertiesUserControl_ForBundle.resx"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of OperatorPropertiesViewModel_ForBundle.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of Unbundle_OperatorDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of Unbundle_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of Unbundle_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-20 Backup of Unbundle_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-22 Backup of CustomOperator_OperatorDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-22 Backup of PatchCalculationHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-22 Backup of PatchOutlet_OperatorDto.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-22 Backup of RecursiveUnderlyingPatchEntityToDtoVisitor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-23 Backup of OperatorDtoVisitor_SpecialVisitation.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-26 Backup of OperatorDtoVisitor_MathSimplification.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-28 Backup of DebugHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2016-12-30 Backup of OperatorCalculatorFactory.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-05 Backup of ExampleOperatorCalculatorOutputCode.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-05 Backup of OperatorDtoToOperatorCalculatorCSharpGenerator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-07 Backup of EmptyPatchCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-07 Backup of GeneratedCalculatorExample1.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-07 Backup of GeneratedCalculatorExample2.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-07 Backup of GeneratedCalculatorExample3.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-07 Backup of GeneratedCalculatorExample4.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-07 Backup of IOperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-14 The Way the Shift SawUp calculation was Supposed to Be.txt"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-17 Backup of OperatorDtoVisitor_StackLevel_Simple (SynthesizerPrototype).cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-18 Backup of ValueInfo.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-24 Backup of Select OperatorCalculator Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-24 Backup of Select OperatorDto Classes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-24 Backup of Select_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-24 Backup of Select_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-24 Backup of Select_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-01-29 Backup of ArrayInfo.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-02-11 Backup of NoiseArrayInfo.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-02-11 Backup of NoiseCalculationHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-02-11 Backup of NoiseCalculatorVariableInfo.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-02-15 Backup of AudioFileOutputCalculatorBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-02-18 Backup of CurveArrayCalculatorFactory.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-02-18 Backup of CurveArrayInfo.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-02-18 Backup of OperatorDtoVisitor_ArrayDtos.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-02-24 Backup of GeneratedMethodInfo.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-03-02 Backup of OperatorDtoToRawCSharpVisitor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-03-04 Backup of PresentationMessages.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-03-04 Backup of PresentationMessages.nl-NL.resx"
+rm -rf "Archive/Backups of Loose Source Files/2017-03-04 Backup of PresentationMessages.resx"
+rm -rf "Archive/Backups of Loose Source Files/2017-03-04 Backup of PropertyDisplayNames.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-03-04 Backup of PropertyDisplayNames.nl-NL.resx"
+rm -rf "Archive/Backups of Loose Source Files/2017-03-04 Backup of PropertyDisplayNames.resx"
+rm -rf "Archive/Backups of Loose Source Files/2017-03-04 Backup of ResourceHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-03-04 Backup of Titles.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-03-04 Backup of Titles.nl-NL.resx"
+rm -rf "Archive/Backups of Loose Source Files/2017-03-04 Backup of Titles.resx"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2017-04-12 Backup of PatchTreeNodeViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-04-22 Backup of ToEntityHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-05-02 Backup of GroupAndPatchIDEventArgs.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-05-11 Backup of PatchRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-05-12 Backup of DocumentTreeUserControl (2).Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-05-12 Backup of DocumentTreeUserControl (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-05-12 Backup of DocumentTreeUserControl (2).resx"
+rm -rf "Archive/Backups of Loose Source Files/2017-05-12 Backup of DocumentTreeUserControl.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-05-12 Backup of DocumentTreeUserControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-05-12 Backup of DocumentTreeUserControl.resx"
+rm -rf "Archive/Backups of Loose Source Files/2017-05-27 010 SynthesizerDB Dimension rename Signal to Sound.sql"
+rm -rf "Archive/Backups of Loose Source Files/2017-05-27 Backup of MidiInputProcessor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-02 Backup of OperatorConstants.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-04 Backup of InletOutletMatcher (2).cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-04 Backup of InletOutletMatcher.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-05 Backup of Equal_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-05 Backup of GreaterThanOrEqual_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-05 Backup of GreaterThan_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-05 Backup of InletOutletMatcher.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-05 Backup of LessThanOrEqual_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-05 Backup of LessThan_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-05 Backup of NotEqual_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-06 Backup of CurvePosition.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-07 Backup of PatchValidator_UniqueInletListIndexes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-07 Backup of PatchValidator_UniqueInletNames.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-07 Backup of PatchValidator_UniqueOutletListIndexes.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-07 Backup of PatchValidator_UniqueOutletNames.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-08 Backup of DocumentValidator_UniqueName.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-09 Backup of OperatorPropertiesPresenter_ForCustomOperator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-09 Backup of OperatorPropertiesUserControl_ForCustomOperator.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-09 Backup of OperatorPropertiesUserControl_ForCustomOperator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-09 Backup of OperatorPropertiesUserControl_ForCustomOperator.resx"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-09 Backup of OperatorPropertiesViewModel_ForCustomOperator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-09 Backup of PresentationPropertyNames.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-09 Backup of SystemDocumentManager.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-10 Backup of InletOutletMatcher.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-10 Backup of ListIndex_DataProperty_Validator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-10 Backup of Operator_GetIDs_ByOperatorTypeID_AndSingleDataKeyAndValue.sql"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-11 Backup of Absolute_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-11 Backup of And_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-11 Backup of And_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-11 Backup of InletWarningValidator_BootStrapped.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-11 Backup of OperatorWarningValidator_BootStrapped.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-13 Backup of OperatorValidator_Dimension.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-14 Backup of Absolute_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-14 Backup of And_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-14 Backup of PatchExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-14 Backup of Sine_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-14 Backup of Sine_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-14 Backup of Sine_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of Equal_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of Equal_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of GreaterThanOrEqual_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of GreaterThanOrEqual_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of GreaterThan_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of GreaterThan_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of LessThanOrEqual_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of LessThanOrEqual_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of LessThan_OperatorValidator.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of LessThan_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of NotEqual_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-15 Backup of NotEqual_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Negative_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Negative_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Negative_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Not_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Not_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Not_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of OneOverX_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of OneOverX_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of OneOverX_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Or_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Or_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Or_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Power_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Power_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Power_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Subtract_OperatorValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Subtract_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-16 Backup of Subtract_OperatorWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-19 Backup of OperatorPropertiesViewModel_ForPatchOutlet_Validator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-20 Backup of ExtendedVariableInfoExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-20 Backup of OutletExtensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-20 Backup of VariableInput_OperatorCalculator_Extensions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-21 Backup of OperatorPropertiesPresenter_WithInletCount.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-21 Backup of OperatorPropertiesPresenter_WithOutletCount.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-21 Backup of OperatorPropertiesUserControl_WithInletCount.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-21 Backup of OperatorPropertiesUserControl_WithInletCount.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-21 Backup of OperatorPropertiesUserControl_WithInletCount.resx"
+rm -rf "Archive/Backups of Loose Source Files/Properties/AssemblyInfo.cs"
+rm -rf "Archive/Backups of Loose Source Files/_Button.cs"
+rm -rf "Archive/Backups of Loose Source Files/_ControlList.cs"
+rm -rf "Archive/Backups of Loose Source Files/~AdapterNew.cs"
+rm -rf "Archive/Backups of Loose Source Files/~AdapterOriginal1.cs"
+rm -rf "Archive/Backups of Loose Source Files/~AdapterOriginal2.cs"
+rm -rf "Archive/Backups of Loose Source Files/~AdapterOriginal3.cs"
+rm -rf "Archive/Backups of Loose Source Files/~AddImaginaryShapesOriginal.cs"
+rm -rf "Archive/Backups of Loose Source Files/~AddOutwardConnectionsAndLines.cs"
+rm -rf "Archive/Backups of Loose Source Files/~AddOutwardConnectionsAndLinesFast.cs"
+rm -rf "Archive/Backups of Loose Source Files/~AddOutwardConnectionsOriginal.cs"
+rm -rf "Archive/Backups of Loose Source Files/~AnonymousMethodAdapter.cs"
+rm -rf "Archive/Backups of Loose Source Files/~AssemblyTypeRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/~BorderScalingOptions.cs"
+rm -rf "Archive/Backups of Loose Source Files/~BoxPositioner_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~BoxPositioning.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ButtonForItem.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ButtonListForList.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ButtonList_EventOlder.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ButtonList_Interceptables.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ButtonList_New.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ButtonList_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ButtonList_Org2011-06-19.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ButtonList_PrivateObjects.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ButtonList_UnclearBehavior.cs"
+rm -rf "Archive/Backups of Loose Source Files/~CancelChangeEvent.cs.cs"
+rm -rf "Archive/Backups of Loose Source Files/~CancelEvent.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ChangeEvent.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Children.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Class1.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ControlList.cs"
+rm -rf "Archive/Backups of Loose Source Files/~DotNetAdapter.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Draw.cs"
+rm -rf "Archive/Backups of Loose Source Files/~DrawResponse.cs"
+rm -rf "Archive/Backups of Loose Source Files/~DrawResponse_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/~DrawResponse_Older.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ErrorMessage_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/~EvenOlderAdapter.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Event.cs"
+rm -rf "Archive/Backups of Loose Source Files/~EventsT_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Events_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~FormShapes.cs"
+rm -rf "Archive/Backups of Loose Source Files/~FourSides.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+
+## (Starting again from 'JJ.Framework (27) (removed loose archive files with error)' now keeping JJ.sln in there.)
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/~HearNotNullable.cs"
+rm -rf "Archive/Backups of Loose Source Files/~HearNotNullableT.cs"
+rm -rf "Archive/Backups of Loose Source Files/~HearNotNullable_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~HearNotNullable_Org2.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Hear_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~IHear.cs"
+rm -rf "Archive/Backups of Loose Source Files/~IScaleTextHoldersOriginal.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ImaginaryShape.cs"
+rm -rf "Archive/Backups of Loose Source Files/~InputParameter.cs"
+rm -rf "Archive/Backups of Loose Source Files/~InputParameterParser_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/~InstanceAdapterOriginal1.cs"
+rm -rf "Archive/Backups of Loose Source Files/~InstanceAdapterOriginal2.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Interaction.cs"
+rm -rf "Archive/Backups of Loose Source Files/~InterfaceAdapter.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Label.cs"
+rm -rf "Archive/Backups of Loose Source Files/~LabelDataT.cs"
+rm -rf "Archive/Backups of Loose Source Files/~LabelData_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~LabelForItem.cs"
+rm -rf "Archive/Backups of Loose Source Files/~LabelList.cs"
+rm -rf "Archive/Backups of Loose Source Files/~LabelListData.cs"
+rm -rf "Archive/Backups of Loose Source Files/~LabelListForList.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Label_Interceptables.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Label_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Label_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Label_UnclearBehavior.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Line_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ListWithEvents_OldCode.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ListWithEvents_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ManyToOne_Try1.cs"
+rm -rf "Archive/Backups of Loose Source Files/~MethodWithEvents.cs"
+rm -rf "Archive/Backups of Loose Source Files/~MethodWithEvents_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/~NestedTypeAdapter.cs"
+rm -rf "Archive/Backups of Loose Source Files/~NewAdapterOriginal1.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ObjectDictionary.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ObjectMemberAdapter.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ObjectRepositoryOlder.cs"
+rm -rf "Archive/Backups of Loose Source Files/~OfT.cs"
+rm -rf "Archive/Backups of Loose Source Files/~OldAdapter.cs"
+rm -rf "Archive/Backups of Loose Source Files/~OneToMany_Try1.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/~ParameterlessEvent.cs"
+rm -rf "Archive/Backups of Loose Source Files/~PointD.cs"
+rm -rf "Archive/Backups of Loose Source Files/~PositionErrorMessages.cs"
+rm -rf "Archive/Backups of Loose Source Files/~RealShape.cs"
+rm -rf "Archive/Backups of Loose Source Files/~RectangleD_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~RepositoryTypeRepository.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Response_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Response_WithMaxLevels.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ScreenControls.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ShapeEnumerable.cs"
+rm -rf "Archive/Backups of Loose Source Files/~StepWithSteps_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/~Sync_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/~TestMethodWithEvents.cs"
+rm -rf "Archive/Backups of Loose Source Files/~TextScalingOptions.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ToolsWindow.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ToolsWindow.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ToolsWindow.resx"
+rm -rf "Archive/Backups of Loose Source Files/~TypeFieldAdapter_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~TypeMemberAdapter_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~TypePropertyAdapter_Org.cs"
+rm -rf "Archive/Backups of Loose Source Files/~WaveFileOutputControl.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/~WaveFileOutputControl.cs"
+rm -rf "Archive/Backups of Loose Source Files/~WaveFileOutputControl.resx"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NPersist/_UpgradeReport_Files/UpgradeReport.css"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NPersist/_UpgradeReport_Files/UpgradeReport.xslt"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NPersist/_UpgradeReport_Files/UpgradeReport_Minus.gif"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NPersist/_UpgradeReport_Files/UpgradeReport_Plus.gif"
+rm -rf "Database/SQL/Look up operators.sql"
+rm -rf "Database/SQL/QuestionAndAnswerDB Inspect Questions with Categories.sql"
+rm -rf "Database/SQL/QuestionAndAnswerDB Select Empty Categories.sql"
+rm -rf "README2.MD"
+rm -rf "JJ.SaveText.sln"
+rm -rf "SaveText.sln"
+rm -rf "JJ.SaveText.sln"
+rm -rf "SetText.sln"
+rm -rf "Synthesizer latest.sln"
+rm -rf "Synthesizer.sln"
+rm -rf "Synthesizer.sln.DotSettings"
+rm -rf "Synthesizer.testsettings"
+rm -rf "QuestionAndAnswer.sln"
+' --prune-empty HEAD --all
+
+# Taken out of the list above:
+#rm -rf "JJ.sln"
+#rm -rf "JJ.testsettings"
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+git filter-branch --tree-filter '
+rm -rf "Archive/2016-01-27 IMPORTANT Backup of InterpretedPatchCalculator.cs"
+rm -rf "Archive/2017-08-26 IMPORTANT Backup of OperatorEntityToCalculatorDirectlyVisitor.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-03 Backup of QuestionRepository (SqlClient).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-10 Validation code with property key prefixes/QuestionCategoryViewModelValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-10 Validation code with property key prefixes/QuestionEditPresenter.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-10 Validation code with property key prefixes/QuestionEditViewModelValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-10 Validation code with property key prefixes/QuestionLinkViewModelValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-10 Validation code with property key prefixes/QuestionViewModelValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of JJ.Infrastructure.Synthesizer/ISampleLoader.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of JJ.Infrastructure.Synthesizer/JJ.Infrastructure.Synthesizer.csproj"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of JJ.Infrastructure.Synthesizer/MonoSampleLoader.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of JJ.Infrastructure.Synthesizer/Properties/AssemblyInfo.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of JJ.Infrastructure.Synthesizer/SampleLoaderBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of JJ.Infrastructure.Synthesizer/SampleLoaderFactory.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of JJ.Infrastructure.Synthesizer/SampleLoadHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-08 Backup of JJ.Infrastructure.Synthesizer/StereoSampleLoader.cs"
+rm -rf "Archive/2017-02-16 Backup of Synthesizer Polyphonic Patch Code/2017-02-16 Backup of SingleThreadedPatchCalculatorContainer.cs"
+rm -rf "Archive/2017-02-16 Backup of Synthesizer Polyphonic Patch Code/Loose Pieces of Code.txt"
+rm -rf "Archive/Backups of Loose Source Files/~EntityFactory.cs"
+rm -rf "Archive/Backups of Loose Source Files/~OutletKey.cs"
+rm -rf "Archive/Backups of Loose Source Files/~PatchDetailsForm.cs"
+rm -rf "Archive/Backups of Loose Source Files/~PatchDetailsForm.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/~PatchDetailsForm.resx"
+rm -rf "Archive/Backups of Loose Source Files/~PersistenceWrapper.cs"
+rm -rf "Archive/Backups of Loose Source Files/~PlayHelper.cs"
+rm -rf "Archive/Backups of Loose Source Files/~ViewMenuViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-09-23 Backup of PatchListItemViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-17 Backup of CurveDetailsViewModelToDiagramConverter_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-20 Backup of Sine_OperatorCalculator_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of CurveCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of SawTooth_WithConstPitch_WithoutPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of SawTooth_WithVarPitch_WithoutPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of SquareWave_WithConstPitch_WithoutPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of SquareWave_WithVarPitch_WithoutPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of TriangleWave_WithVarPitch_WithoutPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-24 Backup of TriangleWave_WithVarPitch_WithoutPhaseShift_OperatorCalculator_Old.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-26 Backup of OperatorWrapperBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-10-31 Backup of MainForm.Actions.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Add_WithConstOperandA_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Add_WithConstOperandB_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Delay_WithConstTimeDifference_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithConstOrigin_AndDenominator_OperatorCalculator .cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithConstOrigin_AndNumerator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithConstOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithOrigin_AndConstDenominator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithOrigin_AndConstNumerator_AndDenominator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithOrigin_AndConstNumerator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithoutOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithoutOrigin_WithConstDenominator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Divide_WithoutOrigin_WithConstNumerator_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithConstOrigin_AndOperandA_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithConstOrigin_AndOperandB_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithConstOrigin_OperatorCalculator.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+git filter-branch --tree-filter '
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithOrigin_AndConstOperandA_AndOperandB_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithOrigin_AndConstOperandA_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithOrigin_AndConstOperandB_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithoutOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithoutOrigin_WithConstOperandA_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Multiply_WithoutOrigin_WithConstOperandB_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Power_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Power_WithConstBase_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-04 Backup of Power_WithConstExponent_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of AudioFileOutputCalculatorBase.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Sample_MonoToStereo_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Sample_StereoToMono_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SawTooth_WithConstPitch_WithConstPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SawTooth_WithConstPitch_WithVarPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SawTooth_WithVarPitch_WithConstPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SawTooth_WithVarPitch_WithVarPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Sine_WithOrigin_AndPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Sine_WithOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of Sine_WithPhaseShift_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SlowDown_WithConstOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SlowDown_WithOrigin_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-11-05 Backup of SlowDown_WithOrigin_WithConstTimeMultiplier_OperatorCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-21 Backup of OperatorPropertiesUserControl_WithOutletCount.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-21 Backup of OperatorPropertiesUserControl_WithOutletCount.Designer.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-21 Backup of OperatorPropertiesUserControl_WithOutletCount.resx"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-21 Backup of OperatorPropertiesViewModel_WithInletCount.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-21 Backup of OperatorPropertiesViewModel_WithOutletCount.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-23 Backup of InletOrOutletTuple.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-23 Backup of InletOutletMatcher (with repeated inlet handling).cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-23 Backup of InletOutletMatcher (with RepetitionPosition matching).cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-23 Backup of InletOutletMatcher.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-23 Backup of OperatorValidator_Base.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-23 Backup of OutletListValidator_WithUnderlyingPatch.cs"
+rm -rf "Archive/Backups of Loose Source Files/2017-06-23 Backup of OutletValidator_WithUnderlyingPatch.cs"
+rm -rf "Archive/Backups of Loose Source Files/213-0-29 Backup of CategoryEnum.cs"
+rm -rf "Archive/Backups of Loose Source Files/213-0-29 Backup of QuestionCategoryExtensions.Enums.cs"
+rm -rf "Archive/Backups of Loose Source Files/JJ.Presentation.Synthesizer.WinForms.Forms.~PatchDetailsForm.resources"
+rm -rf "Archive/Operators/2017-07-02 Backup of MultiplyWithOrigin_OperatorWarningValidator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-13 Backup of TimeDivideCalculator.cs"
+rm -rf "Archive/Backups of Loose Source Files/2013-12-09 Backup of Absolute.Master"
+rm -rf "Archive/Backups of Loose Source Files/2015-01-14 Backup of AuthenticatedViewModel.cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-02-03 Backup of QuestionRepository (SqlClient).cs"
+rm -rf "Archive/Backups of Loose Source Files/2015-03-10 Backup of ActionDispatcherHelper (QuestionAndAnswer).cs"
+rm -rf "Archive/Backups of Loose Source Files/Backups of Loose Source Files.csproj"
+rm -rf "Archive/2018-01-28 Backup of ControllerInfo.cs"
+rm -rf "Archive/2017-11-01 Backup of DoubleClickBackgroundGesture.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+git filter-branch --tree-filter 'rm -rf "Archive/2016-11-24 NHibernate SQL Logger"' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+git filter-branch --tree-filter '
+rm -rf "Third Party/NPersist/Source Code/NAspect/Framework/bin"
+rm -rf "Third Party/NPersist/Source Code/NAspect/Framework/obj"
+rm -rf "Third Party/NPersist/Source Code/NCore/Framework/bin"
+rm -rf "Third Party/NPersist/Source Code/NCore/Framework/obj"
+rm -rf "Third Party/NPersist/Source Code/NPath/Framework/bin"
+rm -rf "Third Party/NPersist/Source Code/NPath/Framework/obj"
+rm -rf "Third Party/NPersist/Source Code/NPersist/Framework/bin"
+rm -rf "Third Party/NPersist/Source Code/NPersist/Framework/obj"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NAspect/Framework/bin"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NAspect/Framework/obj"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NCore/Framework/bin"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NCore/Framework/obj"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NPath/Framework/bin"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NPath/Framework/obj"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NPersist/Framework/bin"
+rm -rf "Archive/ThirdParty/NPersist/Source Code/NPersist/Framework/obj"
+rm -rf "External Components/NPersist/Source Code/NAspect/Framework/bin"
+rm -rf "External Components/NPersist/Source Code/NAspect/Framework/obj"
+rm -rf "External Components/NPersist/Source Code/NCore/Framework/bin"
+rm -rf "External Components/NPersist/Source Code/NCore/Framework/obj"
+rm -rf "External Components/NPersist/Source Code/NPath/Framework/bin"
+rm -rf "External Components/NPersist/Source Code/NPath/Framework/obj"
+rm -rf "External Components/NPersist/Source Code/NPersist/Framework/bin"
+rm -rf "External Components/NPersist/Source Code/NPersist/Framework/obj"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+git filter-branch --tree-filter '
+rm -rf "Third Party/FluentNHibernate/Setup"
+rm -rf "External Components/FluentNHibernate/Setup"
+rm -rf "Third Party/NHibernate/Setup"
+rm -rf "External Components/NHibernate/Setup"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+git filter-branch --tree-filter '
+rm -rf "Framework/Data.NHibernate/ConfigurationSection.cs"
+rm -rf "Framework/Data.NHibernate/SqlLogger.cs"
+rm -rf "Framework/Data.NHibernate/SqlLoggingConfiguration.cs"
+rm -rf "Framework/Data.NHibernate/SqlLogInterceptor.cs"
+rm -rf "Framework/Data.SqlClient/SqlCommandFormatter.cs"
+rm -rf "Framework/JJ.Framework.Data.NHibernate/ConfigurationSection.cs"
+rm -rf "Framework/JJ.Framework.Data.NHibernate/SqlLogger.cs"
+rm -rf "Framework/JJ.Framework.Data.NHibernate/SqlLoggingConfiguration.cs"
+rm -rf "Framework/JJ.Framework.Data.NHibernate/SqlLogInterceptor.cs"
+rm -rf "Framework/JJ.Framework.Data.SqlClient/SqlCommandFormatter.cs"
+rm -rf "Framework/JJ.Framework.Data.SqlClient/SqlCommandToSqlConverter.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+git filter-branch --tree-filter '
+rm -rf "Archive/2018-08-08 Backup of Interpolate_OperatorCalculator_Base_1stAttempt.cs"
+rm -rf "Archive/2018-08-08 Backup of Interpolate_OperatorCalculator_Base_Original.cs"
+rm -rf "Archive/2018-08-08 Backup of OperatorCalculatorBase_Follower_1stAttempt.cs"
+rm -rf "Archive/2018-08-08 Backup of OperatorCalculatorBase_Follower_2ndAttempt.cs"
+rm -rf "Archive/2018-08-08 Backup of OperatorCalculatorBase_Follower_Original.cs"
+rm -rf "Archive/2018-08-08 Backup of OperatorCalculatorBase_FollowingSampler_Aggregate.cs"
+rm -rf "Archive/2018-08-08 Backup of SumFollower_OperatorCalculator.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+# Deleted the branches 'synth-reduce-presentation-boilerplating' and 'generalize-interpolators-and-followers' manually.
+
+# Coalesce empty commit messages
+
+git filter-branch -f --msg-filter '
+read msg
+if [ -n "$msg" ] ; then
+    echo "$msg"
+else
+    echo "No commit message."
+fi'
+
+git update-ref -d refs/original/refs/heads/master
+
+# 'develop' is now pointing to an old commit.
+
+git checkout develop
+
+# Replace the hash by the new commit to point 'develop' to.
+
+git reset --hard ee62c0b91731d1e08b319b61b4ec261b91070b90
+git checkout master
+
+# Clean-up tasks
+
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+# Add .gitignore to first commit
+
+# Execute one by one
+
+# Replace the hash by the first commit in the history.
+
+git checkout e8007b2e6530ecc9b13bd9342096cec783b8eed0
+
+# Manually copy the .gitignore file.
+
+git add .gitignore
+git commit --amend
+
+# Enter a commit message in the UI.
+
+git tag tmp
+git checkout master
+git rebase --preserve-merges --onto tmp e8007b2e6530ecc9b13bd9342096cec783b8eed0
+git tag -d tmp
+
+# 'develop' is now pointing to an old commit.
+
+git checkout develop
+
+# Replace the hash by the new commit to point 'develop' to.
+
+git reset --hard 190daeb771b93c64d52c7d40dd4011ec7265654f
+git checkout master
+
+# Clean-up tasks
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+git filter-branch --tree-filter '
+rm -rf "Archive/2017-07-12 Backup of MessageDto.cs"
+' --prune-empty HEAD --all
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+# Executing

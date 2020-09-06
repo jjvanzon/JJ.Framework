@@ -1,0 +1,51 @@
+rem MERGING TWO GIT REPOS 1ST ATTEMPT
+rem =================================
+
+D:\Source\JJs Software>md "JJ Git"
+
+D:\Source\JJs Software>cd JJ Git
+
+D:\Source\JJs Software\JJ Git>git init --bare .git
+Initialized empty Git repository in D:/Source/JJs Software/JJ Git/.git/
+
+D:\Source\JJs Software\JJ Git>git remote add jj-git-svn "D:\Source\JJs Software\JJ git-svn"
+
+D:\Source\JJs Software\JJ Git>git fetch jj-git-svn
+remote: Enumerating objects: 36386, done.
+remote: Counting objects: 100% (36386/36386), done.
+remote: Compressing objects: 100% (13283/13283), done.
+Receiving objects: 100% (36386/36386), 261.93 MiB | 23.76 MiB/s, done.
+remote: Total 36386 (delta 22344), reused 36386 (delta 22344)
+Resolving deltas: 100% (22344/22344), done.
+From D:\Source\JJs Software\JJ git-svn
+ * [new branch]        master     -> jj-git-svn/master
+
+D:\Source\JJs Software\JJ Git>git merge jj-git-svn/master
+fatal: this operation must be run in a work tree
+
+D:\Source\JJs Software\JJ Git>cd .git
+
+D:\Source\JJs Software\JJ Git\.git>git --work-tree="D:\Source\JJs Software\JJ Git" checkout master
+ is not a valid attribute name: External Components/FluentNHibernate/Source Code/1.3/.gitattributes:2
+Checking out files: 100% (13091/13091), done.
+Already on 'master'
+Branch 'master' set up to track remote branch 'master' from 'jj-git-svn'.
+
+D:\Source\JJs Software\JJ Git\.git>cd..
+
+D:\Source\JJs Software\JJ Git>git remote remove jj-git-svn
+
+D:\Source\JJs Software\JJ Git>git remote add jj-git-tf "D:\Source\JJs Software\JJ git-tf (with warnings, tags deleted)"
+
+D:\Source\JJs Software\JJ Git>git fetch jj-git-tf
+warning: no common commits
+remote: Enumerating objects: 104026, done.
+remote: Counting objects: 100% (104026/104026), done.
+remote: Compressing objects: 100% (102312/102312), done.
+remote: Total 104026 (delta 73057), reused 0 (delta 0)
+Receiving objects: 100% (104026/104026), 659.48 MiB | 7.56 MiB/s, done.
+Resolving deltas: 100% (73057/73057), done.
+From D:\Source\JJs Software\JJ git-tf (with warnings, tags deleted)
+ * [new branch]          master     -> jj-git-tf/master
+
+D:\Source\JJs Software\JJ Git>

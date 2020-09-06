@@ -1,0 +1,146 @@
+Trying to get secondary sources in an Azure DevOps build
+========================================================
+
+Initialized empty Git repository in D:/a/1/s/.git/
+
+Cloning into 'D:\a\1\QB7'...
+
+-----
+
+The 'Git Repository Downloader' hangs wehn I try to get a private repo from Azure DevOps.
+
+-----
+
+# Writing a script I think should do it.
+# It hangs too.
+
+Write-Output 'Running script to Get sources from VB3'
+Set-PSDebug -Trace 1
+d:
+cd /a/1
+git init VB3
+cd VB3
+git remote add origin "https://jjvanzon.visualstudio.com/JJs%20Software/_git/VB3"
+git fetch origin
+git checkout master
+
+-----
+
+# Copied from standard 'Get sources' step output.
+
+git init "D:\a\1\s"
+Initialized empty Git repository in D:/a/1/s/.git/
+git remote add origin https://jjvanzon.visualstudio.com/JJs%20Software/_git/QB7
+git config gc.auto 0
+git config --get-all http.https://jjvanzon.visualstudio.com/JJs%20Software/_git/QB7.extraheader
+git config --get-all http.proxy
+git -c http.extraheader="AUTHORIZATION: bearer ***" fetch --tags --prune --progress --no-recurse-submodules origin
+git checkout --progress --force 3cf8445745d3d161dcc907927a3dc662ed914f4d
+
+-----
+
+# This will hang.
+
+Write-Output 'Running script to Get sources from VB3'
+Set-PSDebug -Trace 1
+d:
+cd /a/1
+git init VB3
+cd VB3
+git remote add origin https://jjvanzon.visualstudio.com/JJs%20Software/_git/VB3
+git config gc.auto 0
+git config --get-all http.https://jjvanzon.visualstudio.com/JJs%20Software/_git/VB3.extraheader
+git config --get-all http.proxy
+git -c http.extraheader="AUTHORIZATION: bearer ***" fetch --tags --prune --progress --no-recurse-submodules origin
+git checkout --progress --force master
+
+-----
+
+# Trying a public GitHub source instead of private Azure DevOps repo.
+
+# Error
+
+Write-Output 'Running script to Get sources from JJ.Demos.FizzBuzz'
+#Set-PSDebug -Trace 1
+d:
+cd /a/1
+git init JJ.Demos.FizzBuzz
+cd JJ.Demos.FizzBuzz
+git remote add origin "https://github.com/jjvanzon/JJ.Demos.FizzBuzz.git"
+git fetch origin
+git checkout master
+
+-----
+
+# ERROR: 'git fetch origin' is shown as if it made an error, but it didn't.
+
+Write-Output 'Running script to Get sources from JJ.Demos.FizzBuzz'
+#Set-PSDebug -Trace 1
+d:
+cd /a/1
+git init JJ.Demos.FizzBuzz
+cd JJ.Demos.FizzBuzz
+git remote add origin "https://github.com/jjvanzon/JJ.Demos.FizzBuzz.git"
+git fetch origin
+
+-----
+
+# ERROR: '--porcelain' not recognized
+
+Write-Output 'Running script to Get sources from JJ.Demos.FizzBuzz'
+#Set-PSDebug -Trace 1
+d:
+cd /a/1
+git init JJ.Demos.FizzBuzz
+cd JJ.Demos.FizzBuzz
+git remote add origin "https://github.com/jjvanzon/JJ.Demos.FizzBuzz.git"
+git fetch origin --porcelain
+
+-----
+
+# ERROR: '2>&1 | write-host' not recognized
+
+Write-Output 'Running script to Get sources from JJ.Demos.FizzBuzz'
+#Set-PSDebug -Trace 1
+d:
+cd /a/1
+git init JJ.Demos.FizzBuzz
+cd JJ.Demos.FizzBuzz
+git remote add origin "https://github.com/jjvanzon/JJ.Demos.FizzBuzz.git"
+git fetch origin  2>&1 | write-host
+
+-----
+
+# ERROR: This syntax for fetch also gives an error, even though there is no error.
+
+Write-Output 'Running script to Get sources from JJ.Demos.FizzBuzz'
+#Set-PSDebug -Trace 1
+d:
+cd /a/1
+git init JJ.Demos.FizzBuzz
+cd JJ.Demos.FizzBuzz
+git remote add origin "https://github.com/jjvanzon/JJ.Demos.FizzBuzz.git"
+git fetch --tags --prune --progress --no-recurse-submodules origin
+
+Trying to 'Continue on error' just gives you an 'orange' build status and the e-mail says 'Build partially succeeded'.
+
+-----
+
+Write-Output 'Running script to Get sources from JJ.Demos.FizzBuzz'
+#Set-PSDebug -Trace 1
+d:
+cd /a/1
+git init JJ.Demos.FizzBuzz
+cd JJ.Demos.FizzBuzz
+git remote add origin "https://github.com/jjvanzon/JJ.Demos.FizzBuzz.git"
+git fetch origin
+git checkout master
+
+-----
+
+The Git Repository Downloader does not hang on getting a public GitHub repo and also does not give an error.
+
+So I was pestered by multiple problems:
+* Hangers on probably a failure to authenticate.
+* git fetch PowerShell producing an error that is not an error.
+And a few side issues were pestering me too.

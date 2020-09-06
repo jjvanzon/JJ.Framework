@@ -1,0 +1,61 @@
+rem MERGING TWO GIT REPOS 2ND ATTEMPT
+rem =================================
+
+D:\Source\JJs Software>git init "JJ Git"
+Initialized empty Git repository in D:/Source/JJs Software/JJ Git/.git/
+
+D:\Source\JJs Software>cd jj git
+
+D:\Source\JJs Software\JJ Git>git remote add jj-git-svn "D:\Source\JJs Software\JJ git-svn"
+
+D:\Source\JJs Software\JJ Git>git fetch jj-git-svn
+
+remote: Enumerating objects: 36386, done.
+remote: Counting objects: 100% (36386/36386), done.
+remote: Compressing objects: 100% (13283/13283), done.
+Receiving objects: 100% (36386/36386), 261.93 MiB | 36.35 MiB/s, done.
+remote: Total 36386 (delta 22344), reused 36386 (delta 22344)
+Resolving deltas: 100% (22344/22344), done.
+From D:\Source\JJs Software\JJ git-svn
+ * [new branch]        master     -> jj-git-svn/master
+
+D:\Source\JJs Software\JJ Git>git merge jj-git-svn/master
+
+ is not a valid attribute name: External Components/FluentNHibernate/Source Code
+/1.3/.gitattributes:2
+
+D:\Source\JJs Software\JJ Git>git remote add jj-git-tf "D:\Source\JJs Software\JJ git-tf (tags deleted)"
+
+D:\Source\JJs Software\JJ Git>git fetch jj-git-tf
+
+warning: no common commits
+remote: Enumerating objects: 104026, done.
+remote: Counting objects: 100% (104026/104026), done.
+remote: Compressing objects: 100% (102312/102312), done.
+remote: Total 104026 (delta 73053), reused 0 (delta 0)
+Receiving objects: 100% (104026/104026), 659.48 MiB | 7.47 MiB/s, done.
+Resolving deltas: 100% (73053/73053), done.
+From D:\Source\JJs Software\JJ git-tf (with warnings, tags deleted)
+ * [new branch]          master     -> jj-git-tf/master
+
+D:\Source\JJs Software\JJ Git>git merge --allow-unrelated-histories jj-git-tf/master
+
+Auto-merging Synthesizer.sln
+CONFLICT (add/add): Merge conflict in Synthesizer.sln
+Auto-merging QuestionAndAnswer.sln
+CONFLICT (add/add): Merge conflict in QuestionAndAnswer.sln
+Auto-merging JJ.sln
+CONFLICT (add/add): Merge conflict in JJ.sln
+Automatic merge failed; fix conflicts and then commit the result.
+
+D:\Source\JJs Software\JJ Git>git rebase --allow-unrelated-histories jj-git-tf/master
+
+error: unknown option `allow-unrelated-histories'
+usage: git rebase [-i] [options] [--exec <cmd>] [--onto <newbase>] [<upstream>]
+[<branch>]
+   or: git rebase [-i] [options] [--exec <cmd>] [--onto <newbase>] --root [<bran
+ch>]
+   or: git rebase --continue | --abort | --skip | --edit-todo
+
+
+D:\Source\JJs Software\JJ Git>git rebase jj-git-tf/master

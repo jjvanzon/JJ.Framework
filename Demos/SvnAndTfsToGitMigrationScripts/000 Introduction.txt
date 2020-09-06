@@ -1,0 +1,3 @@
+Jan-Joost van Zon, 2018-07-22:
+
+These are scripts for migrating SVN + TFS to a single Git repository. This is by no means a full guide or usable out-of-the box. It is just so I can find back what I did and how I did it.
