@@ -71,7 +71,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 		///
 		/// <para>
 		/// The MoveGesture might be an example where MouseCapture is true.
-		/// That gesture allows allows moving an Element around on screen,
+		/// That gesture might allow a user to move an Element around on screen,
 		/// </para>
 		/// </summary>
 		protected virtual bool MouseCaptureRequired => false;
