@@ -3,9 +3,9 @@
   "TelemetryEnableTrace": false,
   "workaroundForQuerySOAPBugEnabled": false,
   "Source": {
-    "Collection": "https://dev.azure.com/nkdagility-preview/",
-    "Project": "migrationSource1",
-    "ReflectedWorkItemIDFieldName": "Custom.ReflectedWorkItemId",
+    "Collection": "http://jjs-server:8080/tfs/defaultcollection",
+    "Project": "JJ",
+    "ReflectedWorkItemIDFieldName": "System.Tags",
     "AllowCrossProjectLinking": false,
     "PersonalAccessToken": "",
     "LanguageMaps": {
@@ -14,9 +14,9 @@
     }
   },
   "Target": {
-    "Collection": "https://dev.azure.com/nkdagility-preview/",
-    "Project": "migrationTarget1",
-    "ReflectedWorkItemIDFieldName": "Custom.ReflectedWorkItemId",
+    "Collection": "https://jjvanzon.visualstudio.com/",
+    "Project": "JJs Software",
+    "ReflectedWorkItemIDFieldName": "System.Tags",
     "AllowCrossProjectLinking": false,
     "PersonalAccessToken": "",
     "LanguageMaps": {
@@ -49,12 +49,9 @@
       "targetField": "System.State",
       "defaultValue": "New",
       "valueMapping": {
-        "Approved": "New",
-        "New": "New",
-        "Committed": "Active",
-        "In Progress": "Active",
         "To Do": "New",
-        "Done": "Closed",
+        "In Progress": "Committed",
+        "Done": "Done",
         "Removed": "Removed"
       }
     },
@@ -72,12 +69,14 @@
         "SourceField2": "TargetField2"
       }
     },
+	/*
     {
       "ObjectType": "VstsSyncMigrator.Engine.Configuration.FieldMap.FieldtoTagMapConfig",
       "WorkItemTypeName": "*",
       "sourceField": "System.State",
       "formatExpression": "ScrumState:{0}"
     },
+	*/
     {
       "ObjectType": "VstsSyncMigrator.Engine.Configuration.FieldMap.FieldMergeMapConfig",
       "WorkItemTypeName": "*",
@@ -87,6 +86,7 @@
       "formatExpression": "{0} <br/><br/><h3>Acceptance Criteria</h3>{1}",
       "doneMatch": "##DONE##"
     },
+	/*
     {
       "ObjectType": "VstsSyncMigrator.Engine.Configuration.FieldMap.RegexFieldMapConfig",
       "WorkItemTypeName": "*",
@@ -95,22 +95,27 @@
       "pattern": "PRODUCT \\d{4}.(\\d{1})",
       "replacement": "$1"
     },
+	*/
+	/*
     {
       "ObjectType": "VstsSyncMigrator.Engine.Configuration.FieldMap.FieldValuetoTagMapConfig",
       "WorkItemTypeName": "*",
       "sourceField": "Microsoft.VSTS.CMMI.Blocked",
       "pattern": "Yes",
-      "formatExpression": "{0}"
+       "formatExpression": "{0}"
     },
+	*/
+	/*
     {
       "ObjectType": "VstsSyncMigrator.Engine.Configuration.FieldMap.TreeToTagMapConfig",
       "WorkItemTypeName": "*",
       "toSkip": 3,
       "timeTravel": 1
     }
+	*/
   ],
   "WorkItemTypeDefinition": {
-    "sourceWorkItemTypeName": "targetWorkItemTypeName"
+    "Task": "Product Backlog Item"
   },
   "GitRepoMapping": null,
   "Processors": [
@@ -131,9 +136,10 @@
       "UpdateCreatedBy": true,
       "BuildFieldTable": false,
       "AppendMigrationToolSignatureFooter": false,
-      "QueryBit": "AND  [Microsoft.VSTS.Common.ClosedDate] = '' AND [System.WorkItemType] NOT IN ('Test Suite', 'Test Plan')",
+      /*"QueryBit": "AND  [Microsoft.VSTS.Common.ClosedDate] = '' AND [System.WorkItemType] NOT IN ('Test Suite', 'Test Plan')",*/
+	  "QueryBit": "AND [System.WorkItemType] NOT IN ('Test Suite', 'Test Plan')",
       "OrderBit": "[System.ChangedDate] desc",
-      "Enabled": false,
+      "Enabled": true,
       "LinkMigration": true,
       "AttachmentMigration": true,
       "AttachmentWorkingPath": "c:\\temp\\WorkItemAttachmentWorkingFolder\\",
