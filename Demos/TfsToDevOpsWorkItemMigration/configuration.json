@@ -24,6 +24,9 @@
       "IterationPath": "Iteration"
     }
   },
+  "WorkItemTypeDefinition": {
+    "Task": "Product Backlog Item"
+  },
   "FieldMaps": [
     {
       "ObjectType": "VstsSyncMigrator.Engine.Configuration.FieldMap.FieldBlankMapConfig",
@@ -48,11 +51,8 @@
       "WorkItemTypeName": "*",
       "sourceField": "Microsoft.VSTS.Common.BacklogPriority",
       "targetField": "Microsoft.VSTS.Common.StackRank"
-    },
+    }
   ],
-  "WorkItemTypeDefinition": {
-    "Task": "Product Backlog Item"
-  },
   "GitRepoMapping": null,
   "Processors": [
     {

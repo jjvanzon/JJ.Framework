@@ -14,3 +14,6 @@ migration init
 # choco upgrade vsts-sync-migrator
 # It gave an error access denied. Trying to restart windows
 # I did see configuration.json appear so maybe things are OK.
+
+# Run vsts-sync-migrator
+migration execute –config configuration.json
