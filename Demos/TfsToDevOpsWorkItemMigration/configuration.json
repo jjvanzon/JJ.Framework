@@ -25,7 +25,7 @@
     }
   },
   "WorkItemTypeDefinition": {
-    "Task": "Product Backlog Item"
+    "Task": "Microsoft.VSTS.WorkItemTypes.ProductBacklogItem"
   },
   "FieldMaps": [
     {
@@ -73,10 +73,10 @@
       "BuildFieldTable": false,
       "AppendMigrationToolSignatureFooter": false,
 	    "QueryBit": "AND [System.WorkItemType] NOT IN ('Test Suite', 'Test Plan')",
-      "OrderBit": "[System.ChangedDate] desc",
+      "OrderBit": "[System.ChangedDate]",
       "Enabled": true,
-      "LinkMigration": true,
-      "AttachmentMigration": true,
+      "LinkMigration": false,
+      "AttachmentMigration": false,
       "AttachmentWorkingPath": "c:\\temp\\WorkItemAttachmentWorkingFolder\\",
       "FixHtmlAttachmentLinks": false,
       "SkipToFinalRevisedWorkItemType": false,
