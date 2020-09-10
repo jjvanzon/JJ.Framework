@@ -1,4 +1,4 @@
-# Cahnge security setting
+# Change security setting
 Get-ExecutionPolicy
 Set-ExecutionPolicy AllSigned
 Get-ExecutionPolicy
@@ -8,9 +8,9 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 # Install vsts-sync-migrator
 choco install vsts-sync-migrator --force
-$env:Path += ";C:\tools\VSTSSyncMigration"
 
-# Go to the folder with config gile in it
+# Set some paths
+$env:Path += ";C:\tools\VSTSSyncMigration"
 Set-Location "D:\Source\JJs Software\JJ.Framework\Demos\TfsToDevOpsWorkItemMigration"
 
 # Initialize vsts-sync-migrator

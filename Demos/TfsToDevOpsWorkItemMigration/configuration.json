@@ -73,7 +73,7 @@
       "BuildFieldTable": false,
       "AppendMigrationToolSignatureFooter": false,
 	    "QueryBit": "AND [System.WorkItemType] NOT IN ('Test Suite', 'Test Plan')",
-      "OrderBit": "[System.ChangedDate]",
+      "OrderBit": "[System.CreatedDate]",
       "Enabled": true,
       "LinkMigration": false,
       "AttachmentMigration": false,
