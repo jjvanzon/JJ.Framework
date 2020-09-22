@@ -1,0 +1,1 @@
+git-tf clone http://localhost:8080/tfs/DefaultCollection $/JJ --deep

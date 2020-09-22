@@ -1,0 +1,28 @@
+# Example script to remove pieces of history from source control
+
+# Show log of all files in history.
+
+git log --pretty=format: --name-status | cut -f2- | sort -u > allfiles.txt
+
+# Delete files or folders from entire history.
+# (Example with 1 folder and 1 file name.)
+
+git filter-branch --tree-filter '
+rm -rf "Archive/JJ.Framework.Data.NPersist/bin"
+rm -rf "Archive/2013-09-21 010 QuestionAndAnswerDB TextualQuestionCategory.sql"
+' --prune-empty HEAD --all
+
+# Clean-up tasks
+
+git update-ref -d refs/original/refs/heads/master
+git update-ref -d refs/original/refs/heads/develop
+git update-ref -d refs/original/refs/heads/feature/synth-reduce-presentation-boilerplating
+git update-ref -d refs/original/refs/heads/feature/generalize-interpolators-and-followers
+rm -rf .git/refs/original/
+git reflog expire --expire=now --all
+git fsck --full --unreachable
+git repack -A -d
+git gc --aggressive --prune=now
+
+
+

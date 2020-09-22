@@ -2,19 +2,37 @@
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.VectorGraphics.Models.Elements;
 
+// ReSharper disable InconsistentNaming
+// ReSharper disable once MemberCanBeInternal
+
 namespace JJ.Framework.VectorGraphics.EventArg
 {
-	public class DraggingEventArgs : EventArgs
-	{
-		public Element ElementBeingDragged { get; }
-		public float X { get; }
-		public float Y { get; }
+    /// <summary>
+    /// Contains the properties passed along with DragGesture's Dragging event.
+    /// </summary>
+    public class DraggingEventArgs : EventArgs
+    {
+        /// <summary>
+        /// An element might be picked up by a drag-drop action.
+        /// This would be the element that was picked up.
+        /// </summary>
+        public Element ElementBeingDragged { get; }
 
-		public DraggingEventArgs(Element elementBeingDragged, float x, float y)
-		{
-			ElementBeingDragged = elementBeingDragged ?? throw new NullException(() => elementBeingDragged);
-			X = x;
-			Y = y;
-		}
-	}
+        /// <inheritdoc cref="MouseEventArgs.XInPixels" />
+        public float XInPixels { get; }
+
+        /// <inheritdoc cref="MouseEventArgs.YInPixels" />
+        public float YInPixels { get; }
+
+        /// <inheritdoc cref="DraggingEventArgs"/>
+        /// <param name="elementBeingDragged"> See ElementBeingDragged property. </param>
+        /// <param name="xInPixels"> See XInPixels property. </param>
+        /// <param name="yInPixels"> See YInPixels property. </param>
+        public DraggingEventArgs(Element elementBeingDragged, float xInPixels, float yInPixels)
+        {
+            ElementBeingDragged = elementBeingDragged ?? throw new NullException(() => elementBeingDragged);
+            XInPixels = xInPixels;
+            YInPixels = yInPixels;
+        }
+    }
 }

@@ -1,0 +1,133 @@
+rem DELETE *.user FILES
+rem ===================
+
+rem NOTE: This did not remove these files from all history. It just removed the files in the next commit.
+
+Jan-Joost van Zon@JJS-SERVER MINGW64 /
+$ cd "D:\Source\JJs Software\JJ"
+
+Jan-Joost van Zon@JJS-SERVER MINGW64 /d/Source/JJs Software/JJ (master)
+$ git rm --cached *.user
+rm 'Archive/2017-06-29 SaveText.Unity.Offline Deployment Windows Phone/SetTextOffline/SetTextOffline.csproj.user'
+rm 'Business/JJ.Business.Synthesizer.Tests/JJ.Business.Synthesizer.Tests.csproj.user'
+rm 'Business/JJ.Business.Synthesizer/JJ.Business.Synthesizer.csproj.user'
+rm 'Data/JJ.Data.QuestionAndAnswer.NPersist/JJ.Data.QuestionAndAnswer.NPersist.csproj.user'
+rm 'Data/JJ.Data.QuestionAndAnswer/JJ.Data.QuestionAndAnswer.csproj.user'
+rm 'Demos/JJ.Demos.JavaScript/JJ.Demos.JavaScript.csproj.user'
+rm 'Demos/JJ.Demos.ReflectionCache.Tests/JJ.Demos.ReflectionCache.Tests.csproj.user'
+rm 'Demos/JJ.Demos.ReflectionCache/JJ.Demos.ReflectionCache.csproj.user'
+rm 'Demos/JJ.Demos.ReturnActions.MvcPostData/JJ.Demos.ReturnActions.MvcPostData.csproj.user'
+rm 'Demos/JJ.Demos.ReturnActions.MvcUrlParameter/JJ.Demos.ReturnActions.MvcUrlParameter.csproj.user'
+rm 'Framework/JJ.Framework.Business/JJ.Framework.Business.csproj.user'
+rm 'Framework/JJ.Framework.Data.Tests/JJ.Framework.Data.Tests.csproj.user'
+rm 'Framework/JJ.Framework.Data.Xml.Linq/JJ.Framework.Data.Xml.Linq.csproj.user'
+rm 'Framework/JJ.Framework.Data.Xml/JJ.Framework.Data.Xml.csproj.user'
+rm 'Framework/JJ.Framework.Data/JJ.Framework.Data.csproj.user'
+rm 'Framework/JJ.Framework.Logging/JJ.Framework.Logging.csproj.user'
+rm 'Framework/JJ.Framework.Presentation.JavaScript/JJ.Framework.Presentation.JavaScript.csproj.user'
+rm 'Framework/JJ.Framework.Presentation.Svg/JJ.Framework.Presentation.Svg.csproj.user'
+rm 'Framework/JJ.Framework.Reflection.Tests/JJ.Framework.Reflection.Tests.csproj.user'
+rm 'Framework/JJ.Framework.Soap.Tests.Server/JJ.Framework.Soap.Tests.Server.csproj.user'
+rm 'OneOff/JJ.OneOff.BeginCollectionItemTest/JJ.OneOff.BeginCollectionItemTest.csproj.user'
+rm 'OneOff/JJ.OneOff.ExpressionTranslatorPerformanceTests/JJ.OneOff.ExpressionTranslatorPerformanceTests.csproj.user'
+rm 'Presentation/JJ.Presentation.QuestionAndAnswer.AppService/JJ.Presentation.QuestionAndAnswer.AppService.csproj.user'
+rm 'Presentation/JJ.Presentation.QuestionAndAnswer.Import.WinForms/JJ.Presentation.QuestionAndAnswer.Import.WinForms.csproj.user'
+rm 'Presentation/JJ.Presentation.QuestionAndAnswer.Import/JJ.Presentation.QuestionAndAnswer.Import.csproj.user'
+rm 'Presentation/JJ.Presentation.QuestionAndAnswer.Mvc/JJ.Presentation.QuestionAndAnswer.Mvc.csproj.user'
+rm 'Presentation/JJ.Presentation.QuestionAndAnswer.MvcAspx/JJ.Presentation.QuestionAndAnswer.MvcAspx.csproj.user'
+rm 'Presentation/JJ.Presentation.QuestionAndAnswer/JJ.Presentation.QuestionAndAnswer.csproj.user'
+rm 'Presentation/JJ.Presentation.SetText.AppService/JJ.Presentation.SetText.AppService.csproj.user'
+rm 'Presentation/JJ.Presentation.SetText.Mvc/JJ.Presentation.SetText.Mvc.csproj.user'
+rm 'Presentation/JJ.Presentation.SetText.Unity.DotNet.Offline/JJ.Presentation.SetText.Unity.DotNet.Offline.csproj.user'
+rm 'Presentation/JJ.Presentation.SetText.Unity.DotNet.OfflineWithSync/JJ.Presentation.SetText.Unity.DotNet.OfflineWithSync.csproj.user'
+rm 'Presentation/JJ.Presentation.SetText.Unity.DotNet.Online.WwwObject/JJ.Presentation.SetText.Unity.DotNet.Online.WwwObject.csproj.user'
+rm 'Presentation/JJ.Presentation.SetText.Unity.DotNet.Online/JJ.Presentation.SetText.Unity.DotNet.Online.csproj.user'
+rm 'Presentation/JJ.Presentation.Synthesizer.WinForms/JJ.Presentation.Synthesizer.WinForms.csproj.user'
+rm 'Presentation/JJ.Presentation.Synthesizer/JJ.Presentation.Synthesizer.csproj.user'
+rm 'Third Party/Lomont/Lomont.csproj.user'
+rm 'Third Party/NAudio/Source Code/1.7.2/NAudioDemo/NAudioDemo.csproj.user'
+rm 'Third Party/NPersist/Source Code/NPersist/Samples/Northwind/Domain/NET 3.5/Puzzle.NPersist.Samples.Northwind.Domain.NET 3.5.csproj.user'
+rm 'Third Party/SgmlReader/Source Code Adapted/CommandLine/SgmlReader.csproj.user'
+rm 'Third Party/SgmlReader/Source Code Adapted/CommandLine/SgmlReader71.csproj.user'
+rm 'Third Party/SgmlReader/Source Code Adapted/CommandLine/SgmlReader8.csproj.user'
+rm 'Third Party/SgmlReader/Source Code Adapted/TestSuite/TestSuite.csproj.user'
+rm 'Third Party/SgmlReader/Source Code Adapted/sgmlreaderdll/SgmlReaderDll.csproj.user'
+rm 'Third Party/SgmlReader/Source Code Adapted/sgmlreaderdll/SgmlReaderDll71.csproj.user'
+rm 'Third Party/SgmlReader/Source Code/CommandLine/SgmlReader.csproj.user'
+rm 'Third Party/SgmlReader/Source Code/CommandLine/SgmlReader71.csproj.user'
+rm 'Third Party/SgmlReader/Source Code/CommandLine/SgmlReader8.csproj.user'
+rm 'Third Party/SgmlReader/Source Code/TestSuite/TestSuite.csproj.user'
+rm 'Third Party/SgmlReader/Source Code/sgmlreaderdll/SgmlReaderDll.csproj.user'
+rm 'Third Party/SgmlReader/Source Code/sgmlreaderdll/SgmlReaderDll71.csproj.user'
+
+Jan-Joost van Zon@JJS-SERVER MINGW64 /d/Source/JJs Software/JJ ((2d6269ac7...))
+$
+
+
+
+"C:\Program Files\Git\bin\git.exe" commit -F "D:\Source\JJs Software\JJ\.git\COMMITMESSAGE"
+Auto packing the repository in background for optimum performance.
+See "git help gc" for manual housekeeping.
+Enumerating objects: 129626, done.
+Counting objects: 100% (5617/5617), done.
+Delta compression using up to 12 threads.
+Compressing objects: 100% (5615/5615), done.
+Writing objects: 100% (5617/5617), done.
+Total 5617 (delta 384), reused 0 (delta 0)
+Removing duplicate objects: 100% (256/256), done.
+[master c8be31c3e] Delete *.csproj.user files from all history with the command: "git rm --cached *.user"
+ 51 files changed, 990 deletions(-)
+ delete mode 100644 Archive/2017-06-29 SaveText.Unity.Offline Deployment Windows Phone/SetTextOffline/SetTextOffline.csproj.user
+ delete mode 100644 Business/JJ.Business.Synthesizer.Tests/JJ.Business.Synthesizer.Tests.csproj.user
+ delete mode 100644 Business/JJ.Business.Synthesizer/JJ.Business.Synthesizer.csproj.user
+ delete mode 100644 Data/JJ.Data.QuestionAndAnswer.NPersist/JJ.Data.QuestionAndAnswer.NPersist.csproj.user
+ delete mode 100644 Data/JJ.Data.QuestionAndAnswer/JJ.Data.QuestionAndAnswer.csproj.user
+ delete mode 100644 Demos/JJ.Demos.JavaScript/JJ.Demos.JavaScript.csproj.user
+ delete mode 100644 Demos/JJ.Demos.ReflectionCache.Tests/JJ.Demos.ReflectionCache.Tests.csproj.user
+ delete mode 100644 Demos/JJ.Demos.ReflectionCache/JJ.Demos.ReflectionCache.csproj.user
+ delete mode 100644 Demos/JJ.Demos.ReturnActions.MvcPostData/JJ.Demos.ReturnActions.MvcPostData.csproj.user
+ delete mode 100644 Demos/JJ.Demos.ReturnActions.MvcUrlParameter/JJ.Demos.ReturnActions.MvcUrlParameter.csproj.user
+ delete mode 100644 Framework/JJ.Framework.Business/JJ.Framework.Business.csproj.user
+ delete mode 100644 Framework/JJ.Framework.Data.Tests/JJ.Framework.Data.Tests.csproj.user
+ delete mode 100644 Framework/JJ.Framework.Data.Xml.Linq/JJ.Framework.Data.Xml.Linq.csproj.user
+ delete mode 100644 Framework/JJ.Framework.Data.Xml/JJ.Framework.Data.Xml.csproj.user
+ delete mode 100644 Framework/JJ.Framework.Data/JJ.Framework.Data.csproj.user
+ delete mode 100644 Framework/JJ.Framework.Logging/JJ.Framework.Logging.csproj.user
+ delete mode 100644 Framework/JJ.Framework.Presentation.JavaScript/JJ.Framework.Presentation.JavaScript.csproj.user
+ delete mode 100644 Framework/JJ.Framework.Presentation.Svg/JJ.Framework.Presentation.Svg.csproj.user
+ delete mode 100644 Framework/JJ.Framework.Reflection.Tests/JJ.Framework.Reflection.Tests.csproj.user
+ delete mode 100644 Framework/JJ.Framework.Soap.Tests.Server/JJ.Framework.Soap.Tests.Server.csproj.user
+
+ delete mode 100644 OneOff/JJ.OneOff.BeginCollectionItemTest/JJ.OneOff.BeginCollectionItemTest.csproj.user
+ delete mode 100644 OneOff/JJ.OneOff.ExpressionTranslatorPerformanceTests/JJ.OneOff.ExpressionTranslatorPerformanceTests.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.QuestionAndAnswer.AppService/JJ.Presentation.QuestionAndAnswer.AppService.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.QuestionAndAnswer.Import.WinForms/JJ.Presentation.QuestionAndAnswer.Import.WinForms.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.QuestionAndAnswer.Import/JJ.Presentation.QuestionAndAnswer.Import.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.QuestionAndAnswer.Mvc/JJ.Presentation.QuestionAndAnswer.Mvc.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.QuestionAndAnswer.MvcAspx/JJ.Presentation.QuestionAndAnswer.MvcAspx.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.QuestionAndAnswer/JJ.Presentation.QuestionAndAnswer.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.SetText.AppService/JJ.Presentation.SetText.AppService.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.SetText.Mvc/JJ.Presentation.SetText.Mvc.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.SetText.Unity.DotNet.Offline/JJ.Presentation.SetText.Unity.DotNet.Offline.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.SetText.Unity.DotNet.OfflineWithSync/JJ.Presentation.SetText.Unity.DotNet.OfflineWithSync.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.SetText.Unity.DotNet.Online.WwwObject/JJ.Presentation.SetText.Unity.DotNet.Online.WwwObject.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.SetText.Unity.DotNet.Online/JJ.Presentation.SetText.Unity.DotNet.Online.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.Synthesizer.WinForms/JJ.Presentation.Synthesizer.WinForms.csproj.user
+ delete mode 100644 Presentation/JJ.Presentation.Synthesizer/JJ.Presentation.Synthesizer.csproj.user
+ delete mode 100644 Third Party/Lomont/Lomont.csproj.user
+ delete mode 100644 Third Party/NAudio/Source Code/1.7.2/NAudioDemo/NAudioDemo.csproj.user
+ delete mode 100644 Third Party/NPersist/Source Code/NPersist/Samples/Northwind/Domain/NET 3.5/Puzzle.NPersist.Samples.Northwind.Domain.NET 3.5.csproj.user
+ delete mode 100644 Third Party/SgmlReader/Source Code Adapted/CommandLine/SgmlReader.csproj.user
+ delete mode 100644 Third Party/SgmlReader/Source Code Adapted/CommandLine/SgmlReader71.csproj.user
+ delete mode 100644 Third Party/SgmlReader/Source Code Adapted/CommandLine/SgmlReader8.csproj.user
+ delete mode 100644 Third Party/SgmlReader/Source Code Adapted/TestSuite/TestSuite.csproj.user
+ delete mode 100644 Third Party/SgmlReader/Source Code Adapted/sgmlreaderdll/SgmlReaderDll.csproj.user  delete mode 100644 Third Party/SgmlReader/Source Code Adapted/sgmlreaderdll/SgmlReaderDll71.csproj.user
+ delete mode 100644 Third Party/SgmlReader/Source Code/CommandLine/SgmlReader.csproj.user
+ delete mode 100644 Third Party/SgmlReader/Source Code/CommandLine/SgmlReader71.csproj.user
+ delete mode 100644 Third Party/SgmlReader/Source Code/CommandLine/SgmlReader8.csproj.user
+ delete mode 100644 Third Party/SgmlReader/Source Code/TestSuite/TestSuite.csproj.user
+ delete mode 100644 Third Party/SgmlReader/Source Code/sgmlreaderdll/SgmlReaderDll.csproj.user
+ delete mode 100644 Third Party/SgmlReader/Source Code/sgmlreaderdll/SgmlReaderDll71.csproj.user
+Done
+
+Press Enter or Esc to close console...

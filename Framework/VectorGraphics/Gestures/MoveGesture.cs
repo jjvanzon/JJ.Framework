@@ -3,17 +3,26 @@ using JJ.Framework.VectorGraphics.EventArg;
 using JJ.Framework.VectorGraphics.Helpers;
 using JJ.Framework.VectorGraphics.Models.Elements;
 
+// ReSharper disable InvertIf
+
 namespace JJ.Framework.VectorGraphics.Gestures
 {
+	/// <summary>
+	/// A gesture that might be used so that a user may drag elements around on screen.
+	/// See GestureBase for more information on using gestures within this vector graphics API.
+	/// </summary>
 	public class MoveGesture : GestureBase
 	{
+		/// <summary> Might go off while a user would be moving an element around on screen. </summary>
 		public event EventHandler<ElementEventArgs> Moving;
+
+		/// <summary> Might go off right after a user would have been moving an element around on screen. </summary>
 		public event EventHandler<ElementEventArgs> Moved;
 
 		private readonly MouseMoveGesture _diagramMouseMoveGesture;
 
-		private float _mouseDownElementX;
-		private float _mouseDownElementY;
+		private float _mouseDownElementRelativeX;
+		private float _mouseDownElementRelativeY;
 		private float _mouseDownPointerXInPixels;
 		private float _mouseDownPointerYInPixels;
 
@@ -21,12 +30,14 @@ namespace JJ.Framework.VectorGraphics.Gestures
 		private Element _elementBeingMoved;
 		private bool _wasMoved;
 
+		/// <inheritdoc cref="MoveGesture" />
 		public MoveGesture()
 		{
 			_diagramMouseMoveGesture = new MouseMoveGesture();
-			_diagramMouseMoveGesture.MouseMove += _diagram_MouseMove;
+			_diagramMouseMoveGesture.MouseMove += Diagram_MouseMove;
 		}
 
+		/// <summary> Aims to clean up an on-the-fly created diagram-bound mouse move gesture. </summary>
 		~MoveGesture()
 		{
 			if (_diagramMouseMoveGesture != null)
@@ -38,72 +49,85 @@ namespace JJ.Framework.VectorGraphics.Gestures
 						_diagram.Gestures.Remove(_diagramMouseMoveGesture);
 					}
 				}
-				_diagramMouseMoveGesture.MouseMove -= _diagram_MouseMove;
+
+				_diagramMouseMoveGesture.MouseMove -= Diagram_MouseMove;
 			}
 		}
 
+		/// <inheritdoc />
 		protected override bool MouseCaptureRequired => true;
 
+		/// <summary>
+		/// Might record the diagram of the associated element.
+		/// Might set some variables to track an element being moved.
+		/// </summary>
 		protected override void HandleMouseDown(object sender, MouseEventArgs e)
 		{
 			DoInitializeDiagram(e);
 			DoMouseDown(e);
 		}
 
-		private void _diagram_MouseMove(object sender, MouseEventArgs e) => DoMouseMove(sender, e);
+		/// <inheritdoc cref="DoMouseMove" />
+		private void Diagram_MouseMove(object sender, MouseEventArgs e) => DoMouseMove(sender, e);
 
-	    protected override void HandleMouseUp(object sender, MouseEventArgs e) => DoMouseUp(sender);
+		/// <inheritdoc cref="DoMouseUp" />
+		protected override void HandleMouseUp(object sender, MouseEventArgs e) => DoMouseUp(sender);
 
-	    private void DoInitializeDiagram(MouseEventArgs e)
+		/// <summary>
+		/// In case of a mouse event, this method may record the diagram of the associated element.
+		/// This may unburden a programmer from passing it along as a parameter.
+		/// </summary>
+		private void DoInitializeDiagram(MouseEventArgs e)
 		{
-			if (e.Element != null)
-			{
-				if (_diagram == null)
-				{
-					if (e.Element.Diagram != null)
-					{
-						_diagram = e.Element.Diagram;
-						_diagram.Gestures.Add(_diagramMouseMoveGesture);
-					}
-				}
-			}
+			if (_diagram != null) return;
+			if (e.Element?.Diagram == null) return;
+
+			_diagram = e.Element.Diagram;
+			_diagram.Gestures.Add(_diagramMouseMoveGesture);
 		}
 
+		/// <summary> Might track some coordinates related to the mouse down and set a Boolean 'was moved'. </summary>
 		private void DoMouseDown(MouseEventArgs e)
 		{
-			if (e.Element != null)
-			{
-				_elementBeingMoved = e.Element;
+			if (e.Element == null) return;
 
-				_mouseDownElementX = _elementBeingMoved.Position.X;
-				_mouseDownElementY = _elementBeingMoved.Position.Y;
+			_elementBeingMoved = e.Element;
 
-				_mouseDownPointerXInPixels = e.XInPixels;
-				_mouseDownPointerYInPixels = e.YInPixels;
+			_mouseDownElementRelativeX = _elementBeingMoved.Position.X;
+			_mouseDownElementRelativeY = _elementBeingMoved.Position.Y;
 
-				_wasMoved = false;
-			}
+			_mouseDownPointerXInPixels = e.XInPixels;
+			_mouseDownPointerYInPixels = e.YInPixels;
+
+			_wasMoved = false;
 		}
 
+		/// <summary>
+		/// Would calculate changing (mouse) pointer coordinates and assign a changed position to an element.
+		/// This might invoke the Moving event. Also would set a 'was moved' Boolean.
+		/// </summary>
 		private void DoMouseMove(object sender, MouseEventArgs e)
 		{
-			if (_elementBeingMoved != null)
-			{
-				float deltaXInPixels = e.XInPixels - _mouseDownPointerXInPixels;
-				float deltaYInPixels = e.YInPixels - _mouseDownPointerYInPixels;
+			if (_elementBeingMoved == null) return;
 
-				float deltaX = ScaleHelper.PixelsToWidth(_diagram, deltaXInPixels);
-				float deltaY = ScaleHelper.PixelsToHeight(_diagram, deltaYInPixels);
+			float deltaXInPixels = e.XInPixels - _mouseDownPointerXInPixels;
+			float deltaYInPixels = e.YInPixels - _mouseDownPointerYInPixels;
 
-				_elementBeingMoved.Position.X = _mouseDownElementX + deltaX;
-				_elementBeingMoved.Position.Y = _mouseDownElementY + deltaY;
+			float deltaX = ScaleHelper.PixelsToWidth(_diagram, deltaXInPixels);
+			float deltaY = ScaleHelper.PixelsToHeight(_diagram, deltaYInPixels);
 
-				_wasMoved = true;
+			_elementBeingMoved.Position.X = _mouseDownElementRelativeX + deltaX;
+			_elementBeingMoved.Position.Y = _mouseDownElementRelativeY + deltaY;
 
-				Moving?.Invoke(sender, new ElementEventArgs(_elementBeingMoved));
-			}
+			_wasMoved = true;
+
+			Moving?.Invoke(sender, new ElementEventArgs(_elementBeingMoved));
 		}
 
+		/// <summary>
+		/// A mouse up event could trigger a moved event. This depends if an element was currently being moved.
+		/// Also, some variables would be reset.
+		/// </summary>
 		private void DoMouseUp(object sender)
 		{
 			// TODO: I don't know for sure why _element could be null, but it was at one point. 
@@ -118,7 +142,7 @@ namespace JJ.Framework.VectorGraphics.Gestures
 			}
 
 			_elementBeingMoved = null;
-			_wasMoved = false; // Not really required, but it seems weird not to set it to false.
+			_wasMoved = false; // Not really required, but it seems strange not to set it to false.
 		}
 	}
 }

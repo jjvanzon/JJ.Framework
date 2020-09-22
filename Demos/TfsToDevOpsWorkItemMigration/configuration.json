@@ -1,0 +1,91 @@
+{
+  "Version": "9.3",
+  "TelemetryEnableTrace": false,
+  "workaroundForQuerySOAPBugEnabled": false,
+  "Source": {
+    "Collection": "http://jjs-server:8080/tfs/defaultcollection",
+    "Project": "JJ",
+    "ReflectedWorkItemIDFieldName": "TfsMigrationTool.ReflectedWorkItemId",
+    "AllowCrossProjectLinking": false,
+    "PersonalAccessToken": "",
+    "LanguageMaps": {
+      "AreaPath": "Area",
+      "IterationPath": "Iteration"
+    }
+  },
+  "Target": {
+    "Collection": "https://jjvanzon.visualstudio.com/",
+    "Project": "JJs Software",
+    "ReflectedWorkItemIDFieldName": "Custom.ReflectedWorkItemId",
+    "AllowCrossProjectLinking": false,
+    "PersonalAccessToken": "",
+    "LanguageMaps": {
+      "AreaPath": "Area",
+      "IterationPath": "Iteration"
+    }
+  },
+  "WorkItemTypeDefinition": {
+    "Task": "Microsoft.VSTS.WorkItemTypes.ProductBacklogItem"
+  },
+  "FieldMaps": [
+    {
+      "ObjectType": "VstsSyncMigrator.Engine.Configuration.FieldMap.FieldBlankMapConfig",
+      "WorkItemTypeName": "*",
+      "targetField": "Custom.ReflectedWorkItemId"
+    },
+    {
+      "ObjectType": "VstsSyncMigrator.Engine.Configuration.FieldMap.FieldValueMapConfig",
+      "WorkItemTypeName": "*",
+      "sourceField": "System.State",
+      "targetField": "System.State",
+      "defaultValue": "New",
+      "valueMapping": {
+        "To Do": "New",
+        "In Progress": "Committed",
+        "Done": "Done",
+        "Removed": "Removed"
+      }
+    },
+    {
+      "ObjectType": "VstsSyncMigrator.Engine.Configuration.FieldMap.FieldtoFieldMapConfig",
+      "WorkItemTypeName": "*",
+      "sourceField": "Microsoft.VSTS.Common.BacklogPriority",
+      "targetField": "Microsoft.VSTS.Common.StackRank"
+    }
+  ],
+  "GitRepoMapping": null,
+  "Processors": [
+    {
+      "ObjectType": "VstsSyncMigrator.Engine.Configuration.Processing.NodeStructuresMigrationConfig",
+      "PrefixProjectToNodes": false,
+      "Enabled": false,
+      "BasePaths": [
+        "Product\\Area\\Path1",
+        "Product\\Area\\Path2"
+      ]
+    },
+    {
+      "ObjectType": "VstsSyncMigrator.Engine.Configuration.Processing.WorkItemMigrationConfig",
+      "ReplayRevisions": true,
+      "PrefixProjectToNodes": false,
+      "UpdateCreatedDate": true,
+      "UpdateCreatedBy": true,
+      "BuildFieldTable": false,
+      "AppendMigrationToolSignatureFooter": false,
+	    "QueryBit": "AND [System.WorkItemType] NOT IN ('Test Suite', 'Test Plan')",
+      "OrderBit": "[System.CreatedDate]",
+      "Enabled": true,
+      "LinkMigration": false,
+      "AttachmentMigration": false,
+      "AttachmentWorkingPath": "c:\\temp\\WorkItemAttachmentWorkingFolder\\",
+      "FixHtmlAttachmentLinks": false,
+      "SkipToFinalRevisedWorkItemType": false,
+      "WorkItemCreateRetryLimit": 5,
+      "FilterWorkItemsThatAlreadyExistInTarget": true,
+      "PauseAfterEachWorkItem": false,
+      "AttachmentMazSize": 480000000,
+      "CollapseRevisions": false,
+      "LinkMigrationSaveEachAsAdded": false
+    }
+  ]
+}

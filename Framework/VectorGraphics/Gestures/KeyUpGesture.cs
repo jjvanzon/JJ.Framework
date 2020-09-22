@@ -1,14 +1,17 @@
 ﻿using System;
+using JetBrains.Annotations;
 using JJ.Framework.VectorGraphics.EventArg;
 
 namespace JJ.Framework.VectorGraphics.Gestures
 {
-	// ReSharper disable once UnusedMember.Global
+	/// <inheritdoc />
+	[PublicAPI]
 	public class KeyUpGesture : GestureBase
 	{
-		// ReSharper disable once EventNeverSubscribedTo.Global
+		/// <summary> Would go off when a user might let go of a keyboard key. </summary>
 		public event EventHandler<KeyEventArgs> KeyUp;
 
+		/// <summary> Would raise the KeyUp event. </summary>
 		protected override void HandleKeyUp(object sender, KeyEventArgs e) => KeyUp?.Invoke(sender, e);
 	}
 }

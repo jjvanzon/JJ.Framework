@@ -1,0 +1,452 @@
+{
+    "count": 63,
+    "value": [
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.IterationPath",
+            "name": "Iteration Path",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.IterationPath"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": true,
+            "referenceName": "System.IterationId",
+            "name": "Iteration ID",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.IterationId"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.ExternalLinkCount",
+            "name": "External Link Count",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.ExternalLinkCount"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.IterationLevel7",
+            "name": "Iteration Level 7",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.IterationLevel7"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.IterationLevel6",
+            "name": "Iteration Level 6",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.IterationLevel6"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.IterationLevel5",
+            "name": "Iteration Level 5",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.IterationLevel5"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.IterationLevel4",
+            "name": "Iteration Level 4",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.IterationLevel4"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.IterationLevel3",
+            "name": "Iteration Level 3",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.IterationLevel3"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.IterationLevel2",
+            "name": "Iteration Level 2",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.IterationLevel2"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.IterationLevel1",
+            "name": "Iteration Level 1",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.IterationLevel1"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.AreaLevel7",
+            "name": "Area Level 7",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AreaLevel7"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.AreaLevel6",
+            "name": "Area Level 6",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AreaLevel6"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.AreaLevel5",
+            "name": "Area Level 5",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AreaLevel5"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.AreaLevel4",
+            "name": "Area Level 4",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AreaLevel4"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.AreaLevel3",
+            "name": "Area Level 3",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AreaLevel3"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.AreaLevel2",
+            "name": "Area Level 2",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AreaLevel2"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.AreaLevel1",
+            "name": "Area Level 1",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AreaLevel1"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.TeamProject",
+            "name": "Team Project",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.TeamProject"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.Parent",
+            "name": "Parent",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.Parent"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.RemoteLinkCount",
+            "name": "Remote Link Count",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.RemoteLinkCount"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.CommentCount",
+            "name": "Comment Count",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.CommentCount"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.HyperLinkCount",
+            "name": "Hyperlink Count",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.HyperLinkCount"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.AttachedFileCount",
+            "name": "Attached File Count",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AttachedFileCount"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.NodeName",
+            "name": "Node Name",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.NodeName"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.AreaPath",
+            "name": "Area Path",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AreaPath"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.RevisedDate",
+            "name": "Revised Date",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.RevisedDate"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.ChangedDate",
+            "name": "Changed Date",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.ChangedDate"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.Id",
+            "name": "ID",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.Id"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": true,
+            "referenceName": "System.AreaId",
+            "name": "Area ID",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AreaId"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.AuthorizedAs",
+            "name": "Authorized As",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AuthorizedAs"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": true,
+            "referenceName": "System.Title",
+            "name": "Title",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.Title"
+        },
+        {
+            "defaultValue": "New",
+            "alwaysRequired": true,
+            "referenceName": "System.State",
+            "name": "State",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.State"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.AuthorizedDate",
+            "name": "Authorized Date",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AuthorizedDate"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.Watermark",
+            "name": "Watermark",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.Watermark"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.Rev",
+            "name": "Rev",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.Rev"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.ChangedBy",
+            "name": "Changed By",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.ChangedBy"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.Reason",
+            "name": "Reason",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.Reason"
+        },
+        {
+            "defaultValue": null,
+            "helpText": "The person currently owning this backlog item",
+            "alwaysRequired": false,
+            "referenceName": "System.AssignedTo",
+            "name": "Assigned To",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.AssignedTo"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.WorkItemType",
+            "name": "Work Item Type",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.WorkItemType"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.CreatedDate",
+            "name": "Created Date",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.CreatedDate"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.CreatedBy",
+            "name": "Created By",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.CreatedBy"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.Description",
+            "name": "Description",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.Description"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.History",
+            "name": "History",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.History"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.RelatedLinkCount",
+            "name": "Related Link Count",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.RelatedLinkCount"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.Tags",
+            "name": "Tags",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.Tags"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.BoardColumn",
+            "name": "Board Column",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.BoardColumn"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.BoardColumnDone",
+            "name": "Board Column Done",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.BoardColumnDone"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "System.BoardLane",
+            "name": "Board Lane",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/System.BoardLane"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Common.StateChangeDate",
+            "name": "State Change Date",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.StateChangeDate"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Common.ClosedDate",
+            "name": "Closed Date",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.ClosedDate"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Common.ClosedBy",
+            "name": "Closed By",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.ClosedBy"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Common.ActivatedDate",
+            "name": "Activated Date",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.ActivatedDate"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Common.ActivatedBy",
+            "name": "Activated By",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.ActivatedBy"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Common.BacklogPriority",
+            "name": "Backlog Priority",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.BacklogPriority"
+        },
+        {
+            "defaultValue": null,
+            "helpText": "The business value for the customer when the backlog item is released",
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Common.BusinessValue",
+            "name": "Business Value",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.BusinessValue"
+        },
+        {
+            "defaultValue": null,
+            "helpText": "The estimated effort to implemented the backlog item",
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Scheduling.Effort",
+            "name": "Effort",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Scheduling.Effort"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Common.AcceptanceCriteria",
+            "name": "Acceptance Criteria",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.AcceptanceCriteria"
+        },
+        {
+            "defaultValue": "2",
+            "helpText": "Priority for completing the backlog item, based on business goals",
+            "alwaysRequired": true,
+            "referenceName": "Microsoft.VSTS.Common.Priority",
+            "name": "Priority",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.Priority"
+        },
+        {
+            "defaultValue": "Business",
+            "helpText": "Business = delivers value to a user or another system; Architectural = work to support other stories or components",
+            "alwaysRequired": true,
+            "referenceName": "Microsoft.VSTS.Common.ValueArea",
+            "name": "Value Area",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.ValueArea"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Build.IntegrationBuild",
+            "name": "Integration Build",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Build.IntegrationBuild"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Common.ResolvedBy",
+            "name": "Resolved By",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.ResolvedBy"
+        },
+        {
+            "defaultValue": null,
+            "alwaysRequired": false,
+            "referenceName": "Microsoft.VSTS.Common.ResolvedDate",
+            "name": "Resolved Date",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Microsoft.VSTS.Common.ResolvedDate"
+        },
+        {
+            "defaultValue": null,
+            "helpText": "Used for Azure DevOps Migration Tools to migrate work items from local TFS to Azure DevOps.",
+            "alwaysRequired": false,
+            "referenceName": "Custom.ReflectedWorkItemId",
+            "name": "ReflectedWorkItemId",
+            "url": "https://jjvanzon.visualstudio.com/1de16010-421a-41a5-90f1-86e9513f2c5b/_apis/wit/fields/Custom.ReflectedWorkItemId"
+        }
+    ]
+}

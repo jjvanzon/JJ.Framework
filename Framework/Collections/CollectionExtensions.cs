@@ -677,6 +677,8 @@ namespace JJ.Framework.Collections
             }
         }
 
+        // SingleOrDefaultWithClearException
+
         /// <summary>
         /// A regular SingleOrDefault() will give you an exception if there are multiple elements in the collection.
         /// But not a very clear exception, like 'The input sequence contains more than one element.'
@@ -701,8 +703,17 @@ namespace JJ.Framework.Collections
         /// SingleOrDefaultWithClearException() will allow you to do a SingleOrDefault,
         /// but get a clearer exception message e.g. 'Product not unique.'
         /// </summary>
-        public static T SingleOrDefaultWithClearException<T>(this IEnumerable<T> collection) 
-            => SingleOrDefaultWithClearException(collection);
+        public static T SingleOrDefaultWithClearException<T>(this IEnumerable<T> collection)
+        {
+            if (collection == null) throw new ArgumentNullException(nameof(collection));
+
+            switch (collection.Count())
+            {
+                case 0: return default;
+                case 1: return collection.Single();
+                default: throw new NotUniqueException<T>();
+            }
+        }
 
         /// <summary>
         /// A regular SingleOrDefault() will give you an exception if there are multiple elements in the collection.
@@ -801,6 +812,8 @@ namespace JJ.Framework.Collections
                 default: throw new NotUniqueException<T>(keyIndicator);
             }
         }
+
+        // SingleWithClearException
 
         /// <summary>
         /// A regular Single() will give you an exception if there are no elements or multiple elements in the collection.

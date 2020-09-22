@@ -1,0 +1,1 @@
+git svn clone https://jjs-server/svn/JJ/ --no-metadata --use-log-author temp3

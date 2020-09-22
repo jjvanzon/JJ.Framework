@@ -1,0 +1,7 @@
+rem DELETE *.vspscc FILES FROM HISTORY
+REM ================================
+
+
+git filter-branch --index-filter 'git rm --cached --ignore-unmatch *.vspscc'
+git update-ref -d refs/original/refs/heads/master
+git push --force

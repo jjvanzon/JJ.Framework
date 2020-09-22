@@ -1,0 +1,18 @@
+rem MOVE LOCAL GIT TO ONLINE GIT
+rem ============================
+
+PS D:\Source\JJs Software\JJ git-svn git-tf 2> cd..
+PS D:\Source\JJs Software> cd JJ\
+PS D:\Source\JJs Software\JJ> git remote add git-svn-tf "D:\Source\JJs Software\JJ git-svn-tf"
+PS D:\Source\JJs Software\JJ> git fetch git-svn-tf
+remote: Enumerating objects: 126802, done.
+remote: Counting objects: 100% (126802/126802), done.
+remote: Compressing objects: 100% (34973/34973), done.
+Receiving objects: 100% (126802/126802), 692.66 MiB | 37.24 MiB/s, done.
+remote: Total 126802 (delta 91698), reused 124828 (delta 89724)
+Resolving deltas: 100% (91698/91698), done.
+From D:\Source\JJs Software\JJ git-svn-tf
+ * [new branch]          master     -> git-svn-tf/master
+PS D:\Source\JJs Software\JJ> git merge git-svn-tf/master
+PS D:\Source\JJs Software\JJ> git remote remove git-svn-tf
+PS D:\Source\JJs Software\JJ>

@@ -6,7 +6,7 @@ DECLARE @fileName VARCHAR(256) -- filename for backup
 DECLARE @fileDate VARCHAR(20) -- used for file name
  
 -- specify database backup directory
-SET @path = 'E:\Google Drive E\Database Snapshots\'
+SET @path = 'E:\Google Drive E\Cloud Backups\Databases\Database Snapshots\'
  
 DECLARE db_cursor CURSOR READ_ONLY FOR  
 SELECT name 

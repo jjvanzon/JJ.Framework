@@ -1,0 +1,32 @@
+rem RENAME AN AUTHOR
+rem ================
+
+Jan-Joost van Zon@JJS-SERVER MINGW64 ~
+$ cd /d/source
+
+Jan-Joost van Zon@JJS-SERVER MINGW64 /d/source
+$ cd "JJs Software"
+
+Jan-Joost van Zon@JJS-SERVER MINGW64 /d/source/JJs Software
+$ cd JJ
+
+Jan-Joost van Zon@JJS-SERVER MINGW64 /d/source/JJs Software/JJ (master)
+
+git filter-branch --env-filter '
+OLD_NAME="jjvanzon"
+CORRECT_NAME="jjvanzon"
+CORRECT_EMAIL="janjoostvanzon@hotmail.com"
+if [ "$GIT_COMMITTER_NAME" = "$OLD_NAME" ]
+then
+    export GIT_COMMITTER_NAME="$CORRECT_NAME"
+    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+fi
+if [ "$GIT_AUTHOR_NAME" = "$OLD_NAME" ]
+then
+    export GIT_AUTHOR_NAME="$CORRECT_NAME"
+    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+fi
+' --tag-name-filter cat -- --branches --tags
+
+rem Maybe the last parameter (the 'ref' name) is different
+git update-ref -d refs/original/refs/heads/master
