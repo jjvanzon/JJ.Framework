@@ -42,6 +42,8 @@ Many of these methods are variations on the already existing LINQ methods. You m
 * `IndexOf` variations for:
 	* Collection types other than `List`<`T`>.
 	* One that takes a predicate. E.g. `int index = items.IndexOf(x =`>` x.ID == 3);` (like the `List`<`T`>`.FindIndex` method)
+* `ItemsAreEqual`
+	* Would check whether the items in two collections are equal, optionally keeping the order in mind or not.
 * `TryGetIndexOf`
 	* Similar to `IndexOf`, but returns null if the item is not found.
 * `MinOrDefault` / `MaxOrDefault`

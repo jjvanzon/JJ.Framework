@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using JJ.Framework.Common;
 using JJ.Framework.Exceptions.Aggregates;
@@ -425,6 +426,31 @@ namespace JJ.Framework.Collections
             }
 
             return i.Value;
+        }
+
+        /// <summary>
+        /// Would check whether the items in two collections are equal, optionally keeping the order in mind or not.
+        /// </summary>
+        public static bool ItemsAreEqual<TItem>(
+	        this IEnumerable<TItem> collection1, IEnumerable<TItem> collection2, bool positionsMustMatch = true)
+        {
+	        if (collection1 == null) throw new ArgumentNullException(nameof(collection1));
+	        if (collection2 == null) throw new ArgumentNullException(nameof(collection2));
+
+	        if (positionsMustMatch)
+	        {
+		        bool itemsAreEqual = collection1.Zip(collection2).All(x => Equals(x.Item1, x.Item2));
+		        return itemsAreEqual;
+	        }
+	        else
+	        {
+		        bool itemsAreEqual = ItemsAreEqual(
+			        collection1.OrderBy(x => x),
+			        collection2.OrderBy(x => x),
+			        positionsMustMatch: true);
+
+		        return itemsAreEqual;
+	        }
         }
 
         /// <summary> Same as Max(), but instead of crashing when zero items, returns default instead. </summary>
