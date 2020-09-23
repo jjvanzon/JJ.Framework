@@ -48,34 +48,10 @@ namespace JJ.Framework.IO
 
 			progressCallback?.Invoke("Analyzing duplicates.");
 
-			// TODO: Progress percentage.
-
-			// 1-2
-			// 1-3
-			// 1-4
-			// 1-5
-			// ---
-			// 4
-
-			// 2-3
-			// 2-4
-			// 2-5
-			// ---
-			// 3
-
-			// 3-4
-			// 3-5
-			// ---
-			// 2
-
-			// 4-5
-			// ---
-			// 1
-
-			// First iteration loops through almost all items
+			long iterationCounter = 0;
+			// First iteration loops through almost all items.
 			// Last iteration loops through about 0 items.
 			// Each iteration would averagely loop through half of the items.
-			long iterationCounter = 0;
 			long totalIterations = fileTuples.Count * fileTuples.Count / 2;
 			long iterationsPerProgressCallback = totalIterations / 1000;
 
