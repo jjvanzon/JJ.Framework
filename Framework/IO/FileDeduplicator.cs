@@ -31,6 +31,8 @@ namespace JJ.Framework.IO
 		{
 			FileHelper.AssertFolderExists(folderPath);
 
+			progressCallback?.Invoke("Listing files.");
+
 			// List files
 			SearchOption searchOption = recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
 			IList<string> filePaths = Directory.GetFiles(folderPath, "*.*", searchOption);
@@ -43,6 +45,39 @@ namespace JJ.Framework.IO
 			{
 				return new List<FilePair>();
 			}
+
+			progressCallback?.Invoke("Analyzing duplicates.");
+
+			// TODO: Progress percentage.
+
+			// 1-2
+			// 1-3
+			// 1-4
+			// 1-5
+			// ---
+			// 4
+
+			// 2-3
+			// 2-4
+			// 2-5
+			// ---
+			// 3
+
+			// 3-4
+			// 3-5
+			// ---
+			// 2
+
+			// 4-5
+			// ---
+			// 1
+
+			// First iteration loops through almost all items
+			// Last iteration loops through about 0 items.
+			// Each iteration would averagely loop through half of the items.
+			long iterationCounter = 0;
+			long totalIterations = fileTuples.Count * fileTuples.Count / 2;
+			long iterationsPerProgressCallback = totalIterations / 1000;
 
 			// Compare files
 			for (var i = 0; i < fileTuples.Count; i++)
@@ -58,12 +93,23 @@ namespace JJ.Framework.IO
 				{
 					FileTuple fileTuple2 = fileTuples[j];
 
-					if (AreEqual(fileTuple1, fileTuple2))
+					if (!AreEqual(fileTuple1, fileTuple2))
 					{
 						fileTuple2.MainOccurrence = fileTuple1;
 					}
+
+					// Progress counter
+					iterationCounter++;
+					bool mustShowPercentage = iterationCounter % iterationsPerProgressCallback == 0;
+					if (mustShowPercentage)
+					{
+						decimal percentage = 100m * iterationCounter / totalIterations;
+						progressCallback?.Invoke($"Analyzing duplicates {percentage:0.0}");
+					}
 				}
 			}
+
+			progressCallback?.Invoke("Processing result.");
 
 			// Only keep listings of duplicate files.
 			fileTuples = fileTuples.Except(x => !x.IsDuplicate).ToList();
@@ -73,6 +119,9 @@ namespace JJ.Framework.IO
 			                                     .OrderBy(x => x.FirstOccurrenceFilePath)
 			                                     .ThenBy(x => x.DuplicateFilePath)
 			                                     .ToList();
+
+			progressCallback?.Invoke("Analysis complete.");
+
 			return filePairs;
 		}
 
@@ -82,8 +131,12 @@ namespace JJ.Framework.IO
 
 			foreach (FilePair filePair in filePairs)
 			{
+				progressCallback?.Invoke($"Deleting {filePair.DuplicateFilePath}");
+
 				File.Delete(filePair.DuplicateFilePath);
 			}
+
+			progressCallback?.Invoke("Done deleting duplicates.");
 		}
 
 		/// <summary> Not yet the bytes nor whether it is a duplicate. </summary>

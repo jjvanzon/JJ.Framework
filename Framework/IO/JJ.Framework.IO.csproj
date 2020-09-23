@@ -65,10 +65,6 @@
     <Compile Include="FilePathExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Business\JJ.Framework.Business.csproj">
-      <Project>{F44D03E8-FEEC-40D4-B866-A87799185B4C}</Project>
-      <Name>JJ.Framework.Business</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Collections\JJ.Framework.Collections.csproj">
       <Project>{5D06A212-5459-47F3-8109-E012C5FC9E3A}</Project>
       <Name>JJ.Framework.Collections</Name>
