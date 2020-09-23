@@ -3,41 +3,43 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
-using JJ.Framework.Business;
 using JJ.Framework.Collections;
+// ReSharper disable InvokeAsExtensionMethod
 
 namespace JJ.Framework.IO
 {
 	[PublicAPI]
 	public class FileDeduplicator
 	{
-		//public class FilePair
-		//{ 
-		//	public string Du
-		//}
-
 		[PublicAPI]
-		public class FileTuple
+		public class FilePair
+		{
+			public string FirstOccurrenceFilePath { get; set; }
+			public string DuplicateFilePath { get; set; }
+		}
+
+		private class FileTuple
 		{
 			public FileInfo FileInfo { get; set; }
 			public string FilePath { get; set; }
 			public long FileSize { get; set; }
 			public byte[] FileBytes { get; set; }
-			public bool IsDuplicate { get; set; }
-			public FileTuple FirstOccurrence { get; set; }
-			public IList<FileTuple> Duplicates { get; } = new List<FileTuple>();
+			public FileTuple MainOccurrence { get; set; }
+			public bool IsDuplicate => MainOccurrence != null;
+			//public IList<FileTuple> Duplicates { get; } = new List<FileTuple>();
 		}
-		
-		public IList<FileTuple> Analyze(string folderPath, bool recursive, Action<string> progressCallback = null)
+
+		public IList<FilePair> Analyze(string folderPath, bool recursive, Action<string> progressCallback = null)
 		{
 			FileHelper.AssertFolderExists(folderPath);
 
 			// List files
-			IList<string> filePaths = Directory.GetFiles(folderPath, "*.*", GetSearchOption(recursive));
-
-			var fileTuples = new List<FileTuple>();
+			SearchOption searchOption = recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+			IList<string> filePaths = Directory.GetFiles(folderPath, "*.*", searchOption);
 
 			// Get basic info
+			var fileTuples = new List<FileTuple>();
+
 			foreach (string filePath in filePaths)
 			{
 				FileTuple fileTuple = GetBasicInfo(filePath);
@@ -50,7 +52,7 @@ namespace JJ.Framework.IO
 			// Prevent loop from erroring when only one file.
 			if (fileTuples.Count == 1)
 			{
-				return fileTuples;
+				return new List<FilePair>();
 			}
 
 			// Compare files
@@ -63,47 +65,42 @@ namespace JJ.Framework.IO
 					continue;
 				}
 
-				for (var j = i + 1; j < fileTuples.Count; j++)
+				for (int j = i + 1; j < fileTuples.Count; j++)
 				{
 					FileTuple fileTuple2 = fileTuples[j];
 
-					bool areEqual = AreEqual(fileTuple1, fileTuple2);
-
-					if (areEqual)
+					if (AreEqual(fileTuple1, fileTuple2))
 					{
-						fileTuple1.Duplicates.Add(fileTuple2);
-						fileTuple2.IsDuplicate = true;
-						fileTuple2.FirstOccurrence = fileTuple1;
+						//fileTuple1.Duplicates.Add(fileTuple2);
+						//fileTuple2.IsDuplicate = true;
+						fileTuple2.MainOccurrence = fileTuple1;
 					}
 				}
 			}
 
-			// Exclude unique files
+			// Only keep listings of duplicate files.
 			fileTuples = fileTuples.Except(x => !x.IsDuplicate).ToList();
 
-			return fileTuples;
+			// Return more overviewable format.
+			List<FilePair> filePairs = fileTuples.Select(ConvertToFilePair)
+			                                     .OrderBy(x => x.FirstOccurrenceFilePath)
+			                                     .ThenBy(x => x.DuplicateFilePath)
+			                                     .ToList();
+			return filePairs;
 		}
 
-		public void DeleteDuplicates(IList<FileTuple> fileTuples, Action<string> progressCallback = null)
+		public void DeleteDuplicates(IList<FilePair> filePairs, Action<string> progressCallback = null)
 		{
-			if (fileTuples == null) throw new ArgumentNullException(nameof(fileTuples));
+			if (filePairs == null) throw new ArgumentNullException(nameof(filePairs));
 
-			foreach (FileTuple fileTuple in fileTuples)
+			foreach (FilePair filePair in filePairs)
 			{
-				if (!fileTuple.IsDuplicate)
-				{
-					continue;
-				}
-
 				// TODO: Fail gracefully?
-				File.Delete(fileTuple.FilePath);
+				File.Delete(filePair.DuplicateFilePath);
 			}
 		}
 
-		private static SearchOption GetSearchOption(bool recursive) 
-			=> recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-
-		/// <summary> Not yet the bytes nor the duplicates. </summary>
+		/// <summary> Not yet the bytes nor whether it is a duplicate. </summary>
 		private FileTuple GetBasicInfo(string filePath)
 		{
 			var fileInfo = new FileInfo(filePath);
@@ -125,18 +122,17 @@ namespace JJ.Framework.IO
 			LoadBytes(fileTuple1);
 			LoadBytes(fileTuple2);
 
-			bool bytesAreEqual = fileTuple1.FileBytes.ItemsAreEqual(fileTuple2.FileBytes);
+			bool bytesAreEqual = CollectionExtensions.ItemsAreEqual(fileTuple1.FileBytes, fileTuple2.FileBytes);
 			return bytesAreEqual;
 		}
 
 		private static void LoadBytes(FileTuple fileTuple) => fileTuple.FileBytes ??= fileTuple.FilePath.ReadAllBytes();
 
-
-		//public IList<Info> Analyze(string folderPath, bool recursive, Action<string> progressCallback = null)
-		//{
-		//	FileHelper.AssertFolderExists(folderPath);
-
-		//	//string[] filePaths = Directory.GetFiles(folderPath, "*.*", GetSearchOption(recursive));
-		//}
+		private static FilePair ConvertToFilePair(FileTuple fileTuple)
+			=> new FilePair
+			{
+				DuplicateFilePath = fileTuple.FilePath,
+				FirstOccurrenceFilePath = fileTuple.MainOccurrence?.FilePath
+			};
 	}
 }
