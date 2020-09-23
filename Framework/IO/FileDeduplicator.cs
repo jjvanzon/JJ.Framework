@@ -20,13 +20,11 @@ namespace JJ.Framework.IO
 
 		private class FileTuple
 		{
-			public FileInfo FileInfo { get; set; }
 			public string FilePath { get; set; }
 			public long FileSize { get; set; }
 			public byte[] FileBytes { get; set; }
 			public FileTuple MainOccurrence { get; set; }
 			public bool IsDuplicate => MainOccurrence != null;
-			//public IList<FileTuple> Duplicates { get; } = new List<FileTuple>();
 		}
 
 		public IList<FilePair> Analyze(string folderPath, bool recursive, Action<string> progressCallback = null)
@@ -38,16 +36,7 @@ namespace JJ.Framework.IO
 			IList<string> filePaths = Directory.GetFiles(folderPath, "*.*", searchOption);
 
 			// Get basic info
-			var fileTuples = new List<FileTuple>();
-
-			foreach (string filePath in filePaths)
-			{
-				FileTuple fileTuple = GetBasicInfo(filePath);
-
-				// TODO: Fail gracefully?
-
-				fileTuples.Add(fileTuple);
-			}
+			List<FileTuple> fileTuples = filePaths.Select(GetBasicInfo).ToList();
 
 			// Prevent loop from erroring when only one file.
 			if (fileTuples.Count == 1)
@@ -71,8 +60,6 @@ namespace JJ.Framework.IO
 
 					if (AreEqual(fileTuple1, fileTuple2))
 					{
-						//fileTuple1.Duplicates.Add(fileTuple2);
-						//fileTuple2.IsDuplicate = true;
 						fileTuple2.MainOccurrence = fileTuple1;
 					}
 				}
@@ -95,7 +82,6 @@ namespace JJ.Framework.IO
 
 			foreach (FilePair filePair in filePairs)
 			{
-				// TODO: Fail gracefully?
 				File.Delete(filePair.DuplicateFilePath);
 			}
 		}
@@ -107,7 +93,6 @@ namespace JJ.Framework.IO
 
 			var info = new FileTuple
 			{
-				FileInfo = fileInfo,
 				FilePath = filePath,
 				FileSize = fileInfo.Length
 			};
