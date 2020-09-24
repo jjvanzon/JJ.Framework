@@ -31,7 +31,6 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.checkBoxRecursive = new System.Windows.Forms.CheckBox();
 			this.buttonAnalyze = new System.Windows.Forms.Button();
-			this.buttonShowListOfDuplicates = new System.Windows.Forms.Button();
 			this.labelListOfDuplicates = new System.Windows.Forms.Label();
 			this.buttonCopyListOfDuplicates = new System.Windows.Forms.Button();
 			this.SuspendLayout();
@@ -56,33 +55,21 @@
 			this.buttonAnalyze.UseVisualStyleBackColor = true;
 			this.buttonAnalyze.Click += new System.EventHandler(this.ButtonAnalyze_Click);
 			// 
-			// buttonShowListOfDuplicates
-			// 
-			this.buttonShowListOfDuplicates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonShowListOfDuplicates.Location = new System.Drawing.Point(422, 178);
-			this.buttonShowListOfDuplicates.Name = "buttonShowListOfDuplicates";
-			this.buttonShowListOfDuplicates.Size = new System.Drawing.Size(227, 49);
-			this.buttonShowListOfDuplicates.TabIndex = 3;
-			this.buttonShowListOfDuplicates.Text = "Show List of Duplicates";
-			this.buttonShowListOfDuplicates.UseVisualStyleBackColor = true;
-			this.buttonShowListOfDuplicates.Click += new System.EventHandler(this.ButtonShowListOfDuplicates_Click);
-			// 
 			// labelListOfDuplicates
 			// 
 			this.labelListOfDuplicates.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelListOfDuplicates.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.labelListOfDuplicates.Location = new System.Drawing.Point(19, 310);
+			this.labelListOfDuplicates.Location = new System.Drawing.Point(19, 251);
 			this.labelListOfDuplicates.Name = "labelListOfDuplicates";
-			this.labelListOfDuplicates.Size = new System.Drawing.Size(630, 145);
+			this.labelListOfDuplicates.Size = new System.Drawing.Size(649, 229);
 			this.labelListOfDuplicates.TabIndex = 4;
 			this.labelListOfDuplicates.Text = "List of duplicates may appear here...";
 			// 
 			// buttonCopyListOfDuplicates
 			// 
-			this.buttonCopyListOfDuplicates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.buttonCopyListOfDuplicates.Location = new System.Drawing.Point(454, 243);
+			this.buttonCopyListOfDuplicates.Location = new System.Drawing.Point(159, 184);
 			this.buttonCopyListOfDuplicates.Name = "buttonCopyListOfDuplicates";
 			this.buttonCopyListOfDuplicates.Size = new System.Drawing.Size(195, 49);
 			this.buttonCopyListOfDuplicates.TabIndex = 5;
@@ -94,10 +81,9 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(665, 634);
+			this.ClientSize = new System.Drawing.Size(684, 659);
 			this.Controls.Add(this.buttonCopyListOfDuplicates);
 			this.Controls.Add(this.labelListOfDuplicates);
-			this.Controls.Add(this.buttonShowListOfDuplicates);
 			this.Controls.Add(this.buttonAnalyze);
 			this.Controls.Add(this.checkBoxRecursive);
 			this.Description = resources.GetString("$this.Description");
@@ -107,7 +93,6 @@
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
 			this.Controls.SetChildIndex(this.checkBoxRecursive, 0);
 			this.Controls.SetChildIndex(this.buttonAnalyze, 0);
-			this.Controls.SetChildIndex(this.buttonShowListOfDuplicates, 0);
 			this.Controls.SetChildIndex(this.labelListOfDuplicates, 0);
 			this.Controls.SetChildIndex(this.buttonCopyListOfDuplicates, 0);
 			this.ResumeLayout(false);
@@ -119,7 +104,6 @@
 
 		private System.Windows.Forms.CheckBox checkBoxRecursive;
 		private System.Windows.Forms.Button buttonAnalyze;
-		private System.Windows.Forms.Button buttonShowListOfDuplicates;
 		private System.Windows.Forms.Label labelListOfDuplicates;
 		private System.Windows.Forms.Button buttonCopyListOfDuplicates;
 	}

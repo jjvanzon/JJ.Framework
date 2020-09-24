@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using JJ.Framework.IO;
 using JJ.Framework.WinForms.Forms;
+using JJ.Utilities.FileDeduplication.Properties;
 // ReSharper disable PossibleMultipleEnumeration
 
 namespace JJ.Utilities.FileDeduplication
@@ -18,15 +19,32 @@ namespace JJ.Utilities.FileDeduplication
 		{
 			InitializeComponent();
 
+			Text = Resources.ApplicationName;
+
 			_fileDeduplicator = new FileDeduplicator();
 		}
 
 		// Actions
 
 		private void ButtonAnalyze_Click(object sender, EventArgs e)
-			=> _filePairs = _fileDeduplicator.Analyze(FilePath, checkBoxRecursive.Checked, ShowProgress, () => IsRunning);
+		{
+			_filePairs = null; // HACK
+			AnalyzeIfNeeded();
+		}
 
-		private void ButtonShowListOfDuplicates_Click(object sender, EventArgs e)
+		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e)
+		{
+			//AnalyzeIfNeeded();
+			Clipboard.SetText(labelListOfDuplicates.Text);
+		}
+
+		private void MainForm_OnRunProcess(object sender, EventArgs e)
+		{
+			AnalyzeIfNeeded();
+			_fileDeduplicator.DeleteDuplicates(_filePairs, ShowProgress, () => IsRunning);
+		}
+
+		private void AnalyzeIfNeeded()
 		{
 			if (_filePairs == null)
 			{
@@ -34,18 +52,6 @@ namespace JJ.Utilities.FileDeduplication
 			}
 
 			labelListOfDuplicates.Text = FormatFilePairs(_filePairs);
-		}
-
-		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) => Clipboard.SetText(labelListOfDuplicates.Text);
-
-		private void MainForm_OnRunProcess(object sender, EventArgs e)
-		{
-			if (_filePairs == null)
-			{
-				_filePairs = _fileDeduplicator.Analyze(FilePath, checkBoxRecursive.Checked, ShowProgress, () => IsRunning);
-			}
-
-			_fileDeduplicator.DeleteDuplicates(_filePairs, ShowProgress, () => IsRunning);
 		}
 
 		// Helpers
