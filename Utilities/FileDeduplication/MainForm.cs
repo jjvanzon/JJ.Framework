@@ -28,21 +28,33 @@ namespace JJ.Utilities.FileDeduplication
 			_fileDeduplicator = new FileDeduplicator();
 		}
 
-		private void MainForm_OnRunProcess(object sender, EventArgs e)
-		{
-			if (_filePairs == null) _filePairs = _fileDeduplicator.Analyze(FilePath, checkBoxRecursive.Checked, ShowProgress);
-			_fileDeduplicator.DeleteDuplicates(_filePairs, ShowProgress);
-		}
+		// Actions
 
 		private void ButtonAnalyze_Click(object sender, EventArgs e)
-			=> _filePairs = _fileDeduplicator.Analyze(FilePath, checkBoxRecursive.Checked, ShowProgress);
+			=> _filePairs = _fileDeduplicator.Analyze(FilePath, checkBoxRecursive.Checked, ShowProgress, () => IsRunning);
 
 		private void ButtonShowListOfDuplicates_Click(object sender, EventArgs e)
 		{
-			if (_filePairs == null) _filePairs = _fileDeduplicator.Analyze(FilePath, checkBoxRecursive.Checked, ShowProgress);
+			if (_filePairs == null)
+			{
+				_filePairs = _fileDeduplicator.Analyze(FilePath, checkBoxRecursive.Checked, ShowProgress, () => IsRunning);
+			}
+
 			string message = FormatFilePairs(_filePairs);
 			MessageBox.Show(message);
 		}
+
+		private void MainForm_OnRunProcess(object sender, EventArgs e)
+		{
+			if (_filePairs == null)
+			{
+				_filePairs = _fileDeduplicator.Analyze(FilePath, checkBoxRecursive.Checked, ShowProgress, () => IsRunning);
+			}
+
+			_fileDeduplicator.DeleteDuplicates(_filePairs, ShowProgress, () => IsRunning);
+		}
+
+		// Helpers
 
 		private string FormatFilePairs(IList<FileDeduplicator.FilePair> filePairs)
 			=> string.Join(Environment.NewLine + Environment.NewLine,  filePairs.GroupBy(x => x.OriginalFilePath).Select(FormatItem));

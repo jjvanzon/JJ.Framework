@@ -27,7 +27,11 @@ namespace JJ.Framework.IO
 			public FileTuple OriginalFileTuple { get; set; }
 		}
 
-		public IList<FilePair> Analyze(string folderPath, bool recursive, Action<string> progressCallback = null)
+		public IList<FilePair> Analyze(
+			string folderPath, 
+			bool recursive, 
+			Action<string> progressCallback = null, 
+			Func<bool> cancelCallback = null)
 		{
 			FileHelper.AssertFolderExists(folderPath);
 
@@ -69,6 +73,8 @@ namespace JJ.Framework.IO
 
 				for (int j = i + 1; j < fileTuples.Count; j++)
 				{
+					if (IsCancelled(cancelCallback)) return new List<FilePair>();
+
 					FileTuple fileTuple2 = fileTuples[j];
 
 					if (!FileTuplesAreEqual(fileTuple1, fileTuple2))
@@ -92,22 +98,27 @@ namespace JJ.Framework.IO
 
 			// Convert to overviewable list of duplicates.
 			List<FilePair> duplicateFilePairs = fileTuples.Where(x => x.IsDuplicate)
-			                                              .Select(ConvertFileTupleToFilePair)
-			                                              .OrderBy(x => x.OriginalFilePath)
-			                                              .ThenBy(x => x.DuplicateFilePath)
-			                                              .ToList();
+														  .Select(ConvertFileTupleToFilePair)
+														  .OrderBy(x => x.OriginalFilePath)
+														  .ThenBy(x => x.DuplicateFilePath)
+														  .ToList();
 
 			progressCallback?.Invoke("Analysis complete.");
 
 			return duplicateFilePairs;
 		}
 
-		public void DeleteDuplicates(IList<FilePair> filePairs, Action<string> progressCallback = null)
+		public void DeleteDuplicates(
+			IList<FilePair> filePairs, 
+			Action<string> progressCallback = null, 
+			Func<bool> cancelCallback = null)
 		{
 			if (filePairs == null) throw new ArgumentNullException(nameof(filePairs));
 
 			foreach (FilePair filePair in filePairs)
 			{
+				if (IsCancelled(cancelCallback)) return;
+
 				progressCallback?.Invoke($"Deleting {filePair.DuplicateFilePath}");
 
 				File.Delete(filePair.DuplicateFilePath);
@@ -115,6 +126,10 @@ namespace JJ.Framework.IO
 
 			progressCallback?.Invoke("Done deleting duplicates.");
 		}
+
+		// Helpers
+
+		private static bool IsCancelled(Func<bool> cancelCallback) => cancelCallback?.Invoke() ?? false;
 
 		/// <summary> Gets basic info with file path and file length, not yet the bytes nor whether it is a duplicate. </summary>
 		private FileTuple GetBasicFileTuple(string filePath)
