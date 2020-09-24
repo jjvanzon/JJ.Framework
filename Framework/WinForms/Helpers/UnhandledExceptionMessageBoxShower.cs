@@ -45,6 +45,7 @@ namespace JJ.Framework.WinForms.Helpers
 		/// For instance a separate Windows message loop running on another thread for Midi device processing
 		/// would not have its exceptions handled automatically.
 		/// Then you can call this method manually.
+		/// Otherwise, the Initialize method would aim to set things up on its own.
 		/// </summary>
 		public static void ShowMessageBox(Exception ex)
 		{

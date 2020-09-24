@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
 using JJ.Framework.Collections;
+
 // ReSharper disable InvokeAsExtensionMethod
 
 namespace JJ.Framework.IO
@@ -28,10 +29,8 @@ namespace JJ.Framework.IO
 		}
 
 		public IList<FilePair> Analyze(
-			string folderPath, 
-			bool recursive, 
-			Action<string> progressCallback = null, 
-			Func<bool> cancelCallback = null)
+			string folderPath, bool recursive,
+			Action<string> progressCallback = null, Func<bool> cancelCallback = null)
 		{
 			FileHelper.AssertFolderExists(folderPath);
 
@@ -86,6 +85,7 @@ namespace JJ.Framework.IO
 					// Progress counter
 					iterationCounter++;
 					bool mustShowPercentage = iterationCounter % iterationsPerProgressCallback == 0;
+
 					if (mustShowPercentage)
 					{
 						decimal percentage = 100m * iterationCounter / totalIterations;
@@ -98,20 +98,17 @@ namespace JJ.Framework.IO
 
 			// Convert to overviewable list of duplicates.
 			List<FilePair> duplicateFilePairs = fileTuples.Where(x => x.IsDuplicate)
-														  .Select(ConvertFileTupleToFilePair)
-														  .OrderBy(x => x.OriginalFilePath)
-														  .ThenBy(x => x.DuplicateFilePath)
-														  .ToList();
+			                                              .Select(ConvertFileTupleToFilePair)
+			                                              .OrderBy(x => x.OriginalFilePath)
+			                                              .ThenBy(x => x.DuplicateFilePath)
+			                                              .ToList();
 
 			progressCallback?.Invoke("Analysis complete.");
 
 			return duplicateFilePairs;
 		}
 
-		public void DeleteDuplicates(
-			IList<FilePair> filePairs, 
-			Action<string> progressCallback = null, 
-			Func<bool> cancelCallback = null)
+		public void DeleteDuplicates(IList<FilePair> filePairs, Action<string> progressCallback = null, Func<bool> cancelCallback = null)
 		{
 			if (filePairs == null) throw new ArgumentNullException(nameof(filePairs));
 

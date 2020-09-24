@@ -18,13 +18,6 @@ namespace JJ.Utilities.FileDeduplication
 		{
 			InitializeComponent();
 
-			Description =
-				"This utility aims to look up duplicate files (recursively) in a folder. " +
-				"It might first analyze which duplicates there may be and report them visually. " +
-				"After that it would be an option to have this utility delete those files. " +
-				"This utility may depend on the contents of the directory not changing while it is processing. " +
-				"So use with caution. That may be good tip in general.";
-
 			_fileDeduplicator = new FileDeduplicator();
 		}
 
@@ -40,9 +33,10 @@ namespace JJ.Utilities.FileDeduplication
 				_filePairs = _fileDeduplicator.Analyze(FilePath, checkBoxRecursive.Checked, ShowProgress, () => IsRunning);
 			}
 
-			string message = FormatFilePairs(_filePairs);
-			MessageBox.Show(message);
+			labelListOfDuplicates.Text = FormatFilePairs(_filePairs);
 		}
+
+		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) => Clipboard.SetText(labelListOfDuplicates.Text);
 
 		private void MainForm_OnRunProcess(object sender, EventArgs e)
 		{
