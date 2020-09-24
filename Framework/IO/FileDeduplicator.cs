@@ -14,7 +14,7 @@ namespace JJ.Framework.IO
 		[PublicAPI]
 		public class FilePair
 		{
-			public string FirstOccurrenceFilePath { get; set; }
+			public string OriginalFilePath { get; set; }
 			public string DuplicateFilePath { get; set; }
 		}
 
@@ -24,7 +24,7 @@ namespace JJ.Framework.IO
 			public long FileSize { get; set; }
 			public byte[] FileBytes { get; set; }
 			public bool IsDuplicate { get; set; }
-			public FileTuple MainOccurrence { get; set; }
+			public FileTuple OriginalFileTuple { get; set; }
 		}
 
 		public IList<FilePair> Analyze(string folderPath, bool recursive, Action<string> progressCallback = null)
@@ -74,7 +74,7 @@ namespace JJ.Framework.IO
 					if (!FileTuplesAreEqual(fileTuple1, fileTuple2))
 					{
 						fileTuple2.IsDuplicate = true;
-						fileTuple2.MainOccurrence = fileTuple1;
+						fileTuple2.OriginalFileTuple = fileTuple1;
 					}
 
 					// Progress counter
@@ -93,7 +93,7 @@ namespace JJ.Framework.IO
 			// Convert to overviewable list of duplicates.
 			List<FilePair> duplicateFilePairs = fileTuples.Where(x => x.IsDuplicate)
 			                                              .Select(ConvertFileTupleToFilePair)
-			                                              .OrderBy(x => x.FirstOccurrenceFilePath)
+			                                              .OrderBy(x => x.OriginalFilePath)
 			                                              .ThenBy(x => x.DuplicateFilePath)
 			                                              .ToList();
 
@@ -147,7 +147,7 @@ namespace JJ.Framework.IO
 			=> new FilePair
 			{
 				DuplicateFilePath = fileTuple.FilePath,
-				FirstOccurrenceFilePath = fileTuple.MainOccurrence?.FilePath
+				OriginalFilePath = fileTuple.OriginalFileTuple?.FilePath
 			};
 	}
 }

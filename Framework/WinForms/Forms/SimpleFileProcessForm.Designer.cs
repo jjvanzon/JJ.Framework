@@ -38,7 +38,7 @@ namespace JJ.Framework.WinForms.Forms
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.simpleFileProcessControl = new SimpleFileProcessControl();
+			this.simpleFileProcessControl = new JJ.Framework.WinForms.Controls.SimpleFileProcessControl();
 			this.SuspendLayout();
 			// 
 			// simpleFileProcessControl
@@ -47,19 +47,19 @@ namespace JJ.Framework.WinForms.Forms
 			this.simpleFileProcessControl.FilePath = "";
 			this.simpleFileProcessControl.IsRunning = false;
 			this.simpleFileProcessControl.Location = new System.Drawing.Point(0, 0);
-			this.simpleFileProcessControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.simpleFileProcessControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.simpleFileProcessControl.MustShowExceptions = false;
 			this.simpleFileProcessControl.Name = "simpleFileProcessControl";
-			this.simpleFileProcessControl.Size = new System.Drawing.Size(627, 347);
+			this.simpleFileProcessControl.Size = new System.Drawing.Size(557, 278);
 			this.simpleFileProcessControl.TabIndex = 0;
 			// 
 			// SimpleFileProcessForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(695, 432);
+			this.ClientSize = new System.Drawing.Size(618, 346);
 			this.Controls.Add(this.simpleFileProcessControl);
-			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.Name = "SimpleFileProcessForm";
 			this.Text = "SimpleProcessForm";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Base_FormClosing);

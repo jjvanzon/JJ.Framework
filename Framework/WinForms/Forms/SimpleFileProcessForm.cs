@@ -3,9 +3,11 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.WinForms.Forms
 {
+	[PublicAPI]
 	public partial class SimpleFileProcessForm : Form
 	{
 		public SimpleFileProcessForm()

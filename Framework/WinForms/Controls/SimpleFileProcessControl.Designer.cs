@@ -39,9 +39,8 @@
 			// buttonCancel
 			// 
 			this.buttonCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.buttonCancel.Font = new System.Drawing.Font("Calibri", 10F);
 			this.buttonCancel.Location = new System.Drawing.Point(327, 229);
-			this.buttonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.buttonCancel.Margin = new System.Windows.Forms.Padding(4);
 			this.buttonCancel.Name = "buttonCancel";
 			this.buttonCancel.Size = new System.Drawing.Size(112, 39);
 			this.buttonCancel.TabIndex = 9;
@@ -52,9 +51,8 @@
 			// labelProgress
 			// 
 			this.labelProgress.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.labelProgress.Font = new System.Drawing.Font("Calibri", 10F);
 			this.labelProgress.Location = new System.Drawing.Point(0, 290);
-			this.labelProgress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.labelProgress.Margin = new System.Windows.Forms.Padding(4);
 			this.labelProgress.Name = "labelProgress";
 			this.labelProgress.Padding = new System.Windows.Forms.Padding(8, 7, 8, 7);
 			this.labelProgress.Size = new System.Drawing.Size(505, 38);
@@ -65,30 +63,27 @@
 			// 
 			this.labelFilePath.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.labelFilePath.AutoSize = true;
-			this.labelFilePath.Font = new System.Drawing.Font("Calibri", 10F);
 			this.labelFilePath.Location = new System.Drawing.Point(16, 185);
 			this.labelFilePath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.labelFilePath.Name = "labelFilePath";
-			this.labelFilePath.Size = new System.Drawing.Size(50, 23);
+			this.labelFilePath.Size = new System.Drawing.Size(38, 16);
 			this.labelFilePath.TabIndex = 7;
 			this.labelFilePath.Text = "Path:";
 			// 
 			// textBoxFilePath
 			// 
 			this.textBoxFilePath.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.textBoxFilePath.Font = new System.Drawing.Font("Calibri", 10F);
 			this.textBoxFilePath.Location = new System.Drawing.Point(71, 180);
-			this.textBoxFilePath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.textBoxFilePath.Margin = new System.Windows.Forms.Padding(4);
 			this.textBoxFilePath.Name = "textBoxFilePath";
-			this.textBoxFilePath.Size = new System.Drawing.Size(411, 30);
+			this.textBoxFilePath.Size = new System.Drawing.Size(411, 22);
 			this.textBoxFilePath.TabIndex = 6;
 			// 
 			// buttonStart
 			// 
 			this.buttonStart.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.buttonStart.Font = new System.Drawing.Font("Calibri", 10F);
 			this.buttonStart.Location = new System.Drawing.Point(71, 229);
-			this.buttonStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.buttonStart.Margin = new System.Windows.Forms.Padding(4);
 			this.buttonStart.Name = "buttonStart";
 			this.buttonStart.Size = new System.Drawing.Size(112, 39);
 			this.buttonStart.TabIndex = 5;
@@ -99,7 +94,6 @@
 			// labelDescription
 			// 
 			this.labelDescription.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.labelDescription.Font = new System.Drawing.Font("Calibri", 10F);
 			this.labelDescription.Location = new System.Drawing.Point(20, 18);
 			this.labelDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.labelDescription.Name = "labelDescription";
@@ -117,7 +111,7 @@
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.labelProgress);
 			this.Controls.Add(this.buttonStart);
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "SimpleFileProcessControl";
 			this.Size = new System.Drawing.Size(505, 329);
 			this.Load += new System.EventHandler(this.SimpleFileProcessControl_Load);

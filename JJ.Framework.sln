@@ -187,6 +187,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Tests", "Framework\Business.Tests\JJ.Framework.Business.Tests.csproj", "{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileDeduplication", "Utilities\FileDeduplication\JJ.Utilities.FileDeduplication.csproj", "{E640170F-0006-4DDE-8445-7A6118BDFBEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1214,6 +1216,18 @@ Global
 		{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}.Release|x86.ActiveCfg = Release|Any CPU
 		{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}.Release|x86.Build.0 = Release|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.Debug|x86.Build.0 = Debug|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.Release|x86.ActiveCfg = Release|Any CPU
+		{E640170F-0006-4DDE-8445-7A6118BDFBEE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
