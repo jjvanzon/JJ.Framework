@@ -30,10 +30,9 @@
 		{
 			this.buttonCancel = new System.Windows.Forms.Button();
 			this.labelProgress = new System.Windows.Forms.Label();
-			this.labelFilePath = new System.Windows.Forms.Label();
-			this.textBoxFilePath = new System.Windows.Forms.TextBox();
 			this.buttonStart = new System.Windows.Forms.Button();
 			this.labelDescription = new System.Windows.Forms.Label();
+			this.filePathControl = new JJ.Framework.WinForms.Controls.FilePathControl();
 			this.SuspendLayout();
 			// 
 			// buttonCancel
@@ -59,26 +58,6 @@
 			this.labelProgress.TabIndex = 8;
 			this.labelProgress.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// labelFilePath
-			// 
-			this.labelFilePath.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.labelFilePath.AutoSize = true;
-			this.labelFilePath.Location = new System.Drawing.Point(16, 185);
-			this.labelFilePath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-			this.labelFilePath.Name = "labelFilePath";
-			this.labelFilePath.Size = new System.Drawing.Size(38, 16);
-			this.labelFilePath.TabIndex = 7;
-			this.labelFilePath.Text = "Path:";
-			// 
-			// textBoxFilePath
-			// 
-			this.textBoxFilePath.Anchor = System.Windows.Forms.AnchorStyles.None;
-			this.textBoxFilePath.Location = new System.Drawing.Point(71, 180);
-			this.textBoxFilePath.Margin = new System.Windows.Forms.Padding(4);
-			this.textBoxFilePath.Name = "textBoxFilePath";
-			this.textBoxFilePath.Size = new System.Drawing.Size(411, 22);
-			this.textBoxFilePath.TabIndex = 6;
-			// 
 			// buttonStart
 			// 
 			this.buttonStart.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -101,12 +80,23 @@
 			this.labelDescription.TabIndex = 10;
 			this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
+			// filePathControl
+			// 
+			this.filePathControl.BrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.Open;
+			this.filePathControl.FilePath = "";
+			this.filePathControl.LabelText = "Path";
+			this.filePathControl.Location = new System.Drawing.Point(16, 185);
+			this.filePathControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.filePathControl.Name = "filePathControl";
+			this.filePathControl.Size = new System.Drawing.Size(449, 22);
+			this.filePathControl.Spacing = 0;
+			this.filePathControl.TabIndex = 11;
+			// 
 			// SimpleFileProcessControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.labelFilePath);
-			this.Controls.Add(this.textBoxFilePath);
+			this.Controls.Add(this.filePathControl);
 			this.Controls.Add(this.labelDescription);
 			this.Controls.Add(this.buttonCancel);
 			this.Controls.Add(this.labelProgress);
@@ -117,7 +107,6 @@
 			this.Load += new System.EventHandler(this.SimpleFileProcessControl_Load);
 			this.Resize += new System.EventHandler(this.SimpleFileProcessControl_Resize);
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 
@@ -125,9 +114,8 @@
 
 		private System.Windows.Forms.Button buttonCancel;
 		private System.Windows.Forms.Label labelProgress;
-		private System.Windows.Forms.Label labelFilePath;
-		private System.Windows.Forms.TextBox textBoxFilePath;
 		private System.Windows.Forms.Button buttonStart;
 		private System.Windows.Forms.Label labelDescription;
+		private FilePathControl filePathControl;
 	}
 }

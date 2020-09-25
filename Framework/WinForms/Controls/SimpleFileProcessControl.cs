@@ -3,10 +3,12 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using JetBrains.Annotations;
 using JJ.Framework.Logging;
 
 namespace JJ.Framework.WinForms.Controls
 {
+    [PublicAPI]
     public partial class SimpleFileProcessControl : UserControl
     {
         private const int SPACING = 16;
@@ -53,17 +55,14 @@ namespace JJ.Framework.WinForms.Controls
             buttonCancel.Location = new Point(Width - SPACING - buttonCancel.Width, y);
 
             y -= SPACING;
-            y -= textBoxFilePath.Height;
+            y -= filePathControl.Height;
 
-            labelFilePath.Location = new Point(SPACING, y);
-
-            int textBoxFilePathWidth = SPACING + labelFilePath.Width + SPACING;
-            int textBoxTop = y;
-            textBoxFilePath.Location = new Point(textBoxFilePathWidth, y);
-            textBoxFilePath.Width = Width - SPACING - textBoxFilePathWidth;
+            int filePathControlTop = y;
+            filePathControl.Location = new Point(SPACING, y);
+            filePathControl.Width = Width - SPACING - SPACING;
 
             labelDescription.Location = new Point(SPACING, SPACING);
-            labelDescription.Size = new Size(Width - SPACING - SPACING, Height - textBoxTop - SPACING - SPACING);
+            labelDescription.Size = new Size(Width - SPACING - SPACING, Height - filePathControlTop - SPACING - SPACING);
         }
 
         private void Start()
@@ -126,15 +125,15 @@ namespace JJ.Framework.WinForms.Controls
             {
                 buttonStart.Enabled = !_isRunning;
                 buttonCancel.Enabled = _isRunning;
-                textBoxFilePath.Enabled = !_isRunning;
+                filePathControl.Enabled = !_isRunning;
             });
 
         // Other Properties
 
         public string FilePath
         {
-            get => textBoxFilePath.Text;
-            set => textBoxFilePath.Text = value;
+            get => filePathControl.FilePath;
+            set => filePathControl.FilePath = value;
         }
 
         [Editor(
@@ -176,5 +175,5 @@ namespace JJ.Framework.WinForms.Controls
             var thread = new Thread(new ThreadStart(action));
             thread.Start();
         }
-    }
+	}
 }
