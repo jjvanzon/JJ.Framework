@@ -130,12 +130,6 @@ namespace JJ.Framework.WinForms.Controls
 
         // Other Properties
 
-        public string FilePath
-        {
-            get => filePathControl.FilePath;
-            set => filePathControl.FilePath = value;
-        }
-
         [Editor(
             "System.ComponentModel.Design.MultilineStringEditor, System.Design",
             "System.Drawing.Design.UITypeEditor")]
@@ -144,6 +138,21 @@ namespace JJ.Framework.WinForms.Controls
             get => labelDescription.Text;
             set => labelDescription.Text = value;
         }
+
+        public string TextBoxLabelText
+        {
+            get => filePathControl.LabelText;
+            set => filePathControl.LabelText = value;
+        }
+
+        public string TextBoxText
+        {
+            get => filePathControl.FilePath;
+            set => filePathControl.FilePath = value;
+        }
+
+        [Obsolete("Use TextBoxText instead.")]
+        public string FilePath { get; set; }
 
         [DefaultValue(true)]
         public bool MustShowExceptions { get; set; }

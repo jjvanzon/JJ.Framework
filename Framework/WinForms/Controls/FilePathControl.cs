@@ -2,12 +2,14 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.WinForms.EventArg;
 using JJ.Framework.WinForms.Helpers;
 
 namespace JJ.Framework.WinForms.Controls
 {
+	[PublicAPI]
 	public partial class FilePathControl : UserControl
 	{
 		// TODO: Tooltip only works when TextBoxEnabled = true;
@@ -49,6 +51,7 @@ namespace JJ.Framework.WinForms.Controls
 			set => FilePath = value;
 		}
 
+		/// <summary> In case of no label text, this would hide the label. </summary>
 		public string LabelText
 		{
 			get => label.Text;
@@ -66,7 +69,7 @@ namespace JJ.Framework.WinForms.Controls
 			set => textBox.Text = value;
 		}
 
-		private FileBrowseModeEnum _browseMode;
+		private FileBrowseModeEnum _browseMode = FileBrowseModeEnum.Open;
 		public FileBrowseModeEnum BrowseMode
 		{
 			get => _browseMode;
