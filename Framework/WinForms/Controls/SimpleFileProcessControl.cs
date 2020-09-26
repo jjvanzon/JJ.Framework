@@ -18,6 +18,8 @@ namespace JJ.Framework.WinForms.Controls
 
 		public event EventHandler OnRunProcess;
 
+		// Initialization
+
 		public SimpleFileProcessControl()
 		{
 			InitializeComponent();
@@ -34,9 +36,75 @@ namespace JJ.Framework.WinForms.Controls
 			PositionControls();
 		}
 
-		private void ButtonStart_Click(object sender, EventArgs e) => Start();
+		// Properties
 
-		private void ButtonCancel_Click(object sender, EventArgs e) => Cancel();
+		private volatile bool _isRunning;
+		[Browsable(false)]
+		public bool IsRunning
+		{
+			get => _isRunning;
+			set
+			{
+				_isRunning = value;
+				ApplyIsRunning();
+			}
+		}
+
+		[Editor(
+			"System.ComponentModel.Design.MultilineStringEditor, System.Design",
+			"System.Drawing.Design.UITypeEditor")]
+		public string Description
+		{
+			get => labelDescription.Text;
+			set => labelDescription.Text = value;
+		}
+
+		public string TextBoxLabelText
+		{
+			get => filePathControl.LabelText;
+			set => filePathControl.LabelText = value;
+		}
+
+		public string TextBoxText
+		{
+			get => filePathControl.FilePath;
+			set => filePathControl.FilePath = value;
+		}
+
+		public bool TextBoxEnabled
+		{
+			get => filePathControl.TextBoxEnabled;
+			set => filePathControl.TextBoxEnabled = value;
+		}
+
+		public bool TextBoxVisible
+		{
+			get => filePathControl.TextBoxVisible;
+			set => filePathControl.TextBoxVisible = value;
+		}
+
+		/// <inheritdoc cref="FilePathControl.FileBrowseMode" />
+		public FileBrowseModeEnum FileBrowseMode
+		{
+			get => filePathControl.FileBrowseMode;
+			set => filePathControl.FileBrowseMode = value;
+		}
+
+		[DefaultValue(true)]
+		public bool MustShowExceptions { get; set; }
+
+		// Applying
+
+		private void ApplyIsRunning()
+			=> OnUiThread(
+				() =>
+				{
+					buttonStart.Enabled = !_isRunning;
+					buttonCancel.Enabled = _isRunning;
+					filePathControl.Enabled = !_isRunning;
+				});
+
+		// Positioning
 
 		private void SimpleFileProcessControl_Resize(object sender, EventArgs e) => PositionControls();
 
@@ -65,6 +133,12 @@ namespace JJ.Framework.WinForms.Controls
 			labelDescription.Location = new Point(SPACING, SPACING);
 			labelDescription.Size = new Size(Width - SPACING - SPACING, Height - filePathControlTop - SPACING - SPACING);
 		}
+
+		// Actions
+
+		private void ButtonStart_Click(object sender, EventArgs e) => Start();
+
+		private void ButtonCancel_Click(object sender, EventArgs e) => Cancel();
 
 		private void Start()
 		{
@@ -102,72 +176,7 @@ namespace JJ.Framework.WinForms.Controls
 			IsRunning = false;
 		}
 
-		// Progress Label
-
 		public void ShowProgress(string message) => OnUiThread(() => labelProgress.Text = message);
-
-		// IsRunning
-
-		private volatile bool _isRunning;
-		[Browsable(false)]
-		public bool IsRunning
-		{
-			get => _isRunning;
-			set
-			{
-				_isRunning = value;
-				ApplyIsRunning();
-			}
-		}
-
-		private void ApplyIsRunning()
-			=> OnUiThread(
-				() =>
-				{
-					buttonStart.Enabled = !_isRunning;
-					buttonCancel.Enabled = _isRunning;
-					filePathControl.Enabled = !_isRunning;
-				});
-
-		// Other Properties
-
-		[Editor(
-			"System.ComponentModel.Design.MultilineStringEditor, System.Design",
-			"System.Drawing.Design.UITypeEditor")]
-		public string Description
-		{
-			get => labelDescription.Text;
-			set => labelDescription.Text = value;
-		}
-
-		public string TextBoxLabelText
-		{
-			get => filePathControl.LabelText;
-			set => filePathControl.LabelText = value;
-		}
-
-		public string TextBoxText
-		{
-			get => filePathControl.FilePath;
-			set => filePathControl.FilePath = value;
-		}
-
-		/*
-		[Obsolete("Use " + nameof(TextBoxText) + "instead.")]
-		[Browsable(false)]
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public string FilePath { get; set; }
-		*/
-
-		/// <inheritdoc cref="FilePathControl.FileBrowseMode" />
-		public FileBrowseModeEnum FileBrowseMode
-		{
-			get => filePathControl.FileBrowseMode;
-			set => filePathControl.FileBrowseMode = value;
-		}
-
-		[DefaultValue(true)]
-		public bool MustShowExceptions { get; set; }
 
 		// Helpers
 

@@ -24,6 +24,11 @@ namespace JJ.Framework.WinForms.Controls
 
 		public event EventHandler<FilePathEventArgs> Browsed;
 
+		private CommonDialog _commonDialog;
+		private readonly Graphics _graphics;
+
+		// Initialization
+
 		public FilePathControl()
 		{
 			_graphics = CreateGraphics();
@@ -44,11 +49,6 @@ namespace JJ.Framework.WinForms.Controls
 			base.OnLoad(e);
 			RequestPositionControls();
 		}
-
-		// Fields
-
-		private CommonDialog _commonDialog;
-		private readonly Graphics _graphics;
 
 		// Properties
 
@@ -78,21 +78,13 @@ namespace JJ.Framework.WinForms.Controls
 			set => textBox.Text = value;
 		}
 
-		/// <inheritdoc cref="FileBrowseModeEnum" />
 		private FileBrowseModeEnum _fileBrowseMode;
+		/// <inheritdoc cref="FileBrowseModeEnum" />
 		public FileBrowseModeEnum FileBrowseMode
 		{
 			get => _fileBrowseMode;
 			set => SetFileBrowseMode(value);
 		}
-
-		/*
-		/// <summary> obsolete </summary>
-		[Obsolete("Use " + nameof(FileBrowseMode) + " instead.")]
-		[Browsable(false)]
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public FileBrowseModeEnum BrowseMode { get; set; }
-		*/
 
 		private int _spacing;
 		[DefaultValue(4)]
@@ -134,15 +126,21 @@ namespace JJ.Framework.WinForms.Controls
 				_ => throw new InvalidValueException(value)
 			};
 
-			
-			//buttonBrowse.Visible = value != FileBrowseModeEnum.None;
+			buttonBrowse.Visible = value != FileBrowseModeEnum.None;
 
 			_fileBrowseMode = value;
 
-			//RequestPositionControls();
+			RequestPositionControls();
 		}
 
-		// Gui
+		// Positioning
+
+		protected override void OnResize(EventArgs e)
+		{
+			base.OnResize(e);
+
+			RequestPositionControls();
+		}
 
 		private void RequestPositionControls()
 		{
@@ -207,7 +205,7 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
-		// Events
+		// Actions
 
 		private void ButtonBrowse_Click(object sender, EventArgs e)
 		{
@@ -223,13 +221,6 @@ namespace JJ.Framework.WinForms.Controls
 					Browsed(this, e2);
 				}
 			}
-		}
-
-		protected override void OnResize(EventArgs e)
-		{
-			base.OnResize(e);
-
-			RequestPositionControls();
 		}
 
 		private void TextBox_TextChanged(object sender, EventArgs e) => toolTip.SetToolTip(textBox, textBox.Text);

@@ -14,14 +14,6 @@ namespace JJ.Framework.WinForms.Helpers
 		/// <summary> In case the dialog is opened, this option would make it be in the style for the purpose of a browse selection action. </summary>
 		SelectFolder,
 		/// <summary> This option might be chosen to indicate that no file or folder browse action is relevant. </summary>
-		None,
-		/*
-		/// <summary> obsolete </summary>
-		[Obsolete("Use "+ nameof(OpenFile) + " instead.")]
-		Open,
-		/// <summary> obsolete </summary>
-		[Obsolete("Use " + nameof(SaveFile) + " instead.")]
-		Save
-		*/
+		None
 	}
 }
