@@ -53,7 +53,7 @@
 			this.buttonBrowse.TabIndex = 0;
 			this.buttonBrowse.Text = "...";
 			this.buttonBrowse.UseVisualStyleBackColor = true;
-			this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
+			this.buttonBrowse.Click += new System.EventHandler(this.ButtonBrowse_Click);
 			// 
 			// label
 			// 
@@ -71,13 +71,13 @@
 			this.textBox.Name = "textBox";
 			this.textBox.Size = new System.Drawing.Size(100, 20);
 			this.textBox.TabIndex = 2;
-			this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+			this.textBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
 			// 
 			// timerPositionControls
 			// 
 			this.timerPositionControls.Enabled = true;
 			this.timerPositionControls.Interval = 1;
-			this.timerPositionControls.Tick += new System.EventHandler(this.timerPositionControls_Tick);
+			this.timerPositionControls.Tick += new System.EventHandler(this.TimerPositionControls_Tick);
 			// 
 			// FilePathControl
 			// 

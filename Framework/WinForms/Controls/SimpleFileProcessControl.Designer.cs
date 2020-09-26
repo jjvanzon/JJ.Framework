@@ -45,7 +45,7 @@
 			this.buttonCancel.TabIndex = 9;
 			this.buttonCancel.Text = "Cancel";
 			this.buttonCancel.UseVisualStyleBackColor = true;
-			this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+			this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
 			// 
 			// labelProgress
 			// 
@@ -68,7 +68,7 @@
 			this.buttonStart.TabIndex = 5;
 			this.buttonStart.Text = "Start";
 			this.buttonStart.UseVisualStyleBackColor = true;
-			this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+			this.buttonStart.Click += new System.EventHandler(this.ButtonStart_Click);
 			// 
 			// labelDescription
 			// 
@@ -82,14 +82,14 @@
 			// 
 			// filePathControl
 			// 
-			this.filePathControl.BrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.Open;
+			this.filePathControl.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.OpenFile;
 			this.filePathControl.FilePath = "";
 			this.filePathControl.LabelText = "Path";
 			this.filePathControl.Location = new System.Drawing.Point(16, 185);
 			this.filePathControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.filePathControl.Name = "filePathControl";
 			this.filePathControl.Size = new System.Drawing.Size(449, 22);
-			this.filePathControl.Spacing = 0;
+			this.filePathControl.Spacing = 16;
 			this.filePathControl.TabIndex = 11;
 			// 
 			// SimpleFileProcessControl

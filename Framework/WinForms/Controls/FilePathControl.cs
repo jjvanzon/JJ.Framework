@@ -5,10 +5,18 @@ using System.Windows.Forms;
 using JetBrains.Annotations;
 using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.WinForms.EventArg;
+using JJ.Framework.WinForms.Extensions;
 using JJ.Framework.WinForms.Helpers;
+// ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
 
 namespace JJ.Framework.WinForms.Controls
 {
+	/// <summary>
+	/// Would show a label, a text box and a browse button,
+	/// that might show a dialog to open or save a file or select a folder.
+	/// Might also be used if a text box would optionally
+	/// sometimes have a file browse function.
+	/// </summary>
 	[PublicAPI]
 	public partial class FilePathControl : UserControl
 	{
@@ -34,17 +42,17 @@ namespace JJ.Framework.WinForms.Controls
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-
 			RequestPositionControls();
 		}
 
 		// Fields
 
-		private FileDialog _fileDialog;
+		private CommonDialog _commonDialog;
 		private readonly Graphics _graphics;
 
 		// Properties
 
+		/// <summary> Would get or set the FilePath in the TextBox. </summary>
 		public override string Text
 		{
 			get => FilePath;
@@ -63,21 +71,30 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		/// <summary> Would get or set what's in the text box. </summary>
 		public string FilePath
 		{
 			get => textBox.Text;
 			set => textBox.Text = value;
 		}
 
-		private FileBrowseModeEnum _browseMode = FileBrowseModeEnum.Open;
-		public FileBrowseModeEnum BrowseMode
+		/// <inheritdoc cref="FileBrowseModeEnum" />
+		private FileBrowseModeEnum _fileBrowseMode;
+		public FileBrowseModeEnum FileBrowseMode
 		{
-			get => _browseMode;
-			set => SetBrowseMode(value);
+			get => _fileBrowseMode;
+			set => SetFileBrowseMode(value);
 		}
 
-		private int _spacing;
+		/*
+		/// <summary> obsolete </summary>
+		[Obsolete("Use " + nameof(FileBrowseMode) + " instead.")]
+		[Browsable(false)]
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public FileBrowseModeEnum BrowseMode { get; set; }
+		*/
 
+		private int _spacing;
 		[DefaultValue(4)]
 		public int Spacing
 		{
@@ -106,23 +123,23 @@ namespace JJ.Framework.WinForms.Controls
 
 		// Applying
 
-		private void SetBrowseMode(FileBrowseModeEnum value)
+		private void SetFileBrowseMode(FileBrowseModeEnum value)
 		{
-			switch (value)
+			_commonDialog = value switch
 			{
-				case FileBrowseModeEnum.Open:
-					_fileDialog = new OpenFileDialog();
-					break;
+				FileBrowseModeEnum.None => null,
+				FileBrowseModeEnum.OpenFile => new OpenFileDialog(),
+				FileBrowseModeEnum.SaveFile => new SaveFileDialog(),
+				FileBrowseModeEnum.SelectFolder => new FolderBrowserDialog(),
+				_ => throw new InvalidValueException(value)
+			};
 
-				case FileBrowseModeEnum.Save:
-					_fileDialog = new SaveFileDialog();
-					break;
+			
+			//buttonBrowse.Visible = value != FileBrowseModeEnum.None;
 
-				default:
-					throw new InvalidValueException(value);
-			}
+			_fileBrowseMode = value;
 
-			_browseMode = value;
+			//RequestPositionControls();
 		}
 
 		// Gui
@@ -130,11 +147,10 @@ namespace JJ.Framework.WinForms.Controls
 		private void RequestPositionControls()
 		{
 			if (timerPositionControls == null) return;
-
 			timerPositionControls.Enabled = true;
 		}
 
-		private void timerPositionControls_Tick(object sender, EventArgs e) => PositionControls();
+		private void TimerPositionControls_Tick(object sender, EventArgs e) => PositionControls();
 
 	    private void PositionControls()
 		{
@@ -167,17 +183,23 @@ namespace JJ.Framework.WinForms.Controls
 					x += label.Width + _spacing;
 				}
 
+
 				// textBox
 				textBox.Location = new Point(x, y);
-				int textBoxWidth =  Width - x - buttonBrowse.Width - _spacing;
+
+				int textBoxWidth = Width - x - _spacing;
+				if (FileBrowseMode != FileBrowseModeEnum.None) textBoxWidth -= buttonBrowse.Width;
 				if (textBoxWidth < 1) textBoxWidth = 1;
 				textBox.Width = textBoxWidth;
 
 				x += textBox.Width + _spacing;
 
 				// buttonBrowse
-				buttonBrowse.Location = new Point(x, y);
-				buttonBrowse.Height = height;
+				if (FileBrowseMode != FileBrowseModeEnum.None)
+				{
+					buttonBrowse.Location = new Point(x, y);
+					buttonBrowse.Height = height;
+				}
 			}
 			finally
 			{
@@ -187,13 +209,13 @@ namespace JJ.Framework.WinForms.Controls
 
 		// Events
 
-		private void buttonBrowse_Click(object sender, EventArgs e)
+		private void ButtonBrowse_Click(object sender, EventArgs e)
 		{
-			_fileDialog.FileName = textBox.Text;
+			_commonDialog.SetPath_OrException(textBox.Text);
 
-			if (_fileDialog.ShowDialog() == DialogResult.OK)
+			if (_commonDialog.ShowDialog() == DialogResult.OK)
 			{
-				textBox.Text = _fileDialog.FileName;
+				textBox.Text = _commonDialog.GetPath_OrException();
 
 				if (Browsed != null)
 				{
@@ -210,6 +232,6 @@ namespace JJ.Framework.WinForms.Controls
 			RequestPositionControls();
 		}
 
-		private void textBox_TextChanged(object sender, EventArgs e) => toolTip.SetToolTip(textBox, textBox.Text);
+		private void TextBox_TextChanged(object sender, EventArgs e) => toolTip.SetToolTip(textBox, textBox.Text);
 	}
 }

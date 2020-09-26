@@ -37,11 +37,19 @@ namespace JJ.Framework.WinForms.Forms
 
 		public void ShowProgress(string message) => simpleFileProcessControl.ShowProgress(message);
 
-	    public string FilePath
+		public string TextBoxText
 		{
-			get => simpleFileProcessControl.FilePath;
-			set => simpleFileProcessControl.FilePath = value;
+			get => simpleFileProcessControl.TextBoxText;
+			set => simpleFileProcessControl.TextBoxText = value;
 		}
+
+		/*
+		/// <summary> obsolete </summary>
+		[Obsolete("Use " + nameof(TextBoxText) + " instead.")]
+		[Browsable(false)]
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public string FilePath { get; set; }
+		*/
 
 		[Editor(
 			"System.ComponentModel.Design.MultilineStringEditor, System.Design",

@@ -44,7 +44,7 @@ namespace JJ.Framework.WinForms.Forms
 			// simpleFileProcessControl
 			// 
 			this.simpleFileProcessControl.Description = "";
-			this.simpleFileProcessControl.FilePath = "";
+			this.simpleFileProcessControl.TextBoxText = "";
 			this.simpleFileProcessControl.IsRunning = false;
 			this.simpleFileProcessControl.Location = new System.Drawing.Point(0, 0);
 			this.simpleFileProcessControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

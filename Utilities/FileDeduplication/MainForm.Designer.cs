@@ -63,7 +63,7 @@
 			this.labelListOfDuplicates.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.labelListOfDuplicates.Location = new System.Drawing.Point(19, 251);
 			this.labelListOfDuplicates.Name = "labelListOfDuplicates";
-			this.labelListOfDuplicates.Size = new System.Drawing.Size(650, 229);
+			this.labelListOfDuplicates.Size = new System.Drawing.Size(641, 229);
 			this.labelListOfDuplicates.TabIndex = 4;
 			this.labelListOfDuplicates.Text = "List of duplicates may appear here...";
 			// 
@@ -81,7 +81,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(685, 659);
+			this.ClientSize = new System.Drawing.Size(676, 659);
 			this.Controls.Add(this.buttonCopyListOfDuplicates);
 			this.Controls.Add(this.labelListOfDuplicates);
 			this.Controls.Add(this.buttonAnalyze);

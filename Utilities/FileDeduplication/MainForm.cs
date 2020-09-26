@@ -48,7 +48,7 @@ namespace JJ.Utilities.FileDeduplication
 		{
 			if (_filePairs == null)
 			{
-				_filePairs = _fileDeduplicator.Analyze(FilePath, checkBoxRecursive.Checked, ShowProgress, () => IsRunning);
+				_filePairs = _fileDeduplicator.Analyze(TextBoxText, checkBoxRecursive.Checked, ShowProgress, () => IsRunning);
 			}
 
 			labelListOfDuplicates.Text = FormatFilePairs(_filePairs);

@@ -54,7 +54,7 @@ namespace JJ.Framework.WinForms.TestForms
 			// 
 			// filePathControl2
 			// 
-			this.filePathControl2.BrowseMode = FileBrowseModeEnum.Open;
+			this.filePathControl2.FileBrowseMode = FileBrowseModeEnum.OpenFile;
 			this.filePathControl2.FilePath = "";
 			this.filePathControl2.LabelText = "Path";
 			this.filePathControl2.Location = new System.Drawing.Point(103, 53);
@@ -65,7 +65,7 @@ namespace JJ.Framework.WinForms.TestForms
 			// 
 			// filePathControl1
 			// 
-			this.filePathControl1.BrowseMode = FileBrowseModeEnum.Open;
+			this.filePathControl1.FileBrowseMode = FileBrowseModeEnum.OpenFile;
 			this.filePathControl1.FilePath = "fadsfs";
 			this.filePathControl1.Font = new System.Drawing.Font("Verdana", 10F);
 			this.filePathControl1.LabelText = "Path";

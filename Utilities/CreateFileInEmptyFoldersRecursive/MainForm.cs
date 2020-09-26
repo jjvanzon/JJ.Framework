@@ -18,7 +18,7 @@ namespace JJ.Utilities.CreateFileInEmptyFoldersRecursive
 
 		private void MainForm_OnRunProcess(object sender, EventArgs e)
 		{
-			string folderPath = FilePath;
+			string folderPath = TextBoxText;
 
 			if (!Directory.Exists(folderPath))
 			{
