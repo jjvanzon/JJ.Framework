@@ -53,6 +53,7 @@
     <Compile Include="CsvReader.cs" />
     <Compile Include="DirectoryInfoExtensions.cs" />
     <Compile Include="FileDeduplicator.cs" />
+    <Compile Include="FileDeleter.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="FileInfoExtensions.cs" />
     <Compile Include="FileLock.cs" />

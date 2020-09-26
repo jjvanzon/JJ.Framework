@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using JJ.Framework.IO;
 using JJ.Framework.WinForms.Forms;
 using JJ.Utilities.FileDeduplication.Properties;
+using Microsoft.VisualBasic.FileIO;
 
 // ReSharper disable PossibleMultipleEnumeration
 
@@ -35,13 +36,13 @@ namespace JJ.Utilities.FileDeduplication
 					AnalyzeIfNeeded();
 				});
 
-		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) 
-			=> Clipboard.SetText(labelListOfDuplicates.Text);
+		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) => Clipboard.SetText(labelListOfDuplicates.Text);
 
 		private void MainForm_OnRunProcess(object sender, EventArgs e)
 		{
 			AnalyzeIfNeeded();
-			_fileDeduplicator.DeleteDuplicates(_filePairs, ShowProgress, () => IsRunning);
+
+			_fileDeduplicator.DeleteDuplicates(_filePairs, DeleteFileWithRecycleBin, ShowProgress, () => IsRunning);
 		}
 
 		private void AnalyzeIfNeeded()
@@ -65,5 +66,12 @@ namespace JJ.Utilities.FileDeduplication
 			string formattedDuplicates = string.Join(separator, filePairs.Select(x => x.DuplicateFilePath));
 			return filePairs.First().OriginalFilePath + Environment.NewLine + formattedDuplicates;
 		}
+
+		private static void DeleteFileWithRecycleBin(string filePath)
+			=> FileSystem.DeleteFile(
+				filePath, 
+				UIOption.OnlyErrorDialogs, 
+				RecycleOption.SendToRecycleBin, 
+				UICancelOption.DoNothing);
 	}
 }

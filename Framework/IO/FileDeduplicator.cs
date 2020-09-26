@@ -108,17 +108,46 @@ namespace JJ.Framework.IO
 			return duplicateFilePairs;
 		}
 
+		/// <summary>
+		/// Would delete the duplicate files, while progress might be reported.
+		/// Surpasses the Windows recycle bin.
+		/// To use the recycle bin, the following might be executed:
+		/// DeleteDuplicates(filePairs, Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile, ...)
+		/// </summary>
 		public void DeleteDuplicates(IList<FilePair> filePairs, Action<string> progressCallback = null, Func<bool> cancelCallback = null)
+			=> DeleteDuplicates(filePairs, File.Delete, progressCallback, cancelCallback);
+
+		/// <summary>
+		/// Would delete the duplicate files, while progress might be reported.
+		/// But the actual delete action would be done with a delegate / lambda deleteCallback.
+		/// This might be used to use the recycle bin for deleting the files,
+		/// instead of deleting them permanently.
+		/// To use the recycle bin, the following might be executed:
+		/// DeleteDuplicates(filePairs, () => FileSystem.
+		/// </summary>
+		public void DeleteDuplicates(
+			IList<FilePair> filePairs, 
+			Action<string> deleteCallback, 
+			Action<string> progressCallback = null, 
+			Func<bool> cancelCallback = null)
 		{
 			if (filePairs == null) throw new ArgumentNullException(nameof(filePairs));
+			if (deleteCallback == null) throw new ArgumentNullException(nameof(deleteCallback));
 
-			foreach (FilePair filePair in filePairs)
+			int count = filePairs.Count;
+			for (var i = 0; i < count; i++)
 			{
+				FilePair filePair = filePairs[i];
+
+				// Progress
+				decimal percentage = (decimal)i / count;
+				progressCallback?.Invoke($"Deleting duplicates {percentage:0.0}: {filePair.DuplicateFilePath}");
+
+				// Cancel
 				if (IsCancelled(cancelCallback)) return;
 
-				progressCallback?.Invoke($"Deleting {filePair.DuplicateFilePath}");
-
-				File.Delete(filePair.DuplicateFilePath);
+				// Action
+				deleteCallback(filePair.DuplicateFilePath);
 			}
 
 			progressCallback?.Invoke("Done deleting duplicates.");
