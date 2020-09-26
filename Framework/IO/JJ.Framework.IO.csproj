@@ -53,13 +53,14 @@
     <Compile Include="CsvReader.cs" />
     <Compile Include="DirectoryInfoExtensions.cs" />
     <Compile Include="FileDeduplicator.cs" />
-    <Compile Include="FileDeleter.cs" />
+    <Compile Include="BulkFileDeleterBase.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="FileInfoExtensions.cs" />
     <Compile Include="FileLock.cs" />
     <Compile Include="FileLockException.cs" />
     <Compile Include="LockEnum.cs" />
     <Compile Include="PathParser.cs" />
+    <Compile Include="PermanentBulkFileDeleter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SafeFileOverwriter.cs" />
     <Compile Include="StreamHelper.cs" />

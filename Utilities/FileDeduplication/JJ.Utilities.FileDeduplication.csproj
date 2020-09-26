@@ -108,6 +108,10 @@
       <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
       <Name>JJ.Framework.IO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Microsoft.VisualBasic\JJ.Framework.Microsoft.VisualBasic.csproj">
+      <Project>{AB67EA5D-779B-4F03-A869-61B32BA10B60}</Project>
+      <Name>JJ.Framework.Microsoft.VisualBasic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\WinForms\JJ.Framework.WinForms.csproj">
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
       <Name>JJ.Framework.WinForms</Name>

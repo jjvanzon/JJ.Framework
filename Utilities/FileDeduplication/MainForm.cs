@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using JJ.Framework.IO;
+using JJ.Framework.Microsoft.VisualBasic;
 using JJ.Framework.WinForms.Forms;
 using JJ.Utilities.FileDeduplication.Properties;
-using Microsoft.VisualBasic.FileIO;
 
 // ReSharper disable PossibleMultipleEnumeration
 
@@ -14,6 +14,7 @@ namespace JJ.Utilities.FileDeduplication
 	public partial class MainForm : SimpleFileProcessForm
 	{
 		private readonly FileDeduplicator _fileDeduplicator;
+		private readonly BulkFileDeleterWithRecycleBin _bulkFileDeleterWithRecycleBin;
 
 		private IList<FileDeduplicator.FilePair> _filePairs;
 
@@ -24,6 +25,7 @@ namespace JJ.Utilities.FileDeduplication
 			Text = Resources.ApplicationName;
 
 			_fileDeduplicator = new FileDeduplicator();
+			_bulkFileDeleterWithRecycleBin = new BulkFileDeleterWithRecycleBin();
 		}
 
 		// Actions
@@ -42,7 +44,9 @@ namespace JJ.Utilities.FileDeduplication
 		{
 			AnalyzeIfNeeded();
 
-			_fileDeduplicator.DeleteDuplicates(_filePairs, DeleteFileWithRecycleBin, ShowProgress, () => IsRunning);
+			_bulkFileDeleterWithRecycleBin.DeleteFiles(
+				_filePairs.Select(x => x.DuplicateFilePath).ToArray(),
+				ShowProgress, () => IsRunning);
 		}
 
 		private void AnalyzeIfNeeded()
@@ -58,7 +62,9 @@ namespace JJ.Utilities.FileDeduplication
 		// Helpers
 
 		private string FormatFilePairs(IList<FileDeduplicator.FilePair> filePairs)
-			=> string.Join(Environment.NewLine + Environment.NewLine, filePairs.GroupBy(x => x.OriginalFilePath).Select(FormatItem));
+			=> string.Join(
+				Environment.NewLine + Environment.NewLine, 
+				filePairs.GroupBy(x => x.OriginalFilePath).Select(FormatItem));
 
 		private string FormatItem(IEnumerable<FileDeduplicator.FilePair> filePairs)
 		{
@@ -66,12 +72,5 @@ namespace JJ.Utilities.FileDeduplication
 			string formattedDuplicates = string.Join(separator, filePairs.Select(x => x.DuplicateFilePath));
 			return filePairs.First().OriginalFilePath + Environment.NewLine + formattedDuplicates;
 		}
-
-		private static void DeleteFileWithRecycleBin(string filePath)
-			=> FileSystem.DeleteFile(
-				filePath, 
-				UIOption.OnlyErrorDialogs, 
-				RecycleOption.SendToRecycleBin, 
-				UICancelOption.DoNothing);
 	}
 }

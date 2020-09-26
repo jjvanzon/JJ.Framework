@@ -38,6 +38,8 @@
 			// checkBoxRecursive
 			// 
 			this.checkBoxRecursive.AutoSize = true;
+			this.checkBoxRecursive.Checked = true;
+			this.checkBoxRecursive.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.checkBoxRecursive.Location = new System.Drawing.Point(19, 147);
 			this.checkBoxRecursive.Name = "checkBoxRecursive";
 			this.checkBoxRecursive.Size = new System.Drawing.Size(106, 26);
@@ -63,7 +65,7 @@
 			this.labelListOfDuplicates.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.labelListOfDuplicates.Location = new System.Drawing.Point(19, 251);
 			this.labelListOfDuplicates.Name = "labelListOfDuplicates";
-			this.labelListOfDuplicates.Size = new System.Drawing.Size(679, 241);
+			this.labelListOfDuplicates.Size = new System.Drawing.Size(675, 237);
 			this.labelListOfDuplicates.TabIndex = 4;
 			this.labelListOfDuplicates.Text = "List of duplicates may appear here...";
 			// 
@@ -81,7 +83,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(714, 671);
+			this.ClientSize = new System.Drawing.Size(710, 667);
 			this.Controls.Add(this.buttonCopyListOfDuplicates);
 			this.Controls.Add(this.labelListOfDuplicates);
 			this.Controls.Add(this.buttonAnalyze);
