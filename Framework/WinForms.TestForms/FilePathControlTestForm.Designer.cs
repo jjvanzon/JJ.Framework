@@ -33,8 +33,8 @@ namespace JJ.Framework.WinForms.TestForms
 		private void InitializeComponent()
 		{
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.filePathControl2 = new FilePathControl();
-			this.filePathControl1 = new FilePathControl();
+			this.filePathControl2 = new JJ.Framework.WinForms.Controls.FilePathControl();
+			this.filePathControl1 = new JJ.Framework.WinForms.Controls.FilePathControl();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -44,46 +44,49 @@ namespace JJ.Framework.WinForms.TestForms
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.Controls.Add(this.filePathControl2, 1, 1);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(111, 202);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(148, 249);
+			this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 2;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 100);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(267, 123);
 			this.tableLayoutPanel1.TabIndex = 1;
 			// 
 			// filePathControl2
 			// 
-			this.filePathControl2.FileBrowseMode = FileBrowseModeEnum.OpenFile;
+			this.filePathControl2.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.OpenFile;
 			this.filePathControl2.FilePath = "";
 			this.filePathControl2.LabelText = "Path";
-			this.filePathControl2.Location = new System.Drawing.Point(103, 53);
+			this.filePathControl2.Location = new System.Drawing.Point(138, 66);
+			this.filePathControl2.Margin = new System.Windows.Forms.Padding(5);
 			this.filePathControl2.Name = "filePathControl2";
-			this.filePathControl2.Size = new System.Drawing.Size(94, 44);
+			this.filePathControl2.Size = new System.Drawing.Size(123, 52);
 			this.filePathControl2.Spacing = 0;
 			this.filePathControl2.TabIndex = 0;
 			// 
 			// filePathControl1
 			// 
-			this.filePathControl1.FileBrowseMode = FileBrowseModeEnum.OpenFile;
-			this.filePathControl1.FilePath = "fadsfs";
+			this.filePathControl1.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.OpenFile;
+			this.filePathControl1.FilePath = "ytrywyyw";
 			this.filePathControl1.Font = new System.Drawing.Font("Verdana", 10F);
 			this.filePathControl1.LabelText = "Path";
-			this.filePathControl1.Location = new System.Drawing.Point(39, 41);
+			this.filePathControl1.Location = new System.Drawing.Point(52, 50);
 			this.filePathControl1.Margin = new System.Windows.Forms.Padding(0);
 			this.filePathControl1.Name = "filePathControl1";
-			this.filePathControl1.Size = new System.Drawing.Size(159, 77);
+			this.filePathControl1.Size = new System.Drawing.Size(424, 108);
 			this.filePathControl1.Spacing = 0;
 			this.filePathControl1.TabIndex = 0;
-			this.filePathControl1.Browsed += new System.EventHandler<FilePathEventArgs>(this.filePathControl1_Browsed);
+			this.filePathControl1.Browsed += new System.EventHandler<JJ.Framework.WinForms.EventArg.FilePathEventArgs>(this.filePathControl1_Browsed);
 			// 
 			// FilePathControlTestForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(436, 325);
+			this.ClientSize = new System.Drawing.Size(581, 400);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.filePathControl1);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "FilePathControlTestForm";
 			this.Text = "FilePathControlTestForm";
 			this.tableLayoutPanel1.ResumeLayout(false);

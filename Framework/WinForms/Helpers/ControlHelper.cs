@@ -29,7 +29,6 @@ namespace JJ.Framework.WinForms.Helpers
 			if (control == null) throw new NullException(() => control);
 
 			UserControl userControl = GetAncestorUserControl(control);
-			if (userControl.ParentForm == null) throw new NullException(() => userControl.ParentForm);
 
 			SizeF size = graphics.MeasureString(text, font);
 
@@ -38,6 +37,12 @@ namespace JJ.Framework.WinForms.Helpers
 			// not only because it is protected,
 			// but because WinForms does not make AutoScaleFactor.Width > 1
 			// when the font is changed in the form.
+
+			// ParentForm seems null 'randomly. Null tolerance seems the answer.
+			if (userControl.ParentForm == null)
+			{
+				return size;
+			}
 
 			float autoScaleFactor = userControl.Font.Size / userControl.ParentForm.Font.Size;
 			bool autoScaleFactorIs1 = autoScaleFactor - 1 < 0.001; // Beware for rounding errors when equating floats.

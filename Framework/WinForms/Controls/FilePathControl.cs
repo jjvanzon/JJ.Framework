@@ -100,11 +100,16 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		private bool _textBoxEnabled = true;
 		[DefaultValue(true)]
 		public bool TextBoxEnabled
 		{
-			get => textBox.Enabled;
-			set => textBox.Enabled = value;
+			get => _textBoxEnabled;
+			set
+			{
+				_textBoxEnabled = value;
+				ApplyEnabled();
+			}
 		}
 
 		[DefaultValue(true)]
@@ -134,6 +139,15 @@ namespace JJ.Framework.WinForms.Controls
 			RequestPositionControls();
 		}
 
+		private void FilePathControl_EnabledChanged(object sender, EventArgs e) => ApplyEnabled();
+
+		private void ApplyEnabled()
+		{
+			textBox.Enabled = Enabled && TextBoxEnabled;
+			label.Enabled = Enabled;
+			buttonBrowse.Enabled = Enabled;
+		}
+		
 		// Positioning
 
 		protected override void OnResize(EventArgs e)
