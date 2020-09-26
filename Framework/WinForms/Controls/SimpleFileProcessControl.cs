@@ -163,7 +163,7 @@ namespace JJ.Framework.WinForms.Controls
 		{
 			if (MessageBox.Show(AreYouSureMessage, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
-				Async(RunProcess);
+				OnBackgroundThread(RunProcess);
 			}
 		}
 
@@ -199,7 +199,7 @@ namespace JJ.Framework.WinForms.Controls
 
 		// Helpers
 
-		private void OnUiThread(Action action)
+		public void OnUiThread(Action action)
 		{
 			if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
 			{
@@ -219,10 +219,6 @@ namespace JJ.Framework.WinForms.Controls
 			BeginInvoke(action);
 		}
 
-		private void Async(Action action)
-		{
-			var thread = new Thread(new ThreadStart(action));
-			thread.Start();
-		}
+		public void OnBackgroundThread(Action action) => new Thread(new ThreadStart(action)).Start();
 	}
 }

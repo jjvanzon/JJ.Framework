@@ -133,5 +133,9 @@ namespace JJ.Framework.WinForms.Forms
 		private void simpleProcessControl_OnRunProcess(object sender, EventArgs e) => OnRunProcess?.Invoke(sender, e);
 
 	    private void Base_FormClosing(object sender, FormClosingEventArgs e) => e.Cancel = simpleFileProcessControl.IsRunning;
+
+	    public void OnUiThread(Action action) => simpleFileProcessControl.OnUiThread(action);
+
+		public void OnBackgroundThread(Action action) => simpleFileProcessControl.OnBackgroundThread(action);
 	}
 }

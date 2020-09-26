@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.WinForms.Helpers;
 
 namespace JJ.Framework.WinForms.Extensions
 {
+	[PublicAPI]
 	public static class ControlExtensions
 	{
 		/// <summary>

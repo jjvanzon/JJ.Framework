@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using JJ.Framework.IO;
 using JJ.Framework.WinForms.Forms;
 using JJ.Utilities.FileDeduplication.Properties;
+
 // ReSharper disable PossibleMultipleEnumeration
 
 namespace JJ.Utilities.FileDeduplication
@@ -27,16 +28,15 @@ namespace JJ.Utilities.FileDeduplication
 		// Actions
 
 		private void ButtonAnalyze_Click(object sender, EventArgs e)
-		{
-			_filePairs = null; // HACK
-			AnalyzeIfNeeded();
-		}
+			=> OnBackgroundThread(
+				() =>
+				{
+					_filePairs = null; // HACK
+					AnalyzeIfNeeded();
+				});
 
-		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e)
-		{
-			//AnalyzeIfNeeded();
-			Clipboard.SetText(labelListOfDuplicates.Text);
-		}
+		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) 
+			=> Clipboard.SetText(labelListOfDuplicates.Text);
 
 		private void MainForm_OnRunProcess(object sender, EventArgs e)
 		{
@@ -51,13 +51,13 @@ namespace JJ.Utilities.FileDeduplication
 				_filePairs = _fileDeduplicator.Analyze(TextBoxText, checkBoxRecursive.Checked, ShowProgress, () => IsRunning);
 			}
 
-			labelListOfDuplicates.Text = FormatFilePairs(_filePairs);
+			OnUiThread(() => labelListOfDuplicates.Text = FormatFilePairs(_filePairs));
 		}
 
 		// Helpers
 
 		private string FormatFilePairs(IList<FileDeduplicator.FilePair> filePairs)
-			=> string.Join(Environment.NewLine + Environment.NewLine,  filePairs.GroupBy(x => x.OriginalFilePath).Select(FormatItem));
+			=> string.Join(Environment.NewLine + Environment.NewLine, filePairs.GroupBy(x => x.OriginalFilePath).Select(FormatItem));
 
 		private string FormatItem(IEnumerable<FileDeduplicator.FilePair> filePairs)
 		{
