@@ -12,8 +12,6 @@ namespace JJ.Framework.WinForms.Controls
 	[PublicAPI]
 	public partial class SimpleFileProcessControl : UserControl
 	{
-		private const int SPACING = 16;
-
 		private bool _isLoaded;
 
 		public event EventHandler OnRunProcess;
@@ -59,6 +57,7 @@ namespace JJ.Framework.WinForms.Controls
 			set => labelDescription.Text = value;
 		}
 
+		[DefaultValue("Path: ")]
 		public string TextBoxLabelText
 		{
 			get => filePathControl.LabelText;
@@ -71,12 +70,14 @@ namespace JJ.Framework.WinForms.Controls
 			set => filePathControl.FilePath = value;
 		}
 
+		[DefaultValue(true)]
 		public bool TextBoxEnabled
 		{
 			get => filePathControl.TextBoxEnabled;
 			set => filePathControl.TextBoxEnabled = value;
 		}
 
+		[DefaultValue(true)]
 		public bool TextBoxVisible
 		{
 			get => filePathControl.TextBoxVisible;
@@ -93,7 +94,25 @@ namespace JJ.Framework.WinForms.Controls
 		[DefaultValue(true)]
 		public bool MustShowExceptions { get; set; }
 
+		[DefaultValue("Are you sure?")]
+		public string AreYouSureMessage { get; set; } = "Are you sure?";
+
+		private int _spacing = 16;
+		[DefaultValue(16)]
+		public int Spacing
+		{
+			get => _spacing;
+			set
+			{
+				_spacing = value;
+				ApplySpacing();
+				PositionControls();
+			}
+		}
+
 		// Applying
+
+		private void ApplySpacing() => filePathControl.Spacing = Spacing;
 
 		private void ApplyIsRunning()
 			=> OnUiThread(
@@ -117,21 +136,21 @@ namespace JJ.Framework.WinForms.Controls
 			labelProgress.Location = new Point(0, y);
 			labelProgress.Width = Width;
 
-			y -= SPACING;
+			y -= Spacing;
 			y -= buttonStart.Height;
 
-			buttonStart.Location = new Point(SPACING, y);
-			buttonCancel.Location = new Point(Width - SPACING - buttonCancel.Width, y);
+			buttonStart.Location = new Point(Spacing, y);
+			buttonCancel.Location = new Point(Width - Spacing - buttonCancel.Width, y);
 
-			y -= SPACING;
+			y -= Spacing;
 			y -= filePathControl.Height;
 
 			int filePathControlTop = y;
-			filePathControl.Location = new Point(SPACING, y);
-			filePathControl.Width = Width - SPACING - SPACING;
+			filePathControl.Location = new Point(Spacing, y);
+			filePathControl.Width = Width - Spacing - Spacing;
 
-			labelDescription.Location = new Point(SPACING, SPACING);
-			labelDescription.Size = new Size(Width - SPACING - SPACING, Height - filePathControlTop - SPACING - SPACING);
+			labelDescription.Location = new Point(Spacing, Spacing);
+			labelDescription.Size = new Size(Width - Spacing - Spacing, Height - filePathControlTop - Spacing - Spacing);
 		}
 
 		// Actions
@@ -142,7 +161,7 @@ namespace JJ.Framework.WinForms.Controls
 
 		private void Start()
 		{
-			if (MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			if (MessageBox.Show(AreYouSureMessage, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
 				Async(RunProcess);
 			}

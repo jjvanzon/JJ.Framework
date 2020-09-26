@@ -60,7 +60,8 @@ namespace JJ.Framework.WinForms.Controls
 		}
 
 		/// <summary> In case of no label text, this would hide the label. </summary>
-		public string LabelText
+		[DefaultValue("Path: ")]
+		public string LabelText 
 		{
 			get => label.Text;
 			set
@@ -185,8 +186,8 @@ namespace JJ.Framework.WinForms.Controls
 				// textBox
 				textBox.Location = new Point(x, y);
 
-				int textBoxWidth = Width - x - _spacing;
-				if (FileBrowseMode != FileBrowseModeEnum.None) textBoxWidth -= buttonBrowse.Width;
+				int textBoxWidth = Width - x;
+				if (FileBrowseMode != FileBrowseModeEnum.None) textBoxWidth = textBoxWidth - buttonBrowse.Width - _spacing;
 				if (textBoxWidth < 1) textBoxWidth = 1;
 				textBox.Width = textBoxWidth;
 

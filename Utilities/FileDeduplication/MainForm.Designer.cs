@@ -63,7 +63,7 @@
 			this.labelListOfDuplicates.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.labelListOfDuplicates.Location = new System.Drawing.Point(19, 251);
 			this.labelListOfDuplicates.Name = "labelListOfDuplicates";
-			this.labelListOfDuplicates.Size = new System.Drawing.Size(639, 232);
+			this.labelListOfDuplicates.Size = new System.Drawing.Size(679, 241);
 			this.labelListOfDuplicates.TabIndex = 4;
 			this.labelListOfDuplicates.Text = "List of duplicates may appear here...";
 			// 
@@ -81,15 +81,17 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(674, 662);
+			this.ClientSize = new System.Drawing.Size(714, 671);
 			this.Controls.Add(this.buttonCopyListOfDuplicates);
 			this.Controls.Add(this.labelListOfDuplicates);
 			this.Controls.Add(this.buttonAnalyze);
 			this.Controls.Add(this.checkBoxRecursive);
 			this.Description = resources.GetString("$this.Description");
+			this.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.SelectFolder;
 			this.Font = new System.Drawing.Font("Calibri", 8.805756F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
+			this.TextBoxLabelText = "Folder:";
 			this.TextBoxVisible = true;
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
 			this.Controls.SetChildIndex(this.checkBoxRecursive, 0);

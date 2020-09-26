@@ -49,6 +49,7 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleFileProcessControl.Description = value;
 		}
 
+		[DefaultValue("Path: ")]
 		public string TextBoxLabelText
 		{
 			get => simpleFileProcessControl.TextBoxLabelText;
@@ -61,12 +62,14 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleFileProcessControl.TextBoxText = value;
 		}
 
+		[DefaultValue(true)]
 		public bool TextBoxEnabled
 		{
 			get => simpleFileProcessControl.TextBoxEnabled;
 			set => simpleFileProcessControl.TextBoxEnabled = value;
 		}
 
+		[DefaultValue(true)]
 		public bool TextBoxVisible
 		{
 			get => simpleFileProcessControl.TextBoxVisible;
@@ -80,10 +83,25 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleFileProcessControl.FileBrowseMode = value;
 		}
 
+		[DefaultValue(true)]
 		public bool MustShowExceptions
 		{
 			get => simpleFileProcessControl.MustShowExceptions;
 			set => simpleFileProcessControl.MustShowExceptions = value;
+		}
+
+		[DefaultValue("Are you sure?")]
+		public string AreYouSureMessage
+		{
+			get => simpleFileProcessControl.AreYouSureMessage;
+			set => simpleFileProcessControl.AreYouSureMessage = value;
+		}
+
+		[DefaultValue(16)]
+		public int Spacing
+		{
+			get => simpleFileProcessControl.Spacing;
+			set => simpleFileProcessControl.Spacing = value;
 		}
 
 		/// <summary>
