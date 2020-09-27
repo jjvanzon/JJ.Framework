@@ -7,7 +7,7 @@ namespace JJ.Framework.Microsoft.VisualBasic
 	/// Would delete the files, while progress might be reported.
 	/// Deleted files would be sent to the Windows recycle bin.
 	/// </summary>
-	public class BulkFileDeleterWithRecycleBin : BulkFileDeleterBase
+	public class BulkFileDeleter_WithRecycleBin : BulkFileDeleterBase
 	{
 		protected override void DeleteFile(string filePath)
 			=> FileSystem.DeleteFile(

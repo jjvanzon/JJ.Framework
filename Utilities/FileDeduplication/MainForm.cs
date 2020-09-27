@@ -14,7 +14,7 @@ namespace JJ.Utilities.FileDeduplication
 	public partial class MainForm : SimpleFileProcessForm
 	{
 		private readonly FileDeduplicator _fileDeduplicator;
-		private readonly BulkFileDeleterWithRecycleBin _bulkFileDeleterWithRecycleBin;
+		private readonly BulkFileDeleter_WithRecycleBin _bulkFileDeleter_WithRecycleBin;
 
 		private IList<FileDeduplicator.FilePair> _filePairs;
 
@@ -25,7 +25,7 @@ namespace JJ.Utilities.FileDeduplication
 			Text = Resources.ApplicationName;
 
 			_fileDeduplicator = new FileDeduplicator();
-			_bulkFileDeleterWithRecycleBin = new BulkFileDeleterWithRecycleBin();
+			_bulkFileDeleter_WithRecycleBin = new BulkFileDeleter_WithRecycleBin();
 		}
 
 		// Actions
@@ -44,7 +44,7 @@ namespace JJ.Utilities.FileDeduplication
 		{
 			AnalyzeIfNeeded();
 
-			_bulkFileDeleterWithRecycleBin.DeleteFiles(
+			_bulkFileDeleter_WithRecycleBin.DeleteFiles(
 				_filePairs.Select(x => x.DuplicateFilePath).ToArray(),
 				ShowProgress, () => IsRunning);
 		}
