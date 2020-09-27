@@ -15,6 +15,7 @@ namespace JJ.Framework.WinForms.Controls
 		private bool _isLoaded;
 
 		public event EventHandler OnRunProcess;
+		public event EventHandler Cancelled;
 
 		// Initialization
 
@@ -167,7 +168,11 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
-		private void Cancel() => IsRunning = false;
+		private void Cancel()
+		{
+			IsRunning = false;
+			Cancelled?.Invoke(this, EventArgs.Empty);
+		}
 
 		// Processing
 

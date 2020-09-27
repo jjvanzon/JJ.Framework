@@ -6,7 +6,7 @@ namespace JJ.Framework.IO
 {
 	/// <summary> Might deleting multiple files, while progress would be reported. </summary>
 	[PublicAPI]
-	public abstract class BulkFileDeleterBase
+	public abstract class BulkFileDeleterBase : IBulkFileDeleter
 	{
 		/// <summary>
 		/// Might be overridden to call File.Delete, or call a method that may move the file to the Recycle Bin.
@@ -16,8 +16,8 @@ namespace JJ.Framework.IO
 		/// <inheritdoc cref="BulkFileDeleterBase" />
 		public void DeleteFiles(
 			IList<string> filePaths,
-		    Action<string> progressCallback = null,
-		    Func<bool> cancelCallback = null)
+			Action<string> progressCallback = null,
+			Func<bool> cancelCallback = null)
 		{
 			if (filePaths == null) throw new ArgumentNullException(nameof(filePaths));
 

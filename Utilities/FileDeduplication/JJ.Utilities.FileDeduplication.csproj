@@ -57,16 +57,19 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs">
+    <Compile Include="FileDeduplicationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="FileDeduplicationForm.Designer.cs">
+      <DependentUpon>FileDeduplicationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileDeduplicationPresenter.cs" />
+    <Compile Include="FileDeduplicationViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="FileDeduplicationForm.resx">
+      <DependentUpon>FileDeduplicationForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -104,6 +107,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Common\JJ.Framework.Common.csproj">
+      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\IO\JJ.Framework.IO.csproj">
       <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
       <Name>JJ.Framework.IO</Name>

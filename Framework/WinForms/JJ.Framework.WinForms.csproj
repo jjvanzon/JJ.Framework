@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Extensions\CommonDialogExtensions.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
+    <Compile Include="Helpers\ClipboardUtilizer.cs" />
     <Compile Include="Helpers\ControlGraphicsBuffer.cs" />
     <Compile Include="Helpers\ControlHelper.cs" />
     <Compile Include="Extensions\ConversionExtensions.cs" />
