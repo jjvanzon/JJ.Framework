@@ -78,7 +78,7 @@
 			this.labelDescription.Name = "labelDescription";
 			this.labelDescription.Size = new System.Drawing.Size(463, 146);
 			this.labelDescription.TabIndex = 10;
-			this.labelDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			this.labelDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
 			// filePathControl
 			// 
@@ -86,7 +86,7 @@
 			this.filePathControl.FilePath = "";
 			this.filePathControl.LabelText = "Path";
 			this.filePathControl.Location = new System.Drawing.Point(16, 185);
-			this.filePathControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.filePathControl.Margin = new System.Windows.Forms.Padding(4);
 			this.filePathControl.Name = "filePathControl";
 			this.filePathControl.Size = new System.Drawing.Size(449, 22);
 			this.filePathControl.Spacing = 16;
