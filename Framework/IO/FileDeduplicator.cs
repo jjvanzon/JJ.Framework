@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
@@ -22,19 +23,25 @@ namespace JJ.Framework.IO
 		[UsedImplicitly] public FileDeduplicator() { }
 
 		[PublicAPI]
+		[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 		public class FilePair
 		{
 			public string OriginalFilePath { get; set; }
 			public string DuplicateFilePath { get; set; }
+		
+			private string DebuggerDisplay => DiagnosticsHelper.GetDebuggerDisplay(this);
 		}
 
-		private class FileTuple
+		[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
+		internal class FileTuple
 		{
 			public string FilePath { get; set; }
 			public long FileSize { get; set; }
 			public byte[] FileBytes { get; set; }
 			public bool IsDuplicate { get; set; }
 			public FileTuple OriginalFileTuple { get; set; }
+
+			private string DebuggerDisplay => DiagnosticsHelper.GetDebuggerDisplay(this);
 		}
 
 		public IList<FilePair> Analyze(
@@ -43,7 +50,7 @@ namespace JJ.Framework.IO
 		{
 			FileHelper.AssertFolderExists(folderPath);
 
-			progressCallback?.Invoke("Listing files.");
+			progressCallback?.Invoke("Listing files...");
 
 			// List files
 			SearchOption searchOption = recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
@@ -65,8 +72,9 @@ namespace JJ.Framework.IO
 			// So averagely an iteration would loop through half of the items.
 			long totalIterations = fileTuples.Count * fileTuples.Count / 2;
 			long iterationsPerProgressCallback = totalIterations / 1000;
+			if (iterationsPerProgressCallback == 0) iterationsPerProgressCallback = 1;
 
-			progressCallback?.Invoke("Analyzing duplicates.");
+			progressCallback?.Invoke("Analyzing duplicates...");
 
 			// Compare files
 			for (var i = 0; i < fileTuples.Count; i++)
@@ -98,12 +106,12 @@ namespace JJ.Framework.IO
 					if (mustShowPercentage)
 					{
 						decimal percentage = 100m * iterationCounter / totalIterations;
-						progressCallback?.Invoke($"Analyzing duplicates {percentage:0.0}");
+						progressCallback?.Invoke($"Analyzing duplicates {percentage:0.0}...");
 					}
 				}
 			}
 
-			progressCallback?.Invoke("Processing result.");
+			progressCallback?.Invoke("Processing result...");
 
 			// Convert to overviewable list of duplicates.
 			List<FilePair> duplicateFilePairs = fileTuples.Where(x => x.IsDuplicate)

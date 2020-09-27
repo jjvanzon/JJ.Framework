@@ -86,12 +86,8 @@ namespace JJ.Utilities.FileDeduplication
 
 		private void MapControlsToViewModel()
 		{
-			OnUiThread(
-				() =>
-				{
-					ViewModel.Recursive = checkBoxRecursive.Checked;
-					ViewModel.FolderPath = TextBoxText;
-				});
+			ViewModel.Recursive = checkBoxRecursive.Checked;
+			ViewModel.FolderPath = TextBoxText;
 		}
 	}
 }

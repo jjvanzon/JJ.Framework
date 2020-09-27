@@ -107,15 +107,15 @@ namespace JJ.Framework.WinForms.Forms
 		}
 
 		/// <summary>
-		/// Does nothing.
 		/// The base form seems to be as bold as to
 		/// assign the entry-point assembly name
 		/// as the form's title bar text.
+		/// It may afterwards be assigned something custom.
 		/// </summary>
 		public new string Text
 		{
-			get => null;
-			set { }
+			get => base.Text;
+			set => base.Text = value;
 		}
 
 		// Positioning

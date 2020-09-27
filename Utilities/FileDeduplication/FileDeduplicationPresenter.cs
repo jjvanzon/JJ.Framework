@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using JJ.Framework.Common;
+using JJ.Framework.Configuration;
 using JJ.Framework.IO;
 using JJ.Utilities.FileDeduplication.Properties;
 
@@ -48,13 +49,15 @@ namespace JJ.Utilities.FileDeduplication
 			{
 				TitleBarText = Resources.ApplicationName,
 				Explanation = Resources.Explanation,
-				Recursive = DEFAULT_RECURSIVE
+				ListOfDuplicates = Resources.ListOfDuplicatesRemark,
+				Recursive = DEFAULT_RECURSIVE,
+				FolderPath = AppSettingsReader<IAppSettings>.Get(x => x.DefaultFolderPath)
 			};
 
 		public void Analyze()
 		{
 			_filePairs = _fileDeduplicator.Analyze(
-				ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => ViewModel.IsRunning);
+				ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
 
 			ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
 		}
@@ -66,13 +69,13 @@ namespace JJ.Utilities.FileDeduplication
 			if (_filePairs == null)
 			{
 				_filePairs = _fileDeduplicator.Analyze(
-					ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => ViewModel.IsRunning);
+					ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
 
 				ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
 			}
 
 			_bulkFileDeleter_WithRecycleBin.DeleteFiles(
-				_filePairs.Select(x => x.DuplicateFilePath).ToArray(), SetProgressMessage, () => ViewModel.IsRunning);
+				_filePairs.Select(x => x.DuplicateFilePath).ToArray(), SetProgressMessage, () => !ViewModel.IsRunning);
 		}
 
 		private void SetProgressMessage(string progressMessage)

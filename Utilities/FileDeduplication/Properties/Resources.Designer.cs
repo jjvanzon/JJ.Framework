@@ -61,7 +61,7 @@ namespace JJ.Utilities.FileDeduplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to File Dedup Utility.
+        ///   Looks up a localized string similar to JJ Utilities - File Deduplication.
         /// </summary>
         internal static string ApplicationName {
             get {
@@ -75,6 +75,15 @@ namespace JJ.Utilities.FileDeduplication.Properties {
         internal static string Explanation {
             get {
                 return ResourceManager.GetString("Explanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of duplicates may appear here....
+        /// </summary>
+        internal static string ListOfDuplicatesRemark {
+            get {
+                return ResourceManager.GetString("ListOfDuplicatesRemark", resourceCulture);
             }
         }
     }

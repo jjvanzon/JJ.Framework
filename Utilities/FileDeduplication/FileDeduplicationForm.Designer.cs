@@ -67,7 +67,6 @@
 			this.labelListOfDuplicates.Name = "labelListOfDuplicates";
 			this.labelListOfDuplicates.Size = new System.Drawing.Size(600, 183);
 			this.labelListOfDuplicates.TabIndex = 4;
-			this.labelListOfDuplicates.Text = "List of duplicates may appear here...";
 			// 
 			// buttonCopyListOfDuplicates
 			// 
