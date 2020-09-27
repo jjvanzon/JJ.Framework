@@ -1,7 +1,7 @@
 ﻿// ReSharper disable MemberCanBeInternal
 namespace JJ.Utilities.FileDeduplication
 {
-	public class MainViewModel
+	public class FileDeduplicationViewModel
 	{
 		public string TitleBarText { get; set; }
 		public string Explanation { get; set; }

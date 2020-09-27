@@ -4,16 +4,16 @@ using JJ.Framework.WinForms.Forms;
 
 namespace JJ.Utilities.FileDeduplication
 {
-	public partial class MainForm : SimpleFileProcessForm
+	public partial class FileDeduplicationForm : SimpleFileProcessForm
 	{
-		private readonly MainPresenter _presenter;
-		private MainViewModel ViewModel => _presenter.ViewModel;
+		private readonly FileDeduplicationPresenter _presenter;
+		private FileDeduplicationViewModel ViewModel => _presenter.ViewModel;
 
-		public MainForm()
+		public FileDeduplicationForm()
 		{
 			InitializeComponent();
 
-			_presenter = new MainPresenter(MapViewModelToControls);
+			_presenter = new FileDeduplicationPresenter(MapViewModelToControls);
 
 			MapViewModelToControls();
 		}

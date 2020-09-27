@@ -1,6 +1,6 @@
 ﻿namespace JJ.Utilities.FileDeduplication
 {
-	partial class MainForm
+	partial class FileDeduplicationForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileDeduplicationForm));
 			this.checkBoxRecursive = new System.Windows.Forms.CheckBox();
 			this.buttonAnalyze = new System.Windows.Forms.Button();
 			this.labelListOfDuplicates = new System.Windows.Forms.Label();

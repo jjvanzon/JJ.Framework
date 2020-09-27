@@ -1,30 +1,36 @@
-﻿using JJ.Utilities.FileDeduplication.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using JJ.Framework.IO;
 using JJ.Framework.Microsoft.VisualBasic;
+using JJ.Utilities.FileDeduplication.Properties;
+
+// ReSharper disable MemberCanBeInternal
 
 // ReSharper disable PossibleMultipleEnumeration
 
 namespace JJ.Utilities.FileDeduplication
 {
-	public class MainPresenter
+	public class FileDeduplicationPresenter
 	{
-		private const bool DEFAULT_RECURSIVE = true;
+		// Services
 
 		private readonly FileDeduplicator _fileDeduplicator;
 		private readonly BulkFileDeleter_WithRecycleBin _bulkFileDeleter_WithRecycleBin;
 
-		public MainViewModel ViewModel { get; }
-		
-		private readonly Action _viewModelChanged;
+		// Data
 
 		private IList<FileDeduplicator.FilePair> _filePairs;
 
-		// TODO: Inject services through constructor for dependency inversion?
-		public MainPresenter(Action viewModelChanged)
+		// ViewModel
+
+		public FileDeduplicationViewModel ViewModel { get; }
+		private readonly Action _viewModelChanged;
+		private const bool DEFAULT_RECURSIVE = true;
+
+		// TODO: Injecting services through constructor for dependency inversion?
+		public FileDeduplicationPresenter(Action viewModelChanged)
 		{
 			_viewModelChanged = viewModelChanged;
 			_fileDeduplicator = new FileDeduplicator();
@@ -33,8 +39,8 @@ namespace JJ.Utilities.FileDeduplication
 			ViewModel = Show();
 		}
 
-		private MainViewModel Show()
-			=> new MainViewModel
+		private FileDeduplicationViewModel Show()
+			=> new FileDeduplicationViewModel
 			{
 				TitleBarText = Resources.ApplicationName,
 				Explanation = Resources.Explanation,
@@ -43,9 +49,10 @@ namespace JJ.Utilities.FileDeduplication
 
 		public void Analyze()
 		{
-			_filePairs = null; // HACK
+			_filePairs = _fileDeduplicator.Analyze(
+				ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => ViewModel.IsRunning);
 
-			AnalyzeIfNeeded();
+			ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
 		}
 
 		// TODO: Loosely coupled service?
@@ -53,29 +60,22 @@ namespace JJ.Utilities.FileDeduplication
 
 		public void DeleteFiles()
 		{
-			AnalyzeIfNeeded();
+			if (_filePairs == null)
+			{
+				_filePairs = _fileDeduplicator.Analyze(
+					ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => ViewModel.IsRunning);
+
+				ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
+			}
 
 			_bulkFileDeleter_WithRecycleBin.DeleteFiles(
-				_filePairs.Select(x => x.DuplicateFilePath).ToArray(),
-				SetProgressMessage, () => ViewModel.IsRunning);
+				_filePairs.Select(x => x.DuplicateFilePath).ToArray(), SetProgressMessage, () => ViewModel.IsRunning);
 		}
 
 		private void SetProgressMessage(string progressMessage)
 		{
 			ViewModel.ProgressMessage = progressMessage;
 			_viewModelChanged?.Invoke();
-		}
-
-		private void AnalyzeIfNeeded()
-		{
-			if (_filePairs == null)
-			{
-				_filePairs = _fileDeduplicator.Analyze(
-					ViewModel.FolderPath, ViewModel.Recursive,
-					SetProgressMessage, () => ViewModel.IsRunning);
-			}
-
-			ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
 		}
 
 		public void Cancel()
