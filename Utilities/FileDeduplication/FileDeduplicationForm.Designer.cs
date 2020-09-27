@@ -65,7 +65,7 @@
 			this.labelListOfDuplicates.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.labelListOfDuplicates.Location = new System.Drawing.Point(19, 251);
 			this.labelListOfDuplicates.Name = "labelListOfDuplicates";
-			this.labelListOfDuplicates.Size = new System.Drawing.Size(603, 181);
+			this.labelListOfDuplicates.Size = new System.Drawing.Size(600, 183);
 			this.labelListOfDuplicates.TabIndex = 4;
 			this.labelListOfDuplicates.Text = "List of duplicates may appear here...";
 			// 
@@ -79,11 +79,11 @@
 			this.buttonCopyListOfDuplicates.UseVisualStyleBackColor = true;
 			this.buttonCopyListOfDuplicates.Click += new System.EventHandler(this.ButtonCopyListOfDuplicates_Click);
 			// 
-			// MainForm
+			// FileDeduplicationForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(638, 611);
+			this.ClientSize = new System.Drawing.Size(635, 613);
 			this.Controls.Add(this.buttonCopyListOfDuplicates);
 			this.Controls.Add(this.labelListOfDuplicates);
 			this.Controls.Add(this.buttonAnalyze);
@@ -91,11 +91,12 @@
 			this.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.SelectFolder;
 			this.Font = new System.Drawing.Font("Calibri", 8.805756F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-			this.Name = "MainForm";
+			this.Name = "FileDeduplicationForm";
 			this.TextBoxLabelText = "Folder:";
 			this.TextBoxVisible = true;
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
 			this.Cancelled += new System.EventHandler(this.MainForm_Cancelled);
+			this.Load += new System.EventHandler(this.FileDeduplicationForm_Load);
 			this.Controls.SetChildIndex(this.checkBoxRecursive, 0);
 			this.Controls.SetChildIndex(this.buttonAnalyze, 0);
 			this.Controls.SetChildIndex(this.labelListOfDuplicates, 0);

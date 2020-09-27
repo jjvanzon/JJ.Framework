@@ -23,9 +23,9 @@ namespace JJ.Utilities.FileDeduplication
 				new ClipboardUtilizer());
 
 			_presenter.Initialize(MapViewModelToControls);
-
-			MapViewModelToControls();
 		}
+
+		private void FileDeduplicationForm_Load(object sender, EventArgs e) => MapViewModelToControls();
 
 		// Actions
 
@@ -75,7 +75,7 @@ namespace JJ.Utilities.FileDeduplication
 				() =>
 				{
 					if (Text != ViewModel.TitleBarText) Text = ViewModel.TitleBarText;
-					if (Description == ViewModel.Explanation) Description = ViewModel.Explanation;
+					if (Description != ViewModel.Explanation) Description = ViewModel.Explanation;
 					if (checkBoxRecursive.Checked != ViewModel.Recursive) checkBoxRecursive.Checked = ViewModel.Recursive;
 					if (labelListOfDuplicates.Text != ViewModel.ListOfDuplicates) labelListOfDuplicates.Text = ViewModel.ListOfDuplicates;
 					if (TextBoxText != ViewModel.FolderPath) TextBoxText = ViewModel.FolderPath;
