@@ -7,22 +7,15 @@ namespace JJ.Utilities.FileDeduplication
 	public partial class MainForm : SimpleFileProcessForm
 	{
 		private readonly MainPresenter _presenter;
-		private MainViewModel _viewModel;
+		private MainViewModel ViewModel => _presenter.ViewModel;
 
 		public MainForm()
 		{
 			InitializeComponent();
 
-			_presenter = new MainPresenter(
-				x =>
-				{
-					_viewModel = x;
-					ApplyControlsToViewModel();
-				});
+			_presenter = new MainPresenter(MapViewModelToControls);
 
-			_viewModel = _presenter.Show();
-
-			ApplyViewModelToControls();
+			MapViewModelToControls();
 		}
 
 		// Actions
@@ -31,63 +24,64 @@ namespace JJ.Utilities.FileDeduplication
 			=> OnBackgroundThread(
 				() =>
 				{
-					_viewModel = _presenter.Analyze(_viewModel);
-					ApplyViewModelToControls();
+					MapControlsToViewModel();
+					_presenter.Analyze();
+					MapViewModelToControls();
 				});
 
 		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e)
 		{
-			_viewModel = _presenter.CopyListOfDuplicates(_viewModel);
-			ApplyViewModelToControls();
+			_presenter.CopyListOfDuplicates();
+			MapViewModelToControls();
 		}
 
 		private void MainForm_OnRunProcess(object sender, EventArgs e)
 			=> OnBackgroundThread(
 				() =>
 				{
-					_viewModel = _presenter.DeleteFiles(_viewModel);
-					ApplyViewModelToControls();
+					MapControlsToViewModel();
+					_presenter.DeleteFiles();
+					MapViewModelToControls();
 				});
+
+		private void MainForm_Cancelled(object sender, EventArgs e)
+		{
+			_presenter.Cancel();
+			MapViewModelToControls();
+		}
 
 		// Binding
 
 		/// <summary>
 		/// Aims to apply the view model data to the WinForms controls.
 		/// Implementation details:
-		/// Equality checks would be for trying in advance to keep WinForms calmer.
+		/// Equality checks would be for an attempt in advance to try and keep WinForms calmer.
 		/// Strings reference-equals checked would be intentional
-		/// (instead of using string.Equals), to try and prevent some performance strain.
-		/// I just would like the toll to be low
-		/// of switching to using presenters, view models and mapping like this.
+		/// (instead of using string.Equals), to try and prevent unnecessary performance strain.
+		/// I just would like the toll of switching to using presenters, view models and mapping to be low.
 		/// </summary>
-		private void ApplyViewModelToControls()
+		private void MapViewModelToControls()
 		{
 			OnUiThread(
 				() =>
 				{
-					if (Text != _viewModel.TitleBarText) Text = _viewModel.TitleBarText;
-
-					if (Description == _viewModel.Explanation) Description = _viewModel.Explanation;
-
-					if (checkBoxRecursive.Checked != _viewModel.Recursive) checkBoxRecursive.Checked = _viewModel.Recursive;
-
-					if (labelListOfDuplicates.Text != _viewModel.ListOfDuplicates) labelListOfDuplicates.Text = _viewModel.ListOfDuplicates;
-
-					if (TextBoxText != _viewModel.FolderPath) TextBoxText = _viewModel.FolderPath;
-
-					ShowProgress(_viewModel.ProgressMessage);
-
-					IsRunning = _viewModel.IsRunning;
+					if (Text != ViewModel.TitleBarText) Text = ViewModel.TitleBarText;
+					if (Description == ViewModel.Explanation) Description = ViewModel.Explanation;
+					if (checkBoxRecursive.Checked != ViewModel.Recursive) checkBoxRecursive.Checked = ViewModel.Recursive;
+					if (labelListOfDuplicates.Text != ViewModel.ListOfDuplicates) labelListOfDuplicates.Text = ViewModel.ListOfDuplicates;
+					if (TextBoxText != ViewModel.FolderPath) TextBoxText = ViewModel.FolderPath;
+					ShowProgress(ViewModel.ProgressMessage);
+					IsRunning = ViewModel.IsRunning;
 				});
 		}
 
-		private void ApplyControlsToViewModel()
+		private void MapControlsToViewModel()
 		{
 			OnUiThread(
 				() =>
 				{
-					_viewModel.Recursive = checkBoxRecursive.Checked;
-					_viewModel.FolderPath = TextBoxText;
+					ViewModel.Recursive = checkBoxRecursive.Checked;
+					ViewModel.FolderPath = TextBoxText;
 				});
 		}
 	}

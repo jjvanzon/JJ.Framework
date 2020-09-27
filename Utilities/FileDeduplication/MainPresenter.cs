@@ -16,20 +16,24 @@ namespace JJ.Utilities.FileDeduplication
 
 		private readonly FileDeduplicator _fileDeduplicator;
 		private readonly BulkFileDeleter_WithRecycleBin _bulkFileDeleter_WithRecycleBin;
-	
-		private readonly Action<MainViewModel> _viewModelChanged;
+
+		public MainViewModel ViewModel { get; }
+		
+		private readonly Action _viewModelChanged;
 
 		private IList<FileDeduplicator.FilePair> _filePairs;
 
 		// TODO: Inject services through constructor for dependency inversion?
-		public MainPresenter(Action<MainViewModel> viewModelChanged)
+		public MainPresenter(Action viewModelChanged)
 		{
 			_viewModelChanged = viewModelChanged;
 			_fileDeduplicator = new FileDeduplicator();
 			_bulkFileDeleter_WithRecycleBin = new BulkFileDeleter_WithRecycleBin();
+
+			ViewModel = Show();
 		}
 
-		public MainViewModel Show()
+		private MainViewModel Show()
 			=> new MainViewModel
 			{
 				TitleBarText = Resources.ApplicationName,
@@ -37,61 +41,47 @@ namespace JJ.Utilities.FileDeduplication
 				Recursive = DEFAULT_RECURSIVE
 			};
 
-		public MainViewModel Analyze(MainViewModel viewModel)
+		public void Analyze()
 		{
-			if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
-
 			_filePairs = null; // HACK
-			viewModel = AnalyzeIfNeeded(viewModel);
 
-			return viewModel;
+			AnalyzeIfNeeded();
 		}
 
-		public MainViewModel CopyListOfDuplicates(MainViewModel viewModel)
+		// TODO: Loosely coupled service?
+		public void CopyListOfDuplicates() => Clipboard.SetText(ViewModel.ListOfDuplicates);
+
+		public void DeleteFiles()
 		{
-			if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
-
-			// TODO: Loosely coupled service?
-			Clipboard.SetText(viewModel.ListOfDuplicates);
-
-			return viewModel;
-		}
-
-		public MainViewModel DeleteFiles(MainViewModel viewModel)
-		{
-			AnalyzeIfNeeded(viewModel);
+			AnalyzeIfNeeded();
 
 			_bulkFileDeleter_WithRecycleBin.DeleteFiles(
 				_filePairs.Select(x => x.DuplicateFilePath).ToArray(),
-				x => SetProgressMessage(viewModel, x), () => viewModel.IsRunning);
-
-			return viewModel;
+				SetProgressMessage, () => ViewModel.IsRunning);
 		}
 
-		private void SetProgressMessage(MainViewModel viewModel, string progressMessage)
+		private void SetProgressMessage(string progressMessage)
 		{
-			viewModel.ProgressMessage = progressMessage;
-			_viewModelChanged(viewModel);
+			ViewModel.ProgressMessage = progressMessage;
+			_viewModelChanged?.Invoke();
 		}
 
-		private MainViewModel AnalyzeIfNeeded(MainViewModel viewModel)
+		private void AnalyzeIfNeeded()
 		{
 			if (_filePairs == null)
 			{
 				_filePairs = _fileDeduplicator.Analyze(
-					viewModel.FolderPath, viewModel.Recursive,
-					x => SetProgressMessage(viewModel, x), () => viewModel.IsRunning);
+					ViewModel.FolderPath, ViewModel.Recursive,
+					SetProgressMessage, () => ViewModel.IsRunning);
 			}
 
-			viewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
-
-			return viewModel;
+			ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
 		}
 
-		public MainViewModel Cancel(MainViewModel viewModel)
+		public void Cancel()
 		{
-			viewModel.IsRunning = false;
-			return viewModel;
+			ViewModel.IsRunning = false;
+			_viewModelChanged?.Invoke();
 		}
 
 		// Helpers

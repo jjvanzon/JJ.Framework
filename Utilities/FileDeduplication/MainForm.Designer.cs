@@ -95,6 +95,7 @@
 			this.TextBoxLabelText = "Folder:";
 			this.TextBoxVisible = true;
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
+			this.Cancelled += new System.EventHandler(this.MainForm_Cancelled);
 			this.Controls.SetChildIndex(this.checkBoxRecursive, 0);
 			this.Controls.SetChildIndex(this.buttonAnalyze, 0);
 			this.Controls.SetChildIndex(this.labelListOfDuplicates, 0);
