@@ -24,7 +24,8 @@ namespace JJ.Framework.WinForms.Forms
 			// Custom code line.
 			if (!this.DesignMode)
 			{
-				simpleFileProcessControl.OnRunProcess -= simpleProcessControl_OnRunProcess;
+				simpleFileProcessControl.OnRunProcess -= SimpleProcessControl_OnRunProcess;
+				simpleFileProcessControl.Cancelled -= SimpleProcessControl_Cancelled;
 			}
 
 			base.Dispose(disposing);

@@ -14,6 +14,7 @@ namespace JJ.Framework.WinForms.Forms
 	public partial class SimpleFileProcessForm : Form
 	{
 		public event EventHandler OnRunProcess;
+		public event EventHandler Cancelled;
 
 		// Initialization
 
@@ -26,7 +27,8 @@ namespace JJ.Framework.WinForms.Forms
 				base.Text = Assembly.GetEntryAssembly().GetName().Name;
 			}
 
-			simpleFileProcessControl.OnRunProcess += simpleProcessControl_OnRunProcess;
+			simpleFileProcessControl.OnRunProcess += SimpleProcessControl_OnRunProcess;
+			simpleFileProcessControl.Cancelled += SimpleProcessControl_Cancelled;
 		}
 
 		private void SimpleFileProcessForm_Load(object sender, EventArgs e) => PositionControls();
@@ -130,7 +132,9 @@ namespace JJ.Framework.WinForms.Forms
 
 		public void ShowProgress(string message) => simpleFileProcessControl.ShowProgress(message);
 
-		private void simpleProcessControl_OnRunProcess(object sender, EventArgs e) => OnRunProcess?.Invoke(sender, e);
+		private void SimpleProcessControl_OnRunProcess(object sender, EventArgs e) => OnRunProcess?.Invoke(sender, e);
+
+		private void SimpleProcessControl_Cancelled(object sender, EventArgs e) => Cancelled?.Invoke(sender, e);
 
 	    private void Base_FormClosing(object sender, FormClosingEventArgs e) => e.Cancel = simpleFileProcessControl.IsRunning;
 

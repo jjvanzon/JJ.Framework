@@ -1,31 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-using JJ.Framework.IO;
-using JJ.Framework.Microsoft.VisualBasic;
 using JJ.Framework.WinForms.Forms;
-using JJ.Utilities.FileDeduplication.Properties;
-
-// ReSharper disable PossibleMultipleEnumeration
+// ReSharper disable ArrangeMethodOrOperatorBody
 
 namespace JJ.Utilities.FileDeduplication
 {
 	public partial class MainForm : SimpleFileProcessForm
 	{
-		private readonly FileDeduplicator _fileDeduplicator;
-		private readonly BulkFileDeleter_WithRecycleBin _bulkFileDeleter_WithRecycleBin;
-
-		private IList<FileDeduplicator.FilePair> _filePairs;
+		private readonly MainPresenter _presenter;
+		private MainViewModel _viewModel;
 
 		public MainForm()
 		{
 			InitializeComponent();
 
-			Text = Resources.ApplicationName;
+			_presenter = new MainPresenter(
+				x =>
+				{
+					_viewModel = x;
+					ApplyControlsToViewModel();
+				});
 
-			_fileDeduplicator = new FileDeduplicator();
-			_bulkFileDeleter_WithRecycleBin = new BulkFileDeleter_WithRecycleBin();
+			_viewModel = _presenter.Show();
+
+			ApplyViewModelToControls();
 		}
 
 		// Actions
@@ -34,43 +31,64 @@ namespace JJ.Utilities.FileDeduplication
 			=> OnBackgroundThread(
 				() =>
 				{
-					_filePairs = null; // HACK
-					AnalyzeIfNeeded();
+					_viewModel = _presenter.Analyze(_viewModel);
+					ApplyViewModelToControls();
 				});
 
-		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) => Clipboard.SetText(labelListOfDuplicates.Text);
+		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e)
+		{
+			_viewModel = _presenter.CopyListOfDuplicates(_viewModel);
+			ApplyViewModelToControls();
+		}
 
 		private void MainForm_OnRunProcess(object sender, EventArgs e)
-		{
-			AnalyzeIfNeeded();
+			=> OnBackgroundThread(
+				() =>
+				{
+					_viewModel = _presenter.DeleteFiles(_viewModel);
+					ApplyViewModelToControls();
+				});
 
-			_bulkFileDeleter_WithRecycleBin.DeleteFiles(
-				_filePairs.Select(x => x.DuplicateFilePath).ToArray(),
-				ShowProgress, () => IsRunning);
+		// Binding
+
+		/// <summary>
+		/// Aims to apply the view model data to the WinForms controls.
+		/// Implementation details:
+		/// Equality checks would be for trying in advance to keep WinForms calmer.
+		/// Strings reference-equals checked would be intentional
+		/// (instead of using string.Equals), to try and prevent some performance strain.
+		/// I just would like the toll to be low
+		/// of switching to using presenters, view models and mapping like this.
+		/// </summary>
+		private void ApplyViewModelToControls()
+		{
+			OnUiThread(
+				() =>
+				{
+					if (Text != _viewModel.TitleBarText) Text = _viewModel.TitleBarText;
+
+					if (Description == _viewModel.Explanation) Description = _viewModel.Explanation;
+
+					if (checkBoxRecursive.Checked != _viewModel.Recursive) checkBoxRecursive.Checked = _viewModel.Recursive;
+
+					if (labelListOfDuplicates.Text != _viewModel.ListOfDuplicates) labelListOfDuplicates.Text = _viewModel.ListOfDuplicates;
+
+					if (TextBoxText != _viewModel.FolderPath) TextBoxText = _viewModel.FolderPath;
+
+					ShowProgress(_viewModel.ProgressMessage);
+
+					IsRunning = _viewModel.IsRunning;
+				});
 		}
 
-		private void AnalyzeIfNeeded()
+		private void ApplyControlsToViewModel()
 		{
-			if (_filePairs == null)
-			{
-				_filePairs = _fileDeduplicator.Analyze(TextBoxText, checkBoxRecursive.Checked, ShowProgress, () => IsRunning);
-			}
-
-			OnUiThread(() => labelListOfDuplicates.Text = FormatFilePairs(_filePairs));
-		}
-
-		// Helpers
-
-		private string FormatFilePairs(IList<FileDeduplicator.FilePair> filePairs)
-			=> string.Join(
-				Environment.NewLine + Environment.NewLine, 
-				filePairs.GroupBy(x => x.OriginalFilePath).Select(FormatItem));
-
-		private string FormatItem(IEnumerable<FileDeduplicator.FilePair> filePairs)
-		{
-			string separator = Environment.NewLine + "\t";
-			string formattedDuplicates = string.Join(separator, filePairs.Select(x => x.DuplicateFilePath));
-			return filePairs.First().OriginalFilePath + Environment.NewLine + formattedDuplicates;
+			OnUiThread(
+				() =>
+				{
+					_viewModel.Recursive = checkBoxRecursive.Checked;
+					_viewModel.FolderPath = TextBoxText;
+				});
 		}
 	}
 }
