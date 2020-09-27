@@ -16,8 +16,11 @@ namespace JJ.Framework.IO
 	/// PermanentFileDeleter or FileDeleterWithRecycleBin might be used for that.
 	/// </summary>
 	[PublicAPI]
-	public class FileDeduplicator
+	public class FileDeduplicator : IFileDeduplicator
 	{
+		/// <inheritdoc cref="FileDeduplicator"/>
+		[UsedImplicitly] public FileDeduplicator() { }
+
 		[PublicAPI]
 		public class FilePair
 		{
@@ -104,10 +107,10 @@ namespace JJ.Framework.IO
 
 			// Convert to overviewable list of duplicates.
 			List<FilePair> duplicateFilePairs = fileTuples.Where(x => x.IsDuplicate)
-			                                              .Select(ConvertFileTupleToFilePair)
-			                                              .OrderBy(x => x.OriginalFilePath)
-			                                              .ThenBy(x => x.DuplicateFilePath)
-			                                              .ToList();
+														  .Select(ConvertFileTupleToFilePair)
+														  .OrderBy(x => x.OriginalFilePath)
+														  .ThenBy(x => x.DuplicateFilePath)
+														  .ToList();
 
 			progressCallback?.Invoke("Analysis complete.");
 

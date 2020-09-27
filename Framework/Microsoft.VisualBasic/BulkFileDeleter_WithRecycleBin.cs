@@ -1,4 +1,5 @@
-﻿using JJ.Framework.IO;
+﻿using JetBrains.Annotations;
+using JJ.Framework.IO;
 using Microsoft.VisualBasic.FileIO;
 
 namespace JJ.Framework.Microsoft.VisualBasic
@@ -9,6 +10,9 @@ namespace JJ.Framework.Microsoft.VisualBasic
 	/// </summary>
 	public class BulkFileDeleter_WithRecycleBin : BulkFileDeleterBase
 	{
+		/// <inheritdoc cref="BulkFileDeleter_WithRecycleBin" />
+		[UsedImplicitly]  public BulkFileDeleter_WithRecycleBin() { }
+
 		protected override void DeleteFile(string filePath)
 			=> FileSystem.DeleteFile(
 				filePath,

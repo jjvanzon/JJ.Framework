@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
+using JJ.Framework.Common;
 using JJ.Framework.IO;
-using JJ.Framework.Microsoft.VisualBasic;
 using JJ.Utilities.FileDeduplication.Properties;
 
 // ReSharper disable MemberCanBeInternal
@@ -16,8 +15,9 @@ namespace JJ.Utilities.FileDeduplication
 	{
 		// Services
 
-		private readonly FileDeduplicator _fileDeduplicator;
-		private readonly BulkFileDeleter_WithRecycleBin _bulkFileDeleter_WithRecycleBin;
+		private readonly IFileDeduplicator _fileDeduplicator;
+		private readonly IBulkFileDeleter _bulkFileDeleter_WithRecycleBin;
+		private readonly IClipboardUtilizer _clipboardUtilizer;
 
 		// Data
 
@@ -26,18 +26,22 @@ namespace JJ.Utilities.FileDeduplication
 		// ViewModel
 
 		public FileDeduplicationViewModel ViewModel { get; }
-		private readonly Action _viewModelChanged;
+		private Action _viewModelChanged;
 		private const bool DEFAULT_RECURSIVE = true;
 
-		// TODO: Injecting services through constructor for dependency inversion?
-		public FileDeduplicationPresenter(Action viewModelChanged)
+		public FileDeduplicationPresenter(
+			IFileDeduplicator fileDeduplicator,
+			IBulkFileDeleter bulkFileDeleter_WithRecycleBin,
+			IClipboardUtilizer clipboardUtilizer)
 		{
-			_viewModelChanged = viewModelChanged;
-			_fileDeduplicator = new FileDeduplicator();
-			_bulkFileDeleter_WithRecycleBin = new BulkFileDeleter_WithRecycleBin();
+			_fileDeduplicator = fileDeduplicator;
+			_bulkFileDeleter_WithRecycleBin = bulkFileDeleter_WithRecycleBin;
+			_clipboardUtilizer = clipboardUtilizer;
 
 			ViewModel = Show();
 		}
+
+		public void Initialize(Action viewModelChanged) => _viewModelChanged = viewModelChanged;
 
 		private FileDeduplicationViewModel Show()
 			=> new FileDeduplicationViewModel
@@ -55,8 +59,7 @@ namespace JJ.Utilities.FileDeduplication
 			ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
 		}
 
-		// TODO: Loosely coupled service?
-		public void CopyListOfDuplicates() => Clipboard.SetText(ViewModel.ListOfDuplicates);
+		public void CopyListOfDuplicates() => _clipboardUtilizer.SetText(ViewModel.ListOfDuplicates);
 
 		public void DeleteFiles()
 		{

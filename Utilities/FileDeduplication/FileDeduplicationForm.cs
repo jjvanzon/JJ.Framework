@@ -1,5 +1,9 @@
 ﻿using System;
+using JJ.Framework.IO;
+using JJ.Framework.Microsoft.VisualBasic;
 using JJ.Framework.WinForms.Forms;
+using JJ.Framework.WinForms.Helpers;
+
 // ReSharper disable ArrangeMethodOrOperatorBody
 
 namespace JJ.Utilities.FileDeduplication
@@ -13,7 +17,12 @@ namespace JJ.Utilities.FileDeduplication
 		{
 			InitializeComponent();
 
-			_presenter = new FileDeduplicationPresenter(MapViewModelToControls);
+			_presenter = new FileDeduplicationPresenter(
+				new FileDeduplicator(),
+				new BulkFileDeleter_WithRecycleBin(),
+				new ClipboardUtilizer());
+
+			_presenter.Initialize(MapViewModelToControls);
 
 			MapViewModelToControls();
 		}
