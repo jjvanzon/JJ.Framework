@@ -3,7 +3,7 @@ using System.Text;
 
 namespace JJ.Framework.IO
 {
-	internal class DiagnosticsHelper
+	internal class DiagnosticsFormatter
 	{
 		public static string GetDebuggerDisplay(FileDeduplicator.FileTuple fileTuple)
 		{
@@ -13,11 +13,6 @@ namespace JJ.Framework.IO
 
 			sb.Append($"{{{fileTuple.GetType().Name}}} ");
 
-			if (fileTuple.IsDuplicate)
-			{
-				sb.Append(" (duplicate)");
-			}
-
 			sb.Append($" '{fileTuple.FilePath}'");
 			sb.Append($" ({fileTuple.FileSize} bytes)");
 
@@ -25,7 +20,7 @@ namespace JJ.Framework.IO
 			{
 				sb.Append(" (loaded)");
 			}
-
+			
 			if (fileTuple.OriginalFileTuple != null)
 			{
 				sb.Append(@$" => '{fileTuple.OriginalFileTuple.FilePath}'");

@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="BinaryWriterExtensions.cs" />
     <Compile Include="CsvReader.cs" />
-    <Compile Include="DiagnosticsHelper.cs" />
+    <Compile Include="DiagnosticsFormatter.cs" />
     <Compile Include="DirectoryInfoExtensions.cs" />
     <Compile Include="FileDeduplicator.cs" />
     <Compile Include="BulkFileDeleterBase.cs" />

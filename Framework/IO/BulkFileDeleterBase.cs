@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace JJ.Framework.IO
 {
@@ -27,17 +28,21 @@ namespace JJ.Framework.IO
 				string filePath = filePaths[i];
 
 				// Progress
-				decimal percentage = (decimal)i / count;
-				progressCallback?.Invoke($"Deleting files {percentage:0.0}: {filePath}");
+				decimal percentage = 100m * i / count;
+				progressCallback?.Invoke($"Deleting files {percentage:0.0}% - {Path.GetFileName(filePath)}");
 
 				// Cancel
-				if (IsCancelled(cancelCallback)) return;
+				if (IsCancelled(cancelCallback))
+				{
+					progressCallback?.Invoke("Cancelled");
+					return;
+				}
 
 				// Action
 				DeleteFile(filePath);
 			}
 
-			progressCallback?.Invoke("Done deleting files.");
+			progressCallback?.Invoke($"Done deleting {count} files.");
 		}
 
 		private static bool IsCancelled(Func<bool> cancelCallback) => cancelCallback?.Invoke() ?? false;

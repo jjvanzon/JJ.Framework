@@ -53,7 +53,7 @@
 			this.buttonAnalyze.Name = "buttonAnalyze";
 			this.buttonAnalyze.Size = new System.Drawing.Size(125, 49);
 			this.buttonAnalyze.TabIndex = 2;
-			this.buttonAnalyze.Text = "Analyze";
+			this.buttonAnalyze.Text = "Scan";
 			this.buttonAnalyze.UseVisualStyleBackColor = true;
 			this.buttonAnalyze.Click += new System.EventHandler(this.ButtonAnalyze_Click);
 			// 

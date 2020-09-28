@@ -54,28 +54,46 @@ namespace JJ.Utilities.FileDeduplication
 				FolderPath = AppSettingsReader<IAppSettings>.Get(x => x.DefaultFolderPath)
 			};
 
-		public void Analyze()
+		public void Scan()
 		{
-			_filePairs = _fileDeduplicator.Analyze(
-				ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
+			try
+			{
+				ViewModel.IsRunning = true;
 
-			ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
+				_filePairs = _fileDeduplicator.Scan(
+					ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
+
+				ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
+			}
+			finally
+			{
+				ViewModel.IsRunning = false;
+			}
 		}
 
 		public void CopyListOfDuplicates() => _clipboardUtilizer.SetText(ViewModel.ListOfDuplicates);
 
 		public void DeleteFiles()
 		{
-			if (_filePairs == null)
+			try
 			{
-				_filePairs = _fileDeduplicator.Analyze(
-					ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
+				ViewModel.IsRunning = true;
 
-				ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
+				if (_filePairs == null)
+				{
+					_filePairs = _fileDeduplicator.Scan(
+						ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
+
+					ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
+				}
+
+				_bulkFileDeleter_WithRecycleBin.DeleteFiles(
+					_filePairs.Select(x => x.DuplicateFilePath).ToArray(), SetProgressMessage, () => !ViewModel.IsRunning);
 			}
-
-			_bulkFileDeleter_WithRecycleBin.DeleteFiles(
-				_filePairs.Select(x => x.DuplicateFilePath).ToArray(), SetProgressMessage, () => !ViewModel.IsRunning);
+			finally
+			{
+				ViewModel.IsRunning = false;
+			}
 		}
 
 		private void SetProgressMessage(string progressMessage)
@@ -99,8 +117,8 @@ namespace JJ.Utilities.FileDeduplication
 
 		private string FormatItem(IEnumerable<FileDeduplicator.FilePair> filePairs)
 		{
-			string separator = Environment.NewLine + "\t";
-			string formattedDuplicates = string.Join(separator, filePairs.Select(x => x.DuplicateFilePath));
+			string separator = Environment.NewLine + "| ";
+			string formattedDuplicates = "| " + string.Join(separator, filePairs.Select(x => x.DuplicateFilePath));
 			return filePairs.First().OriginalFilePath + Environment.NewLine + formattedDuplicates;
 		}
 	}

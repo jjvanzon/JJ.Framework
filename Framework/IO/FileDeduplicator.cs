@@ -29,7 +29,7 @@ namespace JJ.Framework.IO
 			public string OriginalFilePath { get; set; }
 			public string DuplicateFilePath { get; set; }
 		
-			private string DebuggerDisplay => DiagnosticsHelper.GetDebuggerDisplay(this);
+			private string DebuggerDisplay => DiagnosticsFormatter.GetDebuggerDisplay(this);
 		}
 
 		[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
@@ -41,10 +41,10 @@ namespace JJ.Framework.IO
 			public bool IsDuplicate { get; set; }
 			public FileTuple OriginalFileTuple { get; set; }
 
-			private string DebuggerDisplay => DiagnosticsHelper.GetDebuggerDisplay(this);
+			private string DebuggerDisplay => DiagnosticsFormatter.GetDebuggerDisplay(this);
 		}
 
-		public IList<FilePair> Analyze(
+		public IList<FilePair> Scan(
 			string folderPath, bool recursive,
 			Action<string> progressCallback = null, Func<bool> cancelCallback = null)
 		{
@@ -65,16 +65,16 @@ namespace JJ.Framework.IO
 				return new List<FilePair>();
 			}
 
-			long iterationCounter = 0;
+			long ticks = 0;
 			// Total iterations is detemined like this:
 			// First iteration loops through about all items.
 			// Last iteration loops through about 0 items.
 			// So averagely an iteration would loop through half of the items.
-			long totalIterations = fileTuples.Count * fileTuples.Count / 2;
-			long iterationsPerProgressCallback = totalIterations / 1000;
-			if (iterationsPerProgressCallback == 0) iterationsPerProgressCallback = 1;
+			long totalTicks = fileTuples.Count * fileTuples.Count / 2;
+			long ticksPerCallback = totalTicks / 1000;
+			if (ticksPerCallback == 0) ticksPerCallback = 1;
 
-			progressCallback?.Invoke("Analyzing duplicates...");
+			progressCallback?.Invoke("Scanning for duplicates...");
 
 			// Compare files
 			for (var i = 0; i < fileTuples.Count; i++)
@@ -84,29 +84,34 @@ namespace JJ.Framework.IO
 				if (fileTuple1.IsDuplicate)
 				{
 					// Already marked as duplicate somewhere in the process.
+					ticks += fileTuples.Count / 2;
 					continue;
 				}
 
 				for (int j = i + 1; j < fileTuples.Count; j++)
 				{
-					if (IsCancelled(cancelCallback)) return new List<FilePair>();
-
 					FileTuple fileTuple2 = fileTuples[j];
 
-					if (!FileTuplesAreEqual(fileTuple1, fileTuple2))
+					if (FileTuplesAreEqual(fileTuple1, fileTuple2))
 					{
 						fileTuple2.IsDuplicate = true;
 						fileTuple2.OriginalFileTuple = fileTuple1;
 					}
 
-					// Progress counter
-					iterationCounter++;
-					bool mustShowPercentage = iterationCounter % iterationsPerProgressCallback == 0;
-
-					if (mustShowPercentage)
+					// Callbacks
+					ticks++;
+					bool mustDoCallbacks = ticks % ticksPerCallback == 0;
+					if (mustDoCallbacks)
 					{
-						decimal percentage = 100m * iterationCounter / totalIterations;
-						progressCallback?.Invoke($"Analyzing duplicates {percentage:0.0}...");
+						if (IsCancelled(cancelCallback))
+						{
+							progressCallback?.Invoke("Cancelled");
+							return new List<FilePair>();
+						}
+
+						decimal percentage = 100m * ticks / totalTicks;
+						if (percentage > 100m) percentage = 100m;
+						progressCallback?.Invoke($"Analyzing duplicates {percentage:0.0}%...");
 					}
 				}
 			}
@@ -120,7 +125,7 @@ namespace JJ.Framework.IO
 														  .ThenBy(x => x.DuplicateFilePath)
 														  .ToList();
 
-			progressCallback?.Invoke("Analysis complete.");
+			progressCallback?.Invoke($"Done scanning. {duplicateFilePairs.Count} duplicates found.");
 
 			return duplicateFilePairs;
 		}

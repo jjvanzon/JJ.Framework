@@ -178,26 +178,31 @@ namespace JJ.Framework.WinForms.Controls
 
 		private void RunProcess()
 		{
-			IsRunning = true;
+			try
+			{
+				IsRunning = true;
 
-			if (!MustShowExceptions)
-			{
-				OnRunProcess?.Invoke(this, EventArgs.Empty);
-			}
-			else
-			{
-				try
+				if (!MustShowExceptions)
 				{
 					OnRunProcess?.Invoke(this, EventArgs.Empty);
 				}
-				catch (Exception ex)
+				else
 				{
-					string exception = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
-					OnUiThread(() => MessageBox.Show(exception));
+					try
+					{
+						OnRunProcess?.Invoke(this, EventArgs.Empty);
+					}
+					catch (Exception ex)
+					{
+						string exception = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
+						OnUiThread(() => MessageBox.Show(exception));
+					}
 				}
 			}
-
-			IsRunning = false;
+			finally
+			{
+				IsRunning = false;
+			}
 		}
 
 		public void ShowProgress(string message) => OnUiThread(() => labelProgress.Text = message);

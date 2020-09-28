@@ -34,7 +34,7 @@ namespace JJ.Utilities.FileDeduplication
 				() =>
 				{
 					MapControlsToViewModel();
-					_presenter.Analyze();
+					_presenter.Scan();
 					MapViewModelToControls();
 				});
 
