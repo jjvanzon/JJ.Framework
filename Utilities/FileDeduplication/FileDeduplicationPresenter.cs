@@ -56,34 +56,54 @@ namespace JJ.Utilities.FileDeduplication
 			};
 
 		public void Scan()
-			=> WithExceptionHandling(
-				() =>
-				{
-					ViewModel.IsRunning = true;
+		{
+			try
+			{
+				ViewModel.IsRunning = true;
 
-					_filePairs = _fileDeduplicator.Scan(
-						ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
+				_filePairs = _fileDeduplicator.Scan(
+					ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
 
-					ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
-				});
+				ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
+			}
+			catch (Exception ex)
+			{
+				ViewModel.ProgressMessage = GetProgressMessage(ex);
+				throw;
+			}
+			finally
+			{
+				ViewModel.IsRunning = false;
+			}
+		}
 
 		public void CopyListOfDuplicates() => _clipboardUtilizer.SetText(ViewModel.ListOfDuplicates);
 
 		public void DeleteFiles()
-			=> WithExceptionHandling(
-				() =>
+		{
+			try
+			{
+				ViewModel.IsRunning = true;
+
+				if (_filePairs == null)
 				{
-					ViewModel.IsRunning = true;
+					ViewModel.ProgressMessage = "Please scan first.";
+					return;
+				}
 
-					if (_filePairs == null)
-					{
-						ViewModel.ProgressMessage = "Please scan first.";
-						return;
-					}
-
-					_bulkFileDeleter_WithRecycleBin.DeleteFiles(
-						_filePairs.Select(x => x.DuplicateFilePath).ToArray(), SetProgressMessage, () => !ViewModel.IsRunning);
-				});
+				_bulkFileDeleter_WithRecycleBin.DeleteFiles(
+					_filePairs.Select(x => x.DuplicateFilePath).ToArray(), SetProgressMessage, () => !ViewModel.IsRunning);
+			}
+			catch (Exception ex)
+			{
+				ViewModel.ProgressMessage = GetProgressMessage(ex);
+				throw;
+			}
+			finally
+			{
+				ViewModel.IsRunning = false;
+			}
+		}
 
 		public void Cancel()
 		{
@@ -99,23 +119,6 @@ namespace JJ.Utilities.FileDeduplication
 
 		// Helpers
 
-		private void WithExceptionHandling(Action action)
-		{
-			try
-			{
-				action();
-			}
-			catch (Exception ex) 
-			{
-				Exception innerMostException = ExceptionHelper.GetInnermostException(ex);
-				ViewModel.ProgressMessage = $"Exception: {innerMostException.Message}";
-			}
-			finally
-			{
-				ViewModel.IsRunning = false;
-			}
-		}
-
 		private string FormatFilePairs(IList<FileDeduplicator.FilePair> filePairs)
 			=> string.Join(
 				Environment.NewLine + Environment.NewLine,
@@ -126,6 +129,13 @@ namespace JJ.Utilities.FileDeduplication
 			string separator = Environment.NewLine + "| ";
 			string formattedDuplicates = "| " + string.Join(separator, filePairs.Select(x => x.DuplicateFilePath));
 			return filePairs.First().OriginalFilePath + Environment.NewLine + formattedDuplicates;
+		}
+
+		private static string GetProgressMessage(Exception ex)
+		{
+			Exception innerMostException = ExceptionHelper.GetInnermostException(ex);
+			var progressMessage = $"Exception: {innerMostException.Message}";
+			return progressMessage;
 		}
 	}
 }

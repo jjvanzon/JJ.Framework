@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
 using JJ.Framework.IO;
-using JJ.Framework.Logging;
 using JJ.Framework.Microsoft.VisualBasic;
 using JJ.Framework.WinForms.Forms;
 using JJ.Framework.WinForms.Helpers;
-using JJ.Utilities.FileDeduplication.Properties;
 
 // ReSharper disable EmptyGeneralCatchClause
 // ReSharper disable ArrangeMethodOrOperatorBody
@@ -47,13 +44,6 @@ namespace JJ.Utilities.FileDeduplication
 			{
 				MapControlsToViewModel();
 				action();
-			}
-			catch (Exception ex)
-			{
-				string innerExceptionMessage = ExceptionHelper.GetInnermostException(ex).Message;
-				string messageBoxTitle = $"{Resources.ApplicationName} - Exception";
-
-				OnUiThread(() => MessageBox.Show(innerExceptionMessage, messageBoxTitle));
 			}
 			finally
 			{
