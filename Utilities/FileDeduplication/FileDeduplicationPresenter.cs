@@ -4,6 +4,7 @@ using System.Linq;
 using JJ.Framework.Common;
 using JJ.Framework.Configuration;
 using JJ.Framework.IO;
+using JJ.Framework.Logging;
 using JJ.Utilities.FileDeduplication.Properties;
 
 // ReSharper disable MemberCanBeInternal
@@ -55,43 +56,39 @@ namespace JJ.Utilities.FileDeduplication
 			};
 
 		public void Scan()
-		{
-			try
-			{
-				ViewModel.IsRunning = true;
+			=> WithExceptionHandling(
+				() =>
+				{
+					ViewModel.IsRunning = true;
 
-				_filePairs = _fileDeduplicator.Scan(
-					ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
+					_filePairs = _fileDeduplicator.Scan(
+						ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
 
-				ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
-			}
-			finally
-			{
-				ViewModel.IsRunning = false;
-			}
-		}
+					ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
+				});
 
 		public void CopyListOfDuplicates() => _clipboardUtilizer.SetText(ViewModel.ListOfDuplicates);
 
 		public void DeleteFiles()
-		{
-			try
-			{
-				ViewModel.IsRunning = true;
-
-				if (_filePairs == null)
+			=> WithExceptionHandling(
+				() =>
 				{
-					ViewModel.ProgressMessage = "Please scan first.";
-					return;
-				}
+					ViewModel.IsRunning = true;
 
-				_bulkFileDeleter_WithRecycleBin.DeleteFiles(
-					_filePairs.Select(x => x.DuplicateFilePath).ToArray(), SetProgressMessage, () => !ViewModel.IsRunning);
-			}
-			finally
-			{
-				ViewModel.IsRunning = false;
-			}
+					if (_filePairs == null)
+					{
+						ViewModel.ProgressMessage = "Please scan first.";
+						return;
+					}
+
+					_bulkFileDeleter_WithRecycleBin.DeleteFiles(
+						_filePairs.Select(x => x.DuplicateFilePath).ToArray(), SetProgressMessage, () => !ViewModel.IsRunning);
+				});
+
+		public void Cancel()
+		{
+			ViewModel.IsRunning = false;
+			_viewModelChanged?.Invoke();
 		}
 
 		private void SetProgressMessage(string progressMessage)
@@ -100,13 +97,24 @@ namespace JJ.Utilities.FileDeduplication
 			_viewModelChanged?.Invoke();
 		}
 
-		public void Cancel()
-		{
-			ViewModel.IsRunning = false;
-			_viewModelChanged?.Invoke();
-		}
-
 		// Helpers
+
+		private void WithExceptionHandling(Action action)
+		{
+			try
+			{
+				action();
+			}
+			catch (Exception ex) 
+			{
+				Exception innerMostException = ExceptionHelper.GetInnermostException(ex);
+				ViewModel.ProgressMessage = $"Exception: {innerMostException.Message}";
+			}
+			finally
+			{
+				ViewModel.IsRunning = false;
+			}
+		}
 
 		private string FormatFilePairs(IList<FileDeduplicator.FilePair> filePairs)
 			=> string.Join(

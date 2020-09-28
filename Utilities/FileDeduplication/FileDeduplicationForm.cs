@@ -52,17 +52,11 @@ namespace JJ.Utilities.FileDeduplication
 			{
 				string innerExceptionMessage = ExceptionHelper.GetInnermostException(ex).Message;
 				string messageBoxTitle = $"{Resources.ApplicationName} - Exception";
-				string progressMessage = $"Exception: {innerExceptionMessage}";
 
-				OnUiThread(() =>
-				           {
-					           MessageBox.Show(innerExceptionMessage, messageBoxTitle);
-					           ViewModel.ProgressMessage = progressMessage;
-				           });
+				OnUiThread(() => MessageBox.Show(innerExceptionMessage, messageBoxTitle));
 			}
 			finally
 			{
-				ViewModel.IsRunning = false;
 				MapViewModelToControls();
 			}
 		}
