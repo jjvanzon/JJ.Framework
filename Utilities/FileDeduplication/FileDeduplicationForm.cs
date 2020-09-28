@@ -47,19 +47,23 @@ namespace JJ.Utilities.FileDeduplication
 			{
 				MapControlsToViewModel();
 				action();
-				MapViewModelToControls();
 			}
 			catch (Exception ex)
 			{
-				string message = ExceptionHelper.GetInnermostException(ex).Message;
-				string title = $"{Resources.ApplicationName} - Exception";
+				string innerExceptionMessage = ExceptionHelper.GetInnermostException(ex).Message;
+				string messageBoxTitle = $"{Resources.ApplicationName} - Exception";
+				string progressMessage = $"Exception: {innerExceptionMessage}";
 
-				OnUiThread(
-					() =>
-					{
-						MessageBox.Show(message, title);
-						IsRunning = false;
-					});
+				OnUiThread(() =>
+				           {
+					           MessageBox.Show(innerExceptionMessage, messageBoxTitle);
+					           ViewModel.ProgressMessage = progressMessage;
+				           });
+			}
+			finally
+			{
+				ViewModel.IsRunning = false;
+				MapViewModelToControls();
 			}
 		}
 
