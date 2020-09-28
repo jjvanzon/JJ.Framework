@@ -81,10 +81,8 @@ namespace JJ.Utilities.FileDeduplication
 
 				if (_filePairs == null)
 				{
-					_filePairs = _fileDeduplicator.Scan(
-						ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
-
-					ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
+					ViewModel.ProgressMessage = "Please scan first.";
+					return;
 				}
 
 				_bulkFileDeleter_WithRecycleBin.DeleteFiles(

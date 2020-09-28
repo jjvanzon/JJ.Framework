@@ -120,6 +120,10 @@
       <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
       <Name>JJ.Framework.IO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Logging\JJ.Framework.Logging.csproj">
+      <Project>{CEEB755D-DE12-4E70-816E-546C429B44B7}</Project>
+      <Name>JJ.Framework.Logging</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Microsoft.VisualBasic\JJ.Framework.Microsoft.VisualBasic.csproj">
       <Project>{AB67EA5D-779B-4F03-A869-61B32BA10B60}</Project>
       <Name>JJ.Framework.Microsoft.VisualBasic</Name>

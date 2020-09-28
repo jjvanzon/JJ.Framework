@@ -6,7 +6,12 @@ using JJ.Framework.Logging;
 
 namespace JJ.Framework.WinForms.Helpers
 {
-	/// <summary> not thread safe </summary>
+	/// <summary>
+	/// Not thread safe.
+	/// A WinForms message box might be shown upon exceptions when using this utility class.
+	/// The Initialize method would aim to set things up on its own.
+	/// It may still not prevent your WinForms app from halting.
+	/// </summary>
 	public static class UnhandledExceptionMessageBoxShower
 	{
 		private static bool _isInitialized;

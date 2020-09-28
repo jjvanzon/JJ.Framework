@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Windows.Forms;
 using JJ.Framework.IO;
+using JJ.Framework.Logging;
 using JJ.Framework.Microsoft.VisualBasic;
 using JJ.Framework.WinForms.Forms;
 using JJ.Framework.WinForms.Helpers;
+using JJ.Utilities.FileDeduplication.Properties;
 
+// ReSharper disable EmptyGeneralCatchClause
 // ReSharper disable ArrangeMethodOrOperatorBody
 
 namespace JJ.Utilities.FileDeduplication
@@ -29,34 +33,34 @@ namespace JJ.Utilities.FileDeduplication
 
 		// Actions
 
-		private void ButtonAnalyze_Click(object sender, EventArgs e)
-			=> OnBackgroundThread(
-				() =>
-				{
-					MapControlsToViewModel();
-					_presenter.Scan();
-					MapViewModelToControls();
-				});
+		private void ButtonAnalyze_Click(object sender, EventArgs e) => OnBackgroundThread(() => ExecuteAction(_presenter.Scan));
 
-		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e)
+		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) => ExecuteAction(_presenter.CopyListOfDuplicates);
+
+		private void MainForm_OnRunProcess(object sender, EventArgs e) => OnBackgroundThread(() => ExecuteAction(_presenter.DeleteFiles));
+
+		private void MainForm_Cancelled(object sender, EventArgs e) => ExecuteAction(_presenter.Cancel);
+
+		private void ExecuteAction(Action action)
 		{
-			_presenter.CopyListOfDuplicates();
-			MapViewModelToControls();
-		}
+			try
+			{
+				MapControlsToViewModel();
+				action();
+				MapViewModelToControls();
+			}
+			catch (Exception ex)
+			{
+				string message = ExceptionHelper.GetInnermostException(ex).Message;
+				string title = $"{Resources.ApplicationName} - Exception";
 
-		private void MainForm_OnRunProcess(object sender, EventArgs e)
-			=> OnBackgroundThread(
-				() =>
-				{
-					MapControlsToViewModel();
-					_presenter.DeleteFiles();
-					MapViewModelToControls();
-				});
-
-		private void MainForm_Cancelled(object sender, EventArgs e)
-		{
-			_presenter.Cancel();
-			MapViewModelToControls();
+				OnUiThread(
+					() =>
+					{
+						MessageBox.Show(message, title);
+						IsRunning = false;
+					});
+			}
 		}
 
 		// Binding
