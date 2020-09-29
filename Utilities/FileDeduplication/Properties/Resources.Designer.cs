@@ -77,14 +77,5 @@ namespace JJ.Utilities.FileDeduplication.Properties {
                 return ResourceManager.GetString("Explanation", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to List of duplicates may appear here....
-        /// </summary>
-        internal static string ListOfDuplicatesRemark {
-            get {
-                return ResourceManager.GetString("ListOfDuplicatesRemark", resourceCulture);
-            }
-        }
     }
 }

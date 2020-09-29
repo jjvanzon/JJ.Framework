@@ -111,7 +111,7 @@ namespace JJ.Framework.IO
 
 						decimal percentage = 100m * ticks / totalTicks;
 						if (percentage > 100m) percentage = 100m;
-						progressCallback?.Invoke($"Analyzing duplicates {percentage:0.0}%...");
+						progressCallback?.Invoke($"Scanning for duplicates {percentage:0.0}%...");
 					}
 				}
 			}

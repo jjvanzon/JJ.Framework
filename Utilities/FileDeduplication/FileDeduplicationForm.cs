@@ -69,7 +69,7 @@ namespace JJ.Utilities.FileDeduplication
 					if (Text != ViewModel.TitleBarText) Text = ViewModel.TitleBarText;
 					if (Description != ViewModel.Explanation) Description = ViewModel.Explanation;
 					if (checkBoxRecursive.Checked != ViewModel.Recursive) checkBoxRecursive.Checked = ViewModel.Recursive;
-					if (labelListOfDuplicates.Text != ViewModel.ListOfDuplicates) labelListOfDuplicates.Text = ViewModel.ListOfDuplicates;
+					if (textBoxListOfDuplicates.Text != ViewModel.ListOfDuplicates) textBoxListOfDuplicates.Text = ViewModel.ListOfDuplicates;
 					if (TextBoxText != ViewModel.FolderPath) TextBoxText = ViewModel.FolderPath;
 					ShowProgress(ViewModel.ProgressMessage);
 					IsRunning = ViewModel.IsRunning;

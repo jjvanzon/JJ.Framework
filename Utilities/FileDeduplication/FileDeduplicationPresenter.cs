@@ -50,7 +50,6 @@ namespace JJ.Utilities.FileDeduplication
 			{
 				TitleBarText = Resources.ApplicationName,
 				Explanation = Resources.Explanation,
-				ListOfDuplicates = Resources.ListOfDuplicatesRemark,
 				Recursive = DEFAULT_RECURSIVE,
 				FolderPath = AppSettingsReader<IAppSettings>.Get(x => x.DefaultFolderPath)
 			};
