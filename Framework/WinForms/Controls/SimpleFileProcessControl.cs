@@ -92,6 +92,14 @@ namespace JJ.Framework.WinForms.Controls
 			set => filePathControl.FileBrowseMode = value;
 		}
 
+		/// <inheritdoc cref="FilePathControl.TextBoxRightToLeft" />
+		[DefaultValue(RightToLeft.Yes)]
+		public RightToLeft TextBoxRightToLeft
+		{
+			get => filePathControl.TextBoxRightToLeft;
+			set => filePathControl.TextBoxRightToLeft = value;
+		}
+
 		[DefaultValue(true)]
 		public bool MustShowExceptions { get; set; }
 

@@ -67,8 +67,9 @@
 			this.textBoxListOfDuplicates.Location = new System.Drawing.Point(19, 275);
 			this.textBoxListOfDuplicates.Multiline = true;
 			this.textBoxListOfDuplicates.Name = "textBoxListOfDuplicates";
+			this.textBoxListOfDuplicates.ReadOnly = true;
 			this.textBoxListOfDuplicates.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxListOfDuplicates.Size = new System.Drawing.Size(598, 152);
+			this.textBoxListOfDuplicates.Size = new System.Drawing.Size(599, 152);
 			this.textBoxListOfDuplicates.TabIndex = 4;
 			this.textBoxListOfDuplicates.WordWrap = false;
 			// 
@@ -95,7 +96,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(633, 606);
+			this.ClientSize = new System.Drawing.Size(634, 606);
 			this.Controls.Add(this.labelListOfDuplicatesTitle);
 			this.Controls.Add(this.buttonCopyListOfDuplicates);
 			this.Controls.Add(this.textBoxListOfDuplicates);
@@ -106,6 +107,7 @@
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FileDeduplicationForm";
 			this.TextBoxLabelText = "Folder:";
+			this.TextBoxRightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.TextBoxVisible = true;
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
 			this.Cancelled += new System.EventHandler(this.MainForm_Cancelled);

@@ -106,6 +106,14 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleFileProcessControl.Spacing = value;
 		}
 
+		/// <inheritdoc cref="SimpleFileProcessControl.TextBoxRightToLeft" />
+		[DefaultValue(RightToLeft.Yes)]
+		public RightToLeft TextBoxRightToLeft
+		{
+			get => simpleFileProcessControl.TextBoxRightToLeft;
+			set => simpleFileProcessControl.TextBoxRightToLeft = value;
+		}
+
 		/// <summary>
 		/// The base form seems to be as bold as to
 		/// assign the entry-point assembly name

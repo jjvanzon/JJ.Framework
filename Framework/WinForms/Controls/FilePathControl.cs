@@ -35,12 +35,6 @@ namespace JJ.Framework.WinForms.Controls
 
 			InitializeComponent();
 
-			// HACK: To be able to see the file name for long file paths do not fit on screen, we make the text right aligned.
-			// But TextAlign = HorizontalAlignment.Right does not work. It will only right align it if the text fits on screen!
-			// Thank you WinForms.
-			// The only reason I do this, is because the alternative, showing the full path as a tooltip,
-			// does not work if the control is disabled!
-			// Thank you WinForms.
 			textBox.RightToLeft = RightToLeft.Yes;
 		}
 
@@ -117,6 +111,22 @@ namespace JJ.Framework.WinForms.Controls
 		{
 			get => textBox.Visible;
 			set => textBox.Visible = value;
+		}
+
+		/// <summary>
+		/// Tip: To be able to see the of the file name when a long file path would not fit in the text box,
+		/// RightToLeft may be set to Yes.
+		/// (Other options were considered. TextAlign = Right might sounded like a solution,
+		/// but then if the text is too long to fit,
+		/// that still seems to still show the beginning of the path instead of the end.
+		/// Showing the full path as a tool tip seemed another option,
+		/// but then the tool tip did not seem to be shown if the control was disabled.)
+		/// </summary>
+		[DefaultValue(RightToLeft.Yes)]
+		public RightToLeft TextBoxRightToLeft
+		{
+			get => textBox.RightToLeft;
+			set => textBox.RightToLeft = value;
 		}
 
 		// Applying
