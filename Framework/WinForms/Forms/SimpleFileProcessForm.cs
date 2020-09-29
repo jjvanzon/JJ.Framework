@@ -114,6 +114,27 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleFileProcessControl.TextBoxRightToLeft = value;
 		}
 
+		[DefaultValue("Start")]
+		public string StartButtonText
+		{
+			get => simpleFileProcessControl.StartButtonText;
+			set => simpleFileProcessControl.StartButtonText = value;
+		}
+
+		[DefaultValue("Cancel")]
+		public string CancelButtonText
+		{
+			get => simpleFileProcessControl.CancelButtonText;
+			set => simpleFileProcessControl.CancelButtonText = value;
+		}
+
+		[DefaultValue(true)]
+		public bool BrowseButtonEnabled
+		{
+			get => simpleFileProcessControl.BrowseButtonEnabled;
+			set => simpleFileProcessControl.BrowseButtonEnabled = false;
+		}
+
 		/// <summary>
 		/// The base form seems to be as bold as to
 		/// assign the entry-point assembly name

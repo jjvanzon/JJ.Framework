@@ -123,4 +123,7 @@
   <data name="Explanation" xml:space="preserve">
     <value>This utility aims to look up duplicate files (recursively) in a folder. It might first analyze which duplicates there may be and report them. After that it would be an option to have this utility delete those files. This tool would send deleted files to the recycle bin.</value>
   </data>
+  <data name="Scan" xml:space="preserve">
+    <value>Scan</value>
+  </data>
 </root>

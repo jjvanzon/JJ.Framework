@@ -119,6 +119,27 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		[DefaultValue("Start")]
+		public string StartButtonText
+		{
+			get => buttonStart.Text;
+			set => buttonStart.Text = value;
+		}
+
+		[DefaultValue("Cancel")]
+		public string CancelButtonText
+		{
+			get => buttonCancel.Text;
+			set => buttonCancel.Text = value;
+		}
+
+		[DefaultValue(true)]
+		public bool BrowseButtonEnabled
+		{
+			get => filePathControl.BrowseButtonEnabled;
+			set => filePathControl.BrowseButtonEnabled = false;
+		}
+
 		// Applying
 
 		private void ApplySpacing() => filePathControl.Spacing = Spacing;

@@ -1,6 +1,7 @@
 ﻿using System;
 using JJ.Framework.IO;
 using JJ.Framework.Microsoft.VisualBasic;
+using JJ.Framework.WinForms.Extensions;
 using JJ.Framework.WinForms.Forms;
 using JJ.Framework.WinForms.Helpers;
 
@@ -17,6 +18,8 @@ namespace JJ.Utilities.FileDeduplication
 		public FileDeduplicationForm()
 		{
 			InitializeComponent();
+
+			this.AutomaticallyAssignTabIndexes();
 
 			_presenter = new FileDeduplicationPresenter(
 				new FileDeduplicator(),
@@ -73,6 +76,13 @@ namespace JJ.Utilities.FileDeduplication
 					if (TextBoxText != ViewModel.FolderPath) TextBoxText = ViewModel.FolderPath;
 					ShowProgress(ViewModel.ProgressMessage);
 					IsRunning = ViewModel.IsRunning;
+
+					bool enabled = !IsRunning;
+					if (checkBoxRecursive.Enabled != enabled) checkBoxRecursive.Enabled = enabled;
+					if (TextBoxEnabled != enabled) TextBoxEnabled = enabled;
+					if (BrowseButtonEnabled != enabled) BrowseButtonEnabled = enabled;
+					if (buttonScan.Enabled != enabled) buttonScan.Enabled = enabled;
+					if (buttonCopyListOfDuplicates.Enabled != enabled) buttonCopyListOfDuplicates.Enabled = enabled;
 				});
 		}
 

@@ -30,7 +30,7 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileDeduplicationForm));
 			this.checkBoxRecursive = new System.Windows.Forms.CheckBox();
-			this.buttonAnalyze = new System.Windows.Forms.Button();
+			this.buttonScan = new System.Windows.Forms.Button();
 			this.textBoxListOfDuplicates = new System.Windows.Forms.TextBox();
 			this.buttonCopyListOfDuplicates = new System.Windows.Forms.Button();
 			this.labelListOfDuplicatesTitle = new System.Windows.Forms.Label();
@@ -48,15 +48,15 @@
 			this.checkBoxRecursive.Text = "Recursive";
 			this.checkBoxRecursive.UseVisualStyleBackColor = true;
 			// 
-			// buttonAnalyze
+			// buttonScan
 			// 
-			this.buttonAnalyze.Location = new System.Drawing.Point(17, 184);
-			this.buttonAnalyze.Name = "buttonAnalyze";
-			this.buttonAnalyze.Size = new System.Drawing.Size(125, 49);
-			this.buttonAnalyze.TabIndex = 2;
-			this.buttonAnalyze.Text = "Scan";
-			this.buttonAnalyze.UseVisualStyleBackColor = true;
-			this.buttonAnalyze.Click += new System.EventHandler(this.ButtonAnalyze_Click);
+			this.buttonScan.Location = new System.Drawing.Point(17, 184);
+			this.buttonScan.Name = "buttonScan";
+			this.buttonScan.Size = new System.Drawing.Size(125, 49);
+			this.buttonScan.TabIndex = 2;
+			this.buttonScan.Text = "Scan";
+			this.buttonScan.UseVisualStyleBackColor = true;
+			this.buttonScan.Click += new System.EventHandler(this.ButtonAnalyze_Click);
 			// 
 			// textBoxListOfDuplicates
 			// 
@@ -69,7 +69,7 @@
 			this.textBoxListOfDuplicates.Name = "textBoxListOfDuplicates";
 			this.textBoxListOfDuplicates.ReadOnly = true;
 			this.textBoxListOfDuplicates.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxListOfDuplicates.Size = new System.Drawing.Size(599, 152);
+			this.textBoxListOfDuplicates.Size = new System.Drawing.Size(603, 152);
 			this.textBoxListOfDuplicates.TabIndex = 4;
 			this.textBoxListOfDuplicates.WordWrap = false;
 			// 
@@ -96,16 +96,17 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(634, 606);
+			this.ClientSize = new System.Drawing.Size(638, 606);
 			this.Controls.Add(this.labelListOfDuplicatesTitle);
 			this.Controls.Add(this.buttonCopyListOfDuplicates);
 			this.Controls.Add(this.textBoxListOfDuplicates);
-			this.Controls.Add(this.buttonAnalyze);
+			this.Controls.Add(this.buttonScan);
 			this.Controls.Add(this.checkBoxRecursive);
 			this.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.SelectFolder;
 			this.Font = new System.Drawing.Font("Calibri", 8.805756F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FileDeduplicationForm";
+			this.StartButtonText = "Delete";
 			this.TextBoxLabelText = "Folder:";
 			this.TextBoxRightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.TextBoxVisible = true;
@@ -113,7 +114,7 @@
 			this.Cancelled += new System.EventHandler(this.MainForm_Cancelled);
 			this.Load += new System.EventHandler(this.FileDeduplicationForm_Load);
 			this.Controls.SetChildIndex(this.checkBoxRecursive, 0);
-			this.Controls.SetChildIndex(this.buttonAnalyze, 0);
+			this.Controls.SetChildIndex(this.buttonScan, 0);
 			this.Controls.SetChildIndex(this.textBoxListOfDuplicates, 0);
 			this.Controls.SetChildIndex(this.buttonCopyListOfDuplicates, 0);
 			this.Controls.SetChildIndex(this.labelListOfDuplicatesTitle, 0);
@@ -125,7 +126,7 @@
 		#endregion
 
 		private System.Windows.Forms.CheckBox checkBoxRecursive;
-		private System.Windows.Forms.Button buttonAnalyze;
+		private System.Windows.Forms.Button buttonScan;
 		private System.Windows.Forms.TextBox textBoxListOfDuplicates;
 		private System.Windows.Forms.Button buttonCopyListOfDuplicates;
 		private System.Windows.Forms.Label labelListOfDuplicatesTitle;

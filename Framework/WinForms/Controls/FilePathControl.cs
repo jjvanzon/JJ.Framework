@@ -129,6 +129,13 @@ namespace JJ.Framework.WinForms.Controls
 			set => textBox.RightToLeft = value;
 		}
 
+		[DefaultValue(true)]
+		public bool BrowseButtonEnabled
+		{
+			get => buttonBrowse.Enabled;
+			set => buttonBrowse.Enabled = false;
+		}
+
 		// Applying
 
 		private void SetFileBrowseMode(FileBrowseModeEnum value)

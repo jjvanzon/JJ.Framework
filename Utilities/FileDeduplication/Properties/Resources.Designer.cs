@@ -77,5 +77,14 @@ namespace JJ.Utilities.FileDeduplication.Properties {
                 return ResourceManager.GetString("Explanation", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan.
+        /// </summary>
+        internal static string Scan {
+            get {
+                return ResourceManager.GetString("Scan", resourceCulture);
+            }
+        }
     }
 }
