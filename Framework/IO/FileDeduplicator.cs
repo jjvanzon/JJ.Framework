@@ -155,7 +155,7 @@ namespace JJ.Framework.IO
 			LoadBytesForFileTuple(fileTuple1);
 			LoadBytesForFileTuple(fileTuple2);
 
-			bool bytesAreEqual = CollectionExtensions.ItemsAreEqual(fileTuple1.FileBytes, fileTuple2.FileBytes);
+			bool bytesAreEqual = fileTuple1.FileBytes.SequenceEqual(fileTuple2.FileBytes);
 			return bytesAreEqual;
 		}
 

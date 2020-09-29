@@ -430,7 +430,7 @@ namespace JJ.Framework.Collections
 		/// <summary>
 		/// Would check whether the items in two collections are equal, optionally keeping the order in mind or not.
 		/// </summary>
-		public static bool ItemsAreEqual<TItem>(
+		public static bool SequenceEqual<TItem>(
 			this IEnumerable<TItem> collection1,
 			IEnumerable<TItem> collection2,
 			bool positionsMustMatch = true)
@@ -440,12 +440,13 @@ namespace JJ.Framework.Collections
 
 			if (positionsMustMatch)
 			{
-				bool itemsAreEqual = collection1.Zip(collection2).All(x => Equals(x.Item1, x.Item2));
+
+				bool itemsAreEqual = Enumerable.SequenceEqual(collection1, collection2);
 				return itemsAreEqual;
 			}
 			else
 			{
-				bool itemsAreEqual = ItemsAreEqual(
+				bool itemsAreEqual = SequenceEqual(
 					collection1.OrderBy(x => x),
 					collection2.OrderBy(x => x),
 					positionsMustMatch: true);
