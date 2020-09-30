@@ -8,57 +8,88 @@ using JJ.Framework.Reflection;
 namespace JJ.Framework.Testing
 {
     /// <summary>
-    /// When using AssertHelper instead of Assert,
-    /// the failure message automatically includes the tested expression.
-    /// It also offers methods to evaluate if the right exception goes off in the right spot
-    /// with the right exception type and / or the right message.
+    /// Compared to the Assert class this AssertHelper class aims to be clearer
+    /// about the variable or expression that an error is about.
+    /// Additionally it tries to offer methods that would evaluate if the expected exception goes off in the expected spot
+    /// with the intended exception type and / or message.
     /// </summary>
     [PublicAPI]
     public static class AssertHelper
     {
-        // TODO: This code was ported out of a code base from 2010 to a code base from 2014, without any refactoring.
-        // By attempting to normalize the methods, a lot of anti-patterns were introduced,
-        // among other things delegitis, parametritis and scattering of cause and effect.
-
-        public static void NotEqual<T>(T a, Expression<Func<T>> bExpression)
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void NotEqual<T>(T a, Expression<Func<T>> bExpression, string name = null)
         {
             T b = ExpressionHelper.GetValue(bExpression);
 
             if (Equals(a, b))
             {
-                string name = ExpressionHelper.GetText(bExpression);
-                string message = TestHelper.FormatTestedPropertyMessage(name);
+	            if (string.IsNullOrWhiteSpace(name))
+	            {
+		            name = ExpressionHelper.GetText(bExpression);
+	            }
+
+	            string message = TestHelper.FormatTestedPropertyMessage(name);
                 string fullMessage = GetNotEqualFailedMessage(a, message);
                 throw new Exception(fullMessage);
             }
         }
 
-        public static void AreEqual<T>(T expected, Expression<Func<T>> actualExpression)
-            => ExpectedActualCheck(actual => Equals(expected, actual), "AreEqual", expected, actualExpression);
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void AreEqual<T>(T expected, Expression<Func<T>> actualExpression, string name = null)
+            => ExpectedActualCheck(actual => Equals(expected, actual), "AreEqual", expected, actualExpression, name);
 
-        public static void AreSame<T>(T expected, Expression<Func<T>> actualExpression)
-            => ExpectedActualCheck(actual => ReferenceEquals(expected, actual), "AreSame", expected, actualExpression);
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void AreSame<T>(T expected, Expression<Func<T>> actualExpression, string name = null)
+            => ExpectedActualCheck(actual => ReferenceEquals(expected, actual), "AreSame", expected, actualExpression, name);
 
-        public static void IsTrue(Expression<Func<bool>> expression) => Check(x => x, "IsTrue", expression);
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void IsTrue(Expression<Func<bool>> expression, string name = null)
+	        => Check(x => x, "IsTrue", expression, name);
 
-        public static void IsFalse(Expression<Func<bool>> expression) => Check(x => x == false, "IsFalse", expression);
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void IsFalse(Expression<Func<bool>> expression, string name = null)
+	        => Check(x => x == false, "IsFalse", expression, name);
 
-        public static void IsNull(Expression<Func<object>> expression) => Check(x => x == null, "IsNull", expression);
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void IsNull(Expression<Func<object>> expression, string name = null)
+	        => Check(x => x == null, "IsNull", expression, name);
 
-        public static void IsNotNull(Expression<Func<object>> expression) => Check(x => x != null, "IsNotNull", expression);
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void IsNotNull(Expression<Func<object>> expression, string name = null)
+	        => Check(x => x != null, "IsNotNull", expression, name);
 
-        public static void IsNullOrEmpty(Expression<Func<string>> expression) => Check(string.IsNullOrEmpty, "IsNullOrEmpty", expression);
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void IsNullOrEmpty(Expression<Func<string>> expression, string name = null)
+	        => Check(string.IsNullOrEmpty, "IsNullOrEmpty", expression, name);
 
-        public static void NotNullOrEmpty(Expression<Func<string>> expression)
-            => Check(x => !string.IsNullOrEmpty(x), "NotNullOrEmpty", expression);
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void IsNullOrWhiteSpace(Expression<Func<string>> expression, string name = null)
+	        => Check(string.IsNullOrWhiteSpace, "WhiteSpace", expression, name);
 
-        public static void IsOfType<T>(Expression<Func<object>> expression)
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void NotNullOrEmpty(Expression<Func<string>> expression, string name = null)
+            => Check(x => !string.IsNullOrEmpty(x), "NotNullOrEmpty", expression, name);
+
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void NotNullOrWhiteSpace(Expression<Func<string>> expression, string name = null)
+            => Check(x => !string.IsNullOrWhiteSpace(x), "NotNullOrWhiteSpace", expression, name);
+
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void IsOfType<T>(Expression<Func<object>> expression, string name = null)
         {
             object obj = ExpressionHelper.GetValue(expression);
-            if (obj == null) throw new Exception("obj cannot be null");
+            if (obj == null) throw new NullException(() => obj);
             Type expected = typeof(T);
+
+            // TODO: Beating around the bush in code seems evidence of abstraction failure.
             Type actual = obj.GetType();
-            ExpectedActualCheck(x => expected == actual, "IsOfType", expected, expression);
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+	            name = ExpressionHelper.GetName(expression);
+            }
+
+            ExpectedActualCheck(x => expected == actual, "IsOfType", expected, () => actual, name);
         }
 
         // ThrowsException Checks
@@ -167,20 +198,24 @@ namespace JJ.Framework.Testing
 
         // Normalized Methods
 
-        private static void ExpectedActualCheck<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression)
+        private static void ExpectedActualCheck<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression, string name = null)
         {
             T actual = ExpressionHelper.GetValue(actualExpression);
 
             if (!condition(actual))
             {
-                string name = ExpressionHelper.GetText(actualExpression);
-                string message = TestHelper.FormatTestedPropertyMessage(name);
+	            if (string.IsNullOrWhiteSpace(name))
+	            {
+		            name = ExpressionHelper.GetText(actualExpression);
+	            }
+
+	            string message = TestHelper.FormatTestedPropertyMessage(name);
                 string fullMessage = GetExpectedActualMessage(methodName, expected, actual, message);
                 throw new Exception(fullMessage);
             }
         }
 
-        public static void Check<T>(Func<T, bool> condition, string methodName, Expression<Func<T>> expression)
+        public static void Check<T>(Func<T, bool> condition, string methodName, Expression<Func<T>> expression, string name = null)
         {
             if (condition == null) throw new NullException(() => condition);
 
@@ -188,8 +223,12 @@ namespace JJ.Framework.Testing
 
             if (!condition(value))
             {
-                string name = ExpressionHelper.GetText(expression);
-                string message = TestHelper.FormatTestedPropertyMessage(name);
+	            if (string.IsNullOrWhiteSpace(name))
+	            {
+		            name = ExpressionHelper.GetText(expression);
+	            }
+
+	            string message = TestHelper.FormatTestedPropertyMessage(name);
                 string fullMessage = GetFailureMessage(methodName, message);
                 throw new Exception(fullMessage);
             }

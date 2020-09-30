@@ -69,7 +69,7 @@
 			this.textBoxListOfDuplicates.Name = "textBoxListOfDuplicates";
 			this.textBoxListOfDuplicates.ReadOnly = true;
 			this.textBoxListOfDuplicates.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxListOfDuplicates.Size = new System.Drawing.Size(603, 152);
+			this.textBoxListOfDuplicates.Size = new System.Drawing.Size(595, 161);
 			this.textBoxListOfDuplicates.TabIndex = 4;
 			this.textBoxListOfDuplicates.WordWrap = false;
 			// 
@@ -96,7 +96,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(638, 606);
+			this.ClientSize = new System.Drawing.Size(630, 615);
 			this.Controls.Add(this.labelListOfDuplicatesTitle);
 			this.Controls.Add(this.buttonCopyListOfDuplicates);
 			this.Controls.Add(this.textBoxListOfDuplicates);

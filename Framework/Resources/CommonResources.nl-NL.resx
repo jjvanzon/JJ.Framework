@@ -342,4 +342,7 @@
   <data name="Clone_WithName" xml:space="preserve">
     <value>{0} dupliceren</value>
   </data>
+  <data name="Scan" xml:space="preserve">
+    <value>Scannen</value>
+  </data>
 </root>

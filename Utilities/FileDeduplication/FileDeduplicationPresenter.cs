@@ -5,10 +5,8 @@ using JJ.Framework.Common;
 using JJ.Framework.Configuration;
 using JJ.Framework.IO;
 using JJ.Framework.Logging;
-using JJ.Utilities.FileDeduplication.Properties;
 
 // ReSharper disable MemberCanBeInternal
-
 // ReSharper disable PossibleMultipleEnumeration
 
 namespace JJ.Utilities.FileDeduplication

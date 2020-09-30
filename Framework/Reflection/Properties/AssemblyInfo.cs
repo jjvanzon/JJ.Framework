@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription(
 @"Expressions like ""myParam.MyList[i].MyProperty"" can be converted to text or their value retrieved or info like { ""MyMethod"", Parameters = { ""myParameter"", int, 3 } } Accessor IsIndexer IsNullableType IsProperty IsReferenceType IsStatic IsSimpleType IsDefault GetBaseClasses GetImplementations GetItemType GetPropertyOrException GetUnderlyingNullableTypeFast TypesFromObjects. ReflectionCache with fast GetProperties GetFields GetConstructor GetTypeByShortName. Overloads for PropertInfo.GetValue IsAssignableFrom IsAssignableTo CreateInstance.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jan-Joost van Zon")]
+[assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan-Joost van Zon")]
+[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

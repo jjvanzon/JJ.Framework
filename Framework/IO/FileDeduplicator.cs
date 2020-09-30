@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
-using JJ.Framework.Collections;
 
 // ReSharper disable InvokeAsExtensionMethod
 
@@ -19,7 +18,7 @@ namespace JJ.Framework.IO
 	[PublicAPI]
 	public class FileDeduplicator : IFileDeduplicator
 	{
-		/// <inheritdoc cref="FileDeduplicator"/>
+		/// <inheritdoc cref="FileDeduplicator" />
 		[UsedImplicitly] public FileDeduplicator() { }
 
 		[PublicAPI]
@@ -28,7 +27,7 @@ namespace JJ.Framework.IO
 		{
 			public string OriginalFilePath { get; set; }
 			public string DuplicateFilePath { get; set; }
-		
+
 			private string DebuggerDisplay => DiagnosticsFormatter.GetDebuggerDisplay(this);
 		}
 
@@ -66,7 +65,7 @@ namespace JJ.Framework.IO
 			}
 
 			long ticks = 0;
-			// Total iterations is detemined like this:
+			// Total iterations is determined like this:
 			// First iteration loops through about all items.
 			// Last iteration loops through about 0 items.
 			// So averagely an iteration would loop through half of the items.
@@ -101,6 +100,7 @@ namespace JJ.Framework.IO
 					// Callbacks
 					ticks++;
 					bool mustDoCallbacks = ticks % ticksPerCallback == 0;
+
 					if (mustDoCallbacks)
 					{
 						if (IsCancelled(cancelCallback))
@@ -120,10 +120,10 @@ namespace JJ.Framework.IO
 
 			// Convert to overviewable list of duplicates.
 			List<FilePair> duplicateFilePairs = fileTuples.Where(x => x.IsDuplicate)
-														  .Select(ConvertFileTupleToFilePair)
-														  .OrderBy(x => x.OriginalFilePath)
-														  .ThenBy(x => x.DuplicateFilePath)
-														  .ToList();
+			                                              .Select(ConvertFileTupleToFilePair)
+			                                              .OrderBy(x => x.OriginalFilePath)
+			                                              .ThenBy(x => x.DuplicateFilePath)
+			                                              .ToList();
 
 			progressCallback?.Invoke($"Done scanning. {duplicateFilePairs.Count} duplicates found.");
 

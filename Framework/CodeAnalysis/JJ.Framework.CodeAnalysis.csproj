@@ -16,7 +16,7 @@
   <PropertyGroup>
     <PackageId>JJ.Framework.CodeAnalysis</PackageId>
     <PackageVersion>1.0.0.0</PackageVersion>
-    <Authors>Jan-Joost van Zon</Authors>
+    <Authors>Jan Joost van Zon</Authors>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>
@@ -24,7 +24,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>JJ.Framework.CodeAnalysis</Description>
     <PackageReleaseNotes></PackageReleaseNotes>
-    <Copyright>Copyright © 2013 - 2018 Jan-Joost van Zon</Copyright>
+    <Copyright>Copyright © 2013 - 2018 Jan Joost van Zon</Copyright>
     <PackageTags>CodeAnalysis.New, analyzers</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <AssemblyVersion>1.3.0.0</AssemblyVersion>

@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("JJ.Framework.Common")]
 [assembly: AssemblyDescription("Basic helpers with very few dependencies. EmbeddedResourceHelper EnumHelper.GetValues&lt;TEnum&gt; IsValidEnum EventArgs&lt;T&gt; DoubleHelper.IsSpecialValue CultureHelper GetCurrentCulture SetCurrentCulture GetCurrentCultureName SetCurrentCultureName KeyHelper.CreateKey")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jan-Joost van Zon")]
+[assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan-Joost van Zon")]
+[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

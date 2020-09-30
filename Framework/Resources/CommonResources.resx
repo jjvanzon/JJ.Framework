@@ -367,4 +367,7 @@
     <value>Clone {0}</value>
     <comment>{0} = name</comment>
   </data>
+  <data name="Scan" xml:space="preserve">
+    <value>Scan</value>
+  </data>
 </root>
