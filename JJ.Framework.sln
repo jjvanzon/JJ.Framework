@@ -193,6 +193,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Microsoft.Visu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Resources.Tests", "Framework\Resources.Tests\JJ.Framework.Resources.Tests.csproj", "{B26B8089-81F0-4E8E-9CE6-21CF9BC24B24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileDeduplication.Tests", "Utilities\FileDeduplication.Tests\JJ.Utilities.FileDeduplication.Tests.csproj", "{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1256,6 +1258,18 @@ Global
 		{B26B8089-81F0-4E8E-9CE6-21CF9BC24B24}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B26B8089-81F0-4E8E-9CE6-21CF9BC24B24}.Release|x86.ActiveCfg = Release|Any CPU
 		{B26B8089-81F0-4E8E-9CE6-21CF9BC24B24}.Release|x86.Build.0 = Release|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.Debug|x86.Build.0 = Debug|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.NPDebug|x86.ActiveCfg = Debug|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.NPDebug|x86.Build.0 = Debug|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.Release|x86.ActiveCfg = Release|Any CPU
+		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
