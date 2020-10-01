@@ -5,7 +5,7 @@
 namespace JJ.Framework.Resources.Tests
 {
 	[TestClass]
-	public class CommonResourceFormatterTests : ResourceFormatterTestBase
+	public class CommonResourceFormatterTests : ResourceFormatterTestsBase
 	{
 		public CommonResourceFormatterTests()
 			: base(typeof(CommonResourceFormatter), 

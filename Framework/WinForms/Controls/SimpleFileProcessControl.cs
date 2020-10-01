@@ -104,7 +104,7 @@ namespace JJ.Framework.WinForms.Controls
 		public bool MustShowExceptions { get; set; }
 
 		[DefaultValue("Are you sure?")]
-		public string AreYouSureMessage { get; set; } = "Are you sure?";
+		public string AreYouSureQuestion { get; set; } = "Are you sure?";
 
 		private int _spacing = 16;
 		[DefaultValue(16)]
@@ -191,7 +191,7 @@ namespace JJ.Framework.WinForms.Controls
 
 		private void Start()
 		{
-			if (MessageBox.Show(AreYouSureMessage, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			if (MessageBox.Show(AreYouSureQuestion, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
 			{
 				OnBackgroundThread(RunProcess);
 			}

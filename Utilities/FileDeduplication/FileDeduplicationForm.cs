@@ -43,6 +43,7 @@ namespace JJ.Utilities.FileDeduplication
 			TextBoxLabelText = CommonResourceFormatter.Folder + ":";
 			StartButtonText = CommonResourceFormatter.Delete;
 			CancelButtonText = CommonResourceFormatter.Cancel;
+			AreYouSureQuestion = CommonResourceFormatter.AreYouSure;
 		}
 
 		private void FileDeduplicationForm_Load(object sender, EventArgs e) => MapViewModelToControls();

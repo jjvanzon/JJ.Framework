@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
+using JJ.Framework.Resources;
 
 // ReSharper disable InvokeAsExtensionMethod
 
@@ -49,7 +50,7 @@ namespace JJ.Framework.IO
 		{
 			FileHelper.AssertFolderExists(folderPath);
 
-			progressCallback?.Invoke("Listing files...");
+			progressCallback?.Invoke(ResourceFormatter.ListingFiles);
 
 			// List files
 			SearchOption searchOption = recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
@@ -73,7 +74,7 @@ namespace JJ.Framework.IO
 			long ticksPerCallback = totalTicks / 1000;
 			if (ticksPerCallback == 0) ticksPerCallback = 1;
 
-			progressCallback?.Invoke("Scanning for duplicates...");
+			progressCallback?.Invoke(ResourceFormatter.ScanningForDuplicates);
 
 			// Compare files
 			for (var i = 0; i < fileTuples.Count; i++)
@@ -105,18 +106,18 @@ namespace JJ.Framework.IO
 					{
 						if (IsCancelled(cancelCallback))
 						{
-							progressCallback?.Invoke("Cancelled");
+							progressCallback?.Invoke(CommonResourceFormatter.Cancelled);
 							return new List<FilePair>();
 						}
 
 						decimal percentage = 100m * ticks / totalTicks;
 						if (percentage > 100m) percentage = 100m;
-						progressCallback?.Invoke($"Scanning for duplicates {percentage:0.0}%...");
+						progressCallback?.Invoke(ResourceFormatter.ScanningForDuplicates_WithPercentage(percentage));
 					}
 				}
 			}
 
-			progressCallback?.Invoke("Processing result...");
+			progressCallback?.Invoke(ResourceFormatter.ProcessingResult);
 
 			// Convert to overviewable list of duplicates.
 			List<FilePair> duplicateFilePairs = fileTuples.Where(x => x.IsDuplicate)
@@ -125,7 +126,7 @@ namespace JJ.Framework.IO
 			                                              .ThenBy(x => x.DuplicateFilePath)
 			                                              .ToList();
 
-			progressCallback?.Invoke($"Done scanning. {duplicateFilePairs.Count} duplicates found.");
+			progressCallback?.Invoke(ResourceFormatter.DoneScanning_WithDuplicatesFound(duplicateFilePairs.Count));
 
 			return duplicateFilePairs;
 		}

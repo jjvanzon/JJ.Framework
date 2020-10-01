@@ -9,9 +9,11 @@ namespace JJ.Framework.Resources
 
 		public static string Add => _helper.GetText();
 		public static string AlreadyExists_WithType_AndName(string type, string name) => _helper.GetText_WithTwoPlaceHolders(type, name);
+		public static string AreYouSure => _helper.GetText();
 		public static string AreYouSureYouWishToDelete_WithType_AndName(string type, string name)  => _helper.GetText_WithTwoPlaceHolders(type, name);
 		public static string BackToList => _helper.GetText();
 		public static string Cancel => _helper.GetText();
+		public static string Cancelled => _helper.GetText();
 		public static string CannotDelete_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
 		public static string CannotDelete_WithType_AndName(string type, string name) => _helper.GetText_WithTwoPlaceHolders(type, name);
 		public static string CannotDelete_WithName_AndDependency(string name, string dependency)  => _helper.GetText_WithTwoPlaceHolders(name, dependency);

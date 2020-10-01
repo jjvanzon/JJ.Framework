@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using JJ.Framework.Resources;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,12 +30,13 @@ namespace JJ.Framework.IO
 
 				// Progress
 				decimal percentage = 100m * i / count;
-				progressCallback?.Invoke($"Deleting files {percentage:0.0}% - {Path.GetFileName(filePath)}");
+				progressCallback?.Invoke(
+					ResourceFormatter.DeletingFiles_WithPercentage_AndFileName(percentage, Path.GetFileName(filePath)));
 
 				// Cancel
 				if (IsCancelled(cancelCallback))
 				{
-					progressCallback?.Invoke("Cancelled");
+					progressCallback?.Invoke(CommonResourceFormatter.Cancelled);
 					return;
 				}
 
@@ -42,7 +44,7 @@ namespace JJ.Framework.IO
 				DeleteFile(filePath);
 			}
 
-			progressCallback?.Invoke($"Done deleting {count} files.");
+			progressCallback?.Invoke(ResourceFormatter.DoneDeletingFiles_WithCount(count));
 		}
 
 		private static bool IsCancelled(Func<bool> cancelCallback) => cancelCallback?.Invoke() ?? false;

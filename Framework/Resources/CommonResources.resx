@@ -362,4 +362,10 @@
   <data name="Recursive" xml:space="preserve">
     <value>Recursive</value>
   </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
 </root>

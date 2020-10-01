@@ -93,10 +93,10 @@ namespace JJ.Framework.WinForms.Forms
 		}
 
 		[DefaultValue("Are you sure?")]
-		public string AreYouSureMessage
+		public string AreYouSureQuestion
 		{
-			get => simpleFileProcessControl.AreYouSureMessage;
-			set => simpleFileProcessControl.AreYouSureMessage = value;
+			get => simpleFileProcessControl.AreYouSureQuestion;
+			set => simpleFileProcessControl.AreYouSureQuestion = value;
 		}
 
 		[DefaultValue(16)]
