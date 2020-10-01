@@ -8,6 +8,7 @@ using JJ.Framework.Reflection;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable UnusedVariable
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
 
 namespace JJ.Framework.Resources.Tests
 {
