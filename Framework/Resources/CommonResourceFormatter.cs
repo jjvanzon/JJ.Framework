@@ -19,7 +19,7 @@ namespace JJ.Framework.Resources
 		public static string Cancel => GetText();
 		public static string CannotDelete_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string CannotDelete_WithType_AndName(string type, string name) => GetText_WithTwoPlaceHolders(type, name);
-		public static string CannotDelete_WithName_AndDependentItem(string name, string dependentItem)  => GetText_WithTwoPlaceHolders(name, dependentItem);
+		public static string CannotDelete_WithName_AndDependency(string name, string dependency)  => GetText_WithTwoPlaceHolders(name, dependency);
 		public static string Clone => GetText();
 		public static string Clone_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string Close => GetText();
@@ -32,7 +32,6 @@ namespace JJ.Framework.Resources
 		public static string Delete_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string Details_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string Description => GetText();
-		public static string Duplicates => GetText();
 		public static string Edit => GetText();
 		public static string Edit_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string False => GetText();
