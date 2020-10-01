@@ -80,16 +80,19 @@ namespace JJ.Framework.Testing
             object obj = ExpressionHelper.GetValue(expression);
             if (obj == null) throw new NullException(() => obj);
             Type expected = typeof(T);
-
-            // TODO: Beating around the bush in code seems evidence of abstraction failure.
             Type actual = obj.GetType();
 
-            if (string.IsNullOrWhiteSpace(name))
+            if (expected != actual)
             {
-	            name = ExpressionHelper.GetName(expression);
-            }
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    name = ExpressionHelper.GetName(expression);
+                }
 
-            ExpectedActualCheck(x => expected == actual, "IsOfType", expected, () => actual, name);
+                string message = TestHelper.FormatTestedPropertyMessage(name);
+	            string fullMessage = GetExpectedActualMessage("IsOfType", expected, actual, message);
+	            throw new Exception(fullMessage);
+            }
         }
 
         // ThrowsException Checks
