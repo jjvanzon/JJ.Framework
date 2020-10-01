@@ -9,15 +9,23 @@ namespace JJ.Framework.Resources
 {
 	/// <summary>
 	/// Aims to supply basic logic for programming a ResourceFormatter class.
-	/// The methods would aim to get a resource from a specified resource manager.
+	/// The methods would aim to get a string resource from a specified ResourceManager.
 	/// The idea would be that it were possible to program a ResourceFormatter class,
-	/// with members that have the same name as the resource.
-	/// There aim is to also supply methods for filling in string placeholders.
+	/// with members that have the same name as the string resource.
+	/// The aim is to also supply methods for filling in string placeholders.
 	/// First the current culture might be used. If that does not give a text,
 	/// it tries using a fallback culture (en-US).
 	/// If no text is found in the resources, an exception may be thrown.
-	/// This mechanism might be used in the CommonResourceFormatter,
-	/// but it would be possible to reuse that mechanism in another custom class.
+	/// This mechanism might be used in JJ.Framework in the CommonResourceFormatter,
+	/// but it might be possible to reuse that mechanism in another custom class.
+	/// 
+	/// <para> Example of usage: </para>
+	/// <para> public static class ResourceFormatter { </para>
+	/// <para> private static readonly ResourceFormatterHelper _helper = new ResourceFormatterHelper(Resources.ResourceManager); </para>
+	/// <para> public static string Duplicates =&gt; _helper.GetText(); } </para>
+	/// <para> public static string PleaseFirst_WithName(string name) =&gt; _helper.GetText_WithOnePlaceHolder(name); } </para>
+	/// 
+	/// In the code above "Resources" might then be a resource editor from Visual Studio that may have the resources named Duplicates and PleaseFirst_WithName.
 	/// </summary>
 	[PublicAPI]
 	public class ResourceFormatterHelper
@@ -26,6 +34,7 @@ namespace JJ.Framework.Resources
 
 		private readonly ResourceManager _resourceManager;
 
+		/// <inheritdoc cref="ResourceFormatterHelper" />
 		public ResourceFormatterHelper(ResourceManager resourceManager)
 			=> _resourceManager = resourceManager ?? throw new ArgumentNullException(nameof(resourceManager));
 

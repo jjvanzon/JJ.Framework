@@ -1,10 +1,14 @@
-﻿namespace JJ.Utilities.FileDeduplication
+﻿using JJ.Framework.Resources;
+
+namespace JJ.Utilities.FileDeduplication
 {
 	public static class ResourceFormatter
 	{
-		public static string ApplicationName => Resources.ApplicationName;
-		public static string Explanation => Resources.Explanation;
-		public static string PleaseFirst_WithName(string name) => string.Format(Resources.PleaseFirst_WithName, name);
-		public static string Duplicates => Resources.Duplicates;
+		private static readonly ResourceFormatterHelper _helper = new ResourceFormatterHelper(Resources.ResourceManager);
+
+		public static string ApplicationName => _helper.GetText();
+		public static string Explanation => _helper.GetText();
+		public static string PleaseFirst_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
+		public static string Duplicates => _helper.GetText();
 	}
 }
