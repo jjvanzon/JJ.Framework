@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using JJ.Framework.Common;
@@ -24,16 +25,19 @@ namespace JJ.Framework.Resources
 		public static string Close => GetText();
 		public static string Close_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string Confirm => GetText();
+		public static string Copy_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string Date => GetText();
 		public static string DateTime => GetText();
 		public static string Delete => GetText();
 		public static string Delete_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string Details_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string Description => GetText();
+		public static string Duplicates => GetText();
 		public static string Edit => GetText();
 		public static string Edit_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string False => GetText();
 		public static string FilePath => GetText();
+		public static string Folder => GetText();
 		public static string General => GetText();
 		public static string ID => GetText();
 		public static string ID_WithName(string name) => GetText_WithOnePlaceHolder(name);
@@ -41,6 +45,7 @@ namespace JJ.Framework.Resources
 		public static string IsDeleted_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string Item => GetText();
 		public static string Language => GetText();
+		public static string ListOf_WithName(string name) => GetText_WithOnePlaceHolder(name);
 		public static string LogIn => GetText();
 		public static string LogOut => GetText();
 		public static string Menu => GetText();
@@ -70,6 +75,7 @@ namespace JJ.Framework.Resources
 		public static string Refresh => GetText();
 		public static string Remove => GetText();
 		public static string Rename_WithName(string name) => GetText_WithOnePlaceHolder(name);
+		public static string Recursive => GetText();
 		public static string Scan => GetText();
 		public static string Save => GetText();
 		public static string Save_WithName(string name) => GetText_WithOnePlaceHolder(name);

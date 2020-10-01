@@ -1,6 +1,7 @@
 ﻿using System;
 using JJ.Framework.IO;
 using JJ.Framework.Microsoft.VisualBasic;
+using JJ.Framework.Resources;
 using JJ.Framework.WinForms.Extensions;
 using JJ.Framework.WinForms.Forms;
 using JJ.Framework.WinForms.Helpers;
@@ -19,6 +20,8 @@ namespace JJ.Utilities.FileDeduplication
 		{
 			InitializeComponent();
 
+			ApplyResourceTexts();
+
 			this.AutomaticallyAssignTabIndexes();
 
 			_presenter = new FileDeduplicationPresenter(
@@ -27,6 +30,19 @@ namespace JJ.Utilities.FileDeduplication
 				new ClipboardUtilizer());
 
 			_presenter.Initialize(MapViewModelToControls);
+		}
+
+		private void ApplyResourceTexts()
+		{
+			checkBoxRecursive.Text = CommonResourceFormatter.Recursive;
+			buttonScan.Text = CommonResourceFormatter.Scan;
+			buttonCopyListOfDuplicates.Text =
+				CommonResourceFormatter.Copy_WithName(CommonResourceFormatter.ListOf_WithName(ResourceFormatter.Duplicates));
+
+			labelListOfDuplicatesTitle.Text = CommonResourceFormatter.ListOf_WithName(ResourceFormatter.Duplicates) + ":";
+			TextBoxLabelText = CommonResourceFormatter.Folder + ":";
+			StartButtonText = CommonResourceFormatter.Delete;
+			CancelButtonText = CommonResourceFormatter.Cancel;
 		}
 
 		private void FileDeduplicationForm_Load(object sender, EventArgs e) => MapViewModelToControls();
@@ -65,14 +81,17 @@ namespace JJ.Utilities.FileDeduplication
 		/// I just would like the toll of switching to using presenters, view models and mapping to be low.
 		/// </summary>
 		private void MapViewModelToControls()
-		{
-			OnUiThread(
+			=> OnUiThread(
 				() =>
 				{
 					if (Text != ViewModel.TitleBarText) Text = ViewModel.TitleBarText;
 					if (Description != ViewModel.Explanation) Description = ViewModel.Explanation;
 					if (checkBoxRecursive.Checked != ViewModel.Recursive) checkBoxRecursive.Checked = ViewModel.Recursive;
-					if (textBoxListOfDuplicates.Text != ViewModel.ListOfDuplicates) textBoxListOfDuplicates.Text = ViewModel.ListOfDuplicates;
+					if (textBoxListOfDuplicates.Text != ViewModel.ListOfDuplicates)
+					{
+						textBoxListOfDuplicates.Text = ViewModel.ListOfDuplicates;
+					}
+
 					if (TextBoxText != ViewModel.FolderPath) TextBoxText = ViewModel.FolderPath;
 					ShowProgress(ViewModel.ProgressMessage);
 					IsRunning = ViewModel.IsRunning;
@@ -84,7 +103,6 @@ namespace JJ.Utilities.FileDeduplication
 					if (buttonScan.Enabled != enabled) buttonScan.Enabled = enabled;
 					if (buttonCopyListOfDuplicates.Enabled != enabled) buttonCopyListOfDuplicates.Enabled = enabled;
 				});
-		}
 
 		private void MapControlsToViewModel()
 		{

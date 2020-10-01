@@ -5,6 +5,7 @@ using JJ.Framework.Common;
 using JJ.Framework.Configuration;
 using JJ.Framework.IO;
 using JJ.Framework.Logging;
+using JJ.Framework.Resources;
 
 // ReSharper disable MemberCanBeInternal
 // ReSharper disable PossibleMultipleEnumeration
@@ -46,8 +47,8 @@ namespace JJ.Utilities.FileDeduplication
 		private FileDeduplicationViewModel Show()
 			=> new FileDeduplicationViewModel
 			{
-				TitleBarText = Resources.ApplicationName,
-				Explanation = Resources.Explanation,
+				TitleBarText = ResourceFormatter.ApplicationName,
+				Explanation = ResourceFormatter.Explanation,
 				Recursive = DEFAULT_RECURSIVE,
 				FolderPath = AppSettingsReader<IAppSettings>.Get(x => x.DefaultFolderPath)
 			};
@@ -84,7 +85,7 @@ namespace JJ.Utilities.FileDeduplication
 
 				if (_filePairs == null)
 				{
-					ViewModel.ProgressMessage = "Please scan first.";
+					ViewModel.ProgressMessage = ResourceFormatter.PleaseFirst_WithName(CommonResourceFormatter.Scan);
 					return;
 				}
 

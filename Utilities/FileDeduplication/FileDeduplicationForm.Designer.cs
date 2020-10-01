@@ -77,7 +77,7 @@
 			// 
 			this.buttonCopyListOfDuplicates.Location = new System.Drawing.Point(159, 184);
 			this.buttonCopyListOfDuplicates.Name = "buttonCopyListOfDuplicates";
-			this.buttonCopyListOfDuplicates.Size = new System.Drawing.Size(195, 49);
+			this.buttonCopyListOfDuplicates.Size = new System.Drawing.Size(219, 49);
 			this.buttonCopyListOfDuplicates.TabIndex = 5;
 			this.buttonCopyListOfDuplicates.Text = "Copy List of Duplicates";
 			this.buttonCopyListOfDuplicates.UseVisualStyleBackColor = true;

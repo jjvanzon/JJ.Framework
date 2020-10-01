@@ -4,6 +4,7 @@ using System.Threading;
 using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Reflection;
+// ReSharper disable InvertIf
 
 namespace JJ.Framework.Testing
 {

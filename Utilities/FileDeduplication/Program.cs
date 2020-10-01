@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
+using JJ.Framework.Common;
+using JJ.Framework.Configuration;
 using JJ.Framework.WinForms.Helpers;
-using JJ.Utilities.FileDeduplication.Properties;
 
 namespace JJ.Utilities.FileDeduplication
 {
@@ -10,7 +11,16 @@ namespace JJ.Utilities.FileDeduplication
 		[STAThread]
 		private static void Main()
 		{
+			// Message box for unhandled exceptions.
 			UnhandledExceptionMessageBoxShower.Initialize(Resources.ApplicationName);
+
+			// Culture from config.
+			string fixedCultureName = AppSettingsReader<IAppSettings>.Get(x => x.FixedCultureName);
+			if (!string.IsNullOrWhiteSpace(fixedCultureName))
+			{
+				CultureHelper.SetCurrentCultureName(fixedCultureName);
+			}
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new FileDeduplicationForm());

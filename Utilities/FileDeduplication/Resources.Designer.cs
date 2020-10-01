@@ -70,11 +70,29 @@ namespace JJ.Utilities.FileDeduplication {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duplicates.
+        /// </summary>
+        internal static string Duplicates {
+            get {
+                return ResourceManager.GetString("Duplicates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This utility aims to look up duplicate files (recursively) in a folder. It might first analyze which duplicates there may be and report them. After that it would be an option to have this utility delete those files. This tool would send deleted files to the recycle bin..
         /// </summary>
         internal static string Explanation {
             get {
                 return ResourceManager.GetString("Explanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please {0} first..
+        /// </summary>
+        internal static string PleaseFirst_WithName {
+            get {
+                return ResourceManager.GetString("PleaseFirst_WithName", resourceCulture);
             }
         }
         

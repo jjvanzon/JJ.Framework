@@ -120,8 +120,14 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>JJ Utilities - File Deduplication</value>
   </data>
+  <data name="Duplicates" xml:space="preserve">
+    <value>Duplicates</value>
+  </data>
   <data name="Explanation" xml:space="preserve">
     <value>This utility aims to look up duplicate files (recursively) in a folder. It might first analyze which duplicates there may be and report them. After that it would be an option to have this utility delete those files. This tool would send deleted files to the recycle bin.</value>
+  </data>
+  <data name="PleaseFirst_WithName" xml:space="preserve">
+    <value>Please {0} first.</value>
   </data>
   <data name="Scan" xml:space="preserve">
     <value>Scan</value>

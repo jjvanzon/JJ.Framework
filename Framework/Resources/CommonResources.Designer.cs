@@ -117,9 +117,9 @@ namespace JJ.Framework.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cannot delete {0}, because it is still used by the following: {1}..
         /// </summary>
-        internal static string CannotDelete_WithName_AndDependentItem {
+        internal static string CannotDelete_WithName_AndDependency {
             get {
-                return ResourceManager.GetString("CannotDelete_WithName_AndDependentItem", resourceCulture);
+                return ResourceManager.GetString("CannotDelete_WithName_AndDependency", resourceCulture);
             }
         }
         
@@ -174,6 +174,15 @@ namespace JJ.Framework.Resources {
         internal static string Confirm {
             get {
                 return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy {0}.
+        /// </summary>
+        internal static string Copy_WithName {
+            get {
+                return ResourceManager.GetString("Copy_WithName", resourceCulture);
             }
         }
         
@@ -295,6 +304,15 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        internal static string Folder {
+            get {
+                return ResourceManager.GetString("Folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to General.
         /// </summary>
         internal static string General {
@@ -354,6 +372,15 @@ namespace JJ.Framework.Resources {
         internal static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of {0}.
+        /// </summary>
+        internal static string ListOf_WithName {
+            get {
+                return ResourceManager.GetString("ListOf_WithName", resourceCulture);
             }
         }
         
@@ -570,6 +597,15 @@ namespace JJ.Framework.Resources {
         internal static string Properties_WithName {
             get {
                 return ResourceManager.GetString("Properties_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recursive.
+        /// </summary>
+        internal static string Recursive {
+            get {
+                return ResourceManager.GetString("Recursive", resourceCulture);
             }
         }
         
