@@ -4,9 +4,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("JJ.Demos.Xml")]
 [assembly: AssemblyDescription("Demonstrates JJ.Framework.Xml.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jan-Joost van Zon")]
-[assembly: AssemblyProduct("JJ.Demos.Xml")]
-[assembly: AssemblyCopyright("Copyright © 2018 Jan-Joost van Zon")]
+[assembly: AssemblyCompany("Jan Joost van Zon")]
+[assembly: AssemblyProduct("JJ.Framework")]
+[assembly: AssemblyCopyright("Copyright © 2018 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

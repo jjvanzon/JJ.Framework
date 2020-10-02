@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -12,9 +13,9 @@ using System.Runtime.InteropServices;
     "IsFolder IsFile FolderIsEmpty IsReadOnly IsHidden MakeReadOnly MakeWritable ShowFile HideFile " +
     "ToAbsolutePath ToRelativePath PathsAreEqual AssertFileExists")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jan-Joost van Zon")]
+[assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan-Joost van Zon")]
+[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -36,3 +37,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 [assembly: AssemblyVersion("1.5.*")]
+
+[assembly: InternalsVisibleTo("JJ.Framework.IO.Tests")]

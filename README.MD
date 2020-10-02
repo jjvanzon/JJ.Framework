@@ -1,6 +1,6 @@
 ﻿# JJ.Framework
 
-*Jan-Joost van Zon, 2018-12-02*
+*Jan Joost van Zon, 2018-12-02*
 
 Everything works to some extent, but the quality of the components varies. The ones with the highest quality made it to [NuGet](https://www.nuget.org/profiles/jjvanzon). Others might need some more unit testing and some bugs resolved.
 

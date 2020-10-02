@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="JJ.Framework.CodeAnalysis.6cacdea1-706b-4552-a04a-31152b726ae9" Version="1.0" Language="en-US" Publisher="Jan-Joost van Zon"/>
+        <Identity Id="JJ.Framework.CodeAnalysis.6cacdea1-706b-4552-a04a-31152b726ae9" Version="1.0" Language="en-US" Publisher="Jan Joost van Zon"/>
         <DisplayName>JJ.Framework.CodeAnalysis</DisplayName>
         <Description xml:space="preserve">JJ.Framework.CodeAnalysis performs some code style checks that can be automatically executed while a programmer is typing it in.</Description>
     </Metadata>

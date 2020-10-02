@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription(
 @"LINQ overloads. SelectRecursive SelectAncestors Add Remove AddRange Concat CrossJoin Distinct DistinctMany Except FirstWithClearException SingleOrDefaultWithClearException SingleWithClearException ForEach IndexOf TryGetIndexOf MinOrDefault MaxOrDefault PeekOrDefault PopOrDefault Product RemoveFirst Repeat ToHashSet ToNonUniqueDictionary TrimAll TryRemoveFirst Union Zip item.AsArray item.AsList item.AsEnumerable. Also a RedBlackTree and KeyValuePairHelper ConvertNamesAndValuesListToKeyValuePairs and ConvertNamesAndValuesListToDictionary.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jan-Joost van Zon")]
+[assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan-Joost van Zon")]
+[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

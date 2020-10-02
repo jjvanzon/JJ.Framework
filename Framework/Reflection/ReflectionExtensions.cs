@@ -213,12 +213,26 @@ namespace JJ.Framework.Reflection
             return type.GetGenericArguments()[0];
         }
 
-        /// <summary> For static properties it will work without an object parameter. </summary>
+        /// <summary> Returns the property value. For static properties this will work without an object parameter. </summary>
         public static object GetValue(this PropertyInfo property)
         {
             if (property == null) throw new ArgumentNullException(nameof(property));
             return property.GetValue(null);
         }
+
+        /// <inheritdoc cref="Invoke(MethodBase, object, object[])" />
+        public static object Invoke(this MethodBase methodBase, params object[] parameters) => methodBase.Invoke(null, parameters);
+
+        /// <summary>
+        /// Invokes a method or constructor. For static methods this will work without an object parameter.
+        /// This overload may allow parameters to be specified with params / variable amount of arguments
+        /// </summary>
+        public static object Invoke(this MethodBase methodBase, object obj, params object[] parameters)
+        {
+            if (methodBase == null) throw new ArgumentNullException(nameof(methodBase));
+            return methodBase.Invoke(obj, parameters);
+        }
+
 
         public static bool IsAssignableFrom<T>(this Type type)
         {

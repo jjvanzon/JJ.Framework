@@ -51,7 +51,7 @@
 			this.ClientSize = new System.Drawing.Size(618, 346);
 			this.Controls.Add(this.checkBoxPreviewOnly);
 			this.Description = resources.GetString("$this.Description");
-			this.FilePath = "D:\\Source\\JJs Software\\Circle Docs";
+			this.TextBoxText = "D:\\Source\\JJs Software\\Circle Docs";
 			this.Name = "MainForm";
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
 			this.Controls.SetChildIndex(this.checkBoxPreviewOnly, 0);

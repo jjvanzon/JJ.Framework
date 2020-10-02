@@ -135,7 +135,7 @@
   <data name="CannotDelete_WithName" xml:space="preserve">
     <value>Nie można usunąć {0}.</value>
   </data>
-  <data name="CannotDelete_WithName_AndDependentItem" xml:space="preserve">
+  <data name="CannotDelete_WithName_AndDependency" xml:space="preserve">
     <value>Nie można usunąć {0}, ponieważ jest nadal używany przez następujące: {1}.</value>
   </data>
   <data name="CannotDelete_WithType_AndName" xml:space="preserve">

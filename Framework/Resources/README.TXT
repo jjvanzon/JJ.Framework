@@ -1,1 +1,3 @@
-﻿JJ.Framework.Resources contains reusable button texts in multiple languages. Actually only two: Dutch and US English.
+﻿# JJ.Framework.Resources
+
+Contains reusable button texts and such in multiple languages. Actually Dutch, US English and some broken Polish.

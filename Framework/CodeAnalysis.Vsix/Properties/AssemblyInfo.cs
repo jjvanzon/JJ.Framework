@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("JJ.Framework.CodeAnalysis.Vsix")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jan-Joost van Zon")]
-[assembly: AssemblyProduct("JJ.Framework.CodeAnalysis.Vsix")]
-[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan-Joost van Zon")]
+[assembly: AssemblyCompany("Jan Joost van Zon")]
+[assembly: AssemblyProduct("JJ.Framework")]
+[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
