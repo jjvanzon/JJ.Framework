@@ -15,14 +15,14 @@ using JJ.Framework.Testing;
 namespace JJ.Framework.Resources.Tests
 {
 	/// <summary>
-	/// This class might be used as a base class for tests to run on a ResourceFormatter class.
-	/// That ResourceFormatter might so happens to be structured like CommonResourceFormatter from JJ.Framework.Resources.
+	/// This class might be used as a base class for unit tests to run on a ResourceFormatter class.
+	/// That ResourceFormatter might be structured like CommonResourceFormatter from JJ.Framework.Resources.
 	/// That would mean, that each public static member of the ResourceFormatter class may return a string.
-	/// That string may not be null or white space. The thread culture might change to different cultures to repeat the checks.
+	/// That string may not be null or white space. The test might switch to different cultures and repeat the checks.
 	/// An unused culture may fall back to a default culture en-US.
 	/// Those seem quite some specific requirements for the ResourceFormatter class.
 	/// But having this base class for tests, would allow testing integrity of
-	/// some other resource formatters the way JJ.Framework.Resources would do things.
+	/// some other resource formatters the same way JJ.Framework.Resources would do things.
 	/// 
 	/// <para> An implementation might look something like: </para>
 	/// <para> [TestClass] </para>
