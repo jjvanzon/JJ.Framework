@@ -11,7 +11,7 @@ using JJ.Framework.WinForms.Helpers;
 
 namespace JJ.Utilities.FileDeduplication
 {
-	public partial class FileDeduplicationForm : SimpleFileProcessForm
+	public partial class FileDeduplicationForm : SimpleProcessForm
 	{
 		private readonly FileDeduplicationPresenter _presenter;
 		private FileDeduplicationViewModel ViewModel => _presenter.ViewModel;

@@ -80,17 +80,17 @@
     <Compile Include="Helpers\UnhandledExceptionMessageBoxShower.cs" />
     <Compile Include="Helpers\WinFormsVectorGraphicsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controls\SimpleFileProcessControl.cs">
+    <Compile Include="Controls\SimpleProcessControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SimpleFileProcessControl.Designer.cs">
-      <DependentUpon>SimpleFileProcessControl.cs</DependentUpon>
+    <Compile Include="Controls\SimpleProcessControl.Designer.cs">
+      <DependentUpon>SimpleProcessControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SimpleFileProcessForm.cs">
+    <Compile Include="Forms\SimpleProcessForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\SimpleFileProcessForm.Designer.cs">
-      <DependentUpon>SimpleFileProcessForm.cs</DependentUpon>
+    <Compile Include="Forms\SimpleProcessForm.Designer.cs">
+      <DependentUpon>SimpleProcessForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -103,11 +103,11 @@
     <EmbeddedResource Include="Controls\DiagramControl.resx">
       <DependentUpon>DiagramControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\SimpleFileProcessControl.resx">
-      <DependentUpon>SimpleFileProcessControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\SimpleProcessControl.resx">
+      <DependentUpon>SimpleProcessControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\SimpleFileProcessForm.resx">
-      <DependentUpon>SimpleFileProcessForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\SimpleProcessForm.resx">
+      <DependentUpon>SimpleProcessForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
