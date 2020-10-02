@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription(
 "Helper for unit tests. Mimics the Assert class, but will display the tested expression in error messages, instead of being vague about it or laborious to program. It also offers methods to evaluate if the right exception goes off in the right spot with the right exception type and / or the right message.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Jan-Joost van Zon")]
+[assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan-Joost van Zon")]
+[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

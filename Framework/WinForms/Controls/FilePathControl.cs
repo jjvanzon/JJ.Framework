@@ -2,17 +2,32 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.WinForms.EventArg;
+using JJ.Framework.WinForms.Extensions;
 using JJ.Framework.WinForms.Helpers;
+// ReSharper disable SwitchExpressionHandlesSomeKnownEnumValuesWithExceptionInDefault
 
 namespace JJ.Framework.WinForms.Controls
 {
+	/// <summary>
+	/// Would show a label, a text box and a browse button,
+	/// that might show a dialog to open or save a file or select a folder.
+	/// Might also be used if a text box would optionally
+	/// sometimes have a file browse function.
+	/// </summary>
+	[PublicAPI]
 	public partial class FilePathControl : UserControl
 	{
 		// TODO: Tooltip only works when TextBoxEnabled = true;
 
 		public event EventHandler<FilePathEventArgs> Browsed;
+
+		private CommonDialog _commonDialog;
+		private readonly Graphics _graphics;
+
+		// Initialization
 
 		public FilePathControl()
 		{
@@ -20,36 +35,27 @@ namespace JJ.Framework.WinForms.Controls
 
 			InitializeComponent();
 
-			// HACK: To be able to see the file name for long file paths do not fit on screen, we make the text right aligned.
-			// But TextAlign = HorizontalAlignment.Right does not work. It will only right align it if the text fits on screen!
-			// Thank you WinForms.
-			// The only reason I do this, is because the alternative, showing the full path as a tooltip,
-			// does not work if the control is disabled!
-			// Thank you WinForms.
 			textBox.RightToLeft = RightToLeft.Yes;
 		}
 
 		protected override void OnLoad(EventArgs e)
 		{
 			base.OnLoad(e);
-
 			RequestPositionControls();
 		}
 
-		// Fields
-
-		private FileDialog _fileDialog;
-		private readonly Graphics _graphics;
-
 		// Properties
 
+		/// <summary> Would get or set the FilePath in the TextBox. </summary>
 		public override string Text
 		{
 			get => FilePath;
 			set => FilePath = value;
 		}
 
-		public string LabelText
+		/// <summary> In case of no label text, this would hide the label. </summary>
+		[DefaultValue("Path: ")]
+		public string LabelText 
 		{
 			get => label.Text;
 			set
@@ -60,21 +66,22 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		/// <summary> Would get or set what's in the text box. </summary>
 		public string FilePath
 		{
 			get => textBox.Text;
 			set => textBox.Text = value;
 		}
 
-		private FileBrowseModeEnum _browseMode;
-		public FileBrowseModeEnum BrowseMode
+		private FileBrowseModeEnum _fileBrowseMode;
+		/// <inheritdoc cref="FileBrowseModeEnum" />
+		public FileBrowseModeEnum FileBrowseMode
 		{
-			get => _browseMode;
-			set => SetBrowseMode(value);
+			get => _fileBrowseMode;
+			set => SetFileBrowseMode(value);
 		}
 
 		private int _spacing;
-
 		[DefaultValue(4)]
 		public int Spacing
 		{
@@ -87,11 +94,16 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		private bool _textBoxEnabled = true;
 		[DefaultValue(true)]
 		public bool TextBoxEnabled
 		{
-			get => textBox.Enabled;
-			set => textBox.Enabled = value;
+			get => _textBoxEnabled;
+			set
+			{
+				_textBoxEnabled = value;
+				ApplyEnabled();
+			}
 		}
 
 		[DefaultValue(true)]
@@ -101,37 +113,74 @@ namespace JJ.Framework.WinForms.Controls
 			set => textBox.Visible = value;
 		}
 
-		// Applying
-
-		private void SetBrowseMode(FileBrowseModeEnum value)
+		/// <summary>
+		/// Tip: To be able to see the of the file name when a long file path would not fit in the text box,
+		/// RightToLeft may be set to Yes.
+		/// (Other options were considered. TextAlign = Right might sounded like a solution,
+		/// but then if the text is too long to fit,
+		/// that still seems to still show the beginning of the path instead of the end.
+		/// Showing the full path as a tool tip seemed another option,
+		/// but then the tool tip did not seem to be shown if the control was disabled.)
+		/// </summary>
+		[DefaultValue(RightToLeft.Yes)]
+		public RightToLeft TextBoxRightToLeft
 		{
-			switch (value)
-			{
-				case FileBrowseModeEnum.Open:
-					_fileDialog = new OpenFileDialog();
-					break;
-
-				case FileBrowseModeEnum.Save:
-					_fileDialog = new SaveFileDialog();
-					break;
-
-				default:
-					throw new InvalidValueException(value);
-			}
-
-			_browseMode = value;
+			get => textBox.RightToLeft;
+			set => textBox.RightToLeft = value;
 		}
 
-		// Gui
+		[DefaultValue(true)]
+		public bool BrowseButtonEnabled
+		{
+			get => buttonBrowse.Enabled;
+			set => buttonBrowse.Enabled = false;
+		}
+
+		// Applying
+
+		private void SetFileBrowseMode(FileBrowseModeEnum value)
+		{
+			_commonDialog = value switch
+			{
+				FileBrowseModeEnum.None => null,
+				FileBrowseModeEnum.OpenFile => new OpenFileDialog(),
+				FileBrowseModeEnum.SaveFile => new SaveFileDialog(),
+				FileBrowseModeEnum.SelectFolder => new FolderBrowserDialog(),
+				_ => throw new InvalidValueException(value)
+			};
+
+			buttonBrowse.Visible = value != FileBrowseModeEnum.None;
+
+			_fileBrowseMode = value;
+
+			RequestPositionControls();
+		}
+
+		private void FilePathControl_EnabledChanged(object sender, EventArgs e) => ApplyEnabled();
+
+		private void ApplyEnabled()
+		{
+			textBox.Enabled = Enabled && TextBoxEnabled;
+			label.Enabled = Enabled;
+			buttonBrowse.Enabled = Enabled;
+		}
+		
+		// Positioning
+
+		protected override void OnResize(EventArgs e)
+		{
+			base.OnResize(e);
+
+			RequestPositionControls();
+		}
 
 		private void RequestPositionControls()
 		{
 			if (timerPositionControls == null) return;
-
 			timerPositionControls.Enabled = true;
 		}
 
-		private void timerPositionControls_Tick(object sender, EventArgs e) => PositionControls();
+		private void TimerPositionControls_Tick(object sender, EventArgs e) => PositionControls();
 
 	    private void PositionControls()
 		{
@@ -164,17 +213,23 @@ namespace JJ.Framework.WinForms.Controls
 					x += label.Width + _spacing;
 				}
 
+
 				// textBox
 				textBox.Location = new Point(x, y);
-				int textBoxWidth =  Width - x - buttonBrowse.Width - _spacing;
+
+				int textBoxWidth = Width - x;
+				if (FileBrowseMode != FileBrowseModeEnum.None) textBoxWidth = textBoxWidth - buttonBrowse.Width - _spacing;
 				if (textBoxWidth < 1) textBoxWidth = 1;
 				textBox.Width = textBoxWidth;
 
 				x += textBox.Width + _spacing;
 
 				// buttonBrowse
-				buttonBrowse.Location = new Point(x, y);
-				buttonBrowse.Height = height;
+				if (FileBrowseMode != FileBrowseModeEnum.None)
+				{
+					buttonBrowse.Location = new Point(x, y);
+					buttonBrowse.Height = height;
+				}
 			}
 			finally
 			{
@@ -182,15 +237,15 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
-		// Events
+		// Actions
 
-		private void buttonBrowse_Click(object sender, EventArgs e)
+		private void ButtonBrowse_Click(object sender, EventArgs e)
 		{
-			_fileDialog.FileName = textBox.Text;
+			_commonDialog.SetPath_OrException(textBox.Text);
 
-			if (_fileDialog.ShowDialog() == DialogResult.OK)
+			if (_commonDialog.ShowDialog() == DialogResult.OK)
 			{
-				textBox.Text = _fileDialog.FileName;
+				textBox.Text = _commonDialog.GetPath_OrException();
 
 				if (Browsed != null)
 				{
@@ -200,13 +255,6 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
-		protected override void OnResize(EventArgs e)
-		{
-			base.OnResize(e);
-
-			RequestPositionControls();
-		}
-
-		private void textBox_TextChanged(object sender, EventArgs e) => toolTip.SetToolTip(textBox, textBox.Text);
+		private void TextBox_TextChanged(object sender, EventArgs e) => toolTip.SetToolTip(textBox, textBox.Text);
 	}
 }

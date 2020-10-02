@@ -131,18 +131,15 @@
   </data>
   <data name="Delete_WithName" xml:space="preserve">
     <value>Delete {0}</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
   <data name="Edit_WithName" xml:space="preserve">
     <value>Edit {0}</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="Count_WithNamePlural" xml:space="preserve">
     <value>Number of {0}</value>
-    <comment>{0} = name plural</comment>
   </data>
   <data name="ID" xml:space="preserve">
     <value>ID</value>
@@ -176,7 +173,6 @@
   </data>
   <data name="Details_WithName" xml:space="preserve">
     <value>{0} Details</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
@@ -195,7 +191,6 @@
   </data>
   <data name="Properties_WithName" xml:space="preserve">
     <value>{0} Properties</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="Properties" xml:space="preserve">
     <value>Properties</value>
@@ -205,11 +200,9 @@
   </data>
   <data name="Close_WithName" xml:space="preserve">
     <value>Close {0}</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="Save_WithName" xml:space="preserve">
     <value>Save {0}</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
@@ -226,38 +219,31 @@
   </data>
   <data name="NoObject_WithName" xml:space="preserve">
     <value>No {0}</value>
-    <comment>{0} = name, for example: 'No document'</comment>
+    <comment>For example: "No document".</comment>
   </data>
   <data name="AreYouSureYouWishToDelete_WithType_AndName" xml:space="preserve">
     <value>Are you sure you wish to delete {0} {1}?</value>
-    <comment>{0} = type of object, {1} = name</comment>
   </data>
   <data name="CannotDelete_WithType_AndName" xml:space="preserve">
     <value>Cannot delete {0} {1}.</value>
-    <comment>{0} = type of object, {1} = name</comment>
   </data>
   <data name="IsDeleted_WithName" xml:space="preserve">
     <value>{0} is deleted.</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="NotFound_WithName" xml:space="preserve">
     <value>{0} not found.</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="NotFound_WithName_AndID" xml:space="preserve">
     <value>{0} with ID {1} not found.</value>
-    <comment>{0} = name, {1} = ID</comment>
   </data>
   <data name="ID_WithName" xml:space="preserve">
     <value>{0} ID</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="Type" xml:space="preserve">
     <value>Type</value>
   </data>
   <data name="NotFound_WithItemName_ID_AndListName" xml:space="preserve">
     <value>{0} with ID {1} not found in the list of {2}.</value>
-    <comment>{0} = name, {1} = id, {2} = name plural</comment>
   </data>
   <data name="NotFound_WithType_AndName" xml:space="preserve">
     <value>{0} named {1} not found.</value>
@@ -270,20 +256,17 @@
   <data name="Names" xml:space="preserve">
     <value>Names</value>
   </data>
-  <data name="CannotDelete_WithName_AndDependentItem" xml:space="preserve">
+  <data name="CannotDelete_WithName_AndDependency" xml:space="preserve">
     <value>Cannot delete {0}, because it is still used by the following: {1}.</value>
-    <comment>{0} = name, {1} = dependent item(s)</comment>
   </data>
   <data name="Select_WithName" xml:space="preserve">
     <value>Select {0}</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="AlreadyExists_WithType_AndName" xml:space="preserve">
     <value>{0} {1} already exists.</value>
   </data>
   <data name="CannotDelete_WithName" xml:space="preserve">
     <value>Cannot delete {0}.</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="Open" xml:space="preserve">
     <value>Open</value>
@@ -333,7 +316,6 @@
   </data>
   <data name="Next_WithName" xml:space="preserve">
     <value>Next {0}</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="NotAuthorizedMessage" xml:space="preserve">
     <value>You are not authorized to view this content.</value>
@@ -358,13 +340,36 @@
   </data>
   <data name="Rename_WithName" xml:space="preserve">
     <value>Rename {0}</value>
-    <comment>{0} = name</comment>
   </data>
   <data name="Clone" xml:space="preserve">
     <value>Clone</value>
   </data>
   <data name="Clone_WithName" xml:space="preserve">
     <value>Clone {0}</value>
-    <comment>{0} = name</comment>
+  </data>
+  <data name="Scan" xml:space="preserve">
+    <value>Scan</value>
+  </data>
+  <data name="Copy_WithName" xml:space="preserve">
+    <value>Copy {0}</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Folder</value>
+  </data>
+  <data name="ListOf_WithName" xml:space="preserve">
+    <value>List of {0}</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>Exception</value>
+  </data>
+  <data name="FilePattern" xml:space="preserve">
+    <value>File Pattern</value>
+    <comment>File patterns like *.*</comment>
   </data>
 </root>

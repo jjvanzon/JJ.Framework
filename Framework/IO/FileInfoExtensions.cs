@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using JetBrains.Annotations;
+using System.IO;
 
 namespace JJ.Framework.IO
 {
+	[PublicAPI]
 	public static class FileInfoExtensions
 	{
 		public static void Hide(this FileInfo file) => FileHelper.HideFile(file);
@@ -10,5 +12,6 @@ namespace JJ.Framework.IO
 		public static void MakeReadOnly(this FileInfo file) => FileHelper.MakeReadOnly(file);
 		public static void MakeWritable(this FileInfo file) => FileHelper.MakeWritable(file);
 		public static bool IsReadOnly(this FileInfo file) => FileHelper.IsReadOnly(file);
+		public static byte[] ReadAllBytes(this FileInfo file) => File.ReadAllBytes(file.FullName);
 	}
 }

@@ -1,4 +1,4 @@
-﻿/* Jan-Joost van Zon, 2016-02-03:
+﻿/* Jan Joost van Zon, 2016-02-03:
 This C# implementation was derived from the Java implementation retrieved from the internet. See next comment block. */
 
 /* The authors of this work have released all rights to it and placed it

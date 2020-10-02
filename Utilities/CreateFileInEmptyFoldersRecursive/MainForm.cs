@@ -10,7 +10,7 @@ using JJ.Framework.WinForms.Forms;
 
 namespace JJ.Utilities.CreateFileInEmptyFoldersRecursive
 {
-	public partial class MainForm : SimpleFileProcessForm
+	public partial class MainForm : SimpleProcessForm
 	{
 		private static readonly string[] _excludedFolderNames = { ".git", ".vs" };
 
@@ -18,7 +18,7 @@ namespace JJ.Utilities.CreateFileInEmptyFoldersRecursive
 
 		private void MainForm_OnRunProcess(object sender, EventArgs e)
 		{
-			string folderPath = FilePath;
+			string folderPath = TextBoxText;
 
 			if (!Directory.Exists(folderPath))
 			{

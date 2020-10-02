@@ -64,6 +64,7 @@
     <Compile Include="FileLockTests.cs" />
     <Compile Include="PathParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="JJ_Framework_IO_ResourceFormatter_Tests.cs" />
     <Compile Include="SafeFileOverwriterTests.cs" />
     <Compile Include="TestHelper.cs" />
   </ItemGroup>
@@ -71,6 +72,10 @@
     <ProjectReference Include="..\IO\JJ.Framework.IO.csproj">
       <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
       <Name>JJ.Framework.IO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Resources.Tests\JJ.Framework.Resources.Tests.csproj">
+      <Project>{B26B8089-81F0-4E8E-9CE6-21CF9BC24B24}</Project>
+      <Name>JJ.Framework.Resources.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\Testing\JJ.Framework.Testing.csproj">
       <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>

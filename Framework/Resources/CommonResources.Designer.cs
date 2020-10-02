@@ -19,7 +19,7 @@ namespace JJ.Framework.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class CommonResources {
@@ -79,6 +79,15 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure?.
+        /// </summary>
+        internal static string AreYouSure {
+            get {
+                return ResourceManager.GetString("AreYouSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you wish to delete {0} {1}?.
         /// </summary>
         internal static string AreYouSureYouWishToDelete_WithType_AndName {
@@ -106,6 +115,15 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelled.
+        /// </summary>
+        internal static string Cancelled {
+            get {
+                return ResourceManager.GetString("Cancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot delete {0}..
         /// </summary>
         internal static string CannotDelete_WithName {
@@ -117,9 +135,9 @@ namespace JJ.Framework.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Cannot delete {0}, because it is still used by the following: {1}..
         /// </summary>
-        internal static string CannotDelete_WithName_AndDependentItem {
+        internal static string CannotDelete_WithName_AndDependency {
             get {
-                return ResourceManager.GetString("CannotDelete_WithName_AndDependentItem", resourceCulture);
+                return ResourceManager.GetString("CannotDelete_WithName_AndDependency", resourceCulture);
             }
         }
         
@@ -174,6 +192,15 @@ namespace JJ.Framework.Resources {
         internal static string Confirm {
             get {
                 return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy {0}.
+        /// </summary>
+        internal static string Copy_WithName {
+            get {
+                return ResourceManager.GetString("Copy_WithName", resourceCulture);
             }
         }
         
@@ -277,6 +304,15 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exception.
+        /// </summary>
+        internal static string Exception {
+            get {
+                return ResourceManager.GetString("Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to False.
         /// </summary>
         internal static string False {
@@ -291,6 +327,24 @@ namespace JJ.Framework.Resources {
         internal static string FilePath {
             get {
                 return ResourceManager.GetString("FilePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Pattern.
+        /// </summary>
+        internal static string FilePattern {
+            get {
+                return ResourceManager.GetString("FilePattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Folder.
+        /// </summary>
+        internal static string Folder {
+            get {
+                return ResourceManager.GetString("Folder", resourceCulture);
             }
         }
         
@@ -354,6 +408,15 @@ namespace JJ.Framework.Resources {
         internal static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of {0}.
+        /// </summary>
+        internal static string ListOf_WithName {
+            get {
+                return ResourceManager.GetString("ListOf_WithName", resourceCulture);
             }
         }
         
@@ -624,6 +687,15 @@ namespace JJ.Framework.Resources {
         internal static string Save_WithName {
             get {
                 return ResourceManager.GetString("Save_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan.
+        /// </summary>
+        internal static string Scan {
+            get {
+                return ResourceManager.GetString("Scan", resourceCulture);
             }
         }
         

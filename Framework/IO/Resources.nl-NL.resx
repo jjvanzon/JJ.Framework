@@ -117,4 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DeletingFiles_WithPercentage_AndFileName" xml:space="preserve">
+    <value>Bestanden verwijderen {0:0.0}% - {1}</value>
+  </data>
+  <data name="DoneDeletingFiles_WithCount" xml:space="preserve">
+    <value>Klaar. {0} bestanden verwijderd.</value>
+  </data>
+  <data name="DoneScanning_WithDuplicatesFound" xml:space="preserve">
+    <value>Klaar met scannen. {0} dubbele gevonden.</value>
+  </data>
+  <data name="ListingFiles" xml:space="preserve">
+    <value>Bestanden opsommen...</value>
+  </data>
+  <data name="ProcessingResult" xml:space="preserve">
+    <value>Resultaten verwerken...</value>
+  </data>
+  <data name="ScanningForDuplicates" xml:space="preserve">
+    <value>Dubbele scannen...</value>
+  </data>
+  <data name="ScanningForDuplicates_WithPercentage" xml:space="preserve">
+    <value>Dubbele scannen {0:0.0}%...</value>
+  </data>
 </root>

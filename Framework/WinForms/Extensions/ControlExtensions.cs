@@ -1,19 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
+using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.WinForms.Helpers;
 
 namespace JJ.Framework.WinForms.Extensions
 {
+	[PublicAPI]
 	public static class ControlExtensions
 	{
 		/// <summary>
 		/// Automatically assigns tab indexes to the specified control and all its child controls and their children.
 		/// The procedure goes through the descendent tree recursively so that the tab index is based on the composition structure of the controls,
 		/// and siblings are assigned tab indexes based on their (X, Y) coordinates.
-		/// This results in the most intuitive tab index. 
-		/// If it does not, consider grouping controls together using containers controls, such as a Panel control.
+		/// This may results in the most intuitive tab index. 
+		/// If it does not, it might be something to consider, to grouping controls together using containers controls, such as a Panel control.
 		/// </summary>
 		/// <param name="control">Parent control</param>
 		/// <param name="currentTabIndex">The tab index to start with (optional)</param>

@@ -252,7 +252,7 @@
   <data name="Names" xml:space="preserve">
     <value>Namen</value>
   </data>
-  <data name="CannotDelete_WithName_AndDependentItem" xml:space="preserve">
+  <data name="CannotDelete_WithName_AndDependency" xml:space="preserve">
     <value>Kan {0} niet verwijderen, want het wordt nog gebruikt door het volgende: {1}.</value>
   </data>
   <data name="Select_WithName" xml:space="preserve">
@@ -341,5 +341,29 @@
   </data>
   <data name="Clone_WithName" xml:space="preserve">
     <value>{0} dupliceren</value>
+  </data>
+  <data name="Scan" xml:space="preserve">
+    <value>Scannen</value>
+  </data>
+  <data name="Copy_WithName" xml:space="preserve">
+    <value>{0} kopiëren</value>
+  </data>
+  <data name="Folder" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="ListOf_WithName" xml:space="preserve">
+    <value>Lijst met {0}</value>
+  </data>
+  <data name="Cancelled" xml:space="preserve">
+    <value>Geannuleerd</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Weet u het zeker?</value>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>Uitzondering</value>
+  </data>
+  <data name="FilePattern" xml:space="preserve">
+    <value>Bestand patroon</value>
   </data>
 </root>
