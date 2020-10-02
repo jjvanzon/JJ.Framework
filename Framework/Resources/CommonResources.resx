@@ -368,4 +368,8 @@
   <data name="Exception" xml:space="preserve">
     <value>Exception</value>
   </data>
+  <data name="FilePattern" xml:space="preserve">
+    <value>File Pattern</value>
+    <comment>File patterns like *.*</comment>
+  </data>
 </root>

@@ -363,4 +363,7 @@
   <data name="Exception" xml:space="preserve">
     <value>Uitzondering</value>
   </data>
+  <data name="FilePattern" xml:space="preserve">
+    <value>Bestand patroon</value>
+  </data>
 </root>

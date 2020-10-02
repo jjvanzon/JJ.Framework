@@ -331,6 +331,15 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File Pattern.
+        /// </summary>
+        internal static string FilePattern {
+            get {
+                return ResourceManager.GetString("FilePattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folder.
         /// </summary>
         internal static string Folder {

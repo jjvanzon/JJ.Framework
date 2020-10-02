@@ -45,7 +45,7 @@ namespace JJ.Framework.IO
 		}
 
 		public IList<FilePair> Scan(
-			string folderPath, bool recursive,
+			string folderPath, bool recursive, string filePattern = "*.*",
 			Action<string> progressCallback = null, Func<bool> cancelCallback = null)
 		{
 			FileHelper.AssertFolderExists(folderPath);
@@ -54,7 +54,7 @@ namespace JJ.Framework.IO
 
 			// List files
 			SearchOption searchOption = recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-			IList<string> filePaths = Directory.GetFiles(folderPath, "*.*", searchOption);
+			IList<string> filePaths = Directory.GetFiles(folderPath, filePattern, searchOption);
 
 			// Get basic info
 			List<FileTuple> fileTuples = filePaths.Select(GetBasicFileTuple).ToList();

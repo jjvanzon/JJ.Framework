@@ -31,9 +31,12 @@ namespace JJ.Framework.Resources
 		public static string Description => _helper.GetText();
 		public static string Edit => _helper.GetText();
 		public static string Edit_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
+		public static string Error => _helper.GetText();
+		public static string ErrorOccurred => _helper.GetText();
 		public static string Exception => _helper.GetText();
 		public static string False => _helper.GetText();
 		public static string FilePath => _helper.GetText();
+		public static string FilePattern => _helper.GetText();
 		public static string Folder => _helper.GetText();
 		public static string General => _helper.GetText();
 		public static string ID => _helper.GetText();
@@ -87,7 +90,5 @@ namespace JJ.Framework.Resources
 		public static string UserName => _helper.GetText();
 		public static string WantToSaveChanges => _helper.GetText();
 		public static string Yes => _helper.GetText();
-		public static string Error => _helper.GetText();
-		public static string ErrorOccurred => _helper.GetText();
 	}
 }

@@ -28,7 +28,6 @@ namespace JJ.Utilities.FileDeduplication
 
 		public FileDeduplicationViewModel ViewModel { get; }
 		private Action _viewModelChanged;
-		private const bool DEFAULT_RECURSIVE = true;
 
 		public FileDeduplicationPresenter(
 			IFileDeduplicator fileDeduplicator,
@@ -49,7 +48,8 @@ namespace JJ.Utilities.FileDeduplication
 			{
 				TitleBarText = ResourceFormatter.ApplicationName,
 				Explanation = ResourceFormatter.Explanation,
-				Recursive = DEFAULT_RECURSIVE,
+				AlsoScanSubFolders = true,
+				FilePattern = "*.*",
 				FolderPath = AppSettingsReader<IAppSettings>.Get(x => x.DefaultFolderPath)
 			};
 
@@ -60,7 +60,7 @@ namespace JJ.Utilities.FileDeduplication
 				ViewModel.IsRunning = true;
 
 				_filePairs = _fileDeduplicator.Scan(
-					ViewModel.FolderPath, ViewModel.Recursive, SetProgressMessage, () => !ViewModel.IsRunning);
+					ViewModel.FolderPath, ViewModel.AlsoScanSubFolders, ViewModel.FilePattern, SetProgressMessage, () => !ViewModel.IsRunning);
 
 				ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
 			}

@@ -34,7 +34,8 @@ namespace JJ.Utilities.FileDeduplication
 
 		private void ApplyResourceTexts()
 		{
-			checkBoxRecursive.Text = ResourceFormatter.AlsoScanSubFolders;
+			checkBoxAlsoScanSubFolders.Text = ResourceFormatter.AlsoScanSubFolders;
+			labelFilePattern.Text = CommonResourceFormatter.FilePattern + ":";
 			buttonScan.Text = CommonResourceFormatter.Scan;
 			buttonCopyListOfDuplicates.Text =
 				CommonResourceFormatter.Copy_WithName(CommonResourceFormatter.ListOf_WithName(ResourceFormatter.Duplicates));
@@ -87,7 +88,8 @@ namespace JJ.Utilities.FileDeduplication
 				{
 					if (Text != ViewModel.TitleBarText) Text = ViewModel.TitleBarText;
 					if (Description != ViewModel.Explanation) Description = ViewModel.Explanation;
-					if (checkBoxRecursive.Checked != ViewModel.Recursive) checkBoxRecursive.Checked = ViewModel.Recursive;
+					if (checkBoxAlsoScanSubFolders.Checked != ViewModel.AlsoScanSubFolders) checkBoxAlsoScanSubFolders.Checked = ViewModel.AlsoScanSubFolders;
+					if (textBoxFilePattern.Text != ViewModel.FilePattern) textBoxFilePattern.Text = ViewModel.FilePattern;
 					if (textBoxListOfDuplicates.Text != ViewModel.ListOfDuplicates)
 					{
 						textBoxListOfDuplicates.Text = ViewModel.ListOfDuplicates;
@@ -98,7 +100,9 @@ namespace JJ.Utilities.FileDeduplication
 					IsRunning = ViewModel.IsRunning;
 
 					bool enabled = !IsRunning;
-					if (checkBoxRecursive.Enabled != enabled) checkBoxRecursive.Enabled = enabled;
+					if (checkBoxAlsoScanSubFolders.Enabled != enabled) checkBoxAlsoScanSubFolders.Enabled = enabled;
+					if (labelFilePattern.Enabled != enabled) labelFilePattern.Enabled = enabled;
+					if (textBoxFilePattern.Enabled != enabled) textBoxFilePattern.Enabled = enabled;
 					if (TextBoxEnabled != enabled) TextBoxEnabled = enabled;
 					if (BrowseButtonEnabled != enabled) BrowseButtonEnabled = enabled;
 					if (buttonScan.Enabled != enabled) buttonScan.Enabled = enabled;
@@ -107,7 +111,8 @@ namespace JJ.Utilities.FileDeduplication
 
 		private void MapControlsToViewModel()
 		{
-			ViewModel.Recursive = checkBoxRecursive.Checked;
+			ViewModel.AlsoScanSubFolders = checkBoxAlsoScanSubFolders.Checked;
+			ViewModel.FilePattern = textBoxFilePattern.Text;
 			ViewModel.FolderPath = TextBoxText;
 		}
 	}
