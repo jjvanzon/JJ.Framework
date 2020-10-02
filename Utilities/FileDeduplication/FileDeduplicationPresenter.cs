@@ -132,7 +132,7 @@ namespace JJ.Utilities.FileDeduplication
 		private static string GetProgressMessage(Exception ex)
 		{
 			Exception innerMostException = ExceptionHelper.GetInnermostException(ex);
-			var progressMessage = $"Exception: {innerMostException.Message}";
+			var progressMessage = $"{CommonResourceFormatter.Exception}: {innerMostException.Message}";
 			return progressMessage;
 		}
 	}

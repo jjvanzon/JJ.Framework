@@ -354,13 +354,13 @@
   <data name="ListOf_WithName" xml:space="preserve">
     <value>Lijst met {0}</value>
   </data>
-  <data name="Recursive" xml:space="preserve">
-    <value>Recursief</value>
-  </data>
   <data name="Cancelled" xml:space="preserve">
     <value>Geannuleerd</value>
   </data>
   <data name="AreYouSure" xml:space="preserve">
     <value>Weet u het zeker?</value>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>Uitzondering</value>
   </data>
 </root>

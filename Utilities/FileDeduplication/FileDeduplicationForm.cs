@@ -34,7 +34,7 @@ namespace JJ.Utilities.FileDeduplication
 
 		private void ApplyResourceTexts()
 		{
-			checkBoxRecursive.Text = CommonResourceFormatter.Recursive;
+			checkBoxRecursive.Text = ResourceFormatter.AlsoScanSubFolders;
 			buttonScan.Text = CommonResourceFormatter.Scan;
 			buttonCopyListOfDuplicates.Text =
 				CommonResourceFormatter.Copy_WithName(CommonResourceFormatter.ListOf_WithName(ResourceFormatter.Duplicates));

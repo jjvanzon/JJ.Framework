@@ -304,6 +304,15 @@ namespace JJ.Framework.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exception.
+        /// </summary>
+        internal static string Exception {
+            get {
+                return ResourceManager.GetString("Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to False.
         /// </summary>
         internal static string False {
@@ -615,15 +624,6 @@ namespace JJ.Framework.Resources {
         internal static string Properties_WithName {
             get {
                 return ResourceManager.GetString("Properties_WithName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recursive.
-        /// </summary>
-        internal static string Recursive {
-            get {
-                return ResourceManager.GetString("Recursive", resourceCulture);
             }
         }
         

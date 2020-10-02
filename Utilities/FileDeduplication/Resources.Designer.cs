@@ -61,6 +61,15 @@ namespace JJ.Utilities.FileDeduplication {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Also Scan Subfolders.
+        /// </summary>
+        internal static string AlsoScanSubFolders {
+            get {
+                return ResourceManager.GetString("AlsoScanSubFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to JJ Utilities - File Deduplication.
         /// </summary>
         internal static string ApplicationName {
