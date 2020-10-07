@@ -7,3 +7,5 @@ packages
 !Archive/**
 TestResults
 *.cache
+**/Debug/**
+**/Release/**
