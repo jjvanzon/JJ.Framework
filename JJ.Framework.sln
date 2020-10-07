@@ -195,7 +195,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Resources.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileDeduplication.Tests", "Utilities\FileDeduplication.Tests\JJ.Utilities.FileDeduplication.Tests.csproj", "{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JJ.Utilities.FileDeduplication.Setup", "Utilities\FileDeduplication.Setup\JJ.Utilities.FileDeduplication.Setup.vdproj", "{9361B043-F398-42C9-82EB-3ECA5C0D3F54}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JJ.Utilities.FileDeduplication.VisualStudioSetupProject", "Utilities\FileDeduplication.VisualStudioSetupProject\JJ.Utilities.FileDeduplication.VisualStudioSetupProject.vdproj", "{9361B043-F398-42C9-82EB-3ECA5C0D3F54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
