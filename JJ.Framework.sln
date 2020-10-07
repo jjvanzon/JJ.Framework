@@ -195,8 +195,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Resources.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileDeduplication.Tests", "Utilities\FileDeduplication.Tests\JJ.Utilities.FileDeduplication.Tests.csproj", "{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JJ.Utilities.FileDeduplication.Setup", "Utilities\FileDeduplication.Setup\JJ.Utilities.FileDeduplication.Setup.vdproj", "{9361B043-F398-42C9-82EB-3ECA5C0D3F54}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1270,17 +1268,6 @@ Global
 		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.Release|x86.ActiveCfg = Release|Any CPU
 		{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}.Release|x86.Build.0 = Release|Any CPU
-		{9361B043-F398-42C9-82EB-3ECA5C0D3F54}.Debug|Any CPU.ActiveCfg = Debug
-		{9361B043-F398-42C9-82EB-3ECA5C0D3F54}.Debug|Any CPU.Build.0 = Debug
-		{9361B043-F398-42C9-82EB-3ECA5C0D3F54}.Debug|x86.ActiveCfg = Debug
-		{9361B043-F398-42C9-82EB-3ECA5C0D3F54}.Debug|x86.Build.0 = Debug
-		{9361B043-F398-42C9-82EB-3ECA5C0D3F54}.NPDebug|Any CPU.ActiveCfg = Debug
-		{9361B043-F398-42C9-82EB-3ECA5C0D3F54}.NPDebug|Any CPU.Build.0 = Debug
-		{9361B043-F398-42C9-82EB-3ECA5C0D3F54}.NPDebug|x86.ActiveCfg = Debug
-		{9361B043-F398-42C9-82EB-3ECA5C0D3F54}.NPDebug|x86.Build.0 = Debug
-		{9361B043-F398-42C9-82EB-3ECA5C0D3F54}.Release|Any CPU.ActiveCfg = Release
-		{9361B043-F398-42C9-82EB-3ECA5C0D3F54}.Release|x86.ActiveCfg = Release
-		{9361B043-F398-42C9-82EB-3ECA5C0D3F54}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
