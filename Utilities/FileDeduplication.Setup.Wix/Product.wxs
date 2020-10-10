@@ -9,7 +9,7 @@
 		<MediaTemplate />
 
 		<Feature Id="CompleteFeature" Level="1">
-			<ComponentRef Id="ExeComponent" />
+			<!--<ComponentRef Id="ExeComponent" />-->
 			<ComponentRef Id="ConfigComponent" />
 			<ComponentRef Id="JJFrameworkBusinessComponent" />
 			<ComponentRef Id="JJFrameworkCollectionsComponent" />
@@ -32,7 +32,7 @@
       <ComponentRef Id="System.ValueTupleComponent" />
 		</Feature>
 
-    <Icon Id="JJ.Utilities.FileDeduplication.exe" SourceFile="JJ.Utilities.FileDeduplication.exe" />
+    <!--<Icon Id="JJ.Utilities.FileDeduplication.exe" SourceFile="JJ.Utilities.FileDeduplication.exe" />-->
 
 		<Directory Id="TARGETDIR" Name="SourceDir">
 
@@ -43,99 +43,97 @@
 				<Directory Id='ProgramFilesJJVanZonFolder' Name='JJ van Zon'>
           <Directory Id="INSTALLFOLDER" Name="JJ Utilities - File Deduplication" />
 
-            <Component Id="ExeComponent" Guid="D70ECB1D-FF45-4BDE-BC2A-C0C6CEF6C7F4">
+            <!--<Component Id="ExeComponent" Guid="D70ECB1D-FF45-4BDE-BC2A-C0C6CEF6C7F4">
 
-              <File Id="ExeFile" Source="JJ.Utilities.FileDeduplication.exe" KeyPath="yes">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetPath)" KeyPath="yes">
 
                 <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuFolder" Name="JJ Utilities - File Deduplication" Icon="JJ.Utilities.FileDeduplication.exe" IconIndex="0" Advertise="yes" />
 
                 <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="JJ Utilities - File Deduplication" Icon="JJ.Utilities.FileDeduplication.exe" IconIndex="0" Advertise="yes" />
               </File>
-            </Component>
+            </Component>-->
 
             <Component Id="ConfigComponent" Guid="9A7F9E2A-E3FA-4DB5-BF55-B49768349234">
-              <File Id="ConfigFile" Source="JJ.Utilities.FileDeduplication.exe.config" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetPath).config" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkBusinessComponent" Guid="05D72718-8E27-4EE0-9875-E56339FA816F">
-              <File Id="JJFrameworkBusinessFile" Source="JJ.Framework.Business.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Business.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkCollectionsComponent" Guid="8E2AF6F5-6760-48BD-8691-582D7D3BA3E0">
-              <File Id="JJFrameworkCollectionsFile" Source="JJ.Framework.Collections.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Collections.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkCommonComponent" Guid="2E9C4651-187D-4B99-A47F-96455E25A120">
-              <File Id="JJFrameworkCommonFile" Source="JJ.Framework.Common.dll" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Common.dll" />
             </Component>
 
             <Component Id="JJFrameworkConfigurationComponent" Guid="7A19BCC4-BE23-4BE4-AB5A-413471270CD6">
-              <File Id="JJFrameworkConfigurationFile" Source="JJ.Framework.Configuration.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Configuration.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkConversionComponent" Guid="1DD02943-A492-4B17-8CB2-41684C091C06">
-              <File Id="JJFrameworkConversionFile" Source="JJ.Framework.Conversion.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Conversion.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkDrawingComponent" Guid="5F4A4619-3A4B-488B-9124-822F748B24D2">
-              <File Id="JJFrameworkDrawingFile" Source="JJ.Framework.Drawing.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Drawing.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkExceptionsComponent" Guid="DFD9223F-A73D-4168-A69B-4E0D43E4D7F3">
-              <File Id="JJFrameworkExceptionsFile" Source="JJ.Framework.Exceptions.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Exceptions.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkIOComponent" Guid="90C0B6FF-1CD6-42C4-8B87-C6C892F89618">
-              <File Id="JJFrameworkIOFile" Source="JJ.Framework.IO.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.IO.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkLoggingComponent" Guid="4FC01254-1B5E-47F3-B222-A60F424B5D66">
-              <File Id="JJFrameworkLoggingFile" Source="JJ.Framework.Logging.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Logging.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkMathematicsComponent" Guid="6C0C8202-8CB0-4EA5-8271-986FE8017327">
-              <File Id="JJFrameworkMathematicsFile" Source="JJ.Framework.Mathematics.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Mathematics.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkMicrosoftVisualBasicComponent" Guid="E42CDFCE-B8F2-4D16-9D41-8D84CD3F30B8">
-              <File Id="JJFrameworkMicrosoftVisualBasicFile" Source="JJ.Framework.Microsoft.VisualBasic.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Microsoft.VisualBasic.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkPlatformCompatibilityComponent" Guid="CCE35AA8-DBE5-455C-9DC1-CCEBE92DE8E6">
-              <File Id="JJFrameworkPlatformCompatibilityFile" Source="JJ.Framework.PlatformCompatibility.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.PlatformCompatibility.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkPresentationComponent" Guid="B17F1923-22AB-4153-868A-5F2C8ABF2422">
-              <File Id="JJFrameworkPresentationFile" Source="JJ.Framework.Presentation.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Presentation.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkReflectionComponent" Guid="EDB8BBCB-035B-4BEA-A823-F9C5E0DEDCD1">
-              <File Id="JJFrameworkReflectionFile" Source="JJ.Framework.Reflection.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Reflection.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkTextComponent" Guid="A1B83F29-F063-4BEE-A82E-9EFF9810EA88">
-              <File Id="JJFrameworkTextFile" Source="JJ.Framework.Text.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Text.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkVectorGraphicsComponent" Guid="868FDC5F-D757-43A1-BFFC-348CE8830D29">
-              <File Id="JJFrameworkVectorGraphicsFile" Source="JJ.Framework.VectorGraphics.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.VectorGraphics.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkWinFormsComponent" Guid="8F33BF3E-77E2-40E4-BD39-B100B54808D1">
-              <File Id="JJFrameworkWinFormsFile" Source="JJ.Framework.WinForms.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.WinForms.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkXmlComponent" Guid="7A09762C-F2B0-4FC3-BEB9-3CD6BDA7FD72">
-              <File Id="JJFrameworkXmlFile" Source="JJ.Framework.Xml.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Xml.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="System.ValueTupleComponent" Guid="A63D10DA-C109-4D8E-B6BA-8F5C1120FA9D">
-              <File Id="System.ValueTuple.dll" Source="System.ValueTuple.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)System.ValueTuple.dll" KeyPath="yes" />
 			      </Component>
-
 				</Directory>
 			</Directory>
 		</Directory>
-
 	</Product>
 </Wix>
