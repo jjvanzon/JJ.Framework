@@ -2,32 +2,21 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="EnsureWixToolsetInstalled" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>31426f74-9768-45b2-b568-edd13909b971</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>JJ.Utilities.FileDeduplication.Setup.Wix</OutputName>
     <OutputType>Package</OutputType>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>Debug</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <SuppressPdbOutput>True</SuppressPdbOutput>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
-    <DefineConstants>Debug</DefineConstants>
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
-    <SuppressPdbOutput>True</SuppressPdbOutput>
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProductVersion>3.10</ProductVersion>
+    <ProjectGuid>31426f74-9768-45b2-b568-edd13909b971</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>JJ.Utilities.FileDeduplication.Setup.Wix</OutputName>
+    <OutputType>Package</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DefineConstants>Debug</DefineConstants>
@@ -48,6 +37,19 @@
     <SuppressPdbOutput>True</SuppressPdbOutput>
     <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DefineConstants>Debug</DefineConstants>
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectGuid>{31426f74-9768-45b2-b568-edd13909b971}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />

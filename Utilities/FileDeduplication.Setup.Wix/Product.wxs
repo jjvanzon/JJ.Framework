@@ -39,7 +39,7 @@
       <Directory Id="ProgramMenuFolder" />
       <Directory Id="DesktopFolder" />
 
-      <Directory Id="ProgramFilesFolder">
+      <Directory Id="ProgramFiles64Folder">
 				<Directory Id='ProgramFilesJJVanZonFolder' Name='JJ van Zon'>
           <Directory Id="INSTALLFOLDER" Name="JJ Utilities - File Deduplication" />
 
