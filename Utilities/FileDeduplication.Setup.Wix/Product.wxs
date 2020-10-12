@@ -34,7 +34,8 @@
       <ComponentRef Id="System.ValueTupleComponent" />
 		</Feature>
 
-    <Icon Id="JJ.Utilities.FileDeduplication.exe" SourceFile="$(var.JJ.Utilities.FileDeduplication.TargetPath)" />
+    <Icon Id="Icon.exe" SourceFile="$(var.JJ.Utilities.FileDeduplication.TargetPath)" />
+    <Property Id="ARPPRODUCTICON" Value="Icon.exe" />
 
 		<Directory Id="TARGETDIR" Name="SourceDir">
 
@@ -55,8 +56,8 @@
 
             <Component Id="ExeComponent" Guid="D70ECB1D-FF45-4BDE-BC2A-C0C6CEF6C7F4">
               <File Source="$(var.JJ.Utilities.FileDeduplication.TargetPath)" KeyPath="yes">
-                <Shortcut Id="StartMenuShortcut" Directory="StartMenuOrganizationFolder" Name="JJ Utilities - File Deduplication" Icon="JJ.Utilities.FileDeduplication.exe" IconIndex="0" Advertise="yes" />
-                <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="JJ Utilities - File Deduplication" Icon="JJ.Utilities.FileDeduplication.exe" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="StartMenuShortcut" Directory="StartMenuOrganizationFolder" Name="JJ Utilities - File Deduplication" Icon="Icon.exe" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="JJ Utilities - File Deduplication" Icon="Icon.exe" IconIndex="0" Advertise="yes" />
               </File>
             </Component>
 
