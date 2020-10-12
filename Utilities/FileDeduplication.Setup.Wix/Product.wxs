@@ -9,6 +9,7 @@
 		<MediaTemplate EmbedCab ="yes" />
 
 		<Feature Id="CompleteFeature" Level="1">
+			<ComponentRef Id="StartMenuOrganizationFolder" />
 			<ComponentRef Id="ExeComponent" />
 			<ComponentRef Id="ConfigComponent" />
 			<ComponentRef Id="JJFrameworkBusinessComponent" />
@@ -25,6 +26,7 @@
       <ComponentRef Id="JJFrameworkPlatformCompatibilityComponent" />
       <ComponentRef Id="JJFrameworkPresentationComponent" />
       <ComponentRef Id="JJFrameworkReflectionComponent" />
+      <ComponentRef Id="JJFrameworkResourcesComponent" />
       <ComponentRef Id="JJFrameworkTextComponent" />
       <ComponentRef Id="JJFrameworkVectorGraphicsComponent" />
       <ComponentRef Id="JJFrameworkWinFormsComponent" />
@@ -36,16 +38,24 @@
 
 		<Directory Id="TARGETDIR" Name="SourceDir">
 
-      <Directory Id="ProgramMenuFolder" />
       <Directory Id="DesktopFolder" />
 
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="StartMenuOrganizationFolder" Name="JJ van Zon">
+          <Component Id="StartMenuOrganizationFolder" Guid="A4D1213C-FB4B-4632-B2BC-0F0EDC28B07B">
+            <RemoveFolder Id='StartMenuOrganizationFolder' On='uninstall' />
+            <RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
+          </Component>
+        </Directory>
+      </Directory>
+
       <Directory Id="ProgramFiles64Folder">
-				<Directory Id='ProgramFilesJJVanZonFolder' Name='JJ van Zon'>
-          <Directory Id="INSTALLFOLDER" Name="JJ Utilities - File Deduplication" />
+				<Directory Id='ProgramFilesOrganizationFolder' Name='JJ van Zon'>
+          <Directory Id="INSTALLFOLDER" Name="JJ Utilities - File Deduplication">
 
             <Component Id="ExeComponent" Guid="D70ECB1D-FF45-4BDE-BC2A-C0C6CEF6C7F4">
               <File Source="$(var.JJ.Utilities.FileDeduplication.TargetPath)" KeyPath="yes">
-                <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuFolder" Name="JJ Utilities - File Deduplication" Icon="JJ.Utilities.FileDeduplication.exe" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="StartMenuShortcut" Directory="StartMenuOrganizationFolder" Name="JJ Utilities - File Deduplication" Icon="JJ.Utilities.FileDeduplication.exe" IconIndex="0" Advertise="yes" />
                 <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="JJ Utilities - File Deduplication" Icon="JJ.Utilities.FileDeduplication.exe" IconIndex="0" Advertise="yes" />
               </File>
             </Component>
@@ -110,6 +120,10 @@
               <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Reflection.dll" KeyPath="yes" />
             </Component>
 
+            <Component Id="JJFrameworkResourcesComponent" Guid="468292F4-37AB-404E-A9AC-FACDC9A71032">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Resources.dll" KeyPath="yes" />
+            </Component>
+
             <Component Id="JJFrameworkTextComponent" Guid="A1B83F29-F063-4BEE-A82E-9EFF9810EA88">
               <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Text.dll" KeyPath="yes" />
             </Component>
@@ -129,8 +143,9 @@
             <Component Id="System.ValueTupleComponent" Guid="A63D10DA-C109-4D8E-B6BA-8F5C1120FA9D">
               <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)System.ValueTuple.dll" KeyPath="yes" />
 			      </Component>
-				</Directory>
-			</Directory>
-		</Directory>
+			    </Directory>
+		    </Directory>
+		  </Directory>
+    </Directory>
 	</Product>
 </Wix>
