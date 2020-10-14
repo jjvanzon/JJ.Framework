@@ -152,12 +152,10 @@
 
     <!-- Variable for WixUI_InstallDir -->
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
-    <!-- Reference to customized WixUI_InstallDir -->
-    <UIRef Id="WixUI_InstallDir_Customized" />
-  </Product>
 
-  <Fragment>
+    <!-- Customized WixUI_InstallDir -->
     <UI Id="WixUI_InstallDir_Customized">
+
       <!-- Reference to standard UI WixUI_InstallDir -->
       <UIRef Id="WixUI_InstallDir" />
 
@@ -168,6 +166,6 @@
       <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="2">NOT Installed</Publish>
       <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">1</Publish>
     </UI>
-  </Fragment>
+  </Product>
   
 </Wix>
