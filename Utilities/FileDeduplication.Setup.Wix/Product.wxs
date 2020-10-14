@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-  <Product Id="*" Name="JJ Utilities - File Deduplication" Language="1033" Version="1.6.0" Manufacturer="Jan Joost van Zon" UpgradeCode="cf948a2e-070e-4385-8866-b78ff03bfc1d">
+  <Product Id="5D7AB750-47B3-4520-8E31-8670213C8ABE" Name="JJ Utilities - File Deduplication" Language="1033" Version="1.6.0" Manufacturer="Jan Joost van Zon" UpgradeCode="cf948a2e-070e-4385-8866-b78ff03bfc1d">
 
-    <Package Id="*" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <Package Id="D13A53EF-A292-45DC-B7D8-DC52DFF59E8A" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate EmbedCab ="yes" />
 
+		<!--<Feature Id="CompleteFeature" Level="1" ConfigurableDirectory="INSTALLFOLDER">-->
 		<Feature Id="CompleteFeature" Level="1">
 			<ComponentRef Id="StartMenuOrganizationFolder" />
 			<ComponentRef Id="ExeComponent" />
@@ -148,5 +149,21 @@
 		    </Directory>
 		  </Directory>
     </Directory>
+
+    <!-- Reference to a standard UI "WixUI_InstallDir". -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_InstallDir" />
+  
+    <!-- For localized messages? -->
+    <UIRef Id="WixUI_ErrorProgressText" />
 	</Product>
+
+  <!--<Fragment>
+    --><!-- Try rerouting UI to skip the dialog LicenseAgreementDlg. --><!--
+    <UI Id="WixUI_InstallDir">
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg">NOT Installed</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+    </UI>
+  </Fragment>-->
+  
 </Wix>
