@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
+    <None Include="SampleWixUI %28Reference Copy%29.wxs" />
     <None Include="WixUI_InstallDir %28Reference Copy%29.wxs" />
   </ItemGroup>
   <ItemGroup>
