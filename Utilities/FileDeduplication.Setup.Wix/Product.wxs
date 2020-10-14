@@ -150,20 +150,24 @@
 		  </Directory>
     </Directory>
 
-    <!-- Reference to a standard UI "WixUI_InstallDir". -->
+    <!-- Variable for WixUI_InstallDir -->
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
-    <UIRef Id="WixUI_InstallDir" />
-  
-    <!-- For localized messages? -->
-    <UIRef Id="WixUI_ErrorProgressText" />
-	</Product>
+    <!-- Reference to customized UI -->
+    <UIRef Id="WixUI_InstallDir_Customized" />
+  </Product>
 
-  <!--<Fragment>
-    --><!-- Try rerouting UI to skip the dialog LicenseAgreementDlg. --><!--
-    <UI Id="WixUI_InstallDir">
-      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg">NOT Installed</Publish>
-      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+  <Fragment>
+    <UI Id="WixUI_InstallDir_Customized">
+      <!-- Reference to a standard UI "WixUI_InstallDir". -->
+      <UIRef Id="WixUI_InstallDir" />
+
+      <!-- For localized messages? -->
+      <UIRef Id="WixUI_ErrorProgressText" />
+
+      <!--Try rerouting UI to skip the dialog LicenseAgreementDlg.--> 
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="2">NOT Installed</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">1</Publish>
     </UI>
-  </Fragment>-->
+  </Fragment>
   
 </Wix>
