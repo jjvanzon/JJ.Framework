@@ -34,6 +34,7 @@
   <ItemGroup>
     <Compile Include="Product.wxs" />
     <Content Include="SampleWixUI %28Reference Copy%29.wxs" />
+    <Content Include="Transparent.png" />
     <Content Include="WixUI_InstallDir %28Reference Copy%29.wxs" />
   </ItemGroup>
   <ItemGroup>
@@ -51,9 +52,6 @@
       <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
       <Name>WixUIExtension</Name>
     </WixExtension>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Transparent.bmp" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />

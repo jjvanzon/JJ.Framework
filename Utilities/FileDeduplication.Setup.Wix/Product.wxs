@@ -151,8 +151,8 @@
     </Directory>
 
     <!-- Clearing banner bitmaps -->
-    <WixVariable Id="WixUIBannerBmp" Value="Transparent.bmp" />
-    <WixVariable Id="WixUIDialogBmp" Value="Transparent.bmp" />
+    <WixVariable Id="WixUIBannerBmp" Value="Transparent.png" />
+    <WixVariable Id="WixUIDialogBmp" Value="Transparent.png" />
 
     <!-- Variable for WixUI_InstallDir -->
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
