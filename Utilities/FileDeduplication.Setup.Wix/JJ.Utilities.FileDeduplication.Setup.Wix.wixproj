@@ -33,8 +33,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Product.wxs" />
+    <Content Include="WelcomeDlg %28Reference Copy%29.wxs" />
     <Content Include="SampleWixUI %28Reference Copy%29.wxs" />
-    <Content Include="Transparent.png" />
     <Content Include="WixUI_InstallDir %28Reference Copy%29.wxs" />
   </ItemGroup>
   <ItemGroup>
