@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Product Id="5D7AB750-47B3-4520-8E31-8670213C8ABE" Name="!(loc.ApplicationName)" Language="1033" Version="1.6.0" Manufacturer="Jan Joost van Zon" UpgradeCode="cf948a2e-070e-4385-8866-b78ff03bfc1d">
+
+    <Package Id="D13A53EF-A292-45DC-B7D8-DC52DFF59E8A" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="!(loc.NewerVersionAlreadyInstalled)" />
+		<MediaTemplate EmbedCab ="yes" />
+
+		<Feature Id="CompleteFeature" Level="1">
+			<ComponentRef Id="StartMenuOrganizationFolder" />
+			<ComponentRef Id="ExeComponent" />
+			<ComponentRef Id="ConfigComponent" />
+			<ComponentRef Id="JJFrameworkBusinessComponent" />
+			<ComponentRef Id="JJFrameworkCollectionsComponent" />
+      <ComponentRef Id="JJFrameworkCommonComponent" />
+      <ComponentRef Id="JJFrameworkConfigurationComponent" />
+      <ComponentRef Id="JJFrameworkConversionComponent" />
+      <ComponentRef Id="JJFrameworkDrawingComponent" />
+      <ComponentRef Id="JJFrameworkExceptionsComponent" />
+      <ComponentRef Id="JJFrameworkIOComponent" />
+      <ComponentRef Id="JJFrameworkLoggingComponent" />
+      <ComponentRef Id="JJFrameworkMathematicsComponent" />
+      <ComponentRef Id="JJFrameworkMicrosoftVisualBasicComponent" />
+      <ComponentRef Id="JJFrameworkPlatformCompatibilityComponent" />
+      <ComponentRef Id="JJFrameworkPresentationComponent" />
+      <ComponentRef Id="JJFrameworkReflectionComponent" />
+      <ComponentRef Id="JJFrameworkResourcesComponent" />
+      <ComponentRef Id="JJFrameworkTextComponent" />
+      <ComponentRef Id="JJFrameworkVectorGraphicsComponent" />
+      <ComponentRef Id="JJFrameworkWinFormsComponent" />
+      <ComponentRef Id="JJFrameworkXmlComponent" />
+      <ComponentRef Id="System.ValueTupleComponent" />
+		</Feature>
+
+    <Icon Id="Icon.exe" SourceFile="$(var.JJ.Utilities.FileDeduplication.TargetPath)" />
+    <Property Id="ARPPRODUCTICON" Value="Icon.exe" />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+
+      <Directory Id="DesktopFolder" />
+
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="StartMenuOrganizationFolder" Name="JJ van Zon">
+          <Component Id="StartMenuOrganizationFolder" Guid="A4D1213C-FB4B-4632-B2BC-0F0EDC28B07B">
+            <RemoveFolder Id='StartMenuOrganizationFolder' On='uninstall' />
+            <RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramFiles64Folder">
+				<Directory Id='ProgramFilesOrganizationFolder' Name='JJ van Zon'>
+          <Directory Id="INSTALLFOLDER" Name="!(loc.ApplicationName)">
+
+            <Component Id="ExeComponent" Guid="D70ECB1D-FF45-4BDE-BC2A-C0C6CEF6C7F4">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetPath)" KeyPath="yes">
+                <Shortcut Id="StartMenuShortcut" Directory="StartMenuOrganizationFolder" Name="!(loc.ApplicationName)" Icon="Icon.exe" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="!(loc.ApplicationName)" Icon="Icon.exe" IconIndex="0" Advertise="yes" />
+              </File>
+            </Component>
+
+            <Component Id="ConfigComponent" Guid="9A7F9E2A-E3FA-4DB5-BF55-B49768349234">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetPath).config" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkBusinessComponent" Guid="05D72718-8E27-4EE0-9875-E56339FA816F">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Business.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkCollectionsComponent" Guid="8E2AF6F5-6760-48BD-8691-582D7D3BA3E0">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Collections.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkCommonComponent" Guid="2E9C4651-187D-4B99-A47F-96455E25A120">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Common.dll" />
+            </Component>
+
+            <Component Id="JJFrameworkConfigurationComponent" Guid="7A19BCC4-BE23-4BE4-AB5A-413471270CD6">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Configuration.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkConversionComponent" Guid="1DD02943-A492-4B17-8CB2-41684C091C06">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Conversion.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkDrawingComponent" Guid="5F4A4619-3A4B-488B-9124-822F748B24D2">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Drawing.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkExceptionsComponent" Guid="DFD9223F-A73D-4168-A69B-4E0D43E4D7F3">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Exceptions.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkIOComponent" Guid="90C0B6FF-1CD6-42C4-8B87-C6C892F89618">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.IO.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkLoggingComponent" Guid="4FC01254-1B5E-47F3-B222-A60F424B5D66">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Logging.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkMathematicsComponent" Guid="6C0C8202-8CB0-4EA5-8271-986FE8017327">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Mathematics.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkMicrosoftVisualBasicComponent" Guid="E42CDFCE-B8F2-4D16-9D41-8D84CD3F30B8">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Microsoft.VisualBasic.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkPlatformCompatibilityComponent" Guid="CCE35AA8-DBE5-455C-9DC1-CCEBE92DE8E6">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.PlatformCompatibility.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkPresentationComponent" Guid="B17F1923-22AB-4153-868A-5F2C8ABF2422">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Presentation.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkReflectionComponent" Guid="EDB8BBCB-035B-4BEA-A823-F9C5E0DEDCD1">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Reflection.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkResourcesComponent" Guid="468292F4-37AB-404E-A9AC-FACDC9A71032">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Resources.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkTextComponent" Guid="A1B83F29-F063-4BEE-A82E-9EFF9810EA88">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Text.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkVectorGraphicsComponent" Guid="868FDC5F-D757-43A1-BFFC-348CE8830D29">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.VectorGraphics.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkWinFormsComponent" Guid="8F33BF3E-77E2-40E4-BD39-B100B54808D1">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.WinForms.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkXmlComponent" Guid="7A09762C-F2B0-4FC3-BEB9-3CD6BDA7FD72">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Xml.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="System.ValueTupleComponent" Guid="A63D10DA-C109-4D8E-B6BA-8F5C1120FA9D">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)System.ValueTuple.dll" KeyPath="yes" />
+			      </Component>
+			    </Directory>
+		    </Directory>
+		  </Directory>
+    </Directory>
+
+    <!-- Custom Images -->
+    <WixVariable Id="WixUIBannerBmp" Value="..\..\jj-icon-wix-ui-banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="..\..\jj-icon-wix-ui-dialog.bmp" />
+
+    <!-- Variable for WixUI_InstallDir -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+    <!-- Customized WixUI_InstallDir -->
+    <UI Id="WixUI_InstallDir_Customized">
+
+      <!-- Reference to standard UI WixUI_InstallDir -->
+      <UIRef Id="WixUI_InstallDir" />
+
+      <!-- For localized messages? -->
+      <UIRef Id="WixUI_ErrorProgressText" />
+
+      <!-- Rerouting UI to skip the dialog LicenseAgreementDlg.--> 
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="2">NOT Installed</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">1</Publish>
+    </UI>
+  </Product>
+  
+</Wix>
