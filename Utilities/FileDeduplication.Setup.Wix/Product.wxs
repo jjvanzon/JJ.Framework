@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-  <Product Id="5D7AB750-47B3-4520-8E31-8670213C8ABE" Name="JJ Utilities - File Deduplication" Language="1033" Version="1.6.0" Manufacturer="Jan Joost van Zon" UpgradeCode="cf948a2e-070e-4385-8866-b78ff03bfc1d">
+  <Product Id="5D7AB750-47B3-4520-8E31-8670213C8ABE" Name="!(loc.ApplicationName)" Language="1033" Version="1.6.0" Manufacturer="Jan Joost van Zon" UpgradeCode="cf948a2e-070e-4385-8866-b78ff03bfc1d">
 
     <Package Id="D13A53EF-A292-45DC-B7D8-DC52DFF59E8A" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MajorUpgrade DowngradeErrorMessage="!(loc.NewerVersionAlreadyInstalled)" />
 		<MediaTemplate EmbedCab ="yes" />
 
-		<!--<Feature Id="CompleteFeature" Level="1" ConfigurableDirectory="INSTALLFOLDER">-->
 		<Feature Id="CompleteFeature" Level="1">
 			<ComponentRef Id="StartMenuOrganizationFolder" />
 			<ComponentRef Id="ExeComponent" />
@@ -53,12 +52,12 @@
 
       <Directory Id="ProgramFiles64Folder">
 				<Directory Id='ProgramFilesOrganizationFolder' Name='JJ van Zon'>
-          <Directory Id="INSTALLFOLDER" Name="JJ Utilities - File Deduplication">
+          <Directory Id="INSTALLFOLDER" Name="!(loc.ApplicationName)">
 
             <Component Id="ExeComponent" Guid="D70ECB1D-FF45-4BDE-BC2A-C0C6CEF6C7F4">
               <File Source="$(var.JJ.Utilities.FileDeduplication.TargetPath)" KeyPath="yes">
-                <Shortcut Id="StartMenuShortcut" Directory="StartMenuOrganizationFolder" Name="JJ Utilities - File Deduplication" Icon="Icon.exe" IconIndex="0" Advertise="yes" />
-                <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="JJ Utilities - File Deduplication" Icon="Icon.exe" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="StartMenuShortcut" Directory="StartMenuOrganizationFolder" Name="!(loc.ApplicationName)" Icon="Icon.exe" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="!(loc.ApplicationName)" Icon="Icon.exe" IconIndex="0" Advertise="yes" />
               </File>
             </Component>
 
