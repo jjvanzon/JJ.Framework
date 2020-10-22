@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright © 2018 Jan Joost van Zon")]
+[assembly: AssemblyCopyright("Copyright © 2018 - 2020 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -23,4 +23,4 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.6.*")]
+[assembly: AssemblyVersion("1.7.*")]

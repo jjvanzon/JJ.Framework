@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright © 2013 - 2018 Jan Joost van Zon")]
+[assembly: AssemblyCopyright("Copyright © 2013 - 2020 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -28,5 +28,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("1.6.*")]
+[assembly: AssemblyVersion("1.7.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

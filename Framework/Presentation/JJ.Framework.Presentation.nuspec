@@ -17,7 +17,7 @@
 		<tags>pager view model presentation</tags>
 
 		<dependencies>
-			<dependency id="JJ.Framework.Exceptions" version="[1.5,1.6)" />
+			<dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
 		</dependencies>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>

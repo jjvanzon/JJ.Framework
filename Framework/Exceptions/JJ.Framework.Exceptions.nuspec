@@ -18,8 +18,8 @@
 
 		<dependencies>
 			<dependency id="System.ValueTuple" version="4.3.0" />
-			<dependency id="JJ.Framework.Text" version="[1.5,1.6)" />
-			<dependency id="JJ.Framework.Reflection" version="[1.5,1.6)" />
+			<dependency id="JJ.Framework.Text" version="[1.7,1.8)" />
+			<dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
 		</dependencies>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>

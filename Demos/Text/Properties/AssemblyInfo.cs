@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
-[assembly: AssemblyCopyright("Copyright © 2018 Jan Joost van Zon")]
+[assembly: AssemblyCopyright("Copyright © 2018 - 2020 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -15,5 +15,5 @@ using System.Runtime.InteropServices;
 [assembly: Guid("65a3fc03-f348-4582-94f1-230414dd15fb")]
 
 
-[assembly: AssemblyVersion("1.6.*")]
+[assembly: AssemblyVersion("1.7.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
