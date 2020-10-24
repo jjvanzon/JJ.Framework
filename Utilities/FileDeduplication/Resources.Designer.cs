@@ -61,7 +61,7 @@ namespace JJ.Utilities.FileDeduplication {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Also Scan Subfolders.
+        ///   Looks up a localized string similar to Also scan subfolders.
         /// </summary>
         internal static string AlsoScanSubFolders {
             get {
@@ -88,7 +88,7 @@ namespace JJ.Utilities.FileDeduplication {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility aims to look up duplicate files (recursively) in a folder. It might first analyze which duplicates there may be and report them. After that it would be an option to have this utility delete those files. This tool would send deleted files to the recycle bin..
+        ///   Looks up a localized string similar to This utility tries to look up duplicate files in a folder (and its sub-folders). It might first analyze which duplicates there are and would report them. After that this utility could delete those files. The files would be sent to the recycle bin. Be careful, because some files are supposed to be there twice to keep things working..
         /// </summary>
         internal static string Explanation {
             get {
