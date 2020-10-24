@@ -5,15 +5,15 @@
 
     <Package Id="*" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-		<MajorUpgrade DowngradeErrorMessage="!(loc.NewerVersionAlreadyInstalled)" />
-		<MediaTemplate EmbedCab ="yes" />
+    <MajorUpgrade DowngradeErrorMessage="!(loc.NewerVersionAlreadyInstalled)" />
+    <MediaTemplate EmbedCab="yes" />
 
-		<Feature Id="CompleteFeature" Level="1">
-			<ComponentRef Id="StartMenuOrganizationFolder" />
-			<ComponentRef Id="ExeComponent" />
-			<ComponentRef Id="ConfigComponent" />
-			<ComponentRef Id="JJFrameworkBusinessComponent" />
-			<ComponentRef Id="JJFrameworkCollectionsComponent" />
+    <Feature Id="CompleteFeature" Level="1">
+      <ComponentRef Id="StartMenuOrganizationFolder" />
+      <ComponentRef Id="ExeComponent" />
+      <ComponentRef Id="ConfigComponent" />
+      <ComponentRef Id="JJFrameworkBusinessComponent" />
+      <ComponentRef Id="JJFrameworkCollectionsComponent" />
       <ComponentRef Id="JJFrameworkCommonComponent" />
       <ComponentRef Id="JJFrameworkConfigurationComponent" />
       <ComponentRef Id="JJFrameworkConversionComponent" />
@@ -32,12 +32,16 @@
       <ComponentRef Id="JJFrameworkWinFormsComponent" />
       <ComponentRef Id="JJFrameworkXmlComponent" />
       <ComponentRef Id="System.ValueTupleComponent" />
-		</Feature>
+      <ComponentRef Id="JJFrameworkIOResourcesNlNlComponent" />
+      <ComponentRef Id="JJFrameworkResourcesResourcesNlNlComponent" />
+      <ComponentRef Id="JJUtilitiesFileDeduplicationResourcesNlNlComponent" />
+      <ComponentRef Id="JJFrameworkResourcesResourcesPlPlComponent" />
+    </Feature>
 
     <Icon Id="Icon.exe" SourceFile="$(var.JJ.Utilities.FileDeduplication.TargetPath)" />
     <Property Id="ARPPRODUCTICON" Value="Icon.exe" />
 
-		<Directory Id="TARGETDIR" Name="SourceDir">
+    <Directory Id="TARGETDIR" Name="SourceDir">
 
       <Directory Id="DesktopFolder" />
 
@@ -51,7 +55,7 @@
       </Directory>
 
       <Directory Id="ProgramFiles64Folder">
-				<Directory Id='ProgramFilesOrganizationFolder' Name='JJ van Zon'>
+        <Directory Id='ProgramFilesOrganizationFolder' Name='JJ van Zon'>
           <Directory Id="INSTALLFOLDER" Name="!(loc.ApplicationName)">
 
             <Component Id="ExeComponent" Guid="D70ECB1D-FF45-4BDE-BC2A-C0C6CEF6C7F4">
@@ -143,10 +147,34 @@
 
             <Component Id="System.ValueTupleComponent" Guid="A63D10DA-C109-4D8E-B6BA-8F5C1120FA9D">
               <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)System.ValueTuple.dll" KeyPath="yes" />
-			      </Component>
-			    </Directory>
-		    </Directory>
-		  </Directory>
+            </Component>
+
+            <!-- Resource DLL's. -->
+
+            <Directory Id="NlNlDirectory" Name="nl-NL">
+
+              <Component Id="JJFrameworkIOResourcesNlNlComponent" Guid="CA9D0CB1-7845-44A2-9BB8-81431A0AC9D2">
+                <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)nl-NL\JJ.Framework.IO.resources.dll" KeyPath="yes" Id="JJFrameworkIOResourcesNlNlFile" />
+              </Component>
+
+              <Component Id="JJFrameworkResourcesResourcesNlNlComponent" Guid="9EAD3F4B-5D99-47E2-8AA5-9250758B7D62">
+                <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)nl-NL\JJ.Framework.Resources.resources.dll" KeyPath="yes" Id="JJFrameworkResourcesResourcesNlNlFile" />
+              </Component>
+
+              <Component Id="JJUtilitiesFileDeduplicationResourcesNlNlComponent" Guid="FA048372-3E6F-4B11-8453-B6CFC470AF0F">
+                <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)nl-NL\JJ.Utilities.FileDeduplication.resources.dll" KeyPath="yes" Id="JJUtilitiesFileDeduplicationResourcesNlNlFile" />
+              </Component>
+            </Directory>
+
+            <Directory Id="PlPlDirectory" Name="pl-PL">
+              <Component Id="JJFrameworkResourcesResourcesPlPlComponent" Guid="93D13A89-3C17-4641-9371-8E25474E6C1B">
+                <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)pl-PL\JJ.Framework.Resources.resources.dll" KeyPath="yes" Id="JJFrameworkResourcesResourcesPlPlFile" />
+              </Component>
+            </Directory>
+
+          </Directory>
+        </Directory>
+      </Directory>
     </Directory>
 
     <!-- Custom Images -->
@@ -165,10 +193,10 @@
       <!-- For localized messages? -->
       <UIRef Id="WixUI_ErrorProgressText" />
 
-      <!-- Rerouting UI to skip the dialog LicenseAgreementDlg.--> 
+      <!-- Rerouting UI to skip the dialog LicenseAgreementDlg.-->
       <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="2">NOT Installed</Publish>
       <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">1</Publish>
     </UI>
   </Product>
-  
+
 </Wix>
