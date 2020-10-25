@@ -10,7 +10,7 @@ using JJ.Framework.Resources;
 // ReSharper disable MemberCanBeInternal
 // ReSharper disable PossibleMultipleEnumeration
 
-namespace JJ.Utilities.FileDeduplication
+namespace JJ.Utilities.FileDeduplication.WinForms
 {
 	public class FileDeduplicationPresenter
 	{

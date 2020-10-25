@@ -81,9 +81,9 @@ namespace JJ.Framework.IO {
         /// <summary>
         ///   Looks up a localized string similar to Done scanning. {0} duplicates found..
         /// </summary>
-        internal static string DoneScanning_WithDuplicatesFound {
+        internal static string DoneScanning_WithDuplicatesCount {
             get {
-                return ResourceManager.GetString("DoneScanning_WithDuplicatesFound", resourceCulture);
+                return ResourceManager.GetString("DoneScanning_WithDuplicatesCount", resourceCulture);
             }
         }
         

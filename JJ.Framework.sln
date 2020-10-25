@@ -187,7 +187,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Tests", "Framework\Business.Tests\JJ.Framework.Business.Tests.csproj", "{F3BB5F9E-DF53-4BAA-ADEE-94AEFCDD2C5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileDeduplication", "Utilities\FileDeduplication\JJ.Utilities.FileDeduplication.csproj", "{E640170F-0006-4DDE-8445-7A6118BDFBEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileDeduplication.WinForms", "Utilities\FileDeduplication.WinForms\JJ.Utilities.FileDeduplication.WinForms.csproj", "{E640170F-0006-4DDE-8445-7A6118BDFBEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Microsoft.VisualBasic", "Framework\Microsoft.VisualBasic\JJ.Framework.Microsoft.VisualBasic.csproj", "{AB67EA5D-779B-4F03-A869-61B32BA10B60}"
 EndProject

@@ -1,4 +1,4 @@
-﻿namespace JJ.Utilities.FileDeduplication
+﻿namespace JJ.Utilities.FileDeduplication.WinForms
 {
 	public interface IAppSettings
 	{

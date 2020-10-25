@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E640170F-0006-4DDE-8445-7A6118BDFBEE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>JJ.Utilities.FileDeduplication</RootNamespace>
-    <AssemblyName>JJ.Utilities.FileDeduplication</AssemblyName>
+    <RootNamespace>JJ.Utilities.FileDeduplication.WinForms</RootNamespace>
+    <AssemblyName>JJ.Utilities.FileDeduplication.WinForms</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

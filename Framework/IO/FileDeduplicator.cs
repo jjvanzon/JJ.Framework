@@ -126,7 +126,7 @@ namespace JJ.Framework.IO
 			                                              .ThenBy(x => x.DuplicateFilePath)
 			                                              .ToList();
 
-			progressCallback?.Invoke(ResourceFormatter.DoneScanning_WithDuplicatesFound(duplicateFilePairs.Count));
+			progressCallback?.Invoke(ResourceFormatter.DoneScanning_WithDuplicatesCount(duplicateFilePairs.Count));
 
 			return duplicateFilePairs;
 		}
