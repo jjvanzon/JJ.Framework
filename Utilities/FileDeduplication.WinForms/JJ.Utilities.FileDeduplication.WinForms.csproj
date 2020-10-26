@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="FileDeduplicationPresenter.cs" />
     <Compile Include="FileDeduplicationViewModel.cs" />
+    <Compile Include="FileDeduplicationViewModelValidator_ForScan.cs" />
     <Compile Include="IAppSettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +140,10 @@
       <Project>{805A8237-05ED-40AE-8D1A-9288373EA5E0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
+      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
+      <Name>JJ.Framework.Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\IO\JJ.Framework.IO.csproj">
       <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
       <Name>JJ.Framework.IO</Name>
@@ -154,6 +159,10 @@
     <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.Resources.csproj">
       <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
       <Name>JJ.Framework.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Validation\JJ.Framework.Validation.csproj">
+      <Project>{59DDC853-62AF-4F86-A803-3D4DD491E978}</Project>
+      <Name>JJ.Framework.Validation</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\WinForms\JJ.Framework.WinForms.csproj">
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>

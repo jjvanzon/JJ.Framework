@@ -1,4 +1,7 @@
-﻿// ReSharper disable MemberCanBeInternal
+﻿using System.Collections.Generic;
+
+// ReSharper disable MemberCanBeInternal
+
 namespace JJ.Utilities.FileDeduplication.WinForms
 {
 	public class FileDeduplicationViewModel
@@ -14,5 +17,6 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		/// Might use this property to determine whether to disable some controls while IsRunning = true.
 		/// </summary>
 		public bool IsRunning { get; set; }
+		public IList<string> ValidationMessages { get; set; }
 	}
 }

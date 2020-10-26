@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using JJ.Framework.IO;
 using JJ.Framework.Microsoft.VisualBasic;
 using JJ.Framework.Resources;
@@ -107,6 +109,13 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 					if (BrowseButtonEnabled != enabled) BrowseButtonEnabled = enabled;
 					if (buttonScan.Enabled != enabled) buttonScan.Enabled = enabled;
 					if (buttonCopyListOfDuplicates.Enabled != enabled) buttonCopyListOfDuplicates.Enabled = enabled;
+
+					if (ViewModel.ValidationMessages.Count > 0)
+					{
+						string text = string.Join(Environment.NewLine, ViewModel.ValidationMessages);
+						ViewModel.ValidationMessages = new List<string>(); // Clear so the next time the message box is not shown.
+						BeginInvoke(new Action(() => MessageBox.Show(text)));
+					}
 				});
 
 		private void MapControlsToViewModel()
