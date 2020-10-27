@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-  <Product Id="*" Name="!(loc.ApplicationName)" Language="1033" Version="1.7.1" Manufacturer="Jan Joost van Zon" UpgradeCode="cf948a2e-070e-4385-8866-b78ff03bfc1d">
+  <Product Id="*" Name="!(loc.ApplicationName)" Language="1033" Version="1.7.2" Manufacturer="Jan Joost van Zon" UpgradeCode="cf948a2e-070e-4385-8866-b78ff03bfc1d">
 
     <Package Id="*" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
@@ -28,12 +28,14 @@
       <ComponentRef Id="JJFrameworkReflectionComponent" />
       <ComponentRef Id="JJFrameworkResourcesComponent" />
       <ComponentRef Id="JJFrameworkTextComponent" />
+      <ComponentRef Id="JJFrameworkValidationComponent" />
       <ComponentRef Id="JJFrameworkVectorGraphicsComponent" />
       <ComponentRef Id="JJFrameworkWinFormsComponent" />
       <ComponentRef Id="JJFrameworkXmlComponent" />
       <ComponentRef Id="System.ValueTupleComponent" />
       <ComponentRef Id="JJFrameworkIOResourcesNlNlComponent" />
       <ComponentRef Id="JJFrameworkResourcesResourcesNlNlComponent" />
+      <ComponentRef Id="JJFrameworkValidationResourcesNlNlComponent" />
       <ComponentRef Id="JJUtilitiesFileDeduplicationWinFormsResourcesNlNlComponent" />
       <ComponentRef Id="JJFrameworkResourcesResourcesPlPlComponent" />
     </Feature>
@@ -133,6 +135,10 @@
               <File Source="$(var.JJ.Utilities.FileDeduplication.WinForms.TargetDir)JJ.Framework.Text.dll" KeyPath="yes" />
             </Component>
 
+            <Component Id="JJFrameworkValidationComponent" Guid="51DAB3BB-AB2E-4B4F-9F22-DAF5D5596046">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.WinForms.TargetDir)JJ.Framework.Validation.dll" KeyPath="yes" />
+            </Component>
+
             <Component Id="JJFrameworkVectorGraphicsComponent" Guid="868FDC5F-D757-43A1-BFFC-348CE8830D29">
               <File Source="$(var.JJ.Utilities.FileDeduplication.WinForms.TargetDir)JJ.Framework.VectorGraphics.dll" KeyPath="yes" />
             </Component>
@@ -159,6 +165,10 @@
 
               <Component Id="JJFrameworkResourcesResourcesNlNlComponent" Guid="9EAD3F4B-5D99-47E2-8AA5-9250758B7D62">
                 <File Source="$(var.JJ.Utilities.FileDeduplication.WinForms.TargetDir)nl-NL\JJ.Framework.Resources.resources.dll" KeyPath="yes" Id="JJFrameworkResourcesResourcesNlNlFile" />
+              </Component>
+
+              <Component Id="JJFrameworkValidationResourcesNlNlComponent" Guid="589A0A34-CB29-4695-B24B-2874C389F4A5">
+                <File Source="$(var.JJ.Utilities.FileDeduplication.WinForms.TargetDir)nl-NL\JJ.Framework.Validation.resources.dll" KeyPath="yes" Id="JJFrameworkValidationResourcesNlNlFile" />
               </Component>
 
               <Component Id="JJUtilitiesFileDeduplicationWinFormsResourcesNlNlComponent" Guid="FA048372-3E6F-4B11-8453-B6CFC470AF0F">
