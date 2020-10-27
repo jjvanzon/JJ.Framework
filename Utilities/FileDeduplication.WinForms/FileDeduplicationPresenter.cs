@@ -6,11 +6,12 @@ using JJ.Framework.Configuration;
 using JJ.Framework.IO;
 using JJ.Framework.Logging;
 using JJ.Framework.Resources;
+using JJ.Framework.Validation;
 
 // ReSharper disable MemberCanBeInternal
 // ReSharper disable PossibleMultipleEnumeration
 
-namespace JJ.Utilities.FileDeduplication
+namespace JJ.Utilities.FileDeduplication.WinForms
 {
 	public class FileDeduplicationPresenter
 	{
@@ -50,11 +51,19 @@ namespace JJ.Utilities.FileDeduplication
 				Explanation = ResourceFormatter.Explanation,
 				AlsoScanSubFolders = true,
 				FilePattern = "*.*",
-				FolderPath = AppSettingsReader<IAppSettings>.Get(x => x.DefaultFolderPath)
+				FolderPath = AppSettingsReader<IAppSettings>.Get(x => x.DefaultFolderPath),
+				ValidationMessages = new List<string>()
 			};
 
 		public void Scan()
 		{
+			IValidator validator = new FileDeduplicationViewModelValidator_ForScan(ViewModel);
+			if (!validator.IsValid)
+			{
+				ViewModel.ValidationMessages = validator.Messages;
+				return;
+			}
+
 			try
 			{
 				ViewModel.IsRunning = true;
@@ -85,7 +94,7 @@ namespace JJ.Utilities.FileDeduplication
 
 				if (_filePairs == null)
 				{
-					ViewModel.ProgressMessage = ResourceFormatter.PleaseFirst_WithName(CommonResourceFormatter.Scan);
+					ViewModel.ValidationMessages.Add(ResourceFormatter.PleaseFirst_WithName(CommonResourceFormatter.Scan));
 					return;
 				}
 

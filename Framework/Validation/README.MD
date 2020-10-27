@@ -1,18 +1,19 @@
-﻿# JJ.Framework.Validation
+﻿JJ.Framework.Validation
+=======================
 
-Contains a class __VersatileValidator__. It offers a neat fluent notation:
+Contains a class __VersatileValidator__. It would offer a neat fluent notation:
 
 	For(Thing.Value).NotNull().MaxLength(100);
 
-If you separate validations from the rest of your code and turn them into validator classes, 
-your business rules may become better maintainable. The validation messages are dry lists of strings, 
-which makes the output of the validations easily integratable with any other system. 
-The set of fluent methods might be incomplete, but we just add things when we need it. 
+When validations would be separated from the rest of the code, like turning them into validator classes, 
+business logic might become better maintainable. The validation messages would be dry lists of strings, 
+to try to make the output of the validations better integratable with other systems. 
+The set of fluent methods might be a bit incomplete, because currently things are only extended on the fly as needed. 
+
 You can also add validation messages imperatively, for instance:
 
 	ValidationMessages.AddIsZeroMessage(...)
 
-The __ValidationMessages__ methods are a little more complete, but I am not making any promises about that.
-We use this framework to support our developments, and extend it on the fly, as needed.
+The __ValidationMessages__ methods might be a little more complete.
 
-This framework is also kind of a proof that you do not need an external validation framework. You can do it yourself.
+The simplicity of this framework might also be kind of a proof that you might not need an external validation framework. Doing it yourself might also be an option.

@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Resources.Tests;
+using JJ.Utilities.FileDeduplication.WinForms;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 #pragma warning disable IDE0002 // Simplify Member Access
