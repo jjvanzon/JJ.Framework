@@ -6,7 +6,9 @@ using JJ.Framework.Configuration;
 using JJ.Framework.IO;
 using JJ.Framework.Logging;
 using JJ.Framework.Resources;
+using JJ.Framework.Text;
 using JJ.Framework.Validation;
+using JJ.Framework.Validation.Resources;
 
 // ReSharper disable MemberCanBeInternal
 // ReSharper disable PossibleMultipleEnumeration
@@ -15,6 +17,8 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 {
 	public class FileDeduplicationPresenter
 	{
+		private const string DUPLICATE_FILE_PATH_PREFIX = "| ";
+
 		// Services
 
 		private readonly IFileDeduplicator _fileDeduplicator;
@@ -88,18 +92,20 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 		public void DeleteFiles()
 		{
+			IValidator validator = new FileDeduplicationViewModelValidator_ForDeleteFiles(ViewModel);
+			if (!validator.IsValid)
+			{
+				ViewModel.ValidationMessages = validator.Messages;
+				return;
+			}
+
 			try
 			{
 				ViewModel.IsRunning = true;
 
-				if (_filePairs == null)
-				{
-					ViewModel.ValidationMessages.Add(ResourceFormatter.PleaseFirst_WithName(CommonResourceFormatter.Scan));
-					return;
-				}
+				IList<string> filePathsToDelete = ParseListOfDuplicates(ViewModel.ListOfDuplicates);
 
-				_bulkFileDeleter_WithRecycleBin.DeleteFiles(
-					_filePairs.Select(x => x.DuplicateFilePath).ToArray(), SetProgressMessage, () => !ViewModel.IsRunning);
+				_bulkFileDeleter_WithRecycleBin.DeleteFiles(filePathsToDelete, SetProgressMessage, () => !ViewModel.IsRunning);
 			}
 			catch (Exception ex)
 			{
@@ -133,9 +139,28 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 		private string FormatItem(IEnumerable<FileDeduplicator.FilePair> filePairs)
 		{
-			string separator = Environment.NewLine + "| ";
-			string formattedDuplicates = "| " + string.Join(separator, filePairs.Select(x => x.DuplicateFilePath));
+			string separator = Environment.NewLine + DUPLICATE_FILE_PATH_PREFIX;
+			string formattedDuplicates = DUPLICATE_FILE_PATH_PREFIX + string.Join(separator, filePairs.Select(x => x.DuplicateFilePath));
 			return filePairs.First().OriginalFilePath + Environment.NewLine + formattedDuplicates;
+		}
+
+		/// <summary>
+		/// Would convert a list of duplicates and the original file paths (one copy is deemed the original)
+		/// in a specific format where duplicate file paths are prefixed with "| ".
+		/// It would return the file paths deemed the duplicate files / files to delete.
+		/// </summary>
+		private IList<string> ParseListOfDuplicates(string listOfDuplicatesString)
+		{
+			if (string.IsNullOrWhiteSpace(listOfDuplicatesString))
+			{
+				return new List<string>();
+			}
+
+			IList<string> split = listOfDuplicatesString.Split(Environment.NewLine);
+			IList<string> duplicateFilePaths = split.Where(x => x.StartsWith(DUPLICATE_FILE_PATH_PREFIX))
+			                                        .Select(x => x.TrimFirst(DUPLICATE_FILE_PATH_PREFIX))
+			                                        .ToList();
+			return duplicateFilePaths;
 		}
 
 		private static string GetProgressMessage(Exception ex)

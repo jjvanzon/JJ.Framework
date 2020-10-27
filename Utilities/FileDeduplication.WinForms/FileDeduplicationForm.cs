@@ -123,6 +123,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 			ViewModel.AlsoScanSubFolders = checkBoxAlsoScanSubFolders.Checked;
 			ViewModel.FilePattern = textBoxFilePattern.Text;
 			ViewModel.FolderPath = TextBoxText;
+			ViewModel.ListOfDuplicates = textBoxListOfDuplicates.Text;
 		}
 	}
 }

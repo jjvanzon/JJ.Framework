@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="FileDeduplicationPresenter.cs" />
     <Compile Include="FileDeduplicationViewModel.cs" />
+    <Compile Include="FileDeduplicationViewModelValidator_ForDeleteFiles.cs" />
     <Compile Include="FileDeduplicationViewModelValidator_ForScan.cs" />
     <Compile Include="IAppSettings.cs" />
     <Compile Include="Program.cs" />
@@ -159,6 +160,10 @@
     <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.Resources.csproj">
       <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
       <Name>JJ.Framework.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Text\JJ.Framework.Text.csproj">
+      <Project>{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}</Project>
+      <Name>JJ.Framework.Text</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Validation\JJ.Framework.Validation.csproj">
       <Project>{59DDC853-62AF-4F86-A803-3D4DD491E978}</Project>
