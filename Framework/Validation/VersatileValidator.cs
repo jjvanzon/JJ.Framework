@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using JJ.Framework.Collections;
 using JJ.Framework.Common;
@@ -433,8 +434,27 @@ namespace JJ.Framework.Validation
 			return isEnum;
 		}
 
+		// File System
+
+		public VersatileValidator FolderExists()
+		{
+			string stringValue = Convert.ToString(_value, _formatProvider);
+
+			if (string.IsNullOrWhiteSpace(stringValue))
+			{
+				return this;
+			}
+
+			if (!Directory.Exists(stringValue))
+			{
+				Messages.AddFolderNotFoundMessage(stringValue);
+			}
+
+			return this;
+		}
+
 		// Other
-		
+
 		public VersatileValidator NotNaN()
 		{
 			string stringValue = Convert.ToString(_value, _formatProvider);

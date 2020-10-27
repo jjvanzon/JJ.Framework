@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WixLocalization Culture="nl-nl" xmlns="http://schemas.microsoft.com/wix/2006/localization">
-  <String Id="ApplicationName" Overridable="yes">JJ Utilities - Bestanden ontdubbelen</String>
+  <String Id="ApplicationName" Overridable="yes">JJ utilities - dubbele bestanden opsporen</String>
   <String Id="NewerVersionAlreadyInstalled" Overridable="yes">Er is al een nieuwere versie van [ProductName] geïnstalleerd.</String>
 </WixLocalization>

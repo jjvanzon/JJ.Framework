@@ -123,7 +123,7 @@
   <data name="DoneDeletingFiles_WithCount" xml:space="preserve">
     <value>Done deleting {0} files.</value>
   </data>
-  <data name="DoneScanning_WithDuplicatesFound" xml:space="preserve">
+  <data name="DoneScanning_WithDuplicatesCount" xml:space="preserve">
     <value>Done scanning. {0} duplicates found.</value>
   </data>
   <data name="ListingFiles" xml:space="preserve">

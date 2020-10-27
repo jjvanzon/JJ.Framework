@@ -76,7 +76,6 @@ namespace JJ.Framework.Validation.Resources
 
 			return string.Format(ValidationResources.NotUnique_WithName_AndDuplicateValues_Singular, displayNameSingular, formattedDuplicateValues);
 		}
-
 		public static string NotUniquePlural(string displayNamePlural, IEnumerable<object> duplicateValues)
 		{
 			if (duplicateValues == null) throw new NullException(() => duplicateValues);

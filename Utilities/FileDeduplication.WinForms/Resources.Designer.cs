@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JJ.Utilities.FileDeduplication.Properties {
+namespace JJ.Utilities.FileDeduplication.WinForms {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace JJ.Utilities.FileDeduplication.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Utilities.FileDeduplication.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JJ.Utilities.FileDeduplication.WinForms.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,12 +61,56 @@ namespace JJ.Utilities.FileDeduplication.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        ///   Looks up a localized string similar to Also scan subfolders.
         /// </summary>
-        internal static System.Drawing.Icon jj_icon_with_margin {
+        internal static string AlsoScanSubFolders {
             get {
-                object obj = ResourceManager.GetObject("jj_icon_with_margin", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ResourceManager.GetString("AlsoScanSubFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JJ Utilities - File Deduplication.
+        /// </summary>
+        internal static string ApplicationName {
+            get {
+                return ResourceManager.GetString("ApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duplicates.
+        /// </summary>
+        internal static string Duplicates {
+            get {
+                return ResourceManager.GetString("Duplicates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This utility tries to look up duplicate files in a folder (and its sub-folders). It might first analyze which duplicates there are and would report them. After that this utility could delete those files. The files would be sent to the recycle bin. Be careful, because some files are supposed to be there twice to keep things working..
+        /// </summary>
+        internal static string Explanation {
+            get {
+                return ResourceManager.GetString("Explanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please {0} first..
+        /// </summary>
+        internal static string PleaseFirst_WithName {
+            get {
+                return ResourceManager.GetString("PleaseFirst_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan.
+        /// </summary>
+        internal static string Scan {
+            get {
+                return ResourceManager.GetString("Scan", resourceCulture);
             }
         }
     }

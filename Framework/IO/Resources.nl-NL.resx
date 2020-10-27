@@ -123,7 +123,7 @@
   <data name="DoneDeletingFiles_WithCount" xml:space="preserve">
     <value>Klaar. {0} bestanden verwijderd.</value>
   </data>
-  <data name="DoneScanning_WithDuplicatesFound" xml:space="preserve">
+  <data name="DoneScanning_WithDuplicatesCount" xml:space="preserve">
     <value>Klaar met scannen. {0} dubbele gevonden.</value>
   </data>
   <data name="ListingFiles" xml:space="preserve">

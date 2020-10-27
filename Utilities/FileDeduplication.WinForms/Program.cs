@@ -4,7 +4,7 @@ using JJ.Framework.Common;
 using JJ.Framework.Configuration;
 using JJ.Framework.WinForms.Helpers;
 
-namespace JJ.Utilities.FileDeduplication
+namespace JJ.Utilities.FileDeduplication.WinForms
 {
 	internal static class Program
 	{
