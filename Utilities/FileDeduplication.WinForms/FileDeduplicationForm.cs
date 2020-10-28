@@ -29,7 +29,8 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 			_presenter = new FileDeduplicationPresenter(
 				new FileDeduplicator(),
 				new BulkFileDeleter_WithRecycleBin(),
-				new ClipboardUtilizer());
+				new ClipboardUtilizer(),
+				new ListOfDuplicatesParserFormatter());
 
 			_presenter.Initialize(MapViewModelToControls);
 		}

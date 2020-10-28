@@ -7,6 +7,8 @@ namespace JJ.Framework.Validation.Resources
 	public static class ValidationResourceFormatter
 	{
 		public static string AreEmpty(string displayName) => string.Format(ValidationResources.AreEmpty_WithName, displayName);
+		public static string CollectionEmpty(string collectionName) => string.Format(ValidationResources.CollectionEmpty_WithName_Plural, collectionName);
+		public static string CollectionNotEmpty(string collectionName) => string.Format(ValidationResources.CollectionNotEmpty_WithName_Plural, collectionName);
 		public static string Contains(string displayName, object valueOrName) => string.Format(ValidationResources.Contains_WithName_AndValue, displayName, valueOrName);
 		public static string LengthExceeded(string displayName, int length) => string.Format(ValidationResources.LengthExceeded_WithName_AndLength, displayName, length);
 		public static string FileAlreadyExists(string filePath) => string.Format(ValidationResources.FileAlreadyExists_WithFilePath, filePath);
