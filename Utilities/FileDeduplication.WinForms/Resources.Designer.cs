@@ -88,7 +88,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility tries to look up duplicate files in a folder (and its sub-folders). It might first analyze which duplicates there are and would report them. After that this utility could delete those files. The files would be sent to the recycle bin. Be careful, because some files are supposed to be there twice to keep things working..
+        ///   Looks up a localized string similar to This utility tries to look up duplicate files in a folder (and its sub-folders). It might first analyze which duplicates there are and would report them. The list of duplicates reported might be edited. After that this utility could delete the files marked as duplicate. The files would be sent to the recycle bin. Be careful, because some files are supposed to be there twice to keep things working..
         /// </summary>
         internal static string Explanation {
             get {
@@ -97,20 +97,11 @@ namespace JJ.Utilities.FileDeduplication.WinForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please {0} first..
+        ///   Looks up a localized string similar to Maybe {0} first?.
         /// </summary>
-        internal static string PleaseFirst_WithName {
+        internal static string MaybeDoFirst_WithName {
             get {
-                return ResourceManager.GetString("PleaseFirst_WithName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Scan.
-        /// </summary>
-        internal static string Scan {
-            get {
-                return ResourceManager.GetString("Scan", resourceCulture);
+                return ResourceManager.GetString("MaybeDoFirst_WithName", resourceCulture);
             }
         }
     }

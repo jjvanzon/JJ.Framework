@@ -304,4 +304,10 @@
   <data name="NotFilledIn" xml:space="preserve">
     <value>Not filled in.</value>
   </data>
+  <data name="CollectionEmpty_WithName_Plural" xml:space="preserve">
+    <value>{0}  is empty.</value>
+  </data>
+  <data name="CollectionNotEmpty_WithName_Plural" xml:space="preserve">
+    <value>{0} is not empty.</value>
+  </data>
 </root>
