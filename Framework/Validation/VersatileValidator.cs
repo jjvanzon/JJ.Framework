@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -108,8 +109,38 @@ namespace JJ.Framework.Validation
 			return this;
 		}
 
+		public VersatileValidator CollectionEmpty()
+		{
+			if (_value is IEnumerable enumerable)
+			{
+				int count = enumerable.Cast<object>().Count();
+
+				if (count != 0)
+				{
+					Messages.AddCollectionNotEmptyMessage(_propertyDisplayName);
+				}
+			}
+
+			return this;
+		}
+
+		public VersatileValidator CollectionNotEmpty()
+		{
+			if (_value is IEnumerable enumerable)
+			{
+				int count = enumerable.Cast<object>().Count();
+
+				if (count == 0)
+				{
+					Messages.AddCollectionEmptyMessage(_propertyDisplayName);
+				}
+			}
+
+			return this;
+		}
+
 		// Strings
-		
+
 		public VersatileValidator MaxLength(int maxLength)
 		{
 			string stringValue = Convert.ToString(_value, _formatProvider);

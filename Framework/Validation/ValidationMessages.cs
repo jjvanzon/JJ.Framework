@@ -28,6 +28,10 @@ namespace JJ.Framework.Validation
 
 		private string DebuggerDisplay => DebugHelper.GetDebuggerDisplay(this);
 
+		public void AddCollectionEmptyMessage(string collectionName) => Add(ValidationResourceFormatter.CollectionEmpty(collectionName));
+
+		public void AddCollectionNotEmptyMessage(string collectionName) => Add(ValidationResourceFormatter.CollectionNotEmpty(collectionName));
+
 		public void AddContainsMessage(string propertyDisplayName, object valueOrName)
 		{
 			if (string.IsNullOrEmpty(propertyDisplayName)) throw new NullOrEmptyException(() => propertyDisplayName);

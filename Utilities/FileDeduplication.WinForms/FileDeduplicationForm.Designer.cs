@@ -68,7 +68,6 @@
 			this.textBoxListOfDuplicates.Location = new System.Drawing.Point(19, 278);
 			this.textBoxListOfDuplicates.Multiline = true;
 			this.textBoxListOfDuplicates.Name = "textBoxListOfDuplicates";
-			this.textBoxListOfDuplicates.ReadOnly = true;
 			this.textBoxListOfDuplicates.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.textBoxListOfDuplicates.Size = new System.Drawing.Size(644, 190);
 			this.textBoxListOfDuplicates.TabIndex = 4;

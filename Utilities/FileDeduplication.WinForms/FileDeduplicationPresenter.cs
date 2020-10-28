@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using JJ.Framework.Common;
 using JJ.Framework.Configuration;
 using JJ.Framework.IO;
 using JJ.Framework.Logging;
 using JJ.Framework.Resources;
 using JJ.Framework.Validation;
-
-// ReSharper disable MemberCanBeInternal
-// ReSharper disable PossibleMultipleEnumeration
 
 namespace JJ.Utilities.FileDeduplication.WinForms
 {
@@ -20,10 +16,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		private readonly IFileDeduplicator _fileDeduplicator;
 		private readonly IBulkFileDeleter _bulkFileDeleter_WithRecycleBin;
 		private readonly IClipboardUtilizer _clipboardUtilizer;
-
-		// Data
-
-		private IList<FileDeduplicator.FilePair> _filePairs;
+		private readonly IListOfDuplicatesParserFormatter _listOfDuplicatesParserFormatter;
 
 		// ViewModel
 
@@ -33,11 +26,13 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		public FileDeduplicationPresenter(
 			IFileDeduplicator fileDeduplicator,
 			IBulkFileDeleter bulkFileDeleter_WithRecycleBin,
-			IClipboardUtilizer clipboardUtilizer)
+			IClipboardUtilizer clipboardUtilizer,
+			IListOfDuplicatesParserFormatter listOfDuplicatesParserFormatter)
 		{
 			_fileDeduplicator = fileDeduplicator;
 			_bulkFileDeleter_WithRecycleBin = bulkFileDeleter_WithRecycleBin;
 			_clipboardUtilizer = clipboardUtilizer;
+			_listOfDuplicatesParserFormatter = listOfDuplicatesParserFormatter;
 
 			ViewModel = Show();
 		}
@@ -68,10 +63,11 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 			{
 				ViewModel.IsRunning = true;
 
-				_filePairs = _fileDeduplicator.Scan(
-					ViewModel.FolderPath, ViewModel.AlsoScanSubFolders, ViewModel.FilePattern, SetProgressMessage, () => !ViewModel.IsRunning);
+				IList<FileDeduplicator.FilePair> filePairs = _fileDeduplicator.Scan(
+					ViewModel.FolderPath, ViewModel.AlsoScanSubFolders, ViewModel.FilePattern,
+					SetProgressMessage, () => !ViewModel.IsRunning);
 
-				ViewModel.ListOfDuplicates = FormatFilePairs(_filePairs);
+				ViewModel.ListOfDuplicates = _listOfDuplicatesParserFormatter.FormatFilePairs(filePairs);
 			}
 			catch (Exception ex)
 			{
@@ -88,18 +84,20 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 		public void DeleteFiles()
 		{
+			IValidator validator = new FileDeduplicationViewModelValidator_ForDeleteFiles(ViewModel, _listOfDuplicatesParserFormatter);
+			if (!validator.IsValid)
+			{
+				ViewModel.ValidationMessages = validator.Messages;
+				return;
+			}
+
 			try
 			{
 				ViewModel.IsRunning = true;
 
-				if (_filePairs == null)
-				{
-					ViewModel.ValidationMessages.Add(ResourceFormatter.PleaseFirst_WithName(CommonResourceFormatter.Scan));
-					return;
-				}
+				IList<string> duplicateFilePaths = _listOfDuplicatesParserFormatter.GetDuplicateFilePaths(ViewModel.ListOfDuplicates);
 
-				_bulkFileDeleter_WithRecycleBin.DeleteFiles(
-					_filePairs.Select(x => x.DuplicateFilePath).ToArray(), SetProgressMessage, () => !ViewModel.IsRunning);
+				_bulkFileDeleter_WithRecycleBin.DeleteFiles(duplicateFilePaths, SetProgressMessage, () => !ViewModel.IsRunning);
 			}
 			catch (Exception ex)
 			{
@@ -125,18 +123,6 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		}
 
 		// Helpers
-
-		private string FormatFilePairs(IList<FileDeduplicator.FilePair> filePairs)
-			=> string.Join(
-				Environment.NewLine + Environment.NewLine,
-				filePairs.GroupBy(x => x.OriginalFilePath).Select(FormatItem));
-
-		private string FormatItem(IEnumerable<FileDeduplicator.FilePair> filePairs)
-		{
-			string separator = Environment.NewLine + "| ";
-			string formattedDuplicates = "| " + string.Join(separator, filePairs.Select(x => x.DuplicateFilePath));
-			return filePairs.First().OriginalFilePath + Environment.NewLine + formattedDuplicates;
-		}
 
 		private static string GetProgressMessage(Exception ex)
 		{

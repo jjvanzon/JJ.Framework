@@ -10,6 +10,10 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		public string Explanation { get; set; }
 		public bool AlsoScanSubFolders { get; set; }
 		public string FilePattern { get; set; }
+		/// <summary>
+		/// The list of duplicate file paths and the original file paths (one copy is deemed the original),
+		/// in a specific format where duplicate file paths are prefixed with "| ".
+		/// </summary>
 		public string ListOfDuplicates { get; set; }
 		public string FolderPath { get; set; }
 		public string ProgressMessage { get; set; }

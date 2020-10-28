@@ -9,7 +9,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		public static string AlsoScanSubFolders => _helper.GetText();
 		public static string ApplicationName => _helper.GetText();
 		public static string Explanation => _helper.GetText();
-		public static string PleaseFirst_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
+		public static string MaybeDoFirst_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
 		public static string Duplicates => _helper.GetText();
 	}
 }
