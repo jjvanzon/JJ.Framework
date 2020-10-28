@@ -129,7 +129,7 @@
   <data name="Explanation" xml:space="preserve">
     <value>Deze tool probeert dubbele bestanden in een map op te sporen (en in de submappen). Eerst kan gescand worden, welke dubbele er zijn en dan zijn ze te zien in een lijst. Die lijst kun je daarna aanpassen. Daarna kun je de bestanden weg laten halen. De bestanden komen dan in de prullenbak. Wees voorzichting: sommige bestanden horen dubbel anders werkt er misschien iets niet meer.</value>
   </data>
-  <data name="PleaseFirst_WithName" xml:space="preserve">
-    <value>Eerst {0} alsjeblieft.</value>
+  <data name="MaybeDoFirst_WithName" xml:space="preserve">
+    <value>Misschien eerst {0}?</value>
   </data>
 </root>

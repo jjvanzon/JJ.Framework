@@ -97,11 +97,11 @@ namespace JJ.Utilities.FileDeduplication.WinForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please {0} first..
+        ///   Looks up a localized string similar to Maybe {0} first?.
         /// </summary>
-        internal static string PleaseFirst_WithName {
+        internal static string MaybeDoFirst_WithName {
             get {
-                return ResourceManager.GetString("PleaseFirst_WithName", resourceCulture);
+                return ResourceManager.GetString("MaybeDoFirst_WithName", resourceCulture);
             }
         }
     }

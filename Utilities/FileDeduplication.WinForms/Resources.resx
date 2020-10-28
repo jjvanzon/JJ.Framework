@@ -129,7 +129,7 @@
   <data name="Explanation" xml:space="preserve">
     <value>This utility tries to look up duplicate files in a folder (and its sub-folders). It might first analyze which duplicates there are and would report them. The list of duplicates reported might be edited. After that this utility could delete the files marked as duplicate. The files would be sent to the recycle bin. Be careful, because some files are supposed to be there twice to keep things working.</value>
   </data>
-  <data name="PleaseFirst_WithName" xml:space="preserve">
-    <value>Please {0} first.</value>
+  <data name="MaybeDoFirst_WithName" xml:space="preserve">
+    <value>Maybe {0} first?</value>
   </data>
 </root>

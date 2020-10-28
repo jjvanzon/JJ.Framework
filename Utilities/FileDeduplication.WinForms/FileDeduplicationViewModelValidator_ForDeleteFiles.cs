@@ -15,8 +15,11 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 			if (listOfDuplicatesParserFormatter == null) throw new ArgumentNullException(nameof(listOfDuplicatesParserFormatter));
 
 			IList<string> duplicateFilePaths = listOfDuplicatesParserFormatter.GetDuplicateFilePaths(viewModel.ListOfDuplicates);
-
-			For(duplicateFilePaths, CommonResourceFormatter.ListOf_WithName(ResourceFormatter.Duplicates)).CollectionNotEmpty();
+			if (duplicateFilePaths.Count == 0)
+			{
+				Messages.AddCollectionEmptyMessage(CommonResourceFormatter.ListOf_WithName(ResourceFormatter.Duplicates));
+				Messages.Add(ResourceFormatter.MaybeDoFirst_WithName(CommonResourceFormatter.Scan));
+			}
 		}
 	}
 }
