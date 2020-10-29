@@ -102,7 +102,7 @@ namespace JJ.Framework.WinForms.Controls
 		}
 
 		[DefaultValue(true)]
-		public bool MustShowExceptions { get; set; }
+		public bool MustShowExceptions { get; set; } = true;
 
 		[DefaultValue("Are you sure?")]
 		public string AreYouSureQuestion { get; set; } = "Are you sure?";
@@ -141,22 +141,22 @@ namespace JJ.Framework.WinForms.Controls
 			set => filePathControl.BrowseButtonEnabled = false;
 		}
 
-		private UpDownOrientationEnum _textBoOrientation;
+		private UpDownOrientationEnum _textBoxOrientation = UpDownOrientationEnum.Down;
 		/// <summary>
 		/// In case TextBoxOrientation would be Up, DescriptionHeight might become relevant.
 		/// </summary>
 		[DefaultValue(UpDownOrientationEnum.Down)]
 		public UpDownOrientationEnum TextBoxOrientation
 		{
-			get => _textBoOrientation;
+			get => _textBoxOrientation;
 			set
 			{
-				_textBoOrientation = value;
+				_textBoxOrientation = value;
 				PositionControls();
 			}
 		}
 
-		private int _descriptionHeight;
+		private int _descriptionHeight = 130;
 		/// <summary>
 		/// How high in (DPI-scaled) pixels the description text at the top would be.
 		/// May only be relevant if TextBoxOrientation would be "Up".
