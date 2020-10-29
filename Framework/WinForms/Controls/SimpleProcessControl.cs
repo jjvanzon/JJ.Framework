@@ -178,10 +178,8 @@ namespace JJ.Framework.WinForms.Controls
 			filePathControl.Location = new Point(Spacing, y);
 			filePathControl.Width = Width - Spacing - Spacing;
 
-			if (y < 0) y = 0;
-			int labelDescriptionHeight = Height - y - Spacing - Spacing;
 			labelDescription.Location = new Point(Spacing, Spacing);
-			labelDescription.Size = new Size(Width - Spacing - Spacing, labelDescriptionHeight);
+			labelDescription.Size = new Size(Width - Spacing - Spacing, y - Spacing - Spacing);
 		}
 
 		// Actions
