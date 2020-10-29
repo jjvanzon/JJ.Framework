@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using JetBrains.Annotations;
+using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.Logging;
 using JJ.Framework.WinForms.Helpers;
 
@@ -140,6 +141,37 @@ namespace JJ.Framework.WinForms.Controls
 			set => filePathControl.BrowseButtonEnabled = false;
 		}
 
+		private UpDownOrientationEnum _textBoOrientation;
+		/// <summary>
+		/// In case TextBoxOrientation would be Up, DescriptionHeight might become relevant.
+		/// </summary>
+		[DefaultValue(UpDownOrientationEnum.Down)]
+		public UpDownOrientationEnum TextBoxOrientation
+		{
+			get => _textBoOrientation;
+			set
+			{
+				_textBoOrientation = value;
+				PositionControls();
+			}
+		}
+
+		private int _descriptionHeight;
+		/// <summary>
+		/// How high in (DPI-scaled) pixels the description text at the top would be.
+		/// May only be relevant if TextBoxOrientation would be "Up".
+		/// </summary>
+		[DefaultValue(130)]
+		public int DescriptionHeight
+		{
+			get => _descriptionHeight;
+			set
+			{
+				_descriptionHeight = value;
+				PositionControls();
+			}
+		}
+
 		// Applying
 
 		private void ApplySpacing() => filePathControl.Spacing = Spacing;
@@ -169,17 +201,43 @@ namespace JJ.Framework.WinForms.Controls
 			y -= Spacing;
 			y -= buttonStart.Height;
 
+			int buttonY = y;
 			buttonStart.Location = new Point(Spacing, y);
 			buttonCancel.Location = new Point(Width - Spacing - buttonCancel.Width, y);
 
-			y -= Spacing;
-			y -= filePathControl.Height;
+			switch (TextBoxOrientation)
+			{
+				case UpDownOrientationEnum.Up:
+					y = Spacing;
 
-			filePathControl.Location = new Point(Spacing, y);
-			filePathControl.Width = Width - Spacing - Spacing;
+					labelDescription.Location = new Point(Spacing, y);
+					labelDescription.Size = new Size(Width - Spacing - Spacing, DescriptionHeight);
 
-			labelDescription.Location = new Point(Spacing, Spacing);
-			labelDescription.Size = new Size(Width - Spacing - Spacing, y - Spacing - Spacing);
+					y += DescriptionHeight;
+					y += Spacing;
+
+					filePathControl.Location = new Point(Spacing, y);
+					filePathControl.Width = Width - Spacing - Spacing;
+					break;
+
+				case UpDownOrientationEnum.Down:
+					y = buttonY;
+					y -= Spacing;
+					y -= filePathControl.Height;
+
+					int filePathControlY = y;
+					filePathControl.Location = new Point(Spacing, y);
+					filePathControl.Width = Width - Spacing - Spacing;
+
+					y = Spacing;
+
+					labelDescription.Location = new Point(Spacing, y);
+					labelDescription.Size = new Size(Width - Spacing - Spacing, filePathControlY - Spacing);
+					break;
+
+				default:
+					throw new InvalidValueException(TextBoxOrientation);
+			}
 		}
 
 		// Actions

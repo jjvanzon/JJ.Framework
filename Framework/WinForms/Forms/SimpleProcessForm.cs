@@ -135,6 +135,22 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.BrowseButtonEnabled = false;
 		}
 
+		/// <inheritdoc cref="SimpleProcessControl.TextBoxOrientation" />
+		[DefaultValue(UpDownOrientationEnum.Down)]
+		public UpDownOrientationEnum TextBoxOrientation
+		{
+			get => simpleProcessControl.TextBoxOrientation;
+			set => simpleProcessControl.TextBoxOrientation = value;
+		}
+
+		/// <inheritdoc cref="SimpleProcessControl.DescriptionHeight" />
+		[DefaultValue(130)]
+		public int DescriptionHeight
+		{
+			get => simpleProcessControl.DescriptionHeight;
+			set => simpleProcessControl.DescriptionHeight = value;
+		}
+
 		/// <summary>
 		/// The base form seems to be as bold as to
 		/// assign the entry-point assembly name

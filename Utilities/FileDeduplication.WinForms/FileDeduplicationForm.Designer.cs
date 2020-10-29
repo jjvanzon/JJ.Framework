@@ -42,7 +42,7 @@
 			// 
 			this.checkBoxAlsoScanSubFolders.Checked = true;
 			this.checkBoxAlsoScanSubFolders.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.checkBoxAlsoScanSubFolders.Location = new System.Drawing.Point(19, 147);
+			this.checkBoxAlsoScanSubFolders.Location = new System.Drawing.Point(19, 190);
 			this.checkBoxAlsoScanSubFolders.Name = "checkBoxAlsoScanSubFolders";
 			this.checkBoxAlsoScanSubFolders.Size = new System.Drawing.Size(245, 26);
 			this.checkBoxAlsoScanSubFolders.TabIndex = 1;
@@ -51,7 +51,7 @@
 			// 
 			// buttonScan
 			// 
-			this.buttonScan.Location = new System.Drawing.Point(17, 187);
+			this.buttonScan.Location = new System.Drawing.Point(17, 230);
 			this.buttonScan.Name = "buttonScan";
 			this.buttonScan.Size = new System.Drawing.Size(125, 49);
 			this.buttonScan.TabIndex = 2;
@@ -65,17 +65,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxListOfDuplicates.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.textBoxListOfDuplicates.Location = new System.Drawing.Point(19, 278);
+			this.textBoxListOfDuplicates.Location = new System.Drawing.Point(19, 321);
 			this.textBoxListOfDuplicates.Multiline = true;
 			this.textBoxListOfDuplicates.Name = "textBoxListOfDuplicates";
 			this.textBoxListOfDuplicates.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxListOfDuplicates.Size = new System.Drawing.Size(644, 190);
+			this.textBoxListOfDuplicates.Size = new System.Drawing.Size(644, 197);
 			this.textBoxListOfDuplicates.TabIndex = 4;
 			this.textBoxListOfDuplicates.WordWrap = false;
 			// 
 			// buttonCopyListOfDuplicates
 			// 
-			this.buttonCopyListOfDuplicates.Location = new System.Drawing.Point(159, 187);
+			this.buttonCopyListOfDuplicates.Location = new System.Drawing.Point(159, 230);
 			this.buttonCopyListOfDuplicates.Name = "buttonCopyListOfDuplicates";
 			this.buttonCopyListOfDuplicates.Size = new System.Drawing.Size(219, 49);
 			this.buttonCopyListOfDuplicates.TabIndex = 5;
@@ -86,7 +86,7 @@
 			// labelListOfDuplicatesTitle
 			// 
 			this.labelListOfDuplicatesTitle.AutoSize = true;
-			this.labelListOfDuplicatesTitle.Location = new System.Drawing.Point(15, 253);
+			this.labelListOfDuplicatesTitle.Location = new System.Drawing.Point(15, 296);
 			this.labelListOfDuplicatesTitle.Name = "labelListOfDuplicatesTitle";
 			this.labelListOfDuplicatesTitle.Size = new System.Drawing.Size(199, 22);
 			this.labelListOfDuplicatesTitle.TabIndex = 6;
@@ -95,7 +95,7 @@
 			// labelFilePattern
 			// 
 			this.labelFilePattern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelFilePattern.Location = new System.Drawing.Point(385, 150);
+			this.labelFilePattern.Location = new System.Drawing.Point(385, 193);
 			this.labelFilePattern.Name = "labelFilePattern";
 			this.labelFilePattern.Size = new System.Drawing.Size(200, 24);
 			this.labelFilePattern.TabIndex = 7;
@@ -105,7 +105,7 @@
 			// textBoxFilePattern
 			// 
 			this.textBoxFilePattern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBoxFilePattern.Location = new System.Drawing.Point(591, 146);
+			this.textBoxFilePattern.Location = new System.Drawing.Point(591, 189);
 			this.textBoxFilePattern.Name = "textBoxFilePattern";
 			this.textBoxFilePattern.Size = new System.Drawing.Size(72, 28);
 			this.textBoxFilePattern.TabIndex = 8;
@@ -115,7 +115,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(679, 647);
+			this.ClientSize = new System.Drawing.Size(679, 654);
 			this.Controls.Add(this.textBoxFilePattern);
 			this.Controls.Add(this.labelFilePattern);
 			this.Controls.Add(this.labelListOfDuplicatesTitle);
@@ -123,12 +123,15 @@
 			this.Controls.Add(this.textBoxListOfDuplicates);
 			this.Controls.Add(this.buttonScan);
 			this.Controls.Add(this.checkBoxAlsoScanSubFolders);
+			this.Description = resources.GetString("$this.Description");
+			this.DescriptionHeight = 114;
 			this.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.SelectFolder;
 			this.Font = new System.Drawing.Font("Calibri", 8.805756F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FileDeduplicationForm";
 			this.StartButtonText = "Delete";
 			this.TextBoxLabelText = "Folder:";
+			this.TextBoxOrientation = JJ.Framework.WinForms.Helpers.UpDownOrientationEnum.Up;
 			this.TextBoxRightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.TextBoxVisible = true;
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);

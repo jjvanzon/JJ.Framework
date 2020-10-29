@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\UpDownOrientationEnum.cs" />
     <Compile Include="Extensions\CommonDialogExtensions.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Helpers\ClipboardUtilizer.cs" />

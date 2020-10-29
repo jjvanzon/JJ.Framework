@@ -110,6 +110,12 @@
       <DependentUpon>PickATestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\VectorGraphicsFactory.cs" />
+    <Compile Include="SimpleProcessTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimpleProcessTestForm.Designer.cs">
+      <DependentUpon>SimpleProcessTestForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="VectorGraphicsWithFlatClone\VectorGraphicsWithFlatClone_TestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PickATestForm.resx">
       <DependentUpon>PickATestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimpleProcessTestForm.resx">
+      <DependentUpon>SimpleProcessTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VectorGraphicsWithFlatClone\VectorGraphicsWithFlatClone_TestForm.resx">
       <DependentUpon>VectorGraphicsWithFlatClone_TestForm.cs</DependentUpon>
