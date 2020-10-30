@@ -124,7 +124,6 @@
 			this.Controls.Add(this.buttonScan);
 			this.Controls.Add(this.checkBoxAlsoScanSubFolders);
 			this.Description = resources.GetString("$this.Description");
-			this.DescriptionHeight = 114;
 			this.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.SelectFolder;
 			this.Font = new System.Drawing.Font("Calibri", 8.805756F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

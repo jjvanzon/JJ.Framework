@@ -143,7 +143,7 @@ namespace JJ.Framework.WinForms.Controls
 
 		private UpDownOrientationEnum _textBoxOrientation = UpDownOrientationEnum.Down;
 		/// <summary>
-		/// In case TextBoxOrientation would be Up, DescriptionHeight might become relevant.
+		/// In case TextBoxOrientation would be Up, TextBoxTop might become relevant.
 		/// </summary>
 		[DefaultValue(UpDownOrientationEnum.Down)]
 		public UpDownOrientationEnum TextBoxOrientation
@@ -156,18 +156,18 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
-		private int _descriptionHeight = 130;
+		private int _textBoxTop = 146;
 		/// <summary>
 		/// How high in (DPI-scaled) pixels the description text at the top would be.
 		/// May only be relevant if TextBoxOrientation would be "Up".
 		/// </summary>
-		[DefaultValue(130)]
-		public int DescriptionHeight
+		[DefaultValue(146)]
+		public int TextBoxTop
 		{
-			get => _descriptionHeight;
+			get => _textBoxTop;
 			set
 			{
-				_descriptionHeight = value;
+				_textBoxTop = value;
 				PositionControls();
 			}
 		}
@@ -208,15 +208,10 @@ namespace JJ.Framework.WinForms.Controls
 			switch (TextBoxOrientation)
 			{
 				case UpDownOrientationEnum.Up:
-					y = Spacing;
+					labelDescription.Location = new Point(Spacing, Spacing);
+					labelDescription.Size = new Size(Width - Spacing - Spacing, TextBoxTop - Spacing);
 
-					labelDescription.Location = new Point(Spacing, y);
-					labelDescription.Size = new Size(Width - Spacing - Spacing, DescriptionHeight);
-
-					y += DescriptionHeight;
-					y += Spacing;
-
-					filePathControl.Location = new Point(Spacing, y);
+					filePathControl.Location = new Point(Spacing, TextBoxTop);
 					filePathControl.Width = Width - Spacing - Spacing;
 					break;
 

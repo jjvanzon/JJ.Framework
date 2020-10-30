@@ -43,6 +43,7 @@
 			this.Name = "SimpleProcessTestForm";
 			this.Text = "SimpleProcessTestForm";
 			this.TextBoxOrientation = JJ.Framework.WinForms.Helpers.UpDownOrientationEnum.Up;
+			this.TextBoxTop = 130;
 			this.TextBoxVisible = true;
 			this.ResumeLayout(false);
 

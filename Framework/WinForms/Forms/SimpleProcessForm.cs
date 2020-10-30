@@ -144,11 +144,11 @@ namespace JJ.Framework.WinForms.Forms
 		}
 
 		/// <inheritdoc cref="SimpleProcessControl.DescriptionHeight" />
-		[DefaultValue(130)]
-		public int DescriptionHeight
+		[DefaultValue(146)]
+		public int TextBoxTop
 		{
-			get => simpleProcessControl.DescriptionHeight;
-			set => simpleProcessControl.DescriptionHeight = value;
+			get => simpleProcessControl.TextBoxTop;
+			set => simpleProcessControl.TextBoxTop = value;
 		}
 
 		/// <summary>
