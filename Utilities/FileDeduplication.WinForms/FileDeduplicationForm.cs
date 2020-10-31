@@ -56,7 +56,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 		// Actions
 
-		private void ButtonScan_Click(object sender, EventArgs e) => ExecuteAction(_presenter.Scan);
+		private void ButtonScan_Click(object sender, EventArgs e) => OnBackgroundThread(() => ExecuteAction(_presenter.Scan));
 
 		private void ModalPopupHelper_AreYouSureYouWishToScanYesRequested(object sender, EventArgs e) 
 			=> OnBackgroundThread(() => ExecuteAction(_presenter.AreYouSureYouWishToScanYes));

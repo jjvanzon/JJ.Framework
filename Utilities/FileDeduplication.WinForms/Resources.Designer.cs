@@ -79,7 +79,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you wish to delete the files marked as duplicate?.
+        ///   Looks up a localized string similar to Are you sure you wish to delete the files?.
         /// </summary>
         internal static string AreYouSureYouWishToDeleteFiles {
             get {
@@ -88,7 +88,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you wish to scan for duplicate files? The list of duplicates would get overwritten..
+        ///   Looks up a localized string similar to Are you sure you wish to scan? The list of duplicates would get overwritten..
         /// </summary>
         internal static string AreYouSureYouWishToScanWithWarning {
             get {

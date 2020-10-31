@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
+using JJ.Framework.Exceptions.Comparative;
 using JJ.Framework.Resources;
 
 // ReSharper disable InvokeAsExtensionMethod
@@ -44,10 +45,13 @@ namespace JJ.Framework.IO
 			private string DebuggerDisplay => DiagnosticsFormatter.GetDebuggerDisplay(this);
 		}
 
+		/// <inheritdoc />
 		public IList<FilePair> Scan(
-			string folderPath, bool recursive, string filePattern = "*.*",
-			Action<string> progressCallback = null, Func<bool> cancelCallback = null)
+			string folderPath, bool recursive, string filePattern = "*.*", 
+			Action<string> progressCallback = null, Func<bool> cancelCallback = null, long callbackCount = 100)
 		{
+			if (callbackCount <= 0) throw new LessThanOrEqualException(() => callbackCount, 0);
+
 			FileHelper.AssertFolderExists(folderPath);
 
 			progressCallback?.Invoke(ResourceFormatter.ListingFiles);
@@ -71,7 +75,7 @@ namespace JJ.Framework.IO
 			// Last iteration loops through about 0 items.
 			// So averagely an iteration would loop through half of the items.
 			long totalTicks = fileTuples.Count * fileTuples.Count / 2;
-			long ticksPerCallback = totalTicks / 1000;
+			long ticksPerCallback = totalTicks / callbackCount;
 			if (ticksPerCallback == 0) ticksPerCallback = 1;
 
 			progressCallback?.Invoke(ResourceFormatter.ScanningForDuplicates);

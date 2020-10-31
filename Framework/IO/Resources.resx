@@ -136,6 +136,6 @@
     <value>Scanning for duplicates...</value>
   </data>
   <data name="ScanningForDuplicates_WithPercentage" xml:space="preserve">
-    <value>Scanning for duplicates {0:0.0}%...</value>
+    <value>Scanning for duplicates {0:0.##}%...</value>
   </data>
 </root>

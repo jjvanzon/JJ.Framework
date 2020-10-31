@@ -59,7 +59,14 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 				return;
 			}
 
-			ViewModel.AreYouSureYouWishToScanPopupMessage = ResourceFormatter.AreYouSureYouWishToScanWithWarning;
+			if (!string.IsNullOrWhiteSpace(ViewModel.ListOfDuplicates))
+			{
+				ViewModel.AreYouSureYouWishToScanPopupMessage = ResourceFormatter.AreYouSureYouWishToScanWithWarning;
+			}
+			else
+			{
+				AreYouSureYouWishToScanYes();
+			}
 		}
 
 		public void AreYouSureYouWishToScanYes()
