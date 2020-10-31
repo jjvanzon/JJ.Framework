@@ -123,6 +123,9 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>JJ utilities - dubbele bestanden opsporen</value>
   </data>
+  <data name="AreYouSureYouWishToDeleteFiles" xml:space="preserve">
+    <value>Weet je zeker dat je de bestanden wilt verwijderen, die als dubbel zijn aangegeven?</value>
+  </data>
   <data name="AreYouSureYouWishToScanWithWarning" xml:space="preserve">
     <value>Weet je zeker dat je dubbele bestanden wilt scannen? De lijst met dubbele wordt dan overschreven.</value>
   </data>

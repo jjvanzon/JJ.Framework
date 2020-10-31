@@ -123,6 +123,9 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>JJ Utilities - File Deduplication</value>
   </data>
+  <data name="AreYouSureYouWishToDeleteFiles" xml:space="preserve">
+    <value>Are you sure you wish to delete the files marked as duplicate?</value>
+  </data>
   <data name="AreYouSureYouWishToScanWithWarning" xml:space="preserve">
     <value>Are you sure you wish to scan for duplicate files? The list of duplicates would get overwritten.</value>
   </data>

@@ -35,6 +35,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 			_modalPopupHelper = new ModalPopupHelper();
 			_modalPopupHelper.AreYouSureYouWishToScanYesRequested += ModalPopupHelper_AreYouSureYouWishToScanYesRequested;
+			_modalPopupHelper.AreYouSureYouWishToDeleteFilesYesRequested += ModalPopupHelper_AreYouSureYouWishToDeleteFilesYesRequested;
 		}
 
 		private void ApplyResourceTexts()
@@ -49,7 +50,6 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 			TextBoxLabelText = CommonResourceFormatter.Folder + ":";
 			StartButtonText = CommonResourceFormatter.Delete;
 			CancelButtonText = CommonResourceFormatter.Cancel;
-			AreYouSureQuestion = CommonResourceFormatter.AreYouSure;
 		}
 
 		private void FileDeduplicationForm_Load(object sender, EventArgs e) => MapViewModelToControls();
@@ -63,7 +63,10 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) => ExecuteAction(_presenter.CopyListOfDuplicates);
 
-		private void MainForm_OnRunProcess(object sender, EventArgs e) => OnBackgroundThread(() => ExecuteAction(_presenter.DeleteFiles));
+		private void MainForm_OnRunProcess(object sender, EventArgs e) => ExecuteAction(_presenter.DeleteFiles);
+
+		private void ModalPopupHelper_AreYouSureYouWishToDeleteFilesYesRequested(object sender, EventArgs e) 
+			=> OnBackgroundThread(() => ExecuteAction(_presenter.AreYouSureYouWishToDeleteFilesYes));
 
 		private void MainForm_Cancelled(object sender, EventArgs e) => ExecuteAction(_presenter.Cancel);
 
@@ -122,6 +125,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 					_modalPopupHelper.ShowValidationMessagesIfNeeded(this, ViewModel);
 					_modalPopupHelper.ShowAreYouSureYouWishToScanPopupIfNeeded(this, ViewModel);
+					_modalPopupHelper.ShowAreYouSureYouWishToDeleteFilesPopupIfNeeded(this, ViewModel);
 				});
 
 		private void MapControlsToViewModel()

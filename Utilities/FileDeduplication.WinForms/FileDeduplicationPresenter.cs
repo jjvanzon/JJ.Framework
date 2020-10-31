@@ -96,6 +96,11 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 				return;
 			}
 
+			ViewModel.AreYouSureYouWishToDeleteFilesPopupMessage = ResourceFormatter.AreYouSureYouWishToDeleteFiles;
+		}
+
+		public void AreYouSureYouWishToDeleteFilesYes()
+		{
 			try
 			{
 				ViewModel.IsRunning = true;
