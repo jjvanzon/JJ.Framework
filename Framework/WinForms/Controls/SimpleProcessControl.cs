@@ -104,6 +104,7 @@ namespace JJ.Framework.WinForms.Controls
 		[DefaultValue(true)]
 		public bool MustShowExceptions { get; set; } = true;
 
+		/// <summary> If empty the "Are you sure?" question may not be shown. </summary>
 		[DefaultValue("Are you sure?")]
 		public string AreYouSureQuestion { get; set; } = "Are you sure?";
 
@@ -243,7 +244,13 @@ namespace JJ.Framework.WinForms.Controls
 
 		private void Start()
 		{
-			if (MessageBox.Show(AreYouSureQuestion, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			var dialogResult = DialogResult.Yes;
+			if (!string.IsNullOrWhiteSpace(AreYouSureQuestion))
+			{
+				dialogResult = MessageBox.Show(AreYouSureQuestion, "", MessageBoxButtons.YesNo);
+			}
+
+			if (dialogResult == DialogResult.Yes)
 			{
 				OnBackgroundThread(RunProcess);
 			}

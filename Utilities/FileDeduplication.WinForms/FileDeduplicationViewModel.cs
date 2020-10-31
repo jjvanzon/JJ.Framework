@@ -22,5 +22,6 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		/// </summary>
 		public bool IsRunning { get; set; }
 		public IList<string> ValidationMessages { get; set; }
+		public string AreYouSureYouWishToScanPopupMessage { get; set; }
 	}
 }

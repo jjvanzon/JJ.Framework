@@ -72,7 +72,9 @@
     <Compile Include="FileDeduplicationViewModelValidator_ForScan.cs" />
     <Compile Include="IAppSettings.cs" />
     <Compile Include="IListOfDuplicatesParserFormatter.cs" />
+    <Compile Include="IModalPopupHelper.cs" />
     <Compile Include="ListOfDuplicatesParserFormatter.cs" />
+    <Compile Include="ModalPopupHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceFormatter.cs" />

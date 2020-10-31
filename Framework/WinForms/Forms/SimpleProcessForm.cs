@@ -92,6 +92,7 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.MustShowExceptions = value;
 		}
 
+		/// <inheritdoc cref="SimpleProcessControl.AreYouSureQuestion" />
 		[DefaultValue("Are you sure?")]
 		public string AreYouSureQuestion
 		{

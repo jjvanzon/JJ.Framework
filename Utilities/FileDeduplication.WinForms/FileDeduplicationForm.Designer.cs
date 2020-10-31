@@ -57,7 +57,7 @@
 			this.buttonScan.TabIndex = 2;
 			this.buttonScan.Text = "buttonScan";
 			this.buttonScan.UseVisualStyleBackColor = true;
-			this.buttonScan.Click += new System.EventHandler(this.ButtonAnalyze_Click);
+			this.buttonScan.Click += new System.EventHandler(this.ButtonScan_Click);
 			// 
 			// textBoxListOfDuplicates
 			// 
@@ -113,6 +113,7 @@
 			// 
 			// FileDeduplicationForm
 			// 
+			this.AreYouSureQuestion = "";
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(679, 654);

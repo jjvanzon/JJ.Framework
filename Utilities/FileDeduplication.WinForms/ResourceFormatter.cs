@@ -11,5 +11,6 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		public static string Explanation => _helper.GetText();
 		public static string MaybeDoFirst_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
 		public static string Duplicates => _helper.GetText();
+		public static string AreYouSureYouWishToScanWithWarning => _helper.GetText();
 	}
 }

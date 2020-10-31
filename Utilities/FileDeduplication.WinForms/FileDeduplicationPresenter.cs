@@ -59,6 +59,11 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 				return;
 			}
 
+			ViewModel.AreYouSureYouWishToScanPopupMessage = ResourceFormatter.AreYouSureYouWishToScanWithWarning;
+		}
+
+		public void AreYouSureYouWishToScanYes()
+		{
 			try
 			{
 				ViewModel.IsRunning = true;

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using JJ.Framework.IO;
 using JJ.Framework.Microsoft.VisualBasic;
 using JJ.Framework.Resources;
@@ -18,6 +16,8 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		private readonly FileDeduplicationPresenter _presenter;
 		private FileDeduplicationViewModel ViewModel => _presenter.ViewModel;
 
+		private readonly IModalPopupHelper _modalPopupHelper;
+
 		public FileDeduplicationForm()
 		{
 			InitializeComponent();
@@ -31,8 +31,10 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 				new BulkFileDeleter_WithRecycleBin(),
 				new ClipboardUtilizer(),
 				new ListOfDuplicatesParserFormatter());
-
 			_presenter.Initialize(MapViewModelToControls);
+
+			_modalPopupHelper = new ModalPopupHelper();
+			_modalPopupHelper.AreYouSureYouWishToScanYesRequested += ModalPopupHelper_AreYouSureYouWishToScanYesRequested;
 		}
 
 		private void ApplyResourceTexts()
@@ -54,7 +56,10 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 		// Actions
 
-		private void ButtonAnalyze_Click(object sender, EventArgs e) => OnBackgroundThread(() => ExecuteAction(_presenter.Scan));
+		private void ButtonScan_Click(object sender, EventArgs e) => ExecuteAction(_presenter.Scan);
+
+		private void ModalPopupHelper_AreYouSureYouWishToScanYesRequested(object sender, EventArgs e) 
+			=> OnBackgroundThread(() => ExecuteAction(_presenter.AreYouSureYouWishToScanYes));
 
 		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) => ExecuteAction(_presenter.CopyListOfDuplicates);
 
@@ -91,7 +96,11 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 				{
 					if (Text != ViewModel.TitleBarText) Text = ViewModel.TitleBarText;
 					if (Description != ViewModel.Explanation) Description = ViewModel.Explanation;
-					if (checkBoxAlsoScanSubFolders.Checked != ViewModel.AlsoScanSubFolders) checkBoxAlsoScanSubFolders.Checked = ViewModel.AlsoScanSubFolders;
+					if (checkBoxAlsoScanSubFolders.Checked != ViewModel.AlsoScanSubFolders)
+					{
+						checkBoxAlsoScanSubFolders.Checked = ViewModel.AlsoScanSubFolders;
+					}
+
 					if (textBoxFilePattern.Text != ViewModel.FilePattern) textBoxFilePattern.Text = ViewModel.FilePattern;
 					if (textBoxListOfDuplicates.Text != ViewModel.ListOfDuplicates)
 					{
@@ -111,12 +120,8 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 					if (buttonScan.Enabled != enabled) buttonScan.Enabled = enabled;
 					if (buttonCopyListOfDuplicates.Enabled != enabled) buttonCopyListOfDuplicates.Enabled = enabled;
 
-					if (ViewModel.ValidationMessages.Count > 0)
-					{
-						string text = string.Join(Environment.NewLine, ViewModel.ValidationMessages);
-						ViewModel.ValidationMessages = new List<string>(); // Clear so the next time the message box is not shown.
-						BeginInvoke(new Action(() => MessageBox.Show(text)));
-					}
+					_modalPopupHelper.ShowValidationMessagesIfNeeded(this, ViewModel);
+					_modalPopupHelper.ShowAreYouSureYouWishToScanPopupIfNeeded(this, ViewModel);
 				});
 
 		private void MapControlsToViewModel()
