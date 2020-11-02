@@ -50,15 +50,15 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 				new Action(
 					() =>
 					{
-						DialogResult dialogResult = MessageBox.Show(message, ResourceFormatter.ApplicationName, MessageBoxButtons.YesNo);
+						DialogResult dialogResult = MessageBox.Show(message, ResourceFormatter.ApplicationName, MessageBoxButtons.OKCancel);
 
 						switch (dialogResult)
 						{
-							case DialogResult.Yes:
+							case DialogResult.OK:
 								AreYouSureYouWishToScanYesRequested?.Invoke(this, EventArgs.Empty);
 								break;
 
-							case DialogResult.No:
+							case DialogResult.Cancel:
 								break;
 
 							default:
@@ -88,15 +88,15 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 				new Action(
 					() =>
 					{
-						DialogResult dialogResult = MessageBox.Show(message, ResourceFormatter.ApplicationName, MessageBoxButtons.YesNo);
+						DialogResult dialogResult = MessageBox.Show(message, ResourceFormatter.ApplicationName, MessageBoxButtons.OKCancel);
 
 						switch (dialogResult)
 						{
-							case DialogResult.Yes:
+							case DialogResult.OK:
 								AreYouSureYouWishToDeleteFilesYesRequested?.Invoke(this, EventArgs.Empty);
 								break;
 
-							case DialogResult.No:
+							case DialogResult.Cancel:
 								break;
 
 							default:
