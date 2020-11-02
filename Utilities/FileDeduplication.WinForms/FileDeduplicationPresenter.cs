@@ -61,15 +61,15 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 			if (!string.IsNullOrWhiteSpace(ViewModel.ListOfDuplicates))
 			{
-				ViewModel.AreYouSureYouWishToScanPopupMessage = ResourceFormatter.AreYouSureYouWishToScanWithWarning;
+				ViewModel.ScanQuestion = ResourceFormatter.ScanQuestion;
 			}
 			else
 			{
-				AreYouSureYouWishToScanYes();
+				ScanYes();
 			}
 		}
 
-		public void AreYouSureYouWishToScanYes()
+		public void ScanYes()
 		{
 			try
 			{
@@ -103,10 +103,10 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 				return;
 			}
 
-			ViewModel.AreYouSureYouWishToDeleteFilesPopupMessage = ResourceFormatter.AreYouSureYouWishToDeleteFiles;
+			ViewModel.DeleteFilesQuestion = ResourceFormatter.DeleteFilesQuestion;
 		}
 
-		public void AreYouSureYouWishToDeleteFilesYes()
+		public void DeleteFilesYes()
 		{
 			try
 			{

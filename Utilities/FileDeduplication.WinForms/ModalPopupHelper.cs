@@ -8,8 +8,8 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 {
 	public class ModalPopupHelper : IModalPopupHelper
 	{
-		public event EventHandler AreYouSureYouWishToScanYesRequested;
-		public event EventHandler AreYouSureYouWishToDeleteFilesYesRequested;
+		public event EventHandler ScanYesRequested;
+		public event EventHandler DeleteFilesYesRequested;
 
 		public void ShowValidationMessagesIfNeeded(Form parentForm, FileDeduplicationViewModel viewModel)
 		{
@@ -30,21 +30,21 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 			parentForm.BeginInvoke(new Action(() => MessageBox.Show(text, ResourceFormatter.ApplicationName)));
 		}
 
-		public void ShowAreYouSureYouWishToScanPopupIfNeeded(FileDeduplicationForm parentForm, FileDeduplicationViewModel viewModel)
+		public void ShowScanQuestionIfNeeded(FileDeduplicationForm parentForm, FileDeduplicationViewModel viewModel)
 		{
 			if (parentForm == null) throw new NullException(() => parentForm);
 			if (viewModel == null) throw new NullException(() => viewModel);
 
-			if (string.IsNullOrWhiteSpace(viewModel.AreYouSureYouWishToScanPopupMessage))
+			if (string.IsNullOrWhiteSpace(viewModel.ScanQuestion))
 			{
 				return;
 			}
 
 			// Capture text for thread safety.
-			string message = viewModel.AreYouSureYouWishToScanPopupMessage;
+			string message = viewModel.ScanQuestion;
 
 			// Clear so not accidentally shown again.
-			viewModel.AreYouSureYouWishToScanPopupMessage = "";
+			viewModel.ScanQuestion = "";
 
 			parentForm.BeginInvoke(
 				new Action(
@@ -55,7 +55,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 						switch (dialogResult)
 						{
 							case DialogResult.OK:
-								AreYouSureYouWishToScanYesRequested?.Invoke(this, EventArgs.Empty);
+								ScanYesRequested?.Invoke(this, EventArgs.Empty);
 								break;
 
 							case DialogResult.Cancel:
@@ -68,21 +68,21 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 		}
 
-		public void ShowAreYouSureYouWishToDeleteFilesPopupIfNeeded(FileDeduplicationForm parentForm, FileDeduplicationViewModel viewModel)
+		public void ShowDeleteFilesQuestionIfNeeded(FileDeduplicationForm parentForm, FileDeduplicationViewModel viewModel)
 		{
 			if (parentForm == null) throw new NullException(() => parentForm);
 			if (viewModel == null) throw new NullException(() => viewModel);
 
-			if (string.IsNullOrWhiteSpace(viewModel.AreYouSureYouWishToDeleteFilesPopupMessage))
+			if (string.IsNullOrWhiteSpace(viewModel.DeleteFilesQuestion))
 			{
 				return;
 			}
 
 			// Capture text for thread safety.
-			string message = viewModel.AreYouSureYouWishToDeleteFilesPopupMessage;
+			string message = viewModel.DeleteFilesQuestion;
 
 			// Clear so not accidentally shown again.
-			viewModel.AreYouSureYouWishToDeleteFilesPopupMessage = "";
+			viewModel.DeleteFilesQuestion = "";
 
 			parentForm.BeginInvoke(
 				new Action(
@@ -93,7 +93,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 						switch (dialogResult)
 						{
 							case DialogResult.OK:
-								AreYouSureYouWishToDeleteFilesYesRequested?.Invoke(this, EventArgs.Empty);
+								DeleteFilesYesRequested?.Invoke(this, EventArgs.Empty);
 								break;
 
 							case DialogResult.Cancel:

@@ -123,11 +123,8 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>JJ utilities - dubbele bestanden opsporen</value>
   </data>
-  <data name="AreYouSureYouWishToDeleteFiles" xml:space="preserve">
+  <data name="DeleteFilesQuestion" xml:space="preserve">
     <value>Weet je zeker dat je de bestanden wilt verwijderen?</value>
-  </data>
-  <data name="AreYouSureYouWishToScanWithWarning" xml:space="preserve">
-    <value>Weet je zeker dat je wilt scannen? De lijst met dubbele wordt dan overschreven.</value>
   </data>
   <data name="Duplicates" xml:space="preserve">
     <value>Dubbele</value>
@@ -137,5 +134,8 @@
   </data>
   <data name="MaybeDoFirst_WithName" xml:space="preserve">
     <value>Misschien eerst {0}?</value>
+  </data>
+  <data name="ScanQuestion" xml:space="preserve">
+    <value>Weet je zeker dat je wilt scannen? De lijst met dubbele wordt dan overschreven.</value>
   </data>
 </root>

@@ -34,8 +34,8 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 			_presenter.Initialize(MapViewModelToControls);
 
 			_modalPopupHelper = new ModalPopupHelper();
-			_modalPopupHelper.AreYouSureYouWishToScanYesRequested += ModalPopupHelper_AreYouSureYouWishToScanYesRequested;
-			_modalPopupHelper.AreYouSureYouWishToDeleteFilesYesRequested += ModalPopupHelper_AreYouSureYouWishToDeleteFilesYesRequested;
+			_modalPopupHelper.ScanYesRequested += ModalPopupHelper_ScanYesRequested;
+			_modalPopupHelper.DeleteFilesYesRequested += ModalPopupHelper_DeleteFilesYesRequested;
 		}
 
 		private void ApplyResourceTexts()
@@ -58,15 +58,15 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 		private void ButtonScan_Click(object sender, EventArgs e) => OnBackgroundThread(() => ExecuteAction(_presenter.Scan));
 
-		private void ModalPopupHelper_AreYouSureYouWishToScanYesRequested(object sender, EventArgs e) 
-			=> OnBackgroundThread(() => ExecuteAction(_presenter.AreYouSureYouWishToScanYes));
+		private void ModalPopupHelper_ScanYesRequested(object sender, EventArgs e) 
+			=> OnBackgroundThread(() => ExecuteAction(_presenter.ScanYes));
 
 		private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) => ExecuteAction(_presenter.CopyListOfDuplicates);
 
 		private void MainForm_OnRunProcess(object sender, EventArgs e) => ExecuteAction(_presenter.DeleteFiles);
 
-		private void ModalPopupHelper_AreYouSureYouWishToDeleteFilesYesRequested(object sender, EventArgs e) 
-			=> OnBackgroundThread(() => ExecuteAction(_presenter.AreYouSureYouWishToDeleteFilesYes));
+		private void ModalPopupHelper_DeleteFilesYesRequested(object sender, EventArgs e) 
+			=> OnBackgroundThread(() => ExecuteAction(_presenter.DeleteFilesYes));
 
 		private void MainForm_Cancelled(object sender, EventArgs e) => ExecuteAction(_presenter.Cancel);
 
@@ -124,8 +124,8 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 					if (buttonCopyListOfDuplicates.Enabled != enabled) buttonCopyListOfDuplicates.Enabled = enabled;
 
 					_modalPopupHelper.ShowValidationMessagesIfNeeded(this, ViewModel);
-					_modalPopupHelper.ShowAreYouSureYouWishToScanPopupIfNeeded(this, ViewModel);
-					_modalPopupHelper.ShowAreYouSureYouWishToDeleteFilesPopupIfNeeded(this, ViewModel);
+					_modalPopupHelper.ShowScanQuestionIfNeeded(this, ViewModel);
+					_modalPopupHelper.ShowDeleteFilesQuestionIfNeeded(this, ViewModel);
 				});
 
 		private void MapControlsToViewModel()

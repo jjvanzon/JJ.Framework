@@ -123,11 +123,8 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>JJ Utilities - File Deduplication</value>
   </data>
-  <data name="AreYouSureYouWishToDeleteFiles" xml:space="preserve">
+  <data name="DeleteFilesQuestion" xml:space="preserve">
     <value>Are you sure you wish to delete the files?</value>
-  </data>
-  <data name="AreYouSureYouWishToScanWithWarning" xml:space="preserve">
-    <value>Are you sure you wish to scan? The list of duplicates would get overwritten.</value>
   </data>
   <data name="Duplicates" xml:space="preserve">
     <value>Duplicates</value>
@@ -137,5 +134,8 @@
   </data>
   <data name="MaybeDoFirst_WithName" xml:space="preserve">
     <value>Maybe {0} first?</value>
+  </data>
+  <data name="ScanQuestion" xml:space="preserve">
+    <value>Are you sure you wish to scan? The list of duplicates would get overwritten.</value>
   </data>
 </root>

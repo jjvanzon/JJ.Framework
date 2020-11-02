@@ -81,18 +81,9 @@ namespace JJ.Utilities.FileDeduplication.WinForms {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you wish to delete the files?.
         /// </summary>
-        internal static string AreYouSureYouWishToDeleteFiles {
+        internal static string DeleteFilesQuestion {
             get {
-                return ResourceManager.GetString("AreYouSureYouWishToDeleteFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Are you sure you wish to scan? The list of duplicates would get overwritten..
-        /// </summary>
-        internal static string AreYouSureYouWishToScanWithWarning {
-            get {
-                return ResourceManager.GetString("AreYouSureYouWishToScanWithWarning", resourceCulture);
+                return ResourceManager.GetString("DeleteFilesQuestion", resourceCulture);
             }
         }
         
@@ -120,6 +111,15 @@ namespace JJ.Utilities.FileDeduplication.WinForms {
         internal static string MaybeDoFirst_WithName {
             get {
                 return ResourceManager.GetString("MaybeDoFirst_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to scan? The list of duplicates would get overwritten..
+        /// </summary>
+        internal static string ScanQuestion {
+            get {
+                return ResourceManager.GetString("ScanQuestion", resourceCulture);
             }
         }
     }

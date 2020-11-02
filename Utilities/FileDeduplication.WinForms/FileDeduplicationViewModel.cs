@@ -22,7 +22,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		/// </summary>
 		public bool IsRunning { get; set; }
 		public IList<string> ValidationMessages { get; set; }
-		public string AreYouSureYouWishToScanPopupMessage { get; set; }
-		public string AreYouSureYouWishToDeleteFilesPopupMessage { get; set; }
+		public string ScanQuestion { get; set; }
+		public string DeleteFilesQuestion { get; set; }
 	}
 }
