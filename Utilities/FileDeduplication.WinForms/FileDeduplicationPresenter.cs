@@ -75,11 +75,11 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 			{
 				ViewModel.IsRunning = true;
 
-				IList<FileDeduplicator.FilePair> filePairs = _fileDeduplicator.Scan(
+				IList<DuplicateFilePair> duplicateFilePairs = _fileDeduplicator.Scan(
 					ViewModel.FolderPath, ViewModel.AlsoScanSubFolders, ViewModel.FilePattern,
-					SetProgressMessage, () => !ViewModel.IsRunning);
+					SetProgressMessage, () => !ViewModel.IsRunning, FileDeduplicatorCallbackCountEnum.Hundred);
 
-				ViewModel.ListOfDuplicates = _listOfDuplicatesParserFormatter.FormatFilePairs(filePairs);
+				ViewModel.ListOfDuplicates = _listOfDuplicatesParserFormatter.FormatDuplicateFilePairs(duplicateFilePairs);
 			}
 			catch (Exception ex)
 			{

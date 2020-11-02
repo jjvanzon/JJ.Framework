@@ -5,7 +5,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 {
 	public interface IListOfDuplicatesParserFormatter
 	{
-		string FormatFilePairs(IList<FileDeduplicator.FilePair> filePairs);
+		string FormatDuplicateFilePairs(IList<DuplicateFilePair> duplicateFilePairs);
 		IList<string> GetDuplicateFilePaths(string listOfDuplicatesString);
 	}
 }

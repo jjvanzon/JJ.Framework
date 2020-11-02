@@ -55,6 +55,8 @@
     <Compile Include="DirectoryInfoExtensions.cs" />
     <Compile Include="FileDeduplicator.cs" />
     <Compile Include="BulkFileDeleterBase.cs" />
+    <Compile Include="FileDeduplicatorCallbackCountEnum.cs" />
+    <Compile Include="DuplicateFilePair.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="FileInfoExtensions.cs" />
     <Compile Include="FileLock.cs" />
@@ -79,6 +81,10 @@
     <ProjectReference Include="..\Collections\JJ.Framework.Collections.csproj">
       <Project>{5D06A212-5459-47F3-8109-E012C5FC9E3A}</Project>
       <Name>JJ.Framework.Collections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">
+      <Project>{44FD9133-5FE7-4824-BD35-27273706D127}</Project>
+      <Name>JJ.Framework.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj">
       <Project>{fa44aba2-8e13-402c-a5a0-8d73c74b5181}</Project>
@@ -107,6 +113,7 @@
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
