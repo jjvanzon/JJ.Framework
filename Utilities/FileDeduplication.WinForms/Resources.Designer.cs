@@ -79,7 +79,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you wish to delete the files?.
+        ///   Looks up a localized string similar to Are you sure you wish to delete the files? (The one with | in front of it are deleted.).
         /// </summary>
         internal static string DeleteFilesQuestion {
             get {

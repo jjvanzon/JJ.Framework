@@ -124,7 +124,7 @@
     <value>JJ Utilities - File Deduplication</value>
   </data>
   <data name="DeleteFilesQuestion" xml:space="preserve">
-    <value>Are you sure you wish to delete the files?</value>
+    <value>Are you sure you wish to delete the files? (The one with | in front of it are deleted.)</value>
   </data>
   <data name="Duplicates" xml:space="preserve">
     <value>Duplicates</value>
