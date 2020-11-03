@@ -40,13 +40,14 @@ namespace JJ.Framework.IO
 
 		/// <inheritdoc />
 		public IList<DuplicateFilePair> Scan(
-			string folderPath, bool recursive, string filePattern = "*.*", 
+			string folderPath, bool recursive, string filePattern = "", 
 			Action<string> progressCallback = null, Func<bool> cancelCallback = null, 
 			FileDeduplicatorCallbackCountEnum callbackCountEnum = FileDeduplicatorCallbackCountEnum.Thousand)
 		{
 			// Verify Parameters
 			FileHelper.AssertFolderExists(folderPath);
 			long callbackCount = GetAndAssertCallBackCount(callbackCountEnum);
+			if (string.IsNullOrWhiteSpace(filePattern)) filePattern = "*.*";
 
 			progressCallback?.Invoke(ResourceFormatter.ListingFiles);
 

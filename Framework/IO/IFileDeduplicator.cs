@@ -13,7 +13,7 @@ namespace JJ.Framework.IO
 		/// Default may be 1000, so with each percent processed, progress would be reported.
 		/// </param>
 		IList<DuplicateFilePair> Scan(
-			string folderPath, bool recursive, string filePattern = "*.*", 
+			string folderPath, bool recursive, string filePattern = "", 
 			Action<string> progressCallback = null, Func<bool> cancelCallback = null, 
 			FileDeduplicatorCallbackCountEnum callbackCountEnum = FileDeduplicatorCallbackCountEnum.Thousand);
 	}
