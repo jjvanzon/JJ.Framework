@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{5CD0B8A9-AA4E-4967-BB77-08580CF54F58}"
 	ProjectSection(SolutionItems) = preProject
+		Utilities\SetDpi_150%.reg = Utilities\SetDpi_150%.reg
+		Utilities\SetDpi_280%.reg = Utilities\SetDpi_280%.reg
 		Utilities\Sleep.bat = Utilities\Sleep.bat
 	EndProjectSection
 EndProject

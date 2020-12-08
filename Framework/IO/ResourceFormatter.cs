@@ -13,6 +13,6 @@ namespace JJ.Framework.IO
 		public static string ListingFiles => _helper.GetText();
 		public static string ProcessingResult => _helper.GetText();
 		public static string ScanningForDuplicates => _helper.GetText();
-		public static string ScanningForDuplicates_WithPercentage(decimal percentage) => _helper.GetText_WithOnePlaceHolder(percentage);
+		public static string ScanningForDuplicates_WithFormattedPercentage(string formattedPercentage) => _helper.GetText_WithOnePlaceHolder(formattedPercentage);
 	}
 }

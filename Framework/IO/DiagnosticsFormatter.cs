@@ -29,10 +29,10 @@ namespace JJ.Framework.IO
 			return sb.ToString();
 		}
 
-		internal static string GetDebuggerDisplay(FileDeduplicator.FilePair filePair)
+		internal static string GetDebuggerDisplay(DuplicateFilePair duplicateFilePair)
 		{
-			if (filePair == null) throw new ArgumentNullException(nameof(filePair));
-			var debuggerDisplay = @$"{{{filePair.GetType().Name}}} '{filePair.DuplicateFilePath}' => '{filePair.OriginalFilePath}'";
+			if (duplicateFilePair == null) throw new ArgumentNullException(nameof(duplicateFilePair));
+			var debuggerDisplay = @$"{{{duplicateFilePair.GetType().Name}}} '{duplicateFilePair.DuplicateFilePath}' => '{duplicateFilePair.OriginalFilePath}'";
 			return debuggerDisplay;
 		}
 	}

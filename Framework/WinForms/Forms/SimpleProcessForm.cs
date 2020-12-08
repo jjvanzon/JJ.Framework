@@ -92,6 +92,7 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.MustShowExceptions = value;
 		}
 
+		/// <inheritdoc cref="SimpleProcessControl.AreYouSureQuestion" />
 		[DefaultValue("Are you sure?")]
 		public string AreYouSureQuestion
 		{
@@ -133,6 +134,22 @@ namespace JJ.Framework.WinForms.Forms
 		{
 			get => simpleProcessControl.BrowseButtonEnabled;
 			set => simpleProcessControl.BrowseButtonEnabled = false;
+		}
+
+		/// <inheritdoc cref="SimpleProcessControl.TextBoxOrientation" />
+		[DefaultValue(UpDownOrientationEnum.Down)]
+		public UpDownOrientationEnum TextBoxOrientation
+		{
+			get => simpleProcessControl.TextBoxOrientation;
+			set => simpleProcessControl.TextBoxOrientation = value;
+		}
+
+		/// <inheritdoc cref="SimpleProcessControl.DescriptionHeight" />
+		[DefaultValue(146)]
+		public int TextBoxTop
+		{
+			get => simpleProcessControl.TextBoxTop;
+			set => simpleProcessControl.TextBoxTop = value;
 		}
 
 		/// <summary>

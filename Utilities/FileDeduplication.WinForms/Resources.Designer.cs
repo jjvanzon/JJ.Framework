@@ -79,6 +79,15 @@ namespace JJ.Utilities.FileDeduplication.WinForms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to delete the files? (The one with | in front of it are deleted.).
+        /// </summary>
+        internal static string DeleteFilesQuestion {
+            get {
+                return ResourceManager.GetString("DeleteFilesQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Duplicates.
         /// </summary>
         internal static string Duplicates {
@@ -88,7 +97,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility tries to look up duplicate files in a folder (and its sub-folders). It might first analyze which duplicates there are and would report them. The list of duplicates reported might be edited. After that this utility could delete the files marked as duplicate. The files would be sent to the recycle bin. Be careful, because some files are supposed to be there twice to keep things working..
+        ///   Looks up a localized string similar to This utility tries to look up duplicate files in a folder (and its sub-folders). It might first analyze which duplicates there are and would report them. The list might then be edited. After that this utility could delete the files. The files would be sent to the recycle bin. Be careful, because some files are supposed to be there twice to keep things working..
         /// </summary>
         internal static string Explanation {
             get {
@@ -102,6 +111,15 @@ namespace JJ.Utilities.FileDeduplication.WinForms {
         internal static string MaybeDoFirst_WithName {
             get {
                 return ResourceManager.GetString("MaybeDoFirst_WithName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you wish to scan? The list of duplicates would get overwritten..
+        /// </summary>
+        internal static string ScanQuestion {
+            get {
+                return ResourceManager.GetString("ScanQuestion", resourceCulture);
             }
         }
     }

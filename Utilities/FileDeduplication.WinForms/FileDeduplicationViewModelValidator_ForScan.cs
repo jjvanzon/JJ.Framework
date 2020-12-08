@@ -10,7 +10,6 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		{
 			if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 			For(viewModel.FolderPath, CommonResourceFormatter.Folder).NotNullOrWhiteSpace().FolderExists();
-			For(viewModel.FilePattern, CommonResourceFormatter.FilePattern).NotNullOrWhiteSpace();
 		}
 	}
 }

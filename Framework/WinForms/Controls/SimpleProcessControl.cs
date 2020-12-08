@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using JetBrains.Annotations;
+using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.Logging;
 using JJ.Framework.WinForms.Helpers;
 
@@ -101,8 +102,9 @@ namespace JJ.Framework.WinForms.Controls
 		}
 
 		[DefaultValue(true)]
-		public bool MustShowExceptions { get; set; }
+		public bool MustShowExceptions { get; set; } = true;
 
+		/// <summary> If empty the "Are you sure?" question may not be shown. </summary>
 		[DefaultValue("Are you sure?")]
 		public string AreYouSureQuestion { get; set; } = "Are you sure?";
 
@@ -140,6 +142,37 @@ namespace JJ.Framework.WinForms.Controls
 			set => filePathControl.BrowseButtonEnabled = false;
 		}
 
+		private UpDownOrientationEnum _textBoxOrientation = UpDownOrientationEnum.Down;
+		/// <summary>
+		/// In case TextBoxOrientation would be Up, TextBoxTop might become relevant.
+		/// </summary>
+		[DefaultValue(UpDownOrientationEnum.Down)]
+		public UpDownOrientationEnum TextBoxOrientation
+		{
+			get => _textBoxOrientation;
+			set
+			{
+				_textBoxOrientation = value;
+				PositionControls();
+			}
+		}
+
+		private int _textBoxTop = 146;
+		/// <summary>
+		/// How high in (DPI-scaled) pixels the description text at the top would be.
+		/// May only be relevant if TextBoxOrientation would be "Up".
+		/// </summary>
+		[DefaultValue(146)]
+		public int TextBoxTop
+		{
+			get => _textBoxTop;
+			set
+			{
+				_textBoxTop = value;
+				PositionControls();
+			}
+		}
+
 		// Applying
 
 		private void ApplySpacing() => filePathControl.Spacing = Spacing;
@@ -169,18 +202,38 @@ namespace JJ.Framework.WinForms.Controls
 			y -= Spacing;
 			y -= buttonStart.Height;
 
+			int buttonY = y;
 			buttonStart.Location = new Point(Spacing, y);
 			buttonCancel.Location = new Point(Width - Spacing - buttonCancel.Width, y);
 
-			y -= Spacing;
-			y -= filePathControl.Height;
+			switch (TextBoxOrientation)
+			{
+				case UpDownOrientationEnum.Up:
+					labelDescription.Location = new Point(Spacing, Spacing);
+					labelDescription.Size = new Size(Width - Spacing - Spacing, TextBoxTop - Spacing);
 
-			int filePathControlTop = y;
-			filePathControl.Location = new Point(Spacing, y);
-			filePathControl.Width = Width - Spacing - Spacing;
+					filePathControl.Location = new Point(Spacing, TextBoxTop);
+					filePathControl.Width = Width - Spacing - Spacing;
+					break;
 
-			labelDescription.Location = new Point(Spacing, Spacing);
-			labelDescription.Size = new Size(Width - Spacing - Spacing, Height - filePathControlTop - Spacing - Spacing);
+				case UpDownOrientationEnum.Down:
+					y = buttonY;
+					y -= Spacing;
+					y -= filePathControl.Height;
+
+					int filePathControlY = y;
+					filePathControl.Location = new Point(Spacing, y);
+					filePathControl.Width = Width - Spacing - Spacing;
+
+					y = Spacing;
+
+					labelDescription.Location = new Point(Spacing, y);
+					labelDescription.Size = new Size(Width - Spacing - Spacing, filePathControlY - Spacing);
+					break;
+
+				default:
+					throw new InvalidValueException(TextBoxOrientation);
+			}
 		}
 
 		// Actions
@@ -191,7 +244,13 @@ namespace JJ.Framework.WinForms.Controls
 
 		private void Start()
 		{
-			if (MessageBox.Show(AreYouSureQuestion, "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+			var dialogResult = DialogResult.Yes;
+			if (!string.IsNullOrWhiteSpace(AreYouSureQuestion))
+			{
+				dialogResult = MessageBox.Show(AreYouSureQuestion, "", MessageBoxButtons.YesNo);
+			}
+
+			if (dialogResult == DialogResult.Yes)
 			{
 				OnBackgroundThread(RunProcess);
 			}

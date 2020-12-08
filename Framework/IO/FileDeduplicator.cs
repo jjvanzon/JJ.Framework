@@ -4,8 +4,12 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
+using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.Resources;
+// ReSharper disable SuggestVarOrType_BuiltInTypes
 
+#pragma warning disable IDE0066 // Convert switch statement to expression
+// ReSharper disable ConvertSwitchStatementToSwitchExpression
 // ReSharper disable InvokeAsExtensionMethod
 
 namespace JJ.Framework.IO
@@ -22,16 +26,6 @@ namespace JJ.Framework.IO
 		/// <inheritdoc cref="FileDeduplicator" />
 		[UsedImplicitly] public FileDeduplicator() { }
 
-		[PublicAPI]
-		[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
-		public class FilePair
-		{
-			public string OriginalFilePath { get; set; }
-			public string DuplicateFilePath { get; set; }
-
-			private string DebuggerDisplay => DiagnosticsFormatter.GetDebuggerDisplay(this);
-		}
-
 		[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
 		internal class FileTuple
 		{
@@ -44,11 +38,16 @@ namespace JJ.Framework.IO
 			private string DebuggerDisplay => DiagnosticsFormatter.GetDebuggerDisplay(this);
 		}
 
-		public IList<FilePair> Scan(
-			string folderPath, bool recursive, string filePattern = "*.*",
-			Action<string> progressCallback = null, Func<bool> cancelCallback = null)
+		/// <inheritdoc />
+		public IList<DuplicateFilePair> Scan(
+			string folderPath, bool recursive, string filePattern = "", 
+			Action<string> progressCallback = null, Func<bool> cancelCallback = null, 
+			FileDeduplicatorCallbackCountEnum callbackCountEnum = FileDeduplicatorCallbackCountEnum.Thousand)
 		{
+			// Verify Parameters
 			FileHelper.AssertFolderExists(folderPath);
+			long callbackCount = GetAndAssertCallBackCount(callbackCountEnum);
+			if (string.IsNullOrWhiteSpace(filePattern)) filePattern = "*.*";
 
 			progressCallback?.Invoke(ResourceFormatter.ListingFiles);
 
@@ -62,7 +61,7 @@ namespace JJ.Framework.IO
 			// Prevent nested loop from failing when only one file.
 			if (fileTuples.Count == 1)
 			{
-				return new List<FilePair>();
+				return new List<DuplicateFilePair>();
 			}
 
 			long ticks = 0;
@@ -71,7 +70,7 @@ namespace JJ.Framework.IO
 			// Last iteration loops through about 0 items.
 			// So averagely an iteration would loop through half of the items.
 			long totalTicks = fileTuples.Count * fileTuples.Count / 2;
-			long ticksPerCallback = totalTicks / 1000;
+			long ticksPerCallback = totalTicks / callbackCount;
 			if (ticksPerCallback == 0) ticksPerCallback = 1;
 
 			progressCallback?.Invoke(ResourceFormatter.ScanningForDuplicates);
@@ -107,12 +106,12 @@ namespace JJ.Framework.IO
 						if (IsCancelled(cancelCallback))
 						{
 							progressCallback?.Invoke(CommonResourceFormatter.Cancelled);
-							return new List<FilePair>();
+							return new List<DuplicateFilePair>();
 						}
 
-						decimal percentage = 100m * ticks / totalTicks;
-						if (percentage > 100m) percentage = 100m;
-						progressCallback?.Invoke(ResourceFormatter.ScanningForDuplicates_WithPercentage(percentage));
+						string formattedPercentage = GetFormattedPercentage(ticks, totalTicks, callbackCountEnum);
+						string message = ResourceFormatter.ScanningForDuplicates_WithFormattedPercentage(formattedPercentage);
+						progressCallback?.Invoke(message);
 					}
 				}
 			}
@@ -120,11 +119,11 @@ namespace JJ.Framework.IO
 			progressCallback?.Invoke(ResourceFormatter.ProcessingResult);
 
 			// Convert to overviewable list of duplicates.
-			List<FilePair> duplicateFilePairs = fileTuples.Where(x => x.IsDuplicate)
-			                                              .Select(ConvertFileTupleToFilePair)
-			                                              .OrderBy(x => x.OriginalFilePath)
-			                                              .ThenBy(x => x.DuplicateFilePath)
-			                                              .ToList();
+			List<DuplicateFilePair> duplicateFilePairs = fileTuples.Where(x => x.IsDuplicate)
+			                                                       .Select(ConvertFileTupleToDuplicateFilePair)
+			                                                       .OrderBy(x => x.OriginalFilePath)
+			                                                       .ThenBy(x => x.DuplicateFilePath)
+			                                                       .ToList();
 
 			progressCallback?.Invoke(ResourceFormatter.DoneScanning_WithDuplicatesCount(duplicateFilePairs.Count));
 
@@ -133,7 +132,46 @@ namespace JJ.Framework.IO
 
 		// Helpers
 
-		private static bool IsCancelled(Func<bool> cancelCallback) => cancelCallback?.Invoke() ?? false;
+		private long GetAndAssertCallBackCount(FileDeduplicatorCallbackCountEnum callbackCountEnum)
+		{
+			switch (callbackCountEnum)
+			{
+				case FileDeduplicatorCallbackCountEnum.Hundred: return 100;
+				case FileDeduplicatorCallbackCountEnum.Thousand: return 1000;
+				case FileDeduplicatorCallbackCountEnum.TenThousand: return 10000;
+				default: throw new ValueNotSupportedException(callbackCountEnum);
+			}
+		}
+
+		private bool IsCancelled(Func<bool> cancelCallback) => cancelCallback?.Invoke() ?? false;
+
+		private string GetFormattedPercentage(long ticks, long totalTicks, FileDeduplicatorCallbackCountEnum callbackCountEnum)
+		{
+			string formatString;
+			switch (callbackCountEnum)
+			{
+				case FileDeduplicatorCallbackCountEnum.Hundred:
+					formatString = "0%";
+					break;
+
+				case FileDeduplicatorCallbackCountEnum.Thousand:
+					formatString = "0.0%";
+					break;
+
+				case FileDeduplicatorCallbackCountEnum.TenThousand: 
+					formatString = "0.00%";
+					break;
+
+				default: 
+					throw new ValueNotSupportedException(callbackCountEnum);
+			}
+
+			decimal fraction = (decimal)ticks / totalTicks;
+			if (fraction > 1m) fraction = 1m;
+
+			string formattedPercentage = fraction.ToString(formatString);
+			return formattedPercentage;
+		}
 
 		/// <summary> Gets basic info with file path and file length, not yet the bytes nor whether it is a duplicate. </summary>
 		private FileTuple GetBasicFileTuple(string filePath)
@@ -162,8 +200,8 @@ namespace JJ.Framework.IO
 
 		private static void LoadBytesForFileTuple(FileTuple fileTuple) => fileTuple.FileBytes ??= fileTuple.FilePath.ReadAllBytes();
 
-		private static FilePair ConvertFileTupleToFilePair(FileTuple fileTuple)
-			=> new FilePair
+		private static DuplicateFilePair ConvertFileTupleToDuplicateFilePair(FileTuple fileTuple)
+			=> new DuplicateFilePair
 			{
 				DuplicateFilePath = fileTuple.FilePath,
 				OriginalFilePath = fileTuple.OriginalFileTuple?.FilePath
