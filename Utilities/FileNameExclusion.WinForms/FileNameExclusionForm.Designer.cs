@@ -43,6 +43,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxInputList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBoxInputList.Location = new System.Drawing.Point(12, 104);
+			this.textBoxInputList.MaxLength = 0;
 			this.textBoxInputList.Multiline = true;
 			this.textBoxInputList.Name = "textBoxInputList";
 			this.textBoxInputList.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -56,6 +57,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxExclusionList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBoxExclusionList.Location = new System.Drawing.Point(12, 266);
+			this.textBoxExclusionList.MaxLength = 0;
 			this.textBoxExclusionList.Multiline = true;
 			this.textBoxExclusionList.Name = "textBoxExclusionList";
 			this.textBoxExclusionList.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -69,6 +71,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxOutputList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBoxOutputList.Location = new System.Drawing.Point(12, 424);
+			this.textBoxOutputList.MaxLength = 0;
 			this.textBoxOutputList.Multiline = true;
 			this.textBoxOutputList.Name = "textBoxOutputList";
 			this.textBoxOutputList.ScrollBars = System.Windows.Forms.ScrollBars.Both;

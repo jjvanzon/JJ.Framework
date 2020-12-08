@@ -75,12 +75,13 @@ namespace JJ.Framework.Resources
 		public static string Refresh => _helper.GetText();
 		public static string Remove => _helper.GetText();
 		public static string Rename_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
-		public static string Scan => _helper.GetText();
 		public static string Save => _helper.GetText();
 		public static string Save_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
+		public static string Scan => _helper.GetText();
 		public static string Select_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
 		public static string Selection => _helper.GetText();
 		public static string Search => _helper.GetText();
+		public static string Start => _helper.GetText();
 		public static string Text => _helper.GetText();
 		public static string TreeStructure => _helper.GetText();
 		public static string True => _helper.GetText();

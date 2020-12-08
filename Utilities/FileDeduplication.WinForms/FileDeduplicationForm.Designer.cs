@@ -66,6 +66,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxListOfDuplicates.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.textBoxListOfDuplicates.Location = new System.Drawing.Point(19, 278);
+			this.textBoxListOfDuplicates.MaxLength = 0;
 			this.textBoxListOfDuplicates.Multiline = true;
 			this.textBoxListOfDuplicates.Name = "textBoxListOfDuplicates";
 			this.textBoxListOfDuplicates.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -107,13 +108,13 @@
 			this.textBoxFilePattern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxFilePattern.Location = new System.Drawing.Point(591, 146);
 			this.textBoxFilePattern.Name = "textBoxFilePattern";
-			this.textBoxFilePattern.Size = new System.Drawing.Size(72, 28);
+			this.textBoxFilePattern.Size = new System.Drawing.Size(72, 29);
 			this.textBoxFilePattern.TabIndex = 8;
 			this.textBoxFilePattern.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			// 
 			// FileDeduplicationForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(679, 647);
 			this.Controls.Add(this.textBoxFilePattern);

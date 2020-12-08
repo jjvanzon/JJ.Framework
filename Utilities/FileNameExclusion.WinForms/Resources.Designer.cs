@@ -61,6 +61,15 @@ namespace JJ.Utilities.FileNameExclusion.WinForms {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to JJ Utilities- File Name Exclusion.
+        /// </summary>
+        internal static string ApplicationName {
+            get {
+                return ResourceManager.GetString("ApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exclusion List.
         /// </summary>
         internal static string ExclusionList {

@@ -18,21 +18,21 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 
 			this.AutomaticallyAssignTabIndexes();
 
-			_presenter = new FileNameExclusionPresenter();
+			_presenter = new FileNameExclusionPresenter(new FileNameExcluder());
 		}
 
 		private void ApplyResourceTexts()
 		{
 			Description = ResourceFormatter.Explanation;
-			StartButtonText = CommonResourceFormatter.Delete;
+			StartButtonText = CommonResourceFormatter.Start;
 			CancelButtonText = CommonResourceFormatter.Cancel;
 			AreYouSureQuestion = CommonResourceFormatter.AreYouSure;
-			labelInputList.Text = ResourceFormatter.InputList;
-			labelExclusionList.Text = ResourceFormatter.ExclusionList;
-			labelOutputList.Text = ResourceFormatter.OutputList;
+			labelInputList.Text = ResourceFormatter.InputList + ":";
+			labelExclusionList.Text = ResourceFormatter.ExclusionList + ":";
+			labelOutputList.Text = ResourceFormatter.OutputList + ":";
 		}
 
-		private void MainForm_OnRunProcess(object sender, EventArgs e) => ExecuteAction( _presenter.RunProcess);
+		private void MainForm_OnRunProcess(object sender, EventArgs e) => ExecuteAction(_presenter.RunProcess);
 
 		private void ExecuteAction(Action action)
 		{
@@ -47,7 +47,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			}
 		}
 
-		/// <summary> Implementation detail: string reference comparisons for performance.</summary>
+		/// <summary> Implementation detail: string reference comparisons for performance. </summary>
 		private void MapViewModelToControls()
 			=> OnUiThread(
 				() =>

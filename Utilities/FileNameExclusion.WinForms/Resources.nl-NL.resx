@@ -117,12 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>JJ utilities - bestandsnamen uitsluiten</value>
+  </data>
   <data name="ExclusionList" xml:space="preserve">
     <value>Lijst van eruit te halen</value>
   </data>
   <data name="Explanation" xml:space="preserve">
-    <value>Deze tool probeert een lijst met bestand paden uit te dunnen, bepaalde bestandsnamen uit te sluiten en daarmee een nieuwe lijst aan te maken.</value>
-    <comment>This utility aims to take a list of file paths, then exclude certain file names, generating a new list.</comment>
+    <value>Deze tool probeert een lijst met bestand paden uit te dunnen, bepaalde bestandsnamen uit te sluiten en daarmee een nieuwe lijst te maken.</value>
   </data>
   <data name="InputList" xml:space="preserve">
     <value>Input lijst</value>
