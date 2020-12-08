@@ -372,4 +372,7 @@
     <value>File Pattern</value>
     <comment>File patterns like *.*</comment>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
 </root>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5C606A69-2349-49B7-9467-5ED019731381}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>JJ.Utilities.FileNameExclusion.WinForms</RootNamespace>
+    <AssemblyName>JJ.Utilities.FileNameExclusion.WinForms</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>false</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FileNameExclusionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileNameExclusionForm.Designer.cs">
+      <DependentUpon>FileNameExclusionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileNameExclusionPresenter.cs" />
+    <Compile Include="FileNameExcluder.cs" />
+    <Compile Include="FileNameExclusionViewModelValidator.cs" />
+    <Compile Include="FileNameExclusionViewModel.cs" />
+    <Compile Include="IAppSettings.cs" />
+    <Compile Include="IFileNameExcluder.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceFormatter.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="FileNameExclusionForm.resx">
+      <DependentUpon>FileNameExclusionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Resources.nl-NL.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Common\JJ.Framework.Common.csproj">
+      <Project>{44FD9133-5FE7-4824-BD35-27273706D127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Configuration\JJ.Framework.Configuration.csproj">
+      <Project>{805A8237-05ED-40AE-8D1A-9288373EA5E0}</Project>
+      <Name>JJ.Framework.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.Resources.csproj">
+      <Project>{40A53175-8048-4F2D-93CA-383074C0267E}</Project>
+      <Name>JJ.Framework.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Text\JJ.Framework.Text.csproj">
+      <Project>{964de0b4-27f8-40f8-8d50-c97388bf8ce2}</Project>
+      <Name>JJ.Framework.Text</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Validation\JJ.Framework.Validation.csproj">
+      <Project>{59DDC853-62AF-4F86-A803-3D4DD491E978}</Project>
+      <Name>JJ.Framework.Validation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\WinForms\JJ.Framework.WinForms.csproj">
+      <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
+      <Name>JJ.Framework.WinForms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

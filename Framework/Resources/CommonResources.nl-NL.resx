@@ -366,4 +366,7 @@
   <data name="FilePattern" xml:space="preserve">
     <value>Bestand patroon</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Starten</value>
+  </data>
 </root>
