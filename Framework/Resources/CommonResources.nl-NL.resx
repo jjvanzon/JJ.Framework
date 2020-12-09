@@ -369,4 +369,7 @@
   <data name="Start" xml:space="preserve">
     <value>Starten</value>
   </data>
+  <data name="Done" xml:space="preserve">
+    <value>Klaar</value>
+  </data>
 </root>

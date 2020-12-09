@@ -10,6 +10,8 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 		private readonly FileNameExclusionPresenter _presenter;
 		private FileNameExclusionViewModel ViewModel => _presenter.ViewModel;
 
+		private readonly IModalPopupHelper _modalPopupHelper;
+
 		public FileNameExclusionForm()
 		{
 			InitializeComponent();
@@ -19,6 +21,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.AutomaticallyAssignTabIndexes();
 
 			_presenter = new FileNameExclusionPresenter(new FileNameExcluder());
+			_modalPopupHelper = new ModalPopupHelper();
 		}
 
 		private void ApplyResourceTexts()
@@ -55,6 +58,8 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 					if (textBoxInputList.Text != ViewModel.InputList) textBoxInputList.Text = ViewModel.InputList;
 					if (textBoxExclusionList.Text != ViewModel.ExclusionList) textBoxExclusionList.Text = ViewModel.ExclusionList;
 					if (textBoxOutputList.Text != ViewModel.OutputList) textBoxOutputList.Text = ViewModel.OutputList;
+					_modalPopupHelper.ShowValidationMessagesIfNeeded(this, ViewModel);
+					_modalPopupHelper.ShowDonePopupMessageIfNeeded(this, ViewModel);
 				});
 
 		private void MapControlsToViewModel()
