@@ -27,6 +27,19 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 				return;
 			}
 
+			if (!string.IsNullOrWhiteSpace(ViewModel.OutputList))
+			{
+				ViewModel.AreYouSureQuestion = CommonResourceFormatter.AreYouSure;
+			}
+			else
+			{
+				AreYouSureYes();
+			}
+		}
+
+		public void AreYouSureYes()
+		{
+
 			IList<string> inputListSplit = ViewModel.InputList.Split(Environment.NewLine);
 			IList<string> exclusionListSplit = ViewModel.ExclusionList.Split(Environment.NewLine);
 

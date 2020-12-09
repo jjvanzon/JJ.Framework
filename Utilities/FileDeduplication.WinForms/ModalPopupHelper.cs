@@ -13,8 +13,8 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 		public void ShowValidationMessagesIfNeeded(Form parentForm, FileDeduplicationViewModel viewModel)
 		{
-			if (parentForm == null) throw new NullException(() => parentForm);
-			if (viewModel == null) throw new NullException(() => viewModel);
+			if (parentForm == null) throw new ArgumentNullException(nameof(parentForm));
+			if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
 			if (viewModel.ValidationMessages.Count == 0)
 			{
@@ -22,18 +22,18 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 			}
 
 			// Capture text for thread safety.
-			string text = string.Join(Environment.NewLine, viewModel.ValidationMessages);
+			string message = string.Join(Environment.NewLine, viewModel.ValidationMessages);
 
 			// Clear so not accidentally shown again.
 			viewModel.ValidationMessages = new List<string>();
 
-			parentForm.BeginInvoke(new Action(() => MessageBox.Show(text, ResourceFormatter.ApplicationName)));
+			parentForm.BeginInvoke(new Action(() => MessageBox.Show(message, ResourceFormatter.ApplicationName)));
 		}
 
-		public void ShowScanQuestionIfNeeded(FileDeduplicationForm parentForm, FileDeduplicationViewModel viewModel)
+		public void ShowScanQuestionIfNeeded(Form parentForm, FileDeduplicationViewModel viewModel)
 		{
-			if (parentForm == null) throw new NullException(() => parentForm);
-			if (viewModel == null) throw new NullException(() => viewModel);
+			if (parentForm == null) throw new ArgumentNullException(nameof(parentForm));
+			if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
 			if (string.IsNullOrWhiteSpace(viewModel.ScanQuestion))
 			{
@@ -68,10 +68,10 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
 		}
 
-		public void ShowDeleteFilesQuestionIfNeeded(FileDeduplicationForm parentForm, FileDeduplicationViewModel viewModel)
+		public void ShowDeleteFilesQuestionIfNeeded(Form parentForm, FileDeduplicationViewModel viewModel)
 		{
-			if (parentForm == null) throw new NullException(() => parentForm);
-			if (viewModel == null) throw new NullException(() => viewModel);
+			if (parentForm == null) throw new ArgumentNullException(nameof(parentForm));
+			if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
 			if (string.IsNullOrWhiteSpace(viewModel.DeleteFilesQuestion))
 			{

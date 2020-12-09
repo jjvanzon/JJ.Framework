@@ -21,19 +21,26 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.AutomaticallyAssignTabIndexes();
 
 			_presenter = new FileNameExclusionPresenter(new FileNameExcluder());
+
 			_modalPopupHelper = new ModalPopupHelper();
+			_modalPopupHelper.AreYouSureOkRequested += ModalPopupHelper_AreYouSureOkRequested; ;
+
 		}
 
 		private void ApplyResourceTexts()
 		{
+			Text = ResourceFormatter.ApplicationName;
 			Description = ResourceFormatter.Explanation;
 			StartButtonText = CommonResourceFormatter.Start;
 			CancelButtonText = CommonResourceFormatter.Cancel;
-			AreYouSureQuestion = CommonResourceFormatter.AreYouSure;
 			labelInputList.Text = ResourceFormatter.InputList + ":";
 			labelExclusionList.Text = ResourceFormatter.ExclusionList + ":";
 			labelOutputList.Text = ResourceFormatter.OutputList + ":";
 		}
+
+		// Actions
+
+		private void ModalPopupHelper_AreYouSureOkRequested(object sender, EventArgs e) => OnBackgroundThread(() => ExecuteAction(_presenter.AreYouSureYes));
 
 		private void MainForm_OnRunProcess(object sender, EventArgs e) => ExecuteAction(_presenter.RunProcess);
 
@@ -50,6 +57,8 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			}
 		}
 
+		// Binding
+
 		/// <summary> Implementation detail: string reference comparisons for performance. </summary>
 		private void MapViewModelToControls()
 			=> OnUiThread(
@@ -59,6 +68,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 					if (textBoxExclusionList.Text != ViewModel.ExclusionList) textBoxExclusionList.Text = ViewModel.ExclusionList;
 					if (textBoxOutputList.Text != ViewModel.OutputList) textBoxOutputList.Text = ViewModel.OutputList;
 					_modalPopupHelper.ShowValidationMessagesIfNeeded(this, ViewModel);
+					_modalPopupHelper.ShowAreYouSureQuestionIfNeeded(this, ViewModel);
 					_modalPopupHelper.ShowDonePopupMessageIfNeeded(this, ViewModel);
 				});
 

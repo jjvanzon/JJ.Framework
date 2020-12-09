@@ -114,6 +114,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			// 
 			// FileNameExclusionForm
 			// 
+			this.AreYouSureQuestion = "";
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(800, 691);

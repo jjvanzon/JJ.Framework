@@ -105,6 +105,10 @@
       <Project>{805A8237-05ED-40AE-8D1A-9288373EA5E0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Exceptions\JJ.Framework.Exceptions.csproj">
+      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
+      <Name>JJ.Framework.Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.Resources.csproj">
       <Project>{40A53175-8048-4F2D-93CA-383074C0267E}</Project>
       <Name>JJ.Framework.Resources</Name>
