@@ -44,13 +44,13 @@ namespace JJ.Framework.WinForms.TestForms
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.Controls.Add(this.filePathControl2, 1, 1);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(148, 249);
-			this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(166, 311);
+			this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 2;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(267, 123);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(300, 154);
 			this.tableLayoutPanel1.TabIndex = 1;
 			// 
 			// filePathControl2
@@ -58,10 +58,10 @@ namespace JJ.Framework.WinForms.TestForms
 			this.filePathControl2.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.OpenFile;
 			this.filePathControl2.FilePath = "";
 			this.filePathControl2.LabelText = "Path";
-			this.filePathControl2.Location = new System.Drawing.Point(138, 66);
-			this.filePathControl2.Margin = new System.Windows.Forms.Padding(5);
+			this.filePathControl2.Location = new System.Drawing.Point(156, 83);
+			this.filePathControl2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
 			this.filePathControl2.Name = "filePathControl2";
-			this.filePathControl2.Size = new System.Drawing.Size(123, 52);
+			this.filePathControl2.Size = new System.Drawing.Size(138, 65);
 			this.filePathControl2.Spacing = 0;
 			this.filePathControl2.TabIndex = 0;
 			// 
@@ -71,22 +71,23 @@ namespace JJ.Framework.WinForms.TestForms
 			this.filePathControl1.FilePath = "ytrywyyw";
 			this.filePathControl1.Font = new System.Drawing.Font("Verdana", 10F);
 			this.filePathControl1.LabelText = "Path";
-			this.filePathControl1.Location = new System.Drawing.Point(52, 50);
+			this.filePathControl1.Location = new System.Drawing.Point(58, 62);
 			this.filePathControl1.Margin = new System.Windows.Forms.Padding(0);
 			this.filePathControl1.Name = "filePathControl1";
-			this.filePathControl1.Size = new System.Drawing.Size(424, 108);
+			this.filePathControl1.Size = new System.Drawing.Size(477, 135);
 			this.filePathControl1.Spacing = 0;
 			this.filePathControl1.TabIndex = 0;
+			this.filePathControl1.TextBoxVisible = false;
 			this.filePathControl1.Browsed += new System.EventHandler<JJ.Framework.WinForms.EventArg.FilePathEventArgs>(this.filePathControl1_Browsed);
 			// 
 			// FilePathControlTestForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(581, 400);
+			this.ClientSize = new System.Drawing.Size(654, 500);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.filePathControl1);
-			this.Margin = new System.Windows.Forms.Padding(4);
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "FilePathControlTestForm";
 			this.Text = "FilePathControlTestForm";
 			this.tableLayoutPanel1.ResumeLayout(false);

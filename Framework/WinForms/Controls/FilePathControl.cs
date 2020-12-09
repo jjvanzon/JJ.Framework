@@ -54,6 +54,7 @@ namespace JJ.Framework.WinForms.Controls
 		}
 
 		/// <summary> In case of no label text, this would hide the label. </summary>
+		[Category("Customization")]
 		[DefaultValue("Path: ")]
 		public string LabelText 
 		{
@@ -67,6 +68,7 @@ namespace JJ.Framework.WinForms.Controls
 		}
 
 		/// <summary> Would get or set what's in the text box. </summary>
+		[Category("Customization")]
 		public string FilePath
 		{
 			get => textBox.Text;
@@ -75,6 +77,7 @@ namespace JJ.Framework.WinForms.Controls
 
 		private FileBrowseModeEnum _fileBrowseMode;
 		/// <inheritdoc cref="FileBrowseModeEnum" />
+		[Category("Customization")]
 		public FileBrowseModeEnum FileBrowseMode
 		{
 			get => _fileBrowseMode;
@@ -83,6 +86,7 @@ namespace JJ.Framework.WinForms.Controls
 
 		private int _spacing;
 		[DefaultValue(4)]
+		[Category("Customization")]
 		public int Spacing
 		{
 			get => _spacing;
@@ -95,6 +99,7 @@ namespace JJ.Framework.WinForms.Controls
 		}
 
 		private bool _textBoxEnabled = true;
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool TextBoxEnabled
 		{
@@ -106,6 +111,7 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool TextBoxVisible
 		{
@@ -122,6 +128,7 @@ namespace JJ.Framework.WinForms.Controls
 		/// Showing the full path as a tool tip seemed another option,
 		/// but then the tool tip did not seem to be shown if the control was disabled.)
 		/// </summary>
+		[Category("Customization")]
 		[DefaultValue(RightToLeft.Yes)]
 		public RightToLeft TextBoxRightToLeft
 		{
@@ -129,11 +136,12 @@ namespace JJ.Framework.WinForms.Controls
 			set => textBox.RightToLeft = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool BrowseButtonEnabled
 		{
 			get => buttonBrowse.Enabled;
-			set => buttonBrowse.Enabled = false;
+			set => buttonBrowse.Enabled = value;
 		}
 
 		// Applying

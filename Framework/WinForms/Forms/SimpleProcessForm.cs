@@ -42,6 +42,7 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.IsRunning = value;
 		}
 
+		[Category("Customization")]
 		[Editor(
 			"System.ComponentModel.Design.MultilineStringEditor, System.Design",
 			"System.Drawing.Design.UITypeEditor")]
@@ -51,6 +52,7 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.Description = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue("Path: ")]
 		public string TextBoxLabelText
 		{
@@ -58,12 +60,14 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.TextBoxLabelText = value;
 		}
 
+		[Category("Customization")]
 		public string TextBoxText
 		{
 			get => simpleProcessControl.TextBoxText;
 			set => simpleProcessControl.TextBoxText = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool TextBoxEnabled
 		{
@@ -71,6 +75,7 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.TextBoxEnabled = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool TextBoxVisible
 		{
@@ -79,6 +84,7 @@ namespace JJ.Framework.WinForms.Forms
 		}
 
 		/// <inheritdoc cref="SimpleProcessControl.FileBrowseMode" />
+		[Category("Customization")]
 		public FileBrowseModeEnum FileBrowseMode
 		{
 			get => simpleProcessControl.FileBrowseMode;
@@ -86,6 +92,7 @@ namespace JJ.Framework.WinForms.Forms
 		}
 
 		[DefaultValue(true)]
+		[Category("Customization")]
 		public bool MustShowExceptions
 		{
 			get => simpleProcessControl.MustShowExceptions;
@@ -93,6 +100,7 @@ namespace JJ.Framework.WinForms.Forms
 		}
 
 		/// <inheritdoc cref="SimpleProcessControl.AreYouSureQuestion" />
+		[Category("Customization")]
 		[DefaultValue("Are you sure?")]
 		public string AreYouSureQuestion
 		{
@@ -100,6 +108,7 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.AreYouSureQuestion = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue(16)]
 		public int Spacing
 		{
@@ -108,6 +117,7 @@ namespace JJ.Framework.WinForms.Forms
 		}
 
 		/// <inheritdoc cref="SimpleProcessControl.TextBoxRightToLeft" />
+		[Category("Customization")]
 		[DefaultValue(RightToLeft.Yes)]
 		public RightToLeft TextBoxRightToLeft
 		{
@@ -115,6 +125,7 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.TextBoxRightToLeft = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue("Start")]
 		public string StartButtonText
 		{
@@ -122,6 +133,7 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.StartButtonText = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue("Cancel")]
 		public string CancelButtonText
 		{
@@ -129,6 +141,7 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.CancelButtonText = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool BrowseButtonEnabled
 		{
@@ -137,6 +150,7 @@ namespace JJ.Framework.WinForms.Forms
 		}
 
 		/// <inheritdoc cref="SimpleProcessControl.TextBoxOrientation" />
+		[Category("Customization")]
 		[DefaultValue(UpDownOrientationEnum.Down)]
 		public UpDownOrientationEnum TextBoxOrientation
 		{
@@ -144,12 +158,22 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.TextBoxOrientation = value;
 		}
 
-		/// <inheritdoc cref="SimpleProcessControl.DescriptionHeight" />
+		/// <inheritdoc cref="SimpleProcessControl.TextBoxTop" />
+		[Category("Customization")]
 		[DefaultValue(146)]
 		public int TextBoxTop
 		{
 			get => simpleProcessControl.TextBoxTop;
 			set => simpleProcessControl.TextBoxTop = value;
+		}
+
+		/// <inheritdoc cref="SimpleProcessControl.MustShowEmptyProgressBar" />
+		[Category("Customization")]
+		[DefaultValue(146)]
+		public bool MustShowEmptyProgressBar
+		{
+			get => simpleProcessControl.MustShowEmptyProgressBar;
+			set => simpleProcessControl.MustShowEmptyProgressBar = value;
 		}
 
 		/// <summary>
@@ -158,6 +182,7 @@ namespace JJ.Framework.WinForms.Forms
 		/// as the form's title bar text.
 		/// It may afterwards be assigned something custom.
 		/// </summary>
+		[Category("Customization")]
 		public new string Text
 		{
 			get => base.Text;

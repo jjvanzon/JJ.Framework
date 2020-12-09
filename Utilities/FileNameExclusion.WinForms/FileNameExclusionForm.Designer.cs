@@ -42,12 +42,12 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.textBoxInputList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxInputList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.textBoxInputList.Location = new System.Drawing.Point(12, 104);
+			this.textBoxInputList.Location = new System.Drawing.Point(12, 87);
 			this.textBoxInputList.MaxLength = 0;
 			this.textBoxInputList.Multiline = true;
 			this.textBoxInputList.Name = "textBoxInputList";
 			this.textBoxInputList.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxInputList.Size = new System.Drawing.Size(776, 132);
+			this.textBoxInputList.Size = new System.Drawing.Size(776, 153);
 			this.textBoxInputList.TabIndex = 5;
 			this.textBoxInputList.WordWrap = false;
 			// 
@@ -56,12 +56,12 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.textBoxExclusionList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxExclusionList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.textBoxExclusionList.Location = new System.Drawing.Point(12, 266);
+			this.textBoxExclusionList.Location = new System.Drawing.Point(12, 268);
 			this.textBoxExclusionList.MaxLength = 0;
 			this.textBoxExclusionList.Multiline = true;
 			this.textBoxExclusionList.Name = "textBoxExclusionList";
 			this.textBoxExclusionList.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxExclusionList.Size = new System.Drawing.Size(776, 130);
+			this.textBoxExclusionList.Size = new System.Drawing.Size(776, 145);
 			this.textBoxExclusionList.TabIndex = 6;
 			this.textBoxExclusionList.WordWrap = false;
 			// 
@@ -70,12 +70,12 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.textBoxOutputList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxOutputList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.textBoxOutputList.Location = new System.Drawing.Point(12, 424);
+			this.textBoxOutputList.Location = new System.Drawing.Point(12, 441);
 			this.textBoxOutputList.MaxLength = 0;
 			this.textBoxOutputList.Multiline = true;
 			this.textBoxOutputList.Name = "textBoxOutputList";
 			this.textBoxOutputList.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxOutputList.Size = new System.Drawing.Size(776, 135);
+			this.textBoxOutputList.Size = new System.Drawing.Size(776, 145);
 			this.textBoxOutputList.TabIndex = 7;
 			this.textBoxOutputList.WordWrap = false;
 			// 
@@ -84,7 +84,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.labelOutputList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelOutputList.AutoSize = true;
-			this.labelOutputList.Location = new System.Drawing.Point(12, 401);
+			this.labelOutputList.Location = new System.Drawing.Point(8, 416);
 			this.labelOutputList.Name = "labelOutputList";
 			this.labelOutputList.Size = new System.Drawing.Size(125, 22);
 			this.labelOutputList.TabIndex = 9;
@@ -95,7 +95,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.labelExclusionList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelExclusionList.AutoSize = true;
-			this.labelExclusionList.Location = new System.Drawing.Point(12, 243);
+			this.labelExclusionList.Location = new System.Drawing.Point(8, 243);
 			this.labelExclusionList.Name = "labelExclusionList";
 			this.labelExclusionList.Size = new System.Drawing.Size(141, 22);
 			this.labelExclusionList.TabIndex = 10;
@@ -106,7 +106,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.labelInputList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.labelInputList.AutoSize = true;
-			this.labelInputList.Location = new System.Drawing.Point(12, 81);
+			this.labelInputList.Location = new System.Drawing.Point(12, 62);
 			this.labelInputList.Name = "labelInputList";
 			this.labelInputList.Size = new System.Drawing.Size(112, 22);
 			this.labelInputList.TabIndex = 11;
@@ -117,7 +117,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.AreYouSureQuestion = "";
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 691);
+			this.ClientSize = new System.Drawing.Size(800, 672);
 			this.Controls.Add(this.labelInputList);
 			this.Controls.Add(this.labelExclusionList);
 			this.Controls.Add(this.labelOutputList);
@@ -128,6 +128,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
     "generating a new list.";
 			this.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.None;
 			this.Font = new System.Drawing.Font("Calibri", 8.805756F, System.Drawing.FontStyle.Bold);
+			this.MustShowEmptyProgressBar = false;
 			this.Name = "FileNameExclusionForm";
 			this.Text = "";
 			this.TextBoxEnabled = false;
