@@ -133,7 +133,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.Text = "";
 			this.TextBoxEnabled = false;
 			this.TextBoxLabelText = "";
-			this.TextBoxVisible = true;
+			this.TextBoxVisible = false;
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
 			this.Controls.SetChildIndex(this.textBoxInputList, 0);
 			this.Controls.SetChildIndex(this.textBoxExclusionList, 0);

@@ -42,8 +42,11 @@
 			this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
 			this.Name = "SimpleProcessTestForm";
 			this.Text = "SimpleProcessTestForm";
+			this.TextBoxEnabled = false;
 			this.TextBoxOrientation = JJ.Framework.WinForms.Helpers.UpDownOrientationEnum.Up;
+			this.TextBoxText = "qwer";
 			this.TextBoxTop = 130;
+			this.TextBoxVisible = false;
 			this.ResumeLayout(false);
 
 		}

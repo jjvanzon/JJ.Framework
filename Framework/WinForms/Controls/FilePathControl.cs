@@ -36,6 +36,9 @@ namespace JJ.Framework.WinForms.Controls
 			InitializeComponent();
 
 			textBox.RightToLeft = RightToLeft.Yes;
+
+			ApplyEnabled();
+			ApplyTextBoxVisible();
 		}
 
 		protected override void OnLoad(EventArgs e)
@@ -111,13 +114,20 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		private bool _textBoxVisible = true;
 		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool TextBoxVisible
 		{
-			get => textBox.Visible;
-			set => textBox.Visible = value;
+			get => _textBoxVisible;
+			set
+			{
+				_textBoxVisible = value;
+				// NOTE: Using a backing field and an 'Apply' method, seems to prevent a bug where 2 layers up in the containment structure, the property was not remembered by the designer.
+				ApplyTextBoxVisible();
+			}
 		}
+
 
 		/// <summary>
 		/// Tip: To be able to see the of the file name when a long file path would not fit in the text box,
@@ -172,6 +182,12 @@ namespace JJ.Framework.WinForms.Controls
 			label.Enabled = Enabled;
 			buttonBrowse.Enabled = Enabled;
 		}
+
+
+		/// <summary>
+		/// NOTE: Using a backing field and an 'Apply' method, seems to prevent a bug where 2 layers up in the containment structure, the property was not remembered by the designer, and kept jumping back to "true".
+		/// </summary>
+		private void ApplyTextBoxVisible() => textBox.Visible = TextBoxVisible;
 		
 		// Positioning
 
