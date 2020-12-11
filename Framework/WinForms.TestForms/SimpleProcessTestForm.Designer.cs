@@ -34,6 +34,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BrowseButtonEnabled = false;
 			this.ClientSize = new System.Drawing.Size(575, 394);
 			this.Description = "Description description description description description description descripti" +
     "on description description description description description description descr" +
@@ -46,7 +47,6 @@
 			this.TextBoxOrientation = JJ.Framework.WinForms.Helpers.UpDownOrientationEnum.Up;
 			this.TextBoxText = "qwer";
 			this.TextBoxTop = 130;
-			this.TextBoxVisible = false;
 			this.ResumeLayout(false);
 
 		}

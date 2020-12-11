@@ -39,6 +39,7 @@ namespace JJ.Framework.WinForms.Controls
 
 			ApplyEnabled();
 			ApplyTextBoxVisible();
+			ApplyBrowseButtonEnabled();
 		}
 
 		protected override void OnLoad(EventArgs e)
@@ -123,11 +124,9 @@ namespace JJ.Framework.WinForms.Controls
 			set
 			{
 				_textBoxVisible = value;
-				// NOTE: Using a backing field and an 'Apply' method, seems to prevent a bug where 2 layers up in the containment structure, the property was not remembered by the designer.
 				ApplyTextBoxVisible();
 			}
 		}
-
 
 		/// <summary>
 		/// Tip: To be able to see the of the file name when a long file path would not fit in the text box,
@@ -146,15 +145,30 @@ namespace JJ.Framework.WinForms.Controls
 			set => textBox.RightToLeft = value;
 		}
 
+		private bool _browseButtonEnabled = true;
 		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool BrowseButtonEnabled
 		{
-			get => buttonBrowse.Enabled;
-			set => buttonBrowse.Enabled = value;
+			get => _browseButtonEnabled;
+			set
+			{
+				_browseButtonEnabled = value;
+				ApplyBrowseButtonEnabled();
+			}
 		}
 
+		//[Category("Customization")]
+		//[DefaultValue(true)]
+		//public bool BrowseButtonEnabled
+		//{
+		//	get => buttonBrowse.Enabled;
+		//	set => buttonBrowse.Enabled = value;
+		//}
+
 		// Applying
+
+		// NOTE: Using a backing field and an 'Apply' method, may sometimes prevent bugs, where 2 layers up in the containment structure a property would not be remembered by the WinForms designer.
 
 		private void SetFileBrowseMode(FileBrowseModeEnum value)
 		{
@@ -183,12 +197,9 @@ namespace JJ.Framework.WinForms.Controls
 			buttonBrowse.Enabled = Enabled;
 		}
 
-
-		/// <summary>
-		/// NOTE: Using a backing field and an 'Apply' method, seems to prevent a bug where 2 layers up in the containment structure, the property was not remembered by the designer, and kept jumping back to "true".
-		/// </summary>
 		private void ApplyTextBoxVisible() => textBox.Visible = TextBoxVisible;
-		
+		private void ApplyBrowseButtonEnabled() => buttonBrowse.Enabled = BrowseButtonEnabled;
+
 		// Positioning
 
 		protected override void OnResize(EventArgs e)

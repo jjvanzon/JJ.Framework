@@ -154,7 +154,7 @@ namespace JJ.Framework.WinForms.Controls
 		public bool BrowseButtonEnabled
 		{
 			get => filePathControl.BrowseButtonEnabled;
-			set => filePathControl.BrowseButtonEnabled = false;
+			set => filePathControl.BrowseButtonEnabled = value;
 		}
 
 		private UpDownOrientationEnum _textBoxOrientation = UpDownOrientationEnum.Down;

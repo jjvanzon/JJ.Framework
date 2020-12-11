@@ -34,6 +34,7 @@ namespace JJ.Framework.WinForms.TestForms
 			// 
 			// simpleProcessControl1
 			// 
+			this.simpleProcessControl1.BrowseButtonEnabled = false;
 			this.simpleProcessControl1.Description = "";
 			this.simpleProcessControl1.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.OpenFile;
 			this.simpleProcessControl1.IsRunning = false;

@@ -146,7 +146,7 @@ namespace JJ.Framework.WinForms.Forms
 		public bool BrowseButtonEnabled
 		{
 			get => simpleProcessControl.BrowseButtonEnabled;
-			set => simpleProcessControl.BrowseButtonEnabled = false;
+			set => simpleProcessControl.BrowseButtonEnabled = value;
 		}
 
 		/// <inheritdoc cref="SimpleProcessControl.TextBoxOrientation" />

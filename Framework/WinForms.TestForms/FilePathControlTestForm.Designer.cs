@@ -59,7 +59,7 @@ namespace JJ.Framework.WinForms.TestForms
 			this.filePathControl2.FilePath = "";
 			this.filePathControl2.LabelText = "Path";
 			this.filePathControl2.Location = new System.Drawing.Point(156, 83);
-			this.filePathControl2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+			this.filePathControl2.Margin = new System.Windows.Forms.Padding(6);
 			this.filePathControl2.Name = "filePathControl2";
 			this.filePathControl2.Size = new System.Drawing.Size(138, 65);
 			this.filePathControl2.Spacing = 0;
@@ -67,6 +67,7 @@ namespace JJ.Framework.WinForms.TestForms
 			// 
 			// filePathControl1
 			// 
+			this.filePathControl1.BrowseButtonEnabled = false;
 			this.filePathControl1.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.OpenFile;
 			this.filePathControl1.FilePath = "ytrywyyw";
 			this.filePathControl1.Font = new System.Drawing.Font("Verdana", 10F);
