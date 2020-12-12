@@ -197,10 +197,11 @@ namespace JJ.Framework.WinForms.Forms
 			set => simpleProcessControl.CancelButtonVisible = value;
 		}
 
+		public int ButtonHeight => simpleProcessControl.ButtonHeight;
 
 		// Positioning
 
-		private void SimpleProcessForm_SizeChanged(object sender, EventArgs e) => PositionControls();
+		private void SimpleProcessForm_Resize(object sender, EventArgs e) => PositionControls();
 
 		private void PositionControls()
 		{
@@ -221,5 +222,6 @@ namespace JJ.Framework.WinForms.Forms
 	    public void OnUiThread(Action action) => simpleProcessControl.OnUiThread(action);
 
 		public void OnBackgroundThread(Action action) => simpleProcessControl.OnBackgroundThread(action);
+
 	}
 }

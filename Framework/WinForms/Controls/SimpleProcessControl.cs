@@ -218,6 +218,8 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		public int ButtonHeight => buttonStart.Height;
+
 		// Applying
 
 		private void ApplySpacing() => filePathControl.Spacing = Spacing;

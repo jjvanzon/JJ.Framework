@@ -48,24 +48,24 @@ namespace JJ.Framework.WinForms.Forms
 			this.simpleProcessControl.TextBoxText = "";
 			this.simpleProcessControl.IsRunning = false;
 			this.simpleProcessControl.Location = new System.Drawing.Point(0, 0);
-			this.simpleProcessControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.simpleProcessControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.simpleProcessControl.MustShowExceptions = false;
 			this.simpleProcessControl.Name = "simpleProcessControl";
-			this.simpleProcessControl.Size = new System.Drawing.Size(557, 278);
+			this.simpleProcessControl.Size = new System.Drawing.Size(627, 348);
 			this.simpleProcessControl.TabIndex = 0;
 			// 
 			// SimpleProcessForm
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(618, 346);
+			this.ClientSize = new System.Drawing.Size(695, 432);
 			this.Controls.Add(this.simpleProcessControl);
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "SimpleProcessForm";
 			this.Text = "SimpleProcessForm";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Base_FormClosing);
 			this.Load += new System.EventHandler(this.SimpleProcessForm_Load);
-			this.SizeChanged += new System.EventHandler(this.SimpleProcessForm_SizeChanged);
+			this.Resize += new System.EventHandler(this.SimpleProcessForm_Resize);
 			this.ResumeLayout(false);
 
 		}
