@@ -60,9 +60,9 @@
       <Project>{b26b8089-81f0-4e8e-9ce6-21cf9bc24b24}</Project>
       <Name>JJ.Framework.Resources.Tests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FileNameExclusion.WinForms\JJ.Utilities.FileNameExclusion.WinForms.csproj">
-      <Project>{5c606a69-2349-49b7-9467-5ed019731381}</Project>
-      <Name>JJ.Utilities.FileNameExclusion.WinForms</Name>
+    <ProjectReference Include="..\FileNameExclusion\JJ.Utilities.FileNameExclusion.csproj">
+      <Project>{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}</Project>
+      <Name>JJ.Utilities.FileNameExclusion</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

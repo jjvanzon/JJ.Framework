@@ -46,22 +46,11 @@
     <Compile Include="FileNameExclusionForm.Designer.cs">
       <DependentUpon>FileNameExclusionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileNameExclusionPresenter.cs" />
-    <Compile Include="FileNameExcluder.cs" />
-    <Compile Include="FileNameExclusionViewModelValidator.cs" />
-    <Compile Include="FileNameExclusionViewModel.cs" />
     <Compile Include="IAppSettings.cs" />
-    <Compile Include="IFileNameExcluder.cs" />
     <Compile Include="IModalPopupHelper.cs" />
     <Compile Include="ModalPopupHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResourceFormatter.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <DependentUpon>Resources.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="FileNameExclusionForm.resx">
       <DependentUpon>FileNameExclusionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -75,14 +64,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Resources.nl-NL.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -124,6 +105,10 @@
     <ProjectReference Include="..\..\Framework\WinForms\JJ.Framework.WinForms.csproj">
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
       <Name>JJ.Framework.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileNameExclusion\JJ.Utilities.FileNameExclusion.csproj">
+      <Project>{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}</Project>
+      <Name>JJ.Utilities.FileNameExclusion</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

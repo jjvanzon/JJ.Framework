@@ -4,7 +4,7 @@ using JJ.Framework.Resources;
 using JJ.Framework.Text;
 using JJ.Framework.Validation;
 
-namespace JJ.Utilities.FileNameExclusion.WinForms
+namespace JJ.Utilities.FileNameExclusion
 {
 	public class FileNameExclusionPresenter
 	{

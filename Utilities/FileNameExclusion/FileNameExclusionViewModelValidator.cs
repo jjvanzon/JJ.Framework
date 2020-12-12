@@ -1,7 +1,7 @@
 ﻿using System;
 using JJ.Framework.Validation;
 
-namespace JJ.Utilities.FileNameExclusion.WinForms
+namespace JJ.Utilities.FileNameExclusion
 {
 	internal class FileNameExclusionViewModelValidator : VersatileValidator
 	{

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace JJ.Utilities.FileNameExclusion.WinForms
+namespace JJ.Utilities.FileNameExclusion
 {
 	public class FileNameExclusionViewModel
 	{

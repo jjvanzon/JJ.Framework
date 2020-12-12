@@ -203,6 +203,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileNameExclus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileNameExclusion.Tests", "Utilities\FileNameExclusion.Tests\JJ.Utilities.FileNameExclusion.Tests.csproj", "{A1B18020-2C81-4F24-95EB-288A9DBF6397}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileNameExclusion", "Utilities\FileNameExclusion\JJ.Utilities.FileNameExclusion.csproj", "{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -760,6 +762,12 @@ Global
 		{A1B18020-2C81-4F24-95EB-288A9DBF6397}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
 		{A1B18020-2C81-4F24-95EB-288A9DBF6397}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1B18020-2C81-4F24-95EB-288A9DBF6397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
