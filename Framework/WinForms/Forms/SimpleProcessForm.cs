@@ -189,6 +189,15 @@ namespace JJ.Framework.WinForms.Forms
 			set => base.Text = value;
 		}
 
+		[Category("Customization")]
+		[DefaultValue(true)]
+		public bool CancelButtonVisible
+		{
+			get => simpleProcessControl.CancelButtonVisible;
+			set => simpleProcessControl.CancelButtonVisible = value;
+		}
+
+
 		// Positioning
 
 		private void SimpleProcessForm_SizeChanged(object sender, EventArgs e) => PositionControls();

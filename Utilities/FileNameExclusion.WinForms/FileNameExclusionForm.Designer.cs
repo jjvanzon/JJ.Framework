@@ -117,6 +117,8 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.AreYouSureQuestion = "";
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BrowseButtonEnabled = false;
+			this.CancelButtonVisible = false;
 			this.ClientSize = new System.Drawing.Size(800, 672);
 			this.Controls.Add(this.labelInputList);
 			this.Controls.Add(this.labelExclusionList);

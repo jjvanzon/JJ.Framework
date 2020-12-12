@@ -34,6 +34,7 @@ namespace JJ.Framework.WinForms.Controls
 			ApplySpacing();
 			ApplyIsRunning();
 			ApplyToLabelProgressVisible();
+			ApplyCancelButtonVisible();
 
 			PositionControls();
 		}
@@ -204,6 +205,19 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		private bool _cancelButtonVisible = true;
+		[Category("Customization")]
+		[DefaultValue(true)]
+		public bool CancelButtonVisible
+		{
+			get => _cancelButtonVisible;
+			set
+			{
+				_cancelButtonVisible = value;
+				ApplyCancelButtonVisible();
+			}
+		}
+
 		// Applying
 
 		private void ApplySpacing() => filePathControl.Spacing = Spacing;
@@ -217,8 +231,10 @@ namespace JJ.Framework.WinForms.Controls
 					filePathControl.Enabled = !_isRunning;
 				});
 
-		private void ApplyToLabelProgressVisible() 
+		private void ApplyToLabelProgressVisible()
 			=> labelProgress.Visible = MustShowEmptyProgressBar || !string.IsNullOrWhiteSpace(labelProgress.Text);
+
+		private void ApplyCancelButtonVisible() => buttonCancel.Visible = CancelButtonVisible;
 
 		// Positioning
 

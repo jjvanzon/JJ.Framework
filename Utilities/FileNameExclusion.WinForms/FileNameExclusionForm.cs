@@ -32,7 +32,6 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			Text = ResourceFormatter.ApplicationName;
 			Description = ResourceFormatter.Explanation;
 			StartButtonText = CommonResourceFormatter.Start;
-			CancelButtonText = CommonResourceFormatter.Cancel;
 			labelInputList.Text = ResourceFormatter.InputList + ":";
 			labelExclusionList.Text = ResourceFormatter.ExclusionList + ":";
 			labelOutputList.Text = ResourceFormatter.OutputList + ":";
