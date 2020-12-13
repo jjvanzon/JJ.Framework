@@ -73,7 +73,7 @@
             </Component>
 
             <Component Id="LibraryComponent" Guid="13BE3DEB-90BB-45AF-BB81-9904AF6EE5C8">
-              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Business.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileDeduplication.WinForms.TargetDir)JJ.Utilities.FileDeduplication.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkBusinessComponent" Guid="05D72718-8E27-4EE0-9875-E56339FA816F">
@@ -177,7 +177,7 @@
               </Component>
 
               <Component Id="JJUtilitiesFileDeduplicationResourcesNlNlComponent" Guid="6E4E5C3F-3D04-4CE6-A9B9-B1919FF3347D">
-                <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)nl-NL\JJ.Utilities.FileDeduplication.resources.dll" KeyPath="yes" Id="JJUtilitiesFileDeduplicationResourcesNlNlFile" />
+                <File Source="$(var.JJ.Utilities.FileDeduplication.WinForms.TargetDir)nl-NL\JJ.Utilities.FileDeduplication.resources.dll" KeyPath="yes" Id="JJUtilitiesFileDeduplicationResourcesNlNlFile" />
               </Component>
             </Directory>
 
