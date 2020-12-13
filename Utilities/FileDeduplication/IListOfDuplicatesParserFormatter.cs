@@ -1,7 +1,7 @@
-﻿using JJ.Framework.IO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using JJ.Framework.IO;
 
-namespace JJ.Utilities.FileDeduplication.WinForms
+namespace JJ.Utilities.FileDeduplication
 {
 	public interface IListOfDuplicatesParserFormatter
 	{

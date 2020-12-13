@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JJ.Utilities.FileNameExclusion.WinForms")]
+[assembly: AssemblyTitle("JJ.Utilities.FileDeduplication")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
-[assembly: AssemblyProduct("JJ.Utilities.FileNameExclusion.WinForms")]
+[assembly: AssemblyProduct("JJ.Utilities.FileDeduplication")]
 [assembly: AssemblyCopyright("Copyright © 2020 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5c606a69-2349-49b7-9467-5ed019731381")]
+[assembly: Guid("e42efed8-4a0a-4db0-b82d-d3f5e5f5ce51")]
 
 // Version information for an assembly consists of the following four values:
 //

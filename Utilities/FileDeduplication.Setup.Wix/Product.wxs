@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-  <Product Id="*" Name="!(loc.ApplicationName)" Language="1033" Version="1.7.3" Manufacturer="Jan Joost van Zon" UpgradeCode="cf948a2e-070e-4385-8866-b78ff03bfc1d">
+  <Product Id="*" Name="!(loc.ApplicationName)" Language="1033" Version="1.7.4" Manufacturer="Jan Joost van Zon" UpgradeCode="cf948a2e-070e-4385-8866-b78ff03bfc1d">
 
     <Package Id="*" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
@@ -12,6 +12,7 @@
       <ComponentRef Id="StartMenuOrganizationFolder" />
       <ComponentRef Id="ExeComponent" />
       <ComponentRef Id="ConfigComponent" />
+      <ComponentRef Id="LibraryComponent" />
       <ComponentRef Id="JJFrameworkBusinessComponent" />
       <ComponentRef Id="JJFrameworkCollectionsComponent" />
       <ComponentRef Id="JJFrameworkCommonComponent" />
@@ -36,7 +37,7 @@
       <ComponentRef Id="JJFrameworkIOResourcesNlNlComponent" />
       <ComponentRef Id="JJFrameworkResourcesResourcesNlNlComponent" />
       <ComponentRef Id="JJFrameworkValidationResourcesNlNlComponent" />
-      <ComponentRef Id="JJUtilitiesFileDeduplicationWinFormsResourcesNlNlComponent" />
+      <ComponentRef Id="JJUtilitiesFileDeduplicationResourcesNlNlComponent" />
       <ComponentRef Id="JJFrameworkResourcesResourcesPlPlComponent" />
     </Feature>
 
@@ -69,6 +70,10 @@
 
             <Component Id="ConfigComponent" Guid="9A7F9E2A-E3FA-4DB5-BF55-B49768349234">
               <File Source="$(var.JJ.Utilities.FileDeduplication.WinForms.TargetPath).config" KeyPath="yes" />
+            </Component>
+
+            <Component Id="LibraryComponent" Guid="13BE3DEB-90BB-45AF-BB81-9904AF6EE5C8">
+              <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)JJ.Framework.Business.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkBusinessComponent" Guid="05D72718-8E27-4EE0-9875-E56339FA816F">
@@ -155,7 +160,7 @@
               <File Source="$(var.JJ.Utilities.FileDeduplication.WinForms.TargetDir)System.ValueTuple.dll" KeyPath="yes" />
             </Component>
 
-            <!-- Resource DLL's. -->
+            <!-- Resource DLLs. -->
 
             <Directory Id="NlNlDirectory" Name="nl-NL">
 
@@ -171,8 +176,8 @@
                 <File Source="$(var.JJ.Utilities.FileDeduplication.WinForms.TargetDir)nl-NL\JJ.Framework.Validation.resources.dll" KeyPath="yes" Id="JJFrameworkValidationResourcesNlNlFile" />
               </Component>
 
-              <Component Id="JJUtilitiesFileDeduplicationWinFormsResourcesNlNlComponent" Guid="FA048372-3E6F-4B11-8453-B6CFC470AF0F">
-                <File Source="$(var.JJ.Utilities.FileDeduplication.WinForms.TargetDir)nl-NL\JJ.Utilities.FileDeduplication.WinForms.resources.dll" KeyPath="yes" Id="JJUtilitiesFileDeduplicationResourcesNlNlFile" />
+              <Component Id="JJUtilitiesFileDeduplicationResourcesNlNlComponent" Guid="6E4E5C3F-3D04-4CE6-A9B9-B1919FF3347D">
+                <File Source="$(var.JJ.Utilities.FileDeduplication.TargetDir)nl-NL\JJ.Utilities.FileDeduplication.resources.dll" KeyPath="yes" Id="JJUtilitiesFileDeduplicationResourcesNlNlFile" />
               </Component>
             </Directory>
 

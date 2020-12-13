@@ -94,14 +94,6 @@
       <Project>{40A53175-8048-4F2D-93CA-383074C0267E}</Project>
       <Name>JJ.Framework.Resources</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Text\JJ.Framework.Text.csproj">
-      <Project>{964de0b4-27f8-40f8-8d50-c97388bf8ce2}</Project>
-      <Name>JJ.Framework.Text</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Validation\JJ.Framework.Validation.csproj">
-      <Project>{59DDC853-62AF-4F86-A803-3D4DD491E978}</Project>
-      <Name>JJ.Framework.Validation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Framework\WinForms\JJ.Framework.WinForms.csproj">
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
       <Name>JJ.Framework.WinForms</Name>

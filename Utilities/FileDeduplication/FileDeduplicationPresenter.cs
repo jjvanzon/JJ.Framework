@@ -7,7 +7,7 @@ using JJ.Framework.Logging;
 using JJ.Framework.Resources;
 using JJ.Framework.Validation;
 
-namespace JJ.Utilities.FileDeduplication.WinForms
+namespace JJ.Utilities.FileDeduplication
 {
 	public class FileDeduplicationPresenter
 	{
