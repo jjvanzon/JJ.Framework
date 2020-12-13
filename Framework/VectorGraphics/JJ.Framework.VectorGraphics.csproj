@@ -92,6 +92,7 @@
     <Compile Include="Models\Styling\StyleWithVisibleBase.cs" />
     <Compile Include="Positioners\FlowPositionerRightAligned.cs" />
     <Compile Include="Positioners\FlowPositionerLeftAligned.cs" />
+    <Compile Include="Positioners\VerticalPositioner.cs" />
     <Compile Include="Positioners\IPositioner.cs" />
     <Compile Include="Positioners\PositionerBase.cs" />
     <Compile Include="Relationships\ChildToParentRelationship.cs" />

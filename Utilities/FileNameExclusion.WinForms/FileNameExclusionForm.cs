@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Windows.Forms;
 using JJ.Framework.Resources;
+using JJ.Framework.VectorGraphics.Positioners;
 using JJ.Framework.WinForms.Extensions;
 using JJ.Framework.WinForms.Forms;
 
@@ -11,6 +13,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 		private FileNameExclusionViewModel ViewModel => _presenter.ViewModel;
 
 		private readonly IModalPopupHelper _modalPopupHelper;
+		private readonly (Label label, TextBox textBox)[] _elementTuples;
 
 		public FileNameExclusionForm()
 		{
@@ -24,6 +27,13 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 
 			_modalPopupHelper = new ModalPopupHelper();
 			_modalPopupHelper.AreYouSureOkRequested += ModalPopupHelper_AreYouSureOkRequested;
+
+			_elementTuples = new[]
+			{
+				(labelInputList, textBoxInputList),
+				(labelExclusionList, textBoxExclusionList),
+				(labelOutputList, textBoxOutputList),
+			};
 		}
 
 		private void ApplyResourceTexts()
@@ -38,7 +48,8 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 
 		// Actions
 
-		private void ModalPopupHelper_AreYouSureOkRequested(object sender, EventArgs e) => OnBackgroundThread(() => ExecuteAction(_presenter.AreYouSureYes));
+		private void ModalPopupHelper_AreYouSureOkRequested(object sender, EventArgs e)
+			=> OnBackgroundThread(() => ExecuteAction(_presenter.AreYouSureYes));
 
 		private void MainForm_OnRunProcess(object sender, EventArgs e) => ExecuteAction(_presenter.RunProcess);
 
@@ -82,54 +93,32 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 		private void FileNameExclusionForm_Load(object sender, EventArgs e) => PositionControls();
 		private void FileNameExclusionForm_Resize(object sender, EventArgs e) => PositionControls();
 
-		protected void PositionControls()
+		private void PositionControls()
 		{
+			const int elementCount = 3;
+
+			int leftX = Spacing;
 			int topY = Spacing * 4;
 			int bottomY = ClientSize.Height - Spacing - ButtonHeight - Spacing;
 			int availableHeight = bottomY - topY;
 			int availableWidth = ClientSize.Width - Spacing - Spacing;
-			int heightPerSection = availableHeight / 3;
 
 			int labelHeight = labelInputList.Height;
-			int textBoxHeight = heightPerSection - labelHeight;
 
-			int y = topY;
+			var rectangles = new VerticalPositioner(leftX, topY, availableWidth, availableHeight, elementCount).Calculate();
 
-			// TODO: Positioner class might be nice.
+			for (int i = 0; i < elementCount; i++)
+			{
+				(Label label, TextBox textBox) = _elementTuples[i];
+				(float x, float y, float width, float height) = rectangles[i];
 
-			labelInputList.Top = y;
-			labelInputList.Left = Spacing;
-
-			y += labelHeight;
-
-			textBoxInputList.Top = y;
-			textBoxInputList.Left = Spacing;
-			textBoxInputList.Width = availableWidth;
-			textBoxInputList.Height = textBoxHeight;
-
-			y += textBoxHeight;
-
-			labelExclusionList.Top = y;
-			labelExclusionList.Left = Spacing;
-
-			y += labelHeight;
-
-			textBoxExclusionList.Top = y;
-			textBoxExclusionList.Left = Spacing;
-			textBoxExclusionList.Width = availableWidth;
-			textBoxExclusionList.Height = textBoxHeight;
-
-			y += textBoxHeight;
-
-			labelOutputList.Top = y;
-			labelOutputList.Left = Spacing;
-
-			y += labelHeight;
-
-			textBoxOutputList.Top = y;
-			textBoxOutputList.Left = Spacing;
-			textBoxOutputList.Width = availableWidth;
-			textBoxOutputList.Height = textBoxHeight;
+				label.Left = (int)x;
+				label.Top = (int)y;
+				textBox.Left = (int)x;
+				textBox.Top = (int)y + labelHeight;
+				textBox.Width = (int)width;
+				textBox.Height = (int)height - labelHeight;
+			}
 		}
 	}
 }
