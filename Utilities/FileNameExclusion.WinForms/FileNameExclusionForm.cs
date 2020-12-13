@@ -97,7 +97,6 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 		{
 			const int elementCount = 3;
 
-			int leftX = Spacing;
 			int topY = Spacing * 4;
 			int bottomY = ClientSize.Height - Spacing - ButtonHeight - Spacing;
 			int availableHeight = bottomY - topY;
@@ -105,7 +104,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 
 			int labelHeight = labelInputList.Height;
 
-			var rectangles = new VerticalPositioner(leftX, topY, availableWidth, availableHeight, elementCount).Calculate();
+			var rectangles = new VerticalPositioner(Spacing, topY, availableWidth, availableHeight, elementCount).Calculate();
 
 			for (int i = 0; i < elementCount; i++)
 			{
@@ -114,6 +113,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 
 				label.Left = (int)x;
 				label.Top = (int)y;
+
 				textBox.Left = (int)x;
 				textBox.Top = (int)y + labelHeight;
 				textBox.Width = (int)width;
