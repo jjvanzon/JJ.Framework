@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using JJ.Framework.Text;
 
-namespace JJ.Utilities.FileNameExclusion
+namespace JJ.Framework.IO
 {
 	/// <inheritdoc />
 	public class FileNameExcluder : IFileNameExcluder

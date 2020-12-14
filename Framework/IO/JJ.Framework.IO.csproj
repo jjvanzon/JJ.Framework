@@ -61,8 +61,10 @@
     <Compile Include="FileInfoExtensions.cs" />
     <Compile Include="FileLock.cs" />
     <Compile Include="FileLockException.cs" />
+    <Compile Include="FileNameExcluder.cs" />
     <Compile Include="IBulkFileDeleter.cs" />
     <Compile Include="IFileDeduplicator.cs" />
+    <Compile Include="IFileNameExcluder.cs" />
     <Compile Include="LockEnum.cs" />
     <Compile Include="PathParser.cs" />
     <Compile Include="PermanentBulkFileDeleter.cs" />
