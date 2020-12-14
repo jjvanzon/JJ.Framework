@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Resources;
 
-namespace JJ.Utilities.FileDeduplication.WinForms
+namespace JJ.Utilities.FileDeduplication
 {
 	public static class ResourceFormatter
 	{

@@ -31,7 +31,10 @@ namespace JJ.Framework.WinForms.Controls
 		{
 			_isLoaded = true;
 
+			ApplySpacing();
 			ApplyIsRunning();
+			ApplyToLabelProgressVisible();
+			ApplyCancelButtonVisible();
 
 			PositionControls();
 		}
@@ -50,6 +53,7 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		[Category("Customization")]
 		[Editor(
 			"System.ComponentModel.Design.MultilineStringEditor, System.Design",
 			"System.Drawing.Design.UITypeEditor")]
@@ -59,6 +63,7 @@ namespace JJ.Framework.WinForms.Controls
 			set => labelDescription.Text = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue("Path: ")]
 		public string TextBoxLabelText
 		{
@@ -66,12 +71,14 @@ namespace JJ.Framework.WinForms.Controls
 			set => filePathControl.LabelText = value;
 		}
 
+		[Category("Customization")]
 		public string TextBoxText
 		{
 			get => filePathControl.FilePath;
 			set => filePathControl.FilePath = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool TextBoxEnabled
 		{
@@ -79,6 +86,7 @@ namespace JJ.Framework.WinForms.Controls
 			set => filePathControl.TextBoxEnabled = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool TextBoxVisible
 		{
@@ -87,6 +95,7 @@ namespace JJ.Framework.WinForms.Controls
 		}
 
 		/// <inheritdoc cref="FilePathControl.FileBrowseMode" />
+		[Category("Customization")]
 		public FileBrowseModeEnum FileBrowseMode
 		{
 			get => filePathControl.FileBrowseMode;
@@ -94,6 +103,7 @@ namespace JJ.Framework.WinForms.Controls
 		}
 
 		/// <inheritdoc cref="FilePathControl.TextBoxRightToLeft" />
+		[Category("Customization")]
 		[DefaultValue(RightToLeft.Yes)]
 		public RightToLeft TextBoxRightToLeft
 		{
@@ -101,14 +111,17 @@ namespace JJ.Framework.WinForms.Controls
 			set => filePathControl.TextBoxRightToLeft = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool MustShowExceptions { get; set; } = true;
 
 		/// <summary> If empty the "Are you sure?" question may not be shown. </summary>
+		[Category("Customization")]
 		[DefaultValue("Are you sure?")]
 		public string AreYouSureQuestion { get; set; } = "Are you sure?";
 
 		private int _spacing = 16;
+		[Category("Customization")]
 		[DefaultValue(16)]
 		public int Spacing
 		{
@@ -121,6 +134,7 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		[Category("Customization")]
 		[DefaultValue("Start")]
 		public string StartButtonText
 		{
@@ -128,6 +142,7 @@ namespace JJ.Framework.WinForms.Controls
 			set => buttonStart.Text = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue("Cancel")]
 		public string CancelButtonText
 		{
@@ -135,17 +150,19 @@ namespace JJ.Framework.WinForms.Controls
 			set => buttonCancel.Text = value;
 		}
 
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool BrowseButtonEnabled
 		{
 			get => filePathControl.BrowseButtonEnabled;
-			set => filePathControl.BrowseButtonEnabled = false;
+			set => filePathControl.BrowseButtonEnabled = value;
 		}
 
 		private UpDownOrientationEnum _textBoxOrientation = UpDownOrientationEnum.Down;
 		/// <summary>
 		/// In case TextBoxOrientation would be Up, TextBoxTop might become relevant.
 		/// </summary>
+		[Category("Customization")]
 		[DefaultValue(UpDownOrientationEnum.Down)]
 		public UpDownOrientationEnum TextBoxOrientation
 		{
@@ -162,6 +179,7 @@ namespace JJ.Framework.WinForms.Controls
 		/// How high in (DPI-scaled) pixels the description text at the top would be.
 		/// May only be relevant if TextBoxOrientation would be "Up".
 		/// </summary>
+		[Category("Customization")]
 		[DefaultValue(146)]
 		public int TextBoxTop
 		{
@@ -172,6 +190,35 @@ namespace JJ.Framework.WinForms.Controls
 				PositionControls();
 			}
 		}
+
+		private bool _mustShowEmptyProgressBar = true;
+		[Category("Customization")]
+		[DefaultValue(true)]
+		public bool MustShowEmptyProgressBar
+		{
+			get => _mustShowEmptyProgressBar;
+			set
+			{
+				_mustShowEmptyProgressBar = value;
+				ApplyToLabelProgressVisible();
+				PositionControls();
+			}
+		}
+
+		private bool _cancelButtonVisible = true;
+		[Category("Customization")]
+		[DefaultValue(true)]
+		public bool CancelButtonVisible
+		{
+			get => _cancelButtonVisible;
+			set
+			{
+				_cancelButtonVisible = value;
+				ApplyCancelButtonVisible();
+			}
+		}
+
+		public int ButtonHeight => buttonStart.Height;
 
 		// Applying
 
@@ -186,6 +233,11 @@ namespace JJ.Framework.WinForms.Controls
 					filePathControl.Enabled = !_isRunning;
 				});
 
+		private void ApplyToLabelProgressVisible()
+			=> labelProgress.Visible = MustShowEmptyProgressBar || !string.IsNullOrWhiteSpace(labelProgress.Text);
+
+		private void ApplyCancelButtonVisible() => buttonCancel.Visible = CancelButtonVisible;
+
 		// Positioning
 
 		private void SimpleProcessControl_Resize(object sender, EventArgs e) => PositionControls();
@@ -194,10 +246,13 @@ namespace JJ.Framework.WinForms.Controls
 		{
 			int y = Height;
 
-			y -= labelProgress.Height;
+			if (labelProgress.Visible)
+			{
+				y -= labelProgress.Height;
 
-			labelProgress.Location = new Point(0, y);
-			labelProgress.Width = Width;
+				labelProgress.Location = new Point(0, y);
+				labelProgress.Width = Width;
+			}
 
 			y -= Spacing;
 			y -= buttonStart.Height;

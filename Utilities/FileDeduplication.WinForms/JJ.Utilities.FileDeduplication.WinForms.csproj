@@ -53,7 +53,6 @@
     <ApplicationIcon>Resources\jj-icon-with-margin.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -66,23 +65,10 @@
     <Compile Include="FileDeduplicationForm.Designer.cs">
       <DependentUpon>FileDeduplicationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileDeduplicationPresenter.cs" />
-    <Compile Include="FileDeduplicationViewModel.cs" />
-    <Compile Include="FileDeduplicationViewModelValidator_ForDeleteFiles.cs" />
-    <Compile Include="FileDeduplicationViewModelValidator_ForScan.cs" />
-    <Compile Include="IAppSettings.cs" />
-    <Compile Include="IListOfDuplicatesParserFormatter.cs" />
     <Compile Include="IModalPopupHelper.cs" />
-    <Compile Include="ListOfDuplicatesParserFormatter.cs" />
     <Compile Include="ModalPopupHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResourceFormatter.cs" />
-    <Compile Include="Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="FileDeduplicationForm.resx">
       <DependentUpon>FileDeduplicationForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -97,14 +83,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Resources.nl-NL.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <None Include="App.Debug.config">
       <DependentUpon>App.config</DependentUpon>
     </None>
@@ -153,10 +131,6 @@
       <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
       <Name>JJ.Framework.IO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Logging\JJ.Framework.Logging.csproj">
-      <Project>{CEEB755D-DE12-4E70-816E-546C429B44B7}</Project>
-      <Name>JJ.Framework.Logging</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Microsoft.VisualBasic\JJ.Framework.Microsoft.VisualBasic.csproj">
       <Project>{AB67EA5D-779B-4F03-A869-61B32BA10B60}</Project>
       <Name>JJ.Framework.Microsoft.VisualBasic</Name>
@@ -165,17 +139,13 @@
       <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
       <Name>JJ.Framework.Resources</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Text\JJ.Framework.Text.csproj">
-      <Project>{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}</Project>
-      <Name>JJ.Framework.Text</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Validation\JJ.Framework.Validation.csproj">
-      <Project>{59DDC853-62AF-4F86-A803-3D4DD491E978}</Project>
-      <Name>JJ.Framework.Validation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Framework\WinForms\JJ.Framework.WinForms.csproj">
       <Project>{84a66716-c686-4b8e-a092-cfe38ca7dde0}</Project>
       <Name>JJ.Framework.WinForms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileDeduplication\JJ.Utilities.FileDeduplication.csproj">
+      <Project>{E42EFED8-4A0A-4DB0-B82D-D3F5E5F5CE51}</Project>
+      <Name>JJ.Utilities.FileDeduplication</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

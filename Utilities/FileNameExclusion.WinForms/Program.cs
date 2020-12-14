@@ -12,7 +12,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 		private static void Main()
 		{
 			// Message box for unhandled exceptions.
-			UnhandledExceptionMessageBoxShower.Initialize(Resources.ApplicationName);
+			UnhandledExceptionMessageBoxShower.Initialize(ResourceFormatter.ApplicationName);
 
 			// Culture from config.
 			string fixedCultureName = AppSettingsReader<IAppSettings>.Get(x => x.FixedCultureName);
@@ -20,6 +20,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			{
 				CultureHelper.SetCurrentCultureName(fixedCultureName);
 			}
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new FileNameExclusionForm());

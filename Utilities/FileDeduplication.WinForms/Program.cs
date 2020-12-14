@@ -12,7 +12,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		private static void Main()
 		{
 			// Message box for unhandled exceptions.
-			UnhandledExceptionMessageBoxShower.Initialize(Resources.ApplicationName);
+			UnhandledExceptionMessageBoxShower.Initialize(ResourceFormatter.ApplicationName);
 
 			// Culture from config.
 			string fixedCultureName = AppSettingsReader<IAppSettings>.Get(x => x.FixedCultureName);

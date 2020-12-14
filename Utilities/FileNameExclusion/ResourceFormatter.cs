@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Resources;
 
-namespace JJ.Utilities.FileNameExclusion.WinForms
+namespace JJ.Utilities.FileNameExclusion
 {
 	public static class ResourceFormatter
 	{

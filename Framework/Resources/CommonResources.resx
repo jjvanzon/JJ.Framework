@@ -375,4 +375,7 @@
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
 </root>

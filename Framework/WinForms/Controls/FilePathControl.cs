@@ -36,6 +36,10 @@ namespace JJ.Framework.WinForms.Controls
 			InitializeComponent();
 
 			textBox.RightToLeft = RightToLeft.Yes;
+
+			ApplyEnabled();
+			ApplyTextBoxVisible();
+			ApplyBrowseButtonEnabled();
 		}
 
 		protected override void OnLoad(EventArgs e)
@@ -54,6 +58,7 @@ namespace JJ.Framework.WinForms.Controls
 		}
 
 		/// <summary> In case of no label text, this would hide the label. </summary>
+		[Category("Customization")]
 		[DefaultValue("Path: ")]
 		public string LabelText 
 		{
@@ -67,6 +72,7 @@ namespace JJ.Framework.WinForms.Controls
 		}
 
 		/// <summary> Would get or set what's in the text box. </summary>
+		[Category("Customization")]
 		public string FilePath
 		{
 			get => textBox.Text;
@@ -75,6 +81,7 @@ namespace JJ.Framework.WinForms.Controls
 
 		private FileBrowseModeEnum _fileBrowseMode;
 		/// <inheritdoc cref="FileBrowseModeEnum" />
+		[Category("Customization")]
 		public FileBrowseModeEnum FileBrowseMode
 		{
 			get => _fileBrowseMode;
@@ -83,6 +90,7 @@ namespace JJ.Framework.WinForms.Controls
 
 		private int _spacing;
 		[DefaultValue(4)]
+		[Category("Customization")]
 		public int Spacing
 		{
 			get => _spacing;
@@ -95,6 +103,7 @@ namespace JJ.Framework.WinForms.Controls
 		}
 
 		private bool _textBoxEnabled = true;
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool TextBoxEnabled
 		{
@@ -106,11 +115,17 @@ namespace JJ.Framework.WinForms.Controls
 			}
 		}
 
+		private bool _textBoxVisible = true;
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool TextBoxVisible
 		{
-			get => textBox.Visible;
-			set => textBox.Visible = value;
+			get => _textBoxVisible;
+			set
+			{
+				_textBoxVisible = value;
+				ApplyTextBoxVisible();
+			}
 		}
 
 		/// <summary>
@@ -122,6 +137,7 @@ namespace JJ.Framework.WinForms.Controls
 		/// Showing the full path as a tool tip seemed another option,
 		/// but then the tool tip did not seem to be shown if the control was disabled.)
 		/// </summary>
+		[Category("Customization")]
 		[DefaultValue(RightToLeft.Yes)]
 		public RightToLeft TextBoxRightToLeft
 		{
@@ -129,14 +145,30 @@ namespace JJ.Framework.WinForms.Controls
 			set => textBox.RightToLeft = value;
 		}
 
+		private bool _browseButtonEnabled = true;
+		[Category("Customization")]
 		[DefaultValue(true)]
 		public bool BrowseButtonEnabled
 		{
-			get => buttonBrowse.Enabled;
-			set => buttonBrowse.Enabled = false;
+			get => _browseButtonEnabled;
+			set
+			{
+				_browseButtonEnabled = value;
+				ApplyBrowseButtonEnabled();
+			}
 		}
 
+		//[Category("Customization")]
+		//[DefaultValue(true)]
+		//public bool BrowseButtonEnabled
+		//{
+		//	get => buttonBrowse.Enabled;
+		//	set => buttonBrowse.Enabled = value;
+		//}
+
 		// Applying
+
+		// NOTE: Using a backing field and an 'Apply' method, may sometimes prevent bugs, where 2 layers up in the containment structure a property would not be remembered by the WinForms designer.
 
 		private void SetFileBrowseMode(FileBrowseModeEnum value)
 		{
@@ -164,7 +196,10 @@ namespace JJ.Framework.WinForms.Controls
 			label.Enabled = Enabled;
 			buttonBrowse.Enabled = Enabled;
 		}
-		
+
+		private void ApplyTextBoxVisible() => textBox.Visible = TextBoxVisible;
+		private void ApplyBrowseButtonEnabled() => buttonBrowse.Enabled = BrowseButtonEnabled;
+
 		// Positioning
 
 		protected override void OnResize(EventArgs e)

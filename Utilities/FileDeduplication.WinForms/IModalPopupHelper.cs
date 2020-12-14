@@ -9,7 +9,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		event EventHandler DeleteFilesYesRequested;
 
 		void ShowValidationMessagesIfNeeded(Form parentForm, FileDeduplicationViewModel viewModel);
-		void ShowDeleteFilesQuestionIfNeeded(FileDeduplicationForm parentForm, FileDeduplicationViewModel viewModel);
-		void ShowScanQuestionIfNeeded(FileDeduplicationForm parentForm, FileDeduplicationViewModel viewModel);
+		void ShowDeleteFilesQuestionIfNeeded(Form parentForm, FileDeduplicationViewModel viewModel);
+		void ShowScanQuestionIfNeeded(Form parentForm, FileDeduplicationViewModel viewModel);
 	}
 }

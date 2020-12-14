@@ -6,7 +6,7 @@ using JJ.Framework.Text;
 
 // ReSharper disable PossibleMultipleEnumeration
 
-namespace JJ.Utilities.FileDeduplication.WinForms
+namespace JJ.Utilities.FileDeduplication
 {
 	public class ListOfDuplicatesParserFormatter : IListOfDuplicatesParserFormatter
 	{
