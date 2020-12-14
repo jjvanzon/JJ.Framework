@@ -58,10 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CommonResources.pl-PL.resx" />
-    <EmbeddedResource Include="CommonResources.nl-NL.resx" />
+    <EmbeddedResource Include="CommonResources.nl-NL.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="CommonResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

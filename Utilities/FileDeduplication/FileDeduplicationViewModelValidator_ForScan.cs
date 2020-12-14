@@ -2,7 +2,7 @@
 using JJ.Framework.Resources;
 using JJ.Framework.Validation;
 
-namespace JJ.Utilities.FileDeduplication.WinForms
+namespace JJ.Utilities.FileDeduplication
 {
 	internal class FileDeduplicationViewModelValidator_ForScan : VersatileValidator
 	{
@@ -10,7 +10,6 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		{
 			if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 			For(viewModel.FolderPath, CommonResourceFormatter.Folder).NotNullOrWhiteSpace().FolderExists();
-			For(viewModel.FilePattern, CommonResourceFormatter.FilePattern).NotNullOrWhiteSpace();
 		}
 	}
 }

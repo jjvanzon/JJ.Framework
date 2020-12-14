@@ -60,9 +60,9 @@
       <Project>{B26B8089-81F0-4E8E-9CE6-21CF9BC24B24}</Project>
       <Name>JJ.Framework.Resources.Tests</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FileDeduplication.WinForms\JJ.Utilities.FileDeduplication.WinForms.csproj">
-      <Project>{e640170f-0006-4dde-8445-7a6118bdfbee}</Project>
-      <Name>JJ.Utilities.FileDeduplication.WinForms</Name>
+    <ProjectReference Include="..\FileDeduplication\JJ.Utilities.FileDeduplication.csproj">
+      <Project>{E42EFED8-4A0A-4DB0-B82D-D3F5E5F5CE51}</Project>
+      <Name>JJ.Utilities.FileDeduplication</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

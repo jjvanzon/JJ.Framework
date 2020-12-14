@@ -1,6 +1,6 @@
 ﻿using JJ.Framework.Resources;
 
-namespace JJ.Utilities.FileDeduplication.WinForms
+namespace JJ.Utilities.FileDeduplication
 {
 	public static class ResourceFormatter
 	{
@@ -11,5 +11,7 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 		public static string Explanation => _helper.GetText();
 		public static string MaybeDoFirst_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
 		public static string Duplicates => _helper.GetText();
+		public static string DeleteFilesQuestion => _helper.GetText();
+		public static string ScanQuestion => _helper.GetText();
 	}
 }

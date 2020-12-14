@@ -4,10 +4,13 @@ using JJ.Framework.VectorGraphics.Models.Elements;
 
 namespace JJ.Framework.VectorGraphics.Positioners
 {
+	/// <inheritdoc cref="IPositioner" />
 	public abstract class PositionerBase : IPositioner
 	{
+		/// <inheritdoc />
 		public abstract IList<(float x, float y, float width, float height)> Calculate();
-
+		
+		/// <inheritdoc />
 		public void Calculate(IEnumerable<Element> elements)
 		{
 			if (elements == null) throw new ArgumentNullException(nameof(elements));

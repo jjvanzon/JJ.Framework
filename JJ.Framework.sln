@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{5CD0B8A9-AA4E-4967-BB77-08580CF54F58}"
 	ProjectSection(SolutionItems) = preProject
+		Utilities\SetDpi_150%.reg = Utilities\SetDpi_150%.reg
+		Utilities\SetDpi_280%.reg = Utilities\SetDpi_280%.reg
 		Utilities\Sleep.bat = Utilities\Sleep.bat
 	EndProjectSection
 EndProject
@@ -196,6 +198,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileDeduplication.Tests", "Utilities\FileDeduplication.Tests\JJ.Utilities.FileDeduplication.Tests.csproj", "{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "JJ.Utilities.FileDeduplication.Setup.Wix", "Utilities\FileDeduplication.Setup.Wix\JJ.Utilities.FileDeduplication.Setup.Wix.wixproj", "{31426F74-9768-45B2-B568-EDD13909B971}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileNameExclusion.WinForms", "Utilities\FileNameExclusion.WinForms\JJ.Utilities.FileNameExclusion.WinForms.csproj", "{5C606A69-2349-49B7-9467-5ED019731381}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileNameExclusion.Tests", "Utilities\FileNameExclusion.Tests\JJ.Utilities.FileNameExclusion.Tests.csproj", "{A1B18020-2C81-4F24-95EB-288A9DBF6397}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileNameExclusion", "Utilities\FileNameExclusion\JJ.Utilities.FileNameExclusion.csproj", "{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileDeduplication", "Utilities\FileDeduplication\JJ.Utilities.FileDeduplication.csproj", "{E42EFED8-4A0A-4DB0-B82D-D3F5E5F5CE51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -742,6 +752,30 @@ Global
 		{31426F74-9768-45B2-B568-EDD13909B971}.NPDebug|Any CPU.Build.0 = Release|x64
 		{31426F74-9768-45B2-B568-EDD13909B971}.Release|Any CPU.ActiveCfg = Release|x64
 		{31426F74-9768-45B2-B568-EDD13909B971}.Release|Any CPU.Build.0 = Release|x64
+		{5C606A69-2349-49B7-9467-5ED019731381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C606A69-2349-49B7-9467-5ED019731381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C606A69-2349-49B7-9467-5ED019731381}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C606A69-2349-49B7-9467-5ED019731381}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{5C606A69-2349-49B7-9467-5ED019731381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C606A69-2349-49B7-9467-5ED019731381}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1B18020-2C81-4F24-95EB-288A9DBF6397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B18020-2C81-4F24-95EB-288A9DBF6397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B18020-2C81-4F24-95EB-288A9DBF6397}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1B18020-2C81-4F24-95EB-288A9DBF6397}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{A1B18020-2C81-4F24-95EB-288A9DBF6397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1B18020-2C81-4F24-95EB-288A9DBF6397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5A1D71-2FAC-40B4-9555-69ADA28D9345}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E42EFED8-4A0A-4DB0-B82D-D3F5E5F5CE51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42EFED8-4A0A-4DB0-B82D-D3F5E5F5CE51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E42EFED8-4A0A-4DB0-B82D-D3F5E5F5CE51}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E42EFED8-4A0A-4DB0-B82D-D3F5E5F5CE51}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
+		{E42EFED8-4A0A-4DB0-B82D-D3F5E5F5CE51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E42EFED8-4A0A-4DB0-B82D-D3F5E5F5CE51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

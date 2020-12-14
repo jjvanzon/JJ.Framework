@@ -6,22 +6,22 @@ using JJ.Framework.Text;
 
 // ReSharper disable PossibleMultipleEnumeration
 
-namespace JJ.Utilities.FileDeduplication.WinForms
+namespace JJ.Utilities.FileDeduplication
 {
 	public class ListOfDuplicatesParserFormatter : IListOfDuplicatesParserFormatter
 	{
 		private const string DUPLICATE_FILE_PATH_PREFIX = "| ";
 
-		public string FormatFilePairs(IList<FileDeduplicator.FilePair> filePairs)
+		public string FormatDuplicateFilePairs(IList<DuplicateFilePair> duplicateFilePairs)
 			=> string.Join(
 				Environment.NewLine + Environment.NewLine,
-				filePairs.GroupBy(x => x.OriginalFilePath).Select(FormatItem));
+				duplicateFilePairs.GroupBy(x => x.OriginalFilePath).Select(FormatGroupOfDuplicateFilePairs));
 
-		private string FormatItem(IEnumerable<FileDeduplicator.FilePair> filePairs)
+		private string FormatGroupOfDuplicateFilePairs(IEnumerable<DuplicateFilePair> duplicateFilePairs)
 		{
 			string separator = Environment.NewLine + DUPLICATE_FILE_PATH_PREFIX;
-			string formattedDuplicates = DUPLICATE_FILE_PATH_PREFIX + string.Join(separator, filePairs.Select(x => x.DuplicateFilePath));
-			return filePairs.First().OriginalFilePath + Environment.NewLine + formattedDuplicates;
+			string formattedDuplicates = DUPLICATE_FILE_PATH_PREFIX + string.Join(separator, duplicateFilePairs.Select(x => x.DuplicateFilePath));
+			return duplicateFilePairs.First().OriginalFilePath + Environment.NewLine + formattedDuplicates;
 		}
 
 		/// <summary>

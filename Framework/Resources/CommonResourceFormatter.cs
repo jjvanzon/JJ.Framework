@@ -29,6 +29,7 @@ namespace JJ.Framework.Resources
 		public static string Delete_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
 		public static string Details_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
 		public static string Description => _helper.GetText();
+		public static string Done => _helper.GetText();
 		public static string Edit => _helper.GetText();
 		public static string Edit_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
 		public static string Error => _helper.GetText();
@@ -75,12 +76,13 @@ namespace JJ.Framework.Resources
 		public static string Refresh => _helper.GetText();
 		public static string Remove => _helper.GetText();
 		public static string Rename_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
-		public static string Scan => _helper.GetText();
 		public static string Save => _helper.GetText();
 		public static string Save_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
+		public static string Scan => _helper.GetText();
 		public static string Select_WithName(string name) => _helper.GetText_WithOnePlaceHolder(name);
 		public static string Selection => _helper.GetText();
 		public static string Search => _helper.GetText();
+		public static string Start => _helper.GetText();
 		public static string Text => _helper.GetText();
 		public static string TreeStructure => _helper.GetText();
 		public static string True => _helper.GetText();

@@ -123,13 +123,19 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>JJ utilities - dubbele bestanden opsporen</value>
   </data>
+  <data name="DeleteFilesQuestion" xml:space="preserve">
+    <value>Weet je zeker dat je de bestanden wilt verwijderen? (Die met een | ervoor worden verwijderd.)</value>
+  </data>
   <data name="Duplicates" xml:space="preserve">
     <value>Dubbele</value>
   </data>
   <data name="Explanation" xml:space="preserve">
-    <value>Deze tool probeert dubbele bestanden in een map op te sporen (en in de submappen). Eerst kan gescand worden, welke dubbele er zijn en dan zijn ze te zien in een lijst. Die lijst kun je daarna aanpassen. Daarna kun je de bestanden weg laten halen. De bestanden komen dan in de prullenbak. Wees voorzichting: sommige bestanden horen dubbel anders werkt er misschien iets niet meer.</value>
+    <value>Deze tool probeert dubbele bestanden in een map op te sporen (en in de submappen). Eerst kan gescand worden welke dubbele er zijn en dan zijn ze te zien in een lijst. Die lijst kun je daarna aanpassen. Daarna kun je de bestanden weg laten halen. De bestanden komen dan in de prullenbak. Wees voorzichting: sommige bestanden horen dubbel anders werkt het niet meer.</value>
   </data>
   <data name="MaybeDoFirst_WithName" xml:space="preserve">
     <value>Misschien eerst {0}?</value>
+  </data>
+  <data name="ScanQuestion" xml:space="preserve">
+    <value>Weet je zeker dat je wilt scannen? De lijst met dubbele wordt dan overschreven.</value>
   </data>
 </root>

@@ -115,11 +115,11 @@ namespace JJ.Framework.IO {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Scanning for duplicates {0:0.0}%....
+        ///   Looks up a localized string similar to Scanning for duplicates {0}....
         /// </summary>
-        internal static string ScanningForDuplicates_WithPercentage {
+        internal static string ScanningForDuplicates_WithFormattedPercentage {
             get {
-                return ResourceManager.GetString("ScanningForDuplicates_WithPercentage", resourceCulture);
+                return ResourceManager.GetString("ScanningForDuplicates_WithFormattedPercentage", resourceCulture);
             }
         }
     }
