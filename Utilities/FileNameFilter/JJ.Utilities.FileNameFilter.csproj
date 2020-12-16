@@ -35,7 +35,32 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileNameFilterViewModelValidator.cs" />
+    <Compile Include="FileNameFilterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceFormatter.cs" />
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.Resources.csproj">
+      <Project>{40A53175-8048-4F2D-93CA-383074C0267E}</Project>
+      <Name>JJ.Framework.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Validation\JJ.Framework.Validation.csproj">
+      <Project>{59DDC853-62AF-4F86-A803-3D4DD491E978}</Project>
+      <Name>JJ.Framework.Validation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.nl-NL.resx" />
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
