@@ -44,7 +44,7 @@ namespace JJ.Utilities.FileNameExclusion
 			IList<string> inputListSplit = ViewModel.InputList.Split(Environment.NewLine);
 			IList<string> exclusionListSplit = ViewModel.ExclusionList.Split(Environment.NewLine);
 
-			IList<string> outputList = _fileNameExcluder.Run(inputListSplit, exclusionListSplit);
+			IList<string> outputList = _fileNameExcluder.Execute(inputListSplit, exclusionListSplit);
 
 			ViewModel.OutputList = string.Join(Environment.NewLine, outputList);
 			ViewModel.DonePopupMessage = CommonResourceFormatter.Done;

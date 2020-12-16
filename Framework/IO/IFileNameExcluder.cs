@@ -7,6 +7,7 @@ namespace JJ.Framework.IO
 	/// </summary>
 	public interface IFileNameExcluder
 	{
-		IList<string> Run(IList<string> inputFilePaths, IList<string> fileNamesToExclude);
+		/// <inheritdoc cref="IFileNameExcluder" />
+		IList<string> Execute(IList<string> inputFilePaths, IList<string> pathsWithFileNamesToExclude);
 	}
 }

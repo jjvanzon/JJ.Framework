@@ -9,12 +9,13 @@ namespace JJ.Framework.IO
 	/// <inheritdoc />
 	public class FileNameExcluder : IFileNameExcluder
 	{
-		public IList<string> Run(IList<string> inputFilePaths, IList<string> fileNamesToExclude)
+		/// <inheritdoc />
+		public IList<string> Execute(IList<string> inputFilePaths, IList<string> pathsWithFileNamesToExclude)
 		{
 			if (inputFilePaths == null) throw new ArgumentNullException(nameof(inputFilePaths));
-			if (fileNamesToExclude == null) throw new ArgumentNullException(nameof(fileNamesToExclude));
+			if (pathsWithFileNamesToExclude == null) throw new ArgumentNullException(nameof(pathsWithFileNamesToExclude));
 
-			IList<string> formattedExclusionList = FormatExclusionList(fileNamesToExclude);
+			IList<string> formattedFileNamesToExclude = GetFileNamesToExclude(pathsWithFileNamesToExclude);
 			IList<string> outputList = new List<string>();
 
 			foreach (string inputFilePath in inputFilePaths)
@@ -22,7 +23,7 @@ namespace JJ.Framework.IO
 				string inputFileName = GetInputFileName(inputFilePath);
 
 				bool isExcluded =
-					formattedExclusionList.Any(x => string.Equals(x, inputFileName, StringComparison.OrdinalIgnoreCase));
+					formattedFileNamesToExclude.Any(x => string.Equals(x, inputFileName, StringComparison.OrdinalIgnoreCase));
 
 				if (!isExcluded)
 				{
@@ -33,8 +34,8 @@ namespace JJ.Framework.IO
 			return outputList;
 		}
 
-		private IList<string> FormatExclusionList(IList<string> list)
-			=> list.Select(x => Path.GetFileName(FormatPath(x))).ToList();
+		private IList<string> GetFileNamesToExclude(IList<string> pathsWithFileNamesToExclude)
+			=> pathsWithFileNamesToExclude.Select(x => Path.GetFileName(FormatPath(x))).ToList();
 
 		private static string GetInputFileName(string inputFilePath)
 			=> Path.GetFileName(FormatPath(inputFilePath));

@@ -28,6 +28,7 @@
     <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>latest</LangVersion>
+    <DocumentationFile>bin\Debug\JJ.Framework.IO.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -62,8 +63,10 @@
     <Compile Include="FileLock.cs" />
     <Compile Include="FileLockException.cs" />
     <Compile Include="FileNameExcluder.cs" />
+    <Compile Include="FileNameFilter.cs" />
     <Compile Include="IBulkFileDeleter.cs" />
     <Compile Include="IFileDeduplicator.cs" />
+    <Compile Include="IFileNameFilter.cs" />
     <Compile Include="IFileNameExcluder.cs" />
     <Compile Include="LockEnum.cs" />
     <Compile Include="PathParser.cs" />
