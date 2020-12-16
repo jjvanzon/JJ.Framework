@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("JJ.Utilities.FileNameExclusion.Tests")]
+[assembly: AssemblyTitle("JJ.Utilities.FileNameFilter.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
@@ -12,6 +12,6 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisible(false)]
 
-[assembly: Guid("a1b18020-2c81-4f24-95eb-288a9dbf6397")]
+[assembly: Guid("b9f093d6-e9d0-4618-a659-ffc4eeed1032")]
 
 [assembly: AssemblyVersion("1.7.*")]
