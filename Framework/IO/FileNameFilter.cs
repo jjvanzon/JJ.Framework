@@ -15,18 +15,34 @@ namespace JJ.Framework.IO
 			if (inputFilePaths == null) throw new ArgumentNullException(nameof(inputFilePaths));
 			if (pathsWithFileNamesToKeep == null) throw new ArgumentNullException(nameof(pathsWithFileNamesToKeep));
 
-			throw new System.NotImplementedException();
+			IList<string> formattedFileNamesToKeep = FormatFileNames(pathsWithFileNamesToKeep);
+			IList<string> outputList = new List<string>();
+
+			foreach (string inputFilePath in inputFilePaths)
+			{
+				string formattedInputFileName = FormatFileName(inputFilePath);
+
+				bool mustKeep = formattedFileNamesToKeep.Any(x => string.Equals(x, formattedInputFileName, StringComparison.Ordinal));
+
+				if (mustKeep)
+				{
+					outputList.Add(inputFilePath);
+				}
+			}
+
+			return outputList;
 		}
 
-		private IList<string> GetFileNamesToKeep(IList<string> pathsWithFileNamesToExclude)
-			=> pathsWithFileNamesToExclude.Select(x => Path.GetFileName(FormatPath(x))).ToList();
+		private IList<string> FormatFileNames(IList<string> paths)
+			=> paths.Select(FormatFileName).ToList();
 
-		private static string GetInputFileName(string inputFilePath)
-			=> Path.GetFileName(FormatPath(inputFilePath));
+		private static string FormatFileName(string path)
+			=> Path.GetFileName(FormatPath(path));
 
-		private static string FormatPath(string inputFilePath)
-			=> inputFilePath.Trim()
-							.TrimStart(@"""")
-							.TrimEnd(@"""");
+		private static string FormatPath(string path)
+			=> (path ?? "").Trim()
+			               .TrimStart(@"""")
+			               .TrimEnd(@"""")
+			               .ToLower();
 	}
 }
