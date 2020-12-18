@@ -124,7 +124,7 @@
     <value>Lijst van eruit te halen</value>
   </data>
   <data name="Explanation" xml:space="preserve">
-    <value>Deze tool probeert een lijst met bestand paden uit te dunnen, bepaalde bestandsnamen uit te sluiten en daarmee een nieuwe lijst te maken.</value>
+    <value>Deze tool probeert een lijst met bestanden uit te dunnen, bepaalde bestandsnamen uit te sluiten en een nieuwe lijst te maken.</value>
   </data>
   <data name="InputList" xml:space="preserve">
     <value>Input lijst</value>

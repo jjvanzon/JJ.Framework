@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using JJ.Framework.IO;
 using JJ.Framework.Resources;
 using JJ.Framework.VectorGraphics.Positioners;
 using JJ.Framework.WinForms.Extensions;

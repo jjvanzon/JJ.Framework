@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using JJ.Framework.WinForms.Forms;
+﻿using JJ.Framework.WinForms.Forms;
 
 namespace JJ.Framework.WinForms.TestForms
 {
