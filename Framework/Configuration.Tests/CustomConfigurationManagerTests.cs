@@ -1,6 +1,7 @@
 ﻿using JJ.Framework.Configuration.Tests.Settings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestConfiguration = JJ.Framework.Configuration.Tests.Settings.TestConfiguration;
+// ReSharper disable ConvertToConstant.Local
 
 // ReSharper disable UnusedVariable
 // ReSharper disable JoinDeclarationAndInitializer

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JJ.Framework.IO;
 using JJ.Framework.Resources;
 using JJ.Framework.Text;
 using JJ.Framework.Validation;
@@ -15,12 +16,13 @@ namespace JJ.Utilities.FileNameExclusion
 
 		public FileNameExclusionViewModel ViewModel { get; } = CreateEmptyViewModel();
 
+		// Actions
+
 		public void RunProcess()
 		{
 			ClearMessages(ViewModel);
 
 			IValidator validator = new FileNameExclusionViewModelValidator(ViewModel);
-
 			if (!validator.IsValid)
 			{
 				ViewModel.ValidationMessages = validator.Messages;
@@ -39,15 +41,16 @@ namespace JJ.Utilities.FileNameExclusion
 
 		public void AreYouSureYes()
 		{
-
 			IList<string> inputListSplit = ViewModel.InputList.Split(Environment.NewLine);
 			IList<string> exclusionListSplit = ViewModel.ExclusionList.Split(Environment.NewLine);
 
-			IList<string> outputList = _fileNameExcluder.Run(inputListSplit, exclusionListSplit);
+			IList<string> outputList = _fileNameExcluder.Execute(inputListSplit, exclusionListSplit);
 
 			ViewModel.OutputList = string.Join(Environment.NewLine, outputList);
 			ViewModel.DonePopupMessage = CommonResourceFormatter.Done;
 		}
+
+		// Helpers
 
 		private static FileNameExclusionViewModel CreateEmptyViewModel()
 			=> new FileNameExclusionViewModel
