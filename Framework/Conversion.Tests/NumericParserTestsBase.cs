@@ -57,7 +57,7 @@ namespace JJ.Framework.Conversion.Tests
                     bool success = TryParse(WHITE_SPACE, _nlNLCulture, out T number);
 
                     AssertHelper.IsFalse(() => success);
-                    AssertHelper.AreEqual(default(T), () => number);
+                    AssertHelper.AreEqual(default, () => number);
                 });
 
         protected void Test_TryParse_NotNullable_IsInvalidNumber_WithFormatProvider()
@@ -67,7 +67,7 @@ namespace JJ.Framework.Conversion.Tests
                     bool success = TryParse(INVALID_NUMBER, _nlNLCulture, out T number);
 
                     AssertHelper.IsFalse(() => success);
-                    AssertHelper.AreEqual(default(T), () => number);
+                    AssertHelper.AreEqual(default, () => number);
                 });
 
         protected void Test_TryParse_Nullable_HasValue()
