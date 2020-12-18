@@ -1,22 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using JJ.Framework.Common;
+using JJ.Framework.Configuration;
+using JJ.Framework.WinForms.Helpers;
 
-namespace FileNameFilter.WinForms
+namespace JJ.Utilities.FileNameFilter.WinForms
 {
-	static class Program
+	internal static class Program
 	{
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
 		[STAThread]
-		static void Main()
+		private static void Main()
 		{
+			// Message box for unhandled exceptions.
+			UnhandledExceptionMessageBoxShower.Initialize(ResourceFormatter.ApplicationName);
+
+			// Culture from config.
+			string fixedCultureName = AppSettingsReader<IAppSettings>.Get(x => x.FixedCultureName);
+			if (!string.IsNullOrWhiteSpace(fixedCultureName))
+			{
+				CultureHelper.SetCurrentCultureName(fixedCultureName);
+			}
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
+			Application.Run(new FileNameFilterForm());
 		}
 	}
 }

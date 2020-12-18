@@ -35,6 +35,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileNameFilterPresenter.cs" />
     <Compile Include="FileNameFilterViewModelValidator.cs" />
     <Compile Include="FileNameFilterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -46,9 +47,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\IO\JJ.Framework.IO.csproj">
+      <Project>{C600657B-7E29-44B5-83A1-747FAB30D5D0}</Project>
+      <Name>JJ.Framework.IO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.Resources.csproj">
       <Project>{40A53175-8048-4F2D-93CA-383074C0267E}</Project>
       <Name>JJ.Framework.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Text\JJ.Framework.Text.csproj">
+      <Project>{964de0b4-27f8-40f8-8d50-c97388bf8ce2}</Project>
+      <Name>JJ.Framework.Text</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Validation\JJ.Framework.Validation.csproj">
       <Project>{59DDC853-62AF-4F86-A803-3D4DD491E978}</Project>

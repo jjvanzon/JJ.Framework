@@ -63,10 +63,10 @@
     <Compile Include="FileLock.cs" />
     <Compile Include="FileLockException.cs" />
     <Compile Include="FileNameExcluder.cs" />
-    <Compile Include="FileNameFilter.cs" />
+    <Compile Include="FileNameFilterer.cs" />
     <Compile Include="IBulkFileDeleter.cs" />
     <Compile Include="IFileDeduplicator.cs" />
-    <Compile Include="IFileNameFilter.cs" />
+    <Compile Include="IFileNameFilterer.cs" />
     <Compile Include="IFileNameExcluder.cs" />
     <Compile Include="LockEnum.cs" />
     <Compile Include="PathParser.cs" />

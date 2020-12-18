@@ -9,9 +9,9 @@ namespace JJ.Framework.IO
 	/// <para> There is some lenience towards formatting. The paths can be surrounded by double quotes (") and white space.
 	/// The list of file names to keep can be both full paths or just the file names. </para>
 	/// </summary>
-	public interface IFileNameFilter
+	public interface IFileNameFilterer
 	{
-		/// <inheritdoc cref="IFileNameFilter" />
+		/// <inheritdoc cref="IFileNameFilterer" />
 		IList<string> Execute(IList<string> inputFilePaths, IList<string> pathsWithFileNamesToKeep);
 	}
 }

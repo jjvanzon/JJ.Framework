@@ -49,11 +49,21 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="JJ_Utilities_FileNameFilter_ResourceFormatter_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Resources.Tests\JJ.Framework.Resources.Tests.csproj">
+      <Project>{B26B8089-81F0-4E8E-9CE6-21CF9BC24B24}</Project>
+      <Name>JJ.Framework.Resources.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FileNameFilter\JJ.Utilities.FileNameFilter.csproj">
+      <Project>{84663F80-19BA-4EC0-9001-3F146B76DF56}</Project>
+      <Name>JJ.Utilities.FileNameFilter</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

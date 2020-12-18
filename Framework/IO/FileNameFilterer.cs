@@ -7,7 +7,7 @@ using JJ.Framework.Text;
 namespace JJ.Framework.IO
 {
 	/// <inheritdoc />
-	public class FileNameFilter : IFileNameFilter
+	public class FileNameFilterer : IFileNameFilterer
 	{
 		/// <inheritdoc />
 		public IList<string> Execute(IList<string> inputFilePaths, IList<string> pathsWithFileNamesToKeep)

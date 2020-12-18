@@ -10,7 +10,7 @@ namespace JJ.Utilities.FileNameFilter
 			if (viewModel == null) throw new ArgumentNullException(nameof(viewModel));
 
 			For(viewModel.InputList, ResourceFormatter.InputList).NotNullOrWhiteSpace();
-			For(viewModel.ListOfFileNamesToKeep, ResourceFormatter.ListOfFileNamesToKeep).NotNullOrWhiteSpace();
+			For(viewModel.FileNamesToKeep, ResourceFormatter.ListOfFileNamesToKeep).NotNullOrWhiteSpace();
 		}
 	}
 }

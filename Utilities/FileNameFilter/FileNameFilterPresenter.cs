@@ -5,16 +5,16 @@ using JJ.Framework.Resources;
 using JJ.Framework.Text;
 using JJ.Framework.Validation;
 
-namespace JJ.Utilities.FileNameExclusion
+namespace JJ.Utilities.FileNameFilter
 {
-	public class FileNameExclusionPresenter
+	public class FileNameFilterPresenter
 	{
-		private readonly IFileNameExcluder _fileNameExcluder;
+		private readonly IFileNameFilterer _fileNameFilterer;
 
-		public FileNameExclusionPresenter(IFileNameExcluder fileNameExcluder)
-			=> _fileNameExcluder = fileNameExcluder;
+		public FileNameFilterPresenter(IFileNameFilterer fileNameFilterer)
+			=> _fileNameFilterer = fileNameFilterer;
 
-		public FileNameExclusionViewModel ViewModel { get; } = CreateEmptyViewModel();
+		public FileNameFilterViewModel ViewModel { get; } = CreateEmptyViewModel();
 
 		// Actions
 
@@ -22,7 +22,7 @@ namespace JJ.Utilities.FileNameExclusion
 		{
 			ClearMessages(ViewModel);
 
-			IValidator validator = new FileNameExclusionViewModelValidator(ViewModel);
+			IValidator validator = new FileNameFilterViewModelValidator(ViewModel);
 			if (!validator.IsValid)
 			{
 				ViewModel.ValidationMessages = validator.Messages;
@@ -42,9 +42,9 @@ namespace JJ.Utilities.FileNameExclusion
 		public void AreYouSureYes()
 		{
 			IList<string> inputListSplit = ViewModel.InputList.Split(Environment.NewLine);
-			IList<string> exclusionListSplit = ViewModel.ExclusionList.Split(Environment.NewLine);
+			IList<string> fileNamesToKeepSplit = ViewModel.FileNamesToKeep.Split(Environment.NewLine);
 
-			IList<string> outputList = _fileNameExcluder.Execute(inputListSplit, exclusionListSplit);
+			IList<string> outputList = _fileNameFilterer.Execute(inputListSplit, fileNamesToKeepSplit);
 
 			ViewModel.OutputList = string.Join(Environment.NewLine, outputList);
 			ViewModel.DonePopupMessage = CommonResourceFormatter.Done;
@@ -52,14 +52,14 @@ namespace JJ.Utilities.FileNameExclusion
 
 		// Helpers
 
-		private static FileNameExclusionViewModel CreateEmptyViewModel()
-			=> new FileNameExclusionViewModel
+		private static FileNameFilterViewModel CreateEmptyViewModel()
+			=> new FileNameFilterViewModel
 			{
 				DonePopupMessage = "",
 				ValidationMessages = new List<string>()
 			};
 
-		private static void ClearMessages(FileNameExclusionViewModel viewModel)
+		private static void ClearMessages(FileNameFilterViewModel viewModel)
 		{
 			viewModel.DonePopupMessage = "";
 			viewModel.ValidationMessages = new List<string>();
