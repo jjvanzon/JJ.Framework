@@ -70,11 +70,20 @@ namespace JJ.Utilities.FileNameFilter {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility aims to take a list of file paths, then filter out only certain file names, generating a new list..
+        ///   Looks up a localized string similar to This utility aims to take a list of file paths, then filter out only certain file names, generating a new list. The point is: the folders can differ. But this tool does not look at the folders..
         /// </summary>
         internal static string Explanation {
             get {
                 return ResourceManager.GetString("Explanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Names to Keep.
+        /// </summary>
+        internal static string FileNamesToKeep {
+            get {
+                return ResourceManager.GetString("FileNamesToKeep", resourceCulture);
             }
         }
         
@@ -84,15 +93,6 @@ namespace JJ.Utilities.FileNameFilter {
         internal static string InputList {
             get {
                 return ResourceManager.GetString("InputList", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to List of File Names to Keep.
-        /// </summary>
-        internal static string ListOfFileNamesToKeep {
-            get {
-                return ResourceManager.GetString("ListOfFileNamesToKeep", resourceCulture);
             }
         }
         

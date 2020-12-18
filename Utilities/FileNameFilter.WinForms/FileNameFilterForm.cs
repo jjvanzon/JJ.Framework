@@ -43,7 +43,7 @@ namespace JJ.Utilities.FileNameFilter.WinForms
 			Description = ResourceFormatter.Explanation;
 			StartButtonText = CommonResourceFormatter.Start;
 			labelInputList.Text = ResourceFormatter.InputList + ":";
-			labelFileNamesToKeep.Text = ResourceFormatter.ListOfFileNamesToKeep + ":";
+			labelFileNamesToKeep.Text = ResourceFormatter.FileNamesToKeep + ":";
 			labelOutputList.Text = ResourceFormatter.OutputList + ":";
 		}
 
