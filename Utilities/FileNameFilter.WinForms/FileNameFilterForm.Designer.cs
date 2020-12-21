@@ -29,6 +29,7 @@ namespace JJ.Utilities.FileNameFilter.WinForms
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileNameFilterForm));
 			this.textBoxInputList = new System.Windows.Forms.TextBox();
 			this.textBoxFileNamesToKeep = new System.Windows.Forms.TextBox();
 			this.textBoxOutputList = new System.Windows.Forms.TextBox();
@@ -87,7 +88,7 @@ namespace JJ.Utilities.FileNameFilter.WinForms
 			this.labelFileNamesToKeep.AutoSize = true;
 			this.labelFileNamesToKeep.Location = new System.Drawing.Point(8, 194);
 			this.labelFileNamesToKeep.Name = "labelFileNamesToKeep";
-			this.labelFileNamesToKeep.Size = new System.Drawing.Size(141, 22);
+			this.labelFileNamesToKeep.Size = new System.Drawing.Size(178, 22);
 			this.labelFileNamesToKeep.TabIndex = 10;
 			this.labelFileNamesToKeep.Text = "labelFileNamesToKeep";
 			// 
@@ -118,6 +119,7 @@ namespace JJ.Utilities.FileNameFilter.WinForms
     "generating a new list.";
 			this.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.None;
 			this.Font = new System.Drawing.Font("Calibri", 8.805756F, System.Drawing.FontStyle.Bold);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MustShowEmptyProgressBar = false;
 			this.Name = "FileNameFilterForm";
 			this.Text = "";
