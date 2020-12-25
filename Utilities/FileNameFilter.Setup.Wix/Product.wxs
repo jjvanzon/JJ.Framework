@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <Product Id="*" Name="!(loc.ApplicationName)" Language="1033" Version="1.7.5" Manufacturer="Jan Joost van Zon" UpgradeCode="4089f771-815f-492f-ba44-263702688b3f">
+
+    <Package Id="*" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="!(loc.NewerVersionAlreadyInstalled)" />
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="CompleteFeature" Level="1">
+      <ComponentRef Id="StartMenuOrganizationFolder" />
+      <ComponentRef Id="ExeComponent" />
+      <ComponentRef Id="ConfigComponent" />
+      <ComponentRef Id="LibraryComponent" /> 
+      <ComponentRef Id="JJFrameworkBusinessComponent" />
+      <ComponentRef Id="JJFrameworkCollectionsComponent" />
+      <ComponentRef Id="JJFrameworkCommonComponent" />
+      <ComponentRef Id="JJFrameworkConfigurationComponent" />
+      <ComponentRef Id="JJFrameworkConversionComponent" />
+      <ComponentRef Id="JJFrameworkDrawingComponent" />
+      <ComponentRef Id="JJFrameworkExceptionsComponent" />
+      <ComponentRef Id="JJFrameworkIOComponent" />
+      <ComponentRef Id="JJFrameworkLoggingComponent" />
+      <ComponentRef Id="JJFrameworkMathematicsComponent" />
+      <ComponentRef Id="JJFrameworkPlatformCompatibilityComponent" />
+      <ComponentRef Id="JJFrameworkPresentationComponent" />
+      <ComponentRef Id="JJFrameworkReflectionComponent" />
+      <ComponentRef Id="JJFrameworkResourcesComponent" />
+      <ComponentRef Id="JJFrameworkTextComponent" />
+      <ComponentRef Id="JJFrameworkValidationComponent" />
+      <ComponentRef Id="JJFrameworkVectorGraphicsComponent" />
+      <ComponentRef Id="JJFrameworkWinFormsComponent" />
+      <ComponentRef Id="JJFrameworkXmlComponent" />
+      <ComponentRef Id="System.ValueTupleComponent" />
+      <ComponentRef Id="JJFrameworkIOResourcesNlNlComponent" />
+      <ComponentRef Id="JJFrameworkResourcesResourcesNlNlComponent" />
+      <ComponentRef Id="JJFrameworkValidationResourcesNlNlComponent" />
+      <ComponentRef Id="JJUtilitiesFileNameFilterResourcesNlNlComponent" />
+      <ComponentRef Id="JJFrameworkResourcesResourcesPlPlComponent" />
+    </Feature>
+
+    <Icon Id="Icon.exe" SourceFile="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetPath)" />
+    <Property Id="ARPPRODUCTICON" Value="Icon.exe" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+
+      <Directory Id="DesktopFolder" />
+
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="StartMenuOrganizationFolder" Name="JJ van Zon">
+          <Component Id="StartMenuOrganizationFolder" Guid="64FF4EAC-4A89-45BF-9D04-1E93375BFFDE">
+            <RemoveFolder Id='StartMenuOrganizationFolder' On='uninstall' />
+            <RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
+          </Component>
+        </Directory>
+      </Directory>
+
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id='ProgramFilesOrganizationFolder' Name='JJ van Zon'>
+          <Directory Id="INSTALLFOLDER" Name="!(loc.ApplicationName)">
+
+            <Component Id="ExeComponent" Guid="89A5F70D-264D-42FF-92B4-716AA7C47FEA">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetPath)" KeyPath="yes">
+                <Shortcut Id="StartMenuShortcut" Directory="StartMenuOrganizationFolder" Name="!(loc.ApplicationName)" Icon="Icon.exe" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="!(loc.ApplicationName)" Icon="Icon.exe" IconIndex="0" Advertise="yes" />
+              </File>
+            </Component>
+
+            <Component Id="ConfigComponent" Guid="3F1C3ACC-FB5A-4C68-AE37-E20203A5069E">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetPath).config" KeyPath="yes" />
+            </Component>
+
+            <Component Id="LibraryComponent" Guid="870E46B0-D4C5-4594-ADC4-3FCDBC57E94E">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Utilities.FileNameFilter.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkBusinessComponent" Guid="17601072-DB43-46B4-A46B-EEB38173ABA1">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Business.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkCollectionsComponent" Guid="0D9D8386-1B6C-43B9-B7DC-2C79C8625551">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Collections.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkCommonComponent" Guid="A7476DDC-5DB9-4A7F-89D4-72677421B49C">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Common.dll" />
+            </Component>
+
+            <Component Id="JJFrameworkConfigurationComponent" Guid="DA09AD15-6364-4E64-A637-C5C154035E1E">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Configuration.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkConversionComponent" Guid="7DEA4D17-6E93-4E74-8D5B-5EBEDE20D310">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Conversion.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkDrawingComponent" Guid="F10B8447-F461-4A7B-AD68-30999589D4D8">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Drawing.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkExceptionsComponent" Guid="5897BFD2-37E1-4F3E-AF83-C2883535E598">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Exceptions.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkIOComponent" Guid="7A364218-C658-4C6B-B55C-19E61C830E1B">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.IO.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkLoggingComponent" Guid="CD731FF8-7D15-4021-9B1A-994848AC7D50">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Logging.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkMathematicsComponent" Guid="EA2231C7-3768-4795-A9CD-BD7502CADE74">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Mathematics.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkPlatformCompatibilityComponent" Guid="48B399FB-90D2-4E13-A355-F6C190D9D487">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.PlatformCompatibility.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkPresentationComponent" Guid="C72627DB-2E5C-476C-8879-9C2AA3BECA9F">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Presentation.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkReflectionComponent" Guid="C59EC6D8-88AB-4B42-8B46-0F57496516F4">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Reflection.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkResourcesComponent" Guid="ACC30C70-C6A9-46FB-9E84-4F273667C335">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Resources.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkTextComponent" Guid="9E92980D-0C28-458E-BD72-21195C22C705">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Text.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkValidationComponent" Guid="B8718A13-3F0B-4E6B-842C-5E87AFFC92F0">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Validation.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkVectorGraphicsComponent" Guid="0B7F6A3B-D150-4A82-A0F1-DF13E9927D62">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.VectorGraphics.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkWinFormsComponent" Guid="18758E91-B056-4A90-81BA-26D7B466B988">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.WinForms.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="JJFrameworkXmlComponent" Guid="FEC7C24C-CB5D-4EAB-A020-245CCDF81C4D">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Xml.dll" KeyPath="yes" />
+            </Component>
+
+            <Component Id="System.ValueTupleComponent" Guid="1EAFF831-2260-43B0-B444-645112CCD6EF">
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)System.ValueTuple.dll" KeyPath="yes" />
+            </Component>
+
+            <!-- Resource DLLs. -->
+
+            <Directory Id="NlNlDirectory" Name="nl-NL">
+
+              <Component Id="JJFrameworkIOResourcesNlNlComponent" Guid="0A42A514-19ED-4A1F-9DE0-7BA0D6044E22">
+                <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)nl-NL\JJ.Framework.IO.resources.dll" KeyPath="yes" Id="JJFrameworkIOResourcesNlNlFile" />
+              </Component>
+
+              <Component Id="JJFrameworkResourcesResourcesNlNlComponent" Guid="602DD3D2-9B94-4C1F-826D-793360C3F8F1">
+                <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)nl-NL\JJ.Framework.Resources.resources.dll" KeyPath="yes" Id="JJFrameworkResourcesResourcesNlNlFile" />
+              </Component>
+
+              <Component Id="JJFrameworkValidationResourcesNlNlComponent" Guid="FD41F4FA-4863-4498-9AFF-098B2C706959">
+                <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)nl-NL\JJ.Framework.Validation.resources.dll" KeyPath="yes" Id="JJFrameworkValidationResourcesNlNlFile" />
+              </Component>
+
+              <Component Id="JJUtilitiesFileNameFilterResourcesNlNlComponent" Guid="624607D2-DF1C-4857-A814-8A64E0F04A69">
+                <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)nl-NL\JJ.Utilities.FileNameFilter.resources.dll" KeyPath="yes" Id="JJUtilitiesFileNameFilterResourcesNlNlFile" />
+              </Component>
+            </Directory>
+
+            <Directory Id="PlPlDirectory" Name="pl-PL">
+              <Component Id="JJFrameworkResourcesResourcesPlPlComponent" Guid="7CF11061-36E8-4E2F-B461-DAC1D5893879">
+                <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)pl-PL\JJ.Framework.Resources.resources.dll" KeyPath="yes" Id="JJFrameworkResourcesResourcesPlPlFile" />
+              </Component>
+            </Directory>
+
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <!-- Custom Images -->
+    <WixVariable Id="WixUIBannerBmp" Value="..\..\jj-icon-wix-ui-banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="..\..\jj-icon-wix-ui-dialog.bmp" />
+
+    <!-- Variable for WixUI_InstallDir -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+
+    <!-- Customized WixUI_InstallDir -->
+    <UI Id="WixUI_InstallDir_Customized">
+
+      <!-- Reference to standard UI WixUI_InstallDir -->
+      <UIRef Id="WixUI_InstallDir" />
+
+      <!-- For localized messages? -->
+      <UIRef Id="WixUI_ErrorProgressText" />
+
+      <!-- Rerouting UI to skip the dialog LicenseAgreementDlg.-->
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="2">NOT Installed</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">1</Publish>
+    </UI>
+  </Product>
+
+</Wix>

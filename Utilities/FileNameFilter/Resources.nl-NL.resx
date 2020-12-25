@@ -121,7 +121,7 @@
     <value>JJ utilities - bestandsnamen filter</value>
   </data>
   <data name="Explanation" xml:space="preserve">
-    <value>Deze tool probeert een lijst met bestanden uit te dunnen, tot alleen  bepaalde bestandsnamen en een nieuwe lijst te maken. Het punt it, de map kan verschillen. Maar deze tool let niet op de mappen.</value>
+    <value>Deze tool probeert een lijst met bestanden uit te dunnen tot alleen bepaalde bestandsnamen en een nieuwe lijst te maken. Het punt is, de map kan verschillen. Maar deze tool let niet op mappen.</value>
   </data>
   <data name="FileNamesToKeep" xml:space="preserve">
     <value>Te houden bestandsnamen</value>
