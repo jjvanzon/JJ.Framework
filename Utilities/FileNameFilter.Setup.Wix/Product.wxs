@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 
-  <Product Id="*" Name="!(loc.ApplicationName)" Language="1033" Version="1.7.5" Manufacturer="Jan Joost van Zon" UpgradeCode="4089f771-815f-492f-ba44-263702688b3f">
+  <Product Id="*" Name="!(loc.ApplicationName)" Language="1033" Version="1.7.4" Manufacturer="Jan Joost van Zon" UpgradeCode="4089f771-815f-492f-ba44-263702688b3f">
 
     <Package Id="*" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
