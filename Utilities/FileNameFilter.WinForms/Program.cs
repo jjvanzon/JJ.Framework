@@ -13,7 +13,7 @@ namespace JJ.Utilities.FileNameFilter.WinForms
 		{
 			// Message box for unhandled exceptions.
 			UnhandledExceptionMessageBoxShower.Initialize(ResourceFormatter.ApplicationName);
-
+			 
 			// Culture from config.
 			string fixedCultureName = AppSettingsReader<IAppSettings>.Get(x => x.FixedCultureName);
 			if (!string.IsNullOrWhiteSpace(fixedCultureName))
