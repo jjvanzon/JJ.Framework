@@ -59,15 +59,5 @@ namespace JJ.Utilities.FileNameFilter.WinForms.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon jj_icon_with_margin {
-            get {
-                object obj = ResourceManager.GetObject("jj_icon_with_margin", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
     }
 }

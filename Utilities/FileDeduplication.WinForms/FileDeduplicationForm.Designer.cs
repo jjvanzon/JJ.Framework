@@ -65,12 +65,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.textBoxListOfDuplicates.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.textBoxListOfDuplicates.Location = new System.Drawing.Point(19, 278);
+			this.textBoxListOfDuplicates.Location = new System.Drawing.Point(17, 321);
 			this.textBoxListOfDuplicates.MaxLength = 0;
 			this.textBoxListOfDuplicates.Multiline = true;
 			this.textBoxListOfDuplicates.Name = "textBoxListOfDuplicates";
 			this.textBoxListOfDuplicates.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.textBoxListOfDuplicates.Size = new System.Drawing.Size(644, 197);
+			this.textBoxListOfDuplicates.Size = new System.Drawing.Size(694, 210);
 			this.textBoxListOfDuplicates.TabIndex = 4;
 			this.textBoxListOfDuplicates.WordWrap = false;
 			// 
@@ -96,7 +96,7 @@
 			// labelFilePattern
 			// 
 			this.labelFilePattern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.labelFilePattern.Location = new System.Drawing.Point(385, 193);
+			this.labelFilePattern.Location = new System.Drawing.Point(433, 193);
 			this.labelFilePattern.Name = "labelFilePattern";
 			this.labelFilePattern.Size = new System.Drawing.Size(200, 24);
 			this.labelFilePattern.TabIndex = 7;
@@ -106,7 +106,7 @@
 			// textBoxFilePattern
 			// 
 			this.textBoxFilePattern.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.textBoxFilePattern.Location = new System.Drawing.Point(591, 189);
+			this.textBoxFilePattern.Location = new System.Drawing.Point(639, 189);
 			this.textBoxFilePattern.Name = "textBoxFilePattern";
 			this.textBoxFilePattern.Size = new System.Drawing.Size(72, 29);
 			this.textBoxFilePattern.TabIndex = 8;
@@ -116,7 +116,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(679, 654);
+			this.ClientSize = new System.Drawing.Size(727, 673);
 			this.Controls.Add(this.textBoxFilePattern);
 			this.Controls.Add(this.labelFilePattern);
 			this.Controls.Add(this.labelListOfDuplicatesTitle);
@@ -133,7 +133,6 @@
 			this.TextBoxLabelText = "Folder:";
 			this.TextBoxOrientation = JJ.Framework.WinForms.Helpers.UpDownOrientationEnum.Up;
 			this.TextBoxRightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.TextBoxVisible = true;
 			this.OnRunProcess += new System.EventHandler(this.MainForm_OnRunProcess);
 			this.Cancelled += new System.EventHandler(this.MainForm_Cancelled);
 			this.Load += new System.EventHandler(this.FileDeduplicationForm_Load);
