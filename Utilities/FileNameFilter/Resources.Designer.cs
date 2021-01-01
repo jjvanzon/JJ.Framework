@@ -70,7 +70,7 @@ namespace JJ.Utilities.FileNameFilter {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This utility aims to take a list of file paths then filter out only certain file names, generating a new list. The point is: the folders can differ. But this tool does not look at folders..
+        ///   Looks up a localized string similar to This utility aims to take a list of file paths, then filter out only certain file names, generating a new list. The point is: the folders can differ. But this tool does not look at folders..
         /// </summary>
         internal static string Explanation {
             get {
