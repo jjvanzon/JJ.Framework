@@ -69,6 +69,7 @@ namespace JJ.Utilities.FileNameFilter.WinForms
 			this.textBoxOutputList.MaxLength = 0;
 			this.textBoxOutputList.Multiline = true;
 			this.textBoxOutputList.Name = "textBoxOutputList";
+			this.textBoxOutputList.ReadOnly = true;
 			this.textBoxOutputList.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.textBoxOutputList.Size = new System.Drawing.Size(394, 49);
 			this.textBoxOutputList.TabIndex = 7;
@@ -79,7 +80,7 @@ namespace JJ.Utilities.FileNameFilter.WinForms
 			this.labelOutputList.AutoSize = true;
 			this.labelOutputList.Location = new System.Drawing.Point(34, 615);
 			this.labelOutputList.Name = "labelOutputList";
-			this.labelOutputList.Size = new System.Drawing.Size(248, 44);
+			this.labelOutputList.Size = new System.Drawing.Size(125, 22);
 			this.labelOutputList.TabIndex = 9;
 			this.labelOutputList.Text = "labelOutputList";
 			// 
@@ -88,7 +89,7 @@ namespace JJ.Utilities.FileNameFilter.WinForms
 			this.labelFileNamesToKeep.AutoSize = true;
 			this.labelFileNamesToKeep.Location = new System.Drawing.Point(23, 233);
 			this.labelFileNamesToKeep.Name = "labelFileNamesToKeep";
-			this.labelFileNamesToKeep.Size = new System.Drawing.Size(357, 44);
+			this.labelFileNamesToKeep.Size = new System.Drawing.Size(178, 22);
 			this.labelFileNamesToKeep.TabIndex = 10;
 			this.labelFileNamesToKeep.Text = "labelFileNamesToKeep";
 			// 
@@ -97,14 +98,14 @@ namespace JJ.Utilities.FileNameFilter.WinForms
 			this.labelInputList.AutoSize = true;
 			this.labelInputList.Location = new System.Drawing.Point(12, 152);
 			this.labelInputList.Name = "labelInputList";
-			this.labelInputList.Size = new System.Drawing.Size(222, 44);
+			this.labelInputList.Size = new System.Drawing.Size(112, 22);
 			this.labelInputList.TabIndex = 11;
 			this.labelInputList.Text = "labelInputList";
 			// 
 			// FileNameFilterForm
 			// 
 			this.AreYouSureQuestion = "";
-			this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 44F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BrowseButtonEnabled = false;
 			this.CancelButtonVisible = false;
