@@ -29,6 +29,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FileNameExclusionForm));
 			this.textBoxInputList = new System.Windows.Forms.TextBox();
 			this.textBoxExclusionList = new System.Windows.Forms.TextBox();
 			this.textBoxOutputList = new System.Windows.Forms.TextBox();
@@ -68,6 +69,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.textBoxOutputList.MaxLength = 0;
 			this.textBoxOutputList.Multiline = true;
 			this.textBoxOutputList.Name = "textBoxOutputList";
+			this.textBoxOutputList.ReadOnly = true;
 			this.textBoxOutputList.ScrollBars = System.Windows.Forms.ScrollBars.Both;
 			this.textBoxOutputList.Size = new System.Drawing.Size(776, 91);
 			this.textBoxOutputList.TabIndex = 7;
@@ -107,7 +109,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BrowseButtonEnabled = false;
 			this.CancelButtonVisible = false;
-			this.ClientSize = new System.Drawing.Size(583, 528);
+			this.ClientSize = new System.Drawing.Size(580, 528);
 			this.Controls.Add(this.labelInputList);
 			this.Controls.Add(this.labelExclusionList);
 			this.Controls.Add(this.labelOutputList);
@@ -118,6 +120,7 @@ namespace JJ.Utilities.FileNameExclusion.WinForms
     "generating a new list.";
 			this.FileBrowseMode = JJ.Framework.WinForms.Helpers.FileBrowseModeEnum.None;
 			this.Font = new System.Drawing.Font("Calibri", 8.805756F, System.Drawing.FontStyle.Bold);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MustShowEmptyProgressBar = false;
 			this.Name = "FileNameExclusionForm";
 			this.Text = "";

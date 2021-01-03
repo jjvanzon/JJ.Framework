@@ -121,7 +121,7 @@
     <value>JJ Utilities- File Name Filter</value>
   </data>
   <data name="Explanation" xml:space="preserve">
-    <value>This utility aims to take a list of file paths then filter out only certain file names, generating a new list. The point is: the folders can differ. But this tool does not look at folders.</value>
+    <value>This utility aims to take a list of file paths, then filter out only certain file names, generating a new list. The point is: the folders can differ. But this tool does not look at folders.</value>
   </data>
   <data name="FileNamesToKeep" xml:space="preserve">
     <value>File Names to Keep</value>
