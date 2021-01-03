@@ -61,7 +61,7 @@ namespace JJ.Utilities.FileNameFilter {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JJ Utilities- File Name Filter.
+        ///   Looks up a localized string similar to JJ Utilities - File Name Filter.
         /// </summary>
         internal static string ApplicationName {
             get {
