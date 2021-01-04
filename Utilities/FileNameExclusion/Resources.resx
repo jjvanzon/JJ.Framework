@@ -124,7 +124,7 @@
     <value>Exclusion List</value>
   </data>
   <data name="Explanation" xml:space="preserve">
-    <value>This utility aims to take a list of file paths, then exclude certain file names, generating a new list. The point is: the folders can differ. But this tool does not look at folders.</value>
+    <value>This utility aims to exclude certain file names from a list. The point is: the folders can differ. But this tool does not look at folders.</value>
   </data>
   <data name="InputList" xml:space="preserve">
     <value>Input List</value>
