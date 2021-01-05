@@ -61,7 +61,7 @@ namespace JJ.Utilities.FileNameExclusion {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to JJ Utilities- File Name Exclusion.
+        ///   Looks up a localized string similar to JJ Utilities - File Name Exclusion.
         /// </summary>
         internal static string ApplicationName {
             get {
