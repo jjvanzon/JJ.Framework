@@ -79,7 +79,7 @@
     <None Include="..\..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
-    <None Include="Package.nuspec" />
+    <None Include="JJ.Framework.Data.nuspec" />
     <None Include="jj.framework.persistence example.config">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
