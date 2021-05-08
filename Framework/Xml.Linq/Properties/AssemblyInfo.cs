@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Xml.Linq")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Aims to make working with XML easier. May convert XML to an object graph and back. Details might be taken into account that might be required by (WCF) SOAP services. Uses System.Xml.Linq internally.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

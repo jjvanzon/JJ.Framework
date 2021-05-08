@@ -88,9 +88,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT" />
+    <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="JJ.Framework.Xml.Linq.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
