@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Data.Xml")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Extension to the interfaces specified in JJ.Framework.Data where the underlying data store would be an XML file. (Internally uses System.Xml.)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

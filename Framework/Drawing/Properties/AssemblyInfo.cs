@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Drawing")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Is mostly about mapping JJ.Framework.VectorGraphics to System.Drawing, making that Vector Graphics API usable with System.Drawing.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Data.Memory")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Extension to the interfaces specified in JJ.Framework.Data that might allow working with in-memory data perhaps for the purpose of mocking a data store.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

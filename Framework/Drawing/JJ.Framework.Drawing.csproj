@@ -71,6 +71,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="JJ.Framework.Drawing.nuspec" />
     <None Include="packages.config" />
     <None Include="README.MD" />
   </ItemGroup>

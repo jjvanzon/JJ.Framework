@@ -44,9 +44,10 @@
     <Content Include="JJ.Framework.Cookie.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="README.TXT">
+    <None Include="JJ.Framework.JavaScript.nuspec" />
+    <None Include="README.MD">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
     <None Include="jquery-2.0.3.js" />
     <None Include="jquery-2.0.3.intellisense.js" />
   </ItemGroup>

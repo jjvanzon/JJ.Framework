@@ -11,7 +11,7 @@
     <summary>$description$</summary>
 
     <licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
-    <projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Data</projectUrl>
+    <projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Drawing</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
     <tags></tags>
@@ -19,8 +19,9 @@
     <dependencies>
       <dependency id="JJ.Framework.Common" version="[1.7,1.8)" />
       <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.PlatformCompatibility" version="[1.7,1.8)" />
       <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+      <dependency id="JJ.Framework.VectorGraphics" version="[1.7,1.8)" />
+      <dependency id="System.ValueTuple" version="4.5.0" />
     </dependencies>
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -28,6 +29,6 @@
 
   <files>
     <file src="README.MD" target="" />
-    <file src="jj.framework.persistence example.config" target="" />
   </files>
+
 </package>

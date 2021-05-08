@@ -5,9 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.HtmlToXml")]
-[assembly: AssemblyDescription("")]
-
-
+[assembly: AssemblyDescription("The HtmlToXmlConverter class steals from SgmlReader (see external components and license files if applicable). It does what it says.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

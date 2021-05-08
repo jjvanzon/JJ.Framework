@@ -11,23 +11,26 @@
     <summary>$description$</summary>
 
     <licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
-    <projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Data</projectUrl>
+    <projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Data.NHibernate</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
     <tags></tags>
 
     <dependencies>
-      <dependency id="JJ.Framework.Common" version="[1.7,1.8)" />
+      <dependency id="JJ.Framework.Configuration" version="[1.7,1.8)" />
+      <dependency id="JJ.Framework.Data" version="[1.7,1.8)" />
+      <dependency id="JJ.Framework.Data.SqlClient" version="[1.7,1.8)" />
       <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.PlatformCompatibility" version="[1.7,1.8)" />
       <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+      <dependency id="Antlr3.Runtime" version="3.5.1" />
+      <dependency id="FluentNHibernate" version="2.1.2" />
+      <dependency id="Iesi.Collections" version="4.0.4" />
+      <dependency id="NHibernate" version="5.1.3" />
+      <dependency id="Remotion.Linq" version="2.2.0" />
+      <dependency id="Remotion.Linq.EagerFetching" version="2.2.0" />
     </dependencies>
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
   </metadata>
 
-  <files>
-    <file src="README.MD" target="" />
-    <file src="jj.framework.persistence example.config" target="" />
-  </files>
 </package>
