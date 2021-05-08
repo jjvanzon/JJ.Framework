@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Microsoft.VisualBasic")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Extensions to the Microsoft.VisualBasic namespace. For now might just contain a BulkFileDeleter_WithRecycleBin class, which might delete multiple files with process messages, cancel options and uses the Recycle Bin on Windows. (Microsoft.VisualBasic may contain functions to operate the Recycle Bin on Windows.)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
