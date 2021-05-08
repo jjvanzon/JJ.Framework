@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Mvc")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Contains extensions to the Microsoft ASP.NET MVC Framework for developing web applications.Perhaps most notably it makes it possible to send tree structures over HTTP.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Logging")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("JJ.Framework.Logging should contain any code for logging in general. It for now contains only the ExceptionHelper class, which among other things can convert exception information to a string.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.WinForms")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Extends System.Windows.Forms with some controls and a form. DiagramControl may allow using shapes and text with keyboard and mouse gestures to create a kind of interactive diagram or graphical editor. FilePathControl might allow browsing for a file or folder. SimpleProcessControl for starting a process, possibly selecting an input file, with a cancel button possibility to show progress messages for instance.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

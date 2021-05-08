@@ -1,9 +1,15 @@
 ﻿JJ.Framework.JavaScript
 =======================
 
-Add this to your post build events:
+Several JavaScript helpers that may be used in private projects.
+
+-----
+
+This may be added to a post build events:
 
 copy "$(TargetDir)*.js" "$(ProjectDir)Scripts"
+
+May depend on jQuery (version 2.0.3).
 
 -----
 

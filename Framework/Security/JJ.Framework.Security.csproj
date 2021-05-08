@@ -68,7 +68,10 @@
     <Content Include="jj.framework.security example.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="README.TXT" />
+    <None Include="README.MD" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="JJ.Framework.Security.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

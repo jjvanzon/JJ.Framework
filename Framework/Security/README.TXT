@@ -1,1 +1,0 @@
-﻿JJ.Framework.Security should contain everything reusable we program regarding security. Right now it does not contain a lot, just a generic interfacing for authenticating a user and a not-so-well-tested implementation for hashed salted password authentication.

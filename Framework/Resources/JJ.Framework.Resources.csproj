@@ -68,9 +68,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="README.TXT" />
+    <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="JJ.Framework.Resources.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

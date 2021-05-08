@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Security")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Should contain everything reusable to program regarding security. Right now it does not contain a lot, just a generic interfacing for authenticating a user and not-so-well-tested hashed salted password authentication.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

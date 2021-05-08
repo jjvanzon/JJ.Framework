@@ -1,7 +1,7 @@
 ﻿JJ.Framework.Validation
 =======================
 
-Contains a class __VersatileValidator__. It would offer a neat fluent notation:
+May contain a class __VersatileValidator__. It might offer a neat fluent notation:
 
 	For(Thing.Value).NotNull().MaxLength(100);
 

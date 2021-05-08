@@ -1,4 +1,7 @@
-﻿JJ.Framework.Web contains extensions or replacements for System.Web and other HTTP related parts of .NET.
+﻿JJ.Framework.Web
+================
+
+Contains extensions or replacements for System.Web and other HTTP related parts of .NET.
 
 It among other things contains helper methods for working with cookies more easily, and a helper for picking up the culture / language from your web request.
 

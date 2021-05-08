@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Resources")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Contains reusable button texts and such in multiple languages. Actually Dutch, US English and some broken Polish.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
