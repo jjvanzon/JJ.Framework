@@ -1,6 +1,5 @@
-﻿# JJ.Framework
-
-*Jan Joost van Zon, 2018-12-02*
+﻿JJ.Framework
+============
 
 Everything works to some extent, but the quality of the components varies. The ones with the highest quality made it to [NuGet](https://www.nuget.org/profiles/jjvanzon). Others might need some more unit testing and some bugs resolved.
 
@@ -8,7 +7,8 @@ Everything works to some extent, but the quality of the components varies. The o
 
 I started programming this framework at home in 2013. Some code is even ported from my previous code base that I started in 2010. I have also used a variation of this code at work in a team of 7 that I lead.
 
-## Quirks when Checking Out Old Commits
+Quirks when Checking Out Old Commits
+------------------------------------
 
 `JJ.Framework` was once part of a larger code base. It has been extracted to become a new Git repository with the full history in tact. Some of the quirks when checking out old history items have to do with that.
 
