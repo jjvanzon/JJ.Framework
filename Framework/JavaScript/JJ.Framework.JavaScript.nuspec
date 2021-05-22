@@ -23,11 +23,11 @@
   </metadata>
 
   <files>
-    <file src="JJ.Framework.Assert.js" target="" />
-    <file src="JJ.Framework.Check.js" target="" />
-    <file src="JJ.Framework.Cookie.js" target="" />
-    <file src="JJ.Framework.RememberScrollPosition.js" target="" />
-    <file src="JJ.Framework.Url.js" target="" />
+    <file src="JJ.Framework.Assert.js" target="lib\net461\Scripts\" />
+    <file src="JJ.Framework.Check.js" target="lib\net461\Scripts\" />
+    <file src="JJ.Framework.Cookie.js" target="lib\net461\Scripts\" />
+    <file src="JJ.Framework.RememberScrollPosition.js" target="lib\net461\Scripts\" />
+    <file src="JJ.Framework.Url.js" target="lib\net461\Scripts\" />
     <file src="README.MD" target="" />
   </files>
 
