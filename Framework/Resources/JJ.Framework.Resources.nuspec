@@ -26,6 +26,10 @@
 
   <files>
     <file src="README.MD" target="" />
+    <file src="bin\Release\nl-NL\JJ.Framework.Resources.resources.dll" target="lib\net461\nl-NL\JJ.Framework.Resources.resources.dll" />
+    <file src="bin\Release\pl-PL\JJ.Framework.Resources.resources.dll" target="lib\net461\pl-PL\JJ.Framework.Resources.resources.dll" />
+
+
   </files>
 
 </package>
