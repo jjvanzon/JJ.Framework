@@ -35,35 +35,34 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="JJ.Framework.Url.js">
+    <Content Include="Scripts\JJ.Framework.Url.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JJ.Framework.Check.js">
+    <Content Include="Scripts\JJ.Framework.Check.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="JJ.Framework.Cookie.js">
+    <Content Include="Scripts\JJ.Framework.Cookie.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="JJ.Framework.JavaScript.nuspec" />
     <None Include="README.MD">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="jquery-2.0.3.js" />
-    <None Include="jquery-2.0.3.intellisense.js" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="JJ.Framework.RememberScrollPosition.js">
+    <Content Include="Scripts\JJ.Framework.RememberScrollPosition.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="JJ.Framework.Assert.js">
+    <Content Include="Scripts\JJ.Framework.Assert.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

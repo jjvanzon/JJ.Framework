@@ -15,19 +15,16 @@
     <iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
     <tags></tags>
-
-    <dependencies>
-    </dependencies>
+    <dependencies></dependencies>
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <contentFiles>
+      <files include="Scripts/*.js" buildAction="Content" />
+    </contentFiles>
   </metadata>
 
   <files>
-    <file src="JJ.Framework.Assert.js" target="Content\Scripts" />
-    <file src="JJ.Framework.Check.js" target="Content\Scripts" />
-    <file src="JJ.Framework.Cookie.js" target="Content\Scripts" />
-    <file src="JJ.Framework.RememberScrollPosition.js" target="Content\Scripts" />
-    <file src="JJ.Framework.Url.js" target="Content\Scripts" />
     <file src="README.MD" target="" />
   </files>
 
