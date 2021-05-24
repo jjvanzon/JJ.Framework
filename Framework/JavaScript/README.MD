@@ -5,7 +5,7 @@ Several JavaScript helpers that may be used in private projects.
 
 When installing it as a NuGet package, the script files might be put in the "Scripts" folder automatically. Possibly you may *include* them in the project by hand after that.
 
-May depend on jQuery (version 2.0.3, but possibly any version will do).
+May depend on jQuery (version 2.0.3).
 
 -----
 
