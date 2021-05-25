@@ -6,10 +6,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.JavaScript")]
 [assembly: AssemblyDescription(@"Several JavaScript helpers that may be used in private projects. 
-This may be added to a post build events:
-copy """"$(TargetDir)*.js"""" """"$(ProjectDir)Scripts""""
-May depend on jQuery(version 2.0.3).
-")]
+May depend on jQuery (version 2.0.3).")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]

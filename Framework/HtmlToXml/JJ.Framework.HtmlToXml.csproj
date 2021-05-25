@@ -33,6 +33,9 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SgmlReaderOld, Version=1.7.7814.23537, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SgmlReaderOld.1.7.7814.23537\lib\net40\SgmlReaderOld.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
@@ -42,10 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Third Party\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj">
-      <Project>{499527ff-ae52-450f-b3e3-4ad53e1712ad}</Project>
-      <Name>SgmlReaderDll</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Text\JJ.Framework.Text.csproj">
       <Project>{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}</Project>
       <Name>JJ.Framework.Text</Name>
@@ -53,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="JJ.Framework.HtmlToXml.nuspec" />
+    <None Include="packages.config" />
     <None Include="README.MD" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

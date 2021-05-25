@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("JJ.Framework.Testing.Data")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("If your unit test relies on a database, that is not available on other machines, this helps turn connection failures into an inconclusive test result, instead of a test failure.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jan Joost van Zon")]
 [assembly: AssemblyProduct("JJ.Framework")]
