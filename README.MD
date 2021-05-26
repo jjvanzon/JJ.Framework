@@ -58,10 +58,8 @@ Setting Up Dev Environment
     - IIS site binding host name:
         - `demo-ret-noviewmapping-urlparameter.jjvanzon.io`
     - hosts file entries:
-        ``` 
-        127.0.0.1  demo-ret-noviewmapping-urlparameter.jjvanzon.io
-        ::1        demo-ret-noviewmapping-urlparameter.jjvanzon.io
-        ```
+        - `127.0.0.1  demo-ret-noviewmapping-urlparameter.jjvanzon.io`
+        - `::1        demo-ret-noviewmapping-urlparameter.jjvanzon.io`
 
 - __JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData__
 
@@ -74,11 +72,11 @@ Setting Up Dev Environment
     - IIS site binding host name:
         - `demo-ret-withviewmapping-postdata.jjvanzon.io`
     - hosts file entries:
-        ``` 
-        127.0.0.1  demo-ret-withviewmapping-postdata.jjvanzon.io
-        ::1        demo-ret-withviewmapping-postdata.jjvanzon.io
-        ```
+        - `127.0.0.1  demo-ret-withviewmapping-postdata.jjvanzon.io`
+        - `::1        demo-ret-withviewmapping-postdata.jjvanzon.io`
+
 - __JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter__
+
     - C# project:
         - `JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter.csproj`
     - IIS site name:
@@ -88,10 +86,8 @@ Setting Up Dev Environment
     - IIS site binding host name:
         - `demo-ret-withviewmapping-urlparameter.jjvanzon.io`
     - hosts file entries:
-        ``` 
-        127.0.0.1  demo-ret-withviewmapping-urlparameter.jjvanzon.io
-        ::1        demo-ret-withviewmapping-urlparameter.jjvanzon.io
-        ```
+        - `127.0.0.1  demo-ret-withviewmapping-urlparameter.jjvanzon.io`
+        - `::1        demo-ret-withviewmapping-urlparameter.jjvanzon.io`
 
 Quirks when Checking Out Old Commits
 ------------------------------------
