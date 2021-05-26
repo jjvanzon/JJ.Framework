@@ -1,4 +1,4 @@
-﻿Jan-Joost van Zon, 2015-02-03:
+﻿Jan Joost van Zon, 2015-02-03:
 
 This project demonstrates putting multiple levels of return actions in post data.
 Pretty soon the QuestionAndAnswer.Mvc will be changed to put multi-level return actions in the URL's instead.

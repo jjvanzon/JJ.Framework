@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter")]
-[assembly: AssemblyCopyright("Copyright © 2015 - 2018 Jan-Joost van Zon")]
+[assembly: AssemblyCopyright("Copyright © 2015 - 2018 Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
