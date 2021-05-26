@@ -44,8 +44,11 @@ Setting Up Dev Environment
 - Also the Windows hosts file might be changed. Each site added to IIS might need entries in the file `C:\Windows\System32\drivers\etc\hosts`.
 - Here follow suggestions for each of the sites to create and their settings.
 - (Physical path root folder `C:\Repositories\JJ.Framework` may vary.)
+
 -----
+
 - __JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter__
+
     - C# project:
         - `JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.csproj`
     - IIS site name:
@@ -59,7 +62,9 @@ Setting Up Dev Environment
         127.0.0.1  demo-ret-noviewmapping-urlparameter.jjvanzon.io
         ::1        demo-ret-noviewmapping-urlparameter.jjvanzon.io
         ```
+
 - __JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData__
+
     - C# project:
         - `JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.csproj`
     - IIS site name:
