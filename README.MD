@@ -5,6 +5,18 @@
 
 JJ.Framework might contain reusable code, produced along with real-life applications. Any reusable code independent of a particular business domain, may have been moved to this JJ.Framework, for reuse.
 
+
+Stability
+---------
+
+No software is bug free, but extra effort might have been made, testing the JJ.Framework components that were published to [NuGet](https://www.nuget.org/profiles/jjvanzon) which includes unit tests.
+
+The ones not on NuGet may be available as a sneek peek in [JJs-Pre-Release-Package-Feed](https://dev.azure.com/jjvanzon/JJs%20Software/_packaging?_a=feed&feed=JJs-Pre-Release-Package-Feed). But use with caution, because those may not be tested as well. Those may be helped by some more unit testing and may still be a bug or two in it.
+
+
+History
+-------
+
 The reusable code was gathered up between around 2010 and 2020. It may have been a hobby project. But something similar to this framework, may also have been used professionally in a team of 7 under my technical lead at that time.
 
 
@@ -20,20 +32,61 @@ Platform Compatibility
 That grip on dependency, might be a good plan for platform compatibility. JJ.Framework may currently be based on .NET 4.6.1 trying to keep it compatible with Mono. Around 2015 JJ.Framework was tested to be reasonably compatible with Mono and by extension Android, iOS and Windows Phone. This was before newer technology like .NET Standard and more recently .NET 5, which might make keeping things platform-compatible easier. For this reason, there may be plans to port JJ.Framework to .NET 5, but this is still for the future.
 
 
-Stability
----------
-
-No software is bug free, but extra effort might have been made, testing the JJ.Framework components that were published to [NuGet](https://www.nuget.org/profiles/jjvanzon) which includes unit tests.
-
-The ones not on NuGet may be available as a sneek peek in [JJs-Pre-Release-Package-Feed](https://dev.azure.com/jjvanzon/JJs%20Software/_packaging?_a=feed&feed=JJs-Pre-Release-Package-Feed). But use with caution, because those may not be tested as well. Those may be helped by some more unit testing and may still be a bug or two in it.
-
-
 Setting Up Dev Environment
 --------------------------
 
 - Some demo projects might desire setting up in Internet Information Services (IIS).
-- ...
-
+- They may not load otherwise.
+- Trying to *reload* a web project:
+- The Output window in Visual Studio might show an expected web address.
+- It is suggested to install IIS.
+- Creating a web site for each of the relevant projects.
+- Also the Windows hosts file might be changed. Each site added to IIS might need entries in the file `C:\Windows\System32\drivers\etc\hosts`.
+- Here follow suggestions for each of the sites to create and their settings.
+- (Pyshical path root folder `C:\Repositories\JJ.Framework` may vary.)
+-----
+- __JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter:__
+    - C# project:
+        - `JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.csproj`
+    - IIS site name:
+        - `DEV_JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter`
+    - IIS site physical path:
+        - `C:\Repositories\JJ.Framework\Demos\ReturnActions.NoViewMapping.Mvc.UrlParameter`
+    - IIS site binding host name:
+        - `demo-ret-noviewmapping-urlparameter.jjvanzon.io`
+    - hosts file entries:
+        ``` 
+        127.0.0.1  demo-ret-noviewmapping-urlparameter.jjvanzon.io
+        ::1        demo-ret-noviewmapping-urlparameter.jjvanzon.io
+        ```
+- __JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData__
+    - C# project:
+        - `JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.csproj`
+    - IIS site name:
+        - `DEV_JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData`
+    - IIS site physical path:
+        - `C:\Repositories\JJ.Framework\Demos\ReturnActions.WithViewMapping.Mvc.PostData`
+    - IIS site binding host name:
+        - `demo-ret-withviewmapping-postdata.jjvanzon.io`
+    - hosts file entries
+        ``` 
+        127.0.0.1  demo-ret-withviewmapping-postdata.jjvanzon.io
+        ::1        demo-ret-withviewmapping-postdata.jjvanzon.io
+        ```
+- __JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter__
+    - C# project:
+        - `JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter.csproj`
+    - IIS site name:
+        - `DEV_JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter`
+    - IIS site physical path:
+        - `C:\Repositories\JJ.Framework\Demos\ReturnActions.WithViewMapping.Mvc.UrlParameter`
+    - IIS site binding host name:
+        - `demo-ret-withviewmapping-urlparameter.jjvanzon.io`
+    - hosts file entries:
+        ``` 
+        127.0.0.1  demo-ret-withviewmapping-urlparameter.jjvanzon.io
+        ::1        demo-ret-withviewmapping-urlparameter.jjvanzon.io
+        ```
 
 Quirks when Checking Out Old Commits
 ------------------------------------
