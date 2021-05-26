@@ -1,9 +1,9 @@
 ﻿JJ.Framework
 ============
 
-*JJ.Framework* would be extensions to the .NET Framework: like the nuts, bolts and screws of software development: *reusable components*. Some of which one might expect to be there in the .NET Framework, but might seem to be missing there.
+*JJ.Framework* would be extensions to the .NET Framework: like the nuts, bolts and screws of software development: *reusable components*. Some of which might be expected to be there in the .NET Framework, but seem to be missing there.
 
-JJ.Framework might contain reusable code, produced along with real-life applications. Any reusable code independent of a particular business domain, may have been moved to this JJ.Framework, for reuse.
+JJ.Framework might contain reusable code, produced along with real-life applications.
 
 
 Stability
@@ -17,7 +17,7 @@ The ones not on NuGet may be available as a sneek peek in [JJs-Pre-Release-Packa
 History
 -------
 
-The reusable code was gathered up between around 2010 and 2020. It may have been a hobby project. But something similar to this framework, may also have been used professionally in a team of 7 under my technical lead at that time.
+Any reusable code independent of a particular business domain, may have been moved to this JJ.Framework, for reuse. The reusable code was gathered up between around 2010 and 2020. It may have been a hobby project. But something similar to this framework, may also have been used professionally in a team of 7 under my technical lead at that time.
 
 
 Modularization
@@ -43,9 +43,9 @@ Setting Up Dev Environment
 - Creating a web site for each of the relevant projects.
 - Also the Windows hosts file might be changed. Each site added to IIS might need entries in the file `C:\Windows\System32\drivers\etc\hosts`.
 - Here follow suggestions for each of the sites to create and their settings.
-- (Pyshical path root folder `C:\Repositories\JJ.Framework` may vary.)
+- (Physical path root folder `C:\Repositories\JJ.Framework` may vary.)
 -----
-- __JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter:__
+- __JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter__
     - C# project:
         - `JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter.csproj`
     - IIS site name:
@@ -68,7 +68,7 @@ Setting Up Dev Environment
         - `C:\Repositories\JJ.Framework\Demos\ReturnActions.WithViewMapping.Mvc.PostData`
     - IIS site binding host name:
         - `demo-ret-withviewmapping-postdata.jjvanzon.io`
-    - hosts file entries
+    - hosts file entries:
         ``` 
         127.0.0.1  demo-ret-withviewmapping-postdata.jjvanzon.io
         ::1        demo-ret-withviewmapping-postdata.jjvanzon.io
@@ -91,7 +91,7 @@ Setting Up Dev Environment
 Quirks when Checking Out Old Commits
 ------------------------------------
 
-`JJ.Framework` was once part of a larger code base. It may have been extracted to become a new Git repository, history in tact. Some quirks when checking out older history items, may have to do with that.
+`JJ.Framework` was once part of a larger code base. It may have been extracted to become a new Git repository with history in tact. Some quirks when checking out older history items, may have to do with that.
 
 Sometimes commit comments may mention apps that do not seem to be relevant to the JJ.Framework change. That may be because changes to *JJ.Framework* may have been in service of making a feature in another app.
 
