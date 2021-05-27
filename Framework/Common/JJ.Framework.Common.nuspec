@@ -10,8 +10,8 @@
     <description>$description$</description>
     <summary>$description$</summary>
 
-    <licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
-		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Common</projectUrl>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Common</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
 		<tags>common culture embedded resources eventargs</tags>
