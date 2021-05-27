@@ -17,7 +17,7 @@
     <tags>inverse properties relationship one-to-many many-to-one parent child relationship children many 1-to-n n-to-1 side effect successful flag list dirty check validation messages</tags>
 
     <dependencies>
-      <group targetFramework=".NETFramework4.7.1">
+      <group targetFramework=".NETFramework4.6.1">
         <dependency id="JJ.Framework.Text" version="[1.7,1.8)" />
       </group>
     </dependencies>

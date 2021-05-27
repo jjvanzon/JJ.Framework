@@ -17,7 +17,7 @@
 		<tags>file functions attributes stream csv binarywriter numbered path folder recursive relative absolute compare safe overwrite temp</tags>
 
 		<dependencies>
-      <group targetFramework=".NETFramework4.7.1">
+      <group targetFramework=".NETFramework4.6.1">
         <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
         <dependency id="JJ.Framework.PlatformCompatibility" version="[1.7,1.8)" />
         <dependency id="JJ.Framework.Text" version="[1.7,1.8)" />

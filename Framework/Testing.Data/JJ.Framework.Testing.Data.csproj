@@ -51,9 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="JJ.Framework.Testing.Data.nuspec" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
