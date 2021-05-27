@@ -13,9 +13,13 @@
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Text</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
 
-		<tags>text utility string extensions split casing stringbuilder indentation indent tab</tags>
+    <tags>text utility string extensions split casing stringbuilder indentation indent tab</tags>
 
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.1" />
+    </dependencies>
+
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>
 
 	<files>

@@ -17,16 +17,18 @@
     <tags></tags>
 
     <dependencies>
-      <dependency id="JJ.Framework.Collections" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Presentation" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Web" version="[1.7,1.8)" />
-      <dependency id="Microsoft.AspNet.Mvc" version="5.2.6" />
-      <dependency id="Microsoft.AspNet.Razor" version="3.2.6" />
-      <dependency id="Microsoft.AspNet.WebPages" version="3.2.6" />
-      <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
-      <dependency id="System.ValueTuple" version="4.5.0" />
+      <group targetFramework=".NETFramework4.7.1">
+        <dependency id="JJ.Framework.Collections" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Presentation" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Web" version="[1.7,1.8)" />
+        <dependency id="Microsoft.AspNet.Mvc" version="5.2.6" />
+        <dependency id="Microsoft.AspNet.Razor" version="3.2.6" />
+        <dependency id="Microsoft.AspNet.WebPages" version="3.2.6" />
+        <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+        <dependency id="System.ValueTuple" version="4.5.0" />
+      </group>
     </dependencies>
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

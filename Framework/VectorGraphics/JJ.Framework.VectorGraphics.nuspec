@@ -17,13 +17,15 @@
     <tags></tags>
 
     <dependencies>
-      <dependency id="System.ValueTuple" version="4.5.0" />
-      <dependency id="JJ.Framework.Business" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Collections" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Common" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Mathematics" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+      <group targetFramework=".NETFramework4.7.1">
+        <dependency id="System.ValueTuple" version="4.5.0" />
+        <dependency id="JJ.Framework.Business" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Collections" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Common" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Mathematics" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+      </group>
     </dependencies>
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

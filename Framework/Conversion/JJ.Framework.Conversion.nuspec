@@ -17,8 +17,10 @@
 		<tags>convert conversion parse parsing tryparse decimal double short int long single float int16 int32 int64 enum</tags>
 
 		<dependencies>
-			<dependency id="JJ.Framework.Common" version="[1.7,1.8)" />
-			<dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+      <group targetFramework=".NETFramework4.7.1">
+        <dependency id="JJ.Framework.Common" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+      </group>
 		</dependencies>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>

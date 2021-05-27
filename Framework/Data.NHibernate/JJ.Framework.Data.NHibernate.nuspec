@@ -17,17 +17,19 @@
     <tags></tags>
 
     <dependencies>
-      <dependency id="JJ.Framework.Configuration" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Data" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Data.SqlClient" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
-      <dependency id="Antlr3.Runtime" version="3.5.1" />
-      <dependency id="FluentNHibernate" version="2.1.2" />
-      <dependency id="Iesi.Collections" version="4.0.4" />
-      <dependency id="NHibernate" version="5.1.3" />
-      <dependency id="Remotion.Linq" version="2.2.0" />
-      <dependency id="Remotion.Linq.EagerFetching" version="2.2.0" />
+      <group targetFramework=".NETFramework4.7.1">
+        <dependency id="JJ.Framework.Configuration" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Data" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Data.SqlClient" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+        <dependency id="Antlr3.Runtime" version="3.5.1" />
+        <dependency id="FluentNHibernate" version="2.1.2" />
+        <dependency id="Iesi.Collections" version="4.0.4" />
+        <dependency id="NHibernate" version="5.1.3" />
+        <dependency id="Remotion.Linq" version="2.2.0" />
+        <dependency id="Remotion.Linq.EagerFetching" version="2.2.0" />
+      </group>
     </dependencies>
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

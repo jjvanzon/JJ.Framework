@@ -16,7 +16,11 @@
 
 		<tags>common culture embedded resources eventargs</tags>
 
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.1" />
+    </dependencies>
+
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
 	</metadata>
 
 	<files>

@@ -17,9 +17,11 @@
 		<tags>exceptions errors expressions strongly-typed null white space parse type casting found unique comparison file folder</tags>
 
 		<dependencies>
-			<dependency id="System.ValueTuple" version="4.3.0" />
-			<dependency id="JJ.Framework.Text" version="[1.7,1.8)" />
-			<dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+      <group targetFramework=".NETFramework4.7.1">
+        <dependency id="System.ValueTuple" version="4.3.0" />
+        <dependency id="JJ.Framework.Text" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+      </group>
 		</dependencies>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>

@@ -17,13 +17,15 @@
     <tags></tags>
 
     <dependencies>
-      <dependency id="JJ.Framework.Collections" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Common" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Drawing" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Logging" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Presentation" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.VectorGraphics" version="[1.7,1.8)" />
+      <group targetFramework=".NETFramework4.7.1">
+        <dependency id="JJ.Framework.Collections" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Common" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Drawing" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Logging" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Presentation" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.VectorGraphics" version="[1.7,1.8)" />
+      </group>
     </dependencies>
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
