@@ -11,7 +11,7 @@
 
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/PlatformCompatibility</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
+    <icon>images\icon.png</icon>
 
     <tags>platform compatibility multi-platform</tags>
 
@@ -24,5 +24,6 @@
 
   <files>
     <file src="README.MD" target="" />
+    <file src="..\..\jj-icon-64x64-margin4.png" target="images\icon.png" />
   </files>
 </package>

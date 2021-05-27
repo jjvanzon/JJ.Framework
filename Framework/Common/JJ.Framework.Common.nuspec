@@ -12,9 +12,9 @@
 
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Common</projectUrl>
-		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
+    <icon>images\icon.png</icon>
 
-		<tags>common culture embedded resources eventargs</tags>
+    <tags>common culture embedded resources eventargs</tags>
 
     <dependencies>
       <group targetFramework=".NETFramework4.6.1" />
@@ -25,5 +25,6 @@
 
 	<files>
 		<file src="README.MD" target="" />
-	</files>
+    <file src="..\..\jj-icon-64x64-margin4.png" target="images\icon.png" />
+  </files>
 </package>

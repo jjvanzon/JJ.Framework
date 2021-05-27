@@ -11,7 +11,7 @@
 
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Testing.Data</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
+    <icon>images\icon.png</icon>
 
     <tags></tags>
 
@@ -26,5 +26,6 @@
 
   <files>
     <file src="bin\Release\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll" target="lib\net461\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll" />
+    <file src="..\..\jj-icon-64x64-margin4.png" target="images\icon.png" />
   </files>
 </package>
