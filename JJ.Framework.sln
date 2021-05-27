@@ -219,9 +219,12 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "JJ.Utilities.FileNameFilter
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{5E994931-8198-49E1-AA11-579B47734215}"
 	ProjectSection(SolutionItems) = preProject
+		Utilities\Replace Windows 10 Default Font.reg = Utilities\Replace Windows 10 Default Font.reg
+		Utilities\Restore Windows 10 Default Font to Segoe UI.reg = Utilities\Restore Windows 10 Default Font to Segoe UI.reg
 		Utilities\SetDpi_150%.reg = Utilities\SetDpi_150%.reg
 		Utilities\SetDpi_280%.reg = Utilities\SetDpi_280%.reg
 		Utilities\Sleep.bat = Utilities\Sleep.bat
+		Utilities\WhatsKeepingComputerAwake.bat = Utilities\WhatsKeepingComputerAwake.bat
 	EndProjectSection
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "JJ.Utilities.FileNameExclusion.Setup.Wix", "Utilities\FileNameExclusion.Setup.Wix\JJ.Utilities.FileNameExclusion.Setup.Wix.wixproj", "{148012D5-930D-4CCD-A4CB-E0A42156AD2E}"
