@@ -10,16 +10,18 @@
     <description>$description$</description>
     <summary>$description$</summary>
 
-		<licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+		<license type="expression">MIT</license>
 		<projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Exceptions</projectUrl>
-		<iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
+		<icon>images\icon.png</icon>
 
 		<tags>exceptions errors expressions strongly-typed null white space parse type casting found unique comparison file folder</tags>
 
 		<dependencies>
-			<dependency id="System.ValueTuple" version="4.3.0" />
-			<dependency id="JJ.Framework.Text" version="[1.7,1.8)" />
-			<dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="System.ValueTuple" version="4.3.0" />
+        <dependency id="JJ.Framework.Text" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+      </group>
 		</dependencies>
 
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -27,5 +29,6 @@
 
 	<files>
 		<file src="README.MD" target="" />
+    <file src="..\..\jj-icon-64x64-margin4.png" target="images\icon.png" />
 	</files>
 </package>

@@ -10,20 +10,22 @@
     <description>$description$</description>
     <summary>$description$</summary>
 
-    <licenseUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/LICENSE.TXT</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Xml</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/jjvanzon/JJ.Framework/master/jj-icon-64x64-margin4.png</iconUrl>
+    <icon>images\icon.png</icon>
 
     <tags></tags>
 
     <dependencies>
-      <dependency id="JJ.Framework.Conversion" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.IO" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Mathematics" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.PlatformCompatibility" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
-      <dependency id="JJ.Framework.Text" version="[1.7,1.8)" />
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="JJ.Framework.Conversion" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Exceptions" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.IO" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Mathematics" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.PlatformCompatibility" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Reflection" version="[1.7,1.8)" />
+        <dependency id="JJ.Framework.Text" version="[1.7,1.8)" />
+      </group>
     </dependencies>
 
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -31,5 +33,6 @@
 
   <files>
     <file src="README.MD" target="" />
+    <file src="..\..\jj-icon-64x64-margin4.png" target="images\icon.png" />
   </files>
 </package>

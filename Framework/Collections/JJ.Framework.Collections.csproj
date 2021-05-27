@@ -75,9 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="JJ.Framework.Collections.nuspec" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
     <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>

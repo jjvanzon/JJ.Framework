@@ -94,6 +94,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="JJ.Framework.Data.NHibernate.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
