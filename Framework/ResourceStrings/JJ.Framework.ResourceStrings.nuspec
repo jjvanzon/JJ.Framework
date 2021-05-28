@@ -11,7 +11,7 @@
     <summary>$description$</summary>
 
     <license type="expression">MIT</license>
-    <projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/Resources</projectUrl>
+    <projectUrl>https://github.com/jjvanzon/JJ.Framework/tree/master/Framework/ResourceStrings</projectUrl>
     <icon>images\icon.png</icon>
 
     <tags></tags>
@@ -28,8 +28,8 @@
 
   <files>
     <file src="README.MD" target="" />
-    <file src="bin\Release\nl-NL\JJ.Framework.Resources.resources.dll" target="lib\net461\nl-NL\JJ.Framework.Resources.resources.dll" />
-    <file src="bin\Release\pl-PL\JJ.Framework.Resources.resources.dll" target="lib\net461\pl-PL\JJ.Framework.Resources.resources.dll" />
+    <file src="bin\Release\nl-NL\JJ.Framework.ResourceStrings.resources.dll" target="lib\net461\nl-NL\JJ.Framework.ResourceStrings.resources.dll" />
+    <file src="bin\Release\pl-PL\JJ.Framework.ResourceStrings.resources.dll" target="lib\net461\pl-PL\JJ.Framework.ResourceStrings.resources.dll" />
     <file src="..\..\jj-icon-64x64-margin4.png" target="images\icon.png" />
   </files>
 </package>

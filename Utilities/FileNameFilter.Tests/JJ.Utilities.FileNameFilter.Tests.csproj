@@ -53,9 +53,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Resources.Tests\JJ.Framework.Resources.Tests.csproj">
+    <ProjectReference Include="..\..\Framework\Resources.Tests\JJ.Framework.ResourceStrings.Tests.csproj">
       <Project>{B26B8089-81F0-4E8E-9CE6-21CF9BC24B24}</Project>
-      <Name>JJ.Framework.Resources.Tests</Name>
+      <Name>JJ.Framework.ResourceStrings.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\FileNameFilter\JJ.Utilities.FileNameFilter.csproj">
       <Project>{84663F80-19BA-4EC0-9001-3F146B76DF56}</Project>

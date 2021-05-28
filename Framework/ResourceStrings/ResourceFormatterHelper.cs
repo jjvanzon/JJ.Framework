@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 using JJ.Framework.Common;
 
-namespace JJ.Framework.Resources
+namespace JJ.Framework.ResourceStrings
 {
 	/// <summary>
 	/// Aims to supply basic logic for programming a ResourceFormatter class.

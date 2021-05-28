@@ -4,7 +4,7 @@ using JJ.Framework.Common;
 using JJ.Framework.Configuration;
 using JJ.Framework.IO;
 using JJ.Framework.Logging;
-using JJ.Framework.Resources;
+using JJ.Framework.ResourceStrings;
 using JJ.Framework.Validation;
 
 namespace JJ.Utilities.FileDeduplication

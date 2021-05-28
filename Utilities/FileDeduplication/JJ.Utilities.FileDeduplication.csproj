@@ -77,9 +77,9 @@
       <Project>{ceeb755d-de12-4e70-816e-546c429b44b7}</Project>
       <Name>JJ.Framework.Logging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.Resources.csproj">
+    <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.ResourceStrings.csproj">
       <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
-      <Name>JJ.Framework.Resources</Name>
+      <Name>JJ.Framework.ResourceStrings</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Text\JJ.Framework.Text.csproj">
       <Project>{964de0b4-27f8-40f8-8d50-c97388bf8ce2}</Project>

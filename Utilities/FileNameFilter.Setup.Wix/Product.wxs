@@ -128,7 +128,7 @@
             </Component>
 
             <Component Id="JJFrameworkResourcesComponent" Guid="ACC30C70-C6A9-46FB-9E84-4F273667C335">
-              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.Resources.dll" KeyPath="yes" />
+              <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)JJ.Framework.ResourceStrings.dll" KeyPath="yes" />
             </Component>
 
             <Component Id="JJFrameworkTextComponent" Guid="9E92980D-0C28-458E-BD72-21195C22C705">
@@ -164,7 +164,7 @@
               </Component>
 
               <Component Id="JJFrameworkResourcesResourcesNlNlComponent" Guid="602DD3D2-9B94-4C1F-826D-793360C3F8F1">
-                <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)nl-NL\JJ.Framework.Resources.resources.dll" KeyPath="yes" Id="JJFrameworkResourcesResourcesNlNlFile" />
+                <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)nl-NL\JJ.Framework.ResourceStrings.resources.dll" KeyPath="yes" Id="JJFrameworkResourcesResourcesNlNlFile" />
               </Component>
 
               <Component Id="JJFrameworkValidationResourcesNlNlComponent" Guid="FD41F4FA-4863-4498-9AFF-098B2C706959">
@@ -178,7 +178,7 @@
 
             <Directory Id="PlPlDirectory" Name="pl-PL">
               <Component Id="JJFrameworkResourcesResourcesPlPlComponent" Guid="7CF11061-36E8-4E2F-B461-DAC1D5893879">
-                <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)pl-PL\JJ.Framework.Resources.resources.dll" KeyPath="yes" Id="JJFrameworkResourcesResourcesPlPlFile" />
+                <File Source="$(var.JJ.Utilities.FileNameFilter.WinForms.TargetDir)pl-PL\JJ.Framework.ResourceStrings.resources.dll" KeyPath="yes" Id="JJFrameworkResourcesResourcesPlPlFile" />
               </Component>
             </Directory>
 
