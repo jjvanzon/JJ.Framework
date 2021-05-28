@@ -108,8 +108,8 @@
       <Project>{C600657B-7E29-44B5-83A1-747FAB30D5D0}</Project>
       <Name>JJ.Framework.IO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Resources\JJ.Framework.ResourceStrings.csproj">
-      <Project>{40A53175-8048-4F2D-93CA-383074C0267E}</Project>
+    <ProjectReference Include="..\..\Framework\ResourceStrings\JJ.Framework.ResourceStrings.csproj">
+      <Project>{40a53175-8048-4f2d-93ca-383074c0267e}</Project>
       <Name>JJ.Framework.ResourceStrings</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\VectorGraphics\JJ.Framework.VectorGraphics.csproj">

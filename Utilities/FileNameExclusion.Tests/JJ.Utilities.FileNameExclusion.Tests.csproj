@@ -53,7 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Resources.Tests\JJ.Framework.ResourceStrings.Tests.csproj">
+    <ProjectReference Include="..\..\Framework\ResourceStrings.Tests\JJ.Framework.ResourceStrings.Tests.csproj">
       <Project>{b26b8089-81f0-4e8e-9ce6-21cf9bc24b24}</Project>
       <Name>JJ.Framework.ResourceStrings.Tests</Name>
     </ProjectReference>

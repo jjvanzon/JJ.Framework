@@ -53,8 +53,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Resources.Tests\JJ.Framework.ResourceStrings.Tests.csproj">
-      <Project>{B26B8089-81F0-4E8E-9CE6-21CF9BC24B24}</Project>
+    <ProjectReference Include="..\..\Framework\ResourceStrings.Tests\JJ.Framework.ResourceStrings.Tests.csproj">
+      <Project>{b26b8089-81f0-4e8e-9ce6-21cf9bc24b24}</Project>
       <Name>JJ.Framework.ResourceStrings.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\FileDeduplication\JJ.Utilities.FileDeduplication.csproj">
