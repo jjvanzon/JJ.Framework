@@ -8,7 +8,7 @@ using JJ.Framework.Collections;
 using JJ.Framework.Data.Memory;
 using JJ.Framework.IO;
 using Newtonsoft.Json;
-
+ 
 namespace JJ.Framework.Data.JsonBlobZip
 {
     public class JsonBlobZipContext<TRootObject> : ContextBase
