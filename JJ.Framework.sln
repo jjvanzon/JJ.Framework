@@ -90,7 +90,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Tests.Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Diagnostics", "Framework\Logging.Diagnostics\JJ.Framework.Logging.Diagnostics.csproj", "{3673E148-26F4-4DDD-870D-ADC0486BE39C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Resources", "Framework\Resources\JJ.Framework.Resources.csproj", "{40A53175-8048-4F2D-93CA-383074C0267E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.ResourceStrings", "Framework\ResourceStrings\JJ.Framework.ResourceStrings.csproj", "{40A53175-8048-4F2D-93CA-383074C0267E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business", "Framework\Business\JJ.Framework.Business.csproj", "{F44D03E8-FEEC-40D4-B866-A87799185B4C}"
 EndProject
@@ -195,7 +195,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileDeduplicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Microsoft.VisualBasic", "Framework\Microsoft.VisualBasic\JJ.Framework.Microsoft.VisualBasic.csproj", "{AB67EA5D-779B-4F03-A869-61B32BA10B60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Resources.Tests", "Framework\Resources.Tests\JJ.Framework.Resources.Tests.csproj", "{B26B8089-81F0-4E8E-9CE6-21CF9BC24B24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.ResourceStrings.Tests", "Framework\ResourceStrings.Tests\JJ.Framework.ResourceStrings.Tests.csproj", "{B26B8089-81F0-4E8E-9CE6-21CF9BC24B24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Utilities.FileDeduplication.Tests", "Utilities\FileDeduplication.Tests\JJ.Utilities.FileDeduplication.Tests.csproj", "{43BB29B0-0523-42AE-AAF1-AB46F3BCE404}"
 EndProject

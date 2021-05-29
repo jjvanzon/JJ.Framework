@@ -2,7 +2,7 @@
 
 #pragma warning disable IDE0002 // Simplify Member Access
 
-namespace JJ.Framework.Resources.Tests
+namespace JJ.Framework.ResourceStrings.Tests
 {
 	[TestClass]
 	public class CommonResourceFormatterTests : ResourceFormatterTestsBase

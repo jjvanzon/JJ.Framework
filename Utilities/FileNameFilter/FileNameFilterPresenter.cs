@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using JJ.Framework.IO;
-using JJ.Framework.Resources;
+using JJ.Framework.ResourceStrings;
 using JJ.Framework.Text;
 using JJ.Framework.Validation;
 

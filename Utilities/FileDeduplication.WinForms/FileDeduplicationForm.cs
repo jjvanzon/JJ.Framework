@@ -1,7 +1,7 @@
 ﻿using System;
 using JJ.Framework.IO;
 using JJ.Framework.Microsoft.VisualBasic;
-using JJ.Framework.Resources;
+using JJ.Framework.ResourceStrings;
 using JJ.Framework.WinForms.Extensions;
 using JJ.Framework.WinForms.Forms;
 using JJ.Framework.WinForms.Helpers;

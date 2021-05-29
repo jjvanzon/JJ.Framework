@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using JJ.Framework.Resources;
+using JJ.Framework.ResourceStrings;
 using System;
 using System.Collections.Generic;
 using System.IO;

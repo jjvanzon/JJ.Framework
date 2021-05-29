@@ -7,8 +7,8 @@
     <ProjectGuid>{40A53175-8048-4F2D-93CA-383074C0267E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Resources</RootNamespace>
-    <AssemblyName>JJ.Framework.Resources</AssemblyName>
+    <RootNamespace>JJ.Framework.ResourceStrings</RootNamespace>
+    <AssemblyName>JJ.Framework.ResourceStrings</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -72,7 +72,7 @@
     <None Include="README.MD" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="JJ.Framework.Resources.nuspec" />
+    <None Include="JJ.Framework.ResourceStrings.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">

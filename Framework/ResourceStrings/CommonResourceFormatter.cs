@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 
-namespace JJ.Framework.Resources
+namespace JJ.Framework.ResourceStrings
 {
 	[PublicAPI]
 	public static class CommonResourceFormatter

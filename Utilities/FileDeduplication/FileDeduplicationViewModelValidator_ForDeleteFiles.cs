@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using JJ.Framework.Resources;
+using JJ.Framework.ResourceStrings;
 using JJ.Framework.Validation;
 
 namespace JJ.Utilities.FileDeduplication

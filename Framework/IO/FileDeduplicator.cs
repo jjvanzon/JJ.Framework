@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
 using JJ.Framework.Exceptions.InvalidValues;
-using JJ.Framework.Resources;
+using JJ.Framework.ResourceStrings;
 // ReSharper disable SuggestVarOrType_BuiltInTypes
 
 #pragma warning disable IDE0066 // Convert switch statement to expression
