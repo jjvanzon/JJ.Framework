@@ -79,7 +79,7 @@ namespace JJ.Demos.ReflectionCache.Tests
         private static readonly ReflectionCache_Adapted _cache = new ReflectionCache_Adapted(BindingFlags.Public | BindingFlags.Instance);
 
         //private static Dictionary<Type, PropertyInfo[]> _propertyDictionary =
-        //		   new Dictionary<Type, PropertyInfo[]>();
+        //           new Dictionary<Type, PropertyInfo[]>();
 
         //private static object _propertyDictionaryLock = new object();
 

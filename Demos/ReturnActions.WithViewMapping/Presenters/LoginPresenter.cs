@@ -7,35 +7,35 @@ using JJ.Framework.Exceptions.Basic;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.Presenters
 {
-	public class LoginPresenter
-	{
-		private readonly ActionInfo _defaultReturnAction;
+    public class LoginPresenter
+    {
+        private readonly ActionInfo _defaultReturnAction;
 
-		public LoginPresenter() => _defaultReturnAction = ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show());
+        public LoginPresenter() => _defaultReturnAction = ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show());
 
-		public object Logout() => new ListPresenter().Show();
+        public object Logout() => new ListPresenter().Show();
 
-		public LoginViewModel Show(ActionInfo returnAction = null)
-			=> new LoginViewModel
-			{
-				ReturnAction = returnAction ?? _defaultReturnAction
-			};
+        public LoginViewModel Show(ActionInfo returnAction = null)
+            => new LoginViewModel
+            {
+                ReturnAction = returnAction ?? _defaultReturnAction
+            };
 
-		public object Login(LoginViewModel viewModel)
-		{
-			if (viewModel == null) throw new NullException(() => viewModel);
+        public object Login(LoginViewModel viewModel)
+        {
+            if (viewModel == null) throw new NullException(() => viewModel);
 
-			viewModel.NullCoalesce();
+            viewModel.NullCoalesce();
 
-			viewModel.ReturnAction = viewModel.ReturnAction ?? _defaultReturnAction;
+            viewModel.ReturnAction = viewModel.ReturnAction ?? _defaultReturnAction;
 
-			// Fake authentication
-			if (string.IsNullOrEmpty(viewModel.UserName))
-			{
-				return Show();
-			}
+            // Fake authentication
+            if (string.IsNullOrEmpty(viewModel.UserName))
+            {
+                return Show();
+            }
 
-			return ActionDispatcher.Dispatch(viewModel.ReturnAction, new { authenticatedUserName = viewModel.UserName });
-		}
-	}
+            return ActionDispatcher.Dispatch(viewModel.ReturnAction, new { authenticatedUserName = viewModel.UserName });
+        }
+    }
 }

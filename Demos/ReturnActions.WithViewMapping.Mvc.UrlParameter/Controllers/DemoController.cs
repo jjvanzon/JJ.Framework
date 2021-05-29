@@ -9,63 +9,63 @@ using ActionDispatcher = JJ.Demos.ReturnActions.Framework.Mvc.ActionDispatcher;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter.Controllers
 {
-	public class DemoController : MasterController
-	{
-		public ActionResult Index()
-		{
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
-			{
-				var presenter = new ListPresenter();
-				viewModel = presenter.Show();
-			}
+    public class DemoController : MasterController
+    {
+        public ActionResult Index()
+        {
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
+            {
+                var presenter = new ListPresenter();
+                viewModel = presenter.Show();
+            }
 
-			return ActionDispatcher.Dispatch(this, viewModel);
-		}
+            return ActionDispatcher.Dispatch(this, viewModel);
+        }
 
-		public ActionResult Details(int id)
-		{
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
-			{
-				var presenter = new DetailsPresenter();
-				viewModel = presenter.Show(id);
-			}
+        public ActionResult Details(int id)
+        {
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
+            {
+                var presenter = new DetailsPresenter();
+                viewModel = presenter.Show(id);
+            }
 
-			return ActionDispatcher.Dispatch(this, viewModel);
-		}
+            return ActionDispatcher.Dispatch(this, viewModel);
+        }
 
-		public ActionResult Edit(int id, string ret = null)
-		{
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
-			{
-				var presenter = new EditPresenter(GetAuthenticatedUserName());
-				ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
-				viewModel = presenter.Show(id, returnAction);
-			}
+        public ActionResult Edit(int id, string ret = null)
+        {
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
+            {
+                var presenter = new EditPresenter(GetAuthenticatedUserName());
+                ActionInfo returnAction = ActionDispatcher.TryGetActionInfo(ret);
+                viewModel = presenter.Show(id, returnAction);
+            }
 
-			return ActionDispatcher.Dispatch(this, viewModel);
-		}
+            return ActionDispatcher.Dispatch(this, viewModel);
+        }
 
-		[HttpPost]
-		public ActionResult Edit(int id, EditViewModel viewModel, string ret = null)
-		{
-			var presenter = new EditPresenter(GetAuthenticatedUserName());
-			viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
-			object viewModel2 = presenter.Save(viewModel);
+        [HttpPost]
+        public ActionResult Edit(int id, EditViewModel viewModel, string ret = null)
+        {
+            var presenter = new EditPresenter(GetAuthenticatedUserName());
+            viewModel.ReturnAction = ActionDispatcher.TryGetActionInfo(ret);
+            object viewModel2 = presenter.Save(viewModel);
 
-			return ActionDispatcher.Dispatch(this, viewModel2);
-		}
+            return ActionDispatcher.Dispatch(this, viewModel2);
+        }
 
-		public ActionResult Logout()
-		{
-			if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
-			{
-				var presenter = new LoginPresenter();
-				viewModel = presenter.Logout();
-			}
+        public ActionResult Logout()
+        {
+            if (!TempData.TryGetValue(ActionDispatcher.TempDataKey, out object viewModel))
+            {
+                var presenter = new LoginPresenter();
+                viewModel = presenter.Logout();
+            }
 
-			SetAuthenticatedUserName(null);
+            SetAuthenticatedUserName(null);
 
-			return ActionDispatcher.Dispatch(this, viewModel);
-		}
-	}
+            return ActionDispatcher.Dispatch(this, viewModel);
+        }
+    }
 }

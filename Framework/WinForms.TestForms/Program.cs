@@ -5,20 +5,20 @@ using JJ.Framework.WinForms.Helpers;
 
 namespace JJ.Framework.WinForms.TestForms
 {
-	static class Program
-	{
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		[STAThread]
-		static void Main()
-		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
+    static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-			UnhandledExceptionMessageBoxShower.Initialize(Assembly.GetExecutingAssembly().GetName().Name);
+            UnhandledExceptionMessageBoxShower.Initialize(Assembly.GetExecutingAssembly().GetName().Name);
 
-			Application.Run(new PickATestForm());
-		}
-	}
+            Application.Run(new PickATestForm());
+        }
+    }
 }

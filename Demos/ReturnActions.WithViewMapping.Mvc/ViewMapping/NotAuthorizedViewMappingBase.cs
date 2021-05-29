@@ -4,8 +4,8 @@ using JJ.Demos.ReturnActions.Mvc.Names;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.ViewMapping
 {
-	public abstract class NotAuthorizedViewMappingBase : ViewMapping<NotAuthorizedViewModel>
-	{
-		public NotAuthorizedViewMappingBase() => ViewName = nameof(ViewNamesBase.NotAuthorized);
-	}
+    public abstract class NotAuthorizedViewMappingBase : ViewMapping<NotAuthorizedViewModel>
+    {
+        public NotAuthorizedViewMappingBase() => ViewName = nameof(ViewNamesBase.NotAuthorized);
+    }
 }

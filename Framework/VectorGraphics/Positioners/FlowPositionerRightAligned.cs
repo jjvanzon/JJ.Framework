@@ -4,85 +4,85 @@ using System.Collections.Generic;
 
 namespace JJ.Framework.VectorGraphics.Positioners
 {
-	public class FlowPositionerRightAligned : PositionerBase
-	{
-		private readonly float _rowWidth;
-		private readonly float _rowHeight;
-		private readonly float _horizontalSpacing;
-		private readonly float _verticalSpacing;
-		private readonly IList<float> _itemWidths;
+    public class FlowPositionerRightAligned : PositionerBase
+    {
+        private readonly float _rowWidth;
+        private readonly float _rowHeight;
+        private readonly float _horizontalSpacing;
+        private readonly float _verticalSpacing;
+        private readonly IList<float> _itemWidths;
 
-		public FlowPositionerRightAligned(
-			float rowWidth,
-			float rowHeight,
-			float horizontalSpacing,
-			float verticalSpacing,
-			IList<float> itemWidths)
-		{
-			_rowWidth = rowWidth;
-			_rowHeight = rowHeight;
-			_horizontalSpacing = horizontalSpacing;
-			_verticalSpacing = verticalSpacing;
-			_itemWidths = itemWidths ?? throw new ArgumentNullException(nameof(itemWidths));
-		}
+        public FlowPositionerRightAligned(
+            float rowWidth,
+            float rowHeight,
+            float horizontalSpacing,
+            float verticalSpacing,
+            IList<float> itemWidths)
+        {
+            _rowWidth = rowWidth;
+            _rowHeight = rowHeight;
+            _horizontalSpacing = horizontalSpacing;
+            _verticalSpacing = verticalSpacing;
+            _itemWidths = itemWidths ?? throw new ArgumentNullException(nameof(itemWidths));
+        }
 
-		public override IList<(float x, float y, float width, float height)> Calculate()
-		{
-			int count = _itemWidths.Count;
+        public override IList<(float x, float y, float width, float height)> Calculate()
+        {
+            int count = _itemWidths.Count;
 
-			var rectangles = new(float x, float y, float width, float height)[count];
+            var rectangles = new(float x, float y, float width, float height)[count];
 
-			var isFirstItem = true;
-			var firstIndexInRow = 0;
+            var isFirstItem = true;
+            var firstIndexInRow = 0;
 
-			float x = 0;
-			float y = 0;
+            float x = 0;
+            float y = 0;
 
-			for (var i = 0; i < count; i++)
-			{
-				float itemWidth = _itemWidths[i];
+            for (var i = 0; i < count; i++)
+            {
+                float itemWidth = _itemWidths[i];
 
-				if (MustAdvanceRow(x, itemWidth, isFirstItem))
-				{
-					// Correct the coordinates now that the used space has been determined.
-					float rowWidthRemainder = _rowWidth - x + _horizontalSpacing;
-					for (int j = firstIndexInRow; j < i; j++)
-					{
-						rectangles[j].x += rowWidthRemainder;
-					}
+                if (MustAdvanceRow(x, itemWidth, isFirstItem))
+                {
+                    // Correct the coordinates now that the used space has been determined.
+                    float rowWidthRemainder = _rowWidth - x + _horizontalSpacing;
+                    for (int j = firstIndexInRow; j < i; j++)
+                    {
+                        rectangles[j].x += rowWidthRemainder;
+                    }
 
-					firstIndexInRow = i;
-					x = 0;
-					y += _rowHeight + _verticalSpacing;
-				}
+                    firstIndexInRow = i;
+                    x = 0;
+                    y += _rowHeight + _verticalSpacing;
+                }
 
-				rectangles[i] = (x, y, itemWidth, _rowHeight);
+                rectangles[i] = (x, y, itemWidth, _rowHeight);
 
-				x += itemWidth + _horizontalSpacing;
+                x += itemWidth + _horizontalSpacing;
 
-				isFirstItem = false;
-			}
+                isFirstItem = false;
+            }
 
-			// Correct the coordinates now that the used space has been determined.
-			{
-				float rowWidthRemainder = _rowWidth - x + _horizontalSpacing;
-				for (int j = firstIndexInRow; j < count; j++)
-				{
-					rectangles[j].x += rowWidthRemainder;
-				}
-			}
+            // Correct the coordinates now that the used space has been determined.
+            {
+                float rowWidthRemainder = _rowWidth - x + _horizontalSpacing;
+                for (int j = firstIndexInRow; j < count; j++)
+                {
+                    rectangles[j].x += rowWidthRemainder;
+                }
+            }
 
-			return rectangles;
-		}
+            return rectangles;
+        }
 
-		private bool MustAdvanceRow(float x , float itemWidth, bool isFirstItem)
-		{
-			if (isFirstItem)
-			{
-				return false;
-			}
+        private bool MustAdvanceRow(float x , float itemWidth, bool isFirstItem)
+        {
+            if (isFirstItem)
+            {
+                return false;
+            }
 
-			return x + itemWidth > _rowWidth;
-		}
-	}
+            return x + itemWidth > _rowWidth;
+        }
+    }
 }

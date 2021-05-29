@@ -5,6 +5,6 @@ using JJ.Demos.ReturnActions.WithViewMapping.Mvc.ViewMapping;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.ViewMapping
 {
-	[UsedImplicitly]
-	public class ListViewMapping : ListViewMappingBase { }
+    [UsedImplicitly]
+    public class ListViewMapping : ListViewMappingBase { }
 }

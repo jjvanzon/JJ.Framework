@@ -9,143 +9,143 @@ using JJ.Framework.Validation;
 
 namespace JJ.Utilities.FileDeduplication
 {
-	public class FileDeduplicationPresenter
-	{
-		// Services
+    public class FileDeduplicationPresenter
+    {
+        // Services
 
-		private readonly IFileDeduplicator _fileDeduplicator;
-		private readonly IBulkFileDeleter _bulkFileDeleter_WithRecycleBin;
-		private readonly IClipboardUtilizer _clipboardUtilizer;
-		private readonly IListOfDuplicatesParserFormatter _listOfDuplicatesParserFormatter;
+        private readonly IFileDeduplicator _fileDeduplicator;
+        private readonly IBulkFileDeleter _bulkFileDeleter_WithRecycleBin;
+        private readonly IClipboardUtilizer _clipboardUtilizer;
+        private readonly IListOfDuplicatesParserFormatter _listOfDuplicatesParserFormatter;
 
-		// ViewModel
+        // ViewModel
 
-		public FileDeduplicationViewModel ViewModel { get; }
-		private Action _viewModelChanged;
+        public FileDeduplicationViewModel ViewModel { get; }
+        private Action _viewModelChanged;
 
-		public FileDeduplicationPresenter(
-			IFileDeduplicator fileDeduplicator,
-			IBulkFileDeleter bulkFileDeleter_WithRecycleBin,
-			IClipboardUtilizer clipboardUtilizer,
-			IListOfDuplicatesParserFormatter listOfDuplicatesParserFormatter)
-		{
-			_fileDeduplicator = fileDeduplicator;
-			_bulkFileDeleter_WithRecycleBin = bulkFileDeleter_WithRecycleBin;
-			_clipboardUtilizer = clipboardUtilizer;
-			_listOfDuplicatesParserFormatter = listOfDuplicatesParserFormatter;
+        public FileDeduplicationPresenter(
+            IFileDeduplicator fileDeduplicator,
+            IBulkFileDeleter bulkFileDeleter_WithRecycleBin,
+            IClipboardUtilizer clipboardUtilizer,
+            IListOfDuplicatesParserFormatter listOfDuplicatesParserFormatter)
+        {
+            _fileDeduplicator = fileDeduplicator;
+            _bulkFileDeleter_WithRecycleBin = bulkFileDeleter_WithRecycleBin;
+            _clipboardUtilizer = clipboardUtilizer;
+            _listOfDuplicatesParserFormatter = listOfDuplicatesParserFormatter;
 
-			ViewModel = Show();
-		}
+            ViewModel = Show();
+        }
 
-		public void Initialize(Action viewModelChanged) => _viewModelChanged = viewModelChanged;
+        public void Initialize(Action viewModelChanged) => _viewModelChanged = viewModelChanged;
 
-		private FileDeduplicationViewModel Show()
-			=> new FileDeduplicationViewModel
-			{
-				TitleBarText = ResourceFormatter.ApplicationName,
-				Explanation = ResourceFormatter.Explanation,
-				AlsoScanSubFolders = true,
-				FilePattern = "*.*",
-				FolderPath = AppSettingsReader<IAppSettings>.Get(x => x.DefaultFolderPath),
-				ValidationMessages = new List<string>()
-			};
+        private FileDeduplicationViewModel Show()
+            => new FileDeduplicationViewModel
+            {
+                TitleBarText = ResourceFormatter.ApplicationName,
+                Explanation = ResourceFormatter.Explanation,
+                AlsoScanSubFolders = true,
+                FilePattern = "*.*",
+                FolderPath = AppSettingsReader<IAppSettings>.Get(x => x.DefaultFolderPath),
+                ValidationMessages = new List<string>()
+            };
 
-		public void Scan()
-		{
-			IValidator validator = new FileDeduplicationViewModelValidator_ForScan(ViewModel);
-			if (!validator.IsValid)
-			{
-				ViewModel.ValidationMessages = validator.Messages;
-				return;
-			}
+        public void Scan()
+        {
+            IValidator validator = new FileDeduplicationViewModelValidator_ForScan(ViewModel);
+            if (!validator.IsValid)
+            {
+                ViewModel.ValidationMessages = validator.Messages;
+                return;
+            }
 
-			if (!string.IsNullOrWhiteSpace(ViewModel.ListOfDuplicates))
-			{
-				ViewModel.ScanQuestion = ResourceFormatter.ScanQuestion;
-			}
-			else
-			{
-				ScanYes();
-			}
-		}
+            if (!string.IsNullOrWhiteSpace(ViewModel.ListOfDuplicates))
+            {
+                ViewModel.ScanQuestion = ResourceFormatter.ScanQuestion;
+            }
+            else
+            {
+                ScanYes();
+            }
+        }
 
-		public void ScanYes()
-		{
-			try
-			{
-				ViewModel.IsRunning = true;
+        public void ScanYes()
+        {
+            try
+            {
+                ViewModel.IsRunning = true;
 
-				IList<DuplicateFilePair> duplicateFilePairs = _fileDeduplicator.Scan(
-					ViewModel.FolderPath, ViewModel.AlsoScanSubFolders, ViewModel.FilePattern,
-					SetProgressMessage, () => !ViewModel.IsRunning, FileDeduplicatorCallbackCountEnum.Hundred);
+                IList<DuplicateFilePair> duplicateFilePairs = _fileDeduplicator.Scan(
+                    ViewModel.FolderPath, ViewModel.AlsoScanSubFolders, ViewModel.FilePattern,
+                    SetProgressMessage, () => !ViewModel.IsRunning, FileDeduplicatorCallbackCountEnum.Hundred);
 
-				ViewModel.ListOfDuplicates = _listOfDuplicatesParserFormatter.FormatDuplicateFilePairs(duplicateFilePairs);
-			}
-			catch (Exception ex)
-			{
-				ViewModel.ProgressMessage = GetProgressMessage(ex);
-				throw;
-			}
-			finally
-			{
-				ViewModel.IsRunning = false;
-			}
-		}
+                ViewModel.ListOfDuplicates = _listOfDuplicatesParserFormatter.FormatDuplicateFilePairs(duplicateFilePairs);
+            }
+            catch (Exception ex)
+            {
+                ViewModel.ProgressMessage = GetProgressMessage(ex);
+                throw;
+            }
+            finally
+            {
+                ViewModel.IsRunning = false;
+            }
+        }
 
-		public void CopyListOfDuplicates() => _clipboardUtilizer.SetText(ViewModel.ListOfDuplicates);
+        public void CopyListOfDuplicates() => _clipboardUtilizer.SetText(ViewModel.ListOfDuplicates);
 
-		public void DeleteFiles()
-		{
-			IValidator validator = new FileDeduplicationViewModelValidator_ForDeleteFiles(ViewModel, _listOfDuplicatesParserFormatter);
-			if (!validator.IsValid)
-			{
-				ViewModel.ValidationMessages = validator.Messages;
-				return;
-			}
+        public void DeleteFiles()
+        {
+            IValidator validator = new FileDeduplicationViewModelValidator_ForDeleteFiles(ViewModel, _listOfDuplicatesParserFormatter);
+            if (!validator.IsValid)
+            {
+                ViewModel.ValidationMessages = validator.Messages;
+                return;
+            }
 
-			ViewModel.DeleteFilesQuestion = ResourceFormatter.DeleteFilesQuestion;
-		}
+            ViewModel.DeleteFilesQuestion = ResourceFormatter.DeleteFilesQuestion;
+        }
 
-		public void DeleteFilesYes()
-		{
-			try
-			{
-				ViewModel.IsRunning = true;
+        public void DeleteFilesYes()
+        {
+            try
+            {
+                ViewModel.IsRunning = true;
 
-				IList<string> duplicateFilePaths = _listOfDuplicatesParserFormatter.GetDuplicateFilePaths(ViewModel.ListOfDuplicates);
+                IList<string> duplicateFilePaths = _listOfDuplicatesParserFormatter.GetDuplicateFilePaths(ViewModel.ListOfDuplicates);
 
-				_bulkFileDeleter_WithRecycleBin.DeleteFiles(duplicateFilePaths, SetProgressMessage, () => !ViewModel.IsRunning);
-			}
-			catch (Exception ex)
-			{
-				ViewModel.ProgressMessage = GetProgressMessage(ex);
-				throw;
-			}
-			finally
-			{
-				ViewModel.IsRunning = false;
-			}
-		}
+                _bulkFileDeleter_WithRecycleBin.DeleteFiles(duplicateFilePaths, SetProgressMessage, () => !ViewModel.IsRunning);
+            }
+            catch (Exception ex)
+            {
+                ViewModel.ProgressMessage = GetProgressMessage(ex);
+                throw;
+            }
+            finally
+            {
+                ViewModel.IsRunning = false;
+            }
+        }
 
-		public void Cancel()
-		{
-			ViewModel.IsRunning = false;
-			_viewModelChanged?.Invoke();
-		}
+        public void Cancel()
+        {
+            ViewModel.IsRunning = false;
+            _viewModelChanged?.Invoke();
+        }
 
-		private void SetProgressMessage(string progressMessage)
-		{
-			ViewModel.ProgressMessage = progressMessage;
-			_viewModelChanged?.Invoke();
-		}
+        private void SetProgressMessage(string progressMessage)
+        {
+            ViewModel.ProgressMessage = progressMessage;
+            _viewModelChanged?.Invoke();
+        }
 
-		// Helpers
+        // Helpers
 
-		private static string GetProgressMessage(Exception ex)
-		{
-			Exception innerMostException = ExceptionHelper.GetInnermostException(ex);
-			var progressMessage = $"{CommonResourceFormatter.Exception}: {innerMostException.Message}";
-			return progressMessage;
-		}
-	}
+        private static string GetProgressMessage(Exception ex)
+        {
+            Exception innerMostException = ExceptionHelper.GetInnermostException(ex);
+            var progressMessage = $"{CommonResourceFormatter.Exception}: {innerMostException.Message}";
+            return progressMessage;
+        }
+    }
 }

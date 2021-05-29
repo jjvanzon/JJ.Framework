@@ -21,9 +21,9 @@ namespace JJ.Demos.Xml
         public void Demo_XmlToObjectConverter_NullabilityForValueTypes_IsNull()
         {
             const string xml = @"
-	            <myRoot>
-	              <!-- myElement van be left out. Then MyElement in the C# code will be null. -->
-	            </myRoot>
+                <myRoot>
+                  <!-- myElement van be left out. Then MyElement in the C# code will be null. -->
+                </myRoot>
                 ";
 
             var converter = new XmlToObjectConverter<MyRoot>();

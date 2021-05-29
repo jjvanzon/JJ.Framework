@@ -24,12 +24,12 @@ namespace JJ.Framework.Testing
 
             if (Equals(a, b))
             {
-	            if (string.IsNullOrWhiteSpace(name))
-	            {
-		            name = ExpressionHelper.GetText(bExpression);
-	            }
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    name = ExpressionHelper.GetText(bExpression);
+                }
 
-	            string message = TestHelper.FormatTestedPropertyMessage(name);
+                string message = TestHelper.FormatTestedPropertyMessage(name);
                 string fullMessage = GetNotEqualFailedMessage(a, message);
                 throw new Exception(fullMessage);
             }
@@ -45,27 +45,27 @@ namespace JJ.Framework.Testing
 
         /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
         public static void IsTrue(Expression<Func<bool>> expression, string name = null)
-	        => Check(x => x, "IsTrue", expression, name);
+            => Check(x => x, "IsTrue", expression, name);
 
         /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
         public static void IsFalse(Expression<Func<bool>> expression, string name = null)
-	        => Check(x => x == false, "IsFalse", expression, name);
+            => Check(x => x == false, "IsFalse", expression, name);
 
         /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
         public static void IsNull(Expression<Func<object>> expression, string name = null)
-	        => Check(x => x == null, "IsNull", expression, name);
+            => Check(x => x == null, "IsNull", expression, name);
 
         /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
         public static void IsNotNull(Expression<Func<object>> expression, string name = null)
-	        => Check(x => x != null, "IsNotNull", expression, name);
+            => Check(x => x != null, "IsNotNull", expression, name);
 
         /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
         public static void IsNullOrEmpty(Expression<Func<string>> expression, string name = null)
-	        => Check(string.IsNullOrEmpty, "IsNullOrEmpty", expression, name);
+            => Check(string.IsNullOrEmpty, "IsNullOrEmpty", expression, name);
 
         /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
         public static void IsNullOrWhiteSpace(Expression<Func<string>> expression, string name = null)
-	        => Check(string.IsNullOrWhiteSpace, "WhiteSpace", expression, name);
+            => Check(string.IsNullOrWhiteSpace, "WhiteSpace", expression, name);
 
         /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
         public static void NotNullOrEmpty(Expression<Func<string>> expression, string name = null)
@@ -91,8 +91,8 @@ namespace JJ.Framework.Testing
                 }
 
                 string message = TestHelper.FormatTestedPropertyMessage(name);
-	            string fullMessage = GetExpectedActualMessage("IsOfType", expected, actual, message);
-	            throw new Exception(fullMessage);
+                string fullMessage = GetExpectedActualMessage("IsOfType", expected, actual, message);
+                throw new Exception(fullMessage);
             }
         }
 
@@ -208,12 +208,12 @@ namespace JJ.Framework.Testing
 
             if (!condition(actual))
             {
-	            if (string.IsNullOrWhiteSpace(name))
-	            {
-		            name = ExpressionHelper.GetText(actualExpression);
-	            }
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    name = ExpressionHelper.GetText(actualExpression);
+                }
 
-	            string message = TestHelper.FormatTestedPropertyMessage(name);
+                string message = TestHelper.FormatTestedPropertyMessage(name);
                 string fullMessage = GetExpectedActualMessage(methodName, expected, actual, message);
                 throw new Exception(fullMessage);
             }
@@ -227,12 +227,12 @@ namespace JJ.Framework.Testing
 
             if (!condition(value))
             {
-	            if (string.IsNullOrWhiteSpace(name))
-	            {
-		            name = ExpressionHelper.GetText(expression);
-	            }
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    name = ExpressionHelper.GetText(expression);
+                }
 
-	            string message = TestHelper.FormatTestedPropertyMessage(name);
+                string message = TestHelper.FormatTestedPropertyMessage(name);
                 string fullMessage = GetFailureMessage(methodName, message);
                 throw new Exception(fullMessage);
             }

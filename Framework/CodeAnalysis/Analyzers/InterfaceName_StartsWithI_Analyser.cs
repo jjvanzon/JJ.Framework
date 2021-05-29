@@ -6,42 +6,42 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace JJ.Framework.CodeAnalysis.Analyzers
 {
-	[DiagnosticAnalyzer(LanguageNames.CSharp)]
-	[UsedImplicitly]
-	public class InterfaceName_StartsWithI_Analyzer : DiagnosticAnalyzer
-	{
-		private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
-			DiagnosticsIDs.TypeNameAbbreviationCasing,
-			DiagnosticsIDs.TypeNameAbbreviationCasing,
-			"Interface name '{0}' does not start with I.",
-			CategoryNames.Naming,
-			DiagnosticSeverity.Warning,
-			isEnabledByDefault: true);
+    [DiagnosticAnalyzer(LanguageNames.CSharp)]
+    [UsedImplicitly]
+    public class InterfaceName_StartsWithI_Analyzer : DiagnosticAnalyzer
+    {
+        private static readonly DiagnosticDescriptor _rule = new DiagnosticDescriptor(
+            DiagnosticsIDs.TypeNameAbbreviationCasing,
+            DiagnosticsIDs.TypeNameAbbreviationCasing,
+            "Interface name '{0}' does not start with I.",
+            CategoryNames.Naming,
+            DiagnosticSeverity.Warning,
+            isEnabledByDefault: true);
 
-		private static readonly ImmutableArray<DiagnosticDescriptor> _supportedDiagnostics = ImmutableArray.Create(_rule);
+        private static readonly ImmutableArray<DiagnosticDescriptor> _supportedDiagnostics = ImmutableArray.Create(_rule);
 
-		public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => _supportedDiagnostics;
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => _supportedDiagnostics;
 
-		public override void Initialize(AnalysisContext context) => context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
+        public override void Initialize(AnalysisContext context) => context.RegisterSymbolAction(AnalyzeSymbol, SymbolKind.NamedType);
 
-	    private static void AnalyzeSymbol(SymbolAnalysisContext context)
-		{
-			var castedSymbol = (INamedTypeSymbol)context.Symbol;
+        private static void AnalyzeSymbol(SymbolAnalysisContext context)
+        {
+            var castedSymbol = (INamedTypeSymbol)context.Symbol;
 
-			if (castedSymbol.TypeKind != TypeKind.Interface)
-			{
-				return;
-			}
+            if (castedSymbol.TypeKind != TypeKind.Interface)
+            {
+                return;
+            }
 
-			string name = castedSymbol.Name;
+            string name = castedSymbol.Name;
 
-			if (name.StartsWith("I"))
-			{
-				return;
-			}
+            if (name.StartsWith("I"))
+            {
+                return;
+            }
 
-			Diagnostic diagnostic = Diagnostic.Create(_rule, castedSymbol.Locations[0], name);
-			context.ReportDiagnostic(diagnostic);
-		}
-	}
+            Diagnostic diagnostic = Diagnostic.Create(_rule, castedSymbol.Locations[0], name);
+            context.ReportDiagnostic(diagnostic);
+        }
+    }
 }

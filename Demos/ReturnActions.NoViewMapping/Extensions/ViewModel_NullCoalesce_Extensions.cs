@@ -5,8 +5,8 @@ using JJ.Demos.ReturnActions.ViewModels;
 
 namespace JJ.Demos.ReturnActions.NoViewMapping.Extensions
 {
-	internal static class ViewModel_NullCoalesce_Extensions
-	{
-		public static void NullCoalesce(this EditViewModel viewModel) => viewModel.Entity = viewModel.Entity ?? new EntityViewModel();
-	}
+    internal static class ViewModel_NullCoalesce_Extensions
+    {
+        public static void NullCoalesce(this EditViewModel viewModel) => viewModel.Entity = viewModel.Entity ?? new EntityViewModel();
+    }
 }

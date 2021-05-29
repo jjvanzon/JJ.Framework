@@ -3,6 +3,6 @@
 
 namespace JJ.Framework.CodeAnalysis.TestCode
 {
-	internal class className_NotStartingWithUpperCase
-	{ }
+    internal class className_NotStartingWithUpperCase
+    { }
 }

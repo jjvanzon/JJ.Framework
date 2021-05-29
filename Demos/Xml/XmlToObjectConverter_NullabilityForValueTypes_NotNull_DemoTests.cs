@@ -21,10 +21,10 @@ namespace JJ.Demos.Xml
         public void Demo_XmlToObjectConverter_NullabilityForValueTypes_NotNull()
         {
             const string xml = @"
-	            <myRoot>
-	              <!-- myElement is required, otherwise you will get an exception. -->
-	              <myElement>3</myElement>
-	            </myRoot>
+                <myRoot>
+                  <!-- myElement is required, otherwise you will get an exception. -->
+                  <myElement>3</myElement>
+                </myRoot>
                 ";
 
             var converter = new XmlToObjectConverter<MyRoot>();

@@ -1,8 +1,8 @@
 ﻿namespace JJ.Framework.Exceptions.Tests
 {
-	internal enum TestEnum
-	{
-		Undefined,
-		Subscriber
-	}
+    internal enum TestEnum
+    {
+        Undefined,
+        Subscriber
+    }
 }

@@ -2,8 +2,8 @@
 
 namespace JJ.Demos.ReturnActions.NoViewMapping.ViewModels
 {
-	public sealed class DetailsViewModel
-	{
-		public EntityViewModel Entity { get; set; }
-	}
+    public sealed class DetailsViewModel
+    {
+        public EntityViewModel Entity { get; set; }
+    }
 }

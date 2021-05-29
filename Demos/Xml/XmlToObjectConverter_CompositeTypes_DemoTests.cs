@@ -34,17 +34,17 @@ namespace JJ.Demos.Xml
         public void Demo_XmlToObjectConverter_CompositeTypes()
         {
             const string xml = @"
-		        <myRoot>
-	              <myObject1 value=""3"" />
-	              <myObject2>
-		            <myArray>
-		              <item name=""Name1"" value=""1"" />
-		              <item name=""Name2"" value=""2"" >
-		                <childItem name=""Child"" value=""3"" />
-		              </item>
-		            </myArray>
-	              </myObject2>
-	            </myRoot>
+                <myRoot>
+                  <myObject1 value=""3"" />
+                  <myObject2>
+                    <myArray>
+                      <item name=""Name1"" value=""1"" />
+                      <item name=""Name2"" value=""2"" >
+                        <childItem name=""Child"" value=""3"" />
+                      </item>
+                    </myArray>
+                  </myObject2>
+                </myRoot>
                 ";
 
             var converter = new XmlToObjectConverter<MyRoot>();

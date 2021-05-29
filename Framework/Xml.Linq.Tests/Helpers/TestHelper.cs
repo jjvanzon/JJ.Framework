@@ -13,11 +13,11 @@ namespace JJ.Framework.Xml.Linq.Tests.Helpers
         public static void Test_XmlToObjectConverter_SimpleElement_WithChildValue<T>(string textValue, T value)
         {
             string xml = @"
-			<root>
-				<simpleType>" +
+            <root>
+                <simpleType>" +
                          textValue +
                          @"</simpleType>
-			</root>";
+            </root>";
 
             var converter = new XmlToObjectConverter<Element_WithChildElement_OfSimpleType<T>>(cultureInfo: FormattingCulture);
             Element_WithChildElement_OfSimpleType<T> destObject = converter.Convert(xml);
@@ -33,12 +33,12 @@ namespace JJ.Framework.Xml.Linq.Tests.Helpers
             where TCollection : IEnumerable
         {
             var xml = @"
-			<root>
-				<collection>
-					<item>0</item>
-					<item>1</item>
-				</collection>
-			</root>";
+            <root>
+                <collection>
+                    <item>0</item>
+                    <item>1</item>
+                </collection>
+            </root>";
 
             var converter = new XmlToObjectConverter<Element_WithCollection<TCollection>>(cultureInfo: FormattingCulture);
             Element_WithCollection<TCollection> destObject = converter.Convert(xml);

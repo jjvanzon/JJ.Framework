@@ -2,13 +2,13 @@
 
 namespace JJ.Framework.Text
 {
-	public static class StringHelper
-	{
+    public static class StringHelper
+    {
         /// <summary> Alternative for String.Join, that takes a char as a separator. </summary>
-		public static string Join(char separator, IEnumerable<object> values)
-		{
-			var separatorString = new string(new[] { separator });
-			return string.Join(separatorString, values);
-		}
-	}
+        public static string Join(char separator, IEnumerable<object> values)
+        {
+            var separatorString = new string(new[] { separator });
+            return string.Join(separatorString, values);
+        }
+    }
 }

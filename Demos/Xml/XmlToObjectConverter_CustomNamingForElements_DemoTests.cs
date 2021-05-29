@@ -21,7 +21,7 @@ namespace JJ.Demos.Xml
         {
             const string xml = @"
                 <root>
-	              <Elm>3</Elm>
+                  <Elm>3</Elm>
                 </root>";
 
             var converter = new XmlToObjectConverter<MyRoot>();

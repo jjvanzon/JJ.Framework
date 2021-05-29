@@ -19,7 +19,7 @@ namespace JJ.Demos.Xml
         {
             const string xml = @"
                 <root>
-	              <myElement>3</myElement>
+                  <myElement>3</myElement>
                 </root>";
 
             var converter = new XmlToObjectConverter<MyRoot>();

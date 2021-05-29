@@ -2,10 +2,10 @@
 
 namespace JJ.Framework.WinForms.EventArg
 {
-	public class FilePathEventArgs : EventArgs
-	{
-		public string FilePath { get; }
+    public class FilePathEventArgs : EventArgs
+    {
+        public string FilePath { get; }
 
-		public FilePathEventArgs(string filePath) => FilePath = filePath;
-	}
+        public FilePathEventArgs(string filePath) => FilePath = filePath;
+    }
 }

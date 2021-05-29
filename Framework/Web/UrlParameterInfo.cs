@@ -2,21 +2,21 @@
 
 namespace JJ.Framework.Web
 {
-	[DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
-	public class UrlParameterInfo
-	{
-		public UrlParameterInfo()
-		{ }
+    [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
+    public class UrlParameterInfo
+    {
+        public UrlParameterInfo()
+        { }
 
-		public UrlParameterInfo(string name, string value)
-		{
-			Name = name;
-			Value = value;
-		}
+        public UrlParameterInfo(string name, string value)
+        {
+            Name = name;
+            Value = value;
+        }
 
-		public string Name { get; set; }
-		public string Value { get; set; }
+        public string Name { get; set; }
+        public string Value { get; set; }
 
-		private string DebuggerDisplay => UrlBuilder.BuildParameter(this);
-	}
+        private string DebuggerDisplay => UrlBuilder.BuildParameter(this);
+    }
 }

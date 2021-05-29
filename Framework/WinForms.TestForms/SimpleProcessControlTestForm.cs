@@ -2,8 +2,8 @@
 
 namespace JJ.Framework.WinForms.TestForms
 {
-	public partial class SimpleProcessControlTestForm : Form
-	{
-		public SimpleProcessControlTestForm() => InitializeComponent();
-	}
+    public partial class SimpleProcessControlTestForm : Form
+    {
+        public SimpleProcessControlTestForm() => InitializeComponent();
+    }
 }

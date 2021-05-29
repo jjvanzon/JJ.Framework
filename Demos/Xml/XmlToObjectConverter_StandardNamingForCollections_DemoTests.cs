@@ -19,11 +19,11 @@ namespace JJ.Demos.Xml
         {
             const string xml = @"
                 <root>
-	              <myArray>
-	                <int32>2</int32>
-	                <int32>3</int32>
-	                <int32>5</int32>
-	              </myArray>
+                  <myArray>
+                    <int32>2</int32>
+                    <int32>3</int32>
+                    <int32>5</int32>
+                  </myArray>
                 </root>";
 
             var converter = new XmlToObjectConverter<MyRoot>();

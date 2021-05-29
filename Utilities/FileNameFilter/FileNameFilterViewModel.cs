@@ -2,13 +2,13 @@
 
 namespace JJ.Utilities.FileNameFilter
 {
-	public class FileNameFilterViewModel
-	{
-		public string InputList { get; set; }
-		public string FileNamesToKeep { get; set; }
-		public string OutputList { get; set; }
-		public IList<string> ValidationMessages { get; set; }
-		public string AreYouSureQuestion { get; set; }
-		public string DonePopupMessage { get; set; }
-	}
+    public class FileNameFilterViewModel
+    {
+        public string InputList { get; set; }
+        public string FileNamesToKeep { get; set; }
+        public string OutputList { get; set; }
+        public IList<string> ValidationMessages { get; set; }
+        public string AreYouSureQuestion { get; set; }
+        public string DonePopupMessage { get; set; }
+    }
 }

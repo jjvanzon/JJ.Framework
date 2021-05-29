@@ -20,9 +20,9 @@ namespace JJ.Demos.Xml
         public void Demo_XmlToObjectConverter_NullabilityForCollections_IsNull()
         {
             const string xml = @"
-	            <myRoot>
-	              <!-- myArray can be left out, but then MyArray in the C# code will be null. -->
-	            </myRoot>
+                <myRoot>
+                  <!-- myArray can be left out, but then MyArray in the C# code will be null. -->
+                </myRoot>
                 ";
 
             var converter = new XmlToObjectConverter<MyRoot>();
@@ -36,10 +36,10 @@ namespace JJ.Demos.Xml
         public void Demo_XmlToObjectConverter_NullabilityForCollections_NotNull()
         {
             const string xml = @"
-	            <myRoot>
-	              <!-- MyArray in the C# code will not be null, but an empty collection. -->
-	              <myArray />
-	            </myRoot>
+                <myRoot>
+                  <!-- MyArray in the C# code will not be null, but an empty collection. -->
+                  <myArray />
+                </myRoot>
                 ";
 
             var converter = new XmlToObjectConverter<MyRoot>();

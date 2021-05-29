@@ -2,8 +2,8 @@
 
 namespace JJ.Framework.Configuration.Tests.Settings
 {
-	interface IMySettings
-	{
-		int MySetting { get; }
-	}
+    interface IMySettings
+    {
+        int MySetting { get; }
+    }
 }

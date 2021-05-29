@@ -22,11 +22,11 @@ namespace JJ.Demos.Xml
         {
             const string xml = @"
                 <root>
-	              <Arr>
-	                <Item>2</Item>
-	                <Item>3</Item>
-	                <Item>5</Item>
-	              </Arr>
+                  <Arr>
+                    <Item>2</Item>
+                    <Item>3</Item>
+                    <Item>5</Item>
+                  </Arr>
                 </root>";
 
             var converter = new XmlToObjectConverter<MyRoot>();

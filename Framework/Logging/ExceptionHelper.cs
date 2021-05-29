@@ -5,48 +5,48 @@ using JJ.Framework.Collections;
 
 namespace JJ.Framework.Logging
 {
-	public static class ExceptionHelper
-	{
-		public static string FormatExceptionWithInnerExceptions(Exception ex, bool includeStackTrace)
-		{
-			var sb = new StringBuilder();
-			sb.AppendLine(FormatException(ex, includeStackTrace));
+    public static class ExceptionHelper
+    {
+        public static string FormatExceptionWithInnerExceptions(Exception ex, bool includeStackTrace)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine(FormatException(ex, includeStackTrace));
 
-			while (ex.InnerException != null)
-			{
-				sb.AppendLine("Inner exception:");
-				sb.AppendLine(FormatException(ex.InnerException, includeStackTrace));
-				ex = ex.InnerException;
-			}
+            while (ex.InnerException != null)
+            {
+                sb.AppendLine("Inner exception:");
+                sb.AppendLine(FormatException(ex.InnerException, includeStackTrace));
+                ex = ex.InnerException;
+            }
 
-			return sb.ToString();
-		}
+            return sb.ToString();
+        }
 
-		public static string FormatException(Exception ex, bool includeStackTrace)
-		{
-			if (ex == null) throw new ArgumentNullException(nameof(ex));
+        public static string FormatException(Exception ex, bool includeStackTrace)
+        {
+            if (ex == null) throw new ArgumentNullException(nameof(ex));
 
-			string message = ex.Message;
-			if (includeStackTrace)
-			{
-				message += Environment.NewLine + ex.StackTrace;
-			}
-			return message;
-		}
+            string message = ex.Message;
+            if (includeStackTrace)
+            {
+                message += Environment.NewLine + ex.StackTrace;
+            }
+            return message;
+        }
 
-		public static Exception GetInnermostException(Exception exception)
-		{
-			const int maxIterations = 100;
+        public static Exception GetInnermostException(Exception exception)
+        {
+            const int maxIterations = 100;
 
-			var i = 0;
-			while (exception.InnerException != null && i < maxIterations)
-			{
-				exception = exception.InnerException;
-				i++;
-			}
+            var i = 0;
+            while (exception.InnerException != null && i < maxIterations)
+            {
+                exception = exception.InnerException;
+                i++;
+            }
 
-			return exception;
-		}
+            return exception;
+        }
 
         public static bool HasExceptionOrInnerExceptionsOfType<T>(Exception exception)
         {
@@ -55,5 +55,5 @@ namespace JJ.Framework.Logging
             bool any = exception.SelfAndAncestors(x => x.InnerException).OfType<T>().Any();
             return any;
         }
-	}
+    }
 }

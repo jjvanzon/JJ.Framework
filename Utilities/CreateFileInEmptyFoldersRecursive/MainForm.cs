@@ -10,52 +10,52 @@ using JJ.Framework.WinForms.Forms;
 
 namespace JJ.Utilities.CreateFileInEmptyFoldersRecursive
 {
-	public partial class MainForm : SimpleProcessForm
-	{
-		private static readonly string[] _excludedFolderNames = { ".git", ".vs" };
+    public partial class MainForm : SimpleProcessForm
+    {
+        private static readonly string[] _excludedFolderNames = { ".git", ".vs" };
 
-		public MainForm() => InitializeComponent();
+        public MainForm() => InitializeComponent();
 
-		private void MainForm_OnRunProcess(object sender, EventArgs e)
-		{
-			string folderPath = TextBoxText;
+        private void MainForm_OnRunProcess(object sender, EventArgs e)
+        {
+            string folderPath = TextBoxText;
 
-			if (!Directory.Exists(folderPath))
-			{
-				throw new FolderDoesNotExistException(folderPath);
-			}
+            if (!Directory.Exists(folderPath))
+            {
+                throw new FolderDoesNotExistException(folderPath);
+            }
 
-			var mainDirectoryInfo = new DirectoryInfo(folderPath);
+            var mainDirectoryInfo = new DirectoryInfo(folderPath);
 
-			IList<DirectoryInfo> emptyDirectoryInfos = mainDirectoryInfo.UnionRecursive(
-				                                                            x => x.EnumerateDirectories()
-				                                                                  .Where(y => !_excludedFolderNames.Contains(y.Name)))
-			                                                            .Where(x => !x.EnumerateFileSystemInfos().Any())
-			                                                            .ToArray();
+            IList<DirectoryInfo> emptyDirectoryInfos = mainDirectoryInfo.UnionRecursive(
+                                                                            x => x.EnumerateDirectories()
+                                                                                  .Where(y => !_excludedFolderNames.Contains(y.Name)))
+                                                                        .Where(x => !x.EnumerateFileSystemInfos().Any())
+                                                                        .ToArray();
 
-			foreach (DirectoryInfo emptyDirectoryInfo in emptyDirectoryInfos)
-			{
-				string filePath = Path.Combine(emptyDirectoryInfo.FullName, "empty.txt");
+            foreach (DirectoryInfo emptyDirectoryInfo in emptyDirectoryInfos)
+            {
+                string filePath = Path.Combine(emptyDirectoryInfo.FullName, "empty.txt");
 
-				string message = $"Writing: {filePath}";
-				Debug.WriteLine(message);
-				ShowProgress(message);
+                string message = $"Writing: {filePath}";
+                Debug.WriteLine(message);
+                ShowProgress(message);
 
-				if (checkBoxPreviewOnly.Checked)
-				{
-					continue;
-				}
+                if (checkBoxPreviewOnly.Checked)
+                {
+                    continue;
+                }
 
-				using (var stream = new FileStream(filePath, FileMode.CreateNew, FileAccess.Write, FileShare.Read))
-				{
-					using (var writer = new StreamWriter(stream, Encoding.UTF8))
-					{
-						writer.Write("This folder is empty on purpose.");
-					}
-				}
-			}
+                using (var stream = new FileStream(filePath, FileMode.CreateNew, FileAccess.Write, FileShare.Read))
+                {
+                    using (var writer = new StreamWriter(stream, Encoding.UTF8))
+                    {
+                        writer.Write("This folder is empty on purpose.");
+                    }
+                }
+            }
 
-			ShowProgress("Done.");
-		}
-	}
+            ShowProgress("Done.");
+        }
+    }
 }

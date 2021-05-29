@@ -2,6 +2,6 @@
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter.Names
 {
-	public abstract class ActionNames : ActionNamesBase
-	{ }
+    public abstract class ActionNames : ActionNamesBase
+    { }
 }

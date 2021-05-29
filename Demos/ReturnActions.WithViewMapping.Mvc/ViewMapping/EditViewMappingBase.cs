@@ -8,12 +8,12 @@ using JJ.Demos.ReturnActions.WithViewMapping.ViewModels;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.ViewMapping
 {
-	public abstract class EditViewMappingBase : ViewMapping<EditViewModel>
-	{
-		public EditViewMappingBase()
-		{
-			MapController(nameof(ControllerNames.Demo), nameof(ActionNamesBase.Edit), nameof(ViewNamesBase.Edit));
-			MapPresenter(nameof(PresenterNames.EditPresenter), nameof(PresenterActionNames.Show));
-		}
-	}
+    public abstract class EditViewMappingBase : ViewMapping<EditViewModel>
+    {
+        public EditViewMappingBase()
+        {
+            MapController(nameof(ControllerNames.Demo), nameof(ActionNamesBase.Edit), nameof(ViewNamesBase.Edit));
+            MapPresenter(nameof(PresenterNames.EditPresenter), nameof(PresenterActionNames.Show));
+        }
+    }
 }

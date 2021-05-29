@@ -5,15 +5,15 @@ using JJ.Demos.ReturnActions.Mvc;
 
 namespace JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter
 {
-	public class MvcApplication : System.Web.HttpApplication
-	{
-		protected void Application_Start()
-		{
-			AreaRegistration.RegisterAllAreas();
+    public class MvcApplication : System.Web.HttpApplication
+    {
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
 
-			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-			RouteConfig.RegisterRoutes(RouteTable.Routes);
-			BundleConfig.RegisterBundles(BundleTable.Bundles);
-		}
-	}
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+    }
 }

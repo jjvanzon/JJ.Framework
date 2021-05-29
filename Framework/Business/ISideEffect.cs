@@ -8,8 +8,8 @@
     /// Using a separate class for side-effects, creates overview over those pieces of business logic,
     /// that are the most creative of all, and prevents those special things that need to happen from being entangled with other code.
     /// </summary>
-	public interface ISideEffect
-	{
-		void Execute();
-	}
+    public interface ISideEffect
+    {
+        void Execute();
+    }
 }

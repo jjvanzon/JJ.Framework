@@ -6,21 +6,21 @@ using JJ.Demos.ReturnActions.ViewModels;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.Presenters
 {
-	public class ListPresenter
-	{
-		public ListViewModel Show() => new ListViewModel
-		{
-		    List = new []
-		    {
-		        MockViewModelFactory.CreateEntityViewModel(),
-		        MockViewModelFactory.CreateEntityViewModel2()
-		    }
-		};
+    public class ListPresenter
+    {
+        public ListViewModel Show() => new ListViewModel
+        {
+            List = new []
+            {
+                MockViewModelFactory.CreateEntityViewModel(),
+                MockViewModelFactory.CreateEntityViewModel2()
+            }
+        };
 
-	    public object Edit(int id, string authenticatedUserName)
-		{
-			var presenter = new EditPresenter(authenticatedUserName);
-			return presenter.Show(id, returnAction: ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show()));
-		}
-	}
+        public object Edit(int id, string authenticatedUserName)
+        {
+            var presenter = new EditPresenter(authenticatedUserName);
+            return presenter.Show(id, returnAction: ActionDispatcher.CreateActionInfo<ListPresenter>(x => x.Show()));
+        }
+    }
 }

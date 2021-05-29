@@ -3,8 +3,8 @@
 
 namespace JJ.Framework.Exceptions.Tests
 {
-	internal class TestItem
-	{
-		public TestItem Parent { get; set; }
-	}
+    internal class TestItem
+    {
+        public TestItem Parent { get; set; }
+    }
 }

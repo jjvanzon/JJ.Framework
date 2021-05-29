@@ -3,6 +3,6 @@ using JJ.Demos.ReturnActions.WithViewMapping.Mvc.ViewMapping;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.Mvc.PostData.ViewMapping
 {
-	[UsedImplicitly]
-	public class NotAuthorizedViewMapping : NotAuthorizedViewMappingBase { }
+    [UsedImplicitly]
+    public class NotAuthorizedViewMapping : NotAuthorizedViewMappingBase { }
 }

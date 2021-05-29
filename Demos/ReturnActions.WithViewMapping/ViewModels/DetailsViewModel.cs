@@ -3,11 +3,11 @@ using JJ.Demos.ReturnActions.ViewModels;
 
 namespace JJ.Demos.ReturnActions.WithViewMapping.ViewModels
 {
-	public sealed class DetailsViewModel
-	{
-		public EntityViewModel Entity { get; set; }
+    public sealed class DetailsViewModel
+    {
+        public EntityViewModel Entity { get; set; }
 
-		/// <summary> nullable </summary>
-		public ActionInfo ReturnAction { get; set; }
-	}
+        /// <summary> nullable </summary>
+        public ActionInfo ReturnAction { get; set; }
+    }
 }

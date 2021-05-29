@@ -25,9 +25,9 @@ namespace JJ.Demos.Xml
         public void Demo_XmlToObjectConverter_NullabilityForReferenceTypes()
         {
             const string xml = @"
-	            <myRoot>
-	              <!-- No myObject element here, so the MyObject property in C# will be null. -->
-	            </myRoot>
+                <myRoot>
+                  <!-- No myObject element here, so the MyObject property in C# will be null. -->
+                </myRoot>
                 ";
 
             var converter = new XmlToObjectConverter<MyRoot>();

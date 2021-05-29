@@ -2,9 +2,9 @@
 
 namespace JJ.Framework.VectorGraphics.Models.Styling
 {
-	public class PointStyle : StyleWithVisibleBase
-	{
-		public int Color { get; set; } = ColorHelper.Black;
-		public float Width { get; set; } = 1;
-	}
+    public class PointStyle : StyleWithVisibleBase
+    {
+        public int Color { get; set; } = ColorHelper.Black;
+        public float Width { get; set; } = 1;
+    }
 }
