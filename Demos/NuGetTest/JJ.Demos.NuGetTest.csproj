@@ -67,6 +67,9 @@
     <Reference Include="JJ.Framework.IO, Version=1.7.7817.43035, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.IO.1.7.7817.43035\lib\net461\JJ.Framework.IO.dll</HintPath>
     </Reference>
+    <Reference Include="JJ.Framework.Logging, Version=1.7.7817.43034, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Logging.1.7.7817.43034\lib\net461\JJ.Framework.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="JJ.Framework.Mathematics, Version=1.7.7817.43034, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Mathematics.1.7.7817.43034\lib\net461\JJ.Framework.Mathematics.dll</HintPath>
     </Reference>
@@ -84,6 +87,9 @@
     </Reference>
     <Reference Include="JJ.Framework.Testing, Version=1.7.7817.43034, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Testing.1.7.7817.43034\lib\net461\JJ.Framework.Testing.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Testing.Data, Version=1.7.7821.33841, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Testing.Data.1.7.7821.33841\lib\net461\JJ.Framework.Testing.Data.dll</HintPath>
     </Reference>
     <Reference Include="JJ.Framework.Text, Version=1.7.7817.43031, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Text.1.7.7817.43031\lib\net461\JJ.Framework.Text.dll</HintPath>
