@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonDebuggerDisplayFormatter.cs" />
+    <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="ExceptionHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
