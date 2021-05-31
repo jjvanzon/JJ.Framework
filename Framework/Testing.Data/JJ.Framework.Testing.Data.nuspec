@@ -25,7 +25,6 @@
   </metadata>
 
   <files>
-    <file src="bin\Release\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll" target="lib\net461\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll" />
     <file src="..\..\jj-icon-64x64-margin4.png" target="images\icon.png" />
   </files>
 </package>
