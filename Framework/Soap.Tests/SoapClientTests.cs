@@ -18,7 +18,7 @@ namespace JJ.Framework.Soap.Tests
         {
             string url = AppSettingsReader<IAppSettings>.Get(x => x.Url);
             var methodName = "SendAndGetCompositeObject";
-            string soapAction = "http://tempuri.org/{typeof(ITestService).Name}/{methodName}";
+            string soapAction = $"http://tempuri.org/{typeof(ITestService).Name}/{methodName}";
             var client = new SoapClient(url, Encoding.UTF8);
             var obj1 = new CompositeType { BoolValue = true, StringValue = "Hi!" };
 

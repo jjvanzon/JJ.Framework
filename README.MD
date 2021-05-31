@@ -11,7 +11,7 @@ Stability
 
 No software is bug free, but extra effort might have been made, testing the JJ.Framework components that were published to [NuGet](https://www.nuget.org/profiles/jjvanzon) which includes unit tests.
 
-The ones not on NuGet may be available as a sneek peek in [JJs-Pre-Release-Package-Feed](https://dev.azure.com/jjvanzon/JJs%20Software/_packaging?_a=feed&feed=JJs-Pre-Release-Package-Feed). But use with caution, because those may not be tested as well. Those may be helped by some more unit testing and may still be a bug or two in it.
+The ones not on NuGet may be available as a sneek peek in [JJs-Pre-Release-Package-Feed](https://dev.azure.com/jjvanzon/JJs-Software/_packaging?_a=feed&feed=JJs-Pre-Release-Package-Feed). But use with caution, because those may not be tested as well. Those may be helped by some more unit testing and may still be a bug or two in it.
 
 
 History
@@ -35,7 +35,7 @@ That grip on dependency, might be a good plan for platform compatibility. JJ.Fra
 Setting Up Dev Environment
 --------------------------
 
-- Some demo projects might desire setting up in Internet Information Services (IIS).
+- Some projects might desire setting up in Internet Information Services (IIS).
 - They may not load otherwise.
 - Trying to *reload* a web project:
 - The Output window in Visual Studio might show an expected web address.
@@ -46,6 +46,20 @@ Setting Up Dev Environment
 - (Physical path root folder `C:\Repositories\JJ.Framework` may vary.)
 
 -----
+
+- __JJ.Framework.Soap.Tests.Server__
+
+    - C# project:
+        - `JJ.Framework.Soap.Tests.Server.csproj`
+    - IIS site name:
+        - `TEST_JJ.Framework.Soap.Tests.Server`
+    - IIS site physical path:
+        - `C:\Repositories\JJ.Framework\Framework\Soap.Tests.Server`
+    - IIS site binding host name:
+        - `test.jj-framework-soap.jjvanzon.io`
+    - hosts file entries:
+        - `127.0.0.1  test.jj-framework-soap.jjvanzon.io`
+        - `::1        test.jj-framework-soap.jjvanzon.io`
 
 - __JJ.Demos.ReturnActions.NoViewMapping.Mvc.UrlParameter__
 
