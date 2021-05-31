@@ -20,7 +20,7 @@ d:
 cd /a/1
 git init VB3
 cd VB3
-git remote add origin "https://jjvanzon.visualstudio.com/JJs%20Software/_git/VB3"
+git remote add origin "https://jjvanzon.visualstudio.com/JJs-Software/_git/VB3"
 git fetch origin
 git checkout master
 
@@ -30,9 +30,9 @@ git checkout master
 
 git init "D:\a\1\s"
 Initialized empty Git repository in D:/a/1/s/.git/
-git remote add origin https://jjvanzon.visualstudio.com/JJs%20Software/_git/QB7
+git remote add origin https://jjvanzon.visualstudio.com/JJs-Software/_git/QB7
 git config gc.auto 0
-git config --get-all http.https://jjvanzon.visualstudio.com/JJs%20Software/_git/QB7.extraheader
+git config --get-all http.https://jjvanzon.visualstudio.com/JJs-Software/_git/QB7.extraheader
 git config --get-all http.proxy
 git -c http.extraheader="AUTHORIZATION: bearer ***" fetch --tags --prune --progress --no-recurse-submodules origin
 git checkout --progress --force 3cf8445745d3d161dcc907927a3dc662ed914f4d
@@ -47,9 +47,9 @@ d:
 cd /a/1
 git init VB3
 cd VB3
-git remote add origin https://jjvanzon.visualstudio.com/JJs%20Software/_git/VB3
+git remote add origin https://jjvanzon.visualstudio.com/JJs-Software/_git/VB3
 git config gc.auto 0
-git config --get-all http.https://jjvanzon.visualstudio.com/JJs%20Software/_git/VB3.extraheader
+git config --get-all http.https://jjvanzon.visualstudio.com/JJs-Software/_git/VB3.extraheader
 git config --get-all http.proxy
 git -c http.extraheader="AUTHORIZATION: bearer ***" fetch --tags --prune --progress --no-recurse-submodules origin
 git checkout --progress --force master

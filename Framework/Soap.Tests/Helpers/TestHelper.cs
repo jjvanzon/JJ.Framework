@@ -1,11 +1,14 @@
-﻿using JJ.Framework.Soap.Tests.ServiceInterface;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 using System.Net;
-using JJ.Framework.Logging;
 using System.ServiceModel;
+using System.Text;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Logging;
+using JJ.Framework.Soap.Tests.ServiceInterface;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 // ReSharper disable BuiltInTypeReferenceStyle
 #pragma warning disable IDE0012 // Simplify Names
 
@@ -103,7 +106,6 @@ namespace JJ.Framework.Soap.Tests.Helpers
                 ArrayOfDateTime = new[] { DateTime.Parse("2001-02-03 04:05"), DateTime.Parse("2006-07-08 09:10") },
                 ArrayOfEnumType = new[] { EnumType.EnumMember1, EnumType.EnumMember2 },
 
-
                 //ArrayOfNullableBoolean = new bool?[] { null, true, false },
                 //ArrayOfNullableByte = new byte?[] { null, 0x10, 0x20 },
                 //ArrayOfNullableSByte = new sbyte?[] { null, -2, 2 },
@@ -137,7 +139,8 @@ namespace JJ.Framework.Soap.Tests.Helpers
             }
             catch (WebException ex)
             {
-                AssertInconclusive(ex);
+                string responseText = TryGetResponseText(ex.Response);
+                AssertInconclusive(ex, responseText);
             }
             catch (EndpointNotFoundException ex)
             {
@@ -145,10 +148,40 @@ namespace JJ.Framework.Soap.Tests.Helpers
             }
         }
 
-        private static void AssertInconclusive(Exception ex)
+        private static void AssertInconclusive(Exception ex, string additionalText = "")
         {
-            string message = ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false);
+            string message = $"{ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false)}{additionalText}";
             Assert.Inconclusive(message);
+        }
+
+        /// <summary>Would ignore exceptions.</summary>
+        /// <param name="webResponse"> nullable </param>
+        private static string TryGetResponseText(WebResponse webResponse)
+        {
+            try
+            {
+                if (webResponse == null)
+                {
+                    return "";
+                }
+
+                using (Stream responseStream = webResponse.GetResponseStream())
+                {
+                    if (responseStream == null)
+                    {
+                        return "";
+                    }
+
+                    using (var reader = new StreamReader(responseStream, Encoding.UTF8))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                }
+            }
+            catch
+            {
+                return "";
+            }
         }
     }
 }
