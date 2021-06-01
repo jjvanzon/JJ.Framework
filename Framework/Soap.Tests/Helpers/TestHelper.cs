@@ -10,7 +10,7 @@ using JJ.Framework.Soap.Tests.ServiceInterface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable BuiltInTypeReferenceStyle
-#pragma warning disable IDE0012 // Simplify Names
+#pragma warning disable IDE0049 // Simplify Names
 
 namespace JJ.Framework.Soap.Tests.Helpers
 {
