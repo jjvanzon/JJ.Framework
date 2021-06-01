@@ -30,15 +30,28 @@ namespace JJ.Framework.Reflection.Tests.StaticReflectionCacheTests
 
             StaticReflectionCache.GetMethod(type, methodName, parameterType);
         }
-        
+
         [TestMethod]
-        public void Bug_Type_GetMethod_OutParameter_ReturnsNull()
+        public void Bug_Type_GetMethod_OutParameter_WithCalling_MakeByRefType_ReturnsNotNull()
+        {
+            Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
+            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OutParameter);
+            Type parameterType = typeof(double).MakeByRefType();
+
+            MethodInfo method =
+                type.GetMethod(methodName, ReflectionHelper.BINDING_FLAGS_ALL, null, new[] { parameterType }, null);
+
+            AssertHelper.IsNotNull(() => method);
+        }
+
+        [TestMethod]
+        public void Bug_Type_GetMethod_OutParameter_WithoutCalling_MakeByRefType_ReturnsNull()
         {
             Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
             const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OutParameter);
             Type parameterType = typeof(double);
 
-            MethodInfo method = 
+            MethodInfo method =
                 type.GetMethod(methodName, ReflectionHelper.BINDING_FLAGS_ALL, null, new[] { parameterType }, null);
 
             AssertHelper.IsNull(() => method);
