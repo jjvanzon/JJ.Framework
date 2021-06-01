@@ -49,3 +49,37 @@ Accessor (2021-06-01):
 
         return returnValue;
     }
+
+
+StaticReflectionCacheTests (2021-06-01):
+
+    [TestMethod]
+    public void Bug_StaticReflectionCache_MethodNotFound_Fails_ThreeParameters_OfWhichOnOutParameter()
+    {
+        Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
+        const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_ThreeParameters_OfWhichOnOutParameter);
+        string expectedMessage = $"Method '{methodName}' not found.";
+
+        AssertHelper.ThrowsException(
+            () => StaticReflectionCache.GetMethod<string, IFormatProvider, double>(type, methodName),
+            expectedMessage);
+    }
+
+
+    [TestMethod]
+    public void Bug_StaticReflectionCache_MethodNotFound_Succeeds_ThreeParameters_NoOutParameter()
+    {
+        Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
+        const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_ThreeParameters_NoOutParameter);
+
+        StaticReflectionCache.GetMethod<string, IFormatProvider, int>(type, methodName);
+    }
+
+
+StaticReflectionCacheTests_BugMethodNotFound (2021-06-01):
+
+    public static bool Method_ThreeParameters_OfWhichOnOutParameter(string s, IFormatProvider provider, out double result)
+        => throw new NotSupportedException();
+
+    public static bool Method_ThreeParameters_NoOutParameter(string s, IFormatProvider provider, int result)
+        => throw new NotSupportedException();
