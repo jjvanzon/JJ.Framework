@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using JetBrains.Annotations;
 
 namespace JJ.Framework.Reflection
 {
@@ -12,7 +13,8 @@ namespace JJ.Framework.Reflection
     /// To access internal classes, use the GetType / or CreateInstance static methods.
     /// Another limitation is that it cannot invoke private or internal constructors for you (yet).
     /// </summary>
-    public class Accessor
+    [PublicAPI]
+    public partial class Accessor
     {
         private readonly object _object;
         private readonly Type _objectType;
@@ -50,7 +52,7 @@ namespace JJ.Framework.Reflection
         // Fields
 
         /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted. 
+        /// An expression from which the member name will be extracted.
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
         public T GetFieldValue<T>(Expression<Func<T>> nameExpression)
@@ -67,7 +69,7 @@ namespace JJ.Framework.Reflection
 
 
         /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted. 
+        /// An expression from which the member name will be extracted.
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
         public void SetFieldValue<T>(Expression<Func<T>> nameExpression, object value)
@@ -85,7 +87,7 @@ namespace JJ.Framework.Reflection
         // Properties
 
         /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted. 
+        /// An expression from which the member name will be extracted.
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
         public T GetPropertyValue<T>(Expression<Func<T>> nameExpression)
@@ -101,7 +103,7 @@ namespace JJ.Framework.Reflection
         }
 
         /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted. 
+        /// An expression from which the member name will be extracted.
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
         public void SetPropertyValue<T>(Expression<Func<T>> nameExpression, object value)
@@ -119,19 +121,19 @@ namespace JJ.Framework.Reflection
         // Methods
 
         /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted. 
+        /// An expression from which the member name will be extracted.
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
         public void InvokeMethod(Expression<Action> nameExpression, params object[] parameters) => InvokeMethod((LambdaExpression)nameExpression, parameters);
 
         /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted. 
+        /// An expression from which the member name will be extracted.
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
         public T InvokeMethod<T>(Expression<Func<T>> nameExpression, params object[] parameters) => (T)InvokeMethod((LambdaExpression)nameExpression, parameters);
 
         /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted. 
+        /// An expression from which the member name will be extracted.
         /// Only the last name in the expression will be used, nothing else.
         /// </param>
         public object InvokeMethod(LambdaExpression nameExpression, params object[] parameters)
