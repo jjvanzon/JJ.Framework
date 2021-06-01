@@ -124,6 +124,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Tests", "Fr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65FB0FF9-90BB-4A75-8A90-ADE03931C8EE}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		jj-icon-64x64-margin4.png = jj-icon-64x64-margin4.png
 		jj-icon-64x64.png = jj-icon-64x64.png
 		jj-icon-with-margin.ico = jj-icon-with-margin.ico
