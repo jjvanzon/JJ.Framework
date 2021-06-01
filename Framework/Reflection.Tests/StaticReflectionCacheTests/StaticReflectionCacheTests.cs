@@ -14,9 +14,10 @@ namespace JJ.Framework.Reflection.Tests.StaticReflectionCacheTests
             Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
             const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OneOutParameter);
             string expectedMessage = $"Method '{methodName}' not found.";
+            Type parameterType = typeof(double);
 
             AssertHelper.ThrowsException(
-                () => StaticReflectionCache.GetMethod(type, methodName, typeof(double)),
+                () => StaticReflectionCache.GetMethod(type, methodName, parameterType),
                 expectedMessage);
         }
 
@@ -25,8 +26,35 @@ namespace JJ.Framework.Reflection.Tests.StaticReflectionCacheTests
         {
             Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
             const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OneParameter_NotOut);
+            Type parameterType = typeof(int);
 
-            StaticReflectionCache.GetMethod(type, methodName, typeof(int));
+            StaticReflectionCache.GetMethod(type, methodName, parameterType);
+        }
+        
+        [TestMethod]
+        public void Bug_Type_GetMethod_OneOutParameter_ReturnsNull()
+        {
+            Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
+            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OneOutParameter);
+            Type parameterType = typeof(double);
+
+            MethodInfo method = 
+                type.GetMethod(methodName, ReflectionHelper.BINDING_FLAGS_ALL, null, new[] { parameterType }, null);
+
+            AssertHelper.IsNull(() => method);
+        }
+
+        [TestMethod]
+        public void Bug_Type_GetMethod_OneParameter_NotOut_ReturnsNotNull()
+        {
+            Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
+            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OneParameter_NotOut);
+            Type parameterType = typeof(int);
+
+            MethodInfo method = 
+                type.GetMethod(methodName, ReflectionHelper.BINDING_FLAGS_ALL, null, new[] { parameterType }, null);
+
+            AssertHelper.IsNotNull(() => method);
         }
     }
 }
