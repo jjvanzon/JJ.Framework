@@ -8,7 +8,7 @@ namespace JJ.Framework.Reflection.Tests.StaticReflectionCacheTests
     public class StaticReflectionCacheTests
     {
         [TestMethod]
-        public void Bug_StaticReflectionCache_MethodNotFound_Fails_OneOutParameter()
+        public void Bug_StaticReflectionCache_GetMethod_Generic_OneOutParameter_ThrowsException_MethodNotFound()
         {
             Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
             const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OneOutParameter);
@@ -20,7 +20,7 @@ namespace JJ.Framework.Reflection.Tests.StaticReflectionCacheTests
         }
 
         [TestMethod]
-        public void Bug_StaticReflectionCache_MethodNotFound_Succeeds_OneParameter_NotOut()
+        public void Bug_StaticReflectionCache_GetMethod_Generic_One_OneParameter_NotOut_Succeeds()
         {
             Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
             const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OneParameter_NotOut);
