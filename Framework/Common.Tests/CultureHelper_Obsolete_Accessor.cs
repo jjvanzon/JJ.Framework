@@ -2,7 +2,7 @@
 
 namespace JJ.Framework.Common.Tests
 {
-    internal static class CultureHelper_Accessor
+    internal static class CultureHelper_Obsolete_Accessor
     {
         private static readonly Accessor _accessor = new Accessor(typeof(CultureHelper));
 

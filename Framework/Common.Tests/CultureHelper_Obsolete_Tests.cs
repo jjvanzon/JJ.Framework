@@ -13,7 +13,7 @@ namespace JJ.Framework.Common.Tests
         {
             try
             {
-                CultureHelper_Accessor.SetThreadCultureName("nl-NL");
+                CultureHelper_Obsolete_Accessor.SetThreadCultureName("nl-NL");
             }
             catch (Exception ex)
             {
