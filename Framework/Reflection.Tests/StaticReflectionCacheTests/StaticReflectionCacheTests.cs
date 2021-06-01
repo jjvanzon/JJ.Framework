@@ -9,10 +9,10 @@ namespace JJ.Framework.Reflection.Tests.StaticReflectionCacheTests
     public class StaticReflectionCacheTests
     {
         [TestMethod]
-        public void Bug_StaticReflectionCache_GetMethod_OneOutParameter_ThrowsException_MethodNotFound()
+        public void Bug_StaticReflectionCache_GetMethod_OutParameter_ThrowsException_MethodNotFound()
         {
             Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
-            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OneOutParameter);
+            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OutParameter);
             string expectedMessage = $"Method '{methodName}' not found.";
             Type parameterType = typeof(double);
 
@@ -22,20 +22,20 @@ namespace JJ.Framework.Reflection.Tests.StaticReflectionCacheTests
         }
 
         [TestMethod]
-        public void Bug_StaticReflectionCache_GetMethod_OneParameter_NotOut_Succeeds()
+        public void Bug_StaticReflectionCache_GetMethod_NonRefParameter_Succeeds()
         {
             Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
-            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OneParameter_NotOut);
+            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_NonRefParameter);
             Type parameterType = typeof(int);
 
             StaticReflectionCache.GetMethod(type, methodName, parameterType);
         }
         
         [TestMethod]
-        public void Bug_Type_GetMethod_OneOutParameter_ReturnsNull()
+        public void Bug_Type_GetMethod_OutParameter_ReturnsNull()
         {
             Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
-            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OneOutParameter);
+            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OutParameter);
             Type parameterType = typeof(double);
 
             MethodInfo method = 
@@ -45,10 +45,10 @@ namespace JJ.Framework.Reflection.Tests.StaticReflectionCacheTests
         }
 
         [TestMethod]
-        public void Bug_Type_GetMethod_OneParameter_NotOut_ReturnsNotNull()
+        public void Bug_Type_GetMethod_NonRefParameter_ReturnsNotNull()
         {
             Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
-            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OneParameter_NotOut);
+            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_NonRefParameter);
             Type parameterType = typeof(int);
 
             MethodInfo method = 
