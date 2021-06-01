@@ -39,5 +39,14 @@ namespace JJ.Framework.Reflection.Tests.StaticReflectionCacheTests
 
             StaticReflectionCache.GetMethod<string, IFormatProvider, int>(type, methodName);
         }
+
+        [TestMethod]
+        public void Bug_StaticReflectionCache_MethodNotFound_Succeeds_OneParameter_NotOut()
+        {
+            Type type = typeof(StaticReflectionCacheTests_BugMethodNotFound);
+            const string methodName = nameof(StaticReflectionCacheTests_BugMethodNotFound.Method_OneParameter_NotOut);
+
+            StaticReflectionCache.GetMethod<int>(type, methodName);
+        }
     }
 }

@@ -12,5 +12,8 @@ namespace JJ.Framework.Reflection.Tests.StaticReflectionCacheTests
 
         public static bool Method_OneOutParameter(out double result)
             => throw new NotSupportedException();
+
+        public static bool Method_OneParameter_NotOut(int result)
+            => throw new NotSupportedException();
     }
 }
