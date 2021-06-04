@@ -57,18 +57,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessorTests\AccessorTests_Indexers.cs" />
-    <Compile Include="AccessorTests\AccessorTests_OutParameters.cs" />
+    <Compile Include="AccessorTests\AccessorTests_OutParameters_InstanceMethods.cs" />
+    <Compile Include="AccessorTests\AccessorTests_OutParameters_StaticMethods.cs" />
     <Compile Include="AccessorTests\AccessorTests_UsingStrings.cs" />
-    <Compile Include="AccessorTests\OutParametersClass.cs" />
-    <Compile Include="AccessorTests\OutParametersAccessor.cs" />
+    <Compile Include="AccessorTests\Class_OutParameters_InstanceMethods.cs" />
+    <Compile Include="AccessorTests\Class_OutParameters_StaticMethods.cs" />
+    <Compile Include="AccessorTests\Class_OutParameters_InstanceMethods_Accessor.cs" />
+    <Compile Include="AccessorTests\Class_OutParameters_StaticMethods_Accessor.cs" />
     <Compile Include="AccessorTests\IClassAccessor.cs" />
     <Compile Include="AccessorTests\IDerivedClassAccessor.cs" />
     <Compile Include="AccessorTests\Class.cs" />
     <Compile Include="AccessorTests\ClassAccessorBase.cs" />
     <Compile Include="AccessorTests\ClassAccessor_UsingExpressions.cs" />
     <Compile Include="AccessorTests\ClassAccessor_UsingStrings.cs" />
-    <Compile Include="AccessorTests\ClassWithNamedIndexer.cs" />
-    <Compile Include="AccessorTests\ClassWithNamedIndexerAccessor.cs" />
+    <Compile Include="AccessorTests\Class_WithNamedIndexer.cs" />
+    <Compile Include="AccessorTests\Class_WithNamedIndexer_Accessor.cs" />
     <Compile Include="AccessorTests\DerivedClass.cs" />
     <Compile Include="AccessorTests\DerivedClassAccessorBase.cs" />
     <Compile Include="AccessorTests\DerivedClassAccessor_UsingExpressions.cs" />

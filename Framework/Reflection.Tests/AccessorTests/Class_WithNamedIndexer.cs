@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
-    internal class ClassWithNamedIndexer
+    internal class Class_WithNamedIndexer
     {
         private readonly Dictionary<int, int> _intDictionary = new Dictionary<int, int>();
 
