@@ -83,3 +83,8 @@ StaticReflectionCacheTests_BugMethodNotFound (2021-06-01):
 
     public static bool Method_ThreeParameters_NoOutParameter(string s, IFormatProvider provider, int result)
         => throw new NotSupportedException();
+
+
+AccessorTests_OutParameters (2021-06-03):
+
+    private static string FormatDateTime(DateTime dateTime) => $"{dateTime:yyyy-MM-dd}";

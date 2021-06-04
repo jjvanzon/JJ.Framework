@@ -43,6 +43,9 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JetBrains.Annotations, Version=2018.2.1.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JetBrains.Annotations.2018.2.1\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MSTest.TestFramework.2.2.4\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -54,7 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessorTests\AccessorTests_Indexers.cs" />
+    <Compile Include="AccessorTests\AccessorTests_OutParameters.cs" />
     <Compile Include="AccessorTests\AccessorTests_UsingStrings.cs" />
+    <Compile Include="AccessorTests\OutParametersClass.cs" />
+    <Compile Include="AccessorTests\OutParametersAccessor.cs" />
     <Compile Include="AccessorTests\IClassAccessor.cs" />
     <Compile Include="AccessorTests\IDerivedClassAccessor.cs" />
     <Compile Include="AccessorTests\Class.cs" />
@@ -78,11 +84,16 @@
     <Compile Include="ExpressionHelperTests\Item.cs" />
     <Compile Include="ExpressionHelperTests\StaticClass.cs" />
     <Compile Include="ExpressionHelperTests\StaticClassT.cs" />
+    <Compile Include="ParseHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticReflectionCacheTests\StaticReflectionCacheTests.cs" />
     <Compile Include="StaticReflectionCacheTests\StaticReflectionCacheTests_HelperClass.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj">
+      <Project>{FA44ABA2-8E13-402C-A5A0-8D73C74B5181}</Project>
+      <Name>JJ.Framework.Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
       <Name>JJ.Framework.Reflection</Name>
