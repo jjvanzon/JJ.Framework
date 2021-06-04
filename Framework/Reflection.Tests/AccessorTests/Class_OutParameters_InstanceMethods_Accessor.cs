@@ -46,5 +46,10 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
         public float InstanceMethod_WithThreeParameters(out double arg1, out DateTime arg2, out TimeSpan arg3)
             => _accessor.InvokeMethod<float, double, DateTime, TimeSpan>(nameof(InstanceMethod_WithThreeParameters), out arg1, out arg2, out arg3);
+
+        // Misc
+
+        public void InstanceMethod_WithReturnTypeVoid(out DateTime arg)
+            => _accessor.InvokeMethod<object, DateTime>(nameof(InstanceMethod_WithReturnTypeVoid), out arg);
     }
 }

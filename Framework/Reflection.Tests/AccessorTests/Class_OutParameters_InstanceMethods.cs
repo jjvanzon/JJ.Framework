@@ -1,22 +1,18 @@
 ﻿using System;
-using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Comparative;
 
+// ReSharper disable UnusedMember.Local
 // ReSharper disable RedundantBoolCompare
 // ReSharper disable CompareOfFloatsByEqualityOperator
+#pragma warning disable IDE0051 // Remove unused private members
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
-    /// <summary>
-    /// NOTE: Members were made Obsolete to force it to be called through reflection.
-    /// </summary>
-    public class Class_OutParameters_InstanceMethods
+    internal class Class_OutParameters_InstanceMethods
     {
         // 1 Parameter
 
-        [Obsolete("", true)]
-        [UsedImplicitly]
-        public bool InstanceMethod_WithOneParameter(out int arg)
+        private bool InstanceMethod_WithOneParameter(out int arg)
         {
             arg = 1;
             return true;
@@ -24,27 +20,21 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
         // 2 Parameters
 
-        [Obsolete("", true)]
-        [UsedImplicitly]
-        public long InstanceMethod_WithTwoParameters(out float arg1, double arg2)
+        private long InstanceMethod_WithTwoParameters(out float arg1, double arg2)
         {
             arg1 = 2;
             if (arg2 != 3) throw new NotEqualException(() => arg2, 3);
             return 4;
         }
 
-        [Obsolete("", true)]
-        [UsedImplicitly]
-        public DateTime InstanceMethod_WithTwoParameters(TimeSpan arg1, out string arg2)
+        private DateTime InstanceMethod_WithTwoParameters(TimeSpan arg1, out string arg2)
         {
             if (arg1 != ParseHelper.ParseTimeSpan("00:05")) throw new NotEqualException(() => arg1, ParseHelper.ParseTimeSpan("00:05"));
             arg2 = "6";
             return ParseHelper.ParseDateTime("2007-01-01");
         }
 
-        [Obsolete("", true)]
-        [UsedImplicitly]
-        public Guid InstanceMethod_WithTwoParameters(out string arg1, out TimeSpan arg2)
+        private Guid InstanceMethod_WithTwoParameters(out string arg1, out TimeSpan arg2)
         {
             arg1 = "8";
             arg2 = ParseHelper.ParseTimeSpan("00:09");
@@ -53,9 +43,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
         // 3 Parameters
 
-        [Obsolete("", true)]
-        [UsedImplicitly]
-        public DateTime InstanceMethod_WithThreeParameters(out double arg1, float arg2, long arg3)
+        private DateTime InstanceMethod_WithThreeParameters(out double arg1, float arg2, long arg3)
         {
             arg1 = 11;
             if (arg2 != 12) throw new NotEqualException(() => arg2, 12);
@@ -63,9 +51,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
             return ParseHelper.ParseDateTime("2014-01-01");
         }
 
-        [Obsolete("", true)]
-        [UsedImplicitly]
-        public int InstanceMethod_WithThreeParameters(bool arg1, out int arg2, long arg3)
+        private int InstanceMethod_WithThreeParameters(bool arg1, out int arg2, long arg3)
         {
             if (arg1 != false) throw new NotEqualException(() => arg1, false);
             arg2 = 15;
@@ -73,9 +59,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
             return 17;
         }
 
-        [Obsolete("", true)]
-        [UsedImplicitly]
-        public float InstanceMethod_WithThreeParameters(out double arg1, out DateTime arg2, TimeSpan arg3)
+        private float InstanceMethod_WithThreeParameters(out double arg1, out DateTime arg2, TimeSpan arg3)
         {
             arg1 = 18;
             arg2 = ParseHelper.ParseDateTime("2019-01-01");
@@ -83,9 +67,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
             return 21;
         }
 
-        [Obsolete("", true)]
-        [UsedImplicitly]
-        public string InstanceMethod_WithThreeParameters(Guid arg1, string arg2, out TimeSpan arg3)
+        private string InstanceMethod_WithThreeParameters(Guid arg1, string arg2, out TimeSpan arg3)
         {
             if (arg1 != new Guid("00000000-0000-0000-0000-000000000022")) throw new NotEqualException(() => arg1, new Guid("00000000-0000-0000-0000-000000000022"));
             if (!string.Equals(arg2, "23")) throw new NotEqualException(() => arg2, "23");
@@ -93,9 +75,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
             return "25";
         }
 
-        [Obsolete("", true)]
-        [UsedImplicitly]
-        public DateTime InstanceMethod_WithThreeParameters(out double arg1, float arg2, out long arg3)
+        private DateTime InstanceMethod_WithThreeParameters(out double arg1, float arg2, out long arg3)
         {
             arg1 = 26;
             if (arg2 != 27) throw new NotEqualException(() => arg2, 27);
@@ -103,9 +83,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
             return ParseHelper.ParseDateTime("2029-01-01");
         }
 
-        [Obsolete("", true)]
-        [UsedImplicitly]
-        public int InstanceMethod_WithThreeParameters(bool arg1, out int arg2, out long arg3)
+        private int InstanceMethod_WithThreeParameters(bool arg1, out int arg2, out long arg3)
         {
             if (arg1 != true) throw new NotEqualException(() => arg1, true);
             arg2 = 30;
@@ -113,14 +91,17 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
             return 32;
         }
 
-        [Obsolete("", true)]
-        [UsedImplicitly]
-        public float InstanceMethod_WithThreeParameters(out double arg1, out DateTime arg2, out TimeSpan arg3)
+        private float InstanceMethod_WithThreeParameters(out double arg1, out DateTime arg2, out TimeSpan arg3)
         {
             arg1 = 33;
             arg2 = ParseHelper.ParseDateTime("2034-01-01");
             arg3 = ParseHelper.ParseTimeSpan("00:35");
             return 36;
         }
+
+        // Misc Tests
+
+        private void InstanceMethod_WithReturnTypeVoid(out DateTime arg)
+            => arg = ParseHelper.ParseDateTime("2037-01-01");
     }
 }

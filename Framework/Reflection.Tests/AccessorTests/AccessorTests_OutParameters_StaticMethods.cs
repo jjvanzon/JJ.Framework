@@ -173,5 +173,17 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
             AssertHelper.AreEqual(ParseHelper.ParseTimeSpan("00:35"), () => arg3);
             AssertHelper.AreEqual(36, () => ret);
         }
+
+        // Misc
+
+        [TestMethod]
+        public void Test_Accessor_OutParameters_StaticMethod_WithReturnTypeVoid()
+        {
+            DateTime arg;
+            
+            Class_OutParameters_StaticMethods_Accessor.StaticMethod_WithReturnTypeVoid(out arg);
+            
+            AssertHelper.AreEqual(ParseHelper.ParseDateTime("2037-01-01"), () => arg);
+        }
     }
 }

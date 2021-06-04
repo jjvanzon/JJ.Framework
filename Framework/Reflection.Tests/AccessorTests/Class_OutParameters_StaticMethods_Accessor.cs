@@ -44,5 +44,10 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
         public static float StaticMethod_WithThreeParameters(out double arg1, out DateTime arg2, out TimeSpan arg3)
             => _accessor.InvokeMethod<float, double, DateTime, TimeSpan>(nameof(StaticMethod_WithThreeParameters), out arg1, out arg2, out arg3);
+
+        // Misc
+
+        public static void StaticMethod_WithReturnTypeVoid(out DateTime arg)
+            => _accessor.InvokeMethod<object, DateTime>(nameof(StaticMethod_WithReturnTypeVoid), out arg);
     }
 }
