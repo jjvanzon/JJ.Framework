@@ -70,8 +70,8 @@
     <Compile Include="AccessorTests\ClassAccessorBase.cs" />
     <Compile Include="AccessorTests\ClassAccessor_UsingExpressions.cs" />
     <Compile Include="AccessorTests\ClassAccessor_UsingStrings.cs" />
-    <Compile Include="AccessorTests\Class_WithNamedIndexer.cs" />
-    <Compile Include="AccessorTests\Class_WithNamedIndexer_Accessor.cs" />
+    <Compile Include="AccessorTests\Class_NamedIndexer.cs" />
+    <Compile Include="AccessorTests\Class_NamedIndexer_Accessor.cs" />
     <Compile Include="AccessorTests\DerivedClass.cs" />
     <Compile Include="AccessorTests\DerivedClassAccessorBase.cs" />
     <Compile Include="AccessorTests\DerivedClassAccessor_UsingExpressions.cs" />

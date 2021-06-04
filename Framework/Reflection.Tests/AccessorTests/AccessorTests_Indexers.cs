@@ -45,9 +45,9 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         [TestMethod]
         public void Test_Accessor_UsingStrings_Indexer_Named()
         {
-            var obj = new Class_WithNamedIndexer();
+            var obj = new Class_NamedIndexer();
             // ReSharper disable once UseObjectOrCollectionInitializer
-            var accessor = new Class_WithNamedIndexer_Accessor(obj);
+            var accessor = new Class_NamedIndexer_Accessor(obj);
             accessor[1] = 1;
             accessor[2] = 2;
             AssertHelper.AreEqual(1, () => accessor[1]);
