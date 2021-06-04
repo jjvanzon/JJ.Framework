@@ -24,21 +24,21 @@ namespace JJ.Framework.Exceptions.Comparative
         public NotEqualException(Expression<Func<object>> expressionA, Expression<Func<object>> expressionB)
             : base(expressionA, expressionB) { }
 
-        [Obsolete("Remove the showValueA or showValueB parameters. They will be deteremined automatically.", true)]
+        [Obsolete("Remove the showValueA or showValueB parameters. They will be determined automatically.", true)]
         public NotEqualException(
             Expression<Func<object>> expressionA,
             Expression<Func<object>> expressionB,
             bool showValueA = false,
             bool showValueB = false) : base(expressionA, expressionB, showValueA, showValueB) => throw new NotImplementedException();
 
-        [Obsolete("Remove the showValueA or showValueB parameters. They will be deteremined automatically.", true)]
+        [Obsolete("Remove the showValueA or showValueB parameters. They will be determined automatically.", true)]
         public NotEqualException(
             Expression<Func<object>> expressionA,
             object b,
             bool showValueA = false) : base(expressionA, b, showValueA)
             => throw new NotImplementedException();
 
-        [Obsolete("Remove the showValueA or showValueB parameters. They will be deteremined automatically.", true)]
+        [Obsolete("Remove the showValueA or showValueB parameters. They will be determined automatically.", true)]
         public NotEqualException(
             object a,
             Expression<Func<object>> expressionB,
