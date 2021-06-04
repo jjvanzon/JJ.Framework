@@ -8,6 +8,9 @@ namespace JJ.Framework.Common.Tests
         private static readonly Accessor _accessor = new Accessor(typeof(DoubleHelper));
 
         public static bool TryParse(string s, IFormatProvider provider, out double result)
-            => _accessor.InvokeMethod<bool, string, IFormatProvider, double>(nameof(TryParse), s, provider, out result);
+        {
+            result = default;
+            return _accessor.InvokeMethod<bool, string, IFormatProvider, double>(nameof(TryParse), s, provider, ref result);
+        }
     }
 }

@@ -57,13 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessorTests\AccessorTests_Indexers.cs" />
-    <Compile Include="AccessorTests\AccessorTests_OutParameters_InstanceMethods.cs" />
-    <Compile Include="AccessorTests\AccessorTests_OutParameters_StaticMethods.cs" />
+    <Compile Include="AccessorTests\AccessorTests_RefParameters_InstanceMethods.cs" />
+    <Compile Include="AccessorTests\AccessorTests_RefParameters_StaticMethods.cs" />
     <Compile Include="AccessorTests\AccessorTests_UsingStrings.cs" />
-    <Compile Include="AccessorTests\Class_OutParameters_InstanceMethods.cs" />
-    <Compile Include="AccessorTests\Class_OutParameters_StaticMethods.cs" />
-    <Compile Include="AccessorTests\Class_OutParameters_InstanceMethods_Accessor.cs" />
-    <Compile Include="AccessorTests\Class_OutParameters_StaticMethods_Accessor.cs" />
+    <Compile Include="AccessorTests\Class_RefParameters_InstanceMethods.cs" />
+    <Compile Include="AccessorTests\Class_RefParameters_StaticMethods.cs" />
+    <Compile Include="AccessorTests\Class_RefParameters_InstanceMethods_Accessor.cs" />
+    <Compile Include="AccessorTests\Class_RefParameters_StaticMethods_Accessor.cs" />
     <Compile Include="AccessorTests\IClassAccessor.cs" />
     <Compile Include="AccessorTests\IDerivedClassAccessor.cs" />
     <Compile Include="AccessorTests\Class.cs" />
