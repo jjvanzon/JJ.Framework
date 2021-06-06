@@ -22,86 +22,97 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
         private long InstanceMethod_WithTwoParameters(ref float arg1, double arg2)
         {
-            arg1 = 2;
-            if (arg2 != 3) throw new NotEqualException(() => arg2, 3);
-            return 4;
+            if (arg1 != 2) throw new NotEqualException(nameof(arg1), 2);
+            arg1 = 3;
+            if (arg2 != 4) throw new NotEqualException(() => arg2, 4);
+            return 5;
         }
 
         private DateTime InstanceMethod_WithTwoParameters(TimeSpan arg1, out string arg2)
         {
-            if (arg1 != ParseHelper.ParseTimeSpan("00:05")) throw new NotEqualException(() => arg1, ParseHelper.ParseTimeSpan("00:05"));
-            arg2 = "6";
-            return ParseHelper.ParseDateTime("2007-01-01");
+            if (arg1 != ParseHelper.ParseTimeSpan("00:06")) throw new NotEqualException(() => arg1, ParseHelper.ParseTimeSpan("00:06"));
+            arg2 = "7";
+            return ParseHelper.ParseDateTime("2008-01-01");
         }
 
         private Guid InstanceMethod_WithTwoParameters(ref string arg1, out TimeSpan arg2)
         {
-            arg1 = "8";
-            arg2 = ParseHelper.ParseTimeSpan("00:09");
-            return new Guid("00000000-0000-0000-0000-000000000010");
+            if (!string.Equals(arg1, "9")) throw new NotEqualException(nameof(arg1), "9");
+            arg1 = "10";
+            arg2 = ParseHelper.ParseTimeSpan("00:11");
+            return new Guid("00000000-0000-0000-0000-000000000012");
         }
 
         // 3 Parameters
 
         private DateTime InstanceMethod_WithThreeParameters(ref double arg1, float arg2, long arg3)
         {
-            arg1 = 11;
-            if (arg2 != 12) throw new NotEqualException(() => arg2, 12);
-            if (arg3 != 13) throw new NotEqualException(() => arg3, 13);
-            return ParseHelper.ParseDateTime("2014-01-01");
+            if (arg1 != 13) throw new NotEqualException(nameof(arg1), 13);
+            arg1 = 14;
+            if (arg2 != 15) throw new NotEqualException(() => arg2, 15);
+            if (arg3 != 16) throw new NotEqualException(() => arg3, 16);
+            return ParseHelper.ParseDateTime("2017-01-01");
         }
 
         private int InstanceMethod_WithThreeParameters(bool arg1, out int arg2, long arg3)
         {
             if (arg1 != false) throw new NotEqualException(() => arg1, false);
-            arg2 = 15;
-            if (arg3 != 16) throw new NotEqualException(() => arg3, 16);
-            return 17;
+            arg2 = 18;
+            if (arg3 != 19) throw new NotEqualException(() => arg3, 19);
+            return 20;
         }
 
         private float InstanceMethod_WithThreeParameters(ref double arg1, out DateTime arg2, TimeSpan arg3)
         {
-            arg1 = 18;
-            arg2 = ParseHelper.ParseDateTime("2019-01-01");
-            if (arg3 != ParseHelper.ParseTimeSpan("00:20")) throw new NotEqualException(() => arg3, () => ParseHelper.ParseTimeSpan("00:20"));
-            return 21;
+            if (arg1 != 21) throw new NotEqualException(nameof(arg1), 21);
+            arg1 = 22;
+            arg2 = ParseHelper.ParseDateTime("2023-01-01");
+            if (arg3 != ParseHelper.ParseTimeSpan("00:24")) throw new NotEqualException(() => arg3, () => ParseHelper.ParseTimeSpan("00:24"));
+            return 25;
         }
 
         private string InstanceMethod_WithThreeParameters(Guid arg1, string arg2, ref TimeSpan arg3)
         {
-            if (arg1 != new Guid("00000000-0000-0000-0000-000000000022")) throw new NotEqualException(() => arg1, new Guid("00000000-0000-0000-0000-000000000022"));
-            if (!string.Equals(arg2, "23")) throw new NotEqualException(() => arg2, "23");
-            arg3 = ParseHelper.ParseTimeSpan("00:24");
-            return "25";
+            if (arg1 != new Guid("00000000-0000-0000-0000-000000000026")) throw new NotEqualException(() => arg1, new Guid("00000000-0000-0000-0000-000000000026"));
+            if (!string.Equals(arg2, "27")) throw new NotEqualException(() => arg2, "27");
+            if (arg3 != ParseHelper.ParseTimeSpan("00:28")) throw new NotEqualException(nameof(arg3), () => ParseHelper.ParseTimeSpan("00:28"));
+            arg3 = ParseHelper.ParseTimeSpan("00:29");
+            return "30";
         }
 
         private DateTime InstanceMethod_WithThreeParameters(out double arg1, float arg2, ref long arg3)
         {
-            arg1 = 26;
-            if (arg2 != 27) throw new NotEqualException(() => arg2, 27);
-            arg3 = 28;
-            return ParseHelper.ParseDateTime("2029-01-01");
+            arg1 = 31;
+            if (arg2 != 32) throw new NotEqualException(() => arg2, 32);
+            if (arg3 != 33) throw new NotEqualException(nameof(arg3), 33);
+            arg3 = 34;
+            return ParseHelper.ParseDateTime("2035-01-01");
         }
 
         private int InstanceMethod_WithThreeParameters(bool arg1, out int arg2, ref long arg3)
         {
             if (arg1 != true) throw new NotEqualException(() => arg1, true);
-            arg2 = 30;
-            arg3 = 31;
-            return 32;
+            arg2 = 36;
+            if (arg3 != 37) throw new NotEqualException(nameof(arg3), 37);
+            arg3 = 38;
+            return 39;
         }
 
         private float InstanceMethod_WithThreeParameters(out double arg1, ref DateTime arg2, out TimeSpan arg3)
         {
-            arg1 = 33;
-            arg2 = ParseHelper.ParseDateTime("2034-01-01");
-            arg3 = ParseHelper.ParseTimeSpan("00:35");
-            return 36;
+            arg1 = 40;
+            if (arg2 != ParseHelper.ParseDateTime("2041-01-01")) throw new NotEqualException(arg2, () => ParseHelper.ParseDateTime("2041-01-01"));
+            arg2 = ParseHelper.ParseDateTime("2042-01-01");
+            arg3 = ParseHelper.ParseTimeSpan("00:43");
+            return 44;
         }
 
         // Misc
 
         private void InstanceMethod_WithReturnTypeVoid(ref DateTime arg)
-            => arg = ParseHelper.ParseDateTime("2037-01-01");
+        {
+            if (arg != ParseHelper.ParseDateTime("2045-01-01")) throw new NotEqualException(arg, () => ParseHelper.ParseDateTime("2045-01-01"));
+            arg = ParseHelper.ParseDateTime("2046-01-01");
+        }
     }
 }

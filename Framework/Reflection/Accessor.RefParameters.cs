@@ -12,7 +12,7 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType() };
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
 
-            var parameters = new object[] { null };
+            var parameters = new object[] { arg };
             var ret = (TRet)method.Invoke(_object, parameters);
 
             arg = (TArg1)parameters[0];
@@ -27,7 +27,7 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2) };
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
 
-            var parameters = new object[] { null, arg2 };
+            var parameters = new object[] { arg1, arg2 };
             var ret = (TRet)method.Invoke(_object, parameters);
 
             arg1 = (TArg1)parameters[0];
@@ -40,7 +40,7 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypes = { typeof(TArg1), typeof(TArg2).MakeByRefType() };
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
 
-            var parameters = new object[] { arg1, null };
+            var parameters = new object[] { arg1, arg2 };
             var ret = (TRet)method.Invoke(_object, parameters);
 
             arg2 = (TArg2)parameters[1];
@@ -52,8 +52,8 @@ namespace JJ.Framework.Reflection
         {
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2).MakeByRefType() };
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
-            
-            var parameters = new object[] { null, null};
+
+            var parameters = new object[] { arg1, arg2 };
             var ret = (TRet)method.Invoke(_object, parameters);
 
             arg1 = (TArg1)parameters[0];
@@ -69,7 +69,7 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2), typeof(TArg3) };
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
 
-            var parameters = new object[] { null, arg2, arg3 };
+            var parameters = new object[] { arg1, arg2, arg3 };
             var ret = (TRet)method.Invoke(_object, parameters);
 
             arg1 = (TArg1)parameters[0];
@@ -82,7 +82,7 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypes = { typeof(TArg1), typeof(TArg2).MakeByRefType(), typeof(TArg3) };
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
 
-            var parameters = new object[] { arg1, null, arg3 };
+            var parameters = new object[] { arg1, arg2, arg3 };
             var ret = (TRet)method.Invoke(_object, parameters);
 
             arg2 = (TArg2)parameters[1];
@@ -95,7 +95,7 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2).MakeByRefType(), typeof(TArg3) };
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
 
-            var parameters = new object[] { null, null, arg3 };
+            var parameters = new object[] { arg1, arg2, arg3 };
             var ret = (TRet)method.Invoke(_object, parameters);
 
             arg1 = (TArg1)parameters[0];
@@ -109,7 +109,7 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypes = { typeof(TArg1), typeof(TArg2), typeof(TArg3).MakeByRefType() };
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
 
-            var parameters = new object[] { arg1, arg2, null };
+            var parameters = new object[] { arg1, arg2, arg3 };
             var ret = (TRet)method.Invoke(_object, parameters);
 
             arg3 = (TArg3)parameters[2];
@@ -122,7 +122,7 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2), typeof(TArg3).MakeByRefType() };
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
 
-            var parameters = new object[] { null, arg2, null };
+            var parameters = new object[] { arg1, arg2, arg3 };
             var ret = (TRet)method.Invoke(_object, parameters);
 
             arg1 = (TArg1)parameters[0];
@@ -136,7 +136,7 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypes = { typeof(TArg1), typeof(TArg2).MakeByRefType(), typeof(TArg3).MakeByRefType() };
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
 
-            var parameters = new object[] { arg1, null, null };
+            var parameters = new object[] { arg1, arg2, arg3 };
             var ret = (TRet)method.Invoke(_object, parameters);
 
             arg2 = (TArg2)parameters[1];
@@ -150,7 +150,7 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2).MakeByRefType(), typeof(TArg3).MakeByRefType() };
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
 
-            var parameters = new object[] { null, null, null };
+            var parameters = new object[] { arg1, arg2, arg3 };
             var ret = (TRet)method.Invoke(_object, parameters);
 
             arg1 = (TArg1)parameters[0];
