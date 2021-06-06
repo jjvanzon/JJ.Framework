@@ -56,7 +56,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
         private static int StaticMethod_WithThreeParameters(bool arg1, out int arg2, long arg3)
         {
-            if (arg1 != false) throw new NotEqualException(() => arg1, false);
+            if (arg1 != true) throw new NotEqualException(() => arg1, true);
             arg2 = 18;
             if (arg3 != 19) throw new NotEqualException(() => arg3, 19);
             return 20;

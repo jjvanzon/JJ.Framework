@@ -88,13 +88,13 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         [TestMethod]
         public void Test_Accessor_RefParameters_InstanceMethod_WithThreeParameters_ByVal_ByRef_ByVal()
         {
-            bool arg1 = false;
+            bool arg1 = true;
             int arg2;
             long arg3 = 19;
 
             int ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithThreeParameters(arg1, out arg2, arg3);
 
-            AssertHelper.AreEqual(false, () => arg1);
+            AssertHelper.AreEqual(true, () => arg1);
             AssertHelper.AreEqual(18, () => arg2);
             AssertHelper.AreEqual(19, () => arg3);
             AssertHelper.AreEqual(20, () => ret);
