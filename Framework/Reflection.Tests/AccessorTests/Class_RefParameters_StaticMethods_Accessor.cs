@@ -35,7 +35,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
         public static DateTime StaticMethod_WithThreeParameters(ref double arg1, float arg2, long arg3)
             => _accessor.InvokeMethod<DateTime, double, float, long>(nameof(StaticMethod_WithThreeParameters), ref arg1, arg2, arg3);
-        
+
         public static int StaticMethod_WithThreeParameters(bool arg1, out int arg2, long arg3)
         {
             arg2 = default;
