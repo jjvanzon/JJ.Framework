@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using JetBrains.Annotations;
 using JJ.Framework.Common;
 
 namespace JJ.Framework.Reflection
 {
+    [PublicAPI]
     public static class StaticReflectionCache
     {
         // TODO: The use of these Tuples as keys might not be fast dictionary keys.
@@ -100,7 +102,7 @@ namespace JJ.Framework.Reflection
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
-            if (parameterTypes.Length == 0) throw new Exception("parameterTypes.Length is 0."); 
+            if (parameterTypes.Length == 0) throw new Exception("parameterTypes.Length is 0.");
 
             // ReSharper disable once CoVariantArrayConversion
             string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
@@ -169,7 +171,7 @@ namespace JJ.Framework.Reflection
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
-            
+
             // ReSharper disable once CoVariantArrayConversion
             string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
 
@@ -196,5 +198,91 @@ namespace JJ.Framework.Reflection
 
         [Obsolete("Use ReflectionCache.GetProperties instead.", true)]
         public static PropertyInfo[] GetProperties(Type type, BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance) => throw new NotSupportedException("Use ReflectionCache.GetProperties instead.");
+
+        // Generic Overloads
+
+        public static MethodInfo GetMethod<TArg1>(Type type, string name)
+            => GetMethod(type, name, typeof(TArg1));
+
+        public static MethodInfo GetMethod<TArg1, TArg2>(Type type, string name)
+            => GetMethod(type, name, typeof(TArg1), typeof(TArg2));
+
+        public static MethodInfo GetMethod<TArg1, TArg2, TArg3>(Type type, string name)
+            => GetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3));
+
+        public static MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4>(Type type, string name) 
+            => GetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
+
+        public static MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type, string name)
+            => GetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
+
+        public static MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type, string name)
+            => GetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
+
+        public static MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type, string name)
+            => GetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
+
+        public static MethodInfo TryGetMethod<TArg1>(Type type, string name)
+            => TryGetMethod(type, name, typeof(TArg1));
+
+        public static MethodInfo TryGetMethod<TArg1, TArg2>(Type type, string name)
+            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2));
+
+        public static MethodInfo TryGetMethod<TArg1, TArg2, TArg3>(Type type, string name)
+            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3));
+
+        public static MethodInfo TryGetMethod<TArg1, TArg2, TArg3, TArg4>(Type type, string name) 
+            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
+
+        public static MethodInfo TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type, string name)
+            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
+
+        public static MethodInfo TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type, string name)
+            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
+
+        public static MethodInfo TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type, string name)
+            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
+
+        public static PropertyInfo GetIndexer<TArg1>(Type type)
+            => GetIndexer(type, typeof(TArg1));
+
+        public static PropertyInfo GetIndexer<TArg1, TArg2>(Type type)
+            => GetIndexer(type, typeof(TArg1), typeof(TArg2));
+
+        public static PropertyInfo GetIndexer<TArg1, TArg2, TArg3>(Type type)
+            => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3));
+
+        public static PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4>(Type type)
+            => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
+
+        public static PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type)
+            => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
+
+        public static PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type)
+            => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
+
+        public static PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type)
+            => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
+
+        public static PropertyInfo TryGetIndexer<TArg1>(Type type)
+            => TryGetIndexer(type, typeof(TArg1));
+
+        public static PropertyInfo TryGetIndexer<TArg1, TArg2>(Type type)
+            => TryGetIndexer(type, typeof(TArg1), typeof(TArg2));
+
+        public static PropertyInfo TryGetIndexer<TArg1, TArg2, TArg3>(Type type)
+            => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3));
+
+        public static PropertyInfo TryGetIndexer<TArg1, TArg2, TArg3, TArg4>(Type type)
+            => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
+
+        public static PropertyInfo TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type)
+            => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
+
+        public static PropertyInfo TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type)
+            => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
+
+        public static PropertyInfo TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type)
+            => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
     }
 }

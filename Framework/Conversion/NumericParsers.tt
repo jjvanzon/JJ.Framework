@@ -17,8 +17,7 @@
 using System;
 using System.Globalization;
 using JetBrains.Annotations;
-#pragma warning disable IDE0012 // Simplify Names
-#pragma warning disable IDE0013 // Simplify Names
+#pragma warning disable IDE0049 // Simplify Names
 // ReSharper disable BuiltInTypeReferenceStyle
 
 namespace JJ.Framework.Conversion
