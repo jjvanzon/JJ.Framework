@@ -83,7 +83,7 @@ You can do that by writing the following wrapper class:
 - There are limitations to this `Accessor` class.
 - Handling `out` and `ref` parameters might have limited support up to *3* parameters.
 - *Interface* parameters might not work. More generally: *abstract* parameters types might not work. This is because the parameter types are sometimes assumed to be the type of the *object* / the *concrete* type.
-- Perhaps for these cases it might be a solution to use `System.Reflection` directly or `PrivateObject` and 'PrivateType' from a test framework. Those may have slightly more complex syntax, but may offer a diversion where this `Accessor` class cannot not help you.
+- Perhaps for these cases it might be a solution to use `System.Reflection` directly or `PrivateObject` and `PrivateType` from a test framework. Those may have slightly more complex syntax, but may offer a diversion where this `Accessor` class cannot not help you.
 
 
 ReflectionCache
