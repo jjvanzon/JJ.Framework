@@ -144,7 +144,6 @@ namespace JJ.Framework.Reflection
 
         public object InvokeMethod(string name, params object[] parameters)
         {
-            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
             Type[] parameterTypes = ReflectionHelper.TypesFromObjects(parameters);
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
             return method.Invoke(_object, parameters);
@@ -155,6 +154,10 @@ namespace JJ.Framework.Reflection
         /// </param>
         public object InvokeMethod(string name, object[] parameters, Type[] parameterTypes)
         {
+            // Complement null parameter types with types from parameter values(concrete types).
+            Type[] parameterTypesFromObjects = ReflectionHelper.TypesFromObjects(parameters);
+            parameterTypes = parameterTypes.Zip(parameterTypesFromObjects, (x, y) => x ?? y).ToArray();
+
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
             return method.Invoke(_object, parameters);
         }
