@@ -209,7 +209,7 @@ namespace JJ.Framework.Testing
             if (statement == null) throw new NullException(() => statement);
             if (expectedExceptionType == null) throw new NullException(() => expectedExceptionType);
 
-            string actualExceptionDescriptor = "";
+            string actualDescriptor = "";
 
             try
             {
@@ -217,10 +217,10 @@ namespace JJ.Framework.Testing
             }
             catch (Exception ex)
             {
-                bool exceptionOrInnerExceptionIsMatch = ex.HasExceptionOrInnerExceptionsOfType(expectedExceptionType, expectedMessage);
-                if (!exceptionOrInnerExceptionIsMatch)
+                bool isMatch = ex.HasExceptionOrInnerExceptionsOfType(expectedExceptionType, expectedMessage);
+                if (!isMatch)
                 {
-                    actualExceptionDescriptor = $"Actual exception: '{ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false)}'";
+                    actualDescriptor = $"Actual exception: '{ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false)}'";
                 }
                 else
                 {
@@ -228,7 +228,7 @@ namespace JJ.Framework.Testing
                 }
             }
 
-            throw new Exception($"Exception or inner exception was expected of type '{expectedExceptionType}' with message '{expectedMessage}'. {actualExceptionDescriptor}");
+            throw new Exception($"Exception or inner exception was expected of type '{expectedExceptionType}' with message '{expectedMessage}'. {actualDescriptor}");
         }
 
         public static void ThrowsExceptionOrInnerException<T>(Action statement, string expectedMessage) => ThrowsExceptionOrInnerException(statement, typeof(T), expectedMessage);

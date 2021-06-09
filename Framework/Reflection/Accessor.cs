@@ -3,6 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using JetBrains.Annotations;
+// ReSharper disable RedundantExplicitArrayCreation
 
 namespace JJ.Framework.Reflection
 {
@@ -148,6 +149,36 @@ namespace JJ.Framework.Reflection
             MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
             return method.Invoke(_object, parameters);
         }
+
+        /// <param name="parameterTypes">
+        /// Some can be left null, upon which the concrete type of the passed parameter value may be used.
+        /// </param>
+        public object InvokeMethod(string name, object[] parameters, Type[] parameterTypes)
+        {
+            MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
+            return method.Invoke(_object, parameters);
+        }
+
+        public object InvokeMethod<TArg1>(string name, TArg1 parameter)
+            => InvokeMethod(name, new object[] { parameter }, new Type[] { typeof(TArg1) });
+
+        public object InvokeMethod<TArg1, TArg2>(string name, params object[] parameters)
+            => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2) });
+
+        public object InvokeMethod<TArg1, TArg2, TArg3>(string name, params object[] parameters)
+            => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3) });
+
+        public object InvokeMethod<TArg1, TArg2, TArg3, TArg4>(string name, params object[] parameters)
+            => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) });
+
+        public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5>(string name, params object[] parameters)
+            => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) });
+
+        public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(string name, params object[] parameters)
+            => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) });
+
+        public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(string name, params object[] parameters)
+            => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) });
 
         // Indexers
 
