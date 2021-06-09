@@ -3,6 +3,7 @@ using System.Collections.Generic;
 // ReSharper disable CheckNamespace
 // ReSharper disable UnusedParameter.Global
 // ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedType.Global
 
 namespace JJ.Framework.Common
 {
