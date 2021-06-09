@@ -12,8 +12,5 @@ namespace JJ.Framework.Logging
 
         public static Exception GetInnermostException(this Exception exception)
             => ExceptionHelper.GetInnermostException(exception);
-
-        public static bool HasExceptionOrInnerExceptionsOfType<T>(this Exception exception)
-            => ExceptionHelper.HasExceptionOrInnerExceptionsOfType<T>(exception);
     }
 }
