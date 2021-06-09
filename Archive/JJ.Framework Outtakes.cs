@@ -88,3 +88,41 @@ StaticReflectionCacheTests_BugMethodNotFound (2021-06-01):
 AccessorTests_OutParameters (2021-06-03):
 
     private static string FormatDateTime(DateTime dateTime) => $"{dateTime:yyyy-MM-dd}";
+
+ExceptionHelper (2021-06-08):
+
+    public static bool HasExceptionOrInnerExceptionsOfType<T>(Exception ex, string message)
+    {
+        var exceptions = ex.SelfAndAncestors(x => x.InnerException).ToArray();
+
+        foreach (Exception ex2 in exceptions)
+        {
+
+            if (ex2.GetType() == typeof(T) &&
+                string.Equals(ex2.Message, message))
+            {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+
+EnumHelper_Obsolete_Tests (2021-06-08):
+
+    /*
+    AssertHelper.ThrowsExceptionOrInnerException<NotSupportedException>();
+    try
+    {
+        EnumHelper_Obsolete_Accessor.Parse<object>("");
+    }
+    catch (Exception ex)
+    {
+        bool exceptionOrInnerExceptionIsMatch = ExceptionHelper.HasExceptionOrInnerExceptionsOfType<NotSupportedException>(ex, "Use JJ.Framework.Conversion.EnumParser.Parse instead.");
+
+        if (!exceptionOrInnerExceptionIsMatch)
+        {
+            throw new Exception();
+        }
+    }*/

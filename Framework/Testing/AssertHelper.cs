@@ -3,8 +3,10 @@ using System.Linq.Expressions;
 using System.Threading;
 using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Logging;
 using JJ.Framework.Reflection;
 // ReSharper disable InvertIf
+// ReSharper disable RedundantIfElseBlock
 
 namespace JJ.Framework.Testing
 {
@@ -199,6 +201,37 @@ namespace JJ.Framework.Testing
                 throw new Exception("An exception should have occurred.");
             }
         }
+
+        // TODO: Making set of overloads more complete / similar to ThrowsException.
+
+        public static void ThrowsExceptionOrInnerException(Action statement, Type expectedExceptionType, string expectedMessage)
+        {
+            if (statement == null) throw new NullException(() => statement);
+            if (expectedExceptionType == null) throw new NullException(() => expectedExceptionType);
+
+            string actualExceptionDescriptor = "";
+
+            try
+            {
+                statement();
+            }
+            catch (Exception ex)
+            {
+                bool exceptionOrInnerExceptionIsMatch = ex.HasExceptionOrInnerExceptionsOfType(expectedExceptionType, expectedMessage);
+                if (!exceptionOrInnerExceptionIsMatch)
+                {
+                    actualExceptionDescriptor = $"Actual exception: '{ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false)}'";
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            throw new Exception($"Exception or inner exception was expected of type '{expectedExceptionType}' with message '{expectedMessage}'. {actualExceptionDescriptor}");
+        }
+
+        public static void ThrowsExceptionOrInnerException<T>(Action statement, string expectedMessage) => ThrowsExceptionOrInnerException(statement, typeof(T), expectedMessage);
 
         // Normalized Methods
 
