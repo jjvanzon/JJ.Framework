@@ -1,7 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using JJ.Framework.Logging;
+﻿using System;
 using JJ.Framework.Testing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Common.Tests
 {
@@ -10,17 +9,8 @@ namespace JJ.Framework.Common.Tests
     {
         [TestMethod]
         public void Test_CultureHelper_Obsolete_SetThreadCultureName_ThrowsException()
-        {
-            try
-            {
-                CultureHelper_Obsolete_Accessor.SetThreadCultureName("nl-NL");
-            }
-            catch (Exception ex)
-            {
-                ex = ex.GetInnermostException();
-                Assert.IsInstanceOfType(ex, typeof(NotSupportedException));
-                AssertHelper.AreEqual("Use SetCurrentCultureName instead.",  () => ex.Message);
-            }
-        }
+            => AssertHelper.ThrowsExceptionOrInnerException<NotSupportedException>(
+                () => CultureHelper_Obsolete_Accessor.SetThreadCultureName("nl-NL"),
+                "Use SetCurrentCultureName instead.");
     }
 }

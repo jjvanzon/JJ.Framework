@@ -13,7 +13,8 @@ namespace JJ.Framework.Common.Tests
             return _accessor.InvokeMethod<bool, string, IFormatProvider, double>(nameof(TryParse), s, provider, ref result);
         }
 
-        public static double? ParseNullable(string input) => (double?)_accessor.InvokeMethod(nameof(ParseNullable), input);
+        public static double? ParseNullable(string input) 
+            => (double?)_accessor.InvokeMethod(nameof(ParseNullable), input);
 
         public static bool TryParse(string input, out double? output)
         {
