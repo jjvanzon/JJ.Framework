@@ -14,6 +14,8 @@
 #pragma warning disable IDE0022 // Use expression body for methods
 #pragma warning disable IDE0059 // Unnecessary assignment of a value
 #pragma warning disable IDE0044 // Add readonly modifier
+#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable IDE0060 // Remove unused parameter
 
 namespace JJ.Demos.Accessors
 {

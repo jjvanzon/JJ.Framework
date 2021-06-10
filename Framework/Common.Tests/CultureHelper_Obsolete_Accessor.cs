@@ -1,4 +1,5 @@
 ﻿using JJ.Framework.Reflection;
+// ReSharper disable UnusedParameter.Global
 
 namespace JJ.Framework.Common.Tests
 {
@@ -7,6 +8,6 @@ namespace JJ.Framework.Common.Tests
         private static readonly Accessor _accessor = new Accessor(typeof(CultureHelper));
 
         public static void SetThreadCultureName(string cultureName)
-            => _accessor.InvokeMethod(nameof(SetThreadCultureName), cultureName);
+            => _accessor.InvokeMethod(() => SetThreadCultureName(cultureName));
     }
 }

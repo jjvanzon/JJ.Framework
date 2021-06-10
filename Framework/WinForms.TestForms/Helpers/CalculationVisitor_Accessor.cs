@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using JJ.Framework.Reflection;
 using JJ.Framework.VectorGraphics.Models.Elements;
+// ReSharper disable UnusedParameter.Global
 
 namespace JJ.Framework.WinForms.TestForms.Helpers
 {
@@ -10,6 +11,6 @@ namespace JJ.Framework.WinForms.TestForms.Helpers
 
         public CalculationVisitor_Accessor() => _accessor = new Accessor("JJ.Framework.VectorGraphics.Visitors.CalculationVisitor, JJ.Framework.VectorGraphics");
 
-        public IList<Element> Execute(Diagram diagram) => (IList<Element>)_accessor.InvokeMethod("Execute", diagram);
+        public IList<Element> Execute(Diagram diagram) => _accessor.InvokeMethod(() => Execute(diagram));
     }
 }

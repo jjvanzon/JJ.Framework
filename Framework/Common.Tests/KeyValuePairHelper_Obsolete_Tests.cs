@@ -8,13 +8,15 @@ namespace JJ.Framework.Common.Tests
     public class KeyValuePairHelper_Obsolete_Tests
     {
         [TestMethod]
-        public void Test_KeyValuePairHelper_Obsolete_ConvertNamesAndValuesListToDictionary_ThrowsException() => AssertHelper.ThrowsExceptionOrInnerException<NotSupportedException>(
-            () => KeyValuePairHelper_Obsolete_Accessor.ConvertNamesAndValuesListToDictionary(null),
-            "Use JJ.Framework.Collections instead.");
+        public void Test_KeyValuePairHelper_Obsolete_ConvertNamesAndValuesListToDictionary_ThrowsException()
+            => AssertHelper.ThrowsExceptionOrInnerException<NotSupportedException>(
+                () => KeyValuePairHelper_Obsolete_Accessor.ConvertNamesAndValuesListToDictionary(null),
+                "Use JJ.Framework.Collections instead.");
 
         [TestMethod]
-        public void Test_KeyValuePairHelper_Obsolete_ConvertNamesAndValuesListToKeyValuePairs_ThrowsException() => AssertHelper.ThrowsExceptionOrInnerException<NotSupportedException>(
-            () => KeyValuePairHelper_Obsolete_Accessor.ConvertNamesAndValuesListToKeyValuePairs(null),
-            "Use JJ.Framework.Collections instead.");
+        public void Test_KeyValuePairHelper_Obsolete_ConvertNamesAndValuesListToKeyValuePairs_ThrowsException()
+            => AssertHelper.ThrowsExceptionOrInnerException<NotSupportedException>(
+                () => KeyValuePairHelper_Obsolete_Accessor.ConvertNamesAndValuesListToKeyValuePairs(null),
+                "Use JJ.Framework.Collections instead.");
     }
 }

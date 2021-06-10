@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using JJ.Framework.Reflection;
+// ReSharper disable UnusedParameter.Global
 
 namespace JJ.Framework.Common.Tests
 {
@@ -9,9 +10,9 @@ namespace JJ.Framework.Common.Tests
         private static readonly Accessor _accessor = new Accessor(Type.GetType( "JJ.Framework.Common.KeyValuePairHelper, JJ.Framework.Common"));
 
         public static IDictionary<string, object> ConvertNamesAndValuesListToDictionary(IList<object> namesAndValues)
-            => (IDictionary<string, object>)_accessor.InvokeMethod(nameof(ConvertNamesAndValuesListToDictionary), namesAndValues);
+            => _accessor.InvokeMethod(() => ConvertNamesAndValuesListToDictionary(namesAndValues));
 
         public static IList<KeyValuePair<string, object>> ConvertNamesAndValuesListToKeyValuePairs(IList<object> namesAndValues)
-            => (IList<KeyValuePair<string, object>>)_accessor.InvokeMethod(nameof(ConvertNamesAndValuesListToKeyValuePairs), namesAndValues);
+            => _accessor.InvokeMethod(() => ConvertNamesAndValuesListToKeyValuePairs(namesAndValues));
     }
 }

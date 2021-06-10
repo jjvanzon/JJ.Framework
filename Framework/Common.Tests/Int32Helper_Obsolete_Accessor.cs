@@ -1,5 +1,6 @@
 ﻿using System;
 using JJ.Framework.Reflection;
+// ReSharper disable UnusedParameter.Global
 
 namespace JJ.Framework.Common.Tests
 {
@@ -14,7 +15,7 @@ namespace JJ.Framework.Common.Tests
         }
 
         public static int? ParseNullable(string input)
-            => (int?)_accessor.InvokeMethod(nameof(ParseNullable), input);
+            => _accessor.InvokeMethod(() => ParseNullable(input));
 
         public static bool TryParse(string input, out int? output)
         {
