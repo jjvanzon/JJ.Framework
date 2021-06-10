@@ -12,7 +12,8 @@
 // ReSharper disable UnusedParameter.Local
 // ReSharper disable MemberCanBeMadeStatic.Global
 #pragma warning disable IDE0022 // Use expression body for methods
-#pragma warning disable IDE0021 // Use expression body for constructors
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
+#pragma warning disable IDE0044 // Add readonly modifier
 
 namespace JJ.Demos.Accessors
 {
@@ -40,12 +41,7 @@ namespace JJ.Demos.Accessors
 
         public MyAccessor(MyClass myObject) => _accessor = new Accessor(myObject);
 
-        public int MyPrivateMethod(int myParameter) => _accessor.InvokeMethod(() => MyPrivateMethod(default), myParameter);
-
-        // Note: Improvements to the Accessor class might be made in the future.
-        // - The lambda is only used to determine the name and return value.
-        // - The parameters from the lambda might be used too in the future.
-        // - But for now you pass the parameters separately instead.
+        public int MyPrivateMethod(int myParameter) => _accessor.InvokeMethod(() => MyPrivateMethod(myParameter));
     }
 
     class MyAccessorCaller

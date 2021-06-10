@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -120,32 +121,49 @@ namespace JJ.Framework.Reflection
 
         // Methods
 
-        /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted.
-        /// Only the last name in the expression might be used and possibly the return type.
+        /// <param name="callExpression">
+        /// An expression from which the member name, parameter types and parameter values might be extracted.
         /// </param>
-        public void InvokeMethod(Expression<Action> nameExpression, params object[] parameters) => InvokeMethod((LambdaExpression)nameExpression, parameters);
+        public void InvokeMethod(Expression<Action> callExpression) 
+            => InvokeMethod((LambdaExpression)callExpression);
 
-        /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted.
-        /// Only the last name in the expression might be used and possibly the return type.
+        /// <param name="callExpression">
+        /// An expression from which the member name, parameter types and parameter values might be extracted.
         /// </param>
-        public T InvokeMethod<T>(Expression<Func<T>> nameExpression, params object[] parameters) => (T)InvokeMethod((LambdaExpression)nameExpression, parameters);
+        public T InvokeMethod<T>(Expression<Func<T>> callExpression) 
+            => (T)InvokeMethod((LambdaExpression)callExpression);
 
-        /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted.
-        /// Only the last name in the expression might be used.
+        /// <param name="callExpression">
+        /// An expression from which the member name, parameter types and parameter values might be extracted.
         /// </param>
-        public object InvokeMethod(LambdaExpression nameExpression, params object[] parameters)
+        public object InvokeMethod(LambdaExpression callExpression)
         {
-            string name = ExpressionHelper.GetName(nameExpression);
-            return InvokeMethod(name, parameters);
+            MethodCallInfo methodCallInfo = ExpressionHelper.GetMethodCallInfo(callExpression);
+
+            return InvokeMethod(
+                methodCallInfo.Name,
+                methodCallInfo.Parameters.Select(x => x.Value).ToArray(),
+                methodCallInfo.Parameters.Select(x => x.ParameterType).ToArray());
         }
 
         public object InvokeMethod(string name, params object[] parameters)
         {
-            Type[] parameterTypes = ReflectionHelper.TypesFromObjects(parameters);
-            MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
+            MethodInfo method;
+
+            // Try getting parameter types from calling methods
+            // (assuming a wrapping accessor class with methods that define the signatures.)
+            {
+                Type[] parameterTypes = new StackTrace().GetFrame(1)?.GetMethod().GetParameters().Select(x => x.ParameterType).ToArray();
+                method = StaticReflectionCache.TryGetMethod(_objectType, name, parameterTypes);
+            }
+
+            // Try getting parameter types from parameter values.
+            if (method == null)
+            {
+                Type[] parameterTypes = ReflectionHelper.TypesFromObjects(parameters);
+                method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
+            }
+
             return method.Invoke(_object, parameters);
         }
 
