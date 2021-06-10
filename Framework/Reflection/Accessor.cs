@@ -72,7 +72,7 @@ namespace JJ.Framework.Reflection
         /// An expression from which the member name will be extracted.
         /// Only the last name in the expression might be used and possibly the return type.
         /// </param>
-        public void SetFieldValue<T>(Expression<Func<T>> nameExpression, object value)
+        public void SetFieldValue<T>(Expression<Func<T>> nameExpression, T value)
         {
             string name = ExpressionHelper.GetName(nameExpression);
             SetFieldValue(name, value);
@@ -106,7 +106,7 @@ namespace JJ.Framework.Reflection
         /// An expression from which the member name will be extracted.
         /// Only the last name in the expression might be used and possibly the return type.
         /// </param>
-        public void SetPropertyValue<T>(Expression<Func<T>> nameExpression, object value)
+        public void SetPropertyValue<T>(Expression<Func<T>> nameExpression, T value)
         {
             string name = ExpressionHelper.GetName(nameExpression);
             SetPropertyValue(name, value);
