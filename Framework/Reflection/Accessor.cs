@@ -9,11 +9,10 @@ using JetBrains.Annotations;
 namespace JJ.Framework.Reflection
 {
     /// <summary>
-    /// Allows easy access to members by name, public, private or protected.
-    /// Limitation: private base members cannot be accessed.
-    /// Use a separate Accessor object to access the private members of the base class.
-    /// To access internal classes, use the GetType / or CreateInstance static methods.
-    /// Another limitation is that it cannot invoke private or internal constructors for you (yet).
+    /// Attempts to make it easier to access members public, private or protected.
+    /// To access base class members, a separate Accessor object might be instantiated compared to accessing derived class members.
+    /// To access internal classes, maybe use a .NET Type string, GetType / or CreateInstance.
+    /// A limitation is that it might not invoke private or internal constructors (yet).
     /// </summary>
     [PublicAPI]
     public partial class Accessor
@@ -121,18 +120,21 @@ namespace JJ.Framework.Reflection
 
         // Methods
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         /// <param name="callExpression">
         /// An expression from which the member name, parameter types and parameter values might be extracted.
         /// </param>
         public void InvokeMethod(Expression<Action> callExpression) 
             => InvokeMethod((LambdaExpression)callExpression);
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         /// <param name="callExpression">
         /// An expression from which the member name, parameter types and parameter values might be extracted.
         /// </param>
         public T InvokeMethod<T>(Expression<Func<T>> callExpression) 
             => (T)InvokeMethod((LambdaExpression)callExpression);
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         /// <param name="callExpression">
         /// An expression from which the member name, parameter types and parameter values might be extracted.
         /// </param>
@@ -167,6 +169,50 @@ namespace JJ.Framework.Reflection
             return method.Invoke(_object, parameters);
         }
 
+        /// <summary>
+        /// <para>
+        /// May call a method, that might not be accessible normally,
+        /// but can be accessed through this Accessor class anyway.
+        /// </para>
+        /// 
+        /// <para>
+        /// The Accessor class may try to find the method to call,
+        /// based on its name and parameter types.
+        /// </para>
+        ///
+        /// <para>
+        /// You might program a custom wrapper Accessor class,
+        /// having methods that are like the ones that you try to call.
+        /// </para>
+        ///
+        /// <para>
+        /// The InvokeMethod overload that takes a lambda expression might be a first choice,
+        /// because it may resolve the parameter types quite elegantly.
+        /// </para>
+        /// 
+        /// <para>
+        /// If that does not work, second in line might be the InvokeMethod overloads,
+        /// that takes parameter objects.
+        /// That overload attempts to guess the parameter types
+        /// based on the signature of the calling method
+        /// (which may work for custom Accessor classes).
+        /// Otherwise it may try to guess parameter types based on the values that were passed
+        /// (which however, may not always be specific enough).
+        /// </para>
+        ///
+        /// <para>
+        /// Last in line might be overloads that specify parameter types explicitly.
+        /// That can be done with type arguments or an array of Types.
+        /// Calls to these overloads may seem less elegant,
+        /// but there may sometimes be no other option left.
+        /// There is some lenience in leaving out certain parameter types (using null)
+        /// that might be guessed based on the values.
+        /// </para>
+        ///
+        /// <para>
+        /// In case of ref and out parameters, specifying the parameter types explicitly may be the only option. The overloads that take ref parameters would be used for both out and ref parameters.
+        /// </para>
+        /// </summary>
         /// <param name="parameterTypes">
         /// Some can be left null, upon which the concrete type of the passed parameter value may be used.
         /// </param>
@@ -180,24 +226,31 @@ namespace JJ.Framework.Reflection
             return method.Invoke(_object, parameters);
         }
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         public object InvokeMethod<TArg1>(string name, TArg1 parameter)
             => InvokeMethod(name, new object[] { parameter }, new Type[] { typeof(TArg1) });
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         public object InvokeMethod<TArg1, TArg2>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2) });
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         public object InvokeMethod<TArg1, TArg2, TArg3>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3) });
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) });
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) });
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) });
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) });
 
