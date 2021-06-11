@@ -49,6 +49,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigurationHelper_Accessor.cs" />
+    <Compile Include="ConfigurationSection.cs" />
+    <Compile Include="ConfigurationHelper_Tests.cs" />
     <Compile Include="DoubleHelper_Obsolete_Accessor.cs" />
     <Compile Include="CultureHelper_Obsolete_Accessor.cs" />
     <Compile Include="CultureHelper_Obsolete_Tests.cs" />
