@@ -305,7 +305,6 @@ namespace JJ.Framework.Common.Tests
             }
         }
 
-
         // Section Not Found
 
         private const string DEFAULT_NOT_FOUND_EXCEPTION_MESSAGE = 
@@ -403,6 +402,29 @@ namespace JJ.Framework.Common.Tests
         }
 
         // Edge Cases
+
+        [TestMethod]
+        public void Test_ConfiugrationHelper_EdgeCase_SetSection_ArgumentNullException()
+        {
+            lock (_lock)
+            {
+                try
+                {
+                    // Arrange
+                    string expectedMessage = $"Value cannot be null.{Environment.NewLine}Parameter name: section";
+
+                    // Act
+                    AssertHelper.ThrowsException<ArgumentNullException>(
+                        () => ConfigurationHelper.SetSection<ConfigurationSection>(null),
+                        expectedMessage);
+                }
+                finally
+                {
+                    // Clean Up
+                    ConfigurationHelper_Accessor._sections.Clear();
+                }
+            }
+        }
 
         [TestMethod]
         public void Test_ConfigurationHelper_EdgeCase_SetSection_AlreadyCalled_ThrowsException()
