@@ -62,7 +62,7 @@ namespace JJ.Framework.Configuration
         {
             if (assembly == null) throw new NullException(() => assembly);
 
-            string sectionName = assembly.GetName().Name.ToLower();
+            string sectionName = GenerateSectionName(assembly);
             return GetSection<T>(sectionName);
         }
 
@@ -71,7 +71,7 @@ namespace JJ.Framework.Configuration
         {
             if (assembly == null) throw new NullException(() => assembly);
 
-            string sectionName = assembly.GetName().Name.ToLower();
+            string sectionName = GenerateSectionName(assembly);
             return TryGetSection<T>(sectionName);
         }
 
@@ -122,5 +122,7 @@ namespace JJ.Framework.Configuration
 
             ConfigurationManager.RefreshSection(sectionName);
         }
+
+        private static string GenerateSectionName(Assembly assembly) => assembly.GetName().Name.ToLower();
     }
 }
