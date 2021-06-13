@@ -1,6 +1,7 @@
 ﻿using System;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 // ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Common.Tests
@@ -12,6 +13,119 @@ namespace JJ.Framework.Common.Tests
 
         private static readonly object _lock = new object();
 
+        // Complex Example
+
+        [TestMethod]
+        public void Test_ConfigurationHelper_ComplexExample()
+        {
+            lock (_lock)
+            {
+                try
+                {
+                    // Arrange
+                    var input_AutoNamed_ConfigSection = new ConfigurationSection();
+                    var input_AutoNamed_ConfigSection_FromDifferentAssembly = new object(); // Using a class from another assembly. should render a different auto-generated name.
+                    var input_ExplicitlyNamed_ConfigSection = new ConfigurationSection2();
+                    var input_Another_ConfigSection = new ConfigurationSection3();
+                    // Same-ness
+                    var input_ConfigSection_OfSameType = new ConfigurationSection();
+
+                    // Act
+                    ConfigurationHelper.SetSection(input_AutoNamed_ConfigSection);
+                    ConfigurationHelper.SetSection(input_AutoNamed_ConfigSection_FromDifferentAssembly);
+                    ConfigurationHelper.SetSection(input_ExplicitlyNamed_ConfigSection, "MyConfigSection");
+                    ConfigurationHelper.SetSection(input_Another_ConfigSection, "AnotherConfigSection");
+                    // Same-ness
+                    ConfigurationHelper.SetSection(input_AutoNamed_ConfigSection, "DuplicateConfigSection");
+                    ConfigurationHelper.SetSection(input_ConfigSection_OfSameType, "ConfigSectionOfSameType");
+
+                    var output_AutoNamed_ConfigSection = ConfigurationHelper.GetSection<ConfigurationSection>("jj.framework.common.tests");
+                    var output_AutoNamed_ConfigSection_FromDifferentAssembly = ConfigurationHelper.GetSection<object>("mscorlib");
+                    var output_ExplicitlyNamed_ConfigSection = ConfigurationHelper.GetSection<ConfigurationSection2>("MyConfigSection");
+                    var output_Another_ConfigSection = ConfigurationHelper.GetSection<ConfigurationSection3>("AnotherConfigSection");
+                    // Same-ness
+                    var output_Duplicate_ConfigSection = ConfigurationHelper.GetSection<ConfigurationSection>("DuplicateConfigSection");
+                    var output_ConfigSection_OfSameType = ConfigurationHelper.GetSection<ConfigurationSection>("ConfigSectionOfSameType");
+                    // Names Unspecified
+                    var output_ConfigSection_ByOmittedName = ConfigurationHelper.GetSection<ConfigurationSection>();
+                    var output_ConfigSection_ByNullName = ConfigurationHelper.GetSection<ConfigurationSection>(null);
+                    var output_ConfigSection_ByEmptyName = ConfigurationHelper.GetSection<ConfigurationSection>("");
+                    var output_ConfigSection_ByWhiteSpaceName = ConfigurationHelper.TryGetSection<ConfigurationSection>(" ");
+
+                    // Assert
+                    AssertHelper.IsNotNull(() => output_AutoNamed_ConfigSection);
+                    AssertHelper.IsNotNull(() => output_AutoNamed_ConfigSection_FromDifferentAssembly);
+                    AssertHelper.IsNotNull(() => output_ExplicitlyNamed_ConfigSection);
+                    AssertHelper.IsNotNull(() => output_Another_ConfigSection);
+                    AssertHelper.AreSame(input_AutoNamed_ConfigSection, () => output_AutoNamed_ConfigSection);
+                    AssertHelper.AreSame(input_AutoNamed_ConfigSection_FromDifferentAssembly, () => output_AutoNamed_ConfigSection_FromDifferentAssembly);
+                    AssertHelper.AreSame(input_ExplicitlyNamed_ConfigSection, () => output_ExplicitlyNamed_ConfigSection);
+                    AssertHelper.AreSame(input_Another_ConfigSection, () => output_Another_ConfigSection);
+                    AssertHelper.AreSame(input_ConfigSection_OfSameType, () => output_ConfigSection_OfSameType);
+                    // Same-ness
+                    AssertHelper.IsNotNull(() => output_Duplicate_ConfigSection);
+                    AssertHelper.IsNotNull(() => output_ConfigSection_OfSameType);
+                    AssertHelper.AreSame(input_AutoNamed_ConfigSection, () => output_Duplicate_ConfigSection);
+                    Assert.IsFalse(input_AutoNamed_ConfigSection == input_ConfigSection_OfSameType);
+                    // Names Unspecified
+                    AssertHelper.IsNotNull(() => output_ConfigSection_ByOmittedName);
+                    AssertHelper.IsNotNull(() => output_ConfigSection_ByNullName);
+                    AssertHelper.IsNotNull(() => output_ConfigSection_ByEmptyName);
+                    AssertHelper.IsNull(() => output_ConfigSection_ByWhiteSpaceName);
+                    AssertHelper.AreSame(input_AutoNamed_ConfigSection, () => output_ConfigSection_ByOmittedName);
+                    AssertHelper.AreSame(input_AutoNamed_ConfigSection, () => output_ConfigSection_ByNullName);
+                    AssertHelper.AreSame(input_AutoNamed_ConfigSection, () => output_ConfigSection_ByEmptyName);
+                }
+                finally
+                {
+                    // Clean Up
+                    ConfigurationHelper_Accessor._sections.Clear();
+                }
+            }
+        }
+
+        // Auto-Generated Names
+
+        [TestMethod]
+        public void Test_ConfigurationHelper_AutoGeneratedNames_DifferentAssembly_DifferentName()
+        {
+            lock (_lock)
+            {
+                try
+                {
+                    // Arrange
+                    var inputConfigSection1 = new ConfigurationSection();
+                    var inputConfigSection2 = new object();
+
+                    // Act
+                    ConfigurationHelper.SetSection(inputConfigSection1);
+                    ConfigurationHelper.SetSection(inputConfigSection2);
+
+                    var outputConfigSection1_ByName = ConfigurationHelper.GetSection<ConfigurationSection>("jj.framework.common.tests");
+                    var outputConfigSection1_NameOmitted = ConfigurationHelper.GetSection<ConfigurationSection>();
+                    var outputConfigSection2_ByName = ConfigurationHelper.GetSection<object>("mscorlib");
+                    var outputConfigSection2_NameOmitted = ConfigurationHelper.GetSection<object>();
+
+                    // Assert
+                    AssertHelper.IsNotNull(() => outputConfigSection1_ByName);
+                    AssertHelper.IsNotNull(() => outputConfigSection1_NameOmitted);
+                    AssertHelper.IsNotNull(() => outputConfigSection2_ByName);
+                    AssertHelper.IsNotNull(() => outputConfigSection2_NameOmitted);
+                    AssertHelper.AreSame(inputConfigSection1, () => outputConfigSection1_ByName);
+                    AssertHelper.AreSame(inputConfigSection1, () => outputConfigSection1_NameOmitted);
+                    AssertHelper.AreSame(inputConfigSection2, () => outputConfigSection2_ByName);
+                    AssertHelper.AreSame(inputConfigSection2, () => outputConfigSection2_NameOmitted);
+                    Assert.IsFalse(outputConfigSection1_ByName == outputConfigSection2_ByName);
+                    Assert.IsFalse(outputConfigSection1_NameOmitted == outputConfigSection2_NameOmitted);
+                }
+                finally
+                {
+                    // Clean Up
+                    ConfigurationHelper_Accessor._sections.Clear();
+                }
+            }
+        }
+
         // SetSection, GetSection
 
         [TestMethod]
@@ -22,15 +136,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection);
-                    var outputConfigurationSection = ConfigurationHelper.GetSection<ConfigurationSection>();
+                    ConfigurationHelper.SetSection(inputConfigSection);
+                    var outputConfigSection = ConfigurationHelper.GetSection<ConfigurationSection>();
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -48,15 +162,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection, null);
-                    var outputConfigurationSection = ConfigurationHelper.GetSection<ConfigurationSection>(null);
+                    ConfigurationHelper.SetSection(inputConfigSection, null);
+                    var outputConfigSection = ConfigurationHelper.GetSection<ConfigurationSection>(null);
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -74,15 +188,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection, "");
-                    var outputConfigurationSection = ConfigurationHelper.GetSection<ConfigurationSection>("");
+                    ConfigurationHelper.SetSection(inputConfigSection, "");
+                    var outputConfigSection = ConfigurationHelper.GetSection<ConfigurationSection>("");
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -100,15 +214,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection, "MyConfigSection1");
-                    var outputConfigurationSection = ConfigurationHelper.GetSection<ConfigurationSection>("MyConfigSection1");
+                    ConfigurationHelper.SetSection(inputConfigSection, "MyConfigSection");
+                    var outputConfigSection = ConfigurationHelper.GetSection<ConfigurationSection>("MyConfigSection");
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -128,15 +242,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection);
-                    var outputConfigurationSection = ConfigurationHelper.TryGetSection<ConfigurationSection>();
+                    ConfigurationHelper.SetSection(inputConfigSection);
+                    var outputConfigSection = ConfigurationHelper.TryGetSection<ConfigurationSection>();
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -154,15 +268,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection, null);
-                    var outputConfigurationSection = ConfigurationHelper.TryGetSection<ConfigurationSection>(null);
+                    ConfigurationHelper.SetSection(inputConfigSection, null);
+                    var outputConfigSection = ConfigurationHelper.TryGetSection<ConfigurationSection>(null);
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -180,15 +294,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection, "");
-                    var outputConfigurationSection = ConfigurationHelper.TryGetSection<ConfigurationSection>("");
+                    ConfigurationHelper.SetSection(inputConfigSection, "");
+                    var outputConfigSection = ConfigurationHelper.TryGetSection<ConfigurationSection>("");
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -206,15 +320,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection, "MyConfigSection2");
-                    var outputConfigurationSection = ConfigurationHelper.TryGetSection<ConfigurationSection>("MyConfigSection2");
+                    ConfigurationHelper.SetSection(inputSection, "MyConfigSection");
+                    var outputConfigSection = ConfigurationHelper.TryGetSection<ConfigurationSection>("MyConfigSection");
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -223,7 +337,6 @@ namespace JJ.Framework.Common.Tests
                 }
             }
         }
-
 
         // Generated Names
 
@@ -235,15 +348,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection);
-                    var outputConfigurationSection = ConfigurationHelper.GetSection<ConfigurationSection>("jj.framework.common.tests");
+                    ConfigurationHelper.SetSection(inputConfigSection);
+                    var outputConfigSection = ConfigurationHelper.GetSection<ConfigurationSection>("jj.framework.common.tests");
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -261,15 +374,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection, null);
-                    var outputConfigurationSection = ConfigurationHelper.GetSection<ConfigurationSection>("jj.framework.common.tests");
+                    ConfigurationHelper.SetSection(inputConfigSection, null);
+                    var outputConfigSection = ConfigurationHelper.GetSection<ConfigurationSection>("jj.framework.common.tests");
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -287,15 +400,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection, "");
-                    var outputConfigurationSection = ConfigurationHelper.GetSection<ConfigurationSection>("jj.framework.common.tests");
+                    ConfigurationHelper.SetSection(inputConfigSection, "");
+                    var outputConfigSection = ConfigurationHelper.GetSection<ConfigurationSection>("jj.framework.common.tests");
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -305,9 +418,9 @@ namespace JJ.Framework.Common.Tests
             }
         }
 
-        // Section Not Found
+        // Not Found
 
-        private const string DEFAULT_NOT_FOUND_EXCEPTION_MESSAGE = 
+        private const string DEFAULT_NOT_FOUND_EXCEPTION_MESSAGE =
             "Configuration section with name 'jj.framework.common.tests' was not set. " +
             "To allow JJ.Framework.Common to use this configuration section, " +
             "call JJ.Framework.Common.ConfigurationHelper.SetSection.";
@@ -350,13 +463,13 @@ namespace JJ.Framework.Common.Tests
         {
             lock (_lock)
             {
-                string expectedMessage = 
-                    "Configuration section with name 'MyConfigSection3' was not set. " +
+                string expectedMessage =
+                    "Configuration section with name 'MyConfigSection' was not set. " +
                     "To allow JJ.Framework.Common to use this configuration section, " +
                     "call JJ.Framework.Common.ConfigurationHelper.SetSection.";
 
                 AssertHelper.ThrowsException(
-                    () => ConfigurationHelper.GetSection<ConfigurationSection>("MyConfigSection3"),
+                    () => ConfigurationHelper.GetSection<ConfigurationSection>("MyConfigSection"),
                     expectedMessage);
             }
         }
@@ -366,8 +479,8 @@ namespace JJ.Framework.Common.Tests
         {
             lock (_lock)
             {
-                var configurationSection = ConfigurationHelper.TryGetSection<ConfigurationSection>();
-                AssertHelper.IsNull(() => configurationSection);
+                var configSection = ConfigurationHelper.TryGetSection<ConfigurationSection>();
+                AssertHelper.IsNull(() => configSection);
             }
         }
 
@@ -376,8 +489,8 @@ namespace JJ.Framework.Common.Tests
         {
             lock (_lock)
             {
-                var configurationSection = ConfigurationHelper.TryGetSection<ConfigurationSection>(null);
-                AssertHelper.IsNull(() => configurationSection);
+                var configSection = ConfigurationHelper.TryGetSection<ConfigurationSection>(null);
+                AssertHelper.IsNull(() => configSection);
             }
         }
 
@@ -386,8 +499,8 @@ namespace JJ.Framework.Common.Tests
         {
             lock (_lock)
             {
-                var configurationSection = ConfigurationHelper.TryGetSection<ConfigurationSection>("");
-                AssertHelper.IsNull(() => configurationSection);
+                var configSection = ConfigurationHelper.TryGetSection<ConfigurationSection>("");
+                AssertHelper.IsNull(() => configSection);
             }
         }
 
@@ -396,15 +509,15 @@ namespace JJ.Framework.Common.Tests
         {
             lock (_lock)
             {
-                var configurationSection = ConfigurationHelper.TryGetSection<ConfigurationSection>("MyConfigSection4");
-                AssertHelper.IsNull(() => configurationSection);
+                var configSection = ConfigurationHelper.TryGetSection<ConfigurationSection>("MyConfigSection");
+                AssertHelper.IsNull(() => configSection);
             }
         }
 
         // Edge Cases
 
         [TestMethod]
-        public void Test_ConfiugrationHelper_EdgeCase_SetSection_ArgumentNullException()
+        public void Test_ConfigurationHelper_EdgeCase_SetSection_ArgumentNullException()
         {
             lock (_lock)
             {
@@ -434,12 +547,12 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
-                    ConfigurationHelper.SetSection(inputConfigurationSection);
+                    var inputConfigSection = new ConfigurationSection();
+                    ConfigurationHelper.SetSection(inputConfigSection);
 
                     // Act
                     AssertHelper.ThrowsException(
-                        () => ConfigurationHelper.SetSection(inputConfigurationSection),
+                        () => ConfigurationHelper.SetSection(inputConfigSection),
                         "Configuration section with with name 'jj.framework.common.tests' was already set.");
                 }
                 finally
@@ -458,16 +571,16 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    string expectedMessage = 
-                        "Configuration section with name 'MyConfigSection7' was not set. " +
+                    string expectedMessage =
+                        "Configuration section with name 'MyConfigSection2' was not set. " +
                         "To allow JJ.Framework.Common to use this configuration section, " +
                         "call JJ.Framework.Common.ConfigurationHelper.SetSection.";
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection, "MyConfigSection6");
+                    ConfigurationHelper.SetSection(inputConfigSection, "MyConfigSection1");
                     AssertHelper.ThrowsException(
-                        () => ConfigurationHelper.GetSection<ConfigurationSection>("MyConfigSection7"),
+                        () => ConfigurationHelper.GetSection<ConfigurationSection>("MyConfigSection2"),
                         expectedMessage);
                 }
                 finally
@@ -486,15 +599,15 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection, "jj.framework.common.tests");
-                    var outputConfigurationSection = ConfigurationHelper.GetSection<ConfigurationSection>();
+                    ConfigurationHelper.SetSection(inputConfigSection, "jj.framework.common.tests");
+                    var outputConfigSection = ConfigurationHelper.GetSection<ConfigurationSection>();
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection);
+                    AssertHelper.IsNotNull(() => outputConfigSection);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
                 }
                 finally
                 {
@@ -512,21 +625,21 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection1 = new ConfigurationSection();
-                    var inputConfigurationSection2 = new ConfigurationSection();
+                    var inputConfigSection1 = new ConfigurationSection();
+                    var inputConfigSection2 = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection1, "");
-                    ConfigurationHelper.SetSection(inputConfigurationSection2, " ");
-                    var outputConfigurationSection1 = ConfigurationHelper.GetSection<ConfigurationSection>("");
-                    var outputConfigurationSection2 = ConfigurationHelper.GetSection<ConfigurationSection>(" ");
+                    ConfigurationHelper.SetSection(inputConfigSection1, "");
+                    ConfigurationHelper.SetSection(inputConfigSection2, " ");
+                    var outputConfigSection1 = ConfigurationHelper.GetSection<ConfigurationSection>("");
+                    var outputConfigSection2 = ConfigurationHelper.GetSection<ConfigurationSection>(" ");
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection1);
-                    AssertHelper.IsNotNull(() => outputConfigurationSection2);
-                    AssertHelper.AreSame(inputConfigurationSection1, () => outputConfigurationSection1);
-                    AssertHelper.AreSame(inputConfigurationSection2, () => outputConfigurationSection2);
-                    Assert.IsFalse(outputConfigurationSection1 == outputConfigurationSection2);
+                    AssertHelper.IsNotNull(() => outputConfigSection1);
+                    AssertHelper.IsNotNull(() => outputConfigSection2);
+                    AssertHelper.AreSame(inputConfigSection1, () => outputConfigSection1);
+                    AssertHelper.AreSame(inputConfigSection2, () => outputConfigSection2);
+                    Assert.IsFalse(outputConfigSection1 == outputConfigSection2);
                 }
                 finally
                 {
@@ -544,20 +657,20 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    var inputConfigurationSection = new ConfigurationSection();
+                    var inputConfigSection = new ConfigurationSection();
 
                     // Act
-                    ConfigurationHelper.SetSection(inputConfigurationSection, "MyConfigSection5");
-                    ConfigurationHelper.SetSection(inputConfigurationSection, "MyConfigSection6");
-                    var outputConfigurationSection1 = ConfigurationHelper.GetSection<ConfigurationSection>("MyConfigSection5");
-                    var outputConfigurationSection2 = ConfigurationHelper.GetSection<ConfigurationSection>("MyConfigSection6");
+                    ConfigurationHelper.SetSection(inputConfigSection, "MyConfigSection1");
+                    ConfigurationHelper.SetSection(inputConfigSection, "MyConfigSection2");
+                    var outputConfigSection1 = ConfigurationHelper.GetSection<ConfigurationSection>("MyConfigSection1");
+                    var outputConfigSection2 = ConfigurationHelper.GetSection<ConfigurationSection>("MyConfigSection2");
 
                     // Assert
-                    AssertHelper.IsNotNull(() => outputConfigurationSection1);
-                    AssertHelper.IsNotNull(() => outputConfigurationSection2);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection1);
-                    AssertHelper.AreSame(inputConfigurationSection, () => outputConfigurationSection2);
-                    AssertHelper.AreSame(outputConfigurationSection2, () => outputConfigurationSection1);
+                    AssertHelper.IsNotNull(() => outputConfigSection1);
+                    AssertHelper.IsNotNull(() => outputConfigSection2);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection1);
+                    AssertHelper.AreSame(inputConfigSection, () => outputConfigSection2);
+                    AssertHelper.AreSame(outputConfigSection2, () => outputConfigSection1);
                 }
                 finally
                 {

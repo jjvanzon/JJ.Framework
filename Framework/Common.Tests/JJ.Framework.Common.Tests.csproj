@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigurationHelper_Accessor.cs" />
+    <Compile Include="ConfigurationSection3.cs" />
+    <Compile Include="ConfigurationSection2.cs" />
     <Compile Include="ConfigurationSection.cs" />
     <Compile Include="ConfigurationHelper_Tests.cs" />
     <Compile Include="DoubleHelper_Obsolete_Accessor.cs" />
