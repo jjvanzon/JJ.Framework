@@ -1,11 +1,13 @@
 ﻿using JJ.Framework.Configuration.Tests.Settings;
+using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestConfiguration = JJ.Framework.Configuration.Tests.Settings.TestConfiguration;
-// ReSharper disable ConvertToConstant.Local
 
 // ReSharper disable UnusedVariable
 // ReSharper disable JoinDeclarationAndInitializer
-// ReSharper disable RedundantAssignment
+// ReSharper disable ConvertToConstant.Local
+
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
 
 namespace JJ.Framework.Configuration.Tests
 {
@@ -128,5 +130,11 @@ namespace JJ.Framework.Configuration.Tests
 
             int intAttribute_Value = configuration.IntAttribute;
         }
+
+        [TestMethod]
+        public void Test_CustomConfigurationManager_GetSection_WithWhiteSpace_ThrowsException()
+            => AssertHelper.ThrowsException(
+                () => CustomConfigurationManager.GetSection<TestConfiguration>(" jj.framework.configuration.tests "),
+                "Configuration section ' jj.framework.configuration.tests ' not found.");
     }
 }
