@@ -4,7 +4,27 @@ using JetBrains.Annotations;
 
 namespace JJ.Framework.Common
 {
-    /// <summary> For using configuration settings where you cannot be dependent on System.Configuration. </summary>
+    /// <summary>
+    /// <para>
+    /// This may be a helper class for specific use-cases,
+    /// when using configuration settings normally might be unavailable.
+    /// In some project, there was an environment, that had a variation on .NET,
+    /// on which normal use of System.Configuration might not have been available.
+    /// To allow those environments to operate on a similar configuration structure as
+    /// environments that can use System.Configuration, using this ConfigurationHelper may
+    /// have offered a way out.
+    /// </para>
+    /// 
+    /// <para>
+    /// XML deserialization of a config file to an object might be realized differently,
+    /// after which ConfigurationHelper.SetSection may be called.
+    /// </para>
+    /// 
+    /// <para>
+    /// Parts of code that may otherwise have used ConfigurationManager.GetSection,
+    /// might instead call ConfigurationHelper.GetSection instead.
+    /// </para>
+    /// </summary>
     [PublicAPI]
     public static class ConfigurationHelper
     {
