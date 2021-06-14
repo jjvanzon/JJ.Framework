@@ -66,7 +66,7 @@ namespace JJ.Framework.Common.Tests
                     AssertHelper.IsNotNull(() => output_Duplicate_ConfigSection);
                     AssertHelper.IsNotNull(() => output_ConfigSection_OfSameType);
                     AssertHelper.AreSame(input_AutoNamed_ConfigSection, () => output_Duplicate_ConfigSection);
-                    Assert.IsFalse(input_AutoNamed_ConfigSection == input_ConfigSection_OfSameType);
+                    AssertHelper.NotSame(input_AutoNamed_ConfigSection , () => input_ConfigSection_OfSameType);
                     // Names Unspecified
                     AssertHelper.IsNotNull(() => output_ConfigSection_ByOmittedName);
                     AssertHelper.IsNotNull(() => output_ConfigSection_ByNullName);
@@ -115,8 +115,8 @@ namespace JJ.Framework.Common.Tests
                     AssertHelper.AreSame(inputConfigSection1, () => outputConfigSection1_NameOmitted);
                     AssertHelper.AreSame(inputConfigSection2, () => outputConfigSection2_ByName);
                     AssertHelper.AreSame(inputConfigSection2, () => outputConfigSection2_NameOmitted);
-                    Assert.IsFalse(outputConfigSection1_ByName == outputConfigSection2_ByName);
-                    Assert.IsFalse(outputConfigSection1_NameOmitted == outputConfigSection2_NameOmitted);
+                    AssertHelper.NotSame(outputConfigSection1_ByName, () => outputConfigSection2_ByName);
+                    AssertHelper.NotSame(outputConfigSection1_NameOmitted, () => outputConfigSection2_NameOmitted);
                 }
                 finally
                 {
@@ -639,7 +639,7 @@ namespace JJ.Framework.Common.Tests
                     AssertHelper.IsNotNull(() => outputConfigSection2);
                     AssertHelper.AreSame(inputConfigSection1, () => outputConfigSection1);
                     AssertHelper.AreSame(inputConfigSection2, () => outputConfigSection2);
-                    Assert.IsFalse(outputConfigSection1 == outputConfigSection2);
+                    AssertHelper.NotSame(outputConfigSection1, () => outputConfigSection2);
                 }
                 finally
                 {
