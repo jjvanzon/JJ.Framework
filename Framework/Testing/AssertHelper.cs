@@ -32,7 +32,7 @@ namespace JJ.Framework.Testing
                 }
 
                 string message = TestHelper.FormatTestedPropertyMessage(name);
-                string fullMessage = GetNotEqualFailedMessage(a, message);
+                string fullMessage = GetNotEqualFailedMessage(nameof(NotEqual), a, message);
                 throw new Exception(fullMessage);
             }
         }
@@ -40,6 +40,24 @@ namespace JJ.Framework.Testing
         /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
         public static void AreEqual<T>(T expected, Expression<Func<T>> actualExpression, string name = null)
             => ExpectedActualCheck(actual => Equals(expected, actual), "AreEqual", expected, actualExpression, name);
+
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void NotSame<T>(T a, Expression<Func<T>> bExpression, string name = null)
+        {
+            T b = ExpressionHelper.GetValue(bExpression);
+
+            if (ReferenceEquals(a, b))
+            {
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    name = ExpressionHelper.GetText(bExpression);
+                }
+
+                string message = TestHelper.FormatTestedPropertyMessage(name);
+                string fullMessage = GetNotEqualFailedMessage(nameof(NotSame), a, message);
+                throw new Exception(fullMessage);
+            }
+        }
 
         /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
         public static void AreSame<T>(T expected, Expression<Func<T>> actualExpression, string name = null)
@@ -273,8 +291,9 @@ namespace JJ.Framework.Testing
 
         // Messages
 
-        private static string GetNotEqualFailedMessage<T>(T a, string message)
-            => $"Assert.NotEqual failed. Both values are <{(a != null ? a.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";
+        /// <summary> Not equal message might be expressed differently for clarity. </summary>
+        private static string GetNotEqualFailedMessage<T>(string methodName, T a, string message)
+            => $"Assert.{methodName} failed. Both values are <{(a != null ? a.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";
 
         private static string GetExpectedActualMessage<T>(string methodName, T expected, T actual, string message)
             => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>, Actual <{
