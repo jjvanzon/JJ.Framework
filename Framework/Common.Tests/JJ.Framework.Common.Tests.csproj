@@ -61,7 +61,7 @@
     <Compile Include="CultureHelper_Obsolete_Tests.cs" />
     <Compile Include="DoubleHelper_Obsolete_Tests.cs" />
     <Compile Include="DoubleHelperTests.cs" />
-    <Compile Include="EmbeddedResourceHelperTests.cs" />
+    <Compile Include="EmbeddedResourceReaderTests.cs" />
     <Compile Include="EmbeddedResourceHelper_Obsolete_Tests.cs" />
     <Compile Include="EnumHelper_Obsolete_Accessor.cs" />
     <Compile Include="EnumHelper_Obsolete_Tests.cs" />
