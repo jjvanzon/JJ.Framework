@@ -55,12 +55,14 @@
     <Compile Include="ConfigurationSection.cs" />
     <Compile Include="ConfigurationHelper_Tests.cs" />
     <Compile Include="CultureHelperTests.cs" />
+    <Compile Include="EmbeddedResourceHelper_Obsolete_Accessor.cs" />
     <Compile Include="DoubleHelper_Obsolete_Accessor.cs" />
     <Compile Include="CultureHelper_Obsolete_Accessor.cs" />
     <Compile Include="CultureHelper_Obsolete_Tests.cs" />
     <Compile Include="DoubleHelper_Obsolete_Tests.cs" />
     <Compile Include="DoubleHelperTests.cs" />
     <Compile Include="EmbeddedResourceHelperTests.cs" />
+    <Compile Include="EmbeddedResourceHelper_Obsolete_Tests.cs" />
     <Compile Include="EnumHelper_Obsolete_Accessor.cs" />
     <Compile Include="EnumHelper_Obsolete_Tests.cs" />
     <Compile Include="Int32Helper_Obsolete_Accessor.cs" />
@@ -103,16 +105,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TestResources\EmbeddedResourceFile2InSubNameSpace.txt" />
+    <EmbeddedResource Include="TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="TestResources\EmbeddedResourceFile1InSubNameSpace.txt" />
+    <EmbeddedResource Include="TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="EmbeddedResourceFile1InRoot.txt" />
+    <EmbeddedResource Include="EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="EmbeddedResourceFile2InRoot.txt" />
+    <EmbeddedResource Include="EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

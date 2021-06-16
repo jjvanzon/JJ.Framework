@@ -148,6 +148,7 @@ namespace JJ.Framework.Reflection
                 methodCallInfo.Parameters.Select(x => x.ParameterType).ToArray());
         }
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         public object InvokeMethod(string name, params object[] parameters)
         {
             MethodInfo method;

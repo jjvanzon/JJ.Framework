@@ -222,7 +222,7 @@ namespace JJ.Framework.Testing
 
         // TODO: Making set of overloads more complete / similar to ThrowsException.
 
-        public static void ThrowsExceptionOrInnerException(Action statement, Type expectedExceptionType, string expectedMessage)
+        public static void ThrowsException_OrInnerException(Action statement, Type expectedExceptionType, string expectedMessage)
         {
             if (statement == null) throw new NullException(() => statement);
             if (expectedExceptionType == null) throw new NullException(() => expectedExceptionType);
@@ -249,7 +249,7 @@ namespace JJ.Framework.Testing
             throw new Exception($"Exception or inner exception was expected of type '{expectedExceptionType}' with message '{expectedMessage}'. {actualDescriptor}");
         }
 
-        public static void ThrowsExceptionOrInnerException<T>(Action statement, string expectedMessage) => ThrowsExceptionOrInnerException(statement, typeof(T), expectedMessage);
+        public static void ThrowsException_OrInnerException<T>(Action statement, string expectedMessage) => ThrowsException_OrInnerException(statement, typeof(T), expectedMessage);
 
         // Normalized Methods
 

@@ -1,0 +1,1 @@
+﻿Text of embedded resource file 1 without sub name space

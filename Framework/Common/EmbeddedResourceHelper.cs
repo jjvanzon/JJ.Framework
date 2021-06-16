@@ -13,33 +13,33 @@ namespace JJ.Framework.Common
     /// verifying that the embedded resource exists
     /// and allows doing it in a single code line.
     /// </summary>
-    public static class EmbeddedResourceHelper
+    public static class EmbeddedResourceReader
     {
-        public static string GetEmbeddedResourceText(Assembly assembly, string fileName) 
-            => GetEmbeddedResourceText(assembly, null, fileName);
+        public static string GetText(Assembly assembly, string fileName) 
+            => GetText(assembly, null, fileName);
 
-        public static byte[] GetEmbeddedResourceBytes(Assembly assembly, string fileName) 
-            => GetEmbeddedResourceBytes(assembly, null, fileName);
+        public static byte[] GetBytes(Assembly assembly, string fileName) 
+            => GetBytes(assembly, null, fileName);
 
-        public static Stream GetEmbeddedResourceStream(Assembly assembly, string fileName)
-            => GetEmbeddedResourceStream(assembly, null, fileName);
+        public static Stream GetStream(Assembly assembly, string fileName)
+            => GetStream(assembly, null, fileName);
 
-        public static string GetEmbeddedResourceName(Assembly assembly, string fileName)
-            => GetEmbeddedResourceName(assembly, null, fileName);
+        public static string GetName(Assembly assembly, string fileName)
+            => GetName(assembly, null, fileName);
 
         /// <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
-        public static string GetEmbeddedResourceText(Assembly assembly, string subNameSpace, string fileName)
+        public static string GetText(Assembly assembly, string subNameSpace, string fileName)
         {
-            using (Stream stream = GetEmbeddedResourceStream(assembly, subNameSpace, fileName))
+            using (Stream stream = GetStream(assembly, subNameSpace, fileName))
             {
                 return new StreamReader(stream).ReadToEnd();
             }
         }
 
         /// <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
-        public static byte[] GetEmbeddedResourceBytes(Assembly assembly, string subNameSpace, string fileName)
+        public static byte[] GetBytes(Assembly assembly, string subNameSpace, string fileName)
         {
-            using (Stream stream = GetEmbeddedResourceStream(assembly, subNameSpace, fileName))
+            using (Stream stream = GetStream(assembly, subNameSpace, fileName))
             {
                 using (var stream2 = new MemoryStream())
                 {
@@ -50,9 +50,9 @@ namespace JJ.Framework.Common
         }
 
         /// <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
-        public static Stream GetEmbeddedResourceStream(Assembly assembly, string subNameSpace, string fileName)
+        public static Stream GetStream(Assembly assembly, string subNameSpace, string fileName)
         {
-            string resourceName = GetEmbeddedResourceName(assembly, subNameSpace, fileName);
+            string resourceName = GetName(assembly, subNameSpace, fileName);
             Stream stream = assembly.GetManifestResourceStream(resourceName);
             if (stream == null)
             {
@@ -63,7 +63,7 @@ namespace JJ.Framework.Common
         }
 
         /// <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
-        public static string GetEmbeddedResourceName(Assembly assembly, string subNameSpace, string fileName)
+        public static string GetName(Assembly assembly, string subNameSpace, string fileName)
         {
             if (assembly == null) throw new ArgumentNullException(nameof(assembly));
             if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentException($"{nameof(fileName)} is null or white space.");

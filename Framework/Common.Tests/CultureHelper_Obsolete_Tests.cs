@@ -9,7 +9,7 @@ namespace JJ.Framework.Common.Tests
     {
         [TestMethod]
         public void Test_CultureHelper_Obsolete_SetThreadCultureName_ThrowsException()
-            => AssertHelper.ThrowsExceptionOrInnerException<NotSupportedException>(
+            => AssertHelper.ThrowsException_OrInnerException<NotSupportedException>(
                 () => CultureHelper_Obsolete_Accessor.SetThreadCultureName("nl-NL"),
                 "Use SetCurrentCultureName instead.");
     }
