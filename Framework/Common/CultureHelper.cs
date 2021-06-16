@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using System.Threading;
-using JetBrains.Annotations;
 
 namespace JJ.Framework.Common
 {
@@ -10,7 +9,6 @@ namespace JJ.Framework.Common
     /// Also certain syntaxes may have not worked on certain platforms once.
     /// Using this helper may prevent that problem.
     /// </summary>
-    [PublicAPI]
     public static partial class CultureHelper
     {
         public static void SetCurrentCulture(CultureInfo cultureInfo)

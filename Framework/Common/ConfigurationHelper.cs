@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 
 namespace JJ.Framework.Common
 {
@@ -25,7 +24,6 @@ namespace JJ.Framework.Common
     /// might instead call ConfigurationHelper.GetSection instead.
     /// </para>
     /// </summary>
-    [PublicAPI]
     public static class ConfigurationHelper
     {
         private static readonly object _sectionsLock = new object();

@@ -1,11 +1,12 @@
 ﻿using System;
-using JetBrains.Annotations;
 // ReSharper disable CheckNamespace
+// ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedType.Global
+// ReSharper disable UnusedParameter.Global
 
 namespace JJ.Framework.Common
 {
     [Obsolete(OBSOLETE_MESSAGE, true)]
-    [PublicAPI]
     public static class Int32Helper
     {
         private const string OBSOLETE_MESSAGE = "Use JJ.Framework.Conversion.Int32Parser instead.";
