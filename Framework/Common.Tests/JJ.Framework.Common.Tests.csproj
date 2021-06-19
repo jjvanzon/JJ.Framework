@@ -79,6 +79,10 @@
       <Project>{5D06A212-5459-47F3-8109-E012C5FC9E3A}</Project>
       <Name>JJ.Framework.Collections</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Common.Tests.Helpers\JJ.Framework.Common.Tests.Helpers.csproj">
+      <Project>{9d122655-ca60-4212-a3dd-6014972fd840}</Project>
+      <Name>JJ.Framework.Common.Tests.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">
       <Project>{44FD9133-5FE7-4824-BD35-27273706D127}</Project>
       <Name>JJ.Framework.Common</Name>

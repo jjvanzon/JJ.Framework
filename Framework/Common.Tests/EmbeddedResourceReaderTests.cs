@@ -3,12 +3,12 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using JJ.Framework.Common.Tests.Helpers;
 using JJ.Framework.IO;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 // ReSharper disable InvokeAsExtensionMethod
-
 // ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Common.Tests
@@ -22,6 +22,8 @@ namespace JJ.Framework.Common.Tests
         private const string EXPECTED_TEXT_OF_FILE_2_WITH_SUB_NAME_SPACE = "Text of embedded resource file 2 with sub name space";
 
         private static readonly Assembly _assembly = typeof(EmbeddedResourceReaderTests).Assembly;
+        private static readonly Assembly _assembly2 = typeof(DummyClass).Assembly;
+
         private static readonly Encoding _encoding = Encoding.UTF8;
         private static readonly byte[] _expectedBytes_OfFile1_WithoutSubNameSpace = StreamHelper.StringToBytes(EXPECTED_TEXT_OF_FILE_1_WITHOUT_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
         private static readonly byte[] _expectedBytes_OfFile2_WithoutSubNameSpace = StreamHelper.StringToBytes(EXPECTED_TEXT_OF_FILE_2_WITHOUT_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
@@ -226,6 +228,18 @@ namespace JJ.Framework.Common.Tests
                 string actualName2 = EmbeddedResourceReader.GetName(_assembly, "TestResources", "EmbeddedResourceFile2_WithSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedName2, () => actualName2);
             }
+        }
+
+        // Resources From Different Assemblies
+
+        [TestMethod]
+        public void Test_EmbeddedResourceReader_ResourcesFromDifferentAssemblies()
+        {
+            string textFromTestAssembly = EmbeddedResourceReader.GetText(_assembly, "TestResources", "EmbeddedResourceFile1_WithSubNameSpace.txt");
+            AssertHelper.AreEqual(EXPECTED_TEXT_OF_FILE_1_WITH_SUB_NAME_SPACE, () => textFromTestAssembly);
+
+            string textFromHelperAssembly = EmbeddedResourceReader.GetText(_assembly2, "TestResources", "EmbeddedResourceFile.txt");
+            AssertHelper.AreEqual("Text from different assembly.", () => textFromHelperAssembly);
         }
 
         // Not Found
