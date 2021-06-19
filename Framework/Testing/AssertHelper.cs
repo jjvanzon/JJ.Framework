@@ -249,7 +249,8 @@ namespace JJ.Framework.Testing
             throw new Exception($"Exception or inner exception was expected of type '{expectedExceptionType}' with message '{expectedMessage}'. {actualDescriptor}");
         }
 
-        public static void ThrowsException_OrInnerException<T>(Action statement, string expectedMessage) => ThrowsException_OrInnerException(statement, typeof(T), expectedMessage);
+        public static void ThrowsException_OrInnerException<T>(Action statement, string expectedMessage) 
+            => ThrowsException_OrInnerException(statement, typeof(T), expectedMessage);
 
         // Normalized Methods
 
