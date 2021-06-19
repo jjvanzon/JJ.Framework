@@ -6,7 +6,7 @@ namespace JJ.Framework.Common
 {
     /// <summary>
     /// Embedded resources may be content stored
-    /// directly in an Assembly's exe or dll.
+    /// directly in an assembly's exe or dll.
     /// This class helps with getting embedded resources,
     /// which otherwise may need a surprising syntax.
     /// This class aims to make it a bit easier by parameterizing it,
@@ -27,7 +27,7 @@ namespace JJ.Framework.Common
         public static string GetName(Assembly assembly, string fileName)
             => GetName(assembly, null, fileName);
 
-        /// <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
+        /// <param name="subNameSpace">Nullable. Similar to the subfolder in which the embedded resource resides.</param>
         public static string GetText(Assembly assembly, string subNameSpace, string fileName)
         {
             using (Stream stream = GetStream(assembly, subNameSpace, fileName))
@@ -36,7 +36,7 @@ namespace JJ.Framework.Common
             }
         }
 
-        /// <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
+        /// <param name="subNameSpace">Nullable. Similar to the subfolder in which the embedded resource resides.</param>
         public static byte[] GetBytes(Assembly assembly, string subNameSpace, string fileName)
         {
             using (Stream stream = GetStream(assembly, subNameSpace, fileName))
@@ -49,7 +49,7 @@ namespace JJ.Framework.Common
             }
         }
 
-        /// <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
+        /// <param name="subNameSpace">Nullable. Similar to the subfolder in which the embedded resource resides.</param>
         public static Stream GetStream(Assembly assembly, string subNameSpace, string fileName)
         {
             string resourceName = GetName(assembly, subNameSpace, fileName);
@@ -62,7 +62,7 @@ namespace JJ.Framework.Common
             return stream;
         }
 
-        /// <param name="subNameSpace">Similar to the subfolder in which the embedded resource resides.</param>
+        /// <param name="subNameSpace">Nullable. Similar to the subfolder in which the embedded resource resides.</param>
         public static string GetName(Assembly assembly, string subNameSpace, string fileName)
         {
             if (assembly == null) throw new ArgumentNullException(nameof(assembly));
