@@ -116,6 +116,33 @@ namespace JJ.Framework.Testing
             }
         }
 
+        /// <inheritdoc cref="IsInstanceOfType{T}(Expression{Func{T}}, Type, string)" />
+        public static void IsInstanceOfType<TSource, TTarget>(Expression<Func<TSource>> expression, string name = null)
+            => IsInstanceOfType(expression, typeof(TTarget), name);
+
+        /// <summary>
+        /// Tests if the supplied expression returns an object that is of the type specified or a derived type.
+        /// If not, an exception is thrown.
+        /// </summary>
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void IsInstanceOfType<TSource>(Expression<Func<TSource>> expression, Type targetType, string name = null)
+        {
+            Type sourceType = typeof(TSource);
+
+            bool isAssignable = sourceType.IsAssignableTo(targetType);
+            if (!isAssignable)
+            {
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    name = ExpressionHelper.GetName(expression);
+                }
+
+                string message = $"{sourceType} cannot be assigned to {targetType}. {TestHelper.FormatTestedPropertyMessage(name)}";
+                string fullMessage = GetFailureMessage(nameof(IsInstanceOfType), message);
+                throw new Exception(fullMessage);
+            }
+        }
+
         // ThrowsException Checks
 
         public static void ThrowsException(Action action)
@@ -249,7 +276,7 @@ namespace JJ.Framework.Testing
             throw new Exception($"Exception or inner exception was expected of type '{expectedExceptionType}' with message '{expectedMessage}'. {actualDescriptor}");
         }
 
-        public static void ThrowsException_OrInnerException<T>(Action statement, string expectedMessage) 
+        public static void ThrowsException_OrInnerException<T>(Action statement, string expectedMessage)
             => ThrowsException_OrInnerException(statement, typeof(T), expectedMessage);
 
         // Normalized Methods
