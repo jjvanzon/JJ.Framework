@@ -22,19 +22,7 @@ namespace JJ.Framework.Common
         public static string CreateKey<T>(IEnumerable<T> values)
         {
             if (values == null) throw new ArgumentNullException(nameof(values));
-
-            var strings = new string[values.Count()];
-
-            var i = 0;
-
-            foreach (T value in values)
-            {
-                strings[i] = Convert.ToString(value);
-                i++;
-            }
-
-            string key = string.Join(SEPARATOR, strings);
-
+            string key = string.Join(SEPARATOR, values);
             return key;
         }
     }
