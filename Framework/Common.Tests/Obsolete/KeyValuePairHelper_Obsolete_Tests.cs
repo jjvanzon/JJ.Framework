@@ -2,7 +2,7 @@
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Common.Tests
+namespace JJ.Framework.Common.Tests.Obsolete
 {
     [TestClass]
     public class KeyValuePairHelper_Obsolete_Tests

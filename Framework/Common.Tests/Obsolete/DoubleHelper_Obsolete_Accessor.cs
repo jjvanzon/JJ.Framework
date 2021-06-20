@@ -1,8 +1,9 @@
 ﻿using System;
 using JJ.Framework.Reflection;
+
 // ReSharper disable UnusedParameter.Global
 
-namespace JJ.Framework.Common.Tests
+namespace JJ.Framework.Common.Tests.Obsolete
 {
     internal static class DoubleHelper_Obsolete_Accessor
     {

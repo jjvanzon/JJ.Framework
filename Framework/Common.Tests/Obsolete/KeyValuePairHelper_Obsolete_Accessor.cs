@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using JJ.Framework.Reflection;
+
 // ReSharper disable UnusedParameter.Global
 
-namespace JJ.Framework.Common.Tests
+namespace JJ.Framework.Common.Tests.Obsolete
 {
     internal static class KeyValuePairHelper_Obsolete_Accessor
     {
