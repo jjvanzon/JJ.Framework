@@ -213,18 +213,21 @@ namespace JJ.Framework.Reflection
         /// </para>
         ///
         /// <para>
+        /// There may also be an overload to specify type arguments.
+        /// </para>
+        ///
+        /// <para>
         /// In case of ref and out parameters, specifying the parameter types explicitly may be the only option. The overloads that take ref parameters would be used for both out and ref parameters.
         /// </para>
         /// </summary>
+        ///
         /// <param name="parameterTypes">
-        /// Some can be left null, upon which the concrete type of the passed parameter value may be used.
+        /// Nullable. Some items can be left null. It can also have less items, than there are parameters.
+        /// It may be complemented with the concrete types of the passed parameter values.
         /// </param>
         public object InvokeMethod(string name, object[] parameters, Type[] parameterTypes)
         {
-            // Complement null parameter types with types from parameter values(concrete types).
-            Type[] parameterTypesFromObjects = ReflectionHelper.TypesFromObjects(parameters);
-            parameterTypes = parameterTypes.Zip(parameterTypesFromObjects, (x, y) => x ?? y).ToArray();
-
+            parameterTypes = ComplementParameterTypes(parameterTypes, parameters);
             MethodInfo method = _reflectionCache.GetMethod(_objectType, name, parameterTypes);
             return method.Invoke(_object, parameters);
         }
@@ -257,6 +260,14 @@ namespace JJ.Framework.Reflection
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) });
 
+        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        public object InvokeMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments)
+        {
+            parameterTypes = ComplementParameterTypes(parameterTypes, parameters);
+            MethodInfo method = _reflectionCache.GetMethod(_objectType, name, parameterTypes, typeArguments);
+            return method.Invoke(_object, parameters);
+        }
+
         // Indexers
 
         public object GetIndexerValue(params object[] parameters)
@@ -278,6 +289,25 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypes = ReflectionHelper.TypesFromObjects(parameters);
             PropertyInfo property = _reflectionCache.GetIndexer(_objectType, parameterTypes);
             property.SetValue(_object, value, parameters);
+        }
+
+        // Helpers
+
+        /// <summary> Complement null parameter types with types from parameter values (concrete types). </summary>
+        private static Type[] ComplementParameterTypes(Type[] parameterTypes, object[] parameters)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            parameterTypes ??= new Type[0];
+            if (parameterTypes.Length > parameters.Length) throw new ArgumentException("parameterTypes.Length is greater than parameters.Length.");
+
+            Type[] parameterTypesFromObjects = ReflectionHelper.TypesFromObjects(parameters);
+
+            // Lenience for missing parameterTypes array elements.
+            Array.Resize(ref parameterTypes, parameterTypesFromObjects.Length); 
+
+            parameterTypes = parameterTypes.Zip(parameterTypesFromObjects, (x, y) => x ?? y).ToArray();
+
+            return parameterTypes;
         }
     }
 }

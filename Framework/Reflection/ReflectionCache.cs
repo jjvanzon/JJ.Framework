@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using JJ.Framework.Common;
 
+// ReSharper disable ReplaceWithSingleCallToSingle
 // ReSharper disable InvertIf
 // ReSharper disable RedundantIfElseBlock
 
@@ -228,6 +229,55 @@ namespace JJ.Framework.Reflection
 
                 method = type.GetMethod(name, _bindingFlags, null, parameterTypes, null);
                 _methodDictionary[key] = method;
+
+                return method;
+            }
+        }
+
+        // Method (with Type Arguments)
+
+        private readonly Dictionary<(Type, string name, string parameterTypesKey, string typeArgumentsKey), MethodInfo> _methodWithTypeArgumentsDictionary 
+            = new Dictionary<(Type, string, string, string), MethodInfo>();
+
+        private readonly object _methodWithTypeArgumentsDictionaryLock = new object();
+
+        public MethodInfo GetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
+        {
+            MethodInfo method = TryGetMethod(type, name, parameterTypes, typeArguments);
+            if (method == null)
+            {
+                throw new Exception($"Method '{name}' not found.");
+            }
+            return method;
+        }
+
+        public MethodInfo TryGetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
+            if (typeArguments == null) throw new ArgumentNullException(nameof(typeArguments));
+
+            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
+            string typeArgumentsKey = KeyHelper.CreateKey(typeArguments);
+
+            lock (_methodWithTypeArgumentsDictionaryLock)
+            {
+                var key = (type, name, parameterTypesKey, typeArgumentsKey);
+
+                if (_methodWithTypeArgumentsDictionary.TryGetValue(key, out MethodInfo method))
+                {
+                    return method;
+                }
+
+                MethodInfo openGenericMethod = GetMethods(type).Where(x => string.Equals(x.Name, name))
+                                                               .Where(x => x.GetParameters()
+                                                                            .Select(y => y.ParameterType)
+                                                                            .SequenceEqual(parameterTypes))
+                                                               .Single();
+
+                method = openGenericMethod.MakeGenericMethod(typeArguments);
+
+                _methodWithTypeArgumentsDictionary[key] = method;
 
                 return method;
             }
