@@ -6,14 +6,19 @@ using System.Linq;
 
 namespace JJ.Framework.Common
 {
+    /// <summary>
+    /// Turns several objects into a single string key.
+    /// Only works if the objects' ToString() methods return something unique.
+    /// </summary>
     public static class KeyHelper
     {
-        private static readonly string _separator = Guid.NewGuid().ToString();
+        private const string SEPARATOR = "89765d597c724aa3832070f21446a543";
 
-        /// <summary>
-        /// Turns several objects into a single string key.
-        /// Only works if the objects' ToString() methods return something unique.
-        /// </summary>
+        /// <inheritdoc cref="KeyHelper" />
+        public static string CreateKey(IEnumerable<object> values)
+            => CreateKey<object>(values);
+
+        /// <inheritdoc cref="KeyHelper" />
         public static string CreateKey<T>(IEnumerable<T> values)
         {
             if (values == null) throw new ArgumentNullException(nameof(values));
@@ -28,7 +33,7 @@ namespace JJ.Framework.Common
                 i++;
             }
 
-            string key = string.Join(_separator, strings);
+            string key = string.Join(SEPARATOR, strings);
 
             return key;
         }
