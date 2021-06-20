@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JJ.Framework.Common;
-// ReSharper disable InvertIf
 
+// ReSharper disable InvertIf
 // ReSharper disable RedundantIfElseBlock
 
 namespace JJ.Framework.Reflection
 {
     public class ReflectionCache
     {
-        // TODO: The use of these Tuples as keys might not be fast dictionary keys.
-        // Perhaps use a different approach to reflection caching (like in ReflectionCacheDemo)
-        // and maybe test what happens when you use .NET's own Tuple class.
-
         private readonly BindingFlags _bindingFlags;
 
         public ReflectionCache() : this(ReflectionHelper.BINDING_FLAGS_ALL) { }
@@ -23,7 +19,7 @@ namespace JJ.Framework.Reflection
 
         // Property
 
-        private readonly Dictionary<Tuple<Type, string>, PropertyInfo> _propertyDictionary = new Dictionary<Tuple<Type, string>, PropertyInfo>();
+        private readonly Dictionary<(Type, string), PropertyInfo> _propertyDictionary = new Dictionary<(Type, string), PropertyInfo>();
         private readonly object _propertyDictionaryLock = new object();
 
         public PropertyInfo GetProperty(Type type, string name)
@@ -42,17 +38,17 @@ namespace JJ.Framework.Reflection
 
             lock (_propertyDictionaryLock)
             {
-                var key = new Tuple<Type, string>(type, name);
-                if (_propertyDictionary.ContainsKey(key))
+                var key = (type, name);
+                
+                if (_propertyDictionary.TryGetValue(key, out PropertyInfo property))
                 {
-                    return _propertyDictionary[key];
-                }
-                else
-                {
-                    PropertyInfo property = type.GetProperty(name, _bindingFlags);
-                    _propertyDictionary[key] = property;
                     return property;
                 }
+
+                property = type.GetProperty(name, _bindingFlags);
+                _propertyDictionary[key] = property;
+
+                return property;
             }
         }
 
@@ -65,11 +61,14 @@ namespace JJ.Framework.Reflection
         {
             lock (_propertiesDictionaryLock)
             {
-                if (!_propertiesDictionary.TryGetValue(type, out PropertyInfo[] properties))
+                if (_propertiesDictionary.TryGetValue(type, out PropertyInfo[] properties))
                 {
-                    properties = type.GetProperties(_bindingFlags);
-                    _propertiesDictionary.Add(type, properties);
+                    return properties;
                 }
+
+                properties = type.GetProperties(_bindingFlags);
+                _propertiesDictionary.Add(type, properties);
+
                 return properties;
             }
         }
@@ -83,18 +82,21 @@ namespace JJ.Framework.Reflection
         {
             lock (_propertyDictionaryDictionaryLock)
             {
-                if (!_propertyDictionaryDictionary.TryGetValue(type, out Dictionary<string, PropertyInfo> propertyDictionary))
+                if (_propertyDictionaryDictionary.TryGetValue(type, out Dictionary<string, PropertyInfo> propertyDictionary))
                 {
-                    propertyDictionary = type.GetProperties(_bindingFlags).ToDictionary(x => x.Name);
-                    _propertyDictionaryDictionary.Add(type, propertyDictionary);
+                    return propertyDictionary;
                 }
+
+                propertyDictionary = type.GetProperties(_bindingFlags).ToDictionary(x => x.Name);
+                _propertyDictionaryDictionary.Add(type, propertyDictionary);
+
                 return propertyDictionary;
             }
         }
 
         // Field
 
-        private readonly Dictionary<Tuple<Type, string>, FieldInfo> _fieldDictionary = new Dictionary<Tuple<Type, string>, FieldInfo>();
+        private readonly Dictionary<(Type, string), FieldInfo> _fieldDictionary = new Dictionary<(Type, string), FieldInfo>();
         private readonly object _fieldDictionaryLock = new object();
 
         public FieldInfo GetField(Type type, string name)
@@ -113,17 +115,17 @@ namespace JJ.Framework.Reflection
 
             lock (_fieldDictionaryLock)
             {
-                var key = new Tuple<Type, string>(type, name);
-                if (_fieldDictionary.ContainsKey(key))
+                var key = (type, name);
+
+                if (_fieldDictionary.TryGetValue(key, out FieldInfo field))
                 {
-                    return _fieldDictionary[key];
-                }
-                else
-                {
-                    FieldInfo field = type.GetField(name, _bindingFlags);
-                    _fieldDictionary[key] = field;
                     return field;
                 }
+
+                field = type.GetField(name, _bindingFlags);
+                _fieldDictionary[key] = field;
+
+                return field;
             }
         }
 
@@ -136,18 +138,21 @@ namespace JJ.Framework.Reflection
         {
             lock (_fieldsDictionaryLock)
             {
-                if (!_fieldsDictionary.TryGetValue(type, out FieldInfo[] fields))
+                if (_fieldsDictionary.TryGetValue(type, out FieldInfo[] fields))
                 {
-                    fields = type.GetFields(_bindingFlags);
-                    _fieldsDictionary.Add(type, fields);
+                    return fields;
                 }
+
+                fields = type.GetFields(_bindingFlags);
+                _fieldsDictionary.Add(type, fields);
+
                 return fields;
             }
         }
 
         // Indexer
 
-        private readonly Dictionary<Tuple<Type, string>, PropertyInfo> _indexerDictionary = new Dictionary<Tuple<Type, string>, PropertyInfo>();
+        private readonly Dictionary<(Type, string parameterTypesKey), PropertyInfo> _indexerDictionary = new Dictionary<(Type, string), PropertyInfo>();
         private readonly object _indexerDictionaryLock = new object();
 
         public PropertyInfo GetIndexer(Type type, params Type[] parameterTypes)
@@ -170,29 +175,29 @@ namespace JJ.Framework.Reflection
 
             lock (_indexerDictionaryLock)
             {
-                var key = new Tuple<Type, string>(type, parameterTypesKey);
-                if (_indexerDictionary.ContainsKey(key))
+                var key = (type, parameterTypesKey);
+
+                if (_indexerDictionary.TryGetValue(key, out PropertyInfo property))
                 {
-                    return _indexerDictionary[key];
-                }
-                else
-                {
-                    var defaultMemberAttribute = (DefaultMemberAttribute)type.GetCustomAttributes(typeof(DefaultMemberAttribute), inherit: true).SingleOrDefault();
-                    if (defaultMemberAttribute == null)
-                    {
-                        return null;
-                    }
-                    string name = defaultMemberAttribute.MemberName;
-                    PropertyInfo property = type.GetProperty(name, _bindingFlags, null, null, parameterTypes, null);
-                    _indexerDictionary[key] = property;
                     return property;
                 }
+
+                var defaultMemberAttribute = (DefaultMemberAttribute)type.GetCustomAttributes(typeof(DefaultMemberAttribute), inherit: true).SingleOrDefault();
+                if (defaultMemberAttribute == null)
+                {
+                    return null;
+                }
+                string name = defaultMemberAttribute.MemberName;
+                property = type.GetProperty(name, _bindingFlags, null, null, parameterTypes, null);
+                _indexerDictionary[key] = property;
+
+                return property;
             }
         }
 
         // Method
 
-        private readonly Dictionary<Tuple<Type, string, string>, MethodInfo> _methodDictionary = new Dictionary<Tuple<Type, string, string>, MethodInfo>();
+        private readonly Dictionary<(Type, string, string parameterTypesKey), MethodInfo> _methodDictionary = new Dictionary<(Type, string, string), MethodInfo>();
         private readonly object _methodDictionaryLock = new object();
 
         public MethodInfo GetMethod(Type type, string name, params Type[] parameterTypes)
@@ -210,28 +215,27 @@ namespace JJ.Framework.Reflection
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
 
-            // ReSharper disable once CoVariantArrayConversion
             string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
 
             lock (_methodDictionaryLock)
             {
-                var key = new Tuple<Type, string, string>(type, name, parameterTypesKey);
-                if (_methodDictionary.ContainsKey(key))
+                var key = (type, name, parameterTypesKey);
+
+                if (_methodDictionary.TryGetValue(key, out MethodInfo method))
                 {
-                    return _methodDictionary[key];
-                }
-                else
-                {
-                    MethodInfo method = type.GetMethod(name, _bindingFlags, null, parameterTypes, null);
-                    _methodDictionary[key] = method;
                     return method;
                 }
+
+                method = type.GetMethod(name, _bindingFlags, null, parameterTypes, null);
+                _methodDictionary[key] = method;
+
+                return method;
             }
         }
 
         // Methods
 
-        private readonly Dictionary<Tuple<Type, BindingFlags>, MethodInfo[]> _methodsDictionary = new Dictionary<Tuple<Type, BindingFlags>, MethodInfo[]>();
+        private readonly Dictionary<Type, MethodInfo[]> _methodsDictionary = new Dictionary<Type, MethodInfo[]>();
         private readonly object _methodsDictionaryLock = new object();
 
         public MethodInfo[] GetMethods(Type type)
@@ -240,19 +244,18 @@ namespace JJ.Framework.Reflection
 
             lock (_methodsDictionaryLock)
             {
-                var key = new Tuple<Type, BindingFlags>(type, _bindingFlags);
-                if (_methodsDictionary.ContainsKey(key))
+                if (_methodsDictionary.TryGetValue(type, out MethodInfo[] methods))
                 {
-                    return _methodsDictionary[key];
-                }
-                else
-                {
-                    MethodInfo[] methods = type.GetMethods(_bindingFlags);
-                    _methodsDictionary[key] = methods;
                     return methods;
                 }
+
+                methods = type.GetMethods(_bindingFlags);
+                _methodsDictionary[type] = methods;
+
+                return methods;
             }
         }
+
         // Types
 
         private readonly Dictionary<string, Type[]> _typeByShortNameDictionary = new Dictionary<string, Type[]>();
@@ -318,7 +321,7 @@ namespace JJ.Framework.Reflection
             }
         }
 
-        // Constructors
+        // Constructor
 
         private readonly IDictionary<Type, ConstructorInfo> _constructorDictionary = new Dictionary<Type, ConstructorInfo>();
         private readonly object _constructorDictionaryLock = new object();

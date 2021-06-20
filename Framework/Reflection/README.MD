@@ -75,7 +75,7 @@ You can do that by writing the following wrapper class:
         public MyAccessor(MyClass myObject) => _accessor = new Accessor(myObject);
 
         public int MyPrivateMethod(int myParameter) 
-            => _accessor.InvokeMethod(() => MyPrivateMethod(default), myParameter);
+            => _accessor.InvokeMethod(() => MyPrivateMethod((myParameter));
     }
 
 ### Accessor Limitations
@@ -101,8 +101,10 @@ Example:
 
 You can also get other types of constructs in a fast way:
 
-* `GetFields`
-* `GetConstructor`
+* `Methods`
+* `Indexers`
+* `Fields`
+* `Constructor`
 * `GetTypeByShortName`
 
 

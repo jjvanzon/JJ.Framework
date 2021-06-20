@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using JetBrains.Annotations;
+// ReSharper disable CheckNamespace
 
 namespace JJ.Framework.Reflection
 {
