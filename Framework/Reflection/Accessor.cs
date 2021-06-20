@@ -17,6 +17,8 @@ namespace JJ.Framework.Reflection
     [PublicAPI]
     public partial class Accessor
     {
+        private static readonly ReflectionCache _reflectionCache = new ReflectionCache();
+
         private readonly object _object;
         private readonly Type _objectType;
 
@@ -64,7 +66,7 @@ namespace JJ.Framework.Reflection
 
         public object GetFieldValue(string name)
         {
-            FieldInfo field = StaticReflectionCache.GetField(_objectType, name);
+            FieldInfo field = _reflectionCache.GetField(_objectType, name);
             return field.GetValue(_object);
         }
 
@@ -80,7 +82,7 @@ namespace JJ.Framework.Reflection
 
         public void SetFieldValue(string name, object value)
         {
-            FieldInfo field = StaticReflectionCache.GetField(_objectType, name);
+            FieldInfo field = _reflectionCache.GetField(_objectType, name);
             field.SetValue(_object, value);
         }
 
@@ -98,7 +100,7 @@ namespace JJ.Framework.Reflection
 
         public object GetPropertyValue(string name)
         {
-            PropertyInfo property = StaticReflectionCache.GetProperty(_objectType, name);
+            PropertyInfo property = _reflectionCache.GetProperty(_objectType, name);
             return property.GetValue(_object, null);
         }
 
@@ -114,7 +116,7 @@ namespace JJ.Framework.Reflection
 
         public void SetPropertyValue(string name, object value)
         {
-            PropertyInfo property = StaticReflectionCache.GetProperty(_objectType, name);
+            PropertyInfo property = _reflectionCache.GetProperty(_objectType, name);
             property.SetValue(_object, value, null);
         }
 
@@ -157,14 +159,14 @@ namespace JJ.Framework.Reflection
             // (assuming a wrapping accessor class with methods that define the signatures.)
             {
                 Type[] parameterTypes = new StackTrace().GetFrame(1)?.GetMethod().GetParameters().Select(x => x.ParameterType).ToArray();
-                method = StaticReflectionCache.TryGetMethod(_objectType, name, parameterTypes);
+                method = _reflectionCache.TryGetMethod(_objectType, name, parameterTypes);
             }
 
             // Try getting parameter types from parameter values.
             if (method == null)
             {
                 Type[] parameterTypes = ReflectionHelper.TypesFromObjects(parameters);
-                method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
+                method = _reflectionCache.GetMethod(_objectType, name, parameterTypes);
             }
 
             return method.Invoke(_object, parameters);
@@ -223,7 +225,7 @@ namespace JJ.Framework.Reflection
             Type[] parameterTypesFromObjects = ReflectionHelper.TypesFromObjects(parameters);
             parameterTypes = parameterTypes.Zip(parameterTypesFromObjects, (x, y) => x ?? y).ToArray();
 
-            MethodInfo method = StaticReflectionCache.GetMethod(_objectType, name, parameterTypes);
+            MethodInfo method = _reflectionCache.GetMethod(_objectType, name, parameterTypes);
             return method.Invoke(_object, parameters);
         }
 
@@ -263,7 +265,7 @@ namespace JJ.Framework.Reflection
             if (parameters.Length < 1) throw new Exception("parameters.Length must be at least 1.");
 
             Type[] parameterTypes = ReflectionHelper.TypesFromObjects(parameters);
-            PropertyInfo property = StaticReflectionCache.GetIndexer(_objectType, parameterTypes);
+            PropertyInfo property = _reflectionCache.GetIndexer(_objectType, parameterTypes);
             return property.GetValue(_object, parameters);
         }
 
@@ -274,7 +276,7 @@ namespace JJ.Framework.Reflection
             object[] parameters = parametersAndValue.Take(parametersAndValue.Length - 1).ToArray();
             object value = parametersAndValue.Last();
             Type[] parameterTypes = ReflectionHelper.TypesFromObjects(parameters);
-            PropertyInfo property = StaticReflectionCache.GetIndexer(_objectType, parameterTypes);
+            PropertyInfo property = _reflectionCache.GetIndexer(_objectType, parameterTypes);
             property.SetValue(_object, value, parameters);
         }
     }

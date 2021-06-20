@@ -3,9 +3,9 @@
 // ReSharper disable UnusedParameter.Global
 #pragma warning disable IDE0060 // Remove unused parameter
 
-namespace JJ.Framework.Reflection.Tests.StaticReflectionCacheTests
+namespace JJ.Framework.Reflection.Tests.ReflectionCacheTests
 {
-    public static class StaticReflectionCacheTests_BugMethodNotFound
+    public static class ReflectionCacheTests_HelperClass
     {
         public static bool Method_OutParameter(out double result)
             => throw new NotSupportedException();
