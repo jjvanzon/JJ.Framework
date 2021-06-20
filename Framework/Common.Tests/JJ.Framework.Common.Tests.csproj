@@ -69,6 +69,7 @@
     <Compile Include="EventArgsOfT_Tests.cs" />
     <Compile Include="Int32Helper_Obsolete_Accessor.cs" />
     <Compile Include="Int32Helper_Obsolete_Tests.cs" />
+    <Compile Include="KeyHelper_Tests.cs" />
     <Compile Include="KeyValuePairHelper_Obsolete_Accessor.cs" />
     <Compile Include="KeyValuePairHelper_Obsolete_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
