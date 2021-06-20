@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Reflection;
+﻿using System;
+using JJ.Framework.Reflection;
 // ReSharper disable UnusedParameter.Global
 
 namespace JJ.Framework.Common.Tests
@@ -7,7 +8,11 @@ namespace JJ.Framework.Common.Tests
     {
         private static readonly Accessor _accessor = new Accessor(typeof(EnumHelper));
 
-        public static TEnum Parse<TEnum>(string value) 
-            => _accessor.InvokeMethod(() => Parse<TEnum>(value));
+        public static TEnum Parse<TEnum>(string value)
+        {
+            Type[] parameterTypes = { typeof(string) };
+            Type[] typeArguments = { typeof(TEnum) };
+            return (TEnum)_accessor.InvokeMethod(nameof(Parse), new object[] { value }, parameterTypes, typeArguments);
+        }
     }
 }
