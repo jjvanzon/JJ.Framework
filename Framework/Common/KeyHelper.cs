@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-// ReSharper disable PossibleMultipleEnumeration
+﻿using System.Collections.Generic;
 
 namespace JJ.Framework.Common
 {
@@ -19,11 +15,6 @@ namespace JJ.Framework.Common
             => CreateKey<object>(values);
 
         /// <inheritdoc cref="KeyHelper" />
-        public static string CreateKey<T>(IEnumerable<T> values)
-        {
-            if (values == null) throw new ArgumentNullException(nameof(values));
-            string key = string.Join(SEPARATOR, values);
-            return key;
-        }
+        public static string CreateKey<T>(IEnumerable<T> values) => string.Join(SEPARATOR, values);
     }
 }
