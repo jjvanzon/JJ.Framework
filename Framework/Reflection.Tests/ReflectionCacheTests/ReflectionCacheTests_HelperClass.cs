@@ -12,5 +12,8 @@ namespace JJ.Framework.Reflection.Tests.ReflectionCacheTests
 
         public static bool Method_NonRefParameter(int result)
             => throw new NotSupportedException();
+
+        public static bool Method_WithTypeArguments<T, U>(int a, double b)
+            => throw new NotSupportedException();
     }
 }
