@@ -2,7 +2,11 @@
 
 // ReSharper disable UnusedMember.Local
 // ReSharper disable UnusedParameter.Local
+// ReSharper disable UnusedMember.Global
 #pragma warning disable 169
+#pragma warning disable IDE0044 // Add readonly modifier
+#pragma warning disable IDE0051 // Remove unused private members
+#pragma warning disable IDE0060 // Remove unused parameter
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {

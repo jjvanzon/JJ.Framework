@@ -49,19 +49,51 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DoubleHelper_Obsolete_Accessor.cs" />
-    <Compile Include="CultureHelper_Obsolete_Accessor.cs" />
-    <Compile Include="CultureHelper_Obsolete_Tests.cs" />
-    <Compile Include="DoubleHelper_Obsolete_Tests.cs" />
+    <Compile Include="ConfigurationHelper_Accessor.cs" />
+    <Compile Include="ConfigurationSection3.cs" />
+    <Compile Include="ConfigurationSection2.cs" />
+    <Compile Include="ConfigurationSection.cs" />
+    <Compile Include="ConfigurationHelper_Tests.cs" />
+    <Compile Include="CultureHelperTests.cs" />
+    <Compile Include="EmbeddedResourceHelper_Obsolete_Accessor.cs" />
+    <Compile Include="IClipboardUtilizerTests.cs" />
+    <Compile Include="Obsolete\DoubleHelper_Obsolete_Accessor.cs" />
+    <Compile Include="Obsolete\CultureHelper_Obsolete_Accessor.cs" />
+    <Compile Include="Obsolete\CultureHelper_Obsolete_Tests.cs" />
+    <Compile Include="Obsolete\DoubleHelper_Obsolete_Tests.cs" />
+    <Compile Include="DoubleHelperTests.cs" />
+    <Compile Include="EmbeddedResourceReaderTests.cs" />
+    <Compile Include="EmbeddedResourceHelper_Obsolete_Tests.cs" />
+    <Compile Include="Obsolete\EnumHelper_Obsolete_Accessor.cs" />
+    <Compile Include="Obsolete\EnumHelper_Obsolete_Tests.cs" />
+    <Compile Include="EnumHelper_Tests.cs" />
+    <Compile Include="EventArgsOfT_Tests.cs" />
+    <Compile Include="Obsolete\Int32Helper_Obsolete_Accessor.cs" />
+    <Compile Include="Obsolete\Int32Helper_Obsolete_Tests.cs" />
+    <Compile Include="KeyHelper_Tests.cs" />
+    <Compile Include="Obsolete\KeyValuePairHelper_Obsolete_Accessor.cs" />
+    <Compile Include="Obsolete\KeyValuePairHelper_Obsolete_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Collections\JJ.Framework.Collections.csproj">
+      <Project>{5D06A212-5459-47F3-8109-E012C5FC9E3A}</Project>
+      <Name>JJ.Framework.Collections</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common.Tests.Helpers\JJ.Framework.Common.Tests.Helpers.csproj">
+      <Project>{9d122655-ca60-4212-a3dd-6014972fd840}</Project>
+      <Name>JJ.Framework.Common.Tests.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">
       <Project>{44FD9133-5FE7-4824-BD35-27273706D127}</Project>
       <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IO\JJ.Framework.IO.csproj">
+      <Project>{C600657B-7E29-44B5-83A1-747FAB30D5D0}</Project>
+      <Name>JJ.Framework.IO</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logging\JJ.Framework.Logging.csproj">
       <Project>{ceeb755d-de12-4e70-816e-546c429b44b7}</Project>
@@ -75,6 +107,22 @@
       <Project>{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}</Project>
       <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Text\JJ.Framework.Text.csproj">
+      <Project>{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}</Project>
+      <Name>JJ.Framework.Text</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

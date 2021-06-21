@@ -3,8 +3,10 @@ using System.Linq.Expressions;
 using System.Threading;
 using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
+using JJ.Framework.Logging;
 using JJ.Framework.Reflection;
 // ReSharper disable InvertIf
+// ReSharper disable RedundantIfElseBlock
 
 namespace JJ.Framework.Testing
 {
@@ -30,7 +32,7 @@ namespace JJ.Framework.Testing
                 }
 
                 string message = TestHelper.FormatTestedPropertyMessage(name);
-                string fullMessage = GetNotEqualFailedMessage(a, message);
+                string fullMessage = GetNotEqualFailedMessage(nameof(NotEqual), a, message);
                 throw new Exception(fullMessage);
             }
         }
@@ -38,6 +40,24 @@ namespace JJ.Framework.Testing
         /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
         public static void AreEqual<T>(T expected, Expression<Func<T>> actualExpression, string name = null)
             => ExpectedActualCheck(actual => Equals(expected, actual), "AreEqual", expected, actualExpression, name);
+
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void NotSame<T>(T a, Expression<Func<T>> bExpression, string name = null)
+        {
+            T b = ExpressionHelper.GetValue(bExpression);
+
+            if (ReferenceEquals(a, b))
+            {
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    name = ExpressionHelper.GetText(bExpression);
+                }
+
+                string message = TestHelper.FormatTestedPropertyMessage(name);
+                string fullMessage = GetNotEqualFailedMessage(nameof(NotSame), a, message);
+                throw new Exception(fullMessage);
+            }
+        }
 
         /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
         public static void AreSame<T>(T expected, Expression<Func<T>> actualExpression, string name = null)
@@ -92,6 +112,33 @@ namespace JJ.Framework.Testing
 
                 string message = TestHelper.FormatTestedPropertyMessage(name);
                 string fullMessage = GetExpectedActualMessage("IsOfType", expected, actual, message);
+                throw new Exception(fullMessage);
+            }
+        }
+
+        /// <inheritdoc cref="IsInstanceOfType{T}(Expression{Func{T}}, Type, string)" />
+        public static void IsInstanceOfType<TSource, TTarget>(Expression<Func<TSource>> expression, string name = null)
+            => IsInstanceOfType(expression, typeof(TTarget), name);
+
+        /// <summary>
+        /// Tests if the supplied expression returns an object that is of the type specified or a derived type.
+        /// If not, an exception is thrown.
+        /// </summary>
+        /// <param name="name">The name might be derived from the expression parameter, but this may be overridden by this name parameter.</param>
+        public static void IsInstanceOfType<TSource>(Expression<Func<TSource>> expression, Type targetType, string name = null)
+        {
+            Type sourceType = typeof(TSource);
+
+            bool isAssignable = sourceType.IsAssignableTo(targetType);
+            if (!isAssignable)
+            {
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    name = ExpressionHelper.GetName(expression);
+                }
+
+                string message = $"{sourceType} cannot be assigned to {targetType}. {TestHelper.FormatTestedPropertyMessage(name)}";
+                string fullMessage = GetFailureMessage(nameof(IsInstanceOfType), message);
                 throw new Exception(fullMessage);
             }
         }
@@ -200,6 +247,38 @@ namespace JJ.Framework.Testing
             }
         }
 
+        // TODO: Making set of overloads more complete / similar to ThrowsException.
+
+        public static void ThrowsException_OrInnerException(Action statement, Type expectedExceptionType, string expectedMessage)
+        {
+            if (statement == null) throw new NullException(() => statement);
+            if (expectedExceptionType == null) throw new NullException(() => expectedExceptionType);
+
+            string actualDescriptor = "";
+
+            try
+            {
+                statement();
+            }
+            catch (Exception ex)
+            {
+                bool isMatch = ex.HasExceptionOrInnerExceptionsOfType(expectedExceptionType, expectedMessage);
+                if (!isMatch)
+                {
+                    actualDescriptor = $"Actual exception: '{ExceptionHelper.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false)}'";
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            throw new Exception($"Exception or inner exception was expected of type '{expectedExceptionType}' with message '{expectedMessage}'. {actualDescriptor}");
+        }
+
+        public static void ThrowsException_OrInnerException<T>(Action statement, string expectedMessage)
+            => ThrowsException_OrInnerException(statement, typeof(T), expectedMessage);
+
         // Normalized Methods
 
         private static void ExpectedActualCheck<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression, string name = null)
@@ -240,8 +319,9 @@ namespace JJ.Framework.Testing
 
         // Messages
 
-        private static string GetNotEqualFailedMessage<T>(T a, string message)
-            => $"Assert.NotEqual failed. Both values are <{(a != null ? a.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";
+        /// <summary> Not equal message might be expressed differently for clarity. </summary>
+        private static string GetNotEqualFailedMessage<T>(string methodName, T a, string message)
+            => $"Assert.{methodName} failed. Both values are <{(a != null ? a.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";
 
         private static string GetExpectedActualMessage<T>(string methodName, T expected, T actual, string message)
             => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>, Actual <{

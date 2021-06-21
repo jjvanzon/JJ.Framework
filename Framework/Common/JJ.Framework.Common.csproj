@@ -52,12 +52,13 @@
     <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="CultureHelper.cs" />
     <Compile Include="DoubleHelper.cs" />
+    <Compile Include="Obsolete\EmbeddedResourceHelper.Obsolete.cs" />
     <Compile Include="IClipboardUtilizer.cs" />
     <Compile Include="Obsolete\CultureHelper.Obsolete.cs" />
     <Compile Include="Obsolete\EnumHelper.Obsolete.cs" />
     <Compile Include="EventArgsOfT.cs" />
     <Compile Include="Obsolete\Int32Helper.Obsolete.cs" />
-    <Compile Include="EmbeddedResourceHelper.cs" />
+    <Compile Include="EmbeddedResourceReader.cs" />
     <Compile Include="KeyHelper.cs" />
     <Compile Include="Obsolete\KeyValuePairHelper.Obsolete.cs" />
     <Compile Include="EnumHelper.cs" />

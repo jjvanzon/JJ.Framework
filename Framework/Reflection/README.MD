@@ -75,7 +75,7 @@ You can do that by writing the following wrapper class:
         public MyAccessor(MyClass myObject) => _accessor = new Accessor(myObject);
 
         public int MyPrivateMethod(int myParameter) 
-            => _accessor.InvokeMethod(() => MyPrivateMethod(default), myParameter);
+            => _accessor.InvokeMethod(() => MyPrivateMethod((myParameter));
     }
 
 ### Accessor Limitations
@@ -83,6 +83,7 @@ You can do that by writing the following wrapper class:
 - There are limitations to this `Accessor` class.
 - Handling `out` and `ref` parameters might have limited support up to *3* parameters.
 - *Interface* parameters might not work. More generally: *abstract* parameters types might not work. This is because the parameter types are sometimes assumed to be the type of the *object* / the *concrete* type.
+- Passing a *null* value to a parameter might result in failure by the `Accessor` class to find the right method.
 - Perhaps for these cases it might be a solution to use `System.Reflection` directly or `PrivateObject` and `PrivateType` from a test framework. Those may have slightly more complex syntax, but may offer a diversion where this `Accessor` class cannot not help you.
 
 
@@ -100,8 +101,10 @@ Example:
 
 You can also get other types of constructs in a fast way:
 
-* `GetFields`
-* `GetConstructor`
+* `Methods`
+* `Indexers`
+* `Fields`
+* `Constructor`
 * `GetTypeByShortName`
 
 

@@ -67,6 +67,10 @@
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Testing\JJ.Framework.Testing.csproj">
+      <Project>{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}</Project>
+      <Name>JJ.Framework.Testing</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.config">

@@ -1,12 +1,10 @@
 ﻿using System;
 // ReSharper disable CheckNamespace
+// ReSharper disable UnusedMember.Global
+// ReSharper disable UnusedParameter.Global
 
 namespace JJ.Framework.Common
 {
-    /// <summary>
-    /// Static classes cannot get extension members.
-    /// Instead we have the DoubleHelper class for extra static members.
-    /// </summary>
     public static partial class DoubleHelper
     {
         [Obsolete("Use JJ.Framework.Conversion.DoubleParser.TryParse instead.", true)]

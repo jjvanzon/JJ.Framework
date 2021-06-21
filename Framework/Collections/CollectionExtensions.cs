@@ -507,6 +507,14 @@ namespace JJ.Framework.Collections
             return source.Min(selector);
         }
 
+        /// <summary>
+        /// Similar to OfType&lt;T&gt; but now taking a Type.
+        /// This misses the advantage of automatically casting items to the desired type.
+        /// Still this may be useful for certain cases.
+        /// </summary>
+        public static IEnumerable<TSource> OfType<TSource>(this IEnumerable<TSource> source, Type type)
+            => source.Where(x => x.GetType() == type);
+
         /// <summary> Same as Peek(), but instead of crashing when zero items, returns default instead. </summary>
         public static T PeekOrDefault<T>(this Stack<T> stack)
         {

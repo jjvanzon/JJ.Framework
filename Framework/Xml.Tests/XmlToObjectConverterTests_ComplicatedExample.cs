@@ -12,7 +12,7 @@ namespace JJ.Framework.Xml.Tests
         [TestMethod]
         public void Test_XmlToObjectConverter_ComplicatedExample()
         {
-            string xml = EmbeddedResourceHelper.GetEmbeddedResourceText(Assembly.GetExecutingAssembly(), "TestResources", "ComplicatedExample.xml");
+            string xml = EmbeddedResourceReader.GetText(Assembly.GetExecutingAssembly(), "TestResources", "ComplicatedExample.xml");
             var converter = new XmlToObjectConverter<ComplicatedElement>();
             ComplicatedElement destObject = converter.Convert(xml);
         }

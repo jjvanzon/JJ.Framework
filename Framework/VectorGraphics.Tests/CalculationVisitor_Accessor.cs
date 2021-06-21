@@ -2,6 +2,8 @@
 using JJ.Framework.Reflection;
 using JJ.Framework.VectorGraphics.Models.Elements;
 
+// ReSharper disable UnusedParameter.Global
+
 namespace JJ.Framework.VectorGraphics.Tests
 {
     internal class CalculationVisitor_Accessor
@@ -13,6 +15,6 @@ namespace JJ.Framework.VectorGraphics.Tests
                 "JJ.Framework.VectorGraphics.Visitors.CalculationVisitor, " +
                 "JJ.Framework.VectorGraphics");
 
-        public IList<Element> Execute(Diagram diagram) => (IList<Element>)_accessor.InvokeMethod("Execute", diagram);
+        public IList<Element> Execute(Diagram diagram) => _accessor.InvokeMethod(() => Execute(diagram));
     }
 }

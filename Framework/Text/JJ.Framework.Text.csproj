@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="JJ.Framework.Text.nuspec" />
+    <Compile Include="EncodingHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringBuilderWithIndentation.cs" />
     <Compile Include="StringExtensions.cs" />

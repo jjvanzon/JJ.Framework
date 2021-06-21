@@ -9,6 +9,7 @@ namespace JJ.Framework.Mvc
     [PublicAPI]
     public class ControllerAccessor
     {
+        private static readonly ReflectionCache _reflectionCache = new ReflectionCache();
         private static readonly MethodInfo _viewMethodInfo;
         private static readonly MethodInfo _redirectToAction_MethodInfo_With2Parameters;
         private static readonly MethodInfo _redirectToAction_MethodInfo_With3Parameters;
@@ -17,13 +18,13 @@ namespace JJ.Framework.Mvc
 
         static ControllerAccessor()
         {
-            _viewMethodInfo = StaticReflectionCache.GetMethod(typeof(Controller), "View", typeof(string), typeof(object));
-            _redirectToAction_MethodInfo_With2Parameters = StaticReflectionCache.GetMethod(
+            _viewMethodInfo = _reflectionCache.GetMethod(typeof(Controller), "View", typeof(string), typeof(object));
+            _redirectToAction_MethodInfo_With2Parameters = _reflectionCache.GetMethod(
                 typeof(Controller),
                 "RedirectToAction",
                 typeof(string),
                 typeof(string));
-            _redirectToAction_MethodInfo_With3Parameters = StaticReflectionCache.GetMethod(
+            _redirectToAction_MethodInfo_With3Parameters = _reflectionCache.GetMethod(
                 typeof(Controller),
                 "RedirectToAction",
                 typeof(string),

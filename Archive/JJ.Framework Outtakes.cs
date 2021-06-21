@@ -88,3 +88,84 @@ StaticReflectionCacheTests_BugMethodNotFound (2021-06-01):
 AccessorTests_OutParameters (2021-06-03):
 
     private static string FormatDateTime(DateTime dateTime) => $"{dateTime:yyyy-MM-dd}";
+
+ExceptionHelper (2021-06-08):
+
+    public static bool HasExceptionOrInnerExceptionsOfType<T>(Exception ex, string message)
+    {
+        var exceptions = ex.SelfAndAncestors(x => x.InnerException).ToArray();
+
+        foreach (Exception ex2 in exceptions)
+        {
+
+            if (ex2.GetType() == typeof(T) &&
+                string.Equals(ex2.Message, message))
+            {
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+
+EnumHelper_Obsolete_Tests (2021-06-08):
+
+    /*
+    AssertHelper.ThrowsExceptionOrInnerException<NotSupportedException>();
+    try
+    {
+        EnumHelper_Obsolete_Accessor.Parse<object>("");
+    }
+    catch (Exception ex)
+    {
+        bool exceptionOrInnerExceptionIsMatch = ExceptionHelper.HasExceptionOrInnerExceptionsOfType<NotSupportedException>(ex, "Use JJ.Framework.Conversion.EnumParser.Parse instead.");
+
+        if (!exceptionOrInnerExceptionIsMatch)
+        {
+            throw new Exception();
+        }
+    }*/
+
+
+ReflectionCache (2021-06-21):
+
+    private MethodInfo TryResolveGenericMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
+    {
+        IList<MethodInfo> methods = GetMethods(type);
+        
+        if (methods.Count == 0)
+        {
+            throw new Exception($"Type {type} appears to have no methods");
+        }
+
+        methods = methods.Where(x => string.Equals(x.Name, name)).ToArray();
+        
+        if (methods.Count == 0)
+        {
+            throw new Exception($"Type {type} appears to have no method with name {name}");
+        }
+
+        methods = methods.Where(x => x.GetParameters()
+                                        .Select(y => y.ParameterType)
+                                        .SequenceEqual(parameterTypes))
+                            .ToArray();
+
+        switch (methods.Count)
+        {
+            case 0:
+                throw new Exception($"Type {type} appears to have no method with name {name} and " +
+                                    $"parameter types {string.Join(", ", parameterTypes.Select(x => $"{x.Name}"))}.");
+            case 1:
+                break;
+
+            default:
+                throw new Exception($"Type {type} appears to have multiple methods with name {name} and " +
+                                    $"parameter types {string.Join(", ", parameterTypes.Select(x => $"{x.Name}"))}.");
+        }
+
+
+        MethodInfo openGenericMethod = methods[0];
+        MethodInfo closedGenericMethod = openGenericMethod.MakeGenericMethod(typeArguments);
+        return closedGenericMethod;
+    }
