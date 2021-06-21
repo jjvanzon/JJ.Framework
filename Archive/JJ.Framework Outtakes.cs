@@ -126,3 +126,46 @@ EnumHelper_Obsolete_Tests (2021-06-08):
             throw new Exception();
         }
     }*/
+
+
+ReflectionCache (2021-06-21):
+
+    private MethodInfo TryResolveGenericMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
+    {
+        IList<MethodInfo> methods = GetMethods(type);
+        
+        if (methods.Count == 0)
+        {
+            throw new Exception($"Type {type} appears to have no methods");
+        }
+
+        methods = methods.Where(x => string.Equals(x.Name, name)).ToArray();
+        
+        if (methods.Count == 0)
+        {
+            throw new Exception($"Type {type} appears to have no method with name {name}");
+        }
+
+        methods = methods.Where(x => x.GetParameters()
+                                        .Select(y => y.ParameterType)
+                                        .SequenceEqual(parameterTypes))
+                            .ToArray();
+
+        switch (methods.Count)
+        {
+            case 0:
+                throw new Exception($"Type {type} appears to have no method with name {name} and " +
+                                    $"parameter types {string.Join(", ", parameterTypes.Select(x => $"{x.Name}"))}.");
+            case 1:
+                break;
+
+            default:
+                throw new Exception($"Type {type} appears to have multiple methods with name {name} and " +
+                                    $"parameter types {string.Join(", ", parameterTypes.Select(x => $"{x.Name}"))}.");
+        }
+
+
+        MethodInfo openGenericMethod = methods[0];
+        MethodInfo closedGenericMethod = openGenericMethod.MakeGenericMethod(typeArguments);
+        return closedGenericMethod;
+    }

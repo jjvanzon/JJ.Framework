@@ -246,7 +246,10 @@ namespace JJ.Framework.Reflection
             MethodInfo method = TryGetMethod(type, name, parameterTypes, typeArguments);
             if (method == null)
             {
-                throw new Exception($"Method '{name}' not found.");
+                throw new Exception(
+                    $"Method '{name}' with {typeArguments.Length} type arguments not found " +
+                    $"with parameters ({string.Join(", ", parameterTypes.Select(x => $"{x.Name}"))}) " +
+                    $"in type '{type}'.");
             }
             return method;
         }
@@ -269,17 +272,39 @@ namespace JJ.Framework.Reflection
                     return method;
                 }
 
-                MethodInfo openGenericMethod = GetMethods(type).Where(x => string.Equals(x.Name, name))
-                                                               .Where(x => x.GetParameters()
-                                                                            .Select(y => y.ParameterType)
-                                                                            .SequenceEqual(parameterTypes))
-                                                               .Single();
-
-                method = openGenericMethod.MakeGenericMethod(typeArguments);
+                method = TryResolveGenericMethod(type, name, parameterTypes, typeArguments);
 
                 _methodWithTypeArgumentsDictionary[key] = method;
 
                 return method;
+            }
+        }
+
+        private MethodInfo TryResolveGenericMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
+        {
+            IList<MethodInfo> methods = GetMethods(type).Where(x => string.Equals(x.Name, name))
+                                                        .Where(x => x.GetParameters()
+                                                                     .Select(y => y.ParameterType)
+                                                                     .SequenceEqual(parameterTypes))
+                                                        .ToArray();
+            switch (methods.Count)
+            {
+                case 0:
+                    return null;
+
+                case 1:
+                    MethodInfo openGenericMethod = methods[0];
+                    if (openGenericMethod.GetGenericArguments().Length != typeArguments.Length)
+                    {
+                        return null;
+                    }
+                    MethodInfo closedGenericMethod = openGenericMethod.MakeGenericMethod(typeArguments);
+                    return closedGenericMethod;
+
+                default:
+                    throw new Exception(
+                        $"Type '{type}' appears to have multiple methods with name '{name}' and " +
+                        $"parameter types {string.Join(", ", parameterTypes.Select(x => $"'{x.Name}'"))}.");
             }
         }
 
