@@ -56,6 +56,7 @@
     <Compile Include="ConfigurationHelper_Tests.cs" />
     <Compile Include="CultureHelperTests.cs" />
     <Compile Include="EmbeddedResourceHelper_Obsolete_Accessor.cs" />
+    <Compile Include="IClipboardUtilizerTests.cs" />
     <Compile Include="Obsolete\DoubleHelper_Obsolete_Accessor.cs" />
     <Compile Include="Obsolete\CultureHelper_Obsolete_Accessor.cs" />
     <Compile Include="Obsolete\CultureHelper_Obsolete_Tests.cs" />
