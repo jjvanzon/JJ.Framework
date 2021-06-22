@@ -28,12 +28,13 @@ namespace JJ.Framework.PlatformCompatibility
             {
                 case PropertyInfo _: return MemberTypes_PlatformSafe.Property;
                 case FieldInfo _: return MemberTypes_PlatformSafe.Field;
-                case MethodBase _: return MemberTypes_PlatformSafe.Method;
+                case MethodInfo _: return MemberTypes_PlatformSafe.Method;
+                case ConstructorInfo _: return MemberTypes_PlatformSafe.Constructor;
                 case EventInfo _: return MemberTypes_PlatformSafe.Event;
                 case Type _: return MemberTypes_PlatformSafe.TypeInfo;
             }
 
-            throw new Exception($"{nameof(memberInfo)} has the unsupported type: '{memberInfo.GetType()}'");
+            throw new NotSupportedException($"{nameof(memberInfo)} has the unsupported type: '{memberInfo.GetType()}'");
         }
 
         /// <summary>
