@@ -22,7 +22,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_PropertyInfo_MemberType_Returns_Property_UsingDotNet()
+        public void Test_PropertyInfo_MemberType_FromDotNet_Returns_Property()
         {
             MemberTypes expected = MemberTypes.Property;
             MemberTypes actual = TestHelper.PropertyInfo.MemberType;
@@ -30,7 +30,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_PropertyInfo_MemberType_Returns_Property_UsingPlatformHelper()
+        public void Test_PropertyInfo_MemberType_PlatformSafe_Returns_Property()
         {
             MemberTypes_PlatformSafe expected = MemberTypes_PlatformSafe.Property;
             MemberTypes_PlatformSafe actual = TestHelper.PropertyInfo.MemberType_PlatformSafe();
@@ -48,7 +48,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_FieldInfo_MemberType_Returns_Field_UsingDotNet()
+        public void Test_FieldInfo_MemberType_FromDotNet_Returns_Field()
         {
             MemberTypes expected = MemberTypes.Field;
             MemberTypes actual = TestHelper.FieldInfo.MemberType;
@@ -56,7 +56,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_FieldInfo_MemberType_Returns_Field_UsingPlatformHelper()
+        public void Test_FieldInfo_MemberType_PlatformSafe_Returns_Field()
         {
             MemberTypes_PlatformSafe expected = MemberTypes_PlatformSafe.Field;
             MemberTypes_PlatformSafe actual = TestHelper.FieldInfo.MemberType_PlatformSafe();
@@ -74,7 +74,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_MethodInfo_MemberType_Returns_Method_UsingDotNet()
+        public void Test_MethodInfo_MemberType_FromDotNet_Returns_Method()
         {
             MemberTypes expected = MemberTypes.Method;
             MemberTypes actual = TestHelper.MethodInfo.MemberType;
@@ -82,7 +82,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_MethodInfo_MemberType_Returns_Method_UsingPlatformHelper()
+        public void Test_MethodInfo_MemberType_PlatformSafe_Returns_Method()
         {
             MemberTypes_PlatformSafe expected = MemberTypes_PlatformSafe.Method;
             MemberTypes_PlatformSafe actual = TestHelper.MethodInfo.MemberType_PlatformSafe();
@@ -100,7 +100,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_ConstructorInfo_MemberType_Returns_Constructor_UsingDotNet()
+        public void Test_ConstructorInfo_MemberType_FromDotNet_Returns_Constructor()
         {
             MemberTypes expected = MemberTypes.Constructor;
             MemberTypes actual = TestHelper.ConstructorInfo.MemberType;
@@ -108,7 +108,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_ConstructorInfo_MemberType_Returns_Constructor_UsingPlatformHelper()
+        public void Test_ConstructorInfo_MemberType_PlatformSafe_Returns_Constructor()
         {
             MemberTypes_PlatformSafe expected = MemberTypes_PlatformSafe.Constructor;
             MemberTypes_PlatformSafe actual = TestHelper.ConstructorInfo.MemberType_PlatformSafe();
@@ -126,7 +126,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_EventInfo_MemberType_Returns_Event_UsingDotNet()
+        public void Test_EventInfo_MemberType_FromDotNet_Returns_Event()
         {
             MemberTypes expected = MemberTypes.Event;
             MemberTypes actual = TestHelper.EventInfo.MemberType;
@@ -134,7 +134,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_EventInfo_MemberType_Returns_Event_UsingPlatformHelper()
+        public void Test_EventInfo_MemberType_PlatformSafe_Returns_Event()
         {
             MemberTypes_PlatformSafe expected = MemberTypes_PlatformSafe.Event;
             MemberTypes_PlatformSafe actual = TestHelper.EventInfo.MemberType_PlatformSafe();
@@ -152,7 +152,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_Type_MemberType_Returns_TypeInfo_UsingDotNet()
+        public void Test_Type_MemberType_FromDotNet_Returns_TypeInf()
         {
             MemberTypes expected = MemberTypes.TypeInfo;
             MemberTypes actual = TestHelper.Type.MemberType;
@@ -160,7 +160,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_Type_MemberType_Returns_TypeInfo_UsingPlatformHelper()
+        public void Test_Type_MemberType_PlatformSafe_Returns_TypeInfo()
         {
             MemberTypes_PlatformSafe expected = MemberTypes_PlatformSafe.TypeInfo;
             MemberTypes_PlatformSafe actual = TestHelper.Type.MemberType_PlatformSafe();
