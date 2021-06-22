@@ -14,7 +14,7 @@
     <None Remove="NCrunch.JJ.Framework.Business_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />
+    <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
   </ItemGroup>
 </Project>

@@ -30,7 +30,7 @@
   
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
-    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />
+    <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />
   </ItemGroup>
 
 </Project>

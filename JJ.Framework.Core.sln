@@ -87,8 +87,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReflectionCache.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mathematics.Tests", "Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Tests.csproj", "{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility", "Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj", "{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Tests", "Framework\JJ.Framework.Logging.Tests\JJ.Framework.Logging.Tests.csproj", "{E93C6237-52BC-40F1-84C7-ACF9CF7AA287}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Diagnostics", "Framework\JJ.Framework.Logging.Diagnostics\JJ.Framework.Logging.Diagnostics.csproj", "{3673E148-26F4-4DDD-870D-ADC0486BE39C}"
@@ -151,6 +149,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Tests", "Framework\PlatformCompatibility.Tests\JJ.Framework.PlatformCompatibility.Tests.csproj", "{2F1C0212-86D0-4B85-B18A-6512D9064196}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core", "Framework\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj", "{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility", "Framework\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj", "{D180E171-03BE-86A4-3F4E-FF3DD95A0797}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -310,10 +310,6 @@ Global
 		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E93C6237-52BC-40F1-84C7-ACF9CF7AA287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E93C6237-52BC-40F1-84C7-ACF9CF7AA287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E93C6237-52BC-40F1-84C7-ACF9CF7AA287}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -414,6 +410,10 @@ Global
 		{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D180E171-03BE-86A4-3F4E-FF3DD95A0797}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D180E171-03BE-86A4-3F4E-FF3DD95A0797}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D180E171-03BE-86A4-3F4E-FF3DD95A0797}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D180E171-03BE-86A4-3F4E-FF3DD95A0797}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -457,7 +457,6 @@ Global
 		{5DAB690D-BF45-4980-93F4-14B5CF872A43} = {5CD0B8A9-AA4E-4967-BB77-08580CF54F58}
 		{D157D8E3-26A0-4862-B488-0800AF4FEC9B} = {5CD0B8A9-AA4E-4967-BB77-08580CF54F58}
 		{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4} = {72857B67-3003-486C-9BB3-34AF5748BE95}
-		{59622A6E-A9AE-438C-A164-05DEA2FCF8CF} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{E93C6237-52BC-40F1-84C7-ACF9CF7AA287} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{3673E148-26F4-4DDD-870D-ADC0486BE39C} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{40A53175-8048-4F2D-93CA-383074C0267E} = {72857B67-3003-486C-9BB3-34AF5748BE95}
@@ -483,6 +482,7 @@ Global
 		{2287D8E1-9376-3A6D-6677-3C028E4F8EF2} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{2F1C0212-86D0-4B85-B18A-6512D9064196} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{D180E171-03BE-86A4-3F4E-FF3DD95A0797} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}

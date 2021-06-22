@@ -62,10 +62,6 @@
       <Project>{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C}</Project>
       <Name>JJ.Framework.PlatformCompatibility.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
-      <Project>{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}</Project>
-      <Name>JJ.Framework.PlatformCompatibility</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1A8E047C-7893-4918-B415-CE3928E815D8}</Project>
       <Name>JJ.Framework.Reflection</Name>
@@ -73,6 +69,10 @@
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
       <Project>{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}</Project>
       <Name>JJ.Framework.Testing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
+      <Project>{d180e171-03be-86a4-3f4e-ff3dd95a0797}</Project>
+      <Name>JJ.Framework.PlatformCompatibility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
