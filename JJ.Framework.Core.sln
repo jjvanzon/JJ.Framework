@@ -148,6 +148,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Build", "Frame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Core.Tests", "Framework\JJ.Framework.PlatformCompatibility.Core.Tests\JJ.Framework.PlatformCompatibility.Core.Tests.csproj", "{2287D8E1-9376-3A6D-6677-3C028E4F8EF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility.Tests", "Framework\JJ.Framework.PlatformCompatibility.Tests\JJ.Framework.PlatformCompatibility.Tests.csproj", "{2F1C0212-86D0-4B85-B18A-6512D9064196}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -402,6 +404,10 @@ Global
 		{2287D8E1-9376-3A6D-6677-3C028E4F8EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2287D8E1-9376-3A6D-6677-3C028E4F8EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2287D8E1-9376-3A6D-6677-3C028E4F8EF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F1C0212-86D0-4B85-B18A-6512D9064196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F1C0212-86D0-4B85-B18A-6512D9064196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F1C0212-86D0-4B85-B18A-6512D9064196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F1C0212-86D0-4B85-B18A-6512D9064196}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -469,6 +475,7 @@ Global
 		{2E938816-BB2F-D170-F2E1-7ED76A84A3A7} = {5CD0B8A9-AA4E-4967-BB77-08580CF54F58}
 		{F8FECB2B-336D-B64F-A0B6-3602918E48A2} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{2287D8E1-9376-3A6D-6677-3C028E4F8EF2} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{2F1C0212-86D0-4B85-B18A-6512D9064196} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
