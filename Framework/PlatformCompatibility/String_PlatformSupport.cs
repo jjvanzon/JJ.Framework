@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JJ.Framework.PlatformCompatibility.Core;
 
 namespace JJ.Framework.PlatformCompatibility
 {
@@ -15,7 +16,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static string Join<T>(string separator, IEnumerable<T> values)
         {
-            return PlatformHelper.String_Join_PlatformSupport(separator, values);
+            return PlatformLegacyHelper.String_Join_PlatformSupport(separator, values);
         }
 
         /// <summary>
@@ -23,7 +24,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static bool IsNullOrWhiteSpace(string value)
         {
-            return PlatformHelper.String_IsNullOrWhiteSpace_PlatformSupport(value);
+            return PlatformLegacyHelper.String_IsNullOrWhiteSpace_PlatformSupport(value);
         }
     }
 }

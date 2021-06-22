@@ -66,3 +66,7 @@ CONTRIBUTING:
 #	Framework/JJ.Framework.PlatformCompatibility.Net48/JJ.Framework.PlatformCompatibility.Net48.csproj
 #	Framework/PlatformCompatibility.Tests/MemberTypes_PlatformSafe_Tests.cs
 #	Framework/PlatformCompatibility/PlatformHelper.cs
+
+-----
+
+The .Core version has parts in it that the suffix-free legacy `JJ.Framework.PlatformCompatibility` is missing, and may still be relied on by certain projects.

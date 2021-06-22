@@ -58,10 +58,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Core\JJ.Framework.PlatformCompatibility.Core.csproj">
-      <Project>{5EF2AF73-E9A6-F8A4-7D97-2B418A43A44C}</Project>
-      <Name>JJ.Framework.PlatformCompatibility.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1A8E047C-7893-4918-B415-CE3928E815D8}</Project>
       <Name>JJ.Framework.Reflection</Name>

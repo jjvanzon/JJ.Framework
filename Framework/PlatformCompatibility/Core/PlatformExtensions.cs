@@ -71,7 +71,7 @@ namespace JJ.Framework.PlatformCompatibility.Core
         public static TAttribute GetCustomAttribute_PlatformSupport<TAttribute>(this PropertyInfo propertyInfo)
             where TAttribute : Attribute
         {
-            return PlatformHelper.PropertyInfo_GetCustomAttribute_PlatformSupport<TAttribute>(propertyInfo);
+            return PlatformLegacyHelper.PropertyInfo_GetCustomAttribute_PlatformSupport<TAttribute>(propertyInfo);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace JJ.Framework.PlatformCompatibility.Core
         /// </summary>
         public static void SetValue_PlatformSupport(this PropertyInfo propertyInfo, object obj, object value)
         {
-            PlatformHelper.PropertyInfo_SetValue_PlatformSupport(propertyInfo, obj, value);
+            PlatformLegacyHelper.PropertyInfo_SetValue_PlatformSupport(propertyInfo, obj, value);
         }
 
         /// <summary>

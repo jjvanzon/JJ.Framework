@@ -63,10 +63,6 @@
       <Project>{d09e1267-27da-4a6a-9e8d-09231f302fd1}</Project>
       <Name>JJ.Framework.Mathematics.Net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Core.Net48\JJ.Framework.PlatformCompatibility.Core.Net48.csproj">
-      <Project>{E1B3FCF3-6BF9-4F73-B1EF-2815DD46059B}</Project>
-      <Name>JJ.Framework.PlatformCompatibility.Core.Net48</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Net48\JJ.Framework.PlatformCompatibility.Net48.csproj">
       <Project>{1045208b-679d-40f0-bdba-68f3d1dccbd3}</Project>
       <Name>JJ.Framework.PlatformCompatibility.Net48</Name>

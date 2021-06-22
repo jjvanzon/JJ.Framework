@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using JJ.Framework.PlatformCompatibility.Core;
 
 namespace JJ.Framework.PlatformCompatibility
 {
@@ -16,7 +17,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static void CopyTo(Stream source, Stream dest, int bufferSize = 8192)
         {
-            PlatformHelper.Stream_CopyTo_PlatformSupport(source, dest, bufferSize);
+            PlatformLegacyHelper.Stream_CopyTo_PlatformSupport(source, dest, bufferSize);
         }
     }
 }
