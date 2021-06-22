@@ -50,8 +50,10 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CultureInfo_PlatformSafe_Tests.cs" />
     <Compile Include="CustomMemberInfo.cs" />
     <Compile Include="MemberTypes_PlatformSafe_Tests.cs" />
+    <Compile Include="Obsolete\CultureInfo_PlatformSafe_Obsolete_Tests.cs" />
     <Compile Include="Obsolete\PlatformExtensions_Accessor.cs" />
     <Compile Include="Obsolete\PlatformHelper_Accessor.cs" />
     <Compile Include="Obsolete\PlatformHelper_Obsolete_Tests.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Xml.Linq;
@@ -13,6 +14,9 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
 
         public static MemberTypes_PlatformSafe MemberInfo_MemberType_PlatformSafe(MemberInfo memberInfo)
             => _accessor.InvokeMethod(() => MemberInfo_MemberType_PlatformSafe(memberInfo));
+
+        public static CultureInfo CultureInfo_GetCultureInfo_PlatformSafe(string name)
+            => _accessor.InvokeMethod(() => CultureInfo_GetCultureInfo_PlatformSafe(name));
 
         public static Type Type_GetInterface_PlatformSafe(Type type, string name) 
             => _accessor.InvokeMethod(() => Type_GetInterface_PlatformSafe(type, name));
