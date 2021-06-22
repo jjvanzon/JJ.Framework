@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net9.0;net461</TargetFrameworks>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>JJ.Framework.Reflection.Net48</AssemblyTitle>
-    <Product>JJ.Framework.Reflection.Net48</Product>
+    <AssemblyTitle>JJ.Framework.Reflection</AssemblyTitle>
+    <Product>JJ.Framework.Reflection</Product>
     <Copyright>Copyright ©  2013</Copyright>
     <Version>1.9.$(BuildNum)</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>

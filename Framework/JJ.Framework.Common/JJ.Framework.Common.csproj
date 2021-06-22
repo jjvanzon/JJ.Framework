@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net9.0;net461</TargetFrameworks>
     <Copyright>Copyright © Jan Joost van Zon 2013 - 2025</Copyright>
     <!--<Version>1.9.0</Version>-->
     <Version>1.9.$(BuildNum)</Version>
