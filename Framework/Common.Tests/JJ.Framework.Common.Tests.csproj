@@ -55,7 +55,7 @@
     <Compile Include="ConfigurationSection.cs" />
     <Compile Include="ConfigurationHelper_Tests.cs" />
     <Compile Include="CultureHelperTests.cs" />
-    <Compile Include="EmbeddedResourceHelper_Obsolete_Accessor.cs" />
+    <Compile Include="Obsolete\EmbeddedResourceHelper_Obsolete_Accessor.cs" />
     <Compile Include="IClipboardUtilizerTests.cs" />
     <Compile Include="Obsolete\DoubleHelper_Obsolete_Accessor.cs" />
     <Compile Include="Obsolete\CultureHelper_Obsolete_Accessor.cs" />
@@ -63,7 +63,7 @@
     <Compile Include="Obsolete\DoubleHelper_Obsolete_Tests.cs" />
     <Compile Include="DoubleHelperTests.cs" />
     <Compile Include="EmbeddedResourceReaderTests.cs" />
-    <Compile Include="EmbeddedResourceHelper_Obsolete_Tests.cs" />
+    <Compile Include="Obsolete\EmbeddedResourceHelper_Obsolete_Tests.cs" />
     <Compile Include="Obsolete\EnumHelper_Obsolete_Accessor.cs" />
     <Compile Include="Obsolete\EnumHelper_Obsolete_Tests.cs" />
     <Compile Include="EnumHelper_Tests.cs" />

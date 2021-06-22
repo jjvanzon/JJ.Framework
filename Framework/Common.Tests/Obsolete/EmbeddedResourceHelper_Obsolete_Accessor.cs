@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using JJ.Framework.Reflection;
 // ReSharper disable UnusedParameter.Global
+// ReSharper disable CheckNamespace
 
 namespace JJ.Framework.Common.Tests
 {
