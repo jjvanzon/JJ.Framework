@@ -6,7 +6,6 @@
     <Description>Internal infrastructure. Triggers initialization at the start of building JJ.Framework.</Description>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Build</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Build</PackageProjectUrl>
-    <!--<DisableFastUpToDateCheck>True</DisableFastUpToDateCheck>-->
   </PropertyGroup>
 
   <ItemGroup>
