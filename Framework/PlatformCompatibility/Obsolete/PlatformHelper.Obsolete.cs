@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Xml.Linq;
@@ -15,6 +16,10 @@ namespace JJ.Framework.PlatformCompatibility.Obsolete
         [Obsolete("Use MemberType_PlatformSafe instead.", true)]
         public static MemberTypes_PlatformSafe MemberInfo_MemberType_PlatformSafe(MemberInfo memberInfo)
             => throw new NotSupportedException("Use MemberType_PlatformSafe instead.");
+
+        [Obsolete("Use GetCultureInfo_PlatformSafe instead.", true)]
+        public static CultureInfo CultureInfo_GetCultureInfo_PlatformSafe(string name)
+            => throw new NotSupportedException("Use GetCultureInfo_PlatformSafe instead.");
 
         [Obsolete("Use GetInterface_PlatformSafe instead.", true)]
         public static Type Type_GetInterface_PlatformSafe(Type type, string name)

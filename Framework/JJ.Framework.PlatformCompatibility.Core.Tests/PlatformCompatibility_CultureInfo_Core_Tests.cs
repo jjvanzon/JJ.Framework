@@ -19,7 +19,7 @@ namespace JJ.Framework.PlatformCompatibility.Core.Tests
                 var cultureInfo1 = CultureInfo.GetCultureInfo(cultureName);
                 var cultureInfo2 = new CultureInfo(cultureName);
                 var cultureInfo3 = CultureInfo_PlatformSafe.GetCultureInfo(cultureName);
-                var cultureInfo4 = PlatformHelper.CultureInfo_GetCultureInfo_PlatformSafe(cultureName);
+                var cultureInfo4 = PlatformHelper.GetCultureInfo_PlatformSafe(cultureName);
                 
                 IsNotNull(cultureInfo1);
                 IsNotNull(cultureInfo2);
