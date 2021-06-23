@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace JJ.Framework.PlatformCompatibility.Tests
+namespace JJ.Framework.PlatformCompatibility.Tests.Helpers
 {
     internal class CustomMemberInfo : MemberInfo
     {

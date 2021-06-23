@@ -51,17 +51,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CultureInfo_PlatformSafe_Tests.cs" />
-    <Compile Include="CustomMemberInfo.cs" />
+    <Compile Include="Helpers\CustomMemberInfo.cs" />
     <Compile Include="Encoding_PlatformSafe_Tests.cs" />
+    <Compile Include="Helpers\ITestInterface.cs" />
     <Compile Include="MemberTypes_PlatformSafe_Tests.cs" />
     <Compile Include="Obsolete\CultureInfo_PlatformSafe_Obsolete_Tests.cs" />
     <Compile Include="Obsolete\Encoding_PlatformSafe_Accessor.cs" />
     <Compile Include="Obsolete\Encoding_PlatformSafe_Obsolete_Tests.cs" />
+    <Compile Include="Type_GetInterface_PlatformSafe_Tests.cs" />
     <Compile Include="Obsolete\PlatformExtensions_Accessor.cs" />
     <Compile Include="Obsolete\PlatformHelper_Accessor.cs" />
     <Compile Include="Obsolete\PlatformHelper_Obsolete_Tests.cs" />
     <Compile Include="Obsolete\PlatformExtensions_Obsolete_Tests.cs" />
-    <Compile Include="TestHelper.cs" />
+    <Compile Include="Helpers\TestHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
