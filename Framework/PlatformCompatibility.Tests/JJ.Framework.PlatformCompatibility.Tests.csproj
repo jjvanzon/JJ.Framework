@@ -52,8 +52,11 @@
   <ItemGroup>
     <Compile Include="CultureInfo_PlatformSafe_Tests.cs" />
     <Compile Include="CustomMemberInfo.cs" />
+    <Compile Include="Encoding_PlatformSafe_Tests.cs" />
     <Compile Include="MemberTypes_PlatformSafe_Tests.cs" />
     <Compile Include="Obsolete\CultureInfo_PlatformSafe_Obsolete_Tests.cs" />
+    <Compile Include="Obsolete\Encoding_PlatformSafe_Accessor.cs" />
+    <Compile Include="Obsolete\Encoding_PlatformSafe_Obsolete_Tests.cs" />
     <Compile Include="Obsolete\PlatformExtensions_Accessor.cs" />
     <Compile Include="Obsolete\PlatformHelper_Accessor.cs" />
     <Compile Include="Obsolete\PlatformHelper_Obsolete_Tests.cs" />
@@ -65,6 +68,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IO\JJ.Framework.IO.csproj">
+      <Project>{C600657B-7E29-44B5-83A1-747FAB30D5D0}</Project>
+      <Name>JJ.Framework.IO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
       <Project>{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}</Project>
       <Name>JJ.Framework.PlatformCompatibility</Name>
