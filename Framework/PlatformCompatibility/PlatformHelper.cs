@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Text;
 using System.Xml.Linq;
 
 namespace JJ.Framework.PlatformCompatibility
@@ -14,6 +15,8 @@ namespace JJ.Framework.PlatformCompatibility
     /// </summary>
     public static partial class PlatformHelper
     {
+        // MemberInfo
+
         /// <summary>
         /// Windows Phone / Unity compatibility:
         /// Don't switch on MemberInfo.MemberType. It produced a strange exception when deployed to Windows Phone 8 using Unity
@@ -38,6 +41,13 @@ namespace JJ.Framework.PlatformCompatibility
             throw new NotSupportedException($"{nameof(memberInfo)} has the unsupported type: '{memberInfo.GetType()}'");
         }
 
+        // Encoding
+
+        /// <summary> The overload with only byte[] does not work on Windows Phone 8. </summary>
+        public static string GetString_PlatformSafe(this Encoding encoding, byte[] bytes) => encoding.GetString(bytes, 0, bytes.Length);
+
+        // CultureInfo
+
         /// <summary>
         /// Windows Phone 8 compatibility:
         /// CultureInfo.GetCultureInfo(string name) is not supported on Windows Phone 8.
@@ -45,12 +55,16 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static CultureInfo GetCultureInfo_PlatformSafe(string name) => new CultureInfo(name);
 
+        // Type
+
         /// <summary>
         /// Windows Phone 8 compatibility:
         /// Type.GetInterface(string name) is not supported on Windows Phone 8.
         /// Use the overload 'Type.GetInterface(string name, bool ignoreCase)' or call this method instead.
         /// </summary>
         public static Type GetInterface_PlatformSafe(this Type type, string name) => type.GetInterface(name, ignoreCase: false);
+
+        // XDocument / XElement
 
         /// <summary>
         /// Windows Phone 8 compatibility:
@@ -87,8 +101,11 @@ namespace JJ.Framework.PlatformCompatibility
             }
         }
 
+        // PropertyInfo
+
         /// <summary>
-        /// iOS compatibility: PropertyInfo.GetValue in Mono on a generic type may cause JIT compilation, which is not supported by iOS.
+        /// iOS compatibility: PropertyInfo.GetValue in Mono on a generic type may cause JIT compilation, which is not supported by
+        /// iOS.
         /// Use 'PropertyInfo.GetGetMethod().Invoke(object obj, params object[] parameters)' or call this method instead.
         /// </summary>
         public static object GetValue_PlatformSafe(this PropertyInfo propertyInfo, object obj, params object[] parameters)
