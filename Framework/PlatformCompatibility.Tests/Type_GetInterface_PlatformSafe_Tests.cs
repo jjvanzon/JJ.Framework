@@ -9,6 +9,10 @@ namespace JJ.Framework.PlatformCompatibility.Tests
     [TestClass]
     public class Type_GetInterface_PlatformSafe_Tests
     {
+        private interface ITestInterface { }
+
+        private class TestHelper : ITestInterface { }
+
         [TestMethod]
         public void Test_Type_GetInterface_PlatformSafe_CorrectNameCasing_ReturnsNotNull()
         {
