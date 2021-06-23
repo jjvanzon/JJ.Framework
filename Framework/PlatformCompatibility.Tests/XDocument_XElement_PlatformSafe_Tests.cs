@@ -10,9 +10,6 @@ namespace JJ.Framework.PlatformCompatibility.Tests
     [TestClass]
     public class XDocument_XElement_PlatformSafe_Tests
     {
-        // TODO: Varying the content among tests?
-        private const string XML = "<root><value>2</value></root>";
-
         [TestMethod]
         public void Test_XDocument_Save_PlatformSafe()
         {
@@ -20,16 +17,17 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             try
             {
                 // Arrange
-                fileName = GenerateFileName();
-                XDocument docToSave = XDocument.Parse(XML);
-                string contentToSave = docToSave.ToString();
+                fileName = GetFileName();
+                string xml = GetXml();
+                XDocument documentToSave = XDocument.Parse(xml);
+                string contentToSave = documentToSave.ToString();
 
                 // Act
-                docToSave.Save_PlatformSafe(fileName);
+                documentToSave.Save_PlatformSafe(fileName);
 
                 // Assert
-                XDocument docLoaded = XDocument.Load(fileName);
-                string contentLoaded = docLoaded.ToString();
+                XDocument documentLoaded = XDocument.Load(fileName);
+                string contentLoaded = documentLoaded.ToString();
                 AssertHelper.AreEqual(contentToSave, () => contentLoaded);
             }
             finally
@@ -46,16 +44,17 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             try
             {
                 // Arrange
-                fileName = GenerateFileName();
-                XDocument docToSave = XDocument.Parse(XML);
-                string contentToSave = docToSave.ToString();
+                fileName = GetFileName();
+                string xml = GetXml();
+                XDocument documentToSave = XDocument.Parse(xml);
+                string contentToSave = documentToSave.ToString();
 
                 // Act
-                docToSave.Save(fileName);
+                documentToSave.Save(fileName);
 
                 // Assert
-                XDocument docLoaded = XDocument.Load(fileName);
-                string contentLoaded = docLoaded.ToString();
+                XDocument documentLoaded = XDocument.Load(fileName);
+                string contentLoaded = documentLoaded.ToString();
                 AssertHelper.AreEqual(contentToSave, () => contentLoaded);
             }
             finally
@@ -72,8 +71,9 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             try
             {
                 // Arrange
-                fileName = GenerateFileName();
-                XElement elementToSave = XElement.Parse(XML);
+                fileName = GetFileName();
+                string xml = GetXml();
+                XElement elementToSave = XElement.Parse(xml);
                 string contentToSave = elementToSave.ToString();
 
                 // Act
@@ -98,8 +98,9 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             try
             {
                 // Arrange
-                fileName = GenerateFileName();
-                XElement elementToSave = XElement.Parse(XML);
+                fileName = GetFileName();
+                string xml = GetXml();
+                XElement elementToSave = XElement.Parse(xml);
                 string contentToSave = elementToSave.ToString();
 
                 // Act
@@ -124,8 +125,9 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             try
             {
                 // Arrange
-                fileName = GenerateFileName();
-                XElement elementToSave = XElement.Parse(XML);
+                fileName = GetFileName();
+                string xml = GetXml();
+                XElement elementToSave = XElement.Parse(xml);
                 string contentToSave = elementToSave.ToString();
 
                 using (var stream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -153,8 +155,9 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             try
             {
                 // Arrange
-                XElement elementToSave = XElement.Parse(XML);
-                fileName = GenerateFileName();
+                fileName = GetFileName();
+                string xml = GetXml();
+                XElement elementToSave = XElement.Parse(xml);
                 string contentToSave = elementToSave.ToString();
 
                 using (var stream = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -177,7 +180,10 @@ namespace JJ.Framework.PlatformCompatibility.Tests
 
         // Helper
 
-        private string GenerateFileName([CallerMemberName] string callerMemberName = "")
+        private string GetXml([CallerMemberName] string callerMemberName = "")
+            => $"<root><testName>{callerMemberName}</testName></root>";
+
+        private string GetFileName([CallerMemberName] string callerMemberName = "")
             => FileHelper.GetNumberedFilePath($"{callerMemberName}.xml", numberPrefix: "_", numberSuffix: "");
     }
 }
