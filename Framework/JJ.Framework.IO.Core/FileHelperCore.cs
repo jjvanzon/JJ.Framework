@@ -11,7 +11,7 @@ using static System.AppDomain;
 
 namespace JJ.Framework.IO.Core
 {
-    public static class FileWishes
+    public static class FileHelperCore
     {
         private const int DEFAULT_MAX_EXTENSION_LENGTH = 8;
         
