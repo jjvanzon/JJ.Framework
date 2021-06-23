@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using JJ.Framework.Reflection;
 using JJ.Framework.Reflection.Core;
 
 // ReSharper disable UnusedParameter.Global

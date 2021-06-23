@@ -5,9 +5,9 @@ using JJ.Framework.Reflection;
 #pragma warning disable 649
 #pragma warning disable IDE0044 // Add readonly modifier
 
-namespace JJ.Framework.PlatformCompatibility.Tests
+namespace JJ.Framework.PlatformCompatibility.Tests.Helpers
 {
-    internal class TestHelper
+    internal class TestHelper : ITestInterface
     {
         private static int Property { get; set; }
         private static int _field;
