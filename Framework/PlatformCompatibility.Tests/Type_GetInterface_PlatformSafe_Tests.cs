@@ -1,5 +1,4 @@
 ﻿using System;
-using JJ.Framework.PlatformCompatibility.Tests.Helpers;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -8,6 +7,10 @@ namespace JJ.Framework.PlatformCompatibility.Tests
     [TestClass]
     public class Type_GetInterface_PlatformSafe_Tests
     {
+        private interface ITestInterface { }
+
+        private class TestHelper : ITestInterface { }
+
         [TestMethod]
         public void Test_Type_GetInterface_PlatformSafe_CorrectNameCasing_ReturnsNotNull()
         {
