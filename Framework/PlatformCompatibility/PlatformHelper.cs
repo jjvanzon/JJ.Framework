@@ -55,7 +55,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static CultureInfo GetCultureInfo_PlatformSafe(string name) => new CultureInfo(name);
 
-        // Type
+        // Type GetInterface
 
         /// <summary>
         /// Windows Phone 8 compatibility:
