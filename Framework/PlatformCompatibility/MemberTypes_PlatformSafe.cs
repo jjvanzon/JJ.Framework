@@ -8,6 +8,7 @@
         Field = 4,
         Method = 8,
         Property = 16,
-        TypeInfo = 32
+        TypeInfo = 32,
+        NestedType = 128
     }
 }
