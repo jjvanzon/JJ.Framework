@@ -8,6 +8,8 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Helpers
 {
     internal class MemberTypes_TestHelper
     {
+        private class NestedClass { }
+
         private static int Property { get; set; } = 1;
         private static double _field = 2;
         private static void Method() { }
@@ -29,6 +31,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Helpers
             = typeof(MemberTypes_TestHelper).GetEvent(nameof(Event), ReflectionHelper.BINDING_FLAGS_ALL);
 
         public static Type Type { get; } = typeof(MemberTypes_TestHelper);
+        public static Type NestedType { get; } = typeof(NestedClass);
 
         public static CustomMemberInfo CustomMemberInfo { get; } = new CustomMemberInfo();
     }
