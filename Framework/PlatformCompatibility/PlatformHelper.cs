@@ -4,6 +4,9 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
+// ReSharper disable ConvertIfStatementToReturnStatement
+
+// ReSharper disable RedundantIfElseBlock
 
 namespace JJ.Framework.PlatformCompatibility
 {
@@ -35,7 +38,18 @@ namespace JJ.Framework.PlatformCompatibility
                 case MethodInfo _: return MemberTypes_PlatformSafe.Method;
                 case ConstructorInfo _: return MemberTypes_PlatformSafe.Constructor;
                 case EventInfo _: return MemberTypes_PlatformSafe.Event;
-                case Type _: return MemberTypes_PlatformSafe.TypeInfo;
+
+                case Type type:
+                {
+                    if (type.IsNested)
+                    {
+                        return MemberTypes_PlatformSafe.NestedType;
+                    }
+                    else
+                    {
+                        return MemberTypes_PlatformSafe.TypeInfo;
+                    }
+                }
             }
 
             throw new NotSupportedException($"{nameof(memberInfo)} has the unsupported type: '{memberInfo.GetType()}'");
