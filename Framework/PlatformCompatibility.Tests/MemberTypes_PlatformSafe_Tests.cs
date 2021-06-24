@@ -153,7 +153,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void Test_Type_MemberType_FromDotNet_Returns_TypeInf()
+        public void Test_Type_MemberType_FromDotNet_Returns_TypeInfo()
         {
             MemberTypes expected = MemberTypes.TypeInfo;
             MemberTypes actual = MemberTypes_TestHelper.Type.MemberType;
@@ -165,6 +165,32 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         {
             MemberTypes_PlatformSafe expected = MemberTypes_PlatformSafe.TypeInfo;
             MemberTypes_PlatformSafe actual = MemberTypes_TestHelper.Type.MemberType_PlatformSafe();
+            Assert.AreEqual(expected, actual);
+        }
+
+        // MemberTypes.NestedType
+
+        [TestMethod]
+        public void Test_NestedType_MemberTypes_PlatformSafe()
+        {
+            int expected = (int)MemberTypes.NestedType;
+            int actual = (int)MemberTypes_PlatformSafe.NestedType;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Test_NestedType_MemberType_FromDotNet_Returns_NestedType()
+        {
+            MemberTypes expected = MemberTypes.NestedType;
+            MemberTypes actual = MemberTypes_TestHelper.NestedType.MemberType;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Test_NestedType_MemberType_PlatformSafe_Returns_NestedType()
+        {
+            MemberTypes_PlatformSafe expected = MemberTypes_PlatformSafe.NestedType;
+            MemberTypes_PlatformSafe actual = MemberTypes_TestHelper.NestedType.MemberType_PlatformSafe();
             Assert.AreEqual(expected, actual);
         }
 
