@@ -194,8 +194,8 @@ namespace JJ.Framework.Reflection
         /// </para>
         /// 
         /// <para>
-        /// If that does not work, second in line might be the InvokeMethod overloads,
-        /// that takes parameter objects.
+        /// If that does not work, second in line might be, the InvokeMethod overloads,
+        /// that takes a name and parameter objects.
         /// That overload attempts to guess the parameter types
         /// based on the signature of the calling method
         /// (which may work for custom Accessor classes).
@@ -204,8 +204,8 @@ namespace JJ.Framework.Reflection
         /// </para>
         ///
         /// <para>
-        /// Last in line might be overloads that specify parameter types explicitly.
-        /// That can be done with type arguments or an array of Types.
+        /// Last in line might be overloads, that specify parameter types explicitly.
+        /// That can be done with an array of Types or with type arguments.
         /// Calls to these overloads may seem less elegant,
         /// but there may sometimes be no other option left.
         /// There is some lenience in leaving out certain parameter types (using null)
@@ -213,11 +213,12 @@ namespace JJ.Framework.Reflection
         /// </para>
         ///
         /// <para>
-        /// There may also be an overload to specify type arguments.
+        /// There may also be an overload to specify generic type arguments.
         /// </para>
         ///
         /// <para>
-        /// In case of ref and out parameters, specifying the parameter types explicitly may be the only option. The overloads that take ref parameters would be used for both out and ref parameters.
+        /// In case of ref and out parameters, specifying the parameter types explicitly
+        /// may be the only option. InvokeMethod may use ref parameters which may work for both ref and out parameters.
         /// </para>
         /// </summary>
         ///

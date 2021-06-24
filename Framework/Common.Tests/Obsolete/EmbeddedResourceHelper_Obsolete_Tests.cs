@@ -1,6 +1,7 @@
 ﻿using System;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable CheckNamespace
 
 namespace JJ.Framework.Common.Tests
 {

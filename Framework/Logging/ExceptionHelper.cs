@@ -70,7 +70,7 @@ namespace JJ.Framework.Logging
 
             bool any = exception.SelfAndAncestors(x => x.InnerException)
                                 .OfType(exceptionType)
-                                .Where(x => string.Equals(x.Message, message))
+                                .Where(x => string.Equals(x.Message, message, StringComparison.Ordinal))
                                 .Any();
             return any;
         }

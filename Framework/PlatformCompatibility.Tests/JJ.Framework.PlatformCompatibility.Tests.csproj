@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ED1C91F8-873E-403E-8A87-1422DEC8BCEA}</ProjectGuid>
+    <ProjectGuid>{2F1C0212-86D0-4B85-B18A-6512D9064196}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Common.Tests</RootNamespace>
-    <AssemblyName>JJ.Framework.Common.Tests</AssemblyName>
+    <RootNamespace>JJ.Framework.PlatformCompatibility.Tests</RootNamespace>
+    <AssemblyName>JJ.Framework.PlatformCompatibility.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -47,57 +47,38 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigurationHelper_Accessor.cs" />
-    <Compile Include="ConfigurationSection3.cs" />
-    <Compile Include="ConfigurationSection2.cs" />
-    <Compile Include="ConfigurationSection.cs" />
-    <Compile Include="ConfigurationHelper_Tests.cs" />
-    <Compile Include="CultureHelperTests.cs" />
-    <Compile Include="Obsolete\EmbeddedResourceHelper_Obsolete_Accessor.cs" />
-    <Compile Include="IClipboardUtilizerTests.cs" />
-    <Compile Include="Obsolete\DoubleHelper_Obsolete_Accessor.cs" />
-    <Compile Include="Obsolete\CultureHelper_Obsolete_Accessor.cs" />
-    <Compile Include="Obsolete\CultureHelper_Obsolete_Tests.cs" />
-    <Compile Include="Obsolete\DoubleHelper_Obsolete_Tests.cs" />
-    <Compile Include="DoubleHelperTests.cs" />
-    <Compile Include="EmbeddedResourceReaderTests.cs" />
-    <Compile Include="Obsolete\EmbeddedResourceHelper_Obsolete_Tests.cs" />
-    <Compile Include="Obsolete\EnumHelper_Obsolete_Accessor.cs" />
-    <Compile Include="Obsolete\EnumHelper_Obsolete_Tests.cs" />
-    <Compile Include="EnumHelper_Tests.cs" />
-    <Compile Include="EventArgsOfT_Tests.cs" />
-    <Compile Include="Obsolete\Int32Helper_Obsolete_Accessor.cs" />
-    <Compile Include="Obsolete\Int32Helper_Obsolete_Tests.cs" />
-    <Compile Include="KeyHelper_Tests.cs" />
-    <Compile Include="Obsolete\KeyValuePairHelper_Obsolete_Accessor.cs" />
-    <Compile Include="Obsolete\KeyValuePairHelper_Obsolete_Tests.cs" />
+    <Compile Include="CultureInfo_PlatformSafe_Tests.cs" />
+    <Compile Include="Helpers\CustomMemberInfo.cs" />
+    <Compile Include="Encoding_PlatformSafe_Tests.cs" />
+    <Compile Include="MemberTypes_PlatformSafe_Tests.cs" />
+    <Compile Include="Helpers\MemberTypes_TestHelper.cs" />
+    <Compile Include="Obsolete\CultureInfo_PlatformSafe_Obsolete_Tests.cs" />
+    <Compile Include="Obsolete\Encoding_PlatformSafe_Accessor.cs" />
+    <Compile Include="Obsolete\Encoding_PlatformSafe_Obsolete_Tests.cs" />
+    <Compile Include="PropertyInfo_GetValue_PlatformSafe_Tests.cs" />
+    <Compile Include="Type_GetInterface_PlatformSafe_Tests.cs" />
+    <Compile Include="Obsolete\PlatformExtensions_Accessor.cs" />
+    <Compile Include="Obsolete\PlatformHelper_Accessor.cs" />
+    <Compile Include="Obsolete\PlatformHelper_Obsolete_Tests.cs" />
+    <Compile Include="Obsolete\PlatformExtensions_Obsolete_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XDocument_XElement_PlatformSafe_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Collections\JJ.Framework.Collections.csproj">
-      <Project>{5D06A212-5459-47F3-8109-E012C5FC9E3A}</Project>
-      <Name>JJ.Framework.Collections</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common.Tests.Helpers\JJ.Framework.Common.Tests.Helpers.csproj">
-      <Project>{9d122655-ca60-4212-a3dd-6014972fd840}</Project>
-      <Name>JJ.Framework.Common.Tests.Helpers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\JJ.Framework.Common.csproj">
-      <Project>{44FD9133-5FE7-4824-BD35-27273706D127}</Project>
-      <Name>JJ.Framework.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IO\JJ.Framework.IO.csproj">
       <Project>{C600657B-7E29-44B5-83A1-747FAB30D5D0}</Project>
       <Name>JJ.Framework.IO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Logging\JJ.Framework.Logging.csproj">
-      <Project>{ceeb755d-de12-4e70-816e-546c429b44b7}</Project>
-      <Name>JJ.Framework.Logging</Name>
+    <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
+      <Project>{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}</Project>
+      <Name>JJ.Framework.PlatformCompatibility</Name>
     </ProjectReference>
     <ProjectReference Include="..\Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1A8E047C-7893-4918-B415-CE3928E815D8}</Project>
@@ -107,22 +88,6 @@
       <Project>{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}</Project>
       <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Text\JJ.Framework.Text.csproj">
-      <Project>{964DE0B4-27F8-40F8-8D50-C97388BF8CE2}</Project>
-      <Name>JJ.Framework.Text</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

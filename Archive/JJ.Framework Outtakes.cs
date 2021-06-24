@@ -169,3 +169,22 @@ ReflectionCache (2021-06-21):
         MethodInfo closedGenericMethod = openGenericMethod.MakeGenericMethod(typeArguments);
         return closedGenericMethod;
     }
+
+
+Encoding_PlatformSafe_Tests (2021-06-24):
+
+    [TestMethod]
+    public void Test_Encoding_GetString_PlatformSafe()
+    {
+        // Arrange
+        string expectedText = "Test text";
+        byte[] bytes = StreamHelper.StringToBytes(expectedText, Encoding.UTF8, includeByteOrderMark: false);
+
+        // Act
+        string actualText = Encoding.UTF8.GetString_PlatformSafe(bytes);
+        string textFromDotNet = Encoding.UTF8.GetString(bytes);
+
+        // Assert
+        AssertHelper.AreEqual(expectedText, () => actualText);
+        AssertHelper.AreEqual(expectedText, () => textFromDotNet);
+    }

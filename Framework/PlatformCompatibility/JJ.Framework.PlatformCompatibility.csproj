@@ -49,14 +49,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CultureInfo_PlatformSafe.cs" />
-    <Compile Include="Encoding_PlatformSafe.cs" />
+    <Compile Include="Obsolete\Encoding_PlatformSafe.Obsolete.cs" />
+    <Compile Include="Obsolete\PlatformHelper.Obsolete.cs" />
     <Compile Include="PlatformHelper.cs" />
-    <Compile Include="PlatformExtensions.cs" />
+    <Compile Include="Obsolete\PlatformExtensions.Obsolete.cs" />
     <Compile Include="MemberTypes_PlatformSafe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="JJ.Framework.PlatformCompatibility.nuspec" />
     <None Include="README.MD" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
