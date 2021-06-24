@@ -5,6 +5,8 @@ using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable RedundantCast
 // ReSharper disable AutoPropertyCanBeMadeGetOnly.Local
+// ReSharper disable ConvertToConstant.Local
+// ReSharper disable UnusedMember.Local
 
 #pragma warning disable IDE0004
 
@@ -19,32 +21,34 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         public void Test_PropertyInfo_GetValue_PlatformSafe_InstanceProperty()
         {
             // Arrange
-            PropertyInfo propertyInfo = typeof(TestHelper).GetProperty("InstanceProperty", BindingFlags.Public | BindingFlags.Instance);
             var testHelper = new TestHelper();
+            PropertyInfo propertyInfo = typeof(TestHelper).GetProperty("InstanceProperty", BindingFlags.Public | BindingFlags.Instance);
 
             // Act
             object obj = propertyInfo.GetValue_PlatformSafe(testHelper);
 
             // Assert
             AssertHelper.IsOfType<double>(() => obj);
-            var value = (double)obj;
-            AssertHelper.AreEqual(testHelper.InstanceProperty, () => value);
+            var expectedValue = 1;
+            var actualValue = (double)obj;
+            AssertHelper.AreEqual(expectedValue, () => actualValue);
         }
 
         [TestMethod]
         public void Test_PropertyInfo_GetValue_WithDotNet_InstanceProperty()
         {
             // Arrange
-            PropertyInfo propertyInfo = typeof(TestHelper).GetProperty("InstanceProperty", BindingFlags.Public | BindingFlags.Instance);
             var testHelper = new TestHelper();
+            PropertyInfo propertyInfo = typeof(TestHelper).GetProperty("InstanceProperty", BindingFlags.Public | BindingFlags.Instance);
 
             // Act
             object obj = propertyInfo.GetValue(testHelper);
 
             // Assert
             AssertHelper.IsOfType<double>(() => obj);
-            var value = (double)obj;
-            AssertHelper.AreEqual(testHelper.InstanceProperty, () => value);
+            var expectedValue = 1;
+            var actualValue = (double)obj;
+            AssertHelper.AreEqual(expectedValue, () => actualValue);
         }
 
         [TestMethod]
@@ -58,8 +62,9 @@ namespace JJ.Framework.PlatformCompatibility.Tests
 
             // Assert
             AssertHelper.IsOfType<float>(() => obj);
-            var value = (float)obj;
-            AssertHelper.AreEqual(TestHelper.StaticProperty, () => value);
+            var expectedValue = 2;
+            var actualValue = (float)obj;
+            AssertHelper.AreEqual(expectedValue, () => actualValue);
         }
 
         [TestMethod]
@@ -73,59 +78,60 @@ namespace JJ.Framework.PlatformCompatibility.Tests
 
             // Assert
             AssertHelper.IsOfType<float>(() => obj);
-            var value = (float)obj;
-            AssertHelper.AreEqual(TestHelper.StaticProperty, () => value);
+            var expectedValue = 2;
+            var actualValue = (float)obj;
+            AssertHelper.AreEqual(expectedValue, () => actualValue);
         }
 
         [TestMethod]
         public void Test_PropertyInfo_GetValue_PlatformSafe_IndexerProperty()
         {
             // Arrange
-            PropertyInfo propertyInfo = _reflectionCache.GetIndexer<int, long>(typeof(TestHelper));
             var testHelper = new TestHelper();
+            PropertyInfo propertyInfo = _reflectionCache.GetIndexer<int, long>(typeof(TestHelper));
 
             {
                 // Act
-                object actualObject00 = propertyInfo.GetValue_PlatformSafe(testHelper, (int)0, (long)0);
+                object actualObject_0_0 = propertyInfo.GetValue_PlatformSafe(testHelper, (int)0, (long)0);
 
                 // Assert
-                string expectedValue00 = testHelper[0, 0];
-                AssertHelper.IsOfType<string>(() => actualObject00);
-                var actualValue00 = (string)actualObject00;
-                AssertHelper.AreEqual(expectedValue00, () => actualValue00);
+                string expectedValue_0_0 = "Element[0, 0]";
+                AssertHelper.IsOfType<string>(() => actualObject_0_0);
+                var actualValue_0_0 = (string)actualObject_0_0;
+                AssertHelper.AreEqual(expectedValue_0_0, () => actualValue_0_0);
             }
 
             {
                 // Act
-                object actualObject01 = propertyInfo.GetValue_PlatformSafe(testHelper, (int)0, (long)1);
+                object actualObject_0_1 = propertyInfo.GetValue_PlatformSafe(testHelper, (int)0, (long)1);
 
                 // Assert
-                string expectedValue01 = testHelper[0, 1];
-                AssertHelper.IsOfType<string>(() => actualObject01);
-                var actualValue01 = (string)actualObject01;
-                AssertHelper.AreEqual(expectedValue01, () => actualValue01);
+                string expectedValue_0_1 = "Element[0, 1]";
+                AssertHelper.IsOfType<string>(() => actualObject_0_1);
+                var actualValue_0_1 = (string)actualObject_0_1;
+                AssertHelper.AreEqual(expectedValue_0_1, () => actualValue_0_1);
             }
 
             {
                 // Act
-                object actualObject10 = propertyInfo.GetValue_PlatformSafe(testHelper, (int)1, (long)0);
+                object actualObject_1_0 = propertyInfo.GetValue_PlatformSafe(testHelper, (int)1, (long)0);
 
                 // Assert
-                string expectedValue10 = testHelper[1, 0];
-                AssertHelper.IsOfType<string>(() => actualObject10);
-                var actualValue01 = (string)actualObject10;
-                AssertHelper.AreEqual(expectedValue10, () => actualValue01);
+                string expectedValue_1_0 = "Element[1, 0]";
+                AssertHelper.IsOfType<string>(() => actualObject_1_0);
+                var actualValue_1_0 = (string)actualObject_1_0;
+                AssertHelper.AreEqual(expectedValue_1_0, () => actualValue_1_0);
             }
 
             {
                 // Act
-                object actualObject11 = propertyInfo.GetValue_PlatformSafe(testHelper, (int)1, (long)1);
+                object actualObject_1_1 = propertyInfo.GetValue_PlatformSafe(testHelper, (int)1, (long)1);
 
                 // Assert
-                string expectedValue11 = testHelper[1, 1];
-                AssertHelper.IsOfType<string>(() => actualObject11);
-                var actualValue11 = (string)actualObject11;
-                AssertHelper.AreEqual(expectedValue11, () => actualValue11);
+                string expectedValue_1_1 = "Element[1, 1]";
+                AssertHelper.IsOfType<string>(() => actualObject_1_1);
+                var actualValue_1_1 = (string)actualObject_1_1;
+                AssertHelper.AreEqual(expectedValue_1_1, () => actualValue_1_1);
             }
         }
 
@@ -133,51 +139,51 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         public void Test_PropertyInfo_GetValue_WithDotNet_IndexerProperty()
         {
             // Arrange
-            PropertyInfo propertyInfo = _reflectionCache.GetIndexer<int, long>(typeof(TestHelper));
             var testHelper = new TestHelper();
+            PropertyInfo propertyInfo = _reflectionCache.GetIndexer<int, long>(typeof(TestHelper));
 
             {
                 // Act
-                object actualObject00 = propertyInfo.GetValue(testHelper, new object[] { (int)0, (long)0 });
+                object actualObject_0_0 = propertyInfo.GetValue(testHelper, new object[] { (int)0, (long)0 });
 
                 // Assert
-                string expectedValue00 = testHelper[0, 0];
-                AssertHelper.IsOfType<string>(() => actualObject00);
-                var actualValue00 = (string)actualObject00;
-                AssertHelper.AreEqual(expectedValue00, () => actualValue00);
+                string expectedValue_0_0 = "Element[0, 0]";
+                AssertHelper.IsOfType<string>(() => actualObject_0_0);
+                var actualValue_0_0 = (string)actualObject_0_0;
+                AssertHelper.AreEqual(expectedValue_0_0, () => actualValue_0_0);
             }
 
             {
                 // Act
-                object actualObject01 = propertyInfo.GetValue(testHelper, new object[] { (int)0, (long)1 });
+                object actualObject_0_1 = propertyInfo.GetValue(testHelper, new object[] { (int)0, (long)1 });
 
                 // Assert
-                string expectedValue01 = testHelper[0, 1];
-                AssertHelper.IsOfType<string>(() => actualObject01);
-                var actualValue01 = (string)actualObject01;
-                AssertHelper.AreEqual(expectedValue01, () => actualValue01);
+                string expectedValue_0_1 = "Element[0, 1]";
+                AssertHelper.IsOfType<string>(() => actualObject_0_1);
+                var actualValue_0_1 = (string)actualObject_0_1;
+                AssertHelper.AreEqual(expectedValue_0_1, () => actualValue_0_1);
             }
 
             {
                 // Act
-                object actualObject10 = propertyInfo.GetValue(testHelper, new object[] { (int)1, (long)0 });
+                object actualObject_1_0 = propertyInfo.GetValue(testHelper, new object[] { (int)1, (long)0 });
 
                 // Assert
-                string expectedValue10 = testHelper[1, 0];
-                AssertHelper.IsOfType<string>(() => actualObject10);
-                var actualValue01 = (string)actualObject10;
-                AssertHelper.AreEqual(expectedValue10, () => actualValue01);
+                string expectedValue_1_0 = "Element[1, 0]";
+                AssertHelper.IsOfType<string>(() => actualObject_1_0);
+                var actualValue_1_0 = (string)actualObject_1_0;
+                AssertHelper.AreEqual(expectedValue_1_0, () => actualValue_1_0);
             }
 
             {
                 // Act
-                object actualObject11 = propertyInfo.GetValue(testHelper, new object[] { (int)1, (long)1 });
+                object actualObject_1_1 = propertyInfo.GetValue(testHelper, new object[] { (int)1, (long)1 });
 
                 // Assert
-                string expectedValue11 = testHelper[1, 1];
-                AssertHelper.IsOfType<string>(() => actualObject11);
-                var actualValue11 = (string)actualObject11;
-                AssertHelper.AreEqual(expectedValue11, () => actualValue11);
+                string expectedValue_1_1 = "Element[1, 1]";
+                AssertHelper.IsOfType<string>(() => actualObject_1_1);
+                var actualValue_1_1 = (string)actualObject_1_1;
+                AssertHelper.AreEqual(expectedValue_1_1, () => actualValue_1_1);
             }
         }
 
