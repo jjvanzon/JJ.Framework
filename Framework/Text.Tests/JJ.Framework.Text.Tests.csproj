@@ -53,11 +53,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EncodingHelper_Tests.cs" />
     <Compile Include="StringExtensions_Split_Tests.cs" />
     <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IO\JJ.Framework.IO.csproj">
+      <Project>{C600657B-7E29-44B5-83A1-747FAB30D5D0}</Project>
+      <Name>JJ.Framework.IO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Testing\JJ.Framework.Testing.csproj">
       <Project>{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}</Project>
       <Name>JJ.Framework.Testing</Name>
