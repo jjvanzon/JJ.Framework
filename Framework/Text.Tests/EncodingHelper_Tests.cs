@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JJ.Framework.IO;
@@ -31,19 +30,20 @@ namespace JJ.Framework.Text.Tests
 
             // Assert
             {
+                var expectedByteOrderMarkBytes = new byte[] { 0xEF, 0xBB, 0xBF };
+
                 // Whole Sequence
-                byte[] expectedBytes =  StreamHelper.StringToBytes(text, Encoding.UTF8, includeByteOrderMark: true);
+                byte[] expectedBytes = StreamHelper.StringToBytes(text, Encoding.UTF8, includeByteOrderMark: true);
                 AssertHelper.IsTrue(() => expectedBytes.SequenceEqual(actualBytes));
 
-                int byteOrderMarkLength = 3;
-
                 // Byte Order Mark Bytes
-                byte[] expectedByteOrderMarkBytes = Encoding.UTF8.GetPreamble();
-                byte[] actualByteOrderMarkBytes = actualBytes.Take(byteOrderMarkLength).ToArray();
-                AssertHelper.IsTrue(() => expectedByteOrderMarkBytes.SequenceEqual(actualByteOrderMarkBytes));
+                byte[] actualByteOrderMarkBytes = actualBytes.Take(expectedByteOrderMarkBytes.Length).ToArray();
+                AssertHelper.IsTrue(() => actualByteOrderMarkBytes.SequenceEqual(expectedByteOrderMarkBytes));
 
                 // Non-Byte-Order-Mark Bytes
-                bool nonByteOrderMarkBytesAreMatch = actualBytes.Skip(byteOrderMarkLength).SequenceEqual(bytes_WithoutByteOrderMark);
+                bool nonByteOrderMarkBytesAreMatch = actualBytes.Skip(expectedByteOrderMarkBytes.Length)
+                                                                .SequenceEqual(bytes_WithoutByteOrderMark);
+                
                 AssertHelper.IsTrue(() => nonByteOrderMarkBytesAreMatch);
             }
         }
