@@ -16,7 +16,7 @@ namespace JJ.Framework.Text.Tests
         public void Test_EncodingHelper_AddUTF8ByteOrderMark_NullBytes_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => EncodingHelper.AddUTF8ByteOrderMark(null),
-                "Value cannot be null.\r\nParameter name: bytes");
+                $"Value cannot be null.{Environment.NewLine}Parameter name: bytes");
 
         [TestMethod]
         public void Test_EncodingHelper_AddUTF8ByteOrderMark_Succeeds()

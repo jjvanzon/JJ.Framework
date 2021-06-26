@@ -14,7 +14,7 @@ namespace JJ.Framework.Common.Tests
         public void Test_KeyHelper_CreateKey_ValuesNull_ThrowsException()
             => Assert.ThrowsException<ArgumentNullException>(
                 () => KeyHelper.CreateKey(null),
-                "Value cannot be null.\r\nParameter name: values");
+                $"Value cannot be null.{Environment.NewLine}Parameter name: values");
 
         [TestMethod]
         public void Test_KeyHelper_CreateKey_WithObjects_Succeeds()
