@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Testing;
+﻿using System;
+using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static System.Environment;
 
@@ -53,74 +54,33 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_TabString_NullOrEmpty_IsAccepted()
-        {
-            // Act
-            var sb = new StringBuilderWithIndentation(tabString: "");
-            sb = new StringBuilderWithIndentation(tabString: null);
-
-            sb.AppendLine("Text1");
-            sb.AppendLine("{");
-            sb.Indent();
-            {
-                sb.AppendLine("Text2");
-                sb.AppendLine("{");
-                sb.Indent();
-                {
-                    sb.AppendLine("Text3");
-                    sb.Unindent();
-                }
-                sb.AppendLine("}");
-                sb.Unindent();
-            }
-            sb.AppendLine("}");
-
-            // Assert
-            string actualText = sb.ToString();
-            string expectedText =
-                "Text1" + NewLine +
-                "{" + NewLine +
-                "Text2" + NewLine +
-                "{" + NewLine +
-                "Text3" + NewLine +
-                "}" + NewLine +
-                "}" + NewLine;
-
-            AssertHelper.AreEqual(expectedText, () => actualText);
-        }
-
-        [TestMethod]
         public void Test_StringBuilderWithIndentation_TabString_Default_IsTab()
         {
             // Act
             var sb = new StringBuilderWithIndentation();
 
             sb.AppendLine("Text1");
-            sb.AppendLine("{");
             sb.Indent();
             {
                 sb.AppendLine("Text2");
-                sb.AppendLine("{");
                 sb.Indent();
                 {
                     sb.AppendLine("Text3");
                     sb.Unindent();
                 }
-                sb.AppendLine("}");
+                sb.AppendLine("Text4");
                 sb.Unindent();
             }
-            sb.AppendLine("}");
+            sb.AppendLine("Text5");
 
             // Assert
             string actualText = sb.ToString();
             string expectedText =
                 "Text1" + NewLine +
-                "{" + NewLine +
                 "\tText2" + NewLine +
-                "\t{" + NewLine +
                 "\t\tText3" + NewLine +
-                "\t}" + NewLine +
-                "}" + NewLine;
+                "\tText4" + NewLine +
+                "Text5" + NewLine;
 
             AssertHelper.AreEqual(expectedText, () => actualText);
         }
@@ -132,31 +92,60 @@ namespace JJ.Framework.Text.Tests
             var sb = new StringBuilderWithIndentation("    ");
 
             sb.AppendLine("Text1");
-            sb.AppendLine("{");
             sb.Indent();
             {
                 sb.AppendLine("Text2");
-                sb.AppendLine("{");
                 sb.Indent();
                 {
                     sb.AppendLine("Text3");
                     sb.Unindent();
                 }
-                sb.AppendLine("}");
+                sb.AppendLine("Text4");
                 sb.Unindent();
             }
-            sb.AppendLine("}");
+            sb.AppendLine("Text5");
 
             // Assert
             string actualText = sb.ToString();
             string expectedText =
                 "Text1" + NewLine +
-                "{" + NewLine +
                 "    Text2" + NewLine +
-                "    {" + NewLine +
                 "        Text3" + NewLine +
-                "    }" + NewLine +
-                "}" + NewLine;
+                "    Text4" + NewLine +
+                "Text5" + NewLine;
+
+            AssertHelper.AreEqual(expectedText, () => actualText);
+        }
+
+        [TestMethod]
+        public void Test_StringBuilderWithIndentation_TabString_NullOrEmpty_IsAccepted()
+        {
+            // Act
+            var sb = new StringBuilderWithIndentation(tabString: "");
+            sb = new StringBuilderWithIndentation(tabString: null);
+
+            sb.AppendLine("Text1");
+            sb.Indent();
+            {
+                sb.AppendLine("Text2");
+                sb.Indent();
+                {
+                    sb.AppendLine("Text3");
+                    sb.Unindent();
+                }
+                sb.AppendLine("Text4");
+                sb.Unindent();
+            }
+            sb.AppendLine("Text5");
+
+            // Assert
+            string actualText = sb.ToString();
+            string expectedText =
+                "Text1" + NewLine +
+                "Text2" + NewLine +
+                "Text3" + NewLine +
+                "Text4" + NewLine +
+                "Text5" + NewLine;
 
             AssertHelper.AreEqual(expectedText, () => actualText);
         }
@@ -327,6 +316,22 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
+        public void Test_StringBuilderWithIndentation_Append_Requires_Append_NewLine_ToCompleteAFullLine()
+        {
+            // Arrange
+            var sb = new StringBuilderWithIndentation("    ");
+
+            // Act
+            sb.Append("Text");
+            sb.Append(NewLine);
+
+            // Assert
+            string actualText = sb.ToString();
+            string expectedText = "Text" + NewLine;
+            AssertHelper.AreEqual(expectedText, () => actualText);
+        }
+
+        [TestMethod]
         public void Test_StringBuilderWithIndentation_AppendFormat_Works()
         {
             // Arrange
@@ -376,13 +381,6 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_IndentLevel_AssigningLessThan0_ThrowsException()
-        {
-            var sb = new StringBuilderWithIndentation();
-            AssertHelper.ThrowsException(() => sb.IndentLevel = -1, "value cannot be less than 0.");
-        }
-
-        [TestMethod]
         public void Test_StringBuilderWithIndentation_IndentLevel_ReturnsCorrectValue()
         {
             var sb = new StringBuilderWithIndentation();
@@ -406,6 +404,13 @@ namespace JJ.Framework.Text.Tests
                 sb.Unindent();
             }
             AssertHelper.AreEqual(0, () => sb.IndentLevel);
+        }
+
+        [TestMethod]
+        public void Test_StringBuilderWithIndentation_IndentLevel_AssigningLessThan0_ThrowsException()
+        {
+            var sb = new StringBuilderWithIndentation();
+            AssertHelper.ThrowsException(() => sb.IndentLevel = -1, "value cannot be less than 0.");
         }
 
         [TestMethod]
