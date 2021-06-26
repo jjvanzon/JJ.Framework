@@ -54,7 +54,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_TabString_Default_IsTab()
+        public void Test_StringBuilderWithIndentation_TabString_Tab_IsDefault()
         {
             // Act
             var sb = new StringBuilderWithIndentation();
@@ -86,7 +86,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_TabString_Alternative_UsingSpaces()
+        public void Test_StringBuilderWithIndentation_TabString_Spaces_IsAnAlternative()
         {
             // Act
             var sb = new StringBuilderWithIndentation("    ");
@@ -118,7 +118,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_TabString_NullOrEmpty_IsAccepted()
+        public void Test_StringBuilderWithIndentation_TabString_NullOrEmpty_IsOK()
         {
             // Act
             var sb = new StringBuilderWithIndentation(tabString: "");
@@ -151,7 +151,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_ToString_ReturnsFormattedText()
+        public void Test_StringBuilderWithIndentation_ToString()
         {
             // Arrange
             var sb = new StringBuilderWithIndentation("    ");
@@ -173,7 +173,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_Indent_Works()
+        public void Test_StringBuilderWithIndentation_Indent()
         {
             // Arrange
             var sb = new StringBuilderWithIndentation("    ");
@@ -192,7 +192,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_Unindent_Works()
+        public void Test_StringBuilderWithIndentation_Unindent()
         {
             // Arrange
             var sb = new StringBuilderWithIndentation("    ");
@@ -216,7 +216,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_AppendLine_WithoutText_Works()
+        public void Test_StringBuilderWithIndentation_AppendLine_WithoutText()
         {
             // Arrange
             var sb = new StringBuilderWithIndentation();
@@ -232,7 +232,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_AppendLine_WithText_Works()
+        public void Test_StringBuilderWithIndentation_AppendLine_WithText()
         {
             // Arrange
             var sb = new StringBuilderWithIndentation();
@@ -253,7 +253,7 @@ namespace JJ.Framework.Text.Tests
         public void Test_StringBuilderWithIndentation_AppendLine_AppendsTabsBeforeLineNotAfter()
         {
             // Arrange
-            var sb = new StringBuilderWithIndentation("    ");
+            var sb = new StringBuilderWithIndentation();
 
             // Act
             sb.Indent();
@@ -261,12 +261,12 @@ namespace JJ.Framework.Text.Tests
 
             // Assert.
             string actualText = sb.ToString();
-            string expectedText = "    Text" + NewLine;
+            string expectedText = "\tText" + NewLine;
             AssertHelper.AreEqual(expectedText, () => actualText);
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_Append_Works()
+        public void Test_StringBuilderWithIndentation_Append()
         {
             // Arrange
             var sb = new StringBuilderWithIndentation();
@@ -316,10 +316,10 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_Append_Requires_Append_NewLine_ToCompleteAFullLine()
+        public void Test_StringBuilderWithIndentation_Append_Requires_AppendingNewLine_ToCompleteAFullLine()
         {
             // Arrange
-            var sb = new StringBuilderWithIndentation("    ");
+            var sb = new StringBuilderWithIndentation();
 
             // Act
             sb.Append("Text");
@@ -332,11 +332,11 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_AppendFormat_Works()
+        public void Test_StringBuilderWithIndentation_AppendFormat()
         {
             // Arrange
             string generatedClassName = "MyClass";
-            var sb = new StringBuilderWithIndentation("    ");
+            var sb = new StringBuilderWithIndentation();
 
             // Act
             sb.AppendFormat("public class {0}", generatedClassName);
@@ -348,7 +348,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_IndentLevel_Assignment_Works()
+        public void Test_StringBuilderWithIndentation_IndentLevel_Set()
         {
             // Arrange
             var sb = new StringBuilderWithIndentation("    ");
@@ -381,7 +381,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_IndentLevel_ReturnsCorrectValue()
+        public void Test_StringBuilderWithIndentation_IndentLevel_Get()
         {
             var sb = new StringBuilderWithIndentation();
 
@@ -407,17 +407,17 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_IndentLevel_AssigningLessThan0_ThrowsException()
+        public void Test_StringBuilderWithIndentation_IndentLevel_LessThan0_ThrowsException()
         {
             var sb = new StringBuilderWithIndentation();
             AssertHelper.ThrowsException(() => sb.IndentLevel = -1, "value cannot be less than 0.");
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_AppendTabs_Works()
+        public void Test_StringBuilderWithIndentation_AppendTabs()
         {
             // Arrange
-            var sb = new StringBuilderWithIndentation("\t");
+            var sb = new StringBuilderWithIndentation();
             sb.IndentLevel = 2;
 
             // Act
@@ -430,7 +430,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringBuilderWithIndentation_GetTabs_ReturnsConcatenatedTabStrings()
+        public void Test_StringBuilderWithIndentation_GetTabs_ReturnsRepeatedTabStrings()
         {
             // Arrange
             var sb = new StringBuilderWithIndentation("    ");
