@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EncodingHelper_Tests.cs" />
+    <Compile Include="StringBuilderWithIndentationTests.cs" />
     <Compile Include="StringExtensions_Split_Tests.cs" />
     <Compile Include="StringExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
