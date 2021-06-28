@@ -26,8 +26,7 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_FromTill_StartIndex_Negative_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => "0123456789".FromTill(-1, 9),
-                "startIndex of -1 is less than 0.");
+                () => "0123456789".FromTill(-1, 9), "startIndex of -1 is less than 0.");
 
         [TestMethod]
         public void Test_StringExtensions_FromTill_NullInput_ThrowsException()
@@ -62,7 +61,7 @@ namespace JJ.Framework.Text.Tests
         // Left
 
         [TestMethod]
-        public void Test_StringExtensions_Left() 
+        public void Test_StringExtensions_Left()
             => AssertHelper.AreEqual("12", () => "1234".Left(2));
 
         [TestMethod]
@@ -91,10 +90,39 @@ namespace JJ.Framework.Text.Tests
                 () => "1234".Left(5),
                 $"Index and length must refer to a location within the string.{Environment.NewLine}Parameter name: length");
 
-        // Other
+        // Right
 
         [TestMethod]
-        public void Test_StringExtensions_Right_NotEnoughCharacters_ThrowsException() => AssertHelper.ThrowsException(() => "1234".Right(5));
+        public void Test_StringExtensions_Right()
+            => AssertHelper.AreEqual("34", () => "1234".Right(2));
+
+        [TestMethod]
+        public void Test_StringExtensions_Right_LengthZero()
+            => AssertHelper.AreEqual("", () => "1234".Right(0));
+
+        [TestMethod]
+        public void Test_StringExtensions_Right_EntireString()
+            => AssertHelper.AreEqual("1234", () => "1234".Right(4));
+
+        [TestMethod]
+        public void Test_StringExtensions_Right_NullInput_ThrowsException()
+            => AssertHelper.ThrowsException<ArgumentNullException>(
+                () => StringExtensions.Right(null, default),
+                $"Value cannot be null.{Environment.NewLine}Parameter name: input");
+
+        [TestMethod]
+        public void Test_StringExtensions_Right_LengthNegative_ThrowsException()
+            => AssertHelper.ThrowsException(
+                () => "1234".Right(-1),
+                "length of -1 is less than 0.");
+
+        [TestMethod]
+        public void Test_StringExtensions_Right_NotEnoughCharacters_ThrowsException()
+            => AssertHelper.ThrowsException(
+                () => "1234".Right(5),
+                "length of 5 is greater than input.Length of 4.");
+
+        // Other
 
         [TestMethod]
         public void Test_StringExtensions_TakeEnd()
