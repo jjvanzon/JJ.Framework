@@ -101,7 +101,18 @@ namespace JJ.Framework.Text
         /// Returns the right part of a string.
         /// Throws an exception if the string has less characters than the length provided.
         /// </summary>
-        public static string Right(this string input, int length) => input.Substring(input.Length - length, length);
+        public static string Right(this string input, int length)
+        {
+            if (input == null) throw new ArgumentNullException(nameof(input));
+            if (length < 0) throw new Exception($"{nameof(length)} of {length} is less than 0.");
+            if (length > input.Length)
+            {
+                throw new Exception($"{nameof(length)} of {length} is greater than " +
+                                    $"{nameof(input)}.{nameof(input.Length)} of {input.Length}.");
+            }
+
+            return input.Substring(input.Length - length, length);
+        }
 
         /// <summary>
         /// Returns the right part of a string.
