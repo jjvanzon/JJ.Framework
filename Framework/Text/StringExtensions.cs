@@ -8,7 +8,32 @@ namespace JJ.Framework.Text
         /// <summary>
         /// Takes the middle of a string by specifying the 0-based start index and the end index.
         /// </summary>
-        public static string FromTill(this string input, int startIndex, int endIndex) => input.Substring(startIndex, endIndex - startIndex + 1);
+        public static string FromTill(this string input, int startIndex, int endIndex)
+        {
+            if (input == null) throw new ArgumentNullException(nameof(input));
+            if (startIndex < 0) throw new Exception($"{nameof(startIndex)} of {startIndex} is less than 0.");
+            if (endIndex < 0) throw new Exception($"{nameof(endIndex)} of {endIndex} is less than 0.");
+            
+            if (startIndex > input.Length - 1)
+            {
+                throw new Exception($"{nameof(startIndex)} of {startIndex} exceeds last character. " +
+                                    $"{nameof(input)}.{nameof(input.Length)} = {input.Length}");
+            }
+
+            if (endIndex > input.Length - 1)
+            {
+                throw new Exception($"{nameof(endIndex)} of {endIndex} exceeds last character. " +
+                                    $"{nameof(input)}.{nameof(input.Length)} = {input.Length}");
+            }
+
+            if (startIndex > endIndex)
+            {
+                throw new Exception($"{nameof(startIndex)} of {startIndex} is greater than " +
+                                    $"{nameof(endIndex)} of {endIndex}.");
+            }
+
+            return input.Substring(startIndex, endIndex - startIndex + 1);
+        }
 
         /// <summary>
         /// Returns the left part of a string.
