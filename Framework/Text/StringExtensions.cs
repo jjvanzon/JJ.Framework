@@ -39,8 +39,12 @@ namespace JJ.Framework.Text
         /// Returns the left part of a string.
         /// Throws an exception if the string has less characters than the length provided.
         /// </summary>
-        public static string Left(this string input, int length) => input.Substring(0, length);
-
+        public static string Left(this string input, int length)
+        {
+            if (input == null) throw new ArgumentNullException(nameof(input));
+            return input.Substring(0, length);
+        }
+        
         /// <summary>
         /// Trims and replaces sequences of two or more white space characters by a single space.
         /// </summary>
