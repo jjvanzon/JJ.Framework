@@ -61,12 +61,11 @@ namespace JJ.Framework.Text
             return text;
         }
 
-        /// <summary>
-        /// Repeat a string a number of times, returning a single string.
-        /// </summary>
+        /// <summary> Repeat a string a number of times, returning a single string. </summary>
         public static string Repeat(this string stringToRepeat, int repeatCount)
         {
             if (stringToRepeat == null) throw new ArgumentNullException(nameof(stringToRepeat));
+            if (repeatCount < 0) throw new Exception($"{nameof(repeatCount)} of {repeatCount} is less than 0.");
 
             char[] sourceChars = stringToRepeat.ToCharArray();
             int sourceLength = sourceChars.Length;
