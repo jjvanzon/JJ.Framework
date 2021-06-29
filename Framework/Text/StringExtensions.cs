@@ -50,6 +50,8 @@ namespace JJ.Framework.Text
         /// </summary>
         public static string RemoveExcessiveWhiteSpace(this string text)
         {
+            if (text == null) throw new ArgumentNullException(nameof(text));
+
             text = text.Trim();
 
             // Replace two or more white space characters by a single space.
