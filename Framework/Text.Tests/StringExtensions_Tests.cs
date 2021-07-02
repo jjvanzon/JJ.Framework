@@ -2,12 +2,10 @@
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-// ReSharper disable ConvertToConstant.Local
-
 namespace JJ.Framework.Text.Tests
 {
     [TestClass]
-    public class StringExtensionsTests
+    public class StringExtensions_Tests
     {
         // FromTill
 
