@@ -82,11 +82,13 @@ namespace JJ.Framework.Text
             return destString;
         }
 
-        /// <summary>
-        /// Variation on String.Replace with the ability to ignore case.
-        /// </summary>
+        /// <summary> Variation on String.Replace with the ability to ignore case. </summary>
         public static string Replace(this string input, string oldValue, string newValue, bool ignoreCase)
         {
+            // Similar behavior as .NET string.Replace.
+            if (oldValue == null) throw new ArgumentNullException(nameof(oldValue));
+            newValue ??= "";
+
             RegexOptions options = default;
             if (ignoreCase)
             {
