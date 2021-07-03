@@ -12,6 +12,8 @@ namespace JJ.Framework.Reflection
 {
     public class ReflectionCache
     {
+        private const string KEY_SEPARATOR = "@";
+
         private readonly BindingFlags _bindingFlags;
 
         public ReflectionCache() : this(ReflectionHelper.BINDING_FLAGS_ALL) { }
@@ -172,7 +174,7 @@ namespace JJ.Framework.Reflection
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
             if (parameterTypes.Length == 0) throw new Exception("parameterTypes.Length is 0.");
 
-            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
+            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes, KEY_SEPARATOR);
 
             lock (_indexerDictionaryLock)
             {
@@ -216,7 +218,7 @@ namespace JJ.Framework.Reflection
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
 
-            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
+            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes, KEY_SEPARATOR);
 
             lock (_methodDictionaryLock)
             {
@@ -260,8 +262,8 @@ namespace JJ.Framework.Reflection
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
             if (typeArguments == null) throw new ArgumentNullException(nameof(typeArguments));
 
-            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
-            string typeArgumentsKey = KeyHelper.CreateKey(typeArguments);
+            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes, KEY_SEPARATOR);
+            string typeArgumentsKey = KeyHelper.CreateKey(typeArguments, KEY_SEPARATOR);
 
             lock (_methodWithTypeArgumentsDictionaryLock)
             {
