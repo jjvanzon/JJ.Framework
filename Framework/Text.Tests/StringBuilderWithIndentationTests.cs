@@ -1,5 +1,4 @@
-﻿using System;
-using JJ.Framework.Testing;
+﻿using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static System.Environment;
 

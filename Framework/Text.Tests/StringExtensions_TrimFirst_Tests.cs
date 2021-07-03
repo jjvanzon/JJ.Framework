@@ -1,5 +1,7 @@
 ﻿using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable StringLiteralTypo
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Text.Tests
 {

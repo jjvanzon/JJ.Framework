@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable ConvertToConstant.Local
+// ReSharper disable StringLiteralTypo
 
 namespace JJ.Framework.Text.Tests
 {
