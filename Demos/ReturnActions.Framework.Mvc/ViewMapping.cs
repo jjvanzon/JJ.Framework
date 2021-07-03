@@ -57,8 +57,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         protected void MapController(string controllerName, string controllerGetActionName, string viewName)
         {
             if (string.IsNullOrEmpty(controllerName)) throw new NullOrEmptyException(() => controllerName);
-            if (string.IsNullOrEmpty(controllerGetActionName))
-                throw new NullOrEmptyException(() => controllerGetActionName);
+            if (string.IsNullOrEmpty(controllerGetActionName)) throw new NullOrEmptyException(() => controllerGetActionName);
             if (string.IsNullOrEmpty(viewName)) throw new NullOrEmptyException(() => viewName);
 
             ControllerName = controllerName;

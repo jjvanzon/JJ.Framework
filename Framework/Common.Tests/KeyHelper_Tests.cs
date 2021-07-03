@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Common.Tests
 {
@@ -38,7 +39,7 @@ namespace JJ.Framework.Common.Tests
         }
 
         [TestMethod]
-        public void Test_KeyHelper_CreateKey_WithEmptySTringSeparator_Works()
+        public void Test_KeyHelper_CreateKey_WithEmptyStringSeparator_Works()
         {
             // Arrange
             var items = new[] { 1, 2, 3 };

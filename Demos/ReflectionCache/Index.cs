@@ -19,7 +19,7 @@ namespace JJ.Demos.ReflectionCache
                     return _dictionary[x];
                 }
 
-                return default(T2);
+                return default;
             }
             set => _dictionary[x] = value;
         }
@@ -39,7 +39,7 @@ namespace JJ.Demos.ReflectionCache
             get
             {
                 if (Contains(x, y)) return _base[x][y];
-                return default(T3);
+                return default;
             }
             set
             {
@@ -79,7 +79,7 @@ namespace JJ.Demos.ReflectionCache
             get
             {
                 if (Contains(a, b, c)) return _base[a][b, c];
-                return default(T4);
+                return default;
             }
             set
             {
@@ -119,7 +119,7 @@ namespace JJ.Demos.ReflectionCache
             get
             {
                 if (Contains(a, b, c, d)) return _base[a][b, c, d];
-                return default(T5);
+                return default;
             }
             set
             {
@@ -159,7 +159,7 @@ namespace JJ.Demos.ReflectionCache
             get
             {
                 if (Contains(a, b, c, d, e)) return _base[a][b, c, d, e];
-                return default(T6);
+                return default;
             }
             set
             {
@@ -199,7 +199,7 @@ namespace JJ.Demos.ReflectionCache
             get
             {
                 if (Contains(a, b, c, d, e, f)) return _base[a][b, c, d, e, f];
-                return default(T7);
+                return default;
             }
             set
             {
@@ -239,7 +239,7 @@ namespace JJ.Demos.ReflectionCache
             get
             {
                 if (Contains(a, b, c, d, e, f, g)) return _base[a][b, c, d, e, f, g];
-                return default(T8);
+                return default;
             }
             set
             {

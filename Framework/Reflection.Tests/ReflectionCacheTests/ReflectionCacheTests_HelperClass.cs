@@ -1,6 +1,7 @@
 ﻿using System;
-
+// ReSharper disable UnusedTypeParameter
 // ReSharper disable UnusedParameter.Global
+// ReSharper disable InconsistentNaming
 #pragma warning disable IDE0060 // Remove unused parameter
 
 namespace JJ.Framework.Reflection.Tests.ReflectionCacheTests

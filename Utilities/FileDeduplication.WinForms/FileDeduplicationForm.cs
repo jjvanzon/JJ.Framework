@@ -5,6 +5,7 @@ using JJ.Framework.ResourceStrings;
 using JJ.Framework.WinForms.Extensions;
 using JJ.Framework.WinForms.Forms;
 using JJ.Framework.WinForms.Helpers;
+// ReSharper disable LocalizableElement
 
 // ReSharper disable EmptyGeneralCatchClause
 // ReSharper disable ArrangeMethodOrOperatorBody

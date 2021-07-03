@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Text;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.Text;
 
 namespace JJ.Framework.IO
 {

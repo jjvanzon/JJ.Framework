@@ -46,7 +46,9 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         {
             // TODO: Performance of these string operations is not great.
             if (string.IsNullOrWhiteSpace(returnUrlParameterName))
+            {
                 throw new Exception("returnUrlParameterName cannot be null or white space.");
+            }
 
             ActionInfo actionInfo = actionInfos[0];
             string url = ConvertActionInfoToUrl_NonRecursive(actionInfo);
@@ -83,7 +85,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         }
 
         /// <summary>
-        /// Accepts return URL's stacked up as follows:
+        /// Accepts return URLs stacked up as follows:
         /// Questions/Details?id=1
         /// Questions/Edit?id=1&amp;ret=Questions%2FDetails%3Fid%3D1
         /// Login/Index&amp;ret=Questions%2FEdit%3Fid%3D1%26ret%3DQuestions%252FDetails%253Fid%253D1

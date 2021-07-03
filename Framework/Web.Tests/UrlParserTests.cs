@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Testing;
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Web.Tests
 {

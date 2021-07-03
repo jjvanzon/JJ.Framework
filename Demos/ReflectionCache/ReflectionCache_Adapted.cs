@@ -235,7 +235,7 @@ namespace JJ.Demos.ReflectionCache
             }
         }
 
-        private readonly string _keySeparator = "@";
+        private const string KEY_SEPARATOR = "@";
 
         private string CreateKey(Type[] values)
         {
@@ -246,7 +246,7 @@ namespace JJ.Demos.ReflectionCache
                 strings[i] = Convert.ToString(values[i]);
             }
 
-            string key = string.Join(_keySeparator, strings);
+            string key = string.Join(KEY_SEPARATOR, strings);
 
             return key;
         }

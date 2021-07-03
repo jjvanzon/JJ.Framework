@@ -1,6 +1,7 @@
 ﻿using JJ.Framework.Testing;
 using JJ.Framework.Xml.Tests.Mocks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Xml.Tests
 {

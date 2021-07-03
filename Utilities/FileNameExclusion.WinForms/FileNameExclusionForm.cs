@@ -5,6 +5,7 @@ using JJ.Framework.ResourceStrings;
 using JJ.Framework.VectorGraphics.Positioners;
 using JJ.Framework.WinForms.Extensions;
 using JJ.Framework.WinForms.Forms;
+// ReSharper disable LocalizableElement
 
 namespace JJ.Utilities.FileNameExclusion.WinForms
 {

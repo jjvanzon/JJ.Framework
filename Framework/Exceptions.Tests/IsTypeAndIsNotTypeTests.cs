@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable RedundantAssignment
 // ReSharper disable ConvertToConstant.Local
 // ReSharper disable CollectionNeverUpdated.Local
+// ReSharper disable EntityNameCapturedOnly.Local
 
 namespace JJ.Framework.Exceptions.Tests
 {

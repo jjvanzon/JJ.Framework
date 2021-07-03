@@ -11,8 +11,8 @@ namespace JJ.Framework.Soap
     /// </summary>
     internal class CustomWcfSoapClient
     {
-        private string _serviceInterfaceName;
-        private SoapClient _client;
+        private readonly string _serviceInterfaceName;
+        private readonly SoapClient _client;
 
         /// <summary>
         /// This class exists because some mobile platforms running on Mono

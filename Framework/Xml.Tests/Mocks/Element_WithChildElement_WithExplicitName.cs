@@ -6,6 +6,5 @@ namespace JJ.Framework.Xml.Tests.Mocks
     {
         [XmlElement("Element_WithExplicitName")]
         public int Element_WithExplicitName { get; set; }
-
     }
 }

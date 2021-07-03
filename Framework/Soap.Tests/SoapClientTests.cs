@@ -7,6 +7,7 @@ using JJ.Framework.Soap.Tests.ServiceInterface;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable NotAccessedVariable
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Soap.Tests
 {

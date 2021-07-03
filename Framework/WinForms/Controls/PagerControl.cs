@@ -135,21 +135,11 @@ namespace JJ.Framework.WinForms.Controls
             this.AutomaticallyAssignTabIndexes();
         }
 
-        private void linkLabelGoToFirstPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (GoToFirstPageClicked != null)
-            {
-                GoToFirstPageClicked(sender, EventArgs.Empty);
-            }
-        }
+        private void linkLabelGoToFirstPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) 
+            => GoToFirstPageClicked?.Invoke(sender, EventArgs.Empty);
 
-        private void linkLabelGoToPreviousPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (GoToPreviousPageClicked != null)
-            {
-                GoToPreviousPageClicked(sender, EventArgs.Empty);
-            }
-        }
+        private void linkLabelGoToPreviousPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) 
+            => GoToPreviousPageClicked?.Invoke(sender, EventArgs.Empty);
 
         private void pageNumberLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -162,20 +152,10 @@ namespace JJ.Framework.WinForms.Controls
             }
         }
 
-        private void linkLabelGoToNextPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (GoToNextPageClicked != null)
-            {
-                GoToNextPageClicked(sender, EventArgs.Empty);
-            }
-        }
+        private void linkLabelGoToNextPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) 
+            => GoToNextPageClicked?.Invoke(sender, EventArgs.Empty);
 
-        private void linkLabelGoToLastPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (GoToLastPageClicked != null)
-            {
-                GoToLastPageClicked(sender, EventArgs.Empty);
-            }
-        }
+        private void linkLabelGoToLastPage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) 
+            => GoToLastPageClicked?.Invoke(sender, EventArgs.Empty);
     }
 }

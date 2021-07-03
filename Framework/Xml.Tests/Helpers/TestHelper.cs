@@ -2,6 +2,7 @@
 using JJ.Framework.Xml.Tests.Mocks;
 using System.Collections;
 using System.Linq;
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Xml.Tests.Helpers
 {

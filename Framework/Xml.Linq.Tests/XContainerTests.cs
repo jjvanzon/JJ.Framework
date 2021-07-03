@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Linq;
 // ReSharper disable UnusedVariable
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Xml.Linq.Tests
 {

@@ -16,10 +16,10 @@ namespace JJ.Framework.Xml.Linq.Internal
     {
         private const string WCF_SOAP_NAMESPACE_START = "http://schemas.datacontract.org/2004/07/";
 
-        private XmlCasingEnum _casing;
-        private bool _mustGenerateNamespaces;
+        private readonly XmlCasingEnum _casing;
+        private readonly bool _mustGenerateNamespaces;
 
-        private HashSet<string> _xmlNamespaceStrings = new HashSet<string>();
+        private readonly HashSet<string> _xmlNamespaceStrings = new HashSet<string>();
         
         /// <summary> 
         /// Nullable.
@@ -30,7 +30,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         /// "http://schemas.microsoft.com/2003/10/Serialization/Arrays".
         /// If you need a different namespace, you must translate the namespace yourself.
         /// </summary>
-        private Dictionary<Type, string> _customArrayItemNameDictionary;
+        private readonly Dictionary<Type, string> _customArrayItemNameDictionary;
 
         public NameManager(
             XmlCasingEnum casing,
@@ -103,12 +103,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         private string TryGetXmlElementNameFromAttribute(PropertyInfo property)
         {
             var xmlElementAttribute = property.GetCustomAttribute<XmlElementAttribute>();
-            if (xmlElementAttribute != null)
-            {
-                return xmlElementAttribute.ElementName;
-            }
-
-            return null;
+            return xmlElementAttribute?.ElementName;
         }
 
         // XML Attribute Names
@@ -159,12 +154,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         private string TryGetAttributeNameFromAttribute(PropertyInfo property)
         {
             var xmlAttributeAttribute = property.GetCustomAttribute<XmlAttributeAttribute>();
-            if (xmlAttributeAttribute != null)
-            {
-                return xmlAttributeAttribute.AttributeName;
-            }
-
-            return null;
+            return xmlAttributeAttribute?.AttributeName;
         }
 
         // XML Array Names
@@ -297,12 +287,7 @@ namespace JJ.Framework.Xml.Linq.Internal
         private string TryGetXmlArrayItemNameFromAttribute(PropertyInfo collectionProperty)
         {
             var xmlArrayItemAttribute = collectionProperty.GetCustomAttribute<XmlArrayItemAttribute>();
-            if (xmlArrayItemAttribute != null)
-            {
-                return xmlArrayItemAttribute.ElementName;
-            }
-
-            return null;
+            return xmlArrayItemAttribute?.ElementName;
         }
 
         private XName TryGetCustomArrayItemXName(Type sourceItemType)
