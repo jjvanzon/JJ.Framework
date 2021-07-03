@@ -95,7 +95,9 @@ namespace JJ.Framework.Text
                 options = RegexOptions.IgnoreCase;
             }
 
-            var regex = new Regex(Regex.Escape(oldValue), options);
+            oldValue = Regex.Escape(oldValue);
+
+            var regex = new Regex(oldValue, options);
             string output = regex.Replace(input, newValue);
             return output;
         }

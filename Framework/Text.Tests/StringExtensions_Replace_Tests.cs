@@ -117,5 +117,17 @@ namespace JJ.Framework.Text.Tests
             string expected = "<ae>";
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Test_StringExtensions_Replace_WithIgnoreCase_Does_Regex_Escape()
+        {
+            var input = "<ag>^.*$";
+            string actual = input.Replace("^.*$", "<ah>", default);
+            // If oldValue would not be Regex-escaped,
+            // the complete string would be replaced by "<ah>",
+            // instead of just the last part.
+            string expected = "<ag><ah>";
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
