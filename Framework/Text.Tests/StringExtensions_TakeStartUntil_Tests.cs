@@ -1,6 +1,7 @@
 ﻿using System;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Text.Tests
 {
@@ -21,21 +22,27 @@ namespace JJ.Framework.Text.Tests
 
         [TestMethod]
         public void Test_StringExtensions_TakeStartUntil_NegativeMatch_ReturnsEmptyString()
-            => AssertHelper.AreEqual("", () => "12345".TakeStartUntil("0"));
+            => AssertHelper.AreEqual("", () => "12345".TakeStartUntil("6"));
 
         [TestMethod]
         public void Test_StringExtensions_TakeStartUntil_NullInput_ThrowsException()
         {
-            string input = null;
+            string nullInput = null;
+            string dummyUntilString = "3";
+
             AssertHelper.ThrowsException<NullReferenceException>(
-                () => input.TakeStartUntil("3"),
+                () => nullInput.TakeStartUntil(dummyUntilString),
                 "Object reference not set to an instance of an object.");
         }
 
         [TestMethod]
         public void Test_StringExtensions_TakeStartUntil_NullUntilString_ThrowsException()
-            => AssertHelper.ThrowsException<ArgumentNullException>(
-                () => "12345".TakeStartUntil(null),
+        {
+            string dummyInput = "12345";
+
+            AssertHelper.ThrowsException<ArgumentNullException>(
+                () => dummyInput.TakeStartUntil(null),
                 $"Value cannot be null.{Environment.NewLine}Parameter name: until");
+        }
     }
 }
