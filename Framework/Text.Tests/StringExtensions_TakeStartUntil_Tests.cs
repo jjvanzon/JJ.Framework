@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Testing;
+﻿using System;
+using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Text.Tests
@@ -7,17 +8,34 @@ namespace JJ.Framework.Text.Tests
     public class StringExtensions_TakeStartUntil_Tests
     {
         [TestMethod]
-        public void Test_StringExtensions_TakeStartUntil()
+        public void Test_StringExtensions_TakeStartUntil() 
+            => AssertHelper.AreEqual("123", () => "12345".TakeStartUntil("4"));
+
+        [TestMethod]
+        public void Test_StringExtensions_TakeStartUntil_FirstCharacter_ReturnsEmptyString()
+            => AssertHelper.AreEqual("", () => "12345".TakeStartUntil("1"));
+
+        [TestMethod]
+        public void Test_StringExtensions_TakeStartUntil_LastCharacter_ReturnsAllButLastCharacter()
+            => AssertHelper.AreEqual("1234", () => "12345".TakeStartUntil("5"));
+
+        [TestMethod]
+        public void Test_StringExtensions_TakeStartUntil_NegativeMatch_ReturnsEmptyString()
+            => AssertHelper.AreEqual("", () => "12345".TakeStartUntil("0"));
+
+        [TestMethod]
+        public void Test_StringExtensions_TakeStartUntil_NullInput_ThrowsException()
         {
-            string output = "12345".TakeStartUntil("4");
-            AssertHelper.AreEqual("123", () => output);
+            string input = null;
+            AssertHelper.ThrowsException<NullReferenceException>(
+                () => input.TakeStartUntil("3"),
+                "Object reference not set to an instance of an object.");
         }
 
         [TestMethod]
-        public void Test_StringExtensions_TakeStartUntil_NegativeMatch_ReturnsNullOrEmpty()
-        {
-            string output = "12345".TakeStartUntil("6");
-            AssertHelper.IsNullOrEmpty(() => output);
-        }
+        public void Test_StringExtensions_TakeStartUntil_NullUntilString_ThrowsException()
+            => AssertHelper.ThrowsException<ArgumentNullException>(
+                () => "12345".TakeStartUntil(null),
+                $"Value cannot be null.{Environment.NewLine}Parameter name: until");
     }
 }
