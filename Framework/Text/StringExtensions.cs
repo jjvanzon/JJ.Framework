@@ -138,8 +138,7 @@ namespace JJ.Framework.Text
             if (until == null) throw new ArgumentNullException(nameof(until));
             int index = input.LastIndexOf(until, StringComparison.Ordinal);
             if (index == -1) return "";
-            int length = input.Length - index - 1;
-            string output = input.Right(length);
+            string output = input.Substring(index + until.Length);
             return output;
         }
 
