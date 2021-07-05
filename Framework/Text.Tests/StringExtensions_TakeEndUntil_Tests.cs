@@ -10,19 +10,22 @@ namespace JJ.Framework.Text.Tests
     {
         [TestMethod]
         public void Test_StringExtensions_TakeEndUntil()
-            => AssertHelper.AreEqual("45", () => "12345".TakeEndUntil("3"));
+            => AssertHelper.AreEqual("45", () => "12345".TakeEndUntil("23"));
 
         [TestMethod]
-        public void Test_StringExtensions_TakeEndUntil_LastCharacter_ReturnsEmptyString()
-            => AssertHelper.AreEqual("", () => "12345".TakeEndUntil("5"));
+        public void Test_StringExtensions_TakeEndUntil_LastCharacters_ReturnsEmptyString()
+            => AssertHelper.AreEqual("", () => "12345".TakeEndUntil("45"));
 
         [TestMethod]
-        public void Test_StringExtensions_TakeEndUntil_FirstCharacter_ReturnsAllButFirstCharacter()
-            => AssertHelper.AreEqual("2345", () => "12345".TakeEndUntil("1"));
+        public void Test_StringExtensions_TakeEndUntil_FirstCharacters_ReturnsAllButFirstCharacters()
+            => AssertHelper.AreEqual("345", () => "12345".TakeEndUntil("12"));
 
         [TestMethod]
         public void Test_StringExtensions_TakeEndUntil_NegativeMatch_ReturnsEmptyString()
-            => AssertHelper.AreEqual("", () => "12345".TakeEndUntil("0"));
+        {
+            string nonExistingString = "-10";
+            AssertHelper.AreEqual("", () => "12345".TakeEndUntil(nonExistingString));
+        }
 
         [TestMethod]
         public void Test_StringExtensions_TakeEndUntil_NullInput_ThrowsException()
