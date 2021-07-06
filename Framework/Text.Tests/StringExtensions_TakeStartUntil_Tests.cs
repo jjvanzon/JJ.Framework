@@ -28,6 +28,10 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
+        public void Test_StringExtensions_TakeStartUntil_OverloadWithChar()
+            => AssertHelper.AreEqual("123", () => "12345".TakeStartUntil('4'));
+
+        [TestMethod]
         public void Test_StringExtensions_TakeStartUntil_NullInput_ThrowsException()
         {
             string nullInput = null;
