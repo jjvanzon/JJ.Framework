@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EncodingHelper_Tests.cs" />
+    <Compile Include="Obsolete\StringExtensions_Accessor.cs" />
+    <Compile Include="Obsolete\StringExtensions_Obsolete_Tests.cs" />
     <Compile Include="StringBuilderWithIndentationTests.cs" />
     <Compile Include="StringExtensions_Replace_Tests.cs" />
     <Compile Include="StringExtensions_Split_Tests.cs" />
@@ -79,6 +81,10 @@
       <Project>{C600657B-7E29-44B5-83A1-747FAB30D5D0}</Project>
       <Name>JJ.Framework.IO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reflection\JJ.Framework.Reflection.csproj">
+      <Project>{1A8E047C-7893-4918-B415-CE3928E815D8}</Project>
+      <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Testing\JJ.Framework.Testing.csproj">
       <Project>{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}</Project>
       <Name>JJ.Framework.Testing</Name>
@@ -91,6 +97,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
