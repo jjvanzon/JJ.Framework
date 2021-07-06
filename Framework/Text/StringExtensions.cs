@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace JJ.Framework.Text
 {
-    public static class StringExtensions
+    public static partial class StringExtensions
     {
         /// <summary>
         /// Takes the middle of a string by specifying the 0-based start index and the end index.
@@ -146,12 +146,6 @@ namespace JJ.Framework.Text
         /// Takes the part of a string until the specified delimiter. Excludes the delimiter itself.
         /// </summary>
         public static string TakeEndUntil(this string input, char until) => TakeEndUntil(input, until.ToString());
-
-        [Obsolete("Use TakeStart instead.", true)]
-        public static string TakeLeft(this string input, int length) => throw new NotSupportedException("Use TakeStart instead.");
-
-        [Obsolete("Use TakeEnd instead.", true)]
-        public static string TakeRight(this string input, int length) => throw new NotSupportedException("Use TakeEnd instead.");
 
         /// <summary>
         /// Returns the left part of a string.

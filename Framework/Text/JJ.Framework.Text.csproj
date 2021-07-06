@@ -45,6 +45,7 @@
   <ItemGroup>
     <None Include="JJ.Framework.Text.nuspec" />
     <Compile Include="EncodingHelper.cs" />
+    <Compile Include="Obsolete\StringExtensions.Obsolete.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringBuilderWithIndentation.cs" />
     <Compile Include="StringExtensions.cs" />
@@ -55,5 +56,6 @@
   <ItemGroup>
     <None Include="README.MD" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
