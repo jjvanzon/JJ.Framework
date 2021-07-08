@@ -13,35 +13,19 @@ namespace JJ.Framework.Text.Tests
     {
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_OneOccurrence()
-        {
-            var input = "BlaLaLaBla";
-            string output = input.TrimEnd("Bla");
-            AssertHelper.AreEqual("BlaLaLa", () => output);
-        }
+            => AssertHelper.AreEqual("BlaLaLa", () => "BlaLaLaBla".TrimEnd("Bla"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_MultipleOccurrences()
-        {
-            var input = "BlaLaBlaBlaBla";
-            string output = input.TrimEnd("Bla");
-            AssertHelper.AreEqual("BlaLa", () => output);
-        }
+            => AssertHelper.AreEqual("BlaLa", () => "BlaLaBlaBlaBla".TrimEnd("Bla"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_NoOccurrences()
-        {
-            var input = "BlaLaLaLa";
-            string output = input.TrimEnd("Bla");
-            AssertHelper.AreEqual("BlaLaLaLa", () => output);
-        }
+            => AssertHelper.AreEqual("BlaLaLaLa", () => "BlaLaLaLa".TrimEnd("Bla"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_EndStringWhiteSpace()
-        {
-            string input = " LaLaLa ";
-            string output = input.TrimEnd(" ");
-            AssertHelper.AreEqual(" LaLaLa", () => output);
-        }
+            => AssertHelper.AreEqual(" LaLaLa", () => " LaLaLa ".TrimEnd(" "));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_InputEmpty()
@@ -52,11 +36,7 @@ namespace JJ.Framework.Text.Tests
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_ClearingEntireString()
-        {
-            var input = "LaLaLa";
-            string output = input.TrimEnd("La");
-            AssertHelper.AreEqual("", () => output);
-        }
+            => AssertHelper.AreEqual("", () => "LaLaLa".TrimEnd("La"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_InputNull_ThrowsException()
@@ -73,7 +53,6 @@ namespace JJ.Framework.Text.Tests
         {
             string dummyInput = "LaLaLa";
             string nullEndString = null;
-
             AssertHelper.ThrowsException(
                 () => dummyInput.TrimEnd(nullEndString),
                 "end is null or empty.");
@@ -92,11 +71,7 @@ namespace JJ.Framework.Text.Tests
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLength()
-        {
-            var input = "BlaLaLa";
-            string output = input.TrimEnd(3);
-            AssertHelper.AreEqual("BlaL", () => output);
-        }
+            => AssertHelper.AreEqual("BlaL", () => "BlaLaLa".TrimEnd(3));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLength_EmptyInput()
@@ -106,14 +81,11 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_TrimEnd_WithLength_ClearingEntireString()
-        {
-            string input = "BlaLaLa";
-            AssertHelper.AreEqual("", () => input.TrimEnd(input.Length));
-        }
+        public void Test_StringExtensions_TrimEnd_WithLength_ClearingEntireString() 
+            => AssertHelper.AreEqual("", () => "BlaLaLa".TrimEnd("BlaLaLa".Length));
 
         [TestMethod]
-        public void Test_StringExtensions_TrimEnd_WithLengthZero() 
+        public void Test_StringExtensions_TrimEnd_WithLengthZero()
             => Assert.AreEqual("Bla", "Bla".TrimEnd(0));
 
         [TestMethod]
@@ -128,7 +100,6 @@ namespace JJ.Framework.Text.Tests
             AssertHelper.ThrowsException<NullReferenceException>(
                 () => nullInput.TrimEnd(dummyLength),
                 "Object reference not set to an instance of an object.");
-
         }
 
         [TestMethod]
