@@ -12,37 +12,37 @@ namespace JJ.Framework.Text.Tests
     public class StringExtensions_TrimEnd_Tests
     {
         [TestMethod]
-        public void Test_StringExtensions_TrimEnd_OneOccurrence()
-            => AssertHelper.AreEqual("BlaLaLa", () => "BlaLaLaBla".TrimEnd("Bla"));
+        public void Test_StringExtensions_TrimEnd_MultipleOccurrences()
+            => AssertHelper.AreEqual("[a][b]", () => "[a][b][a][a][a]".TrimEnd("[a]"));
 
         [TestMethod]
-        public void Test_StringExtensions_TrimEnd_MultipleOccurrences()
-            => AssertHelper.AreEqual("BlaLa", () => "BlaLaBlaBlaBla".TrimEnd("Bla"));
+        public void Test_StringExtensions_TrimEnd_OneOccurrence()
+            => AssertHelper.AreEqual("[a][b][b]", () => "[a][b][b][a]".TrimEnd("[a]"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_NoOccurrences()
-            => AssertHelper.AreEqual("BlaLaLaLa", () => "BlaLaLaLa".TrimEnd("Bla"));
+            => AssertHelper.AreEqual("[a][b][b][b]", () => "[a][b][b][b]".TrimEnd("[a]"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_EndStringWhiteSpace()
-            => AssertHelper.AreEqual(" LaLaLa", () => " LaLaLa ".TrimEnd(" "));
+            => AssertHelper.AreEqual(" [a][a]", () => " [a][a] ".TrimEnd(" "));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_InputEmpty()
         {
-            string dummyEndString = "Bla";
+            string dummyEndString = "[a]";
             AssertHelper.AreEqual("", () => "".TrimEnd(dummyEndString));
         }
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_ClearingEntireString()
-            => AssertHelper.AreEqual("", () => "LaLaLa".TrimEnd("La"));
+            => AssertHelper.AreEqual("", () => "[a][a][a]".TrimEnd("[a]"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_InputNull_ThrowsException()
         {
             string nullInput = null;
-            string dummyEndString = "Bla";
+            string dummyEndString = "[a]";
             AssertHelper.ThrowsException<NullReferenceException>(
                 () => nullInput.TrimEnd(dummyEndString),
                 "Object reference not set to an instance of an object.");
@@ -51,7 +51,7 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_EndStringNull_ThrowsException()
         {
-            string dummyInput = "LaLaLa";
+            string dummyInput = "[a]";
             string nullEndString = null;
             AssertHelper.ThrowsException(
                 () => dummyInput.TrimEnd(nullEndString),
@@ -61,7 +61,7 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_EndStringEmpty_ThrowsException()
         {
-            string dummyInput = "LaLaLa";
+            string dummyInput = "[a]";
             AssertHelper.ThrowsException(
                 () => dummyInput.TrimEnd(""),
                 "end is null or empty.");
@@ -71,7 +71,7 @@ namespace JJ.Framework.Text.Tests
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLength()
-            => AssertHelper.AreEqual("BlaL", () => "BlaLaLa".TrimEnd(3));
+            => AssertHelper.AreEqual("[a][b]<", () => "[a][b]<c>".TrimEnd(2));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLength_EmptyInput()
@@ -81,16 +81,19 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_TrimEnd_WithLength_ClearingEntireString() 
-            => AssertHelper.AreEqual("", () => "BlaLaLa".TrimEnd("BlaLaLa".Length));
+        public void Test_StringExtensions_TrimEnd_WithLength_ClearingEntireString()
+        {
+            string input = "[a][b]<c>";
+            AssertHelper.AreEqual("", () => input.TrimEnd(input.Length));
+        }
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLengthZero()
-            => Assert.AreEqual("Bla", "Bla".TrimEnd(0));
+            => Assert.AreEqual("[a]", "[a]".TrimEnd(0));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLengthLargerThanInput()
-            => AssertHelper.AreEqual("", () => "Bla".TrimEnd(4));
+            => AssertHelper.AreEqual("", () => "[a]".TrimEnd(4));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLength_NullInput_ThrowsException()
@@ -105,7 +108,7 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLengthNegative_ThrowsException()
         {
-            string dummyInput = "Bla";
+            string dummyInput = "[a]";
             AssertHelper.ThrowsException(
                 () => dummyInput.TrimEnd(-1),
                 "length of -1 is less than 0.");
