@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable UnusedVariable
 // ReSharper disable ConvertToConstant.Local
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
+// ReSharper disable StringLiteralTypo
 
 namespace JJ.Framework.Text.Tests
 {
@@ -13,54 +14,54 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_Replace_IgnoreCase_True_WithMatch()
         {
-            var input = "<a><b><b>";
-            string actual = input.Replace("<B>", "<c>", ignoreCase: true);
-            string expected = "<a><c><c>";
+            var input = "[a][b][b]";
+            string actual = input.Replace("[B]", "[c]", ignoreCase: true);
+            string expected = "[a][c][c]";
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void Test_StringExtensions_Replace_IgnoreCase_True_NoMatch()
         {
-            var input = "<d><e><e>";
-            string actual = input.Replace("<_>", "<f>", ignoreCase: true);
-            string expected = "<d><e><e>";
+            var input = "[d][e][e]";
+            string actual = input.Replace("[_]", "[f]", ignoreCase: true);
+            string expected = "[d][e][e]";
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void Test_StringExtensions_Replace_IgnoreCase_False_WithMatch()
         {
-            var input = "<g><h><h>";
-            string actual = input.Replace("<h>", "<i>", ignoreCase: false);
-            string expected = "<g><i><i>";
+            var input = "[g][h][h]";
+            string actual = input.Replace("[h]", "[i]", ignoreCase: false);
+            string expected = "[g][i][i]";
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void Test_String_Replace_FromDotNet_WithMatch()
         {
-            var input = "<j><k><k>";
-            string actual = input.Replace("<k>", "<l>");
-            string expected = "<j><l><l>";
+            var input = "[j][k][k]";
+            string actual = input.Replace("[k]", "[l]");
+            string expected = "[j][l][l]";
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void Test_StringExtensions_Replace_IgnoreCase_False_NoMatch()
         {
-            var input = "<m><n><n>";
-            string actual = input.Replace("<N>", "<o>", ignoreCase: false);
-            string expected = "<m><n><n>";
+            var input = "[m][n][n]";
+            string actual = input.Replace("[N]", "[o]", ignoreCase: false);
+            string expected = "[m][n][n]";
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void Test_String_Replace_FromDotNet_NoMatch()
         {
-            var input = "<p><q><q>";
-            string actual = input.Replace("<Q>", "<r>");
-            string expected = "<p><q><q>";
+            var input = "[p][q][q]";
+            string actual = input.Replace("[Q]", "[r]");
+            string expected = "[p][q][q]";
             Assert.AreEqual(expected, actual);
         }
 
@@ -69,7 +70,7 @@ namespace JJ.Framework.Text.Tests
         {
             string input = null;
             AssertHelper.ThrowsException<ArgumentNullException>(
-                () => input.Replace("<s>", "<t>", default),
+                () => input.Replace("[s]", "[t]", default),
                 $"Value cannot be null.{Environment.NewLine}Parameter name: input");
         }
 
@@ -78,55 +79,55 @@ namespace JJ.Framework.Text.Tests
         {
             string input = null;
             AssertHelper.ThrowsException<NullReferenceException>(
-                () => input.Replace("<u>", "<v>"),
+                () => input.Replace("[u]", "[v]"),
                 "Object reference not set to an instance of an object.");
         }
 
         [TestMethod]
         public void Test_StringExtensions_Replace_WithIgnoreCase_OldValueNull_ThrowsException()
         {
-            var input = "<w><x><x>";
+            var input = "[w][x][x]";
             AssertHelper.ThrowsException<ArgumentNullException>(
-                () => input.Replace(null, "<y>", default),
+                () => input.Replace(null, "[y]", default),
                 $"Value cannot be null.{Environment.NewLine}Parameter name: oldValue");
         }
 
         [TestMethod]
         public void Test_String_Replace_FromDotNet_OldValueNull_ThrowsException()
         {
-            var input = "<z><aa><aa>";
+            var input = "[z][aa][aa]";
             AssertHelper.ThrowsException<ArgumentNullException>(
-                () => input.Replace(null, "<ab>"),
+                () => input.Replace(null, "[ab]"),
                 $"Value cannot be null.{Environment.NewLine}Parameter name: oldValue");
         }
 
         [TestMethod]
         public void Test_StringExtensions_Replace_WithIgnoreCase_NewValueNull_Succeeds()
         {
-            var input = "<ac><ad><ad>";
-            string actual = input.Replace("<ad>", null, default);
-            string expected = "<ac>";
+            var input = "[ac][ad][ad]";
+            string actual = input.Replace("[ad]", null, default);
+            string expected = "[ac]";
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void Test_String_Replace_FromDotNet_NewValueNull_Succeeds()
         {
-            var input = "<ae><af><af>";
-            string actual = input.Replace("<af>", null);
-            string expected = "<ae>";
+            var input = "[ae][af][af]";
+            string actual = input.Replace("[af]", null);
+            string expected = "[ae]";
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
         public void Test_StringExtensions_Replace_WithIgnoreCase_Does_Regex_Escape()
         {
-            var input = "<ag>^.*$";
-            string actual = input.Replace("^.*$", "<ah>", default);
+            var input = "ag^.*$";
+            string actual = input.Replace("^.*$", "ah", default);
             // If oldValue would not be Regex-escaped,
-            // the complete string would be replaced by "<ah>",
+            // the complete string would be replaced by "[ah]",
             // instead of just the last part.
-            string expected = "<ag><ah>";
+            string expected = "agah";
             Assert.AreEqual(expected, actual);
         }
     }
