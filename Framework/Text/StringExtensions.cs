@@ -187,7 +187,7 @@ namespace JJ.Framework.Text
 
             while (temp.EndsWith(end))
             {
-                temp = temp.TrimEnd(end.Length);
+                temp = temp.Substring(0, temp.Length - end.Length);
             }
 
             return temp;
@@ -207,7 +207,7 @@ namespace JJ.Framework.Text
                 length = input.Length;
             }
 
-            return input.Left(input.Length - length);
+            return input.Substring(0, input.Length - length);
         }
 
         /// <summary>
