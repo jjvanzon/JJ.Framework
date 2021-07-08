@@ -197,7 +197,18 @@ namespace JJ.Framework.Text
         /// Will trim off repetitions of the same value from the given string.
         /// These are variations of the standard .NET methods that instead of just taking char[] can take a string or a length.
         /// </summary>
-        public static string TrimEnd(this string input, int length) => input.Left(input.Length - length);
+        public static string TrimEnd(this string input, int length)
+        {
+            if (length < 0) throw new Exception($"{nameof(length)} of {length} is less than 0.");
+            
+            // Allow length longer than input.
+            if (length > input.Length)
+            {
+                length = input.Length;
+            }
+
+            return input.Left(input.Length - length);
+        }
 
         /// <summary>
         /// Cuts off the part of a string until the specified delimiter and returns what remains including the delimiter itself.
