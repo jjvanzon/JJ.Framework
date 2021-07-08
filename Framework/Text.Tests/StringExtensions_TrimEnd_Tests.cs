@@ -2,9 +2,7 @@
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-// ReSharper disable ReturnValueOfPureMethodIsNotUsed
 // ReSharper disable ConvertToConstant.Local
-// ReSharper disable StringLiteralTypo
 
 namespace JJ.Framework.Text.Tests
 {
@@ -76,7 +74,7 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLength_EmptyInput()
         {
-            int dummyLength = 3;
+            int dummyLength = 0;
             AssertHelper.AreEqual("", () => "".TrimEnd(dummyLength));
         }
 
@@ -99,7 +97,7 @@ namespace JJ.Framework.Text.Tests
         public void Test_StringExtensions_TrimEnd_WithLength_NullInput_ThrowsException()
         {
             string nullInput = null;
-            int dummyLength = 3;
+            int dummyLength = 0;
             AssertHelper.ThrowsException<NullReferenceException>(
                 () => nullInput.TrimEnd(dummyLength),
                 "Object reference not set to an instance of an object.");
