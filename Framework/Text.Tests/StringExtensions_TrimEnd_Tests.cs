@@ -71,25 +71,25 @@ namespace JJ.Framework.Text.Tests
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLength()
-            => AssertHelper.AreEqual("[a][b]<", () => "[a][b]<c>".TrimEnd(2));
+            => AssertHelper.AreEqual("[a][b][", () => "[a][b][c]".TrimEnd(2));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLength_EmptyInput()
         {
-            int dummyLength = 0;
+            int dummyLength = 3;
             AssertHelper.AreEqual("", () => "".TrimEnd(dummyLength));
         }
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLength_ClearingEntireString()
         {
-            string input = "[a][b]<c>";
+            string input = "[a][b][c]";
             AssertHelper.AreEqual("", () => input.TrimEnd(input.Length));
         }
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLengthZero()
-            => Assert.AreEqual("[a]", "[a]".TrimEnd(0));
+            => AssertHelper.AreEqual("[a]", () => "[a]".TrimEnd(0));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEnd_WithLengthLargerThanInput()
@@ -99,7 +99,7 @@ namespace JJ.Framework.Text.Tests
         public void Test_StringExtensions_TrimEnd_WithLength_NullInput_ThrowsException()
         {
             string nullInput = null;
-            int dummyLength = 0;
+            int dummyLength = 3;
             AssertHelper.ThrowsException<NullReferenceException>(
                 () => nullInput.TrimEnd(dummyLength),
                 "Object reference not set to an instance of an object.");
