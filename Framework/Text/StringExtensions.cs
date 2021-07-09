@@ -204,7 +204,7 @@ namespace JJ.Framework.Text
             // Allow length longer than input.
             if (length > input.Length)
             {
-                length = input.Length;
+                return "";
             }
 
             return input.Substring(0, input.Length - length);
@@ -265,7 +265,7 @@ namespace JJ.Framework.Text
 
             while (temp.StartsWith(start))
             {
-                temp = temp.TrimStart(start.Length);
+                temp = temp.Substring(start.Length, temp.Length - start.Length);
             }
 
             return temp;
@@ -282,10 +282,10 @@ namespace JJ.Framework.Text
             // Allow length longer than input.
             if (length > input.Length)
             {
-                length = input.Length;
+                return "";
             }
 
-            return input.Right(input.Length - length);
+            return input.Substring(length, input.Length - length);
         }
 
         /// <summary>
