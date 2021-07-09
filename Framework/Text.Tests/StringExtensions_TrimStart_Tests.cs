@@ -58,8 +58,8 @@ namespace JJ.Framework.Text.Tests
             => AssertHelper.AreEqual("][b][c]", () => "[a][b][c]".TrimStart(2));
 
         [TestMethod]
-        public void Test_StringExtensions_TrimStart_WithLength_EmptyInput()
-            => AssertHelper.AreEqual("", () => "".TrimStart(3));
+        public void Test_StringExtensions_TrimStart_WithLength_EmptyInput_ReturnsEmptyString()
+            => AssertHelper.AreEqual("", () => "".TrimStart(default));
 
         [TestMethod]
         public void Test_StringExtensions_TrimStart_WithLength_ClearingEntireString()
