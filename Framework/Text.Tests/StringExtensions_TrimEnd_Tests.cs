@@ -26,7 +26,7 @@ namespace JJ.Framework.Text.Tests
             => AssertHelper.AreEqual(" [a][a]", () => " [a][a] ".TrimEnd(" "));
 
         [TestMethod]
-        public void Test_StringExtensions_TrimEnd_InputEmpty()
+        public void Test_StringExtensions_TrimEnd_InputEmpty_ReturnsEmptyString()
         {
             string dummyEndString = "[a]";
             AssertHelper.AreEqual("", () => "".TrimEnd(dummyEndString));
