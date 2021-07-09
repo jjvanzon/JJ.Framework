@@ -26,11 +26,8 @@ namespace JJ.Framework.Text.Tests
             => AssertHelper.AreEqual("[a][a] ", () => " [a][a] ".TrimStart(" "));
 
         [TestMethod]
-        public void Test_StringExtensions_TrimStart_InputEmpty()
-        {
-            string dummyStartString = "[a]";
-            AssertHelper.AreEqual("", () => "".TrimStart(dummyStartString));
-        }
+        public void Test_StringExtensions_TrimStart_InputEmpty_ReturnsEmptyString()
+            => AssertHelper.AreEqual("", () => "".TrimStart("[a]"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimStart_ClearingEntireString()
@@ -38,32 +35,21 @@ namespace JJ.Framework.Text.Tests
 
         [TestMethod]
         public void Test_StringExtensions_TrimStart_InputNull_ThrowsException()
-        {
-            string nullInput = null;
-            string dummyStartString = "[a]";
-            AssertHelper.ThrowsException<NullReferenceException>(
-                () => nullInput.TrimStart(dummyStartString),
+            => AssertHelper.ThrowsException<NullReferenceException>(
+                () => StringExtensions.TrimStart(null, "[a]"),
                 "Object reference not set to an instance of an object.");
-        }
 
         [TestMethod]
         public void Test_StringExtensions_TrimStart_StartStringNull_ThrowsException()
-        {
-            string dummyInput = "[a]";
-            string nullStartString = null;
-            AssertHelper.ThrowsException(
-                () => dummyInput.TrimStart(nullStartString),
+            => AssertHelper.ThrowsException(
+                () => StringExtensions.TrimStart("[a]", null),
                 "start is null or empty.");
-        }
 
         [TestMethod]
         public void Test_StringExtensions_TrimStart_StartStringEmpty_ThrowsException()
-        {
-            string dummyInput = "[a]";
-            AssertHelper.ThrowsException(
-                () => dummyInput.TrimStart(""),
+            => AssertHelper.ThrowsException(
+                () => "[a]".TrimStart(""),
                 "start is null or empty.");
-        }
 
         // With Length Parameter
 
@@ -73,10 +59,7 @@ namespace JJ.Framework.Text.Tests
 
         [TestMethod]
         public void Test_StringExtensions_TrimStart_WithLength_EmptyInput()
-        {
-            int dummyLength = 0;
-            AssertHelper.AreEqual("", () => "".TrimStart(dummyLength));
-        }
+            => AssertHelper.AreEqual("", () => "".TrimStart(3));
 
         [TestMethod]
         public void Test_StringExtensions_TrimStart_WithLength_ClearingEntireString()
@@ -95,21 +78,14 @@ namespace JJ.Framework.Text.Tests
 
         [TestMethod]
         public void Test_StringExtensions_TrimStart_WithLength_NullInput_ThrowsException()
-        {
-            string nullInput = null;
-            int dummyLength = 0;
-            AssertHelper.ThrowsException<NullReferenceException>(
-                () => nullInput.TrimStart(dummyLength),
+            => AssertHelper.ThrowsException<NullReferenceException>(
+                () => StringExtensions.TrimStart(null, 0),
                 "Object reference not set to an instance of an object.");
-        }
 
         [TestMethod]
         public void Test_StringExtensions_TrimStart_WithLengthNegative_ThrowsException()
-        {
-            string dummyInput = "[a]";
-            AssertHelper.ThrowsException(
-                () => dummyInput.TrimStart(-1),
+            => AssertHelper.ThrowsException(
+                () => "".TrimStart(-1),
                 "length of -1 is less than 0.");
-        }
     }
 }
