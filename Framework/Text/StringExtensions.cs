@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+// ReSharper disable ConvertIfStatementToReturnStatement
 
 namespace JJ.Framework.Text
 {
@@ -202,7 +203,7 @@ namespace JJ.Framework.Text
             if (length < 0) throw new Exception($"{nameof(length)} of {length} is less than 0.");
             
             // Allow length longer than input.
-            if (length > input.Length)
+            if (length >= input.Length)
             {
                 return "";
             }
@@ -234,7 +235,7 @@ namespace JJ.Framework.Text
 
             if (input.StartsWith(start))
             {
-                return input.TrimStart(start.Length);
+                return input.Substring(start.Length, input.Length - start.Length);
             }
 
             return input;
@@ -280,7 +281,7 @@ namespace JJ.Framework.Text
             if (length < 0) throw new Exception($"{nameof(length)} of {length} is less than 0.");
 
             // Allow length longer than input.
-            if (length > input.Length)
+            if (length >= input.Length)
             {
                 return "";
             }
