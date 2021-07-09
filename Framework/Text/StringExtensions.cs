@@ -248,7 +248,7 @@ namespace JJ.Framework.Text
 
             if (input.EndsWith(end))
             {
-                return input.TrimEnd(end.Length);
+                return input.Substring(0, input.Length - end.Length);
             }
 
             return input;
