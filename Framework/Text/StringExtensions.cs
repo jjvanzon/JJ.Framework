@@ -126,9 +126,14 @@ namespace JJ.Framework.Text
         /// </summary>
         public static string TakeEnd(this string input, int length)
         {
-            if (length > input.Length) length = input.Length;
+            if (length < 0) throw new Exception($"{nameof(length)} of {length} is less than 0.");
 
-            return input.Right(length);
+            if (length > input.Length)
+            {
+                length = input.Length;
+            }
+
+            return input.Substring(input.Length - length, length);
         }
 
         /// <summary>
@@ -154,9 +159,12 @@ namespace JJ.Framework.Text
         /// </summary>
         public static string TakeStart(this string input, int length)
         {
-            if (length > input.Length) length = input.Length;
+            if (length > input.Length)
+            {
+                length = input.Length;
+            }
 
-            return input.Left(length);
+            return input.Substring(0, length);
         }
 
         /// <summary>
@@ -167,7 +175,7 @@ namespace JJ.Framework.Text
             if (until == null) throw new ArgumentNullException(nameof(until));
             int index = input.IndexOf(until, StringComparison.Ordinal);
             if (index == -1) return "";
-            string output = input.Left(index);
+            string output = input.Substring(0, index);
             return output;
         }
 
@@ -303,7 +311,7 @@ namespace JJ.Framework.Text
             if (until == null) throw new ArgumentNullException(nameof(until));
             int index = input.IndexOf(until, StringComparison.Ordinal);
             if (index == -1) return input;
-            string output = input.Right(input.Length - index);
+            string output = input.Substring(index, input.Length - index);
             return output;
         }
     }
