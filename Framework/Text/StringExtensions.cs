@@ -224,7 +224,8 @@ namespace JJ.Framework.Text
             if (until == null) throw new ArgumentNullException(nameof(until));
             int index = input.LastIndexOf(until, StringComparison.Ordinal);
             if (index == -1) return input;
-            string output = input.Left(index + until.Length);
+            int length = index + until.Length;
+            string output = input.Substring(0, length);
             return output;
         }
 
