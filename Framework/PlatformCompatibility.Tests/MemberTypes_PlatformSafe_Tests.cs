@@ -3,6 +3,7 @@ using System.Reflection;
 using JJ.Framework.PlatformCompatibility.Tests.Helpers;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.Environment;
 
 // ReSharper disable ConvertToConstant.Local
 
@@ -207,7 +208,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         public void Test_EdgeCase_MemberType_Null_ThrowsException_UsingPlatformHelper()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => PlatformHelper.MemberType_PlatformSafe(null),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: memberInfo");
+                $"Value cannot be null.{NewLine}Parameter name: memberInfo");
 
         [TestMethod]
         public void Test_EdgeCase_MemberType_Unsupported_ThrowsException_UsingPlatformHelper()

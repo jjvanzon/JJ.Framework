@@ -1,6 +1,7 @@
 ﻿using System;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.Environment;
 
 namespace JJ.Framework.Text.Tests
 {
@@ -33,6 +34,6 @@ namespace JJ.Framework.Text.Tests
         public void Test_StringExtensions_Repeat_StringToRepeat_Null_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => StringExtensions.Repeat(null, default), 
-                $"Value cannot be null.{Environment.NewLine}Parameter name: stringToRepeat");
+                $"Value cannot be null.{NewLine}Parameter name: stringToRepeat");
     }
 }

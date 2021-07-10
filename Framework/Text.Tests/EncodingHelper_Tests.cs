@@ -4,6 +4,7 @@ using System.Text;
 using JJ.Framework.IO;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.Environment;
 
 // ReSharper disable ConvertToConstant.Local
 
@@ -16,7 +17,7 @@ namespace JJ.Framework.Text.Tests
         public void Test_EncodingHelper_AddUTF8ByteOrderMark_NullBytes_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => EncodingHelper.AddUTF8ByteOrderMark(null),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: bytes");
+                $"Value cannot be null.{NewLine}Parameter name: bytes");
 
         [TestMethod]
         public void Test_EncodingHelper_AddUTF8ByteOrderMark_Succeeds()

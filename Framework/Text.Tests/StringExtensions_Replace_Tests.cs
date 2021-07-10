@@ -1,6 +1,8 @@
 ﻿using System;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.Environment;
+
 // ReSharper disable UnusedVariable
 // ReSharper disable ConvertToConstant.Local
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
@@ -71,7 +73,7 @@ namespace JJ.Framework.Text.Tests
             string input = null;
             AssertHelper.ThrowsException<ArgumentNullException>(
                 () => input.Replace("[s]", "[t]", default),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: input");
+                $"Value cannot be null.{NewLine}Parameter name: input");
         }
 
         [TestMethod]
@@ -89,7 +91,7 @@ namespace JJ.Framework.Text.Tests
             var input = "[w][x][x]";
             AssertHelper.ThrowsException<ArgumentNullException>(
                 () => input.Replace(null, "[y]", default),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: oldValue");
+                $"Value cannot be null.{NewLine}Parameter name: oldValue");
         }
 
         [TestMethod]
@@ -98,7 +100,7 @@ namespace JJ.Framework.Text.Tests
             var input = "[z][aa][aa]";
             AssertHelper.ThrowsException<ArgumentNullException>(
                 () => input.Replace(null, "[ab]"),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: oldValue");
+                $"Value cannot be null.{NewLine}Parameter name: oldValue");
         }
 
         [TestMethod]

@@ -1,6 +1,7 @@
 ﻿using System;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.Environment;
 
 namespace JJ.Framework.Text.Tests
 {
@@ -23,18 +24,18 @@ namespace JJ.Framework.Text.Tests
         public void Test_StringExtensions_Left_NullInput_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => StringExtensions.Left(null, default),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: input");
+                $"Value cannot be null.{NewLine}Parameter name: input");
 
         [TestMethod]
         public void Test_StringExtensions_Left_LengthNegative_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentOutOfRangeException>(
                 () => "1234".Left(-1),
-                $"Length cannot be less than zero.{Environment.NewLine}Parameter name: length");
+                $"Length cannot be less than zero.{NewLine}Parameter name: length");
 
         [TestMethod]
         public void Test_StringExtensions_Left_NotEnoughCharacters_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentOutOfRangeException>(
                 () => "1234".Left(5),
-                $"Index and length must refer to a location within the string.{Environment.NewLine}Parameter name: length");
+                $"Index and length must refer to a location within the string.{NewLine}Parameter name: length");
     }
 }

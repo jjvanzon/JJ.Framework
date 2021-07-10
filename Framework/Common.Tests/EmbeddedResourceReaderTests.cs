@@ -7,6 +7,7 @@ using JJ.Framework.Common.Tests.Helpers;
 using JJ.Framework.IO;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.Environment;
 
 // ReSharper disable InvokeAsExtensionMethod
 // ReSharper disable ConvertToConstant.Local
@@ -302,49 +303,49 @@ namespace JJ.Framework.Common.Tests
         public void Test_EmbeddedResourceReader_GetText_WithoutSubNameSpace_AssemblyNull_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => EmbeddedResourceReader.GetText(assembly: null, "MyFile.txt"),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: assembly");
+                $"Value cannot be null.{NewLine}Parameter name: assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetText_WithSubNameSpace_AssemblyNull_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => EmbeddedResourceReader.GetText(assembly: null, "TestResources", "MyFile.txt"),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: assembly");
+                $"Value cannot be null.{NewLine}Parameter name: assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithoutSubNameSpace_AssemblyNull_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => EmbeddedResourceReader.GetBytes(assembly: null, "MyFile.txt"),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: assembly");
+                $"Value cannot be null.{NewLine}Parameter name: assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithSubNameSpace_AssemblyNull_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => EmbeddedResourceReader.GetBytes(assembly: null, "TestResources", "MyFile.txt"),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: assembly");
+                $"Value cannot be null.{NewLine}Parameter name: assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithoutSubNameSpace_AssemblyNull_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => EmbeddedResourceReader.GetStream(assembly: null, "MyFile.txt"),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: assembly");
+                $"Value cannot be null.{NewLine}Parameter name: assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithSubNameSpace_AssemblyNull_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => EmbeddedResourceReader.GetStream(assembly: null, "TestResources", "MyFile.txt"),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: assembly");
+                $"Value cannot be null.{NewLine}Parameter name: assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithoutSubNameSpace_AssemblyNull_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => EmbeddedResourceReader.GetName(assembly: null, "MyFile.txt"),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: assembly");
+                $"Value cannot be null.{NewLine}Parameter name: assembly");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithSubNameSpace_AssemblyNull_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => EmbeddedResourceReader.GetName(assembly: null, "TestResources", "MyFile.txt"),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: assembly");
+                $"Value cannot be null.{NewLine}Parameter name: assembly");
 
         // File Name Null or White Space
 

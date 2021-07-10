@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.Environment;
+
 // ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Common.Tests
@@ -16,13 +18,13 @@ namespace JJ.Framework.Common.Tests
         public void Test_KeyHelper_CreateKey_ValuesNull_WithDefaultSeparator_ThrowsException()
             => Assert.ThrowsException<ArgumentNullException>(
                 () => KeyHelper.CreateKey(null),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: values");
+                $"Value cannot be null.{NewLine}Parameter name: values");
 
         [TestMethod]
         public void Test_KeyHelper_CreateKey_ValuesNull_WithCustomSeparator_ThrowsException()
             => Assert.ThrowsException<ArgumentNullException>(
                 () => KeyHelper.CreateKey(null, CUSTOM_SEPARATOR),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: values");
+                $"Value cannot be null.{NewLine}Parameter name: values");
 
         [TestMethod]
         public void Test_KeyHelper_CreateKey_WithNullSeparator_Works()

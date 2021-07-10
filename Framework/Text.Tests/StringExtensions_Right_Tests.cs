@@ -1,6 +1,7 @@
 ﻿using System;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.Environment;
 
 namespace JJ.Framework.Text.Tests
 {
@@ -23,7 +24,7 @@ namespace JJ.Framework.Text.Tests
         public void Test_StringExtensions_Right_NullInput_ThrowsException()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => StringExtensions.Right(null, default),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: input");
+                $"Value cannot be null.{NewLine}Parameter name: input");
 
         [TestMethod]
         public void Test_StringExtensions_Right_LengthNegative_ThrowsException()

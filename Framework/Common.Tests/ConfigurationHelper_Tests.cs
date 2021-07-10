@@ -1,6 +1,7 @@
 ﻿using System;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.Environment;
 
 // ReSharper disable ConvertToConstant.Local
 
@@ -524,7 +525,7 @@ namespace JJ.Framework.Common.Tests
                 try
                 {
                     // Arrange
-                    string expectedMessage = $"Value cannot be null.{Environment.NewLine}Parameter name: section";
+                    string expectedMessage = $"Value cannot be null.{NewLine}Parameter name: section";
 
                     // Act
                     AssertHelper.ThrowsException<ArgumentNullException>(

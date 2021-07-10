@@ -1,6 +1,8 @@
 ﻿using System;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.Environment;
+
 // ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Text.Tests
@@ -49,7 +51,7 @@ namespace JJ.Framework.Text.Tests
 
             AssertHelper.ThrowsException<ArgumentNullException>(
                 () => dummyInput.TakeStartUntil(null),
-                $"Value cannot be null.{Environment.NewLine}Parameter name: until");
+                $"Value cannot be null.{NewLine}Parameter name: until");
         }
     }
 }
