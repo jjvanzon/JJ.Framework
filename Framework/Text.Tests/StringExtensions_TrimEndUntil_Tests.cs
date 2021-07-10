@@ -13,32 +13,32 @@ namespace JJ.Framework.Text.Tests
     {
         [TestMethod]
         public void Test_StringExtensions_TrimEndUntil_MainCase()
-            => AssertHelper.AreEqual("abcde", () => "abcdefg".TrimEndUntil("de"));
+            => AssertHelper.AreEqual("012301", () => "01230123".TrimEndUntil("01"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEndUntil_LastChar_ReturnsOriginalString()
-            => AssertHelper.AreEqual("abcdefg", () => "abcdefg".TrimEndUntil("g"));
+            => AssertHelper.AreEqual("01230123", () => "01230123".TrimEndUntil("3"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEndUntil_SecondLastChar()
-            => AssertHelper.AreEqual("abcdef", () => "abcdefg".TrimEndUntil("f"));
+            => AssertHelper.AreEqual("0123012", () => "01230123".TrimEndUntil("2"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEndUntil_FirstChar()
-            => AssertHelper.AreEqual("a", () => "abcdefg".TrimEndUntil("a"));
+            => AssertHelper.AreEqual("0", () => "01235678".TrimEndUntil("0"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEndUntil_UntilStringNotFound_ReturnsOriginalString()
-            => AssertHelper.AreEqual("abcdefg", () => "abcdefg".TrimEndUntil("hi"));
+            => AssertHelper.AreEqual("01230123", () => "01230123".TrimEndUntil("45"));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEndUntil_WithCharParameter()
-            => AssertHelper.AreEqual("abcd", () => "abcdefg".TrimEndUntil('d'));
+            => AssertHelper.AreEqual("012301", () => "01230123".TrimEndUntil('1'));
 
         [TestMethod]
         public void Test_StringExtensions_TrimEndUntil_InputNull_ThrowsException()
             => AssertHelper.ThrowsException<NullReferenceException>(
-                () => StringExtensions.TrimEndUntil(null, "a"),
+                () => StringExtensions.TrimEndUntil(null, "0"),
                 "Object reference not set to an instance of an object.");
         
         [TestMethod]
