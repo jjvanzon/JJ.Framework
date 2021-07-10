@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable UnusedVariable
 // ReSharper disable ConvertToConstant.Local
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
 
 namespace JJ.Framework.Mathematics.Tests
 {
