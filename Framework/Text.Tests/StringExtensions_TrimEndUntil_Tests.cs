@@ -3,9 +3,6 @@ using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static System.Environment;
 
-// ReSharper disable StringLiteralTypo
-// ReSharper disable ConvertToConstant.Local
-
 namespace JJ.Framework.Text.Tests
 {
     [TestClass]
@@ -20,11 +17,11 @@ namespace JJ.Framework.Text.Tests
             => AssertHelper.AreEqual("01230123", () => "01230123".TrimEndUntil("3"));
 
         [TestMethod]
-        public void Test_StringExtensions_TrimEndUntil_SecondLastChar()
+        public void Test_StringExtensions_TrimEndUntil_2ndLastChar()
             => AssertHelper.AreEqual("0123012", () => "01230123".TrimEndUntil("2"));
 
         [TestMethod]
-        public void Test_StringExtensions_TrimEndUntil_FirstChar()
+        public void Test_StringExtensions_TrimEndUntil_1stChar()
             => AssertHelper.AreEqual("0", () => "01235678".TrimEndUntil("0"));
 
         [TestMethod]
