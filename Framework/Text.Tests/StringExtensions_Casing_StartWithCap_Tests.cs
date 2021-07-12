@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Framework.Text.Tests
 {
     [TestClass]
-    public class StringExtensions_Casing_Tests
+    public class StringExtensions_Casing_StartWithCap_Tests
     {
         [TestMethod]
         public void Test_StringExtensions_Casing_StartWithCap() 
