@@ -32,7 +32,7 @@ namespace JJ.Framework.Testing.Tests
 
             AssertHelper.ThrowsException<Exception>(
                 () => AssertHelper.IsOfType<string>(() => actualValue),
-                "Assert.IsOfType failed. Expected <System.String>, Actual <System.Int32>. Tested member: 'actualValue'.");
+                "Assert.IsOfType failed. Expected <System.String>, Actual <System.Int32>. Tested expression: 'actualValue'.");
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace JJ.Framework.Testing.Tests
 
             AssertHelper.ThrowsException<Exception>(
                 () => AssertHelper.IsOfType<string>(() => actualValue, "local variable"),
-                "Assert.IsOfType failed. Expected <System.String>, Actual <System.Int32>. Tested member: 'local variable'.");
+                "Assert.IsOfType failed. Expected <System.String>, Actual <System.Int32>. Tested expression: 'local variable'.");
         }
 
         // NotEqual
@@ -70,7 +70,7 @@ namespace JJ.Framework.Testing.Tests
             int b = 1;
             AssertHelper.ThrowsException(
                 () => AssertHelper.NotEqual(a, () => b),
-                "Assert.NotEqual failed. Both values are <1>. Tested member: 'b'.");
+                "Assert.NotEqual failed. Both values are <1>. Tested expression: 'b'.");
         }
 
         [TestMethod]
@@ -80,7 +80,7 @@ namespace JJ.Framework.Testing.Tests
             int b = 1;
             AssertHelper.ThrowsException(
                 () => AssertHelper.NotEqual(a, () => b, "local variable"),
-                "Assert.NotEqual failed. Both values are <1>. Tested member: 'local variable'.");
+                "Assert.NotEqual failed. Both values are <1>. Tested expression: 'local variable'.");
         }
 
         // NotSame
@@ -108,7 +108,7 @@ namespace JJ.Framework.Testing.Tests
             var b = a;
             AssertHelper.ThrowsException(
                 () => AssertHelper.NotSame(a, () => b),
-                "Assert.NotSame failed. Both values are <System.Object>. Tested member: 'b'.");
+                "Assert.NotSame failed. Both values are <System.Object>. Tested expression: 'b'.");
         }
 
         [TestMethod]
@@ -118,7 +118,7 @@ namespace JJ.Framework.Testing.Tests
             var b = a;
             AssertHelper.ThrowsException(
                 () => AssertHelper.NotSame(a, () => b, "local variable"),
-                "Assert.NotSame failed. Both values are <System.Object>. Tested member: 'local variable'.");
+                "Assert.NotSame failed. Both values are <System.Object>. Tested expression: 'local variable'.");
         }
     }
 }
