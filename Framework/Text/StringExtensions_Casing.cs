@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 // ReSharper disable SuggestVarOrType_BuiltInTypes
@@ -42,7 +43,7 @@ namespace JJ.Framework.Text
                 return input;
             }
 
-            return input.Left(1).ToUpper() + input.TrimStart(1);
+            return input.Substring(0, 1).ToUpper() + input.Substring(1, input.Length - 1);
         }
 
         /// <summary>
