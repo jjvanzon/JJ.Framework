@@ -56,7 +56,7 @@ namespace JJ.Framework.Text
                 return input;
             }
 
-            return input.Left(1).ToLower() + input.TrimStart(1);
+            return input.Substring(0, 1).ToLower() + input.Substring(1, input.Length - 1);
         }
 
         /// <summary>
