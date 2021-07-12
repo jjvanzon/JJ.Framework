@@ -9,7 +9,7 @@ namespace JJ.Framework.Text.Tests
     public class StringExtensions_TrimStartUntil_Tests
     {
         [TestMethod]
-        public void Test_StringExtensions_TrimStartUntil_MainCase()
+        public void Test_StringExtensions_TrimStartUntil()
             => AssertHelper.AreEqual("230123", () => "01230123".TrimStartUntil("23"));
 
         [TestMethod]

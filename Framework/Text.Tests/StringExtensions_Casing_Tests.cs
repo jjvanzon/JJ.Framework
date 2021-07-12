@@ -8,11 +8,11 @@ namespace JJ.Framework.Text.Tests
     public class StringExtensions_Casing_Tests
     {
         [TestMethod]
-        public void Test_StringExtensions_Casing_StartWithCap_MainCase() 
+        public void Test_StringExtensions_Casing_StartWithCap() 
             => AssertHelper.AreEqual("This is a sentence.", () => "this is a sentence.".StartWithCap());
 
         [TestMethod]
-        public void Test_StringExtensions_Casing_StartWithCap_PreservesCasingOfOtherCharacters()
+        public void Test_StringExtensions_Casing_StartWithCap_DoesNotTouchOtherCharacters()
             => AssertHelper.AreEqual("This Is A Sentence.", () => "this Is A Sentence.".StartWithCap());
 
         [TestMethod]

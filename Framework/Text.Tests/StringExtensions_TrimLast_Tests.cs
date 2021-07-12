@@ -10,7 +10,7 @@ namespace JJ.Framework.Text.Tests
     public class StringExtensions_TrimLast_Tests
     {
         [TestMethod]
-        public void Test_StringExtensions_TrimLast_MainCase()
+        public void Test_StringExtensions_TrimLast()
             => AssertHelper.AreEqual("[a][b][b][a]", () => "[a][b][b][a][a]".TrimLast("[a]"));
 
         [TestMethod]

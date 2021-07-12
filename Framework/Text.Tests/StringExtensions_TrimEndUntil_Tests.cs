@@ -9,7 +9,7 @@ namespace JJ.Framework.Text.Tests
     public class StringExtensions_TrimEndUntil_Tests
     {
         [TestMethod]
-        public void Test_StringExtensions_TrimEndUntil_MainCase()
+        public void Test_StringExtensions_TrimEndUntil()
             => AssertHelper.AreEqual("012301", () => "01230123".TrimEndUntil("01"));
 
         [TestMethod]
