@@ -29,7 +29,7 @@ namespace JJ.Framework.Text.Tests
 
         [TestMethod]
         public void Test_StringExtensions_Casing_ToCamelCase_FirstCap_IsChangedToLowerCase()
-            => AssertHelper.AreEqual("things", () => "Things".ToCamelCase());
+            => AssertHelper.AreEqual("thing", () => "Thing".ToCamelCase());
 
         [TestMethod]
         public void Test_StringExtensions_Casing_ToCamelCase_WordsStartWithCap_ExceptForFirst()
@@ -54,5 +54,9 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_Casing_ToCamelCase_DisallowedCharacters_AreEscaped()
             => AssertHelper.AreEqual("u00b6u0263", () => "¶ɣ".ToCamelCase());
+
+        [TestMethod]
+        public void Test_StringExtensions_Casing_ToCamelCase_NullInput_ReturnsEmptyString()
+            => AssertHelper.AreEqual("", () => StringExtensions_Casing.ToCamelCase(null));
     }
 }
