@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -120,7 +119,7 @@ namespace JJ.Framework.Text
                 {
                     isFirst = false;
 
-                    // This makes it camel case.
+                    // Start with lower case, making it camel case.
                     chr = char.ToLower(chr);
 
                     // Replace leading digit with word.
