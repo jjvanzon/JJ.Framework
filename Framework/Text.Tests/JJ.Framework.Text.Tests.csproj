@@ -57,6 +57,7 @@
     <Compile Include="Obsolete\StringExtensions_Accessor.cs" />
     <Compile Include="Obsolete\StringExtensions_Obsolete_Tests.cs" />
     <Compile Include="StringBuilderWithIndentationTests.cs" />
+    <Compile Include="StringExtensions_Casing_RemoveAccents_Tests.cs" />
     <Compile Include="StringExtensions_Casing_StartWithCap_Tests.cs" />
     <Compile Include="StringExtensions_Casing_StartWithLowerCase_Tests.cs" />
     <Compile Include="StringExtensions_Casing_ToCamelCase_Tests.cs" />
