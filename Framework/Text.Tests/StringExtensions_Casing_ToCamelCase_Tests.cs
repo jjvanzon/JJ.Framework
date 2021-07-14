@@ -1,6 +1,5 @@
 ﻿using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 // ReSharper disable StringLiteralTypo
 
 namespace JJ.Framework.Text.Tests
@@ -41,7 +40,7 @@ namespace JJ.Framework.Text.Tests
 
         [TestMethod]
         public void Test_StringExtensions_Casing_ToCamelCase_Accents_AreRemoved()
-            => AssertHelper.AreEqual("aecu", () => "àéçû".ToCamelCase());
+            => AssertHelper.AreEqual("aecuAndMoreWords", () => "àéçû and More Words".ToCamelCase());
 
         [TestMethod]
         public void Test_StringExtensions_Casing_ToCamelCase_WhiteSpaceAndPunctuation_AreRemoved()
