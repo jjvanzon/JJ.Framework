@@ -165,7 +165,7 @@ namespace JJ.Framework.Text
         }
 
         /// <summary>
-        /// Inspired by: http://www.levibotelho.com/development/c-remove-diacritics-accents-from-a-string/
+        /// Inspired by: <see href="http://www.levibotelho.com/development/c-remove-diacritics-accents-from-a-string/" />
         /// </summary>
         public static string RemoveAccents(this string input)
         {
