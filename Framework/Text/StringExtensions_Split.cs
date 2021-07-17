@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+#pragma warning disable S2589 // Boolean expressions should not be gratuitous
+
 namespace JJ.Framework.Text
 {
     public static class StringExtensions_Split
@@ -12,90 +14,104 @@ namespace JJ.Framework.Text
         public static string[] Split(this string input, string separator, StringSplitOptions options)
             => input.Split(new[] { separator }, options);
 
-        public static IList<string> SplitWithQuotation(this string input, string separator, char quote)
-            => input.SplitWithQuotation(separator, StringSplitOptions.None, quote);
-
         public static string[] Split(this string value, params string[] separators)
             => value.Split(separators, StringSplitOptions.None);
 
+        [Obsolete("For a substitute to using StringSplitOptions: " +
+                  "use SplitWithQuotation(...).Where(x => string.IsNullOrEmpty(x)).ToList() instead.",
+                  true)]
         public static IList<string> SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
+            => throw new NotSupportedException(
+                   "For a substitute to using StringSplitOptions: " +
+                   "use SplitWithQuotation(...).Where(x => string.IsNullOrEmpty(x)).ToList() instead.");
+
+        /// <summary>
+        /// May split a CSV-like line of text into separate values.
+        /// CSV means 'comma separated values'.
+        /// An optional quote (") character might be provided, to allow a separator character to be part of a value,
+        /// by putting quotes around the value, e.g. "123,456".
+        /// </summary>
+        public static IList<string> SplitWithQuotation(this string input, string separator, char quote)
         {
-            IList<string> values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
-
-            if (quote.HasValue)
-            {
-                values = values.Select(x => x.Trim(quote.Value)).ToArray();
-            }
-
-            return values;
-        }
-
-        private static IList<string> SplitWithQuotation_WithoutUnescape(
-            this string input,
-            string separator,
-            StringSplitOptions options,
-            char? quote)
-        {
-            if (!quote.HasValue)
-            {
-                return input.Split(separator, options);
-            }
-
-            if (string.IsNullOrEmpty(separator))
-            {
-                throw new ArgumentNullException(nameof(separator));
-            }
+            if (string.IsNullOrEmpty(separator)) throw new ArgumentNullException(nameof(separator));
 
             if (string.IsNullOrEmpty(input))
             {
-                return new string[0];
+                return new List<string>();
             }
 
-            IList<string> values = new List<string>();
-
-            var inQuote = false;
-            var startPos = 0;
-
+            var tempChars = new char[input.Length];
+            var values = new List<string>();
+            bool inQuote = false;
             int forEnd = input.Length - separator.Length;
+            int j = 0;
 
-            for (var pos = 0; pos <= forEnd; pos++)
+            for (int i = 0; i < forEnd; i++)
             {
-                char chr = input[pos];
+                char chr = input[i];
+                char chr2 = input[i + 1];
 
-                // Handle quotation
-                if (chr == quote.Value)
+                if (!inQuote)
                 {
-                    inQuote = !inQuote;
-                }
-
-                if (inQuote)
-                {
-                    continue;
-                }
-
-                // Detect separator
-                if (input.Substring(pos, separator.Length) == separator)
-                {
-                    // An end-of-element was found.
-                    string value = input.FromTill(startPos, pos - 1);
-
-                    if (!string.IsNullOrEmpty(value) || options != StringSplitOptions.RemoveEmptyEntries)
+                    if (chr == quote && chr2 == quote)
                     {
-                        values.Add(value);
+                        // Immediately opening and closing quotation.
+                        // Skipping additional quote.
+                        i++;
                     }
+                    else if (chr == quote)
+                    {
+                        // Starting quote.
+                        inQuote = true;
+                    }
+                    // Finding separator
+                    else if (input.Substring(i, separator.Length) == separator)
+                    {
+                        // Concluding a value
+                        var value = new string(tempChars, 0, j);
+                        values.Add(value);
 
-                    // Next element is starting.
-                    startPos = pos + separator.Length;
+                        // Starting over char counter.
+                        j = 0;
+
+                        // Skipping over separator.
+                        i += separator.Length - 1;
+                    }
+                    else
+                    {
+                        // Value char found.
+                        tempChars[j] = chr;
+                        j++;
+                    }
+                }
+                else // if (inQuote)
+                {
+                    if (chr == quote && chr2 == quote)
+                    {
+                        // Escaped quote.
+                        tempChars[j] = quote;
+                        j++;
+
+                        // Skip second quote.
+                        i++;
+                    }
+                    else if (chr == quote)
+                    {
+                        // End quote
+                        inQuote = false;
+                    }
+                    else
+                    {
+                        // Value char found.
+                        tempChars[j] = chr;
+                        j++;
+                    }
                 }
             }
 
-            // Add last element
-            // (For the previous elements, the separator functions as an end-of-value, while the last value does hot have that.)
-            string str2 = input.FromTill(startPos, input.Length - 1);
-            if (!string.IsNullOrEmpty(str2) || options != StringSplitOptions.RemoveEmptyEntries)
-            {
-                values.Add(str2);
-            }
+            // Concluding last value (which may not end with a separator).
+            var lastValue = new string(tempChars, 0, j);
+            values.Add(lastValue);
 
             return values;
         }
