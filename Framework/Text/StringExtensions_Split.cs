@@ -40,32 +40,37 @@ namespace JJ.Framework.Text
                 return new List<string>();
             }
 
+            char previousChar = '\0';
             var tempChars = new char[input.Length];
             var values = new List<string>();
             bool inQuote = false;
-            int forEnd = input.Length - separator.Length;
             int j = 0;
 
-            for (int i = 0; i < forEnd; i++)
+            for (int i = 0; i < input.Length; i++)
             {
                 char chr = input[i];
-                char chr2 = input[i + 1];
 
                 if (!inQuote)
                 {
-                    if (chr == quote && chr2 == quote)
+                    if (chr == quote)
                     {
-                        // Immediately opening and closing quotation.
-                        // Skipping additional quote.
-                        i++;
-                    }
-                    else if (chr == quote)
-                    {
-                        // Starting quote.
-                        inQuote = true;
+                        if (previousChar == quote)
+                        {
+                            // Oh, no, still in quote.
+                            inQuote = true;
+
+                            // It was an escaped quote.
+                            tempChars[j] = quote;
+                            j++;
+                        }
+                        else
+                        {
+                            // Starting quote.
+                            inQuote = true;
+                        }
                     }
                     // Finding separator
-                    else if (input.Substring(i, separator.Length) == separator)
+                    else if (input.SubstringOrLess(i, separator.Length) == separator)
                     {
                         // Concluding a value
                         var value = new string(tempChars, 0, j);
@@ -86,16 +91,7 @@ namespace JJ.Framework.Text
                 }
                 else // if (inQuote)
                 {
-                    if (chr == quote && chr2 == quote)
-                    {
-                        // Escaped quote.
-                        tempChars[j] = quote;
-                        j++;
-
-                        // Skip second quote.
-                        i++;
-                    }
-                    else if (chr == quote)
+                    if (chr == quote)
                     {
                         // End quote
                         inQuote = false;
@@ -107,6 +103,8 @@ namespace JJ.Framework.Text
                         j++;
                     }
                 }
+
+                previousChar = chr;
             }
 
             // Concluding last value (which may not end with a separator).
