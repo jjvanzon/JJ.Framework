@@ -120,6 +120,21 @@ namespace JJ.Framework.Text
             return input.Substring(input.Length - length, length);
         }
 
+        public static string SubstringOrLess(this string input, int startIndex, int length)
+        {
+            if (startIndex > input.Length - 1)
+            {
+                startIndex = input.Length - 1;
+            }
+
+            if (length > input.Length - startIndex)
+            {
+                length = input.Length - startIndex;
+            }
+
+            return input.Substring(startIndex, length);
+        }
+
         /// <summary>
         /// Returns the right part of a string.
         /// Can return less characters than the length provided, if string is shorter.
