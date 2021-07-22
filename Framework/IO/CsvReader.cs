@@ -10,12 +10,12 @@ namespace JJ.Framework.IO
     [PublicAPI]
     public class CsvReader : IDisposable
     {
-        private readonly string _columnSeparator;
+        private readonly char _columnSeparator;
         private readonly int? _enforcedColumnCount;
         private readonly StreamReader _reader;
         private IList<string> _values;
 
-        public CsvReader(Stream stream, string columnSeparator = ",", int? enforcedColumnCount = null)
+        public CsvReader(Stream stream, char columnSeparator = ',', int? enforcedColumnCount = null)
         {
             _columnSeparator = columnSeparator;
             _enforcedColumnCount = enforcedColumnCount;
