@@ -13,18 +13,18 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_ComplexExample()
         {
-            string input = "1234,'1234','12,34','12''34',1'23'4,'12'34','12'34','''','',";
+            string input = "0123,'1234','23,45','34''56',4'56'7,'56'78','67'89','''','',";
 
             IList<string> split = input.SplitWithQuotation(',', '\'');
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(9, () => split.Count);
-            AssertHelper.AreEqual("1234", () => split[0]);
+            AssertHelper.AreEqual("0123", () => split[0]);
             AssertHelper.AreEqual("1234", () => split[1]);
-            AssertHelper.AreEqual("12,34", () => split[2]);
-            AssertHelper.AreEqual("12'34", () => split[3]);
-            AssertHelper.AreEqual("1234", () => split[4]);
-            AssertHelper.AreEqual("1234,1234", () => split[5]);
+            AssertHelper.AreEqual("23,45", () => split[2]);
+            AssertHelper.AreEqual("34'56", () => split[3]);
+            AssertHelper.AreEqual("4567", () => split[4]);
+            AssertHelper.AreEqual("5678,6789", () => split[5]);
             AssertHelper.AreEqual("'", () => split[6]);
             AssertHelper.AreEqual("", () => split[7]);
             AssertHelper.AreEqual("", () => split[8]);
@@ -46,107 +46,107 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_WithQuotes()
         {
-            string input = "'01234','56789'";
+            string input = "'12345','67890'";
 
             IList<string> split = input.SplitWithQuotation(',', '\'');
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("01234", () => split[0]);
-            AssertHelper.AreEqual("56789", () => split[1]);
+            AssertHelper.AreEqual("12345", () => split[0]);
+            AssertHelper.AreEqual("67890", () => split[1]);
         }
 
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_SeparatorCharInQuotes_BecomesPartOfValue()
         {
-            string input = "'012,345','678,9'";
+            string input = "'234,567','890,1'";
 
             IList<string> split = input.SplitWithQuotation(',', '\'');
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("012,345", () => split[0]);
-            AssertHelper.AreEqual("678,9", () => split[1]);
+            AssertHelper.AreEqual("234,567", () => split[0]);
+            AssertHelper.AreEqual("890,1", () => split[1]);
         }
 
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_EscapedQuotes_WorkWithinQuotes()
         {
-            string input = "'0123''456','7''89'";
+            string input = "'3456''789','0''12'";
 
             IList<string> split = input.SplitWithQuotation(',', '\'');
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("0123'456", () => split[0]);
-            AssertHelper.AreEqual("7'89", () => split[1]);
+            AssertHelper.AreEqual("3456'789", () => split[0]);
+            AssertHelper.AreEqual("0'12", () => split[1]);
         }
 
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_EscapedQuotes_OutsideOfQuotes_CancelOut()
         {
-            string input = "01''234567,8''9";
+            string input = "45''678901,2''3";
 
             IList<string> split = input.SplitWithQuotation(',', '\'');
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("01234567", () => split[0]);
-            AssertHelper.AreEqual("89", () => split[1]);
+            AssertHelper.AreEqual("45678901", () => split[0]);
+            AssertHelper.AreEqual("23", () => split[1]);
         }
 
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_QuotationInMiddleOfValue_IsPossible()
         {
-            string input = "0'1,'2,345'6,78'9";
+            string input = "5'6,'7,890'1,23'4";
 
             IList<string> split = input.SplitWithQuotation(',', '\'');
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("01,2", () => split[0]);
-            AssertHelper.AreEqual("3456,789", () => split[1]);
+            AssertHelper.AreEqual("56,7", () => split[0]);
+            AssertHelper.AreEqual("8901,234", () => split[1]);
         }
 
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_QuotesOpenAndCloseAllOverThePlace()
         {
-            string input = "0'12'3',4'567,89";
+            string input = "6'78'9',0'123,45";
 
             IList<string> split = input.SplitWithQuotation(',', '\'');
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("0123,4567", () => split[0]);
-            AssertHelper.AreEqual("89", () => split[1]);
+            AssertHelper.AreEqual("6789,0123", () => split[0]);
+            AssertHelper.AreEqual("45", () => split[1]);
         }
 
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_EmptyValueWithQuotes()
         {
-            string input = "012345678,'',9";
+            string input = "890123456,'',7";
 
             IList<string> split = input.SplitWithQuotation(',', '\'');
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(3, () => split.Count);
-            AssertHelper.AreEqual("012345678", () => split[0]);
+            AssertHelper.AreEqual("890123456", () => split[0]);
             AssertHelper.AreEqual("", () => split[1]);
-            AssertHelper.AreEqual("9", () => split[2]);
+            AssertHelper.AreEqual("7", () => split[2]);
         }
 
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_EmptyValueWithoutQuotes()
         {
-            string input = "0,,123456789";
+            string input = "9,,012345678";
 
             IList<string> split = input.SplitWithQuotation(',', '\'');
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(3, () => split.Count);
-            AssertHelper.AreEqual("0", () => split[0]);
+            AssertHelper.AreEqual("9", () => split[0]);
             AssertHelper.AreEqual("", () => split[1]);
-            AssertHelper.AreEqual("123456789", () => split[2]);
+            AssertHelper.AreEqual("012345678", () => split[2]);
         }
 
         [TestMethod]
@@ -166,14 +166,14 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_LastValueNoClosingQuote_IsAccepted()
         {
-            string input = "012,'3456789";
+            string input = "123,'4567890";
 
             IList<string> split = input.SplitWithQuotation(',', '\'');
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("012", () => split[0]);
-            AssertHelper.AreEqual("3456789", () => split[1]);
+            AssertHelper.AreEqual("123", () => split[0]);
+            AssertHelper.AreEqual("4567890", () => split[1]);
         }
 
         [TestMethod]
@@ -194,7 +194,7 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_SeparatorNullOrEmpty_ThrowsException()
         {
-            string input = "0123,456789";
+            string input = "2345,678901";
 
             AssertHelper.ThrowsException<ArgumentException>(
                 () => input.SplitWithQuotation(null, "'"),
@@ -208,53 +208,53 @@ namespace JJ.Framework.Text.Tests
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_Separator_SpaceIsAllowed()
         {
-            string input = "01234 '56 789'";
+            string input = "34567 '89 012'";
 
             IList<string> split = input.SplitWithQuotation(' ', '\'');
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("01234", () => split[0]);
-            AssertHelper.AreEqual("56 789", () => split[1]);
+            AssertHelper.AreEqual("34567", () => split[0]);
+            AssertHelper.AreEqual("89 012", () => split[1]);
         }
 
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_QuoteNull_SplitsWithoutQuotation()
         {
-            string input = "0'12'345,67'89'";
+            string input = "4'56'789,01'23'";
 
             IList<string> split = input.SplitWithQuotation(",", null);
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("0'12'345", () => split[0]);
-            AssertHelper.AreEqual("67'89'", () => split[1]);
+            AssertHelper.AreEqual("4'56'789", () => split[0]);
+            AssertHelper.AreEqual("01'23'", () => split[1]);
         }
 
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_QuoteEmpty_SplitsWithoutQuotation()
         {
-            string input = "0'12'3456,7'89'";
+            string input = "5'67'8901,2'34'";
 
             IList<string> split = input.SplitWithQuotation(",", "");
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("0'12'3456", () => split[0]);
-            AssertHelper.AreEqual("7'89'", () => split[1]);
+            AssertHelper.AreEqual("5'67'8901", () => split[0]);
+            AssertHelper.AreEqual("2'34'", () => split[1]);
         }
 
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_SeparatorAndQuoteStrings_SingleCharacter_CallsOverloadWithChars()
         {
-            string input = "'01234567','89'";
+            string input = "'67890123','45'";
 
             IList<string> split = input.SplitWithQuotation(",", "'");
 
             AssertHelper.IsNotNull(() => split);
             AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("01234567", () => split[0]);
-            AssertHelper.AreEqual("89", () => split[1]);
+            AssertHelper.AreEqual("67890123", () => split[0]);
+            AssertHelper.AreEqual("45", () => split[1]);
         }
     }
 }
