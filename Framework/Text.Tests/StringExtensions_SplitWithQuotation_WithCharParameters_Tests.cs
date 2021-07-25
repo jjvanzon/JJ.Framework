@@ -11,7 +11,7 @@ namespace JJ.Framework.Text.Tests
     public class StringExtensions_SplitWithQuotation_WithCharParameters_Tests
     {
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_ComplexExample()
+        public void ComplexExample()
         {
             string input = "0123,'1234','23,45','34''56',4'56'7,'56'78','67'89','''','',";
 
@@ -31,7 +31,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_WithoutQuotes()
+        public void WithoutQuotes()
         {
             string input = "0123,456789";
 
@@ -44,7 +44,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_WithQuotes()
+        public void WithQuotes()
         {
             string input = "'12345','67890'";
 
@@ -57,7 +57,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_SeparatorCharInQuotes_BecomesPartOfValue()
+        public void SeparatorCharInQuotes_BecomesPartOfValue()
         {
             string input = "'234,567','890,1'";
 
@@ -70,7 +70,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_EscapedQuotes_WorkWithinQuotes()
+        public void EscapedQuotes_WorkWithinQuotes()
         {
             string input = "'3456''789','0''12'";
 
@@ -83,7 +83,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_EscapedQuotes_OutsideOfQuotes_CancelOut()
+        public void EscapedQuotes_OutsideOfQuotes_CancelOut()
         {
             string input = "45''678901,2''3";
 
@@ -96,7 +96,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_QuotationInMiddleOfValue_IsPossible()
+        public void QuotationInMiddleOfValue_IsPossible()
         {
             string input = "5'6,'7,890'1,23'4";
 
@@ -109,7 +109,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_QuotesOpenAndCloseAllOverThePlace()
+        public void QuotesOpenAndCloseAllOverThePlace()
         {
             string input = "6'78'9',0'123,45";
 
@@ -122,7 +122,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_EmptyValueWithQuotes()
+        public void EmptyValueWithQuotes()
         {
             string input = "890123456,'',7";
 
@@ -136,7 +136,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_EmptyValueWithoutQuotes()
+        public void EmptyValueWithoutQuotes()
         {
             string input = "9,,012345678";
 
@@ -150,7 +150,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_LineEndsWithSeparator_MeansEmptyValue()
+        public void LineEndsWithSeparator_MeansEmptyValue()
         {
             string input = "01,23456789,";
 
@@ -164,7 +164,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_LastValueNoClosingQuote_IsAccepted()
+        public void LastValueNoClosingQuote_IsAccepted()
         {
             string input = "123,'4567890";
 
@@ -177,7 +177,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_InputNullOrEmpty_ReturnsEmptyList()
+        public void InputNullOrEmpty_ReturnsEmptyList()
         {
             {
                 IList<string> splitNull = StringExtensions_Split.SplitWithQuotation(null, ',', '\'');
@@ -192,7 +192,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_Separator_SpaceIsAllowed()
+        public void Separator_SpaceIsAllowed()
         {
             string input = "34567 '89 012'";
 
