@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Framework.Text.Tests
 {
     [TestClass]
-    public class StringExtensions_Split_WithCharParameters_Tests
+    public class StringExtensions_SplitWithQuotation_WithCharParameters_Tests
     {
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_ComplexExample()
@@ -192,20 +192,6 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_SeparatorNullOrEmpty_ThrowsException()
-        {
-            string input = "2345,678901";
-
-            AssertHelper.ThrowsException<ArgumentException>(
-                () => input.SplitWithQuotation(null, "'"),
-                "separator is null or empty.");
-
-            AssertHelper.ThrowsException<ArgumentException>(
-                () => input.SplitWithQuotation("", "'"),
-                "separator is null or empty.");
-        }
-
-        [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_Separator_SpaceIsAllowed()
         {
             string input = "34567 '89 012'";
@@ -216,45 +202,6 @@ namespace JJ.Framework.Text.Tests
             AssertHelper.AreEqual(2, () => split.Count);
             AssertHelper.AreEqual("34567", () => split[0]);
             AssertHelper.AreEqual("89 012", () => split[1]);
-        }
-
-        [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_QuoteNull_SplitsWithoutQuotation()
-        {
-            string input = "4'56'789,01'23'";
-
-            IList<string> split = input.SplitWithQuotation(",", null);
-
-            AssertHelper.IsNotNull(() => split);
-            AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("4'56'789", () => split[0]);
-            AssertHelper.AreEqual("01'23'", () => split[1]);
-        }
-
-        [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_QuoteEmpty_SplitsWithoutQuotation()
-        {
-            string input = "5'67'8901,2'34'";
-
-            IList<string> split = input.SplitWithQuotation(",", "");
-
-            AssertHelper.IsNotNull(() => split);
-            AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("5'67'8901", () => split[0]);
-            AssertHelper.AreEqual("2'34'", () => split[1]);
-        }
-
-        [TestMethod]
-        public void Test_StringExtensions_SplitWithQuotation_SeparatorAndQuoteStrings_SingleCharacter_CallsOverloadWithChars()
-        {
-            string input = "'67890123','45'";
-
-            IList<string> split = input.SplitWithQuotation(",", "'");
-
-            AssertHelper.IsNotNull(() => split);
-            AssertHelper.AreEqual(2, () => split.Count);
-            AssertHelper.AreEqual("67890123", () => split[0]);
-            AssertHelper.AreEqual("45", () => split[1]);
         }
     }
 }
