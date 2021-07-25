@@ -169,7 +169,7 @@ namespace JJ.Framework.Text
                         // Write quote to temp chars
                         Array.Copy(quoteCharArray, 0, tempChars, j, quote.Length);
 
-                        j += quote.Length - 1;
+                        j += quote.Length;
 
                         // Skipping over quotes.
                         i += twoQuotes.Length - 1;
