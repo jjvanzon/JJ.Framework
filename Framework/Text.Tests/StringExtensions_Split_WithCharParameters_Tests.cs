@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Framework.Text.Tests
 {
     [TestClass]
-    public class StringExtensions_Split_Tests
+    public class StringExtensions_Split_WithCharParameters_Tests
     {
         [TestMethod]
         public void Test_StringExtensions_SplitWithQuotation_ComplexExample()
