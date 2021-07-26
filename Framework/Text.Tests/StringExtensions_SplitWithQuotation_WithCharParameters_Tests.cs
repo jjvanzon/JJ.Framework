@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -31,7 +30,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void WithoutQuotes()
+        public void NoQuotes()
         {
             string input = "0123,456789";
 
