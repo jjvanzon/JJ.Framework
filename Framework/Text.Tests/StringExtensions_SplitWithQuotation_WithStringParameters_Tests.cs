@@ -57,7 +57,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void SeparatorCharInQuotes_BecomesPartOfValue()
+        public void SeparatorInQuotes_BecomesPartOfValue()
         {
             string input = "''234 || 567'' || ''890 || 1''";
 
@@ -83,7 +83,7 @@ namespace JJ.Framework.Text.Tests
         }
 
         [TestMethod]
-        public void EscapedQuotes_OutsideOfQuotes_CancelOut()
+        public void EscapedQuotes_OutsideOfQuotes_AreOpenCloseQuotes_WhichCancelOut()
         {
             string input = "45''''678901 || 2''''3";
 

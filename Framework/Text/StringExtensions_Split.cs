@@ -64,36 +64,36 @@ namespace JJ.Framework.Text
                     else
                     {
                         // Value char found.
-                        tempChars[j] = chr;
-                        j++;
+                        tempChars[j++] = chr;
                     }
                 }
                 else // if (inQuote)
                 {
-                    if (i != input.Length - 1 && chr == quote && input[i + 1] == quote)
+                    if (chr == quote)
                     {
                         // Escaped quote.
-                        tempChars[j] = quote;
-                        j++;
+                        if (i != input.Length - 1 && input[i + 1] == quote)
+                        {
+                            tempChars[j++] = quote;
 
-                        // Skipping over 2nd quote
-                        i++;
-                    }
-                    else if (chr == quote)
-                    {
-                        // End quote
-                        inQuote = false;
+                            // Skipping over 2nd quote
+                            i++;
+                        }
+                        else
+                        {
+                            // End quote
+                            inQuote = false;
+                        }
                     }
                     else
                     {
                         // Value char found.
-                        tempChars[j] = chr;
-                        j++;
+                        tempChars[j++] = chr;
                     }
                 }
             }
 
-            // Concluding last value (which may not end with a separator).
+            // Concluding last value (which would not end with a separator).
             var lastValue = new string(tempChars, 0, j);
             values.Add(lastValue);
 
