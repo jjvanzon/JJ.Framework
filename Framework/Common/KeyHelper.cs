@@ -3,7 +3,7 @@
 namespace JJ.Framework.Common
 {
     /// <summary>
-    /// Turns several objects into a single string key.
+    /// Generating a single string dictionary key out of multiple disparate values.
     /// Only works if the objects' ToString() methods return something unique.
     /// </summary>
     public static class KeyHelper

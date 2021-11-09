@@ -39,12 +39,7 @@ namespace JJ.Framework.Exceptions.Tests
         [TestMethod]
         public void Test_NotFoundException_WithType()
             => AssertHelper.ThrowsException<NotFoundException>(
-                () =>
-                {
-                    var testInt = 1;
-
-                    throw new NotFoundException(typeof(TestItem));
-                },
+                () => throw new NotFoundException(typeof(TestItem)),
                 "TestItem not found.");
 
         [TestMethod]
@@ -63,7 +58,7 @@ namespace JJ.Framework.Exceptions.Tests
             => AssertHelper.ThrowsException<NotFoundException>(
                 () =>
                 {
-                    var testItem = new TestItem();
+                    TestItem testItem;
 
                     throw new NotFoundException(nameof(testItem));
                 },
@@ -75,7 +70,7 @@ namespace JJ.Framework.Exceptions.Tests
                 () =>
                 {
                     var testInt = 1;
-                    var testItem = new TestItem();
+                    TestItem testItem;
 
                     throw new NotFoundException(nameof(testItem), new { testInt });
                 },

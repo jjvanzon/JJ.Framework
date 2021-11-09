@@ -57,19 +57,23 @@ namespace JJ.Utilities.FileDeduplication.WinForms
 
         // Actions
 
-        private void ButtonScan_Click(object sender, EventArgs e) => OnBackgroundThread(() => ExecuteAction(_presenter.Scan));
+        private void ButtonScan_Click(object sender, EventArgs e) 
+            => OnBackgroundThread(() => ExecuteAction(_presenter.Scan));
 
         private void ModalPopupHelper_ScanYesRequested(object sender, EventArgs e) 
             => OnBackgroundThread(() => ExecuteAction(_presenter.ScanYes));
 
-        private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) => ExecuteAction(_presenter.CopyListOfDuplicates);
+        private void ButtonCopyListOfDuplicates_Click(object sender, EventArgs e) 
+            => ExecuteAction(_presenter.CopyListOfDuplicates);
 
-        private void MainForm_OnRunProcess(object sender, EventArgs e) => ExecuteAction(_presenter.DeleteFiles);
+        private void MainForm_OnRunProcess(object sender, EventArgs e) 
+            => ExecuteAction(_presenter.DeleteFiles);
 
         private void ModalPopupHelper_DeleteFilesYesRequested(object sender, EventArgs e) 
             => OnBackgroundThread(() => ExecuteAction(_presenter.DeleteFilesYes));
 
-        private void MainForm_Cancelled(object sender, EventArgs e) => ExecuteAction(_presenter.Cancel);
+        private void MainForm_Cancelled(object sender, EventArgs e) 
+            => ExecuteAction(_presenter.Cancel);
 
         private void ExecuteAction(Action action)
         {

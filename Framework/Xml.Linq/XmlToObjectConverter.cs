@@ -53,15 +53,15 @@ namespace JJ.Framework.Xml.Linq
 
         private readonly ReflectionCache _reflectionCache = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
 
-        private bool _mustParseNilAttributes;
+        private readonly bool _mustParseNilAttributes;
 
-        private NameManager _nameManager;
+        private readonly NameManager _nameManager;
 
         /// <summary>
         /// When null, standard XML / SOAP formatting of values is applied.
         /// When filled in, values will be formatter in accordance to the provided culture.
         /// </summary>
-        private CultureInfo _cultureInfo;
+        private readonly CultureInfo _cultureInfo;
 
         /// <summary>
         /// Converts an XML structure to an object tree.

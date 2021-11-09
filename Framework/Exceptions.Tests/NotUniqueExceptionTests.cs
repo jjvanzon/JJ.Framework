@@ -35,12 +35,7 @@ namespace JJ.Framework.Exceptions.Tests
 
         [TestMethod]
         public void Test_NotUniqueException_WithType() => AssertHelper.ThrowsException<NotUniqueException>(
-            () =>
-            {
-                int testInt = 1;
-
-                throw new NotUniqueException(typeof(TestItem));
-            },
+            () => throw new NotUniqueException(typeof(TestItem)),
             "TestItem not unique.");
 
         [TestMethod]
@@ -57,7 +52,7 @@ namespace JJ.Framework.Exceptions.Tests
         public void Test_NotUniqueException_WithNameOf() => AssertHelper.ThrowsException<NotUniqueException>(
             () =>
             {
-                var testItem = new TestItem();
+                TestItem testItem;
 
                 throw new NotUniqueException(nameof(testItem));
             },
@@ -68,7 +63,7 @@ namespace JJ.Framework.Exceptions.Tests
             () =>
             {
                 int testInt = 1;
-                var testItem = new TestItem();
+                TestItem testItem;
 
                 throw new NotUniqueException(nameof(testItem), new { testInt });
             },

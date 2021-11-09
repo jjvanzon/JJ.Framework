@@ -27,7 +27,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         protected virtual bool Predicate(TViewModel viewModel) => true;
 
         /// <summary>
-        ///     Takes presenter action info and converts it to an MVC url.
+        /// Takes presenter action info and converts it to an MVC url.
         /// </summary>
         protected string TryGetReturnUrl(ActionInfo actionInfo)
         {
@@ -40,7 +40,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         }
 
         /// <summary>
-        ///     Syntactic sugar for assigning PresenterName and PresenterActionName.
+        /// Syntactic sugar for assigning PresenterName and PresenterActionName.
         /// </summary>
         protected void MapPresenter(string presenterName, string presenterActionName)
         {
@@ -52,7 +52,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         }
 
         /// <summary>
-        ///     Syntactic sugar for assigning ControllerName, ControllerGetActionName and ViewName.
+        /// Syntactic sugar for assigning ControllerName, ControllerGetActionName and ViewName.
         /// </summary>
         protected void MapController(string controllerName, string controllerGetActionName, string viewName)
         {
@@ -66,7 +66,7 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
         }
 
         /// <summary>
-        ///     Syntactic sugar for assigning ControllerName and ViewName.
+        /// Syntactic sugar for assigning ControllerName and ViewName.
         /// </summary>
         protected void MapController(string controllerName, string viewName)
         {

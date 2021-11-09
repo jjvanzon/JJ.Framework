@@ -44,10 +44,9 @@ namespace JJ.Demos.ReturnActions.Framework.Mvc
 
         private static string ConvertActionInfoToUrl_ByList(IList<ActionInfo> actionInfos, string returnUrlParameterName)
         {
-            // TODO: Performance of these string operations is not great.
             if (string.IsNullOrWhiteSpace(returnUrlParameterName))
             {
-                throw new Exception("returnUrlParameterName cannot be null or white space.");
+                throw new NullOrWhiteSpaceException(() => returnUrlParameterName);
             }
 
             ActionInfo actionInfo = actionInfos[0];
