@@ -9,3 +9,4 @@ TestResults
 *.cache
 **/Debug/**
 **/Release/**
+UpgradeLog.htm
