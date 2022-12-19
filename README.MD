@@ -32,7 +32,7 @@ In-House
 
 `JJ.Framework` was made in the spirit of in-house developing small extensions. 
 
-*In-house* so that it could be adapted and extended as needed, and did not have to be complete to be usable, because then we would just extend it.
+*In-house* so that it could be adapted and extended as needed, and did not have to be complete, because then we would just extend it.
 
 If a bug was found in the development of an app, we could just correct the `JJ.Framework` as needed and release a stable app.
 
