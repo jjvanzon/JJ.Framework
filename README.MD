@@ -30,14 +30,16 @@ The ones not on NuGet are available as a sneek peek in [JJs-Pre-Release-Package-
 In-House
 --------
 
-`JJ.Framework` was made with the idea that it is *in-house developed*, so could be adapted and extended as needed, and did not have to be complete to be usable, because then we would just extend it.
+`JJ.Framework` was made in the spirit of in-house developing small extensions. 
 
-If a bug was found in the development of an app, we could just correct the `JJ.Framework` as needed.
+*In-house* so that it could be adapted and extended as needed, and did not have to be complete to be usable, because then we would just extend it.
 
-Ofcourse, this in-house developed argument does not apply when someone else (you) use it.
+If a bug was found in the development of an app, we could just correct the `JJ.Framework` as needed and release a stable app.
 
-But it is programmed with this spirit:  
-If you're missing something small, instead of importing a huge framework, just program your own.
+Of course, this in-house developed argument does not apply when you would use it. But I think it might have extensions that could be of use to others.
+
+It is programmed in the spirit of:  
+Small things: develop your own, instead of importing a huge framework.
 
 `JJ.Framework` components are compact: a couple of kilobytes each.
 
