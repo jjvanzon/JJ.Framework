@@ -1,8 +1,6 @@
 ﻿JJ.Framework
 ============
 
-<h2>Contents</h2>
-
 - [Introduction](#introduction)
 - [Stability](#stability)
 - [In-House Development](#in-house-development)
