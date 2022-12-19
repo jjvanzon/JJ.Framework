@@ -40,7 +40,7 @@ It is programmed in the spirit of: Small things: develop your own, instead of im
 
 `JJ.Framework` components are compact: a couple of kilobytes each.
 
-Of course, this in-house developed argument does not apply when other people use it. But I think these extensions could be of use to others too.
+Of course, this 'in-house development' argument does not apply, when other people use it. But I think these extensions might be of use to others too.
 
 
 History
