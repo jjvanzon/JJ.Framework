@@ -3,7 +3,7 @@
 
 - [Introduction](#introduction)
 - [Stability](#stability)
-- [In-House Development](#in-house-development)
+- [In-House](#in-house)
 - [History](#history)
 - [Modularization](#modularization)
 - [Platform Compatibility](#platform-compatibility)
@@ -27,8 +27,8 @@ No software is bug free, but extra effort was made, testing the `JJ.Framework` c
 The ones not on NuGet are available as a sneek peek in [JJs-Pre-Release-Package-Feed](https://dev.azure.com/jjvanzon/JJs-Software/_packaging?_a=feed&feed=JJs-Pre-Release-Package-Feed). But those may be used with caution, because they may not be tested that well. Those may need some more unit testing and could still be a bug or two in it.
 
 
-In-House Development
---------------------
+In-House
+--------
 
 `JJ.Framework` was made with the idea that it is *in-house developed*, so could be adapted and extended as needed, and did not have to be complete to be usable, because then we would just extend it.
 
