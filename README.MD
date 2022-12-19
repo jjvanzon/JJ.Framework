@@ -59,7 +59,7 @@ Modularization
 Platform Compatibility
 ----------------------
 
-That grip on dependency, was once a good plan for platform compatibility. `JJ.Framework` may currently be based on `.NET 4.6.1` trying to keep it compatible with `Mono`. Around 2015 `JJ.Framework` was tested to be reasonably compatible with `Mono` and by extension `Android`, `iOS` and `Windows Phone`. This was before newer technology like `.NET Standard` and more recently `.NET 5` and up, which might make keeping things platform-compatible a bit easier than before. For this reason, there may be plans to port `JJ.Framework` to `.NET 5` or higher once, but  this currently isn't in the cards.
+That grip on dependency, was once a good plan for platform compatibility. `JJ.Framework` may currently be based on `.NET 4.6.1` trying to keep it compatible with Mono. Around 2015 `JJ.Framework` was tested to be reasonably compatible with Mono and by extension Android, iOS and Windows Phone. This was before newer technology like `.NET Standard` and more recently `.NET 5` and up, which might make keeping things platform-compatible a bit easier than before. For this reason, there may be plans to port `JJ.Framework` to `.NET 5` or higher once, but  this currently isn't in the cards.
 
 
 Setting Up Dev Environment
