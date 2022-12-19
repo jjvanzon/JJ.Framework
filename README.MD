@@ -26,14 +26,18 @@ No software is bug free, but extra effort was made, testing the `JJ.Framework` c
 
 The ones not on NuGet are available as a sneek peek in [JJs-Pre-Release-Package-Feed](https://dev.azure.com/jjvanzon/JJs-Software/_packaging?_a=feed&feed=JJs-Pre-Release-Package-Feed). But those may be used with caution, because they may not be tested that well. Those may need some more unit testing and could still be a bug or two in it.
 
+
 In-House Development
 --------------------
 
-`JJ.Framework` was made with the idea that it is *in-house developed*, so could be adapted and extended as needed, and did not have to be complete to be usable, because then we would just extend it. If a bug was found in  the development of an app, we could just correct the `JJ.Framework` as needed.
+`JJ.Framework` was made with the idea that it is *in-house developed*, so could be adapted and extended as needed, and did not have to be complete to be usable, because then we would just extend it.
+
+If a bug was found in the development of an app, we could just correct the `JJ.Framework` as needed.
 
 Ofcourse, this in-house developed argument does not apply when someone else (you) use it.
 
-But it is programmed with this spirit: If you're missing something small, instead of importing a huge framework of which you only use 1 function, just program your own.
+But it is programmed with this spirit:  
+If you're missing something small, instead of importing a huge framework, just program your own.
 
 `JJ.Framework` components are compact: a couple of kilobytes each.
 
@@ -48,6 +52,8 @@ Modularization
 --------------
 
 `JJ.Framework` tends to have a separate assembly for each part of the `.NET Framework` that it extends. Separation may be found between technical aspects. That may allow being specific, on which parts of `.NET` an application becomes dependent.
+
+`JJ.Framework` also likes decouple platform-specific implementation details and hide them behind generalized interfaces.
 
 
 Platform Compatibility
