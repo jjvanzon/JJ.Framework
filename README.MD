@@ -36,12 +36,11 @@ In-House
 
 If a bug was found in the development of an app, we could just correct the `JJ.Framework` as needed and release a stable app.
 
-Of course, this in-house developed argument does not apply when you would use it. But I think it might have extensions that could be of use to others.
-
-It is programmed in the spirit of:  
-Small things: develop your own, instead of importing a huge framework.
+It is programmed in the spirit of: Small things: develop your own, instead of importing a huge framework.
 
 `JJ.Framework` components are compact: a couple of kilobytes each.
+
+Of course, this in-house developed argument does not apply when other people use it. But I think these extensions could be of use to others too.
 
 
 History
