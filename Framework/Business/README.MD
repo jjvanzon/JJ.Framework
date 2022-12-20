@@ -98,7 +98,7 @@ There are also some edge cases under which the `OneToManyRelationship` and `Many
 - Non-nullable parents.
 - Parent and child not the same class.
 - Multiple relationships between the same classes.
-- Side-effects going off upon assigning parent or removing children.
+- Actions going off upon assigning parent or removing children.
 - You can control the underlying collection type of the children.
 - Using different property names than Parent and Children in your model.
 
