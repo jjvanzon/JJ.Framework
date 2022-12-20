@@ -63,8 +63,7 @@ _parentRelationship.Parent
 Your `Relationship` classes need some more work. You'd need to implement some methods. Their implementation is trivial:
 
 ```cs
-class ChildrenRelationship
-    : OneToManyRelationship<Element, Element>
+class ChildrenRelationship : OneToManyRelationship<Element, Element>
 {
     public ChildrenRelationship(Element parent) 
         : base(parent) { }
@@ -76,8 +75,7 @@ class ChildrenRelationship
         => child.Parent = null;
 }
 
-class ParentRelationship
-    : ManyToOneRelationship<Element, Element>
+class ParentRelationship : ManyToOneRelationship<Element, Element>
 {
     public ParentRelationship(Element child) : base(child) { }
 

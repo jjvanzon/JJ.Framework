@@ -11,8 +11,7 @@ namespace JJ.Demos.Business
     [TestClass]
     public class OneToManyRelationshipDemo
     {
-        class ChildrenRelationship
-            : OneToManyRelationship<Element, Element>
+        class ChildrenRelationship : OneToManyRelationship<Element, Element>
         {
             public ChildrenRelationship(Element parent) 
                 : base(parent) { }
@@ -24,8 +23,7 @@ namespace JJ.Demos.Business
                 => child.Parent = null;
         }
 
-        class ParentRelationship
-            : ManyToOneRelationship<Element, Element>
+        class ParentRelationship : ManyToOneRelationship<Element, Element>
         {
             public ParentRelationship(Element child) : base(child) { }
 
@@ -61,8 +59,6 @@ namespace JJ.Demos.Business
         [TestMethod]
         public void Demo_OneToManyRelationship()
         {
-            throw new Exception("Test breaking demo code.");
-
             var parent = new Element();
             var child1 = new Element();
             var child2 = new Element();
