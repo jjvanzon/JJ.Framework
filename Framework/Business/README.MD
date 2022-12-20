@@ -91,7 +91,7 @@ class ParentRelationship : ManyToOneRelationship<Element, Element>
 }
 ```
 
-So perhaps a little boilerplating to get it done. But it shouldn't too be much code. Internally the `ChildrenRelationship` and `ParentRelationship` classes override methods, delegating to navigation properties. The base classes `OneToManyRelationship` and `ManyToOneRelationship` classes ae not too much code either. To keep inverse properties in sync, this provides what's needed, without being too obscure about what is going on.
+So perhaps a little boilerplating to get it done. But it shouldn't too be much code. Internally the `ChildrenRelationship` and `ParentRelationship` classes override methods, delegating to navigation properties. The base classes `OneToManyRelationship` and `ManyToOneRelationship` classes are not too much code either. To keep inverse properties in sync, this provides what's needed, without being too obscure about what is going on.
 
 There are also some edge cases under which the `OneToManyRelationship` and `ManyToOneRelationship` classes still work:
 
