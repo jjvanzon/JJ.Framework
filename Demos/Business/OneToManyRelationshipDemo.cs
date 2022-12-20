@@ -25,7 +25,8 @@ namespace JJ.Demos.Business
 
         class ParentRelationship : ManyToOneRelationship<Element, Element>
         {
-            public ParentRelationship(Element child) : base(child) { }
+            public ParentRelationship(Element child) 
+                : base(child) { }
 
             protected override bool Contains(Element parent) 
                 => parent.Children.Contains(_child);
