@@ -60,7 +60,7 @@ The `ChildToParentRelationship` wraps the parent, which can be accessed as follo
 _parentRelationship.Parent
 ```
 
-Your `Relationship` classes need some more work. You'd need to implement some methods. Their implementation is trivial:
+The `Relationship` classes need some more work. Some methods should be implemented. Their implementation should be trivial:
 
 ```cs
 class ChildrenRelationship : OneToManyRelationship<Element, Element>
@@ -91,9 +91,9 @@ class ParentRelationship : ManyToOneRelationship<Element, Element>
 }
 ```
 
-So perhaps a little boilerplating to get it done. But it shouldn't be much code. Internally your `ChildrenRelationship` and `ParentRelationship` classes override methods, delegating to navigation properties. The base classes `OneToManyRelationship` and `ManyToOneRelationship` classes ae not too much code either. To keep your inverse properties in sync, this gives you what you need, without being too obscure about what is going on.
+So perhaps a little boilerplating to get it done. But it shouldn't too be much code. Internally your `ChildrenRelationship` and `ParentRelationship` classes override methods, delegating to navigation properties. The base classes `OneToManyRelationship` and `ManyToOneRelationship` classes ae not too much code either. To keep your inverse properties in sync, this gives you what you need, without being too obscure about what is going on.
 
-There are also some *edge cases* under which the `OneToManyRelationship` and `ManyToOneRelationship` classes still work:
+There are also some edge cases under which the `OneToManyRelationship` and `ManyToOneRelationship` classes still work:
 
 - Non-nullable parents.
 - Parent and child not the same class.
