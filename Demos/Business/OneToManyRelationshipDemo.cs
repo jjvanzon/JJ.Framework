@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Business;
+﻿using System;
+using JJ.Framework.Business;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -60,6 +61,8 @@ namespace JJ.Demos.Business
         [TestMethod]
         public void Demo_OneToManyRelationship()
         {
+            throw new Exception("Test breaking demo code.");
+
             var parent = new Element();
             var child1 = new Element();
             var child2 = new Element();
