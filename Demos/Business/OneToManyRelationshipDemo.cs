@@ -13,10 +13,14 @@ namespace JJ.Demos.Business
         class ChildrenRelationship
             : OneToManyRelationship<Element, Element>
         {
-            public ChildrenRelationship(Element parent) : base(parent) { }
+            public ChildrenRelationship(Element parent) 
+                : base(parent) { }
 
-            protected override void SetParent(Element child) => child.Parent = _parent;
-            protected override void NullifyParent(Element child) => child.Parent = null;
+            protected override void SetParent(Element child) 
+                => child.Parent = _parent;
+
+            protected override void NullifyParent(Element child)
+                => child.Parent = null;
         }
 
         class ParentRelationship
@@ -24,9 +28,14 @@ namespace JJ.Demos.Business
         {
             public ParentRelationship(Element child) : base(child) { }
 
-            protected override bool Contains(Element parent) => parent.Children.Contains(_child);
-            protected override void Add(Element parent) => parent.Children.Add(_child);
-            protected override void Remove(Element parent) => parent.Children.Remove(_child);
+            protected override bool Contains(Element parent) 
+                => parent.Children.Contains(_child);
+
+            protected override void Add(Element parent) 
+                => parent.Children.Add(_child);
+
+            protected override void Remove(Element parent) 
+                => parent.Children.Remove(_child);
         }
 
         class Element
