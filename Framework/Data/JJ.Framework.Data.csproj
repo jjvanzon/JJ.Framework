@@ -76,9 +76,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\.editorconfig">
-      <Link>.editorconfig</Link>
-    </None>
     <None Include="JJ.Framework.Data.nuspec" />
     <None Include="jj.framework.data example.config">
       <SubType>Designer</SubType>
