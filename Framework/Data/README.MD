@@ -40,11 +40,11 @@ Context
 Repository
 ----------
 
-`JJ.Framework.Data` has base types for repositories. Each repository would be about a single entity type. Also containing the basic operations `Create`, `Get`, `Update` and `Delete`.
+`JJ.Framework.Data` has base types for repositories. Each repository would be about a single entity type, also containing the basic operations `Create`, `Get`, `Update` and `Delete`.
 
 The idea is that you can implement a `Repository` for each of your entity types (e.g. `Question`, `Category`). `JJ.Framework` provides the base and you can extended with additional methods for specialized queries.
 
-It is advisable for these methods not to expose types from the underlying data access technology. It might be better make the parameters / return values either *entity types* like `Question`and `Category` or *simple types* like `int` and `string`. Then it would still be possible to switch to a different data acces technology without changing the other application code.
+It might be best if these methods would not expose types from the underlying data access technology. It might be better make the parameters / return values either *entity types* like `Question`and `Category` or *simple types* like `int` and `string`. Then it would still be possible to switch to a different data acces technology, without changing the other application code.
 
 
 Mappings
@@ -68,7 +68,7 @@ Settings for a data access, can be configured in the `web.config` or `app.config
   <jj.framework.data
     contextType="NHibernate"
     dialect="SqlServer2008"
-    location="Data Source=.;Initial Catalog=DEV_QuestionAndAnswerDB;User ID=...;Password=...;Persist Security Info=True"
+    location="Data Source=.;Initial Catalog=DEV_QuestionAndAnswerDB;User ID=dev;Password=dev;Persist Security Info=True"
     modelAssembly="JJ.Data.QuestionAndAnswer"
     mappingAssembly="JJ.Data.QuestionAndAnswer.NHibernate">
     <repositoryAssemblies>
