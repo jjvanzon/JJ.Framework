@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Demos.Business
 {
     [TestClass]
-    public class OneToManyRelationshipDemo
+    public class OneToManyRelationshipDemoTests
     {
         class ChildrenRelationship : OneToManyRelationship<Element, Element>
         {
