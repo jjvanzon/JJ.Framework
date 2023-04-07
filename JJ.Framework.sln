@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Conversion", "Framework\Conversion\JJ.Framework.Conversion.csproj", "{5DFE22AA-DDF2-4B0D-A916-AA7C50C9DA21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.ResourceStrings", "Framework\ResourceStrings\JJ.Framework.ResourceStrings.csproj", "{2C79C216-77CB-405D-BABD-F5A560A09D23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{5DFE22AA-DDF2-4B0D-A916-AA7C50C9DA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DFE22AA-DDF2-4B0D-A916-AA7C50C9DA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DFE22AA-DDF2-4B0D-A916-AA7C50C9DA21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C79C216-77CB-405D-BABD-F5A560A09D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C79C216-77CB-405D-BABD-F5A560A09D23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C79C216-77CB-405D-BABD-F5A560A09D23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C79C216-77CB-405D-BABD-F5A560A09D23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
