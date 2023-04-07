@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
-using JJ.Framework.PlatformCompatibility;
+
 
 namespace JJ.Framework.Reflection
 {
@@ -94,14 +94,14 @@ namespace JJ.Framework.Reflection
             }
 
             // Then process 'child' node.
-            MemberTypes_PlatformSafe memberType = node.Member.MemberType_PlatformSafe();
+            MemberTypes memberType = node.Member.MemberType;
             switch (memberType)
             {
-                case MemberTypes_PlatformSafe.Field:
+                case MemberTypes.Field:
                     VisitField(node);
                     return;
 
-                case MemberTypes_PlatformSafe.Property:
+                case MemberTypes.Property:
                     VisitProperty(node);
                     return;
 

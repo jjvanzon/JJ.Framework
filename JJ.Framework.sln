@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Text", "Framew
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common", "Framework\Common\JJ.Framework.Common.csproj", "{A9DC0884-D27E-4E7D-8ACC-9C7ED8EFF6BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection", "Framework\Reflection\JJ.Framework.Reflection.csproj", "{BF6DFAFC-E03B-4C04-88AB-3E36D2E05B64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A9DC0884-D27E-4E7D-8ACC-9C7ED8EFF6BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9DC0884-D27E-4E7D-8ACC-9C7ED8EFF6BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9DC0884-D27E-4E7D-8ACC-9C7ED8EFF6BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF6DFAFC-E03B-4C04-88AB-3E36D2E05B64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF6DFAFC-E03B-4C04-88AB-3E36D2E05B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF6DFAFC-E03B-4C04-88AB-3E36D2E05B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF6DFAFC-E03B-4C04-88AB-3E36D2E05B64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

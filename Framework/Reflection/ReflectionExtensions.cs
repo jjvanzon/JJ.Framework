@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JetBrains.Annotations;
-using JJ.Framework.PlatformCompatibility;
+
 using JJ.Framework.Text;
 
 namespace JJ.Framework.Reflection
@@ -64,7 +64,7 @@ namespace JJ.Framework.Reflection
                 }
 
                 // This works for types that implement IEnumerable<T> / have IEnumerable<T> as a base.
-                Type enumerableInterface = collectionType.GetInterface_PlatformSafe(typeof(IEnumerable<>).FullName);
+                Type enumerableInterface = collectionType.GetInterface(typeof(IEnumerable<>).FullName);
 
                 if (enumerableInterface != null)
                 {
@@ -146,7 +146,7 @@ namespace JJ.Framework.Reflection
 
                     types = types.Where(x => x.GetBaseClasses().Contains(baseType))
                                  .Union(
-                                     types.Where(x => x.GetInterface_PlatformSafe(baseType.Name) != null))
+                                     types.Where(x => x.GetInterface(baseType.Name) != null))
                                  .ToArray();
 
                     _implementationsDictionary.Add(key, types);
@@ -311,19 +311,19 @@ namespace JJ.Framework.Reflection
         {
             if (member == null) throw new ArgumentNullException(nameof(member));
 
-            MemberTypes_PlatformSafe memberType = member.MemberType_PlatformSafe();
+            MemberTypes memberType = member.MemberType;
 
             switch (memberType)
             {
-                case MemberTypes_PlatformSafe.Field:
+                case MemberTypes.Field:
                     var field = (FieldInfo)member;
                     return field.IsStatic;
 
-                case MemberTypes_PlatformSafe.Method:
+                case MemberTypes.Method:
                     var method = (MethodInfo)member;
                     return method.IsStatic;
 
-                case MemberTypes_PlatformSafe.Property:
+                case MemberTypes.Property:
                     var property = (PropertyInfo)member;
                     // TODO: Check if this will work for public members.
                     MethodInfo getterOrSetter = property.GetGetMethod(true) ?? property.GetSetMethod(true);
