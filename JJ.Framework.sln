@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Exceptions", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections", "Framework\Collections\JJ.Framework.Collections.csproj", "{46BC6E76-A8BE-4202-9BFD-7BDB860F033C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Conversion", "Framework\Conversion\JJ.Framework.Conversion.csproj", "{5DFE22AA-DDF2-4B0D-A916-AA7C50C9DA21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{46BC6E76-A8BE-4202-9BFD-7BDB860F033C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46BC6E76-A8BE-4202-9BFD-7BDB860F033C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46BC6E76-A8BE-4202-9BFD-7BDB860F033C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DFE22AA-DDF2-4B0D-A916-AA7C50C9DA21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DFE22AA-DDF2-4B0D-A916-AA7C50C9DA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DFE22AA-DDF2-4B0D-A916-AA7C50C9DA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DFE22AA-DDF2-4B0D-A916-AA7C50C9DA21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
