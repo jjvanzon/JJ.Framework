@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj" />
+    <ProjectReference Include="..\ResourceStrings\JJ.Framework.ResourceStrings.csproj" />
   </ItemGroup>
 
 </Project>
