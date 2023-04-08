@@ -3,23 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Text", "Framework\Text\JJ.Framework.Text.csproj", "{D3A5847D-10C1-454D-8EB0-B5852293A452}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Text", "Framework\Text\JJ.Framework.Text.csproj", "{D3A5847D-10C1-454D-8EB0-B5852293A452}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common", "Framework\Common\JJ.Framework.Common.csproj", "{A9DC0884-D27E-4E7D-8ACC-9C7ED8EFF6BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Common", "Framework\Common\JJ.Framework.Common.csproj", "{A9DC0884-D27E-4E7D-8ACC-9C7ED8EFF6BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection", "Framework\Reflection\JJ.Framework.Reflection.csproj", "{BF6DFAFC-E03B-4C04-88AB-3E36D2E05B64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Reflection", "Framework\Reflection\JJ.Framework.Reflection.csproj", "{BF6DFAFC-E03B-4C04-88AB-3E36D2E05B64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Exceptions", "Framework\Exceptions\JJ.Framework.Exceptions.csproj", "{8E9384C8-4EF1-4622-97F0-774213F64328}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Exceptions", "Framework\Exceptions\JJ.Framework.Exceptions.csproj", "{8E9384C8-4EF1-4622-97F0-774213F64328}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections", "Framework\Collections\JJ.Framework.Collections.csproj", "{46BC6E76-A8BE-4202-9BFD-7BDB860F033C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Collections", "Framework\Collections\JJ.Framework.Collections.csproj", "{46BC6E76-A8BE-4202-9BFD-7BDB860F033C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Conversion", "Framework\Conversion\JJ.Framework.Conversion.csproj", "{5DFE22AA-DDF2-4B0D-A916-AA7C50C9DA21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Conversion", "Framework\Conversion\JJ.Framework.Conversion.csproj", "{5DFE22AA-DDF2-4B0D-A916-AA7C50C9DA21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.ResourceStrings", "Framework\ResourceStrings\JJ.Framework.ResourceStrings.csproj", "{2C79C216-77CB-405D-BABD-F5A560A09D23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.ResourceStrings", "Framework\ResourceStrings\JJ.Framework.ResourceStrings.csproj", "{2C79C216-77CB-405D-BABD-F5A560A09D23}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.IO", "Framework\IO\JJ.Framework.IO.csproj", "{066B85A7-A776-4B71-9E4C-BDE2A7C0AE75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mathematics", "Framework\Mathematics\JJ.Framework.Mathematics.csproj", "{F9A49C82-0DD5-48F6-9029-83355DE9EE75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Mathematics", "Framework\Mathematics\JJ.Framework.Mathematics.csproj", "{F9A49C82-0DD5-48F6-9029-83355DE9EE75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml", "Framework\Xml\JJ.Framework.Xml.csproj", "{EEDE77D1-5E77-4F24-903C-C326DC241CE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{F9A49C82-0DD5-48F6-9029-83355DE9EE75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9A49C82-0DD5-48F6-9029-83355DE9EE75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9A49C82-0DD5-48F6-9029-83355DE9EE75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEDE77D1-5E77-4F24-903C-C326DC241CE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEDE77D1-5E77-4F24-903C-C326DC241CE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEDE77D1-5E77-4F24-903C-C326DC241CE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEDE77D1-5E77-4F24-903C-C326DC241CE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
