@@ -11,7 +11,6 @@ using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.IO;
-using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 using JJ.Framework.Xml.Linq.Internal;
 
@@ -216,7 +215,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XElement TryConvertToElement(object sourceParentObject, PropertyInfo sourceProperty)
         {
-            object sourceObject = sourceProperty.GetValue_PlatformSafe(sourceParentObject);
+            object sourceObject = sourceProperty.GetValue(sourceParentObject);
 
             if (_mustGenerateNilAttributes)
             {
@@ -296,7 +295,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XAttribute TryConvertToAttribute(object sourceObject, PropertyInfo sourceProperty)
         {
-            object sourceValue = sourceProperty.GetValue_PlatformSafe(sourceObject);
+            object sourceValue = sourceProperty.GetValue(sourceObject);
 
             if (sourceValue == null)
             {
@@ -320,7 +319,7 @@ namespace JJ.Framework.Xml.Linq
         /// </summary>
         private XElement TryConvertToXmlArray(object sourceParentObject, PropertyInfo sourceCollectionProperty)
         {
-            object sourceCollectionObject = sourceCollectionProperty.GetValue_PlatformSafe(sourceParentObject);
+            object sourceCollectionObject = sourceCollectionProperty.GetValue(sourceParentObject);
             if (sourceCollectionObject == null)
             {
                 return null;

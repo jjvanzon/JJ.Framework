@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Conversion\JJ.Framework.Conversion.csproj" />
+    <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj" />
+    <ProjectReference Include="..\IO\JJ.Framework.IO.csproj" />
+    <ProjectReference Include="..\Mathematics\JJ.Framework.Mathematics.csproj" />
+    <ProjectReference Include="..\Reflection\JJ.Framework.Reflection.csproj" />
+  </ItemGroup>
+
+</Project>
