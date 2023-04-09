@@ -985,25 +985,6 @@ namespace JJ.Framework.Collections
         }
 
         /// <summary>
-        /// Yes, you could write "new HashSet(someCollection)".
-        /// But there are already the ToArray() and ToList() methods, so why not a ToHashSet() method to make it consistent?
-        /// </summary>
-        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> source)
-        {
-            switch (source)
-            {
-                case null:
-                    throw new ArgumentNullException(nameof(source));
-
-                case HashSet<T> hashSet:
-                    return hashSet;
-
-                default:
-                    return new HashSet<T>(source);
-            }
-        }
-
-        /// <summary>
         /// Similar to ToDictionary, but allows the same key to be present more than once.
         /// A GroupBy can overcome that limitation too, but sometimes it is nice to have the return value be a Dictionary,
         /// which might make for a faster lookup too.
