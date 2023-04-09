@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Collections\JJ.Framework.Collections.csproj" />
+  </ItemGroup>
+
 </Project>
