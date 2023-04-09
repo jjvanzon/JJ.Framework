@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using JJ.Framework.Reflection;
 using JJ.Framework.Text;
