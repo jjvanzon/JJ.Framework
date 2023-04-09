@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Conversion\JJ.Framework.Conversion.csproj" />
+    <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj" />
+    <ProjectReference Include="..\Xml\JJ.Framework.Xml.csproj" />
+  </ItemGroup>
+
 </Project>
