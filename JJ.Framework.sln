@@ -21,13 +21,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.IO", "Framewor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Mathematics", "Framework\Mathematics\JJ.Framework.Mathematics.csproj", "{F9A49C82-0DD5-48F6-9029-83355DE9EE75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml", "Framework\Xml\JJ.Framework.Xml.csproj", "{EEDE77D1-5E77-4F24-903C-C326DC241CE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Xml", "Framework\Xml\JJ.Framework.Xml.csproj", "{EEDE77D1-5E77-4F24-903C-C326DC241CE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml.Linq", "Framework\Xml.Linq\JJ.Framework.Xml.Linq.csproj", "{320A16A6-250A-4C4B-8846-462859863A58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Xml.Linq", "Framework\Xml.Linq\JJ.Framework.Xml.Linq.csproj", "{320A16A6-250A-4C4B-8846-462859863A58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business", "Framework\Business\JJ.Framework.Business.csproj", "{0E822A05-7B39-40CA-BEF0-B928363A6311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Business", "Framework\Business\JJ.Framework.Business.csproj", "{0E822A05-7B39-40CA-BEF0-B928363A6311}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration", "Framework\Configuration\JJ.Framework.Configuration.csproj", "{F33471DC-D6AC-4795-8F0A-640379CFE8C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Configuration", "Framework\Configuration\JJ.Framework.Configuration.csproj", "{F33471DC-D6AC-4795-8F0A-640379CFE8C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data", "Framework\Data\JJ.Framework.Data.csproj", "{4F7EF09D-50DC-4AFF-9F3E-18816C08CED4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{F33471DC-D6AC-4795-8F0A-640379CFE8C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F33471DC-D6AC-4795-8F0A-640379CFE8C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F33471DC-D6AC-4795-8F0A-640379CFE8C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F7EF09D-50DC-4AFF-9F3E-18816C08CED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F7EF09D-50DC-4AFF-9F3E-18816C08CED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F7EF09D-50DC-4AFF-9F3E-18816C08CED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F7EF09D-50DC-4AFF-9F3E-18816C08CED4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
