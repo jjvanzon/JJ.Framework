@@ -4,7 +4,6 @@ using System.Xml.Linq;
 using JetBrains.Annotations;
 using JJ.Framework.Data.Xml.Linq.Internal;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Xml.Linq;
 
 namespace JJ.Framework.Data.Xml.Linq
@@ -39,7 +38,7 @@ namespace JJ.Framework.Data.Xml.Linq
         {
             foreach (PropertyInfo sourceProperty in ReflectionCacheWrapper.ReflectionCache.GetProperties(sourceEntity.GetType()))
             {
-                object sourceValue = sourceProperty.GetValue_PlatformSafe(sourceEntity);
+                object sourceValue = sourceProperty.GetValue(sourceEntity);
                 string destValue = Convert.ToString(sourceValue);
                 XmlHelper.SetAttributeValue(destElement, sourceProperty.Name, destValue);
             }

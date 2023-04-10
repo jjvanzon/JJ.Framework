@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using JJ.Framework.Exceptions.Basic;
-using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Data.Xml.Linq.Internal
 {
@@ -59,7 +58,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
         {
             lock (_lock)
             {
-                Document.Save_PlatformSafe(_filePath);
+                Document.Save(_filePath);
             }
         }
 

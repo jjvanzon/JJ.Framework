@@ -6,7 +6,6 @@ using System.Xml.Linq;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Exceptions.InvalidValues;
 using JJ.Framework.Exceptions.TypeChecking;
-using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Xml.Linq;
 // ReSharper disable MemberCanBePrivate.Global
 
@@ -103,7 +102,7 @@ namespace JJ.Framework.Data.Xml.Linq.Internal
                 throw new PropertyNotFoundException(typeof(TEntity), _mapping.IdentityPropertyName);
             }
 
-            return property.GetValue_PlatformSafe(entity);
+            return property.GetValue(entity);
         }
 
         private void SetIDOfEntity(TEntity entity, object id)

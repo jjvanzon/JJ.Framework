@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Data\JJ.Framework.Data.csproj" />
+    <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj" />
+    <ProjectReference Include="..\Xml.Linq\JJ.Framework.Xml.Linq.csproj" />
+  </ItemGroup>
+
 </Project>
