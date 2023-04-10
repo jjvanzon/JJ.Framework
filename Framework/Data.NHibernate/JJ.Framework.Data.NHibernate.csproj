@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FluentNHibernate" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+    <PackageReference Include="NHibernate" Version="5.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data.SqlClient\JJ.Framework.Data.SqlClient.csproj" />
+    <ProjectReference Include="..\Data\JJ.Framework.Data.csproj" />
+    <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj" />
+  </ItemGroup>
+
 </Project>
