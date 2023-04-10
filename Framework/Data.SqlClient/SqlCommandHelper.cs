@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.IO;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.IO;
-using JJ.Framework.PlatformCompatibility;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Data.SqlClient
@@ -39,7 +38,7 @@ namespace JJ.Framework.Data.SqlClient
                     PropertyInfo property = properties[i];
 
                     SqlParameter sqlParameter;
-                    object value = property.GetValue_PlatformSafe(parameters);
+                    object value = property.GetValue(parameters);
                     if (value == null)
                     {
                         sqlParameter = CreateNullableSqlParameter(property.Name, property.PropertyType);

@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Exceptions\JJ.Framework.Exceptions.csproj" />
+    <ProjectReference Include="..\IO\JJ.Framework.IO.csproj" />
+  </ItemGroup>
+
 </Project>
