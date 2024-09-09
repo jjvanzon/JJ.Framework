@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Web.Mvc;
 using JetBrains.Annotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JJ.Framework.Mvc
 {
@@ -10,7 +10,7 @@ namespace JJ.Framework.Mvc
         public static string GetControllerName(this Controller controller)
         {
             if (controller == null) throw new ArgumentNullException(nameof(controller));
-            string controllerName = (string)controller.ControllerContext.RequestContext.RouteData.Values["controller"];
+            string controllerName = (string)controller.ControllerContext.RouteData.Values["controller"];
             return controllerName;
         }
     }

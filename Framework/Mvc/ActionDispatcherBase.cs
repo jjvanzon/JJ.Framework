@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Web.Mvc;
 using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Exceptions.Comparative;
+using Microsoft.AspNetCore.Mvc;
 
 // ReSharper disable VirtualMemberCallInConstructor
 

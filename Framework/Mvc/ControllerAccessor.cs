@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
-using System.Web.Mvc;
 using JetBrains.Annotations;
 using JJ.Framework.Exceptions.Basic;
 using JJ.Framework.Reflection;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JJ.Framework.Mvc
 {

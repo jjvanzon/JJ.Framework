@@ -1,7 +1,6 @@
 ﻿using System.Globalization;
-using System.Threading;
-using System.Web;
 using JJ.Framework.Exceptions.Basic;
+using Microsoft.AspNetCore.Http;
 
 namespace JJ.Framework.Web
 {
@@ -10,7 +9,7 @@ namespace JJ.Framework.Web
         private const string CULTURE_NAME_COOKIE_KEY = "cultureName70bba865c3b8407ea405-1a3eb014253d";
         private const string ACCEPT_LANGUAGE_HEADER_KEY = "Accept-Language";
 
-        public static void SetThreadCultureByHttpHeaderOrCookie(HttpContextBase httpContext, string defaultCultureName = "en-US")
+        public static void SetThreadCultureByHttpHeaderOrCookie(HttpContext httpContext, string defaultCultureName = "en-US")
         {
             if (httpContext == null) throw new NullException(() => httpContext);
 
@@ -41,7 +40,7 @@ namespace JJ.Framework.Web
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
         }
 
-        public static void SetCultureCookie(HttpContextBase httpContext, string cultureName)
+        public static void SetCultureCookie(HttpContext httpContext, string cultureName)
             => CookieHelper.SetCookieValue(httpContext.Response, CULTURE_NAME_COOKIE_KEY, cultureName);
     }
 }

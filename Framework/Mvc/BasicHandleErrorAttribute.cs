@@ -2,10 +2,11 @@
 using System.Linq;
 using System.Security.Authentication;
 using System.Web;
-using System.Web.Mvc;
 using JJ.Framework.Collections;
 using JJ.Framework.Exceptions.Aggregates;
 using JJ.Framework.Web;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Http;
 
 namespace JJ.Framework.Mvc
 {

@@ -1,6 +1,5 @@
-﻿using System;
-using System.Web;
-using JJ.Framework.Exceptions.Basic;
+﻿using JJ.Framework.Exceptions.Basic;
+using Microsoft.AspNetCore.Http;
 
 namespace JJ.Framework.Web
 {
@@ -8,25 +7,24 @@ namespace JJ.Framework.Web
     {
         private const int DEFAULT_COOKIE_EXPIRATION_YEARS = 20;
 
-        public static string TryGetCookieValue(HttpRequestBase request, string cookieName)
+        public static string TryGetCookieValue(HttpRequest request, string cookieName)
         {
             if (request == null) throw new NullException(() => request);
 
-            HttpCookie cookie = request.Cookies[cookieName];
+            string cookie = request.Cookies[cookieName];
 
-            return cookie?.Value;
+            return cookie;
         }
 
-        public static void SetCookieValue(HttpResponseBase response, string cookieName, string value)
+        public static void SetCookieValue(HttpResponse response, string cookieName, string value)
         {
             if (response == null) throw new NullException(() => response);
 
-            response.Cookies.Remove(cookieName);
-            var cookie = new HttpCookie(cookieName, value)
-            {
-                Expires = DateTime.Now.AddYears(DEFAULT_COOKIE_EXPIRATION_YEARS)
-            };
-            response.Cookies.Add(cookie);
+            response.Cookies.Delete(cookieName);
+
+            response.Cookies.Append(
+                cookieName, value, 
+                new CookieOptions { Expires = DateTime.Now.AddYears(DEFAULT_COOKIE_EXPIRATION_YEARS) });
         }
     }
 }

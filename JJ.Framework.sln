@@ -29,41 +29,43 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Business", "Fr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Configuration", "Framework\Configuration\JJ.Framework.Configuration.csproj", "{F33471DC-D6AC-4795-8F0A-640379CFE8C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data", "Framework\Data\JJ.Framework.Data.csproj", "{4F7EF09D-50DC-4AFF-9F3E-18816C08CED4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Data", "Framework\Data\JJ.Framework.Data.csproj", "{4F7EF09D-50DC-4AFF-9F3E-18816C08CED4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.Memory", "Framework\Data.Memory\JJ.Framework.Data.Memory.csproj", "{626DE76E-9AE1-43F9-A995-BCF4E9BC5A50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Data.Memory", "Framework\Data.Memory\JJ.Framework.Data.Memory.csproj", "{626DE76E-9AE1-43F9-A995-BCF4E9BC5A50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.NHibernate", "Framework\Data.NHibernate\JJ.Framework.Data.NHibernate.csproj", "{DE3519DF-2A88-4C99-9EBC-0874E02F4E7C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Data.NHibernate", "Framework\Data.NHibernate\JJ.Framework.Data.NHibernate.csproj", "{DE3519DF-2A88-4C99-9EBC-0874E02F4E7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.SqlClient", "Framework\Data.SqlClient\JJ.Framework.Data.SqlClient.csproj", "{C1CAC424-9143-4522-AD7A-A10B2AEF9F9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Data.SqlClient", "Framework\Data.SqlClient\JJ.Framework.Data.SqlClient.csproj", "{C1CAC424-9143-4522-AD7A-A10B2AEF9F9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.Xml.Linq", "Framework\Data.Xml.Linq\JJ.Framework.Data.Xml.Linq.csproj", "{0D66514C-4996-4C32-97FF-5552D5F8D488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Data.Xml.Linq", "Framework\Data.Xml.Linq\JJ.Framework.Data.Xml.Linq.csproj", "{0D66514C-4996-4C32-97FF-5552D5F8D488}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Data.Xml", "Framework\Data.Xml\JJ.Framework.Data.Xml.csproj", "{3CD17561-AB06-47FC-88E1-342274F4979A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Data.Xml", "Framework\Data.Xml\JJ.Framework.Data.Xml.csproj", "{3CD17561-AB06-47FC-88E1-342274F4979A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Drawing", "Framework\Drawing\JJ.Framework.Drawing.csproj", "{6AB8DCD6-C841-414C-BB16-EE20B230AC86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Drawing", "Framework\Drawing\JJ.Framework.Drawing.csproj", "{6AB8DCD6-C841-414C-BB16-EE20B230AC86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.HtmlToXml", "Framework\HtmlToXml\JJ.Framework.HtmlToXml.csproj", "{94805ACF-8F59-427F-A858-8BF2B29CB81C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.HtmlToXml", "Framework\HtmlToXml\JJ.Framework.HtmlToXml.csproj", "{94805ACF-8F59-427F-A858-8BF2B29CB81C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.JavaScript", "Framework\JavaScript\JJ.Framework.JavaScript.csproj", "{93A498F1-4FAC-4076-9793-137F1D29DA8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.JavaScript", "Framework\JavaScript\JJ.Framework.JavaScript.csproj", "{93A498F1-4FAC-4076-9793-137F1D29DA8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Diagnostics", "Framework\Logging.Diagnostics\JJ.Framework.Logging.Diagnostics.csproj", "{5D4DF12B-DED5-40DC-9927-F9F7EE4AE5A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Logging.Diagnostics", "Framework\Logging.Diagnostics\JJ.Framework.Logging.Diagnostics.csproj", "{5D4DF12B-DED5-40DC-9927-F9F7EE4AE5A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging", "Framework\Logging\JJ.Framework.Logging.csproj", "{E4B9184A-C03C-485C-98C2-3E323BD26AC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Logging", "Framework\Logging\JJ.Framework.Logging.csproj", "{E4B9184A-C03C-485C-98C2-3E323BD26AC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Microsoft.VisualBasic", "Framework\Microsoft.VisualBasic\JJ.Framework.Microsoft.VisualBasic.csproj", "{C33960A3-22A4-4433-8491-6D379BF6C7C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Microsoft.VisualBasic", "Framework\Microsoft.VisualBasic\JJ.Framework.Microsoft.VisualBasic.csproj", "{C33960A3-22A4-4433-8491-6D379BF6C7C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mvc", "Framework\Mvc\JJ.Framework.Mvc.csproj", "{F1813F4E-F2B8-41BB-977A-1D54AC076D6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Mvc", "Framework\Mvc\JJ.Framework.Mvc.csproj", "{F1813F4E-F2B8-41BB-977A-1D54AC076D6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation", "Framework\Presentation\JJ.Framework.Presentation.csproj", "{07F11F2E-3224-4DCF-AB2A-B4B3C908CACF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Presentation", "Framework\Presentation\JJ.Framework.Presentation.csproj", "{07F11F2E-3224-4DCF-AB2A-B4B3C908CACF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Security", "Framework\Security\JJ.Framework.Security.csproj", "{0ADACDE4-1DA1-4F55-B634-90A3F42500CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Security", "Framework\Security\JJ.Framework.Security.csproj", "{0ADACDE4-1DA1-4F55-B634-90A3F42500CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap", "Framework\Soap\JJ.Framework.Soap.csproj", "{B82477F7-0BB6-4245-9BBC-DEAF08498431}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Soap", "Framework\Soap\JJ.Framework.Soap.csproj", "{B82477F7-0BB6-4245-9BBC-DEAF08498431}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation", "Framework\Validation\JJ.Framework.Validation.csproj", "{BCB83DBA-438D-4F50-B24A-E5058B51BA03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Validation", "Framework\Validation\JJ.Framework.Validation.csproj", "{BCB83DBA-438D-4F50-B24A-E5058B51BA03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.VectorGraphics", "Framework\VectorGraphics\JJ.Framework.VectorGraphics.csproj", "{2BBD3732-186C-4C34-81BC-4ED672D576B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.VectorGraphics", "Framework\VectorGraphics\JJ.Framework.VectorGraphics.csproj", "{2BBD3732-186C-4C34-81BC-4ED672D576B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.Web", "Framework\Web\JJ.Framework.Web.csproj", "{D7CDD0D5-967E-44E3-B7FF-B27E0BB8C190}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,6 +197,10 @@ Global
 		{2BBD3732-186C-4C34-81BC-4ED672D576B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BBD3732-186C-4C34-81BC-4ED672D576B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BBD3732-186C-4C34-81BC-4ED672D576B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7CDD0D5-967E-44E3-B7FF-B27E0BB8C190}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7CDD0D5-967E-44E3-B7FF-B27E0BB8C190}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7CDD0D5-967E-44E3-B7FF-B27E0BB8C190}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7CDD0D5-967E-44E3-B7FF-B27E0BB8C190}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
