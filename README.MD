@@ -10,6 +10,8 @@
 - [🍱 Modularization](#-modularization)
 - [💁 Platform Compatibility](#-platform-compatibility)
 - [⚙ Setting Up Dev Environment](#-setting-up-dev-environment)
+    - [💿 WiX Toolset (Windows Installer XML Toolset)](#-wix-toolset-windows-installer-xml-toolset)
+    - [📲 .NET 4.6.1](#-net-461)
     - [📦 JJ.Framework](#-jjframework-1)
     - [🌐 Internet Information Services (IIS)](#-internet-information-services-iis)
 - [🧓 Checking Out Old Commits](#-checking-out-old-commits)
@@ -67,6 +69,19 @@ That grip on dependency, was once a good plan for platform compatibility. `JJ.Fr
 
 ⚙ Setting Up Dev Environment
 --------------------------
+
+### 💿 WiX Toolset (Windows Installer XML Toolset)
+
+Install the following:
+
+- WiX Toolset: "wix311.exe" <https://github.com/wixtoolset/wix3/releases/tag/wix3112rtm>
+- WiX v3 - Visual Studio 2022 Extension: "Votive2022.vsix" <https://marketplace.visualstudio.com/items?itemName=WixToolset.WixToolsetVisualStudio2022Extension>
+
+### 📲 .NET 4.6.1
+
+The old .NET version with which these projects were built. Origally this choice guaranteed platform compatibility. Download here:
+
+<https://dotnet.microsoft.com/en-us/download/dotnet-framework/net461>
 
 ### 📦 JJ.Framework
 
