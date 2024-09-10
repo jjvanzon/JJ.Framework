@@ -1,34 +1,38 @@
-﻿JJ.Framework
-============
+﻿🔩 JJ.Framework
+================
 
-- [Introduction](#introduction)
-- [Stability](#stability)
-- [In-House](#in-house)
-- [History](#history)
-- [Modularization](#modularization)
-- [Platform Compatibility](#platform-compatibility)
-- [Setting Up Dev Environment](#setting-up-dev-environment)
-- [Checking Out Old Commits](#checking-out-old-commits)
+<h2>📔 Contents</h2>
+
+- [📢 Introduction](#-introduction)
+- [🏋️ Stability](#️-stability)
+- [🏡 In-House](#-in-house)
+- [🏛️ History](#️-history)
+- [🍱 Modularization](#-modularization)
+- [💁 Platform Compatibility](#-platform-compatibility)
+- [⚙ Setting Up Dev Environment](#-setting-up-dev-environment)
+    - [📦 JJ.Framework](#-jjframework-1)
+    - [🌐 Internet Information Services (IIS)](#-internet-information-services-iis)
+- [🧓 Checking Out Old Commits](#-checking-out-old-commits)
 
 
-Introduction
-------------
+📢 Introduction
+----------------
 
 `JJ.Framework` are extensions of the `.NET Framework`: the nuts, bolts and screws of software development: *reusable components*. Some of which might be expected to be there in `.NET`, but seem to be missing there.
 
 `JJ.Framework` contains reusable code, that was produced along with real-life applications.
 
 
-Stability
----------
+🏋️ Stability
+-------------
 
 No software is bug free, but extra effort was made, testing the `JJ.Framework` components, that were published to [NuGet](https://www.nuget.org/profiles/jjvanzon) which includes automated testing.
 
 The ones not on NuGet are available as a sneek peek in [JJs-Pre-Release-Package-Feed](https://dev.azure.com/jjvanzon/JJs-Software/_packaging?_a=feed&feed=JJs-Pre-Release-Package-Feed). But those may be used with caution, because they may not be tested that well. Those may need some more unit testing and could still be a bug or two in it.
 
 
-In-House
---------
+🏡 In-House
+------------
 
 `JJ.Framework` was made in the spirit of: small things: develop your own, instead of importing a huge framework.
 
@@ -41,36 +45,46 @@ If a bug was found in the development of an app, we could just correct the `JJ.F
 Of course, this 'in-house development' argument does not apply, when other people use it. But I think these extensions could be of use to others too.
 
 
-History
--------
+🏛️ History
+-----------
 
 Any reusable code independent of a particular business domain, was moved to this `JJ.Framework`, for reuse. The reusable code was gathered up between 2010 and 2020. It was a hobby project. But something similar to this framework, was also developed professionally in a team of 7 of which I was the technical lead at the time.
 
 
-Modularization
---------------
+🍱 Modularization
+------------------
 
 `JJ.Framework` tends to have a separate assembly for each part of the `.NET Framework` that it extends. Separation may be found between technical aspects. That may allow being specific, on which parts of `.NET` an application becomes dependent.
 
 `JJ.Framework` also likes decouple platform-specific implementation details and hide them behind generalized interfaces.
 
 
-Platform Compatibility
-----------------------
+💁 Platform Compatibility
+--------------------------
 
 That grip on dependency, was once a good plan for platform compatibility. `JJ.Framework` may currently be based on `.NET 4.6.1` trying to keep it compatible with Mono. Around 2015 `JJ.Framework` was tested to be reasonably compatible with Mono and by extension Android, iOS and Windows Phone. This was before newer technology like `.NET Standard` and more recently `.NET 5` and up, which might make keeping things platform-compatible a bit easier than before. For this reason, there may be plans to port `JJ.Framework` to `.NET 5` or higher once, but  this currently isn't in the plans.
 
 
-Setting Up Dev Environment
+⚙ Setting Up Dev Environment
 --------------------------
 
-- Some projects might desire setting up in Internet Information Services (IIS).
+### 📦 JJ.Framework
+
+- Pre-release versions of `JJ.Framework` components may be used.
+- Those are currently hosted in *Azure DevOps*:
+- https://pkgs.dev.azure.com/jjvanzon/1de16010-421a-41a5-90f1-86e9513f2c5b/_packaging/JJs-Pre-Release-Package-Feed/nuget/v3/index.json
+- Name: JJs-Pre-Release-Package-Feed
+- It might require configuring *NuGet* in your dev environment to connect to this additional package source.
+
+### 🌐 Internet Information Services (IIS)
+
+- Some projects need Internet Information Services (IIS) setup.
 - They might not load otherwise.
 - Trying to *reload* a web project:
 - The Output window in Visual Studio might show an expected web address.
-- It is suggested to install IIS.
-- Create a web site for each of the relevant projects.
-- Also the Windows hosts file might be changed. Each site added to IIS might need entries in the file `C:\Windows\System32\drivers\etc\hosts`.
+- Install IIS.
+- Create a web site for each of the relevant projects below.
+- Also change the Windows hosts file. Each site added to IIS might needs in the file `C:\Windows\System32\drivers\etc\hosts`.
 - Here follow suggestions for each of the sites to create and their settings.
 - (Physical path root folder `C:\Repositories\JJ.Framework` may vary.)
 
@@ -132,8 +146,8 @@ Setting Up Dev Environment
         - `127.0.0.1  demo-ret-withviewmapping-urlparameter.jjvanzon.io`
         - `::1        demo-ret-withviewmapping-urlparameter.jjvanzon.io`
 
-Checking Out Old Commits
-------------------------
+🧓 Checking Out Old Commits
+----------------------------
 
 `JJ.Framework` was once part of a larger code base. It was extracted to become a new Git repository with history in tact. Some quirks when checking out older history items, may have to do with that.
 
