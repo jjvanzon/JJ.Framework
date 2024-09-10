@@ -95,7 +95,7 @@ The old .NET version with which these projects were built. Origally this choice 
 
 - You can enable `IIS` with "Turn Windows features on or off" (search in the `Start` menu).
 - Some child items besides the defaults may be needed.
-- These options have been known to work on `Windows 11`:
+- The following options have been known to work on `Windows 11`:
   <img src="iis-components.png" width="250" />
 - Some projects need `Internet Information Services (IIS)`.
 - They might not load otherwise.
