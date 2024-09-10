@@ -98,11 +98,10 @@ The old .NET version with which these projects were built. Origally this choice 
   <img src="iis-components.png" width="250" />
 - Some projects need `Internet Information Services (IIS)`.
 - They might not load otherwise.
-- Trying to *reload* a web project:
-- The Output window in `Visual Studio` might show an expected web address.
-- Install `IIS`.
 - Create a web site for each of the relevant projects below.
 - Also change the `Windows hosts` file. Each site added to `IIS` might needs in the file `C:\Windows\System32\drivers\etc\hosts`.
+- Trying to *reload* a web project:
+- The Output window in `Visual Studio` might show an expected web address.
 - Here follow suggestions for each of the sites to create and their settings.
 - (Physical path root folder `C:\Repositories\JJ.Framework` may vary.)
 
