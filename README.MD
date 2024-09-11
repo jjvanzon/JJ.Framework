@@ -166,7 +166,7 @@ The old .NET version with which these projects were built. Origally this choice 
 
 ### 💽 SQL Server
 
-SQL Server *is* used by some of the automated tests, but they fail gracefully with result 'inconclusive'. Anyway, the database files may or may not even be included in this code base either. So do what you will with that.
+SQL Server *is* used by some of the automated tests, but they fail gracefully with an inconclusive result. Anyway, the database files may or may not even be included in this code base either.
 
 
 🧓 Checking Out Old Commits
