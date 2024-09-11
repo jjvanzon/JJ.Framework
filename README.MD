@@ -195,6 +195,6 @@ The following may only be relevant when getting older commits from history (from
     - Perhaps correct the `csproj` with the lower `.NET` version (e.g. `3.5`) to use the higher `.NET` version instead (e.g. `4.5`).
 - *MVC Framework*
     - Mismatches `4.0.0.0` vs `4.0.0.1`.
-    - Perhaps correct it so the projects use the same version.
+    - Perhaps correct it so the projects use the same version (using NuGet?).
 - *Entity Framework*
     - It seems difficult for a newer *Visual Studio* to find (the older) *Entity Framework 5*. Messing around until you got some working references to Entity Framework might be the only advice at hand here.
