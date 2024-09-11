@@ -14,6 +14,7 @@
     - [📲 .NET 4.6.1](#-net-461)
     - [📦 JJ.Framework](#-jjframework-1)
     - [🌐 Internet Information Services (IIS)](#-internet-information-services-iis)
+    - [💽 SQL Server](#-sql-server)
 - [🧓 Checking Out Old Commits](#-checking-out-old-commits)
 
 
@@ -162,6 +163,11 @@ The old .NET version with which these projects were built. Origally this choice 
     - hosts file entries:
         - `127.0.0.1  demo-ret-withviewmapping-urlparameter.jjvanzon.io`
         - `::1        demo-ret-withviewmapping-urlparameter.jjvanzon.io`
+
+### 💽 SQL Server
+
+SQL Server *is* used by some of the automated tests, but they fail gracefully with result 'inconclusive'. Anyway, the database files may or may not even be included in this code base either. So do what you will with that.
+
 
 🧓 Checking Out Old Commits
 ----------------------------
