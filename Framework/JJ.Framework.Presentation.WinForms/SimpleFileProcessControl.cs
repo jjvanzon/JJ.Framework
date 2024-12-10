@@ -1,4 +1,5 @@
-﻿using System;
+﻿// ReSharper disable UnusedParameter.Local
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -53,7 +54,7 @@ namespace JJ.Framework.Presentation.WinForms
         }
 
         // Processing
-
+        
         private void RunProcess(string filePath)
         {
             IsRunning = true;

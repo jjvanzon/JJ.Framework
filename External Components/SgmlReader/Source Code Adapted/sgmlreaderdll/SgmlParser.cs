@@ -1,3 +1,4 @@
+// ReSharper disable UnusedParameter.Local
 using System;
 using System.IO;
 using System.Collections;
@@ -1767,7 +1768,7 @@ namespace Sgml {
             }
             return (string[])names.ToArray(typeof(String));
         }
-
+        
         void ParseNameList(ArrayList names, bool nmtokens)
         {
             char ch = this.current.Lastchar;

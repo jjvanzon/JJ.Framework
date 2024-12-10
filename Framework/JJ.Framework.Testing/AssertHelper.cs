@@ -1,4 +1,5 @@
-﻿using JJ.Framework.Reflection;
+﻿// ReSharper disable UnusedParameter.Local
+using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -225,7 +226,7 @@ namespace JJ.Framework.Testing
         }
 
         // Messages
-
+        
         private static string GetNotEqualFailedMessage<T>(T a, T b, string message)
         {
             return
