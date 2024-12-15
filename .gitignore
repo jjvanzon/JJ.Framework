@@ -8,3 +8,4 @@ packages
 TestResults
 *.cache
 *.ncrunchproject
+nCrunchTemp*.*
