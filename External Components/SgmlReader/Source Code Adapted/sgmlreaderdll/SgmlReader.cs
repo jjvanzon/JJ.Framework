@@ -1,3 +1,5 @@
+// ReSharper disable UnusedVariable
+
 /*
 * 
 * An XmlReader implementation for loading SGML (including HTML) converting it

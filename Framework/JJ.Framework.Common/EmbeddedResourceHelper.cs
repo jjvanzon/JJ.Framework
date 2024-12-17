@@ -1,4 +1,5 @@
-﻿using JJ.Framework.PlatformCompatibility;
+﻿// ReSharper disable UnusedVariable
+using JJ.Framework.PlatformCompatibility;
 using System;
 using System.Collections.Generic;
 using System.IO;

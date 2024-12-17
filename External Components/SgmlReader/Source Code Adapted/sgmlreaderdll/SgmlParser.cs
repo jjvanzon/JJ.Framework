@@ -1,4 +1,6 @@
 // ReSharper disable UnusedParameter.Local
+// ReSharper disable UnusedParameter.Global
+// ReSharper disable UnusedVariable
 using System;
 using System.IO;
 using System.Collections;
