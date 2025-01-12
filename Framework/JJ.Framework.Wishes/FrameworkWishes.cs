@@ -8,19 +8,19 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using JJ.Framework.Wishes.JJ_Framework_Collection_Wishes;
-using JJ.Framework.Wishes.JJ_Framework_Mathematics_Copied;
-using JJ.Framework.Wishes.JJ_Framework_Text_Copied;
-using JJ.Framework.Wishes.JJ_Framework_Text_Wishes;
+using JJ.Framework.Wishes.Collections;
+using JJ.Framework.Wishes.Mathematics_Copied;
+using JJ.Framework.Wishes.Text_Copied;
+using JJ.Framework.Wishes.Text;
 using JJ.Framework.Common;
 using JJ.Framework.Configuration;
 using static System.Environment;
-using static JJ.Framework.Wishes.JJ_Framework_Common_Wishes.FilledInWishes;
-using static JJ.Framework.Wishes.JJ_Framework_Reflection_Wishes.ReflectionWishes;
+using static JJ.Framework.Wishes.Common.FilledInWishes;
+using static JJ.Framework.Wishes.Reflection.ReflectionWishes;
 
 namespace JJ.Framework.Wishes
 {
-    namespace JJ_Framework_Collection_Wishes
+    namespace Collections
     {
         public static class CollectionExtensionWishes
         { 
@@ -86,7 +86,7 @@ namespace JJ.Framework.Wishes
         }
     }
 
-    namespace JJ_Framework_Collections_Copied
+    namespace Collections_Copied
     {
         public static class CollectionsExtensions_Copied
         {
@@ -108,7 +108,7 @@ namespace JJ.Framework.Wishes
         }
     }
     
-    namespace JJ_Framework_Common_Wishes
+    namespace Common
     {
         public static class EnvironmentHelperWishes
         {
@@ -151,7 +151,7 @@ namespace JJ.Framework.Wishes
     }
     
     /// <inheritdoc cref="_trygetsection"/>
-    namespace JJ_Framework_Configuration_Wishes
+    namespace Configuration
     {
         public static class ConfigurationManagerWishes
         {
@@ -185,7 +185,7 @@ namespace JJ.Framework.Wishes
         }
     }
     
-    namespace JJ_Framework_IO_Wishes
+    namespace IO
     {
         public static class FileWishes
         {
@@ -383,7 +383,7 @@ namespace JJ.Framework.Wishes
         }
     }
     
-    namespace JJ_Framework_Mathematics_Wishes
+    namespace Mathematics
     {
         public static class RandomizerWishes
         {
@@ -392,7 +392,7 @@ namespace JJ.Framework.Wishes
         }
     }
     
-    namespace JJ_Framework_Mathematics_Copied
+    namespace Mathematics_Copied
     {
         public static class Randomizer_Copied
         {
@@ -490,7 +490,7 @@ namespace JJ.Framework.Wishes
          }
     }
     
-    namespace JJ_Framework_Reflection_Copied
+    namespace Reflection_Copied
     {
         public static class ReflectionHelper_Copied
         {
@@ -506,7 +506,7 @@ namespace JJ.Framework.Wishes
         }
     }
     
-    namespace JJ_Framework_Reflection_Wishes
+    namespace Reflection
     {
         public static class ReflectionWishes
         {
@@ -515,7 +515,7 @@ namespace JJ.Framework.Wishes
         }
     }
     
-    namespace JJ_Framework_Testing_Wishes
+    namespace Testing
     {
         public static class TestWishes
         {
@@ -540,7 +540,7 @@ namespace JJ.Framework.Wishes
         }
     }
         
-    namespace JJ_Framework_Text_Wishes
+    namespace Text
     {
         public static class StringExtensionWishes
         { 
@@ -739,7 +739,7 @@ namespace JJ.Framework.Wishes
         }
     }
     
-    namespace JJ_Framework_Text_Copied
+    namespace Text_Copied
     {
         public class StringBuilderWithIndentation_AdaptedFromFramework
         {
