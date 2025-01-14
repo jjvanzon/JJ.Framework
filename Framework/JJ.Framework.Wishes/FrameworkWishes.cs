@@ -128,8 +128,12 @@ namespace JJ.Framework.Wishes
             public static bool FilledIn<T>(this T value)                   => FilledInWishes.FilledIn(value);
             public static bool FilledIn<T>(this T? value) where T : struct => FilledInWishes.FilledIn(value);
 
-            public static bool Is(this string value, string comparison) => FilledInWishes.Is(value, comparison);
+            public static bool Is(this string value, string comparison)                  => FilledInWishes.Is(value, comparison);
             public static bool Is(this string value, string comparison, bool ignoreCase) => FilledInWishes.Is(value, comparison, ignoreCase);
+        
+            public static bool In<T>(this T      value, params T     [] comparisons                 ) => FilledInWishes.In(value, comparisons);
+            public static bool In   (this string value, params string[] comparisons                 ) => FilledInWishes.In(value, comparisons);
+            public static bool In   (this string value,        string[] comparisons, bool ignoreCase) => FilledInWishes.In(value, comparisons, ignoreCase);
         }
         
         public static class FilledInWishes
@@ -150,6 +154,10 @@ namespace JJ.Framework.Wishes
             
             public static bool Is(string value, string comparison) => Is(value, comparison, ignoreCase: true);
             public static bool Is(string value, string comparison, bool ignoreCase) => string.Equals(value, comparison, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
+            
+            public static bool In<T>(T      value, params T     [] comparisons                 ) => comparisons.Contains(value                  );
+            public static bool In   (string value, params string[] comparisons                 ) => comparisons.Contains(value, ignoreCase: true);
+            public static bool In   (string value,        string[] comparisons, bool ignoreCase) => comparisons.Contains(value, ignoreCase      );
         }
     }
     
