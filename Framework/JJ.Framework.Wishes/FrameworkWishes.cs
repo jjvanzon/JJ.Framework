@@ -18,7 +18,6 @@ using static System.Environment;
 using static JJ.Framework.Wishes.Common.FilledInWishes;
 using static JJ.Framework.Wishes.Reflection.ReflectionWishes;
 using System.Linq.Expressions;
-using JetBrains.Annotations;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Wishes
@@ -522,7 +521,6 @@ namespace JJ.Framework.Wishes
         /// To access internal classes, maybe use a .NET Type string, GetType / or CreateInstance.
         /// A limitation is that it might not invoke private or internal constructors (yet).
         /// </summary>
-        [PublicAPI]
         public partial class Accessor_Copied_Adapted
         {
             //private static readonly ReflectionCache _reflectionCache = new ReflectionCache();
