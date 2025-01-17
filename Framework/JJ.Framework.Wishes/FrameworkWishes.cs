@@ -155,6 +155,14 @@ namespace JJ.Framework.Wishes
             public static bool In<T>(this T      value, params T     [] comparisons                 ) => FilledInWishes.In(value, comparisons);
             public static bool In   (this string value, params string[] comparisons                 ) => FilledInWishes.In(value, comparisons);
             public static bool In   (this string value,        string[] comparisons, bool ignoreCase) => FilledInWishes.In(value, comparisons, ignoreCase);
+
+            public static T Coalesce<T>(T value, T defaultValue) => FilledInWishes.Coalesce(value, defaultValue);
+            public static T Coalesce<T>(T value, T defaultValue, T falback) => FilledInWishes.Coalesce(value, defaultValue, falback);
+            public static T Coalesce<T>(T? value, T defaultValue) where T : struct => FilledInWishes.Coalesce(value, defaultValue);
+            public static T Coalesce<T>(T? value, T? defaultValue, T fallback) where T : struct => FilledInWishes.Coalesce(value, defaultValue, fallback);
+            public static string Coalesce(string value, string defaultValue) => FilledInWishes.Coalesce(value, defaultValue);
+            public static string Coalesce(string value, string defaultValue, bool trimSpace) => FilledInWishes.Coalesce(value, defaultValue, trimSpace);
+            public static string Coalesce(string value, string defaultValue, string fallback, bool trimSpace) => FilledInWishes.Coalesce(value, defaultValue, fallback, trimSpace);
         }
         
         public static class FilledInWishes
@@ -179,6 +187,15 @@ namespace JJ.Framework.Wishes
             public static bool In<T>(T      value, params T     [] comparisons                 ) => comparisons.Contains(value                  );
             public static bool In   (string value, params string[] comparisons                 ) => comparisons.Contains(value, ignoreCase: true);
             public static bool In   (string value,        string[] comparisons, bool ignoreCase) => comparisons.Contains(value, ignoreCase      );
+
+            public static T Coalesce<T>(T value, T defaultValue) => Has(value) ? value : defaultValue;
+            public static T Coalesce<T>(T value, T defaultValue, T fallback) => Coalesce(value, Coalesce(defaultValue, fallback));
+            public static T Coalesce<T>(T? value, T defaultValue) where T : struct => Has(value) ? value.Value : defaultValue;
+            public static T Coalesce<T>(T? value, T? defaultValue, T fallback) where T : struct => Coalesce(value, Coalesce(defaultValue, fallback));
+            public static string Coalesce(string value, string defaultValue) => Has(value) ? value : defaultValue;
+            public static string Coalesce(string value, string defaultValue, string fallback) => Coalesce(value, Coalesce(defaultValue, fallback));
+            public static string Coalesce(string value, string defaultValue, bool trimSpace) => Has(value, trimSpace) ? value : defaultValue;
+            public static string Coalesce(string value, string defaultValue, string fallback, bool trimSpace) =>  Coalesce(value, Coalesce(defaultValue, fallback, trimSpace), trimSpace);
         }
     }
     
