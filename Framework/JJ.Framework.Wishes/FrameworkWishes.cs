@@ -107,6 +107,28 @@ namespace JJ.Framework.Wishes
                     dest.Add(item);
                 }
             }
+
+            /// <summary>
+            /// Distinct that takes a key selector that determines what makes an item unique, e.g. myItems.Distinct(x => x.LastName);
+            /// For multi-part as keys, use `myItems.Distinct(x => new { x.FirstName, x.LastName });`
+            /// </summary>
+            public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey> keySelector)
+            {
+                if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+                if (keySelector == null) throw new ArgumentNullException(nameof(keySelector));
+
+                var hashSet = new HashSet<TKey>();
+
+                foreach (TItem item in enumerable)
+                {
+                    TKey key = keySelector(item);
+
+                    if (hashSet.Add(key))
+                    {
+                        yield return item;
+                    }
+                }
+            }
         }
     }
     
