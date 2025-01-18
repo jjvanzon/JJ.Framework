@@ -20,6 +20,7 @@ using static JJ.Framework.Wishes.Reflection.ReflectionWishes;
 using System.Linq.Expressions;
 using JJ.Framework.Reflection;
 using JJ.Framework.Wishes.Collections_Copied;
+using JJ.Framework.Wishes.Logging_Copied;
 
 namespace JJ.Framework.Wishes
 {
@@ -945,10 +946,6 @@ namespace JJ.Framework.Wishes
                 return parameterTypes;
             }
         }
-            
-            
-        
-        
     }
     
     namespace Reflection
@@ -982,6 +979,39 @@ namespace JJ.Framework.Wishes
                 
                 return isInCategory;
             }
+        }
+
+        public static class AssertHelper_Copied
+        {
+            public static void ThrowsException_OrInnerException(Action statement, Type expectedExceptionType, string expectedMessage)
+            {
+                if (statement == null) throw new NullException(() => statement);
+                if (expectedExceptionType == null) throw new NullException(() => expectedExceptionType);
+
+                string actualDescriptor = "";
+
+                try
+                {
+                    statement();
+                }
+                catch (Exception ex)
+                {
+                    bool isMatch = ex.HasExceptionOrInnerExceptionsOfType(expectedExceptionType, expectedMessage);
+                    if (!isMatch)
+                    {
+                        actualDescriptor = $"Actual exception: '{ExceptionHelper_Copied.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false)}'";
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                throw new Exception($"Exception or inner exception was expected of type '{expectedExceptionType}' with message '{expectedMessage}'. {actualDescriptor}");
+            }
+
+            public static void ThrowsException_OrInnerException<T>(Action statement, string expectedMessage)
+                => ThrowsException_OrInnerException(statement, typeof(T), expectedMessage);
         }
     }
         
