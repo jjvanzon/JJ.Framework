@@ -967,8 +967,42 @@ namespace JJ.Framework.Wishes
             }
         }
 
+        public static class AssertWishes
+        {
+            public static void AreEqual(int expected, Expression<Func<int>> actualExpression, int delta)
+            {
+                AssertHelper_Copied.ExpectedActualCheck_Copied(actual => Math.Abs(expected - actual) <= delta, nameof(AreEqual), expected, actualExpression);
+            }
+
+            public static void AreEqual(double expected, Expression<Func<double>> actualExpression, double delta)
+            {
+                AssertHelper_Copied.ExpectedActualCheck_Copied(actual => Math.Abs(expected - actual) <= delta, nameof(AreEqual), expected, actualExpression);
+            }
+        }
+        
         public static class AssertHelper_Copied
         {
+            internal static void ExpectedActualCheck_Copied<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression, string name = null)
+            {
+                T actual = ExpressionHelper.GetValue(actualExpression);
+
+                if (!condition(actual))
+                {
+                    if (string.IsNullOrWhiteSpace(name))
+                    {
+                        name = ExpressionHelper.GetText(actualExpression);
+                    }
+
+                    string message = TestHelper_Copied.FormatTestedPropertyMessage(name);
+                    string fullMessage = GetExpectedActualMessage_Copied(methodName, expected, actual, message);
+                    throw new Exception(fullMessage);
+                }
+            }
+            
+            private static string GetExpectedActualMessage_Copied<T>(string methodName, T expected, T actual, string message)
+                => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>, Actual <{(actual != null ? actual.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";
+
+            
             public static void ThrowsException_OrInnerException(Action statement, Type expectedExceptionType, string expectedMessage)
             {
                 if (statement == null) throw new NullException(() => statement);
@@ -998,6 +1032,14 @@ namespace JJ.Framework.Wishes
 
             public static void ThrowsException_OrInnerException<T>(Action statement, string expectedMessage)
                 => ThrowsException_OrInnerException(statement, typeof(T), expectedMessage);
+        }
+        
+        internal static class TestHelper_Copied
+        {
+            private const string TESTED_PROPERTY_MESSAGE = "Tested member: '{0}'.";
+
+            public static string FormatTestedPropertyMessage(string propertyDescription) 
+                => string.Format(TESTED_PROPERTY_MESSAGE, propertyDescription);
         }
     }
         
