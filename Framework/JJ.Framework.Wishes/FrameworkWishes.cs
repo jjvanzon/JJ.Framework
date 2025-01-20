@@ -8,19 +8,16 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
-using JJ.Framework.Wishes.Collections;
-using JJ.Framework.Wishes.Mathematics_Copied;
-using JJ.Framework.Wishes.Text_Copied;
-using JJ.Framework.Wishes.Text;
+using System.Linq.Expressions;
 using JJ.Framework.Common;
 using JJ.Framework.Configuration;
+using JJ.Framework.Reflection;
+using JJ.Framework.Wishes.Collections;
+using JJ.Framework.Wishes.Logging;
+using JJ.Framework.Wishes.Text;
 using static System.Environment;
 using static JJ.Framework.Wishes.Common.FilledInWishes;
 using static JJ.Framework.Wishes.Reflection.ReflectionWishes;
-using System.Linq.Expressions;
-using JJ.Framework.Reflection;
-using JJ.Framework.Wishes.Collections_Copied;
-using JJ.Framework.Wishes.Logging_Copied;
 
 namespace JJ.Framework.Wishes
 {
@@ -86,13 +83,9 @@ namespace JJ.Framework.Wishes
                     action(x, i++);
                 }
             }
-
         }
-    }
 
-    namespace Collections_Copied
-    {
-        public static class CollectionsExtensions_Copied
+        public static class CollectionExtensions_Copied
         {
             /// <inheritdoc cref="docs._frameworkwishproduct" />
             public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)
@@ -282,7 +275,6 @@ namespace JJ.Framework.Wishes
     {
         public static class FileWishes
         {
-            
             private const int DEFAULT_MAX_EXTENSION_LENGTH = 8;
             
             /// <summary>
@@ -476,7 +468,7 @@ namespace JJ.Framework.Wishes
         }
     }
     
-    namespace Logging_Copied
+    namespace Logging
     {
         public static class ExceptionHelper_Copied
         {
@@ -529,10 +521,7 @@ namespace JJ.Framework.Wishes
             public static T GetRandomItem<T>(params T[] collection) 
                 => Randomizer_Copied.GetRandomItem(collection);
         }
-    }
-    
-    namespace Mathematics_Copied
-    {
+
         public static class Randomizer_Copied
         {
             private static readonly Random _random = CreateRandom();
@@ -629,8 +618,14 @@ namespace JJ.Framework.Wishes
          }
     }
     
-    namespace Reflection_Copied
+    namespace Reflection
     {
+        public static class ReflectionWishes
+        {
+            public static string GetAssemblyName<TType>() 
+                => typeof(TType).Assembly.GetName().Name;
+        }
+
         public static class ReflectionHelper_Copied
         {
             public static bool IsProperty(this MethodBase method)
@@ -650,7 +645,7 @@ namespace JJ.Framework.Wishes
         /// To access internal classes, maybe use a .NET Type string, GetType / or CreateInstance.
         /// A limitation is that it might not invoke private or internal constructors (yet).
         /// </summary>
-        public partial class Accessor_Copied_Adapted
+        public partial class Accessor_AdaptedFromFramework
         {
             //private static readonly ReflectionCache _reflectionCache = new ReflectionCache();
 
@@ -658,7 +653,7 @@ namespace JJ.Framework.Wishes
             private readonly Type _objectType;
 
             /// <summary> Use this constructor to access instance members of internal classes. </summary>
-            public Accessor_Copied_Adapted(string typeName, params object[] args)
+            public Accessor_AdaptedFromFramework(string typeName, params object[] args)
             {
                 _objectType = Type.GetType(typeName);
 
@@ -671,17 +666,17 @@ namespace JJ.Framework.Wishes
             }
 
             /// <summary> Use this constructor to access instance members. </summary>
-            public Accessor_Copied_Adapted(object obj)
+            public Accessor_AdaptedFromFramework(object obj)
             {
                 _object = obj ?? throw new ArgumentNullException(nameof(obj));
                 _objectType = obj.GetType();
             }
 
             /// <summary> Use this constructor to access static members. </summary>
-            public Accessor_Copied_Adapted(Type objectType) => _objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
+            public Accessor_AdaptedFromFramework(Type objectType) => _objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
 
             /// <summary> Use this constructor to access members of the base class. </summary>
-            public Accessor_Copied_Adapted(object obj, Type objectType)
+            public Accessor_AdaptedFromFramework(object obj, Type objectType)
             {
                 _object = obj ?? throw new ArgumentNullException(nameof(obj));
                 _objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
@@ -948,15 +943,6 @@ namespace JJ.Framework.Wishes
         }
     }
     
-    namespace Reflection
-    {
-        public static class ReflectionWishes
-        {
-            public static string GetAssemblyName<TType>() 
-                => typeof(TType).Assembly.GetName().Name;
-        }
-    }
-    
     namespace Testing
     {
         public static class TestWishes
@@ -1212,10 +1198,7 @@ namespace JJ.Framework.Wishes
                 return false;
             }
         }
-    }
-    
-    namespace Text_Copied
-    {
+
         public class StringBuilderWithIndentation_AdaptedFromFramework
         {
             public StringBuilderWithIndentation_AdaptedFromFramework()
