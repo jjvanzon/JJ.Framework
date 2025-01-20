@@ -37,8 +37,29 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FrameworkWishes.cs" />
+    <Compile Include="Reflection\Accessor_AdaptedFromFramework.cs" />
+    <Compile Include="Testing\AssertHelper_Copied.cs" />
+    <Compile Include="Testing\AssertWishes.cs" />
+    <Compile Include="Collections\CollectionExtensions_Recursive_Ancestors_Copied.cs" />
+    <Compile Include="Collections\CollectionExtensionWishes.cs" />
+    <Compile Include="Configuration\ConfigurationManagerWishes.cs" />
+    <Compile Include="Common\EnvironmentHelperWishes.cs" />
+    <Compile Include="Logging\ExceptionHelper_Copied.cs" />
+    <Compile Include="IO\FileWishes.cs" />
+    <Compile Include="Common\FilledInExtensionWishes.cs" />
+    <Compile Include="Common\FilledInWishes.cs" />
+    <Compile Include="Collections\CollectionExtensions_Copied.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Mathematics\RandomizerWishes.cs" />
+    <Compile Include="Mathematics\Randomizer_Copied.cs" />
+    <Compile Include="Reflection\ReflectionHelper_Copied.cs" />
+    <Compile Include="Reflection\ReflectionWishes.cs" />
+    <Compile Include="Text\StringBuilderWithIndentation_AdaptedFromFramework.cs" />
+    <Compile Include="Text\StringExtensions_Copied.cs" />
+    <Compile Include="Text\StringExtensionWishes.cs" />
+    <Compile Include="Text\StringWishes.cs" />
+    <Compile Include="Testing\TestHelper_Copied.cs" />
+    <Compile Include="Testing\TestWishes.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
