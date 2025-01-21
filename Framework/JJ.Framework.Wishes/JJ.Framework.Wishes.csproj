@@ -54,6 +54,7 @@
     <Compile Include="Mathematics\Randomizer_Copied.cs" />
     <Compile Include="Reflection\ReflectionHelper_Copied.cs" />
     <Compile Include="Reflection\ReflectionWishes.cs" />
+    <Compile Include="Testing\DeltaDirectionEnum.cs" />
     <Compile Include="Text\StringBuilderWithIndentation_AdaptedFromFramework.cs" />
     <Compile Include="Text\StringExtensions_Copied.cs" />
     <Compile Include="Text\StringExtensionWishes.cs" />

@@ -9,3 +9,4 @@ TestResults
 *.cache
 *.ncrunchproject
 nCrunchTemp*.*
+.NCrunch*
