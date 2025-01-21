@@ -74,6 +74,25 @@ namespace JJ.Framework.Wishes.Tests
             AssertDeltaDirection(Both, 10.1,  0.5, new[] { 9.6, 10.1, 10.6 }, new[] { 9.1, 11.1 });
             AssertDeltaDirection(Both, 10.1,  1.5, new[] { 9.1, 9.6, 10.1, 10.6, 11.1 }, Empty<double>());
         }
+        
+        [TestMethod]
+        public void AreEqual_DeltaDirection_WithNegatives()
+        {
+            // Negative expected
+            AssertDeltaDirection(Both, -10, 2, new[] { -12, -11, -10, -9, -8 }, new[] { -13, -7 });
+            AssertDeltaDirection(Down, -10, 2, new[] { -12, -11, -10 }, new[] { -9, -8 });
+            AssertDeltaDirection(Up  , -10, 2, new[] { -10, -9, -8 }, new[] { -12, -11 });
+
+            // Crossing zero
+            AssertDeltaDirection(Both,  0, 2, new[] { -2, -1, 0, 1, 2 }, new[] { -3, 3 });
+            AssertDeltaDirection(Down, -1, 2, new[] { -3, -2, -1 }, new[] { 0, 1 });
+            AssertDeltaDirection(Up  ,  1, 2, new[] { 1, 2, 3 }, new[] { -1, 0 });
+
+            // Negative doubles precision
+            AssertDeltaDirection(Both, -10.5, 1.5, new[] { -12.0, -11.5, -10.5, -10.0, -9.5, -9.0 }, new[] { -12.5, -8.5 });
+            AssertDeltaDirection(Down, -10.5, 1.5, new[] { -12.0, -11.5, -10.5 }, new[] { -12.5, -10.0, -9.5 });
+            AssertDeltaDirection(Up  , -10.5, 1.5, new[] { -10.5, -10.0, -9.5, -9.0 }, new[] { -12.0, -11.5, -11.0, -8.5, -8.0 });
+        }
 
         // Edge-Cases
         
