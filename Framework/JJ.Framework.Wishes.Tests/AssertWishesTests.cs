@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using JJ.Framework.Common;
 using JJ.Framework.Wishes.Testing;
 using static System.Array;
 using static JJ.Framework.Testing.AssertHelper;
@@ -10,218 +11,74 @@ namespace JJ.Framework.Wishes.Tests
     [TestClass]
     public class AssertWishesTests
     {
-        // DeltaDirection with Ints
+        // With Ints
 
         [TestMethod]
-        public void Test_AssertWishes_AreEqual_OfInt_DeltaDirection_Down()
+        public void AreEqual_WithInts_DeltaDirection_Down()
         {
-                                  AreEqual(10, () =>  8, delta: -2, Down);
-                                  AreEqual(10, () =>  9, delta: -2, Down); 
-                                  AreEqual(10, () => 10, delta: -2, Down); 
-            ThrowsException(() => AreEqual(10, () => 11, delta: -2, Down));
-            ThrowsException(() => AreEqual(10, () => 12, delta: -2, Down));
-        
-            ThrowsException(() => AreEqual(10, () =>  8, delta: -1, Down));
-                                  AreEqual(10, () =>  9, delta: -1, Down); 
-                                  AreEqual(10, () => 10, delta: -1, Down); 
-            ThrowsException(() => AreEqual(10, () => 11, delta: -1, Down));
-            ThrowsException(() => AreEqual(10, () => 12, delta: -1, Down));
-        
-            ThrowsException(() => AreEqual(10, () =>  8, delta: 0, Down));
-            ThrowsException(() => AreEqual(10, () =>  9, delta: 0, Down)); 
-                                  AreEqual(10, () => 10, delta: 0, Down); 
-            ThrowsException(() => AreEqual(10, () => 11, delta: 0, Down));
-            ThrowsException(() => AreEqual(10, () => 12, delta: 0, Down));
-        
-            ThrowsException(() => AreEqual(10, () =>  8, delta: 1, Down));
-                                  AreEqual(10, () =>  9, delta: 1, Down); 
-                                  AreEqual(10, () => 10, delta: 1, Down); 
-            ThrowsException(() => AreEqual(10, () => 11, delta: 1, Down));
-            ThrowsException(() => AreEqual(10, () => 12, delta: 1, Down));
-        
-                                  AreEqual(10, () =>  8, delta: 2, Down);
-                                  AreEqual(10, () =>  9, delta: 2, Down); 
-                                  AreEqual(10, () => 10, delta: 2, Down); 
-            ThrowsException(() => AreEqual(10, () => 11, delta: 2, Down));
-            ThrowsException(() => AreEqual(10, () => 12, delta: 2, Down));
+            AssertDeltaDirection(Down, 10, -2, new[] { 8, 9, 10 }, new[] { 11, 12 });
+            AssertDeltaDirection(Down, 10, -1, new[] { 9, 10 }, new[] { 8, 11 });
+            AssertDeltaDirection(Down, 10,  0, new[] { 10 }, new[] { 9, 11 });
+            AssertDeltaDirection(Down, 10,  1, new[] { 9, 10 }, new[] { 8, 11 });
+            AssertDeltaDirection(Down, 10,  2, new[] { 8, 9, 10 }, new[] { 11, 12 });
         }
 
         [TestMethod]
-        public void Test_AssertWishes_AreEqual_OfInt_DeltaDirection_Up()
+        public void AreEqual_WithInts_DeltaDirection_Up()
         {
-            ThrowsException(() => AreEqual(10, () =>  8, delta: -2, Up));
-            ThrowsException(() => AreEqual(10, () =>  9, delta: -2, Up)); 
-            ThrowsException(() => AreEqual(10, () => 10, delta: -2, Up)); 
-            ThrowsException(() => AreEqual(10, () => 11, delta: -2, Up));
-            ThrowsException(() => AreEqual(10, () => 12, delta: -2, Up));
-
-            ThrowsException(() => AreEqual(10, () =>  8, delta: -1, Up));
-            ThrowsException(() => AreEqual(10, () =>  9, delta: -1, Up)); 
-            ThrowsException(() => AreEqual(10, () => 10, delta: -1, Up)); 
-            ThrowsException(() => AreEqual(10, () => 11, delta: -1, Up));
-            ThrowsException(() => AreEqual(10, () => 12, delta: -1, Up));
-
-            ThrowsException(() => AreEqual(10, () =>  8, delta: 0, Up));
-            ThrowsException(() => AreEqual(10, () =>  9, delta: 0, Up)); 
-                                  AreEqual(10, () => 10, delta: 0, Up); 
-            ThrowsException(() => AreEqual(10, () => 11, delta: 0, Up));
-            ThrowsException(() => AreEqual(10, () => 12, delta: 0, Up));
-
-            ThrowsException(() => AreEqual(10, () =>  8, delta: 1, Up));
-            ThrowsException(() => AreEqual(10, () =>  9, delta: 1, Up)); 
-                                  AreEqual(10, () => 10, delta: 1, Up); 
-                                  AreEqual(10, () => 11, delta: 1, Up);
-            ThrowsException(() => AreEqual(10, () => 12, delta: 1, Up));
-
-            ThrowsException(() => AreEqual(10, () =>  8, delta: 2, Up));
-            ThrowsException(() => AreEqual(10, () =>  9, delta: 2, Up)); 
-                                  AreEqual(10, () => 10, delta: 2, Up); 
-                                  AreEqual(10, () => 11, delta: 2, Up);
-                                  AreEqual(10, () => 12, delta: 2, Up);
+            AssertDeltaDirection(Up, 10, -2, Empty<int>(), new[] { 8, 9, 11, 12 });
+            AssertDeltaDirection(Up, 10, -1, Empty<int>(), new[] { 8, 9, 11, 12 });
+            AssertDeltaDirection(Up, 10,  0, new[] { 10 }, new[] { 8, 9, 11, 12 });
+            AssertDeltaDirection(Up, 10,  1, new[] { 10, 11 }, new[] { 8, 9, 12 });
+            AssertDeltaDirection(Up, 10,  2, new[] { 10, 11, 12 }, new[] { 8, 9 });
         }
-        
+
         [TestMethod]
-        public void Test_AssertWishes_AreEqual_OfInt_DeltaDirection_Unspecified()
+        public void AreEqual_WithInts_DeltaDirection_Both()
         {
-            ThrowsException(() => AreEqual(10, () =>  8, delta: -2));
-            ThrowsException(() => AreEqual(10, () =>  9, delta: -2)); 
-            ThrowsException(() => AreEqual(10, () => 10, delta: -2)); 
-            ThrowsException(() => AreEqual(10, () => 11, delta: -2));
-            ThrowsException(() => AreEqual(10, () => 12, delta: -2));
-
-            ThrowsException(() => AreEqual(10, () =>  8, delta: -1));
-            ThrowsException(() => AreEqual(10, () =>  9, delta: -1)); 
-            ThrowsException(() => AreEqual(10, () => 10, delta: -1)); 
-            ThrowsException(() => AreEqual(10, () => 11, delta: -1));
-            ThrowsException(() => AreEqual(10, () => 12, delta: -1));
-
-            ThrowsException(() => AreEqual(10, () =>  8, delta: 0));
-            ThrowsException(() => AreEqual(10, () =>  9, delta: 0)); 
-                                  AreEqual(10, () => 10, delta: 0); 
-            ThrowsException(() => AreEqual(10, () => 11, delta: 0));
-            ThrowsException(() => AreEqual(10, () => 12, delta: 0));
-
-            ThrowsException(() => AreEqual(10, () =>  8, delta: 1));
-                                  AreEqual(10, () =>  9, delta: 1); 
-                                  AreEqual(10, () => 10, delta: 1); 
-                                  AreEqual(10, () => 11, delta: 1);
-            ThrowsException(() => AreEqual(10, () => 12, delta: 1));
-
-                                  AreEqual(10, () =>  8, delta: 2);
-                                  AreEqual(10, () =>  9, delta: 2); 
-                                  AreEqual(10, () => 10, delta: 2); 
-                                  AreEqual(10, () => 11, delta: 2);
-                                  AreEqual(10, () => 12, delta: 2);
+            AssertDeltaDirection(Both, 10, -2, Empty<int>(), new[] { 8, 9, 10, 11, 12 });
+            AssertDeltaDirection(Both, 10, -1, Empty<int>(), new[] { 8, 9, 10, 11, 12 });
+            AssertDeltaDirection(Both, 10,  0, new[] { 10 }, new[] { 8, 9, 11, 12 });
+            AssertDeltaDirection(Both, 10,  1, new[] { 9, 10, 11 }, new[] { 8, 12 });
+            AssertDeltaDirection(Both, 10,  2, new[] { 8, 9, 10, 11, 12 }, new[] { 7, 13 });
         }
 
         // With Doubles
 
         [TestMethod]
-        public void Test_AssertWishes_AreEqual_OfDouble_DeltaDirection_Down()
+        public void AreEqual_WithDoubles_DeltaDirection_Down()
         {
-                                  AreEqual(10.1, () =>  9.1, delta: -1.5, Down);
-                                  AreEqual(10.1, () =>  9.6, delta: -1.5, Down); 
-                                  AreEqual(10.1, () => 10.1, delta: -1.5, Down); 
-            ThrowsException(() => AreEqual(10.1, () => 10.6, delta: -1.5, Down));
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: -1.5, Down));
-
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: -0.5, Down));
-                                  AreEqual(10.1, () =>  9.6, delta: -0.5, Down); 
-                                  AreEqual(10.1, () => 10.1, delta: -0.5, Down); 
-            ThrowsException(() => AreEqual(10.1, () => 10.6, delta: -0.5, Down));
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: -0.5, Down));
-
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: 0.0, Down));
-            ThrowsException(() => AreEqual(10.1, () =>  9.6, delta: 0.0, Down)); 
-                                  AreEqual(10.1, () => 10.1, delta: 0.0, Down); 
-            ThrowsException(() => AreEqual(10.1, () => 10.6, delta: 0.0, Down));
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: 0.0, Down));
-
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: 0.5, Down));
-                                  AreEqual(10.1, () =>  9.6, delta: 0.5, Down); 
-                                  AreEqual(10.1, () => 10.1, delta: 0.5, Down); 
-            ThrowsException(() => AreEqual(10.1, () => 10.6, delta: 0.5, Down));
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: 0.5, Down));
-
-                                  AreEqual(10.1, () =>  9.1, delta: 1.5, Down);
-                                  AreEqual(10.1, () =>  9.6, delta: 1.5, Down); 
-                                  AreEqual(10.1, () => 10.1, delta: 1.5, Down); 
-            ThrowsException(() => AreEqual(10.1, () => 10.6, delta: 1.5, Down));
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: 1.5, Down));
+            AssertDeltaDirection(Down, 10.1, -1.5, new[] { 9.1, 9.6, 10.1 }, new[] { 10.6, 11.1 });
+            AssertDeltaDirection(Down, 10.1, -0.5, new[] { 9.6, 10.1 }, new[] { 9.1, 10.6, 11.1 });
+            AssertDeltaDirection(Down, 10.1,  0.0, new[] { 10.1 }, new[] { 9.1, 9.6, 10.6, 11.1 });
+            AssertDeltaDirection(Down, 10.1,  0.5, new[] { 9.6, 10.1 }, new[] { 9.1, 10.6, 11.1 });
+            AssertDeltaDirection(Down, 10.1,  1.5, new[] { 9.1, 9.6, 10.1 }, new[] { 10.6, 11.1 });
         }
 
         [TestMethod]
-        public void Test_AssertWishes_AreEqual_OfDouble_DeltaDirection_Up()
+        public void AreEqual_WithDoubles_DeltaDirection_Up()
         {
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: -1.5, Up));
-            ThrowsException(() => AreEqual(10.1, () =>  9.6, delta: -1.5, Up)); 
-            ThrowsException(() => AreEqual(10.1, () => 10.1, delta: -1.5, Up)); 
-            ThrowsException(() => AreEqual(10.1, () => 10.6, delta: -1.5, Up));
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: -1.5, Up));
-
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: -0.5, Up));
-            ThrowsException(() => AreEqual(10.1, () =>  9.6, delta: -0.5, Up)); 
-            ThrowsException(() => AreEqual(10.1, () => 10.1, delta: -0.5, Up)); 
-            ThrowsException(() => AreEqual(10.1, () => 10.6, delta: -0.5, Up));
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: -0.5, Up));
-
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: 0, Up));
-            ThrowsException(() => AreEqual(10.1, () =>  9.6, delta: 0, Up)); 
-                                  AreEqual(10.1, () => 10.1, delta: 0, Up); 
-            ThrowsException(() => AreEqual(10.1, () => 10.6, delta: 0, Up));
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: 0, Up));
-
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: 0.5, Up));
-            ThrowsException(() => AreEqual(10.1, () =>  9.6, delta: 0.5, Up)); 
-                                  AreEqual(10.1, () => 10.1, delta: 0.5, Up); 
-                                  AreEqual(10.1, () => 10.6, delta: 0.5, Up);
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: 0.5, Up));
-
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: 1.5, Up));
-            ThrowsException(() => AreEqual(10.1, () =>  9.6, delta: 1.5, Up)); 
-                                  AreEqual(10.1, () => 10.1, delta: 1.5, Up); 
-                                  AreEqual(10.1, () => 10.6, delta: 1.5, Up);
-                                  AreEqual(10.1, () => 11.1, delta: 1.5, Up);
+            AssertDeltaDirection(Up, 10.1, -1.5, Empty<double>(), new[] { 9.1, 9.6, 10.1, 10.6, 11.1 });
+            AssertDeltaDirection(Up, 10.1, -0.5, Empty<double>(), new[] { 9.1, 9.6, 10.1, 10.6, 11.1 });
+            AssertDeltaDirection(Up, 10.1,  0.0, new[] { 10.1 }, new[] { 9.1, 9.6, 10.6, 11.1 });
+            AssertDeltaDirection(Up, 10.1,  0.5, new[] { 10.1, 10.6 }, new[] { 9.1, 9.6, 11.1 });
+            AssertDeltaDirection(Up, 10.1,  1.5, new[] { 10.1, 10.6, 11.1 }, new[] { 9.1, 9.6 });
         }
         
         [TestMethod]
-        public void Test_AssertWishes_AreEqual_OfDouble_DeltaDirection_Unspecified()
+        public void AreEqual_WithDoubles_DeltaDirection_Both()
         {
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: -1.5));
-            ThrowsException(() => AreEqual(10.1, () =>  9.6, delta: -1.5)); 
-            ThrowsException(() => AreEqual(10.1, () => 10.1, delta: -1.5)); 
-            ThrowsException(() => AreEqual(10.1, () => 10.6, delta: -1.5));
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: -1.5));
-
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: -0.5));
-            ThrowsException(() => AreEqual(10.1, () =>  9.6, delta: -0.5)); 
-            ThrowsException(() => AreEqual(10.1, () => 10.1, delta: -0.5)); 
-            ThrowsException(() => AreEqual(10.1, () => 10.6, delta: -0.5));
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: -0.5));
-
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: 0));
-            ThrowsException(() => AreEqual(10.1, () =>  9.6, delta: 0)); 
-                                  AreEqual(10.1, () => 10.1, delta: 0); 
-            ThrowsException(() => AreEqual(10.1, () => 10.6, delta: 0));
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: 0));
-
-            ThrowsException(() => AreEqual(10.1, () =>  9.1, delta: 0.5));
-                                  AreEqual(10.1, () =>  9.6, delta: 0.5); 
-                                  AreEqual(10.1, () => 10.1, delta: 0.5); 
-                                  AreEqual(10.1, () => 10.6, delta: 0.5);
-            ThrowsException(() => AreEqual(10.1, () => 11.1, delta: 0.5));
-
-                                  AreEqual(10.1, () =>  9.1, delta: 1.5);
-                                  AreEqual(10.1, () =>  9.6, delta: 1.5); 
-                                  AreEqual(10.1, () => 10.1, delta: 1.5); 
-                                  AreEqual(10.1, () => 10.6, delta: 1.5);
-                                  AreEqual(10.1, () => 11.1, delta: 1.5);
+            AssertDeltaDirection(Both, 10.1, -1.5, Empty<double>(), new[] { 9.1, 9.6, 10.1, 10.6, 11.1 });
+            AssertDeltaDirection(Both, 10.1, -0.5, Empty<double>(), new[] { 9.1, 9.6, 10.1, 10.6, 11.1 });
+            AssertDeltaDirection(Both, 10.1,  0.0, new[] { 10.1 }, new[] { 9.1, 9.6, 10.6, 11.1 });
+            AssertDeltaDirection(Both, 10.1,  0.5, new[] { 9.6, 10.1, 10.6 }, new[] { 9.1, 11.1 });
+            AssertDeltaDirection(Both, 10.1,  1.5, new[] { 9.1, 9.6, 10.1, 10.6, 11.1 }, Empty<double>());
         }
 
-        // DeltaDirection Edge-Cases
+        // Edge-Cases
         
         [TestMethod]
-        public void Test_AssertWishes_AreEqual_DeltaDirection_EdgeCase()
+        public void AreEqual_DeltaDirection_EdgeCases()
         {
             ThrowsException(
                 () => AreEqual(10, () => 7, delta: 3, (DeltaDirectionEnum)(-1)), 
@@ -230,6 +87,20 @@ namespace JJ.Framework.Wishes.Tests
             ThrowsException(
                 () => AreEqual(10.1, () => 7, delta: 3, (DeltaDirectionEnum)(-1)), 
                 "JJ.Framework.Wishes.Testing.DeltaDirectionEnum value: '-1' is not supported." );
+        }
+        
+        // Helpers
+        
+        private void AssertDeltaDirection(DeltaDirectionEnum direction, int expected, int delta, int[] passingCases, int[] failingCases)
+        {
+            passingCases.ForEach(value =>                       AreEqual(expected, () => value, delta, direction));
+            failingCases.ForEach(value => ThrowsException(() => AreEqual(expected, () => value, delta, direction)));
+        }
+
+        private void AssertDeltaDirection(DeltaDirectionEnum direction, double expected, double delta, double[] passingCases, double[] failingCases)
+        {
+            passingCases.ForEach(value =>                       AreEqual(expected, () => value, delta, direction));
+            failingCases.ForEach(value => ThrowsException(() => AreEqual(expected, () => value, delta, direction)));
         }
     }
 }
