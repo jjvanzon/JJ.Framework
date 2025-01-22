@@ -9,6 +9,7 @@ namespace JJ.Framework.Wishes.Testing
 {
     public static class AssertWishes
     {
+        /// <inheritdoc cref="docs._deltadirection" />
         public static void AreEqual(int expected, Expression<Func<int>> actualExpression, int delta, DeltaDirectionEnum direction = None)
         {
             // Allow negatives to trigger Downward direction automatically
@@ -32,6 +33,7 @@ namespace JJ.Framework.Wishes.Testing
             }
         }
           
+        /// <inheritdoc cref="docs._deltadirection" />
         public static void AreEqual(double expected, Expression<Func<double>> actualExpression, double delta, DeltaDirectionEnum direction = None)
         {
             // Allow negatives to trigger Downward direction automatically

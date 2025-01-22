@@ -37,6 +37,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="docs.cs" />
     <Compile Include="Reflection\Accessor_AdaptedFromFramework.cs" />
     <Compile Include="Testing\AssertHelper_Copied.cs" />
     <Compile Include="Testing\AssertWishes.cs" />
