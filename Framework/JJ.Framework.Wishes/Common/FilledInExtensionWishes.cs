@@ -25,14 +25,14 @@ namespace JJ.Framework.Wishes.Common
         public static bool In   (this string value, params string[] comparisons                 ) => FilledInWishes.In(value, comparisons);
         public static bool In   (this string value, string[]        comparisons, bool ignoreCase) => FilledInWishes.In(value, comparisons, ignoreCase);
         
-        public static T      Coalesce<T>(T   value, T      defaultValue)             => FilledInWishes.Coalesce(value, defaultValue);
-        public static T      Coalesce<T>(T   value, T      defaultValue, T fallback) => FilledInWishes.Coalesce(value, defaultValue, fallback);
-        public static string Coalesce<T>(T   value, string defaultValue)             => FilledInWishes.Coalesce(value, defaultValue);
-        public static T      Coalesce<T>(T?  value, T      defaultValue)             where T : struct => FilledInWishes.Coalesce(value, defaultValue);
-        public static T      Coalesce<T>(T?  value, T?     defaultValue, T fallback) where T : struct => FilledInWishes.Coalesce(value, defaultValue, fallback);
-        public static string Coalesce<T>(T?  value, string defaultValue)             where T : struct => FilledInWishes.Coalesce(value, defaultValue);
-        public static string Coalesce(string value, string defaultValue)                                  => FilledInWishes.Coalesce(value, defaultValue);
-        public static string Coalesce(string value, string defaultValue, bool   trimSpace)                => FilledInWishes.Coalesce(value, defaultValue, trimSpace);
-        public static string Coalesce(string value, string defaultValue, string fallback, bool trimSpace) => FilledInWishes.Coalesce(value, defaultValue, fallback, trimSpace);
+        public static T      Coalesce<T>(this T   value, T      defaultValue)             => FilledInWishes.Coalesce(value, defaultValue);
+        public static T      Coalesce<T>(this T   value, T      defaultValue, T fallback) => FilledInWishes.Coalesce(value, defaultValue, fallback);
+        public static string Coalesce<T>(this T   value, string defaultValue)             => FilledInWishes.Coalesce(value, defaultValue);
+        public static T      Coalesce<T>(this T?  value, T      defaultValue)             where T : struct => FilledInWishes.Coalesce(value, defaultValue);
+        public static T      Coalesce<T>(this T?  value, T?     defaultValue, T fallback) where T : struct => FilledInWishes.Coalesce(value, defaultValue, fallback);
+        public static string Coalesce<T>(this T?  value, string defaultValue)             where T : struct => FilledInWishes.Coalesce(value, defaultValue);
+        public static string Coalesce(this string value, string defaultValue)                                  => FilledInWishes.Coalesce(value, defaultValue);
+        public static string Coalesce(this string value, string defaultValue, bool   trimSpace)                => FilledInWishes.Coalesce(value, defaultValue, trimSpace);
+        public static string Coalesce(this string value, string defaultValue, string fallback, bool trimSpace) => FilledInWishes.Coalesce(value, defaultValue, fallback, trimSpace);
     }
 }
