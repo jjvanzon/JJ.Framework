@@ -39,6 +39,8 @@
   <ItemGroup>
     <Compile Include="docs.cs" />
     <Compile Include="Reflection\Accessor_AdaptedFromFramework.cs" />
+    <Compile Include="Reflection\ReflectionExtensions_Copied.cs" />
+    <Compile Include="Reflection\ReflectionExtensionWishes.cs" />
     <Compile Include="Testing\AssertHelper_Copied.cs" />
     <Compile Include="Testing\AssertWishes.cs" />
     <Compile Include="Collections\CollectionExtensions_Recursive_Ancestors_Copied.cs" />

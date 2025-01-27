@@ -9,6 +9,7 @@ using static JJ.Framework.Wishes.Testing.DeltaDirectionEnum;
 namespace JJ.Framework.Wishes.Tests
 {
     [TestClass]
+    [TestCategory("Framework")]
     public class AssertWishesTests
     {
         // With Ints
