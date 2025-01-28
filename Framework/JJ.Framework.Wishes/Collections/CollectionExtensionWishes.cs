@@ -65,5 +65,22 @@ namespace JJ.Framework.Wishes.Collections
                 action(x, i++);
             }
         }
+
+        public static void AddRange<T>(this ICollection<T> collection, IEnumerable<T> items)
+        {
+            foreach (var x in items)
+            {
+                collection.Add(x);
+            }
+        }
+
+        public static void Add<T>(this ICollection<T> collection, params T[] items)
+        {
+            foreach (var x in items)
+            {
+                collection.Add(x);
+            }
+        }
+
     }
 }
