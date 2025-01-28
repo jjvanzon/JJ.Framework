@@ -34,7 +34,7 @@ namespace JJ.Framework.Wishes.Tests
         [TestMethod]
         public void GetFieldOrExceptionTest()
         {
-            var synonyms = new List<Func<string, FieldInfo>>
+            var synonyms = new Func<string, FieldInfo>[]
             {
                 fieldName => GetType().GetFieldOrException(fieldName),
                 fieldName => GetFieldOrException(GetType(), fieldName)
@@ -60,11 +60,22 @@ namespace JJ.Framework.Wishes.Tests
         [TestMethod]
         public void GetTypesRecursiveTest()
         {
-            var types = GetTypesRecursive(typeof(Exception));
-            IsTrue(() => types.Contains(typeof(Exception)));
-            IsTrue(() => types.Contains(typeof(object))); // Base class of all classes
-            IsTrue(() => types.Contains(typeof(ISerializable))); // Interface of Exception
-            IsFalse(() => types.Contains(typeof(ReflectionWishes)));
+            var synonyms = new Func<Type, ICollection<Type>>[]
+            {
+                GetTypesRecursive,
+                x => x.GetTypesRecursive()
+            };
+            
+            foreach (var synonym in synonyms)
+            {
+                //var types = GetTypesRecursive(typeof(Exception));
+                var types = synonym(typeof(Exception));
+                
+                IsTrue(() => types.Contains(typeof(Exception)));
+                IsTrue(() => types.Contains(typeof(object))); // Base class of all classes
+                IsTrue(() => types.Contains(typeof(ISerializable))); // Interface of Exception
+                IsFalse(() => types.Contains(typeof(ReflectionWishes)));
+            }
         }
 
         [TestMethod]
