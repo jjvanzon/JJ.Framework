@@ -122,26 +122,34 @@ namespace JJ.Framework.Wishes.Tests
         }
 
         [TestMethod]
-        public void GetTypesRecursive_NoDuplicatesTest()
+        public void GetRecursive_DuplicatesTest()
         {
             Type type = typeof(List<int>);
-
-            // Use a manually created List<Type> to ensure duplicates aren't masked by HashSet behavior.
-            IList<Type> types = new List<Type>();
-            AddTypesRecursive(type, types);
-
-            // Check for duplicates by grouping elements
-            IList<Type> duplicates = types.GroupBy(x => x)
-                                          .Where(x => x.Count() > 1)
-                                          .Select(x => x.Key)
-                                          .ToArray();
-
-            // Assert no duplicates exist
-            if (duplicates.Count > 0)
+            
+            var synonyms = new Func<IList<Type>>[]
             {
-                Fail($"Found duplicate types: {Join(", ", duplicates.Select(t => t.Name))}");
+                // Use List preventing duplicates masked by HashSet.
+                () => { var x = new List<Type>(); AddClassesRecursive   (type, x); return x; },
+                () => { var x = new List<Type>(); AddInterfacesRecursive(type, x); return x; },
+                () => { var x = new List<Type>(); AddTypesRecursive     (type, x); return x; },
+            };
+
+            foreach (var synonym in synonyms)
+            {
+                IList<Type> types = synonym();
+
+                // Group by key to detect duplicates
+                IList<Type> duplicates = types.GroupBy(x => x)
+                                              .Where(x => x.Count() > 1)
+                                              .Select(x => x.Key)
+                                              .ToArray();
+                if (duplicates.Count > 0)
+                {
+                    Fail($"Found duplicate types: {Join(", ", duplicates.Select(t => t.Name))}");
+                }
             }
         }
+
 
         // Classes
 
