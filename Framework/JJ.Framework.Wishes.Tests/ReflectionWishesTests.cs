@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -8,6 +9,7 @@ using System.Text;
 using JJ.Framework.Testing;
 using JJ.Framework.Wishes.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static System.String;
 using static JJ.Framework.Testing.AssertHelper;
 using static JJ.Framework.Wishes.Reflection.ReflectionWishes;
 using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
@@ -119,6 +121,28 @@ namespace JJ.Framework.Wishes.Tests
             }
         }
 
+        [TestMethod]
+        public void GetTypesRecursive_NoDuplicatesTest()
+        {
+            Type type = typeof(List<int>);
+
+            // Use a manually created List<Type> to ensure duplicates aren't masked by HashSet behavior.
+            IList<Type> types = new List<Type>();
+            AddTypesRecursive(type, types);
+
+            // Check for duplicates by grouping elements
+            IList<Type> duplicates = types.GroupBy(x => x)
+                                          .Where(x => x.Count() > 1)
+                                          .Select(x => x.Key)
+                                          .ToArray();
+
+            // Assert no duplicates exist
+            if (duplicates.Count > 0)
+            {
+                Fail($"Found duplicate types: {Join(", ", duplicates.Select(t => t.Name))}");
+            }
+        }
+
         // Classes
 
         [TestMethod]
@@ -213,8 +237,6 @@ namespace JJ.Framework.Wishes.Tests
                 IsFalse(() => types.Contains(typeof(object)));       // Not an interface
             }
         }
-        
-        // TODO: Test synonyms.
 
         [TestMethod]
         public void HasInterfaceRecursiveTest()
