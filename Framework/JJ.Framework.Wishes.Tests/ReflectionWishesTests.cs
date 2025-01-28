@@ -121,36 +121,6 @@ namespace JJ.Framework.Wishes.Tests
             }
         }
 
-        [TestMethod]
-        public void GetRecursive_DuplicatesTest()
-        {
-            Type type = typeof(List<int>);
-            
-            var synonyms = new Func<IList<Type>>[]
-            {
-                // Use List preventing duplicates masked by HashSet.
-                () => { var x = new List<Type>(); AddClassesRecursive   (type, x); return x; },
-                () => { var x = new List<Type>(); AddInterfacesRecursive(type, x); return x; },
-                () => { var x = new List<Type>(); AddTypesRecursive     (type, x); return x; },
-            };
-
-            foreach (var synonym in synonyms)
-            {
-                IList<Type> types = synonym();
-
-                // Group by key to detect duplicates
-                IList<Type> duplicates = types.GroupBy(x => x)
-                                              .Where(x => x.Count() > 1)
-                                              .Select(x => x.Key)
-                                              .ToArray();
-                if (duplicates.Count > 0)
-                {
-                    Fail($"Found duplicate types: {Join(", ", duplicates.Select(t => t.Name))}");
-                }
-            }
-        }
-
-
         // Classes
 
         [TestMethod]
@@ -280,6 +250,37 @@ namespace JJ.Framework.Wishes.Tests
             foreach (var falseSynonym in falseSynonyms)
             {
                 IsFalse(falseSynonym());
+            }
+        }
+
+        // Duplicate Tests
+
+        [TestMethod]
+        public void GetRecursive_DuplicatesTest()
+        {
+            Type type = typeof(List<int>);
+            
+            var synonyms = new Func<IList<Type>>[]
+            {
+                // Use List preventing duplicates masked by HashSet.
+                () => { var x = new List<Type>(); AddClassesRecursive   (type, x); return x; },
+                () => { var x = new List<Type>(); AddInterfacesRecursive(type, x); return x; },
+                () => { var x = new List<Type>(); AddTypesRecursive     (type, x); return x; },
+            };
+
+            foreach (var synonym in synonyms)
+            {
+                IList<Type> types = synonym();
+
+                // Group by key to detect duplicates
+                IList<Type> duplicates = types.GroupBy(x => x)
+                                              .Where(x => x.Count() > 1)
+                                              .Select(x => x.Key)
+                                              .ToArray();
+                if (duplicates.Count > 0)
+                {
+                    Fail($"Found duplicate types: {Join(", ", duplicates.Select(t => t.Name))}");
+                }
             }
         }
     }
