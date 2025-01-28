@@ -73,7 +73,6 @@ namespace JJ.Framework.Wishes.Reflection
         public static ICollection<Type> GetClassesRecursive(Type type)
         {
             if (type == null) throw new NullException(() => type);
-            
             var coll = new HashSet<Type>();
             AddClassesRecursive(type, coll);
             return coll;
