@@ -2,6 +2,7 @@
 using System;
 using JJ.Framework.Reflection;
 using System.Collections.Generic;
+using JJ.Framework.Wishes.Collections;
 using static JJ.Framework.Reflection.ReflectionHelper;
 
 namespace JJ.Framework.Wishes.Reflection
@@ -133,11 +134,7 @@ namespace JJ.Framework.Wishes.Reflection
             if (coll == null) throw new NullException(() => coll);
             
             if (type.IsInterface) coll.Add(type);
-            
-            foreach (var deeperType in type.GetInterfaces())
-            {
-                AddInterfacesRecursive(deeperType, coll);
-            }
+            coll.AddRange(type.GetInterfaces()); // GetInterfaces from .NET is already recursive.
         }
 
         /// <inheritdoc cref="docs._interfacesrecursive" />
