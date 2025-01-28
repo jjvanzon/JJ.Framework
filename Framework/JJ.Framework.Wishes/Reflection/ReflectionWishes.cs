@@ -83,11 +83,11 @@ namespace JJ.Framework.Wishes.Reflection
         }
 
         /// <inheritdoc cref="docs._classesrecursive" />
-        public static bool HasClassRecursive(Type type, Type type2)
+        public static bool HasClassRecursive(Type type, Type cls)
         {
-            if (type2 == null) throw new NullException(() => type2);
-            if (!type2.IsClass) throw new Exception($"{nameof(type2)} {type2.Name} is not a class.");
-            return GetClassesRecursive(type).Contains(type2);
+            if (cls == null) throw new NullException(() => cls);
+            if (!cls.IsClass) throw new Exception($"{nameof(cls)} '{cls.Name}' is not a class.");
+            return GetClassesRecursive(type).Contains(cls);
         }
 
         // Interfaces
@@ -115,11 +115,11 @@ namespace JJ.Framework.Wishes.Reflection
         }
 
         /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static bool HasInterfaceRecursive(Type type, Type type2)
+        public static bool HasInterfaceRecursive(Type type, Type intf)
         {
-            if (type2 == null) throw new NullException(() => type2);
-            if (!type2.IsInterface) throw new Exception($"{nameof(type2)} {type2.Name} is not an interface.");
-            return GetInterfacesRecursive(type).Contains(type2);
+            if (intf == null) throw new NullException(() => intf);
+            if (!intf.IsInterface) throw new Exception($"{nameof(intf)} {intf.Name} is not an interface.");
+            return GetInterfacesRecursive(type).Contains(intf);
         }
     }
 }

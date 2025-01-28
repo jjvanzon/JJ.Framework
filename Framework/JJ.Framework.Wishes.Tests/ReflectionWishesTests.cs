@@ -1,13 +1,16 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.Text;
 using JJ.Framework.Testing;
 using JJ.Framework.Wishes.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static JJ.Framework.Testing.AssertHelper;
 using static JJ.Framework.Wishes.Reflection.ReflectionWishes;
+using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable CS0414 // Field is assigned but its value is never used
 
@@ -53,63 +56,96 @@ namespace JJ.Framework.Wishes.Tests
         }
         
         // Types
-        
+
         [TestMethod]
         public void GetTypesRecursiveTest()
         {
-            //throw new NotImplementedException();
+            var types = GetTypesRecursive(typeof(Exception));
+            IsTrue(() => types.Contains(typeof(Exception)));
+            IsTrue(() => types.Contains(typeof(object))); // Base class of all classes
+            IsTrue(() => types.Contains(typeof(ISerializable))); // Interface of Exception
+            IsFalse(() => types.Contains(typeof(ReflectionWishes)));
         }
-        
+
         [TestMethod]
         public void AddTypesRecursiveTest()
         {
-            //throw new NotImplementedException();
+            var types = new HashSet<Type>();
+            AddTypesRecursive(typeof(Exception), types);
+
+            IsTrue(() => types.Contains(typeof(Exception)));
+            IsTrue(() => types.Contains(typeof(object)));
+            IsTrue(() => types.Contains(typeof(ISerializable)));
+            IsFalse(() => types.Contains(typeof(ReflectionWishes)));
         }
-        
+
         [TestMethod]
         public void HasTypeRecursiveTest()
         {
-            //throw new NotImplementedException();
+            IsTrue(() => HasTypeRecursive(typeof(Exception), typeof(ISerializable)));
+            IsFalse(() => HasTypeRecursive(typeof(Exception), typeof(ReflectionWishes))); // ReflectionWishes is not part of Exception's hierarchy
         }
 
         // Classes
-        
+
         [TestMethod]
         public void GetClassesRecursiveTest()
         {
-            //throw new NotImplementedException();
+            var types = GetClassesRecursive(typeof(Exception));
+            IsTrue (() => types.Contains(typeof(Exception)));
+            IsTrue (() => types.Contains(typeof(object)));           // Base class
+            IsFalse(() => types.Contains(typeof(ISerializable)));    // Not a class
+            IsFalse(() => types.Contains(typeof(ReflectionWishes))); // Not part of Exception's list of base classes
         }
-        
+
         [TestMethod]
         public void AddClassesRecursiveTest()
         {
-            //throw new NotImplementedException();
+            var types = new HashSet<Type>();
+            AddClassesRecursive(typeof(Exception), types);
+            IsTrue(() => types.Contains(typeof(Exception)));
+            IsTrue(() => types.Contains(typeof(object)));
+            IsFalse(() => types.Contains(typeof(ISerializable)));    // Not a class
+            IsFalse(() => types.Contains(typeof(ReflectionWishes))); // Not part of Exception's list of base classes
         }
-        
+
         [TestMethod]
         public void HasClassRecursiveTest()
         {
-            //throw new NotImplementedException();
+            IsTrue(() => HasClassRecursive(typeof(Exception), typeof(object)));
+            IsFalse(() => HasClassRecursive(typeof(Exception), typeof(ReflectionWishes)));
+            
+            ThrowsException(
+                () => HasClassRecursive(typeof(Exception), typeof(ISerializable)),
+                "cls 'ISerializable' is not a class.");
         }
 
         // Interfaces
-        
+
         [TestMethod]
         public void GetInterfacesRecursiveTest()
         {
-            //throw new NotImplementedException();
+            var types = GetInterfacesRecursive(typeof(Exception));
+            IsTrue(() => types.Contains(typeof(ISerializable)));
+            IsFalse(() => types.Contains(typeof(Exception))); // Not an interface
+            IsFalse(() => types.Contains(typeof(object))); // Not an interface
         }
-        
+
         [TestMethod]
         public void AddInterfacesRecursiveTest()
         {
-            //throw new NotImplementedException();
+            var types = new HashSet<Type>();
+            AddInterfacesRecursive(typeof(Exception), types);
+            IsTrue(() => types.Contains(typeof(ISerializable)));
+            IsFalse(() => types.Contains(typeof(Exception))); // Not an interface
+            IsFalse(() => types.Contains(typeof(object))); // Not an interface
         }
-        
+
         [TestMethod]
         public void HasInterfaceRecursiveTest()
         {
-            //throw new NotImplementedException();
+            IsTrue(() => HasInterfaceRecursive(typeof(Exception), typeof(ISerializable)));
+            IsFalse(() => HasInterfaceRecursive(typeof(Exception), typeof(IEnumerable))); // Not part of Exception's interface list
         }
     }
 }
