@@ -30,6 +30,9 @@ namespace JJ.Framework.Wishes.Reflection
         /// <inheritdoc cref="docs._typesrecursive" />
         public static bool HasTypeRecursive(this Type type, Type type2)
             => ReflectionWishes.HasTypeRecursive(type, type2);
+        
+        public static bool HasTypeRecursive<TSecondType>(this Type firstType) 
+            => ReflectionWishes.HasTypeRecursive(firstType, typeof(TSecondType));
 
         // Classes
 
@@ -45,6 +48,10 @@ namespace JJ.Framework.Wishes.Reflection
         public static bool HasClassRecursive(this Type type, Type type2)
             => ReflectionWishes.HasClassRecursive(type, type2);
 
+        /// <inheritdoc cref="docs._classesrecursive" />
+        public static bool HasClassRecursive<TSecond>(this Type first)
+            => ReflectionWishes.HasClassRecursive(first, typeof(TSecond));
+
         // Interfaces
 
         /// <inheritdoc cref="docs._interfacesrecursive" />
@@ -59,5 +66,8 @@ namespace JJ.Framework.Wishes.Reflection
         public static bool HasInterfaceRecursive(this Type type, Type type2)
             => ReflectionWishes.HasInterfaceRecursive(type, type2);
 
+        /// <inheritdoc cref="docs._interfacesrecursive" />
+        public static bool HasInterfaceRecursive<TSecond>(this Type first)
+            => ReflectionWishes.HasInterfaceRecursive(first, typeof(TSecond));
     }
 }

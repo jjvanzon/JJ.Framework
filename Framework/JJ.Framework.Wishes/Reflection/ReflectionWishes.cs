@@ -37,6 +37,9 @@ namespace JJ.Framework.Wishes.Reflection
             AddTypesRecursive(type, coll);
             return coll;
         }
+        
+        /// <inheritdoc cref="docs._typesrecursive" />
+        public static ICollection<Type> GetTypesRecursive<TType>() => GetTypesRecursive(typeof(TType));
     
         /// <inheritdoc cref="docs._typesrecursive" />
         public static void AddTypesRecursive(Type type, ICollection<Type> coll)
@@ -47,14 +50,23 @@ namespace JJ.Framework.Wishes.Reflection
             AddClassesRecursive(type, coll);
             AddInterfacesRecursive(type, coll);
         }
+                
+        /// <inheritdoc cref="docs._typesrecursive" />
+        public static void AddTypesRecursive<TType>(ICollection<Type> coll) => AddTypesRecursive(typeof(TType), coll);
 
         /// <inheritdoc cref="docs._typesrecursive" />
-        public static bool HasTypeRecursive(Type type, Type type2)
+        public static bool HasTypeRecursive(Type type, Type secondType)
         {
-            if (type2 == null) throw new NullException(() => type2);
-            return GetTypesRecursive(type).Contains(type2);
+            if (secondType == null) throw new NullException(() => secondType);
+            return GetTypesRecursive(type).Contains(secondType);
         }
 
+        /// <inheritdoc cref="docs._typesrecursive" />
+        public static bool HasTypeRecursive<TFirst>(Type secondType) => HasTypeRecursive(typeof(TFirst), secondType);
+        
+        /// <inheritdoc cref="docs._typesrecursive" />
+        public static bool HasTypeRecursive<TFirst, TSecond>() => HasTypeRecursive(typeof(TFirst), typeof(TSecond));
+        
         // Classes
 
         /// <inheritdoc cref="docs._classesrecursive" />
@@ -67,6 +79,9 @@ namespace JJ.Framework.Wishes.Reflection
             return coll;
         }
 
+        /// <inheritdoc cref="docs._classesrecursive" />
+        public static ICollection<Type> GetClassesRecursive<T>() => GetClassesRecursive(typeof(T));
+        
         /// <inheritdoc cref="docs._classesrecursive" />
         public static void AddClassesRecursive(Type type, ICollection<Type> coll)
         {
@@ -83,15 +98,24 @@ namespace JJ.Framework.Wishes.Reflection
         }
 
         /// <inheritdoc cref="docs._classesrecursive" />
-        public static bool HasClassRecursive(Type type, Type cls)
+        public static void AddClassesRecursive<T>(ICollection<Type> coll) => AddClassesRecursive(typeof(T), coll);
+
+        /// <inheritdoc cref="docs._classesrecursive" />
+        public static bool HasClassRecursive(Type type, Type secondType)
         {
-            if (cls == null) throw new NullException(() => cls);
-            if (!cls.IsClass) throw new Exception($"{nameof(cls)} '{cls.Name}' is not a class.");
-            return GetClassesRecursive(type).Contains(cls);
+            if (secondType == null) throw new NullException(() => secondType);
+            if (!secondType.IsClass) throw new Exception($"{nameof(secondType)} '{secondType.Name}' is not a class.");
+            return GetClassesRecursive(type).Contains(secondType);
         }
+        
+        /// <inheritdoc cref="docs._classesrecursive" />
+        public static bool HasClassRecursive<TFirst>(Type secondType) => HasClassRecursive(typeof(TFirst), secondType);
+        
+        /// <inheritdoc cref="docs._classesrecursive" />
+        public static bool HasClassRecursive<TFirst, TSecond>() => HasClassRecursive(typeof(TFirst), typeof(TSecond));
 
         // Interfaces
-
+                
         /// <inheritdoc cref="docs._interfacesrecursive" />
         public static ICollection<Type> GetInterfacesRecursive(Type type)
         {
@@ -99,6 +123,9 @@ namespace JJ.Framework.Wishes.Reflection
             AddInterfacesRecursive(type, list);
             return list;
         }
+
+        /// <inheritdoc cref="docs._interfacesrecursive" />
+        public static ICollection<Type> GetInterfacesRecursive<T>() => GetInterfacesRecursive(typeof(T));
 
         /// <inheritdoc cref="docs._interfacesrecursive" />
         public static void AddInterfacesRecursive(Type type, ICollection<Type> coll)
@@ -115,11 +142,20 @@ namespace JJ.Framework.Wishes.Reflection
         }
 
         /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static bool HasInterfaceRecursive(Type type, Type intf)
+        public static void AddInterfacesRecursive<T>(ICollection<Type> coll) => AddInterfacesRecursive(typeof(T), coll);
+
+        /// <inheritdoc cref="docs._interfacesrecursive" />
+        public static bool HasInterfaceRecursive(Type type, Type secondType)
         {
-            if (intf == null) throw new NullException(() => intf);
-            if (!intf.IsInterface) throw new Exception($"{nameof(intf)} {intf.Name} is not an interface.");
-            return GetInterfacesRecursive(type).Contains(intf);
+            if (secondType == null) throw new NullException(() => secondType);
+            if (!secondType.IsInterface) throw new Exception($"{nameof(secondType)} {secondType.Name} is not an interface.");
+            return GetInterfacesRecursive(type).Contains(secondType);
         }
+        
+        /// <inheritdoc cref="docs._interfacesrecursive" />
+        public static bool HasInterfaceRecursive<TFirst>(Type secondType) => HasInterfaceRecursive(typeof(TFirst), secondType);
+        
+        /// <inheritdoc cref="docs._interfacesrecursive" />
+        public static bool HasInterfaceRecursive<TFirst, TSecond>() => HasInterfaceRecursive(typeof(TFirst), typeof(TSecond));
     }
 }
