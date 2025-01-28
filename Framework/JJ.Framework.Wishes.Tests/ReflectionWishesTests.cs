@@ -14,7 +14,6 @@ using static JJ.Framework.Wishes.Reflection.ReflectionWishes;
 namespace JJ.Framework.Wishes.Tests
 {
     [TestClass]
-    [TestCategory("Framework")]
     public class ReflectionWishesTests
     {
         // Assemblies
