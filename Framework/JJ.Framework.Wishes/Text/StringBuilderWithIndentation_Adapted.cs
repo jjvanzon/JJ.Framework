@@ -4,17 +4,17 @@ using System.Text;
 
 namespace JJ.Framework.Wishes.Text
 {
-    public class StringBuilderWithIndentation_AdaptedFromFramework
+    public class StringBuilderWithIndentation_Adapted
     {
-        public StringBuilderWithIndentation_AdaptedFromFramework()
+        public StringBuilderWithIndentation_Adapted()
             : this("  ")
         { }
         
-        public StringBuilderWithIndentation_AdaptedFromFramework(string tabString)
+        public StringBuilderWithIndentation_Adapted(string tabString)
             : this(tabString, Environment.NewLine)
         { }
         
-        public StringBuilderWithIndentation_AdaptedFromFramework(string tabString , string enter)
+        public StringBuilderWithIndentation_Adapted(string tabString , string enter)
         {
             _tabString = tabString;
             _enter     = enter;

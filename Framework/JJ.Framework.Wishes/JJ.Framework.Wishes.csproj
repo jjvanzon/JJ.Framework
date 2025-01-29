@@ -38,7 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="docs.cs" />
-    <Compile Include="Reflection\Accessor_AdaptedFromFramework.cs" />
+    <Compile Include="Reflection\Accessor_Adapted.cs" />
     <Compile Include="Reflection\ReflectionExtensions_Copied.cs" />
     <Compile Include="Reflection\ReflectionExtensionWishes.cs" />
     <Compile Include="Testing\AssertHelper_Copied.cs" />
@@ -58,7 +58,7 @@
     <Compile Include="Reflection\ReflectionHelper_Copied.cs" />
     <Compile Include="Reflection\ReflectionWishes.cs" />
     <Compile Include="Testing\DeltaDirectionEnum.cs" />
-    <Compile Include="Text\StringBuilderWithIndentation_AdaptedFromFramework.cs" />
+    <Compile Include="Text\StringBuilderWithIndentation_Adapted.cs" />
     <Compile Include="Text\StringExtensions_Copied.cs" />
     <Compile Include="Text\StringExtensionWishes.cs" />
     <Compile Include="Text\StringWishes.cs" />

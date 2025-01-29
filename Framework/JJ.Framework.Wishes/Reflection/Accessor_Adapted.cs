@@ -13,7 +13,7 @@ namespace JJ.Framework.Wishes.Reflection
     /// To access internal classes, maybe use a .NET Type string, GetType / or CreateInstance.
     /// A limitation is that it might not invoke private or internal constructors (yet).
     /// </summary>
-    public partial class Accessor_AdaptedFromFramework
+    public partial class Accessor_Adapted
     {
         //private static readonly ReflectionCache _reflectionCache = new ReflectionCache();
         
@@ -21,7 +21,7 @@ namespace JJ.Framework.Wishes.Reflection
         private readonly Type   _objectType;
         
         /// <summary> Use this constructor to access instance members of internal classes. </summary>
-        public Accessor_AdaptedFromFramework(string typeName, params object[] args)
+        public Accessor_Adapted(string typeName, params object[] args)
         {
             _objectType = Type.GetType(typeName);
             
@@ -34,17 +34,17 @@ namespace JJ.Framework.Wishes.Reflection
         }
         
         /// <summary> Use this constructor to access instance members. </summary>
-        public Accessor_AdaptedFromFramework(object obj)
+        public Accessor_Adapted(object obj)
         {
             _object     = obj ?? throw new ArgumentNullException(nameof(obj));
             _objectType = obj.GetType();
         }
         
         /// <summary> Use this constructor to access static members. </summary>
-        public Accessor_AdaptedFromFramework(Type objectType) => _objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
+        public Accessor_Adapted(Type objectType) => _objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
         
         /// <summary> Use this constructor to access members of the base class. </summary>
-        public Accessor_AdaptedFromFramework(object obj, Type objectType)
+        public Accessor_Adapted(object obj, Type objectType)
         {
             _object     = obj        ?? throw new ArgumentNullException(nameof(obj));
             _objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
