@@ -28,8 +28,6 @@ namespace JJ.Framework.Wishes.Common
         public static bool IsNully<T>(T        value)                  => !FilledIn(value);
         public static bool IsNully<T>(T?       value) where T : struct => !FilledIn(value);
         
-        
-        
         public static bool Is(string value, string comparison)                  => Is(value, comparison, ignoreCase: true);
         public static bool Is(string value, string comparison, bool ignoreCase) => string.Equals(value, comparison, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
         
