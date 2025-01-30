@@ -22,6 +22,7 @@ namespace JJ.Framework.Wishes.Common
         public static bool Is(this string value, string comparison, bool ignoreCase) => FilledInWishes.Is(value, comparison, ignoreCase);
         
         public static bool In<T>(this T      value, params T     [] comparisons                 ) => FilledInWishes.In(value, comparisons);
+        public static bool In<T>(this T      value, params T?    [] comparisons) where T : struct => FilledInWishes.In(value, comparisons);
         public static bool In   (this string value, params string[] comparisons                 ) => FilledInWishes.In(value, comparisons);
         public static bool In   (this string value, string[]        comparisons, bool ignoreCase) => FilledInWishes.In(value, comparisons, ignoreCase);
         

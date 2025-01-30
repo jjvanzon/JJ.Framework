@@ -32,6 +32,7 @@ namespace JJ.Framework.Wishes.Common
         public static bool Is(string value, string comparison, bool ignoreCase) => string.Equals(value, comparison, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
         
         public static bool In<T>(T      value, params T     [] comparisons                 ) => comparisons.Contains(value                  );
+        public static bool In<T>(T      value, params T?    [] comparisons) where T : struct => comparisons.Contains(value                  );
         public static bool In   (string value, params string[] comparisons                 ) => comparisons.Contains(value, ignoreCase: true);
         public static bool In   (string value, string[]        comparisons, bool ignoreCase) => comparisons.Contains(value, ignoreCase      );
         
