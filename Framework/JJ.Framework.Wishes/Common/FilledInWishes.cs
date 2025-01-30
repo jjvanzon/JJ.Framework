@@ -31,10 +31,15 @@ namespace JJ.Framework.Wishes.Common
         public static bool Is(string value, string comparison)                  => Is(value, comparison, ignoreCase: true);
         public static bool Is(string value, string comparison, bool ignoreCase) => string.Equals(value, comparison, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
         
-        public static bool In<T>(T      value, params T     [] comparisons                 ) => comparisons.Contains(value                  );
-        public static bool In<T>(T      value, params T?    [] comparisons) where T : struct => comparisons.Contains(value                  );
-        public static bool In   (string value, params string[] comparisons                 ) => comparisons.Contains(value, ignoreCase: true);
-        public static bool In   (string value, string[]        comparisons, bool ignoreCase) => comparisons.Contains(value, ignoreCase      );
+        public static bool In<T>(T      value, params T         [] comparisons                 ) => comparisons.Contains(value);
+        public static bool In<T>(T      value, ICollection<T>      comparisons                 ) => comparisons.Contains(value);
+        public static bool In<T>(T?     value, params T?        [] comparisons) where T : struct => comparisons.Contains(value);
+        public static bool In<T>(T?     value, ICollection<T?>     comparisons) where T : struct => comparisons.Contains(value);
+        public static bool In<T>(T?     value, params T         [] comparisons) where T : struct => value.HasValue && comparisons.Contains(value.Value);
+        public static bool In<T>(T?     value, ICollection<T>      comparisons) where T : struct => value.HasValue && comparisons.Contains(value.Value);
+        public static bool In   (string value, params string    [] comparisons                 ) => comparisons.Contains(value, ignoreCase: true);
+        public static bool In   (string value, ICollection<string> comparisons                 ) => comparisons.Contains(value, ignoreCase: true);
+        public static bool In   (string value, string[]            comparisons, bool ignoreCase) => comparisons.Contains(value, ignoreCase);
         
         public static T      Coalesce<T>(T   value, T      defaultValue)                                  => Has(value) ? value : defaultValue;
         public static T      Coalesce<T>(T   value, T      defaultValue, T fallback)                      => Coalesce(value, Coalesce(defaultValue, fallback));

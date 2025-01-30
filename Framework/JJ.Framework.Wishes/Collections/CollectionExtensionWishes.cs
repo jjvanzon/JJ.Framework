@@ -18,7 +18,7 @@ namespace JJ.Framework.Wishes.Collections
             return source.Select(selector).Sum();
         }
         
-        public static bool Contains(this IList<string> source, string match, bool ignoreCase = false)
+        public static bool Contains(this ICollection<string> source, string match, bool ignoreCase = false)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
             
