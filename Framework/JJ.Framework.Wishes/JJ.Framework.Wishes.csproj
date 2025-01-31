@@ -57,7 +57,16 @@
     <Compile Include="Mathematics\Randomizer_Copied.cs" />
     <Compile Include="Reflection\ReflectionHelper_Copied.cs" />
     <Compile Include="Reflection\ReflectionWishes.cs" />
+    <Compile Include="Testing\CaseBase.cs" />
+    <Compile Include="Testing\CaseCollection.cs" />
+    <Compile Include="Testing\CaseKeyBuilder.cs" />
+    <Compile Include="Testing\CaseProp.cs" />
+    <Compile Include="Testing\DebuggerDisplayFormatter.cs" />
     <Compile Include="Testing\DeltaDirectionEnum.cs" />
+    <Compile Include="Testing\FilledIn.cs" />
+    <Compile Include="Testing\ICase.cs" />
+    <Compile Include="Testing\ICaseProp.cs" />
+    <Compile Include="Testing\NullyPair.cs" />
     <Compile Include="Text\StringBuilderWithIndentation_Adapted.cs" />
     <Compile Include="Text\StringExtensions_Copied.cs" />
     <Compile Include="Text\StringExtensionWishes.cs" />

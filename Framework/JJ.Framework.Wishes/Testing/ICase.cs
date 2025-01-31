@@ -1,0 +1,18 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace JJ.Framework.Wishes.Testing
+{
+    public interface ICase : ICaseProp
+    {
+        string             Name        { get; set; }
+        string             Key  { get; }
+        object[]           DynamicData { get; }
+        bool               Strict      { get; set; }
+        IList<ICaseProp>   Props       { get; }
+        /// <inheritdoc cref="docs._casetemplate" />
+        ICollection<ICase> FromTemplate(ICollection<ICase> cases);
+    }
+}
