@@ -38,7 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="docs.cs" />
-    <Compile Include="Reflection\AccessorExtensions.cs" />
+    <Compile Include="Reflection\AccessorEx.cs" />
     <Compile Include="Reflection\Accessor_Adapted.cs" />
     <Compile Include="Reflection\ReflectionExtensions_Copied.cs" />
     <Compile Include="Reflection\ReflectionExtensionWishes.cs" />
