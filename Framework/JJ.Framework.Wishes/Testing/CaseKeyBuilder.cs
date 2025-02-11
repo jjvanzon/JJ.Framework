@@ -10,12 +10,11 @@ using static JJ.Framework.Wishes.Common.FilledInWishes;
 
 namespace JJ.Framework.Wishes.Testing
 {
-    class CaseKeyBuilder<T>
-        where T : struct
+    class CaseKeyBuilder
     {
-        readonly CaseBase<T> _testCase;
+        readonly ICase _testCase;
         
-        public CaseKeyBuilder(CaseBase<T> testCase)
+        public CaseKeyBuilder(ICase testCase)
         {
             _testCase = testCase ?? throw new NullException(() => testCase);
             

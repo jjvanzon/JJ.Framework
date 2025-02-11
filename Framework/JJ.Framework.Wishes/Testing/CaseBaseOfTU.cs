@@ -15,17 +15,18 @@ using static JJ.Framework.Wishes.Testing.DebuggerDisplayFormatter;
 
 namespace JJ.Framework.Wishes.Testing
 {
+
     [DebuggerDisplay("{DebuggerDisplay}")]
-    public abstract class CaseBase<TMainProp> : CaseProp<TMainProp>, ICase
-        where TMainProp : struct
+    public abstract class CaseBase<TMainPropNully, TMainPropCoalesced> : CaseProp<TMainPropNully, TMainPropCoalesced>, ICase
+        //where TMainProp : struct
     {
         // Properties
 
         /// <inheritdoc cref="docs._strict />
         public bool Strict { get; set; } = true;
-        public CaseProp<TMainProp> MainProp => this;
-        ICaseProp ICase.MainProp => this;
-        
+        public CaseProp<TMainPropNully, TMainPropCoalesced> MainProp => this;
+        ICaseProp ICase.MainProp => MainProp;
+
         public IList<ICaseProp> Props
             => GetCasePropFields().Select(x => x.GetValue(this))
                                   .Cast<ICaseProp>()
@@ -51,7 +52,7 @@ namespace JJ.Framework.Wishes.Testing
         // Templating
 
         // Instance
-        
+
         /// <inheritdoc cref="docs._casetemplate" />
         public ICase[] FromTemplate(params ICase[] destCases) 
             => FromTemplate(this, destCases);
@@ -104,20 +105,20 @@ namespace JJ.Framework.Wishes.Testing
 
         // Constructors
 
-        public CaseBase() : base() => Initialize();
-        public CaseBase(TMainProp value) : base(value) => Initialize();
-        public CaseBase(TMainProp? value) : base(value) => Initialize();
-        public CaseBase(TMainProp from, TMainProp to) : base(from, to) => Initialize();
-        public CaseBase(TMainProp from, TMainProp? to) : base(from, to) => Initialize();
-        public CaseBase(TMainProp? from, TMainProp to) : base(from, to) => Initialize();
-        public CaseBase(TMainProp? from, TMainProp? to) : base(from, to) => Initialize();
-        public CaseBase((TMainProp from, TMainProp to) values) : base(values) => Initialize();
-        public CaseBase((TMainProp? from, TMainProp to) values) : base(values) => Initialize();
-        public CaseBase((TMainProp from, TMainProp? to) values) : base(values) => Initialize();
-        public CaseBase((TMainProp? from, TMainProp? to) values) : base(values) => Initialize();
-        public CaseBase(TMainProp from, (TMainProp? nully, TMainProp coalesced) to) : base(from, to) => Initialize();
-        public CaseBase((TMainProp? nully, TMainProp coalesced) from, TMainProp to) : base(from, to) => Initialize();
-        public CaseBase((TMainProp? nully, TMainProp coalesced) from, (TMainProp? nully, TMainProp coalesced) to) : base(from, to) => Initialize();
+        public CaseBase() => Initialize();
+        public CaseBase(TMainPropCoalesced  value) : base(value) => Initialize();
+        public CaseBase(TMainPropNully      value) : base(value) => Initialize();
+        public CaseBase(TMainPropCoalesced  from , TMainPropCoalesced to) : base(from, to) => Initialize();
+        public CaseBase(TMainPropCoalesced  from , TMainPropNully     to) : base(from, to) => Initialize();
+        public CaseBase(TMainPropNully      from , TMainPropCoalesced to) : base(from, to) => Initialize();
+        public CaseBase(TMainPropNully      from , TMainPropNully     to) : base(from, to) => Initialize();
+        public CaseBase((TMainPropCoalesced from , TMainPropCoalesced to) values) : base(values) => Initialize();
+        public CaseBase((TMainPropNully     from , TMainPropCoalesced to) values) : base(values) => Initialize();
+        public CaseBase((TMainPropCoalesced from , TMainPropNully     to) values) : base(values) => Initialize();
+        public CaseBase((TMainPropNully     from , TMainPropNully     to) values) : base(values) => Initialize();
+        public CaseBase(TMainPropCoalesced  from , (TMainPropNully nully, TMainPropCoalesced coalesced)   to) : base(from, to) => Initialize();
+        public CaseBase((TMainPropNully     nully, TMainPropCoalesced coalesced) from, TMainPropCoalesced to) : base(from, to) => Initialize();
+        public CaseBase((TMainPropNully     nully, TMainPropCoalesced coalesced) from, (TMainPropNully nully, TMainPropCoalesced coalesced) to) : base(from, to) => Initialize();
         
         private void Initialize() => AutoCreateProps();
     }
