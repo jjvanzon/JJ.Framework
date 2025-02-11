@@ -151,13 +151,13 @@ namespace JJ.Framework.Wishes.Reflection
         /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
         public object InvokeMethod(string name, params object[] parameters)
         {
-            MethodInfo method;
+            MethodInfo method = null;
             
             // Try getting parameter types from calling methods
             // (assuming a wrapping accessor class with methods that define the signatures.)
             {
-                Type[] parameterTypes = new StackTrace().GetFrame(1)?.GetMethod().GetParameters().Select(x => x.ParameterType).ToArray();
-                method = StaticReflectionCache.TryGetMethod(_objectType, name, parameterTypes);
+                //Type[] parameterTypes = new StackTrace().GetFrame(1)?.GetMethod().GetParameters().Select(x => x.ParameterType).ToArray();
+                //method = StaticReflectionCache.TryGetMethod(_objectType, name, parameterTypes);
             }
             
             // Try getting parameter types from parameter values.
