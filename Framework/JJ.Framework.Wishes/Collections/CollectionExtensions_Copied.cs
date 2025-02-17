@@ -51,5 +51,13 @@ namespace JJ.Framework.Wishes.Collections
         /// </summary>
         public static IEnumerable<TSource> OfType<TSource>(this IEnumerable<TSource> source, Type type)
             => source.Where(x => x.GetType() == type);
-    }
+        
+        /// <summary> Overload of Concat that takes a single item, e.g. myCollection.Concat(myItem); </summary>
+        public static IEnumerable<T> Concat<T>(this IEnumerable<T> first, T second) => first.Concat(new[] { second });
+        
+        /// <summary>
+        /// Overload of Concat that starts with a single item and then adds a collection to it e.g.
+        /// myItem.Concat(myCollection);
+        /// </summary>
+        public static IEnumerable<T> Concat<T>(this T first, IEnumerable<T> second) => new[] { first }.Concat(second); }
 }
