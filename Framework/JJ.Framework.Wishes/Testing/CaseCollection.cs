@@ -14,13 +14,15 @@ namespace JJ.Framework.Wishes.Testing
     {
         // Storage Variables
         
+        public bool AllowDuplicates { get; set; }
         private readonly IList<TCase> _cases = new List<TCase>();
         private readonly IList<CaseCollection<TCase>> _collections = new List<CaseCollection<TCase>>();
         private readonly Dictionary<string, TCase> _dictionary = new Dictionary<string, TCase>();
         
-        // Constructor (empty)
+        // Constructor (basic)
         
         public CaseCollection() { }
+        public CaseCollection(bool allowDuplicates) => AllowDuplicates = allowDuplicates;
 
         // Constructors (single collection)
 
@@ -51,12 +53,19 @@ namespace JJ.Framework.Wishes.Testing
             {
                 string key = testCase.Key;
                 
-                if (_dictionary.ContainsKey(key))
+                if (AllowDuplicates)
                 {
-                    throw new Exception($"Duplicate key '{key}' found while adding to {nameof(cases)} collection.");
+                    // Allow duplicates to pass by, for practical reasons when managing multiple CaseCollections as one.
+                    _dictionary[key] = testCase;
                 }
-                
-                _dictionary.Add(key, testCase);
+                else
+                {
+                    if (_dictionary.ContainsKey(key))
+                    {
+                        throw new Exception($"Duplicate key '{key}' found while adding to {nameof(cases)} collection.");
+                    }
+                    _dictionary.Add(key, testCase);
+                }
             }
         }
         
