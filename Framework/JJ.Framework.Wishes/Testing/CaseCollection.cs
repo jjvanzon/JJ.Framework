@@ -17,8 +17,9 @@ namespace JJ.Framework.Wishes.Testing
 
         private readonly Dictionary<string, TCase> _caseDictionary = new Dictionary<string, TCase>();
 
-        // Hierarchy
+        // Properties
         
+        public bool AllowDuplicates { get; set; }
         private bool IsRoot => Root == null;
         private CaseCollection<TCase> Root { get; set; }
 
@@ -64,7 +65,13 @@ namespace JJ.Framework.Wishes.Testing
             {
                 if (Equals(newCase, default)) throw new Exception($"{nameof(newCases)} collection has empty elements.");
 
-                _caseDictionary[newCase.Key] = newCase;
+                string key = newCase.Key;
+                if (!AllowDuplicates && _caseDictionary.ContainsKey(key))
+                {
+                    throw new Exception($"Duplicate key '{key}' found while adding Cases.");
+                }
+
+                _caseDictionary[key] = newCase;
             }
         }
         
