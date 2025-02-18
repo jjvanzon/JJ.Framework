@@ -19,8 +19,8 @@ namespace JJ.Framework.Wishes.Testing
 
         // Hierarchy
         
-        private bool IsRoot => Parent == null;
-        private CaseCollection<TCase> Parent { get; set; }
+        private bool IsRoot => Root == null;
+        private CaseCollection<TCase> Root { get; set; }
 
         // Constructor (basic)
         
@@ -39,22 +39,20 @@ namespace JJ.Framework.Wishes.Testing
         {
             if (subCollection == null) throw new NullException(() => subCollection);
 
-            subCollection.Parent = this;
+            subCollection.Root = this;
             
-            var subCases = subCollection.GetAll();
+            var items = subCollection.GetAll();
 
-            foreach (var x in this.SelfAndAncestors(x => x.Parent))
-            {
-                x.AddToDictionary(subCases);
-            }
-            
+            AddToDictionary(items);
+            Root?.AddToDictionary(items);
+
             if (IsRoot)
             {
                 return subCollection;
             }
             else
             {
-                return new CaseCollection<TCase>(GetAll().Union(subCases));
+                return this;
             }
         }
         
