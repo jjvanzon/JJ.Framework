@@ -30,6 +30,15 @@ namespace JJ.Framework.Wishes
         /// Allow duplicates to pass by, for practical reasons when managing multiple CaseCollections as one.
         /// </summary>
         public struct _casecollectionallowduplicates { }
+                
+        /// <summary>
+        /// Creates new cases based on the specified template, applying its properties to the provided cases.
+        /// </summary>
+        /// <param name="template">The template case to apply.</param>
+        /// <param name="cases">The cases to which the template is applied.</param>
+        /// <param name="destCases">The cases to which the template is applied.</param>
+        /// <returns>A collection of cases derived from the template.</returns>
+        public struct _casetemplate { }
 
         /// <summary>
         /// Handles a collection of this class and its base classes recursively.

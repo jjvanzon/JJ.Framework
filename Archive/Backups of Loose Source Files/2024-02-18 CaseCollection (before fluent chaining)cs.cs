@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JJ.Framework.Reflection;
-using JJ.Framework.Common;
-using JJ.Framework.Wishes.Collections;
 
 namespace JJ.Framework.Wishes.Testing
 {
@@ -13,60 +11,55 @@ namespace JJ.Framework.Wishes.Testing
     public class CaseCollection<TCase> : IEnumerable<object[]>
         where TCase : ICase
     {
-        // Storage Collection
-
-        private readonly Dictionary<string, TCase> _caseDictionary = new Dictionary<string, TCase>();
-
-        // Hierarchy
+        // Storage Variables
         
-        private bool IsRoot => Parent == null;
-        private CaseCollection<TCase> Parent { get; set; }
-
+        /// <inheritdoc cref="docs._casecollectionallowduplicates" />
+        public bool AllowDuplicates { get; set; }
+        
+        private readonly IList<CaseCollection<TCase>> _subCollections = new List<CaseCollection<TCase>>();
+        private readonly Dictionary<string, TCase> _caseDictionary = new Dictionary<string, TCase>();
+        
         // Constructor (basic)
         
         public CaseCollection() { }
+        public CaseCollection(bool allowDuplicates) => AllowDuplicates = allowDuplicates;
 
         // Constructors (single collection)
 
-        public CaseCollection(params TCase[] initialCases) : this((ICollection<TCase>)initialCases) { }
-        public CaseCollection(IEnumerable<TCase> initialCases) => AddToDictionary(initialCases);
+        public CaseCollection(params TCase[] theseCases) : this((ICollection<TCase>)theseCases) { }
+        public CaseCollection(ICollection<TCase> theseCases) => AddToDictionary(theseCases);
         
         // Adding (multi-collections)
         
-        public CaseCollection<TCase> Add(params TCase[] subCases) => Add(new CaseCollection<TCase>(subCases));
-        public CaseCollection<TCase> Add(IEnumerable<TCase> subCases) => Add(new CaseCollection<TCase>(subCases));
-        public CaseCollection<TCase> Add(CaseCollection<TCase> subCollection)
+        public CaseCollection<TCase> AddCollection(params TCase[] subCases) => AddCollection(new CaseCollection<TCase>(subCases));
+        public CaseCollection<TCase> AddCollection(ICollection<TCase> subCases) => AddCollection(new CaseCollection<TCase>(subCases));
+        public CaseCollection<TCase> AddCollection(CaseCollection<TCase> subCollection)
         {
             if (subCollection == null) throw new NullException(() => subCollection);
-
-            subCollection.Parent = this;
+            
+            _subCollections.Add(subCollection);
             
             var subCases = subCollection.GetAll();
-
-            foreach (var x in this.SelfAndAncestors(x => x.Parent))
-            {
-                x.AddToDictionary(subCases);
-            }
+            AddToDictionary(subCases);
             
-            if (IsRoot)
-            {
-                return subCollection;
-            }
-            else
-            {
-                return new CaseCollection<TCase>(GetAll().Union(subCases));
-            }
+            return subCollection;
         }
         
-        private void AddToDictionary(IEnumerable<TCase> newCases)
+        private void AddToDictionary(ICollection<TCase> newCases)
         {
             if (newCases == null) throw new NullException(() => newCases);
+            if (newCases.Contains(default)) throw new Exception($"{nameof(newCases)} collection has empty elements.");
 
-            foreach (TCase newCase in newCases)
+            foreach (TCase testCase in newCases)
             {
-                if (Equals(newCase, default)) throw new Exception($"{nameof(newCases)} collection has empty elements.");
+                string key = testCase.Key;
 
-                _caseDictionary[newCase.Key] = newCase;
+                if (!AllowDuplicates && _caseDictionary.ContainsKey(key))
+                {
+                    throw new Exception($"Duplicate key '{key}' found while adding {nameof(newCases)}.");
+                }
+
+                _caseDictionary[key] = testCase;
             }
         }
         
@@ -94,7 +87,7 @@ namespace JJ.Framework.Wishes.Testing
             if (template == null) throw new NullException(() => template);
             if (cases == null) throw new NullException(() => cases);
             cases = template.FromTemplate(cases.Cast<ICase>().ToArray()).Cast<TCase>().ToArray();
-            return Add(cases);
+            return AddCollection(cases);
         }
         
         // DynamicData
