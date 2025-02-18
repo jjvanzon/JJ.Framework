@@ -16,6 +16,17 @@ namespace JJ.Framework.Wishes
     public struct docs
     {
         /// <summary>
+        /// Can function as a single collection, but also as a collection of collections, <br/>
+        /// and a helper for using structured test Cases. <br/>
+        /// Provides integration with MSTest using DynamicData for parameterized data-driven testing. <br/><br/>
+        ///
+        /// Helps define a store the test cases into memory,
+        /// retrieving them by key, conversion to DynamicData
+        /// and Case templating.
+        /// </summary>
+        public struct _casecollection { }
+
+        /// <summary>
         /// Handles a collection of this class and its base classes recursively.
         /// </summary>
         public struct _classesrecursive { }
