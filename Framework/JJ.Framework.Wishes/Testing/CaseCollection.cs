@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Wishes.Testing
@@ -14,11 +13,11 @@ namespace JJ.Framework.Wishes.Testing
     {
         // Storage Variables
         
+        /// <inheritdoc cref="docs._casecollectionallowduplicates" />
         public bool AllowDuplicates { get; set; }
         
-        private readonly IList<TCase> _theseCases = new List<TCase>();
-        private readonly IList<CaseCollection<TCase>> _subCaseCollections = new List<CaseCollection<TCase>>();
-        private readonly Dictionary<string, TCase> _dictionary = new Dictionary<string, TCase>();
+        private readonly IList<CaseCollection<TCase>> _subCollections = new List<CaseCollection<TCase>>();
+        private readonly Dictionary<string, TCase> _caseDictionary = new Dictionary<string, TCase>();
         
         // Constructor (basic)
         
@@ -28,64 +27,39 @@ namespace JJ.Framework.Wishes.Testing
         // Constructors (single collection)
 
         public CaseCollection(params TCase[] theseCases) : this((ICollection<TCase>)theseCases) { }
-        public CaseCollection(ICollection<TCase> theseCases) => Initialize(theseCases);
+        public CaseCollection(ICollection<TCase> theseCases) => AddToDictionary(theseCases);
         
         // Adding (multi-collections)
         
-        public CaseCollection<TCase> Add(params TCase[] subCases) => Add(new CaseCollection<TCase>(subCases));
-        public CaseCollection<TCase> Add(ICollection<TCase> subCases) => Add(new CaseCollection<TCase>(subCases));
-        public CaseCollection<TCase> Add(CaseCollection<TCase> subCaseCollection)
+        public CaseCollection<TCase> AddCollection(params TCase[] subCases) => AddCollection(new CaseCollection<TCase>(subCases));
+        public CaseCollection<TCase> AddCollection(ICollection<TCase> subCases) => AddCollection(new CaseCollection<TCase>(subCases));
+        public CaseCollection<TCase> AddCollection(CaseCollection<TCase> subCollection)
         {
-            if (subCaseCollection == null) throw new NullException(() => subCaseCollection);
+            if (subCollection == null) throw new NullException(() => subCollection);
             
-            _subCaseCollections.Add(subCaseCollection);
+            _subCollections.Add(subCollection);
             
-            var cases = subCaseCollection.GetAll();
+            var subCases = subCollection.GetAll();
+            AddToDictionary(subCases);
             
-            Initialize(cases);
-            
-            return subCaseCollection;
+            return subCollection;
         }
         
-        private void Initialize(ICollection<TCase> cases)
+        private void AddToDictionary(ICollection<TCase> newCases)
         {
-            Assert(cases);
-            
-            AddToList(cases);
-            
-            AddToDictionary(cases);
-        }
-        
-        private static void Assert(ICollection<TCase> cases)
-        {
-            if (cases == null) throw new NullException(() => cases);
-            if (cases.Contains(default)) throw new Exception($"{nameof(cases)} collection has empty elements.");
-        }
-        
-        private void AddToList(ICollection<TCase> cases)
-        {
-            _theseCases.AddRange(cases);
-        }
-        
-        private void AddToDictionary(ICollection<TCase> cases)
-        {
-            foreach (TCase testCase in cases)
+            if (newCases == null) throw new NullException(() => newCases);
+            if (newCases.Contains(default)) throw new Exception($"{nameof(newCases)} collection has empty elements.");
+
+            foreach (TCase testCase in newCases)
             {
                 string key = testCase.Key;
-                
-                if (AllowDuplicates)
+
+                if (!AllowDuplicates && _caseDictionary.ContainsKey(key))
                 {
-                    // Allow duplicates to pass by, for practical reasons when managing multiple CaseCollections as one.
-                    _dictionary[key] = testCase;
+                    throw new Exception($"Duplicate key '{key}' found while adding {nameof(newCases)}.");
                 }
-                else
-                {
-                    if (_dictionary.ContainsKey(key))
-                    {
-                        throw new Exception($"Duplicate key '{key}' found while adding to {nameof(cases)} collection.");
-                    }
-                    _dictionary.Add(key, testCase);
-                }
+
+                _caseDictionary[key] = testCase;
             }
         }
         
@@ -95,11 +69,11 @@ namespace JJ.Framework.Wishes.Testing
         
         public TCase Get(string descriptor)
         {
-            if (_dictionary.TryGetValue(descriptor, out TCase testCase)) return testCase;
+            if (_caseDictionary.TryGetValue(descriptor, out TCase testCase)) return testCase;
             throw new Exception($"Case not found: {descriptor}");
         }
                 
-        public ICollection<TCase> GetAll() => _theseCases;
+        public ICollection<TCase> GetAll() => _caseDictionary.Values.ToArray();
         
         // Templating
         
@@ -113,12 +87,12 @@ namespace JJ.Framework.Wishes.Testing
             if (template == null) throw new NullException(() => template);
             if (cases == null) throw new NullException(() => cases);
             cases = template.FromTemplate(cases.Cast<ICase>().ToArray()).Cast<TCase>().ToArray();
-            return Add(cases);
+            return AddCollection(cases);
         }
         
         // DynamicData
                         
-        public IEnumerable<object[]> DynamicData => _theseCases.Select(x => x.DynamicData).ToArray();
+        public IEnumerable<object[]> DynamicData => _caseDictionary.Values.Select(x => x.DynamicData).ToArray();
         
         public static implicit operator object[][](CaseCollection<TCase> caseCollection)
         {

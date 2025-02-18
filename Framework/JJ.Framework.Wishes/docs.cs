@@ -25,6 +25,11 @@ namespace JJ.Framework.Wishes
         /// and Case templating.
         /// </summary>
         public struct _casecollection { }
+        
+        /// <summary>
+        /// Allow duplicates to pass by, for practical reasons when managing multiple CaseCollections as one.
+        /// </summary>
+        public struct _casecollectionallowduplicates { }
 
         /// <summary>
         /// Handles a collection of this class and its base classes recursively.
