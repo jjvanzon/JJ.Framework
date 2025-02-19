@@ -49,6 +49,7 @@ namespace JJ.Framework.Wishes.IO
             return filePath;
         }
         
+        private static readonly object _createSafeFileStreamLock = new object();
         private static readonly Mutex _createSafeFileStreamMutex = CreateMutex();
         private static Mutex CreateMutex()
         {
@@ -100,34 +101,37 @@ namespace JJ.Framework.Wishes.IO
             (string filePathFirstPart, int number, string filePathLastPart) =
                 GetNumberedFilePathParts(originalFilePath, numberPrefix, numberSuffix, mustNumberFirstFile, maxExtensionLength);
             
-            //bool isLocked = !_createSafeFileStreamMutex.WaitOne(0);
-            //if (isLocked) throw new Exception(nameof(_createSafeFileStreamMutex) + $" {_createSafeFileStreamMutex} already locked.");
-            
-            _createSafeFileStreamMutex.WaitOne();
-            try
+            lock (_createSafeFileStreamLock)
             {
-                string filePath = originalFilePath;
-                
-                if (mustNumberFirstFile || File.Exists(filePath))
+                //bool isLocked = !_createSafeFileStreamMutex.WaitOne(0);
+                //if (isLocked) throw new Exception(nameof(_createSafeFileStreamMutex) + $" {_createSafeFileStreamMutex} already locked.");
+
+                _createSafeFileStreamMutex.WaitOne();
+                try
                 {
-                    do
+                    string filePath = originalFilePath;
+                    
+                    if (mustNumberFirstFile || File.Exists(filePath))
                     {
-                        filePath = $"{filePathFirstPart}{number.ToString(numberFormatString)}{filePathLastPart}";
-                        number++;
+                        do
+                        {
+                            filePath = $"{filePathFirstPart}{number.ToString(numberFormatString)}{filePathLastPart}";
+                            number++;
+                        }
+                        while (File.Exists(filePath));
                     }
-                    while (File.Exists(filePath));
+                    
+                    return (filePath, new FileStream(filePath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Read));
                 }
-                
-                return (filePath, new FileStream(filePath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Read));
-            }
-            //catch (AbandonedMutexException ex)
-            //{
-            //     Console.WriteLine($"AbandonedMutexException! Mutex was held by a dead thread. {ex.Message}");
-            //    throw;
-            //}
-            finally
-            {
-                _createSafeFileStreamMutex.ReleaseMutex();
+                catch (AbandonedMutexException ex)
+                {
+                    Console.WriteLine($"{nameof(AbandonedMutexException)}! Mutex was held by a dead thread. {ex.Message}");
+                    throw;
+                }
+                finally
+                {
+                    _createSafeFileStreamMutex.ReleaseMutex();
+                }
             }
         }
         
