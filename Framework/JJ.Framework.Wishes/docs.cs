@@ -32,7 +32,9 @@ namespace JJ.Framework.Wishes
         public struct _casecollectionallowduplicates { }
                 
         /// <summary>
-        /// Creates new cases based on the specified template, applying its properties to the provided cases.
+        /// Creates new cases based on the specified template, applying its properties to the provided cases.<br/>
+        /// NOTE: You can't replace a template value by a ZERO value! Try defining a separate case without a template,
+        /// or another template with the zero value in it.
         /// </summary>
         /// <param name="template">The template case to apply.</param>
         /// <param name="cases">The cases to which the template is applied.</param>
