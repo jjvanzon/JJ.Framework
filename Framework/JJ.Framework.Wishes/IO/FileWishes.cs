@@ -5,6 +5,7 @@ using System.Threading;
 using JJ.Framework.Common;
 using JJ.Framework.Wishes.Common;
 using JJ.Framework.Wishes.Text;
+using static System.AppDomain;
 
 namespace JJ.Framework.Wishes.IO
 {
@@ -50,7 +51,31 @@ namespace JJ.Framework.Wishes.IO
         
         private static readonly Mutex _createSafeFileStreamMutex = CreateMutex();
         private static Mutex CreateMutex()
-            => new Mutex(false, "Global\\SynthWishes_CreateSafeFileStreamMutex_7f64fd76542045bb98c2e28a44d2df25");
+        {
+            var mutex = new Mutex(false, "Global\\JJFrameworkIO_CreateSafeFileStreamMutex_7f64fd76542045bb98c2e28a44d2df25");
+            
+            // Ensure it's released when the process exits.
+            CurrentDomain.ProcessExit += (s, e) =>
+            {
+                //if (mutex == null)
+                //{
+                //    return;
+                //}
+
+                try
+                {
+                    // Release Mutex in case it got abandoned.
+                    mutex.ReleaseMutex();
+                }
+                catch
+                {
+                    // If it didn't get abandoned, ReleaseMutex probably fails.
+                }
+                mutex.Dispose();
+            };
+
+            return mutex;
+        }
         
         /// <summary>
         /// If the originalFilePath already exists,
@@ -75,6 +100,9 @@ namespace JJ.Framework.Wishes.IO
             (string filePathFirstPart, int number, string filePathLastPart) =
                 GetNumberedFilePathParts(originalFilePath, numberPrefix, numberSuffix, mustNumberFirstFile, maxExtensionLength);
             
+            //bool isLocked = !_createSafeFileStreamMutex.WaitOne(0);
+            //if (isLocked) throw new Exception(nameof(_createSafeFileStreamMutex) + $" {_createSafeFileStreamMutex} already locked.");
+            
             _createSafeFileStreamMutex.WaitOne();
             try
             {
@@ -92,6 +120,11 @@ namespace JJ.Framework.Wishes.IO
                 
                 return (filePath, new FileStream(filePath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Read));
             }
+            //catch (AbandonedMutexException ex)
+            //{
+            //     Console.WriteLine($"AbandonedMutexException! Mutex was held by a dead thread. {ex.Message}");
+            //    throw;
+            //}
             finally
             {
                 _createSafeFileStreamMutex.ReleaseMutex();
