@@ -50,7 +50,11 @@ namespace JJ.Framework.Wishes.Reflection
         /// <inheritdoc cref="Accessor_Adapted.InvokeMethod(LambdaExpression)" />
         public new object InvokeMethod(LambdaExpression callExpression) => base.InvokeMethod(callExpression);
         /// <inheritdoc cref="Accessor_Adapted.InvokeMethod(string, object[])" />
+        public object InvokeMethod(object[] parameters, [CallerMemberName] string callerMemberName = null) => base.InvokeMethod(callerMemberName, parameters);
+        /// <inheritdoc cref="Accessor_Adapted.InvokeMethod(string, object[])" />
         public new object InvokeMethod(string name, params object[] parameters) => base.InvokeMethod(name, parameters);
+        /// <inheritdoc cref="Accessor_Adapted.InvokeMethod(string, object[], Type[])" />
+        public object InvokeMethod(object[] parameters, Type[] parameterTypes, [CallerMemberName] string callerMemberName = null) => base.InvokeMethod(callerMemberName, parameters, parameterTypes);
         /// <inheritdoc cref="Accessor_Adapted.InvokeMethod(string, object[], Type[])" />
         public new object InvokeMethod(string name, object[] parameters, Type[] parameterTypes) => base.InvokeMethod(name, parameters, parameterTypes);
         /// <inheritdoc cref="Accessor_Adapted.InvokeMethod{TArg1}(string, TArg1)" />
