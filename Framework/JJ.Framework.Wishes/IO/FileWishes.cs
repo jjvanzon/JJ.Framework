@@ -53,7 +53,7 @@ namespace JJ.Framework.Wishes.IO
         private static readonly Mutex _createSafeFileStreamMutex = CreateMutex();
         private static Mutex CreateMutex()
         {
-            var mutex = new Mutex(false, "Global\\JJFrameworkIO_CreateSafeFileStreamMutex_7f64fd76542045bb98c2e28a44d2df25");
+            var mutex = new Mutex(false, "Global\\JJFrameworkIO_CreateSafeFileStreamMutex2_7f64fd76542045bb98c2e28a44d2df25");
             
             // Ensure it's released when the process exits.
             CurrentDomain.ProcessExit += (s, e) =>
