@@ -77,12 +77,12 @@ namespace JJ.Framework.Wishes.Testing
         
         // Get
         
-        public TCase this[string descriptor] => Get(descriptor);
+        public TCase this[string key] => Get(key);
         
-        public TCase Get(string descriptor)
+        public TCase Get(string key)
         {
-            if (_caseDictionary.TryGetValue(descriptor, out TCase testCase)) return testCase;
-            throw new Exception($"Case not found: {descriptor}");
+            if (_caseDictionary.TryGetValue(key, out TCase testCase)) return testCase;
+            throw new Exception($"Case not found: {key}");
         }
                 
         public ICollection<TCase> GetAll() => _caseDictionary.Values.ToArray();
