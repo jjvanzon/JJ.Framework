@@ -70,20 +70,19 @@ namespace JJ.Framework.Wishes
         public struct _interfacesrecursive { }
 
         /// <summary>
-        /// Specifies whether strict validation is applied to ensure consistency between 
-        /// <see cref="FrameCount">FrameCount</see>, <see cref="AudioLength">AudioLength</see>, 
-        /// <see cref="SamplingRate">SamplingRate</see>, and <see cref="CourtesyFrames">CourtesyFrames</see>. <br/><br/>
+        /// Usage of the flag is up to the developer's discretion. <br/><br/>
         /// 
-        /// - <c>true</c>: Validation ensures that <see cref="FrameCount">FrameCount</see>
-        ///   matches the calculated  value based on <see cref="AudioLength">AudioLength</see>,
-        ///   <see cref="SamplingRate">SamplingRate</see>, nd <see cref="CourtesyFrames">CourtesyFrames</see>. 
-        ///   Inconsistencies result in exceptions, such as: <br/>
+        /// Specifies whether strict validation is applied to ensure consistency between
+        /// mathematically related Props.<br/><br/>
+        /// 
+        /// - <c>true</c>: Validation ensures that specified values match values calculated from dependencies.
+        ///   Inconsistencies can result in exceptions, such as: <br/>
         ///   "Attempt to initialize FrameCount to 11 is inconsistent with FrameCount 4803 
         ///    based on initial values for AudioLength (0.1), SamplingRate (default 48000), and CourtesyFrames (3)." <br/>
         /// - <c>false</c>: Validation is relaxed, and mismatched values are allowed for scenarios 
         ///   where not all properties might be relevant to the test. <br/><br/>
         /// 
-        /// Use this flag to test cases with or without strict mathematical relationships between these properties.
+        /// Use this flag to test cases with or without strict mathematical relationships between properties.
         /// </summary>
         public struct _strict { }
 
