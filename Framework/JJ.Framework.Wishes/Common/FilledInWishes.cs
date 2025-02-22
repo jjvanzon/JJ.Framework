@@ -41,15 +41,28 @@ namespace JJ.Framework.Wishes.Common
         public static bool In   (string value, ICollection<string> comparisons                 ) => comparisons.Contains(value, ignoreCase: true);
         public static bool In   (string value, string[]            comparisons, bool ignoreCase) => comparisons.Contains(value, ignoreCase);
         
-        public static T      Coalesce<T>(T   value, T      defaultValue)                                  => Has(value) ? value : defaultValue;
-        public static T      Coalesce<T>(T   value, T      defaultValue, T fallback)                      => Coalesce(value, Coalesce(defaultValue, fallback));
-        public static string Coalesce<T>(T   value, string defaultValue)                                  => Has(value) ? $"{value}" : defaultValue;
-        public static T      Coalesce<T>(T?  value, T      defaultValue)             where T : struct     => Has(value) ? value.Value : defaultValue;
-        public static T      Coalesce<T>(T?  value, T?     defaultValue, T fallback) where T : struct     => Coalesce(value, Coalesce(defaultValue, fallback));
-        public static string Coalesce<T>(T?  value, string defaultValue)             where T : struct     => Has(value) ? $"{value}" : defaultValue;
+        // With Non-Nullables
+        
+        public static T Coalesce<T>(T value, T defaultValue)             => Has(value) ? value : defaultValue;
+        public static T Coalesce<T>(T value, T defaultValue, T fallback) => Coalesce(value, Coalesce(defaultValue, fallback));
+        
+        // With Nullables
+
+        public static T Coalesce<T>(T? value, T  defaultValue)             where T : struct => Has(value) ? value.Value : defaultValue;
+        public static T Coalesce<T>(T? value, T? defaultValue, T fallback) where T : struct => Coalesce(value, Coalesce(defaultValue, fallback));
+
+        // With Strings
+        
         public static string Coalesce(string value, string defaultValue)                                  => Has(value) ? value : defaultValue;
         public static string Coalesce(string value, string defaultValue, string fallback)                 => Coalesce(value, Coalesce(defaultValue, fallback));
         public static string Coalesce(string value, string defaultValue, bool   trimSpace)                => Has(value, trimSpace) ? value : defaultValue;
         public static string Coalesce(string value, string defaultValue, string fallback, bool trimSpace) => Coalesce(value, Coalesce(defaultValue, fallback, trimSpace), trimSpace);
+        
+        // Stringy Mix
+        
+        public static string Coalesce<T>(T  value, string defaultValue)                                   => Has(value) ? $"{value}" : defaultValue;
+        public static string Coalesce<T>(T  value, T      defaultValue, string fallback)                  => Coalesce(Coalesce(value, defaultValue), fallback);
+        public static string Coalesce<T>(T? value, string defaultValue)                  where T : struct => Has(value) ? $"{value}" : defaultValue;
+        public static string Coalesce<T>(T? value, T?     defaultValue, string fallback) where T : struct => Coalesce(Coalesce(value, defaultValue), fallback);
     }
 }
