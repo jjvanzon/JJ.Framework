@@ -6,11 +6,12 @@ using System.Xml.Serialization;
 
 namespace JJ.Framework.Wishes.Logging
 {
-    public class LoggerElement
+    public class LogConfigElement
     {
+        // Preliminary. Might use later.
         /// <inheritdoc cref="docs.loggerelementtypeproperty" />
-        [XmlAttribute]
-        public string Type { get; set; }
+        //[XmlAttribute]
+        //public string Type { get; set; }
         
         [XmlAttribute]
         public bool? Active { get; set; }

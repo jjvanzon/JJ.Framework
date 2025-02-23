@@ -16,49 +16,51 @@ namespace JJ.Framework.Wishes.Logging
         
         public const bool DefaultActive = true;
         
-        private static string _previousName = "1FD83EAB"; // Initialize to something never existing. Null has a meaning.
-        private static LoggerElement[] _previousElements;
+        private static string _previousSectionName = "1FD83EAB"; // Initialize to something never existing. Null has a meaning.
+        private static string[] _previousLoggerNames;
 
-        public static LoggerElement[] GetActiveLoggerConfigs(string configSectionName = null)
+        public static string[] GetActiveLoggerNames(string sectionName = null)
         {
             // Make the main case fastest (not hit yet, still only one logger instantiated).
-            if (configSectionName == _previousName)
+            if (sectionName == _previousSectionName)
             {
-                return _previousElements;
+                return _previousLoggerNames;
             }
-
-            var section = GetConfigSection(configSectionName);
-            section = CoalesceConfig(section);
-            var elements = GetActiveLoggerConfigs(section);
             
-            _previousName = configSectionName;
-            _previousElements = elements;
-            return elements;
+            LogConfigSection section = GetConfigSection(sectionName);
+            section = CoalesceConfig(section);
+            LogConfigElement[] elements = GetActiveLoggerConfigs(section);
+            string[] loggerNames = elements.Select(x => x.Type).ToArray();
+            
+            _previousSectionName = sectionName;
+            _previousLoggerNames = loggerNames;
+
+            return loggerNames;
         }
 
-        private static LogConfig GetConfigSection(string name = null)
+        private static LogConfigSection GetConfigSection(string name = null)
         {
             string resolvedName = Coalesce(name, DefaultConfigSectionName);
-            return GetSection<LogConfig>(resolvedName);
+            return GetSection<LogConfigSection>(resolvedName);
         }
         
-        private static LogConfig CoalesceConfig(LogConfig config)
+        private static LogConfigSection CoalesceConfig(LogConfigSection config)
         {
-            config = config ?? new LogConfig();
-            config.Logs = config.Logs ?? Empty<LoggerElement>();
+            config = config ?? new LogConfigSection();
+            config.Logs = config.Logs ?? Empty<LogConfigElement>();
             
             for (int i = 0; i < config.Logs.Length; i++)
             {
-                config.Logs[i] = config.Logs[i] ?? new LoggerElement();
+                config.Logs[i] = config.Logs[i] ?? new LogConfigElement();
             }
             
             return config;
         }
         
-        private static LoggerElement[] GetActiveLoggerConfigs(LogConfig config)
+        private static LogConfigElement[] GetActiveLoggerConfigs(LogConfigSection config)
         {
             bool active = config.Active ?? DefaultActive;
-            if (!active) return Empty<LoggerElement>();
+            if (!active) return Empty<LogConfigElement>();
             return config.Logs.Where(x => x.Active ?? DefaultActive).ToArray();
         }
     }

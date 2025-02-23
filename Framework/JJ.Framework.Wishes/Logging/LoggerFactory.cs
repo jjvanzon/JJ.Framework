@@ -17,22 +17,22 @@ namespace JJ.Framework.Wishes.Logging
         
         public static ILogger CreateLoggerFromConfig()
         {
-            LoggerElement[] configs = GetActiveLoggerConfigs();
+            string[] loggerNames = GetActiveLoggerNames();
             
-            switch (configs.Length)
+            switch (loggerNames.Length)
             {
                 case 0 : return new EmptyLogger();
-                case 1 : return CreateLogger_FromName(configs[0].Type);
-                default: return new VersatileLogger(CreateLoggers_FromConfigElements(configs));
+                case 1 : return CreateLogger_FromName(loggerNames[0]);
+                default: return new VersatileLogger(CreateLoggers_FromNames(loggerNames));
             }
         }
         
-        private static ILogger[] CreateLoggers_FromConfigElements(LoggerElement[] configs)
+        private static ILogger[] CreateLoggers_FromNames(string[] loggerNames)
         {
-            var loggers = new ILogger[configs.Length];
-            for (int i = 0; i < configs.Length; i++)
+            var loggers = new ILogger[loggerNames.Length];
+            for (int i = 0; i < loggerNames.Length; i++)
             {
-                loggers[i] = CreateLogger_FromName(configs[i].Type);
+                loggers[i] = CreateLogger_FromName(loggerNames[i]);
             }
             return loggers;
         }

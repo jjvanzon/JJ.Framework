@@ -43,9 +43,9 @@
     <Compile Include="Logging\DebugLogger.cs" />
     <Compile Include="Logging\EmptyLogger.cs" />
     <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Logging\LoggerElement.cs" />
+    <Compile Include="Logging\LogConfigElement.cs" />
     <Compile Include="Logging\LogConfigFetcher.cs" />
-    <Compile Include="Logging\LogConfig.cs" />
+    <Compile Include="Logging\LogConfigSection.cs" />
     <Compile Include="Logging\LoggerBase.cs" />
     <Compile Include="Logging\LoggerEnum.cs" />
     <Compile Include="Logging\LoggerFactory.cs" />
