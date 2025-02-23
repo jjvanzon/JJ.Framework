@@ -12,8 +12,12 @@ namespace JJ.Framework.Wishes.Reflection
         // Assemblies
 
         public static string GetAssemblyName<TType>()
-            => typeof(TType).Assembly.GetName().Name;
-
+            => TryGetAssemblyName(typeof(TType).Assembly);
+        
+        public static string TryGetAssemblyName(Assembly assembly) => assembly?.GetName().Name;
+        
+        public static string GetAssemblyName(Assembly assembly) => TryGetAssemblyName(assembly) ?? throw new NullException(() => assembly);
+        
         // Fields
 
         /// <summary>
