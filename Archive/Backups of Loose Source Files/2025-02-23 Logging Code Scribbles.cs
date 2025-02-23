@@ -116,3 +116,28 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
 
             //LogConfig       config  = GetConfigSection();
             //LoggerElement[] configs = GetActiveLoggerConfigs(config);
+
+        
+        private static LogConfigSection CoalesceConfig(LogConfigSection config)
+        {
+            config = config ?? new LogConfigSection();
+            config.Logs = config.Logs ?? Empty<LogConfigElement>();
+            
+            for (int i = 0; i < config.Logs.Length; i++)
+            {
+                config.Logs[i] = config.Logs[i] ?? new LogConfigElement();
+            }
+            
+            return config;
+        }
+        
+        private static LogConfigElement[] GetActiveLoggerConfigs(LogConfigSection config)
+        {
+            bool active = config.Active ?? DefaultActive;
+            if (!active) return Empty<LogConfigElement>();
+            return config.Logs;
+        }
+
+        //public static string TryGetAssemblyName<TType>()
+        //    => typeof(TType).Assembly.GetName().Name;
+

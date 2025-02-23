@@ -11,8 +11,5 @@ namespace JJ.Framework.Wishes.Logging
         /// <inheritdoc cref="docs.loggertype" />
         [XmlAttribute]
         public string Type { get; set; }
-        
-        [XmlAttribute]
-        public bool? Active { get; set; }
     }
 }

@@ -17,12 +17,12 @@ namespace JJ.Framework.Wishes.Logging
         
         public static ILogger CreateLoggerFromConfig()
         {
-            string[] loggerIDs = GetActiveLoggerIDs();
+            string[] loggerIDs = GetLoggerIDs();
             
             switch (loggerIDs.Length)
             {
                 case 0 : return new EmptyLogger();
-                case 1 : return CreateLogger_FromName(loggerIDs[0]);
+                case 1 : return CreateLogger_FromID(loggerIDs[0]);
                 default: return new VersatileLogger(CreateLoggers_FromIDs(loggerIDs));
             }
         }
@@ -32,12 +32,12 @@ namespace JJ.Framework.Wishes.Logging
             var loggers = new ILogger[loggerIDs.Length];
             for (int i = 0; i < loggerIDs.Length; i++)
             {
-                loggers[i] = CreateLogger_FromName(loggerIDs[i]);
+                loggers[i] = CreateLogger_FromID(loggerIDs[i]);
             }
             return loggers;
         }
         
-        private static ILogger CreateLogger_FromName(string loggerID) 
+        private static ILogger CreateLogger_FromID(string loggerID) 
             => TryCreateLogger_ByEnum(loggerID) ?? (ILogger)Activator.CreateInstance(GetLoggerType(loggerID));
         
         private static ILogger TryCreateLogger_ByEnum(string loggerID)
@@ -69,7 +69,7 @@ namespace JJ.Framework.Wishes.Logging
                     return type;
                 }
 
-                type = TryGetLoggerType_FromAssembly(loggerID) ?? Type.GetType(loggerID);
+                type = TryGetLoggerType_FromAssemblyName(loggerID) ?? Type.GetType(loggerID);
                 
                 _loggerTypeDictionary[loggerID] = type;
 
@@ -77,7 +77,7 @@ namespace JJ.Framework.Wishes.Logging
             }
         }
         
-        private static Type TryGetLoggerType_FromAssembly(string assemblyName)
+        private static Type TryGetLoggerType_FromAssemblyName(string assemblyName)
         {
             // Try load assembly.
             Assembly assembly;

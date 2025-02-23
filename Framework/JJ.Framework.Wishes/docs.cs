@@ -82,7 +82,7 @@ namespace JJ.Framework.Wishes
         /// </summary>
         public struct loggertype { }
         
-        /// <remarks>Comma, space or semi-colon separated.</remarks>
+        /// <remarks>Semi-colon separated.</remarks>
         /// <inheritdoc cref="docs.loggertype" />
         public struct loggertypes { }
         
@@ -102,6 +102,12 @@ namespace JJ.Framework.Wishes
         /// Use this flag to test cases with or without strict mathematical relationships between properties.
         /// </summary>
         public struct _strict { }
+
+        
+        /// <summary> 
+        /// This null-tolerant version is missing in JJ.Framework.Configuration for now.
+        /// </summary> 
+        public struct _trygetsection { }
 
         /// <summary>
         /// Handles a collection of this type and its base classes and interfaces recursively.

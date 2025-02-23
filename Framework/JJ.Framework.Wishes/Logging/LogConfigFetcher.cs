@@ -6,6 +6,7 @@ using JJ.Framework.Common;
 using static System.Array;
 using static JJ.Framework.Configuration.CustomConfigurationManager;
 using static JJ.Framework.Wishes.Common.FilledInWishes;
+using static JJ.Framework.Wishes.Configuration.ConfigurationManagerWishes;
 
 namespace JJ.Framework.Wishes.Logging
 {
@@ -16,60 +17,57 @@ namespace JJ.Framework.Wishes.Logging
         
         public const bool DefaultActive = true;
         
-        private static string _previousSectionName = "1FD83EAB"; // Initialize to something never existing. Null has a meaning.
-        private static string[] _previousLoggerIDs;
+        private static readonly LogConfigSection _defaultConfiguration = CreateDefaultConfiguration();
+        private static LogConfigSection CreateDefaultConfiguration() => new LogConfigSection
+        {
+            Active = DefaultActive,
+            Logs   = Empty<LogConfigElement>(),
+            Type   = "Debug"
+        };
+        
+        private static string _cachedSectionName = "1FD83EAB"; // Initialize to something never existing, because null has meaning.
+        private static string[] _cachedLoggerIDs = Empty<string>();
 
-        public static string[] GetActiveLoggerIDs(string sectionName = null)
+        public static string[] GetLoggerIDs(string sectionName = null)
         {
             // Make the main case fastest (not hit yet, still only one logger instantiated).
-            if (sectionName == _previousSectionName)
+            if (sectionName == _cachedSectionName)
             {
-                return _previousLoggerIDs;
+                return _cachedLoggerIDs;
+            }
+            _cachedSectionName = sectionName;
+            
+            // Get section or default
+            LogConfigSection section = TryGetConfigSection(sectionName) ?? _defaultConfiguration;
+            
+            // Handle inactive
+            if (!(Active(section)))
+            {
+                _cachedLoggerIDs = Empty<string>();
+            }
+            else
+            {
+                // Get logger IDs from all sources in the config.
+                _cachedLoggerIDs = EnumerateParsedLoggerIDs(section.Types)
+                                  .Union(EnumerateParsedLoggerIDs(section.Type))
+                                  .Union(EnumerateLoggerIDsFromElements(section)).ToArray();
             }
             
-            LogConfigSection section = GetConfigSection(sectionName);
-            section = CoalesceConfig(section);
-            LogConfigElement[] elements = GetActiveLoggerConfigs(section);
-            string[] loggerIDs = EnumerateParsedTypesAttribute(section.Types)
-                                .Union(EnumerateParsedTypesAttribute(section.Type))
-                                .Union(elements.Select(x => x.Type)).ToArray();
-
-            _previousSectionName = sectionName;
-            _previousLoggerIDs = loggerIDs;
-
-            return loggerIDs;
+            return _cachedLoggerIDs;
         }
-
-        private static LogConfigSection GetConfigSection(string name = null)
+        
+        private static LogConfigSection TryGetConfigSection(string name = null)
         {
             string resolvedName = Coalesce(name, DefaultConfigSectionName);
-            return GetSection<LogConfigSection>(resolvedName);
+            return TryGetSection<LogConfigSection>(resolvedName);
         }
         
-        private static LogConfigSection CoalesceConfig(LogConfigSection config)
-        {
-            config = config ?? new LogConfigSection();
-            config.Logs = config.Logs ?? Empty<LogConfigElement>();
-            
-            for (int i = 0; i < config.Logs.Length; i++)
-            {
-                config.Logs[i] = config.Logs[i] ?? new LogConfigElement();
-            }
-            
-            return config;
-        }
+        private static bool Active(LogConfigSection section) => section?.Active ?? DefaultActive;
         
-        private static LogConfigElement[] GetActiveLoggerConfigs(LogConfigSection config)
-        {
-            bool active = config.Active ?? DefaultActive;
-            if (!active) return Empty<LogConfigElement>();
-            return config.Logs.Where(x => x.Active ?? DefaultActive).ToArray();
-        }
+        private static IEnumerable<string> EnumerateParsedLoggerIDs(string types) 
+            => types?.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()) ?? Empty<string>();
         
-        private static IEnumerable<string> EnumerateParsedTypesAttribute(string types)
-        {
-            if (!Has(types)) return Empty<string>();
-            return types.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim());
-        }
+        private static IEnumerable<string> EnumerateLoggerIDsFromElements(LogConfigSection section) 
+            => section.Logs?.Where(x => x != null).Select(x => x.Type) ?? Empty<string>();
     }
 }
