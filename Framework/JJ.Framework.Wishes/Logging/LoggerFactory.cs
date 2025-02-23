@@ -17,14 +17,13 @@ namespace JJ.Framework.Wishes.Logging
         
         public static ILogger CreateLoggerFromConfig()
         {
-            LogConfig       config  = GetConfigSection();
-            LoggerElement[] configs = GetActiveLoggerConfigs(config);
+            LoggerElement[] configs = GetActiveLoggerConfigs();
             
             switch (configs.Length)
             {
-                case 1:  return CreateLogger_FromName(configs[0].Type);
-                default: return new VersatileLogger(CreateLoggers_FromConfigElements(configs));
                 case 0 : return new EmptyLogger();
+                case 1 : return CreateLogger_FromName(configs[0].Type);
+                default: return new VersatileLogger(CreateLoggers_FromConfigElements(configs));
             }
         }
         

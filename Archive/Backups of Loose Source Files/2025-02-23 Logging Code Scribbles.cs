@@ -113,3 +113,6 @@
 
 
 type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
+
+            //LogConfig       config  = GetConfigSection();
+            //LoggerElement[] configs = GetActiveLoggerConfigs(config);

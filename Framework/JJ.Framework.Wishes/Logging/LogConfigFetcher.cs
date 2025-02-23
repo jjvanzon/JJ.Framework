@@ -17,27 +17,29 @@ namespace JJ.Framework.Wishes.Logging
         public const bool DefaultActive = true;
         
         private static string _previousName = "1FD83EAB"; // Initialize to something never existing. Null has a meaning.
-        private static LogConfig _previousSection;
-                
-        public static LoggerElement[] GetActiveLoggerConfigs(LogConfig config) 
-            => config.Logs.Where(x => x.Active ?? DefaultActive).ToArray();
+        private static LoggerElement[] _previousElements;
 
-        public static LogConfig GetConfigSection(string name = null)
+        public static LoggerElement[] GetActiveLoggerConfigs(string configSectionName = null)
         {
             // Make the main case fastest (not hit yet, still only one logger instantiated).
-            if (name == _previousName)
+            if (configSectionName == _previousName)
             {
-                return _previousSection;
+                return _previousElements;
             }
 
-            string resolvedName  = Coalesce(name, DefaultConfigSectionName);
-            var section = GetSection<LogConfig>(resolvedName);
+            var section = GetConfigSection(configSectionName);
             section = CoalesceConfig(section);
+            var elements = GetActiveLoggerConfigs(section);
             
-            _previousName = name;
-            _previousSection = section;
-            
-            return section;
+            _previousName = configSectionName;
+            _previousElements = elements;
+            return elements;
+        }
+
+        private static LogConfig GetConfigSection(string name = null)
+        {
+            string resolvedName = Coalesce(name, DefaultConfigSectionName);
+            return GetSection<LogConfig>(resolvedName);
         }
         
         private static LogConfig CoalesceConfig(LogConfig config)
@@ -51,6 +53,13 @@ namespace JJ.Framework.Wishes.Logging
             }
             
             return config;
+        }
+        
+        private static LoggerElement[] GetActiveLoggerConfigs(LogConfig config)
+        {
+            bool active = config.Active ?? DefaultActive;
+            if (!active) return Empty<LoggerElement>();
+            return config.Logs.Where(x => x.Active ?? DefaultActive).ToArray();
         }
     }
 }
