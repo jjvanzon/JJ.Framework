@@ -84,7 +84,7 @@ namespace JJ.Framework.Wishes
         
         /// <remarks>Comma, space or semi-colon separated.</remarks>
         /// <inheritdoc cref="docs.loggertype" />
-        public struct loggerelementtypeproperty { }
+        public struct loggertypes { }
         
         /// <summary>
         /// Usage of the flag is up to the developer's discretion. <br/><br/>

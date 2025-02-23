@@ -8,7 +8,7 @@ namespace JJ.Framework.Wishes.Logging
 {
     public class LogConfigElement
     {
-        /// <inheritdoc cref="docs.loggerelementtypeproperty" />
+        /// <inheritdoc cref="docs.loggertype" />
         [XmlAttribute]
         public string Type { get; set; }
         

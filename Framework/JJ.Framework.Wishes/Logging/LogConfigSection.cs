@@ -11,10 +11,15 @@ namespace JJ.Framework.Wishes.Logging
         [XmlAttribute]
         public bool? Active { get; set; }
 
-        // Preliminary. Might use later.
+        // Several formats in which to specify the logger types.
+        
         /// <inheritdoc cref="docs.loggertype" />
-        //[XmlAttribute]
-        //public string Types { get; set; }
+        [XmlAttribute]
+        public string Type { get; set; }
+
+        /// <inheritdoc cref="docs.loggertypes" />
+        [XmlAttribute]
+        public string Types { get; set; }
         
         [XmlArrayItem("log")]
         public LogConfigElement[] Logs { get; set; }

@@ -17,32 +17,32 @@ namespace JJ.Framework.Wishes.Logging
         
         public static ILogger CreateLoggerFromConfig()
         {
-            string[] loggerNames = GetActiveLoggerNames();
+            string[] loggerIDs = GetActiveLoggerIDs();
             
-            switch (loggerNames.Length)
+            switch (loggerIDs.Length)
             {
                 case 0 : return new EmptyLogger();
-                case 1 : return CreateLogger_FromName(loggerNames[0]);
-                default: return new VersatileLogger(CreateLoggers_FromNames(loggerNames));
+                case 1 : return CreateLogger_FromName(loggerIDs[0]);
+                default: return new VersatileLogger(CreateLoggers_FromIDs(loggerIDs));
             }
         }
         
-        private static ILogger[] CreateLoggers_FromNames(string[] loggerNames)
+        private static ILogger[] CreateLoggers_FromIDs(string[] loggerIDs)
         {
-            var loggers = new ILogger[loggerNames.Length];
-            for (int i = 0; i < loggerNames.Length; i++)
+            var loggers = new ILogger[loggerIDs.Length];
+            for (int i = 0; i < loggerIDs.Length; i++)
             {
-                loggers[i] = CreateLogger_FromName(loggerNames[i]);
+                loggers[i] = CreateLogger_FromName(loggerIDs[i]);
             }
             return loggers;
         }
         
-        private static ILogger CreateLogger_FromName(string name) 
-            => TryCreateLogger_ByEnum(name) ?? (ILogger)Activator.CreateInstance(GetLoggerType(name));
+        private static ILogger CreateLogger_FromName(string loggerID) 
+            => TryCreateLogger_ByEnum(loggerID) ?? (ILogger)Activator.CreateInstance(GetLoggerType(loggerID));
         
-        private static ILogger TryCreateLogger_ByEnum(string name)
+        private static ILogger TryCreateLogger_ByEnum(string loggerID)
         {
-            if (!Enum.TryParse(name, out LoggerEnum value))
+            if (!Enum.TryParse(loggerID, out LoggerEnum value))
             {
                 return null;
             }
@@ -60,18 +60,18 @@ namespace JJ.Framework.Wishes.Logging
         private static readonly object _loggerTypeDictionaryLock = new object();
         private static readonly Dictionary<string, Type> _loggerTypeDictionary = new Dictionary<string, Type>();
 
-        private static Type GetLoggerType(string name)
+        private static Type GetLoggerType(string loggerID)
         {
             lock (_loggerTypeDictionaryLock)
             {
-                if (_loggerTypeDictionary.TryGetValue(name, out Type type))
+                if (_loggerTypeDictionary.TryGetValue(loggerID, out Type type))
                 {
                     return type;
                 }
 
-                type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
+                type = TryGetLoggerType_FromAssembly(loggerID) ?? Type.GetType(loggerID);
                 
-                _loggerTypeDictionary[name] = type;
+                _loggerTypeDictionary[loggerID] = type;
 
                 return type;
             }

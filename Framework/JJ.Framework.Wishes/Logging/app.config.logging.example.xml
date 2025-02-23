@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	
+	<configSections>
+	  <section name="jj.framework.logging" type="JJ.Framework.Configuration.ConfigurationSectionHandler, JJ.Framework.Configuration" />
+	</configSections>
+
+		
+  <jj.framework.logging type="Debug" />
+
+	<jj.framework.logging types="Debug;Console" />
+		
+  <jj.framework.logging>
+    <logs>
+      <log type="Console" active="false" />
+      <log type="Debug" active="true" />
+    </logs>
+  </jj.framework.logging>
+	
+  <jj.framework.logging active="true" types="Console;Debug" type="Debug">
+    <logs>
+      <log type="Console" active="false" />
+      <log type="Debug" active="true" />
+    </logs>
+  </jj.framework.logging>
+
+	<!-- TODO: Examples with AssemblyName or .NET Type strings.-->
+	
+</configuration>
+
