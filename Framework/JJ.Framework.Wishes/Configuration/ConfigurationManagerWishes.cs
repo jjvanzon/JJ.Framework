@@ -1,13 +1,50 @@
 ﻿using System;
+using System.Reflection;
 using JJ.Framework.Configuration;
-using JJ.Framework.Wishes.Reflection;
+using static JJ.Framework.Wishes.Reflection.ReflectionWishes;
 
 namespace JJ.Framework.Wishes.Configuration
 {
-    /// <inheritdoc cref="_trygetsection"/>
+    /// <inheritdoc cref="docs._trygetsection"/>
     public static class ConfigurationManagerWishes
     {
-        /// <inheritdoc cref="_trygetsection"/>
+        /// <inheritdoc cref="docs._trygetsection"/>
+        public static T TryGetSection<T>(Assembly assembly)
+            where T: new()
+        {
+            T config = default;
+            
+            try
+            {
+                config = CustomConfigurationManager.GetSection<T>(assembly);
+            }
+            catch (Exception ex)
+            {
+                AssertExceptionIsAllowed(ex, assembly);
+            }
+            
+            return config;
+        }
+        
+        /// <inheritdoc cref="docs._trygetsection"/>
+        public static T TryGetSection<T>(string sectionName)
+            where T: new()
+        {
+            T config = default;
+            
+            try
+            {
+                config = CustomConfigurationManager.GetSection<T>(sectionName);
+            }
+            catch (Exception ex)
+            {
+                AssertExceptionIsAllowed(ex, sectionName);
+            }
+            
+            return config;
+        }
+        
+        /// <inheritdoc cref="docs._trygetsection"/>
         public static T TryGetSection<T>()
             where T: class, new()
         {
@@ -19,20 +56,30 @@ namespace JJ.Framework.Wishes.Configuration
             }
             catch (Exception ex)
             {
-                // Allow 'Not Found' Exception
-                string configSectionName = ReflectionWishes.GetAssemblyName<T>().ToLower();
-                string allowedMessage    = $"Configuration section '{configSectionName}' not found.";
-                bool   messageIsAllowed  = string.Equals(ex.Message,                 allowedMessage);
-                bool   messageIsAllowed2 = string.Equals(ex.InnerException?.Message, allowedMessage);
-                bool   mustThrow         = !messageIsAllowed && !messageIsAllowed2;
-                
-                if (mustThrow)
-                {
-                    throw;
-                }
+                AssertExceptionIsAllowed<T>(ex);
             }
             
             return config;
+        }
+        
+        private static void AssertExceptionIsAllowed<T>(Exception ex)
+            => AssertExceptionIsAllowed(ex, GetAssemblyName<T>().ToLower());
+        
+        private static void AssertExceptionIsAllowed(Exception ex, Assembly assembly) 
+            => AssertExceptionIsAllowed(ex, TryGetAssemblyName(assembly)?.ToLower());
+        
+        private static void AssertExceptionIsAllowed(Exception ex, string configSectionName)
+        {
+            // Allow 'Not Found' Exception
+            string allowedMessage    = $"Configuration section '{configSectionName}' not found.";
+            bool   messageIsAllowed  = string.Equals(ex.Message,                 allowedMessage);
+            bool   messageIsAllowed2 = string.Equals(ex.InnerException?.Message, allowedMessage);
+            bool   mustThrow         = !messageIsAllowed && !messageIsAllowed2;
+            
+            if (mustThrow)
+            {
+                throw new Exception($"The only exceptions message allowed is: '{allowedMessage}'", ex);
+            }
         }
     }
 }
