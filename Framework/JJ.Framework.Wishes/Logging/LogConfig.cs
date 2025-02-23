@@ -9,7 +9,6 @@ namespace JJ.Framework.Wishes.Logging
 {
     public class LogConfig
     {
-        // TODO: Make nullable
         [XmlAttribute]
         public bool? Active { get; set; }
 
