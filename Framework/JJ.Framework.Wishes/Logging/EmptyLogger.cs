@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JJ.Framework.Wishes.Logging
 {
-    internal class DebugOutputLogger : LoggerBase
+    internal class EmptyLogger : ILogger
     {
-        public override void Log(string message) => Debug.WriteLine(message);
+        public void Log(string message) { }
     }
 }

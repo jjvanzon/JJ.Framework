@@ -10,7 +10,7 @@ namespace JJ.Framework.Wishes.Logging
 {
     internal class LogConfigHelper
     {
-        public const bool DefaultEnabled = true;
+        public const bool DefaultActive = true;
         
         /// <inheritdoc cref="docs._defaultconfigsectionname" />
         private const string DefaultConfigSectionName = "jj.framework.logging";

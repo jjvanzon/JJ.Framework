@@ -7,6 +7,7 @@ using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 using static JJ.Framework.Reflection.ReflectionHelper;
 using static JJ.Framework.Wishes.Common.FilledInWishes;
+using static JJ.Framework.Wishes.Logging.LogConfigHelper;
 
 namespace JJ.Framework.Wishes.Logging
 {
@@ -17,13 +18,19 @@ namespace JJ.Framework.Wishes.Logging
         
         public static ILogger CreateLoggerFromConfig()
         {
-            LogConfig config = LogConfigHelper.GetConfigSection();
+            LogConfig config = GetConfigSection();
             return CreateLogger(config);
         }
         
         public static ILogger CreateLogger(LogConfig config)
         {
             if (config == null) throw new NullException(() => config);
+            
+            if (!config.Active ?? DefaultActive)
+            {
+                return new EmptyLogger();
+            }
+            
             ILogger logger = new VersatileLogger(config);
             return logger;
         }
@@ -58,7 +65,7 @@ namespace JJ.Framework.Wishes.Logging
                 switch (value)
                 {
                     case LoggerEnum.Console: return new ConsoleLogger();
-                    case LoggerEnum.DebugOutput: return new DebugOutputLogger();
+                    case LoggerEnum.Debug: return new DebugLogger();
                     default: throw new ValueNotSupportedException(value);
                 }
             }

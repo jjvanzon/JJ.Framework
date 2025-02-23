@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Reflection;
+using static System.Array;
 using static JJ.Framework.Wishes.Logging.LogConfigHelper;
 using static JJ.Framework.Wishes.Logging.LoggerFactory;
 
@@ -16,9 +17,11 @@ namespace JJ.Framework.Wishes.Logging
         public VersatileLogger(LogConfig config)
         {
             if (config == null) throw new NullException(() => config);
-            if (config.Loggers == null) throw new NullException(() => config.Loggers);
+            if (config.Logs == null) throw new NullException(() => config.Logs);
             
-            var loggerConfigs = config.Loggers.Where(x => x.Enabled ?? DefaultEnabled).ToArray();
+            // TODO: Move this to factory, so you can return different instances based on configuration?
+
+            var loggerConfigs = config.Logs.Where(x => x.Active ?? DefaultActive).ToArray();
             
             int count = loggerConfigs.Length;
             
@@ -26,7 +29,7 @@ namespace JJ.Framework.Wishes.Logging
             
             for (int i = 0; i < count; i++)
             {
-                _loggers[i] = CreateLogger(config.Loggers[i].Type);
+                _loggers[i] = CreateLogger(config.Logs[i].Type);
             }   
         }
         

@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JJ.Framework.Wishes.Logging
 {
-    public enum LoggerEnum
+    internal class DebugLogger : LoggerBase
     {
-        Undefined,
-        Console,
-        Debug
+        public override void Log(string message) => Debug.WriteLine(message);
     }
 }

@@ -40,9 +40,10 @@
   <ItemGroup>
     <Compile Include="docs.cs" />
     <Compile Include="Logging\ConsoleLogger.cs" />
-    <Compile Include="Logging\DebugOutputLogger.cs" />
+    <Compile Include="Logging\DebugLogger.cs" />
+    <Compile Include="Logging\EmptyLogger.cs" />
     <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Logging\LoggerConfigElement.cs" />
+    <Compile Include="Logging\LoggerElement.cs" />
     <Compile Include="Logging\LogConfigHelper.cs" />
     <Compile Include="Logging\LogConfig.cs" />
     <Compile Include="Logging\LoggerBase.cs" />

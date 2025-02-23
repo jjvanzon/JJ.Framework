@@ -9,7 +9,11 @@ namespace JJ.Framework.Wishes.Logging
 {
     public class LogConfig
     {
-        [XmlArrayItem("logger")]
-        public IList<LoggerConfigElement> Loggers { get; set; }
+        // TODO: Make nullable
+        [XmlAttribute]
+        public bool? Active { get; set; }
+
+        [XmlArrayItem("log")]
+        public IList<LoggerElement> Logs { get; set; }
     }
 }
