@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Reflection;
 using static System.Array;
-using static JJ.Framework.Wishes.Logging.LogConfigHelper;
-using static JJ.Framework.Wishes.Logging.LoggerFactory;
 
 namespace JJ.Framework.Wishes.Logging
 {

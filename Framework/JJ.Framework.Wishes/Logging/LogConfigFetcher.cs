@@ -9,8 +9,7 @@ using static JJ.Framework.Wishes.Common.FilledInWishes;
 
 namespace JJ.Framework.Wishes.Logging
 {
-    // TODO: Rename to LogConfigFetcher
-    internal class LogConfigHelper
+    internal class LogConfigFetcher
     {
         /// <inheritdoc cref="docs._defaultconfigsectionname" />
         private const string DefaultConfigSectionName = "jj.framework.logging";

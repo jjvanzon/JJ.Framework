@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using JJ.Framework.Common;
 using static JJ.Framework.Reflection.ReflectionHelper;
-using static JJ.Framework.Wishes.Logging.LogConfigHelper;
+using static JJ.Framework.Wishes.Logging.LogConfigFetcher;
 
 namespace JJ.Framework.Wishes.Logging
 {
