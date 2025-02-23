@@ -17,3 +17,16 @@
         //        _loggers[i] = CreateLogger(config.Logs[i].Type);
         //    }   
         //}
+
+        //public static ILogger CreateLogger(LogConfig config)
+        //{
+        //    if (config == null) throw new NullException(() => config);
+            
+        //    if (!config.Active ?? DefaultActive)
+        //    {
+        //        return new EmptyLogger();
+        //    }
+            
+        //    ILogger logger = new VersatileLogger(config);
+        //    return logger;
+        //}

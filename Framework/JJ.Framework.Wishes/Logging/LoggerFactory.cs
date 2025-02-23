@@ -13,36 +13,44 @@ namespace JJ.Framework.Wishes.Logging
 {
     public class LoggerFactory
     {
-        private static readonly object _dictionaryLock = new object();
+        private static readonly object _loggerTypeDictionaryLock = new object();
         private static readonly Dictionary<string, Type> _loggerTypeDictionary = new Dictionary<string, Type>();
         
         public static ILogger CreateLoggerFromConfig()
         {
             LogConfig config = GetConfigSection();
-            return CreateLogger(config);
-        }
-        
-        public static ILogger CreateLogger(LogConfig config)
-        {
-            if (config == null) throw new NullException(() => config);
+            CoalesceConfig(ref config);
             
-            if (!config.Active ?? DefaultActive)
-            {
-                return new EmptyLogger();
-            }
+            ILogger[] loggers = CreateLoggersFromConfig(config);
             
-            ILogger logger = new VersatileLogger(config);
+            ILogger logger = new VersatileLogger(loggers);
             return logger;
         }
         
-        internal static ILogger CreateLogger(string name)
+        private static ILogger[] CreateLoggersFromConfig(LogConfig config)
+        {
+            var configs = config.Logs.Where(x => x.Active ?? DefaultActive).ToArray();
+            
+            int count = configs.Length;
+            
+            var loggers = new ILogger[count];
+            
+            for (int i = 0; i < count; i++)
+            {
+                loggers[i] = CreateLogger(configs[i].Type);
+            }   
+            
+            return loggers;
+        }
+        
+        private static ILogger CreateLogger(string name)
         {
             if (!Has(name)) throw new Exception(nameof(name) + " not filled in.");
             
             ILogger logger = TryGetLoggerByEnum(name);
             if (logger != null) return logger;
             
-            lock (_dictionaryLock)
+            lock (_loggerTypeDictionaryLock)
             {
                 if (_loggerTypeDictionary.TryGetValue(name, out Type type))
                 {
