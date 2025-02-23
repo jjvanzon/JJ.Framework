@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<configSections>
+	  <section name="jj.framework.logging" type="JJ.Framework.Configuration.ConfigurationSectionHandler, JJ.Framework.Configuration" />
+	</configSections>
+	
+  <jj.framework.logging>
+    <loggers>
+      <logger type="Console" />
+      <logger type="DebugOutput" enabled="false" />
+    </loggers>
+  </jj.framework.logging>
+</configuration>
+

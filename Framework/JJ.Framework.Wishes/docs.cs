@@ -65,10 +65,23 @@ namespace JJ.Framework.Wishes
         public struct _deltadirection { }
 
         /// <summary>
+        /// Does not include the ".wishes" part for future compatibility.
+        /// </summary>
+        public struct _defaultconfigsectionname { } 
+        
+        /// <summary>
         /// Handles a collection of this interface or its deeper interfaces recursively.
         /// </summary>
         public struct _interfacesrecursive { }
 
+        /// <summary>
+        /// Specifies the logger type. Options include:<br/>
+        /// - LoggerEnum values (e.g., Console, DebugOutput).<br/>
+        /// - Assembly name containing an ILogger implementation.<br/>
+        /// - Full .NET Type string indicating an implementation of ILogger.
+        /// </summary>
+        public struct loggertype { }
+        
         /// <summary>
         /// Usage of the flag is up to the developer's discretion. <br/><br/>
         /// 
