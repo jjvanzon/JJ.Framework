@@ -17,7 +17,7 @@ namespace JJ.Framework.Wishes.Logging
         private static readonly object _dictionaryLock = new object();
         private static readonly Dictionary<string, Type> _loggerTypeDictionary = new Dictionary<string, Type>();
         
-        public static ILogger LoggerFromConfig()
+        public static ILogger CreateLoggerFromConfig()
         {
             LogConfig config = LogConfigHelper.GetConfigSection();
             return CreateLogger(config);
