@@ -30,3 +30,86 @@
         //    ILogger logger = new VersatileLogger(config);
         //    return logger;
         //}
+
+            lock (_loggerTypeDictionaryLock)
+            {
+                if (_loggerTypeDictionary.TryGetValue(name, out Type type))
+                {
+                    return CreateLogger(type);
+                }
+
+                type  = TryGetTypeFromAssembly(name);
+                if (type == null) type = GetTypeByString(name);
+                
+                _loggerTypeDictionary[name] = type;
+
+                return CreateLogger(type);
+            }
+
+        
+        private static Type TryGetTypeFromAssembly(Assembly assembly)
+        {
+            var types = GetImplementations<ILogger>(assembly);
+            
+            // After assembly load succeeds, it is required to contain exactly one ILogger implementation.
+            
+            switch (types.Length)
+            {
+                case 0:  throw new Exception("No " + nameof(ILogger) + " implementation found in assembly " + assembly.FullName);
+                case 1:  return types[0];
+                default: throw new Exception("Multiple " + nameof(ILogger) + " implementations found in assembly " + assembly.FullName);
+            }
+        }
+
+        
+        private static ILogger CreateLogger(Type type)
+        {
+            if (type == null) throw new NullException(() => type);
+            
+            // Outcommented for micro-optimization.
+            //object obj = Activator.CreateInstance(type);
+            
+            //if (!(obj is ILogger logger))
+            //{
+            //    throw new Exception("Type " + type.FullName + " does not implement " + nameof(ILogger) + ".");
+            //}
+            
+            //return logger;
+
+            return (ILogger)Activator.CreateInstance(type);
+        }
+
+            //if (string.Equals(name, _lastName, StringComparison.Ordinal))
+
+
+        
+        private static ILogger[] CreateLoggersFromConfig(LogConfig config)
+        {
+            var configs = GetActiveLoggerConfigs(config);
+            return CreateLoggersFromConfigs(configs);
+        }
+
+            
+            //var types = GetImplementations<ILogger>(assembly);
+            
+            //switch (types.Length)
+            //{
+            //    case 1:  return types[0];
+            //    case 0:  throw new Exception("No " + nameof(ILogger) + " implementation found in assembly " + assembly.FullName);
+            //    default: throw new Exception("Multiple " + nameof(ILogger) + " implementations found in assembly " + assembly.FullName);
+            //}
+
+            // if (!Has(name)) throw new Exception(nameof(name) + " not filled in."); // Outcommented for micro-optimization
+            if (!Has(name)) throw new Exception(nameof(name) + " not filled in."); // Outcommented for micro-optimization
+
+                //if (type == null) type = GetLoggerType_ByTypeString(name);
+
+        private static Type GetLoggerType_ByTypeString(string typeString)
+        {
+            var type = Type.GetType(typeString);
+            if (type == null) throw new Exception("Type " + typeString + " not found.");
+            return type;
+        }
+
+
+type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
