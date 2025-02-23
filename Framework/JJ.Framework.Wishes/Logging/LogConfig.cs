@@ -14,6 +14,6 @@ namespace JJ.Framework.Wishes.Logging
         public bool? Active { get; set; }
 
         [XmlArrayItem("log")]
-        public IList<LoggerElement> Logs { get; set; }
+        public LoggerElement[] Logs { get; set; }
     }
 }
