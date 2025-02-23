@@ -14,7 +14,7 @@ namespace JJ.Framework.Wishes.Logging
     {
         private readonly ILogger[] _loggers;
 
-        public VersatileLogger(ILogger[] loggers) => _loggers = loggers ?? throw new NullException(() => loggers);
+        public VersatileLogger(ILogger[] loggers) => _loggers = loggers; // ?? throw new NullException(() => loggers); // Outcommented for micro-optimization
         
         public override void Log(string message)
         {
