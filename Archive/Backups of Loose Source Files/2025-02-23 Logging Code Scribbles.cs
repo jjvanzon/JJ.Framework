@@ -141,3 +141,10 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
         //public static string TryGetAssemblyName<TType>()
         //    => typeof(TType).Assembly.GetName().Name;
 
+
+                //Console.WriteLine(message.TrimEnd());
+                
+                //Console.Out.Flush();
+
+        private readonly ILogger _logger = CreateLoggerFromConfig(ConfigResolver.Static.LoggerConfig);
+
