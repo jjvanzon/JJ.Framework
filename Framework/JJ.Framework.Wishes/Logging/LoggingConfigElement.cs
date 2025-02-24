@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace JJ.Framework.Wishes.Logging
 {
-    public class LogConfigElement
+    public class LoggingConfigElement
     {
         /// <inheritdoc cref="docs.loggertype" />
         [XmlAttribute]

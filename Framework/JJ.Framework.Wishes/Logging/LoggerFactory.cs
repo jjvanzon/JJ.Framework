@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using JJ.Framework.Common;
 using static JJ.Framework.Reflection.ReflectionHelper;
-using static JJ.Framework.Wishes.Logging.LogConfigFetcher;
+using static JJ.Framework.Wishes.Logging.LoggingConfigFetcher;
 
 namespace JJ.Framework.Wishes.Logging
 {
@@ -14,11 +14,21 @@ namespace JJ.Framework.Wishes.Logging
         // NOTE: Checks omitted for micro-optimization.
         
         // Creating Loggers
-        
-        public static ILogger CreateLoggerFromConfig()
+
+        public static ILogger CreateLoggerFromConfig(LoggingConfigSection section)
         {
-            string[] loggerIDs = GetLoggerIDs();
-            
+            string[] loggerIDs = GetLoggerIDs(section);
+            return CreateLogger_FromIDs(loggerIDs);
+        }
+        
+        public static ILogger CreateLoggerFromConfig(string sectionName = null)
+        {
+            string[] loggerIDs = GetLoggerIDs(sectionName);
+            return CreateLogger_FromIDs(loggerIDs);
+        }
+        
+        private static ILogger CreateLogger_FromIDs(string[] loggerIDs)
+        {
             switch (loggerIDs.Length)
             {
                 case 0 : return new EmptyLogger();
@@ -42,7 +52,7 @@ namespace JJ.Framework.Wishes.Logging
         
         private static ILogger TryCreateLogger_ByEnum(string loggerID)
         {
-            if (!Enum.TryParse(loggerID, out LoggerEnum value))
+            if (!Enum.TryParse(loggerID, ignoreCase: true , out LoggerEnum value))
             {
                 return null;
             }
@@ -70,6 +80,11 @@ namespace JJ.Framework.Wishes.Logging
                 }
 
                 type = TryGetLoggerType_FromAssemblyName(loggerID) ?? Type.GetType(loggerID);
+                
+                if (type == null)
+                {
+                    throw new Exception($"{nameof(LoggerEnum)} nor Assembly nor Type found with identifier: '{loggerID}'");
+                }
                 
                 _loggerTypeDictionary[loggerID] = type;
 

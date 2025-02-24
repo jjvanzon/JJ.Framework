@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace JJ.Framework.Wishes.Logging
 {
-    public class LogConfigSection
+    public class LoggingConfigSection
     {
         [XmlAttribute]
         public bool? Active { get; set; }
@@ -22,6 +22,6 @@ namespace JJ.Framework.Wishes.Logging
         public string Types { get; set; }
         
         [XmlArrayItem("log")]
-        public LogConfigElement[] Logs { get; set; }
+        public LoggingConfigElement[] Logs { get; set; }
     }
 }
