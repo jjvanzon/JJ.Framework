@@ -20,6 +20,7 @@ namespace JJ.Framework.Wishes.Logging
         
         private static readonly LoggingConfigSection _defaultConfigSection = CreateDefaultConfigSection();
         
+        // Cache a main use case
         private static string _cachedSectionName = "1FD83EAB"; // Initialize to something never existing, because null has meaning.
         private static string[] _cachedLoggerIDs = Empty<string>();
                 
