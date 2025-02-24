@@ -48,7 +48,7 @@
     <Compile Include="Logging\LoggingConfigSection.cs" />
     <Compile Include="Logging\LoggerBase.cs" />
     <Compile Include="Logging\LoggerEnum.cs" />
-    <Compile Include="Logging\LoggerFactory.cs" />
+    <Compile Include="Logging\LoggingFactory.cs" />
     <Compile Include="Logging\VersatileLogger.cs" />
     <Compile Include="Reflection\AccessorEx.cs" />
     <Compile Include="Reflection\Accessor_Adapted.cs" />

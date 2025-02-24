@@ -9,7 +9,7 @@ using static JJ.Framework.Wishes.Logging.LoggingConfigFetcher;
 
 namespace JJ.Framework.Wishes.Logging
 {
-    public class LoggerFactory
+    public class LoggingFactory
     {
         // NOTE: Checks omitted for micro-optimization.
         
