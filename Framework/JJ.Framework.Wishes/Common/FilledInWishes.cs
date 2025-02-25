@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using JJ.Framework.Wishes.Collections;
+using static JJ.Framework.Reflection.ExpressionHelper;
 
 namespace JJ.Framework.Wishes.Common
 {
@@ -64,5 +66,24 @@ namespace JJ.Framework.Wishes.Common
         public static string Coalesce<T>(T  value, T      defaultValue, string fallback)                  => Coalesce(Coalesce(value, defaultValue), fallback);
         public static string Coalesce<T>(T? value, string defaultValue)                  where T : struct => Has(value) ? $"{value}" : defaultValue;
         public static string Coalesce<T>(T? value, T?     defaultValue, string fallback) where T : struct => Coalesce(Coalesce(value, defaultValue), fallback);
+
+        // TODO: Syntax examples.
+        /// <summary>
+        /// Perhaps slightly less fast than a literal check for null,
+        /// but shorter in syntax, especially useful inlined.
+        /// </summary>
+        public static T NoNull<T>(Expression<Func<T>> expression)
+        {
+            T obj = GetValue(expression);
+            
+            if (obj== null)
+            {
+                string str = GetText(expression);
+                throw new Exception(str + " not specified.");
+            }
+            
+            return obj;
+        }
+
     }
 }
