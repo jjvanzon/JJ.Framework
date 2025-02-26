@@ -67,6 +67,8 @@ namespace JJ.Framework.Wishes.Common
         public static string Coalesce<T>(T? value, string defaultValue)                  where T : struct => Has(value) ? $"{value}" : defaultValue;
         public static string Coalesce<T>(T? value, T?     defaultValue, string fallback) where T : struct => Coalesce(Coalesce(value, defaultValue), fallback);
 
+        public static T NotNull<T>(Expression<Func<T>> expression) => NoNull(expression);
+
         // TODO: Syntax examples.
         /// <summary>
         /// Perhaps slightly less fast than a literal check for null,
