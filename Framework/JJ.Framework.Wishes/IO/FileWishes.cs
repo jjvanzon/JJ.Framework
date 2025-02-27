@@ -123,11 +123,11 @@ namespace JJ.Framework.Wishes.IO
                     
                     return (filePath, new FileStream(filePath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Read));
                 }
-                catch (AbandonedMutexException ex)
-                {
-                    Console.WriteLine($"{nameof(AbandonedMutexException)}! Mutex was held by a dead thread. {ex.Message}");
-                    throw;
-                }
+                //catch (AbandonedMutexException ex)
+                //{
+                //    Console.WriteLine($"{nameof(AbandonedMutexException)}! Mutex was held by a dead thread. {ex.Message}");
+                //    throw;
+                //}
                 finally
                 {
                     _createSafeFileStreamMutex.ReleaseMutex();
