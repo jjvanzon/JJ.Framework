@@ -8,6 +8,6 @@ namespace JJ.Framework.Wishes.Logging.Config
     public class CategoryElement
     {
         public string Name { get; set; }
-        public bool Visible { get; set; }
+        public bool Tagged { get; set; }
     }
 }

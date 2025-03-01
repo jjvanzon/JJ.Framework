@@ -1,54 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
-	
-	<configSections>
-	  <section name="jj.framework.logging" type="JJ.Framework.Configuration.ConfigurationSectionHandler, JJ.Framework.Configuration" />
-	</configSections>
-		
+  
+  <configSections>
+    <section name="jj.framework.logging" type="JJ.Framework.Configuration.ConfigurationSectionHandler, JJ.Framework.Configuration" />
+  </configSections>
+  
+  <!-- Short forms. -->
+  
   <jj.framework.logging type="Debug" />
 
-	<jj.framework.logging types="Debug;Console" />
-		
+  <jj.framework.logging types="Debug;Console" />
+  
+  <!-- As element list. -->
+  
   <jj.framework.logging>
     <logs>
       <log type="Console" />
       <log type="Debug" />
     </logs>
   </jj.framework.logging>
-	
+  
+  <!-- Different ways to specify logger types. -->
+  
   <jj.framework.logging active="true" types="Console;Debug" type="Debug">
     <logs>
       <log type="Console" />
       <log type="Debug" />
     </logs>
   </jj.framework.logging>
-	
-	<!-- Unrealistic example mentioning all the nodes. -->
-	
+  
+  <!-- Different ways to specify logging categories -->
+    
   <jj.framework.logging 
-		active="true"
-		types="Console;Debug" 
-		type="Debug"
-		categories="Synth;Config;Action;TapeTree"
-		cats="Action;TapeTree">
+    categories="Synth;Config;Action;TapeTree"
+    cats="Action;TapeTree">
+    <logs>
+      <log type="Console" category="Action" />
+      <log type="Debug" categories="Config;Action">
+        
+        <cats>
+          <cat name="Synth" tagged="false" />
+          <cat name="Config" tagged="true" />
+        </cats>
+
+        <categories>
+          <category name="Synth" tagged="false" />
+          <category name="Config" tagged="true" />
+        </categories>
+        
+      </log>
+    </logs>
+  </jj.framework.logging>
+
+  <!-- Unrealistic example mentioning all the nodes. -->
+  
+  <jj.framework.logging 
+    active="true"
+    types="Console;Debug" 
+    type="Debug"
+    categories="Synth;Config;Action;TapeTree"
+    cats="Action;TapeTree">
     <logs>
       <log type="Debug" category="Config;Action">
-				<cats>
-					<cat name="Synth" visible="false" />
-					<cat name="Config" visible="true" />
-				</cats>
-			</log>
-			<log>
-				<categories>
-					<category name="Synth" visible="false" />
-					<category name="Config" visible="true" />
-				</categories>
-			</log>
+        <cats>
+          <cat name="Synth" tagged="false" />
+          <cat name="Config" tagged="true" />
+        </cats>
+      </log>
+      <log>
+        <categories>
+          <category name="Synth" tagged="false" />
+          <category name="Config" tagged="true" />
+        </categories>
+      </log>
       <log type="Console" category="Action" />
     </logs>
   </jj.framework.logging>
 
-	<!-- TODO: type with AssemblyName or .NET Type strings.-->
-	
+  <!-- TODO: type with AssemblyName or .NET Type strings.-->
+  
 </configuration>
 
