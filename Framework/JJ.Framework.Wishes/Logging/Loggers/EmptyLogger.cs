@@ -9,5 +9,8 @@ namespace JJ.Framework.Wishes.Logging.Loggers
     {
         public void Log(string message) { }
         public void Log(string category, string message) { }
+        public void SetCategories(params string[] categories) { }
+        public void SetCategories(ICollection<string> categories) { }
+        public void SetCategories(HashSet<string> categories) { }
     }
 }

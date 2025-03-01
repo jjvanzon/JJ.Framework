@@ -172,3 +172,13 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
             // TODO: Yes/no propagate category to Console?
             if (HasCategory(category)) Log(message);
         }
+
+            
+            _categories = Has(categories) ? categories is HashSet<string> new HashSet<string>(categories) : _emptyCategories;
+            throw new NotImplementedException();
+
+        public void SetCategories(params string[] categories) => SetCategories((string[ICollection])categories);
+
+        //private static ILogger CreateLogger_FromID(string loggerID, HashSet<string> categories) 
+            // TODO: Safer constructor selection instead of Activator.CreateInstance. Or categories not via constructor.
+            //=> TryCreateLogger_ByEnum(loggerID, categories) ?? (ILogger)Activator.CreateInstance(GetLoggerType(loggerID), categories);

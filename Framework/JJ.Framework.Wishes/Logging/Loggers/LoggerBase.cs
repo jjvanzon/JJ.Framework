@@ -11,7 +11,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
     {
         private static readonly HashSet<string> _emptyCategories = new HashSet<string>();
         
-        private readonly HashSet<string> _categories;
+        private HashSet<string> _categories;
 
         protected LoggerBase() 
             : this(_emptyCategories) { }
@@ -22,6 +22,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         protected LoggerBase(HashSet<string> categories) 
             => _categories = Has(categories) ? categories : _emptyCategories;
 
+        
         public abstract void Log(string message);
         
         public void Log(string category, string message)
@@ -29,15 +30,35 @@ namespace JJ.Framework.Wishes.Logging.Loggers
             if (HasCategory(category)) Log(message);
         }
         
-        protected bool HasCategory(string category)
+        protected bool HasCategory(string category) => _categories == _emptyCategories || _categories.Contains(category);
+        
+        public void SetCategories(params string[] categories)
         {
-            //if (_categories.Count == 0)
-            if (_categories == _emptyCategories)
+            if (!Has(categories)) _categories = _emptyCategories;
+            _categories = new HashSet<string>(categories);
+        }
+        
+        public void SetCategories(ICollection<string> categories)
+        {
+            switch (categories)
             {
-                return true;
+                case null: 
+                    _categories = _emptyCategories; break;
+                
+                case var _ when categories.Count == 0:
+                    _categories = _emptyCategories; break;
+                    
+                case HashSet<string> hashSet: 
+                    _categories = hashSet; break;
+                
+                default: 
+                    _categories = new HashSet<string>(categories); break;
             }
-            
-            return _categories.Contains(category);
+        }
+        
+        public void SetCategories(HashSet<string> categories)
+        {
+            _categories = Has(categories) ? categories : _emptyCategories;
         }
     }
 }

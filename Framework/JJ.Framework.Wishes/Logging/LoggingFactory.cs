@@ -16,17 +16,19 @@ namespace JJ.Framework.Wishes.Logging
         // NOTE: Checks omitted for micro-optimization.
         
         // Creating Loggers
+        
+        public static ILogger CreateLoggerFromConfig(string sectionName = null) 
+            => CreateLoggerFromConfig(GetLoggingConfig(sectionName));
 
         public static ILogger CreateLoggerFromConfig(LoggingConfiguration config)
         {
-            string[] loggerIDs = GetLoggerIDs(config);
-            return CreateLogger_FromIDs(loggerIDs);
-        }
-        
-        public static ILogger CreateLoggerFromConfig(string sectionName = null)
-        {
-            string[] loggerIDs = GetLoggerIDs(sectionName);
-            return CreateLogger_FromIDs(loggerIDs);
+            var loggerIDs  = GetLoggerIDs(config);
+            var categories = GetCategories(config);
+            ILogger logger = CreateLogger_FromIDs(loggerIDs);
+            
+            logger.SetCategories(categories);
+            
+            return logger;
         }
         
         private static ILogger CreateLogger_FromIDs(string[] loggerIDs)
