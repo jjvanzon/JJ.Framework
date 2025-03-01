@@ -8,5 +8,6 @@ namespace JJ.Framework.Wishes.Logging.Loggers
     public interface ILogger
     {
         void Log(string message);
+        void Log(string category, string message);
     }
 }

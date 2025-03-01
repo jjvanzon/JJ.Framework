@@ -164,3 +164,11 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
             
         //    return categories;
         //}
+
+        
+        public override void Log(string category, string message)
+        {
+            // TODO: Abstract this check in LoggerBase?
+            // TODO: Yes/no propagate category to Console?
+            if (HasCategory(category)) Log(message);
+        }

@@ -12,6 +12,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
             Console.WriteLine(message);
             
             // Might help intense parallelism from mangling logs.
+            // TODO: Might not be needed anymore (now that logging has been restructured).
             Console.Out.Flush();
         }
     }
