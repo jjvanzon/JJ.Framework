@@ -22,6 +22,12 @@ namespace JJ.Framework.Wishes.Logging.Config
         public string Types { get; set; }
 
         [XmlAttribute]
+        public string Cat { get; set; }
+
+        [XmlAttribute]
+        public string Cats { get; set; }
+
+        [XmlAttribute]
         public string Category { get; set; }
 
         [XmlAttribute]

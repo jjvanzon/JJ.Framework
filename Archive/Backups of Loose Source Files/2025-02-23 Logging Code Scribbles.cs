@@ -147,3 +147,20 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
         //    => throw new NotImplementedException();
 
         //public void Log(string category, string message) { }
+
+        
+        //internal static string[] GetCategories(LoggingConfiguration config)
+        //{
+        //    if (config == null) throw new NullException(() => config);
+            
+        //    if (!(Active(config)))
+        //    {
+        //        return Empty<string>();
+        //    }
+            
+        //    var categories = SplitValues(config.Categories)
+        //                    .Union(SplitValues(config.Category))
+        //                    .Union(EnumerateCategoriesFromElements(config)).ToArray();
+            
+        //    return categories;
+        //}

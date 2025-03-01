@@ -58,8 +58,10 @@
     active="true"
     types="Console;Debug" 
     type="Debug"
-    categories="Synth;Config;Action;TapeTree"
-    cats="Action;TapeTree">
+    cat="Synth;Config;Action;TapeTree"
+    cats="Action;TapeTree"
+    category="Synth;Config;Action;TapeTree"
+    categories="Synth;Config;Action;TapeTree">
     <logs>
       <log type="Debug" category="Config;Action">
         <cats>

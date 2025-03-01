@@ -12,17 +12,10 @@ namespace JJ.Framework.Wishes.Logging.Config
         [XmlAttribute]
         public string Type { get; set; }
 
-        [XmlAttribute]
-        public string Category { get; set; }
-
-        [XmlAttribute]
-        public string Categories { get; set; }
-
-        [XmlAttribute]
-        public string Cat { get; set; }
-
-        [XmlAttribute]
-        public string Cats { get; set; }
+        [XmlAttribute("cat")]        public string CatString        { get; set; }
+        [XmlAttribute("cats")]       public string CatsString       { get; set; }
+        [XmlAttribute("category")]   public string CategoryString   { get; set; }
+        [XmlAttribute("categories")] public string CategoriesString { get; set; }
         
         [XmlArray("categories")]
         [XmlArrayItem("category")]
