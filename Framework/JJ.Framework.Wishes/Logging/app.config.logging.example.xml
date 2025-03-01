@@ -4,7 +4,6 @@
 	<configSections>
 	  <section name="jj.framework.logging" type="JJ.Framework.Configuration.ConfigurationSectionHandler, JJ.Framework.Configuration" />
 	</configSections>
-
 		
   <jj.framework.logging type="Debug" />
 
@@ -12,19 +11,44 @@
 		
   <jj.framework.logging>
     <logs>
-      <log type="Console" active="false" />
-      <log type="Debug" active="true" />
+      <log type="Console" />
+      <log type="Debug" />
     </logs>
   </jj.framework.logging>
 	
   <jj.framework.logging active="true" types="Console;Debug" type="Debug">
     <logs>
-      <log type="Console" active="false" />
-      <log type="Debug" active="true" />
+      <log type="Console" />
+      <log type="Debug" />
+    </logs>
+  </jj.framework.logging>
+	
+	<!-- Unrealistic example mentioning all the nodes. -->
+	
+  <jj.framework.logging 
+		active="true"
+		types="Console;Debug" 
+		type="Debug"
+		categories="Synth;Config;Action;TapeTree"
+		cats="Action;TapeTree">
+    <logs>
+      <log type="Debug" category="Config;Action">
+				<cats>
+					<cat name="Synth" visible="false" />
+					<cat name="Config" visible="true" />
+				</cats>
+			</log>
+			<log>
+				<categories>
+					<category name="Synth" visible="false" />
+					<category name="Config" visible="true" />
+				</categories>
+			</log>
+      <log type="Console" category="Action" />
     </logs>
   </jj.framework.logging>
 
-	<!-- TODO: Examples with AssemblyName or .NET Type strings.-->
+	<!-- TODO: type with AssemblyName or .NET Type strings.-->
 	
 </configuration>
 

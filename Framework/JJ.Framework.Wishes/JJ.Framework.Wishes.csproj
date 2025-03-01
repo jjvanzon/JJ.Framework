@@ -39,17 +39,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="docs.cs" />
-    <Compile Include="Logging\ConsoleLogger.cs" />
-    <Compile Include="Logging\DebugLogger.cs" />
-    <Compile Include="Logging\EmptyLogger.cs" />
-    <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Logging\LoggingConfigElement.cs" />
-    <Compile Include="Logging\LoggingConfigFetcher.cs" />
-    <Compile Include="Logging\LoggingConfigSection.cs" />
-    <Compile Include="Logging\LoggerBase.cs" />
-    <Compile Include="Logging\LoggerEnum.cs" />
+    <Compile Include="Logging\Loggers\ConsoleLogger.cs" />
+    <Compile Include="Logging\Loggers\DebugLogger.cs" />
+    <Compile Include="Logging\Loggers\EmptyLogger.cs" />
+    <Compile Include="Logging\Loggers\ILogger.cs" />
+    <Compile Include="Logging\Config\CategoryElement.cs" />
+    <Compile Include="Logging\Config\LoggerElement.cs" />
+    <Compile Include="Logging\Config\LoggingConfigFetcher.cs" />
+    <Compile Include="Logging\Config\LoggingConfiguration.cs" />
+    <Compile Include="Logging\Loggers\LoggerBase.cs" />
+    <Compile Include="Logging\Config\LoggerEnum.cs" />
     <Compile Include="Logging\LoggingFactory.cs" />
-    <Compile Include="Logging\VersatileLogger.cs" />
+    <Compile Include="Logging\Loggers\VersatileLogger.cs" />
     <Compile Include="Reflection\AccessorEx.cs" />
     <Compile Include="Reflection\Accessor_Adapted.cs" />
     <Compile Include="Reflection\ReflectionExtensions_Copied.cs" />
@@ -106,6 +107,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

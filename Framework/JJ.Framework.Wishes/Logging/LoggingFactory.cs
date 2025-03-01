@@ -4,8 +4,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Common;
+using JJ.Framework.Wishes.Logging.Config;
+using JJ.Framework.Wishes.Logging.Loggers;
 using static JJ.Framework.Reflection.ReflectionHelper;
-using static JJ.Framework.Wishes.Logging.LoggingConfigFetcher;
+using static JJ.Framework.Wishes.Logging.Config.LoggingConfigFetcher;
 
 namespace JJ.Framework.Wishes.Logging
 {
@@ -15,9 +17,9 @@ namespace JJ.Framework.Wishes.Logging
         
         // Creating Loggers
 
-        public static ILogger CreateLoggerFromConfig(LoggingConfigSection section)
+        public static ILogger CreateLoggerFromConfig(LoggingConfiguration config)
         {
-            string[] loggerIDs = GetLoggerIDs(section);
+            string[] loggerIDs = GetLoggerIDs(config);
             return CreateLogger_FromIDs(loggerIDs);
         }
         

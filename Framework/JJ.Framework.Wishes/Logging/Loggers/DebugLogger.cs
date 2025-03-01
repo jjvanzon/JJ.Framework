@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace JJ.Framework.Wishes.Logging
+namespace JJ.Framework.Wishes.Logging.Loggers
 {
     internal class DebugLogger : LoggerBase
     {

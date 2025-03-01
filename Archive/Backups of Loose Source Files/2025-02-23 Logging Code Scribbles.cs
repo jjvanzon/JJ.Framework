@@ -141,3 +141,9 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
         //public static string TryGetAssemblyName<TType>()
         //    => typeof(TType).Assembly.GetName().Name;
 
+        //void Log(string category, string message);
+
+        //public void Log(string category, string message)
+        //    => throw new NotImplementedException();
+
+        //public void Log(string category, string message) { }
