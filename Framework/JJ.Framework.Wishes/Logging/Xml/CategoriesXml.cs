@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace JJ.Framework.Wishes.Logging.Config
+namespace JJ.Framework.Wishes.Logging.Xml
 {
-    public class LoggerElement
+    public class CategoriesXml
     {
-        /// <inheritdoc cref="docs.loggertype" />
-        [XmlAttribute]
-        public string Type { get; set; }
-
+        // Several ways to specify categories.
+        
         [XmlAttribute("cat")]        public string CatString        { get; set; }
         [XmlAttribute("cats")]       public string CatsString       { get; set; }
         [XmlAttribute("category")]   public string CategoryString   { get; set; }
@@ -19,10 +17,10 @@ namespace JJ.Framework.Wishes.Logging.Config
         
         [XmlArray("categories")]
         [XmlArrayItem("category")]
-        public CategoryElement[] CategoryCollection { get; set; }
+        public IList<CategoryXml> CategoryCollection { get; set; }
         
         [XmlArray("cats")]
         [XmlArrayItem("cat")]
-        public CategoryElement[] CatCollection { get; set; }
+        public IList<CategoryXml> CatCollection { get; set; }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace JJ.Framework.Wishes.Logging.Config
+namespace JJ.Framework.Wishes.Logging.Xml
 {
-    public class LoggingConfiguration
+    public class RootLoggingXml : CategoriesXml
     {
         [XmlAttribute]
         public bool? Active { get; set; }
@@ -20,20 +20,8 @@ namespace JJ.Framework.Wishes.Logging.Config
         /// <inheritdoc cref="docs.loggertypes" />
         [XmlAttribute]
         public string Types { get; set; }
-
-        [XmlAttribute]
-        public string Cat { get; set; }
-
-        [XmlAttribute]
-        public string Cats { get; set; }
-
-        [XmlAttribute]
-        public string Category { get; set; }
-
-        [XmlAttribute]
-        public string Categories { get; set; }
         
         [XmlArrayItem("log")]
-        public LoggerElement[] Logs { get; set; }
+        public IList<LoggerXml> Logs { get; set; }
     }
 }

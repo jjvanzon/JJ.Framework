@@ -182,3 +182,30 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
         //private static ILogger CreateLogger_FromID(string loggerID, HashSet<string> categories) 
             // TODO: Safer constructor selection instead of Activator.CreateInstance. Or categories not via constructor.
             //=> TryCreateLogger_ByEnum(loggerID, categories) ?? (ILogger)Activator.CreateInstance(GetLoggerType(loggerID), categories);
+
+
+        [XmlAttribute]
+        public string Cat { get; set; }
+
+        [XmlAttribute]
+        public string Cats { get; set; }
+
+        [XmlAttribute]
+        public string Category { get; set; }
+
+        [XmlAttribute]
+        public string Categories { get; set; }
+
+            
+            list.AddRange(SplitValues(config.CatString));
+            list.AddRange(SplitValues(config.CatsString));
+            list.AddRange(SplitValues(config.CategoryString));
+            list.AddRange(SplitValues(config.CategoriesString));
+
+        
+        //private static LoggerConfig XmlToLoggerConfig(LoggerXml loggerElement) => new LoggerConfig
+        //{
+        //    Type = loggerElement.Type,
+        //    Categories = Ca
+            
+        //};

@@ -63,6 +63,16 @@
     category="Synth;Config;Action;TapeTree"
     categories="Synth;Config;Action;TapeTree">
     <logs>
+      <cats>
+        <cat name="Synth" tagged="false" />
+        <cat name="Config" tagged="true" />
+      </cats>
+
+      <categories>
+        <category name="Synth" tagged="false" />
+        <category name="Config" tagged="true" />
+      </categories>
+
       <log type="Debug" category="Config;Action">
         <cats>
           <cat name="Synth" tagged="false" />

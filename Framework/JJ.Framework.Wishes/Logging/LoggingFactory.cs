@@ -4,93 +4,122 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Common;
+using JJ.Framework.Reflection;
 using JJ.Framework.Wishes.Logging.Config;
 using JJ.Framework.Wishes.Logging.Loggers;
-using static JJ.Framework.Reflection.ReflectionHelper;
-using static JJ.Framework.Wishes.Logging.Config.LoggingConfigFetcher;
+using JJ.Framework.Wishes.Logging.Xml;
 
 namespace JJ.Framework.Wishes.Logging
 {
-    public class LoggingFactory
+    public static class LoggingFactory
     {
-        // NOTE: Checks omitted for micro-optimization.
+        private static ILogger _emptyLogger = new EmptyLogger();
         
-        // Creating Loggers
-        
-        public static ILogger CreateLoggerFromConfig(string sectionName = null) 
-            => CreateLoggerFromConfig(GetLoggingConfig(sectionName));
-
-        public static ILogger CreateLoggerFromConfig(LoggingConfiguration config)
+        public static ILogger CreateLoggerFromConfig(string sectionName = null)
         {
-            var loggerIDs  = GetLoggerIDs(config);
-            var categories = GetCategories(config);
-            ILogger logger = CreateLogger_FromIDs(loggerIDs);
+            RootLoggingConfig rootLoggingConfig = LoggingConfigFetcher.GetLoggingConfig(sectionName);
+            return CreateLogger(rootLoggingConfig);
+        }
+
+        public static ILogger CreateLogger(RootLoggingXml loggerConfig)
+        {
+            RootLoggingConfig rootLoggingConfig = LoggingConfigFetcher.GetLoggingConfig(loggerConfig);
+            return CreateLogger(rootLoggingConfig);
+        }
+
+        
+        public static ILogger CreateLogger(RootLoggingConfig rootLoggingConfig)
+        {
+            if (rootLoggingConfig == null) throw new NullException(() => rootLoggingConfig);
             
-            logger.SetCategories(categories);
+            if (!rootLoggingConfig.Active) return _emptyLogger;
+            
+            IList<LoggerConfig> loggerConfigs = rootLoggingConfig.Loggers;
+            switch (loggerConfigs.Count)
+            {
+                case 0 : return new EmptyLogger();
+                case 1 : return CreateLogger(loggerConfigs[0]);
+                default: return new VersatileLogger(loggerConfigs.Select(CreateLogger).ToArray());
+            }
+        }
+
+        private static ILogger CreateLogger(LoggerConfig loggerConfig)
+        {
+            if (loggerConfig == null) throw new NullException(() => loggerConfig);
+            
+            ILogger logger = TryCreateLogger_ByEnum(loggerConfig);
+            
+            if (logger == null)
+            {
+                logger =  CreateLogger_FromResolvedType(loggerConfig);
+            }
             
             return logger;
         }
         
-        private static ILogger CreateLogger_FromIDs(string[] loggerIDs)
+        private static ILogger TryCreateLogger_ByEnum(LoggerConfig loggerConfig)
         {
-            switch (loggerIDs.Length)
-            {
-                case 0 : return new EmptyLogger();
-                case 1 : return CreateLogger_FromID(loggerIDs[0]);
-                default: return new VersatileLogger(CreateLoggers_FromIDs(loggerIDs));
-            }
-        }
-        
-        private static ILogger[] CreateLoggers_FromIDs(string[] loggerIDs)
-        {
-            var loggers = new ILogger[loggerIDs.Length];
-            for (int i = 0; i < loggerIDs.Length; i++)
-            {
-                loggers[i] = CreateLogger_FromID(loggerIDs[i]);
-            }
-            return loggers;
-        }
-        
-        private static ILogger CreateLogger_FromID(string loggerID) 
-            => TryCreateLogger_ByEnum(loggerID) ?? (ILogger)Activator.CreateInstance(GetLoggerType(loggerID));
-        
-        private static ILogger TryCreateLogger_ByEnum(string loggerID)
-        {
-            if (!Enum.TryParse(loggerID, ignoreCase: true , out LoggerEnum value))
+            if (loggerConfig == null) throw new NullException(() => loggerConfig);
+            
+            if (!Enum.TryParse(loggerConfig.Type, ignoreCase: true, out LoggerEnum loggerEnum))
             {
                 return null;
             }
 
-            switch (value)
+            ILogger logger;
+            
+            switch (loggerEnum)
             {
-                case LoggerEnum.Console: return new ConsoleLogger();
-                case LoggerEnum.Debug:   return new DebugLogger();
-                default:                 throw new ValueNotSupportedException(value);
+                case LoggerEnum.Console: logger = new ConsoleLogger(); break;
+                case LoggerEnum.Debug: logger = new DebugLogger(); break;
+                default: throw new ValueNotSupportedException(loggerEnum);
             }
+            
+            SetCategories(logger, loggerConfig);
+            
+            return logger;
+        }
+
+        private static ILogger CreateLogger_FromResolvedType(LoggerConfig loggerConfig)
+        {
+            if (loggerConfig == null) throw new NullException(() => loggerConfig);
+            Type type = GetLoggerType(loggerConfig.Type);
+            ILogger logger = (ILogger)Activator.CreateInstance(type);
+            SetCategories(logger, loggerConfig);
+            return logger;
         }
         
+        private static void SetCategories(ILogger logger, LoggerConfig loggerConfig)
+        {
+            if (logger == null) throw new NullException(() => logger);
+            if (loggerConfig == null) throw new NullException(() => loggerConfig);
+            var categories = loggerConfig.Categories.Select(x => x.Name).ToArray();
+            logger.SetCategories(categories);
+        }
+
         // Getting Logger Types
 
         private static readonly object _loggerTypeDictionaryLock = new object();
         private static readonly Dictionary<string, Type> _loggerTypeDictionary = new Dictionary<string, Type>();
 
-        private static Type GetLoggerType(string loggerID)
+        private static Type GetLoggerType(string loggerType)
         {
             lock (_loggerTypeDictionaryLock)
             {
-                if (_loggerTypeDictionary.TryGetValue(loggerID, out Type type))
+                if (_loggerTypeDictionary.TryGetValue(loggerType, out Type type))
                 {
                     return type;
                 }
 
-                type = TryGetLoggerType_FromAssemblyName(loggerID) ?? Type.GetType(loggerID);
+                type = TryGetLoggerType_FromAssemblyName(loggerType) ?? 
+                       Type.GetType(loggerType);
                 
                 if (type == null)
                 {
-                    throw new Exception($"{nameof(LoggerEnum)} nor Assembly nor Type found with identifier: '{loggerID}'");
+                    throw new Exception($"{nameof(LoggerEnum)} nor Assembly nor Type found with identifier: '{loggerType}'");
                 }
                 
-                _loggerTypeDictionary[loggerID] = type;
+                _loggerTypeDictionary[loggerType] = type;
 
                 return type;
             }
@@ -111,7 +140,7 @@ namespace JJ.Framework.Wishes.Logging
             }
             
             // After assembly load succeeds, it is required to contain exactly one ILogger implementation.
-            return GetImplementation<ILogger>(assembly);
+            return ReflectionHelper.GetImplementation<ILogger>(assembly);
         }
     }
 }

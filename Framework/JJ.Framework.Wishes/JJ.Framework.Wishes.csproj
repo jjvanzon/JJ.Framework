@@ -39,17 +39,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="docs.cs" />
+    <Compile Include="Logging\Config\LoggingConfigFetcher.cs" />
+    <Compile Include="Logging\LoggingFactory.cs" />
+    <Compile Include="Logging\Xml\CategoriesXml.cs" />
+    <Compile Include="Logging\Config\CategoryConfig.cs" />
+    <Compile Include="Logging\Config\RootLoggingConfig.cs" />
+    <Compile Include="Logging\Config\ConfigCascader.cs" />
+    <Compile Include="Logging\Config\XmlCoalescer.cs" />
+    <Compile Include="Logging\Config\LoggerConfig.cs" />
     <Compile Include="Logging\Loggers\ConsoleLogger.cs" />
     <Compile Include="Logging\Loggers\DebugLogger.cs" />
     <Compile Include="Logging\Loggers\EmptyLogger.cs" />
     <Compile Include="Logging\Loggers\ILogger.cs" />
-    <Compile Include="Logging\Config\CategoryElement.cs" />
-    <Compile Include="Logging\Config\LoggerElement.cs" />
-    <Compile Include="Logging\Config\LoggingConfigFetcher.cs" />
-    <Compile Include="Logging\Config\LoggingConfiguration.cs" />
+    <Compile Include="Logging\Xml\CategoryXml.cs" />
+    <Compile Include="Logging\Xml\LoggerXml.cs" />
+    <Compile Include="Logging\Xml\RootLoggingXml.cs" />
     <Compile Include="Logging\Loggers\LoggerBase.cs" />
-    <Compile Include="Logging\Config\LoggerEnum.cs" />
-    <Compile Include="Logging\LoggingFactory.cs" />
+    <Compile Include="Logging\Xml\LoggerEnum.cs" />
     <Compile Include="Logging\Loggers\VersatileLogger.cs" />
     <Compile Include="Reflection\AccessorEx.cs" />
     <Compile Include="Reflection\Accessor_Adapted.cs" />

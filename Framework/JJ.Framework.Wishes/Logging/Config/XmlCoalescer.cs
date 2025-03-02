@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using JJ.Framework.Wishes.Logging.Xml;
+
+namespace JJ.Framework.Wishes.Logging.Config
+{
+    internal static class XmlCoalescer
+    {
+        public const bool DefaultActive = true;
+        public const bool DefaultTagged = true;
+
+        public static RootLoggingXml Coalesce(RootLoggingXml element)
+        {
+            element        = element       ?? new RootLoggingXml();
+            element.Logs   = element.Logs  ?? new List<LoggerXml>();
+            element.Type   = element.Type  ?? "";
+            element.Types  = element.Types ?? "";
+            element.Active = element.Active ?? DefaultActive;
+            
+            CoalesceCategories(element);
+            
+            // For loop for in-place replacement of nulls.
+            for (int i = 0; i < element.Logs.Count; i++)
+            {
+                element.Logs[i] = Coalesce(element.Logs[i]);
+            }
+            
+            return element;
+        }
+        
+        private static LoggerXml Coalesce(LoggerXml element)
+        {
+            element = element ?? new LoggerXml();
+            element.Type = element.Type  ?? "";
+            CoalesceCategories(element);
+            return element;
+        }
+
+        private static void CoalesceCategories(CategoriesXml element)
+        {
+            element.CatString          = element.CatString     ?? "";
+            element.CatsString         = element.CatString     ?? "";
+            element.CategoryString     = element.CatString     ?? "";
+            element.CategoriesString   = element.CatString     ?? "";
+            element.CatCollection      = element.CatCollection ?? new List<CategoryXml>();
+            element.CategoryCollection = element.CatCollection ?? new List<CategoryXml>();
+        }
+        
+        // TODO: Coalesce "Tagged" properties of CategoryXml
+    }
+}

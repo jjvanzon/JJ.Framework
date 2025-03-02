@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Wishes.Logging.Loggers
 {
@@ -9,7 +10,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
     {
         private readonly ILogger[] _loggers;
 
-        public VersatileLogger(ILogger[] loggers) => _loggers = loggers; // ?? throw new NullException(() => loggers); // Outcommented for micro-optimization
+        public VersatileLogger(ILogger[] loggers) => _loggers = loggers ?? throw new NullException(() => loggers);
         
         public override void Log(string message)
         {
