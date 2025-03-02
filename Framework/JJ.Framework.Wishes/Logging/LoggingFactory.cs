@@ -21,9 +21,9 @@ namespace JJ.Framework.Wishes.Logging
             return CreateLogger(rootLoggingConfig);
         }
 
-        public static ILogger CreateLogger(RootLoggingXml loggerConfig)
+        public static ILogger CreateLogger(RootLoggingXml rootLoggingXml)
         {
-            RootLoggingConfig rootLoggingConfig = LoggingConfigFetcher.GetLoggingConfig(loggerConfig);
+            RootLoggingConfig rootLoggingConfig = LoggingConfigFetcher.GetLoggingConfig(rootLoggingXml);
             return CreateLogger(rootLoggingConfig);
         }
 
