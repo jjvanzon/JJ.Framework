@@ -41,12 +41,12 @@ namespace JJ.Framework.Wishes.Logging.Config
 
         private static void CoalesceCategories(CategoriesXml element)
         {
-            element.CatString          = element.CatString     ?? "";
-            element.CatsString         = element.CatString     ?? "";
-            element.CategoryString     = element.CatString     ?? "";
-            element.CategoriesString   = element.CatString     ?? "";
-            element.CatCollection      = element.CatCollection ?? new List<CategoryXml>();
-            element.CategoryCollection = element.CatCollection ?? new List<CategoryXml>();
+            element.CatString          = element.CatString          ?? "";
+            element.CatsString         = element.CatsString         ?? "";
+            element.CategoryString     = element.CategoryString     ?? "";
+            element.CategoriesString   = element.CategoriesString   ?? "";
+            element.CatCollection      = element.CatCollection      ?? new List<CategoryXml>();
+            element.CategoryCollection = element.CategoryCollection ?? new List<CategoryXml>();
         }
         
         // TODO: Coalesce "Tagged" properties of CategoryXml
