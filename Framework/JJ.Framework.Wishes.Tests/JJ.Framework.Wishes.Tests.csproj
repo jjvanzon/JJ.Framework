@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssertWishesTests.cs" />
-    <Compile Include="TestWishesTests.cs" />
+    <Compile Include="TestWishesRegressionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionWishesTests.cs" />
   </ItemGroup>
