@@ -18,13 +18,27 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         
         public void Log(string category, string message)
         {
-            if (HasCategory(category))
+            if (CategoryIsMatch(category))
             {
                 Log(message);
             }
         }
         
-        protected bool HasCategory(string category) => _categories.Count == 0 || _categories.Contains(category, ignoreCase: true);
+        private bool CategoryIsMatch(string category)
+        {
+            if (!Has(category))
+            {
+                return true;
+            }
+            
+            if (_categories.Count == 0)
+            {
+                return true;
+        }
+        
+            bool categoryIsListed = _categories.Contains(category, ignoreCase: true);
+            return categoryIsListed;
+        }
         
         public void SetCategories(params string[] categories)
         {
