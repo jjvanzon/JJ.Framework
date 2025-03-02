@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JJ.Framework.Wishes.Logging.Xml;
+using JJ.Framework.Wishes.Logging.Mappers;
 
 namespace JJ.Framework.Wishes.Logging.Config
 {

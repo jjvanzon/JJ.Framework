@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
-using JJ.Framework.Wishes.Logging.Xml;
+using JJ.Framework.Wishes.Logging.Mappers;
 using static System.Array;
 using static System.StringSplitOptions;
 using static JJ.Framework.Wishes.Common.FilledInWishes;

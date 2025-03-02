@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Wishes.Logging.Xml
+namespace JJ.Framework.Wishes.Logging.Mappers
 {
     public class CategoryXml
     {

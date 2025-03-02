@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Wishes.Logging.Xml;
+using JJ.Framework.Wishes.Logging.Mappers;
 using static JJ.Framework.Wishes.Common.FilledInWishes;
 using static JJ.Framework.Wishes.Configuration.ConfigurationManagerWishes;
 

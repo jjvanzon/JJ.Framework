@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace JJ.Framework.Wishes.Logging.Xml
+namespace JJ.Framework.Wishes.Logging.Mappers
 {
     public class RootLoggingXml : CategoriesXml
     {

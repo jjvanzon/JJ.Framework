@@ -7,7 +7,7 @@ using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 using JJ.Framework.Wishes.Logging.Config;
 using JJ.Framework.Wishes.Logging.Loggers;
-using JJ.Framework.Wishes.Logging.Xml;
+using JJ.Framework.Wishes.Logging.Mappers;
 
 namespace JJ.Framework.Wishes.Logging
 {
