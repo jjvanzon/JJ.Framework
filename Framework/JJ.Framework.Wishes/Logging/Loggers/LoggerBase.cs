@@ -17,13 +17,13 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         
         public void Log(string category, string message)
         {
-            if (CategoryIsMatch(category))
+            if (WillLog(category))
             {
                 Log(message);
             }
         }
         
-        private bool CategoryIsMatch(string category)
+        public bool WillLog(string category)
         {
             if (!Has(category))
             {

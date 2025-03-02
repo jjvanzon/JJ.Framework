@@ -7,6 +7,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
 {
     internal class EmptyLogger : ILogger
     {
+        public bool WillLog(string category) => false;
         public void Log(string message) { }
         public void Log(string category, string message) { }
         public void SetCategories(params string[] categories) { }

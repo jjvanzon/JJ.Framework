@@ -236,3 +236,9 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
         {
             _categories = Has(categories) ? categories : _emptyCategories;
         }
+
+                //// Temporary for debugging
+                //if (!Has(message))
+                //{
+                //    int dummy = 1;
+                //}
