@@ -22,19 +22,25 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         protected LoggerBase(HashSet<string> categories) 
             => _categories = Has(categories) ? categories : _emptyCategories;
 
-        
         public abstract void Log(string message);
         
         public void Log(string category, string message)
         {
-            if (HasCategory(category)) Log(message);
+            if (HasCategory(category))
+            {
+                Log(message);
+        }
         }
         
         protected bool HasCategory(string category) => _categories == _emptyCategories || _categories.Contains(category);
         
         public void SetCategories(params string[] categories)
         {
-            if (!Has(categories)) _categories = _emptyCategories;
+            if (!Has(categories))
+            {
+                _categories = _emptyCategories;
+            }
+
             _categories = new HashSet<string>(categories);
         }
         
