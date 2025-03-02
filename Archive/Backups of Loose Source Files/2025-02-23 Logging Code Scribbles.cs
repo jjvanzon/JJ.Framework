@@ -209,3 +209,13 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
         //    Categories = Ca
             
         //};
+
+            // TODO: Has doesn't work for HashSet / ICollection<T>. When fixed, it causes failures in JJ.Framework.Wishes.Tests usage.
+            //=> _categories = categories == null || categories.Count == 0 ? _emptyCategories : categories;
+            //=> _categories = categories ?? _emptyCategories;
+
+        //private bool Has(HashSet<string> coll) => coll != null && coll.Count != 0;
+        //private bool Has(IList<string> coll) => coll != null && coll.Count != 0;
+
+        //protected bool HasCategory(string category) => _categories.Count == 0 || _categories.Contains(category);
+        //protected bool HasCategory(string category) => !Has(_categories) || _categories.Contains(category);
