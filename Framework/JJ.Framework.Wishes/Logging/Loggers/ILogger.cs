@@ -11,6 +11,5 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         void Log(string category, string message);
         void SetCategories(params string[] categories);
         void SetCategories(ICollection<string> categories);
-        void SetCategories(HashSet<string> categories);
     }
 }

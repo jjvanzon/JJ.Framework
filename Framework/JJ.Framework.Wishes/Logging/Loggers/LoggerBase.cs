@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Wishes.Logging.Config;
 using JJ.Framework.Wishes.Collections;
 using static JJ.Framework.Wishes.Common.FilledInWishes;
 
@@ -34,8 +33,8 @@ namespace JJ.Framework.Wishes.Logging.Loggers
             if (_categories.Count == 0)
             {
                 return true;
-        }
-        
+            }
+
             bool categoryIsListed = _categories.Contains(category, ignoreCase: true);
             return categoryIsListed;
         }
@@ -66,11 +65,6 @@ namespace JJ.Framework.Wishes.Logging.Loggers
                 default: 
                     _categories = new HashSet<string>(categories); break;
             }
-        }
-        
-        public void SetCategories(HashSet<string> categories)
-        {
-            _categories = Has(categories) ? categories : _emptyCategories;
         }
     }
 }

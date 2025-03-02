@@ -229,3 +229,10 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
 
         //protected LoggerBase(HashSet<string> categories) 
         //    => _categories = Has(categories) ? categories : _emptyCategories;
+
+        void SetCategories(HashSet<string> categories);
+
+        public void SetCategories(HashSet<string> categories)
+        {
+            _categories = Has(categories) ? categories : _emptyCategories;
+        }
