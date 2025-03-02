@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JJ.Framework.Wishes.Logging.Config;
+using JJ.Framework.Wishes.Collections;
 using static JJ.Framework.Wishes.Common.FilledInWishes;
 
 namespace JJ.Framework.Wishes.Logging.Loggers
@@ -11,16 +12,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
     {
         private static readonly HashSet<string> _emptyCategories = new HashSet<string>();
         
-        private HashSet<string> _categories;
-
-        protected LoggerBase() 
-            : this(_emptyCategories) { }
-        
-        protected LoggerBase(ICollection<string> categories) 
-            : this(new HashSet<string>(categories)) { }
-
-        protected LoggerBase(HashSet<string> categories) 
-            => _categories = Has(categories) ? categories : _emptyCategories;
+        private HashSet<string> _categories = _emptyCategories;
         
         public abstract void Log(string message);
         
@@ -32,7 +24,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
             }
         }
         
-        protected bool HasCategory(string category) => _categories.Count == 0 || _categories.Contains(category);
+        protected bool HasCategory(string category) => _categories.Count == 0 || _categories.Contains(category, ignoreCase: true);
         
         public void SetCategories(params string[] categories)
         {
