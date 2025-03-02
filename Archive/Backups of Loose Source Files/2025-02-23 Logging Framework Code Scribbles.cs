@@ -219,3 +219,13 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
 
         //protected bool HasCategory(string category) => _categories.Count == 0 || _categories.Contains(category);
         //protected bool HasCategory(string category) => !Has(_categories) || _categories.Contains(category);
+
+
+        //protected LoggerBase() 
+        //    : this(_emptyCategories) { }
+        
+        //protected LoggerBase(ICollection<string> categories) 
+        //    : this(new HashSet<string>(categories)) { }
+
+        //protected LoggerBase(HashSet<string> categories) 
+        //    => _categories = Has(categories) ? categories : _emptyCategories;
