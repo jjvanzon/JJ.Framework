@@ -41,7 +41,7 @@
     <Compile Include="docs.cs" />
     <Compile Include="Logging\Config\LoggingConfigFetcher.cs" />
     <Compile Include="Logging\LoggingFactory.cs" />
-    <Compile Include="Logging\Xml\CategoriesXml.cs" />
+    <Compile Include="Logging\Mappers\CategoriesXml.cs" />
     <Compile Include="Logging\Config\CategoryConfig.cs" />
     <Compile Include="Logging\Config\RootLoggingConfig.cs" />
     <Compile Include="Logging\Config\ConfigCascader.cs" />
@@ -51,11 +51,11 @@
     <Compile Include="Logging\Loggers\DebugLogger.cs" />
     <Compile Include="Logging\Loggers\EmptyLogger.cs" />
     <Compile Include="Logging\Loggers\ILogger.cs" />
-    <Compile Include="Logging\Xml\CategoryXml.cs" />
-    <Compile Include="Logging\Xml\LoggerXml.cs" />
-    <Compile Include="Logging\Xml\RootLoggingXml.cs" />
+    <Compile Include="Logging\Mappers\CategoryXml.cs" />
+    <Compile Include="Logging\Mappers\LoggerXml.cs" />
+    <Compile Include="Logging\Mappers\RootLoggingXml.cs" />
     <Compile Include="Logging\Loggers\LoggerBase.cs" />
-    <Compile Include="Logging\Xml\LoggerEnum.cs" />
+    <Compile Include="Logging\Mappers\LoggerEnum.cs" />
     <Compile Include="Logging\Loggers\VersatileLogger.cs" />
     <Compile Include="Reflection\AccessorEx.cs" />
     <Compile Include="Reflection\Accessor_Adapted.cs" />
