@@ -32,7 +32,7 @@
   <!-- Different ways to specify logging categories -->
     
   <jj.framework.logging 
-    categories="Synth;Config;Action;TapeTree"
+    categories="SynthLog;Config;MathBoost;Action;TapeTree"
     cats="Action;TapeTree">
     <logs>
       <log type="Console" category="Action" />
