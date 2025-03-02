@@ -74,6 +74,12 @@ namespace JJ.Framework.Wishes.Text
             return $"{totalNanoseconds:0.00} ns";
         }
         
+        public static string PrettyByteCount(byte[] bytes)
+        {
+            int coalescedLength = bytes?.Length ?? 0;
+            return PrettyByteCount(coalescedLength);
+        }
+        
         public static string PrettyByteCount(long byteCount)
         {
             const double kB = 1024;
