@@ -4,19 +4,23 @@ namespace JJ.Framework.Wishes.Common
 {
     public static class FilledInExtensionWishes
     {
-        public static bool FilledIn(this    string   value)                  => FilledInWishes.FilledIn(value, false);
-        public static bool FilledIn(this    string   value, bool trimSpace)  => FilledInWishes.FilledIn(value, trimSpace);
-        public static bool FilledIn<T>(this T[]      arr)                    => FilledInWishes.FilledIn(arr);
-        public static bool FilledIn<T>(this IList<T> coll)                   => FilledInWishes.FilledIn(coll);
-        public static bool FilledIn<T>(this T        value)                  => FilledInWishes.FilledIn(value);
-        public static bool FilledIn<T>(this T?       value) where T : struct => FilledInWishes.FilledIn(value);
+        public static bool FilledIn   (this string         value)                  => FilledInWishes.FilledIn(value, false);
+        public static bool FilledIn   (this string         value, bool trimSpace)  => FilledInWishes.FilledIn(value, trimSpace);
+        public static bool FilledIn<T>(this T[]            arr)                    => FilledInWishes.FilledIn(arr);
+        public static bool FilledIn<T>(this IList<T>       coll)                   => FilledInWishes.FilledIn(coll);
+        public static bool FilledIn<T>(this ICollection<T> coll)                   => FilledInWishes.FilledIn(coll);
+        public static bool FilledIn<T>(this HashSet<T>     coll)                   => FilledInWishes.FilledIn(coll);
+        public static bool FilledIn<T>(this T              value)                  => FilledInWishes.FilledIn(value);
+        public static bool FilledIn<T>(this T?             value) where T : struct => FilledInWishes.FilledIn(value);
         
-        public static bool IsNully(this string      value)                  => FilledInWishes.IsNully(value);
-        public static bool IsNully(this string      value, bool trimSpace)  => FilledInWishes.IsNully(value, trimSpace);
-        public static bool IsNully<T>(this T[]      arr)                    => FilledInWishes.IsNully(arr);
-        public static bool IsNully<T>(this IList<T> coll)                   => FilledInWishes.IsNully(coll);
-        public static bool IsNully<T>(this T        value)                  => FilledInWishes.IsNully(value);
-        public static bool IsNully<T>(this T?       value) where T : struct => FilledInWishes.IsNully(value);
+        public static bool IsNully   (this string         value)                  => FilledInWishes.IsNully(value);
+        public static bool IsNully   (this string         value, bool trimSpace)  => FilledInWishes.IsNully(value, trimSpace);
+        public static bool IsNully<T>(this T[]            arr)                    => FilledInWishes.IsNully(arr);
+        public static bool IsNully<T>(this IList<T>       coll)                   => FilledInWishes.IsNully(coll);
+        public static bool IsNully<T>(this ICollection<T> coll)                   => FilledInWishes.IsNully(coll);
+        public static bool IsNully<T>(this HashSet<T>     coll)                   => FilledInWishes.IsNully(coll);
+        public static bool IsNully<T>(this T              value)                  => FilledInWishes.IsNully(value);
+        public static bool IsNully<T>(this T?             value) where T : struct => FilledInWishes.IsNully(value);
 
         public static bool Is(this string value, string comparison)                  => FilledInWishes.Is(value, comparison);
         public static bool Is(this string value, string comparison, bool ignoreCase) => FilledInWishes.Is(value, comparison, ignoreCase);
