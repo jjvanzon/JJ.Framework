@@ -38,7 +38,7 @@ namespace JJ.Framework.Wishes.Logging.Config
         private static RootLoggingXml CreateDefaultConfigSection() => new RootLoggingXml
         {
             Active = DefaultActive,
-            Type   = "Debug"
+            Type   = "Console"
         };
     }
 }
