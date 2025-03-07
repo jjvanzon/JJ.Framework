@@ -32,7 +32,7 @@
   <!-- Different ways to specify logging categories -->
     
   <jj.framework.logging 
-    categories="SynthLog;Config;MathBoost;Actions;TapeTree"
+    categories="SynthLog;TapeTree;MathBoost;Actions;Config"
     cats="Action;TapeTree">
     <logs>
       <log type="Console" category="Actions" />
@@ -58,30 +58,30 @@
     active="true"
     types="Console;Debug" 
     type="Debug"
-    cat="Synth;Config;Action;TapeTree"
+    cat="SynthLog;Config;Actions;TapeTree"
     cats="Action;TapeTree"
-    category="Synth;Config;Action;TapeTree"
-    categories="Synth;Config;Action;TapeTree">
+    category="SynthLog;TapeTree;MathBoost;Actions;Config"
+    categories="SynthLog;TapeTree;MathBoost;Actions;Config">
     <logs>
       <cats>
-        <cat name="Synth" tagged="false" />
+        <cat name="SynthLog" tagged="false" />
         <cat name="Config" tagged="true" />
       </cats>
 
       <categories>
-        <category name="Synth" tagged="false" />
+        <category name="SynthLog" tagged="false" />
         <category name="Config" tagged="true" />
       </categories>
 
-      <log type="Debug" category="Config;Action">
+      <log type="Debug" category="Config;Actions">
         <cats>
-          <cat name="Synth" tagged="false" />
+          <cat name="SynthLog" tagged="false" />
           <cat name="Config" tagged="true" />
         </cats>
       </log>
       <log>
         <categories>
-          <category name="Synth" tagged="false" />
+          <category name="SynthLog" tagged="false" />
           <category name="Config" tagged="true" />
         </categories>
       </log>
