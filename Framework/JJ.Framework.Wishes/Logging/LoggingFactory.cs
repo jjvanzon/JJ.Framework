@@ -17,13 +17,13 @@ namespace JJ.Framework.Wishes.Logging
         
         public static ILogger CreateLoggerFromConfig(string sectionName = null)
         {
-            RootLoggingConfig rootLoggingConfig = LoggingConfigFetcher.GetLoggingConfig(sectionName);
+            RootLoggingConfig rootLoggingConfig = LoggingConfigFetcher.CreateLoggingConfig(sectionName);
             return CreateLogger(rootLoggingConfig);
         }
 
         public static ILogger CreateLogger(RootLoggingXml rootLoggingXml)
         {
-            RootLoggingConfig rootLoggingConfig = LoggingConfigFetcher.GetLoggingConfig(rootLoggingXml);
+            RootLoggingConfig rootLoggingConfig = LoggingConfigFetcher.CreateLoggingConfig(rootLoggingXml);
             return CreateLogger(rootLoggingConfig);
         }
 

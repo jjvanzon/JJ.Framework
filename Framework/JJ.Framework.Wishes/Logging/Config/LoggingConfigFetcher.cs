@@ -22,13 +22,13 @@ namespace JJ.Framework.Wishes.Logging.Config
             return rootLoggingXml ?? _defaultConfigSection;
         }
         
-        public static RootLoggingConfig GetLoggingConfig(string sectionName = null)
+        public static RootLoggingConfig CreateLoggingConfig(string sectionName = null)
         {
             RootLoggingXml rootLoggingXml = GetLoggingXml(sectionName);
-            return GetLoggingConfig(rootLoggingXml);
+            return CreateLoggingConfig(rootLoggingXml);
         }
 
-        public static RootLoggingConfig GetLoggingConfig(RootLoggingXml rootLoggingXml)
+        public static RootLoggingConfig CreateLoggingConfig(RootLoggingXml rootLoggingXml)
         {
             rootLoggingXml = XmlCoalescer.Coalesce(rootLoggingXml);
             RootLoggingConfig rootLoggingConfig = ConfigCascader.CascadeSettings(rootLoggingXml);
