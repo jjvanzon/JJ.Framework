@@ -14,18 +14,18 @@ namespace JJ.Framework.Wishes.Logging.Config
         /// <inheritdoc cref="docs._defaultconfigsectionname" />
         private const string DefaultConfigSectionName = "jj.framework.logging";
         private static readonly RootLoggingXml _defaultConfigSection = CreateDefaultConfigSection();
-
-        public static RootLoggingConfig GetLoggingConfig(string sectionName = null)
-        {
-            RootLoggingXml rootLoggingXml = GetLoggingXml(sectionName);
-            return GetLoggingConfig(rootLoggingXml);
-        }
         
         public static RootLoggingXml GetLoggingXml(string sectionName = null)
         {
             string resolvedSectionName = Coalesce(sectionName, DefaultConfigSectionName);
             RootLoggingXml rootLoggingXml = TryGetSection<RootLoggingXml>(resolvedSectionName);
             return rootLoggingXml ?? _defaultConfigSection;
+        }
+        
+        public static RootLoggingConfig GetLoggingConfig(string sectionName = null)
+        {
+            RootLoggingXml rootLoggingXml = GetLoggingXml(sectionName);
+            return GetLoggingConfig(rootLoggingXml);
         }
 
         public static RootLoggingConfig GetLoggingConfig(RootLoggingXml rootLoggingXml)
