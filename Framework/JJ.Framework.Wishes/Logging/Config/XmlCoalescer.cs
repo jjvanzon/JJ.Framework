@@ -10,14 +10,13 @@ namespace JJ.Framework.Wishes.Logging.Config
     internal static class XmlCoalescer
     {
         public const bool DefaultActive = true;
-        public const bool DefaultTagged = true;
 
         public static RootLoggingXml Coalesce(RootLoggingXml element)
         {
-            element        = element       ?? new RootLoggingXml();
-            element.Logs   = element.Logs  ?? new List<LoggerXml>();
-            element.Type   = element.Type  ?? "";
-            element.Types  = element.Types ?? "";
+            element        = element        ?? new RootLoggingXml();
+            element.Logs   = element.Logs   ?? new List<LoggerXml>();
+            element.Type   = element.Type   ?? "";
+            element.Types  = element.Types  ?? "";
             element.Active = element.Active ?? DefaultActive;
             
             CoalesceCategories(element);
@@ -34,21 +33,17 @@ namespace JJ.Framework.Wishes.Logging.Config
         private static LoggerXml Coalesce(LoggerXml element)
         {
             element = element ?? new LoggerXml();
-            element.Type = element.Type  ?? "";
+            element.Type = element.Type ?? "";
             CoalesceCategories(element);
             return element;
         }
 
         private static void CoalesceCategories(CategoriesXml element)
         {
-            element.CatString          = element.CatString          ?? "";
-            element.CatsString         = element.CatsString         ?? "";
-            element.CategoryString     = element.CategoryString     ?? "";
-            element.CategoriesString   = element.CategoriesString   ?? "";
-            element.CatCollection      = element.CatCollection      ?? new List<CategoryXml>();
-            element.CategoryCollection = element.CategoryCollection ?? new List<CategoryXml>();
+            element.Cat        = element.Cat        ?? "";
+            element.Cats       = element.Cats       ?? "";
+            element.Category   = element.Category   ?? "";
+            element.Categories = element.Categories ?? "";
         }
-        
-        // TODO: Coalesce "Tagged" properties of CategoryXml
     }
 }

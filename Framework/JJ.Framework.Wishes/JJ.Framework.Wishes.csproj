@@ -42,7 +42,6 @@
     <Compile Include="Logging\Config\LoggingConfigFetcher.cs" />
     <Compile Include="Logging\LoggingFactory.cs" />
     <Compile Include="Logging\Mappers\CategoriesXml.cs" />
-    <Compile Include="Logging\Config\CategoryConfig.cs" />
     <Compile Include="Logging\Config\RootLoggingConfig.cs" />
     <Compile Include="Logging\Config\ConfigCascader.cs" />
     <Compile Include="Logging\Config\XmlCoalescer.cs" />
@@ -51,7 +50,6 @@
     <Compile Include="Logging\Loggers\DebugLogger.cs" />
     <Compile Include="Logging\Loggers\EmptyLogger.cs" />
     <Compile Include="Logging\Loggers\ILogger.cs" />
-    <Compile Include="Logging\Mappers\CategoryXml.cs" />
     <Compile Include="Logging\Mappers\LoggerXml.cs" />
     <Compile Include="Logging\Mappers\RootLoggingXml.cs" />
     <Compile Include="Logging\Loggers\LoggerBase.cs" />

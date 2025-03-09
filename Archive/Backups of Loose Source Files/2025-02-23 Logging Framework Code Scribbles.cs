@@ -302,3 +302,69 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
         //        dest.Add(item);
         //    }
         //}
+
+        
+        private static string StringToCategoryConfig(string categoryString) 
+            => new CategoryConfig { Name = categoryString };
+
+        
+        private static string ElementToCategory(CategoryXml categoryXml) => categoryXml.Name;
+
+
+        
+        <cats>
+          <cat name="Synth" tagged="false" />
+          <cat name="Config" tagged="true" />
+        </cats>
+
+        <categories>
+          <category name="Synth" tagged="false" />
+          <category name="Config" tagged="true" />
+        </categories>
+
+      <cats>
+        <cat name="SynthLog" tagged="false" />
+        <cat name="Config" tagged="true" />
+      </cats>
+
+      <categories>
+        <category name="SynthLog" tagged="false" />
+        <category name="Config" tagged="true" />
+      </categories>
+
+        <cats>
+          <cat name="SynthLog" tagged="false" />
+          <cat name="Config" tagged="true" />
+        </cats>
+
+        <categories>
+          <category name="SynthLog" tagged="false" />
+          <category name="Config" tagged="true" />
+        </categories>
+
+        [XmlAttribute("cat")]        public string CatString        { get; set; }
+        [XmlAttribute("cats")]       public string CatsString       { get; set; }
+        [XmlAttribute("category")]   public string CategoryString   { get; set; }
+        [XmlAttribute("categories")] public string CategoriesString { get; set; }
+        
+        [XmlArray("categories")]
+        [XmlArrayItem("category")]
+        public IList<CategoryXml> CategoryCollection { get; set; }
+        
+        [XmlArray("cats")]
+        [XmlArrayItem("cat")]
+        public IList<CategoryXml> CatCollection { get; set; }
+
+                   .Concat(categoriesXml.CategoryCollection.Select(x => x.Name))
+                   .Concat(categoriesXml.CatCollection.Select(x => x.Name))
+
+        public const bool DefaultTagged = true;
+
+            // TODO: Use Coalesce method instead.
+            
+            // Check if loggerConfig defined categories itself..
+            if (categories.Count == 0)
+            {
+                // Otherwise use those of root config.
+                categories = XmlToCategories(rootXml);
+            }

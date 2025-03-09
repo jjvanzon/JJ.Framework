@@ -37,59 +37,35 @@ namespace JJ.Framework.Wishes.Logging.Config
         private static LoggerConfig StringToLoggerConfig(RootLoggingXml rootXml, string loggerType) => new LoggerConfig
         {
             Type = loggerType,
-            Categories = XmlToCategoryConfigs(rootXml),
-            ExcludedCategories = new List<CategoryConfig>()
+            Categories = XmlToCategories(rootXml),
+            ExcludedCategories = new List<string>()
         };
         
         private static LoggerConfig ElementToLoggerConfig(RootLoggingXml rootXml, LoggerXml loggerXml)
         {
-            if (rootXml  == null) throw new NullException(() => rootXml);
             if (loggerXml == null) throw new NullException(() => loggerXml);
-            
-            // Turn category strings into CategoryConfig objects.
-            IList<CategoryConfig> categoryConfigs = XmlToCategoryConfigs(loggerXml);
-            
-            // TODO: Use Coalesce method instead.
-            
-            // Check if loggerConfig defined categories itself..
-            if (categoryConfigs.Count == 0)
-            {
-                // Otherwise use those of root config.
-                categoryConfigs = XmlToCategoryConfigs(rootXml);
-            }
             
             return new LoggerConfig
             {
                 Type = loggerXml.Type,
-                Categories = categoryConfigs,
-                ExcludedCategories = new List<CategoryConfig>()
+                Categories = Coalesce(XmlToCategories(loggerXml), XmlToCategories(rootXml)),
+                ExcludedCategories = new List<string>()
             };
         }
         
-        private static IList<CategoryConfig> XmlToCategoryConfigs(CategoriesXml categoriesXml)
+        private static IList<string> XmlToCategories(CategoriesXml categoriesXml)
         {
-            return SplitValues(categoriesXml.CategoriesString)
-                   .Concat(SplitValues(categoriesXml.CategoryString))
-                   .Concat(SplitValues(categoriesXml.CatsString))
-                   .Concat(SplitValues(categoriesXml.CatString))
-                   .Select(StringToCategoryConfig)
-                   .Concat(categoriesXml.CategoryCollection.Select(ElementToCategoryConfig))
-                   .Concat(categoriesXml.CatCollection.Select(ElementToCategoryConfig))
-                   .Where(x => Has(x.Name))
+            if (categoriesXml == null) throw new NullException(() => categoriesXml);
+            
+            return SplitValues(categoriesXml.Categories)
+                   .Concat(SplitValues(categoriesXml.Category))
+                   .Concat(SplitValues(categoriesXml.Cats))
+                   .Concat(SplitValues(categoriesXml.Cat))
+                   .Where(FilledIn)
                    .ToArray();
         }
         
-        private static CategoryConfig ElementToCategoryConfig(CategoryXml categoryXml) => new CategoryConfig
-        {
-            Name   = categoryXml.Name,
-            Tagged = categoryXml.Tagged.Value
-        };
-        
-        private static CategoryConfig StringToCategoryConfig(string categoryString) 
-            => new CategoryConfig { Name = categoryString };
-        
         private static IList<string> SplitValues(string colonSeparated) 
             => colonSeparated?.Split(";", RemoveEmptyEntries).TrimAll() ?? Empty<string>();
-
     }
 }

@@ -36,19 +36,7 @@
     cats="Action;TapeTree">
     <logs>
       <log type="Console" category="Actions" />
-      <log type="Debug" categories="Config;Action">
-        
-        <cats>
-          <cat name="Synth" tagged="false" />
-          <cat name="Config" tagged="true" />
-        </cats>
-
-        <categories>
-          <category name="Synth" tagged="false" />
-          <category name="Config" tagged="true" />
-        </categories>
-        
-      </log>
+      <log type="Debug" categories="Config;Action" />
     </logs>
   </jj.framework.logging>
 
@@ -63,28 +51,8 @@
     category="SynthLog;TapeTree;MathBoost;Actions;Config"
     categories="SynthLog;TapeTree;MathBoost;Actions;Config">
     <logs>
-      <cats>
-        <cat name="SynthLog" tagged="false" />
-        <cat name="Config" tagged="true" />
-      </cats>
-
-      <categories>
-        <category name="SynthLog" tagged="false" />
-        <category name="Config" tagged="true" />
-      </categories>
-
-      <log type="Debug" category="Config;Actions">
-        <cats>
-          <cat name="SynthLog" tagged="false" />
-          <cat name="Config" tagged="true" />
-        </cats>
-      </log>
-      <log>
-        <categories>
-          <category name="SynthLog" tagged="false" />
-          <category name="Config" tagged="true" />
-        </categories>
-      </log>
+      <log type="Debug" category="Config;Actions" />
+      <log categories="SynthLog;Config" />
       <log type="Console" category="Actions" />
     </logs>
   </jj.framework.logging>

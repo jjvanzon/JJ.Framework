@@ -93,11 +93,10 @@ namespace JJ.Framework.Wishes.Logging
         {
             if (logger == null) throw new NullException(() => logger);
             if (loggerConfig == null) throw new NullException(() => loggerConfig);
-            var categories = loggerConfig.Categories.Select(x => x.Name).ToArray();
-            logger.SetCategories(categories);
-            foreach (CategoryConfig categoryConfig in loggerConfig.ExcludedCategories)
+            logger.SetCategories(loggerConfig.Categories);
+            foreach (string excludedCategory in loggerConfig.ExcludedCategories)
             {
-                logger.RemoveCategories(categoryConfig.Name);
+                logger.RemoveCategories(excludedCategory);
             }
         }
 
