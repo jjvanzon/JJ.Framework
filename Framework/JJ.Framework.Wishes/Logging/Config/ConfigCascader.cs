@@ -37,7 +37,8 @@ namespace JJ.Framework.Wishes.Logging.Config
         private static LoggerConfig StringToLoggerConfig(RootLoggingXml rootXml, string loggerType) => new LoggerConfig
         {
             Type = loggerType,
-            Categories = XmlToCategoryConfigs(rootXml)
+            Categories = XmlToCategoryConfigs(rootXml),
+            ExcludedCategories = new List<CategoryConfig>()
         };
         
         private static LoggerConfig ElementToLoggerConfig(RootLoggingXml rootXml, LoggerXml loggerXml)
@@ -60,7 +61,8 @@ namespace JJ.Framework.Wishes.Logging.Config
             return new LoggerConfig
             {
                 Type = loggerXml.Type,
-                Categories = categoryConfigs
+                Categories = categoryConfigs,
+                ExcludedCategories = new List<CategoryConfig>()
             };
         }
         

@@ -95,6 +95,10 @@ namespace JJ.Framework.Wishes.Logging
             if (loggerConfig == null) throw new NullException(() => loggerConfig);
             var categories = loggerConfig.Categories.Select(x => x.Name).ToArray();
             logger.SetCategories(categories);
+            foreach (CategoryConfig categoryConfig in loggerConfig.ExcludedCategories)
+            {
+                logger.RemoveCategories(categoryConfig.Name);
+            }
         }
 
         // Getting Logger Types
