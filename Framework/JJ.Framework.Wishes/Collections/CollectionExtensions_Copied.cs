@@ -9,18 +9,6 @@ namespace JJ.Framework.Wishes.Collections
         /// <inheritdoc cref="docs._frameworkwishproduct" />
         public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)
             => collection.Select(selector).Product();
-    
-        /// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for HashSet&lt;T&gt;. </summary>
-        public static void AddRange<T>(this HashSet<T> dest, IEnumerable<T> source)
-        {
-            if (dest == null) throw new ArgumentNullException(nameof(dest));
-            if (source == null) throw new ArgumentNullException(nameof(source));
-
-            foreach (T item in source)
-            {
-                dest.Add(item);
-            }
-        }
 
         /// <summary>
         /// Distinct that takes a key selector that determines what makes an item unique, e.g. myItems.Distinct(x => x.LastName);
