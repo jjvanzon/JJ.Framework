@@ -59,5 +59,19 @@ namespace JJ.Framework.Wishes.Collections
         /// Overload of Concat that starts with a single item and then adds a collection to it e.g.
         /// myItem.Concat(myCollection);
         /// </summary>
-        public static IEnumerable<T> Concat<T>(this T first, IEnumerable<T> second) => new[] { first }.Concat(second); }
+        public static IEnumerable<T> Concat<T>(this T first, IEnumerable<T> second) => new[] { first }.Concat(second);
+
+        /// <summary>
+        /// An overload of Except that takes a predicate, e.g. myCollection.Except(x => string.Equals("Blah");
+        /// (This is the same as a negated Where predicate, but if you are already thinking in terms of Except,
+        /// this might express your intent clearer.)
+        /// </summary>
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> source, Predicate<T> predicate)
+        {
+            if (source == null) throw new ArgumentNullException(nameof(source));
+            if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+
+            return source.Where(x => !predicate(x));
+        }
+    }
 }
