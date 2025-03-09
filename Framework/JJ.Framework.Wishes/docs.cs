@@ -68,6 +68,12 @@ namespace JJ.Framework.Wishes
         /// Does not include the ".wishes" part for future compatibility.
         /// </summary>
         public struct _defaultconfigsectionname { } 
+
+        /// <summary> 
+        /// Works similar to Sum, but instead of adding up all the numbers, all the numbers are multiplied.
+        /// If the collection is empty, returns 1 (the null-operation for a multiplication).
+        /// </summary> 
+        public struct _frameworkwishproduct { }
         
         /// <summary>
         /// Handles a collection of this interface or its deeper interfaces recursively.
