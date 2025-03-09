@@ -13,7 +13,7 @@ using JJ.Framework.Wishes.Testing;
 
 namespace JJ.Framework.Wishes
 {
-    public struct docs
+    namespace docs
     {
         /// <summary>
         /// Can function as a single collection, but also as a collection of collections, <br/>
@@ -80,6 +80,12 @@ namespace JJ.Framework.Wishes
         /// </summary>
         public struct _interfacesrecursive { }
 
+        /// <summary>
+        /// A separate excluded categories collection allows filtering out categories 
+        /// even when the initial category list is empty, where direct removal wouldn't be possible.
+        /// </summary>
+        public struct _loggerexcludedcategories { }
+            
         /// <summary>
         /// Specifies the logger type. Options include:<br/>
         /// - LoggerEnum values (e.g., Console, DebugOutput).<br/>

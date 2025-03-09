@@ -242,3 +242,63 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
                 //{
                 //    int dummy = 1;
                 //}
+
+    
+    
+        private static readonly HashSet<string> _emptyCategories = new HashSet<string>();
+        
+        private HashSet<string> _categories = _emptyCategories;
+
+        public void SetCategories(params string[] categories)
+        {
+            if (!Has(categories))
+            {
+                _categories = _emptyCategories;
+            }
+
+            _categories = new HashSet<string>(categories);
+        }
+
+        
+        public void SetCategories(ICollection<string> categories)
+        {
+            // TODO: Simplify
+            switch (categories)
+            {
+                case null: 
+                    _categories = new HashSet<string>(); break;
+                
+                case var _ when categories.Count == 0:
+                    _categories = new HashSet<string>(); break;
+                    
+                case HashSet<string> hashSet: 
+                    _categories = hashSet; break;
+                
+                default: 
+                    _categories = new HashSet<string>(categories); break;
+            }
+            
+            _excludedCategories.Clear();
+        }
+
+        /// <summary>
+        /// Managing an excluded categories collection separately,
+        /// can provide us a way to filter out a category,
+        /// with an empty initial category list, from which the category couldn't even be removed.
+        /// </summary>
+        public struct _loggerexcludedcategories { }
+
+        bool categoryIsExcluded = _excludedCategories.Contains(category, ignoreCase: true);
+        bool categoryIsListed = _categories.Contains(category, ignoreCase: true);
+
+        /// <summary> AddRange is a member of List&lt;T&gt;. Here is an overload for HashSet&lt;T&gt;. </summary>
+        //public static void AddRange<T>(this HashSet<T> dest, IEnumerable<T> source)
+        //{
+        //    if (dest == null) throw new ArgumentNullException(nameof(dest));
+        //    if (source == null) throw new ArgumentNullException(nameof(source));
+
+        //    foreach (T item in source)
+        //    {
+        //        dest.Add(item);
+        //    }
+        //}
