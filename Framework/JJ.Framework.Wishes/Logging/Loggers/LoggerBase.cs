@@ -29,17 +29,11 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         public bool WillLog(string category)
         {
             // 1) Null or empty category => log
-            // 2) If both sets empty => log all
-            // 3) If category is excluded => no
+            // 2) If category is excluded => no
+            // 3) If category list empty => log all
             // 4) Else check if it's in _categories => yes/no
 
             if (category.IsNully())
-            {
-                return true;
-            }
-            
-            bool noneSpecified = _categories.Count == 0 && _excludedCategories.Count == 0;
-            if (noneSpecified)
             {
                 return true;
             }
@@ -48,6 +42,11 @@ namespace JJ.Framework.Wishes.Logging.Loggers
             if (categoryIsExcluded)
             {
                 return false;
+            }
+            
+            if (_categories.Count == 0)
+            {
+                return true;
             }
             
             bool categoryIsListed = _categories.Contains(category);
