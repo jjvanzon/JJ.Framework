@@ -44,7 +44,8 @@ namespace JJ.Framework.Wishes.Logging.Loggers
                 return false;
             }
             
-            if (_categories.Count == 0)
+            bool noCategoryFilter = _categories.Count == 0;
+            if (noCategoryFilter)
             {
                 return true;
             }
