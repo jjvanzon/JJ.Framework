@@ -28,7 +28,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         
         public bool WillLog(string category)
         {
-            // 1) Null or empty category => log
+            // 1) Empty category => log
             // 2) If category is excluded => no
             // 3) If category list empty => log all
             // 4) Else check if it's in _categories => yes/no
