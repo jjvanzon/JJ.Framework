@@ -11,6 +11,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         void Log(string message);
         void Log(string category, string message);
 
+        IList<string> GetCategories();
         void SetCategories(params string[] categories);
         void SetCategories(ICollection<string> categories);
         void AddCategories(params string[] categories);

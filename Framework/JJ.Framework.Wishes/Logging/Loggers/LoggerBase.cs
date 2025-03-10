@@ -54,6 +54,8 @@ namespace JJ.Framework.Wishes.Logging.Loggers
             return categoryIsListed;
         }
         
+        public IList<string> GetCategories() => _categories.Except(_excludedCategories).ToList();
+        
         public void SetCategories(params string[] categories) => SetCategories((ICollection<string>)categories);
         public void SetCategories(ICollection<string> categories)
         {
