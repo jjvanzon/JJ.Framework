@@ -31,7 +31,7 @@ namespace JJ.Framework.Wishes.Logging.Config
                   .Select(text => StringToLoggerConfig(rootXml, text))
                   .Concat(rootXml.Logs.Select(element => ElementToLoggerConfig(rootXml, element)))
                   .Where(x => Has(x.Type))
-                  .ToArray();
+                  .ToList();
         }
         
         private static LoggerConfig StringToLoggerConfig(RootLoggingXml rootXml, string loggerType) => new LoggerConfig
@@ -62,7 +62,7 @@ namespace JJ.Framework.Wishes.Logging.Config
                    .Concat(SplitValues(categoriesXml.Cats))
                    .Concat(SplitValues(categoriesXml.Cat))
                    .Where(FilledIn)
-                   .ToArray();
+                   .ToList();
         }
         
         private static IList<string> SplitValues(string colonSeparated) 
