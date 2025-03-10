@@ -7,7 +7,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
 {
     internal class ConsoleLogger : LoggerBase
     {
-        public override void Log(string message)
+        protected override void WriteLine(string message)
         {
             Console.WriteLine(message);
             

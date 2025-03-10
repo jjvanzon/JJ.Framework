@@ -12,7 +12,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
 
         public VersatileLogger(ILogger[] loggers) => _loggers = loggers ?? throw new NullException(() => loggers);
         
-        public override void Log(string message)
+        protected override void WriteLine(string message)
         {
             int count = _loggers.Length;
             for (int i = 0; i < count; i++)

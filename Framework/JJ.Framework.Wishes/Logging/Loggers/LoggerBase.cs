@@ -6,6 +6,9 @@ using JJ.Framework.Wishes.docs;
 using JJ.Framework.Wishes.Collections;
 using JJ.Framework.Wishes.Common;
 using static System.StringComparer;
+using JJ.Framework.Wishes.Text;
+using static System.Environment;
+using static JJ.Framework.Wishes.Common.FilledInWishes;
 
 namespace JJ.Framework.Wishes.Logging.Loggers
 {
@@ -16,13 +19,46 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         /// <inheritdoc cref="_loggerexcludedcategories" />
         private readonly HashSet<string> _excludedCategories = new HashSet<string>(OrdinalIgnoreCase);
         
-        public abstract void Log(string message);
+        // NOTE: All the threading, locking and flushing helped
+        // Test Explorer in Visual Studio 2022
+        // avoid mangling blank lines, for the most part.
         
+        private readonly object _logLock = new object();
+        private bool _blankLinePending;
+        
+        protected abstract void WriteLine(string message);
+        
+        public void Log(string message) => Log("", message);
         public void Log(string category, string message)
         {
-            if (WillLog(category))
+            if (!WillLog(category)) 
             {
-                Log(message);
+                return;
+            }
+
+            bool hasMessage = Has(message);
+            bool startsWithBlankLine = message.StartsWithBlankLine();
+            bool endsWithBlankLine = message.EndsWithBlankLine();
+            
+            lock (_logLock)
+            {
+                if (!hasMessage)
+                {
+                    _blankLinePending = true;
+                    return;
+                }
+                
+                if (_blankLinePending)
+                {
+                    if (!startsWithBlankLine)
+                    {
+                        message = NewLine + message;
+                    }
+                }
+                
+                _blankLinePending = endsWithBlankLine;
+                
+                WriteLine(message.TrimEnd());
             }
         }
         

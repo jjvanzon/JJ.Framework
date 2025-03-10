@@ -8,6 +8,6 @@ namespace JJ.Framework.Wishes.Logging.Loggers
 {
     internal class DebugLogger : LoggerBase
     {
-        public override void Log(string message) => Debug.WriteLine(message);
+        protected override void WriteLine(string message) => Debug.WriteLine(message);
     }
 }
