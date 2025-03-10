@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using JJ.Framework.Wishes.Common;
+using static JJ.Framework.Wishes.Common.FilledInWishes;
 
 namespace JJ.Framework.Wishes.Text
 {
@@ -148,7 +148,7 @@ namespace JJ.Framework.Wishes.Text
         {
             if (ignoreWhiteSpace) text = text?.TrimEnd();
             
-            if (!FilledInWishes.FilledIn(text))
+            if (!FilledIn(text))
             {
                 // Start of string is good enough for punctuation.
                 return true;
@@ -160,7 +160,7 @@ namespace JJ.Framework.Wishes.Text
         
         public static bool StartsWithBlankLine(string text)
         {
-            if (!FilledInWishes.Has(text)) return true;
+            if (!Has(text)) return true;
             
             for (int i = 0; i < text.Length; i++)
             {
@@ -181,7 +181,7 @@ namespace JJ.Framework.Wishes.Text
         
         public static bool EndsWithBlankLine(string text)
         {
-            if (!FilledInWishes.Has(text)) return true;
+            if (!Has(text)) return true;
             
             for (int i = text.Length - 1; i >= 0; i--)
             {
