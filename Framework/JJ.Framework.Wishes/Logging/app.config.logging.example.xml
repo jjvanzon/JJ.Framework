@@ -5,13 +5,13 @@
     <section name="jj.framework.logging" type="JJ.Framework.Configuration.ConfigurationSectionHandler, JJ.Framework.Configuration" />
   </configSections>
   
-  <!-- Short forms. -->
+  <!-- Short forms: -->
   
   <jj.framework.logging type="Debug" />
 
   <jj.framework.logging types="Debug;Console" />
   
-  <!-- As element list. -->
+  <!-- As element list: -->
   
   <jj.framework.logging>
     <logs>
@@ -19,8 +19,53 @@
       <log type="Debug" />
     </logs>
   </jj.framework.logging>
+
+  <!-- NOTE: Format string might not be implemented yet. -->
   
-  <!-- Different ways to specify logger types. -->
+  <!-- Realistic example: -->
+    
+  <jj.framework.logging 
+    format="{timestamp} [{CATEGORY}] {Message}"
+    timestamp="HH:mm:ss.fff">
+    <logs>
+      <log type="Console" category="Actions" />
+      <log type="Debug" categories="Config;Actions" />
+    </logs>
+  </jj.framework.logging>
+
+  <!-- Format strings options: -->
+    
+  <jj.framework.logging 
+    format="{timestamp:HH:mm:ss.fff} [{CAT}] {Message}"
+    timestamp="HH:mm:ss.fff"
+    catFormat="[{0}]"
+    categoryFormat="[{CAT}]">
+    <logs>
+      <log type="Debug" format="{timestamp} {category} {Message}" />
+      <log type="Debug" format="{timestamp} [{CAT}] {Message}" />
+      <log type="Console" categoryFormat="[category={0}]" />
+    </logs>
+  </jj.framework.logging>
+
+  <!-- Different places to specify category formatting: -->
+    
+  <jj.framework.logging catFormat="[{CATEGORY}]" >
+    <logs>
+      <log type="Console" categoryFormat="[category={0}]" />
+      <log type="Debug" />
+    </logs>
+  </jj.framework.logging>
+
+  <!-- Different places to specify date/time stamp formats: -->
+    
+  <jj.framework.logging timestamp="HH:mm:ss.fff" >
+    <logs>
+      <log type="Console" timestamp="dd-MM-yyyy" />
+      <log type="Debug" timestamp="yyyy-MM-dd HH:mm:ss.fff" />
+    </logs>
+  </jj.framework.logging>
+
+  <!-- Different ways to specify logger types: -->
   
   <jj.framework.logging active="true" types="Console;Debug" type="Debug">
     <logs>
@@ -29,18 +74,20 @@
     </logs>
   </jj.framework.logging>
   
-  <!-- Different ways to specify logging categories -->
+  <!-- Different ways to specify logging categories: -->
     
   <jj.framework.logging 
     categories="SynthLog;TapeTree;MathBoost;Actions;Config"
-    cats="Action;TapeTree">
+    cat="Action">
     <logs>
       <log type="Console" category="Actions" />
-      <log type="Debug" categories="Config;Action" />
+      <log type="Debug" cats="Config;Action" />
     </logs>
   </jj.framework.logging>
 
-  <!-- Unrealistic example mentioning all the nodes. -->
+  <!-- Unrealistic example mentioning all the nodes: -->
+  
+  <!-- TODO: Add format strings. -->
   
   <jj.framework.logging 
     active="true"
