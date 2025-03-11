@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Reflection;
 using JJ.Framework.Configuration;
+using JJ.Framework.Wishes.docs;
 using static JJ.Framework.Wishes.Reflection.ReflectionWishes;
 
 namespace JJ.Framework.Wishes.Configuration
 {
-    /// <inheritdoc cref="docs._trygetsection"/>
+    /// <inheritdoc cref="_trygetsection"/>
     public static class ConfigurationManagerWishes
     {
         /// <inheritdoc cref="docs._trygetsection"/>
