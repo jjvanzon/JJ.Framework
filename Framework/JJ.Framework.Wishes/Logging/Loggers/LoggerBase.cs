@@ -10,6 +10,7 @@ using JJ.Framework.Wishes.Text;
 using static System.Environment;
 using static System.StringComparer;
 using static JJ.Framework.Wishes.Common.FilledInWishes;
+using static JJ.Framework.Wishes.Text.StringWishes;
 
 namespace JJ.Framework.Wishes.Logging.Loggers
 {
@@ -29,8 +30,8 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         
         protected abstract void WriteLine(string message);
         
-        public void Log(string message) => Log("", message);
-        public void Log(string category, string message)
+        public void Log(string message, bool stamp = true) => Log("", message, stamp);
+        public void Log(string category, string message, bool stamp = true)
         {
             if (!WillLog(category)) 
             {
@@ -40,6 +41,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
             bool hasMessage = Has(message);
             bool startsWithBlankLine = message.StartsWithBlankLine();
             bool endsWithBlankLine = message.EndsWithBlankLine();
+            string newLinePrefix = "";
             
             lock (_logLock)
             {
@@ -53,14 +55,24 @@ namespace JJ.Framework.Wishes.Logging.Loggers
                 {
                     if (!startsWithBlankLine)
                     {
-                        message = NewLine + message;
+                        newLinePrefix = NewLine;
                     }
                 }
                 
                 _blankLinePending = endsWithBlankLine;
-                
-                WriteLine(message.TrimEnd());
             }
+            
+            string formattedMessage = FormatMessage(newLinePrefix, category, message, stamp);
+            WriteLine(formattedMessage);
+        }
+
+        private string FormatMessage(string newLinePrefix, string category, string message, bool stamp)
+        {
+            string formattedTimestamp = stamp ? $"{PrettyTime()} " : "";
+            string formattedCategory  = stamp && Has(category) ? $"[{category?.ToUpper()}] " : "";
+            string formattedMessage   = message.TrimEnd();
+            
+            return $"{newLinePrefix}{formattedTimestamp}{formattedCategory}{formattedMessage}";
         }
         
         public bool WillLog(string category)

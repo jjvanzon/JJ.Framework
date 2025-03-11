@@ -77,7 +77,7 @@
   <!-- Different ways to specify logging categories: -->
     
   <jj.framework.logging 
-    categories="SynthLog;TapeTree;MathBoost;Actions;Config"
+    categories="SynthLog;TapeTree;Math;Actions;Config"
     cat="Action">
     <logs>
       <log type="Console" category="Actions" />
@@ -95,8 +95,8 @@
     type="Debug"
     cat="SynthLog;Config;Actions;TapeTree"
     cats="Action;TapeTree"
-    category="SynthLog;TapeTree;MathBoost;Actions;Config"
-    categories="SynthLog;TapeTree;MathBoost;Actions;Config">
+    category="SynthLog;TapeTree;Math;Actions;Config"
+    categories="SynthLog;TapeTree;Math;Actions;Config">
     <logs>
       <log type="Debug" category="Config;Actions" />
       <log categories="SynthLog;Config" />

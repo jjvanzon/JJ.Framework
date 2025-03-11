@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+// ReSharper disable UnusedParameter.Global
 
 namespace JJ.Framework.Wishes.Logging.Loggers
 {
     internal class EmptyLogger : ILogger
     {
         public bool WillLog(string category) => false;
-        public void Log(string message) { }
-        public void Log(string category, string message) { }
+        public void Log(string message, bool stamp = true) { }
+        public void Log(string category, string message, bool stamp) { }
         public IList<string> GetCategories() => new List<string>();
         public void SetCategories(params string[] categories) { }
         public void SetCategories(ICollection<string> categories) { }
