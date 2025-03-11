@@ -11,7 +11,7 @@ using JJ.Framework.Wishes.Logging.Mappers;
 
 namespace JJ.Framework.Wishes.Logging
 {
-    public static class LoggingFactory
+    public static class LoggerFactory
     {
         private static ILogger _emptyLogger = new EmptyLogger();
         
@@ -26,7 +26,6 @@ namespace JJ.Framework.Wishes.Logging
             RootLoggingConfig rootLoggingConfig = LoggingConfigFetcher.CreateLoggingConfig(rootLoggingXml);
             return CreateLogger(rootLoggingConfig);
         }
-
         
         public static ILogger CreateLogger(RootLoggingConfig rootLoggingConfig)
         {

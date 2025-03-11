@@ -40,7 +40,7 @@
   <ItemGroup>
     <Compile Include="docs.cs" />
     <Compile Include="Logging\Config\LoggingConfigFetcher.cs" />
-    <Compile Include="Logging\LoggingFactory.cs" />
+    <Compile Include="Logging\LoggerFactory.cs" />
     <Compile Include="Logging\Mappers\CategoriesXml.cs" />
     <Compile Include="Logging\Config\RootLoggingConfig.cs" />
     <Compile Include="Logging\Config\ConfigCascader.cs" />
