@@ -30,8 +30,13 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         
         protected abstract void WriteLine(string message);
         
-        public void Log(string message, bool stamp = true) => Log("", message, stamp);
-        public void Log(string category, string message, bool stamp = true)
+        public void Log   (                 string message) => Log(          message, stamp: true );
+        public void Log   (string category, string message) => Log(category, message, stamp: true );
+        public void LogRaw(                 string message) => Log(          message, stamp: false);
+        public void LogRaw(string category, string message) => Log(category, message, stamp: false);
+        
+        private void Log(string message, bool stamp) => Log("", message, stamp);
+        private void Log(string category, string message, bool stamp)
         {
             if (!WillLog(category)) 
             {

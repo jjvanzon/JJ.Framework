@@ -9,8 +9,10 @@ namespace JJ.Framework.Wishes.Logging.Loggers
     internal class EmptyLogger : ILogger
     {
         public bool WillLog(string category) => false;
-        public void Log(string message, bool stamp = true) { }
-        public void Log(string category, string message, bool stamp) { }
+        public void Log(string message) { }
+        public void Log(string category, string message) { }
+        public void LogRaw(string message) { }
+        public void LogRaw(string category, string message) { }
         public IList<string> GetCategories() => new List<string>();
         public void SetCategories(params string[] categories) { }
         public void SetCategories(ICollection<string> categories) { }

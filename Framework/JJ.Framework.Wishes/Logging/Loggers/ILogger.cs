@@ -8,8 +8,10 @@ namespace JJ.Framework.Wishes.Logging.Loggers
     public interface ILogger
     {
         bool WillLog(string category);
-        void Log(string message, bool stamp = true);
-        void Log(string category, string message, bool stamp = true);
+        void Log(string message);
+        void Log(string category, string message);
+        void LogRaw(string message);
+        void LogRaw(string category, string message);
 
         IList<string> GetCategories();
         void SetCategories(params string[] categories);
