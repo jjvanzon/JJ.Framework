@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.Wishes.Logging.Config
 {
-    public class RootLoggingConfig
+    public class RootLoggerConfig
     {
         public bool Active { get; set; }
         public IList<LoggerConfig> Loggers { get; set; }

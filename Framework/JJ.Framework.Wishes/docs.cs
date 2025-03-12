@@ -87,16 +87,23 @@ namespace JJ.Framework.Wishes
         public struct _loggerexcludedcategories { }
             
         /// <summary>
+        /// Allows specifying the format of the output log messages,
+        /// namely the occurrence or leaving out of the elements: timestamp, category and message,
+        /// {0}, {1} and {2} respectively (for now).
+        /// </summary>
+        public struct _loggerformat { }
+        
+        /// <summary>
         /// Specifies the logger type. Options include:<br/>
         /// - LoggerEnum values (e.g., Console, DebugOutput).<br/>
         /// - Assembly name containing an ILogger implementation.<br/>
         /// - Full .NET Type string indicating an implementation of ILogger.
         /// </summary>
-        public struct loggertype { }
+        public struct _loggertype { }
         
         /// <remarks>Semi-colon separated.</remarks>
-        /// <inheritdoc cref="docs.loggertype" />
-        public struct loggertypes { }
+        /// <inheritdoc cref="docs._loggertype" />
+        public struct _loggertypes { }
         
         /// <summary>
         /// Usage of the flag is up to the developer's discretion. <br/><br/>

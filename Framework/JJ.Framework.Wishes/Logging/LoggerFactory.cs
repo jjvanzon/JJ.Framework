@@ -17,23 +17,23 @@ namespace JJ.Framework.Wishes.Logging
         
         public static ILogger CreateLoggerFromConfig(string sectionName = null)
         {
-            RootLoggingConfig rootLoggingConfig = LoggingConfigFetcher.CreateLoggingConfig(sectionName);
-            return CreateLogger(rootLoggingConfig);
+            RootLoggerConfig rootLoggerConfig = LoggerConfigFetcher.CreateLoggerConfig(sectionName);
+            return CreateLogger(rootLoggerConfig);
         }
 
-        public static ILogger CreateLogger(RootLoggingXml rootLoggingXml)
+        public static ILogger CreateLogger(RootLoggerXml rootLoggerXml)
         {
-            RootLoggingConfig rootLoggingConfig = LoggingConfigFetcher.CreateLoggingConfig(rootLoggingXml);
-            return CreateLogger(rootLoggingConfig);
+            RootLoggerConfig rootLoggerConfig = LoggerConfigFetcher.CreateLoggerConfig(rootLoggerXml);
+            return CreateLogger(rootLoggerConfig);
         }
         
-        public static ILogger CreateLogger(RootLoggingConfig rootLoggingConfig)
+        public static ILogger CreateLogger(RootLoggerConfig rootLoggerConfig)
         {
-            if (rootLoggingConfig == null) throw new NullException(() => rootLoggingConfig);
+            if (rootLoggerConfig == null) throw new NullException(() => rootLoggerConfig);
             
-            if (!rootLoggingConfig.Active) return _emptyLogger;
+            if (!rootLoggerConfig.Active) return _emptyLogger;
             
-            IList<LoggerConfig> loggerConfigs = rootLoggingConfig.Loggers;
+            IList<LoggerConfig> loggerConfigs = rootLoggerConfig.Loggers;
             switch (loggerConfigs.Count)
             {
                 case 0 : return new EmptyLogger();

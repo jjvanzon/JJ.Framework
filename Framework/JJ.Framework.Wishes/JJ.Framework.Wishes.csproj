@@ -39,19 +39,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="docs.cs" />
-    <Compile Include="Logging\Config\LoggingConfigFetcher.cs" />
+    <Compile Include="Logging\Config\LoggerConfigFetcher.cs" />
     <Compile Include="Logging\LoggerFactory.cs" />
-    <Compile Include="Logging\Mappers\CategoriesXml.cs" />
-    <Compile Include="Logging\Config\RootLoggingConfig.cs" />
+    <Compile Include="Logging\Mappers\LoggerXml.cs" />
+    <Compile Include="Logging\Config\RootLoggerConfig.cs" />
     <Compile Include="Logging\Config\ConfigCascader.cs" />
-    <Compile Include="Logging\Config\XmlCoalescer.cs" />
+    <Compile Include="Logging\Config\ConfigCoalescer.cs" />
     <Compile Include="Logging\Config\LoggerConfig.cs" />
     <Compile Include="Logging\Loggers\ConsoleLogger.cs" />
     <Compile Include="Logging\Loggers\DebugLogger.cs" />
     <Compile Include="Logging\Loggers\EmptyLogger.cs" />
     <Compile Include="Logging\Loggers\ILogger.cs" />
-    <Compile Include="Logging\Mappers\LoggerXml.cs" />
-    <Compile Include="Logging\Mappers\RootLoggingXml.cs" />
+    <Compile Include="Logging\Mappers\RootLoggerXml.cs" />
     <Compile Include="Logging\Loggers\LoggerBase.cs" />
     <Compile Include="Logging\Mappers\LoggerEnum.cs" />
     <Compile Include="Logging\Loggers\VersatileLogger.cs" />

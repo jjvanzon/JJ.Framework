@@ -7,19 +7,18 @@ using JJ.Framework.Wishes.Logging.Mappers;
 
 namespace JJ.Framework.Wishes.Logging.Config
 {
-    internal static class XmlCoalescer
+    internal static class ConfigCoalescer
     {
         public const bool DefaultActive = true;
 
-        public static RootLoggingXml Coalesce(RootLoggingXml element)
+        public static RootLoggerXml Coalesce(RootLoggerXml element)
         {
-            element        = element        ?? new RootLoggingXml();
+            element        = element        ?? new RootLoggerXml();
             element.Logs   = element.Logs   ?? new List<LoggerXml>();
-            element.Type   = element.Type   ?? "";
             element.Types  = element.Types  ?? "";
             element.Active = element.Active ?? DefaultActive;
             
-            CoalesceCategories(element);
+            CoalesceBase(element);
             
             // For loop for in-place replacement of nulls.
             for (int i = 0; i < element.Logs.Count; i++)
@@ -33,13 +32,14 @@ namespace JJ.Framework.Wishes.Logging.Config
         private static LoggerXml Coalesce(LoggerXml element)
         {
             element = element ?? new LoggerXml();
-            element.Type = element.Type ?? "";
-            CoalesceCategories(element);
+            CoalesceBase(element);
             return element;
         }
 
-        private static void CoalesceCategories(CategoriesXml element)
+        private static void CoalesceBase(LoggerXml element)
         {
+            element.Type       = element.Type       ?? "";
+            element.Format     = element.Format     ?? "";
             element.Cat        = element.Cat        ?? "";
             element.Cats       = element.Cats       ?? "";
             element.Category   = element.Category   ?? "";

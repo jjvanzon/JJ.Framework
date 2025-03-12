@@ -9,6 +9,8 @@ namespace JJ.Framework.Wishes.Logging.Config
     public class LoggerConfig
     {
         public string Type { get; set; }
+        /// <inheritdoc cref="_loggerformat">
+        public string Format { get; set; }
         public IList<string> Categories { get; set; }
         /// <inheritdoc cref="_loggerexcludedcategories" />
         public IList<string> ExcludedCategories { get; set; }
