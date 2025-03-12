@@ -53,6 +53,9 @@ namespace JJ.Framework.Wishes.Logging
                 logger =  CreateLogger_FromResolvedType(loggerConfig);
             }
             
+            SetCategories(logger, loggerConfig);
+            logger.Format = loggerConfig.Format;
+
             return logger;
         }
         
@@ -74,8 +77,6 @@ namespace JJ.Framework.Wishes.Logging
                 default: throw new ValueNotSupportedException(loggerEnum);
             }
             
-            SetCategories(logger, loggerConfig);
-            
             return logger;
         }
 
@@ -84,7 +85,6 @@ namespace JJ.Framework.Wishes.Logging
             if (loggerConfig == null) throw new NullException(() => loggerConfig);
             Type type = GetLoggerType(loggerConfig.Type);
             ILogger logger = (ILogger)Activator.CreateInstance(type);
-            SetCategories(logger, loggerConfig);
             return logger;
         }
         

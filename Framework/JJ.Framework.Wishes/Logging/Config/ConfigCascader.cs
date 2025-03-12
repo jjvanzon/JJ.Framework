@@ -37,7 +37,8 @@ namespace JJ.Framework.Wishes.Logging.Config
         
         private static LoggerConfig StringToLoggerConfig(RootLoggerXml rootXml, string loggerType) => new LoggerConfig
         {
-            Type = loggerType,
+            Type       = Coalesce(loggerType, rootXml.Type,   DefaultType  ),
+            Format     = Coalesce(            rootXml.Format, DefaultFormat),
             Categories = XmlToCategories(rootXml),
             ExcludedCategories = new List<string>()
         };

@@ -11,25 +11,22 @@ using static System.Environment;
 using static System.StringComparer;
 using static JJ.Framework.Wishes.Common.FilledInWishes;
 using static JJ.Framework.Wishes.Text.StringWishes;
+using static JJ.Framework.Wishes.Logging.Config.LoggerConfigFetcher;
 
 namespace JJ.Framework.Wishes.Logging.Loggers
 {
     public abstract class LoggerBase : ILogger
     {
-        private readonly HashSet<string> _categories = new HashSet<string>(OrdinalIgnoreCase);
-        
-        /// <inheritdoc cref="_loggerexcludedcategories" />
-        private readonly HashSet<string> _excludedCategories = new HashSet<string>(OrdinalIgnoreCase);
-        
+        // Log
+
         // NOTE: All the threading, locking and flushing helped
-        // Test Explorer in Visual Studio 2022
-        // avoid mangling blank lines, for the most part.
+        // Test Explorer in Visual Studio 2022 avoid mangling blank lines.
         
         private readonly object _logLock = new object();
         private bool _blankLinePending;
         
         protected abstract void WriteLine(string message);
-        
+
         public void Log   (                 string message) => Log(          message, stamp: true );
         public void Log   (string category, string message) => Log(category, message, stamp: true );
         public void LogRaw(                 string message) => Log(          message, stamp: false);
@@ -70,16 +67,37 @@ namespace JJ.Framework.Wishes.Logging.Loggers
             string formattedMessage = FormatMessage(newLinePrefix, category, message, stamp);
             WriteLine(formattedMessage);
         }
-
+        
+        // Message Formatting
+        
+        public  string Format { get; set; } = DefaultFormat;
+        
         private string FormatMessage(string newLinePrefix, string category, string message, bool stamp)
         {
-            string formattedTimestamp = stamp ? $"{PrettyTime()} " : "";
-            string formattedCategory  = stamp && Has(category) ? $"[{category?.ToUpper()}] " : "";
+            if (!Has(message))
+            {
+                return newLinePrefix; // Prevents decorations/delimiters from being displayed for empty messages.
+            }
+            
+            if (!stamp)
+            {
+                return newLinePrefix + message.TrimEnd(); 
+            }
+            
+            string formattedTimestamp = $"{PrettyTime()}";
+            string formattedCategory  = Has(category) ? $"[{category.ToUpper()}]" : "";
             string formattedMessage   = message.TrimEnd();
             
-            return $"{newLinePrefix}{formattedTimestamp}{formattedCategory}{formattedMessage}";
+            return newLinePrefix + string.Format(Format, formattedTimestamp, formattedCategory, formattedMessage);
         }
+
+        // Category Filtering
+        // 
+        private readonly HashSet<string> _categories = new HashSet<string>(OrdinalIgnoreCase);
         
+        /// <inheritdoc cref="_loggerexcludedcategories" />
+        private readonly HashSet<string> _excludedCategories = new HashSet<string>(OrdinalIgnoreCase);
+
         public bool WillLog(string category)
         {
             // 1) Empty category => log
@@ -107,7 +125,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
             bool categoryIsListed = _categories.Contains(category);
             return categoryIsListed;
         }
-        
+
         public IList<string> GetCategories() => _categories.Except(_excludedCategories).ToList();
         
         public void SetCategories(params string[] categories) => SetCategories((ICollection<string>)categories);

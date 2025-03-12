@@ -21,5 +21,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         void RemoveCategories(params string[] categories);
         void RemoveCategories(ICollection<string> categories);
         void ClearCategories();
+        
+        string Format { get; set; } 
     }
 }
