@@ -368,3 +368,12 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
                 // Otherwise use those of root config.
                 categories = XmlToCategories(rootXml);
             }
+
+        private string _formattedEmptyMessage;
+                _formattedEmptyMessage = string.Format(_format, "", "", "");
+        
+            if (formatted == _formattedEmptyMessage)
+            {
+                return ""; // Prevents decorations/delimiters from being displayed for empty messages.
+            }
+
