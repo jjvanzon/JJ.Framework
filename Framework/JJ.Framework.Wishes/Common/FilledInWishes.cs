@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using JJ.Framework.Reflection;
 using JJ.Framework.Wishes.Collections;
 using static JJ.Framework.Reflection.ExpressionHelper;
 
@@ -53,6 +54,17 @@ namespace JJ.Framework.Wishes.Common
         
         public static T Coalesce<T>(T value, T defaultValue)             => Has(value) ? value : defaultValue;
         public static T Coalesce<T>(T value, T defaultValue, T fallback) => Coalesce(value, Coalesce(defaultValue, fallback));
+        public static T Coalesce<T>(params T[] fallbacks)
+        {
+            if (fallbacks == null) throw new NullException(() => fallbacks);
+            
+            foreach (var fallback in fallbacks)
+            {
+                if (Has(fallback)) return fallback;
+            }
+            
+            return fallbacks.LastOrDefault();
+        }
         
         // With Nullables
 
@@ -60,7 +72,7 @@ namespace JJ.Framework.Wishes.Common
         public static T Coalesce<T>(T? value, T? defaultValue, T fallback) where T : struct => Coalesce(value, Coalesce(defaultValue, fallback));
         
         // With Collections
- 
+        
         public static T          [ ] Coalesce<T>(T          [ ] coll, T          [ ] fallback) => Has(coll) ? coll : fallback ?? Array.Empty<T>();
         public static IList      <T> Coalesce<T>(IList      <T> coll, IList      <T> fallback) => Has(coll) ? coll : fallback ?? new List   <T>();
         public static ICollection<T> Coalesce<T>(ICollection<T> coll, ICollection<T> fallback) => Has(coll) ? coll : fallback ?? new List   <T>();
@@ -72,7 +84,18 @@ namespace JJ.Framework.Wishes.Common
         public static string Coalesce(string value, string defaultValue, string fallback)                 => Coalesce(value, Coalesce(defaultValue, fallback));
         public static string Coalesce(string value, string defaultValue, bool   trimSpace)                => Has(value, trimSpace) ? value : defaultValue;
         public static string Coalesce(string value, string defaultValue, string fallback, bool trimSpace) => Coalesce(value, Coalesce(defaultValue, fallback, trimSpace), trimSpace);
-        
+        public static string Coalesce(params string[] fallbacks)
+        {
+            if (fallbacks == null) throw new NullException(() => fallbacks);
+            
+            foreach (var fallback in fallbacks)
+            {
+                if (Has(fallback)) return fallback;
+            }
+            
+            return fallbacks.LastOrDefault();
+        }
+
         // Stringy Mix
         
         public static string Coalesce<T>(T  value, string defaultValue)                                   => Has(value) ? $"{value}" : defaultValue;
