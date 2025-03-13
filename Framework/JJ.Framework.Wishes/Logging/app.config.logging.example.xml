@@ -44,6 +44,7 @@
       <log type="Debug" format="{timestamp} {category} {Message}" />
       <log type="Debug" format="{timestamp} [{CAT}] {Message}" />
       <log type="Console" categoryFormat="[category={0}]" />
+      <log type="Console" format="{0:HH:mm:ss.fff} [{1}] {2}" />
     </logs>
   </jj.framework.logging>
 

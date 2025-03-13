@@ -76,7 +76,7 @@ namespace JJ.Framework.Wishes.Logging.Loggers
         {
             if (!Has(message))
             {
-                return newLinePrefix; // Prevents decorations/delimiters from being displayed for empty messages.
+                return newLinePrefix; // Prevents decorations/delimiters from being displayed in empty messages.
             }
             
             if (!stamp)
@@ -84,11 +84,9 @@ namespace JJ.Framework.Wishes.Logging.Loggers
                 return newLinePrefix + message.TrimEnd(); 
             }
             
-            string formattedTimestamp = $"{PrettyTime()}";
-            string formattedCategory  = Has(category) ? $"[{category.ToUpper()}]" : "";
-            string formattedMessage   = message.TrimEnd();
+            string formattedCategory  = Has(category) ? $"{category.ToUpper()}" : "";
             
-            return newLinePrefix + string.Format(Format, formattedTimestamp, formattedCategory, formattedMessage);
+            return newLinePrefix + string.Format(Format, DateTime.Now, formattedCategory, message.TrimEnd());
         }
 
         // Category Filtering
