@@ -59,6 +59,9 @@ namespace JJ.Framework.Wishes.Collections
         
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T, int> action)
         {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            if (action == null) throw new ArgumentNullException(nameof(action));
+
             int i = 0;
             foreach (var x in enumerable)
             {
