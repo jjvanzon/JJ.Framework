@@ -35,7 +35,7 @@ namespace JJ.Framework.Wishes.Logging.Config
                   .ToList();
         }
         
-        private static LoggerConfig StringToLoggerConfig(RootLoggerXml rootXml, string loggerType) => new LoggerConfig
+        private static LoggerConfig StringToLoggerConfig(LoggerXml rootXml, string loggerType) => new LoggerConfig
         {
             Type       = Coalesce(loggerType, rootXml.Type,   DefaultType  ),
             Format     = Coalesce(            rootXml.Format, DefaultFormat),
@@ -43,7 +43,7 @@ namespace JJ.Framework.Wishes.Logging.Config
             ExcludedCategories = new List<string>()
         };
         
-        private static LoggerConfig ElementToLoggerConfig(RootLoggerXml rootXml, LoggerXml loggerXml)
+        private static LoggerConfig ElementToLoggerConfig(LoggerXml rootXml, LoggerXml loggerXml)
         {
             if (loggerXml == null) throw new NullException(() => loggerXml);
             
