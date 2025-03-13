@@ -45,9 +45,9 @@ namespace JJ.Framework.Wishes.Logging.Config
             return list;
         }
         
-        private static IList<LoggerConfig> ToDtos(LoggerXml loggerXml, LoggerXml template) 
-            => GetTypeStrings(loggerXml)
-              .Select(x => ToDto(x, loggerXml, template))
+        private static IList<LoggerConfig> ToDtos(LoggerXml xml, LoggerXml template) 
+            => GetTypeStrings(xml)
+              .Select(x => ToDto(x, xml, template))
               .ToList();
 
         private static LoggerConfig ToDto(string typeString, LoggerXml template) => new LoggerConfig
@@ -59,43 +59,43 @@ namespace JJ.Framework.Wishes.Logging.Config
             ExcludedCategories = new List<string>()
         };
         
-        private static LoggerConfig ToDto(string typeString, LoggerXml loggerXml, LoggerXml template)
+        private static LoggerConfig ToDto(string typeString, LoggerXml xml, LoggerXml template)
         {
-            if (loggerXml == null) throw new NullException(() => loggerXml);
+            if (xml == null) throw new NullException(() => xml);
             
             return new LoggerConfig
             {
-                Active     = Coalesce(            loggerXml.Active, template.Active, DefaultActive),
-                Type       = Coalesce(typeString, loggerXml.Type,   template.Type,   DefaultType  ),
-                Format     = Coalesce(            loggerXml.Format, template.Format, DefaultFormat),
-                Categories = Coalesce(GetCats(loggerXml), GetCats(template)),
+                Active     = Coalesce(            xml.Active, template.Active, DefaultActive),
+                Type       = Coalesce(typeString, xml.Type,   template.Type,   DefaultType  ),
+                Format     = Coalesce(            xml.Format, template.Format, DefaultFormat),
+                Categories = Coalesce(GetCats(xml), GetCats(template)),
                 ExcludedCategories = new List<string>()
             };
         }
 
-        private static IList<string> GetTypeStrings(LoggerXml element)
+        private static IList<string> GetTypeStrings(LoggerXml xml)
         {
-            if (element == null) throw new NullException(() => element);
+            if (xml == null) throw new NullException(() => xml);
             
-            return SplitValues(element.Types)
-                  .Concat(SplitValues(element.Type))
+            return SplitValues(xml.Types)
+                  .Concat(SplitValues(xml.Type))
                   .Where(FilledIn)
                   .ToList();
         }
         
-        private static IList<string> GetCats(LoggerXml element)
+        private static IList<string> GetCats(LoggerXml xml)
         {
-            if (element == null) throw new NullException(() => element);
+            if (xml == null) throw new NullException(() => xml);
             
-            return SplitValues(element.Categories)
-                  .Concat(SplitValues(element.Category))
-                  .Concat(SplitValues(element.Cats))
-                  .Concat(SplitValues(element.Cat))
+            return SplitValues(xml.Categories)
+                  .Concat(SplitValues(xml.Category))
+                  .Concat(SplitValues(xml.Cats))
+                  .Concat(SplitValues(xml.Cat))
                   .Where(FilledIn)
                   .ToList();
         }
         
-        private static IList<string> SplitValues(string colonSeparated) 
-            => colonSeparated?.Split(";", RemoveEmptyEntries).TrimAll() ?? Empty<string>();
+        private static IList<string> SplitValues(string semiColonSeparated) 
+            => semiColonSeparated?.Split(";", RemoveEmptyEntries).TrimAll() ?? Empty<string>();
     }
 }
