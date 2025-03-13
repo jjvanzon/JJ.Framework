@@ -377,3 +377,17 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
                 return ""; // Prevents decorations/delimiters from being displayed for empty messages.
             }
 
+        public static RootLoggerConfig CascadeSettings(params RootLoggerXml[] rootXmls)
+        {
+            if (rootXmls == null) throw new NullException(() => rootXmls);
+            
+            return new RootLoggerConfig
+            {
+                Active = Coalesce(rootXmls.Select(x => x.Active)),
+                Loggers = Coalesce(rootXmls.Select(x => XmlToLoggerConfigs))
+            };
+        }
+
+            return list;
+                  //.Where(x => Has(x.Type))
+                  //.ToList();
