@@ -15,8 +15,6 @@ namespace JJ.Framework.Wishes.Logging.Config
         {
             element        = element        ?? new RootLoggerXml();
             element.Logs   = element.Logs   ?? new List<LoggerXml>();
-            element.Types  = element.Types  ?? "";
-            element.Active = element.Active ?? DefaultActive;
             
             CoalesceBase(element);
             
@@ -38,8 +36,10 @@ namespace JJ.Framework.Wishes.Logging.Config
 
         private static void CoalesceBase(LoggerXml element)
         {
-            element.Type       = element.Type       ?? "";
+            element.Active     = element.Active     ?? DefaultActive;
             element.Format     = element.Format     ?? "";
+            element.Type       = element.Type       ?? "";
+            element.Types      = element.Types      ?? "";
             element.Cat        = element.Cat        ?? "";
             element.Cats       = element.Cats       ?? "";
             element.Category   = element.Category   ?? "";

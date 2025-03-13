@@ -8,6 +8,7 @@ namespace JJ.Framework.Wishes.Logging.Config
 {
     public class LoggerConfig
     {
+        public bool Active { get; set; }
         public string Type { get; set; }
         /// <inheritdoc cref="_loggerformat">
         public string Format { get; set; }

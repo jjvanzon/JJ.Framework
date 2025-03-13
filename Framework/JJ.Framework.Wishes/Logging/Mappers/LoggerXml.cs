@@ -9,13 +9,22 @@ namespace JJ.Framework.Wishes.Logging.Mappers
 {
     public class LoggerXml
     {
-        /// <inheritdoc cref="_loggertype" />
         [XmlAttribute]
-        public string Type { get; set; }
+        public bool? Active { get; set; }
 
         /// <inheritdoc cref="_loggerformat">
         [XmlAttribute]
         public string Format { get; set; }
+
+        // Several formats in which to specify the logger types.
+        
+        /// <inheritdoc cref="_loggertype" />
+        [XmlAttribute]
+        public string Type { get; set; }
+
+        /// <inheritdoc cref="_loggertypes" />
+        [XmlAttribute]
+        public string Types { get; set; }
 
         // Several ways to specify categories.
         [XmlAttribute] public string Cat        { get; set; }

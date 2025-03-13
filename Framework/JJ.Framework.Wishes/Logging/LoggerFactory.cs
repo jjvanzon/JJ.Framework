@@ -31,7 +31,7 @@ namespace JJ.Framework.Wishes.Logging
         {
             if (rootLoggerConfig == null) throw new NullException(() => rootLoggerConfig);
             
-            if (!rootLoggerConfig.Active) return _emptyLogger;
+            if (!rootLoggerConfig.Loggers.Any(x => x.Active)) return _emptyLogger;
             
             IList<LoggerConfig> loggerConfigs = rootLoggerConfig.Loggers;
             switch (loggerConfigs.Count)

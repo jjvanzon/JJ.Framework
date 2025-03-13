@@ -20,43 +20,70 @@ namespace JJ.Framework.Wishes.Logging.Config
             
             return new RootLoggerConfig
             {
-                Active = rootXml.Active.Value,
-                Loggers = XmlToLoggerConfigs(rootXml)
+                Loggers = XmlToDtos(rootXml)
             };
         }
         
-        private static IList<LoggerConfig> XmlToLoggerConfigs(RootLoggerXml rootXml)
+        private static IList<LoggerConfig> XmlToDtos(RootLoggerXml rootXml)
         {
-            return SplitValues(rootXml.Types)
-                  .Concat(SplitValues(rootXml.Type))
-                  .Select(text => StringToLoggerConfig(rootXml, text))
-                  .Concat(rootXml.Logs.Select(element => ElementToLoggerConfig(rootXml, element)))
-                  .Where(x => Has(x.Type))
-                  .ToList();
+            var list = new List<LoggerConfig>();
+            
+            IList<string> typeStrings = GetTypeStrings(rootXml);
+            
+            foreach (string typeString in typeStrings)
+            {
+                LoggerConfig dto = ToDto(typeString, rootXml);
+                list.Add(dto);
+            }
+            
+            foreach (LoggerXml loggerXml in rootXml.Logs)
+            {
+                IList<LoggerConfig> dtos = ToDtos(loggerXml, rootXml);
+                list.AddRange(dtos);
+            }
+            
+            return list;
         }
         
-        private static LoggerConfig StringToLoggerConfig(LoggerXml rootXml, string loggerType) => new LoggerConfig
+        private static IList<LoggerConfig> ToDtos(LoggerXml loggerXml, LoggerXml template) 
+            => GetTypeStrings(loggerXml)
+              .Select(x => ToDto(x, loggerXml, template))
+              .ToList();
+
+        private static LoggerConfig ToDto(string typeString, LoggerXml template) => new LoggerConfig
         {
-            Type       = Coalesce(loggerType, rootXml.Type,   DefaultType  ),
-            Format     = Coalesce(            rootXml.Format, DefaultFormat),
-            Categories = XmlToCategories(rootXml),
+            Active     = Coalesce(            template.Active, DefaultActive),
+            Type       = Coalesce(typeString, template.Type,   DefaultType  ),
+            Format     = Coalesce(            template.Format, DefaultFormat),
+            Categories = GetCats(template),
             ExcludedCategories = new List<string>()
         };
         
-        private static LoggerConfig ElementToLoggerConfig(LoggerXml rootXml, LoggerXml loggerXml)
+        private static LoggerConfig ToDto(string typeString, LoggerXml loggerXml, LoggerXml template)
         {
             if (loggerXml == null) throw new NullException(() => loggerXml);
             
             return new LoggerConfig
             {
-                Type       = Coalesce(loggerXml.Type,   rootXml.Type,   DefaultType),
-                Format     = Coalesce(loggerXml.Format, rootXml.Format, DefaultFormat),
-                Categories = Coalesce(XmlToCategories(loggerXml), XmlToCategories(rootXml)),
+                Active     = Coalesce(            loggerXml.Active, template.Active, DefaultActive),
+                Type       = Coalesce(typeString, loggerXml.Type,   template.Type,   DefaultType  ),
+                Format     = Coalesce(            loggerXml.Format, template.Format, DefaultFormat),
+                Categories = Coalesce(GetCats(loggerXml), GetCats(template)),
                 ExcludedCategories = new List<string>()
             };
         }
+
+        private static IList<string> GetTypeStrings(LoggerXml element)
+        {
+            if (element == null) throw new NullException(() => element);
+            
+            return SplitValues(element.Types)
+                  .Concat(SplitValues(element.Type))
+                  .Where(FilledIn)
+                  .ToList();
+        }
         
-        private static IList<string> XmlToCategories(LoggerXml element)
+        private static IList<string> GetCats(LoggerXml element)
         {
             if (element == null) throw new NullException(() => element);
             
