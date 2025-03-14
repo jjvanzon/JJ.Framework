@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
-namespace JJ.Framework.Wishes.Testing
+namespace JJ.Framework.Core.Testing
 {
     public static class TestWishes
     {

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
+using System.Text;
+using JJ.Framework.Core.Collections;
 using JJ.Framework.Reflection;
-using JJ.Framework.Wishes.Collections;
-using static JJ.Framework.Reflection.ExpressionHelper;
 
-namespace JJ.Framework.Wishes.Common
+namespace JJ.Framework.Core.Common
 {
     public static class FilledInWishes
     {

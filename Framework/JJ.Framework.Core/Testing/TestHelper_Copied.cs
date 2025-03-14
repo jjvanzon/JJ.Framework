@@ -1,4 +1,9 @@
-﻿namespace JJ.Framework.Wishes.Testing
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace JJ.Framework.Core.Testing
 {
     internal static class TestHelper_Copied
     {

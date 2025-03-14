@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
-using static JJ.Framework.Wishes.Common.FilledInWishes;
+using static JJ.Framework.Core.Common.FilledInWishes;
 
-namespace JJ.Framework.Wishes.Text
+namespace JJ.Framework.Core.Text
 {
     public static class StringWishes
     {

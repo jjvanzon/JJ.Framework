@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Core.Common;
 using JJ.Framework.Reflection;
-using JJ.Framework.Wishes.Common;
-using static JJ.Framework.Wishes.Common.FilledInWishes;
-using static JJ.Framework.Wishes.Testing.DebuggerDisplayFormatter;
+using static JJ.Framework.Core.Common.FilledInWishes;
+using static JJ.Framework.Core.Testing.DebuggerDisplayFormatter;
 
-namespace JJ.Framework.Wishes.Testing
+namespace JJ.Framework.Core.Testing
 {
     [DebuggerDisplay("{DebuggerDisplay}")]
     public class CaseProp<T> : ICaseProp where T : struct

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
 
-namespace JJ.Framework.Wishes.Reflection
+namespace JJ.Framework.Core.Reflection
 {
     public static class ReflectionHelper_Copied
     {

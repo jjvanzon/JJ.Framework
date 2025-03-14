@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Text;
 using JJ.Framework.Configuration;
-using JJ.Framework.Wishes.docs;
-using static JJ.Framework.Wishes.Reflection.ReflectionWishes;
+using JJ.Framework.Core.docs;
+using static JJ.Framework.Core.Reflection.ReflectionWishes;
 
-namespace JJ.Framework.Wishes.Configuration
+namespace JJ.Framework.Core.Configuration
 {
     /// <inheritdoc cref="_trygetsection"/>
     public static class ConfigurationManagerWishes

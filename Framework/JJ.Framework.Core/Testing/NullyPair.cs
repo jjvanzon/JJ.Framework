@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Wishes.Common;
-using static JJ.Framework.Wishes.Testing.DebuggerDisplayFormatter;
+using JJ.Framework.Core.Common;
+using static JJ.Framework.Core.Testing.DebuggerDisplayFormatter;
 
-namespace JJ.Framework.Wishes.Testing
+namespace JJ.Framework.Core.Testing
 {
     #pragma warning disable CS0611
     [DebuggerDisplay("{DebuggerDisplay}")]

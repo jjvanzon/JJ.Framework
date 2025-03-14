@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JJ.Framework.Common;
-using JJ.Framework.Wishes.Testing;
+using JJ.Framework.Core.Testing;
 using static System.Array;
 using static JJ.Framework.Testing.AssertHelper;
-using static JJ.Framework.Wishes.Testing.AssertWishes;
-using static JJ.Framework.Wishes.Testing.DeltaDirectionEnum;
+using static JJ.Framework.Core.Testing.AssertWishes;
+using static JJ.Framework.Core.Testing.DeltaDirectionEnum;
 
 namespace JJ.Framework.Wishes.Tests
 {
@@ -105,11 +105,11 @@ namespace JJ.Framework.Wishes.Tests
         {
             ThrowsException(
                 () => AreEqual(10, () => 7, delta: 3, (DeltaDirectionEnum)(-1)), 
-                "JJ.Framework.Wishes.Testing.DeltaDirectionEnum value: '-1' is not supported." );
+                "JJ.Framework.Core.Testing.DeltaDirectionEnum value: '-1' is not supported." );
 
             ThrowsException(
                 () => AreEqual(10.1, () => 7, delta: 3, (DeltaDirectionEnum)(-1)), 
-                "JJ.Framework.Wishes.Testing.DeltaDirectionEnum value: '-1' is not supported." );
+                "JJ.Framework.Core.Testing.DeltaDirectionEnum value: '-1' is not supported." );
         }
         
         // Helpers

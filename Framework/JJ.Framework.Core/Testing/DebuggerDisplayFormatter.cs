@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Wishes.Testing
+namespace JJ.Framework.Core.Testing
 {
     internal static class DebuggerDisplayFormatter
     {

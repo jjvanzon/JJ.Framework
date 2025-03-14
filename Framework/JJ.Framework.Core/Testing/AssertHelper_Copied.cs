@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
+using JJ.Framework.Core.Logging;
 using JJ.Framework.Reflection;
-using JJ.Framework.Wishes.Logging;
 
-namespace JJ.Framework.Wishes.Testing
+namespace JJ.Framework.Core.Testing
 {
     public static class AssertHelper_Copied
     {

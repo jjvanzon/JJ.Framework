@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Core.Common;
+using JJ.Framework.Core.Reflection;
 using JJ.Framework.Reflection;
-using JJ.Framework.Wishes.Common;
-using JJ.Framework.Wishes.Reflection;
 using static System.String;
-using static JJ.Framework.Wishes.Common.FilledInWishes;
+using static JJ.Framework.Core.Common.FilledInWishes;
 
-namespace JJ.Framework.Wishes.Testing
+namespace JJ.Framework.Core.Testing
 {
     class CaseKeyBuilder
     {

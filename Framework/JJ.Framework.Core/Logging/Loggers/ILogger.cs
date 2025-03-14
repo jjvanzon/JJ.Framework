@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Wishes.Logging.Loggers
+namespace JJ.Framework.Core.Logging.Loggers
 {
     public interface ILogger
     {

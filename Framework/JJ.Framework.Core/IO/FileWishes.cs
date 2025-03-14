@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using JJ.Framework.Common;
-using JJ.Framework.Wishes.Common;
-using JJ.Framework.Wishes.Text;
+using JJ.Framework.Core.Common;
+using JJ.Framework.Core.Text;
 using static System.AppDomain;
 
-namespace JJ.Framework.Wishes.IO
+namespace JJ.Framework.Core.IO
 {
     public static class FileWishes
     {

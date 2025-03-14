@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Wishes.Logging.Mappers;
-using JJ.Framework.Wishes.docs;
-using static JJ.Framework.Wishes.Common.FilledInWishes;
-using static JJ.Framework.Wishes.Configuration.ConfigurationManagerWishes;
+using JJ.Framework.Core.docs;
+using JJ.Framework.Core.Logging.Mappers;
+using static JJ.Framework.Core.Common.FilledInWishes;
+using static JJ.Framework.Core.Configuration.ConfigurationManagerWishes;
 
-namespace JJ.Framework.Wishes.Logging.Config
+namespace JJ.Framework.Core.Logging.Config
 {
     public class LoggerConfigFetcher
     {

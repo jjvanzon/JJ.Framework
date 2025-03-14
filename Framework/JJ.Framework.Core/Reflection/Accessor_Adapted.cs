@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Text;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Wishes.Reflection
+namespace JJ.Framework.Core.Reflection
 {
     /// <summary>
     /// Attempts to make it easier to access members public, private or protected.

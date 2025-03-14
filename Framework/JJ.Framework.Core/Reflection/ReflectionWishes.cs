@@ -1,11 +1,13 @@
-﻿using System.Reflection;
-using System;
-using JJ.Framework.Reflection;
+﻿using System;
 using System.Collections.Generic;
-using JJ.Framework.Wishes.Collections;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using JJ.Framework.Core.Collections;
+using JJ.Framework.Reflection;
 using static JJ.Framework.Reflection.ReflectionHelper;
 
-namespace JJ.Framework.Wishes.Reflection
+namespace JJ.Framework.Core.Reflection
 {
     public class ReflectionWishes
     {

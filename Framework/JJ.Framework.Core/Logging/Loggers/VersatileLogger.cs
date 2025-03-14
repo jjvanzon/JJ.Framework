@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Wishes.Logging.Loggers
+namespace JJ.Framework.Core.Logging.Loggers
 {
     internal class VersatileLogger : LoggerBase
     {

@@ -5,15 +5,15 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Common;
+using JJ.Framework.Core.Reflection;
 using JJ.Framework.Reflection;
-using JJ.Framework.Wishes.Reflection;
 using static System.Activator;
 using static System.Array;
 using static JJ.Framework.Reflection.ReflectionHelper;
-using static JJ.Framework.Wishes.Common.FilledInWishes;
-using static JJ.Framework.Wishes.Testing.DebuggerDisplayFormatter;
+using static JJ.Framework.Core.Common.FilledInWishes;
+using static JJ.Framework.Core.Testing.DebuggerDisplayFormatter;
 
-namespace JJ.Framework.Wishes.Testing
+namespace JJ.Framework.Core.Testing
 {
     [DebuggerDisplay("{DebuggerDisplay}")]
     public abstract class CaseBase<TMainProp> : CaseProp<TMainProp>, ICase

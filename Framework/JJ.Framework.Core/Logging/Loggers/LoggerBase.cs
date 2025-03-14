@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Core.Collections;
+using JJ.Framework.Core.Common;
+using JJ.Framework.Core.docs;
+using JJ.Framework.Core.Text;
 using JJ.Framework.Reflection;
-using JJ.Framework.Wishes.docs;
-using JJ.Framework.Wishes.Collections;
-using JJ.Framework.Wishes.Common;
-using JJ.Framework.Wishes.Text;
 using static System.Environment;
 using static System.StringComparer;
-using static JJ.Framework.Wishes.Common.FilledInWishes;
-using static JJ.Framework.Wishes.Text.StringWishes;
-using static JJ.Framework.Wishes.Logging.Config.LoggerConfigFetcher;
+using static JJ.Framework.Core.Common.FilledInWishes;
+using static JJ.Framework.Core.Logging.Config.LoggerConfigFetcher;
 
-namespace JJ.Framework.Wishes.Logging.Loggers
+namespace JJ.Framework.Core.Logging.Loggers
 {
     public abstract class LoggerBase : ILogger
     {

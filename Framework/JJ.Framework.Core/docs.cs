@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Wishes.Testing;
+using JJ.Framework.Core.Testing;
 
 #pragma warning disable CS0649
 #pragma warning disable CS0169 // Field is never used
@@ -11,7 +11,7 @@ using JJ.Framework.Wishes.Testing;
 // ReSharper disable InconsistentNaming
 // ReSharper disable IdentifierTypo
 
-namespace JJ.Framework.Wishes
+namespace JJ.Framework.Core
 {
     namespace docs
     {

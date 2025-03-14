@@ -4,12 +4,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Common;
+using JJ.Framework.Core.Logging.Config;
+using JJ.Framework.Core.Logging.Loggers;
+using JJ.Framework.Core.Logging.Mappers;
 using JJ.Framework.Reflection;
-using JJ.Framework.Wishes.Logging.Config;
-using JJ.Framework.Wishes.Logging.Loggers;
-using JJ.Framework.Wishes.Logging.Mappers;
 
-namespace JJ.Framework.Wishes.Logging
+namespace JJ.Framework.Core.Logging
 {
     public static class LoggerFactory
     {

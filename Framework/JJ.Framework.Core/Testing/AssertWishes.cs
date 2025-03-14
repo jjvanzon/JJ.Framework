@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using JJ.Framework.Common;
 using static System.Math;
-using static JJ.Framework.Wishes.Testing.AssertHelper_Copied;
-using static JJ.Framework.Wishes.Testing.DeltaDirectionEnum;
+using static JJ.Framework.Core.Testing.AssertHelper_Copied;
+using static JJ.Framework.Core.Testing.DeltaDirectionEnum;
 
-namespace JJ.Framework.Wishes.Testing
+namespace JJ.Framework.Core.Testing
 {
     public static class AssertWishes
     {

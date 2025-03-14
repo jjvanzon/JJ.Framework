@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using JJ.Framework.Wishes.Text;
+using System.Text;
+using JJ.Framework.Core.Text;
 
-namespace JJ.Framework.Wishes.Collections
+namespace JJ.Framework.Core.Collections
 {
     public static class CollectionExtensionWishes
     {

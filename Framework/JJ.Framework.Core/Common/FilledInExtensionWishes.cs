@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-namespace JJ.Framework.Wishes.Common
+namespace JJ.Framework.Core.Common
 {
     public static class FilledInExtensionWishes
     {

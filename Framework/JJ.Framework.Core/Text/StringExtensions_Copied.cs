@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using JJ.Framework.Common;
 
-namespace JJ.Framework.Wishes.Text
+namespace JJ.Framework.Core.Text
 {
     public static class StringExtensions_Copied
     {

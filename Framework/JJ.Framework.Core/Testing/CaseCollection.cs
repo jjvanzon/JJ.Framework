@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JJ.Framework.Reflection;
-using JJ.Framework.Common;
-using JJ.Framework.Wishes.Collections;
 
-namespace JJ.Framework.Wishes.Testing
+namespace JJ.Framework.Core.Testing
 {
     /// <inheritdoc cref="docs._casecollection" />
     public class CaseCollection<TCase> : IEnumerable<object[]>

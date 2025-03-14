@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 // ReSharper disable UnusedParameter.Global
 
-namespace JJ.Framework.Wishes.Logging.Loggers
+namespace JJ.Framework.Core.Logging.Loggers
 {
     internal class EmptyLogger : ILogger
     {

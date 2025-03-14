@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JJ.Framework.Common;
+using JJ.Framework.Core.Collections;
+using JJ.Framework.Core.Logging.Mappers;
 using JJ.Framework.Reflection;
-using JJ.Framework.Wishes.Collections;
-using JJ.Framework.Wishes.Logging.Mappers;
 using static System.Array;
 using static System.StringSplitOptions;
-using static JJ.Framework.Wishes.Common.FilledInWishes;
-using static JJ.Framework.Wishes.Logging.Config.LoggerConfigFetcher;
+using static JJ.Framework.Core.Common.FilledInWishes;
+using static JJ.Framework.Core.Logging.Config.LoggerConfigFetcher;
 
-namespace JJ.Framework.Wishes.Logging.Config
+namespace JJ.Framework.Core.Logging.Config
 {
     internal static class ConfigCascader
     {

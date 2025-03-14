@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using JJ.Framework.Wishes.Logging.Mappers;
-using static System.Array;
+using JJ.Framework.Core.Logging.Mappers;
 
-namespace JJ.Framework.Wishes.Logging.Config
+namespace JJ.Framework.Core.Logging.Config
 {
     internal static class ConfigCoalescer
     {

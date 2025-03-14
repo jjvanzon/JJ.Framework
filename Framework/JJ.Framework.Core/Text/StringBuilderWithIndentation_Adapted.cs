@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace JJ.Framework.Wishes.Text
+namespace JJ.Framework.Core.Text
 {
     public class StringBuilderWithIndentation_Adapted
     {

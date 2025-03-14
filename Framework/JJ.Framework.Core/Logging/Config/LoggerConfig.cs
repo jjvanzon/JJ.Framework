@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Wishes.docs;
+using JJ.Framework.Core.docs;
 
-namespace JJ.Framework.Wishes.Logging.Config
+namespace JJ.Framework.Core.Logging.Config
 {
     public class LoggerConfig
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Wishes.Testing;
+using JJ.Framework.Core.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Wishes.Tests

@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Wishes.Collections;
+using JJ.Framework.Core.Collections;
 
-namespace JJ.Framework.Wishes.Logging
+namespace JJ.Framework.Core.Logging
 {
     public static class ExceptionHelper_Copied
     {
