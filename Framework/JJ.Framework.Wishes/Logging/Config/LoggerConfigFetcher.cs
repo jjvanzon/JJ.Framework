@@ -32,10 +32,11 @@ namespace JJ.Framework.Wishes.Logging.Config
             return CreateLoggerConfig(rootLoggerXml);
         }
 
-        public static RootLoggerConfig CreateLoggerConfig(RootLoggerXml rootLoggerXml)
+        public static RootLoggerConfig CreateLoggerConfig(params RootLoggerXml[] xmlLayers) => CreateLoggerConfig((IList<RootLoggerXml>)xmlLayers);
+        public static RootLoggerConfig CreateLoggerConfig(IList<RootLoggerXml> xmlLayers)
         {
-            rootLoggerXml = ConfigCoalescer.Coalesce(rootLoggerXml);
-            RootLoggerConfig rootLoggerConfig = ConfigCascader.CascadeSettings(rootLoggerXml);
+            xmlLayers = ConfigCoalescer.Coalesce(xmlLayers);
+            RootLoggerConfig rootLoggerConfig = ConfigCascader.CascadeSettings(xmlLayers);
             return rootLoggerConfig;
         }
         

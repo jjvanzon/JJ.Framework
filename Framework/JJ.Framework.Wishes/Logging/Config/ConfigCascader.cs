@@ -15,6 +15,17 @@ namespace JJ.Framework.Wishes.Logging.Config
 {
     internal static class ConfigCascader
     {
+        public static RootLoggerConfig CascadeSettings(IList<RootLoggerXml> xmlLayers)
+        {
+            if (!Has(xmlLayers)) 
+            {
+                return new RootLoggerConfig { Loggers = new List<LoggerConfig>() };
+            }
+            
+            // For now use just one layer.
+            return CascadeSettings(xmlLayers[0]);
+        }
+        
         public static RootLoggerConfig CascadeSettings(RootLoggerXml rootXml)
         {
             if (rootXml == null) throw new NullException(() => rootXml);

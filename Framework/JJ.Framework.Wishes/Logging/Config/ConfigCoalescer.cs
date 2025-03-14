@@ -11,17 +11,17 @@ namespace JJ.Framework.Wishes.Logging.Config
     {
         public const bool DefaultActive = true;
 
-        public static RootLoggerXml[] Coalesce(params RootLoggerXml[] elements) => (RootLoggerXml[])Coalesce((IList<RootLoggerXml>)elements);
-        public static IList<RootLoggerXml> Coalesce(IList<RootLoggerXml> elements)
+        public static RootLoggerXml[] Coalesce(params RootLoggerXml[] layerXmls) => (RootLoggerXml[])Coalesce((IList<RootLoggerXml>)layerXmls);
+        public static IList<RootLoggerXml> Coalesce(IList<RootLoggerXml> layerXmls)
         {
-            elements = elements ?? Empty<RootLoggerXml>();
+            layerXmls = layerXmls ?? new List<RootLoggerXml> { new RootLoggerXml() };
             
-            for (int i = 0; i < elements.Count; i++)
+            for (int i = 0; i < layerXmls.Count; i++)
             {
-                elements[i] = Coalesce(elements[i]);
+                layerXmls[i] = Coalesce(layerXmls[i]);
             }
             
-            return elements;
+            return layerXmls;
         }
         
         public static RootLoggerXml Coalesce(RootLoggerXml element)
