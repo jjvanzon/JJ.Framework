@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
+using JJ.Framework.Wishes.Collections;
 using JJ.Framework.Wishes.Logging.Mappers;
 using static System.Array;
 using static System.StringSplitOptions;
@@ -50,25 +51,17 @@ namespace JJ.Framework.Wishes.Logging.Config
               .Select(x => ToDto(x, xml, template))
               .ToList();
 
-        private static LoggerConfig ToDto(string typeString, LoggerXml template) => new LoggerConfig
-        {
-            Active     = Coalesce(            template.Active, DefaultActive),
-            Type       = Coalesce(typeString, template.Type,   DefaultType  ),
-            Format     = Coalesce(            template.Format, DefaultFormat),
-            Categories = GetCats(template),
-            ExcludedCategories = new List<string>()
-        };
         
-        private static LoggerConfig ToDto(string typeString, LoggerXml xml, LoggerXml template)
+        private static LoggerConfig ToDto(string type, params LoggerXml[] xmlLayers)
         {
-            if (xml == null) throw new NullException(() => xml);
+            if (xmlLayers == null) throw new NullException(() => xmlLayers);
             
             return new LoggerConfig
             {
-                Active     = Coalesce(            xml.Active, template.Active, DefaultActive),
-                Type       = Coalesce(typeString, xml.Type,   template.Type,   DefaultType  ),
-                Format     = Coalesce(            xml.Format, template.Format, DefaultFormat),
-                Categories = Coalesce(GetCats(xml), GetCats(template)),
+                Active     = Coalesce(            xmlLayers.Select(x => x.Active  ).Concat(DefaultActive)),
+                Type       = Coalesce(type.Concat(xmlLayers.Select(x => x.Type   )).Concat(DefaultType  )),
+                Format     = Coalesce(            xmlLayers.Select(x => x.Format  ).Concat(DefaultFormat)),
+                Categories = Coalesce(            xmlLayers.Select(x => GetCats(x))),
                 ExcludedCategories = new List<string>()
             };
         }

@@ -391,3 +391,26 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
             return list;
                   //.Where(x => Has(x.Type))
                   //.ToList();
+
+        private static LoggerConfig ToDto(string typeString, LoggerXml template) => new LoggerConfig
+        {
+            Active     = Coalesce(            template.Active, DefaultActive),
+            Type       = Coalesce(typeString, template.Type,   DefaultType  ),
+            Format     = Coalesce(            template.Format, DefaultFormat),
+            Categories = GetCats(template),
+            ExcludedCategories = new List<string>()
+        };
+        
+        private static LoggerConfig ToDto(string typeString, LoggerXml xml, LoggerXml template)
+        {
+            if (xml == null) throw new NullException(() => xml);
+            
+            return new LoggerConfig
+            {
+                Active     = Coalesce(            xml.Active, template.Active, DefaultActive),
+                Type       = Coalesce(typeString, xml.Type,   template.Type,   DefaultType  ),
+                Format     = Coalesce(            xml.Format, template.Format, DefaultFormat),
+                Categories = Coalesce(GetCats(xml), GetCats(template)),
+                ExcludedCategories = new List<string>()
+            };
+        }
