@@ -26,7 +26,7 @@ namespace JJ.Framework.Wishes.Tests
         [TestMethod]
         public void GetAssemblyNameTest()
         {
-            AreEqual("JJ.Framework.Wishes", () => GetAssemblyName<ReflectionWishes>());
+            AreEqual("JJ.Framework.Core", () => GetAssemblyName<ReflectionWishes>());
         }
 
         // Fields
