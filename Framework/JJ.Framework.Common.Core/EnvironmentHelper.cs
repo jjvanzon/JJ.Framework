@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Core.Common
+namespace JJ.Framework.Common.Core
 {
-    public static class EnvironmentHelperWishes
+    public static class EnvironmentHelper
     {
         public static bool EnvironmentVariableIsDefined(string environmentVariableName, string environmentVariableValue)
             => String.Equals(Environment.GetEnvironmentVariable(environmentVariableName), environmentVariableValue, StringComparison.OrdinalIgnoreCase);

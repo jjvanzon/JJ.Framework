@@ -63,7 +63,6 @@
     <Compile Include="Collections\CollectionExtensions_Recursive_Ancestors_Copied.cs" />
     <Compile Include="Collections\CollectionExtensionWishes.cs" />
     <Compile Include="Configuration\ConfigurationManagerWishes.cs" />
-    <Compile Include="Common\EnvironmentHelperWishes.cs" />
     <Compile Include="Logging\ExceptionHelper_Copied.cs" />
     <Compile Include="IO\FileWishes.cs" />
     <Compile Include="Common\FilledInExtensionWishes.cs" />
