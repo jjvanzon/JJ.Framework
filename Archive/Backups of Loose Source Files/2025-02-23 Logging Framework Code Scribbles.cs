@@ -414,3 +414,8 @@ type = TryGetLoggerType_FromAssembly(name) ?? Type.GetType(name);
                 ExcludedCategories = new List<string>()
             };
         }
+
+        public static RootLoggerConfig CascadeSettings(params RootLoggerXml[] layerXmls) => CascadeSettings((IList<RootLoggerXml>)layerXmls);
+        private static IList<LoggerConfig> ToDtos(params LoggerXml[] xmlLayers) => ToDtos((IList<LoggerXml>)xmlLayers);
+        private static LoggerConfig ToDto(string type, IList<RootLoggerXml> xmlLayers)=> ToDto(type, xmlLayers.Cast<LoggerXml>().ToArray());
+        private static IList<string> GetTypeStrings(IList<RootLoggerXml> xmlLayers) => GetTypeStrings(xmlLayers.Cast<LoggerXml>().ToArray());

@@ -32,6 +32,7 @@ namespace JJ.Framework.Wishes.Logging.Config
             return CreateLoggerConfig(rootLoggerXml);
         }
 
+        // TOD: Layers not yet used. Only first layer is used. No cascading between layers.
         public static RootLoggerConfig CreateLoggerConfig(params RootLoggerXml[] xmlLayers) => CreateLoggerConfig((IList<RootLoggerXml>)xmlLayers);
         public static RootLoggerConfig CreateLoggerConfig(IList<RootLoggerXml> xmlLayers)
         {
