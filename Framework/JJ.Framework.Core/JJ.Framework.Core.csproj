@@ -54,6 +54,8 @@
     <Compile Include="Logging\Loggers\LoggerBase.cs" />
     <Compile Include="Logging\Mappers\LoggerEnum.cs" />
     <Compile Include="Logging\Loggers\VersatileLogger.cs" />
+    <Compile Include="Nully\FilledInExtensionWishes.cs" />
+    <Compile Include="Nully\FilledInWishes.cs" />
     <Compile Include="Reflection\AccessorEx.cs" />
     <Compile Include="Reflection\Accessor_Adapted.cs" />
     <Compile Include="Reflection\ReflectionExtensions_Copied.cs" />
@@ -65,8 +67,6 @@
     <Compile Include="Configuration\ConfigurationManagerWishes.cs" />
     <Compile Include="Logging\ExceptionHelper_Copied.cs" />
     <Compile Include="IO\FileWishes.cs" />
-    <Compile Include="Common\FilledInExtensionWishes.cs" />
-    <Compile Include="Common\FilledInWishes.cs" />
     <Compile Include="Collections\CollectionExtensions_Copied.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mathematics\RandomizerWishes.cs" />
