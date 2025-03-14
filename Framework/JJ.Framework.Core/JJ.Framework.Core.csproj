@@ -7,8 +7,8 @@
     <ProjectGuid>{8E47C2F1-0DBB-4FA2-A734-13A6AD9BE0B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Wishes</RootNamespace>
-    <AssemblyName>JJ.Framework.Wishes</AssemblyName>
+    <RootNamespace>JJ.Framework.Core</RootNamespace>
+    <AssemblyName>JJ.Framework.Core</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
