@@ -1,12 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.Core.Testing;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static System.Array;
 using static JJ.Framework.Testing.AssertHelper;
 using static JJ.Framework.Core.Testing.AssertWishes;
 using static JJ.Framework.Core.Testing.DeltaDirectionEnum;
 
-namespace JJ.Framework.Wishes.Tests
+namespace JJ.Framework.Core.Tests
 {
     [TestClass]
     public class AssertWishesTests

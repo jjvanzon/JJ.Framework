@@ -5,7 +5,7 @@ using System.Text;
 using JJ.Framework.Core.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Wishes.Tests
+namespace JJ.Framework.Core.Tests
 {
     [TestClass]
     public class TestWishes_Regression_Tests
