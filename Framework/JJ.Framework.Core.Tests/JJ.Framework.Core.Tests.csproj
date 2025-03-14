@@ -59,9 +59,9 @@
       <Project>{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}</Project>
       <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Wishes\JJ.Framework.Wishes.csproj">
+    <ProjectReference Include="..\JJ.Framework.Core\JJ.Framework.Core.csproj">
       <Project>{8E47C2F1-0DBB-4FA2-A734-13A6AD9BE0B2}</Project>
-      <Name>JJ.Framework.Wishes</Name>
+      <Name>JJ.Framework.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -127,9 +127,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Web.Tests", "Framework\JJ.Framework.Web.Tests\JJ.Framework.Web.Tests.csproj", "{9362B86B-0351-4E76-BFFE-A9739B5F0522}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Wishes", "Framework\JJ.Framework.Wishes\JJ.Framework.Wishes.csproj", "{8E47C2F1-0DBB-4FA2-A734-13A6AD9BE0B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Core", "Framework\JJ.Framework.Core\JJ.Framework.Core.csproj", "{8E47C2F1-0DBB-4FA2-A734-13A6AD9BE0B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Wishes.Tests", "Framework\JJ.Framework.Wishes.Tests\JJ.Framework.Wishes.Tests.csproj", "{45A283B6-5C98-479D-BA08-EC1776A94782}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Core.Tests", "Framework\JJ.Framework.Core.Tests\JJ.Framework.Core.Tests.csproj", "{45A283B6-5C98-479D-BA08-EC1776A94782}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
