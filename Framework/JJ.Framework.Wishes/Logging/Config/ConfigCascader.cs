@@ -15,64 +15,80 @@ namespace JJ.Framework.Wishes.Logging.Config
 {
     internal static class ConfigCascader
     {
-        public static RootLoggerConfig CascadeSettings(RootLoggerXml rootXml)
+        public static RootLoggerConfig CascadeSettings(IList<RootLoggerXml> layerXmls)
         {
-            if (rootXml == null) throw new NullException(() => rootXml);
-            
             return new RootLoggerConfig
             {
-                Loggers = XmlToDtos(rootXml)
+                Loggers = XmlToDtos(layerXmls)
             };
         }
         
-        private static IList<LoggerConfig> XmlToDtos(RootLoggerXml rootXml)
+        private static IList<LoggerConfig> XmlToDtos(IList<RootLoggerXml> layerXmls)
         {
+            if (layerXmls == null) throw new NullException(() => layerXmls);
+            
             var list = new List<LoggerConfig>();
             
-            IList<string> typeStrings = GetTypeStrings(rootXml);
-            
+            IList<string> typeStrings = ResolveTypeStrings(layerXmls);
             foreach (string typeString in typeStrings)
             {
-                LoggerConfig dto = ToDto(typeString, rootXml);
+                LoggerConfig dto = ToDto(typeString, layerXmls);
                 list.Add(dto);
             }
             
-            foreach (LoggerXml loggerXml in rootXml.Logs)
+            foreach (RootLoggerXml layerXml in layerXmls)
             {
-                IList<LoggerConfig> dtos = ToDtos(loggerXml, rootXml);
-                list.AddRange(dtos);
+                IList<LoggerConfig> dtos = ToDtos(layerXml);
+                if (dtos.Count > 0) 
+                {
+                    list.AddRange(dtos);
+                    break;
+                }
             }
             
             return list;
         }
         
-        private static IList<LoggerConfig> ToDtos(LoggerXml xml, LoggerXml template) 
-            => GetTypeStrings(xml)
-              .Select(x => ToDto(x, xml, template))
+        private static IList<LoggerConfig> ToDtos(LoggerXml xml) 
+            => ParseTypeStrings(xml)
+              .Select(typeString => ToDto(typeString, xml))
               .ToList();
 
         
-        private static LoggerConfig ToDto(string type, params LoggerXml[] xmlLayers)
+        private static LoggerConfig ToDto(string typeString, params LoggerXml[] xmlLayers) => ToDto(typeString, (IEnumerable<LoggerXml>)xmlLayers);
+        private static LoggerConfig ToDto(string typeString, IEnumerable<LoggerXml> xmlLayers)
         {
             if (xmlLayers == null) throw new NullException(() => xmlLayers);
             
             return new LoggerConfig
             {
-                Active     = Coalesce(            xmlLayers.Select(x => x.Active  ).Concat(DefaultActive)),
-                Type       = Coalesce(type.Concat(xmlLayers.Select(x => x.Type   )).Concat(DefaultType  )),
-                Format     = Coalesce(            xmlLayers.Select(x => x.Format  ).Concat(DefaultFormat)),
-                Categories = Coalesce(            xmlLayers.Select(x => GetCats(x))),
+                Active     = Coalesce(                  xmlLayers.Select(x => x.Active  ).Concat(DefaultActive)),
+                Type       = Coalesce(typeString.Concat(xmlLayers.Select(x => x.Type   )).Concat(DefaultType  )),
+                Format     = Coalesce(                  xmlLayers.Select(x => x.Format  ).Concat(DefaultFormat)),
+                Categories = Coalesce(                  xmlLayers.Select(x => GetCats(x))),
                 ExcludedCategories = new List<string>()
             };
         }
 
-        private static IList<string> GetTypeStrings(LoggerXml xml)
+        private static IList<string> ResolveTypeStrings(IEnumerable<LoggerXml> layerXmls)
+        {
+            if (layerXmls == null) throw new NullException(() => layerXmls);
+            
+            foreach (LoggerXml xmlLayer in layerXmls)
+            {
+                IList<string> typeStrings = ParseTypeStrings(xmlLayer);
+                if (typeStrings.Count > 0) return typeStrings;
+            }
+            
+            return Empty<string>();
+        }
+        
+        private static IList<string> ParseTypeStrings(LoggerXml xml)
         {
             if (xml == null) throw new NullException(() => xml);
             
             return SplitValues(xml.Types)
                   .Concat(SplitValues(xml.Type))
-                  .Where(FilledIn)
                   .ToList();
         }
         
@@ -84,7 +100,6 @@ namespace JJ.Framework.Wishes.Logging.Config
                   .Concat(SplitValues(xml.Category))
                   .Concat(SplitValues(xml.Cats))
                   .Concat(SplitValues(xml.Cat))
-                  .Where(FilledIn)
                   .ToList();
         }
         

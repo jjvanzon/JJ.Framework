@@ -3,6 +3,10 @@
   
   <configSections>
     <section name="jj.framework.logging" type="JJ.Framework.Configuration.ConfigurationSectionHandler, JJ.Framework.Configuration" />
+    
+    <!-- for layers configurations -->
+    <section name="layeredExample" type="JJ.Framework.Configuration.ConfigurationSectionHandler, JJ.Framework.Configuration" />
+    
   </configSections>
   
   <!-- Short forms: -->
@@ -85,7 +89,33 @@
       <log type="Debug" cats="Config;Action" />
     </logs>
   </jj.framework.logging>
+  
+  <!-- Layered configuration -->
+  
+  <layeredExample>
 
+    <logging 
+      type="Debug" 
+      categories="SynthLog;TapeTree"
+      active="true" 
+      format="{0:HH:mm:ss.fff} [{1}] {2}" />
+    
+    <nCrunch>
+      <logging type="Console" />
+    </nCrunch>
+
+    <azurePipelines>
+      <logging 
+        type="Console" 
+        categories="Actions;Math" 
+        format="{0} | {2}">
+        <log type="Debug" categories="Buff;Sample" />
+      </logging>
+    </azurePipelines>
+
+  </layeredExample>
+
+  
   <!-- Unrealistic example mentioning all the nodes: -->
   
   <!-- TODO: Add format strings. -->

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JJ.Framework.Wishes.Logging.Mappers;
+using static System.Array;
 
 namespace JJ.Framework.Wishes.Logging.Config
 {
@@ -11,6 +11,19 @@ namespace JJ.Framework.Wishes.Logging.Config
     {
         public const bool DefaultActive = true;
 
+        public static RootLoggerXml[] Coalesce(params RootLoggerXml[] elements) => (RootLoggerXml[])Coalesce((IList<RootLoggerXml>)elements);
+        public static IList<RootLoggerXml> Coalesce(IList<RootLoggerXml> elements)
+        {
+            elements = elements ?? Empty<RootLoggerXml>();
+            
+            for (int i = 0; i < elements.Count; i++)
+            {
+                elements[i] = Coalesce(elements[i]);
+            }
+            
+            return elements;
+        }
+        
         public static RootLoggerXml Coalesce(RootLoggerXml element)
         {
             element        = element        ?? new RootLoggerXml();
@@ -26,7 +39,7 @@ namespace JJ.Framework.Wishes.Logging.Config
             
             return element;
         }
-        
+
         private static LoggerXml Coalesce(LoggerXml element)
         {
             element = element ?? new LoggerXml();

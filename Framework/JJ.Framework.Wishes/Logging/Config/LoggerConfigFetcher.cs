@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Reflection;
 using JJ.Framework.Wishes.Logging.Mappers;
 using JJ.Framework.Wishes.docs;
 using static JJ.Framework.Wishes.Common.FilledInWishes;
@@ -32,10 +33,12 @@ namespace JJ.Framework.Wishes.Logging.Config
             return CreateLoggerConfig(rootLoggerXml);
         }
 
-        public static RootLoggerConfig CreateLoggerConfig(RootLoggerXml rootLoggerXml)
+        public static RootLoggerConfig CreateLoggerConfig(params RootLoggerXml[] layerXmls) => CreateLoggerConfig((IList<RootLoggerXml>)layerXmls);
+        public static RootLoggerConfig CreateLoggerConfig(IList<RootLoggerXml> layerXmls)
         {
-            rootLoggerXml = ConfigCoalescer.Coalesce(rootLoggerXml);
-            RootLoggerConfig rootLoggerConfig = ConfigCascader.CascadeSettings(rootLoggerXml);
+            if (layerXmls == null) throw new NullException(() => layerXmls);
+            layerXmls = ConfigCoalescer.Coalesce(layerXmls);
+            RootLoggerConfig rootLoggerConfig = ConfigCascader.CascadeSettings(layerXmls);
             return rootLoggerConfig;
         }
         
