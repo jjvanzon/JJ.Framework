@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JJ.Framework.Collections.Core;
-using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Existence.Core
 {
@@ -70,7 +69,7 @@ namespace JJ.Framework.Existence.Core
         public static T Coalesce<T>(IReadOnlyCollection<T> fallbacks) => Coalesce((IEnumerable<T>)fallbacks);
         public static T Coalesce<T>(IEnumerable        <T> fallbacks)
         {
-            if (fallbacks == null) throw new NullException(() => fallbacks);
+            if (fallbacks == null) throw new ArgumentNullException(nameof(fallbacks));
             
             foreach (var fallback in fallbacks)
             {
@@ -97,7 +96,7 @@ namespace JJ.Framework.Existence.Core
         {
             // TODO: Reduce repetition.
             // TODO: Maybe return default(T) as a last resort instead? Is that error hiding or actually just convenient?
-            if (fallbacks == null) throw new NullException(() => fallbacks);
+            if (fallbacks == null) throw new ArgumentNullException(nameof(fallbacks));
             
             foreach (var fallback in fallbacks)
             {
@@ -151,7 +150,7 @@ namespace JJ.Framework.Existence.Core
         public static string Coalesce(IReadOnlyCollection<string> fallbacks) => Coalesce((IEnumerable<string>)fallbacks);
         public static string Coalesce(IEnumerable        <string> fallbacks)
         {
-            if (fallbacks == null) throw new NullException(() => fallbacks);
+            if (fallbacks == null) throw new ArgumentNullException(nameof(fallbacks));
             
             foreach (var fallback in fallbacks)
             {
