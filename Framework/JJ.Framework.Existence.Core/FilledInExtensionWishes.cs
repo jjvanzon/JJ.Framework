@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Nully.Core
+namespace JJ.Framework.Existence.Core
 {
     public static class FilledInExtensionWishes
     {

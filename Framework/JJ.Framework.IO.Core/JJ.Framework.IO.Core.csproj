@@ -49,9 +49,9 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Nully.Core\JJ.Framework.Nully.Core.csproj">
+    <ProjectReference Include="..\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj">
       <Project>{43fc4ab0-7e22-4ddd-9bd9-55a74d19ae67}</Project>
-      <Name>JJ.Framework.Nully.Core</Name>
+      <Name>JJ.Framework.Existence.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj">
       <Project>{ee2d2ebe-a276-4f3f-8f0d-91b1e09cea51}</Project>

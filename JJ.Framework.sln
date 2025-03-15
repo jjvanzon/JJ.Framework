@@ -139,7 +139,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Core",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mathematics.Core", "Framework\JJ.Framework.Mathematics.Core\JJ.Framework.Mathematics.Core.csproj", "{05C51047-D449-4646-B23A-562A2843F723}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Nully.Core", "Framework\JJ.Framework.Nully.Core\JJ.Framework.Nully.Core.csproj", "{43FC4AB0-7E22-4DDD-9BD9-55A74D19AE67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Existence.Core", "Framework\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj", "{43FC4AB0-7E22-4DDD-9BD9-55A74D19AE67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Core", "Framework\JJ.Framework.Reflection.Core\JJ.Framework.Reflection.Core.csproj", "{6B83C0E7-F039-448A-99AA-1B989EF96273}"
 EndProject

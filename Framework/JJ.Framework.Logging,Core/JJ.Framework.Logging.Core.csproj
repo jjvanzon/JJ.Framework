@@ -70,9 +70,9 @@
       <Project>{1aecf8a1-dc97-40bd-9dbc-31b4c14956fb}</Project>
       <Name>JJ.Framework.Configuration.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Nully.Core\JJ.Framework.Nully.Core.csproj">
+    <ProjectReference Include="..\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj">
       <Project>{43fc4ab0-7e22-4ddd-9bd9-55a74d19ae67}</Project>
-      <Name>JJ.Framework.Nully.Core</Name>
+      <Name>JJ.Framework.Existence.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1A8E047C-7893-4918-B415-CE3928E815D8}</Project>

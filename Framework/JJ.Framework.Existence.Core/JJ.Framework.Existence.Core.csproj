@@ -7,8 +7,8 @@
     <ProjectGuid>{43FC4AB0-7E22-4DDD-9BD9-55A74D19AE67}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Nully.Core</RootNamespace>
-    <AssemblyName>JJ.Framework.Nully.Core</AssemblyName>
+    <RootNamespace>JJ.Framework.Existence.Core</RootNamespace>
+    <AssemblyName>JJ.Framework.Existence.Core</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Nully.Core;
+using JJ.Framework.Existence.Core;
 using JJ.Framework.Reflection;
 using JJ.Framework.Reflection.Core;
 using static System.String;
-using static JJ.Framework.Nully.Core.FilledInWishes;
+using static JJ.Framework.Existence.Core.FilledInWishes;
 
 namespace JJ.Framework.Testing.Core
 {

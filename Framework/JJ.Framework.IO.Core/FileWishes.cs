@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using JJ.Framework.Common;
-using JJ.Framework.Nully.Core;
+using JJ.Framework.Existence.Core;
 using JJ.Framework.Text.Core;
 using static System.AppDomain;
 
