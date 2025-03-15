@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JJ.Framework.Common;
-using JJ.Framework.Testing.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static System.Array;
 using static JJ.Framework.Testing.AssertHelper;
 using static JJ.Framework.Testing.Core.AssertWishes;
 using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
 
-namespace JJ.Framework.Core.Tests
+namespace JJ.Framework.Testing.Core.Tests
 {
     [TestClass]
     public class AssertWishesTests

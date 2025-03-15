@@ -7,7 +7,7 @@
     <ProjectGuid>{45A283B6-5C98-479D-BA08-EC1776A94782}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Core.Tests</RootNamespace>
+    <RootNamespace>JJ.Framework.Testing.Core.Tests</RootNamespace>
     <AssemblyName>JJ.Framework.Core.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -48,7 +48,6 @@
     <Compile Include="AssertWishesTests.cs" />
     <Compile Include="TestWishesRegressionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReflectionWishesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">

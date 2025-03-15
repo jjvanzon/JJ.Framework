@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Testing.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Core.Tests
+namespace JJ.Framework.Testing.Core.Tests
 {
     [TestClass]
     public class TestWishes_Regression_Tests

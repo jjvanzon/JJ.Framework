@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
-using JJ.Framework.Reflection.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static System.String;
 using static JJ.Framework.Testing.AssertHelper;
@@ -14,7 +13,7 @@ using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable CS0414 // Field is assigned but its value is never used
 
-namespace JJ.Framework.Core.Tests
+namespace JJ.Framework.Reflection.Core.Tests
 {
     [TestClass]
     public class ReflectionWishesTests
