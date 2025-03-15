@@ -4,9 +4,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
-using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Core.Reflection
+namespace JJ.Framework.Reflection.Core
 {
     /// <summary>
     /// Attempts to make it easier to access members public, private or protected.

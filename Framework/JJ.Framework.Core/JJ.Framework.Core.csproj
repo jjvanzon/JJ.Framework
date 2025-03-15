@@ -56,18 +56,12 @@
     <Compile Include="Logging\Loggers\VersatileLogger.cs" />
     <Compile Include="Nully\FilledInExtensionWishes.cs" />
     <Compile Include="Nully\FilledInWishes.cs" />
-    <Compile Include="Reflection\AccessorEx.cs" />
-    <Compile Include="Reflection\Accessor_Adapted.cs" />
-    <Compile Include="Reflection\ReflectionExtensions_Copied.cs" />
-    <Compile Include="Reflection\ReflectionExtensionWishes.cs" />
     <Compile Include="Testing\AssertHelper_Copied.cs" />
     <Compile Include="Testing\AssertWishes.cs" />
     <Compile Include="Configuration\ConfigurationManagerWishes.cs" />
     <Compile Include="Logging\ExceptionHelper_Copied.cs" />
     <Compile Include="IO\FileWishes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reflection\ReflectionHelper_Copied.cs" />
-    <Compile Include="Reflection\ReflectionWishes.cs" />
     <Compile Include="Testing\CaseBase.cs" />
     <Compile Include="Testing\CaseCollection.cs" />
     <Compile Include="Testing\CaseKeyBuilder.cs" />
@@ -94,6 +88,10 @@
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Reflection.Core\JJ.Framework.Reflection.Core.csproj">
+      <Project>{6b83c0e7-f039-448a-99aa-1b989ef96273}</Project>
+      <Name>JJ.Framework.Reflection.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
       <Project>{1A8E047C-7893-4918-B415-CE3928E815D8}</Project>
       <Name>JJ.Framework.Reflection</Name>
@@ -108,7 +106,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Reflection\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

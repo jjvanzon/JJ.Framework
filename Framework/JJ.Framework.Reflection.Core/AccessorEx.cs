@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace JJ.Framework.Core.Reflection
+namespace JJ.Framework.Reflection.Core
 {
     // TODO: Rename File
 

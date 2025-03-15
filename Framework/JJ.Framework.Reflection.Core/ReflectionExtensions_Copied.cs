@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace JJ.Framework.Core.Reflection
+namespace JJ.Framework.Reflection.Core
 {
     public static class ReflectionExtensions_Copied
     {

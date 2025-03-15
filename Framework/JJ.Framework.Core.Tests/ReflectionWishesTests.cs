@@ -5,11 +5,11 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
-using JJ.Framework.Core.Reflection;
+using JJ.Framework.Reflection.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static System.String;
 using static JJ.Framework.Testing.AssertHelper;
-using static JJ.Framework.Core.Reflection.ReflectionWishes;
+using static JJ.Framework.Reflection.Core.ReflectionWishes;
 using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable CS0414 // Field is assigned but its value is never used
@@ -24,7 +24,7 @@ namespace JJ.Framework.Core.Tests
         [TestMethod]
         public void GetAssemblyNameTest()
         {
-            AreEqual("JJ.Framework.Core", () => GetAssemblyName<ReflectionWishes>());
+            AreEqual("JJ.Framework.Reflection.Core", () => GetAssemblyName<ReflectionWishes>());
         }
 
         // Fields

@@ -55,6 +55,10 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Reflection.Core\JJ.Framework.Reflection.Core.csproj">
+      <Project>{6b83c0e7-f039-448a-99aa-1b989ef96273}</Project>
+      <Name>JJ.Framework.Reflection.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
       <Project>{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}</Project>
       <Name>JJ.Framework.Testing</Name>

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using JJ.Framework.Configuration;
 using JJ.Framework.Core.docs;
-using static JJ.Framework.Core.Reflection.ReflectionWishes;
+using static JJ.Framework.Reflection.Core.ReflectionWishes;
 
 namespace JJ.Framework.Core.Configuration
 {

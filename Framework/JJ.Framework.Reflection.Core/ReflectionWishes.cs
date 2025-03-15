@@ -4,10 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.Collections.Core;
-using JJ.Framework.Reflection;
 using static JJ.Framework.Reflection.ReflectionHelper;
 
-namespace JJ.Framework.Core.Reflection
+namespace JJ.Framework.Reflection.Core
 {
     public class ReflectionWishes
     {

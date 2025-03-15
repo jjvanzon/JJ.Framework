@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JJ.Framework.Core.Common;
-using JJ.Framework.Core.Reflection;
 using JJ.Framework.Reflection;
+using JJ.Framework.Reflection.Core;
 using static System.String;
 using static JJ.Framework.Core.Common.FilledInWishes;
 
