@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using JJ.Framework.Common;
 using JJ.Framework.Core.Common;
-using JJ.Framework.Core.Text;
+using JJ.Framework.Text.Core;
 using static System.AppDomain;
 
 namespace JJ.Framework.Core.IO

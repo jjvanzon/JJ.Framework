@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace JJ.Framework.Core.Text
+namespace JJ.Framework.Text.Core
 {
     public class StringBuilderWithIndentation_Adapted
     {

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+
 //using static JJ.Framework.Core.Common.FilledInWishes;
 
-namespace JJ.Framework.Core.Text
+namespace JJ.Framework.Text.Core
 {
     public static class StringWishes
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using JJ.Framework.Common;
 
-namespace JJ.Framework.Core.Text
+namespace JJ.Framework.Text.Core
 {
     public static class StringExtensions_Copied
     {

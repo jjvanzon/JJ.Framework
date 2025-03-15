@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Core.Text
+namespace JJ.Framework.Text.Core
 {
     public static class StringExtensionWishes
     {
