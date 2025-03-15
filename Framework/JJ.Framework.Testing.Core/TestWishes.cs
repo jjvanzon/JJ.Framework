@@ -16,7 +16,7 @@ namespace JJ.Framework.Testing.Core
             
             var attributeQuery
                 = methodQuery.SelectMany(method => method.GetCustomAttributes()
-                                                         .Union(method.DeclaringType?.GetCustomAttributes()));
+                                                         .Union(method.DeclaringType?.GetCustomAttributes() ?? Array.Empty<Attribute>()));
             var categoryQuery
                 = attributeQuery.Where(attr => attr.GetType().Name == "TestCategoryAttribute")
                                 .Select(attr => attr.GetType().GetProperty("TestCategories")?.GetValue(attr))
