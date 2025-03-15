@@ -109,11 +109,11 @@ namespace JJ.Framework.Core.Tests
         {
             ThrowsException(
                 () => AreEqual(10, () => 7, delta: 3, (DeltaDirectionEnum)(-1)), 
-                "JJ.Framework.Core.Testing.DeltaDirectionEnum value: '-1' is not supported." );
+                "JJ.Framework.Testing.Core.DeltaDirectionEnum value: '-1' is not supported." );
 
             ThrowsException(
                 () => AreEqual(10.1, () => 7, delta: 3, (DeltaDirectionEnum)(-1)), 
-                "JJ.Framework.Core.Testing.DeltaDirectionEnum value: '-1' is not supported." );
+                "JJ.Framework.Testing.Core.DeltaDirectionEnum value: '-1' is not supported." );
         }
         
         // Helpers
