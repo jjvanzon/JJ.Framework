@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using JJ.Framework.Core.Collections;
+using JJ.Framework.Collections.Core;
 using JJ.Framework.Reflection;
 using static JJ.Framework.Reflection.ReflectionHelper;
 

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using JJ.Framework.Collections.Core;
 using JJ.Framework.Common;
-using JJ.Framework.Core.Collections;
 using JJ.Framework.Core.Logging.Mappers;
 using JJ.Framework.Reflection;
 using static System.Array;

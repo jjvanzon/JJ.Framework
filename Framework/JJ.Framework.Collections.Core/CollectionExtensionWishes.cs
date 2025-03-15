@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using JJ.Framework.Text.Core;
 
-namespace JJ.Framework.Core.Collections
+namespace JJ.Framework.Collections.Core
 {
     public static class CollectionExtensionWishes
     {

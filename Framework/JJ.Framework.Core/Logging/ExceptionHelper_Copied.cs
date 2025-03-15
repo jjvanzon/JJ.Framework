@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Core.Collections;
+using JJ.Framework.Collections.Core;
 
 namespace JJ.Framework.Core.Logging
 {

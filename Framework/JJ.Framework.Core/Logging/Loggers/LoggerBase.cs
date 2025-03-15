@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Core.Collections;
+using JJ.Framework.Collections.Core;
 using JJ.Framework.Core.Common;
 using JJ.Framework.Core.docs;
 using JJ.Framework.Reflection;

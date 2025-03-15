@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Core.Collections
+namespace JJ.Framework.Collections.Core
 {
     public static class CollectionExtensions_Recursive_Ancestors_Copied
     {
