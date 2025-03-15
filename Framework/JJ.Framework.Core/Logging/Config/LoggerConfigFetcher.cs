@@ -5,7 +5,7 @@ using System.Text;
 using JJ.Framework.Core.docs;
 using JJ.Framework.Core.Logging.Mappers;
 using static JJ.Framework.Nully.Core.FilledInWishes;
-using static JJ.Framework.Core.Configuration.ConfigurationManagerWishes;
+using static JJ.Framework.Configuration.Core.ConfigurationManagerWishes;
 
 namespace JJ.Framework.Core.Logging.Config
 {
