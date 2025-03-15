@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JJ.Framework.Core.Mathematics
+namespace JJ.Framework.Mathematics.Core
 {
     public static class RandomizerWishes
     {
