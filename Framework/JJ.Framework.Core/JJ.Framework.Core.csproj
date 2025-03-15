@@ -83,10 +83,6 @@
     <Compile Include="Testing\ICase.cs" />
     <Compile Include="Testing\ICaseProp.cs" />
     <Compile Include="Testing\NullyPair.cs" />
-    <Compile Include="Text\StringBuilderWithIndentation_Adapted.cs" />
-    <Compile Include="Text\StringExtensions_Copied.cs" />
-    <Compile Include="Text\StringExtensionWishes.cs" />
-    <Compile Include="Text\StringWishes.cs" />
     <Compile Include="Testing\TestHelper_Copied.cs" />
     <Compile Include="Testing\TestWishes.cs" />
   </ItemGroup>
@@ -103,13 +99,19 @@
       <Project>{1A8E047C-7893-4918-B415-CE3928E815D8}</Project>
       <Name>JJ.Framework.Reflection</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj">
+      <Project>{ee2d2ebe-a276-4f3f-8f0d-91b1e09cea51}</Project>
+      <Name>JJ.Framework.Text.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logging\app.config.logging.example.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Text\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

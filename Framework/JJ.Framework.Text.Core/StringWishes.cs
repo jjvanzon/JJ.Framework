@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using static JJ.Framework.Core.Common.FilledInWishes;
+//using static JJ.Framework.Core.Common.FilledInWishes;
 
 namespace JJ.Framework.Core.Text
 {
@@ -150,7 +150,7 @@ namespace JJ.Framework.Core.Text
         {
             if (ignoreWhiteSpace) text = text?.TrimEnd();
             
-            if (!FilledIn(text))
+            if (string.IsNullOrWhiteSpace(text))
             {
                 // Start of string is good enough for punctuation.
                 return true;
@@ -162,7 +162,7 @@ namespace JJ.Framework.Core.Text
         
         public static bool StartsWithBlankLine(string text)
         {
-            if (!Has(text)) return true;
+            if (string.IsNullOrWhiteSpace(text)) return true;
             
             for (int i = 0; i < text.Length; i++)
             {
@@ -183,7 +183,7 @@ namespace JJ.Framework.Core.Text
         
         public static bool EndsWithBlankLine(string text)
         {
-            if (!Has(text)) return true;
+            if (string.IsNullOrWhiteSpace(text)) return true;
             
             for (int i = text.Length - 1; i >= 0; i--)
             {
