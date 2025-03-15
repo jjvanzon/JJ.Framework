@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using JJ.Framework.Collections.Core;
-using JJ.Framework.Core.Common;
 using JJ.Framework.Core.docs;
+using JJ.Framework.Nully.Core;
 using JJ.Framework.Reflection;
 using JJ.Framework.Text.Core;
 using static System.Environment;
 using static System.StringComparer;
-using static JJ.Framework.Core.Common.FilledInWishes;
+using static JJ.Framework.Nully.Core.FilledInWishes;
 using static JJ.Framework.Core.Logging.Config.LoggerConfigFetcher;
 
 namespace JJ.Framework.Core.Logging.Loggers

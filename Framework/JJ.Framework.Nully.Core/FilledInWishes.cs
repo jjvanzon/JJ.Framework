@@ -5,7 +5,7 @@ using System.Text;
 using JJ.Framework.Collections.Core;
 using JJ.Framework.Reflection;
 
-namespace JJ.Framework.Core.Common
+namespace JJ.Framework.Nully.Core
 {
     public static class FilledInWishes
     {

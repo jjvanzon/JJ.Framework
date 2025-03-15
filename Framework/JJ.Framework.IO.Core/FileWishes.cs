@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using JJ.Framework.Common;
-using JJ.Framework.Core.Common;
+using JJ.Framework.Nully.Core;
 using JJ.Framework.Text.Core;
 using static System.AppDomain;
 
-namespace JJ.Framework.Core.IO
+namespace JJ.Framework.IO.Core
 {
     public static class FileWishes
     {

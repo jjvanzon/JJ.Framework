@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using JJ.Framework.Core.Common;
+using JJ.Framework.Nully.Core;
 using static JJ.Framework.Core.Testing.DebuggerDisplayFormatter;
 
 namespace JJ.Framework.Core.Testing

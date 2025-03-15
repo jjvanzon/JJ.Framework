@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{43FC4AB0-7E22-4DDD-9BD9-55A74D19AE67}</ProjectGuid>
+    <ProjectGuid>{7F639943-9815-45B9-ADFA-F0EA8B7791DE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Nully.Core</RootNamespace>
-    <AssemblyName>JJ.Framework.Nully.Core</AssemblyName>
+    <RootNamespace>JJ.Framework.IO.Core</RootNamespace>
+    <AssemblyName>JJ.Framework.IO.Core</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -37,18 +37,25 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FilledInExtensionWishes.cs" />
-    <Compile Include="FilledInWishes.cs" />
+    <Compile Include="FileWishes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Collections.Core\JJ.Framework.Collections.Core.csproj">
-      <Project>{32c2b71c-0192-4f3d-8f8d-990a5b61c307}</Project>
-      <Name>JJ.Framework.Collections.Core</Name>
+    <ProjectReference Include="..\JJ.Framework.Common.Core\JJ.Framework.Common.Core.csproj">
+      <Project>{2c4c1957-cd37-454e-85a8-786ad726a0cf}</Project>
+      <Name>JJ.Framework.Common.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
-      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
-      <Name>JJ.Framework.Reflection</Name>
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
+      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Nully.Core\JJ.Framework.Nully.Core.csproj">
+      <Project>{43fc4ab0-7e22-4ddd-9bd9-55a74d19ae67}</Project>
+      <Name>JJ.Framework.Nully.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj">
+      <Project>{ee2d2ebe-a276-4f3f-8f0d-91b1e09cea51}</Project>
+      <Name>JJ.Framework.Text.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

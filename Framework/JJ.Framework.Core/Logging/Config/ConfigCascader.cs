@@ -8,7 +8,7 @@ using JJ.Framework.Core.Logging.Mappers;
 using JJ.Framework.Reflection;
 using static System.Array;
 using static System.StringSplitOptions;
-using static JJ.Framework.Core.Common.FilledInWishes;
+using static JJ.Framework.Nully.Core.FilledInWishes;
 using static JJ.Framework.Core.Logging.Config.LoggerConfigFetcher;
 
 namespace JJ.Framework.Core.Logging.Config

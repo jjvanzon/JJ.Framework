@@ -10,7 +10,7 @@ using JJ.Framework.Reflection.Core;
 using static System.Activator;
 using static System.Array;
 using static JJ.Framework.Reflection.ReflectionHelper;
-using static JJ.Framework.Core.Common.FilledInWishes;
+using static JJ.Framework.Nully.Core.FilledInWishes;
 using static JJ.Framework.Core.Testing.DebuggerDisplayFormatter;
 
 namespace JJ.Framework.Core.Testing
