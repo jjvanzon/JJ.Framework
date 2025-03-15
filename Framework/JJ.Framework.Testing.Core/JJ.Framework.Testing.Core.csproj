@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{639F2304-2AB3-46FA-8DA9-AF1B3F50FC66}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JJ.Framework.Testing.Core</RootNamespace>
+    <AssemblyName>JJ.Framework.Testing.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssertHelper_Copied.cs" />
+    <Compile Include="AssertWishes.cs" />
+    <Compile Include="CaseBase.cs" />
+    <Compile Include="CaseCollection.cs" />
+    <Compile Include="CaseKeyBuilder.cs" />
+    <Compile Include="CaseProp.cs" />
+    <Compile Include="DebuggerDisplayFormatter.cs" />
+    <Compile Include="DeltaDirectionEnum.cs" />
+    <Compile Include="FilledIn.cs" />
+    <Compile Include="ICase.cs" />
+    <Compile Include="ICaseProp.cs" />
+    <Compile Include="NullyPair.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestHelper_Copied.cs" />
+    <Compile Include="TestWishes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
+      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
+      <Name>JJ.Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Logging,Core\JJ.Framework.Logging.Core.csproj">
+      <Project>{8e47c2f1-0dbb-4fa2-a734-13a6ad9be0b2}</Project>
+      <Name>JJ.Framework.Logging.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Nully.Core\JJ.Framework.Nully.Core.csproj">
+      <Project>{43fc4ab0-7e22-4ddd-9bd9-55a74d19ae67}</Project>
+      <Name>JJ.Framework.Nully.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Reflection.Core\JJ.Framework.Reflection.Core.csproj">
+      <Project>{6b83c0e7-f039-448a-99aa-1b989ef96273}</Project>
+      <Name>JJ.Framework.Reflection.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
+      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
+      <Name>JJ.Framework.Reflection</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -59,13 +59,13 @@
       <Project>{6b83c0e7-f039-448a-99aa-1b989ef96273}</Project>
       <Name>JJ.Framework.Reflection.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj">
+      <Project>{639f2304-2ab3-46fa-8da9-af1b3f50fc66}</Project>
+      <Name>JJ.Framework.Testing.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
       <Project>{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}</Project>
       <Name>JJ.Framework.Testing</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Core\JJ.Framework.Core.csproj">
-      <Project>{8E47C2F1-0DBB-4FA2-A734-13A6AD9BE0B2}</Project>
-      <Name>JJ.Framework.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
