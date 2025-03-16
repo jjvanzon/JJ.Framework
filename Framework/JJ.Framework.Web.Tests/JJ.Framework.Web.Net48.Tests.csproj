@@ -60,9 +60,9 @@
       <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
       <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Web\JJ.Framework.Web.csproj">
+    <ProjectReference Include="..\JJ.Framework.Web\JJ.Framework.Web.Net48.csproj">
       <Project>{164520aa-2db7-4405-9ae5-eb515527a33b}</Project>
-      <Name>JJ.Framework.Web</Name>
+      <Name>JJ.Framework.Web.Net48</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

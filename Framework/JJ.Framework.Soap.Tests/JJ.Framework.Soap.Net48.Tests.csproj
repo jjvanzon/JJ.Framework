@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2D46AA63-78C8-4905-BF83-D08A058CCBED}</ProjectGuid>
+    <ProjectGuid>{3B1E7DE6-17DD-4140-AD96-21DCF5F0CB25}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Presentation.Mvc.Tests</RootNamespace>
-    <AssemblyName>JJ.Framework.Presentation.Mvc.Tests</AssemblyName>
+    <RootNamespace>JJ.Framework.Soap.Tests</RootNamespace>
+    <AssemblyName>JJ.Framework.Soap.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -52,23 +52,41 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ReturnUrlHelperTests.cs" />
+    <Compile Include="Helpers\IAppSettings.cs" />
+    <Compile Include="Helpers\TestHelper.cs" />
+    <Compile Include="Helpers\NativeWcfClient.cs" />
+    <Compile Include="Helpers\NativeWcfClientMessageInspector.cs" />
+    <Compile Include="NativeWcfClientTests.cs" />
+    <Compile Include="WcfSoapClientTests_Old.cs" />
+    <Compile Include="SoapClientTests_Old.cs" />
+    <Compile Include="WcfSoapClientTests.cs" />
+    <Compile Include="SoapClientTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UrlHelpersTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
-      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
-      <Name>JJ.Framework.Common</Name>
+    <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj">
+      <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
+      <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Presentation.Mvc\JJ.Framework.Presentation.Mvc.csproj">
-      <Project>{fed3c829-d92a-4800-9462-a175ccac4c70}</Project>
-      <Name>JJ.Framework.Presentation.Mvc</Name>
+    <ProjectReference Include="..\JJ.Framework.Soap.Tests.ServiceInterface\JJ.Framework.Soap.Net48.Tests.ServiceInterface.csproj">
+      <Project>{9f0128b1-b662-474d-9b73-3fd8e9783b40}</Project>
+      <Name>JJ.Framework.Soap.Net48.Tests.ServiceInterface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj">
-      <Project>{79b0eac3-5159-4fc8-b3d8-53315b205444}</Project>
-      <Name>JJ.Framework.Presentation</Name>
+    <ProjectReference Include="..\JJ.Framework.Soap\JJ.Framework.Soap.Net48.csproj">
+      <Project>{2b86213c-a758-4db9-bd37-5e7d2f4d7c4d}</Project>
+      <Name>JJ.Framework.Soap.Net48</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
+      <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
+      <Name>JJ.Framework.Testing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj">
+      <Project>{8dcbf3f3-b30f-4c11-8957-bea7f43ee173}</Project>
+      <Name>JJ.Framework.Xml.Linq</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
