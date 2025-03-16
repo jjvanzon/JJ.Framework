@@ -58,8 +58,12 @@ namespace JJ.Framework.IO.Core
             var mutex = new Mutex(false, "Global\\JJFrameworkIO_CreateSafeFileStreamMutex2_7f64fd76542045bb98c2e28a44d2df25");
             
             // Ensure it's released when the process exits.
+            
+            // ReSharper disable UnusedParameter.Local
             CurrentDomain.ProcessExit += (s, e) =>
             {
+                // ReSharper restore UnusedParameter.Local
+                
                 //if (mutex == null)
                 //{
                 //    return;
