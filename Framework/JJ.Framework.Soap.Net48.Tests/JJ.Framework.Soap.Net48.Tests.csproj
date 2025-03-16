@@ -68,11 +68,11 @@
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Soap.Tests.ServiceInterface\JJ.Framework.Soap.Net48.Tests.ServiceInterface.csproj">
+    <ProjectReference Include="..\JJ.Framework.Soap.Net48.Tests.ServiceInterface\JJ.Framework.Soap.Net48.Tests.ServiceInterface.csproj">
       <Project>{9f0128b1-b662-474d-9b73-3fd8e9783b40}</Project>
       <Name>JJ.Framework.Soap.Net48.Tests.ServiceInterface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Soap\JJ.Framework.Soap.Net48.csproj">
+    <ProjectReference Include="..\JJ.Framework.Soap.Net48\JJ.Framework.Soap.Net48.csproj">
       <Project>{2b86213c-a758-4db9-bd37-5e7d2f4d7c4d}</Project>
       <Name>JJ.Framework.Soap.Net48</Name>
     </ProjectReference>

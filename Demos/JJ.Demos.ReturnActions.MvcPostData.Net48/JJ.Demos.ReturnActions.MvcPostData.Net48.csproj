@@ -226,7 +226,7 @@
     <Content Include="Views\Shared\_ActionParameterInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation.Mvc\JJ.Framework.Presentation.Mvc.Net48.csproj">
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation.Mvc.Net48\JJ.Framework.Presentation.Mvc.Net48.csproj">
       <Project>{fed3c829-d92a-4800-9462-a175ccac4c70}</Project>
       <Name>JJ.Framework.Presentation.Mvc.Net48</Name>
     </ProjectReference>

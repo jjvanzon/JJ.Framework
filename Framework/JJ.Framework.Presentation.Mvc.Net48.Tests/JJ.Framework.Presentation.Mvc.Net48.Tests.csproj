@@ -61,7 +61,7 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Presentation.Mvc\JJ.Framework.Presentation.Mvc.Net48.csproj">
+    <ProjectReference Include="..\JJ.Framework.Presentation.Mvc.Net48\JJ.Framework.Presentation.Mvc.Net48.csproj">
       <Project>{fed3c829-d92a-4800-9462-a175ccac4c70}</Project>
       <Name>JJ.Framework.Presentation.Mvc.Net48</Name>
     </ProjectReference>
