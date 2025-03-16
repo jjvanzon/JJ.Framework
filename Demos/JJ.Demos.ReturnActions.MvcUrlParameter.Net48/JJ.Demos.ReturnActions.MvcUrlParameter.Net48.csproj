@@ -233,7 +233,7 @@
       <Project>{79b0eac3-5159-4fc8-b3d8-53315b205444}</Project>
       <Name>JJ.Framework.Presentation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Demos.ReturnActions\JJ.Demos.ReturnActions.Net48.csproj">
+    <ProjectReference Include="..\JJ.Demos.ReturnActions.Net48\JJ.Demos.ReturnActions.Net48.csproj">
       <Project>{757f8b06-8527-4daa-a206-e26eb167ca13}</Project>
       <Name>JJ.Demos.ReturnActions.Net48</Name>
     </ProjectReference>
