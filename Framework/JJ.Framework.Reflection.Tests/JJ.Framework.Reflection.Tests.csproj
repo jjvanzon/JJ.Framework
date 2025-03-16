@@ -1,92 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E150EBF6-16F7-4299-B4BD-791757D6CC9E}</ProjectGuid>
+    <TargetFramework>net9.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Reflection.Tests</RootNamespace>
-    <AssemblyName>JJ.Framework.Reflection.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Configurations>Debug;NPDebug;Release</Configurations>
+    <AssemblyTitle>JJ.Framework.Reflection.Tests</AssemblyTitle>
+    <Product>JJ.Framework.Reflection.Tests</Product>
+    <Copyright>Copyright ©  2014</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-  </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
       <ItemGroup>
         <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
       </ItemGroup>
     </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
-      </ItemGroup>
-    </Otherwise>
+    <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="AccessorTests\AccessorTests_Indexers.cs" />
-    <Compile Include="AccessorTests\AccessorTests_UsingStrings.cs" />
-    <Compile Include="AccessorTests\IClassAccessor.cs" />
-    <Compile Include="AccessorTests\IDerivedClassAccessor.cs" />
-    <Compile Include="AccessorTests\Class.cs" />
-    <Compile Include="AccessorTests\ClassAccessorBase.cs" />
-    <Compile Include="AccessorTests\ClassAccessor_UsingExpressions.cs" />
-    <Compile Include="AccessorTests\ClassAccessor_UsingStrings.cs" />
-    <Compile Include="AccessorTests\ClassWithNamedIndexer.cs" />
-    <Compile Include="AccessorTests\ClassWithNamedIndexerAccessor.cs" />
-    <Compile Include="AccessorTests\DerivedClass.cs" />
-    <Compile Include="AccessorTests\DerivedClassAccessorBase.cs" />
-    <Compile Include="AccessorTests\DerivedClassAccessor_UsingExpressions.cs" />
-    <Compile Include="AccessorTests\DerivedClassAccessor_UsingStrings.cs" />
-    <Compile Include="AccessorTests\AccessorTests_UsingExpressions.cs" />
-    <Compile Include="AccessorTests\AccessorTestsBase.cs" />
-    <Compile Include="ExpressionHelperTests\ExpressionHelperGetValuesTests.cs" />
-    <Compile Include="ExpressionHelperTests\ExpressionHelperExtensiveTests.cs" />
-    <Compile Include="ExpressionHelperTests\ExpressionHelperGetTextSimpleTests.cs" />
-    <Compile Include="ExpressionHelperTests\ExpressionHelperGetValueSimpleTests.cs" />
-    <Compile Include="ExpressionHelperTests\ComplexItem.cs" />
-    <Compile Include="ExpressionHelperTests\IItem.cs" />
-    <Compile Include="ExpressionHelperTests\Item.cs" />
-    <Compile Include="ExpressionHelperTests\StaticClass.cs" />
-    <Compile Include="ExpressionHelperTests\StaticClassT.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
-      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
-      <Name>JJ.Framework.Reflection</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
-      <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
-      <Name>JJ.Framework.Testing</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
@@ -106,13 +43,4 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
