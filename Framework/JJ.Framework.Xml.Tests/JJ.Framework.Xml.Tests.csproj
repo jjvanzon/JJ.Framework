@@ -3,12 +3,13 @@
     <TargetFramework>net9.0</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Configurations>Debug;NPDebug;Release</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <AssemblyTitle>JJ.Framework.Xml.Tests</AssemblyTitle>
     <Product>JJ.Framework.Xml.Tests</Product>
     <Copyright>Copyright ©  2014</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">

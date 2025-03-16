@@ -3,12 +3,13 @@
     <TargetFramework>net9.0</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Configurations>Debug;NPDebug;Release</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <AssemblyTitle>JJ.Framework.Reflection.Core.Tests</AssemblyTitle>
     <Product>JJ.Framework.Reflection.Core.Tests</Product>
     <Copyright>Copyright ©  2025</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
