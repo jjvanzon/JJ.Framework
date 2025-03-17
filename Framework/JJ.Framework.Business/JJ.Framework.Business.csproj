@@ -46,9 +46,9 @@
     <Compile Include="PropertyStatusEnum.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
-      <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
-      <Name>JJ.Framework.Persistence</Name>
+    <ProjectReference Include="..\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj">
+      <Project>{ae52e0ea-08bd-4e7c-9b79-98395653bacb}</Project>
+      <Name>JJ.Framework.Persistence.Net48</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj">
       <Project>{59622a6e-a9ae-438c-a164-05dea2fcf8cf}</Project>
