@@ -10,6 +10,9 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="JJ.Framework.Logging.Core.v3.ncrunchproject" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Collections.Core\JJ.Framework.Collections.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
     <ProjectReference Include="..\JJ.Framework.Configuration.Core\JJ.Framework.Configuration.Core.csproj" />

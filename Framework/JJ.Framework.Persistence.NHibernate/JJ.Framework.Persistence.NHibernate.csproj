@@ -10,6 +10,9 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="JJ.Framework.Persistence.NHibernate.v3.ncrunchproject" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="FluentNHibernate" Version="3.4.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
     <PackageReference Include="NHibernate" Version="5.5.2" />

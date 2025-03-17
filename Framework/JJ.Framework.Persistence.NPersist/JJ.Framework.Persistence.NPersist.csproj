@@ -10,6 +10,9 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="JJ.Framework.Persistence.NPersist.v3.ncrunchproject" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\External Components\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj" />
     <ProjectReference Include="..\..\External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj" />
     <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj" />

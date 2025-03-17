@@ -20,6 +20,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <None Remove="JJ.Framework.Testing.Tests.v3.ncrunchproject" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
   <ItemGroup>

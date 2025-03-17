@@ -18,6 +18,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <None Remove="JJ.OneOff.ExpressionTranslatorPerformanceTests.v3.ncrunchproject" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
   <ItemGroup>

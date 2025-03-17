@@ -21,6 +21,9 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="JJ.Demos.ReflectionCache.Tests.v3.ncrunchproject" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\JJ.Demos.ReflectionCache\JJ.Demos.ReflectionCache.csproj" />
   </ItemGroup>
 </Project>

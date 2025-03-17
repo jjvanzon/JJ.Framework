@@ -20,6 +20,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <None Remove="JJ.Framework.Xml.Tests.v3.ncrunchproject" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj" />
     <ProjectReference Include="..\JJ.Framework.Xml\JJ.Framework.Xml.csproj" />
