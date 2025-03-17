@@ -60,9 +60,9 @@
     <Compile Include="..\JJ.Framework.Persistence.NHibernate\NHibernateSessionFactoryCache.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.SqlClient.csproj">
-      <Project>{ceb85f8e-d429-4510-95a5-47cc3069d412}</Project>
-      <Name>JJ.Framework.Persistence.SqlClient</Name>
+    <ProjectReference Include="..\JJ.Framework.Persistence.SqlClient.Net48\JJ.Framework.Persistence.SqlClient.Net48.csproj">
+      <Project>{2351d739-c39f-4eb1-a3e8-69f195b1e1fd}</Project>
+      <Name>JJ.Framework.Persistence.SqlClient.Net48</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>

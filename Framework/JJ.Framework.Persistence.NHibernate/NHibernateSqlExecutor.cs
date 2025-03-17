@@ -3,7 +3,13 @@ using JJ.Framework.Reflection;
 using NHibernate;
 using System;
 using System.Collections.Generic;
+
+#if NET5_0_OR_GREATER
+using Microsoft.Data.SqlClient;
+#else
 using System.Data.SqlClient;
+#endif
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
