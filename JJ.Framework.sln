@@ -151,6 +151,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.Net4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.GetNames.Tests", "Demos\JJ.Demos.GetNames.Tests\JJ.Demos.GetNames.Tests.csproj", "{E5320CB8-8AD2-A57C-361C-794337774067}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation.Net48", "Framework\JJ.Framework.Validation.Net48\JJ.Framework.Validation.Net48.csproj", "{46552FFB-27F1-4338-9CCC-DAA904BE663D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -437,6 +439,10 @@ Global
 		{E5320CB8-8AD2-A57C-361C-794337774067}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5320CB8-8AD2-A57C-361C-794337774067}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5320CB8-8AD2-A57C-361C-794337774067}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46552FFB-27F1-4338-9CCC-DAA904BE663D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46552FFB-27F1-4338-9CCC-DAA904BE663D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46552FFB-27F1-4338-9CCC-DAA904BE663D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46552FFB-27F1-4338-9CCC-DAA904BE663D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -512,6 +518,7 @@ Global
 		{44A76522-BD9E-47D9-B424-57B9B0C1C9B8} = {5CD0B8A9-AA4E-4967-BB77-08580CF54F58}
 		{757F8B06-8527-4DAA-A206-E26EB167CA13} = {5CD0B8A9-AA4E-4967-BB77-08580CF54F58}
 		{E5320CB8-8AD2-A57C-361C-794337774067} = {5CD0B8A9-AA4E-4967-BB77-08580CF54F58}
+		{46552FFB-27F1-4338-9CCC-DAA904BE663D} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
