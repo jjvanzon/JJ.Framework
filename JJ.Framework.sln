@@ -175,6 +175,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48", "Framework\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj", "{AE52E0EA-08BD-4E7C-9B79-98395653BACB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48.Xml", "Framework\JJ.Framework.Persistence.Net48.Xml\JJ.Framework.Persistence.Net48.Xml.csproj", "{B9CAFD1C-5F1B-4609-B20C-1BAA02FE4000}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -509,6 +511,10 @@ Global
 		{AE52E0EA-08BD-4E7C-9B79-98395653BACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE52E0EA-08BD-4E7C-9B79-98395653BACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE52E0EA-08BD-4E7C-9B79-98395653BACB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9CAFD1C-5F1B-4609-B20C-1BAA02FE4000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9CAFD1C-5F1B-4609-B20C-1BAA02FE4000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9CAFD1C-5F1B-4609-B20C-1BAA02FE4000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9CAFD1C-5F1B-4609-B20C-1BAA02FE4000}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -596,6 +602,7 @@ Global
 		{56B6BA1D-92B6-4F6F-A533-1CD8A9B821E0} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{09619AA6-8E88-4487-BF2C-942C414D69AE} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{AE52E0EA-08BD-4E7C-9B79-98395653BACB} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{B9CAFD1C-5F1B-4609-B20C-1BAA02FE4000} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
