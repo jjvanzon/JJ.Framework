@@ -407,7 +407,7 @@ namespace JJ.Framework.Persistence.Tests
 
         private ConfigurationSection GetConfiguration()
         {
-            return CustomConfigurationManager.GetSection<ConfigurationSection>();
+            return CustomConfigurationManager.GetSection<ConfigurationSection>("jj.framework.persistence.tests");
         }
 
 		public static string FormatNPersistException(Exception ex)

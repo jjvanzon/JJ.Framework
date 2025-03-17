@@ -16,7 +16,7 @@ namespace JJ.Framework.Persistence.Tests
     {
         public static IContext CreatePersistenceContext(string contextType)
         {
-            ConfigurationSection configuration = CustomConfigurationManager.GetSection<ConfigurationSection>();
+            ConfigurationSection configuration = CustomConfigurationManager.GetSection<ConfigurationSection>("jj.framework.persistence.tests");
             
             string modelAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
             string mappingAssemblyName = Assembly.GetExecutingAssembly().GetName().Name;
