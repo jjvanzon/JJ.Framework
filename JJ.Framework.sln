@@ -33,7 +33,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzle.NPersist.Framework.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Tests", "Framework\JJ.Framework.Persistence.Tests\JJ.Framework.Persistence.Tests.csproj", "{30F1DFB1-BB06-42EA-AE91-56144B56DF45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Mvc.Net48", "Framework\JJ.Framework.Presentation.Mvc.Net48\JJ.Framework.Presentation.Mvc.Net48.csproj", "{FED3C829-D92A-4800-9462-A175CCAC4C70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Mvc.Net48", "Framework\JJ.Framework.Presentation.Mvc\JJ.Framework.Presentation.Mvc.Net48.csproj", "{FED3C829-D92A-4800-9462-A175CCAC4C70}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing", "Framework\JJ.Framework.Testing\JJ.Framework.Testing.csproj", "{369D4E9E-4EFF-4699-83B3-C4951EE0A3C3}"
 EndProject
@@ -49,7 +49,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Validation", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mathematics", "Framework\JJ.Framework.Mathematics\JJ.Framework.Mathematics.csproj", "{810B90B9-F501-4B91-B019-2AD5AAD63304}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.OneOff.BeginCollectionItemTest.Net48", "OneOff\JJ.OneOff.BeginCollectionItemTest.Net48\JJ.OneOff.BeginCollectionItemTest.Net48.csproj", "{CC7D3740-2460-4806-B6E7-4F3670B06D1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.OneOff.BeginCollectionItemTest.Net48", "OneOff\JJ.OneOff.BeginCollectionItemTest\JJ.OneOff.BeginCollectionItemTest.Net48.csproj", "{CC7D3740-2460-4806-B6E7-4F3670B06D1B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Tests", "Framework\JJ.Framework.Common.Tests\JJ.Framework.Common.Tests.csproj", "{FF1E5681-3980-429A-87E4-AE0B769595B4}"
 EndProject
@@ -91,17 +91,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReflectionCache.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mathematics.Tests", "Framework\JJ.Framework.Mathematics.Tests\JJ.Framework.Mathematics.Tests.csproj", "{7AD57E8B-0EC3-443C-877C-E0F4E8DE30F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Net48", "Framework\JJ.Framework.Soap.Net48\JJ.Framework.Soap.Net48.csproj", "{2B86213C-A758-4DB9-BD37-5E7D2F4D7C4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Net48", "Framework\JJ.Framework.Soap\JJ.Framework.Soap.Net48.csproj", "{2B86213C-A758-4DB9-BD37-5E7D2F4D7C4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Net48.Tests", "Framework\JJ.Framework.Soap.Net48.Tests\JJ.Framework.Soap.Net48.Tests.csproj", "{3B1E7DE6-17DD-4140-AD96-21DCF5F0CB25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Net48.Tests", "Framework\JJ.Framework.Soap.Tests\JJ.Framework.Soap.Net48.Tests.csproj", "{3B1E7DE6-17DD-4140-AD96-21DCF5F0CB25}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.PlatformCompatibility", "Framework\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj", "{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Tests", "Framework\JJ.Framework.Logging.Tests\JJ.Framework.Logging.Tests.csproj", "{E93C6237-52BC-40F1-84C7-ACF9CF7AA287}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Net48.Tests.ServiceInterface", "Framework\JJ.Framework.Soap.Net48.Tests.ServiceInterface\JJ.Framework.Soap.Net48.Tests.ServiceInterface.csproj", "{9F0128B1-B662-474D-9B73-3FD8E9783B40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Net48.Tests.ServiceInterface", "Framework\JJ.Framework.Soap.Tests.ServiceInterface\JJ.Framework.Soap.Net48.Tests.ServiceInterface.csproj", "{9F0128B1-B662-474D-9B73-3FD8E9783B40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Net48.Tests.Server", "Framework\JJ.Framework.Soap.Net48.Tests.Server\JJ.Framework.Soap.Net48.Tests.Server.csproj", "{D3440F56-DBD9-4B17-84E5-532E1D6FFE24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Soap.Net48.Tests.Server", "Framework\JJ.Framework.Soap.Tests.Server\JJ.Framework.Soap.Net48.Tests.Server.csproj", "{D3440F56-DBD9-4B17-84E5-532E1D6FFE24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Logging.Diagnostics", "Framework\JJ.Framework.Logging.Diagnostics\JJ.Framework.Logging.Diagnostics.csproj", "{3673E148-26F4-4DDD-870D-ADC0486BE39C}"
 EndProject
@@ -111,13 +111,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business", "Fr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Business.Tests", "Framework\JJ.Framework.Business.Tests\JJ.Framework.Business.Tests.csproj", "{A2657F2A-8508-4E21-BBD4-985E4FA45CF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Web.Net48", "Framework\JJ.Framework.Web.Net48\JJ.Framework.Web.Net48.csproj", "{164520AA-2DB7-4405-9AE5-EB515527A33B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Web.Net48", "Framework\JJ.Framework.Web\JJ.Framework.Web.Net48.csproj", "{164520AA-2DB7-4405-9AE5-EB515527A33B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.SqlClient", "Framework\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.SqlClient.csproj", "{CEB85F8E-D429-4510-95A5-47CC3069D412}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Mvc.Net48.Tests", "Framework\JJ.Framework.Presentation.Mvc.Net48.Tests\JJ.Framework.Presentation.Mvc.Net48.Tests.csproj", "{2D46AA63-78C8-4905-BF83-D08A058CCBED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Mvc.Net48.Tests", "Framework\JJ.Framework.Presentation.Mvc.Tests\JJ.Framework.Presentation.Mvc.Net48.Tests.csproj", "{2D46AA63-78C8-4905-BF83-D08A058CCBED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Web.Net48.Tests", "Framework\JJ.Framework.Web.Net48.Tests\JJ.Framework.Web.Net48.Tests.csproj", "{9362B86B-0351-4E76-BFFE-A9739B5F0522}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Web.Net48.Tests", "Framework\JJ.Framework.Web.Tests\JJ.Framework.Web.Net48.Tests.csproj", "{9362B86B-0351-4E76-BFFE-A9739B5F0522}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Collections.Core", "Framework\JJ.Framework.Collections.Core\JJ.Framework.Collections.Core.csproj", "{32C2B71C-0192-4F3D-8F8D-990A5B61C307}"
 EndProject
@@ -143,11 +143,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Core.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Text.Core", "Framework\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj", "{EE2D2EBE-A276-4F3F-8F0D-91B1E09CEA51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcUrlParameter.Net48", "Demos\JJ.Demos.ReturnActions.MvcUrlParameter.Net48\JJ.Demos.ReturnActions.MvcUrlParameter.Net48.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcUrlParameter.Net48", "Demos\JJ.Demos.ReturnActions.MvcUrlParameter\JJ.Demos.ReturnActions.MvcUrlParameter.Net48.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcPostData.Net48", "Demos\JJ.Demos.ReturnActions.MvcPostData.Net48\JJ.Demos.ReturnActions.MvcPostData.Net48.csproj", "{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.MvcPostData.Net48", "Demos\JJ.Demos.ReturnActions.MvcPostData\JJ.Demos.ReturnActions.MvcPostData.Net48.csproj", "{44A76522-BD9E-47D9-B424-57B9B0C1C9B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.Net48", "Demos\JJ.Demos.ReturnActions.Net48\JJ.Demos.ReturnActions.Net48.csproj", "{757F8B06-8527-4DAA-A206-E26EB167CA13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.Net48", "Demos\JJ.Demos.ReturnActions\JJ.Demos.ReturnActions.Net48.csproj", "{757F8B06-8527-4DAA-A206-E26EB167CA13}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.GetNames.Tests", "Demos\JJ.Demos.GetNames.Tests\JJ.Demos.GetNames.Tests.csproj", "{E5320CB8-8AD2-A57C-361C-794337774067}"
 EndProject
