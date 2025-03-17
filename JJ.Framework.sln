@@ -163,15 +163,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.J
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.Resources.Net48", "Framework\JJ.Framework.Presentation.Resources.Net48\JJ.Framework.Presentation.Resources.Net48.csproj", "{ACE04ACA-BCBE-468F-AC9F-5CEECE36CB9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48.Memory", "Framework\JJ.Framework.Persistence.Memory.Net48\JJ.Framework.Persistence.Net48.Memory.csproj", "{9E32DFBD-D6CB-4E80-862A-A2CB87B3C2D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48.Memory", "Framework\JJ.Framework.Persistence.Net48.Memory\JJ.Framework.Persistence.Net48.Memory.csproj", "{9E32DFBD-D6CB-4E80-862A-A2CB87B3C2D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48.NHibernate", "Framework\JJ.Framework.Persistence.NHibernate.Net48\JJ.Framework.Persistence.Net48.NHibernate.csproj", "{0714682C-E14A-4CEB-8B44-1D755050EDF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48.NHibernate", "Framework\JJ.Framework.Persistence.Net48.NHibernate\JJ.Framework.Persistence.Net48.NHibernate.csproj", "{0714682C-E14A-4CEB-8B44-1D755050EDF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48.SqlClient", "Framework\JJ.Framework.Persistence.SqlClient.Net48\JJ.Framework.Persistence.Net48.SqlClient.csproj", "{2351D739-C39F-4EB1-A3E8-69F195B1E1FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48.SqlClient", "Framework\JJ.Framework.Persistence.Net48.SqlClient\JJ.Framework.Persistence.Net48.SqlClient.csproj", "{2351D739-C39F-4EB1-A3E8-69F195B1E1FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48.NPersist", "Framework\JJ.Framework.Persistence.NPersist.Net48\JJ.Framework.Persistence.Net48.NPersist.csproj", "{56B6BA1D-92B6-4F6F-A533-1CD8A9B821E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48.NPersist", "Framework\JJ.Framework.Persistence.Net48.NPersist\JJ.Framework.Persistence.Net48.NPersist.csproj", "{56B6BA1D-92B6-4F6F-A533-1CD8A9B821E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48.EntityFramework5", "Framework\JJ.Framework.Persistence.EntityFramework5.Net48\JJ.Framework.Persistence.Net48.EntityFramework5.csproj", "{09619AA6-8E88-4487-BF2C-942C414D69AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48.EntityFramework5", "Framework\JJ.Framework.Persistence.Net48.EntityFramework5\JJ.Framework.Persistence.Net48.EntityFramework5.csproj", "{09619AA6-8E88-4487-BF2C-942C414D69AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Persistence.Net48", "Framework\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj", "{AE52E0EA-08BD-4E7C-9B79-98395653BACB}"
 EndProject

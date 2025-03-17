@@ -64,7 +64,7 @@
       <Project>{ae52e0ea-08bd-4e7c-9b79-98395653bacb}</Project>
       <Name>JJ.Framework.Persistence.Net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.SqlClient.Net48\JJ.Framework.Persistence.Net48.SqlClient.csproj">
+    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.SqlClient\JJ.Framework.Persistence.Net48.SqlClient.csproj">
       <Project>{2351d739-c39f-4eb1-a3e8-69f195b1e1fd}</Project>
       <Name>JJ.Framework.Persistence.Net48.SqlClient</Name>
     </ProjectReference>
