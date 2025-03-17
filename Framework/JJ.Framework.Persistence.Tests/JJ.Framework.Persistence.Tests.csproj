@@ -138,9 +138,9 @@
       <Project>{0714682c-e14a-4ceb-8b44-1d755050edf3}</Project>
       <Name>JJ.Framework.Persistence.NHibernate.Net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.NPersist.csproj">
-      <Project>{35fc288e-5a6f-4db9-ae54-1b721735ed7d}</Project>
-      <Name>JJ.Framework.Persistence.NPersist</Name>
+    <ProjectReference Include="..\JJ.Framework.Persistence.NPersist.Net48\JJ.Framework.Persistence.NPersist.Net48.csproj">
+      <Project>{56b6ba1d-92b6-4f6f-a533-1cd8a9b821e0}</Project>
+      <Name>JJ.Framework.Persistence.NPersist.Net48</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
       <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
