@@ -157,6 +157,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Security.Net48", "Framework\JJ.Framework.Security.Net48\JJ.Framework.Security.Net48.csproj", "{8C4AC80A-3A3B-4369-8449-12A27BB21BCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Mathematics.Net48", "Framework\JJ.Framework.Mathematics.Net48\JJ.Framework.Mathematics.Net48.csproj", "{D09E1267-27DA-4A6A-9E8D-09231F302FD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -455,6 +457,10 @@ Global
 		{8C4AC80A-3A3B-4369-8449-12A27BB21BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C4AC80A-3A3B-4369-8449-12A27BB21BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C4AC80A-3A3B-4369-8449-12A27BB21BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D09E1267-27DA-4A6A-9E8D-09231F302FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D09E1267-27DA-4A6A-9E8D-09231F302FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D09E1267-27DA-4A6A-9E8D-09231F302FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D09E1267-27DA-4A6A-9E8D-09231F302FD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -533,6 +539,7 @@ Global
 		{46552FFB-27F1-4338-9CCC-DAA904BE663D} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{C90BBAAA-87E9-435D-B6D0-E705CF4B7166} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{8C4AC80A-3A3B-4369-8449-12A27BB21BCF} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{D09E1267-27DA-4A6A-9E8D-09231F302FD1} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
