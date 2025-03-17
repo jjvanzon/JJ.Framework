@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JJ.Framework.Configuration</RootNamespace>
-    <AssemblyName>JJ.Framework.Configuration.Net48</AssemblyName>
+    <AssemblyName>JJ.Framework.Configuration</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
