@@ -230,9 +230,9 @@
       <Project>{fed3c829-d92a-4800-9462-a175ccac4c70}</Project>
       <Name>JJ.Framework.Presentation.Mvc.Net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj">
-      <Project>{79b0eac3-5159-4fc8-b3d8-53315b205444}</Project>
-      <Name>JJ.Framework.Presentation</Name>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation.Net48\JJ.Framework.Presentation.Net48.csproj">
+      <Project>{c90bbaaa-87e9-435d-b6d0-e705cf4b7166}</Project>
+      <Name>JJ.Framework.Presentation.Net48</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Demos.ReturnActions\JJ.Demos.ReturnActions.Net48.csproj">
       <Project>{757f8b06-8527-4daa-a206-e26eb167ca13}</Project>
