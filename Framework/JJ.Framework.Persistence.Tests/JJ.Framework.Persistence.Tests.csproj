@@ -130,21 +130,21 @@
       <Project>{805a8237-05ed-40ae-8d1a-9288373ea5e0}</Project>
       <Name>JJ.Framework.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.EntityFramework5.Net48\JJ.Framework.Persistence.EntityFramework5.Net48.csproj">
+    <ProjectReference Include="..\JJ.Framework.Persistence.EntityFramework5.Net48\JJ.Framework.Persistence.Net48.EntityFramework5.csproj">
       <Project>{09619aa6-8e88-4487-bf2c-942c414d69ae}</Project>
-      <Name>JJ.Framework.Persistence.EntityFramework5.Net48</Name>
+      <Name>JJ.Framework.Persistence.Net48.EntityFramework5</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.NHibernate.Net48\JJ.Framework.Persistence.NHibernate.Net48.csproj">
+    <ProjectReference Include="..\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj">
+      <Project>{ae52e0ea-08bd-4e7c-9b79-98395653bacb}</Project>
+      <Name>JJ.Framework.Persistence.Net48</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.Persistence.NHibernate.Net48\JJ.Framework.Persistence.Net48.NHibernate.csproj">
       <Project>{0714682c-e14a-4ceb-8b44-1d755050edf3}</Project>
-      <Name>JJ.Framework.Persistence.NHibernate.Net48</Name>
+      <Name>JJ.Framework.Persistence.Net48.NHibernate</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.NPersist.Net48\JJ.Framework.Persistence.NPersist.Net48.csproj">
+    <ProjectReference Include="..\JJ.Framework.Persistence.NPersist.Net48\JJ.Framework.Persistence.Net48.NPersist.csproj">
       <Project>{56b6ba1d-92b6-4f6f-a533-1cd8a9b821e0}</Project>
-      <Name>JJ.Framework.Persistence.NPersist.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj">
-      <Project>{7adeddce-6903-4a58-94f5-d0b39b21330f}</Project>
-      <Name>JJ.Framework.Persistence</Name>
+      <Name>JJ.Framework.Persistence.Net48.NPersist</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
       <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
