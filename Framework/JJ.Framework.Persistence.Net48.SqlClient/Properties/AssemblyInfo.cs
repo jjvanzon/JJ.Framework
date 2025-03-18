@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JJ.Framework.Persistence.SqlClient")]
+[assembly: AssemblyTitle("JJ.Framework.Persistence.Net48.SqlClient")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JJ.Framework.Persistence.SqlClient")]
+[assembly: AssemblyProduct("JJ.Framework.Persistence.Net48.SqlClient")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

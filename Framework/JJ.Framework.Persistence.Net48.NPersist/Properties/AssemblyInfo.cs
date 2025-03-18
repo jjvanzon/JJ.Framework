@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JJ.Framework.Persistence.NPersist")]
+[assembly: AssemblyTitle("JJ.Framework.Persistence.Net48.NPersist")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JJ.Framework.Persistence.NPersist")]
+[assembly: AssemblyProduct("JJ.Framework.Persistence.Net48.NPersist")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -88,7 +88,7 @@
     <Compile Include="..\JJ.Framework.Persistence.Tests\NHibernate\ThingMapping.cs" />
     <Compile Include="..\JJ.Framework.Persistence.Tests\Helpers\PersistenceHelper.cs" />
     <Compile Include="..\JJ.Framework.Persistence.Tests\PersistenceTests.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.Tests\Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\JJ.Framework.Persistence.Tests\Model\Thing.cs" />
   </ItemGroup>
   <ItemGroup>
