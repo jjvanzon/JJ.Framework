@@ -2,6 +2,13 @@
   <Settings>
     <AllowParallelTestExecution>True</AllowParallelTestExecution>
     <EnableRDI>False</EnableRDI>
+    <MetricsExclusionList>
+      <Value>External Components\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj</Value>
+      <Value>External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj</Value>
+      <Value>External Components\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj</Value>
+      <Value>External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj</Value>
+      <Value>External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj</Value>
+    </MetricsExclusionList>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
   </Settings>
