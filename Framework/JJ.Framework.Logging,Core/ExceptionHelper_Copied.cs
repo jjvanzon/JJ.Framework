@@ -34,6 +34,15 @@ namespace JJ.Framework.Logging.Core
             }
             return message;
         }
+
+        public static bool HasExceptionOrInnerExceptionsOfType(this Exception exception, Type exceptionType)
+        {
+            if (exception == null) throw new ArgumentNullException(nameof(exception));
+            if (exceptionType == null) throw new ArgumentNullException(nameof(exceptionType));
+
+            bool any = exception.SelfAndAncestors(x => x.InnerException).OfType(exceptionType).Any();
+            return any;
+        }
         
         public static bool HasExceptionOrInnerExceptionsOfType(this Exception exception, Type exceptionType, string message)
         {
@@ -46,6 +55,8 @@ namespace JJ.Framework.Logging.Core
                                 .Any();
             return any;
         }
-        
+
+        public static bool HasExceptionOrInnerExceptionsOfType<T>(this Exception exception)
+            => HasExceptionOrInnerExceptionsOfType(exception, typeof(T));
     }
 }
