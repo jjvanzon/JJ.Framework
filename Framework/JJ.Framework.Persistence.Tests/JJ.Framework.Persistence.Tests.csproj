@@ -1,101 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{30F1DFB1-BB06-42EA-AE91-56144B56DF45}</ProjectGuid>
+    <TargetFramework>net9.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Persistence.Tests</RootNamespace>
-    <AssemblyName>JJ.Framework.Persistence.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyTitle>JJ.Framework.Persistence.Tests</AssemblyTitle>
+    <Product>JJ.Framework.Persistence.Tests</Product>
+    <Copyright>Copyright ©  2013</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\External Components\NHibernate\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentNHibernate, Version=1.2.0.712, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\External Components\NHibernate\FluentNHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\External Components\NHibernate\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\External Components\NHibernate\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.ByteCode.Castle">
-      <HintPath>..\..\External Components\NHibernate\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.XML" />
-  </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
       <ItemGroup>
         <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
       </ItemGroup>
     </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
-      </ItemGroup>
-    </Otherwise>
+    <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Helpers\ConfigurationSection.cs" />
-    <Compile Include="EntityFramework\Model1.Designer.cs">
+    <Compile Update="EntityFramework\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="EntityFramework\Model1Context.cs" />
-    <Compile Include="NHibernate\ThingMapping.cs" />
-    <Compile Include="Helpers\PersistenceHelper.cs" />
-    <Compile Include="PersistenceTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Thing.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="app.config">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Web.Debug.config">
@@ -110,62 +37,39 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj">
-      <Project>{d08f9a33-6d4e-43e9-86f2-8e79ec115b9e}</Project>
-      <Name>Puzzle.NAspect.Framework.NET 3.5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj">
-      <Project>{5fb1569e-253e-42a7-a4e8-b4651fc6dca2}</Project>
-      <Name>Puzzle.NCore.Framework NET 3.5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj">
-      <Project>{7f415fbf-21fa-4e00-82de-aad8ceecc84b}</Project>
-      <Name>Puzzle.NPath.Framework.NET 3.5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj">
-      <Project>{e6c03d2a-d150-4473-9439-d300746a1390}</Project>
-      <Name>Puzzle.NPersist.Framework.NET 3.5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Configuration.Net48\JJ.Framework.Configuration.Net48.csproj">
-      <Project>{37a1cde4-c375-41a2-8268-664edb2d02e4}</Project>
-      <Name>JJ.Framework.Configuration.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.EntityFramework5\JJ.Framework.Persistence.Net48.EntityFramework5.csproj">
-      <Project>{09619aa6-8e88-4487-bf2c-942c414d69ae}</Project>
-      <Name>JJ.Framework.Persistence.Net48.EntityFramework5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj">
-      <Project>{ae52e0ea-08bd-4e7c-9b79-98395653bacb}</Project>
-      <Name>JJ.Framework.Persistence.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.NHibernate\JJ.Framework.Persistence.Net48.NHibernate.csproj">
-      <Project>{0714682c-e14a-4ceb-8b44-1d755050edf3}</Project>
-      <Name>JJ.Framework.Persistence.Net48.NHibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.NPersist\JJ.Framework.Persistence.Net48.NPersist.csproj">
-      <Project>{56b6ba1d-92b6-4f6f-a533-1cd8a9b821e0}</Project>
-      <Name>JJ.Framework.Persistence.Net48.NPersist</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Testing.Net48\JJ.Framework.Testing.Net48.csproj">
-      <Project>{8ac733e3-a88d-4083-9ac6-8f7860ef5fd3}</Project>
-      <Name>JJ.Framework.Testing.Net48</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NAspect\Framework\Puzzle.NAspect.Framework.NET 3.5.csproj" />
+    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj" />
+    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj" />
+    <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Configuration.Net48\JJ.Framework.Configuration.Net48.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.EntityFramework5\JJ.Framework.Persistence.Net48.EntityFramework5.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.NHibernate\JJ.Framework.Persistence.Net48.NHibernate.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.NPersist\JJ.Framework.Persistence.Net48.NPersist.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing.Net48\JJ.Framework.Testing.Net48.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EntityFramework\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="EntityFramework\Model1.edmx.diagram">
+    <None Update="EntityFramework\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <EmbeddedResource Include="NPersist\PersistenceTests.npersist" />
     <None Include="NPersist\PersistenceTests.omproj" />
-    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="FluentNHibernate" Version="3.4.0" />
+    <PackageReference Include="MSTest" Version="3.7.3" />
+    <PackageReference Include="NHibernate" Version="5.5.2" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
@@ -185,13 +89,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)$(TargetFileName).config&quot;&#xD;&#xA;copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)testhost.dll.config&quot;&#xD;&#xA;copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config&quot;" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
