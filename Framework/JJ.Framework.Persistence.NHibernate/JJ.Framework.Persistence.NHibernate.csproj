@@ -13,9 +13,9 @@
     <None Remove="JJ.Framework.Persistence.NHibernate.v3.ncrunchproject" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentNHibernate" Version="3.4.0" />
+    <PackageReference Include="FluentNHibernate" Version="1.2.0.712" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
-    <PackageReference Include="NHibernate" Version="5.4.9" />
+    <PackageReference Include="NHibernate" Version="5.5.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.SqlClient.csproj" />
