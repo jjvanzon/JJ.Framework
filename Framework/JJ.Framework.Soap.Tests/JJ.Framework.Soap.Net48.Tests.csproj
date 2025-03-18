@@ -80,9 +80,9 @@
       <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
       <Name>JJ.Framework.Testing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj">
-      <Project>{8dcbf3f3-b30f-4c11-8957-bea7f43ee173}</Project>
-      <Name>JJ.Framework.Xml.Linq</Name>
+    <ProjectReference Include="..\JJ.Framework.Xml.Linq.Net48\JJ.Framework.Xml.Linq.Net48.csproj">
+      <Project>{5d3c7212-1cd1-46b8-acb1-65bb08f26801}</Project>
+      <Name>JJ.Framework.Xml.Linq.Net48</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
