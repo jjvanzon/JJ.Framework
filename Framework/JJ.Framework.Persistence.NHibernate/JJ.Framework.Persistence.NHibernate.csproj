@@ -15,7 +15,7 @@
   <ItemGroup>
     <PackageReference Include="FluentNHibernate" Version="3.4.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
-    <PackageReference Include="NHibernate" Version="5.5.2" />
+    <PackageReference Include="NHibernate" Version="5.4.9" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Persistence.SqlClient\JJ.Framework.Persistence.SqlClient.csproj" />
