@@ -52,9 +52,9 @@
     <Compile Include="..\JJ.Framework.Persistence.Xml.Linq\XmlToEntityConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj">
-      <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
-      <Name>JJ.Framework.Common</Name>
+    <ProjectReference Include="..\JJ.Framework.Common.Net48\JJ.Framework.Common.Net48.csproj">
+      <Project>{d78bdcb6-13a6-4031-b4cb-431b1cd9d7fd}</Project>
+      <Name>JJ.Framework.Common.Net48</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj">
       <Project>{ae52e0ea-08bd-4e7c-9b79-98395653bacb}</Project>

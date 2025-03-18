@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JJ.Framework.Reflection.Net48")]
+[assembly: AssemblyTitle("JJ.Framework.Common.Net48")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JJ.Framework.Reflection.Net48")]
+[assembly: AssemblyProduct("JJ.Framework.Common.Net48")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("68110860-3fca-4c38-a11b-1fe3ae488761")]
+[assembly: Guid("3a46d824-6658-4809-b0f1-4ef38c58ecf3")]
 
 // Version information for an assembly consists of the following four values:
 //
