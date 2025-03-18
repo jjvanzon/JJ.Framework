@@ -76,9 +76,9 @@
       <Project>{2b86213c-a758-4db9-bd37-5e7d2f4d7c4d}</Project>
       <Name>JJ.Framework.Soap.Net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
-      <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
-      <Name>JJ.Framework.Testing</Name>
+    <ProjectReference Include="..\JJ.Framework.Testing.Net48\JJ.Framework.Testing.Net48.csproj">
+      <Project>{8ac733e3-a88d-4083-9ac6-8f7860ef5fd3}</Project>
+      <Name>JJ.Framework.Testing.Net48</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Xml.Linq.Net48\JJ.Framework.Xml.Linq.Net48.csproj">
       <Project>{5d3c7212-1cd1-46b8-acb1-65bb08f26801}</Project>

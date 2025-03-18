@@ -56,9 +56,9 @@
     <Compile Include="UrlParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
-      <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
-      <Name>JJ.Framework.Testing</Name>
+    <ProjectReference Include="..\JJ.Framework.Testing.Net48\JJ.Framework.Testing.Net48.csproj">
+      <Project>{8ac733e3-a88d-4083-9ac6-8f7860ef5fd3}</Project>
+      <Name>JJ.Framework.Testing.Net48</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Web\JJ.Framework.Web.Net48.csproj">
       <Project>{164520aa-2db7-4405-9ae5-eb515527a33b}</Project>
