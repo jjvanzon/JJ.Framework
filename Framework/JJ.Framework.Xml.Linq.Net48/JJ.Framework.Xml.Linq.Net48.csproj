@@ -55,9 +55,9 @@
       <Project>{44fd9133-5fe7-4824-bd35-27273706d127}</Project>
       <Name>JJ.Framework.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.csproj">
-      <Project>{c600657b-7e29-44b5-83a1-747fab30d5d0}</Project>
-      <Name>JJ.Framework.IO</Name>
+    <ProjectReference Include="..\JJ.Framework.IO.Net48\JJ.Framework.IO.Net48.csproj">
+      <Project>{675bb071-9e2d-4da5-a288-2a6db5ee0b1a}</Project>
+      <Name>JJ.Framework.IO.Net48</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Mathematics.Net48\JJ.Framework.Mathematics.Net48.csproj">
       <Project>{d09e1267-27da-4a6a-9e8d-09231f302fd1}</Project>

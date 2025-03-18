@@ -191,6 +191,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Xml.Linq.Net48
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Testing.Net48", "Framework\JJ.Framework.Testing.Net48\JJ.Framework.Testing.Net48.csproj", "{8AC733E3-A88D-4083-9AC6-8F7860EF5FD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.IO.Net48", "Framework\JJ.Framework.IO.Net48\JJ.Framework.IO.Net48.csproj", "{675BB071-9E2D-4DA5-A288-2A6DB5EE0B1A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -557,6 +559,10 @@ Global
 		{8AC733E3-A88D-4083-9AC6-8F7860EF5FD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AC733E3-A88D-4083-9AC6-8F7860EF5FD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AC733E3-A88D-4083-9AC6-8F7860EF5FD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{675BB071-9E2D-4DA5-A288-2A6DB5EE0B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{675BB071-9E2D-4DA5-A288-2A6DB5EE0B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{675BB071-9E2D-4DA5-A288-2A6DB5EE0B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{675BB071-9E2D-4DA5-A288-2A6DB5EE0B1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -652,6 +658,7 @@ Global
 		{F619D822-7E45-42CD-9B99-A22396869FCF} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{5D3C7212-1CD1-46B8-ACB1-65BB08F26801} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{8AC733E3-A88D-4083-9AC6-8F7860EF5FD3} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{675BB071-9E2D-4DA5-A288-2A6DB5EE0B1A} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
