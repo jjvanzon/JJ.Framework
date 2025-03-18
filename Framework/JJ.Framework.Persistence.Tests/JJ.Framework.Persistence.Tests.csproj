@@ -146,9 +146,9 @@
       <Project>{56b6ba1d-92b6-4f6f-a533-1cd8a9b821e0}</Project>
       <Name>JJ.Framework.Persistence.Net48.NPersist</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj">
-      <Project>{369d4e9e-4eff-4699-83b3-c4951ee0a3c3}</Project>
-      <Name>JJ.Framework.Testing</Name>
+    <ProjectReference Include="..\JJ.Framework.Testing.Net48\JJ.Framework.Testing.Net48.csproj">
+      <Project>{8ac733e3-a88d-4083-9ac6-8f7860ef5fd3}</Project>
+      <Name>JJ.Framework.Testing.Net48</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
