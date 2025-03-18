@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using static System.ComponentModel.DesignerSerializationVisibility;
 
 namespace JJ.Framework.Presentation.WinForms
 {
@@ -94,6 +95,7 @@ namespace JJ.Framework.Presentation.WinForms
         private volatile bool _isRunning;
         
         [Browsable(false)]
+        [DesignerSerializationVisibility(Hidden)]
         public bool IsRunning
         {
             get { return _isRunning; }
@@ -116,12 +118,17 @@ namespace JJ.Framework.Presentation.WinForms
 
         // Other Properties
 
+        [Browsable(true)]
+        [DefaultValue("")]
         public string FilePath
         {
             get { return textBoxFilePath.Text; ; }
             set { textBoxFilePath.Text = value; }
         }
 
+        
+        [Browsable(true)]
+        [DefaultValue("")]
         [EditorAttribute(
             "System.ComponentModel.Design.MultilineStringEditor, System.Design",
             "System.Drawing.Design.UITypeEditor")]
