@@ -68,9 +68,9 @@
       <Project>{2351d739-c39f-4eb1-a3e8-69f195b1e1fd}</Project>
       <Name>JJ.Framework.Persistence.Net48.SqlClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
-      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
-      <Name>JJ.Framework.Reflection</Name>
+    <ProjectReference Include="..\JJ.Framework.Reflection.Net48\JJ.Framework.Reflection.Net48.csproj">
+      <Project>{a682483b-3918-43ad-b3a3-80aaf1fe3721}</Project>
+      <Name>JJ.Framework.Reflection.Net48</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -76,9 +76,9 @@
       <Project>{c90bbaaa-87e9-435d-b6d0-e705cf4b7166}</Project>
       <Name>JJ.Framework.Presentation.Net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj">
-      <Project>{1a8e047c-7893-4918-b415-ce3928e815d8}</Project>
-      <Name>JJ.Framework.Reflection</Name>
+    <ProjectReference Include="..\JJ.Framework.Reflection.Net48\JJ.Framework.Reflection.Net48.csproj">
+      <Project>{a682483b-3918-43ad-b3a3-80aaf1fe3721}</Project>
+      <Name>JJ.Framework.Reflection.Net48</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Web\JJ.Framework.Web.Net48.csproj">
       <Project>{164520aa-2db7-4405-9ae5-eb515527a33b}</Project>
