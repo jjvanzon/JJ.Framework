@@ -34,12 +34,13 @@
     <ProjectReference Include="..\..\External Components\NPersist\Source Code\NCore\Framework\Puzzle.NCore.Framework NET 3.5.csproj" />
     <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPath\Framework\Puzzle.NPath.Framework.NET 3.5.csproj" />
     <ProjectReference Include="..\..\External Components\NPersist\Source Code\NPersist\Framework\Puzzle.NPersist.Framework.NET 3.5.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Configuration.Net48\JJ.Framework.Configuration.Net48.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.EntityFramework5\JJ.Framework.Persistence.Net48.EntityFramework5.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.NHibernate\JJ.Framework.Persistence.Net48.NHibernate.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48.NPersist\JJ.Framework.Persistence.Net48.NPersist.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Testing.Net48\JJ.Framework.Testing.Net48.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Logging,Core\JJ.Framework.Logging.Core.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Persistence.EntityFramework5\JJ.Framework.Persistence.EntityFramework5.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Persistence.NHibernate\JJ.Framework.Persistence.NHibernate.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Persistence.NPersist\JJ.Framework.Persistence.NPersist.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="EntityFramework\Model1.edmx">
