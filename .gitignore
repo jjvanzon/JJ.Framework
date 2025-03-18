@@ -10,3 +10,4 @@ TestResults
 *.ncrunchproject
 nCrunchTemp*.*
 .NCrunch*
+NCrunch*.xml
