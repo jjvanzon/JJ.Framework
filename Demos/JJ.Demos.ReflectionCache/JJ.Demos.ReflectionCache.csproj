@@ -10,6 +10,6 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection.Net48\JJ.Framework.Reflection.Net48.csproj" />
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
   </ItemGroup>
 </Project>
