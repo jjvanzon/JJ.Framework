@@ -201,6 +201,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Reflection.Net
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Common.Net48", "Framework\JJ.Framework.Common.Net48\JJ.Framework.Common.Net48.csproj", "{D78BDCB6-13A6-4031-B4CB-431B1CD9D7FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Configuration.Net48.Tests", "Framework\JJ.Framework.Configuration.Net48.Tests\JJ.Framework.Configuration.Net48.Tests.csproj", "{DADE7E6F-A89E-4C35-A50B-8562F3FCA2B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -587,6 +589,10 @@ Global
 		{D78BDCB6-13A6-4031-B4CB-431B1CD9D7FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D78BDCB6-13A6-4031-B4CB-431B1CD9D7FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D78BDCB6-13A6-4031-B4CB-431B1CD9D7FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DADE7E6F-A89E-4C35-A50B-8562F3FCA2B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DADE7E6F-A89E-4C35-A50B-8562F3FCA2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DADE7E6F-A89E-4C35-A50B-8562F3FCA2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DADE7E6F-A89E-4C35-A50B-8562F3FCA2B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -687,6 +693,7 @@ Global
 		{FA00C733-DDD5-426A-827D-2741BADD4B66} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{A682483B-3918-43AD-B3A3-80AAF1FE3721} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{D78BDCB6-13A6-4031-B4CB-431B1CD9D7FD} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{DADE7E6F-A89E-4C35-A50B-8562F3FCA2B1} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
