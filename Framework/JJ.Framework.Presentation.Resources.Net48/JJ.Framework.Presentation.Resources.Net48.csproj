@@ -50,7 +50,7 @@
     <EmbeddedResource Include="..\JJ.Framework.Presentation.Resources\CommonTitles.nl-NL.resx" />
     <EmbeddedResource Include="..\JJ.Framework.Presentation.Resources\CommonTitles.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>..\JJ.Framework.Presentation.Resources\CommonTitles.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
