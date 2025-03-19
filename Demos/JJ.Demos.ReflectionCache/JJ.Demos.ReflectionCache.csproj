@@ -10,6 +10,10 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="JJ.Demos.ReflectionCache.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.Demos.ReflectionCache_AnalysisBuild.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
   </ItemGroup>
 </Project>

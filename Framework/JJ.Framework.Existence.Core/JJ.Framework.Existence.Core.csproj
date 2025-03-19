@@ -11,6 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="JJ.Framework.Existence.Core.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.Framework.Existence.Core_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Collections.Core\JJ.Framework.Collections.Core.csproj" />

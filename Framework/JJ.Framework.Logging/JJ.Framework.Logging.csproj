@@ -9,4 +9,8 @@
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="JJ.Framework.Logging.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.Framework.Logging_AnalysisBuild.xml" />
+  </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="JJ.Framework.Mathematics.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.Framework.Mathematics_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />

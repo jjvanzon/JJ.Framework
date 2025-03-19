@@ -21,6 +21,7 @@
   </Choose>
   <ItemGroup>
     <None Remove="JJ.Framework.Xml.Tests.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.Framework.Xml.Tests_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />

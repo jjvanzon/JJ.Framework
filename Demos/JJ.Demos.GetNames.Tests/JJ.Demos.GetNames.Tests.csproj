@@ -17,6 +17,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="JJ.Demos.GetNames.Tests.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.Demos.GetNames.Tests_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />

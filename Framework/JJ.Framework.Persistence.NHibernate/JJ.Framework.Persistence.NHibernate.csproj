@@ -11,6 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="JJ.Framework.Persistence.NHibernate.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.Framework.Persistence.NHibernate_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentNHibernate" Version="3.4.0" />

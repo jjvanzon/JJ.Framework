@@ -18,6 +18,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <None Remove="JJ.Framework.Persistence.Tests.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.Framework.Persistence.Tests_AnalysisBuild.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Web.Debug.config">
       <DependentUpon>app.config</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

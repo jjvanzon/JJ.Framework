@@ -19,6 +19,7 @@
   </Choose>
   <ItemGroup>
     <None Remove="JJ.OneOff.ExpressionTranslatorPerformanceTests.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.OneOff.ExpressionTranslatorPerformanceTests_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />

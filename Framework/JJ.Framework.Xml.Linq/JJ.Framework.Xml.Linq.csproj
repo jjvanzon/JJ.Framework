@@ -10,6 +10,10 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="JJ.Framework.Xml.Linq.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.Framework.Xml.Linq_AnalysisBuild.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
     <ProjectReference Include="..\JJ.Framework.IO\JJ.Framework.IO.csproj" />
     <ProjectReference Include="..\JJ.Framework.Mathematics\JJ.Framework.Mathematics.csproj" />
