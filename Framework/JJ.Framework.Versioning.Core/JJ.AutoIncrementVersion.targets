@@ -5,6 +5,7 @@
 
   <!-- This Build Target writes the next auto-incremented number to a build props file, imported again at the top of the csproj XML. -->
   <Target Name="JJAutoIncrementVersion" BeforeTargets="Build">
+    <Message Text="JJ AUTO-INCREMENT VERSION" Importance="High" />
     <!-- Default empty BuildNum to 0 before incrementing. -->
     <PropertyGroup><BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum></PropertyGroup>
     <!-- Increment BuildNum, then assign back to BuildNum. -->
