@@ -29,5 +29,13 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Include="JJ.AutoIncrementVersion.targets">
+      <Pack>True</Pack>
+      <PackagePath>\build</PackagePath>
+    </None>
+    <None Include="JJ.AutoIncrementVersion.default.props">
+      <Pack>True</Pack>
+      <PackagePath>\buildCopy\JJ.AutoIncrementVersion.props</PackagePath>
+    </None>
   </ItemGroup>
 </Project>
