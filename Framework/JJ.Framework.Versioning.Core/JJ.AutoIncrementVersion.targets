@@ -1,23 +1,8 @@
 <Project>
 
-  <!-- JJ.AUTOINCREMENTVERSION: -->
   <!-- This imports a MSBuild props file, defining the auto-incremented value $(BuildNumber). -->  
   <Import Project="JJ.AutoIncrementVersion.props" Condition="Exists('JJ.AutoIncrementVersion.props')" />
 
-  <PropertyGroup>
-    
-    <!-- JJ.AUTOINCREMENTVERSION: -->
-    <!-- Use these in place of your own Version/VersionPrefix/VersionSuffix tags. -->
-    <!-- They allow you to use the $(BuildNumber) macro, which is autoamtically replaced by an incremental number. -->
-    <!-- The first Version tag specified the default value, when no BuildNumber has been generated yet. -->
-    <!-- The 2nd Version tag subsequently uses the incremental number, via the $(BuildNumber) macro. -->
-    <!--
-    <Version Condition="'$(BuildNumber)'==''">1.0.0</Version>
-    <Version Condition="'$(BuildNumber)'!=''">1.0.$(BuildNumber)</Version>
-    -->
-  </PropertyGroup>
-  
-  <!-- JJ.AUTOINCREMENTVERSION: -->
   <!-- This Build Target writes the next auto-incremented number to a build props file, imported again at the top of the csproj XML. -->
   <Target Name="JJAutoIncrementVersion" BeforeTargets="Build">
     <!-- Default empty BuildNumber to 0 before incrementing. -->
@@ -25,7 +10,7 @@
     <!-- Increment BuildNumber, then assign back to BuildNumber. -->
     <PropertyGroup><BuildNumber>$([MSBuild]::Add($(BuildNumber), 1))</BuildNumber></PropertyGroup>
     <!-- Write the new version to a MSBuild props file. -->
-    <WriteLinesToFile File="$(MSBuildThisFileDirectory)BuildNumber.props" Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNumber&gt;$(BuildNumber)&lt;/BuildNumber&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" Overwrite="true" Encoding="UTF-8" />
+    <WriteLinesToFile File="$(MSBuildThisFileDirectory)JJ.AutoIncrementVersion.props" Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNumber&gt;$(BuildNumber)&lt;/BuildNumber&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" Overwrite="true" Encoding="UTF-8" />
   </Target>
 
 </Project>
