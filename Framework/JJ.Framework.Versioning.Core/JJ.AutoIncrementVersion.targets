@@ -1,16 +1,16 @@
 <Project>
 
-  <!-- This imports a MSBuild props file, defining the auto-incremented value $(BuildNumber). -->  
+  <!-- This imports a MSBuild props file, defining the auto-incremented value $(BuildNum). -->  
   <Import Project="JJ.AutoIncrementVersion.props" Condition="Exists('JJ.AutoIncrementVersion.props')" />
 
   <!-- This Build Target writes the next auto-incremented number to a build props file, imported again at the top of the csproj XML. -->
   <Target Name="JJAutoIncrementVersion" BeforeTargets="Build">
-    <!-- Default empty BuildNumber to 0 before incrementing. -->
-    <PropertyGroup><BuildNumber Condition="'$(BuildNumber)' == ''">0</BuildNumber></PropertyGroup>
-    <!-- Increment BuildNumber, then assign back to BuildNumber. -->
-    <PropertyGroup><BuildNumber>$([MSBuild]::Add($(BuildNumber), 1))</BuildNumber></PropertyGroup>
+    <!-- Default empty BuildNum to 0 before incrementing. -->
+    <PropertyGroup><BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum></PropertyGroup>
+    <!-- Increment BuildNum, then assign back to BuildNum. -->
+    <PropertyGroup><BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum></PropertyGroup>
     <!-- Write the new version to a MSBuild props file. -->
-    <WriteLinesToFile File="$(MSBuildThisFileDirectory)JJ.AutoIncrementVersion.props" Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNumber&gt;$(BuildNumber)&lt;/BuildNumber&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" Overwrite="true" Encoding="UTF-8" />
+    <WriteLinesToFile File="$(MSBuildThisFileDirectory)JJ.AutoIncrementVersion.props" Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" Overwrite="true" Encoding="UTF-8" />
   </Target>
 
 </Project>
