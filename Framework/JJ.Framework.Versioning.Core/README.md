@@ -3,7 +3,7 @@
 
 I want my `*` back! 
 
-Those don't work anymore for version numbers. But I want my auto-incremental number!
+Those don't work anymore for version numbers. But we want to auto-increment numbers!
 
 This package allows you to use `$(BuildNum)` instead.
 
