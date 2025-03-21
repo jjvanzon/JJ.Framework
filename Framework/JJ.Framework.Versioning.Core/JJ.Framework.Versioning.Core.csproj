@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
     <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
-    <Description>Allows $(BuildNum) in your version numbers. Our * doesn't work anymore. But we want auto-incremental numbers!</Description>
+    <Description>Use $ (BuildNum) in your version number. Our * doesn&apos;t work anymore. But we want auto-increment!</Description>
     <PackageTags>MSBuild; versioning; increment; auto-increment</PackageTags>
     <Authors>JJ van Zon</Authors>
     <Copyright>Copyright © Jan Joost van Zon 2025</Copyright>
