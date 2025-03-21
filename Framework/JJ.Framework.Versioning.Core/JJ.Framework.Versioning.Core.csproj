@@ -4,10 +4,30 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
     <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
+    <Description>Allows $(BuildNum) in your version numbers. Our * doesn't work anymore. But we want auto-incremental numbers!</Description>
+    <PackageTags>MSBuild; versioning; increment; auto-increment</PackageTags>
+    <Authors>JJ van Zon</Authors>
+    <Copyright>Copyright © Jan Joost van Zon 2025</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/core/Framework/JJ.Framework.Versioning.Core</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/core/Framework/JJ.Framework.Versioning.Core</PackageProjectUrl>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Title>JJ.AutoIncrementVersion</Title>
+    <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
-
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\Resources\jj-icon-64x64-margin4.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
