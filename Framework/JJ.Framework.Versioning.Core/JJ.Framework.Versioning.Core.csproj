@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="JJ.AutoIncrementVersion.targets" />
+  <Import Project="JJ.Framework.Versioning.Core.targets" />
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
     <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
-    <Description>Use $ (BuildNum) in your version number. Our * doesn&apos;t work anymore. But we want auto-increment!</Description>
+    <Description>Use $ (BuildNum) in your version number. Our * doesn't work anymore. But we want auto-increment!</Description>
     <PackageTags>MSBuild; versioning; increment; auto-increment</PackageTags>
     <Authors>JJ van Zon</Authors>
     <Copyright>Copyright © Jan Joost van Zon 2025</Copyright>
@@ -29,7 +29,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="JJ.AutoIncrementVersion.targets">
+    <None Include="JJ.Framework.Versioning.Core.targets">
       <Pack>True</Pack>
       <PackagePath>\build</PackagePath>
     </None>
