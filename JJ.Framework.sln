@@ -209,6 +209,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SgmlReaderDll.Net48", "Exte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Presentation.WinForms.Net48", "Framework\JJ.Framework.Presentation.WinForms.Net48\JJ.Framework.Presentation.WinForms.Net48.csproj", "{19B190A5-0DA0-4803-BC78-AC34637703F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.Versioning.Core", "JJ.Framework.Versioning.Core\JJ.Framework.Versioning.Core.csproj", "{FA1BD78D-F060-4316-8A07-F46C62B11D5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -611,6 +613,10 @@ Global
 		{19B190A5-0DA0-4803-BC78-AC34637703F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19B190A5-0DA0-4803-BC78-AC34637703F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19B190A5-0DA0-4803-BC78-AC34637703F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA1BD78D-F060-4316-8A07-F46C62B11D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA1BD78D-F060-4316-8A07-F46C62B11D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA1BD78D-F060-4316-8A07-F46C62B11D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA1BD78D-F060-4316-8A07-F46C62B11D5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -715,6 +721,7 @@ Global
 		{5ECE49AB-1E74-4183-B4A7-966D9FFCB9E6} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 		{F9192CF8-4CFE-4281-8A0E-167B09C571CB} = {E3DC759D-B004-4E6C-8381-D5D5C74A5B92}
 		{19B190A5-0DA0-4803-BC78-AC34637703F8} = {72857B67-3003-486C-9BB3-34AF5748BE95}
+		{FA1BD78D-F060-4316-8A07-F46C62B11D5A} = {72857B67-3003-486C-9BB3-34AF5748BE95}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {980A9D5F-4E00-41EA-A6EE-AB8CEB5F4D02}
