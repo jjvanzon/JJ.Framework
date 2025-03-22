@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="build\JJ.Framework.Versioning.Core.targets" />
-
+  
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -35,7 +35,7 @@
     </None>
     <None Include="JJ.Framework.Versioning.Core.default.props">
       <Pack>True</Pack>
-      <PackagePath>\buildCopy\JJ.Framework.Versioning.Core.props</PackagePath>
+      <PackagePath>\build\JJ.Framework.Versioning.Core.props</PackagePath>
     </None>
   </ItemGroup>
 </Project>
