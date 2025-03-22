@@ -1,25 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="build\JJ.Framework.Versioning.Core.targets" />
-  <Import Project="build\JJ.Framework.Versioning.Core.props" />
+  <Import Project="build\JJ.AutoIncrementVersion.targets" />
+  <Import Project="build\JJ.AutoIncrementVersion.props" />
   
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
     <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
+    <AssemblyName>JJ.AutoIncrementVersion</AssemblyName>
+    <!--<Title>JJ.AutoIncrementVersion</Title>-->
     <Description>Our * doesn't work anymore. Use %24(BuildNum) instead.</Description>
     <PackageTags>MSBuild; versioning; increment; auto-increment</PackageTags>
     <Authors>JJ van Zon</Authors>
     <Copyright>Copyright © Jan Joost van Zon 2025</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>    
-    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/core/Framework/JJ.Framework.Versioning.Core</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/core/Framework/JJ.Framework.Versioning.Core</PackageProjectUrl>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <Title>JJ.AutoIncrementVersion</Title>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RepositoryUrl>
+      https://github.com/jjvanzon/JJ.Framework/tree/core/Framework/JJ.Framework.Versioning.Core
+    </RepositoryUrl>
+    <PackageProjectUrl>
+      https://github.com/jjvanzon/JJ.Framework/tree/core/Framework/JJ.Framework.Versioning.Core
+    </PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
     <None Include="README.md">
@@ -34,13 +39,13 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="build\JJ.Framework.Versioning.Core.targets">
+    <None Include="build\JJ.AutoIncrementVersion.targets">
       <Pack>True</Pack>
       <PackagePath>\build</PackagePath>
     </None>
-    <None Include="JJ.Framework.Versioning.Core.default.props">
+    <None Include="JJ.AutoIncrementVersion.default.props">
       <Pack>True</Pack>
-      <PackagePath>\build\JJ.Framework.Versioning.Core.props</PackagePath>
+      <PackagePath>\build\JJ.AutoIncrementVersion.props</PackagePath>
     </None>
   </ItemGroup>
 </Project>
