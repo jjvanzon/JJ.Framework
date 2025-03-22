@@ -8,9 +8,12 @@
     <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
     <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
     <AssemblyName>JJ.AutoIncrementVersion</AssemblyName>
-    <!--<Title>JJ.AutoIncrementVersion</Title>-->
     <Description>Our * doesn't work anymore. Use %24(BuildNum) instead.</Description>
-    <PackageTags>MSBuild; versioning; increment; auto-increment</PackageTags>
+    <PackageTags>
+      MSBuild; SemVer; autoincrement; version; build-number; assemblyinfo; 
+      assemblyversion; build; auto-increment; semantic; versioning; auto; increment; buildnumber;
+      nuget; packaging; ci; cdci; cd-ci
+    </PackageTags>
     <Authors>JJ van Zon</Authors>
     <Copyright>Copyright © Jan Joost van Zon 2025</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>    

@@ -30,7 +30,7 @@ Every time you build your project, the `$(BuildNum)` is simply incremented by `1
 Integration
 -----------
 
-The `$(BuildNum)` variable should be automatically available when you've installed this NuGet package.
+The `$(BuildNum)` variable is available after you've installed this NuGet package.
 Unfortunately it will also be **UN**available after you **UN**install it. No problem right? Wrong!
 
 A safer approach might be to replace your `Version` / `VerionPrefix` / `VersionSuffix` tags with this:
@@ -47,7 +47,7 @@ This makes sure the build doesn't fail when you uninstall the `JJ.AutoIncrementV
 Otherwise you're left with `1.0.$(BuildNum)`, but `$(BuildNum)` isn't defined anymore,
 resulting in a corrupt version number "`1.0.`" with an extra period at the end,
 which one hopes results in an error `"1.0. isn't a valid version number."`
-But probably you would get something irrelevant like `"net9 not supported."`
+But probably you would get an irrelevant error like `"net9 not supported."`
 And you can't just reinstall the package, because *nuget restore fails*, and blocks you from uninstalling or reinstalling, packaging or building your whole solution for that matter, until you've adjusted your `<Version>` tags.
 
 I'm trying to find a more elegant solution as we speak.
