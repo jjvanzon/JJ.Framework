@@ -7,6 +7,8 @@
     <Nullable>enable</Nullable>
     <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
     <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
+    <!--<Version>1.8.$(BuildNum)</Version>-->
+    <!--<AutoVersion>1.8.$(x)</AutoVersion>-->
   </PropertyGroup>
 
   <ItemGroup>

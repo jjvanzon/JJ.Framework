@@ -8,10 +8,6 @@
     <Copyright>Copyright ©  2014</Copyright>
     <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
     <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
-    <!--<AutoVersion>1.8.$(x)</AutoVersion>-->
-    <!--<Version>1.8.$(BuildNum)</Version>-->
-    <!--<AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>-->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
