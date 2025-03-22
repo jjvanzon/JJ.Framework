@@ -1,7 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <!-- For experimentation. Should eventually do without. -->
-  <!--<Import Project="build\JJ.Framework.Versioning.Core.props" />-->
     
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
