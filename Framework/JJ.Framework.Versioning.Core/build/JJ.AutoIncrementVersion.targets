@@ -15,10 +15,10 @@
       DestinationFiles="$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props"
       Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props')"/>
   
-  </Target>
+  <!--</Target>-->
     
   <!-- Save after buid -->
-  <Target Name="JJAutoIncrementVersionSave" AfterTargets="Build">
+  <!--<Target Name="JJAutoIncrementVersionSave" AfterTargets="Build">-->
     
     <!-- Info message -->
     <Message Text="JJ AUTO-INCREMENT VERSION SAVE -> $(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props" Importance="High" />

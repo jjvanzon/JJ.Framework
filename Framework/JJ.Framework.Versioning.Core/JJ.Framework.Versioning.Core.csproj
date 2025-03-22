@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="build\JJ.AutoIncrementVersion.targets" />
-  <Import Project="build\JJ.AutoIncrementVersion.props" />
   
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
