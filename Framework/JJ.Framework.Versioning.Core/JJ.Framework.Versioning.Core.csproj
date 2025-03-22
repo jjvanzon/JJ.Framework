@@ -7,7 +7,7 @@
     <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
     <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
     <AssemblyName>JJ.AutoIncrementVersion</AssemblyName>
-    <Description>Our * doesn't work anymore. Use %24(BuildNum) instead.</Description>
+    <Description>We miss our *. Use %24(BuildNum) instead.</Description>
     <PackageTags>
       MSBuild; autoincrement; version; build-number; assemblyinfo; SemVer; 
       packaging; pipeline; devops; build; auto-increment; semantic; versioning; assemblyversion; auto; increment; buildnumber; ci
