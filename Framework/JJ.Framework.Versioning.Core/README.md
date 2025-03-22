@@ -30,20 +30,24 @@ Every time you build your project, the `$(BuildNum)` is simply incremented by `1
 Integration
 -----------
 
-The `$(BuildNum)` variable should be automatically available when you've installed this NuGet package. But you can customize further.
+The `$(BuildNum)` variable should be automatically available when you've installed this NuGet package.
+Unfortunately it will also be **UN**available after you uninstall it. No problem right? Wrong.
 
-A safer approach might be to add this instead, but it might be overkill:
+A safer approach might be to replace your `Version` / `VerionPrefix` / `VersionSuffix` tags with this instead:
 
 ```xml
-<PropertyGroup>
-  <!-- Use these in place of your own Version/VersionPrefix/VersionSuffix tags. -->
-  <!-- They allow you to use the $(BuildNum) macro, which is automatically replaced by an incremental number. -->
-  <!-- The first Version tag specified the default value, when no BuildNum has been generated yet. -->
-  <!-- The 2nd Version tag subsequently uses the incremental number, via the $(BuildNum) macro. -->
-  <Version Condition="'$(BuildNum)'==''">1.0.0</Version>
-  <Version Condition="'$(BuildNum)'!=''">1.0.$(BuildNum)</Version>
-</PropertyGroup>
+<Version Condition="'$(BuildNum)'==''">1.0.0</Version>
+<Version Condition="'$(BuildNum)'!=''">1.0.$(BuildNum)</Version>
 ```
 
-This makes sure the build doesn't fail when the auto-generated 
-`JJ.AutoIncrementVersion.props` is deleted. If deleted, it would otherwise cause and error like: `1.0. isn't a valid version number.`
+The first Version tag specified the default value, when no $(BuildNum) has been generated yet.
+The 2nd Version tag subsequently uses the incremental number, via the $(BuildNum) macro.
+
+This makes sure the build doesn't fail when you uninstall the JJ.AutoIncrementVersion.
+Otherwise you're left with `1.0.$(BuildNum)`, but `$(BuildNum)` isn't defined anymore,
+resulting in a corrupt version number `1.0.` with an extra period at the end,
+which can result in either an error `1.0. isn't a valid version number.` if you're lucky.
+But probably it would so you something irrelevant like `net9 not supported.`
+And you can't just reinstall the packag, because nuget restore fails, and blocks you from uninstalling or reinstalling any package or build your solution for that matter until you've adjusted your `<Version>` tags.
+
+I'm trying to find a more elegant solution as we speak.
