@@ -5,12 +5,17 @@
   
   <!-- This Build Target writes the next auto-incremented number to a build props file, imported again at the top of the csproj XML. -->
   <Target Name="JJAutoIncrementVersion" BeforeTargets="Build">
+    
+    <!-- Informative message -->
     <Message Text="JJ AUTO-INCREMENT VERSION -> $(MSBuildProjectDirectory)\build\JJ.Framework.Versioning.Core.props" Importance="High" />
+    
     <!-- Default empty BuildNum to 0 before incrementing. -->
     <PropertyGroup><BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum></PropertyGroup>
+    
     <!-- Increment BuildNum, then assign back to BuildNum. -->
     <PropertyGroup><BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum></PropertyGroup>
-    <!-- Write the new version to a MSBuild props file. -->
+    
+    <!-- Write the new version to an MSBuild props file. -->
     <WriteLinesToFile File="$(MSBuildProjectDirectory)\build\JJ.Framework.Versioning.Core.props" Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" Overwrite="true" Encoding="UTF-8" />
   </Target>
 
