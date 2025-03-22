@@ -4,7 +4,7 @@
   <Import Project="$(MSBuildProjectDirectory)\build\JJ.Framework.Versioning.Core.props" Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.Framework.Versioning.Core.props')" />
   
   <!-- This Build Target writes the next auto-incremented number to a build props file, imported again at the top of the csproj XML. -->
-  <Target Name="JJAutoIncrementVersion" BeforeTargets="Build">
+  <Target Name="JJAutoIncrementVersion" AfterTargets="Build">
     
     <!-- Informational message -->
     <Message Text="JJ AUTO-INCREMENT VERSION -> $(MSBuildProjectDirectory)\build\JJ.Framework.Versioning.Core.props" Importance="High" />
