@@ -40,10 +40,10 @@ A safer approach might be to replace your `Version` / `VerionPrefix` / `VersionS
 <Version Condition="'$(BuildNum)'!=''">1.0.$(BuildNum)</Version>
 ```
 
-The first Version tag specified the default value, when no $(BuildNum) has been generated yet.
-The 2nd Version tag subsequently uses the incremental number, via the $(BuildNum) macro.
+The first Version tag specified the default value, when no `$(BuildNum)` has been generated yet.
+The 2nd Version tag subsequently uses the incremental number, via the `$(BuildNum)` macro.
 
-This makes sure the build doesn't fail when you uninstall the JJ.AutoIncrementVersion.
+This makes sure the build doesn't fail when you uninstall the `JJ.AutoIncrementVersion`.
 Otherwise you're left with `1.0.$(BuildNum)`, but `$(BuildNum)` isn't defined anymore,
 resulting in a corrupt version number `1.0.` with an extra period at the end,
 which can result in either an error `1.0. isn't a valid version number.` if you're lucky.
