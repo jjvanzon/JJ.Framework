@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Versioning.Core" Version="1.8.25" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.88" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="MSTest" Version="3.6.4" />
   </ItemGroup>

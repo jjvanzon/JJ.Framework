@@ -6,11 +6,19 @@
     <AssemblyTitle>JJ.Framework.PlatformCompatibility</AssemblyTitle>
     <Product>JJ.Framework.PlatformCompatibility</Product>
     <Copyright>Copyright ©  2014</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
+    <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
+    <!--<AutoVersion>1.8.$(x)</AutoVersion>-->
+    <!--<Version>1.8.$(BuildNum)</Version>-->
+    <!--<AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>-->
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="JJ.Framework.PlatformCompatibility.v3.ncrunchproject" />
     <None Remove="NCrunch.JJ.Framework.PlatformCompatibility_AnalysisBuild.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.88" />
   </ItemGroup>
 </Project>
