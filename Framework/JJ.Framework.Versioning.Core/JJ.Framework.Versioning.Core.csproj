@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="JJ.Framework.Versioning.Core.targets" />
+  <Import Project="build\JJ.Framework.Versioning.Core.targets" />
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -29,7 +29,7 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="JJ.Framework.Versioning.Core.targets">
+    <None Include="build\JJ.Framework.Versioning.Core.targets">
       <Pack>True</Pack>
       <PackagePath>\build</PackagePath>
     </None>
