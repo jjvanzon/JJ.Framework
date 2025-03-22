@@ -5,7 +5,8 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>0.0.1</Version>
+    <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
+    <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
   </PropertyGroup>
 
   <ItemGroup>
