@@ -33,9 +33,9 @@
       <Pack>True</Pack>
       <PackagePath>\build</PackagePath>
     </None>
-    <None Include="JJ.AutoIncrementVersion.default.props">
+    <None Include="JJ.Framework.Versioning.Core.default.props">
       <Pack>True</Pack>
-      <PackagePath>\buildCopy\JJ.AutoIncrementVersion.props</PackagePath>
+      <PackagePath>\buildCopy\JJ.Framework.Versioning.Core.props</PackagePath>
     </None>
   </ItemGroup>
 </Project>
