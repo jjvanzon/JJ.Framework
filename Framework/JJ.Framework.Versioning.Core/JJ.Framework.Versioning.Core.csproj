@@ -44,9 +44,5 @@
       <Pack>True</Pack>
       <PackagePath>\build</PackagePath>
     </None>
-    <None Include="JJ.AutoIncrementVersion.default.props">
-      <Pack>True</Pack>
-      <PackagePath>\build\JJ.AutoIncrementVersion.props</PackagePath>
-    </None>
   </ItemGroup>
 </Project>
