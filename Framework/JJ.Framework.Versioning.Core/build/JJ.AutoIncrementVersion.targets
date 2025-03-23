@@ -38,10 +38,9 @@
   <!-- Save after buid -->
   
   <!-- NOTE: Trying BeforeTargets intead of AfterTargets,
-             hoping the project will be seen as "up-to-date" despite us writing in it.
-             Seemed ineffective, but here's to hoping. -->
+             hoping the project will be seen as "up-to-date" despite us writing in it. Seemed ineffective, but here's to hoping. -->
   
-  <Target Name="JJAutoIncrementVersion_Save" BeforeTargets="Build"> <!--AfterTargets="Build">-->
+  <Target Name="JJAutoIncrementVersion_Save" AfterTargets="Build"> <!--BeforeTargets="Build">-->
     
     <!-- Info message -->
     <Message Text="JJ AUTO-INCREMENT VERSION SAVE -> $(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver" Importance="High" />
