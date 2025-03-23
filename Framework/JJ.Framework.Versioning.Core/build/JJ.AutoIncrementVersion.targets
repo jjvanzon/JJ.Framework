@@ -20,7 +20,6 @@
       Lines="&lt;Project&gt;&lt;Import Project=&quot;build\JJ.AutoIncrementVersion.props&quot; Condition=&quot;Exists('build\JJ.AutoIncrementVersion.props')&quot;/&gt;&lt;/Project&gt;" />
   </Target>
   
-  
   <!-- Load before build -->
   
   <Target Name="JJAutoIncrementVersion_Load" BeforeTargets="Build"
@@ -34,7 +33,6 @@
     <Copy 
       SourceFiles="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props"
       DestinationFiles="$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props" />
-  
   </Target>
     
   <!-- Save after buid -->
