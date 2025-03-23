@@ -2,8 +2,8 @@
   
   <!-- State -->
   
-  <Import Project="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props" 
-          Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props')" />
+  <Import Project="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.ver" 
+          Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.ver')" />
 
   <!-- Init  -->
   
@@ -14,16 +14,16 @@
     <Message Text="JJ AUTO-INCREMENT VERSION INIT -> $(MSBuildProjectDirectory)\Directory.Build.props" Importance="High" />
 
     <!-- Write "Directory.Build.props":
-         With fallback reference to JJ.AutoIncrementVersion.props, so uninstall won't break $(BuildNum) usages. -->
+         With fallback reference to JJ.AutoIncrementVersion.ver, so uninstall won't break $(BuildNum) usages. -->
     <WriteLinesToFile
       File="$(MSBuildProjectDirectory)\Directory.Build.props"
-      Lines="&lt;Project&gt;&lt;Import Project=&quot;build\JJ.AutoIncrementVersion.props&quot; Condition=&quot;Exists('build\JJ.AutoIncrementVersion.props')&quot;/&gt;&lt;/Project&gt;" />
+      Lines="&lt;Project&gt;&lt;Import Project=&quot;build\JJ.AutoIncrementVersion.ver&quot; Condition=&quot;Exists('build\JJ.AutoIncrementVersion.ver')&quot;/&gt;&lt;/Project&gt;" />
   </Target>
   
   <!-- Load before build -->
   
   <Target Name="JJAutoIncrementVersion_Load" BeforeTargets="Build"
-          Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props')">
+          Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.ver')">
     
     <!-- Info message -->
     <Message Text="JJ AUTO-INCREMENT VERSION LOAD -> $(MSBuildThisFileDirectory)JJ.AutoIncrementVersion.props" Importance="High"  />
@@ -31,7 +31,7 @@
     <!-- Copy project-bound props file. 
          to package bound location, to make BuildNum imported on time, for use in csproj. -->
     <Copy 
-      SourceFiles="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props"
+      SourceFiles="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.ver"
       DestinationFiles="$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props" />
   </Target>
     
@@ -44,7 +44,7 @@
   <Target Name="JJAutoIncrementVersion_Save" BeforeTargets="Build"> <!--AfterTargets="Build">-->
     
     <!-- Info message -->
-    <Message Text="JJ AUTO-INCREMENT VERSION SAVE -> $(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props" Importance="High" />
+    <Message Text="JJ AUTO-INCREMENT VERSION SAVE -> $(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.ver" Importance="High" />
     
     <!-- Default empty BuildNum to 0 before incrementing. -->
     <PropertyGroup><BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum></PropertyGroup>
@@ -54,7 +54,7 @@
     
     <!-- Write the new BuildNum to an MSBuild props file. -->
     <WriteLinesToFile 
-      File="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props" Overwrite="true"
+      File="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.ver" Overwrite="true"
       Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" />
   </Target>
 
