@@ -6,8 +6,8 @@
     <AssemblyTitle>JJ.Framework.PlatformCompatibility</AssemblyTitle>
     <Product>JJ.Framework.PlatformCompatibility</Product>
     <Copyright>Copyright © Jan Joost van Zon 2014 - 2025</Copyright>
-    <Version>1.8.0</Version>
-    <!--<Version>1.8.$(BuildNum)</Version>-->
+    <!--<Version>1.8.0</Version>-->
+    <Version>1.8.$(BuildNum)</Version>
     <!--<Version Condition="'$(BuildNum)'==''">1.8.0</Version>-->
     <!--<Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>-->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -15,5 +15,8 @@
   <ItemGroup>
     <None Remove="JJ.Framework.PlatformCompatibility.v3.ncrunchproject" />
     <None Remove="NCrunch.JJ.Framework.PlatformCompatibility_AnalysisBuild.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.157" />
   </ItemGroup>
 </Project>

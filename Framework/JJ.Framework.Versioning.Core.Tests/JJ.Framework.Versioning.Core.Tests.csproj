@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.155" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.157" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
