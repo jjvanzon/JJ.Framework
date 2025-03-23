@@ -1,1 +1,1 @@
-<Project><Import Project="build\JJ.AutoIncrementVersion.props" Condition="Exists('build\JJ.AutoIncrementVersion.props')"/></Project>
+<Project><Import Project="build\JJ.AutoIncrementVersion.ver" Condition="Exists('build\JJ.AutoIncrementVersion.ver')"/></Project>

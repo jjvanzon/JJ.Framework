@@ -5,15 +5,14 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <!--<Version Condition="'$(BuildNum)'==''">1.8.0</Version>
-    <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>-->
-    <Version>1.8.$(BuildNum)</Version>
+    <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
+    <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
+    <!--<Version>1.8.$(BuildNum)</Version>-->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.116" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
-    <PackageReference Include="MSTest" Version="3.6.4" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.131" />
+    <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,7 +20,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="build\" />
+    <None Remove="C:\Users\janjo\.nuget\packages\mstest.testadapter\3.6.4\build\net8.0\\Microsoft.TestPlatform.AdapterUtilities.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\janjo\.nuget\packages\mstest.testadapter\3.6.4\build\net8.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\janjo\.nuget\packages\mstest.testadapter\3.6.4\build\net8.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\janjo\.nuget\packages\mstest.testadapter\3.6.4\build\net8.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" />
   </ItemGroup>
 
 </Project>
