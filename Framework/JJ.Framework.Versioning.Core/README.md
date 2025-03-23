@@ -25,3 +25,10 @@ And the effective version becomes something like:
 ```
 
 Every time you build your project, the `$(BuildNum)` is simply incremented by `1`.
+
+Advanced Uses?
+--------------
+
+Nothing. No config, no command line, no prerequisites, no hidden options.
+
+Just install the package, add `$(BuildNum)` to your version, and build.
