@@ -1,9 +1,12 @@
 <Project>
   
   <!-- State -->
-  
+
   <Import Project="$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver" 
           Condition="Exists('$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver')" />
+
+  <Import Project="$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver.init" 
+          Condition="'$(BuildNum)' == '' and Exists('$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver.init')" />
 
   <!-- Init  -->
   
@@ -17,10 +20,11 @@
     <!-- Write "Directory.Build.props" -->
     <WriteLinesToFile
       File="$(MSBuildProjectDirectory)\Directory.Build.props"
-      Lines="&lt;Project&gt;
-               &lt;Import Project=&quot;JJ.AutoIncrementVersion.ver.init&quot; Condition=&quot;Exists('JJ.AutoIncrementVersion.ver.init')&quot;/&gt;
-               &lt;Import Project=&quot;JJ.AutoIncrementVersion.ver&quot; Condition=&quot;Exists('JJ.AutoIncrementVersion.ver')&quot;/&gt;
-             &lt;/Project&gt;" />
+      Lines="
+&lt;Project&gt;
+  &lt;Import Project=&quot;JJ.AutoIncrementVersion.ver&quot; Condition=&quot;Exists('JJ.AutoIncrementVersion.ver')&quot;/&gt;
+&lt;/Project&gt;" />
+<!--&lt;Import Project=&quot;JJ.AutoIncrementVersion.ver.init&quot; Condition=&quot;Exists('JJ.AutoIncrementVersion.ver.init')&quot;/&gt;-->
   </Target>
   
   <!-- Initial ver upon first build. -->
@@ -44,7 +48,7 @@
     <!-- Info message -->
     <Message Text="JJ AUTO-INCREMENT VERSION LOAD -> $(MSBuildThisFileDirectory)JJ.AutoIncrementVersion.props" Importance="High"  />
     
-    <!-- Copy project-bound props file. 
+    <!-- Copy project-bound props file
          to package bound location, to make BuildNum imported on time, for use in csproj. -->
     <Copy 
       SourceFiles="$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver"
@@ -85,4 +89,4 @@
     <Delete Files="$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props" />
   </Target>
     
-  </Project>
+</Project>
