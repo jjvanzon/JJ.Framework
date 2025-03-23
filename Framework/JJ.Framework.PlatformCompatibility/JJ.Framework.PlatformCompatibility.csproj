@@ -12,10 +12,12 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="JJ.Framework.PlatformCompatibility.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Framework.PlatformCompatibility_AnalysisBuild.xml" />
+    <Compile Remove="build\**" />
+    <EmbeddedResource Remove="build\**" />
+    <None Remove="build\**" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.131" />
+    <None Remove="JJ.Framework.PlatformCompatibility.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.Framework.PlatformCompatibility_AnalysisBuild.xml" />
   </ItemGroup>
 </Project>
