@@ -53,7 +53,9 @@
     <PropertyGroup><BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum></PropertyGroup>
     
     <!-- Write the new BuildNum to an MSBuild props file. -->
-    <WriteLinesToFile File="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props" Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" Overwrite="true" Encoding="UTF-8" />
+    <WriteLinesToFile 
+      File="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props" Overwrite="true"
+      Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" />
   </Target>
 
 </Project>
