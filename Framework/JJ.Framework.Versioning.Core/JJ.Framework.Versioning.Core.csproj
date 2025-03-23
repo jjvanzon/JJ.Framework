@@ -40,5 +40,10 @@
       <Pack>True</Pack>
       <PackagePath>\build</PackagePath>
     </None>
+    <None Include="JJ.AutoIncrementVersion.default.ver">
+      <Pack>True</Pack>
+      <PackagePath>contentFiles\any\any\JJ.AutoIncrementVersion.ver</PackagePath>
+      <CopyToOutput>false</CopyToOutput> <!-- Stop uninstall package from clearing this file. -->
+    </None>
   </ItemGroup>
 </Project>
