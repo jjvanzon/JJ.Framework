@@ -1,24 +1,48 @@
 <Project>
   
-  <!-- Import the .props file with the BuildNum in it. For some reason it doesn't work without explicitly importing it here, despite also being loaded before Build. -->  
-  <Import Project="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props" Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props')" />
+  <!-- State -->
+  
+  <Import Project="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props" 
+          Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props')" />
+
+  <!-- Init  -->
+  
+  <Target Name="JJAutoIncrementVersion_Init" BeforeTargets="Build"
+          Condition="!Exists('$(MSBuildProjectDirectory)\Directory.Build.props')">
+
+    <!-- Info message -->
+    <Message Text="JJ AUTO-INCREMENT VERSION INIT -> $(MSBuildProjectDirectory)\Directory.Build.props" Importance="High" />
+
+    <!-- Write "Directory.Build.props":
+         With fallback reference to JJ.AutoIncrementVersion.props, so uninstall won't break $(BuildNum) usages. -->
+    <WriteLinesToFile
+      File="$(MSBuildProjectDirectory)\Directory.Build.props"
+      Lines="&lt;Project&gt;&lt;Import Project=&quot;build\JJ.AutoIncrementVersion.props&quot; Condition=&quot;Exists('build\JJ.AutoIncrementVersion.props')&quot;/&gt;&lt;/Project&gt;" />
+  </Target>
+  
   
   <!-- Load before build -->
   <Target Name="JJAutoIncrementVersionLoad" BeforeTargets="Build">
     
     <!-- Info message -->
-    <Message Text="JJ AUTO-INCREMENT VERSION LOAD -> $(MSBuildThisFileDirectory)JJ.AutoIncrementVersion.props" Importance="High" Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props')" />
+    <Message Text="JJ AUTO-INCREMENT VERSION LOAD -> $(MSBuildThisFileDirectory)JJ.AutoIncrementVersion.props"    
+             Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props')" Importance="High"  />
     
-    <!-- Copy project-bound props file. with BuildNum in it, to package bound location, to make it be imported on time, before the csproj loads. -->
+    <!-- Copy project-bound props file. with BuildNum in it, to package bound location, 
+         to make it be imported on time, before the csproj loads. -->
     <Copy 
       SourceFiles="$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props"
       DestinationFiles="$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props"
       Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props')"/>
   
-  <!--</Target>-->
+  </Target>
     
   <!-- Save after buid -->
-  <!--<Target Name="JJAutoIncrementVersionSave" AfterTargets="Build">-->
+  
+  <!-- NOTE: Trying BeforeTargets intead of AfterTargets,
+             hoping the project will be seen as "up-to-date" despite us writing in it.
+             Seemed ineffective, but here's to hoping. -->
+  <Target Name="JJAutoIncrementVersionSave" BeforeTargets="Build"> <!--AfterTargets="Build">-->
     
     <!-- Info message -->
     <Message Text="JJ AUTO-INCREMENT VERSION SAVE -> $(MSBuildProjectDirectory)\build\JJ.AutoIncrementVersion.props" Importance="High" />
