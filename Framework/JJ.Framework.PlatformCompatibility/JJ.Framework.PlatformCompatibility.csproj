@@ -5,9 +5,10 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>JJ.Framework.PlatformCompatibility</AssemblyTitle>
     <Product>JJ.Framework.PlatformCompatibility</Product>
-    <Copyright>Copyright ©  2014</Copyright>
-    <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
-    <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
+    <Copyright>Copyright © Jan Joost van Zon 2014 - 2025</Copyright>
+    <Version>1.8.$(BuildNum)</Version>
+    <!--<Version Condition="'$(BuildNum)'==''">1.8.0</Version>
+    <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>-->
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
@@ -15,6 +16,6 @@
     <None Remove="NCrunch.JJ.Framework.PlatformCompatibility_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.88" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.114" />
   </ItemGroup>
 </Project>

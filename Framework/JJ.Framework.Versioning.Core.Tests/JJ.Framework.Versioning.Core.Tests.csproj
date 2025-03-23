@@ -5,14 +5,14 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
-    <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
-    <!--<Version>1.8.$(BuildNum)</Version>-->
+    <!--<Version Condition="'$(BuildNum)'==''">1.8.0</Version>
+    <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>-->
+    <Version>1.8.$(BuildNum)</Version>
     <!--<AutoVersion>1.8.$(x)</AutoVersion>-->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.88" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.114" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="MSTest" Version="3.6.4" />
   </ItemGroup>
