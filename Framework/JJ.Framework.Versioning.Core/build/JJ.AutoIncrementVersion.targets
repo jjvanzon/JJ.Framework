@@ -18,7 +18,7 @@
     <WriteLinesToFile
       File="$(MSBuildProjectDirectory)\Directory.Build.props"
       Lines="&lt;Project&gt;
-               &lt;Import Project=&quot;JJ.AutoIncrementVersion.default.ver&quot; Condition=&quot;Exists('JJ.AutoIncrementVersion.default.ver')&quot;/&gt;
+               &lt;Import Project=&quot;JJ.AutoIncrementVersion.ver.init&quot; Condition=&quot;Exists('JJ.AutoIncrementVersion.ver.init')&quot;/&gt;
                &lt;Import Project=&quot;JJ.AutoIncrementVersion.ver&quot; Condition=&quot;Exists('JJ.AutoIncrementVersion.ver')&quot;/&gt;
              &lt;/Project&gt;" />
   </Target>

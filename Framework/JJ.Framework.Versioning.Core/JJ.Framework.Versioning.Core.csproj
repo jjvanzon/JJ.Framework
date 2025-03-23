@@ -40,9 +40,9 @@
       <Pack>True</Pack>
       <PackagePath>\build</PackagePath>
     </None>
-    <None Include="JJ.AutoIncrementVersion.default.ver">
+    <None Include="JJ.AutoIncrementVersion.ver.init">
       <Pack>True</Pack>
-      <PackagePath>contentFiles\any\any\JJ.AutoIncrementVersion.default.ver</PackagePath>
+      <PackagePath>contentFiles\any\any\JJ.AutoIncrementVersion.ver.init</PackagePath>
     </None>
   </ItemGroup>
 </Project>

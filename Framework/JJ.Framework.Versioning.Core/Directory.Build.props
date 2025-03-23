@@ -1,4 +1,4 @@
 <Project>
-               <Import Project="JJ.AutoIncrementVersion.default.ver" Condition="Exists('JJ.AutoIncrementVersion.default.ver')"/>
+               <Import Project="JJ.AutoIncrementVersion.ver.init" Condition="Exists('JJ.AutoIncrementVersion.ver.init')"/>
                <Import Project="JJ.AutoIncrementVersion.ver" Condition="Exists('JJ.AutoIncrementVersion.ver')"/>
              </Project>
