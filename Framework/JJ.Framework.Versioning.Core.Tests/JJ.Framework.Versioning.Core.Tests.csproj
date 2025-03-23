@@ -5,13 +5,14 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
-    <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
-    <!--<Version>1.8.$(BuildNum)</Version>-->
+    <!--<Version>1.8.0</Version>-->
+    <Version>1.8.$(BuildNum)</Version>
+    <!--<Version Condition="'$(BuildNum)'==''">1.8.0</Version>
+    <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>-->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.131" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.155" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
