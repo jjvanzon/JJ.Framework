@@ -7,17 +7,30 @@
 
   <!-- Init  -->
   
-  <Target Name="JJAutoIncrementVersion_Init" BeforeTargets="Build"
+  <!-- Fallback ver ref for after uninstall. -->
+  <Target Name="JJAutoIncrementVersion_Init1" BeforeTargets="Build"
           Condition="!Exists('$(MSBuildProjectDirectory)\Directory.Build.props')">
 
     <!-- Info message -->
     <Message Text="JJ AUTO-INCREMENT VERSION INIT -> $(MSBuildProjectDirectory)\Directory.Build.props" Importance="High" />
 
-    <!-- Write "Directory.Build.props":
-         With fallback reference to JJ.AutoIncrementVersion.ver, so uninstall won't break $(BuildNum) usages. -->
+    <!-- Write "Directory.Build.props" -->
     <WriteLinesToFile
       File="$(MSBuildProjectDirectory)\Directory.Build.props"
       Lines="&lt;Project&gt;&lt;Import Project=&quot;JJ.AutoIncrementVersion.ver&quot; Condition=&quot;Exists('JJ.AutoIncrementVersion.ver')&quot;/&gt;&lt;/Project&gt;" />
+  </Target>
+  
+  <!-- Initial ver for after install. -->
+  <Target Name="JJAutoIncrementVersion_Init2" BeforeTargets="Build"
+          Condition="!Exists('$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver')" >
+
+    <!-- Info message -->
+    <Message Text="JJ AUTO-INCREMENT VERSION INIT -> $(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver" Importance="High" />
+
+    <!-- Install initial ver file. -->
+    <WriteLinesToFile 
+      File="$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver"
+      Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;0&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" />
   </Target>
   
   <!-- Load before build -->
