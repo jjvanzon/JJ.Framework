@@ -58,4 +58,16 @@
       Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" />
   </Target>
 
-</Project>
+  <!-- Clean Up -->
+  
+  <Target Name="JJAutoIncrementVersion_CleanUp" AfterTargets="Build"
+          Condition="Exists('$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props')"> 
+    
+    <!-- Info message -->
+    <Message Text="JJ AUTO-INCREMENT VERSION DELETE -> $(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props" Importance="High" />
+
+    <!-- Delete BuildNum from package dir, to not trigger dependencies to build again. -->
+    <Delete Files="$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props" />
+  </Target>
+    
+  </Project>
