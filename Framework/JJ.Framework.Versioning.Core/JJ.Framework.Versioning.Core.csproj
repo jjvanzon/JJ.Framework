@@ -32,10 +32,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="README.md">
-      <Pack>True</Pack>
-      <PackagePath>contentFiles\any\any\JJ.AutoIncrementVersion.README.md</PackagePath>
-    </None>
     <None Include="..\..\Resources\jj-icon-64x64-margin4.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
