@@ -26,8 +26,13 @@
   <!-- STATE -->
 
   <Import Project="$(VerJj)"  Condition="'$(BuildNum)' == '' and Exists('$(VerJj)' )" />
-  <Import Project="$(InitJj)" Condition="'$(BuildNum)' == '' and Exists('$(InitJj)')" />
+  <!--<Import Project="$(InitJj)" Condition="'$(BuildNum)' == '' and Exists('$(InitJj)')" />-->
 
+  <!-- BuildNum default 0 -->
+  <PropertyGroup><BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum></PropertyGroup>
+  
+  <!-- Increment -->
+  <PropertyGroup><BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum></PropertyGroup>
 
   <Target Name="JJ_AutoIncrementVersion_Init_Load" BeforeTargets="Build">
 
@@ -56,12 +61,6 @@
    
   <Target Name="JJ_AutoIncrementVersion_Save" AfterTargets="AfterBuild">
     <Message Text="$(SaveMsgJj)-> $(VerJj)" Importance="High" />
-    
-    <!-- BuildNum default 0 -->
-    <PropertyGroup><BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum></PropertyGroup>
-    
-    <!-- Increment -->
-    <PropertyGroup><BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum></PropertyGroup>
     
     <!-- Write to ver file -->
     <WriteLinesToFile 
