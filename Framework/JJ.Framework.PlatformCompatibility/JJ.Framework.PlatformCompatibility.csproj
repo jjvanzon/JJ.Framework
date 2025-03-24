@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <!--<Version>1.8.0</Version>-->
     <Version>1.8.$(BuildNum)</Version>
     <Authors>JJ van Zon</Authors>
     <Copyright>Copyright © Jan Joost van Zon 2014 - 2025</Copyright>
@@ -13,6 +12,6 @@
     <None Remove="NCrunch.JJ.Framework.PlatformCompatibility_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.289" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.354" />
   </ItemGroup>
 </Project>
