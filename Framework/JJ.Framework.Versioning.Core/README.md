@@ -30,13 +30,12 @@ Setup
 -----
 
 - Install the package.
-- Build once or twice to initialize.
 - Start using `$(BuildNum)`.
 
 
 Advanced Use?
 -------------
 
-None. No config, no command line, no hidden options.  
+None. No config, no command line, no prerequisites, no hidden options.  
 Just install the package, add `$(BuildNum)` to your version, and build.
 
