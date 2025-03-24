@@ -29,11 +29,11 @@
     <BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum> 
     <!-- Increment -->
     <BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum>
-    <!-- Build ver content  -->
+    <!-- Build new ver content  -->
     <VerContentJj>&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;</VerContentJj>    
   </PropertyGroup>
 
-  <Target Name="JJ_AutoIncrementVersion_Before" BeforeTargets="Build">
+  <Target Name="JJ_AutoIncrementVersion_Before" BeforeTargets="BeforeBuild">
     <!-- INIT Directory.Build.props containing BuildNum for fallback after uninstall. --><!--
              <Message Condition="!Exists('$(DirPropsJj)')" Text="$(InitMsgJj) -> $(DirPropsJj)" Importance="High" />
     <WriteLinesToFile Condition="!Exists('$(DirPropsJj)')" File="$(DirPropsJj)" Lines="$(DirPropContentJj)" />-->
