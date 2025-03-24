@@ -3,7 +3,7 @@
   <!-- Vars -->
 
   <PropertyGroup>
-    <RelativeVerJj>..\JJ.AutoIncrementVersion.xml</RelativeVerJj>
+    <RelativeVerJj>..\BuildNum.xml</RelativeVerJj>
             <VerJj>$(MSBuildProjectDirectory)\$(RelativeVerJj)</VerJj>
           <PropsJj>$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props</PropsJj>
        <!--<DirPropsJj>$(MSBuildProjectDirectory)\Directory.Build.props</DirPropsJj>-->
@@ -11,10 +11,10 @@
   
   <PropertyGroup>
      <ToolNameJj>JJ AUTO-INCREMENT VERSION</ToolNameJj>
-      <InitMsgJj>$(ToolNameJj) INIT</InitMsgJj>
+      <!--<InitMsgJj>$(ToolNameJj) INIT</InitMsgJj>-->
       <LoadMsgJj>$(ToolNameJj) LOAD</LoadMsgJj>
       <SaveMsgJj>$(ToolNameJj) SAVE</SaveMsgJj>
-    <DeleteMsgJj>$(ToolNameJj) DELETE</DeleteMsgJj>
+    <!--<DeleteMsgJj>$(ToolNameJj) DELETE</DeleteMsgJj>-->
   </PropertyGroup>
     
   <!--<PropertyGroup>
