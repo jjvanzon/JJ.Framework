@@ -28,21 +28,25 @@
     </PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="README.md">
+    <Content Include="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\..\Resources\jj-icon-64x64-margin4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Resources\jj-icon-64x64-margin4.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-    </None>
-    <None Include="build\JJ.AutoIncrementVersion.targets">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="build\JJ.AutoIncrementVersion.targets">
       <Pack>True</Pack>
       <PackagePath>\build</PackagePath>
-    </None>
-    <None Include="JJ.AutoIncrementVersion.ver.init">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JJ.AutoIncrementVersion.default.xml">
       <Pack>True</Pack>
-      <PackagePath>contentFiles\any\any\JJ.AutoIncrementVersion.ver.init</PackagePath>
-    </None>
+      <PackagePath>contentFiles\any\any\JJ.AutoIncrementVersion.default.xml</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
