@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Copyright>Copyright © Jan Joost van Zon 2013 - 2025</Copyright>
-    <!--<Version>1.8.0</Version>-->
-    <Version>1.8.$(BuildNum)</Version>
+    <Version>1.8.0</Version>
+    <!--<Version>1.8.$(BuildNum)</Version>-->
     <Authors>JJ van Zon</Authors>
     <Copyright>Copyright © Jan Joost van Zon 2014 - 2025</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>    
@@ -12,9 +12,6 @@
   <ItemGroup>
     <None Remove="JJ.Framework.Common.v3.ncrunchproject" />
     <None Remove="NCrunch.JJ.Framework.Common_AnalysisBuild.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.354" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />
