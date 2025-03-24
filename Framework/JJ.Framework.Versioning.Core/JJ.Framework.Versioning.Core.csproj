@@ -39,11 +39,6 @@
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="JJ.AutoIncrementVersion.default.xml">
-      <Pack>True</Pack>
-      <PackagePath>contentFiles\any\any\JJ.AutoIncrementVersion.default.xml</PackagePath>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="build\JJ.AutoIncrementVersion.targets">
