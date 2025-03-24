@@ -3,7 +3,7 @@
   <!-- State -->
 
   <Import Project="$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver" 
-          Condition="Exists('$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver')" />
+          Condition="'$(BuildNum)' == '' and Exists('$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver')" />
 
   <Import Project="$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver.init" 
           Condition="'$(BuildNum)' == '' and Exists('$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver.init')" />
@@ -22,9 +22,8 @@
       File="$(MSBuildProjectDirectory)\Directory.Build.props"
       Lines="
 &lt;Project&gt;
-  &lt;Import Project=&quot;JJ.AutoIncrementVersion.ver&quot; Condition=&quot;Exists('JJ.AutoIncrementVersion.ver')&quot;/&gt;
+  &lt;Import Project=&quot;JJ.AutoIncrementVersion.ver&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('JJ.AutoIncrementVersion.ver')&quot;/&gt;
 &lt;/Project&gt;" />
-<!--&lt;Import Project=&quot;JJ.AutoIncrementVersion.ver.init&quot; Condition=&quot;Exists('JJ.AutoIncrementVersion.ver.init')&quot;/&gt;-->
   </Target>
   
   <!-- Initial ver upon first build. -->
