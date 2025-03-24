@@ -1,6 +1,6 @@
 <Project>
   
-  <!-- Variables -->
+  <!-- VARS -->
 
   <PropertyGroup>
     <VerFileNameJj>JJ.AutoIncrementVersion.xml</VerFileNameJj>
@@ -23,31 +23,30 @@
     <DirPropLinesJj>&lt;Project&gt;&lt;Import Project=&quot;..\$(VerFileNameJj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('..\$(VerFileNameJj)')&quot;/&gt;&lt;/Project&gt;</DirPropLinesJj>
   </PropertyGroup>
 
-  <!-- State -->
+  <!-- STATE -->
 
   <Import Project="$(VerJj)"  Condition="'$(BuildNum)' == '' and Exists('$(VerJj)' )" />
   <Import Project="$(InitJj)" Condition="'$(BuildNum)' == '' and Exists('$(InitJj)')" />
 
-  <!-- Init  -->
 
-  <!-- Initial ver upon first build. -->
-  <Target Name="JJ_AutoIncrementVersion_Init_A" BeforeTargets="Build">
+  <Target Name="JJ_AutoIncrementVersion_Init_Load" BeforeTargets="Build">
+
+    <!-- INIT -->
+
+    <!-- Initial ver upon first build. -->
     <Message          Condition="!Exists('$(VerJj)')" Text="$(InitMsgJj) -> $(VerJj)" Importance="High" />
     <WriteLinesToFile Condition="!Exists('$(VerJj)')" File="$(VerJj)" Lines="$(InitLinesJj)" />
-  </Target>
 
-  <!-- DirectoryProps containing BuildNum for fallback after uninstall. -->
-  <Target Name="JJ_AutoIncrementVersion_Init_B" BeforeTargets="Build">
+     <!-- DirectoryProps containing BuildNum for fallback after uninstall. -->
     <Message          Condition="!Exists('$(DirPropsJj)')" Text="$(InitMsgJj) -> $(DirPropsJj)" Importance="High" />
     <WriteLinesToFile Condition="!Exists('$(DirPropsJj)')" File="$(DirPropsJj)" Lines="$(DirPropLinesJj)" />
-  </Target>
-  
-  <!-- Load before build -->
-  
-  <Target Name="JJ_AutoIncrementVersion_Load" BeforeTargets="Build">
+
+    <!-- LOAD -->
+    
     <!-- Copy project-bound props file to package bound location, to make BuildNum imported on time, for use in csproj. --> 
     <Message Condition="Exists('$(VerJj)')" Text="$(LoadMsgJj) -> $(PropsJj)" Importance="High"  />
     <Copy    Condition="Exists('$(VerJj)')" SourceFiles="$(VerJj)" DestinationFiles="$(PropsJj)" />
+    
   </Target>
     
   <!-- Save after buid -->
