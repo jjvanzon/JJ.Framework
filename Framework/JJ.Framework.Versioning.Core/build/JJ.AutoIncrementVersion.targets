@@ -1,11 +1,10 @@
 <Project>
   
-  <!-- VARS -->
+  <!-- Vars -->
 
   <PropertyGroup>
     <VerFileNameJj>JJ.AutoIncrementVersion.xml</VerFileNameJj>
             <VerJj>$(MSBuildProjectDirectory)\..\$(VerFileNameJj)</VerJj>
-           <!--<InitJj>$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.default.xml</InitJj>-->
           <PropsJj>$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props</PropsJj>
        <DirPropsJj>$(MSBuildProjectDirectory)\Directory.Build.props</DirPropsJj>
   </PropertyGroup>
@@ -19,11 +18,10 @@
   </PropertyGroup>
     
   <PropertyGroup>
-       <!--<InitLinesJj>&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;0&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;</InitLinesJj>-->
     <DirPropLinesJj>&lt;Project&gt;&lt;Import Project=&quot;..\$(VerFileNameJj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('..\$(VerFileNameJj)')&quot;/&gt;&lt;/Project&gt;</DirPropLinesJj>
   </PropertyGroup>
 
-  <!-- Load from ver file. -->
+  <!-- LOAD ver file. -->
   <Import Project="$(VerJj)" Condition="'$(BuildNum)' == '' and Exists('$(VerJj)' )" />
   <PropertyGroup>
     <!-- Default 0 -->
@@ -33,23 +31,23 @@
   </PropertyGroup>
 
   <Target Name="JJ_AutoIncrementVersion_Before" BeforeTargets="Build">
-    <!-- Install Directory.Build.props containing BuildNum for fallback after uninstall. -->
+    <!-- INIT Directory.Build.props containing BuildNum for fallback after uninstall. -->
              <Message Condition="!Exists('$(DirPropsJj)')" Text="$(InitMsgJj) -> $(DirPropsJj)" Importance="High" />
     <WriteLinesToFile Condition="!Exists('$(DirPropsJj)')" File="$(DirPropsJj)" Lines="$(DirPropLinesJj)" />
 
-    <!-- Save updated ver -->
+    <!-- SAVE updated ver -->
     <Message Text="$(SaveMsgJj)-> $(VerJj)" Importance="High" />
     <WriteLinesToFile 
       File="$(VerJj)" Overwrite="true"
       Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" />
     
-    <!-- Load project-bound props file to package bound location, to make BuildNum imported on time, for use in csproj. --> 
+    <!-- LOAD project-bound props file to package bound location, to make BuildNum imported on time, for use in csproj. --> 
     <Message Condition="Exists('$(VerJj)')" Text="$(LoadMsgJj) -> $(PropsJj)" Importance="High"  />
        <Copy Condition="Exists('$(VerJj)')" SourceFiles="$(VerJj)" DestinationFiles="$(PropsJj)" />
   </Target>
 
   <Target Name="JJAutoIncrementVersion_After" AfterTargets="Build"> 
-   <!-- Delete BuildNum from package dir, aiming not to trigger dependencies to build again. -->
+   <!-- DELETE BuildNum from package dir, aiming not to trigger dependencies to build again. -->
     <Message Condition="Exists('$(PropsJj)')" Text="$(DeleteMsgJj) -> $(PropsJj)" Importance="High" />
      <Delete Condition="Exists('$(PropsJj)')" Files="$(PropsJj)" />
   </Target>
