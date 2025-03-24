@@ -3,9 +3,9 @@
   <!-- Variables -->
   
   <PropertyGroup>
-    <VerFileNameJj>JJ.AutoIncrementVersion.ver</VerFileNameJj>
-    <VerJj>$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver</VerJj>
-    <InitJj>$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.ver.init</InitJj>
+    <VerFileNameJj>JJ.AutoIncrementVersion.xml</VerFileNameJj>
+    <VerJj>$(MSBuildProjectDirectory)\$(VerFileNameJj)</VerJj>
+    <InitJj>$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.default.xml</InitJj>
     <PropsJj>$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props</PropsJj>
     <DirectoryPropsJj>$(MSBuildProjectDirectory)\Directory.Build.props</DirectoryPropsJj>
     <InitLinesJj>&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;0&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;</InitLinesJj>
@@ -33,20 +33,18 @@
   
   <!-- Load before build -->
   
-  <!--<Target Condition="Exists('$(VerJj)')" Inputs="$(VerJj)" Outputs="$(VerJj)" Name="JJ_AutoIncrementVersion_Load" BeforeTargets="Build">-->
   <Target Condition="Exists('$(VerJj)')" Name="JJ_AutoIncrementVersion_Load" BeforeTargets="Build">
     <Message Text="JJ AUTO-INCREMENT VERSION LOAD -> $(PropsJj)" Importance="High"  />
-    <!-- Copy project-bound props file to package bound location, to make BuildNum imported on time, for use in csproj. -->
+    <!-- Copy project-bound props file to package bound location, to make BuildNum imported on time, for use in csproj. --> 
     <Copy SourceFiles="$(VerJj)" DestinationFiles="$(PropsJj)" />
   </Target>
     
   <!-- Save after buid -->
-  
+    
   <!-- NOTE: Trying BeforeTargets intead of AfterTargets,
              hoping the project will be seen as "up-to-date" despite us writing in it. Seemed ineffective, but here's to hoping. -->
    
-  <!--<Target Name="JJ_AutoIncrementVersion_Save" Inputs="$(VerJj)" Outputs="$(VerJj)" AfterTargets="Build">-->
-  <Target Name="JJ_AutoIncrementVersion_Save" AfterTargets="Build">
+  <Target Name="JJ_AutoIncrementVersion_Save" AfterTargets="AfterBuild">
     <Message Text="JJ AUTO-INCREMENT VERSION SAVE -> $(VerJj)" Importance="High" />
     
     <!-- BuildNum default 0 -->

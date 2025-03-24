@@ -7,7 +7,6 @@ Those don't work anymore for version numbers. But we want auto-incremental numbe
 
 This package allows you to use `$(BuildNum)` instead.
 
-
 How to Use?
 -----------
 

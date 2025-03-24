@@ -1,1 +1,1 @@
-<Project><Import Project="JJ.AutoIncrementVersion.ver" Condition="'$(BuildNum)' == '' and Exists('JJ.AutoIncrementVersion.ver')"/></Project>
+<Project><Import Project="JJ.AutoIncrementVersion.xml" Condition="'$(BuildNum)' == '' and Exists('JJ.AutoIncrementVersion.xml')"/></Project>
