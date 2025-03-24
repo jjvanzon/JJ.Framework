@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>JJ.Framework.Common</AssemblyTitle>
-    <Product>JJ.Framework.Common</Product>
-    <Copyright>Copyright ©  2013</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Copyright>Copyright © Jan Joost van Zon 2013 - 2025</Copyright>
+    <!--<Version>1.8.0</Version>-->
+    <Version>1.8.$(BuildNum)</Version>
+    <Authors>JJ van Zon</Authors>
+    <Copyright>Copyright © Jan Joost van Zon 2014 - 2025</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="JJ.Framework.Common.v3.ncrunchproject" />

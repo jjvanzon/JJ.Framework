@@ -29,9 +29,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <None Remove="build\JJ.AutoIncrementVersion.targets" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

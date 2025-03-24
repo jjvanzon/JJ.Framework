@@ -1,17 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>JJ.Framework.PlatformCompatibility</AssemblyTitle>
-    <Product>JJ.Framework.PlatformCompatibility</Product>
+    <!--<Version>1.8.0</Version>-->
+    <Version>1.8.$(BuildNum)</Version>
+    <Authors>JJ van Zon</Authors>
     <Copyright>Copyright © Jan Joost van Zon 2014 - 2025</Copyright>
-    <Version>1.8.0</Version>
-    <!--<Version>1.8.$(BuildNum)</Version>-->
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="JJ.Framework.PlatformCompatibility.v3.ncrunchproject" />
     <None Remove="NCrunch.JJ.Framework.PlatformCompatibility_AnalysisBuild.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.236" />
   </ItemGroup>
 </Project>
