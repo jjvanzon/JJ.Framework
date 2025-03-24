@@ -216,9 +216,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Framework\BuildNum.xml = Framework\BuildNum.xml
 		CodeAnalysisTestCode.README.md = CodeAnalysisTestCode.README.md
+		Framework\Directory.Build.props = Framework\Directory.Build.props
 		Introduction.txt = Introduction.txt
-		Framework\JJ.AutoIncrementVersion.xml = Framework\JJ.AutoIncrementVersion.xml
 		NuGet.config = NuGet.config
 	EndProjectSection
 EndProject
