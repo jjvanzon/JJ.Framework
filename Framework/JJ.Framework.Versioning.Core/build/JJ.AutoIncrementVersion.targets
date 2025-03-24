@@ -4,17 +4,20 @@
   
   <PropertyGroup>
     <VerFileNameJj>JJ.AutoIncrementVersion.xml</VerFileNameJj>
-    <VerJj>$(MSBuildProjectDirectory)\..\$(VerFileNameJj)</VerJj>
-    <InitJj>$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.default.xml</InitJj>
-    <PropsJj>$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props</PropsJj>
-    <DirectoryPropsJj>$(MSBuildProjectDirectory)\Directory.Build.props</DirectoryPropsJj>
-    <InitLinesJj>&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;0&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;</InitLinesJj>
-    <DirectoryPropLinesJj>&lt;Project&gt;&lt;Import Project=&quot;..\$(VerFileNameJj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('..\$(VerFileNameJj)')&quot;/&gt;&lt;/Project&gt;</DirectoryPropLinesJj>
+            <VerJj>$(MSBuildProjectDirectory)\..\$(VerFileNameJj)</VerJj>
+           <InitJj>$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.default.xml</InitJj>
+          <PropsJj>$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props</PropsJj>
+       <DirPropsJj>$(MSBuildProjectDirectory)\Directory.Build.props</DirPropsJj>
+  </PropertyGroup>
+    
+  <PropertyGroup>
+       <InitLinesJj>&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;0&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;</InitLinesJj>
+    <DirPropLinesJj>&lt;Project&gt;&lt;Import Project=&quot;..\$(VerFileNameJj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('..\$(VerFileNameJj)')&quot;/&gt;&lt;/Project&gt;</DirPropLinesJj>
   </PropertyGroup>
   
   <!-- State -->
 
-  <Import Project="$(VerJj)" Condition="'$(BuildNum)' == '' and Exists('$(VerJj)')" />
+  <Import Project="$(VerJj)"  Condition="'$(BuildNum)' == '' and Exists('$(VerJj)' )" />
   <Import Project="$(InitJj)" Condition="'$(BuildNum)' == '' and Exists('$(InitJj)')" />
 
   <!-- Init  -->
@@ -26,9 +29,9 @@
   </Target>
 
   <!-- DirectoryProps containing BuildNum for fallback after uninstall. -->
-  <Target Condition="!Exists('$(DirectoryPropsJj)')" Name="JJ_AutoIncrementVersion_Init_A" BeforeTargets="Build">
-    <Message Text="JJ AUTO-INCREMENT VERSION INIT -> $(DirectoryPropsJj)" Importance="High" />
-    <WriteLinesToFile File="$(DirectoryPropsJj)" Lines="$(DirectoryPropLinesJj)" />
+  <Target Condition="!Exists('$(DirPropsJj)')" Name="JJ_AutoIncrementVersion_Init_A" BeforeTargets="Build">
+    <Message Text="JJ AUTO-INCREMENT VERSION INIT -> $(DirPropsJj)" Importance="High" />
+    <WriteLinesToFile File="$(DirPropsJj)" Lines="$(DirPropLinesJj)" />
   </Target>
   
   <!-- Load before build -->
