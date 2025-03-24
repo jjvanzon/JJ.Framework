@@ -27,6 +27,10 @@
       https://github.com/jjvanzon/JJ.Framework/tree/core/Framework/JJ.Framework.Versioning.Core
     </PackageProjectUrl>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="build\JJ.AutoIncrementVersion.targets" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="README.md">
       <Pack>True</Pack>
@@ -38,15 +42,17 @@
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="build\JJ.AutoIncrementVersion.targets">
-      <Pack>True</Pack>
-      <PackagePath>\build</PackagePath>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="JJ.AutoIncrementVersion.default.xml">
       <Pack>True</Pack>
       <PackagePath>contentFiles\any\any\JJ.AutoIncrementVersion.default.xml</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="build\JJ.AutoIncrementVersion.targets">
+      <Pack>True</Pack>
+      <PackagePath>\build</PackagePath>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 </Project>

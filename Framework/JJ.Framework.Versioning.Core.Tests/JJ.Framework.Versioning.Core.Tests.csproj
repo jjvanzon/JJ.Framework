@@ -11,7 +11,17 @@
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.207" />
+    <None Remove="Dummy.txt" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <Content Include="Dummy.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.221" />
   </ItemGroup>
 
 </Project>

@@ -4,12 +4,12 @@
   
   <PropertyGroup>
     <VerFileNameJj>JJ.AutoIncrementVersion.xml</VerFileNameJj>
-    <VerJj>$(MSBuildProjectDirectory)\$(VerFileNameJj)</VerJj>
+    <VerJj>$(MSBuildProjectDirectory)\..\$(VerFileNameJj)</VerJj>
     <InitJj>$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.default.xml</InitJj>
     <PropsJj>$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props</PropsJj>
     <DirectoryPropsJj>$(MSBuildProjectDirectory)\Directory.Build.props</DirectoryPropsJj>
     <InitLinesJj>&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;0&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;</InitLinesJj>
-    <DirectoryPropLinesJj>&lt;Project&gt;&lt;Import Project=&quot;$(VerFileNameJj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('$(VerFileNameJj)')&quot;/&gt;&lt;/Project&gt;</DirectoryPropLinesJj>
+    <DirectoryPropLinesJj>&lt;Project&gt;&lt;Import Project=&quot;..\$(VerFileNameJj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('..\$(VerFileNameJj)')&quot;/&gt;&lt;/Project&gt;</DirectoryPropLinesJj>
   </PropertyGroup>
   
   <!-- State -->

@@ -9,7 +9,7 @@ This package allows you to use `$(BuildNum)` instead.
 
 How to Use?
 -----------
-
+ 
 You can use `$(BuildNum)` inside your version number, like this:
 
 
