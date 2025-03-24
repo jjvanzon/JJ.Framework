@@ -3,11 +3,10 @@
   <!-- Vars -->
 
   <PropertyGroup>
-        <VerNameJj>JJ.AutoIncrementVersion.xml</VerNameJj>
-    <RelativeVerJj>..\$(VerNameJj)</RelativeVerJj>
+    <RelativeVerJj>..\JJ.AutoIncrementVersion.xml</RelativeVerJj>
             <VerJj>$(MSBuildProjectDirectory)\$(RelativeVerJj)</VerJj>
           <PropsJj>$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props</PropsJj>
-       <DirPropsJj>$(MSBuildProjectDirectory)\Directory.Build.props</DirPropsJj>
+       <!--<DirPropsJj>$(MSBuildProjectDirectory)\Directory.Build.props</DirPropsJj>-->
   </PropertyGroup>
   
   <PropertyGroup>
@@ -18,9 +17,9 @@
     <DeleteMsgJj>$(ToolNameJj) DELETE</DeleteMsgJj>
   </PropertyGroup>
     
-  <PropertyGroup>
+  <!--<PropertyGroup>
     <DirPropContentJj>&lt;Project&gt;&lt;Import Project=&quot;$(RelativeVerJj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('$(RelativeVerJj)')&quot;/&gt;&lt;/Project&gt;</DirPropContentJj>
-  </PropertyGroup>
+  </PropertyGroup>-->
 
   <!-- LOAD ver file. -->
   <Import Project="$(VerJj)" Condition="'$(BuildNum)' == '' and Exists('$(VerJj)' )" />
@@ -47,10 +46,10 @@
        <Copy Condition="Exists('$(VerJj)')" SourceFiles="$(VerJj)" DestinationFiles="$(PropsJj)" />
   </Target>
 
-  <Target Name="JJAutoIncrementVersion_After" AfterTargets="Build"> 
-   <!-- DELETE BuildNum from package dir, aiming not to trigger dependencies to build again. -->
+  <!--<Target Name="JJAutoIncrementVersion_After" AfterTargets="Build"> 
+   --><!-- DELETE BuildNum from package dir, aiming not to trigger dependencies to build again. --><!--
     <Message Condition="Exists('$(PropsJj)')" Text="$(DeleteMsgJj) -> $(PropsJj)" Importance="High" />
      <Delete Condition="Exists('$(PropsJj)')" Files="$(PropsJj)" />
-  </Target>
+  </Target>-->
     
 </Project>
