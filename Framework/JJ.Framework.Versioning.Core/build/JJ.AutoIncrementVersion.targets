@@ -34,9 +34,9 @@
   </PropertyGroup>
 
   <Target Name="JJ_AutoIncrementVersion_Before" BeforeTargets="Build">
-    <!-- INIT Directory.Build.props containing BuildNum for fallback after uninstall. -->
+    <!-- INIT Directory.Build.props containing BuildNum for fallback after uninstall. --><!--
              <Message Condition="!Exists('$(DirPropsJj)')" Text="$(InitMsgJj) -> $(DirPropsJj)" Importance="High" />
-    <WriteLinesToFile Condition="!Exists('$(DirPropsJj)')" File="$(DirPropsJj)" Lines="$(DirPropContentJj)" />
+    <WriteLinesToFile Condition="!Exists('$(DirPropsJj)')" File="$(DirPropsJj)" Lines="$(DirPropContentJj)" />-->
 
     <!-- SAVE updated ver -->
              <Message Text="$(SaveMsgJj)-> $(VerJj)" Importance="High" />
