@@ -22,7 +22,8 @@
   </PropertyGroup>-->
 
   <!-- LOAD ver file. -->
-  <Import Project="$(VerJj)" Condition="'$(BuildNum)' == '' and Exists('$(VerJj)' )" />
+  <Import Project="$(VerJj)"   Condition="'$(BuildNum)' == '' and Exists('$(VerJj)'   )" />
+  <Import Project="$(PropsJj)" Condition="'$(BuildNum)' == '' and Exists('$(PropsJj)' )" />
   <PropertyGroup>
     <!-- Default 0 -->
     <BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum> 
