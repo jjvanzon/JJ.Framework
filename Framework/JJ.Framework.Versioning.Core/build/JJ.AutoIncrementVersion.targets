@@ -18,7 +18,7 @@
   </PropertyGroup>
     
   <PropertyGroup>
-    <DirPropLinesJj>&lt;Project&gt;&lt;Import Project=&quot;..\$(VerFileNameJj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('..\$(VerFileNameJj)')&quot;/&gt;&lt;/Project&gt;</DirPropLinesJj>
+    <DirPropContentJj>&lt;Project&gt;&lt;Import Project=&quot;..\$(VerFileNameJj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('..\$(VerFileNameJj)')&quot;/&gt;&lt;/Project&gt;</DirPropContentJj>
   </PropertyGroup>
 
   <!-- LOAD ver file. -->
@@ -28,18 +28,18 @@
     <BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum> 
     <!-- Increment -->
     <BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum>
+    <!-- Build ver content  -->
+    <VerContentJj>&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;</VerContentJj>    
   </PropertyGroup>
 
   <Target Name="JJ_AutoIncrementVersion_Before" BeforeTargets="Build">
     <!-- INIT Directory.Build.props containing BuildNum for fallback after uninstall. -->
              <Message Condition="!Exists('$(DirPropsJj)')" Text="$(InitMsgJj) -> $(DirPropsJj)" Importance="High" />
-    <WriteLinesToFile Condition="!Exists('$(DirPropsJj)')" File="$(DirPropsJj)" Lines="$(DirPropLinesJj)" />
+    <WriteLinesToFile Condition="!Exists('$(DirPropsJj)')" File="$(DirPropsJj)" Lines="$(DirPropContentJj)" />
 
     <!-- SAVE updated ver -->
-    <Message Text="$(SaveMsgJj)-> $(VerJj)" Importance="High" />
-    <WriteLinesToFile 
-      File="$(VerJj)" Overwrite="true"
-      Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" />
+             <Message Text="$(SaveMsgJj)-> $(VerJj)" Importance="High" />
+    <WriteLinesToFile File="$(VerJj)" Overwrite="true" Lines="$(VerContentJj)" />
     
     <!-- LOAD project-bound props file to package bound location, to make BuildNum imported on time, for use in csproj. --> 
     <Message Condition="Exists('$(VerJj)')" Text="$(LoadMsgJj) -> $(PropsJj)" Importance="High"  />
