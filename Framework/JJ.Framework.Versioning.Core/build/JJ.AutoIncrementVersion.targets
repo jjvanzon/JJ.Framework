@@ -3,8 +3,9 @@
   <!-- Vars -->
 
   <PropertyGroup>
-    <VerFileNameJj>JJ.AutoIncrementVersion.xml</VerFileNameJj>
-            <VerJj>$(MSBuildProjectDirectory)\..\$(VerFileNameJj)</VerJj>
+        <VerNameJj>JJ.AutoIncrementVersion.xml</VerNameJj>
+    <RelativeVerJj>..\$(VerNameJj)</RelativeVerJj>
+            <VerJj>$(MSBuildProjectDirectory)\$(RelativeVerJj)</VerJj>
           <PropsJj>$(MSBuildThisFileDirectory)\JJ.AutoIncrementVersion.props</PropsJj>
        <DirPropsJj>$(MSBuildProjectDirectory)\Directory.Build.props</DirPropsJj>
   </PropertyGroup>
@@ -18,7 +19,7 @@
   </PropertyGroup>
     
   <PropertyGroup>
-    <DirPropContentJj>&lt;Project&gt;&lt;Import Project=&quot;..\$(VerFileNameJj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('..\$(VerFileNameJj)')&quot;/&gt;&lt;/Project&gt;</DirPropContentJj>
+    <DirPropContentJj>&lt;Project&gt;&lt;Import Project=&quot;$(RelativeVerJj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('$(RelativeVerJj)')&quot;/&gt;&lt;/Project&gt;</DirPropContentJj>
   </PropertyGroup>
 
   <!-- LOAD ver file. -->
