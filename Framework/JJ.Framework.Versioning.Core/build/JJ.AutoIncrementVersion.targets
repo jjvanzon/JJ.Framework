@@ -33,6 +33,7 @@
   
   <!-- Load before build -->
   
+  <!--<Target Condition="Exists('$(VerJj)')" Inputs="$(VerJj)" Outputs="$(VerJj)" Name="JJ_AutoIncrementVersion_Load" BeforeTargets="Build">-->
   <Target Condition="Exists('$(VerJj)')" Name="JJ_AutoIncrementVersion_Load" BeforeTargets="Build">
     <Message Text="JJ AUTO-INCREMENT VERSION LOAD -> $(PropsJj)" Importance="High"  />
     <!-- Copy project-bound props file to package bound location, to make BuildNum imported on time, for use in csproj. -->
@@ -44,6 +45,7 @@
   <!-- NOTE: Trying BeforeTargets intead of AfterTargets,
              hoping the project will be seen as "up-to-date" despite us writing in it. Seemed ineffective, but here's to hoping. -->
    
+  <!--<Target Name="JJ_AutoIncrementVersion_Save" Inputs="$(VerJj)" Outputs="$(VerJj)" AfterTargets="Build">-->
   <Target Name="JJ_AutoIncrementVersion_Save" AfterTargets="Build">
     <Message Text="JJ AUTO-INCREMENT VERSION SAVE -> $(VerJj)" Importance="High" />
     
