@@ -1,6 +1,6 @@
 <Project>
   
-  <!-- Helper Variables -->
+  <!-- Variables -->
   
   <PropertyGroup>
     <VerName>JJ.AutoIncrementVersion.ver</VerName>
@@ -18,7 +18,7 @@
   <!-- Init  -->
   
   <!-- Write DirectoryProps containing BuildNum for fallback after uninstall. -->
-  <Target Condition="!Exists('$(DirectoryProps)')" Name="JJAutoIncrementVersion_Init1" BeforeTargets="Build">
+  <Target Condition="!Exists('$(DirectoryProps)')" Name="JJ_AutoIncrementVersion_Init1" BeforeTargets="Build">
     <Message Text="JJ AUTO-INCREMENT VERSION INIT -> $(DirectoryProps)" Importance="High" />
     <WriteLinesToFile 
       File="$(DirectoryProps)" 
@@ -26,7 +26,7 @@
   </Target>
   
   <!-- Initial ver upon first build. -->
-  <Target Condition="!Exists('$(Ver)')" Name="JJAutoIncrementVersion_Init2" BeforeTargets="Build">
+  <Target Condition="!Exists('$(Ver)')" Name="JJ_AutoIncrementVersion_Init2" BeforeTargets="Build">
     <Message Text="JJ AUTO-INCREMENT VERSION INIT -> $(Ver)" Importance="High" />
     <WriteLinesToFile 
       File="$(Ver)"
@@ -35,7 +35,7 @@
   
   <!-- Load before build -->
   
-  <Target Condition="Exists('$(Ver)')" Name="JJAutoIncrementVersion_Load" BeforeTargets="Build">
+  <Target Condition="Exists('$(Ver)')" Name="JJ_AutoIncrementVersion_Load" BeforeTargets="Build">
     <Message Text="JJ AUTO-INCREMENT VERSION LOAD -> $(Props)" Importance="High"  />
     <!-- Copy project-bound props file
          to package bound location, to make BuildNum imported on time, for use in csproj. -->
@@ -47,7 +47,7 @@
   <!-- NOTE: Trying BeforeTargets intead of AfterTargets,
              hoping the project will be seen as "up-to-date" despite us writing in it. Seemed ineffective, but here's to hoping. -->
   
-  <Target Name="JJAutoIncrementVersion_Save" AfterTargets="Build">
+  <Target Name="JJ_AutoIncrementVersion_Save" AfterTargets="Build">
     <Message Text="JJ AUTO-INCREMENT VERSION SAVE -> $(Ver)" Importance="High" />
     
     <!-- BuildNum default 0 -->
