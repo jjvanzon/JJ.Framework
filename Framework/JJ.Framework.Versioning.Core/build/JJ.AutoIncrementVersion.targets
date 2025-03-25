@@ -40,7 +40,7 @@
     <WriteLinesToFile Condition="!Exists('$(DirPropsJj)')" File="$(DirPropsJj)" Lines="$(DirPropsContentJj)" />
 
     <!-- LOAD Message -->
-    <Message Text="$(MsgLoadJj) $(BuildNum) = $(VerJj) + 1" Importance="High" />
+    <Message Text="$(MsgLoadJj) $(BuildNum) &lt;= $(VerJj) + 1" Importance="High" />
     
     <!-- SAVE updated ver -->
              <Message Text="$(MsgSaveJj) $(BuildNum) => $(VerJj)" Importance="High" />
