@@ -5,6 +5,7 @@
   <PropertyGroup>
      <ToolNameJj>JJ AUTO-INCREMENT VERSION</ToolNameJj>
       <MsgInitJj>$(ToolNameJj) INIT</MsgInitJj>
+       <MsgXmlJj>$(ToolNameJj) XML</MsgXmlJj>
       <MsgLoadJj>$(ToolNameJj) LOAD</MsgLoadJj>
       <MsgSaveJj>$(ToolNameJj) SAVE</MsgSaveJj>
      <MsgStageJj>$(ToolNameJj) STAGE</MsgStageJj>
@@ -16,7 +17,8 @@
     <ProjectDirJj>$(MSBuildProjectDirectory)</ProjectDirJj>
     <PackageDirJj>$(MSBuildThisFileDirectory)</PackageDirJj>
            <VerJj>$(ProjectDirJj)\..\$(VerNameJj)</VerJj>
-         <PropsJj>$(PackageDirJj)\JJ.AutoIncrementVersion.props</PropsJj>
+     <PropsNameJj>JJ.AutoIncrementVersion.props</PropsNameJj>
+         <PropsJj>$(PackageDirJj)\$(PropsNameJj)</PropsJj>
       <DirPropsJj>$(ProjectDirJj)\..\Directory.Build.props</DirPropsJj>
   </PropertyGroup>
     
@@ -39,9 +41,21 @@
              <Message Condition="!Exists('$(DirPropsJj)')" Text="$(MsgInitJj) => $(DirPropsJj)" Importance="High" />
     <WriteLinesToFile Condition="!Exists('$(DirPropsJj)')" File="$(DirPropsJj)" Lines="$(DirPropsContentJj)" />
 
+    <!-- XML Log -->
+    <ReadLinesFromFile File="$(VerJj)" Condition="Exists('$(VerJj)')" >
+      <Output TaskParameter="Lines" PropertyName="BuildNumXml" />
+    </ReadLinesFromFile>
+    <Message Text="$(MsgXmlJj) BuildNum &quot;$(BuildNumXml)&quot; &lt;= $(VerJj)" Importance="High" />
+
+    <ReadLinesFromFile File="$(PropsJj)" Condition="Exists('$(PropsJj)')" >
+      <Output TaskParameter="Lines" PropertyName="PropsXml" />
+    </ReadLinesFromFile>
+    <Message Text="$(MsgXmlJj) .props &quot;$(PropsXml)&quot; &lt;= $(PropsJj)" Importance="High" />
+
     <!-- LOAD Message -->
-    <Message Text="$(MsgLoadJj) $(BuildNum) &lt;= $(VerJj) + 1" Importance="High" />
-    
+    <Message Text="$(MsgLoadJj) $(BuildNum) &lt;= ? $(VerJj) + 1" Importance="High" />
+    <Message Text="$(MsgLoadJj) $(BuildNum) &lt;= ? $(PropsJj) + 1" Importance="High" />
+
     <!-- SAVE updated ver -->
              <Message Text="$(MsgSaveJj) $(BuildNum) => $(VerJj)" Importance="High" />
     <WriteLinesToFile File="$(VerJj)" Overwrite="true" Lines="$(VerContentJj)" />
