@@ -3,13 +3,13 @@
   <!-- Vars -->
   
   <PropertyGroup>
-     <ToolNameJj>JJ AUTO-INCREMENT VERSION</ToolNameJj>
-      <MsgInitJj>$(ToolNameJj) INIT</MsgInitJj>
-       <MsgXmlJj>$(ToolNameJj) XML</MsgXmlJj>
-      <MsgLoadJj>$(ToolNameJj) LOAD</MsgLoadJj>
-      <MsgSaveJj>$(ToolNameJj) SAVE</MsgSaveJj>
-     <MsgStageJj>$(ToolNameJj) STAGE</MsgStageJj>
-    <!--<MsgDeleteJj>$(ToolNameJj) DELETE</MsgDeleteJj>-->
+     <ToolTitleJj>JJ-AUTO-INC-VER</ToolTitleJj>
+      <MsgInitJj>$(ToolTitleJj) INIT</MsgInitJj>
+       <MsgXmlJj>$(ToolTitleJj) XML</MsgXmlJj>
+      <MsgLoadJj>$(ToolTitleJj) LOAD</MsgLoadJj>
+      <MsgSaveJj>$(ToolTitleJj) SAVE</MsgSaveJj>
+     <MsgStageJj>$(ToolTitleJj) STAGE</MsgStageJj>
+    <!--<MsgDeleteJj>$(ToolTitleJj) DELETE</MsgDeleteJj>-->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -41,18 +41,24 @@
              <Message Condition="!Exists('$(DirPropsJj)')" Text="$(MsgInitJj) => $(DirPropsJj)" Importance="High" />
     <WriteLinesToFile Condition="!Exists('$(DirPropsJj)')" File="$(DirPropsJj)" Lines="$(DirPropsContentJj)" />
 
-    <!-- XML Log -->
-    <ReadLinesFromFile File="$(VerJj)" Condition="Exists('$(VerJj)')" >
-      <Output TaskParameter="Lines" PropertyName="BuildNumXml" />
+    <!-- LOG XML -->
+    <ReadLinesFromFile File="$(VerJj)" 
+                       Condition="Exists('$(VerJj)')" >
+      <Output TaskParameter="Lines" 
+              PropertyName="BuildNumXml" />
     </ReadLinesFromFile>
+    
     <Message Text="$(MsgXmlJj) BuildNum &quot;$(BuildNumXml)&quot; &lt;= $(VerJj)" Importance="High" />
 
-    <ReadLinesFromFile File="$(PropsJj)" Condition="Exists('$(PropsJj)')" >
-      <Output TaskParameter="Lines" PropertyName="PropsXml" />
+    <ReadLinesFromFile File="$(PropsJj)" 
+                       Condition="Exists('$(PropsJj)')" >
+      <Output TaskParameter="Lines" 
+              PropertyName="PropsXml" />
     </ReadLinesFromFile>
+    
     <Message Text="$(MsgXmlJj) .props &quot;$(PropsXml)&quot; &lt;= $(PropsJj)" Importance="High" />
 
-    <!-- LOAD Message -->
+    <!-- LOAD Messages -->
     <Message Text="$(MsgLoadJj) $(BuildNum) &lt;= ? $(VerJj) + 1" Importance="High" />
     <Message Text="$(MsgLoadJj) $(BuildNum) &lt;= ? $(PropsJj) + 1" Importance="High" />
 
