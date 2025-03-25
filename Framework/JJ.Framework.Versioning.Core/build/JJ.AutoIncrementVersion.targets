@@ -3,23 +3,23 @@
   <!-- Vars -->
   
   <PropertyGroup>
-     <ToolTitleJj>JJ-AUTO-INC-VER</ToolTitleJj>
-      <MsgInitJj>$(ToolTitleJj) INIT</MsgInitJj>
-       <MsgXmlJj>$(ToolTitleJj) XML</MsgXmlJj>
-      <MsgLoadJj>$(ToolTitleJj) LOAD</MsgLoadJj>
-      <MsgSaveJj>$(ToolTitleJj) SAVE</MsgSaveJj>
-     <MsgStageJj>$(ToolTitleJj) STAGE</MsgStageJj>
+      <ToolTitleJj>JJ-AUTO-INC-VER</ToolTitleJj>
+        <MsgInitJj>$(ToolTitleJj) INIT</MsgInitJj>
+    <MsgContentlJj>$(ToolTitleJj) CONTENT</MsgContentlJj>
+        <MsgLoadJj>$(ToolTitleJj) LOAD</MsgLoadJj>
+        <MsgSaveJj>$(ToolTitleJj) SAVE</MsgSaveJj>
+       <MsgStageJj>$(ToolTitleJj) STAGE</MsgStageJj>
     <!--<MsgDeleteJj>$(ToolTitleJj) DELETE</MsgDeleteJj>-->
   </PropertyGroup>
 
   <PropertyGroup>
-       <VerNameJj>BuildNum.xml</VerNameJj>
-    <ProjectDirJj>$(MSBuildProjectDirectory)</ProjectDirJj>
-    <PackageDirJj>$(MSBuildThisFileDirectory)</PackageDirJj>
-           <VerJj>$(ProjectDirJj)\..\$(VerNameJj)</VerJj>
-     <PropsNameJj>JJ.AutoIncrementVersion.props</PropsNameJj>
-         <PropsJj>$(PackageDirJj)\$(PropsNameJj)</PropsJj>
-      <DirPropsJj>$(ProjectDirJj)\..\Directory.Build.props</DirPropsJj>
+      <ProjDirJj>$(MSBuildProjectDirectory)</ProjDirJj>
+      <PackDirJj>$(MSBuildThisFileDirectory)</PackDirJj>
+      <VerNameJj>BuildNum.xml</VerNameJj>
+    <PropsNameJj>JJ.AutoIncrementVersion.props</PropsNameJj>
+          <VerJj>$(ProjDirJj)\..\$(VerNameJj)</VerJj>
+        <PropsJj>$(PackDirJj)\$(PropsNameJj)</PropsJj>
+     <DirPropsJj>$(ProjDirJj)\..\Directory.Build.props</DirPropsJj>
   </PropertyGroup>
     
   <PropertyGroup>
@@ -38,17 +38,17 @@
 
   <Target Name="JJ_AutoIncrementVersion_Before" BeforeTargets="BeforeBuild">
     <!-- INIT Directory.Build.props with ref to BuildNum.xml for fallback after uninstall. -->
-             <Message Condition="!Exists('$(DirPropsJj)')" Text="$(MsgInitJj) => $(DirPropsJj)" Importance="High" />
+             <Message Condition="!Exists('$(DirPropsJj)')" Text="$(MsgInitJj) => &quot;$(DirPropsJj)&quot;" Importance="High" />
     <WriteLinesToFile Condition="!Exists('$(DirPropsJj)')" File="$(DirPropsJj)" Lines="$(DirPropsContentJj)" />
 
-    <!-- LOG XML -->
+    <!-- CONTENT -->
     <ReadLinesFromFile File="$(VerJj)" 
                        Condition="Exists('$(VerJj)')" >
       <Output TaskParameter="Lines" 
               PropertyName="BuildNumXml" />
     </ReadLinesFromFile>
     
-    <Message Text="$(MsgXmlJj) BuildNum &quot;$(BuildNumXml)&quot; &lt;= $(VerJj)" Importance="High" />
+    <Message Text="$(MsgContentlJj) .xml: $(BuildNumXml) &lt;= &quot;$(VerJj)&quot;" Importance="High" />
 
     <ReadLinesFromFile File="$(PropsJj)" 
                        Condition="Exists('$(PropsJj)')" >
@@ -56,18 +56,18 @@
               PropertyName="PropsXml" />
     </ReadLinesFromFile>
     
-    <Message Text="$(MsgXmlJj) .props &quot;$(PropsXml)&quot; &lt;= $(PropsJj)" Importance="High" />
+    <Message Text="$(MsgContentlJj) .props: $(PropsXml) &lt;= &quot;$(PropsJj)&quot;" Importance="High" />
 
-    <!-- LOAD Messages -->
-    <Message Text="$(MsgLoadJj) $(BuildNum) &lt;= ? $(VerJj) + 1" Importance="High" />
-    <Message Text="$(MsgLoadJj) $(BuildNum) &lt;= ? $(PropsJj) + 1" Importance="High" />
+    <!-- LOADED -->
+    <Message Text="$(MsgLoadJj) $(BuildNum) &lt;= .xml + 1 ?? (&quot;$(VerJj)&quot;)" Importance="High" />
+    <Message Text="$(MsgLoadJj) $(BuildNum) &lt;= .props + 1 ?? (&quot;$(PropsJj)&quot;)" Importance="High" />
 
     <!-- SAVE updated ver -->
-             <Message Text="$(MsgSaveJj) $(BuildNum) => $(VerJj)" Importance="High" />
+             <Message Text="$(MsgSaveJj) $(BuildNum) => &quot;$(VerJj)&quot;" Importance="High" />
     <WriteLinesToFile File="$(VerJj)" Overwrite="true" Lines="$(VerContentJj)" />
     
     <!-- STAGE project-bound props file to package bound location, to make BuildNum imported on time, for use in csproj. --> 
-             <Message Text="$(MsgStageJj) $(BuildNum) => $(PropsJj)" Importance="High"  />
+             <Message Text="$(MsgStageJj) $(BuildNum) => &quot;$(PropsJj)&quot;" Importance="High"  />
     <WriteLinesToFile File="$(PropsJj)" Overwrite="true" Lines="$(VerContentJj)" />
   </Target>
 
