@@ -27,7 +27,7 @@
   </PropertyGroup>
 
   <!-- LOAD ver file. -->
-  <Import Project="$(Verjj)" Condition="'$(BuildNum)' == '' and Exists('$(Verjj)'   )" />
+  <Import Project="$(Verjj)" Condition="Exists('$(Verjj)')" />
   <!--<Import Project="$(Propsjj)" Condition="'$(BuildNum)' == '' and Exists('$(Propsjj)' )" />-->
   <PropertyGroup>
     <BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum> <!-- Default 0 -->
@@ -36,7 +36,7 @@
     <VerContentjj>&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;</VerContentjj>    
   </PropertyGroup>
 
-  <Target Name="JJ_AutoIncrementVersion_Before" BeforeTargets="BeforeBuild">
+  <Target Name="JJ_AutoIncrementVersion_BeforeBuild" BeforeTargets="BeforeBuild">
     <!-- INIT Directory.Build.props with ref to BuildNum.xml for fallback after uninstall. -->
              <Message Condition="!Exists('$(DirPropsjj)')" Text="$(MsgInitjj) => &quot;$(DirPropsjj)&quot;" Importance="High" />
     <WriteLinesToFile Condition="!Exists('$(DirPropsjj)')" File="$(DirPropsjj)" Lines="$(DirPropsContentjj)" />
