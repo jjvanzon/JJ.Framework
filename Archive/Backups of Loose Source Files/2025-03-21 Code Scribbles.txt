@@ -96,3 +96,5 @@ Use $(BuildNum) in your version number. Our * doesn't work anymore. But we want 
   <Message Condition="Exists('$(Propsjj)')" Text="$(MsgDeletejj) => $(Propsjj)" Importance="High" />
    <Delete Condition="Exists('$(Propsjj)')" Files="$(Propsjj)" />
 </Target>-->
+
+    And '%24(BuildNum)'==''

@@ -27,7 +27,6 @@
   &lt;Import 
     Project="$(XmlNamejj)" 
     Condition="'%24(XmlImportedjj)'==''
-    And '%24(BuildNum)'==''
     And Exists('$(XmlNamejj)')"/&gt;
 &lt;/Project&gt;
   </DirPropsContentjj>
@@ -57,7 +56,6 @@
   &lt;/PropertyGroup&gt;
 &lt;/Project&gt;
   </PropsContentjj>
-  
 </PropertyGroup>
 
 <Target Name="JJ_AutoIncrementVersion_BeforeBuild" BeforeTargets="BeforeBuild">
@@ -77,10 +75,10 @@
   <Message Text="$(MsgContentjj) dir .props: $(DirPropsReadOutjj) &lt;= &quot;$(DirPropsjj)&quot;" Importance="High" />
   
   <ReadLinesFromFile File="$(Xmljj)" Condition="Exists('$(Xmljj)')" >
-    <Output TaskParameter="Lines" PropertyName="BuildNumXmlReadOutjj" />
+    <Output TaskParameter="Lines" PropertyName="XmlReadOutjj" />
   </ReadLinesFromFile>
   
-  <Message Text="$(MsgContentjj) .xml: $(BuildNumXmlReadOutjj) &lt;= &quot;$(Xmljj)&quot;" Importance="High" />
+  <Message Text="$(MsgContentjj) .xml: $(XmlReadOutjj) &lt;= &quot;$(Xmljj)&quot;" Importance="High" />
 
   <ReadLinesFromFile File="$(Propsjj)" Condition="Exists('$(Propsjj)')" >
     <Output TaskParameter="Lines" PropertyName="PropsReadOutjj" />
