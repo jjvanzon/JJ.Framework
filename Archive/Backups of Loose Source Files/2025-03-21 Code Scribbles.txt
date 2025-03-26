@@ -98,3 +98,32 @@ Use $(BuildNum) in your version number. Our * doesn't work anymore. But we want 
 </Target>-->
 
     And '%24(BuildNum)'==''
+
+
+  <ItemGroup>
+    <Content Include="build\JJ.AutoIncrementVersion.props">
+      <Pack>False</Pack>
+      <!--<PackagePath>\build</PackagePath>-->
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <!--<Content Include="JJ.AutoIncrementVersion.props.default">
+      <Pack>True</Pack>
+      <PackagePath>\build\JJ.AutoIncrementVersion.props</PackagePath>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>-->
+
+    <None Include="JJ.AutoIncrementVersion.props.default">
+      <Pack>False</Pack> <!-- Prevents default file from being packed -->
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Include="JJ.AutoIncrementVersion.props">
+      <Pack>True</Pack>
+      <PackagePath>build\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <Target Name="RenamePropsFileBeforePack" BeforeTargets="Pack">
+    <Message Text="RENAME DEFAULT PROPS" />
+    <Copy SourceFiles="JJ.AutoIncrementVersion.props.default"
+          DestinationFiles="JJ.AutoIncrementVersion.props" />
+  </Target>

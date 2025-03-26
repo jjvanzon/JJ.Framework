@@ -1,5 +1,5 @@
 <Project>
   <PropertyGroup Condition="'$(BuildNum)'==''">
-    <BuildNum>626</BuildNum>
+    <BuildNum>0</BuildNum>
   </PropertyGroup>
 </Project>

@@ -46,10 +46,16 @@
       <PackagePath>\build</PackagePath>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="build\JJ.AutoIncrementVersion.props">
-      <Pack>True</Pack>
-      <PackagePath>\build</PackagePath>
+      <Pack>False</Pack>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
+    <None Include="JJ.AutoIncrementVersion.props">
+      <Pack>True</Pack>
+      <PackagePath>\build</PackagePath>
+    </None>
   </ItemGroup>
 </Project>
