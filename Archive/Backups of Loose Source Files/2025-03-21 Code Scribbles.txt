@@ -1,0 +1,98 @@
+JJ.Business.CanonicalModel.csproj:
+
+    <!--
+    <PropertyGroup>
+      <BuildNumber>$($(BuildNumber) + 1)</BuildNumber>
+    </PropertyGroup>-->
+    
+    <!-- Increment the number and write to file --><!--
+    <Exec Command="powershell -Command &quot;[int]$buildNumber=$(BuildNumber); $buildNumber++; Set-Content BuildNumber.txt $buildNumber&quot;" />-->
+
+    <!-- Force MSBuild to re-read the updated file -->
+    <!--<ReadLinesFromFile File="$(MSBuildThisFileDirectory)BuildNumber.txt">
+      <Output TaskParameter="Lines" PropertyName="BuildNumber" />
+    </ReadLinesFromFile>-->
+
+    <!-- Print the build number to the MSBuild log -->
+    <!--<Message Text="AUTO-INCREMENTED BUILD NUMBER = $(BuildNumber)" Importance="High" />-->
+
+    
+  <!-- For experimentation. Should eventually do without. -->
+  <!--<Import Project="build\JJ.Framework.Versioning.Core.props" />-->
+
+
+  <!-- This imports an MSBuild props file, defining the auto-incremented value $(BuildNum). -->  
+  <!--<Import Project="$(MSBuildProjectDirectory)\build\JJ.Framework.Versioning.Core.props" Condition="Exists('$(MSBuildProjectDirectory)\build\JJ.Framework.Versioning.Core.props')" />-->
+
+
+Use $(BuildNum) in your version number. Our * doesn't work anymore. But we want to auto-increment!
+
+  <!--<Import Project="build\JJ.AutoIncrementVersion.props" />-->
+
+    <None Include="JJ.AutoIncrementVersion.default.props">
+      <Pack>True</Pack>
+      <PackagePath>\build\JJ.AutoIncrementVersion.props</PackagePath>
+    </None>
+
+
+  <!-- Import the .props file with the BuildNum in it. For some reason it doesn't work without explicitly importing it here, despite also being loaded before Build. -->  
+
+
+
+<Project><Import Project="build\JJ.AutoIncrementVersion.props" Condition="Exists('build\JJ.AutoIncrementVersion.props')"/></Project>
+
+
+    <None Include="README.md">
+      <Pack>True</Pack>
+      <PackagePath>contentFiles\any\any\JJ.AutoIncrementVersion.README.md</PackagePath>
+    </None>
+
+
+    <!--<Version Condition="'$(BuildNum)'==''">1.8.0</Version>-->
+    <!--<Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>-->
+
+
+
+
+    
+  <!-- NOTE: Trying BeforeTargets intead of AfterTargets,
+             hoping the project will be seen as "up-to-date" despite us writing in it. Seemed ineffective, but here's to hoping. -->
+  <!-- Delete BuildNum from package dir, aiming not to trigger dependencies to build again. -->
+
+
+ <!--<Import Project="$(InitJj)" Condition="'$(BuildNum)' == '' and Exists('$(InitJj)')" />-->
+
+     
+  <!-- NOTE: Trying BeforeTargets intead of AfterTargets,
+             hoping the project will be seen as "up-to-date" despite us writing in it. Seemed ineffective, but here's to hoping. -->
+
+    <!-- Install ver file. -->
+    <!--<Message          Condition="!Exists('$(VerJj)')" Text="$(InitMsgJj) -> $(VerJj)" Importance="High" />-->
+    <!--<WriteLinesToFile Condition="!Exists('$(VerJj)')" File="$(VerJj)" Lines="$(InitLinesJj)" />-->
+
+    <Content Include="JJ.AutoIncrementVersion.default.xml">
+      <Pack>True</Pack>
+      <PackagePath>contentFiles\any\any\JJ.AutoIncrementVersion.default.xml</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+        <!--<InitJj>$(MSBuildProjectDirectory)\JJ.AutoIncrementVersion.default.xml</InitJj>-->
+       <!--<InitLinesJj>&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;0&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;</InitLinesJj>-->
+    
+    <!-- STAGE project-bound props file to package bound location, to make BuildNum imported on time, for use in csproj. --><!-- 
+    <Message Condition="Exists('$(VerJj)')" Text="$(MsgStageJj) -> $(PropsJj)" Importance="High"  />
+       <Copy Condition="Exists('$(VerJj)')" SourceFiles="$(VerJj)" DestinationFiles="$(PropsJj)" />-->
+
+    <!--<Message Text="$(MsgLoadJj) FORCE $(BuildNum) &lt;= $(VerJj)" Importance="High" />-->
+
+    <!--<Import Project="$(Xmljj)" Condition="'$(BuildNum)' Condition="Exists('$(Xmljj)')" />-->
+<!--<Import Project="$(Propsjj)" Condition="'$(BuildNum)' == '' and Exists('$(Propsjj)' )" />-->
+
+  <!--<MsgDeletejj>$(ToolTitlejj) DELETE</MsgDeletejj>-->
+
+
+<!--<Target Name="JJAutoIncrementVersion_After" AfterTargets="Build"> 
+ --><!-- DELETE BuildNum from package dir, aiming not to trigger dependencies to build again. --><!--
+  <Message Condition="Exists('$(Propsjj)')" Text="$(MsgDeletejj) => $(Propsjj)" Importance="High" />
+   <Delete Condition="Exists('$(Propsjj)')" Files="$(Propsjj)" />
+</Target>-->
