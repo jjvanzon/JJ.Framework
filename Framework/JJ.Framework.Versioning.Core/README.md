@@ -31,8 +31,7 @@ Every time you build your project, the `$(BuildNum)` is simply incremented by `1
 
 ### Advanced Use?
 
-None. No config, no command line, no prerequisites, no hidden options.  
-Just install the package, add `$(BuildNum)` to your version, and build.
+Nothing: No config, no command line, no hidden options. Just install the package, add `$(BuildNum)` to your version, and build.
 
 ### 💬 Feedback 
 
