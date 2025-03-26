@@ -13,4 +13,7 @@
     <None Remove="JJ.Framework.Logging.Diagnostics.v3.ncrunchproject" />
     <None Remove="NCrunch.JJ.Framework.Logging.Diagnostics_AnalysisBuild.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.754" />
+  </ItemGroup>
 </Project>

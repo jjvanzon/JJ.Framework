@@ -14,7 +14,7 @@
     <None Remove="NCrunch.JJ.Framework.Xml_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.718" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.754" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj" />

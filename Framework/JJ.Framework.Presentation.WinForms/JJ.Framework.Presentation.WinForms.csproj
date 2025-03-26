@@ -11,6 +11,9 @@
     <None Remove="NCrunch.JJ.Framework.Presentation.WinForms_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.754" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="SimpleFileProcessControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
