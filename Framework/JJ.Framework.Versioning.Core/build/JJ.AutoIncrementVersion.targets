@@ -49,7 +49,15 @@
       &lt;XmlImportedjj&gt;True&lt;/XmlImportedjj&gt;
   &lt;/PropertyGroup&gt;
 &lt;/Project&gt;
-  </XmlContentjj>    
+  </XmlContentjj>
+  <PropsContentjj>
+&lt;Project&gt;
+  &lt;PropertyGroup&gt;
+      &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;
+  </PropsContentjj>
+  
 </PropertyGroup>
 
 <Target Name="JJ_AutoIncrementVersion_BeforeBuild" BeforeTargets="BeforeBuild">
@@ -95,7 +103,7 @@
   
   <!-- XML file => package bound .props location, to import BuildNum early enough for use in csproj. --> 
            <Message Text="$(MsgStagejj) $(BuildNum) => .props &quot;$(Propsjj)&quot;" Importance="High"  />
-  <WriteLinesToFile File="$(Propsjj)" Overwrite="true" Lines="$(XmlContentjj)" />
+  <WriteLinesToFile File="$(Propsjj)" Overwrite="true" Lines="$(PropsContentjj)" />
 </Target>
     
 </Project>
