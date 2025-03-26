@@ -1,88 +1,104 @@
 <Project>
   
-  <!-- Vars -->
+<!-- Vars -->
+
+<PropertyGroup>
+   <ToolTitlejj>JJ-AUTO-INC-VER</ToolTitlejj>
+     <MsgInitjj>$(ToolTitlejj) INIT</MsgInitjj>
+  <MsgContentjj>$(ToolTitlejj) CONTENT</MsgContentjj>
+     <MsgLoadjj>$(ToolTitlejj) LOAD</MsgLoadjj>
+     <MsgSavejj>$(ToolTitlejj) SAVE</MsgSavejj>
+    <MsgStagejj>$(ToolTitlejj) STAGE</MsgStagejj>
+  <!--<MsgDeletejj>$(ToolTitlejj) DELETE</MsgDeletejj>-->
+</PropertyGroup>
+
+<PropertyGroup>
+    <ProjDirjj>$(MSBuildProjectDirectory)</ProjDirjj>
+    <PackDirjj>$(MSBuildThisFileDirectory)</PackDirjj>
+    <XmlNamejj>BuildNum.xml</XmlNamejj>
+  <PropsNamejj>JJ.AutoIncrementVersion.props</PropsNamejj>
+        <Xmljj>$(ProjDirjj)\..\$(XmlNamejj)</Xmljj>
+      <Propsjj>$(PackDirjj)\$(PropsNamejj)</Propsjj>
+   <DirPropsjj>$(ProjDirjj)\..\Directory.Build.props</DirPropsjj>
+</PropertyGroup>
   
-  <PropertyGroup>
-     <ToolTitlejj>JJ-AUTO-INC-VER</ToolTitlejj>
-       <MsgInitjj>$(ToolTitlejj) INIT</MsgInitjj>
-    <MsgContentjj>$(ToolTitlejj) CONTENT</MsgContentjj>
-       <MsgLoadjj>$(ToolTitlejj) LOAD</MsgLoadjj>
-       <MsgSavejj>$(ToolTitlejj) SAVE</MsgSavejj>
-      <MsgStagejj>$(ToolTitlejj) STAGE</MsgStagejj>
-    <!--<MsgDeletejj>$(ToolTitlejj) DELETE</MsgDeletejj>-->
-  </PropertyGroup>
+<PropertyGroup>
+  <DirPropsContentjj>
+&lt;Project&gt;
+  &lt;Import 
+    Project="$(XmlNamejj)" 
+    Condition="'%24(XmlImportedjj)' == ''
+    And '%24(BuildNum)' == ''
+    And Exists('$(XmlNamejj)')"/&gt;
+&lt;/Project&gt;
+  </DirPropsContentjj>
+</PropertyGroup>
 
-  <PropertyGroup>
-      <ProjDirjj>$(MSBuildProjectDirectory)</ProjDirjj>
-      <PackDirjj>$(MSBuildThisFileDirectory)</PackDirjj>
-      <VerNamejj>BuildNum.xml</VerNamejj>
-    <PropsNamejj>JJ.AutoIncrementVersion.props</PropsNamejj>
-          <Verjj>$(ProjDirjj)\..\$(VerNamejj)</Verjj>
-        <Propsjj>$(PackDirjj)\$(PropsNamejj)</Propsjj>
-     <DirPropsjj>$(ProjDirjj)\..\Directory.Build.props</DirPropsjj>
-  </PropertyGroup>
-    
-  <PropertyGroup>
-    <DirPropsContentjj>&lt;Project&gt;&lt;Import Project=&quot;$(VerNamejj)&quot; Condition=&quot;'%24(BuildNum)' == '' and Exists('$(VerNamejj)')&quot;/&gt;&lt;/Project&gt;</DirPropsContentjj>
-  </PropertyGroup>
+<!-- LOAD ver file. -->
+<Import Project="$(Xmljj)" Condition="'$(XmlImportedjj)'=='' And Exists('$(Xmljj)')" />
+<!--<Import Project="$(Xmljj)" Condition="'$(BuildNum)' Condition="Exists('$(Xmljj)')" />-->
+<!--<Import Project="$(Propsjj)" Condition="'$(BuildNum)' == '' and Exists('$(Propsjj)' )" />-->
+<PropertyGroup>
+  <BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum> <!-- Default 0 -->
+  <BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum> <!-- Increment -->
+  <!-- Build new ver content  -->
+  <XmlContentjj>
+&lt;Project&gt;
+  &lt;PropertyGroup&gt;
+      &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
+      &lt;XmlImportedjj&gt;True&lt;/XmlImportedjj&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;
+  </XmlContentjj>    
+</PropertyGroup>
 
-  <!-- LOAD ver file. -->
-  <Import Project="$(Verjj)" Condition="Exists('$(Verjj)')" />
-  <!--<Import Project="$(Propsjj)" Condition="'$(BuildNum)' == '' and Exists('$(Propsjj)' )" />-->
-  <PropertyGroup>
-    <BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum> <!-- Default 0 -->
-    <BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum> <!-- Increment -->
-    <!-- Build new ver content  -->
-    <VerContentjj>&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;</VerContentjj>    
-  </PropertyGroup>
+<Target Name="JJ_AutoIncrementVersion_BeforeBuild" BeforeTargets="BeforeBuild">
+  <!-- INIT Directory.Build.props with ref to BuildNum.xml for fallback after uninstall. -->
+           <Message Condition="!Exists('$(DirPropsjj)')" Text="$(MsgInitjj) => &quot;$(DirPropsjj)&quot;" Importance="High" />
+  <WriteLinesToFile Condition="!Exists('$(DirPropsjj)')" File="$(DirPropsjj)" Lines="$(DirPropsContentjj)" />
 
-  <Target Name="JJ_AutoIncrementVersion_BeforeBuild" BeforeTargets="BeforeBuild">
-    <!-- INIT Directory.Build.props with ref to BuildNum.xml for fallback after uninstall. -->
-             <Message Condition="!Exists('$(DirPropsjj)')" Text="$(MsgInitjj) => &quot;$(DirPropsjj)&quot;" Importance="High" />
-    <WriteLinesToFile Condition="!Exists('$(DirPropsjj)')" File="$(DirPropsjj)" Lines="$(DirPropsContentjj)" />
+  <!-- CONTENT -->
+  <ReadLinesFromFile File="$(DirPropsjj)" 
+                     Condition="Exists('$(DirPropsjj)')" >
+    <Output TaskParameter="Lines" 
+            PropertyName="DirPropsReadOutjj" />
+  </ReadLinesFromFile>
+  
+  <Message Text="$(MsgContentjj) dir .props: $(DirPropsReadOutjj) &lt;= &quot;$(DirPropsjj)&quot;" Importance="High" />
+  
+  <ReadLinesFromFile File="$(Xmljj)" 
+                     Condition="Exists('$(Xmljj)')" >
+    <Output TaskParameter="Lines" 
+            PropertyName="BuildNumXmlReadOutjj" />
+  </ReadLinesFromFile>
+  
+  <Message Text="$(MsgContentjj) .xml: $(BuildNumXmlReadOutjj) &lt;= &quot;$(Xmljj)&quot;" Importance="High" />
 
-    <!-- CONTENT -->
-    <ReadLinesFromFile File="$(DirPropsjj)" 
-                       Condition="Exists('$(DirPropsjj)')" >
-      <Output TaskParameter="Lines" 
-              PropertyName="DirPropsReadOutjj" />
-    </ReadLinesFromFile>
-    
-    <Message Text="$(MsgContentjj) dir .props: $(DirPropsReadOutjj) &lt;= &quot;$(DirPropsjj)&quot;" Importance="High" />
-    
-    <ReadLinesFromFile File="$(Verjj)" 
-                       Condition="Exists('$(Verjj)')" >
-      <Output TaskParameter="Lines" 
-              PropertyName="BuildNumXmlReadOutjj" />
-    </ReadLinesFromFile>
-    
-    <Message Text="$(MsgContentjj) .xml: $(BuildNumXmlReadOutjj) &lt;= &quot;$(Verjj)&quot;" Importance="High" />
+  <ReadLinesFromFile File="$(Propsjj)" 
+                     Condition="Exists('$(Propsjj)')" >
+    <Output TaskParameter="Lines" 
+            PropertyName="PropsReadOutjj" />
+  </ReadLinesFromFile>
+  
+  <Message Text="$(MsgContentjj) .props: $(PropsReadOutjj) &lt;= &quot;$(Propsjj)&quot;" Importance="High" />
 
-    <ReadLinesFromFile File="$(Propsjj)" 
-                       Condition="Exists('$(Propsjj)')" >
-      <Output TaskParameter="Lines" 
-              PropertyName="PropsReadOutjj" />
-    </ReadLinesFromFile>
-    
-    <Message Text="$(MsgContentjj) .props: $(PropsReadOutjj) &lt;= &quot;$(Propsjj)&quot;" Importance="High" />
+  <!-- LOADED -->
+  <Message Text="$(MsgLoadjj) $(BuildNum) &lt;= .xml + 1 ?? (&quot;$(Xmljj)&quot;)" Importance="High" />
+  <Message Text="$(MsgLoadjj) $(BuildNum) &lt;= .props + 1 ?? (&quot;$(Propsjj)&quot;)" Importance="High" />
 
-    <!-- LOADED -->
-    <Message Text="$(MsgLoadjj) $(BuildNum) &lt;= .xml + 1 ?? (&quot;$(Verjj)&quot;)" Importance="High" />
-    <Message Text="$(MsgLoadjj) $(BuildNum) &lt;= .props + 1 ?? (&quot;$(Propsjj)&quot;)" Importance="High" />
+  <!-- SAVE updated ver -->
+           <Message Text="$(MsgSavejj) $(BuildNum) => &quot;$(Xmljj)&quot;" Importance="High" />
+  <WriteLinesToFile File="$(Xmljj)" Overwrite="true" Lines="$(XmlContentjj)" />
+  
+  <!-- STAGE project-bound props file to package bound location, to make BuildNum imported on time, for use in csproj. --> 
+           <Message Text="$(MsgStagejj) $(BuildNum) => &quot;$(Propsjj)&quot;" Importance="High"  />
+  <WriteLinesToFile File="$(Propsjj)" Overwrite="true" Lines="$(XmlContentjj)" />
+</Target>
 
-    <!-- SAVE updated ver -->
-             <Message Text="$(MsgSavejj) $(BuildNum) => &quot;$(Verjj)&quot;" Importance="High" />
-    <WriteLinesToFile File="$(Verjj)" Overwrite="true" Lines="$(VerContentjj)" />
-    
-    <!-- STAGE project-bound props file to package bound location, to make BuildNum imported on time, for use in csproj. --> 
-             <Message Text="$(MsgStagejj) $(BuildNum) => &quot;$(Propsjj)&quot;" Importance="High"  />
-    <WriteLinesToFile File="$(Propsjj)" Overwrite="true" Lines="$(VerContentjj)" />
-  </Target>
-
-  <!--<Target Name="JJAutoIncrementVersion_After" AfterTargets="Build"> 
-   --><!-- DELETE BuildNum from package dir, aiming not to trigger dependencies to build again. --><!--
-    <Message Condition="Exists('$(Propsjj)')" Text="$(MsgDeletejj) => $(Propsjj)" Importance="High" />
-     <Delete Condition="Exists('$(Propsjj)')" Files="$(Propsjj)" />
-  </Target>-->
+<!--<Target Name="JJAutoIncrementVersion_After" AfterTargets="Build"> 
+ --><!-- DELETE BuildNum from package dir, aiming not to trigger dependencies to build again. --><!--
+  <Message Condition="Exists('$(Propsjj)')" Text="$(MsgDeletejj) => $(Propsjj)" Importance="High" />
+   <Delete Condition="Exists('$(Propsjj)')" Files="$(Propsjj)" />
+</Target>-->
     
 </Project>

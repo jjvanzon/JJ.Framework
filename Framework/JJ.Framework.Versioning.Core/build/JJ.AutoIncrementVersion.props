@@ -1,1 +1,6 @@
-<Project><PropertyGroup><BuildNum>542</BuildNum></PropertyGroup></Project>
+<Project>
+  <PropertyGroup>
+      <BuildNum>557</BuildNum>
+      <XmlImportedjj>True</XmlImportedjj>
+  </PropertyGroup>
+</Project>
