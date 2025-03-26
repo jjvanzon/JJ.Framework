@@ -2,12 +2,12 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
     <AssemblyTitle>JJ.Framework.Configuration</AssemblyTitle>
     <Product>JJ.Framework.Configuration</Product>
-    <Copyright>Copyright ©  2013</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Copyright>Copyright © Jan Joost van Zon 2013 - 2025</Copyright>
+    <Version>1.8.$(BuildNum)</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="JJ.Framework.Configuration.v3.ncrunchproject" />
