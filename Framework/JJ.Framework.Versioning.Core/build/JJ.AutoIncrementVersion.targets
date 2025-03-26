@@ -3,12 +3,12 @@
 <!-- Vars -->
 
 <PropertyGroup>
-   <ToolTitlejj>JJ-AUTO-INC-VER</ToolTitlejj>
-     <MsgInitjj>$(ToolTitlejj) INIT</MsgInitjj>
-  <MsgContentjj>$(ToolTitlejj) CONTENT</MsgContentjj>
-     <MsgLoadjj>$(ToolTitlejj) LOAD</MsgLoadjj>
-     <MsgSavejj>$(ToolTitlejj) SAVE</MsgSavejj>
-    <MsgStagejj>$(ToolTitlejj) STAGE</MsgStagejj>
+  <ToolTitlejj>JJ-AUTO-INC-VER</ToolTitlejj>
+       <Initjj>$(ToolTitlejj) INIT</Initjj>
+    <Contentjj>$(ToolTitlejj) CONTENT</Contentjj>
+       <Loadjj>$(ToolTitlejj) LOAD</Loadjj>
+       <Savejj>$(ToolTitlejj) SAVE</Savejj>
+      <Stagejj>$(ToolTitlejj) STAGE</Stagejj>
 </PropertyGroup>
 
 <PropertyGroup>
@@ -44,8 +44,8 @@
   <XmlContentjj>
 &lt;Project&gt;
   &lt;PropertyGroup&gt;
-      &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
-      &lt;XmlImportedjj&gt;True&lt;/XmlImportedjj&gt;
+    &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
+    &lt;XmlImportedjj&gt;True&lt;/XmlImportedjj&gt;
   &lt;/PropertyGroup&gt;
 &lt;/Project&gt;
   </XmlContentjj>
@@ -63,7 +63,7 @@
   <!-- INIT -->
   
   <!-- Auto-create Directory.Build.props that imports BuildNum.xml for fallback before package restore and after uninstall. -->
-           <Message Condition="!Exists('$(DirPropsjj)')" Text="$(MsgInitjj) => &quot;$(DirPropsjj)&quot;" Importance="High" />
+           <Message Condition="!Exists('$(DirPropsjj)')" Text="$(Initjj) => &quot;$(DirPropsjj)&quot;" Importance="High" />
   <WriteLinesToFile Condition="!Exists('$(DirPropsjj)')" File="$(DirPropsjj)" Lines="$(DirPropsContentjj)" />
 
   <!-- CONTENT -->
@@ -72,35 +72,35 @@
     <Output TaskParameter="Lines" PropertyName="DirPropsReadOutjj" />
   </ReadLinesFromFile>
   
-  <Message Text="$(MsgContentjj) dir .props: $(DirPropsReadOutjj) &lt;= &quot;$(DirPropsjj)&quot;" Importance="High" />
+  <Message Text="$(Contentjj) dir .props: $(DirPropsReadOutjj) &lt;= &quot;$(DirPropsjj)&quot;" Importance="High" />
   
   <ReadLinesFromFile File="$(Xmljj)" Condition="Exists('$(Xmljj)')" >
     <Output TaskParameter="Lines" PropertyName="XmlReadOutjj" />
   </ReadLinesFromFile>
   
-  <Message Text="$(MsgContentjj) .xml: $(XmlReadOutjj) &lt;= &quot;$(Xmljj)&quot;" Importance="High" />
+  <Message Text="$(Contentjj) .xml: $(XmlReadOutjj) &lt;= &quot;$(Xmljj)&quot;" Importance="High" />
 
   <ReadLinesFromFile File="$(Propsjj)" Condition="Exists('$(Propsjj)')" >
     <Output TaskParameter="Lines" PropertyName="PropsReadOutjj" />
   </ReadLinesFromFile>
   
-  <Message Text="$(MsgContentjj) .props: $(PropsReadOutjj) &lt;= &quot;$(Propsjj)&quot;" Importance="High" />
+  <Message Text="$(Contentjj) .props: $(PropsReadOutjj) &lt;= &quot;$(Propsjj)&quot;" Importance="High" />
 
   <!-- LOADED ? -->
   
-  <Message Text="$(MsgLoadjj) $(BuildNum) &lt;= .xml + 1 ?? (&quot;$(Xmljj)&quot;)" Importance="High" />
-  <Message Text="$(MsgLoadjj) $(BuildNum) &lt;= .props + 1 ?? (&quot;$(Propsjj)&quot;)" Importance="High" />
+  <Message Text="$(Loadjj) $(BuildNum) &lt;= .xml + 1 ?? (&quot;$(Xmljj)&quot;)" Importance="High" />
+  <Message Text="$(Loadjj) $(BuildNum) &lt;= .props + 1 ?? (&quot;$(Propsjj)&quot;)" Importance="High" />
 
   <!-- SAVE -->
   
   <!-- Updated XML -->
-           <Message Text="$(MsgSavejj) $(BuildNum) => .xml &quot;$(Xmljj)&quot;" Importance="High" />
+           <Message Text="$(Savejj) $(BuildNum) => .xml &quot;$(Xmljj)&quot;" Importance="High" />
   <WriteLinesToFile File="$(Xmljj)" Overwrite="true" Lines="$(XmlContentjj)" />
   
   <!-- STAGE -->
   
   <!-- XML file => package bound .props location, to import BuildNum early enough for use in csproj. --> 
-           <Message Text="$(MsgStagejj) $(BuildNum) => .props &quot;$(Propsjj)&quot;" Importance="High"  />
+           <Message Text="$(Stagejj) $(BuildNum) => .props &quot;$(Propsjj)&quot;" Importance="High"  />
   <WriteLinesToFile File="$(Propsjj)" Overwrite="true" Lines="$(PropsContentjj)" />
 </Target>
     
