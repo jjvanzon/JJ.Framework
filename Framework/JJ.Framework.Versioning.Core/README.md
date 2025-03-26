@@ -39,3 +39,8 @@ Advanced Use?
 None. No config, no command line, no prerequisites, no hidden options.  
 Just install the package, add `$(BuildNum)` to your version, and build.
 
+
+💬 Feedback 
+------------
+
+Found an issue? <a href="https://jjvanzon.github.io/#-how-to-reach-me" target="_blank">Let me know.</a>
