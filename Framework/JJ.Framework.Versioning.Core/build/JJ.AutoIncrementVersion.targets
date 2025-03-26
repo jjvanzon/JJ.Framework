@@ -12,13 +12,13 @@
 </PropertyGroup>
 
 <PropertyGroup>
-    <ProjDirjj>$(MSBuildProjectDirectory)</ProjDirjj>
+    <ProjDirjj>$(MSBuildProjectDirectory)\</ProjDirjj>
     <PackDirjj>$(MSBuildThisFileDirectory)</PackDirjj>
     <XmlNamejj>BuildNum.xml</XmlNamejj>
   <PropsNamejj>JJ.AutoIncrementVersion.props</PropsNamejj>
-        <Xmljj>$(ProjDirjj)\..\$(XmlNamejj)</Xmljj>
-      <Propsjj>$(PackDirjj)\$(PropsNamejj)</Propsjj>
-   <DirPropsjj>$(ProjDirjj)\..\Directory.Build.props</DirPropsjj>
+        <Xmljj>$(ProjDirjj)..\$(XmlNamejj)</Xmljj>
+      <Propsjj>$(PackDirjj)$(PropsNamejj)</Propsjj>
+   <DirPropsjj>$(ProjDirjj)..\Directory.Build.props</DirPropsjj>
 </PropertyGroup>
   
 <PropertyGroup>
