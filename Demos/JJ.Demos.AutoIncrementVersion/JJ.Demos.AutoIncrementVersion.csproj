@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <!-- Reference to auto-updated file containing the BuildNum variable. -->
+  <Import Project="BuildNumber.props" Condition="Exists('BuildNumber.props')" />
+  
+  <PropertyGroup>
+    <!-- Fallback conditions, 
+         for when $(BuildNumber) not defined, preventing build failure. -->
+    <Version Condition="'$(BuildNumber)'==''">0.250.0</Version>
+    <Version Condition="'$(BuildNumber)'!=''">0.250.$(BuildNumber)</Version>
+
+    <TargetFrameworks>net9.0;net8.0;netstandard2.0</TargetFrameworks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Description>Demonstration of auto-incremental versioning as a copy-paste into your csproj, superseded by JJ.AutoIncrementVersion, which does it for you automatically.</Description>
+    <PackageTags>demo; versioning</PackageTags>
+    <Authors>JJ van Zon</Authors>
+    <Copyright>Copyright © Jan Joost van Zon 2025</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="AutoIncrementVersion" BeforeTargets="Build">
+    <!-- Default empty BuildNumber to 0 before incrementing -->
+    <PropertyGroup><BuildNumber Condition="'$(BuildNumber)' == ''">0</BuildNumber></PropertyGroup>
+    <!-- Increment BuildNumber, then assign back to BuildNumber -->
+    <PropertyGroup><BuildNumber>$([MSBuild]::Add($(BuildNumber), 1))</BuildNumber></PropertyGroup>
+    <!-- Write the new version to a MSBuild props file -->
+    <WriteLinesToFile File="$(MSBuildThisFileDirectory)BuildNumber.props" Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNumber&gt;$(BuildNumber)&lt;/BuildNumber&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" Overwrite="true" Encoding="UTF-8" />
+  </Target>
+  
+</Project>
