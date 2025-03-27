@@ -3,8 +3,6 @@
   <Import Project="build\JJ.AutoIncrementVersion.targets" />
   
   <PropertyGroup>
-    <!--<TargetFramework>net9.0</TargetFramework>-->
-    <!--<TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;netstandard2.1;netstandard2.0</TargetFrameworks>-->
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
     <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
@@ -12,7 +10,7 @@
     <Description>We miss our * but we can now use %24(BuildNum)</Description>
     <PackageTags>
       auto; increment; version; build; assemblyinfo; SemVer; MSBuild;
-      package; packaging; pipeline; devops; autoincrement; semantic; versioning; assemblyversion; buildnumber; ci; auto-increment; build-number
+      package; packaging; pipeline; devops; autoincrement; semantic; versioning; assemblyversion; buildnumber; ci
     </PackageTags>
     <Authors>JJ van Zon</Authors>
     <Copyright>Copyright © Jan Joost van Zon 2025</Copyright>

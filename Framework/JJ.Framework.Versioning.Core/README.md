@@ -9,7 +9,7 @@ This package allows you to use `$(BuildNum)` instead.
 
 
 How to Use?
------------
+===========
  
 You can use `$(BuildNum)` inside your version number, like this:
 
@@ -27,14 +27,14 @@ Every time you build your project, the `$(BuildNum)` is simply incremented by `1
 
 
 Setup
------
+=====
 
 - Install the package.
 - Start using `$(BuildNum)`.
 
 
 Advanced Use?
--------------
+=============
 
 Nothing:
 
