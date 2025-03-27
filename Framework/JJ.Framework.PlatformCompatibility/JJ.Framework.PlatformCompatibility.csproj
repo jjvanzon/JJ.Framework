@@ -12,6 +12,6 @@
     <None Remove="NCrunch.JJ.Framework.PlatformCompatibility_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.1000" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.1024" />
   </ItemGroup>
 </Project>
