@@ -9,7 +9,7 @@
     <AssemblyName>JJ.AutoIncrementVersion</AssemblyName>
     <Description>We miss our * but we can now use %24(BuildNum)</Description>
     <PackageTags>
-      auto; increment; version; build; assemblyinfo; SemVer; MSBuild;
+      MSBuild; auto; increment; version; build; assemblyinfo; SemVer;
       package; packaging; pipeline; devops; autoincrement; semantic; versioning; assemblyversion; buildnumber; ci
     </PackageTags>
     <Authors>JJ van Zon</Authors>
