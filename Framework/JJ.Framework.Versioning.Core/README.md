@@ -17,7 +17,7 @@ You can use `$(BuildNum)` inside your version number, like this:
 1.0.$(BuildNum)
 ```
 
-And the effective version becomes something like:
+And the effective version becomes something like this:
 
 ```
 1.0.123
