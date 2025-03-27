@@ -14,6 +14,6 @@
     <None Remove="NCrunch.JJ.Framework.Mathematics.Core_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.904" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.1000" />
   </ItemGroup>
 </Project>
