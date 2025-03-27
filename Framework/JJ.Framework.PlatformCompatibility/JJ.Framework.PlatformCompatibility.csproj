@@ -6,7 +6,6 @@
     <Copyright>Copyright © Jan Joost van Zon 2014 - 2025</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>    
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <GenerateAssemblyInfo>True</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="JJ.Framework.PlatformCompatibility.v3.ncrunchproject" />

@@ -127,3 +127,5 @@ Use $(BuildNum) in your version number. Our * doesn't work anymore. But we want 
     <Copy SourceFiles="JJ.AutoIncrementVersion.props.default"
           DestinationFiles="JJ.AutoIncrementVersion.props" />
   </Target>
+
+  $(System.DefaultWorkingDirectory)/_Artifact/**/JJ.AutoIncrementVersion.*.snupkg
