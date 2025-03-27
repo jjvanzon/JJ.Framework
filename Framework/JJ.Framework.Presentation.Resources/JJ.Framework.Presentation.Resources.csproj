@@ -14,7 +14,7 @@
     <None Remove="NCrunch.JJ.Framework.Presentation.Resources_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.1024" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.1041" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="CommonTitles.Designer.cs">
