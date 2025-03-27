@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   
   <!-- Reference to auto-updated file containing the BuildNum variable. -->
-  <Import Project="BuildNumber.props" Condition="Exists('BuildNumber.props')" />
+  <Import Project="BuildNum.props" Condition="Exists('BuildNum.props')" />
   
   <PropertyGroup>
     <!-- Fallback conditions, 
-         for when $(BuildNumber) not defined, preventing build failure. -->
-    <Version Condition="'$(BuildNumber)'==''">0.250.0</Version>
-    <Version Condition="'$(BuildNumber)'!=''">0.250.$(BuildNumber)</Version>
+         for when $(BuildNum) not defined, preventing build failure. -->
+    <Version Condition="'$(BuildNum)'==''">0.250.0</Version>
+    <Version Condition="'$(BuildNum)'!=''">0.250.$(BuildNum)</Version>
 
     <TargetFrameworks>net9.0;net8.0;netstandard2.0</TargetFrameworks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -28,12 +28,12 @@
   </ItemGroup>
 
   <Target Name="AutoIncrementVersion" BeforeTargets="Build">
-    <!-- Default empty BuildNumber to 0 before incrementing -->
-    <PropertyGroup><BuildNumber Condition="'$(BuildNumber)' == ''">0</BuildNumber></PropertyGroup>
-    <!-- Increment BuildNumber, then assign back to BuildNumber -->
-    <PropertyGroup><BuildNumber>$([MSBuild]::Add($(BuildNumber), 1))</BuildNumber></PropertyGroup>
+    <!-- Default empty BuildNum to 0 before incrementing -->
+    <PropertyGroup><BuildNum Condition="'$(BuildNum)' == ''">0</BuildNum></PropertyGroup>
+    <!-- Increment BuildNum, then assign back to BuildNum -->
+    <PropertyGroup><BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum></PropertyGroup>
     <!-- Write the new version to a MSBuild props file -->
-    <WriteLinesToFile File="$(MSBuildThisFileDirectory)BuildNumber.props" Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNumber&gt;$(BuildNumber)&lt;/BuildNumber&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" Overwrite="true" Encoding="UTF-8" />
+    <WriteLinesToFile File="$(MSBuildThisFileDirectory)BuildNum.props" Lines="&lt;Project&gt;&lt;PropertyGroup&gt;&lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;" Overwrite="true" Encoding="UTF-8" />
   </Target>
   
 </Project>
