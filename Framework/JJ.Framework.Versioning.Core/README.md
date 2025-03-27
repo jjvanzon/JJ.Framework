@@ -1,5 +1,5 @@
 ﻿What is JJ.AutoIncrementVersion ?!
-----------------------------------
+==================================
 
 I want my `*` back! 
 
@@ -7,10 +7,11 @@ Those don't work anymore for version numbers. But we want auto-incremental numbe
 
 This package allows you to use `$(BuildNum)` instead.
 
-### How to Use?
+
+How to Use?
+-----------
  
 You can use `$(BuildNum)` inside your version number, like this:
-
 
 ```
 1.0.$(BuildNum)
@@ -24,15 +25,31 @@ And the effective version becomes something like:
 
 Every time you build your project, the `$(BuildNum)` is simply incremented by `1`.
 
-### Setup
+
+Setup
+-----
 
 - Install the package.
 - Start using `$(BuildNum)`.
 
-### Advanced Use?
 
-Nothing: No config, no command line, no hidden options. Just install the package, add `$(BuildNum)` to your version, and build.
+Advanced Use?
+-------------
 
-### 💬 Feedback 
+Nothing:
 
-Found an issue? <a href="https://jjvanzon.github.io/#-how-to-reach-me" target="_blank">Let me know.</a>
+- No config
+- No command line
+- No hidden options
+ 
+Just:
+
+- Install the package, 
+- Add `$(BuildNum)` to your version.
+- And build.
+
+
+💬 Feedback 
+-----------
+
+Found an issue? [Let me know.](https://jjvanzon.github.io/#-how-to-reach-me)
