@@ -16,6 +16,8 @@
     <Copyright>Copyright © Jan Joost van Zon 2025</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>    
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>
@@ -24,8 +26,6 @@
     <PackageProjectUrl>
       https://github.com/jjvanzon/JJ.Framework/tree/core/Framework/JJ.Framework.Versioning.Core
     </PackageProjectUrl>
-    <IncludeSymbols>True</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   
   <ItemGroup>
