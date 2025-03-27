@@ -1,7 +1,7 @@
 ﻿What is JJ.AutoIncrementVersion ?!
 ==================================
 
-I want my `*` back! 
+We want our `*` back!
 
 Those don't work anymore for version numbers. But we want auto-incremental numbers!
 
