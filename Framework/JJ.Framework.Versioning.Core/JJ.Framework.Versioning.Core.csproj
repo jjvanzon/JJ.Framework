@@ -4,8 +4,8 @@
   
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <Version Condition="'$(BuildNum)'==''">1.8.0</Version>
-    <Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>
+    <Version Condition="'$(BuildNum)'==''">1.9.0</Version>
+    <Version Condition="'$(BuildNum)'!=''">1.9.$(BuildNum)</Version>
     <AssemblyName>JJ.AutoIncrementVersion</AssemblyName>
     <Description>We miss our * but we can now use %24(BuildNum)</Description>
     <PackageTags>

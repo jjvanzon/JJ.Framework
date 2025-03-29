@@ -48,6 +48,13 @@ Just:
 - Add `$(BuildNum)` to your version.
 - And build.
 
+ 
+Release Notes
+=============
+
+`1.8` Initial release  
+`1.9` Fix file in use error
+ 
 
 💬 Feedback 
 ============
