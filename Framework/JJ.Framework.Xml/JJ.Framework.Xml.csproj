@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <Version>1.8.$(BuildNum)</Version>
+    <Version>1.9.$(BuildNum)</Version>
     <Authors>JJ van Zon</Authors>
     <Copyright>Copyright © Jan Joost van Zon 2013 - 2025</Copyright>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -13,7 +13,7 @@
     <None Remove="NCrunch.JJ.Framework.Xml_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.1041" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.9.1106" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\External Components\SgmlReader\Source Code Adapted\sgmlreaderdll\SgmlReaderDll.csproj" />

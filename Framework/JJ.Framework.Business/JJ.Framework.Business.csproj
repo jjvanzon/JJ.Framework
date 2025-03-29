@@ -6,7 +6,7 @@
     <AssemblyTitle>JJ.Framework.Business</AssemblyTitle>
     <Product>JJ.Framework.Business</Product>
     <Copyright>Copyright ©  2014</Copyright>
-    <Version>1.8.$(BuildNum)</Version>
+    <Version>1.9.$(BuildNum)</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@
     <AssemblyTitle>JJ.Framework.Reflection.Net48</AssemblyTitle>
     <Product>JJ.Framework.Reflection.Net48</Product>
     <Copyright>Copyright ©  2013</Copyright>
-    <Version>1.8.$(BuildNum)</Version>
+    <Version>1.9.$(BuildNum)</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
@@ -14,7 +14,7 @@
     <None Remove="NCrunch.JJ.Framework.Reflection_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.8.1041" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.9.1106" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />

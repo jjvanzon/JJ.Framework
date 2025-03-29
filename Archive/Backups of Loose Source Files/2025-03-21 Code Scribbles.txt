@@ -48,8 +48,8 @@ Use $(BuildNum) in your version number. Our * doesn't work anymore. But we want 
     </None>
 
 
-    <!--<Version Condition="'$(BuildNum)'==''">1.8.0</Version>-->
-    <!--<Version Condition="'$(BuildNum)'!=''">1.8.$(BuildNum)</Version>-->
+    <!--<Version Condition="'$(BuildNum)'==''">1.9.0</Version>-->
+    <!--<Version Condition="'$(BuildNum)'!=''">1.9.$(BuildNum)</Version>-->
 
 
 
