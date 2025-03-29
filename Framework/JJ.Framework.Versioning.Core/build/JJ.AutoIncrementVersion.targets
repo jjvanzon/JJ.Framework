@@ -64,23 +64,23 @@
   
   <!-- Auto-create Directory.Build.props that imports BuildNum.xml for fallback before package restore and after uninstall. -->
            <Message Condition="!Exists('$(DirPropsjj)')" Text="$(Initjj) => &quot;$(DirPropsjj)&quot;" Importance="High" />
-  <WriteLinesToFile Condition="!Exists('$(DirPropsjj)')" File="$(DirPropsjj)" Lines="$(DirPropsContentjj)" />
+  <WriteLinesToFile Condition="!Exists('$(DirPropsjj)')" File="$(DirPropsjj)" Lines="$(DirPropsContentjj)" ContinueOnError="True" />
 
   <!-- CONTENT -->
   
-  <ReadLinesFromFile File="$(DirPropsjj)" Condition="Exists('$(DirPropsjj)')" >
+  <ReadLinesFromFile File="$(DirPropsjj)" Condition="Exists('$(DirPropsjj)')" ContinueOnError="True" >
     <Output TaskParameter="Lines" PropertyName="DirPropsReadOutjj" />
   </ReadLinesFromFile>
   
   <Message Text="$(Contentjj) dir .props: $(DirPropsReadOutjj) &lt;= &quot;$(DirPropsjj)&quot;" Importance="High" />
   
-  <ReadLinesFromFile File="$(Xmljj)" Condition="Exists('$(Xmljj)')" >
+  <ReadLinesFromFile File="$(Xmljj)" Condition="Exists('$(Xmljj)')" ContinueOnError="True">
     <Output TaskParameter="Lines" PropertyName="XmlReadOutjj" />
   </ReadLinesFromFile>
   
   <Message Text="$(Contentjj) .xml: $(XmlReadOutjj) &lt;= &quot;$(Xmljj)&quot;" Importance="High" />
 
-  <ReadLinesFromFile File="$(Propsjj)" Condition="Exists('$(Propsjj)')" >
+  <ReadLinesFromFile File="$(Propsjj)" Condition="Exists('$(Propsjj)')" ContinueOnError="True">
     <Output TaskParameter="Lines" PropertyName="PropsReadOutjj" />
   </ReadLinesFromFile>
   
@@ -95,13 +95,13 @@
   
   <!-- Updated XML -->
            <Message Text="$(Savejj) $(BuildNum) => .xml &quot;$(Xmljj)&quot;" Importance="High" />
-  <WriteLinesToFile File="$(Xmljj)" Overwrite="true" Lines="$(XmlContentjj)" />
+  <WriteLinesToFile File="$(Xmljj)" Overwrite="true" Lines="$(XmlContentjj)"  ContinueOnError="True" />
   
   <!-- STAGE -->
   
   <!-- XML file => package bound .props location, to import BuildNum early enough for use in csproj. --> 
            <Message Text="$(Stagejj) $(BuildNum) => .props &quot;$(Propsjj)&quot;" Importance="High"  />
-  <WriteLinesToFile File="$(Propsjj)" Overwrite="true" Lines="$(PropsContentjj)" />
+  <WriteLinesToFile File="$(Propsjj)" Overwrite="true" Lines="$(PropsContentjj)" ContinueOnError="True" />
 </Target>
     
 </Project>
