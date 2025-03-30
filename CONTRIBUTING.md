@@ -10,6 +10,9 @@ __📔 Contents__
 - [🧓 Checking Out Old Commits](#-checking-out-old-commits)
 
 
+Here you can find instructions to set up your dev environment so `JJ.Framework.sln` can be built.
+
+
 ⚙ Dev Env
 -----------
 
