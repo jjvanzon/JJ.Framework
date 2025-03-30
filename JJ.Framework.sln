@@ -219,6 +219,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Introduction.txt = Introduction.txt
 		LICENSE.TXT = LICENSE.TXT
 		NuGet.config = NuGet.config
+		README.MD = README.MD
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.AutoIncrementVersion", "Demos\JJ.Demos.AutoIncrementVersion\JJ.Demos.AutoIncrementVersion.csproj", "{2E938816-BB2F-D170-F2E1-7ED76A84A3A7}"
