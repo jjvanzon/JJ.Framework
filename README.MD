@@ -49,7 +49,7 @@ Of course, this 'in-house development' argument does not apply, when other peopl
 🏛️ History
 -----------
 
-Any reusable code independent of a particular business domain, was moved to this `JJ.Framework`, for reuse. The reusable code was gathered up between 2010 and 2020. It was a hobby project. But something similar to this framework, was also developed professionally in a team of 7 of which I was the technical lead at the time.
+Any reusable code independent of a particular business domain, was moved to this `JJ.Framework`, for reuse. The reusable code was gathered up between 2010 and 2025. It was a hobby project. But something similar to this framework, was also developed professionally in a team of 7 of which I was the technical lead at the time.
 
 
 🍱 Modularization
@@ -57,13 +57,13 @@ Any reusable code independent of a particular business domain, was moved to this
 
 `JJ.Framework` tends to have a separate assembly for each part of the `.NET Framework` that it extends. Separation may be found between technical aspects. That may allow being specific, on which parts of `.NET` an application becomes dependent.
 
-`JJ.Framework` also likes decouple platform-specific implementation details and hide them behind generalized interfaces.
+`JJ.Framework` also likes to decouple platform-specific implementation details and hide them behind generalized interfaces.
 
 
 💁 Platform Compatibility
 --------------------------
 
-That grip on dependency, was once a good plan for platform compatibility. `JJ.Framework` may currently be based on `.NET 4.6.1` trying to keep it compatible with Mono. Around 2015 `JJ.Framework` was tested to be reasonably compatible with Mono and by extension Android, iOS and Windows Phone. This was before newer technology like `.NET Standard` and more recently `.NET 5` and up, which might make keeping things platform-compatible a bit easier than before. For this reason, there may be plans to port `JJ.Framework` to `.NET 5` or higher once, but  this currently isn't in the plans.
+That grip on dependency, was once a good plan for platform compatibility. Some of `JJ.Framework` is still based on `.NET 4.6.1` trying to keep it compatible with `Mono`. Around 2015 `JJ.Framework` was tested to be reasonably compatible with `Mono` and by extension `Android`, `iOS` and `Windows Phone`. This was before newer technology like `.NET Standard` and `.NET 5 +` emerged, which could make platform-compatibility a bit easier than before. For this reason, some of the `JJ.Framework` is currently being ported to a newer `.NET`, but this is still an ongoing process.
 
 
 ⚙ Dev Env
@@ -81,7 +81,7 @@ That grip on dependency, was once a good plan for platform compatibility. `JJ.Fr
 
 - You can enable `IIS` with "Turn Windows features on or off" (search in the `Start` menu).
 - The following options have been known to work on `Windows 11`:  
-  <img src="iis-components.png" width="250" />
+  <img src="resources/iis-components.png" width="250" />
 - Some projects need `Internet Information Services (IIS)`.
 - They might not load otherwise.
 - Create a web site for each of the relevant projects below.
@@ -151,13 +151,13 @@ That grip on dependency, was once a good plan for platform compatibility. `JJ.Fr
 
 ### 💽 SQL Server
 
-SQL Server *is* used by some of the automated tests, but they fail gracefully with an inconclusive result. Anyway, the database files may or may not even be included in this code base either.
+SQL Server *is* used by some of the automated tests, but they may fail gracefully with an inconclusive result. Anyway, the database files may or may not even be included in this code base either.
 
 
 🧓 Checking Out Old Commits
 ----------------------------
 
-`JJ.Framework` was once part of a larger code base. It was extracted to become a new Git repository with history in tact. Some quirks when checking out older history items, may have to do with that.
+`JJ.Framework` was once part of a larger code base. It was extracted to become a new Git repository with history in tact. Some quirks when checking out older history items, still have to do with that.
 
 Sometimes commit comments may mention *apps* that do not seem to be relevant to the `JJ.Framework`. That is because changes to `JJ.Framework` were in service of making a feature in another app.
 
@@ -172,14 +172,14 @@ The following may only be relevant when getting older commits from history (from
     - It might still build even though some projects may not load.
 - Missing *NHibernate SQL Logger* files.
     - *NHibernate SQL Logger* was made in  employer's time, but programmed into the `JJ.Framework`. It was removed out of the `JJ.Framework` to avoid intellectual property issues.
-    - Perhaps remove references to non-existent files.
-    - Perhaps remove the pieces of code that use `if (SqlLogger.Enabled)` and it will work.
+    - Remove references to non-existent files.
+    - Remove the pieces of code that use `if (SqlLogger.Enabled)` and it will work.
 - *.NET Framework* mismatches:
     - These errors may have slipped in, by not consistently building all solutions upon committing code.
     - The symptom would be compiler errors. `csproj` references may appear not to work, even when the references are obviously there.
-    - Perhaps correct the `csproj` with the lower `.NET` version (e.g. `3.5`) to use the higher `.NET` version instead (e.g. `4.5`).
+    - Correct the `csproj` with the lower `.NET` version (e.g. `3.5`) to use the higher `.NET` version instead (e.g. `4.5`).
 - *MVC Framework*
     - Mismatches `4.0.0.0` vs `4.0.0.1`.
-    - Perhaps correct it so the projects use the same version (using NuGet?).
+    - Correct it so the projects use the same version (using NuGet).
 - *Entity Framework*
     - It seems difficult for a newer *Visual Studio* to find (the older) *Entity Framework 5*. Messing around until you got some working references to Entity Framework might be the only advice at hand here.
