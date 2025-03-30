@@ -60,3 +60,8 @@ Any reusable code independent of a particular business domain, was moved to this
 
 That grip on dependency, was once a good plan for platform compatibility. Some of `JJ.Framework` is still based on `.NET 4.6.1` trying to keep it compatible with `Mono`. Around 2015 `JJ.Framework` was tested to be reasonably compatible with `Mono` and by extension `Android`, `iOS` and `Windows Phone`. This was before newer technology like `.NET Standard` and `.NET 5 +` emerged, which could make platform-compatibility a bit easier than before. For this reason, some of the `JJ.Framework` is currently being ported to a newer `.NET`, but this is still an ongoing process.
 
+
+💬 Feedback 
+------------
+
+Got feedback or questions? You can reach me [here.](https://jjvanzon.github.io/#-how-to-reach-me)
