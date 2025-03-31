@@ -11,7 +11,7 @@
     <None Remove="NCrunch.JJ.Framework.Presentation.WinForms_AnalysisBuild.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.9.1106" />
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="SimpleFileProcessControl.cs">

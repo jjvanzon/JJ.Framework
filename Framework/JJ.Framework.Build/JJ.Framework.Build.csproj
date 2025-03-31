@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.250.$(BuildNum)</Version>
+    <Description>Internal infrastructure. A supporting tool, designed to trigger initialization at the start of a solution build.</Description>
+    <PackageTags></PackageTags>
+    <Authors>JJ van Zon</Authors>
+    <Copyright>Copyright © 2013 - 2025 Jan Joost van Zon</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <!--
+    <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Canonical</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Canonical</PackageProjectUrl>
+    -->
+  </PropertyGroup>
+
+  <!--
+  <ItemGroup>
+    <Content Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Resources\jj-icon-64x64-margin4.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Remove="JJ.Canonical.Build.v3.ncrunchproject" />
+  </ItemGroup>
+  -->
+  
+  <ItemGroup>
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.9.1106" />
+  </ItemGroup>
+
+</Project>

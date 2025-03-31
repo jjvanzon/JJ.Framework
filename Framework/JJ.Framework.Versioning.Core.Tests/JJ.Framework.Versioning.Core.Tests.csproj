@@ -11,6 +11,7 @@
     
   <ItemGroup>
     <None Remove="Dummy.txt" />
+    <None Remove="NCrunch.JJ.Framework.Versioning.Core.Tests_AnalysisBuild.xml" />
   </ItemGroup>
     
   <ItemGroup>
@@ -20,7 +21,7 @@
   </ItemGroup>
     
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.9.1106" />
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
 
 </Project>

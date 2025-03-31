@@ -29,12 +29,12 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.9.1106" />
+    <None Remove="JJ.Framework.PlatformCompatibility.v3.ncrunchproject" />
+    <None Remove="NCrunch.JJ.Framework.PlatformCompatibility_AnalysisBuild.xml" />
   </ItemGroup>
   
   <ItemGroup>
-    <None Remove="JJ.Framework.PlatformCompatibility.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Framework.PlatformCompatibility_AnalysisBuild.xml" />
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
 
 </Project>
