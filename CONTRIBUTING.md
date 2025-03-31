@@ -1,7 +1,7 @@
 ﻿Contributing to JJ.Framework
 ============================
 
-__📔 Contents__
+__Contents__
 
 - [Architecture](#architecture)
 - [Legacy](#legacy)
@@ -29,7 +29,7 @@ The project follows [JJ's Software Architecture](https://github.com/jjvanzon/JJs
 Legacy
 ------
 
-Development under special "legacy" constraints that affect versioning, branching, and framework targeting. It's a bit unconventional and needs a more detailed explanation than usual.
+Development is done under special "legacy" constraints that affect versioning, branching, and framework targeting. It's a bit unconventional and needs a more detailed explanation than usual.
 
 
 Branching
@@ -201,12 +201,10 @@ Internet Information Services (IIS)
 Checking Out Old Commits
 ------------------------
 
-`JJ.Framework` was once part of a larger code base. It was extracted to become a new Git repository with history in tact. Some quirks when checking out older history items, still have to do with that.
+Older commits may have quirks.
 
-Sometimes commit comments may mention *apps* that do not seem to be relevant to the `JJ.Framework`. That is because changes to `JJ.Framework` were in service of making a feature in another app.
-
-The following may only be relevant when getting older commits from history (from before 2018-12-02).
-
+- Broken references.
+    - To fix this, try referencing the [NuGet](https://www.nuget.org/profiles/jjvanzon) version of these dependencies.
 - No solution file in the first commits.
     - `JJ.Framework` projects were first only referenced by the solution of the app it was made for. Those solutions are not be in the history here, so the first commits may have no solution file.
 - `JJ.sln` references non-existent projects.
@@ -214,16 +212,16 @@ The following may only be relevant when getting older commits from history (from
     - However, what you might find there is a `JJ.sln`, broader in scope.
     - However it would include projects from other apps too.
     - It might still build even though some projects may not load.
-- Missing *NHibernate SQL Logger* files.
-    - *NHibernate SQL Logger* was made in  employer's time, but programmed into the `JJ.Framework`. It was removed out of the `JJ.Framework` to avoid intellectual property issues.
+- Missing `NHibernate SQL Logger` files.
+    - `NHibernate SQL Logger` was made in  employer's time, but programmed into the `JJ.Framework`. It was removed out of the `JJ.Framework` to avoid intellectual property issues.
     - Remove references to non-existent files.
     - Remove the pieces of code that use `if (SqlLogger.Enabled)` and it will work.
-- *.NET Framework* mismatches:
+- `.NET Framework` mismatches:
     - These errors may have slipped in, by not consistently building all solutions upon committing code.
     - The symptom would be compiler errors. `csproj` references may appear not to work, even when the references are obviously there.
     - Correct the `csproj` with the lower `.NET` version (e.g. `3.5`) to use the higher `.NET` version instead (e.g. `4.5`).
-- *MVC Framework*
+- `MVC Framework`
     - Mismatches `4.0.0.0` vs `4.0.0.1`.
     - Correct it so the projects use the same version (using NuGet).
-- *Entity Framework*
+- `Entity Framework`
     - It seems difficult for a newer *Visual Studio* to find (the older) *Entity Framework 5*. Messing around until you got some working references to Entity Framework might be the only advice at hand here.
