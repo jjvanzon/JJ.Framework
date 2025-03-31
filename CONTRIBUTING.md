@@ -6,18 +6,18 @@ __Contents__
 - [Architecture](#architecture)
 - [Legacy](#legacy)
 - [Branching](#branching)
-- [Deployment](#deployment)
+- [Deployments](#deployments)
 - [Versioning](#versioning)
 - [Namespaces](#namespaces)
 - [Mutations](#mutations)
 - [Extensions](#extensions)
 - [Code Copies](#code-copies)
-- [Conclusion about Legacy](#conclusion-about-legacy)
-- [Deployment](#deployment-1)
+- [Legacy Conclusion](#legacy-conclusion)
+- [Pipelines](#pipelines)
 - [Dev Env](#dev-env)
 - [SQL Server](#sql-server)
 - [Internet Information Services (IIS)](#internet-information-services-iis)
-- [Older Commits](#older-commits)
+- [Old Commits](#old-commits)
 
 
 Architecture
@@ -41,7 +41,7 @@ Branching
 - __The `legacy` branch shall not be deleted! The `legacy` shall remain!__
 
 
-Deployment
+Deployments
 ----------
 
 - Around `2018`, about `15` projects were released from `legacy` to `NuGet` for `.NET 4.6.1`, compatible with the now-retired `Mono` compiler.
@@ -93,14 +93,14 @@ Code Copies
 `.Core` may also contain "copies from new" cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Core`, we get all the sweet stuff out there that we want.
 
 
-Conclusion about Legacy 
------------------------
+Legacy Conclusion
+-----------------
 
 Although these rules may feel restrictive, they help us continue to pull updates from our `legacy` history, and still modernize each project. The `legacy` shall remain, but new developments can thrive right alongside it!
 
 
-Deployment
-----------
+Pipelines
+---------
 
 - `Azure Pipelines` is there for `Build` and `Release` pipelining, with limited access to the deployment buttons.
 - Eventually pakcages are deployed on [`NuGet`](https://www.nuget.org/profiles/jjvanzon), but there are stages before that.
@@ -198,8 +198,8 @@ Internet Information Services (IIS)
         - `::1        demo-ret-withviewmapping-urlparameter.jjvanzon.io`
 
 
-Older Commits
--------------
+Old Commits
+-----------
 
 Older commits may have quirks.
 
