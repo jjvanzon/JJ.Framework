@@ -5,10 +5,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Framework.PlatformCompatibility.Tests
 {
     [TestClass]
-    public sealed class Encoding_PlatformCompatibility_Tests
+    public sealed class PlatformCompatibility_Encoding_Tests
     {
         [TestMethod]
-        public void Test_Encoding_PlatformSafe()
+        public void Encoding_PlatformSafe_Test()
         {
             int previousByteCount = 0;
             

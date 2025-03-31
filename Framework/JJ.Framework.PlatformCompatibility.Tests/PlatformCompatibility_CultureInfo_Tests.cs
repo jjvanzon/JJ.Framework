@@ -5,10 +5,10 @@ using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 namespace JJ.Framework.PlatformCompatibility.Tests
 {
     [TestClass]
-    public sealed class CultureInfo_PlatformCompatibility_Tests
+    public sealed class PlatformCompatibility_CultureInfo_Tests
     {
         [TestMethod]
-        public void Test_CultureInfo_PlatformSafe()
+        public void CultureInfo_PlatformSafe_Test()
         {
             foreach (string cultureName in new[] { "nl-NL", "en-US", "de-DE", "zh-CN" })
             {
