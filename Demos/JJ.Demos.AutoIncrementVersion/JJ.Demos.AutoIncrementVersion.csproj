@@ -9,7 +9,8 @@
     <Version Condition="'$(BuildNum)'==''">0.250.0</Version>
     <Version Condition="'$(BuildNum)'!=''">0.250.$(BuildNum)</Version>
 
-    <TargetFrameworks>net9.0;net8.0;netstandard2.0</TargetFrameworks>
+    <!--<TargetFrameworks>net9.0;net8.0;netstandard2.0</TargetFrameworks>-->
+    <TargetFramework>net9.0</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Description>Demonstration of auto-incremental versioning as a copy-paste into your csproj, superseded by JJ.AutoIncrementVersion, which does it for you automatically.</Description>
     <PackageTags>demo; versioning</PackageTags>
