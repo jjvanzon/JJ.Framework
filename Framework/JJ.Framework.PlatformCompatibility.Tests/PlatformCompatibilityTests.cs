@@ -10,16 +10,19 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         [TestMethod]
         public void Test_CultureInfo_PlatformSafe()
         {
-            var cultureInfo1 = CultureInfo.GetCultureInfo("nl-NL");
-            var cultureInfo2 = new CultureInfo("nl-NL");
-            var cultureInfo3 = CultureInfo_PlatformSafe.GetCultureInfo("nl-NL");
-            
-            IsNotNull(cultureInfo1);
-            IsNotNull(cultureInfo2);
-            IsNotNull(cultureInfo3);
-            
-            AreEqual(cultureInfo1.Name, cultureInfo2.Name);
-            AreEqual(cultureInfo2.Name, cultureInfo3.Name);
+            foreach (string cultureName in new[] { "nl-NL", "en-US", "de-DE", "zh-CN" })
+            {
+                var cultureInfo1 = CultureInfo.GetCultureInfo(cultureName);
+                var cultureInfo2 = new CultureInfo(cultureName);
+                var cultureInfo3 = CultureInfo_PlatformSafe.GetCultureInfo(cultureName);
+                
+                IsNotNull(cultureInfo1);
+                IsNotNull(cultureInfo2);
+                IsNotNull(cultureInfo3);
+                
+                AreEqual(cultureInfo1.Name, cultureInfo2.Name);
+                AreEqual(cultureInfo2.Name, cultureInfo3.Name);
+            }
         }
     }
 }
