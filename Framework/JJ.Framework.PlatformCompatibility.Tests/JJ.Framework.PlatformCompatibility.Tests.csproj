@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <!--<ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="3.7.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />
+  </ItemGroup>
+</Project>
