@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <!--<TargetFramework>net9.0</TargetFramework>-->
     <Version>0.250.$(BuildNum)</Version>
     <Description>Internal infrastructure. A supporting tool, designed to trigger initialization at the start of a solution build.</Description>
     <PackageTags></PackageTags>
@@ -14,10 +13,8 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <!--
-    <RepositoryUrl>https://github.com/jjvanzon/JJ.Canonical</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Canonical</PackageProjectUrl>
-    -->
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Build</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Build</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
