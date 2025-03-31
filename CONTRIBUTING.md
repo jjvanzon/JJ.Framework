@@ -9,15 +9,15 @@ __Contents__
 - [Deployment](#deployment)
 - [Versioning](#versioning)
 - [Namespaces](#namespaces)
-- [Immutability](#immutability)
-- [New Extensions](#new-extensions)
-- [Copies from "New"](#copies-from-new)
+- [Mutations](#mutations)
+- [Extensions](#extensions)
+- [Code Copies](#code-copies)
 - [Conclusion about Legacy](#conclusion-about-legacy)
 - [Deployment](#deployment-1)
 - [Dev Env](#dev-env)
 - [SQL Server](#sql-server)
 - [Internet Information Services (IIS)](#internet-information-services-iis)
-- [Checking Out Old Commits](#checking-out-old-commits)
+- [Older Commits](#older-commits)
 
 
 Architecture
@@ -75,22 +75,22 @@ JJ.Framework.Configuration.Core
   Either brand-new development or code copied from the __latest__ `legacy` code. This way, we don't stifle innovation while we're working with legacy code.
 
 
-Immutability
-------------
+Mutations
+---------
 
 Projects without a suffix, like `JJ.Framework.Configuration`, are to remain mostly untouched, aside from absolutely necessary fixes. If we tweak them too much, future merges from `legacy` could devolve into painful merge conflicts. So, the unwritten rule: __keep changes minimal__ to preserve easy integration of subsequent `legacy` pulls.
 
 
-New Extensions
---------------
+Extensions
+----------
 
 `.Core`-suffixed projects can evolve freely. We don't want to halt new development just because our main code hails from the past. This is where all new features or functionality that never existed in `legacy` can be added.
 
 
-Copies from "New"
------------------
+Code Copies
+-----------
 
-`.Core` may also contain code cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Core`, we get all the sweet stuff out there that we want.
+`.Core` may also contain "copies from new" cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Core`, we get all the sweet stuff out there that we want.
 
 
 Conclusion about Legacy 
@@ -198,8 +198,8 @@ Internet Information Services (IIS)
         - `::1        demo-ret-withviewmapping-urlparameter.jjvanzon.io`
 
 
-Checking Out Old Commits
-------------------------
+Older Commits
+-------------
 
 Older commits may have quirks.
 
