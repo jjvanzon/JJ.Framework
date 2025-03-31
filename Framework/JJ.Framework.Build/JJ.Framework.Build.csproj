@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!--<TargetFramework>netstandard2.0</TargetFramework>-->
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <!--<TargetFramework>net9.0</TargetFramework>-->
     <Version>0.250.$(BuildNum)</Version>
     <Description>Internal infrastructure. A supporting tool, designed to trigger initialization at the start of a solution build.</Description>
     <PackageTags></PackageTags>
