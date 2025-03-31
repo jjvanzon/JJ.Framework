@@ -12,9 +12,9 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <!--
     <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <!--
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Canonical</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Canonical</PackageProjectUrl>
     -->
@@ -24,20 +24,20 @@
     <PackageReference Include="JJ.AutoIncrementVersion" Version="1.9.1106" />
   </ItemGroup>
 
-  <!--
+  
   <ItemGroup>
-    <Content Include="..\README.md">
+    <Content Include="README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\Resources\jj-icon-64x64-margin4.png">
+    <Content Include="..\..\Resources\jj-icon-64x64-margin4.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Remove="JJ.Canonical.Build.v3.ncrunchproject" />
   </ItemGroup>
-  -->
+  
 
 </Project>
