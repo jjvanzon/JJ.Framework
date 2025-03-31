@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.250.$(BuildNum)</Version>
+    <Version>1.9.$(BuildNum)</Version>
     <Description>Internal infrastructure. A supporting tool, designed to trigger initialization at the start of a solution build.</Description>
     <PackageTags></PackageTags>
     <Authors>JJ van Zon</Authors>
