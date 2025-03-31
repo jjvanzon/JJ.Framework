@@ -20,6 +20,10 @@
     -->
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="1.9.1106" />
+  </ItemGroup>
+
   <!--
   <ItemGroup>
     <Content Include="..\README.md">
