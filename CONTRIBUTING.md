@@ -3,6 +3,7 @@
 
 __📔 Contents__
 
+- [Architecture](#architecture)
 - [Legacy](#legacy)
 - [Branching](#branching)
 - [Deployment](#deployment)
@@ -14,15 +15,21 @@ __📔 Contents__
 - [Conclusion about Legacy](#conclusion-about-legacy)
 - [Deployment](#deployment-1)
 - [Dev Env](#dev-env)
-- [Internet Information Services (IIS)](#internet-information-services-iis)
 - [SQL Server](#sql-server)
+- [Internet Information Services (IIS)](#internet-information-services-iis)
 - [Checking Out Old Commits](#checking-out-old-commits)
+
+
+Architecture
+------------
+
+The project follows [JJ's Software Architecture](https://github.com/jjvanzon/JJs-Reference-Architecture).
 
 
 Legacy
 ------
 
-This project is developed under special "legacy" constraints that affect versioning, branching, and framework targeting. It's a bit unconventional and needs a more detailed explanation than usual.
+Development under special "legacy" constraints that affect versioning, branching, and framework targeting. It's a bit unconventional and needs a more detailed explanation than usual.
 
 
 Branching
@@ -111,6 +118,12 @@ Dev Env
 - Several `.NET SDK` versions might be needed to compile, which can also be downloaded from `Microsoft`. Be sure you use the `SDK` or `Development Pack` ones, not the `Targeting Packs` or `Runtime` versions.
 
 
+SQL Server
+----------
+
+SQL Server *is* used by some of the automated tests, but they may fail gracefully with an inconclusive result. Anyway, the database files may or may not even be included in this code base either.
+
+
 Internet Information Services (IIS)
 -----------------------------------
 
@@ -183,12 +196,6 @@ Internet Information Services (IIS)
     - hosts file entries:
         - `127.0.0.1  demo-ret-withviewmapping-urlparameter.jjvanzon.io`
         - `::1        demo-ret-withviewmapping-urlparameter.jjvanzon.io`
-
-
-SQL Server
-----------
-
-SQL Server *is* used by some of the automated tests, but they may fail gracefully with an inconclusive result. Anyway, the database files may or may not even be included in this code base either.
 
 
 Checking Out Old Commits
