@@ -1,6 +1,6 @@
 JJ.Framework.Build
 ==================
 
-Internal infrastructure.
+Internal infrastructure. Not intended for direct use.
 
-A supporting tool, designed to trigger initialization at the start of a solution build. Used internally to provide a single reference to [`JJ.AutoIncrementVersion`](https://www.nuget.org/packages/JJ.AutoIncrementVersion), allowing other projects to reference `JJ.Framework.Build.csproj` instead. This makes the version increment only once, improves build reliability and keeps the version number coherent throughout the build.
+A supporting tool, designed to trigger initialization at the start of a solution build. Provides a single reference to [`JJ.AutoIncrementVersion`](https://www.nuget.org/packages/JJ.AutoIncrementVersion), allowing other projects to reference `JJ.Framework.Build.csproj` instead. This increments the version only once per build, keeping the version numbers coherent and improving build reliability.
