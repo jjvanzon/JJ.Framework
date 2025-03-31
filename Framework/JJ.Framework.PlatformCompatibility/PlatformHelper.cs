@@ -33,6 +33,11 @@ namespace JJ.Framework.PlatformCompatibility
             {
                 return MemberTypes_PlatformSafe.Field;
             }
+            
+            if (memberInfo is ConstructorInfo)
+            {
+                return MemberTypes_PlatformSafe.Constructor;
+            }
 
             if (memberInfo is MethodBase)
             {

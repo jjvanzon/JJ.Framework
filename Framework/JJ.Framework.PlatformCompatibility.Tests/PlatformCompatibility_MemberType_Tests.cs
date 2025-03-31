@@ -8,6 +8,8 @@ namespace JJ.Framework.PlatformCompatibility.Tests
     [TestClass]
     public class PlatformCompatibility_MemberType_Tests
     {
+        // ncrunch: no coverage start
+        
         public class DummyClass(int parameter)
         {
             public event EventHandler Event;
@@ -16,8 +18,10 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             public void Method() { }
         }
         
+        // ncrunch: no coverage end
+        
         [TestMethod]
-        public void MemberTypes_PlatformSafe_Test()
+        public void MemberTypes_PlatformSafe_Enum_Test()
         {
             Assert.AreEqual(MemberTypes.Constructor, (MemberTypes)MemberTypes_PlatformSafe.Constructor);
             Assert.AreEqual(MemberTypes.Event,       (MemberTypes)MemberTypes_PlatformSafe.Event      );
@@ -31,7 +35,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void MemberInfo_MemberType_PlatformSafe_Test()
+        public void MemberType_PlatformSafe_Method_Test()
         {
             // TODO: NestedType and Constructor are not accurately detected.
 
@@ -67,7 +71,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             
             MemberTypes_PlatformSafe            type_MemberTypes_PlatformSafe = PlatformHelper.MemberInfo_MemberType_PlatformSafe(type           );
             //MemberTypes_PlatformSafe      nestedType_MemberTypes_PlatformSafe = PlatformHelper.MemberInfo_MemberType_PlatformSafe(nestedType     );
-            //MemberTypes_PlatformSafe constructorInfo_MemberTypes_PlatformSafe = PlatformHelper.MemberInfo_MemberType_PlatformSafe(constructorInfo);
+            MemberTypes_PlatformSafe constructorInfo_MemberTypes_PlatformSafe = PlatformHelper.MemberInfo_MemberType_PlatformSafe(constructorInfo);
             MemberTypes_PlatformSafe       fieldInfo_MemberTypes_PlatformSafe = PlatformHelper.MemberInfo_MemberType_PlatformSafe(fieldInfo      );
             MemberTypes_PlatformSafe    propertyInfo_MemberTypes_PlatformSafe = PlatformHelper.MemberInfo_MemberType_PlatformSafe(propertyInfo   );
             MemberTypes_PlatformSafe      methodInfo_MemberTypes_PlatformSafe = PlatformHelper.MemberInfo_MemberType_PlatformSafe(methodInfo     );
@@ -75,7 +79,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             
             MemberTypes_PlatformSafe            type_MemberTypes_PlatformSafe2 = type           .MemberType_PlatformSafe();
             //MemberTypes_PlatformSafe      nestedType_MemberTypes_PlatformSafe2 = nestedType     .MemberType_PlatformSafe();
-            //MemberTypes_PlatformSafe constructorInfo_MemberTypes_PlatformSafe2 = constructorInfo.MemberType_PlatformSafe();
+            MemberTypes_PlatformSafe constructorInfo_MemberTypes_PlatformSafe2 = constructorInfo.MemberType_PlatformSafe();
             MemberTypes_PlatformSafe       fieldInfo_MemberTypes_PlatformSafe2 = fieldInfo      .MemberType_PlatformSafe();
             MemberTypes_PlatformSafe    propertyInfo_MemberTypes_PlatformSafe2 = propertyInfo   .MemberType_PlatformSafe();
             MemberTypes_PlatformSafe      methodInfo_MemberTypes_PlatformSafe2 = methodInfo     .MemberType_PlatformSafe();
@@ -93,7 +97,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
 
             Assert.AreEqual(MemberTypes_PlatformSafe.TypeInfo,               type_MemberTypes_PlatformSafe);
             //Assert.AreEqual(MemberTypes_PlatformSafe.NestedType,       nestedType_MemberTypes_PlatformSafe);
-            //Assert.AreEqual(MemberTypes_PlatformSafe.Constructor, constructorInfo_MemberTypes_PlatformSafe);
+            Assert.AreEqual(MemberTypes_PlatformSafe.Constructor, constructorInfo_MemberTypes_PlatformSafe);
             Assert.AreEqual(MemberTypes_PlatformSafe.Field,             fieldInfo_MemberTypes_PlatformSafe);
             Assert.AreEqual(MemberTypes_PlatformSafe.Property,       propertyInfo_MemberTypes_PlatformSafe);
             Assert.AreEqual(MemberTypes_PlatformSafe.Method,           methodInfo_MemberTypes_PlatformSafe);
@@ -101,7 +105,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
 
             Assert.AreEqual(MemberTypes_PlatformSafe.TypeInfo,               type_MemberTypes_PlatformSafe2);
             //Assert.AreEqual(MemberTypes_PlatformSafe.NestedType,       nestedType_MemberTypes_PlatformSafe2);
-            //Assert.AreEqual(MemberTypes_PlatformSafe.Constructor, constructorInfo_MemberTypes_PlatformSafe2);
+            Assert.AreEqual(MemberTypes_PlatformSafe.Constructor, constructorInfo_MemberTypes_PlatformSafe2);
             Assert.AreEqual(MemberTypes_PlatformSafe.Field,             fieldInfo_MemberTypes_PlatformSafe2);
             Assert.AreEqual(MemberTypes_PlatformSafe.Property,       propertyInfo_MemberTypes_PlatformSafe2);
             Assert.AreEqual(MemberTypes_PlatformSafe.Method,           methodInfo_MemberTypes_PlatformSafe2);
@@ -111,7 +115,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             
             Assert.AreEqual(           type_MemberTypes_PlatformSafe,            type_MemberTypes_PlatformSafe2);
             //Assert.AreEqual(     nestedType_MemberTypes_PlatformSafe,      nestedType_MemberTypes_PlatformSafe2);
-            //Assert.AreEqual(constructorInfo_MemberTypes_PlatformSafe, constructorInfo_MemberTypes_PlatformSafe2);
+            Assert.AreEqual(constructorInfo_MemberTypes_PlatformSafe, constructorInfo_MemberTypes_PlatformSafe2);
             Assert.AreEqual(      fieldInfo_MemberTypes_PlatformSafe,       fieldInfo_MemberTypes_PlatformSafe2);
             Assert.AreEqual(   propertyInfo_MemberTypes_PlatformSafe,    propertyInfo_MemberTypes_PlatformSafe2);
             Assert.AreEqual(     methodInfo_MemberTypes_PlatformSafe,      methodInfo_MemberTypes_PlatformSafe2);
@@ -119,7 +123,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             
             Assert.AreEqual(           type_MemberTypes, (MemberTypes)           type_MemberTypes_PlatformSafe);
             //Assert.AreEqual(     nestedType_MemberTypes, (MemberTypes)     nestedType_MemberTypes_PlatformSafe);
-            //Assert.AreEqual(constructorInfo_MemberTypes, (MemberTypes)constructorInfo_MemberTypes_PlatformSafe);
+            Assert.AreEqual(constructorInfo_MemberTypes, (MemberTypes)constructorInfo_MemberTypes_PlatformSafe);
             Assert.AreEqual(      fieldInfo_MemberTypes, (MemberTypes)      fieldInfo_MemberTypes_PlatformSafe);
             Assert.AreEqual(   propertyInfo_MemberTypes, (MemberTypes)   propertyInfo_MemberTypes_PlatformSafe);
             Assert.AreEqual(     methodInfo_MemberTypes, (MemberTypes)     methodInfo_MemberTypes_PlatformSafe);
