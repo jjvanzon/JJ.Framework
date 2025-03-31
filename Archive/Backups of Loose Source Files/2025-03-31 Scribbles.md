@@ -17,3 +17,24 @@ Here you can find instructions to set up your dev environment so `JJ.Framework.s
 Sometimes commit comments may mention *apps* that do not seem to be relevant to the `JJ.Framework`. That is because changes to `JJ.Framework` were in service of making a feature in another app.
 
 The following may only be relevant when getting older commits from history (from before 2018-12-02).
+
+```cs
+        
+        [TestMethod]
+        public void Test_PlatformHelper_CultureInfo_GetCultureInfo_PlatformSafe()
+        {
+            foreach (string cultureName in new[] { "nl-NL", "en-US", "de-DE", "zh-CN" })
+            {
+                var cultureInfo1 = CultureInfo.GetCultureInfo(cultureName);
+                var cultureInfo2 = new CultureInfo(cultureName);
+                var cultureInfo3 = PlatformHelper.CultureInfo_GetCultureInfo_PlatformSafe(cultureName);
+                
+                IsNotNull(cultureInfo1);
+                IsNotNull(cultureInfo2);
+                IsNotNull(cultureInfo3);
+                
+                AreEqual(cultureInfo1.Name, cultureInfo2.Name);
+                AreEqual(cultureInfo2.Name, cultureInfo3.Name);
+            }
+        }
+```
