@@ -3,11 +3,20 @@
 
 __📔 Contents__
 
-- [⚙ Dev Env](#-dev-env)
-    - [📦 JJ.Framework](#-jjframework)
-    - [🌐 Internet Information Services (IIS)](#-internet-information-services-iis)
-    - [💽 SQL Server](#-sql-server)
-- [🧓 Checking Out Old Commits](#-checking-out-old-commits)
+- [Legacy](#legacy)
+- [Branching](#branching)
+- [Deployment](#deployment)
+- [Versioning](#versioning)
+- [Namespaces](#namespaces)
+- [Immutability](#immutability)
+- [New Extensions](#new-extensions)
+- [Copies from "New"](#copies-from-new)
+- [Conclusion about Legacy](#conclusion-about-legacy)
+- [Deployment](#deployment-1)
+- [Dev Env](#dev-env)
+- [Internet Information Services (IIS)](#internet-information-services-iis)
+- [SQL Server](#sql-server)
+- [Checking Out Old Commits](#checking-out-old-commits)
 
 
 Legacy
