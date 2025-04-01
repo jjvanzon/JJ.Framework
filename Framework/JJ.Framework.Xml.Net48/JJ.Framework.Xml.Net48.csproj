@@ -54,6 +54,10 @@
       <Project>{d78bdcb6-13a6-4031-b4cb-431b1cd9d7fd}</Project>
       <Name>JJ.Framework.Common.Net48</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Core.Net48\JJ.Framework.PlatformCompatibility.Core.Net48.csproj">
+      <Project>{E1B3FCF3-6BF9-4F73-B1EF-2815DD46059B}</Project>
+      <Name>JJ.Framework.PlatformCompatibility.Core.Net48</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Net48\JJ.Framework.PlatformCompatibility.Net48.csproj">
       <Project>{1045208b-679d-40f0-bdba-68f3d1dccbd3}</Project>
       <Name>JJ.Framework.PlatformCompatibility.Net48</Name>

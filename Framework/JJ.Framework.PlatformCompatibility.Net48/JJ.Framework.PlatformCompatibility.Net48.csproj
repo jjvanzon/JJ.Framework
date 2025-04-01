@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1045208B-679D-40F0-BDBA-68F3D1DCCBD3}</ProjectGuid>
+    <ProjectGuid>{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JJ.Framework.PlatformCompatibility</RootNamespace>
@@ -42,7 +42,6 @@
     <Compile Include="..\JJ.Framework.PlatformCompatibility\CultureInfo_PlatformSafe.cs" />
     <Compile Include="..\JJ.Framework.PlatformCompatibility\Encoding_PlatformSafe.cs" />
     <Compile Include="..\JJ.Framework.PlatformCompatibility\PlatformHelper.cs" />
-    <Compile Include="..\JJ.Framework.PlatformCompatibility\PlatformExtensions.cs" />
     <Compile Include="..\JJ.Framework.PlatformCompatibility\MemberTypes_PlatformSafe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\JJ.Framework.PlatformCompatibility\Stream_PlatformSupport.cs" />

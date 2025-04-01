@@ -11,6 +11,7 @@ using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 using JJ.Framework.IO;
 using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Xml.Linq.Internal;
 using System.Globalization;
 

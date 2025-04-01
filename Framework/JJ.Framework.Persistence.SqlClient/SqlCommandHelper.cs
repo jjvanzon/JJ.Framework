@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.PlatformCompatibility.Core;
 using System.Data;
 using System.IO;
 using JJ.Framework.IO;

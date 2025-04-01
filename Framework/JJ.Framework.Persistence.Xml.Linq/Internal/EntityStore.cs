@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Xml.Linq;
 
 namespace JJ.Framework.Persistence.Xml.Linq.Internal

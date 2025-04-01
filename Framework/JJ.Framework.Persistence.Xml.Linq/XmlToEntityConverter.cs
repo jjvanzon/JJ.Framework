@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml.Linq;
 using JJ.Framework.Reflection;
 using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Persistence.Xml.Linq.Internal;
 using JJ.Framework.Xml.Linq;
 

@@ -1,6 +1,7 @@
 ﻿using JJ.Framework.Common;
 using JJ.Framework.Reflection;
 using JJ.Framework.PlatformCompatibility;
+using JJ.Framework.PlatformCompatibility.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
