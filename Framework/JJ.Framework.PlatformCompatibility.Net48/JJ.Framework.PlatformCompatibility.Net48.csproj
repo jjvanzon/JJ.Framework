@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{59622A6E-A9AE-438C-A164-05DEA2FCF8CF}</ProjectGuid>
+    <ProjectGuid>{1045208B-679D-40F0-BDBA-68F3D1DCCBD3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JJ.Framework.PlatformCompatibility</RootNamespace>
