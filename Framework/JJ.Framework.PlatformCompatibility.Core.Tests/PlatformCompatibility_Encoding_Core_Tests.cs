@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.PlatformCompatibility.Tests
+namespace JJ.Framework.PlatformCompatibility.Core.Tests
 {
     [TestClass]
-    public sealed class PlatformCompatibility_Encoding_Tests
+    public sealed class PlatformCompatibility_Encoding_Core_Tests
     {
         [TestMethod]
-        public void Encoding_PlatformSafe_Test()
+        public void Encoding_PlatformSafe_Core_Test()
         {
             int previousByteCount = 0;
             

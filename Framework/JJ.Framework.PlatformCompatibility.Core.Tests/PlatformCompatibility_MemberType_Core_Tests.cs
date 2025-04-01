@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.PlatformCompatibility.Tests
+namespace JJ.Framework.PlatformCompatibility.Core.Tests
 {
     [TestClass]
-    public class PlatformCompatibility_MemberType_Tests
+    public class PlatformCompatibility_MemberType_Core_Tests
     {
         // ncrunch: no coverage start
         
@@ -21,7 +23,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         // ncrunch: no coverage end
         
         [TestMethod]
-        public void MemberTypes_PlatformSafe_Enum_Test()
+        public void MemberTypes_PlatformSafe_Enum_Core_Test()
         {
             Assert.AreEqual(MemberTypes.Constructor, (MemberTypes)MemberTypes_PlatformSafe.Constructor);
             Assert.AreEqual(MemberTypes.Event,       (MemberTypes)MemberTypes_PlatformSafe.Event      );
@@ -35,7 +37,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests
         }
 
         [TestMethod]
-        public void MemberType_PlatformSafe_Method_Test()
+        public void MemberType_PlatformSafe_Method_Core_Test()
         {
             // TODO: NestedType and Constructor are not accurately detected.
 

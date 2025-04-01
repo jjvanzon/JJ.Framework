@@ -1,14 +1,18 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
-namespace JJ.Framework.PlatformCompatibility.Tests
+namespace JJ.Framework.PlatformCompatibility.Core.Tests
 {
     [TestClass]
-    public sealed class PlatformCompatibility_CultureInfo_Tests
+    public sealed class PlatformCompatibility_CultureInfo_Core_Tests
     {
         [TestMethod]
-        public void CultureInfo_PlatformSafe_Test()
+        public void CultureInfo_PlatformSafe_Core_Test()
         {
             foreach (string cultureName in new[] { "nl-NL", "en-US", "de-DE", "zh-CN" })
             {
