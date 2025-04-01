@@ -1,3 +1,5 @@
+CONTRIBUTING:
+
 Here you can find instructions to set up your dev environment so `JJ.Framework.sln` can be built.
 
 -----
@@ -17,6 +19,8 @@ Here you can find instructions to set up your dev environment so `JJ.Framework.s
 Sometimes commit comments may mention *apps* that do not seem to be relevant to the `JJ.Framework`. That is because changes to `JJ.Framework` were in service of making a feature in another app.
 
 The following may only be relevant when getting older commits from history (from before 2018-12-02).
+
+-----
 
 ```cs
         
@@ -38,3 +42,16 @@ The following may only be relevant when getting older commits from history (from
             }
         }
 ```
+
+-----
+
+CONTRIBUTING:
+
+`[ Drafts: ]`
+
+
+- The new main uses single-branch-line strategy, or with the branch lines next to it from the legacy, it would get incredibly out of hand with parallel lines.
+- The new `main` follows a single-line strategy. `legacy` had multiple branch lines; mixing both would be unmanageable. Merges from `legacy` are allowed, but new branches should stay minimal.
+- The new `main` follows a single-line strategy. `legacy` had multiple branch lines; introducing more would make things unmanageable. New development stays on `main`.
+- The new `main` follows a single-line strategy. While temporary branches may be used, they are always fast-forward merged to maintain a linear history. Tags are used to mark significant points.
+- The new `main` follows a single-line strategy. Temporary branches may be used, but are always fast-forward merged to preserve linear history. Tags mark key points. In a team context, contributors could use `git pull --rebase` to stay aligned.

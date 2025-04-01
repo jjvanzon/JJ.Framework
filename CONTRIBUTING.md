@@ -39,6 +39,9 @@ Branching
 - The new `main` branches off from an older point in that `legacy` history.
 - Why the throwback? We're "replaying" the past to unearth hidden gems that never saw the light of day. This lets us retroactively release not just libraries but entire applications otherwise lost.
 - __The legacy branch shall not be deleted! The legacy shall remain!__
+- The new `main` follows a single-line strategy. `legacy` had multiple branch lines; mixing both would be unmanageable.
+- Temporary branches are allowed, but always `fast-forward` merged.
+- In a team setup, `pull rebase` can preserve linear commit history.
 
 
 Deployments
