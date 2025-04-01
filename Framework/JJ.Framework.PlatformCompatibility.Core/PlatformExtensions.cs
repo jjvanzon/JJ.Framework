@@ -7,8 +7,9 @@ using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
 
-namespace JJ.Framework.PlatformCompatibility
+namespace JJ.Framework.PlatformCompatibility.Core
 {
+    // TODO: Suffix with `Legacy`.
     public static class PlatformExtensions
     {
         /// <summary>
