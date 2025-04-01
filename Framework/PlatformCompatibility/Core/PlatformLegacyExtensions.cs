@@ -9,8 +9,7 @@ using System.Xml.Linq;
 
 namespace JJ.Framework.PlatformCompatibility.Core
 {
-    // TODO: Suffix with `Legacy`.
-    public static class PlatformExtensions
+    public static class PlatformLegacyExtensions
     {
         /// <summary>
         /// Windows Phone / Unity compatibility:

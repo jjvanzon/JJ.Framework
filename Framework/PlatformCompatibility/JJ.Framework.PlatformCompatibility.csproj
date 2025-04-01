@@ -37,9 +37,5 @@
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Core\" />
-  </ItemGroup>
 
 </Project>
