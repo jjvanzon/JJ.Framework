@@ -38,7 +38,7 @@ Branching
 - The original `main` branch is now called `legacy`.
 - The new `main` branches off from an older point in that `legacy` history.
 - Why the throwback? We're "replaying" the past to unearth hidden gems that never saw the light of day. This lets us retroactively release not just libraries but entire applications otherwise lost.
-- __The `legacy` branch shall not be deleted! The `legacy` shall remain!__
+- __The legacy branch shall not be deleted! The legacy shall remain!__
 
 
 Deployments
@@ -53,7 +53,7 @@ Versioning
 
 - Code from the legacy branch compiled under `.NET 9` begins with a zero, e.g. `0.250.1053`.
 - That leading `0` signals it's essentially a "prequel" to the versions already in the `1.5.x` range on `NuGet`.
-- The `.Core`-suffixed projects are released with versions in the range of `1.8.x`, signaling the continuation of the `legacy` ones versioned `1.5.x`.
+- The `.Core`-suffixed projects are released with versions in the range of `1.8.x`, signaling the forward continuation.
 
 
 Namespaces
@@ -103,12 +103,12 @@ Pipelines
 ---------
 
 - `Azure Pipelines` is there for `Build` and `Release` pipelining, with limited access to the deployment buttons.
-- Eventually pakcages are deployed on [`NuGet`](https://www.nuget.org/profiles/jjvanzon), but there are stages before that.
+- Eventually packages are deployed on [`NuGet`](https://www.nuget.org/profiles/jjvanzon), but there are stages before that.
 - Pre-release versions are deployed to [`JJs-Pre-Release-Package-Feed`](
 https://dev.azure.com/jjvanzon/JJs-Software/_artifacts/feed/JJs-Pre-Release-Package-Feed)
 - And to [`JJs-Dev-Package-Feed`](https://dev.azure.com/jjvanzon/JJs-Software/_artifacts/feed/JJs-Dev-Package-Feed) for high paced development updates.
 - Add these feeds to your Visual Studio under `Menu > Tools > Options > NuGet Package Manager > Package Sources`
-- Further instructions: click on `Connect to Feed` after following one of the links above.
+- Further instructions: click on `Connect to Feed` after following one of the links.
 
 
 Dev Env
@@ -121,7 +121,7 @@ Dev Env
 SQL Server
 ----------
 
-SQL Server *is* used by some of the automated tests, but they may fail gracefully with an inconclusive result. Anyway, the database files may or may not even be included in this code base either.
+`SQL Server` *is* used by some of the automated tests, but they may fail gracefully with an inconclusive result. Anyway, the database files may or may not even be included in this code base yet.
 
 
 Internet Information Services (IIS)
