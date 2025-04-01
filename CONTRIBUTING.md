@@ -41,7 +41,7 @@ Branching
 - __The legacy branch shall not be deleted! The legacy shall remain!__
 - The new `main` follows a single-line strategy. `legacy` had multiple branch lines; mixing both would be unmanageable.
 - Temporary branches are allowed, but always `fast-forward` merged.
-- In a team setup, `pull rebase` can preserve linear commit history.
+- In a team setup, `pull rebase` could preserve linear commit history.
 
 
 Deployments
