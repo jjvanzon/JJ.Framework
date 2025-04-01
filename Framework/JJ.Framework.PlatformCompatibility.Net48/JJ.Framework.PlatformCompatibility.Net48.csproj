@@ -41,12 +41,12 @@
   <ItemGroup>
     <Compile Include="..\PlatformCompatibility\Obsolete\PlatformExtensions.Obsolete.cs" />
     <Compile Include="..\PlatformCompatibility\Obsolete\PlatformHelper.Obsolete.cs" />
-    <Compile Include="..\PlatformCompatibility\Core\PlatformExtensions.cs" />
     <Compile Include="..\PlatformCompatibility\Core\PlatformLegacyHelper.cs" />
     <Compile Include="..\PlatformCompatibility\CultureInfo_PlatformSafe.cs" />
     <Compile Include="..\PlatformCompatibility\Encoding_PlatformSafe.cs" />
     <Compile Include="..\PlatformCompatibility\PlatformHelper.cs" />
     <Compile Include="..\PlatformCompatibility\MemberTypes_PlatformSafe.cs" />
+    <Compile Include="PlatformLegacyExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\PlatformCompatibility\Stream_PlatformSupport.cs" />
     <Compile Include="..\PlatformCompatibility\String_PlatformSupport.cs" />
