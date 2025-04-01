@@ -186,7 +186,7 @@ namespace JJ.Framework.IO.Core
             // Crashing a sanitize on an empty string seems a bit harsh.
             if (string.IsNullOrWhiteSpace(filePath)) return filePath;
             
-            var forbiddenCharacters = Path.GetInvalidFileNameChars().ToHashSet();
+            var forbiddenCharacters = new HashSet<char>(Path.GetInvalidFileNameChars());
             
             // Allow slash and colon (but not wildcards)
             forbiddenCharacters.Remove('\\');
