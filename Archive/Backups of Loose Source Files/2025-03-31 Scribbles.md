@@ -55,3 +55,14 @@ CONTRIBUTING:
 - The new `main` follows a single-line strategy. `legacy` had multiple branch lines; introducing more would make things unmanageable. New development stays on `main`.
 - The new `main` follows a single-line strategy. While temporary branches may be used, they are always fast-forward merged to maintain a linear history. Tags are used to mark significant points.
 - The new `main` follows a single-line strategy. Temporary branches may be used, but are always fast-forward merged to preserve linear history. Tags mark key points. In a team context, contributors could use `git pull --rebase` to stay aligned.
+
+-----
+
+👨‍💻 JJ.Framework.PlatformCompatibility: No distinction between PlatformHelper and PlatformExtensions.
+
+(cherry picked from commit fd12697546d270d15386b239a2bd980a6955a74d)
+
+# Conflicts:
+#	Framework/JJ.Framework.PlatformCompatibility.Net48/JJ.Framework.PlatformCompatibility.Net48.csproj
+#	Framework/PlatformCompatibility.Tests/MemberTypes_PlatformSafe_Tests.cs
+#	Framework/PlatformCompatibility/PlatformHelper.cs
