@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using JJ.Framework.PlatformCompatibility.Core;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
