@@ -58,14 +58,9 @@ CONTRIBUTING:
 
 -----
 
-👨‍💻 JJ.Framework.PlatformCompatibility: No distinction between PlatformHelper and PlatformExtensions.
 
-(cherry picked from commit fd12697546d270d15386b239a2bd980a6955a74d)
 
-# Conflicts:
-#	Framework/JJ.Framework.PlatformCompatibility.Net48/JJ.Framework.PlatformCompatibility.Net48.csproj
-#	Framework/PlatformCompatibility.Tests/MemberTypes_PlatformSafe_Tests.cs
-#	Framework/PlatformCompatibility/PlatformHelper.cs
+(cherry picked fd12697546d270d15386b239a2bd980a6955a74d 👨‍💻 JJ.Framework.PlatformCompatibility: No distinction between PlatformHelper and PlatformExtensions.)
 
 -----
 

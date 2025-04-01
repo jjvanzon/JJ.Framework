@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <Copyright>Copyright © Jan Joost van Zon 2013 - 2025</Copyright>
     <Version>1.9.$(BuildNum)</Version>
