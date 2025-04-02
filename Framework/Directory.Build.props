@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <PropertyGroup>
+    <LangVersion>latest</LangVersion>
     <Description>Part of the JJ.Framework</Description>
     <PackageTags>framework; architecture; utility</PackageTags>
     <Authors>JJ van Zon</Authors>
