@@ -41,4 +41,16 @@
     </Content>
   </ItemGroup>
 
+  <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)/README.MD')">
+    <PackageReadmeFile>README.MD</PackageReadmeFile>
+  </PropertyGroup>       
+
+  <ItemGroup Condition="Exists('$(MSBuildProjectDirectory)/README.MD')">
+    <Content Include="README.MD">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
