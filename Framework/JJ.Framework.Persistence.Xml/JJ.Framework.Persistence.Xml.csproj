@@ -1,18 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>JJ.Framework.Persistence.Xml</AssemblyTitle>
-    <Product>JJ.Framework.Persistence.Xml</Product>
-    <Copyright>Copyright ©  2014</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Version>0.250.$(BuildNum)</Version>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="JJ.Framework.Persistence.Xml.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Framework.Persistence.Xml_AnalysisBuild.xml" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
     <ProjectReference Include="..\JJ.Framework.Persistence\JJ.Framework.Persistence.csproj" />
