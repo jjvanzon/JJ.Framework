@@ -13,9 +13,9 @@
     <None Remove="JJ.Framework.Presentation.Resources.v3.ncrunchproject" />
     <None Remove="NCrunch.JJ.Framework.Presentation.Resources_AnalysisBuild.xml" />
   </ItemGroup>
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
   <ItemGroup>
     <Compile Update="CommonTitles.Designer.cs">
       <AutoGen>True</AutoGen>

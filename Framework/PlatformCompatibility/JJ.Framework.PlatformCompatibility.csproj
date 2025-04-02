@@ -33,8 +33,8 @@
     <None Remove="NCrunch.JJ.Framework.PlatformCompatibility_AnalysisBuild.xml" />
   </ItemGroup>
   
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
 
 </Project>

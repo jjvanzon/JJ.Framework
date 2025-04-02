@@ -1,26 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>JJ.Framework.Configuration.Tests</AssemblyTitle>
-    <Product>JJ.Framework.Configuration.Tests</Product>
-    <Copyright>Copyright ©  2013</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Version>0.250.$(BuildNum)</Version>
   </PropertyGroup>
-  <Choose>
-    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-      </ItemGroup>
-    </When>
-    <Otherwise />
-  </Choose>
+  
   <ItemGroup>
-    <None Remove="JJ.Framework.Configuration.Tests.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Framework.Configuration.Tests_AnalysisBuild.xml" />
+    <PackageReference Include="MSTest" Version="3.7.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
     <Content Include="Web.Debug.config">
       <DependentUpon>app.config</DependentUpon>
@@ -33,31 +25,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <Choose>
-    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-          <Private>False</Private>
-        </Reference>
-      </ItemGroup>
-    </When>
-  </Choose>
-  <ItemGroup>
-    <PackageReference Include="MSTest" Version="3.7.3" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj" />
-  </ItemGroup>
+    
   <ItemGroup>
     <None Update="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -66,4 +34,5 @@
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="echo copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)$(TargetFileName).config&quot;&#xD;&#xA;     copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)$(TargetFileName).config&quot;&#xD;&#xA;echo copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)testhost.dll.config&quot;&#xD;&#xA;     copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)testhost.dll.config&quot;&#xD;&#xA;echo copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config&quot;&#xD;&#xA;     copy &quot;$(ProjectDir)app.config&quot; &quot;$(TargetDir)nCrunch.TaskRunner.DotNetCore.20.x64.dll.config&quot;" />
   </Target>
+  
 </Project>

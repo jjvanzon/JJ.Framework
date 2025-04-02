@@ -1,27 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>JJ.Framework.Persistence</AssemblyTitle>
-    <Product>JJ.Framework.Persistence</Product>
-    <Copyright>Copyright ©  2013</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Version>0.250.$(BuildNum)</Version>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="JJ.Framework.Persistence.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Framework.Persistence_AnalysisBuild.xml" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
     <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="jj.framework.persistence example.config">
+    <Content Include="jj.framework.persistence example.config">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

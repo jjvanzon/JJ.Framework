@@ -10,9 +10,9 @@
     <None Remove="JJ.Framework.Presentation.WinForms.v3.ncrunchproject" />
     <None Remove="NCrunch.JJ.Framework.Presentation.WinForms_AnalysisBuild.xml" />
   </ItemGroup>
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
   <ItemGroup>
     <Compile Update="SimpleFileProcessControl.cs">
       <SubType>UserControl</SubType>

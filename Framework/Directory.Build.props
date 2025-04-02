@@ -5,6 +5,10 @@
     Condition="'$(XmlImportedjj)'==''
     And Exists('BuildNum.xml')"/>
   
+  <ItemGroup Condition="'$(ProjectName)' != 'JJ.Framework.Build'">
+    <ProjectReference Include="$(SolutionDir)\Framework\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <Description>Part of the JJ.Framework</Description>
     <PackageTags>framework; architecture; utility</PackageTags>

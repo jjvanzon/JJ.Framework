@@ -1,18 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>JJ.Framework.Emptiness.Core</AssemblyTitle>
-    <Product>JJ.Framework.Emptiness.Core</Product>
-    <Copyright>Copyright © 2025</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.9.$(BuildNum)</Version>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="JJ.Framework.Existence.Core.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Framework.Existence.Core_AnalysisBuild.xml" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Collections.Core\JJ.Framework.Collections.Core.csproj" />
   </ItemGroup>
