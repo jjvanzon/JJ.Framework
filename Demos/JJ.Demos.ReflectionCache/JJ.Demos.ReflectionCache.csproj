@@ -1,18 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>JJ.Demos.ReflectionCache</AssemblyTitle>
-    <Product>JJ.Demos.ReflectionCache</Product>
-    <Copyright>Copyright ©  2014</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="JJ.Demos.ReflectionCache.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Demos.ReflectionCache_AnalysisBuild.xml" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
   </ItemGroup>

@@ -2,23 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Configurations>Debug;Release</Configurations>
-    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-    <AssemblyTitle>JJ.Demos.GetNames.Tests</AssemblyTitle>
-    <Product>JJ.Demos.GetNames.Tests</Product>
-    <Copyright>Copyright ©  2013</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Remove="JJ.Demos.GetNames.Tests.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Demos.GetNames.Tests_AnalysisBuild.xml" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
