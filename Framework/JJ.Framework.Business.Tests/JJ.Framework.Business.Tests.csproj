@@ -3,12 +3,6 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
-    <Description></Description>
-    <PackageTags></PackageTags>
-    <!--<Authors>JJ van Zon</Authors>
-    <Copyright>Copyright © 2014 - 2025 Jan Joost van Zon</Copyright>-->
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   
   <ItemGroup>

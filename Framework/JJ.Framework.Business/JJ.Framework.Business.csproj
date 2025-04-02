@@ -3,16 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
-    <!--<PackageDescription></PackageDescription>-->
-    <!--<PackageTags></PackageTags>-->
-    <!--<PackageLicenseExpression>MIT</PackageLicenseExpression>-->    
-    <!--<GeneratePackageOnBuild>True</GeneratePackageOnBuild>-->
-    <!--<IncludeSymbols>True</IncludeSymbols>-->
-    <!--<SymbolPackageFormat>snupkg</SymbolPackageFormat>-->
-    <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <!--<RepositoryUrl>https://github.com/jjvanzon/JJ.Framework</RepositoryUrl>-->
-    <!--<PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework</PackageProjectUrl>-->
   </PropertyGroup>
   
   <ItemGroup>
@@ -22,11 +13,6 @@
   
   <ItemGroup>
     <Content Include="..\..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\Resources\jj-icon-64x64-margin4.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

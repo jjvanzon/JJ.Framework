@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <PropFromRoot>Hi, I am prop from root!</PropFromRoot>
+  </PropertyGroup>
+</Project>
