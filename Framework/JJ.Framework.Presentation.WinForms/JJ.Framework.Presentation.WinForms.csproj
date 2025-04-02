@@ -1,18 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net9.0-windows;net8.0-windows;net7.0-windows;net6.0-windows;net5.0-windows;net461</TargetFrameworks>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Version>0.250.$(BuildNum)</Version>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="JJ.Framework.Presentation.WinForms.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Framework.Presentation.WinForms_AnalysisBuild.xml" />
-  </ItemGroup>
-  <!--<ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
-  </ItemGroup>-->
   <ItemGroup>
     <Compile Update="SimpleFileProcessControl.cs">
       <SubType>UserControl</SubType>

@@ -2,16 +2,13 @@
     
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
-    <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Version>1.9.$(BuildNum)</Version>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
     
   <ItemGroup>
     <None Remove="Dummy.txt" />
-    <None Remove="NCrunch.JJ.Framework.Versioning.Core.Tests_AnalysisBuild.xml" />
   </ItemGroup>
     
   <ItemGroup>
@@ -19,9 +16,5 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-    
-  <!--<ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
-  </ItemGroup>-->
 
 </Project>
