@@ -1,16 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
-    <Version>1.9.$(BuildNum)</Version>
-    <Authors>JJ van Zon</Authors>
-    <Copyright>Copyright © Jan Joost van Zon 2013 - 2025</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>0.250.$(BuildNum)</Version>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="JJ.Framework.Persistence.NHibernate.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Framework.Persistence.NHibernate_AnalysisBuild.xml" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentNHibernate" Version="3.4.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
