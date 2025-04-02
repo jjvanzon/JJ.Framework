@@ -1,6 +1,30 @@
 <Project>
+  
   <Import 
     Project="BuildNum.xml" 
     Condition="'$(XmlImportedjj)'==''
     And Exists('BuildNum.xml')"/>
+  
+  <PropertyGroup>
+    <Description>Part of the JJ.Framework</Description>
+    <PackageTags>framework; architecture; utility</PackageTags>
+    <Authors>JJ van Zon</Authors>
+    <Copyright>Copyright © 2013 - 2025 Jan Joost van Zon</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <IncludeSymbols>True</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework</PackageProjectUrl>
+    <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Content Include="$(SolutionDir)\Resources\jj-icon-64x64-margin4.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

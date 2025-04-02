@@ -65,3 +65,16 @@ CONTRIBUTING:
 -----
 
 The .Core version has parts in it that the suffix-free legacy `JJ.Framework.PlatformCompatibility` is missing, and may still be relied on by certain projects.
+
+-----
+
+    <!--<AssemblyCopyright>Copyright © 2013 - 2025 Jan Joost van Zon</AssemblyCopyright>
+    <Copyrightjj>Copyright © 2013 - 2025 Jan Joost van Zon</Copyrightjj>-->
+
+    <!--<Description></Description>-->
+    <!--<Authors>JJ van Zon</Authors>-->
+    <!--<Copyright>Copyright © 2014 - 2025 Jan Joost van Zon</Copyright>-->
+    <!--<Copyright>$(Copyrightjj)</Copyright>-->
+
+
+Your references are sloppy. And quotes are questionnable. I double checked. My thought is that you misinterpret the multi-level search upward, for a multi-level combination of multiple Directory.Build.props. I suspect that while it searches multi-level, it stops at the first Directory.Build.props it finds. 
