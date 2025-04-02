@@ -1,5 +1,7 @@
 <Project>
   
+  <!-- BuildNum -->
+  
   <Import 
     Project="BuildNum.xml" 
     Condition="'$(XmlImportedjj)'==''
@@ -11,6 +13,8 @@
     <ProjectReference Include="$(SolutionDir)\Framework\JJ.Framework.Build\JJ.Framework.Build.csproj" />
   </ItemGroup>
 
+  <!-- Project Properties -->
+  
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
     <Description>Part of the JJ.Framework</Description>
@@ -25,8 +29,9 @@
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework</PackageProjectUrl>
     <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
-    <PackageReadmeFile>README2.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <!-- Icon -->
   
   <ItemGroup>
     <Content Include="$(SolutionDir)\Resources\jj-icon-64x64-margin4.png" Visible="False">
@@ -34,6 +39,15 @@
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <!-- README -->
+  
+  <PropertyGroup>
+    <PackageReadmeFile>README2.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
     <Content Include="$(SolutionDir)\README.md" Visible="False">
       <Pack>True</Pack>
       <PackagePath>\README2.md</PackagePath>
