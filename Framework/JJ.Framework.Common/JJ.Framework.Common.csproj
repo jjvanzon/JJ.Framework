@@ -1,16 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <Version>1.9.$(BuildNum)</Version>
-    <Authors>JJ van Zon</Authors>
-    <Copyright>Copyright © Jan Joost van Zon 2013 - 2025</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>    
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Version>0.250.$(BuildNum)</Version>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="JJ.Framework.Common.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Framework.Common_AnalysisBuild.xml" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />
   </ItemGroup>

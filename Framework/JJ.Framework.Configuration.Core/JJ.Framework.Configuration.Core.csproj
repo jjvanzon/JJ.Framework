@@ -1,18 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>JJ.Framework.Configuration.Core</AssemblyTitle>
-    <Product>JJ.Framework.Configuration.Core</Product>
-    <Copyright>Copyright © 2025</Copyright>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.9.$(BuildNum)</Version>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="JJ.Framework.Configuration.Core.v3.ncrunchproject" />
-    <None Remove="NCrunch.JJ.Framework.Configuration.Core_AnalysisBuild.xml" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Configuration\JJ.Framework.Configuration.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection.Core\JJ.Framework.Reflection.Core.csproj" />
