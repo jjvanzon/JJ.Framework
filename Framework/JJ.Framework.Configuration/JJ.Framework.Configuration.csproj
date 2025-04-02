@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0;net461</TargetFrameworks>
     <OutputType>Library</OutputType>
     <Copyright>Copyright © Jan Joost van Zon 2013 - 2025</Copyright>
     <Version>1.9.$(BuildNum)</Version>
@@ -15,7 +15,10 @@
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
     <ProjectReference Include="..\JJ.Framework.Xml\JJ.Framework.Xml.csproj" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'net461'">
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
   </ItemGroup>
 </Project>
