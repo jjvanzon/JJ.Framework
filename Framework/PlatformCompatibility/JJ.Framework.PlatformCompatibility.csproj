@@ -3,20 +3,7 @@
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
     <Description>Legacy component. A lingering relic for platform support, now superseded by .NET 5 and onward. Still linked to by various projects.</Description>
-    <!--<PackageReadmeFile>README.MD</PackageReadmeFile>-->
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility</RepositoryUrl>    
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility</PackageProjectUrl>    
   </PropertyGroup>
-
-  <!--<PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)/README.MD')">
-    <PackageReadmeFile>README.MD</PackageReadmeFile>
-  </PropertyGroup>       
-
-  <ItemGroup Condition="Exists('$(MSBuildProjectDirectory)/README.MD')">
-    <Content Include="README.MD">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>-->
 </Project>
