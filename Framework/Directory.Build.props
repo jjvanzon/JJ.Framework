@@ -43,14 +43,14 @@
 
   <!-- README -->
   
-  <PropertyGroup>
-    <PackageReadmeFile>README2.md</PackageReadmeFile>
+  <PropertyGroup Condition="!Exists('$(MSBuildProjectDirectory)/README.MD')">
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition="!Exists('$(MSBuildProjectDirectory)/README.MD')">
     <Content Include="$(SolutionDir)\README.md" Visible="False">
       <Pack>True</Pack>
-      <PackagePath>\README2.md</PackagePath>
+      <PackagePath>\README.md</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
