@@ -7,11 +7,11 @@
     Condition="'$(XmlImportedjj)'==''
     And Exists('BuildNum.xml')"/>
   
-  <ItemGroup Condition="$(MSBuildProjectName.StartsWith('JJ.'))
+  <!--<ItemGroup Condition="$(MSBuildProjectName.StartsWith('JJ.'))
                    And '$(MSBuildProjectName)' != 'JJ.Framework.Build' 
                    And '$(MSBuildProjectName)' != 'JJ.Framework.Versioning.Core'">
     <ProjectReference Include="$(SolutionDir)\Framework\JJ.Framework.Build\JJ.Framework.Build.csproj" />
-  </ItemGroup>
+  </ItemGroup>-->
 
   <!-- Project Properties -->
   

@@ -6,4 +6,7 @@
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility</RepositoryUrl>    
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.PlatformCompatibility</PackageProjectUrl>    
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+  </ItemGroup>
 </Project>

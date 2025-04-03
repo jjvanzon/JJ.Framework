@@ -6,6 +6,9 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="SimpleFileProcessControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

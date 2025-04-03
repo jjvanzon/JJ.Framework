@@ -3,4 +3,7 @@
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>1.9.$(BuildNum)</Version>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+  </ItemGroup>
 </Project>

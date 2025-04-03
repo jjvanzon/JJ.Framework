@@ -6,6 +6,10 @@
     <Nullable>enable</Nullable>
     <Version>1.9.$(BuildNum)</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+  </ItemGroup>
     
   <ItemGroup>
     <None Remove="Dummy.txt" />
