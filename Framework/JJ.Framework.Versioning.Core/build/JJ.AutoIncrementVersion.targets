@@ -58,7 +58,7 @@
   </PropsContentjj>
 </PropertyGroup>
 
-<Target Condition="'$(ItRanjj)'==''" Name="JJ_AutoIncrementVersion_BeforeBuild" BeforeTargets="BuildOnlySettings">
+<Target Condition="'$(ItRanjj)'==''" Name="JJ_AutoIncrementVersion_BuildOnlySettings" BeforeTargets="BuildOnlySettings">
   <PropertyGroup><ItRanjj>True</ItRanjj></PropertyGroup>
   
   <!-- INIT -->
