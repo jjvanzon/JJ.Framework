@@ -75,3 +75,4 @@ The .Core version has parts in it that the suffix-free legacy `JJ.Framework.Plat
     <!--<Authors>JJ van Zon</Authors>-->
     <!--<Copyright>Copyright © 2014 - 2025 Jan Joost van Zon</Copyright>-->
     <!--<Copyright>$(Copyrightjj)</Copyright>-->
+

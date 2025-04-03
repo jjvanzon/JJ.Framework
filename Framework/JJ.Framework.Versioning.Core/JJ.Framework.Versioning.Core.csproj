@@ -3,7 +3,8 @@
   <Import Project="build\JJ.AutoIncrementVersion.targets" />
   
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <!--<TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>-->
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <Version Condition="'$(BuildNum)'==''">1.9.0</Version>
     <Version Condition="'$(BuildNum)'!=''">1.9.$(BuildNum)</Version>
     <AssemblyName>JJ.AutoIncrementVersion</AssemblyName>
