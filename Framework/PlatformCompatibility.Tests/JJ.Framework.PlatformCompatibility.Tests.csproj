@@ -1,21 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>JJ.Framework.PlatformCompatibility.Tests</AssemblyTitle>
-    <Company>Jan Joost van Zon</Company>
-    <Product>JJ.Framework</Product>
-    <Copyright>Copyright © 2021 Jan Joost van Zon</Copyright>
-    <AssemblyVersion>1.7.%2a</AssemblyVersion>
+    <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
+    <Version>0.250.$(BuildNum)</Version>
   </PropertyGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
     <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj" />
     <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.*" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.1.2" />
+    <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 </Project>
