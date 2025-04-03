@@ -1,6 +1,6 @@
 <Project>
     <PropertyGroup>
-      <BuildNum>1000</BuildNum>
+      <BuildNum>1002</BuildNum>
       <XmlImportedjj>True</XmlImportedjj>
     </PropertyGroup>
   </Project>
