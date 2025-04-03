@@ -6,11 +6,11 @@
     <Description>Internal infrastructure. Triggers initialization at the start of building JJ.Framework.</Description>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Build</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Build</PackageProjectUrl>
-    <DisableFastUpToDateCheck>True</DisableFastUpToDateCheck>
+    <!--<DisableFastUpToDateCheck>True</DisableFastUpToDateCheck>-->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="2.0.1000">
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="2.0.1035">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
