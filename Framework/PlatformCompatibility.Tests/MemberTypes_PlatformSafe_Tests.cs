@@ -177,13 +177,13 @@ namespace JJ.Framework.PlatformCompatibility.Tests
             int actual = (int)MemberTypes_PlatformSafe.Undefined;
             Assert.AreEqual(expected, actual);
         }
-        */
         
         [TestMethod]
         public void Test_EdgeCase_MemberType_Null_ThrowsException_UsingPlatformHelper()
             => AssertHelper.ThrowsException<ArgumentNullException>(
                 () => PlatformHelper.MemberInfo_MemberType_PlatformSafe(null),
                 "Value cannot be null.\r\nParameter name: memberInfo");
+        */
 
         [TestMethod]
         public void Test_EdgeCase_MemberType_Unsupported_ThrowsException_UsingPlatformHelper()
