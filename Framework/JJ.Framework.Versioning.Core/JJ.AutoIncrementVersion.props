@@ -1,5 +1,6 @@
 <Project>
   <PropertyGroup Condition="'$(BuildNum)'==''">
     <BuildNum>0</BuildNum>
+    <DisableFastUpToDateCheck>True</DisableFastUpToDateCheck>
   </PropertyGroup>
 </Project>

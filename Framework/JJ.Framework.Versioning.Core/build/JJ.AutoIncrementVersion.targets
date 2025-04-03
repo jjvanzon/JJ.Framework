@@ -77,19 +77,21 @@
     <BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum> 
     <!-- New XML content -->
     <XmlContentjj>
-  &lt;Project&gt;
-    &lt;PropertyGroup&gt;
-      &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
-      &lt;XmlImportedjj&gt;True&lt;/XmlImportedjj&gt;
-    &lt;/PropertyGroup&gt;
-  &lt;/Project&gt;
+&lt;Project&gt;
+  &lt;PropertyGroup&gt;
+    &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
+    &lt;DisableFastUpToDateCheck&gt;True&lt;/DisableFastUpToDateCheck&gt;
+    &lt;XmlImportedjj&gt;True&lt;/XmlImportedjj&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;
     </XmlContentjj>
     <PropsContentjj>
-  &lt;Project&gt;
-    &lt;PropertyGroup Condition="'%24(BuildNum)'==''"&gt;
-      &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
-    &lt;/PropertyGroup&gt;
-  &lt;/Project&gt;
+&lt;Project&gt;
+  &lt;PropertyGroup Condition="'%24(BuildNum)'==''"&gt;
+    &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
+    &lt;DisableFastUpToDateCheck&gt;True&lt;/DisableFastUpToDateCheck&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;
     </PropsContentjj>
   </PropertyGroup>
 
