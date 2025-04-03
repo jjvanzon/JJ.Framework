@@ -39,35 +39,18 @@
 <Import Project="$(Xmljj)" Condition="'$(XmlImportedjj)'=='' And Exists('$(Xmljj)')" />
 <PropertyGroup>
   <BuildNum Condition="'$(BuildNum)'==''">0</BuildNum> <!-- Default 0 -->
-  <BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum> <!-- Increment -->
-  <!-- New XML content -->
-  <XmlContentjj>
-&lt;Project&gt;
-  &lt;PropertyGroup&gt;
-    &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
-    &lt;XmlImportedjj&gt;True&lt;/XmlImportedjj&gt;
-  &lt;/PropertyGroup&gt;
-&lt;/Project&gt;
-  </XmlContentjj>
-  <PropsContentjj>
-&lt;Project&gt;
-  &lt;PropertyGroup Condition="'%24(BuildNum)'==''"&gt;
-    &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
-  &lt;/PropertyGroup&gt;
-&lt;/Project&gt;
-  </PropsContentjj>
 </PropertyGroup>
 
-<Target Condition="'$(ItRanjj)'==''" Name="JJ_AutoIncrementVersion_BuildOnlySettings" BeforeTargets="BeforeBuild;BuildOnlySettings">
+<Target Condition="'$(ItRanjj)'==''" Name="JJ_AutoIncrementVersion_Target" BeforeTargets="BeforeBuild;BuildOnlySettings">
   <PropertyGroup><ItRanjj>True</ItRanjj></PropertyGroup>
-  
+
   <!-- INIT -->
   
   <!-- Auto-create Directory.Build.props that imports BuildNum.xml for fallback before package restore and after uninstall. -->
            <Message Condition="!Exists('$(DirPropsjj)')" Text="$(Initjj) => &quot;$(DirPropsjj)&quot;" Importance="High" />
   <WriteLinesToFile Condition="!Exists('$(DirPropsjj)')" File="$(DirPropsjj)" Lines="$(DirPropsContentjj)" ContinueOnError="True" />
 
-  <!-- CONTENT -->
+  <!-- CONTENTS -->
   
   <ReadLinesFromFile File="$(DirPropsjj)" Condition="Exists('$(DirPropsjj)')" ContinueOnError="True" >
     <Output TaskParameter="Lines" PropertyName="DirPropsReadOutjj" />
@@ -86,6 +69,29 @@
   </ReadLinesFromFile>
   
   <Message Text="$(Contentjj) .props: $(PropsReadOutjj) &lt;= &quot;$(Propsjj)&quot;" Importance="High" />
+
+  <!-- INCREMENT -->
+  
+  <PropertyGroup>
+    <!-- Increment -->
+    <BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum> 
+    <!-- New XML content -->
+    <XmlContentjj>
+  &lt;Project&gt;
+    &lt;PropertyGroup&gt;
+      &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
+      &lt;XmlImportedjj&gt;True&lt;/XmlImportedjj&gt;
+    &lt;/PropertyGroup&gt;
+  &lt;/Project&gt;
+    </XmlContentjj>
+    <PropsContentjj>
+  &lt;Project&gt;
+    &lt;PropertyGroup Condition="'%24(BuildNum)'==''"&gt;
+      &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
+    &lt;/PropertyGroup&gt;
+  &lt;/Project&gt;
+    </PropsContentjj>
+  </PropertyGroup>
 
   <!-- LOADED ? -->
   
