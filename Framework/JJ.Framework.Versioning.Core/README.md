@@ -54,6 +54,7 @@ Release Notes
 
 `1.8` Initial release  
 `1.9` Fix file in use error
+`2.0` Avoid IntelliSense rescan
  
 
 💬 Feedback 
