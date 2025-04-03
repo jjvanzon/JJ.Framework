@@ -18,7 +18,7 @@
   </ItemGroup>
     
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="2.0.1035" />
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="2.0.1040" />
   </ItemGroup>
 
 </Project>
