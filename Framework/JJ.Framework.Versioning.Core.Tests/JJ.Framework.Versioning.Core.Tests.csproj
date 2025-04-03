@@ -6,10 +6,6 @@
     <Nullable>enable</Nullable>
     <Version>2.0.$(BuildNum)</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
-  </ItemGroup>
     
   <ItemGroup>
     <None Remove="Dummy.txt" />
@@ -19,6 +15,10 @@
     <Content Include="Dummy.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="2.0.1000" />
   </ItemGroup>
 
 </Project>
