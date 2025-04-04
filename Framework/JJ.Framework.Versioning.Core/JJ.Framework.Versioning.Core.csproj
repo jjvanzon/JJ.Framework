@@ -4,7 +4,6 @@
   
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <!--<TargetFrameworks>netstandard2.0</TargetFrameworks>-->
     <Version Condition="'$(BuildNum)'==''">2.0.0</Version>
     <Version Condition="'$(BuildNum)'!=''">2.0.$(BuildNum)</Version>
     <AssemblyName>JJ.AutoIncrementVersion</AssemblyName>
@@ -14,21 +13,15 @@
       package; packaging; pipeline; devops; autoincrement; semantic; versioning; assemblyversion; buildnumber; ci
     </PackageTags>
     <Copyright>Copyright © Jan Joost van Zon 2025</Copyright>
-    <!--<PackageReadmeFile>README.md</PackageReadmeFile>-->
     <RepositoryUrl>
-      https://github.com/jjvanzon/JJ.Framework/tree/core/Framework/JJ.Framework.Versioning.Core
+      https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Versioning.Core
     </RepositoryUrl>
     <PackageProjectUrl>
-      https://github.com/jjvanzon/JJ.Framework/tree/core/Framework/JJ.Framework.Versioning.Core
+      https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Versioning.Core
     </PackageProjectUrl>
   </PropertyGroup>
   
   <ItemGroup>
-    <!--<Content Include="README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>-->
     <Content Include="build\JJ.AutoIncrementVersion.targets">
       <Pack>True</Pack>
       <PackagePath>\build</PackagePath>
