@@ -6,7 +6,7 @@ using System.Text;
 
 namespace JJ.Framework.Reflection.Core
 {
-    public static class ReflectionHelper_Copied
+    public static class ReflectionHelperLegacy
     {
         public static bool IsProperty(this MethodBase method)
         {

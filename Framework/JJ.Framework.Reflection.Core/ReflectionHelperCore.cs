@@ -8,7 +8,7 @@ using static JJ.Framework.Reflection.ReflectionHelper;
 
 namespace JJ.Framework.Reflection.Core
 {
-    public class ReflectionWishes
+    public class ReflectionHelperCore
     {
         // Assemblies
 

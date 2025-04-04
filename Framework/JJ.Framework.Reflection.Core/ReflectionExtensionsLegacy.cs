@@ -6,7 +6,7 @@ using System.Text;
 
 namespace JJ.Framework.Reflection.Core
 {
-    public static class ReflectionExtensions_Copied
+    public static class ReflectionExtensionsLegacy
     {
         /// <summary> Returns a type's base type and its base type etc. </summary>
         public static IList<Type> GetBaseClasses(this Type type)
