@@ -8,7 +8,7 @@ using JJ.Framework.Reflection;
 
 namespace JJ.Framework.Testing.Core
 {
-    public static class AssertHelper_Copied
+    public static class AssertHelperLegacy
     {
         internal static void ExpectedActualCheck_Copied<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression, string name = null)
         {

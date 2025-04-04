@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using static JJ.Framework.Reflection.Core.ReflectionWishes;
+using static JJ.Framework.Reflection.Core.ReflectionHelperCore;
 
 namespace JJ.Framework.Configuration.Core
 {

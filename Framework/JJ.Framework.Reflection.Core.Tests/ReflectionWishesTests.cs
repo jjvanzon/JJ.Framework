@@ -8,7 +8,7 @@ using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static System.String;
 using static JJ.Framework.Testing.AssertHelper;
-using static JJ.Framework.Reflection.Core.ReflectionWishes;
+using static JJ.Framework.Reflection.Core.ReflectionHelperCore;
 using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 #pragma warning disable CS0414 // Field is assigned but its value is never used
@@ -23,7 +23,7 @@ namespace JJ.Framework.Reflection.Core.Tests
         [TestMethod]
         public void GetAssemblyNameTest()
         {
-            AreEqual("JJ.Framework.Reflection.Core", () => GetAssemblyName<ReflectionWishes>());
+            AreEqual("JJ.Framework.Reflection.Core", () => GetAssemblyName<ReflectionHelperCore>());
         }
 
         // Fields
@@ -77,7 +77,7 @@ namespace JJ.Framework.Reflection.Core.Tests
                 IsTrue(() => types.Contains(type));
                 IsTrue(() => types.Contains(typeof(object)));            // Base class of all classes
                 IsTrue(() => types.Contains(typeof(ISerializable)));     // Interface of Exception
-                IsFalse(() => types.Contains(typeof(ReflectionWishes))); // ReflectionWishes not part of Exception's hierarchy.
+                IsFalse(() => types.Contains(typeof(ReflectionHelperCore))); // ReflectionWishes not part of Exception's hierarchy.
             }
         }
 
@@ -101,15 +101,15 @@ namespace JJ.Framework.Reflection.Core.Tests
                 IsTrue(trueSynonym());
             }
             
-            Type wrongType = typeof(ReflectionWishes); // Not part of Exception's hierarchy.
+            Type wrongType = typeof(ReflectionHelperCore); // Not part of Exception's hierarchy.
             
             var falseSynonyms = new Func<bool>[]
             { 
                 () => HasTypeRecursive(type, wrongType),
                 () => HasTypeRecursive<Exception>(wrongType),
-                () => HasTypeRecursive<Exception, ReflectionWishes>(),
+                () => HasTypeRecursive<Exception, ReflectionHelperCore>(),
                 () => type.HasTypeRecursive(wrongType),
-                () => type.HasTypeRecursive<ReflectionWishes>()
+                () => type.HasTypeRecursive<ReflectionHelperCore>()
             };
             
             foreach (var falseSynonym in falseSynonyms)
@@ -141,7 +141,7 @@ namespace JJ.Framework.Reflection.Core.Tests
                 IsTrue (() => types.Contains(type));
                 IsTrue (() => types.Contains(typeof(object)));           // Base class
                 IsFalse(() => types.Contains(typeof(ISerializable)));    // Not a class
-                IsFalse(() => types.Contains(typeof(ReflectionWishes))); // Not part of Exception's list of base classes
+                IsFalse(() => types.Contains(typeof(ReflectionHelperCore))); // Not part of Exception's list of base classes
             }
         }
 
@@ -166,15 +166,15 @@ namespace JJ.Framework.Reflection.Core.Tests
                 IsTrue(trueSynonym());
             }
             
-            Type wrongType = typeof(ReflectionWishes); // Not part of Exception's hierarchy.
+            Type wrongType = typeof(ReflectionHelperCore); // Not part of Exception's hierarchy.
             
             var falseSynonyms = new Func<bool>[]
             {
                 () => HasClassRecursive(type, wrongType),
                 () => HasClassRecursive<Exception>(wrongType),
-                () => HasClassRecursive<Exception, ReflectionWishes>(),
+                () => HasClassRecursive<Exception, ReflectionHelperCore>(),
                 () => type.HasClassRecursive(wrongType),
-                () => type.HasClassRecursive<ReflectionWishes>()
+                () => type.HasClassRecursive<ReflectionHelperCore>()
             };
 
             foreach (var falseSynonym in falseSynonyms)

@@ -6,7 +6,7 @@ using System.Text;
 using JJ.Framework.Common;
 using JJ.Framework.Logging.Core.docs;
 using static System.Math;
-using static JJ.Framework.Testing.Core.AssertHelper_Copied;
+using static JJ.Framework.Testing.Core.AssertHelperLegacy;
 using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
 
 namespace JJ.Framework.Testing.Core
