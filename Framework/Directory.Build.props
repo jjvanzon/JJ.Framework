@@ -17,7 +17,7 @@
   
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <Description>Part of the JJ.Framework</Description>
+    <Description>A JJ.Framework Component</Description>
     <PackageTags>framework; architecture; utility</PackageTags>
     <Authors>JJ van Zon</Authors>
     <Copyright>Copyright © 2013 - 2025 Jan Joost van Zon</Copyright>
