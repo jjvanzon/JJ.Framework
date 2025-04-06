@@ -1,7 +1,7 @@
 Contributing to JJ.Framework.PlatformCompatibility
 ==================================================
 
-Back in the day, there were many different `.NET` variants. Deploying to multiple platforms was possible, but quite a hassle. That's what these Platform Compatibility helpers were built for. Whenever a class or method wasn't available on a certain platform, a portable alternative was added here.
+Back in the day, there were many different .NET variants. Deploying to multiple platforms was possible, but quite a hassle. That's what these __Platform Compatibility__ helpers were built for. Whenever a class or method wasn't available on a certain platform, a portable alternative was added here.
 
 The structure aimed to help the developer discover platform-safe variants while typing with IntelliSense. So if you typed `String`, you'd immediately see `String_PlatformSafe` as a suggestion.
 
