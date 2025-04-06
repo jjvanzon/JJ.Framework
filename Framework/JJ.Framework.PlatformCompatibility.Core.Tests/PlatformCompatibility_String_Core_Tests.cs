@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.PlatformCompatibility.Core.Tests;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
 [TestClass]
 public class PlatformCompatibility_String_Core_Tests
@@ -25,5 +27,15 @@ public class PlatformCompatibility_String_Core_Tests
         IsTrue (() => PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(emptyString));
         IsTrue (() => PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(whiteSpaceString));
         IsFalse(() => PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(nonWhiteSpaceString));
+    }
+
+    [TestMethod]
+    public void PlatformCompatibility_String_Join_Core_Test()
+    {
+        IEnumerable<string> elements = ["a", "b", "c"];
+        string expected = "a,b,c";
+        AreEqual(expected, () => string.Join(",", elements));
+        AreEqual(expected, () => String_PlatformSupport.Join(",", elements));
+        AreEqual(expected, () => PlatformHelperLegacy.String_Join_PlatformSupport(",", elements));
     }
 }
