@@ -11,7 +11,7 @@ using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
 
 namespace JJ.Framework.Testing.Core
 {
-    public static class AssertWishes
+    public static class AssertHelperCore
     {
         /// <inheritdoc cref="_deltadirection" />
         public static void AreEqual(int expected, Expression<Func<int>> actualExpression, int delta, DeltaDirectionEnum direction = None)

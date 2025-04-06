@@ -6,7 +6,7 @@ using JJ.Framework.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static System.Array;
 using static JJ.Framework.Testing.AssertHelper;
-using static JJ.Framework.Testing.Core.AssertWishes;
+using static JJ.Framework.Testing.Core.AssertHelperCore;
 using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
 
 namespace JJ.Framework.Testing.Core.Tests

@@ -75,3 +75,11 @@ The .Core version has parts in it that the suffix-free legacy `JJ.Framework.Plat
     <!--<Authors>JJ van Zon</Authors>-->
     <!--<Copyright>Copyright © 2014 - 2025 Jan Joost van Zon</Copyright>-->
     <!--<Copyright>$(Copyrightjj)</Copyright>-->
+
+-----
+
+*In short: Core-suffixed stuff is mutable. Everything else: basically immutable.*
+
+*Core-suffixed = allowed to change.*  
+*Everything else = don’t touch unless you really have to.*
+

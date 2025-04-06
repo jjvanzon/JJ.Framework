@@ -1,16 +1,18 @@
 ﻿Contributing to JJ.Framework
 ============================
 
+*__Core__ projects can change. __Other__ projects are frozen.*
+
 __Contents__
 
 - [Architecture](#architecture)
 - [Legacy](#legacy)
+- [Mutations](#mutations)
+- [Extensions](#extensions)
 - [Branching](#branching)
 - [Deployments](#deployments)
 - [Versioning](#versioning)
 - [Namespaces](#namespaces)
-- [Mutations](#mutations)
-- [Extensions](#extensions)
 - [Code Copies](#code-copies)
 - [Legacy Conclusion](#legacy-conclusion)
 - [Pipelines](#pipelines)
@@ -30,6 +32,18 @@ Legacy
 ------
 
 Development is done under special "legacy" constraints that affect versioning, branching, and framework targeting. It's a bit unconventional and needs a more detailed explanation than usual.
+
+
+Mutations
+---------
+
+Projects without a suffix, like `JJ.Framework.Configuration`, are to remain mostly untouched, aside from absolutely necessary fixes. If we tweak them too much, future merges from `legacy` could devolve into painful merge conflicts. So, the unwritten rule: __keep changes minimal__ to preserve easy integration of subsequent `legacy` pulls.
+
+
+Extensions
+----------
+
+`.Core`-suffixed projects can evolve freely. We don't want to halt new development just because our main code hails from the past. This is where all new features or functionality that never existed in `legacy` can be added.
 
 
 Branching
@@ -76,18 +90,6 @@ JJ.Framework.Configuration.Core
   The same code, compiled for `.NET Framework 4.8`, so older systems aren't left behind.
 - `.Core` (`JJ.Framework.Configuration.Core`):  
   Either brand-new development or code copied from the __latest__ `legacy` code. This way, we don't stifle innovation while we're working with legacy code.
-
-
-Mutations
----------
-
-Projects without a suffix, like `JJ.Framework.Configuration`, are to remain mostly untouched, aside from absolutely necessary fixes. If we tweak them too much, future merges from `legacy` could devolve into painful merge conflicts. So, the unwritten rule: __keep changes minimal__ to preserve easy integration of subsequent `legacy` pulls.
-
-
-Extensions
-----------
-
-`.Core`-suffixed projects can evolve freely. We don't want to halt new development just because our main code hails from the past. This is where all new features or functionality that never existed in `legacy` can be added.
 
 
 Code Copies
@@ -216,7 +218,7 @@ Older commits may have quirks.
     - However it would include projects from other apps too.
     - It might still build even though some projects may not load.
 - Missing `NHibernate SQL Logger` files.
-    - `NHibernate SQL Logger` was made in  employer's time, but programmed into the `JJ.Framework`. It was removed out of the `JJ.Framework` to avoid intellectual property issues.
+    - `NHibernate SQL Logger` was made on employer's time, but programmed into the `JJ.Framework`. It was removed out of the `JJ.Framework` to avoid intellectual property issues.
     - Remove references to non-existent files.
     - Remove the pieces of code that use `if (SqlLogger.Enabled)` and it will work.
 - `.NET Framework` mismatches:
