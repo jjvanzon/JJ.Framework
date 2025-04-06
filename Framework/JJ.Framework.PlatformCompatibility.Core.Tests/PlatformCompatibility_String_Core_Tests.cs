@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace JJ.Framework.PlatformCompatibility.Core.Tests;
+﻿namespace JJ.Framework.PlatformCompatibility.Core.Tests;
 
 [TestClass]
 public class PlatformCompatibility_String_Core_Tests
