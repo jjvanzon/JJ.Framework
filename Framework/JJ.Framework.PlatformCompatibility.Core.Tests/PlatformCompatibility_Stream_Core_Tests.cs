@@ -8,48 +8,24 @@ public class PlatformCompatibility_Stream_Core_Tests
     [TestMethod]
     public void PlatformCompatibility_Stream_Copy_Core_Test()
     {
+        Stream_Copy_Test((stream1, stream2, buffSize) => stream1.CopyTo(stream2, buffSize));
+        Stream_Copy_Test(Stream_PlatformSupport.CopyTo);
+        Stream_Copy_Test(PlatformHelperLegacy.Stream_CopyTo_PlatformSupport);
+    }
+        
+    private void Stream_Copy_Test(Action<Stream, Stream, int> streamCopy)
+    {
         // Arrange
-        int bufferSize = 5;
         byte[] sourceArray  = [ 1, 2, 3, 4, 5 ];
+        int bufferSize = sourceArray.Length;
         Stream sourceStream = new MemoryStream(sourceArray);
+        var destArray = new byte[5];
+        Stream destStream = new MemoryStream(destArray);
         
-        {
-            // Arrange
-            sourceStream.Position = 0;
-            var destArray = new byte[5];
-            Stream destStream = new MemoryStream(destArray);
-            
-            // Act
-            sourceStream.CopyTo(destStream, bufferSize);
+        // Act
+        streamCopy(sourceStream, destStream, bufferSize);
 
-            // Assert
-            IsTrue(() => destArray.SequenceEqual(sourceArray));
-        }
-        
-        {
-            // Arrange
-            sourceStream.Position = 0;
-            var destArray = new byte[5];
-            Stream destStream = new MemoryStream(destArray);
-            
-            // Act
-            PlatformHelperLegacy.Stream_CopyTo_PlatformSupport(sourceStream, destStream, bufferSize);
-
-            // Assert
-            IsTrue(() => destArray.SequenceEqual(sourceArray));
-        }
-        
-        {
-            // Arrange
-            sourceStream.Position = 0;
-            var destArray = new byte[5];
-            Stream destStream = new MemoryStream(destArray);
-            
-            // Act
-            Stream_PlatformSupport.CopyTo(sourceStream, destStream, bufferSize);
-
-            // Assert
-            IsTrue(() => destArray.SequenceEqual(sourceArray));
-        }
+        // Assert
+        IsTrue(() => destArray.SequenceEqual(sourceArray));
     }
 }
