@@ -17,7 +17,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static void CopyTo(Stream source, Stream dest, int bufferSize = 8192)
         {
-            PlatformLegacyHelper.Stream_CopyTo_PlatformSupport(source, dest, bufferSize);
+            PlatformHelperLegacy.Stream_CopyTo_PlatformSupport(source, dest, bufferSize);
         }
     }
 }

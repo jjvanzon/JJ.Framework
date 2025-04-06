@@ -16,7 +16,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static string Join<T>(string separator, IEnumerable<T> values)
         {
-            return PlatformLegacyHelper.String_Join_PlatformSupport(separator, values);
+            return PlatformHelperLegacy.String_Join_PlatformSupport(separator, values);
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace JJ.Framework.PlatformCompatibility
         /// </summary>
         public static bool IsNullOrWhiteSpace(string value)
         {
-            return PlatformLegacyHelper.String_IsNullOrWhiteSpace_PlatformSupport(value);
+            return PlatformHelperLegacy.String_IsNullOrWhiteSpace_PlatformSupport(value);
         }
     }
 }

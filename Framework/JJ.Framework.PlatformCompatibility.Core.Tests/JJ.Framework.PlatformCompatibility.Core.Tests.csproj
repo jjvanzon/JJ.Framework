@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj" />
     <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />
   </ItemGroup>
 </Project>

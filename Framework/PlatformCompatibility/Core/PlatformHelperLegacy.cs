@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JJ.Framework.PlatformCompatibility.Core
 {
-    public static class PlatformLegacyHelper
+    public static class PlatformHelperLegacy
     {
         /// <summary>
         /// .Net 4 substitute

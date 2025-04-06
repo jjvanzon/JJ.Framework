@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace JJ.Framework.PlatformCompatibility.Core
 {
-    public static class PlatformLegacyExtensions
+    public static class PlatformExtensionsLegacy
     {
         /// <summary>
         /// Windows Phone / Unity compatibility:
@@ -70,7 +70,7 @@ namespace JJ.Framework.PlatformCompatibility.Core
         public static TAttribute GetCustomAttribute_PlatformSupport<TAttribute>(this PropertyInfo propertyInfo)
             where TAttribute : Attribute
         {
-            return PlatformLegacyHelper.PropertyInfo_GetCustomAttribute_PlatformSupport<TAttribute>(propertyInfo);
+            return PlatformHelperLegacy.PropertyInfo_GetCustomAttribute_PlatformSupport<TAttribute>(propertyInfo);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace JJ.Framework.PlatformCompatibility.Core
         /// </summary>
         public static void SetValue_PlatformSupport(this PropertyInfo propertyInfo, object obj, object value)
         {
-            PlatformLegacyHelper.PropertyInfo_SetValue_PlatformSupport(propertyInfo, obj, value);
+            PlatformHelperLegacy.PropertyInfo_SetValue_PlatformSupport(propertyInfo, obj, value);
         }
 
         /// <summary>

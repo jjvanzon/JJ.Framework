@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace JJ.Framework.PlatformCompatibility.Core.Tests
+﻿namespace JJ.Framework.PlatformCompatibility.Core.Tests
 {
     [TestClass]
     public sealed class PlatformCompatibility_Encoding_Core_Tests
     {
         [TestMethod]
-        public void Encoding_PlatformSafe_Core_Test()
+        public void PlatformCompatibility_Encoding_Core_Test()
         {
             int previousByteCount = 0;
             
@@ -26,11 +20,13 @@ namespace JJ.Framework.PlatformCompatibility.Core.Tests
                 
                 // Act
                 string actual1 = Encoding_PlatformSafe.GetString_PlatformSafe(encoding, bytes);
-                string actual2 = encoding.GetString(bytes);
+                string actual2 = PlatformHelper.GetString_PlatformSafe(encoding, bytes);
+                string actual3 = encoding.GetString(bytes);
 
                 // Assert                
                 Assert.AreEqual(expected, actual1);
                 Assert.AreEqual(expected, actual2);
+                Assert.AreEqual(expected, actual3);
                 Assert.IsTrue(byteCount > previousByteCount, "byteCount > previousByteCount");
                 
                 previousByteCount = byteCount;
