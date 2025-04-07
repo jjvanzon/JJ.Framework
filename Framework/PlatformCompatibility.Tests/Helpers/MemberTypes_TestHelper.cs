@@ -12,7 +12,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Helpers
 
         private static int Property { get; set; } = 1;
         private static double _field = 2;
-        private static void Method() { }
+        private static void Method() { } // ncrunch: no coverage
         private static event EventHandler Event;
 
         public static PropertyInfo PropertyInfo { get; }

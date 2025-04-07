@@ -5,6 +5,7 @@ using System.Reflection;
 
 namespace JJ.Framework.PlatformCompatibility.Tests.Helpers
 {
+    // ncrunch: no coverage start
     internal class CustomMemberInfo : MemberInfo
     {
         public override object[] GetCustomAttributes(bool inherit) => throw new NotImplementedException();
@@ -15,5 +16,5 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Helpers
         public override Type ReflectedType { get; }
         public override object[] GetCustomAttributes(Type attributeType, bool inherit) => throw new NotImplementedException();
     }
-
+    // ncrunch: no coverage end
 }
