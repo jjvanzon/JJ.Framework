@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
+    <Version>2.0.$(BuildNum)</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>1701;1702;CS0067;NU1605</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.PlatformCompatibility" Version="0.250.1756" />
+    <PackageReference Include="MSTest" Version="3.7.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Testing\JJ.Framework.Testing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.Tests\GlobalUsings.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.Tests\MSTestSettings.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.Tests\PlatformCompatibility_CultureInfo_Core_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.Tests\PlatformCompatibility_Encoding_Core_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.Tests\PlatformCompatibility_MemberType_Core_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.Tests\PlatformCompatibility_Stream_Core_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.Tests\PlatformCompatibility_String_Core_Tests.cs" />
+    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.Tests\PlatformCompatibility_Tuple_Core_Tests.cs" />
+  </ItemGroup>
+
+</Project>
