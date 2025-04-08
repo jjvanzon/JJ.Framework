@@ -131,3 +131,9 @@ Stream sourceStream = new MemoryStream(sourceArray);
     IsTrue(() => destArray.SequenceEqual(sourceArray));
 }
 ```
+
+-----
+
+MSBuild command line parameters:
+
+-verbosity:normal
