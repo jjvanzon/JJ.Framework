@@ -1,0 +1,6 @@
+JJ.Framework.Common README outtakes:
+
+It has been updated for modern `.NET` versions and currently under the scrutiny of testing.
+
+-----
+
