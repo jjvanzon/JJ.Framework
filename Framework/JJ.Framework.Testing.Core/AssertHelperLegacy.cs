@@ -10,7 +10,7 @@ namespace JJ.Framework.Testing.Core
 {
     public static class AssertHelperLegacy
     {
-        internal static void ExpectedActualCheck_Copied<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression, string name = null)
+        internal static void ExpectedActualCheckLegacy<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression, string name = null)
         {
             T actual = ExpressionHelper.GetValue(actualExpression);
             
@@ -22,12 +22,12 @@ namespace JJ.Framework.Testing.Core
                 }
                 
                 string message     = TestHelper_Copied.FormatTestedPropertyMessage(name);
-                string fullMessage = GetExpectedActualMessage_Copied(methodName, expected, actual, message);
+                string fullMessage = GetExpectedActualMessageLegacy(methodName, expected, actual, message);
                 throw new Exception(fullMessage);
             }
         }
         
-        private static string GetExpectedActualMessage_Copied<T>(string methodName, T expected, T actual, string message)
+        private static string GetExpectedActualMessageLegacy<T>(string methodName, T expected, T actual, string message)
             => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>, Actual <{(actual != null ? actual.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";
         
         

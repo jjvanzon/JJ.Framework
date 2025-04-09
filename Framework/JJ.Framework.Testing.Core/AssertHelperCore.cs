@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading;
 using JJ.Framework.Common;
+using JJ.Framework.Logging.Core;
 using JJ.Framework.Logging.Core.docs;
+using JJ.Framework.Reflection;
+using JJ.Framework.Text.Core;
 using static System.Math;
+using static System.String;
 using static JJ.Framework.Testing.Core.AssertHelperLegacy;
 using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
 
@@ -21,15 +26,15 @@ namespace JJ.Framework.Testing.Core
 
             if (direction == None)
             {
-                ExpectedActualCheck_Copied(actual => Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);
+                ExpectedActualCheckLegacy(actual => Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);
             }
             else if (direction == Up)
             {
-                ExpectedActualCheck_Copied(actual => actual - expected >= 0 && Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);   
+                ExpectedActualCheckLegacy(actual => actual - expected >= 0 && Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);   
             }
             else if (direction == Down)
             {
-                ExpectedActualCheck_Copied(actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta), nameof(AreEqual), expected, actualExpression);   
+                ExpectedActualCheckLegacy(actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta), nameof(AreEqual), expected, actualExpression);   
             }
             else
             {
@@ -45,20 +50,71 @@ namespace JJ.Framework.Testing.Core
 
             if (direction == None)
             {
-                ExpectedActualCheck_Copied(actual => Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);
+                ExpectedActualCheckLegacy(actual => Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);
             }
             else if (direction == Up)
             {
-                ExpectedActualCheck_Copied(actual => actual - expected >= 0 && Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);   
+                ExpectedActualCheckLegacy(actual => actual - expected >= 0 && Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);   
             }
             else if (direction == Down)
             {
-                ExpectedActualCheck_Copied(actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta), nameof(AreEqual), expected, actualExpression);   
+                ExpectedActualCheckLegacy(actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta), nameof(AreEqual), expected, actualExpression);   
             }
             else
             {
                 throw new ValueNotSupportedException(direction);
             }
         }
+
+
+        // ThrowsException Checks
+
+        public static void ThrowsExceptionThatContains(Action statement, params string[] messageContainsTexts)
+        {
+            if (statement == null) throw new NullException(() => statement);
+            if (messageContainsTexts == null) throw new NullException(() => messageContainsTexts);
+            
+            try
+            {
+                statement();
+            }
+            catch (Exception ex)
+            {
+                foreach (string messageContainsText in messageContainsTexts)
+                {
+                    AssertHelper.IsTrue(() => ex.Message.Contains(messageContainsText, true));
+                }
+            }
+
+            string concatenatedMessageContains = Join(", ", messageContainsTexts.Select(x => $"'{x}'"));
+            throw new Exception($"An exception should have occurred with a message containing these texts: {concatenatedMessageContains}");
+        }
+        
+        public static void ThrowsExceptionThatContains(Action statement, Type exceptionType, params string[] messageContainsTexts)
+        {
+            if (statement == null) throw new NullException(() => statement);
+            if (exceptionType == null) throw new NullException(() => exceptionType);
+            if (messageContainsTexts == null) throw new NullException(() => messageContainsTexts);
+            
+            try
+            {
+                statement();
+            }
+            catch (Exception ex)
+            {
+                AssertHelper.AreEqual(exceptionType, () => ex.GetType());
+                foreach (string messageContainsText in messageContainsTexts)
+                {
+                    AssertHelper.IsTrue(() => ex.Message.Contains(messageContainsText, true));
+                }
+                return;
+            }
+
+            string concatenatedMessageContains = Join(", ", messageContainsTexts.Select(x => $"'{x}'"));
+            throw new Exception($"An exception should have occurred of type {exceptionType.Name} and a message containing these texts: '{concatenatedMessageContains}'");
+        }
+
+        public static void ThrowsExceptionThatContains<TException>(Action statement, string messageContains)
+            => ThrowsExceptionThatContains(statement, typeof(TException), messageContains);
     }
 }

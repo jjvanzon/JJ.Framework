@@ -8,3 +8,4 @@ global using JJ.Framework.Testing;
 global using JJ.Framework.Testing.Core;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using static JJ.Framework.Testing.AssertHelper;
+global using static JJ.Framework.Testing.Core.AssertHelperCore;

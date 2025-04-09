@@ -165,14 +165,13 @@ public class ConfigurationHelperCoreTests
         {
             try
             {
-                // TODO: Make ThrowsExceptionStartsWith/ThrowsExceptionContains for beginning of string testing.
                 // Arrange
-                //string expectedMessage = $"Value cannot be null.{Environment.NewLine}Parameter name: section";
+                string expectedMessage = "Value cannot be null.";
 
                 // Act
-                ThrowsException<ArgumentNullException>(
-                    () => ConfigurationHelper.SetSection<ConfigurationSectionCore>(null)//,
-                    /*expectedMessage*/);
+                ThrowsExceptionThatContains<ArgumentNullException>(
+                    () => ConfigurationHelper.SetSection<ConfigurationSectionCore>(null),
+                    expectedMessage);
             }
             finally
             {

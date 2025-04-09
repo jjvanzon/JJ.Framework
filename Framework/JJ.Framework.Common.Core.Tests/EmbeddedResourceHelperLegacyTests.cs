@@ -328,7 +328,7 @@ namespace JJ.Framework.Common.Core.Tests
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithSubNameSpace_AssemblyNull_ThrowsException()
-            => AssertHelper.ThrowsException<ArgumentNullException>(
+            => AssertHelperCore.ThrowsExceptionThatContains<ArgumentNullException>(
                 () => EmbeddedResourceHelper.GetEmbeddedResourceStream(assembly: null, "TestResources", "MyFile.txt"),
                 "Value cannot be null.\r\nParameter name: assembly");
 
