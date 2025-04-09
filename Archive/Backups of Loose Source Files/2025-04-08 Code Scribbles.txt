@@ -16,3 +16,21 @@ Actual   <Configuration section of type 'JJ.Framework.Common.Core.Tests.Configur
   <ItemGroup>
     <None Remove="*.ncrunchproject" />
   </ItemGroup>
+
+-----
+
+ Add EmbeddedResourceHelper tests copied from 2021 to the 2015 state, adjusting mostly the names to match.
+
+ -----
+
+         
+private static void AssertContains(string[] expectedContainsTexts, string actualText)
+{
+    foreach (string messageContainsText in expectedContainsTexts)
+    {
+        AssertContains(actualText, messageContainsText);
+    }
+}
+
+private static string FormatDoesNotContainMessage(string actualExceptionMessage, string messageContainsText) 
+    => $"Message does not contain: '{messageContainsText}'. Full message: '{actualExceptionMessage}'";

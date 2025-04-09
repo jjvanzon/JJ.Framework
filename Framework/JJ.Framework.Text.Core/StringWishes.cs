@@ -35,7 +35,7 @@ namespace JJ.Framework.Text.Core
         
         public static bool Contains(this string str, string substring, bool ignoreCase = false)
         {
-            if (str                                                       == null) throw new ArgumentNullException(nameof(str));
+            if (str == null) throw new ArgumentNullException(nameof(str));
             return str.IndexOf(substring, ToStringComparison(ignoreCase)) >= 0;
         }
         

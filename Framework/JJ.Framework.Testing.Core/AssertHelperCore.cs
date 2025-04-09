@@ -11,6 +11,8 @@ using JJ.Framework.Reflection;
 using JJ.Framework.Text.Core;
 using static System.Math;
 using static System.String;
+using static JJ.Framework.Existence.Core.FilledInWishes;
+using static JJ.Framework.Testing.AssertHelper;
 using static JJ.Framework.Testing.Core.AssertHelperLegacy;
 using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
 
@@ -66,13 +68,25 @@ namespace JJ.Framework.Testing.Core
             }
         }
 
+        // Partial String Comparison
+                
+        public static void Contains(string expectedText, string actualText)
+        {
+            actualText ??= "";
+            expectedText ??= "";
+            
+            if (!actualText.Contains(expectedText, ignoreCase: true))
+            {
+                throw new Exception($"Message does not contain: '{expectedText}'. Full message: '{actualText}'");
+            }
+        }
 
         // ThrowsException Checks
 
-        public static void ThrowsExceptionThatContains(Action statement, params string[] messageContainsTexts)
+        public static void ThrowsExceptionContaining(Action statement, params string[] expectedTexts)
         {
             if (statement == null) throw new NullException(() => statement);
-            if (messageContainsTexts == null) throw new NullException(() => messageContainsTexts);
+            if (expectedTexts == null) throw new NullException(() => expectedTexts);
             
             try
             {
@@ -80,21 +94,22 @@ namespace JJ.Framework.Testing.Core
             }
             catch (Exception ex)
             {
-                foreach (string messageContainsText in messageContainsTexts)
+                foreach (string expectedText in expectedTexts)
                 {
-                    AssertHelper.IsTrue(() => ex.Message.Contains(messageContainsText, true));
+                    Contains(expectedText, ex.Message);
                 }
+                
+                return;
             }
 
-            string concatenatedMessageContains = Join(", ", messageContainsTexts.Select(x => $"'{x}'"));
-            throw new Exception($"An exception should have occurred with a message containing these texts: {concatenatedMessageContains}");
+            throw new Exception("An exception should have occurred.");
         }
         
-        public static void ThrowsExceptionThatContains(Action statement, Type exceptionType, params string[] messageContainsTexts)
+        public static void ThrowsExceptionContaining(Action statement, Type exceptionType, params string[] expectedTexts)
         {
             if (statement == null) throw new NullException(() => statement);
             if (exceptionType == null) throw new NullException(() => exceptionType);
-            if (messageContainsTexts == null) throw new NullException(() => messageContainsTexts);
+            if (expectedTexts == null) throw new NullException(() => expectedTexts);
             
             try
             {
@@ -103,18 +118,19 @@ namespace JJ.Framework.Testing.Core
             catch (Exception ex)
             {
                 AssertHelper.AreEqual(exceptionType, () => ex.GetType());
-                foreach (string messageContainsText in messageContainsTexts)
+                
+                foreach (string expectedText in expectedTexts)
                 {
-                    AssertHelper.IsTrue(() => ex.Message.Contains(messageContainsText, true));
+                    Contains(expectedText, ex.Message);
                 }
+                
                 return;
             }
 
-            string concatenatedMessageContains = Join(", ", messageContainsTexts.Select(x => $"'{x}'"));
-            throw new Exception($"An exception should have occurred of type {exceptionType.Name} and a message containing these texts: '{concatenatedMessageContains}'");
+            throw new Exception("An exception should have occurred.");
         }
 
-        public static void ThrowsExceptionThatContains<TException>(Action statement, string messageContains)
-            => ThrowsExceptionThatContains(statement, typeof(TException), messageContains);
+        public static void ThrowsExceptionContaining<TException>(Action statement, params string[] expectedTexts)
+            => ThrowsExceptionContaining(statement, typeof(TException), expectedTexts);
     }
 }

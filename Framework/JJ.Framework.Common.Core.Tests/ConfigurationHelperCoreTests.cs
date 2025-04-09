@@ -169,7 +169,7 @@ public class ConfigurationHelperCoreTests
                 string expectedMessage = "Value cannot be null.";
 
                 // Act
-                ThrowsExceptionThatContains<ArgumentNullException>(
+                ThrowsExceptionContaining<ArgumentNullException>(
                     () => ConfigurationHelper.SetSection<ConfigurationSectionCore>(null),
                     expectedMessage);
             }
