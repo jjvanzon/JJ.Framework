@@ -25,6 +25,10 @@ namespace JJ.Framework.Common
         {
             return GetEmbeddedResourceStream(assembly, null, fileName);
         }
+       
+        // Copied from 2021 version
+        public static string GetEmbeddedResourceName(Assembly assembly, string fileName)
+            => GetEmbeddedResourceName(assembly, null, fileName);
 
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
         public static string GetEmbeddedResourceText(Assembly assembly, string subNamespace, string fileName)
@@ -64,6 +68,10 @@ namespace JJ.Framework.Common
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
         public static string GetEmbeddedResourceName(Assembly assembly, string subNamespace, string fileName)
         {
+            // Pre-conditions copied from 2021 version
+            if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+            if (string.IsNullOrWhiteSpace(fileName)) throw new ArgumentException($"{nameof(fileName)} is null or white space.");
+            
             if (String.IsNullOrEmpty(subNamespace))
             {
                 string embeddedResourceName = String.Format("{0}.{1}", assembly.GetName().Name, fileName);
