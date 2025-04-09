@@ -3,7 +3,7 @@
 namespace JJ.Framework.Common.Core.Tests;
 
 [TestClass]
-public class ConfigurationHelperTestsCore
+public class ConfigurationHelperCoreTests
 {
     // Lock to Force Serial Execution
 
