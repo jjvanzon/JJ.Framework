@@ -34,3 +34,32 @@ private static void AssertContains(string[] expectedContainsTexts, string actual
 
 private static string FormatDoesNotContainMessage(string actualExceptionMessage, string messageContainsText) 
     => $"Message does not contain: '{messageContainsText}'. Full message: '{actualExceptionMessage}'";
+
+
+-----
+
+Test file patterns in Azure DevOps:
+
+**\$(BuildConfiguration)\*tests*.dll
+**\$(BuildConfiguration)\*.demos.*.dll
+**\$(BuildConfiguration)\net*.0\*tests*.dll
+**\$(BuildConfiguration)\net*.0\*.demos.*.dll
+!**\obj\**
+!**\$(BuildConfiguration)\JJ.Demos.ReflectionCache.*
+!**\$(BuildConfiguration)\net*.0\JJ.Demos.ReflectionCache.*
+!**\$(BuildConfiguration)\JJ.Demos.GetNames.dll
+!**\$(BuildConfiguration)\net*.0\JJ.Demos.GetNames.dll
+!**\$(BuildConfiguration)\net*.0\JJ.Framework.Versioning.Core.Tests.dll
+
+Modified:
+
+**\$(BuildConfiguration)\*.tests.dll
+**\$(BuildConfiguration)\*.demos.*.dll
+**\$(BuildConfiguration)\net*.0\*.tests.dll
+**\$(BuildConfiguration)\net*.0\*.demos.*.dll
+!**\obj\**
+!**\$(BuildConfiguration)\JJ.Demos.ReflectionCache.*
+!**\$(BuildConfiguration)\net*.0\JJ.Demos.ReflectionCache.*
+!**\$(BuildConfiguration)\JJ.Demos.GetNames.dll
+!**\$(BuildConfiguration)\net*.0\JJ.Demos.GetNames.dll
+!**\$(BuildConfiguration)\net*.0\JJ.Framework.Versioning.Core.Tests.dll

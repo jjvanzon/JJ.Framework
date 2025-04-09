@@ -9,3 +9,4 @@ global using JJ.Framework.Testing.Core;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using static JJ.Framework.Testing.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertHelperCore;
+global using static Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert;
