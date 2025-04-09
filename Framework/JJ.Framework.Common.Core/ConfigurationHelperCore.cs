@@ -1,6 +1,4 @@
-﻿using JJ.Framework.Reflection;
-
-namespace JJ.Framework.Common.Core;
+﻿namespace JJ.Framework.Common.Core;
 
 public static class ConfigurationHelperCore
 {
