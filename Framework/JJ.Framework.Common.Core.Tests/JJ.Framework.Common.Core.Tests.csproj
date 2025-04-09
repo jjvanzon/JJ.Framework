@@ -4,10 +4,6 @@
     <Version>2.0.$(BuildNum)</Version>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
-    <None Remove="EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
     <EmbeddedResource Include="EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
     <EmbeddedResource Include="TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" />
