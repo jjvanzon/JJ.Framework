@@ -1,3 +1,3 @@
 ﻿namespace JJ.Framework.Common.Core.Tests;
 
-public class ConfigurationSectionCore;
+public class ConfigurationSectionCore2;

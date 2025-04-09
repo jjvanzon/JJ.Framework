@@ -2,7 +2,10 @@
 
 public static class ConfigurationHelperCore
 {
-    public static T TryGetSection<T>()
+    /// <summary>
+    /// Compensates for missing null-tolerant version in ConfigurationHelper.
+    /// </summary>
+    public static T? TryGetSection<T>()
     {
         try
         {
@@ -10,8 +13,14 @@ public static class ConfigurationHelperCore
         }
         catch (Exception exception)
         {
-            // TODO: Catch more exceptions, while not catching too many.
-            return default;
+            bool startsWithText = exception.Message.StartsWith("Configuration section of type");
+            bool containsText = exception.Message.Contains("was not set");
+            if (startsWithText && containsText)
+            {
+                return default;
+            }
+            
+            throw;
         }
     }
 }

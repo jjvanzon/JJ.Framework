@@ -4,3 +4,9 @@ It has been updated for modern `.NET` versions and currently under the scrutiny 
 
 -----
 
+Expected <Configuration section of type 'JJ.Framework.Common.Core.Tests.ConfigurationSectionLegacy' was not set. To allow JJ.Framework.Common to use this configuration section, call JJ.Framework.Common.ConfigurationHelper.SetSection.>,
+Actual   <Configuration section of type 'JJ.Framework.Common.Core.Tests.ConfigurationSectionLegacy' was not set. To allow JJ.Framework.Common to use this configuration section, call JJ.Framework.Common.ConfigurationHelper.SetSection.>. Tested property: 'ex.Message'.
+
+-----
+
+// TODO: Program test to check that throw statement is hit in ConfigurationHelperCore.TryGetSection upon non-matching exception message.

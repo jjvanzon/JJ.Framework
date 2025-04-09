@@ -9,7 +9,7 @@ public class ConfigurationHelper_Core_Tests
 
     private static readonly object _lock = new();
 
-    // Complex Example
+    // Example
 
     [TestMethod]
     public void ConfigurationHelper_Example_Core_Test()
@@ -29,13 +29,13 @@ public class ConfigurationHelper_Core_Tests
                 var output_ConfigSection = ConfigurationHelper.GetSection<ConfigurationSectionCore>();
 
                 // Assert
-                AssertHelper.IsNotNull(() => output_ConfigSection);
-                AssertHelper.AreSame(configSection, () => output_ConfigSection);
+                IsNotNull(() => output_ConfigSection);
+                AreSame(configSection, () => output_ConfigSection);
             }
             finally
             {
                 // Clean Up
-                ConfigurationHelper_Accessor_Core._sections.Clear();
+                ConfigurationHelperAccessorCore._sections.Clear();
             }
         }
     }
@@ -61,16 +61,16 @@ public class ConfigurationHelper_Core_Tests
                 var outputConfigSection2 = ConfigurationHelper.GetSection<object>();
 
                 // Assert
-                AssertHelper.IsNotNull(() => outputConfigSection1);
-                AssertHelper.IsNotNull(() => outputConfigSection2);
-                AssertHelper.AreSame(inputConfigSection1, () => outputConfigSection1);
-                AssertHelper.AreSame(inputConfigSection2, () => outputConfigSection2);
-                AssertHelper.NotEqual(outputConfigSection1, () => outputConfigSection2);
+                IsNotNull(() => outputConfigSection1);
+                IsNotNull(() => outputConfigSection2);
+                AreSame(inputConfigSection1, () => outputConfigSection1);
+                AreSame(inputConfigSection2, () => outputConfigSection2);
+                NotEqual(outputConfigSection1, () => outputConfigSection2);
             }
             finally
             {
                 // Clean Up
-                ConfigurationHelper_Accessor_Core._sections.Clear();
+                ConfigurationHelperAccessorCore._sections.Clear();
             }
         }
     }
@@ -92,13 +92,13 @@ public class ConfigurationHelper_Core_Tests
                 var outputConfigSection = ConfigurationHelper.GetSection<ConfigurationSectionCore>();
 
                 // Assert
-                AssertHelper.IsNotNull(() => outputConfigSection);
-                AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
+                IsNotNull(() => outputConfigSection);
+                AreSame(inputConfigSection, () => outputConfigSection);
             }
             finally
             {
                 // Clean Up
-                ConfigurationHelper_Accessor_Core._sections.Clear();
+                ConfigurationHelperAccessorCore._sections.Clear();
             }
         }
     }
@@ -120,13 +120,13 @@ public class ConfigurationHelper_Core_Tests
                 var outputConfigSection = ConfigurationHelperCore.TryGetSection<ConfigurationSectionCore>();
 
                 // Assert
-                AssertHelper.IsNotNull(() => outputConfigSection);
-                AssertHelper.AreSame(inputConfigSection, () => outputConfigSection);
+                IsNotNull(() => outputConfigSection);
+                AreSame(inputConfigSection, () => outputConfigSection);
             }
             finally
             {
                 // Clean Up
-                ConfigurationHelper_Accessor_Core._sections.Clear();
+                ConfigurationHelperAccessorCore._sections.Clear();
             }
         }
     }
@@ -138,7 +138,7 @@ public class ConfigurationHelper_Core_Tests
     {
         lock (_lock)
         {
-            AssertHelper.ThrowsException(
+            ThrowsException(
                 () => ConfigurationHelper.GetSection<ConfigurationSectionCore>(),
                 "Configuration section of type 'JJ.Framework.Common.Core.Tests.ConfigurationSectionCore' was not set. " +
                 "To allow JJ.Framework.Common to use this configuration section, " +
@@ -152,7 +152,7 @@ public class ConfigurationHelper_Core_Tests
         lock (_lock)
         {
             var configSection = ConfigurationHelperCore.TryGetSection<ConfigurationSectionCore>();
-            AssertHelper.IsNull(() => configSection);
+            IsNull(() => configSection);
         }
     }
 
@@ -170,14 +170,14 @@ public class ConfigurationHelper_Core_Tests
                 //string expectedMessage = $"Value cannot be null.{Environment.NewLine}Parameter name: section";
 
                 // Act
-                AssertHelper.ThrowsException<ArgumentNullException>(
+                ThrowsException<ArgumentNullException>(
                     () => ConfigurationHelper.SetSection<ConfigurationSectionCore>(null)//,
                     /*expectedMessage*/);
             }
             finally
             {
                 // Clean Up
-                ConfigurationHelper_Accessor_Core._sections.Clear();
+                ConfigurationHelperAccessorCore._sections.Clear();
             }
         }
     }
@@ -194,14 +194,35 @@ public class ConfigurationHelper_Core_Tests
                 ConfigurationHelper.SetSection(inputConfigSection);
 
                 // Act
-                AssertHelper.ThrowsException(
+                ThrowsException(
                     () => ConfigurationHelper.SetSection(inputConfigSection),
                     "Configuration section of type 'JJ.Framework.Common.Core.Tests.ConfigurationSectionCore' was already set.");
             }
             finally
             {
                 // Clean Up
-                ConfigurationHelper_Accessor_Core._sections.Clear();
+                ConfigurationHelperAccessorCore._sections.Clear();
+            }
+        }
+    }
+    
+    [TestMethod]
+    public void ConfigurationHelperCore_EdgeCase_TryGetSection_ThrowsExceptions_OtherThanNotFound_Core_Test()
+    {
+        lock (_lock)
+        {
+            try
+            {
+                // Arrange
+                ConfigurationHelperAccessorCore._sections = null;
+
+                // Act & Assert
+                ThrowsException(() => ConfigurationHelperCore.TryGetSection<object>());
+            }
+            finally
+            {
+                // Clean Up
+                ConfigurationHelperAccessorCore._sections = new Dictionary<Type, object>();
             }
         }
     }
