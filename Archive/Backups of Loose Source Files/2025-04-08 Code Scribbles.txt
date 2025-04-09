@@ -10,3 +10,9 @@ Actual   <Configuration section of type 'JJ.Framework.Common.Core.Tests.Configur
 -----
 
 // TODO: Program test to check that throw statement is hit in ConfigurationHelperCore.TryGetSection upon non-matching exception message.
+
+-----
+
+  <ItemGroup>
+    <None Remove="*.ncrunchproject" />
+  </ItemGroup>
