@@ -6,7 +6,7 @@ using JJ.Framework.Collections.Core;
 
 namespace JJ.Framework.Existence.Core
 {
-    public static class FilledInWishes
+    public static class FilledInHelper
     {
         
         public static bool FilledIn<T>(T      value)                  => !Equals(value, default(T));

@@ -21,7 +21,7 @@ namespace JJ.Framework.Testing.Core
                     name = ExpressionHelper.GetText(actualExpression);
                 }
                 
-                string message     = TestHelper_Copied.FormatTestedPropertyMessage(name);
+                string message     = TestHelperLegacy.FormatTestedPropertyMessage(name);
                 string fullMessage = GetExpectedActualMessageLegacy(methodName, expected, actual, message);
                 throw new Exception(fullMessage);
             }
@@ -47,7 +47,7 @@ namespace JJ.Framework.Testing.Core
                 bool isMatch = ex.HasExceptionOrInnerExceptionsOfType(expectedExceptionType, expectedMessage);
                 if (!isMatch)
                 {
-                    actualDescriptor = $"Actual exception: '{ExceptionHelper_Copied.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false)}'";
+                    actualDescriptor = $"Actual exception: '{ExceptionHelperLegacy.FormatExceptionWithInnerExceptions(ex, includeStackTrace: false)}'";
                 }
                 else
                 {

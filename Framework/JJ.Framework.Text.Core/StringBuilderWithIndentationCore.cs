@@ -6,17 +6,17 @@ using System.Text;
 
 namespace JJ.Framework.Text.Core
 {
-    public class StringBuilderWithIndentation_Adapted
+    public class StringBuilderWithIndentationCore
     {
-        public StringBuilderWithIndentation_Adapted()
+        public StringBuilderWithIndentationCore()
             : this("  ")
         { }
         
-        public StringBuilderWithIndentation_Adapted(string tabString)
+        public StringBuilderWithIndentationCore(string tabString)
             : this(tabString, Environment.NewLine)
         { }
         
-        public StringBuilderWithIndentation_Adapted(string tabString , string enter)
+        public StringBuilderWithIndentationCore(string tabString , string enter)
         {
             _tabString = tabString;
             _enter     = enter;

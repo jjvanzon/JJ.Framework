@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Testing.Core
 {
-    internal static class TestHelper_Copied
+    internal static class TestHelperLegacy
     {
         private const string TESTED_PROPERTY_MESSAGE = "Tested member: '{0}'.";
         

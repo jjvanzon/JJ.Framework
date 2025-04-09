@@ -5,9 +5,9 @@ using System.Text;
 
 namespace JJ.Framework.Mathematics.Core
 {
-    public static class RandomizerWishes
+    public static class RandomizerCore
     {
         public static T GetRandomItem<T>(params T[] collection)
-            => Randomizer_Copied.GetRandomItem(collection);
+            => RandomizerLegacy.GetRandomItem(collection);
     }
 }

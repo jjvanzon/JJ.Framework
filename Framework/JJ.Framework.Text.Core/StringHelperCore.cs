@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace JJ.Framework.Text.Core
 {
-    public static class StringWishes
+    public static class StringHelperCore
     {
         public static int CountLines(this string str)
         {

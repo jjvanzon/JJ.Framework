@@ -8,7 +8,7 @@ using static JJ.Framework.Reflection.Core.ReflectionHelperCore;
 namespace JJ.Framework.Configuration.Core
 {
     /// <inheritdoc cref="_trygetsection"/>
-    public static class ConfigurationManagerWishes
+    public static class CustomConfigurationManagerCore
     {
         /// <inheritdoc cref="docs._trygetsection"/>
         public static T TryGetSection<T>(Assembly assembly)

@@ -59,9 +59,9 @@ namespace JJ.Framework.Testing.Core
         {
             get
             {
-                if (!FilledInWishes.Has(Nully) && !FilledInWishes.Has(Coalesced)) return "";
+                if (!FilledInHelper.Has(Nully) && !FilledInHelper.Has(Coalesced)) return "";
                 if (Equals(Nully, Coalesced)) return $"{Nully}";
-                if (FilledInWishes.Has(Nully) && !FilledInWishes.Has(Coalesced)) return $"{Nully}";
+                if (FilledInHelper.Has(Nully) && !FilledInHelper.Has(Coalesced)) return $"{Nully}";
                 return $"({Nully},{Coalesced})";
             }
         }

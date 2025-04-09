@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using JJ.Framework.Existence.Core;
 using JJ.Framework.Reflection;
-using static JJ.Framework.Existence.Core.FilledInWishes;
+using static JJ.Framework.Existence.Core.FilledInHelper;
 using static JJ.Framework.Testing.Core.DebuggerDisplayFormatter;
 
 namespace JJ.Framework.Testing.Core

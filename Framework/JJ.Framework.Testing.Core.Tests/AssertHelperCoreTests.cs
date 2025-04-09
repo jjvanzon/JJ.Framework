@@ -12,7 +12,7 @@ using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
 namespace JJ.Framework.Testing.Core.Tests
 {
     [TestClass]
-    public class AssertWishesTests
+    public class AssertHelperCoreTests
     {
         // With Ints
 

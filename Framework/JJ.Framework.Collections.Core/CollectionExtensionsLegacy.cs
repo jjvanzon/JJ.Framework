@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Collections.Core
 {
-    public static class CollectionExtensions_Copied
+    public static class CollectionExtensionsLegacy
     {
         /// <inheritdoc cref="docs._frameworkwishproduct" />
         public static double Product<TSource>(this IEnumerable<TSource> collection, Func<TSource, double> selector)

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Collections.Core
 {
-    public static class CollectionExtensions_Recursive_Ancestors_Copied
+    public static class CollectionExtensions_Recursive_Ancestors_Legacy
     {
         public static IEnumerable<T> SelfAndAncestors<T>(this T sourceItem, Func<T, T> selector)
         {

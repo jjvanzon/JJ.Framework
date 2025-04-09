@@ -6,7 +6,7 @@ using JJ.Framework.Common;
 
 namespace JJ.Framework.Text.Core
 {
-    public static class StringExtensions_Copied
+    public static class StringExtensionsLegacy
     {
         /// <summary>
         /// Will trim off repetitions of the same value from the given string.

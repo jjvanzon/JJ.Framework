@@ -7,13 +7,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Framework.Testing.Core.Tests
 {
     [TestClass]
-    public class TestWishes_Regression_Tests
+    public class TestingCoreRegressionTests
     {
                 
         [TestMethod]
         public void Test_CaseCollection_Initialization_RegressionCase()
         {
-            // This used to fail before FilledInWishes overloads with HashSet<T> and IList<T> were added.
+            // This used to fail before FilledInHelper overloads with HashSet<T> and IList<T> were added.
             // Before the hope was that HashSet<T> would invoke an overload with ICollection<T>,
             // but instead fell back to overloads that take T,
             // disrupting the intention of checking a collection for null or empty.

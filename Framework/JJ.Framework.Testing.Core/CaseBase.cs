@@ -11,7 +11,7 @@ using JJ.Framework.Reflection.Core;
 using static System.Activator;
 using static System.Array;
 using static JJ.Framework.Reflection.ReflectionHelper;
-using static JJ.Framework.Existence.Core.FilledInWishes;
+using static JJ.Framework.Existence.Core.FilledInHelper;
 using static JJ.Framework.Testing.Core.DebuggerDisplayFormatter;
 
 namespace JJ.Framework.Testing.Core

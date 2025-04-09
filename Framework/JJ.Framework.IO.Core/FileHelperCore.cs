@@ -204,7 +204,7 @@ namespace JJ.Framework.IO.Core
         
         public static string GetFileNameWithoutExtension(string filePath, int maxExtensionLength)
         {
-            if (!FilledInWishes.Has(filePath)) return filePath;
+            if (!FilledInHelper.Has(filePath)) return filePath;
             string extension = Path.GetExtension(filePath);
             if (extension.Length > maxExtensionLength) return filePath;
             string fileNameWithoutExtension = filePath.CutRight(extension);
@@ -213,7 +213,7 @@ namespace JJ.Framework.IO.Core
         
         public static string GetExtension(string filePath, int maxExtensionLength)
         {
-            if (!FilledInWishes.Has(filePath)) return filePath;
+            if (!FilledInHelper.Has(filePath)) return filePath;
             string extension = Path.GetExtension(filePath);
             if (extension.Length > maxExtensionLength) return "";
             return extension;
@@ -221,7 +221,7 @@ namespace JJ.Framework.IO.Core
         
         public static bool HasExtension(string filePath, int maxExtensionLength)
         {
-            if (!FilledInWishes.Has(filePath)) return false;
+            if (!FilledInHelper.Has(filePath)) return false;
             string extension = GetExtension(filePath, maxExtensionLength);
             if (extension.Length > maxExtensionLength) return false;
             return true;
@@ -235,7 +235,7 @@ namespace JJ.Framework.IO.Core
         /// </summary>
         public static bool IsFile(string path, int maxExtensionLength = DEFAULT_MAX_EXTENSION_LENGTH)
         {
-            if (!FilledInWishes.Has(path)) return false;
+            if (!FilledInHelper.Has(path)) return false;
             if (File.Exists(path)) return true;
             if (Directory.Exists(path)) return false;
             if (path.Contains(Path.GetInvalidPathChars())) return false;

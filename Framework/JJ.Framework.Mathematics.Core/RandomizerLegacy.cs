@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JJ.Framework.Mathematics.Core
 {
-    public static class Randomizer_Copied
+    public static class RandomizerLegacy
     {
         private static readonly Random _random = CreateRandom();
         

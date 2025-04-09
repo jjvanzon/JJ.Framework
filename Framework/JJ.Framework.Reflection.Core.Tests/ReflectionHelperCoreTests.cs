@@ -16,7 +16,7 @@ using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 namespace JJ.Framework.Reflection.Core.Tests
 {
     [TestClass]
-    public class ReflectionWishesTests
+    public class ReflectionHelperCoreTests
     {
         // Assemblies
         
@@ -75,9 +75,9 @@ namespace JJ.Framework.Reflection.Core.Tests
             {
                 var types = synonym();
                 IsTrue(() => types.Contains(type));
-                IsTrue(() => types.Contains(typeof(object)));            // Base class of all classes
-                IsTrue(() => types.Contains(typeof(ISerializable)));     // Interface of Exception
-                IsFalse(() => types.Contains(typeof(ReflectionHelperCore))); // ReflectionWishes not part of Exception's hierarchy.
+                IsTrue(() => types.Contains(typeof(object)));                // Base class of all classes
+                IsTrue(() => types.Contains(typeof(ISerializable)));         // Interface of Exception
+                IsFalse(() => types.Contains(typeof(ReflectionHelperCore))); // ReflectionHelperCore not part of Exception's hierarchy.
             }
         }
 

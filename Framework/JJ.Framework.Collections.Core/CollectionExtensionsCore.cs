@@ -6,7 +6,7 @@ using JJ.Framework.Text.Core;
 
 namespace JJ.Framework.Collections.Core
 {
-    public static class CollectionExtensionWishes
+    public static class CollectionExtensionsCore
     {
         public static TimeSpan Sum(this IEnumerable<TimeSpan> timeSpans)
         {

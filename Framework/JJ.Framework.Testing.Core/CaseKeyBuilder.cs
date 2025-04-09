@@ -6,7 +6,7 @@ using JJ.Framework.Existence.Core;
 using JJ.Framework.Reflection;
 using JJ.Framework.Reflection.Core;
 using static System.String;
-using static JJ.Framework.Existence.Core.FilledInWishes;
+using static JJ.Framework.Existence.Core.FilledInHelper;
 
 namespace JJ.Framework.Testing.Core
 {

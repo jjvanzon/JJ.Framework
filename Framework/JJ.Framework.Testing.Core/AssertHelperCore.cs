@@ -11,7 +11,7 @@ using JJ.Framework.Reflection;
 using JJ.Framework.Text.Core;
 using static System.Math;
 using static System.String;
-using static JJ.Framework.Existence.Core.FilledInWishes;
+using static JJ.Framework.Existence.Core.FilledInHelper;
 using static JJ.Framework.Testing.AssertHelper;
 using static JJ.Framework.Testing.Core.AssertHelperLegacy;
 using static JJ.Framework.Testing.Core.DeltaDirectionEnum;

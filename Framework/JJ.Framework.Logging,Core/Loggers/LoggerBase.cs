@@ -9,7 +9,7 @@ using JJ.Framework.Reflection;
 using JJ.Framework.Text.Core;
 using static System.Environment;
 using static System.StringComparer;
-using static JJ.Framework.Existence.Core.FilledInWishes;
+using static JJ.Framework.Existence.Core.FilledInHelper;
 using static JJ.Framework.Logging.Core.Config.LoggerConfigFetcher;
 
 namespace JJ.Framework.Logging.Core.Loggers

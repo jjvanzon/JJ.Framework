@@ -6,7 +6,7 @@ using JJ.Framework.Collections.Core;
 
 namespace JJ.Framework.Logging.Core
 {
-    public static class ExceptionHelper_Copied
+    public static class ExceptionHelperLegacy
     {
         public static string FormatExceptionWithInnerExceptions(Exception ex, bool includeStackTrace)
         {

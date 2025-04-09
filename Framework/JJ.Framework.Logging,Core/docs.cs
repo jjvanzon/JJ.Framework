@@ -47,7 +47,7 @@ namespace JJ.Framework.Logging.Core
         public struct _classesrecursive { }
 
         /// <summary>
-        /// <strong>AssertWishes.AreEqual</strong> overloads that accept an optional
+        /// <strong>AssertHelperCore.AreEqual</strong> overloads that accept an optional
         /// <see cref="DeltaDirectionEnum"> DeltaDirectionEnum </see> parameter. <br/><br/>
         /// 
         /// Specify the acceptable delta (tolerance) for comparisons, based on the direction: <br/><br/>

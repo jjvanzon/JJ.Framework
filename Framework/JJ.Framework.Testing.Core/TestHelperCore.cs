@@ -7,7 +7,7 @@ using System.Text;
 
 namespace JJ.Framework.Testing.Core
 {
-    public static class TestWishes
+    public static class TestHelperCore
     {
         // ReSharper disable AssignNullToNotNullAttribute
         public static bool CurrentTestIsInCategory(string category)
