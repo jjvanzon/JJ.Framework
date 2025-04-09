@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <BuildNum>1786</BuildNum>
+    <BuildNum>1787</BuildNum>
     <DisableFastUpToDateCheck>True</DisableFastUpToDateCheck>
     <XmlImportedjj>True</XmlImportedjj>
   </PropertyGroup>
