@@ -168,4 +168,15 @@ public class CollectionExtensionsCoreTests
         Item[] actual   = input.Distinct(x => x.Nully).ToArray();
         AreEqual(expected, actual);
     }
+    
+    
+    [TestMethod]
+    public void IEnumerableOfTExtensions_AsEnumerable_Core_Test()
+    {
+        int input = 1;
+        IEnumerable<int> enumerable = input.AsEnumerable();
+        int[] array = enumerable.ToArray();
+        int[] expected = [ 1 ];
+        AreEqual(expected, array);
+    }
 }
