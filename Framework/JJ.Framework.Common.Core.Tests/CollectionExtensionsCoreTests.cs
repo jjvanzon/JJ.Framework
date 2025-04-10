@@ -171,7 +171,7 @@ public class CollectionExtensionsCoreTests
     
     
     [TestMethod]
-    public void IEnumerableOfTExtensions_AsEnumerable_Core_Test()
+    public void CollectionExtensions_AsEnumerable_Core_Test()
     {
         int input = 1;
         IEnumerable<int> enumerable = input.AsEnumerable();
