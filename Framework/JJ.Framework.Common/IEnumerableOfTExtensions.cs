@@ -111,8 +111,15 @@ namespace JJ.Framework.Common
             }
         }
 
+        /// <summary>
+        /// Not all collection types have the ForEach method. Here you have an overload for IEnumerable&lt;T&gt; so you
+        /// can use it for more collection types.
+        /// </summary>
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            if (action == null) throw new ArgumentNullException(nameof(action));
+
             foreach (var x in enumerable)
             {
                 action(x);
