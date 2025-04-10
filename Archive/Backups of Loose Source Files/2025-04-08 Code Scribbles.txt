@@ -63,3 +63,9 @@ Modified:
 !**\$(BuildConfiguration)\JJ.Demos.GetNames.dll
 !**\$(BuildConfiguration)\net*.0\JJ.Demos.GetNames.dll
 !**\$(BuildConfiguration)\net*.0\JJ.Framework.Versioning.Core.Tests.dll
+
+-----
+
+    // TODO Test Union overloads that take single items as first or second, and compare its results with the regular Union, that takes 2 collections instead.
+
+    // Test null exceptions for Union, like before with the Except method's test

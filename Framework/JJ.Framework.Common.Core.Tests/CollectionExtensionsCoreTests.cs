@@ -93,4 +93,29 @@ public class CollectionExtensionsCoreTests
         ThrowsExceptionContaining(() => nullColl.Except(coll, distinct: false).ToArray(), "source", "cannot be null");
         ThrowsExceptionContaining(() => coll.Except(nullColl, distinct: false).ToArray(), "input", "cannot be null");
     }
+    
+    [TestMethod]
+    public void CollectionExtensions_Union_WithSingleItem_Core_Test()
+    {
+        int[] input = { 1, 2, 3 };
+        {
+            int[] expected = { 1, 2, 3, 4 };
+            int[] actual   = input.Union(4).ToArray();
+            AreEqual(expected, actual);
+        }
+        {
+            int[] expected = { 4, 1, 2, 3 };
+            int[] actual   = 4.Union(input).ToArray();
+            AreEqual(expected, actual);
+        }
+    }
+    
+    [TestMethod]
+    public void CollectionExtensions_Union_WithSingleItem_NullExceptions_Core_Test()
+    {
+        int[]? nullColl = null;
+        int item = 1;
+        ThrowsExceptionContaining(() => nullColl.Union(item).ToArray(), "first", "cannot be null");
+        ThrowsExceptionContaining(() => item.Union(nullColl).ToArray(), "second", "cannot be null");
+    }
 }
