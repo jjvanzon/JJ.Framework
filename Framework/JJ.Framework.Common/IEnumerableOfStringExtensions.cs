@@ -9,6 +9,7 @@ namespace JJ.Framework.Common
     {
         public static string[] TrimAll(this IEnumerable<string> values, params char[] trimChars)
         {
+            if (values == null) throw new ArgumentNullException(nameof(values));
             return values.Select(x => x.Trim(trimChars)).ToArray();
         }
     }

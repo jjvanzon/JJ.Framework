@@ -18,4 +18,14 @@ public class IEnumerableOfStringExtensionsCoreTests
         AreEqual(expectedTexts, resultTexts1);
         AreEqual(expectedTexts, resultTexts2);
     }
+    
+    [TestMethod]
+    public void TrimAll_NullException_Core_Test()
+    {
+        IEnumerable<string> nullCollection = null;
+        
+        ThrowsExceptionContaining(
+            () => nullCollection.TrimAll(),
+            "Value cannot be null.", "Parameter", "values");
+    }
 }
