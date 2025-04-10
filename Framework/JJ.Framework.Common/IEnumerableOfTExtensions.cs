@@ -28,11 +28,14 @@ namespace JJ.Framework.Common
 
             foreach (T item in collection)
             {
-                yield return item;
+                // This method should not return source items, just dest items, but check well before you change the behavior.
+                
+                //yield return item;
 
                 if (item != null)
                 {
-                    foreach (T item2 in selector(item).SelectRecursive(selector))
+                    //foreach (T item2 in selector(item).SelectRecursive(selector))
+                    foreach (T item2 in selector(item).UnionRecursive(selector))
                     {
                         yield return item2;
                     }
@@ -73,11 +76,14 @@ namespace JJ.Framework.Common
             {
                 T item = collection[i];
 
-                yield return item;
+                // This method should not return source items, just dest items, but check well before you change the behavior.
+                
+                //yield return item;
 
                 if (item != null)
                 {
-                    foreach (T item2 in selector(item).SelectRecursive(selector))
+                    //foreach (T item2 in selector(item).SelectRecursive(selector))
+                    foreach (T item2 in selector(item).UnionRecursive(selector))
                     {
                         yield return item2;
                     }
