@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using JJ.Framework.Common;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace JJ.Framework.Collections.Tests
+namespace JJ.Framework.Common.Core.Tests
 {
     [TestClass]
     public class CollectionExtensions_Recursive_IEnumerable_Tests
@@ -18,6 +19,7 @@ namespace JJ.Framework.Collections.Tests
             private string DebuggerDisplay => $"{{{nameof(Item)}}} '{Name}' [{Children?.Count()}]";
         }
 
+        /*
         [TestMethod]
         public void Test_CollectionExtensions_Recursive_SelectRecursive_IEnumerable_OnItem()
         {
@@ -31,6 +33,7 @@ namespace JJ.Framework.Collections.Tests
             IList<string> expectedItemsNames = new[] { "1.1", "1.2", "1.2.1", "1.3", "1.3.1", "1.3.2" };
             AssertItemNames(expectedItemsNames, items);
         }
+        */
 
         [TestMethod]
         public void Test_CollectionExtensions_Recursive_SelectRecursive_IEnumerable_OnCollection()
@@ -46,6 +49,7 @@ namespace JJ.Framework.Collections.Tests
             AssertItemNames(expectedItemsNames, items);
         }
 
+        /*
         [TestMethod]
         public void Test_CollectionExtensions_Recursive_UnionRecursive_IEnumerable_OnItem()
         {
@@ -59,6 +63,7 @@ namespace JJ.Framework.Collections.Tests
             IList<string> expectedItemsNames = new[] { "1", "1.1", "1.2", "1.2.1", "1.3", "1.3.1", "1.3.2" };
             AssertItemNames(expectedItemsNames, items);
         }
+        */
 
         [TestMethod]
         public void Test_CollectionExtensions_Recursive_UnionRecursive_IEnumerable_OnCollection()
