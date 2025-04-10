@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-// ReSharper disable ConvertToConstant.Local
+﻿// ReSharper disable ConvertToConstant.Local
+// ReSharper disable ReturnValueOfPureMethodIsNotUsed
 
 namespace JJ.Framework.Common.Core.Tests;
 
@@ -120,7 +120,7 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void IEnumerableOfTExtensions_Distinct_WithMultipleKeys_Core_Test()
+    public void IEnumerableOfTExtensions_Distinct_WithMultipleKeyDelegates_Core_Test()
     {
         {
             var input    = new[] { (a: 1, b: 2), (a: 1, b: 2), (a: 3, b: 4) };
@@ -130,10 +130,29 @@ public class CollectionExtensionsCoreTests
         }
         {
             var input    = new[] { (a: 1, b: 2), (a: 1, b: 3), (a: 1, b: 4) };
-            var expected = new[] { (a: 1, b: 2),                            };
+            var expected = new[] { (a: 1, b: 2)                             };
             var actual   = input.Distinct(x => x.a).ToArray();
             AreEqual(expected, actual);
         }
     }
     
+    private class Item(int number1, int number2)
+    {
+        public int Number1 { get; } = number1;
+        public int Number2 { get; } = number2;
+    }
+    
+     [TestMethod]
+    public void CollectionExtensions_Distinct_WithMultipleKeyDelegates_NullExceptions_Core_Test()
+    {
+        Item[] collection = [ new(1, 2), new(1, 3), new(3, 4) ];
+        Item[]? nullCollection = null;
+         
+        Func<Item, int>[] nullDelegateCollection = null;
+        Func<Item, int> nullDelegate = null;
+        
+        ThrowsExceptionContaining(() => nullCollection.Distinct(x => x.Number1).ToArray(), "enumerable", "cannot be null");
+        ThrowsExceptionContaining(() => collection.Distinct(nullDelegateCollection).ToArray(), "keys", "cannot be null");
+        ThrowsExceptionContaining(() => collection.Distinct(nullDelegate).ToArray(), "keys", "contains nulls");
+    }
 }

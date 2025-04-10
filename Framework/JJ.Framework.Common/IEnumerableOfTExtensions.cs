@@ -163,6 +163,10 @@ namespace JJ.Framework.Common
         // TODO: TKey is strange. You would think that the different elements of the key are not always of the same type.
         public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, params Func<TItem, TKey>[] keys)
         {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+            if (keys == null) throw new ArgumentNullException(nameof(keys));
+            if (keys.Contains(null)) throw new Exception("keys contains nulls.");
+            
             string separator = "";
             if (keys.Length > 1)
             {
