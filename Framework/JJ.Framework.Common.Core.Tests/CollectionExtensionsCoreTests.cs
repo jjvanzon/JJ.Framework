@@ -1,15 +1,18 @@
 ﻿// ReSharper disable ConvertToConstant.Local
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
-
 namespace JJ.Framework.Common.Core.Tests;
 
 [TestClass]
 public class CollectionExtensionsCoreTests
 {
-    private class Item(int number, int? nully)
+    // Struct instead of class for sequence equals to work with value comparisons.
+    [DebuggerDisplay("{DebuggerDisplay}")]
+    internal readonly struct Item(int number, int? nully) 
     {
         public int Number { get; } = number;
         public int? Nully { get; } = nully;
+        
+        string DebuggerDisplay => GetDebuggerDisplay(this); // ncrunch: no coverage
     }
 
     [TestMethod]
@@ -154,8 +157,15 @@ public class CollectionExtensionsCoreTests
         ThrowsExceptionContaining(() => nullCollection.Distinct(x => x.Number     ).ToArray(), "enumerable", "cannot be null");
         ThrowsExceptionContaining(() => collection.Distinct(nullDelegateCollection).ToArray(), "keys", "cannot be null");
         ThrowsExceptionContaining(() => collection.Distinct(nullDelegate          ).ToArray(), "keys", "contains nulls");
-
-        // But null key value is fine.
-        collection.Distinct(x => x.Nully).ToArray();
+    }
+    
+    [TestMethod]
+    public void CollectionExtensions_Distinct_WithMultipleKeyDelegates_NullKeyValues_Core_Test()
+    {
+        // But null key values are fine.
+        Item[] input    = [ new(1,null), new(1,2), new(3,4), new(3,null) ];
+        Item[] expected = [ new(1,null), new(1,2), new(3,4) ];
+        Item[] actual   = input.Distinct(x => x.Nully).ToArray();
+        AreEqual(expected, actual);
     }
 }
