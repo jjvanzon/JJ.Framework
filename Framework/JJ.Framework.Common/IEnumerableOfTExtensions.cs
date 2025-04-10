@@ -161,7 +161,7 @@ namespace JJ.Framework.Common
         }
 
         // TODO: TKey is strange. You would think that the different elements of the key are not always of the same type.
-        public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, Func<TItem, TKey>[] keys)
+        public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, params Func<TItem, TKey>[] keys)
         {
             string separator = "";
             if (keys.Length > 1)
