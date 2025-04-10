@@ -8,20 +8,20 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace JJ.Framework.Common.Core.Tests
 {
     [TestClass]
-    public class CollectionExtensions_Recursive_IList_Tests
+    public class CollectionExtensions_Recursive_IEnumerable_Legacy_Tests
     {
         [DebuggerDisplay("{" + nameof(DebuggerDisplay) + "}")]
         private class Item
         {
             public string Name { get; set; }
-            public IList<Item> Children { get; set; } = new List<Item>();
+            public IEnumerable<Item> Children { get; set; } = new List<Item>();
 
-            private string DebuggerDisplay => $"{{{nameof(Item)}}} '{Name}' [{Children?.Count}]";
+            private string DebuggerDisplay => $"{{{nameof(Item)}}} '{Name}' [{Children?.Count()}]";
         }
 
         /*
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_SelectRecursive_IList_OnItem()
+        public void Test_CollectionExtensions_Recursive_SelectRecursive_IEnumerable_OnItem()
         {
             // Setup
             Item item = CreateItem();
@@ -36,7 +36,7 @@ namespace JJ.Framework.Common.Core.Tests
         */
 
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_SelectRecursive_IList_OnCollection()
+        public void Test_CollectionExtensions_Recursive_SelectRecursive_IEnumerable_OnCollection()
         {
             // Setup
             Item item = CreateItem();
@@ -51,7 +51,7 @@ namespace JJ.Framework.Common.Core.Tests
 
         /*
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_UnionRecursive_IList_OnItem()
+        public void Test_CollectionExtensions_Recursive_UnionRecursive_IEnumerable_OnItem()
         {
             // Setup
             Item item = CreateItem();
@@ -66,7 +66,7 @@ namespace JJ.Framework.Common.Core.Tests
         */
 
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_UnionRecursive_IList_OnCollection()
+        public void Test_CollectionExtensions_Recursive_UnionRecursive_IEnumerable_OnCollection()
         {
             // Setup
             Item item = CreateItem();
@@ -116,7 +116,7 @@ namespace JJ.Framework.Common.Core.Tests
         {
             string[] actualItemNames = items.Select(x => x.Name).ToArray();
             Array.Sort(actualItemNames);
-            
+
             AssertHelper.AreEqual(expectedItemsNames.Count, () => items.Count);
             AssertHelper.IsTrue(() => Enumerable.SequenceEqual(actualItemNames, expectedItemsNames));
         }
