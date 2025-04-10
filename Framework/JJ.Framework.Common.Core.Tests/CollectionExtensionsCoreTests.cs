@@ -118,4 +118,22 @@ public class CollectionExtensionsCoreTests
         ThrowsExceptionContaining(() => nullColl.Union(item).ToArray(), "first", "cannot be null");
         ThrowsExceptionContaining(() => item.Union(nullColl).ToArray(), "second", "cannot be null");
     }
+    
+    [TestMethod]
+    public void IEnumerableOfTExtensions_Distinct_WithMultipleKeys_Core_Test()
+    {
+        {
+            var input    = new[] { (a: 1, b: 2), (a: 1, b: 2), (a: 3, b: 4) };
+            var expected = new[] { (a: 1, b: 2),               (a: 3, b: 4) };
+            var actual   = input.Distinct(x => x.a, x => x.b).ToArray();
+            AreEqual(expected, actual);
+        }
+        {
+            var input    = new[] { (a: 1, b: 2), (a: 1, b: 3), (a: 1, b: 4) };
+            var expected = new[] { (a: 1, b: 2),                            };
+            var actual   = input.Distinct(x => x.a).ToArray();
+            AreEqual(expected, actual);
+        }
+    }
+    
 }

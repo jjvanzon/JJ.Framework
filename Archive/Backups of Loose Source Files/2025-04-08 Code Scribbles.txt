@@ -69,3 +69,18 @@ Modified:
     // TODO Test Union overloads that take single items as first or second, and compare its results with the regular Union, that takes 2 collections instead.
 
     // Test null exceptions for Union, like before with the Except method's test
+
+-----
+    
+    // TODO: Test Distinct methods from IEnumerableOfTExtensions.cs. Note that it can take multiple delegates, but those delegates have the same return types.
+    
+    [TestMethod]
+    public void IEnumerableOfTExtensions_Distinct_Core_Test()
+    {
+        int[] input = { 1, 2, 2, 3 };
+        {
+            int[] expected = { 1, 2, 3 };
+            int[] actual   = input.Distinct(x => x).ToArray();
+            AreEqual(expected, actual);
+        }
+    }
