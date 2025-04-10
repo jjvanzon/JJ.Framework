@@ -194,7 +194,7 @@ public class CollectionExtensionsCoreTests
     public void CollectionExtensions_AddRange_NullExceptions_Core_Test()
     {
         IList<int>? nullList = null;
-        IList<int>  list     = new List<int> { 1, 2, 3 };
+        IList<int> list = new List<int> { 1, 2, 3 };
         ThrowsExceptionContaining(() => nullList.AddRange(list), "collection", "cannot be null");
         ThrowsExceptionContaining(() => list.AddRange(nullList), "items", "cannot be null");
     }
@@ -202,7 +202,7 @@ public class CollectionExtensionsCoreTests
     [TestMethod]
     public void CollectionExtensions_Add_WithParams_Core_Test()
     {
-        IList<int> list  = [ 1, 2, 3 ];
+        IList<int> list = [ 1, 2, 3 ];
         list.Add(3, 4, 5);
         int[] expected = [ 1, 2, 3, 3, 4, 5 ];
         int[] actual = list.ToArray();
