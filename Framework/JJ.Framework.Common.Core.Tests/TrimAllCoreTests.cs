@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Common.Core.Tests;
 
 [TestClass]
-public class IEnumerableOfStringExtensionsCoreTests
+public class TrimAllCoreTests
 {
     [TestMethod]
     public void TrimAll_Core_Test()
