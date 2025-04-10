@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Common.Core.Tests;
 
@@ -32,5 +33,64 @@ public class CollectionExtensionsCoreTests
             IEnumerable<int> enumerable = [ 1, 2, 3 ];
             ThrowsExceptionContaining(() => enumerable.ForEach(null), "Cannot be null", "action");
         }
+    }
+
+    [TestMethod]
+    public void CollectionExtensions_Except_WithSingleItem_Core_Test()
+    {
+        int[] input = [ 1, 2, 3 ];
+        {
+            int[] expected = [ 2, 3 ];
+            int[] actual = input.Except(1).ToArray();
+            AreEqual(expected, actual);
+        }
+        {
+            int[] expected = [ 1, 3 ];
+            int[] actual = input.Except(2).ToArray();
+            AreEqual(expected, actual);
+        }
+        {
+            int[] expected = [ 1, 2 ];
+            int[] actual = input.Except(3).ToArray();
+            AreEqual(expected, actual);
+        }
+    }
+    
+    [TestMethod]
+    public void CollectionExtensions_Except_WithDistinctFlag_Core_Test()
+    {
+        int[] input = [ 1, 2, 2, 3 ];
+        {
+            int[] expected = [ 1, 2 ];
+            int[] actual = input.Except([ 3 ]).ToArray();
+            AreEqual(expected, actual);
+        }
+        {
+            int[] expected = [ 1, 2 ];
+            int[] actual = input.Except([ 3 ], distinct: true).ToArray();
+            AreEqual(expected, actual);
+        }
+        {
+            int[] expected = [ 1, 2, 2 ];
+            int[] actual = input.Except([ 3 ], distinct: false).ToArray();
+            AreEqual(expected, actual);
+        }
+    }
+    
+    [TestMethod]
+    public void CollectionExtensions_Except_WithSingleItem_NullExceptions_Core_Test()
+    {
+        int[]? nullColl = null;
+        int item = 1;
+        ThrowsExceptionContaining(() => nullColl.Except(item).ToArray(), "enumerable", "cannot be null");
+    }
+
+    [TestMethod]
+    public void CollectionExtensions_Except_WithDistinctFlag_NullExceptions_Core_Test()
+    {
+        int[]? nullColl = null;
+        int[] coll = [ 1, 2, 3 ];
+        ThrowsExceptionContaining(() => nullColl.Except(coll, distinct: false).ToArray(), "source", "cannot be null");
+        ThrowsExceptionContaining(() => coll.Except(nullColl, distinct: false).ToArray(), "input", "cannot be null");
     }
 }

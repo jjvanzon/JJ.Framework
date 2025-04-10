@@ -126,8 +126,10 @@ namespace JJ.Framework.Common
             }
         }
 
+        /// <summary> An overload of Except that takes just a single item, e.g. myCollection.Except(myItem); </summary>
         public static IEnumerable<T> Except<T>(this IEnumerable<T> enumerable, T x)
         {
+            if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
             return enumerable.Except(new T[] { x });
         }
 
@@ -136,6 +138,7 @@ namespace JJ.Framework.Common
         /// </summary>
         public static IEnumerable<T> Except<T>(this IEnumerable<T> source, IEnumerable<T> input, bool distinct)
         {
+            if (input == null) throw new ArgumentNullException(nameof(input));
             // 
             if (distinct)
             {

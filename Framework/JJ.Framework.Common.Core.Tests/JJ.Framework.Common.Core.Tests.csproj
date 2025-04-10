@@ -3,6 +3,9 @@
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
     <Version>2.0.$(BuildNum)</Version>
   </PropertyGroup>
+  <PropertyGroup>
+    <NoWarn>1701;1702;CA1806</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
     <EmbeddedResource Include="EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
