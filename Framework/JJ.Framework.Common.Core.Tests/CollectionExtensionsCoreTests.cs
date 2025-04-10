@@ -169,7 +169,6 @@ public class CollectionExtensionsCoreTests
         AreEqual(expected, actual);
     }
     
-    
     [TestMethod]
     public void CollectionExtensions_AsEnumerable_Core_Test()
     {
@@ -178,5 +177,17 @@ public class CollectionExtensionsCoreTests
         int[] array = enumerable.ToArray();
         int[] expected = [ 1 ];
         AreEqual(expected, array);
+    }
+    
+    // TODO: Add test for IListExtensions.AddRange that can be executed on an IList<T>, compared to other AddRange overloads of .NET itself.
+    [TestMethod]
+    public void IListExtensions_AddRange_Core_Test()
+    {
+        IList<int> list  = [ 1, 2, 3 ];
+        IList<int> list2 = [ 3, 4, 5 ];
+        list.AddRange(list2);
+        int[] expected = [ 1, 2, 3, 3, 4, 5 ];
+        int[] actual = list.ToArray();
+        AreEqual(expected, actual);
     }
 }
