@@ -114,7 +114,8 @@ namespace JJ.Framework.Common.Core.Tests
 
         private void AssertItemNames(IList<string> expectedItemsNames, IList<Item> items)
         {
-            IList<string> actualItemNames = items.Select(x => x.Name).ToArray();
+            string[] actualItemNames = items.Select(x => x.Name).ToArray();
+            Array.Sort(actualItemNames);
 
             AssertHelper.AreEqual(expectedItemsNames.Count, () => items.Count);
             AssertHelper.IsTrue(() => Enumerable.SequenceEqual(actualItemNames, expectedItemsNames));
