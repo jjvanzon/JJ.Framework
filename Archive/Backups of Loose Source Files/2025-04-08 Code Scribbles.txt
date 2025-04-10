@@ -84,3 +84,5 @@ Modified:
             AreEqual(expected, actual);
         }
     }
+
+    // TODO: Do some testing whether null exceptions go off on that AddRange overload.
