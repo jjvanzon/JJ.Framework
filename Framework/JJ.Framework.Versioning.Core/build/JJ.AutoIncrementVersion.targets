@@ -23,12 +23,9 @@
   
 <PropertyGroup>
   <DirPropsContentjj>
-&lt;Project&gt;
-  &lt;Import 
-    Project="$(XmlNamejj)" 
-    Condition="'%24(XmlImportedjj)'==''
-    And Exists('$(XmlNamejj)')"/&gt;
-&lt;/Project&gt;
+    <Project>
+      <Import Project="$(XmlNamejj)" Condition="'%24(XmlImportedjj)'=='' And Exists('$(XmlNamejj)')"/>
+    </Project>
   </DirPropsContentjj>
 </PropertyGroup>
 
@@ -76,29 +73,25 @@
   <PropertyGroup>
     <!-- Increment -->
     <BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum> 
+    
     <!-- New XML content -->
     <XmlContentjj>
-&lt;Project&gt;
-  &lt;PropertyGroup&gt;
-    &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
-    &lt;DisableFastUpToDateCheck&gt;True&lt;/DisableFastUpToDateCheck&gt;
-    &lt;XmlImportedjj&gt;True&lt;/XmlImportedjj&gt;
-  &lt;/PropertyGroup&gt;
-&lt;/Project&gt;
+      <Project>
+        <PropertyGroup>
+          <BuildNum>$(BuildNum)</BuildNum>
+          <DisableFastUpToDateCheck>True</DisableFastUpToDateCheck>
+          <XmlImportedjj>True</XmlImportedjj>
+        </PropertyGroup>
+      </Project>
     </XmlContentjj>
+    
     <PropsContentjj>
-&lt;Project&gt;
-
-  &lt;PropertyGroup Condition="'%24(BuildNum)'==''"&gt;
-    &lt;BuildNum&gt;$(BuildNum)&lt;/BuildNum&gt;
-  &lt;/PropertyGroup&gt;
-  
-  &lt;PropertyGroup&gt;
-    &lt;DisableFastUpToDateCheck&gt;True&lt;/DisableFastUpToDateCheck&gt;
-  &lt;/PropertyGroup&gt;
-  
-&lt;/Project&gt;
+      <Project>
+        <PropertyGroup Condition="'%24(BuildNum)'==''"><BuildNum>$(BuildNum)</BuildNum></PropertyGroup>
+        <!--<PropertyGroup><DisableFastUpToDateCheck>True</DisableFastUpToDateCheck></PropertyGroup>-->
+      </Project>
     </PropsContentjj>
+    
   </PropertyGroup>
 
   <!-- LOADED ? -->
@@ -110,13 +103,13 @@
   
   <!-- Updated XML -->
            <Message Text="$(Savejj) $(BuildNum) => .xml &quot;$(Xmljj)&quot;" Importance="High" />
-  <WriteLinesToFile File="$(Xmljj)" Overwrite="true" Lines="$(XmlContentjj)"  ContinueOnError="True" WriteOnlyWhenDifferent="True" />
+  <WriteLinesToFile File="$(Xmljj)" Lines="$(XmlContentjj)" Overwrite="True" ContinueOnError="True" WriteOnlyWhenDifferent="True" />
   
   <!-- STAGE -->
   
   <!-- XML file => package bound .props location, to import BuildNum early enough for use in csproj. --> 
            <Message Text="$(Stagejj) $(BuildNum) => .props &quot;$(Propsjj)&quot;" Importance="High"  />
-  <WriteLinesToFile File="$(Propsjj)" Overwrite="true" Lines="$(PropsContentjj)" ContinueOnError="True" WriteOnlyWhenDifferent="True" />
+  <WriteLinesToFile File="$(Propsjj)" Lines="$(PropsContentjj)" Overwrite="True" ContinueOnError="True" WriteOnlyWhenDifferent="True" />
 </Target>
     
 </Project>

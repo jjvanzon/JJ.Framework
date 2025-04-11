@@ -1,11 +1,1 @@
-<Project>
-
-  <PropertyGroup Condition="'$(BuildNum)'==''">
-    <BuildNum>1858</BuildNum>
-  </PropertyGroup>
-  
-  <PropertyGroup>
-    <DisableFastUpToDateCheck>True</DisableFastUpToDateCheck>
-  </PropertyGroup>
-  
-</Project>
+<Project><PropertyGroup Condition="'$(BuildNum)'==''"><BuildNum>1885</BuildNum></PropertyGroup><!--<PropertyGroup><DisableFastUpToDateCheck>True</DisableFastUpToDateCheck></PropertyGroup>--></Project>
