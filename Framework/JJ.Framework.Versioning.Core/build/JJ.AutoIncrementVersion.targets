@@ -110,13 +110,13 @@
   
   <!-- Updated XML -->
            <Message Text="$(Savejj) $(BuildNum) => .xml &quot;$(Xmljj)&quot;" Importance="High" />
-  <WriteLinesToFile File="$(Xmljj)" Overwrite="true" Lines="$(XmlContentjj)"  ContinueOnError="True" />
+  <WriteLinesToFile File="$(Xmljj)" Overwrite="true" Lines="$(XmlContentjj)"  ContinueOnError="True" WriteOnlyWhenDifferent="True" />
   
   <!-- STAGE -->
   
   <!-- XML file => package bound .props location, to import BuildNum early enough for use in csproj. --> 
            <Message Text="$(Stagejj) $(BuildNum) => .props &quot;$(Propsjj)&quot;" Importance="High"  />
-  <WriteLinesToFile File="$(Propsjj)" Overwrite="true" Lines="$(PropsContentjj)" ContinueOnError="True" />
+  <WriteLinesToFile File="$(Propsjj)" Overwrite="true" Lines="$(PropsContentjj)" ContinueOnError="True" WriteOnlyWhenDifferent="True" />
 </Target>
     
 </Project>
