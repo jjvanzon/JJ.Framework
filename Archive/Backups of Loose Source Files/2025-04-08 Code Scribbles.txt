@@ -89,6 +89,4 @@ Modified:
 
 -----
 
-❌ Comma in folder name:
-
-JJ.Framework.Logging,Core
+  <!--<Message Condition="!$(DirPropsReadOut.Contains($(DirPropsInnerContent)))" Text="$(DirPropsWarning)" Importance="High" />-->

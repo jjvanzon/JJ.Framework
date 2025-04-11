@@ -21,68 +21,68 @@
    <DirProps>$(ProjDir)../Directory.Build.props</DirProps>
 </PropertyGroup>
   
-<PropertyGroup>
-  <DirPropsInnerContent>
-    <Import Project="$(XmlName)" Condition="'%24(XmlImportedjj)'=='' And Exists('$(XmlName)')"/>
-  </DirPropsInnerContent>
-  <DirPropsContent>
-    <Project>$(DirPropsInnerContent)</Project>
-  </DirPropsContent>
-  <DirPropsWarning>$(ToolTitle) ⚠️ WARNING ⚠️ 
-    DIRECTORY.BUILD.PROPS OUT OF DATE!
-    ADD: $(DirPropsContent)
-    TO:  $(DirProps)</DirPropsWarning>
-</PropertyGroup>
-
-<!-- LOAD -->
-  
-<!-- BuildNum.xml -->
+<!-- IMPORT BuildNum.xml -->
   
 <Import Project="$(Xml)" Condition="'$(XmlImportedjj)'=='' And Exists('$(Xml)')" />
 <PropertyGroup>
   <BuildNum Condition="'$(BuildNum)'==''">0</BuildNum> <!-- Default 0 -->
 </PropertyGroup>
 
+<!-- BEFORE BUILD -->
+  
 <Target Condition="'$(ItRanjj)'==''" Name="JJ_AutoIncrementVersion_Target" 
         BeforeTargets="BeforeBuild;BuildOnlySettings;PreBuildEvent;Restore;BuildGenerateSources">
   <PropertyGroup><ItRanjj>True</ItRanjj></PropertyGroup>
 
-  <!-- INIT -->
+  <!-- INIT Directory.Build.props -->
     
   <!-- Auto-create Directory.Build.props. -->
   <!-- (Fallback working before package restore and after uninstall.) -->
 
-  <!-- Read existing DirProps -->
+  <!-- Build Content -->
+  <PropertyGroup>
+    <DirPropsInnerContent>
+      <Import Project="$(XmlName)" Condition="'%24(XmlImportedjj)'=='' And Exists('$(XmlName)')"/>
+    </DirPropsInnerContent>
+    <DirPropsContent>
+      <Project>$(DirPropsInnerContent)</Project>
+    </DirPropsContent>
+  </PropertyGroup>
+
+  <!-- Read Existing Content -->
   <ReadLinesFromFile File="$(DirProps)" Condition="Exists('$(DirProps)')" ContinueOnError="True" >
     <Output TaskParameter="Lines" PropertyName="DirPropsReadOut" />
   </ReadLinesFromFile>
 
-  <!-- Warn missing content -->
-  <Warning Condition="!$(DirPropsReadOut.Contains($(DirPropsInnerContent)))" Text="$(DirPropsWarning)" />
-  <!--<Message Condition="!$(DirPropsReadOut.Contains($(DirPropsInnerContent)))" Text="$(DirPropsWarning)" Importance="High" />-->
+  <!-- Warn Missing Content -->
+  <PropertyGroup>
+    <DirPropsWarning>$(ToolTitle) ⚠️ WARNING ⚠️ 
+     DIRECTORY.BUILD.PROPS OUT OF DATE!
+     FILE: $(DirProps)
+     ADD: $(DirPropsInnerContent)
+     OR: $(DirPropsContent)</DirPropsWarning>
+  </PropertyGroup>
+  <Warning Text="$(DirPropsWarning)" Condition="Exists('$(DirProps)') And !$(DirPropsReadOut.Contains($(DirPropsInnerContent)))" />
 
-  <!-- Install DirProps -->
+  <!-- Write Directory.Build.props -->
            <Message Condition="!Exists('$(DirProps)')" Text="$(Init) => &quot;$(DirProps)&quot;" Importance="High" />
   <WriteLinesToFile Condition="!Exists('$(DirProps)')" File="$(DirProps)" Lines="$(DirPropsContent)" ContinueOnError="True" />
 
-  <!-- LOG CONTENTS -->
+  <!-- LOG CONTENT -->
   
   <ReadLinesFromFile File="$(DirProps)" Condition="Exists('$(DirProps)')" ContinueOnError="True" >
     <Output TaskParameter="Lines" PropertyName="DirPropsReadOut" />
   </ReadLinesFromFile>
-  
   <Message Text="$(Content) dir .props: '$(DirPropsReadOut)' &lt;= &quot;$(DirProps)&quot;" Importance="High" />
   
   <ReadLinesFromFile File="$(Xml)" Condition="Exists('$(Xml)')" ContinueOnError="True">
     <Output TaskParameter="Lines" PropertyName="XmlReadOut" />
   </ReadLinesFromFile>
-  
   <Message Text="$(Content) .xml: '$(XmlReadOut)' &lt;= &quot;$(Xml)&quot;" Importance="High" />
 
   <ReadLinesFromFile File="$(Props)" Condition="Exists('$(Props)')" ContinueOnError="True">
     <Output TaskParameter="Lines" PropertyName="PropsReadOut" />
   </ReadLinesFromFile>
-  
   <Message Text="$(Content) .props: '$(PropsReadOut)' &lt;= &quot;$(Props)&quot;" Importance="High" />
 
   <!-- INCREMENT -->
@@ -119,14 +119,13 @@
   <!-- SAVE -->
   
   <!-- Updated XML -->
-           <Message Text="$(Save) $(BuildNum) => .xml &quot;$(Xml)&quot;" Importance="High" />
+  <Message Text="$(Save) $(BuildNum) => .xml &quot;$(Xml)&quot;" Importance="High" />
   <WriteLinesToFile File="$(Xml)" Lines="$(XmlContent)" Overwrite="True" ContinueOnError="True" WriteOnlyWhenDifferent="True" />
   
   <!-- STAGE -->
   
-  <!-- XML file => package bound .props location, to import BuildNum early enough for use in csproj. --> 
-           <Message Text="$(Stage) $(BuildNum) => .props &quot;$(Props)&quot;" Importance="High"  />
+  <!-- To package bound .props location, to import BuildNum early enough for use in csproj. --> 
+  <Message Text="$(Stage) $(BuildNum) => .props &quot;$(Props)&quot;" Importance="High"  />
   <WriteLinesToFile File="$(Props)" Lines="$(PropsContent)" Overwrite="True" ContinueOnError="True" WriteOnlyWhenDifferent="True" />
 </Target>
-    
 </Project>
