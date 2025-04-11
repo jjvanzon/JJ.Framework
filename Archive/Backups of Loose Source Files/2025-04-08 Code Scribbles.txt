@@ -86,3 +86,9 @@ Modified:
     }
 
     // TODO: Do some testing whether null exceptions go off on that AddRange overload.
+
+-----
+
+❌ Comma in folder name:
+
+JJ.Framework.Logging,Core

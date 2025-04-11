@@ -2,10 +2,7 @@
   
   <!-- BuildNum -->
   
-  <Import 
-    Project="BuildNum.xml" 
-    Condition="'$(XmlImportedjj)'==''
-    And Exists('BuildNum.xml')"/>
+  <Import Project="BuildNum.xml" Condition="'$(XmlImportedjj)'=='' And Exists('BuildNum.xml')"/>
   
   <!--<ItemGroup Condition="$(MSBuildProjectName.StartsWith('JJ.'))
                    And '$(MSBuildProjectName)' != 'JJ.Framework.Build' 

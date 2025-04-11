@@ -1,4 +1,4 @@
-<Project TreatAsLocalProperty="ToolTitle;Init;Content;Load;Save;Stage;ProjDir;PackDir;XmlName;PropsName;Xml;Props;DirProps;XmlContent;PropsContent;DirPropsContent;XmlReadOut;PropsReadOut;DirPropsReadOut">
+<Project TreatAsLocalProperty="ToolTitle;Init;Content;Load;Save;Stage;ProjDir;PackDir;XmlName;Xml;XmlContent;XmlReadOut;Props;PropsName;PropsContent;PropsReadOut;DirProps;DirPropsContent;DirPropsInnerContent;DirPropsWarning;DirPropsReadOut">
   
 <!-- Vars -->
 
@@ -22,11 +22,18 @@
 </PropertyGroup>
   
 <PropertyGroup>
+  <DirPropsInnerContent>
+    <Import Project="$(XmlName)" Condition="'%24(XmlImportedjj)'=='' And Exists('$(XmlName)')"/>
+  </DirPropsInnerContent>
   <DirPropsContent>
-    <Project>
-      <Import Project="$(XmlName)" Condition="'%24(XmlImportedjj)'=='' And Exists('$(XmlName)')"/>
-    </Project>
+    <Project>$(DirPropsInnerContent)</Project>
   </DirPropsContent>
+  <DirPropsWarning>$(ToolTitle) 
+    ⚠️ WARNING ⚠️ 
+    DIRECTORY.BUILD.PROPS OUT OF DATE!
+    ADD: $(DirPropsContent)
+    TO: $(DirProps)
+  </DirPropsWarning>
 </PropertyGroup>
 
 <!-- LOAD -->
@@ -43,12 +50,23 @@
   <PropertyGroup><ItRanjj>True</ItRanjj></PropertyGroup>
 
   <!-- INIT -->
-  
-  <!-- Auto-create Directory.Build.props that imports BuildNum.xml for fallback before package restore and after uninstall. -->
+    
+  <!-- Auto-create Directory.Build.props. -->
+  <!-- (Fallback working before package restore and after uninstall.) -->
+
+  <!-- Read existing DirProps -->
+  <ReadLinesFromFile File="$(DirProps)" Condition="Exists('$(DirProps)')" ContinueOnError="True" >
+    <Output TaskParameter="Lines" PropertyName="DirPropsReadOut" />
+  </ReadLinesFromFile>
+
+  <!-- Warn missing content -->
+  <Message Condition="!$(DirPropsReadOut.Contains($(DirPropsInnerContent)))" Text="$(DirPropsWarning)" Importance="High"  />
+
+  <!-- Install DirProps -->
            <Message Condition="!Exists('$(DirProps)')" Text="$(Init) => &quot;$(DirProps)&quot;" Importance="High" />
   <WriteLinesToFile Condition="!Exists('$(DirProps)')" File="$(DirProps)" Lines="$(DirPropsContent)" ContinueOnError="True" />
 
-  <!-- CONTENTS -->
+  <!-- LOG CONTENTS -->
   
   <ReadLinesFromFile File="$(DirProps)" Condition="Exists('$(DirProps)')" ContinueOnError="True" >
     <Output TaskParameter="Lines" PropertyName="DirPropsReadOut" />
