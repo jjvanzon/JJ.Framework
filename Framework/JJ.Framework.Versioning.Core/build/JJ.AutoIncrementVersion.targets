@@ -41,7 +41,7 @@
   <BuildNum Condition="'$(BuildNum)'==''">0</BuildNum> <!-- Default 0 -->
 </PropertyGroup>
 
-<Target Condition="'$(ItRanjj)'==''" Name="JJ_AutoIncrementVersion_Target" BeforeTargets="BeforeBuild;BuildOnlySettings;PreBuildEvent">
+<Target Condition="'$(ItRanjj)'==''" Name="JJ_AutoIncrementVersion_Target" BeforeTargets="BeforeBuild;BuildOnlySettings;PreBuildEvent;Restore">
   <PropertyGroup><ItRanjj>True</ItRanjj></PropertyGroup>
 
   <!-- INIT -->
