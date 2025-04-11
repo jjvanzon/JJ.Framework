@@ -1,4 +1,4 @@
-<Project>
+<Project TreatAsLocalProperty="ToolTitlejj;Initjj;Contentjj;Loadjj;Savejj;Stagejj;ProjDirjj;PackDirjj;XmlNamejj;PropsNamejj;DirPropsjj;DirPropsContentjj">
   
 <!-- Vars -->
 
@@ -54,19 +54,19 @@
     <Output TaskParameter="Lines" PropertyName="DirPropsReadOutjj" />
   </ReadLinesFromFile>
   
-  <Message Text="$(Contentjj) dir .props: $(DirPropsReadOutjj) &lt;= &quot;$(DirPropsjj)&quot;" Importance="High" />
+  <Message Text="$(Contentjj) dir .props: '$(DirPropsReadOutjj)' &lt;= &quot;$(DirPropsjj)&quot;" Importance="High" />
   
   <ReadLinesFromFile File="$(Xmljj)" Condition="Exists('$(Xmljj)')" ContinueOnError="True">
     <Output TaskParameter="Lines" PropertyName="XmlReadOutjj" />
   </ReadLinesFromFile>
   
-  <Message Text="$(Contentjj) .xml: $(XmlReadOutjj) &lt;= &quot;$(Xmljj)&quot;" Importance="High" />
+  <Message Text="$(Contentjj) .xml: '$(XmlReadOutjj)' &lt;= &quot;$(Xmljj)&quot;" Importance="High" />
 
   <ReadLinesFromFile File="$(Propsjj)" Condition="Exists('$(Propsjj)')" ContinueOnError="True">
     <Output TaskParameter="Lines" PropertyName="PropsReadOutjj" />
   </ReadLinesFromFile>
   
-  <Message Text="$(Contentjj) .props: $(PropsReadOutjj) &lt;= &quot;$(Propsjj)&quot;" Importance="High" />
+  <Message Text="$(Contentjj) .props: '$(PropsReadOutjj)' &lt;= &quot;$(Propsjj)&quot;" Importance="High" />
 
   <!-- INCREMENT -->
   
