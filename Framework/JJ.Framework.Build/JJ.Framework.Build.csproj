@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.AutoIncrementVersion" Version="2.0.1688">
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="2.0.1855">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
