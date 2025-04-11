@@ -75,6 +75,19 @@
   <PropertyGroup>
     <!-- Increment -->
     <BuildNum>$([MSBuild]::Add($(BuildNum), 1))</BuildNum> 
+  </PropertyGroup>
+
+  <!-- LOADED ? -->
+  
+  <Message Text="$(Loadjj) $(BuildNum) &lt;= .xml + 1 ?? (&quot;$(Xmljj)&quot;)" Importance="High" />
+  <Message Text="$(Loadjj) $(BuildNum) &lt;= .props + 1 ?? (&quot;$(Propsjj)&quot;)" Importance="High" />
+  
+</Target>
+
+<Target Condition="'$(SaveRanjj)'==''" Name="JJ_AutoIncrementVersion_Save" AfterTargets="AfterBuild">
+  <PropertyGroup><SaveRanjj>True</SaveRanjj></PropertyGroup>
+  
+  <PropertyGroup>
     <!-- New XML content -->
     <XmlContentjj>
 &lt;Project&gt;
@@ -99,11 +112,6 @@
 &lt;/Project&gt;
     </PropsContentjj>
   </PropertyGroup>
-
-  <!-- LOADED ? -->
-  
-  <Message Text="$(Loadjj) $(BuildNum) &lt;= .xml + 1 ?? (&quot;$(Xmljj)&quot;)" Importance="High" />
-  <Message Text="$(Loadjj) $(BuildNum) &lt;= .props + 1 ?? (&quot;$(Propsjj)&quot;)" Importance="High" />
 
   <!-- SAVE -->
   
