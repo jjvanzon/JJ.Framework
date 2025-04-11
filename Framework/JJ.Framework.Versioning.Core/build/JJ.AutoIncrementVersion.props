@@ -1,1 +1,1 @@
-<Project><PropertyGroup Condition="'$(BuildNum)'==''"><BuildNum>1998</BuildNum></PropertyGroup><!--<PropertyGroup><DisableFastUpToDateCheck>True</DisableFastUpToDateCheck></PropertyGroup>--></Project>
+<Project><PropertyGroup Condition="'$(BuildNum)'==''"><BuildNum>2027</BuildNum></PropertyGroup><!--<PropertyGroup><DisableFastUpToDateCheck>True</DisableFastUpToDateCheck></PropertyGroup>--></Project>

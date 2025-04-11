@@ -28,12 +28,10 @@
   <DirPropsContent>
     <Project>$(DirPropsInnerContent)</Project>
   </DirPropsContent>
-  <DirPropsWarning>$(ToolTitle) 
-    ⚠️ WARNING ⚠️ 
+  <DirPropsWarning>$(ToolTitle) ⚠️ WARNING ⚠️ 
     DIRECTORY.BUILD.PROPS OUT OF DATE!
     ADD: $(DirPropsContent)
-    TO: $(DirProps)
-  </DirPropsWarning>
+    TO:  $(DirProps)</DirPropsWarning>
 </PropertyGroup>
 
 <!-- LOAD -->
@@ -60,7 +58,8 @@
   </ReadLinesFromFile>
 
   <!-- Warn missing content -->
-  <Message Condition="!$(DirPropsReadOut.Contains($(DirPropsInnerContent)))" Text="$(DirPropsWarning)" Importance="High"  />
+  <Warning Condition="!$(DirPropsReadOut.Contains($(DirPropsInnerContent)))" Text="$(DirPropsWarning)" />
+  <!--<Message Condition="!$(DirPropsReadOut.Contains($(DirPropsInnerContent)))" Text="$(DirPropsWarning)" Importance="High" />-->
 
   <!-- Install DirProps -->
            <Message Condition="!Exists('$(DirProps)')" Text="$(Init) => &quot;$(DirProps)&quot;" Importance="High" />
