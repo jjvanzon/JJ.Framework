@@ -7,14 +7,14 @@ namespace JJ.Framework.Common
 {
     public static class KeyValuePairHelper
     {
-        public static IDictionary<string, object> ConvertNamesAndValuesListToDictionary(IList<object> namesAndValues)
+        public static IDictionary<string, object> ConvertNamesAndValuesListToDictionary(params IList<object> namesAndValues)
         {
             var dictionary = new Dictionary<string, object>();
             ConvertNamesAndValuesListWithDelegate(namesAndValues, (x, y) => dictionary.Add(x, y));
             return dictionary;
         }
 
-        public static IList<KeyValuePair<string, object>> ConvertNamesAndValuesListToKeyValuePairs(IList<object> namesAndValues)
+        public static IList<KeyValuePair<string, object>> ConvertNamesAndValuesListToKeyValuePairs(params IList<object> namesAndValues)
         {
             var list = new List<KeyValuePair<string, object>>();
             ConvertNamesAndValuesListWithDelegate(namesAndValues, (x, y) => list.Add(new KeyValuePair<string,object>(x, y)));
