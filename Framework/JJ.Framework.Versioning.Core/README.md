@@ -1,1 +1,4 @@
-Moved: <https://github.com/jjvanzon/JJ.AutoIncrementVersion>
+Moved
+=====
+
+👉 <https://github.com/jjvanzon/JJ.AutoIncrementVersion>
