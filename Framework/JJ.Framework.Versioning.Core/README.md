@@ -1,6 +1,6 @@
 Moved
 =====
 
-`JJ.AutoIncrementVersion` now has its own repository:
+`JJ.AutoIncrementVersion` has its own repository now:
 
 👉 __<https://github.com/jjvanzon/JJ.AutoIncrementVersion>__
