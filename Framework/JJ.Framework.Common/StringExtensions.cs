@@ -119,6 +119,10 @@ namespace JJ.Framework.Common
 
         public static string Replace(this string input, string oldValue, string newValue, bool ignoreCase)
         {
+            if (string.IsNullOrEmpty(input)) return input;
+            if (string.IsNullOrEmpty(oldValue)) return input;
+            newValue ??= "";
+
             RegexOptions options = default(RegexOptions);
             if (ignoreCase)
             {
