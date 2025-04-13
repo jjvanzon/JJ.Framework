@@ -15,7 +15,9 @@ namespace JJ.Framework.Common.Core.Tests
             public string Name { get; set; }
             public IEnumerable<Item> Children { get; set; } = new List<Item>();
 
+            // ncrunch: no coverage start
             private string DebuggerDisplay => $"{{{nameof(Item)}}} '{Name}' [{Children?.Count()}]";
+            // ncrunch: no coverage end
         }
 
         /*
