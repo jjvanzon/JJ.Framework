@@ -17,11 +17,11 @@ public class StringExtensionsCommonCoreTests
 
     [TestMethod]
     public void Left_ZeroLengthParameter() 
-        => IsNullOrEmpty(() => "1234".Left(0));
+        => AreEqual("", () => "1234".Left(0));
     
     [TestMethod]
     public void Left_ZeroLengthInput() 
-        => IsNullOrEmpty(() => "".Left(0));
+        => AreEqual("", () => "".Left(0));
 
     /// <inheritdoc cref="_harshnullstringtest" />
     [TestMethod]
@@ -40,11 +40,11 @@ public class StringExtensionsCommonCoreTests
     
     [TestMethod]
     public void Right_ZeroLengthParameter() 
-        => IsNullOrEmpty(() => "1234".Right(0));
+        => AreEqual("", () => "1234".Right(0));
 
     [TestMethod]
     public void Right_ZeroLengthInput() 
-        => IsNullOrEmpty(() => "".Right(0));
+        => AreEqual("", () => "".Right(0));
     
     /// <inheritdoc cref="_harshnullstringtest" />
     [TestMethod]
@@ -109,7 +109,7 @@ public class StringExtensionsCommonCoreTests
     
     [TestMethod]
     public void CutLeft_Length_EmptyInput() 
-        => IsNullOrEmpty(() => "".CutLeft(0));
+        => AreEqual("", () => "".CutLeft(0));
     
     [TestMethod]
     public void CutLeft_Length_TooLong_Exception()
@@ -182,7 +182,7 @@ public class StringExtensionsCommonCoreTests
     
     [TestMethod]
     public void CutRight_Length_EmptyInput() 
-        => IsNullOrEmpty(() => "".CutRight(0));
+        => AreEqual("", () => "".CutRight(0));
     
     [TestMethod]
     public void CutRight_Length_TooLong_Exception()
@@ -320,15 +320,49 @@ public class StringExtensionsCommonCoreTests
         => AreEqual("Test", () => "Test".RemoveExcessiveWhiteSpace());
     
     [TestMethod]
+    public void RemoveExcessiveWhiteSpace_AllWhiteSpace() 
+        => AreEqual("", () => "   \t\r\n   ".RemoveExcessiveWhiteSpace());   
+    
+    [TestMethod]
     public void RemoveExcessiveWhiteSpace_Empty() 
-        => IsNullOrEmpty(() => "".RemoveExcessiveWhiteSpace());
+        => AreEqual("", () => "".RemoveExcessiveWhiteSpace());
     
     [TestMethod]
     public void RemoveExcessiveWhiteSpace_WhiteSpace()
-        => IsNullOrEmpty(() => " ".RemoveExcessiveWhiteSpace());
+        => AreEqual("", () => " ".RemoveExcessiveWhiteSpace());
     
     /// <inheritdoc cref="_harshnullstringtest" />
     [TestMethod]
     public void RemoveExcessiveWhiteSpace_NullException()
         => ThrowsException(() => _null.RemoveExcessiveWhiteSpace());
+    
+    // Replace IgnoreCase
+    
+    [TestMethod]
+    public void Replace_IgnoreCase() 
+        => AreEqual("abc def", "abc DEF".Replace("def", "def", ignoreCase: true));
+    
+    [TestMethod]
+    public void Replace_CaseSensitive() 
+        => AreEqual("abc DEF", "abc DEF".Replace("def", "def", ignoreCase: false));
+    
+    [TestMethod]
+    public void Replace_CaseSensitive_Implied() 
+        => AreEqual("abc DEF", () => "abc DEF".Replace("def", "def"));
+    
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void Replace_NullInput_Exception()
+        => ThrowsException(() => _null.Replace("abc", "def", true));
+    
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void Replace_NullOldValue_Exception() 
+        => ThrowsException(() => "abc".Replace(_null, "def", true));
+    
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void Replace_NullNewValue_Test() 
+        => ThrowsException( () => "abc".Replace("abc", _null, true));
+    
 }
