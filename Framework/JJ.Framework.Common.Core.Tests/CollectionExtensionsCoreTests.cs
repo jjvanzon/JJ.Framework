@@ -1,5 +1,6 @@
 ﻿// ReSharper disable ConvertToConstant.Local
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
+
 namespace JJ.Framework.Common.Core.Tests;
 
 [TestClass]
@@ -51,17 +52,17 @@ public class CollectionExtensionsCoreTests
         {
             int[] expected = [ 2, 3 ];
             int[] actual = input.Except(1).ToArray();
-            AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
         {
             int[] expected = [ 1, 3 ];
             int[] actual = input.Except(2).ToArray();
-            AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
         {
             int[] expected = [ 1, 2 ];
             int[] actual = input.Except(3).ToArray();
-            AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
     
@@ -72,17 +73,17 @@ public class CollectionExtensionsCoreTests
         {
             int[] expected = [ 1, 2 ];
             int[] actual = input.Except([ 3 ]).ToArray();
-            AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
         {
             int[] expected = [ 1, 2 ];
             int[] actual = input.Except([ 3 ], distinct: true).ToArray();
-            AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
         {
             int[] expected = [ 1, 2, 2 ];
             int[] actual = input.Except([ 3 ], distinct: false).ToArray();
-            AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
     
@@ -110,12 +111,12 @@ public class CollectionExtensionsCoreTests
         {
             int[] expected = { 1, 2, 3, 4 };
             int[] actual   = input.Union(4).ToArray();
-            AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
         {
             int[] expected = { 4, 1, 2, 3 };
             int[] actual   = 4.Union(input).ToArray();
-            AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
     
@@ -135,13 +136,13 @@ public class CollectionExtensionsCoreTests
             var input    = new[] { (a:1, b:2), (a:1, b:2), (a:3, b:4) };
             var expected = new[] { (a:1, b:2),             (a:3, b:4) };
             var actual   = input.Distinct(x => x.a, x => x.b).ToArray();
-            AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
         {
             var input    = new[] { (a:1, b:2), (a:1, b:3), (a:1, b:4) };
             var expected = new[] { (a:1, b:2)                         };
             var actual   = input.Distinct(x => x.a).ToArray();
-            AreEqual(expected, actual);
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
     
@@ -166,7 +167,7 @@ public class CollectionExtensionsCoreTests
         Item[] input    = [ new(1,null), new(1,2), new(3,4), new(3,null) ];
         Item[] expected = [ new(1,null), new(1,2), new(3,4) ];
         Item[] actual   = input.Distinct(x => x.Nully).ToArray();
-        AreEqual(expected, actual);
+        CollectionAssert.AreEqual(expected, actual);
     }
     
     [TestMethod]
@@ -176,7 +177,7 @@ public class CollectionExtensionsCoreTests
         IEnumerable<int> enumerable = input.AsEnumerable();
         int[] array = enumerable.ToArray();
         int[] expected = [ 1 ];
-        AreEqual(expected, array);
+        CollectionAssert.AreEqual(expected, array);
     }
     
     [TestMethod]
@@ -187,7 +188,7 @@ public class CollectionExtensionsCoreTests
         list.AddRange(list2);
         int[] expected = [ 1, 2, 3, 3, 4, 5 ];
         int[] actual = list.ToArray();
-        AreEqual(expected, actual);
+        CollectionAssert.AreEqual(expected, actual);
     }
     
     [TestMethod]
@@ -206,7 +207,7 @@ public class CollectionExtensionsCoreTests
         list.Add(3, 4, 5);
         int[] expected = [ 1, 2, 3, 3, 4, 5 ];
         int[] actual = list.ToArray();
-        AreEqual(expected, actual);
+        CollectionAssert.AreEqual(expected, actual);
     }
 
     [TestMethod]

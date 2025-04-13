@@ -15,8 +15,8 @@ public class TrimAllCoreTests
         string[] resultTexts2 = inputTexts.TrimAll();
 
         // Assert
-        AreEqual(expectedTexts, resultTexts1);
-        AreEqual(expectedTexts, resultTexts2);
+        CollectionAssert.AreEqual(expectedTexts, resultTexts1);
+        CollectionAssert.AreEqual(expectedTexts, resultTexts2);
     }
     
     [TestMethod]
