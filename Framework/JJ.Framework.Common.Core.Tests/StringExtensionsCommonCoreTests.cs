@@ -23,6 +23,7 @@ public class StringExtensionsCommonCoreTests
     public void Left_ZeroLengthInput() 
         => IsNullOrEmpty(() => "".Left(0));
 
+    /// <inheritdoc cref="_harshnullstringtest" />
     [TestMethod]
     public void Left_NullException() 
         => ThrowsException(() => _null.Left(0));
@@ -45,11 +46,12 @@ public class StringExtensionsCommonCoreTests
     public void Right_ZeroLengthInput() 
         => IsNullOrEmpty(() => "".Right(0));
     
+    /// <inheritdoc cref="_harshnullstringtest" />
     [TestMethod]
     public void Right_NullException() 
         => ThrowsException(() => _null.Right(0));
 
-    // CutLeft
+    // CutLeft String
     
     [TestMethod]
     public void CutLeft_String_NoMatch() 
@@ -62,6 +64,17 @@ public class StringExtensionsCommonCoreTests
     [TestMethod]
     public void CutLeft_String_MoreMatches_TrimsOne() 
         => AreEqual("BlaLala", () => "BlaBlaLala".CutLeft("Bla"));
+        
+    [TestMethod]
+    public void CutLeft_String_EmptyInput() 
+        => AreEqual("", () => "".CutLeft("Bla"));
+    
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void CutLeft_String_NullInputException()
+        => ThrowsException(() => _null.CutLeft("Bla"));
+
+    // CutLeft Char
     
     [TestMethod]
     public void CutLeft_Char_NoMatch() 
@@ -74,10 +87,44 @@ public class StringExtensionsCommonCoreTests
     [TestMethod]
     public void CutLeft_Char_MoreMatches_TrimsOne() 
         => AreEqual("BlaLala", () => "BBlaLala".CutLeft('B'));
+            
+    [TestMethod]
+    public void CutLeft_Char_EmptyInput() 
+        => AreEqual("", () => "".CutLeft("a"));
     
-    // TODO: Zeroes, Empties and nulls tests
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void CutLeft_Char_NullInputException()
+        => ThrowsException(() => _null.CutLeft("a"));
+
+    // CutLeft Length
     
-    // CutRight
+    [TestMethod]
+    public void CutLeft_Length_Core_Test() 
+        => AreEqual("34", () => "1234".CutLeft(2));
+    
+    [TestMethod]
+    public void CutLeft_Length_Zero() 
+        => AreEqual("1234", () => "1234".CutLeft(0));
+    
+    [TestMethod]
+    public void CutLeft_Length_EmptyInput() 
+        => IsNullOrEmpty(() => "".CutLeft(0));
+    
+    [TestMethod]
+    public void CutLeft_Length_TooLong_Exception()
+        => ThrowsException(() => "1234".CutLeft(5));
+    
+    [TestMethod]
+    public void CutLeft_NegativeLength_Exception() 
+        => ThrowsException(() => "1234".CutRight(-1));
+    
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void CutLeft_Length_NullInput_Exception() 
+        => ThrowsException(() => _null.CutLeft(0));
+    
+    // CutRight String
 
     [TestMethod]
     public void CutRight_String_NoMatch() 
@@ -90,6 +137,17 @@ public class StringExtensionsCommonCoreTests
     [TestMethod]
     public void CutRight_String_MoreMatches_TrimsOne() 
         => AreEqual("LalaBla", () => "LalaBlaBla".CutRight("Bla"));
+        
+    [TestMethod]
+    public void CutRight_String_EmptyInput() 
+        => AreEqual("", () => "".CutRight("Bla"));
+    
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void CutRight_String_NullInputException()
+        => ThrowsException(() => _null.CutRight("Bla"));
+
+    // CutRight Char
     
     [TestMethod]
     public void CutRight_Char_NoMatch() 
@@ -103,8 +161,42 @@ public class StringExtensionsCommonCoreTests
     public void CutRight_Char_MoreMatches_TrimsOne() 
         => AreEqual("Lalala", () => "Lalalaa".CutRight('a'));
     
-    // TODO: Zeroes, Empties and nulls tests
+    [TestMethod]
+    public void CutRight_Char_EmptyInput() 
+        => AreEqual("", () => "".CutRight("a"));
+    
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void CutRight_Char_NullInputException()
+        => ThrowsException(() => _null.CutRight("a"));
+    
+    // CutRight Length
+    
+    [TestMethod]
+    public void CutRight_Length_Core_Test() 
+        => AreEqual("12", () => "1234".CutRight(2));
+    
+    [TestMethod]
+    public void CutRight_Length_Zero() 
+        => AreEqual("1234", () => "1234".CutRight(0));
+    
+    [TestMethod]
+    public void CutRight_Length_EmptyInput() 
+        => IsNullOrEmpty(() => "".CutRight(0));
+    
+    [TestMethod]
+    public void CutRight_Length_TooLong_Exception()
+        => ThrowsException(() => "1234".CutRight(5));
 
+    [TestMethod]
+    public void CutRight_NegativeLength_Exception() 
+        => ThrowsException(() => "1234".CutRight(-1));
+    
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void CutRight_Length_NullInput_Exception() 
+        => ThrowsException(() => _null.CutRight(0));
+    
     // FromTill
     
     [TestMethod]
@@ -139,6 +231,14 @@ public class StringExtensionsCommonCoreTests
     public void FromTill_OutsideBoundRight_Exception() 
         => ThrowsException(() => "12345".FromTill(6, 8));
     
+    [TestMethod]
+    public void FromTill_EmptyInput_Exception() 
+        => ThrowsException(() => "".FromTill(0, 0));
+    
+    [TestMethod]
+    public void FromTill_NullInput_Exception() 
+        => ThrowsException(() => _null.FromTill(0, 0));
+    
     // CutLeftUntil
     
     [TestMethod]
@@ -165,6 +265,15 @@ public class StringExtensionsCommonCoreTests
     public void CutLeftUntil_UntilNull_Exception() 
         => ThrowsException(() => "1234".CutLeftUntil(null));
     
+    [TestMethod]
+    public void CutLeftUntil_EmptyInput() 
+        => AreEqual("", () => "".CutLeftUntil("abc"));
+    
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void CutLeftUntil_NullInput_Exception() 
+        => ThrowsException(() => _null.CutLeftUntil("abc"));
+    
     // CutRightUntil
     
     [TestMethod]
@@ -190,4 +299,36 @@ public class StringExtensionsCommonCoreTests
     [TestMethod]
     public void CutRightUntil_UntilNull_Exception() 
         => ThrowsException(() => "1234".CutRightUntil(null));
+        
+    [TestMethod]
+    public void CutRightUntil_EmptyInput() 
+        => AreEqual("", () => "".CutRightUntil("abc"));
+    
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void CutRightUntil_NullInput_Exception() 
+        => ThrowsException(() => _null.CutRightUntil("abc"));
+
+    // RemoveExcessiveWhiteSpace
+    
+    [TestMethod]
+    public void RemoveExcessiveWhiteSpace_Test() 
+        => AreEqual("This is a test.", () => "\t\tThis \n is \r a   test. ".RemoveExcessiveWhiteSpace());
+ 
+    [TestMethod]
+    public void RemoveExcessiveWhiteSpace_NoWhiteSpace() 
+        => AreEqual("Test", () => "Test".RemoveExcessiveWhiteSpace());
+    
+    [TestMethod]
+    public void RemoveExcessiveWhiteSpace_Empty() 
+        => IsNullOrEmpty(() => "".RemoveExcessiveWhiteSpace());
+    
+    [TestMethod]
+    public void RemoveExcessiveWhiteSpace_WhiteSpace()
+        => IsNullOrEmpty(() => " ".RemoveExcessiveWhiteSpace());
+    
+    /// <inheritdoc cref="_harshnullstringtest" />
+    [TestMethod]
+    public void RemoveExcessiveWhiteSpace_NullException()
+        => ThrowsException(() => _null.RemoveExcessiveWhiteSpace());
 }
