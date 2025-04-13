@@ -340,29 +340,41 @@ public class StringExtensionsCommonCoreTests
     
     [TestMethod]
     public void Replace_IgnoreCase() 
-        => AreEqual("abc def", "abc DEF".Replace("def", "def", ignoreCase: true));
+        => AreEqual("abcdef", "abcDEF".Replace("def", "def", ignoreCase: true));
     
     [TestMethod]
     public void Replace_CaseSensitive() 
-        => AreEqual("abc DEF", "abc DEF".Replace("def", "def", ignoreCase: false));
+        => AreEqual("abcDEF", "abcDEF".Replace("def", "def", ignoreCase: false));
     
     [TestMethod]
     public void Replace_CaseSensitive_Implied() 
-        => AreEqual("abc DEF", () => "abc DEF".Replace("def", "def"));
-    
-    /// <inheritdoc cref="_harshnullstringtest" />
+        => AreEqual("abcDEF", () => "abcDEF".Replace("def", "def"));
+
     [TestMethod]
-    public void Replace_NullInput_Exception()
-        => ThrowsException(() => _null.Replace("abc", "def", true));
-    
-    /// <inheritdoc cref="_harshnullstringtest" />
+    public void Replace_NoMatch_Works() 
+        => AreEqual("abc", () => "abc".Replace("def", "ghi", true));
+
     [TestMethod]
-    public void Replace_NullOldValue_Exception() 
-        => ThrowsException(() => "abc".Replace(_null, "def", true));
+    public void Replace_EmptyInput_Works() 
+        => AreEqual("", () => "".Replace("abc", "def", true));
     
-    /// <inheritdoc cref="_harshnullstringtest" />
     [TestMethod]
-    public void Replace_NullNewValue_Test() 
-        => ThrowsException( () => "abc".Replace("abc", _null, true));
+    public void Replace_EmptyOldValue_DoesNothing() 
+        => AreEqual("abcdef", () => "abcdef".Replace("", "def", true));
     
+    [TestMethod]
+    public void Replace_NullOldValue_DoesNothing() 
+        => AreEqual("abcdef", () => "abcdef".Replace(null, "def", true));
+
+    [TestMethod]
+    public void Replace_EmptyNewValue_RemovesMatches() 
+        => AreEqual("def", () => "abcdef".Replace("abc", "", true));
+        
+    [TestMethod]
+    public void Replace_NullNewValue_RemovesMatches() 
+        => AreEqual("def", () => "abcdef".Replace("abc", null, true));
+
+    [TestMethod]
+    public void Replace_NullInput_ReturnsNullOrEmpty()
+        => IsNullOrEmpty(() => _null.Replace("abc", "def", true));
 }
