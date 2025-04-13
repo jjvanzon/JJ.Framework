@@ -37,7 +37,7 @@ namespace JJ.Framework.Testing.Core.Tests
 
         static CaseCollection<Case> Cases { get; } = new CaseCollection<Case>();
         
-        static CaseCollection<Case> CreateCasesInit => Cases.Add
+        static CaseCollection<Case> CreateCasesInit { get; } = Cases.Add
         (
             // Stereo configurations
             new Case(2,0),
