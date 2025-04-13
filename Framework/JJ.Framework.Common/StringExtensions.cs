@@ -83,8 +83,8 @@ namespace JJ.Framework.Common
         /// Cuts off the right part of a string until the specified delimiter and returns what remains with a portion cut off still including the delimiter itself.
         /// </summary>
         public static string CutRightUntil(this string input, string until)
-        {
-            if (until == null) throw new ArgumentNullException("until");
+        {   
+            if (string.IsNullOrEmpty(until)) throw new Exception($"{nameof(until)} is null or empty.");
             int index = input.LastIndexOf(until);
             if (index == -1) return input;
             string output = input.Left(index + until.Length);
@@ -92,11 +92,11 @@ namespace JJ.Framework.Common
         }
 
         /// <summary>
-        /// Cuts off the right part of a string until the specified delimiter and returns what remains with a portion cut off still including the delimiter itself.
+        /// Cuts off the left part of a string until the specified delimiter and returns what remains with a portion cut off still including the delimiter itself.
         /// </summary>
         public static string CutLeftUntil(this string input, string until)
         {
-            if (until == null) throw new ArgumentNullException("until");
+            if (string.IsNullOrEmpty(until)) throw new Exception($"{nameof(until)} is null or empty.");
             int index = input.IndexOf(until);
             if (index == -1) return input;
             string output = input.Right(input.Length - index);
