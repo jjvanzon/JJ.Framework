@@ -11,7 +11,7 @@ namespace JJ.Framework.Common.Tests
         public void Test_StringExtensions_Split_Tests()
         {
             string input = @"1234,""1234"",""12,34"",""12""""34"",1""23""4,""12""34"",""12""34""";
-            string[] split2 = input.SplitWithQuotation_WithoutUnescape(",", '"');
+            string[] split2 = input.SplitWithQuotation(",", '"');
         }
     }
 }

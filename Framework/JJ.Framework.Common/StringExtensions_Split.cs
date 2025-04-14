@@ -18,6 +18,8 @@ namespace JJ.Framework.Common
             return input.Split(new string[] { separator }, options);
         }
 
+        /// <inheritdoc cref="_splitwithquotation" />
+        [Obsolete("See member summary for limitations.")]
         public static string[] SplitWithQuotation(this string input, string separator, char quote)
         {
             return input.SplitWithQuotation(separator, StringSplitOptions.None, quote);
@@ -28,6 +30,8 @@ namespace JJ.Framework.Common
             return value.Split(separators, StringSplitOptions.None);
         }
 
+        /// <inheritdoc cref="_splitwithquotation" />
+        [Obsolete("See member summary for limitations.")]
         public static string[] SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
         {
             IList<string> values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
@@ -35,12 +39,16 @@ namespace JJ.Framework.Common
             return values.TrimAll(quote.Value).ToArray();
         }
 
-        public static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, char quote)
+        /// <inheritdoc cref="_splitwithquotation" />
+        [Obsolete("See member summary for limitations.")]
+        private static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, char quote)
         {
             return input.SplitWithQuotation_WithoutUnescape(separator, StringSplitOptions.None, quote);
         }
 
-        public static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, StringSplitOptions options, char? quote)
+        /// <inheritdoc cref="_splitwithquotation" />
+        [Obsolete("See member summary for limitations.")]
+        private static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, StringSplitOptions options, char? quote)
         {
             // TODO: Make code better understandable.
 
