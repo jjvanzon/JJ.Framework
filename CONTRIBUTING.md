@@ -14,6 +14,7 @@ __Contents__
 - [Versioning](#versioning)
 - [Namespaces](#namespaces)
 - [Code Copies](#code-copies)
+- [The King and the Ice Queen](#the-king-and-the-ice-queen)
 - [Legacy Conclusion](#legacy-conclusion)
 - [Pipelines](#pipelines)
 - [Dev Env](#dev-env)
@@ -50,7 +51,7 @@ Branching
 ---------
 
 - The original `main` branch is now called `legacy`.
-- The new `main` branches off from an older point in that `legacy` history.
+- The new `main` branches off from an __older__ point in that `legacy` history.
 - Why the throwback? We're "replaying" the past to unearth hidden gems that never saw the light of day. This lets us retroactively release not just libraries but entire applications otherwise lost.
 - __The legacy branch shall not be deleted! The legacy shall remain!__
 - The new `main` follows a single-line strategy. `legacy` had multiple branch lines; mixing both would be unmanageable.
@@ -96,6 +97,17 @@ Code Copies
 -----------
 
 `.Core` may also contain "copies from new" cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Core`, we get all the sweet stuff out there that we want.
+
+The King and the Ice Queen
+--------------------------
+
+<h3>The King</h3>
+
+The `legacy` HEAD, that is, the latest state of the `legacy`, may colloqially be called __The King__, since it's the *legacy head.* Get it?
+
+<h3>The Ice Queen</h3>
+
+The code pulled from an earlier point in history may be referred to as __The Ice Queen__. She only changs minimally to avoid clashes with future historical pulls, but is essentially rigid and unchanging in her rule.
 
 
 Legacy Conclusion
