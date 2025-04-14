@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Common.Core.Tests;
 
 [TestClass]
-public class SplitWithQuotationLegacyTests
+public class SplitWithQuotationCoreTests
 {
     [TestMethod]
     public void SplitWithQuotation_ComplexExample()
