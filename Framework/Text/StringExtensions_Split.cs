@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JJ.Framework.Text.docs;
 
 namespace JJ.Framework.Text
 {
@@ -12,12 +13,16 @@ namespace JJ.Framework.Text
         public static string[] Split(this string input, string separator, StringSplitOptions options)
             => input.Split(new[] { separator }, options);
 
+        /// <inheritdoc cref="_splitwithquotation" />
+        [Obsolete("See member summary for limitations.")]
         public static IList<string> SplitWithQuotation(this string input, string separator, char quote)
             => input.SplitWithQuotation(separator, StringSplitOptions.None, quote);
 
         public static string[] Split(this string value, params string[] separators)
             => value.Split(separators, StringSplitOptions.None);
 
+        /// <inheritdoc cref="_splitwithquotation" />
+        [Obsolete("See member summary for limitations.")]
         public static IList<string> SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
         {
             IList<string> values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
@@ -30,6 +35,8 @@ namespace JJ.Framework.Text
             return values;
         }
 
+        /// <inheritdoc cref="_splitwithquotation" />
+        [Obsolete("See member summary for limitations.")]
         private static IList<string> SplitWithQuotation_WithoutUnescape(
             this string input,
             string separator,

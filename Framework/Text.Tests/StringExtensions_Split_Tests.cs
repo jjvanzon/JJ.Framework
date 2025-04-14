@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static JJ.Framework.Testing.AssertHelper;
+
 // ReSharper disable UnusedVariable
 
 namespace JJ.Framework.Text.Tests
@@ -12,6 +14,35 @@ namespace JJ.Framework.Text.Tests
         {
             string input = @"1234,""1234"",""12,34"",""12""""34"",1""23""4,""12""34"",""12""34""";
             IList<string> split2 = input.SplitWithQuotation(",", '"');
+        }
+        
+        [TestMethod]
+        public void SplitWithQuotation_ComplexExample()
+        {
+            string input = 
+            """
+            1234,"1234","12,34","12""34",1"23"4,"12"34","12"34"
+            """;
+            
+            IList<string> split = input.SplitWithQuotation(",", '"');
+            
+            IsNotNull(() => split);
+            AreEqual(6, () => split.Count);
+            AreEqual("1234",  () => split[0]);
+            AreEqual("1234",  () => split[1]);
+            AreEqual("12,34", () => split[2]);
+            
+            // Turns out quotes only allow use of separator character in values.
+            // It can't be used cleanly for embedding quotes or line breaks in the values.
+            
+            //AreEqual("12\"34", () => split[3]); // Right
+            AreEqual("""12""34""", () => split[3]); // Wrong
+            
+            //AreEqual("1234", () => split[4]); // Right
+            AreEqual("""1"23"4""", () => split[4]); // Wrong
+            
+            //AreEqual("""1234,1234""", () => split[5]); // Right?
+            AreEqual("""12"34","12"34""", () => split[5]); // Wrong
         }
     }
 }
