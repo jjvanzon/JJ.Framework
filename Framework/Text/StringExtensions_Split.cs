@@ -14,29 +14,31 @@ namespace JJ.Framework.Text
             => input.Split(new[] { separator }, options);
 
         /// <inheritdoc cref="_splitwithquotation" />
-        [Obsolete("See member summary for limitations.")]
         public static IList<string> SplitWithQuotation(this string input, string separator, char quote)
             => input.SplitWithQuotation(separator, StringSplitOptions.None, quote);
-
+        
         public static string[] Split(this string value, params string[] separators)
             => value.Split(separators, StringSplitOptions.None);
 
         /// <inheritdoc cref="_splitwithquotation" />
-        [Obsolete("See member summary for limitations.")]
         public static IList<string> SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
         {
             IList<string> values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
-
-            if (quote.HasValue)
-            {
-                values = values.Select(x => x.Trim(quote.Value)).ToArray();
-            }
-
+            values = Unescape(values, quote);
             return values;
+        }
+               
+        private static IList<string> Unescape(IList<string> values, char? quote)
+        {
+            if (quote == null) return values;
+
+            return values.Select(value => (value ?? "")
+                         .Replace($"{quote}{quote}", $"{quote}")
+                         .Trim(quote.Value))
+                         .ToList();
         }
 
         /// <inheritdoc cref="_splitwithquotation" />
-        [Obsolete("See member summary for limitations.")]
         private static IList<string> SplitWithQuotation_WithoutUnescape(
             this string input,
             string separator,

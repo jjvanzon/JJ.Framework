@@ -28,18 +28,15 @@ namespace JJ.Framework.Text.Tests
             
             IsNotNull(() => split);
             AreEqual(6, () => split.Count);
-            AreEqual("1234",  () => split[0]);
-            AreEqual("1234",  () => split[1]);
-            AreEqual("12,34", () => split[2]);
-            
-            // Turns out quotes only allow use of separator character in values.
-            // It can't be used cleanly for embedding quotes or line breaks in the values.
-            
-            //AreEqual("12\"34", () => split[3]); // Right
-            AreEqual("""12""34""", () => split[3]); // Wrong
+            AreEqual("1234",   () => split[0]);
+            AreEqual("1234",   () => split[1]);
+            AreEqual("12,34",  () => split[2]);
+            AreEqual("12\"34", () => split[3]);
+
+            // Quirk: Quotes in the middle are untouched:
             
             //AreEqual("1234", () => split[4]); // Right
-            AreEqual("""1"23"4""", () => split[4]); // Wrong
+            AreEqual("1\"23\"4", () => split[4]); // Wrong
             
             //AreEqual("""1234,1234""", () => split[5]); // Right?
             AreEqual("""12"34","12"34""", () => split[5]); // Wrong
