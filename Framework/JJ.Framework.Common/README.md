@@ -127,7 +127,11 @@ Offers a minimal amount of 2 exception types that are subtly different:
 Misc Helpers
 ------------
 
-- `ConfigurationHelper`: Legacy helper for using configuration settings on platforms where `System.Configuration` is not available.
-- `CultureHelper`: To set thread culture with a single code line.
-- `EmbeddedResourceHelper`: Make it a little easier to get embedded resource `Streams`, `bytes` and `strings`.
-- `KeyHelper`: ...
+- `ConfigurationHelper`
+    - Legacy helper for using configuration settings on platforms where `System.Configuration` is not available.
+- `CultureHelper`
+    - To set thread culture with a single code line.
+- `EmbeddedResourceHelper`
+    - Make it a little easier to get embedded resource `Streams`, `bytes` and `strings`.
+- `KeyHelper`
+    - Utility to produce keys for use in `Dictionaries` by concatinating values with a `GUID` separator in between.
