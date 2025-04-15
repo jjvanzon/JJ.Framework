@@ -20,10 +20,11 @@ namespace JJ.Framework.Common
         }
 
         /// <inheritdoc cref="_splitwithquotation" />
-        [Obsolete("See member summary for limitations.")]
         public static string[] SplitWithQuotation(this string input, string separator, char quote)
         {
-            return input.SplitWithQuotation(separator, StringSplitOptions.None, quote);
+            string[] values = input.SplitWithQuotation_WithoutUnescape(separator, quote);
+            values = Unescape(values, quote);
+            return values;
         }
 
         public static string[] Split(this string value, params string[] separators)
@@ -32,34 +33,32 @@ namespace JJ.Framework.Common
         }
 
         /// <inheritdoc cref="_splitwithquotation" />
-        [Obsolete("See member summary for limitations.")]
         public static string[] SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
         {
             var values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
-            if (quote.HasValue)
-            {
-                values = values.TrimAll(quote.Value).ToArray();
-            }
+            values = Unescape(values, quote);
             return values;
-        }   
+        }
+        
+        private static string[] Unescape(string[] values, char? quote)
+        {
+            if (quote == null) return values;
 
-        // ncrunch: no coverage start
-
+            return values.Select(value => (value ?? "")
+                         .Replace($"{quote}{quote}", $"{quote}")
+                         .Trim(quote.Value))
+                         .ToArray();
+        }
+        
         /// <inheritdoc cref="_splitwithquotation" />
-        [Obsolete("See member summary for limitations.")]
         private static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, char quote)
         {
             return input.SplitWithQuotation_WithoutUnescape(separator, StringSplitOptions.None, quote);
         }
-        
-        // ncrunch: no coverage end
 
         /// <inheritdoc cref="_splitwithquotation" />
-        [Obsolete("See member summary for limitations.")]
         private static string[] SplitWithQuotation_WithoutUnescape(this string input, string separator, StringSplitOptions options, char? quote)
         {
-            // TODO: Make code better understandable.
-
             if (!quote.HasValue)
             {
                 return input.Split(separator, options);
