@@ -3,7 +3,14 @@ JJ.Framework.Common
 
 A mixed bag of general-purpose utilities with minimal dependencies. Later versions of this library split functionality into focused packages like `JJ.Framework.Text`, `JJ.Framework.Collections`, and `JJ.Framework.Exceptions`. This "prequel" version, contains a little bit of everything: a version released in aid of releasing older legacy apps, still holding value.
 
-Here follow the utilities it contains.
+__Contents__
+
+- [String Extensions](#string-extensions)
+- [Collection Extensions](#collection-extensions)
+- [Recursive Collection Extensions](#recursive-collection-extensions)
+- [KeyValuePairHelper](#keyvaluepairhelper)
+- [Exception Types](#exception-types)
+- [Misc Helpers](#misc-helpers)
 
 
 String Extensions
@@ -58,7 +65,9 @@ Collection Extensions
 - `AsEnumerable`
     * Converts a single item to a enumerable. Example: `IEnumerable<int> myInts = 3.AsEnumerable();`
 
-## Recursive Collection Extensions
+
+Recursive Collection Extensions
+-------------------------------
 
 `LINQ` methods already allow you to process a whole __collection__ of items in one blow. Process a whole __tree__ of items in one blow? For many cases these *Recursive Collection Extensions* offer a one-line solution.
 
@@ -95,9 +104,11 @@ There is also a `SelectRecursive` method:
 
     var allItemsExceptRoots = myRootItems.SelectRecursive(x => x.Children);
 
-The difference with `UnionRecursive` is that `SelectRecursive` does not include the root in the result collection.
+The difference with `UnionRecursive` is that `SelectRecursive` does not include the roots in the result collection.
 
-### KeyValuePairHelper
+
+KeyValuePairHelper
+------------------
 
 Converts a single array to `KeyValuePair` or `Dictionary`, where the 1st item is a name, the 2nd a value, the 3rd a name, the 4th a value, etc. This can be useful to be able to specify name/value pairs as `params` (variable amount of arguments). For instance:
 
