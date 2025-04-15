@@ -1,5 +1,7 @@
 ﻿// ReSharper disable ConvertToConstant.Local
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
+// ReSharper disable PropertyCanBeMadeInitOnly.Local
+// ReSharper disable UnusedAutoPropertyAccessor.Local
 
 namespace JJ.Framework.Common.Core.Tests;
 
@@ -15,9 +17,16 @@ public class CollectionExtensionsCoreTests
         
         string DebuggerDisplay => GetDebuggerDisplay(this); // ncrunch: no coverage
     }
+    
+    private class Person
+    {
+        public string FirstName { get; set; }
+        public string LastName  { get; set; }
+        public int    Age       { get; set; }
+    }
 
     [TestMethod]
-    public void CollectionExtensions_ForEach_Core_Test()
+    public void ForEach_Core_Test()
     {
         List<int> list = new List<int> { 1, 2, 3 };
         IEnumerable<int> enumerable = list;
@@ -33,7 +42,7 @@ public class CollectionExtensionsCoreTests
     }
 
     [TestMethod]
-    public void CollectionExtensions_ForEach_Exceptions_Core_Test()
+    public void ForEach_Exceptions_Core_Test()
     {
         {
             IEnumerable<int> enumerable = null;
@@ -46,7 +55,7 @@ public class CollectionExtensionsCoreTests
     }
 
     [TestMethod]
-    public void CollectionExtensions_Except_WithSingleItem_Core_Test()
+    public void Except_WithSingleItem_Core_Test()
     {
         int[] input = [ 1, 2, 3 ];
         {
@@ -67,7 +76,7 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void CollectionExtensions_Except_WithDistinctFlag_Core_Test()
+    public void Except_WithDistinctFlag_Core_Test()
     {
         int[] input = [ 1, 2, 2, 3 ];
         {
@@ -88,7 +97,7 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void CollectionExtensions_Except_WithSingleItem_NullExceptions_Core_Test()
+    public void Except_WithSingleItem_NullExceptions_Core_Test()
     {
         int[]? nullColl = null;
         int item = 1;
@@ -96,7 +105,7 @@ public class CollectionExtensionsCoreTests
     }
 
     [TestMethod]
-    public void CollectionExtensions_Except_WithDistinctFlag_NullExceptions_Core_Test()
+    public void Except_WithDistinctFlag_NullExceptions_Core_Test()
     {
         int[]? nullColl = null;
         int[] coll = [ 1, 2, 3 ];
@@ -105,7 +114,7 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void CollectionExtensions_Union_WithSingleItem_Core_Test()
+    public void Union_WithSingleItem_Core_Test()
     {
         int[] input = { 1, 2, 3 };
         {
@@ -121,7 +130,7 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void CollectionExtensions_Union_WithSingleItem_NullExceptions_Core_Test()
+    public void Union_WithSingleItem_NullExceptions_Core_Test()
     {
         int[]? nullColl = null;
         int item = 1;
@@ -130,7 +139,7 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void IEnumerableOfTExtensions_Distinct_WithMultipleKeyDelegates_Core_Test()
+    public void Distinct_WithMultipleKeyDelegates_Core_Test()
     {
         {
             var input    = new[] { (a:1, b:2), (a:1, b:2), (a:3, b:4) };
@@ -147,7 +156,7 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void CollectionExtensions_Distinct_WithMultipleKeyDelegates_NullExceptions_Core_Test()
+    public void Distinct_WithMultipleKeyDelegates_NullExceptions_Core_Test()
     {
         Item[] collection = [ new(1,2), new(1,3), new(3,4), new(3,null) ];
         Item[]? nullCollection = null;
@@ -161,7 +170,7 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void CollectionExtensions_Distinct_WithMultipleKeyDelegates_NullKeyValues_Core_Test()
+    public void Distinct_WithMultipleKeyDelegates_NullKeyValues_Core_Test()
     {
         // But null key values are fine.
         Item[] input    = [ new(1,null), new(1,2), new(3,4), new(3,null) ];
@@ -171,7 +180,31 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void CollectionExtensions_AsEnumerable_Core_Test()
+    public void Distinct_ByAnonymousKey_Core_Test()
+    {
+        // Arrange
+        var people = new Person[]
+        {
+            new() { FirstName = "Alice",   LastName = "Smith", Age = 30 },
+            new() { FirstName = "Bob",     LastName = "Smith", Age = 30 },
+            new() { FirstName = "Charlie", LastName = "Jones", Age = 25 },
+            new() { FirstName = "Dana",    LastName = "Smith", Age = 30 },
+            new() { FirstName = "Eve",     LastName = "Jones", Age = 25 }  
+        };
+
+        // Act
+        var result = people
+            .Distinct(x => new { x.LastName, x.Age })
+            .ToArray();
+
+        // Assert
+        AreEqual(2, () => result.Length);
+        IsTrue(result.Any(x => x.LastName == "Smith" && x.Age == 30));
+        IsTrue(result.Any(x => x.LastName == "Jones" && x.Age == 25));
+    }
+    
+    [TestMethod]
+    public void AsEnumerable_Core_Test()
     {
         int input = 1;
         IEnumerable<int> enumerable = input.AsEnumerable();
@@ -181,7 +214,7 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void CollectionExtensions_AddRange_Core_Test()
+    public void AddRange_Core_Test()
     {
         IList<int> list  = [ 1, 2, 3 ];
         IList<int> list2 = [ 3, 4, 5 ];
@@ -192,7 +225,7 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void CollectionExtensions_AddRange_NullExceptions_Core_Test()
+    public void AddRange_NullExceptions_Core_Test()
     {
         IList<int>? nullList = null;
         IList<int> list = [ 1, 2, 3 ];
@@ -201,7 +234,7 @@ public class CollectionExtensionsCoreTests
     }
     
     [TestMethod]
-    public void CollectionExtensions_Add_WithParams_Core_Test()
+    public void Add_WithParams_Core_Test()
     {
         IList<int> list = [ 1, 2, 3 ];
         list.Add(3, 4, 5);
@@ -211,7 +244,7 @@ public class CollectionExtensionsCoreTests
     }
 
     [TestMethod]
-    public void CollectionExtensions_Add_WithParams_NullExceptions_Core_Test()
+    public void Add_WithParams_NullExceptions_Core_Test()
     {
         IList<int>? nullList = null;
         ThrowsExceptionContaining(() => nullList.Add(1, 2, 3), "collection", "cannot be null");

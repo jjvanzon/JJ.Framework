@@ -22,7 +22,7 @@ namespace JJ.Framework.Common.Core.Tests
 
         /*
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_SelectRecursive_IEnumerable_OnItem()
+        public void Recursive_SelectRecursive_IEnumerable_OnItem()
         {
             // Setup
             Item item = CreateItem();
@@ -37,7 +37,7 @@ namespace JJ.Framework.Common.Core.Tests
         */
 
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_SelectRecursive_IEnumerable_OnCollection()
+        public void Recursive_SelectRecursive_IEnumerable_OnCollection()
         {
             // Setup
             Item item = CreateItem();
@@ -52,7 +52,7 @@ namespace JJ.Framework.Common.Core.Tests
 
         /*
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_UnionRecursive_IEnumerable_OnItem()
+        public void Recursive_UnionRecursive_IEnumerable_OnItem()
         {
             // Setup
             Item item = CreateItem();
@@ -67,7 +67,7 @@ namespace JJ.Framework.Common.Core.Tests
         */
 
         [TestMethod]
-        public void Test_CollectionExtensions_Recursive_UnionRecursive_IEnumerable_OnCollection()
+        public void Recursive_UnionRecursive_IEnumerable_OnCollection()
         {
             // Setup
             Item item = CreateItem();
