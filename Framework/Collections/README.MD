@@ -73,7 +73,7 @@ Many of these methods are variations on the already existing LINQ methods. You m
 
 ## Recursive Collection Extensions
 
-LINQ methods allow you to process a whole collection of items in one blow. Process a whole *tree* of items in one blow? For many cases these *Recursive Collection Extensions* offer a one-line solution.
+`LINQ` methods allow you to process a whole collection of items in one blow. Process a whole *tree* of items in one blow? For many cases these *Recursive Collection Extensions* offer a one-line solution.
 
 ### Enumerate Descendants
 
