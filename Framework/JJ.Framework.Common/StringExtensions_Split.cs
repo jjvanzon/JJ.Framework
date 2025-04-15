@@ -35,7 +35,7 @@ namespace JJ.Framework.Common
         /// <inheritdoc cref="_splitwithquotation" />
         public static string[] SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
         {
-            var values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
+            string[] values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
             values = Unescape(values, quote);
             return values;
         }
