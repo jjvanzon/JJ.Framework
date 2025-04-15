@@ -3,7 +3,8 @@ JJ.Framework.Common
 
 A mixed bag of general-purpose utilities with minimal dependencies. Later versions of this library split functionality into focused packages like `JJ.Framework.Text`, `JJ.Framework.Collections`, and `JJ.Framework.Exceptions`. This "prequel" version, contains a little bit of everything: a version released in aid of releasing older legacy apps, still holding value.
 
-Here are the larger parts:
+Here follow the utilities it contains.
+
 
 String Extensions
 -----------------
@@ -39,10 +40,12 @@ Collection Extensions
     * Variation that takes a key selector that determines what makes an item unique, e.g.
     `myItems.Distinct(x =`>` x.LastName);` For multi-part as keys, use:
     `myItems.Distinct(x =`>` new { x.FirstName, x.LastName });`
-- `Except` variations with:
+- `Except` 
+    * Variations with:
     * A single item, e.g. `myCollection.Except(myItem);`
     * The choice to keep duplicates. (The original `Except` method from .NET automatically does a distinct, which is something you do not always want.)
-- `Union` variations with:
+- `Union`
+    * Variations with:
     * A single item, e.g. `myCollection.Union(myItem);`
     * Starts with a single item and then adds a collection to it e.g. `myItem.Union(myCollection);`
 - `ForEach`
@@ -55,28 +58,13 @@ Collection Extensions
 - `AsEnumerable`
     * Converts a single item to a enumerable. Example: `IEnumerable<int> myInts = 3.AsEnumerable();`
 
-### KeyValuePairHelper
-
-Converts a single array to `KeyValuePair` or `Dictionary`, where the first item is a name, the second a value, the third a name, the fourth a value. This can be useful to be able to specify name/value pairs as `params` (variable amount of arguments). For instance:
-
-    void MyMethod(params object[] namesAndValues)
-    {
-        var dictionary = KeyValuePairHelper.ConvertNamesAndValuesListToDictionary(namesAndValues);
-        // ...
-    }
-
-Calling MyMethod  looks like this:
-
-    MyMethod("Name1", 3, "Name2", 5, "Name3", 6);
-
 ## Recursive Collection Extensions
 
 `LINQ` methods already allow you to process a whole __collection__ of items in one blow. Process a whole __tree__ of items in one blow? For many cases these *Recursive Collection Extensions* offer a one-line solution.
 
 This line of code:
 
-    var allItems = 
-        myRootItems.UnionRecursive(x => x.Children);
+    var allItems = myRootItems.UnionRecursive(x => x.Children);
 
 Gives you a list of all the nodes in a tree structure like the following:
 
@@ -105,16 +93,29 @@ Gives you a list of all the nodes in a tree structure like the following:
 
 There is also a `SelectRecursive` method:
 
-    var allItemsExceptRoots = 
-        myRootItems.SelectRecursive(x => x.Children);
+    var allItemsExceptRoots = myRootItems.SelectRecursive(x => x.Children);
 
-The difference with `UnionRecursive` is that it does not include the root in the result collection.
+The difference with `UnionRecursive` is that `SelectRecursive` does not include the root in the result collection.
+
+### KeyValuePairHelper
+
+Converts a single array to `KeyValuePair` or `Dictionary`, where the 1st item is a name, the 2nd a value, the 3rd a name, the 4th a value, etc. This can be useful to be able to specify name/value pairs as `params` (variable amount of arguments). For instance:
+
+    void MyMethod(params object[] namesAndValues)
+    {
+        var dictionary = KeyValuePairHelper.ConvertNamesAndValuesListToDictionary(namesAndValues);
+        ...
+    }
+
+Calling MyMethod  looks like this:
+
+    MyMethod("Name1", 3, "Name2", 5, "Name3", 6);
 
 
 Exception Types
 ---------------
 
-Offers a minimal amount of 2 exception types that are subtly different:
+Offers a minimal amount of 2 exception types with subtle differences:
 
 - `InvalidValueException`
     - With mesages like:
