@@ -35,10 +35,15 @@ namespace JJ.Framework.Common
         [Obsolete("See member summary for limitations.")]
         public static string[] SplitWithQuotation(this string input, string separator, StringSplitOptions options, char? quote)
         {
-            IList<string> values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
+            var values = SplitWithQuotation_WithoutUnescape(input, separator, options, quote);
+            if (quote.HasValue)
+            {
+                values = values.TrimAll(quote.Value).ToArray();
+            }
+            return values;
+        }   
 
-            return values.TrimAll(quote.Value).ToArray();
-        }
+        // ncrunch: no coverage start
 
         /// <inheritdoc cref="_splitwithquotation" />
         [Obsolete("See member summary for limitations.")]
@@ -46,6 +51,8 @@ namespace JJ.Framework.Common
         {
             return input.SplitWithQuotation_WithoutUnescape(separator, StringSplitOptions.None, quote);
         }
+        
+        // ncrunch: no coverage end
 
         /// <inheritdoc cref="_splitwithquotation" />
         [Obsolete("See member summary for limitations.")]

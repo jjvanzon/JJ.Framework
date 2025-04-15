@@ -4,7 +4,7 @@
     <Version>2.0.$(BuildNum)</Version>
   </PropertyGroup>
   <PropertyGroup>
-    <NoWarn>1701;1702;CA1806;CS0219</NoWarn>
+    <NoWarn>1701;1702;CA1806;CS0219;CS0618</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedResourceFile1_WithoutSubNameSpace.txt" />

@@ -40,7 +40,7 @@ public class StringExtensionsSplitCoreTests
     [TestMethod]
     public void Split_StringSepAndOptions_CoreTest()
     {
-        string[] expected = { "a", "b", "c", "e" };
+        string[] expected = [ "a", "b", "c", "e" ];
         
         string[] split1   = StringExtensions_Split.Split("a, b, c, , e", ", ", RemoveEmptyEntries);
         string[] split2   = "a, b, c, , e".Split(", ", RemoveEmptyEntries);
