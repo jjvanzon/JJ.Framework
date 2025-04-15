@@ -3,7 +3,7 @@
 namespace JJ.Framework.Common.Core.Tests;
 
 [TestClass]
-public class StringExtensionsSplitCoreTests
+public class SplitCoreTests
 {
     private static readonly string _null = null;
     
