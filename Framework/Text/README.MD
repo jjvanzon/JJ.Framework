@@ -21,7 +21,7 @@ Basic helpers for working with text.
 * `TrimStart` / `TrimEnd`
 	* Will trim off repetitions of the same value from the given string. These are variations of the standard .NET methods that instead of just taking `char[]` can take a string or a length.
 * `TrimStartUntil` / `TrimEndUntil`
-	* Cuts off the part of a string until the specified delimiter and returns what remains including the delimiter itself.
+	* Cuts off part of a string until the specified delimiter and returns what remains including the delimiter itself.
 * `TrimFirst` / `TrimLast`
 	* Will trim off at most one occurrence of a value from the given string.
 * `RemoveExcessiveWhiteSpace`
@@ -42,7 +42,7 @@ Basic helpers for working with text.
 
 ## SplitWithQuotation
 
-Allows you to parse CSV-like lines including quotation for the ability to include the separator character in the values themselves.
+Allows you to parse CSV-like lines including quotation for the ability to include the separator character and quote characters in the values themselves.
 
 ## String Split Variations
 
