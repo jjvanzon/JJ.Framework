@@ -9,47 +9,119 @@ String Extensions
 -----------------
 
 - `Left` / `Right`
-	- Returns the left or right part of a string. Throws an exception if the string has less characters than the length provided.
+	* Returns the left or right part of a string. Throws an exception if the string has less characters than the length provided.
 - `FromTill`
-	- Takes the middle of a string by specifying the zero-based start index and the end index. Throws an exception if the string has less characters than the length provided.
+	* Takes the middle of a string by specifying the zero-based start index and the end index. Throws an exception if the string has less characters than the length provided.
 - `CutLeft` / `CutRight`
-	- Trims off at most one occurrence of a value from the given string.
+	* Trims off at most one occurrence of a value from the given string.
 - `CutLeftUntil` / `CutRightUntil`
-	- Cuts off part of a string until the specified delimiter and returns what remains including the delimiter itself.
+	* Cuts off part of a string until the specified delimiter and returns what remains including the delimiter itself.
 - `RemoveExcessiveWhiteSpace`
-	- Trims and replaces sequences of two or more white space characters by a single space.
+	* Trims and replaces sequences of two or more white space characters by a single space.
 - `Replace`
-	- Variation on `String.Replace` with the ability to ignore case.
+	* Variation on `String.Replace` with the ability to ignore case.
 - `StartWithCap`
-	- Turns the first character into a capital letter.
+	* Turns the first character into a capital letter.
 - `StartWithLowerCase`
-	- Turns the first character into a lower-case letter.
+	* Turns the first character into a lower-case letter.
 - `Split`
-    - Overloads mostly missing before .NET 5 + one that takes params for split characters.
+    * Overloads mostly missing before .NET 5 + one that takes params for split characters.
 - `SplitWithQuotation`
-    - Allows you to parse CSV-like lines including quotation for the ability to include the separator character and quote characters in the values themselves.
-
-
-Exception Types
----------------
-
-- `InvalidValueException`
-- `ValueNotSupportedException`
+    * Allows you to parse CSV-like lines including quotation for the ability to include the separator character and quote characters in the values themselves.
 
 
 Collection Extensions
 ---------------------
 
 - `TrimAll`
-- `Recursive` collection extensions
-- `ForEach`
-- `Except`
-- `Union`
+    * Trims all the strings in the collection.
 - `Distinct`
-- `AsEnumerable`
+    * Variation that takes a key selector that determines what makes an item unique, e.g.
+    `myItems.Distinct(x =`>` x.LastName);` For multi-part as keys, use:
+    `myItems.Distinct(x =`>` new { x.FirstName, x.LastName });`
+- `Except` variations with:
+    * A single item, e.g. `myCollection.Except(myItem);`
+    * The choice to keep duplicates. (The original `Except` method from .NET automatically does a distinct, which is something you do not always want.)
+- `Union` variations with:
+    * A single item, e.g. `myCollection.Union(myItem);`
+    * Starts with a single item and then adds a collection to it e.g. `myItem.Union(myCollection);`
+- `ForEach`
+    * Not all collection types have the `ForEach` method. Here you have an overload for `IEnumerable`<`T`> so you can use it for more collection types.
 - `Add`
+    * Add multiple items to a collection by means of a comma separated argument list, e.g.
+    `myCollection.Add(1, 5, 12);`
 - `AddRange`
-- `KeyValuePairHelper`
+    * `AddRange` is a member of `List`<`T`>. Here is a variation for `IList`<`T`> to support more collection types.
+- `AsEnumerable`
+    * Converts a single item to a enumerable. Example: `IEnumerable<int> myInts = 3.AsEnumerable();`
+
+### KeyValuePairHelper
+
+Converts a single array to `KeyValuePair` or `Dictionary`, where the first item is a name, the second a value, the third a name, the fourth a value. This can be useful to be able to specify name/value pairs as `params` (variable amount of arguments). For instance:
+
+    void MyMethod(params object[] namesAndValues)
+    {
+        var dictionary = KeyValuePairHelper.ConvertNamesAndValuesListToDictionary(namesAndValues);
+        // ...
+    }
+
+Calling MyMethod  looks like this:
+
+    MyMethod("Name1", 3, "Name2", 5, "Name3", 6);
+
+## Recursive Collection Extensions
+
+`LINQ` methods already allow you to process a whole __collection__ of items in one blow. Process a whole __tree__ of items in one blow? For many cases these *Recursive Collection Extensions* offer a one-line solution.
+
+This line of code:
+
+    var allItems = 
+        myRootItems.UnionRecursive(x => x.Children);
+
+Gives you a list of all the nodes in a tree structure like the following:
+
+    var root = new Item
+    {
+        Children = new[]
+        {
+            new Item()
+            new Item
+            {
+                Children = new[]
+                {
+                    new Item()
+                }
+            },
+            new Item
+            {
+                Children = new[]
+                {
+                    new Item(),
+                    new Item(),
+                }
+            },
+        }
+    };
+
+There is also a `SelectRecursive` method:
+
+    var allItemsExceptRoots = 
+        myRootItems.SelectRecursive(x => x.Children);
+
+The difference with `UnionRecursive` is that it does not include the root in the result collection.
+
+
+Exception Types
+---------------
+
+Offers a minimal amount of 2 exception types that are subtly different:
+
+- `InvalidValueException`
+    - With mesages like:
+      `Invalid CustomerType value: 'Undefined'.`
+- `ValueNotSupportedException`
+    - With messages like:
+      `CustomerType value 'Subscriber' is not supported.`
 
 
 Misc Helpers
