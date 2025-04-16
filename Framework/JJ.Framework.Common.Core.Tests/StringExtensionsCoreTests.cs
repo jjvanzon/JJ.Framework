@@ -232,6 +232,13 @@ public class StringExtensionsCoreTests
         => ThrowsException(() => "12345".FromTill(6, 8));
     
     [TestMethod]
+    public void FromTill_EndBeforeStart_Exception()
+    {
+        ThrowsException(() => "12345".FromTill(3, 2), "endIndex lies before startIndex.");
+        ThrowsException(() => "12345".FromTill(3, 1), "endIndex lies before startIndex.");
+    }
+    
+    [TestMethod]
     public void FromTill_EmptyInput_Exception() 
         => ThrowsException(() => "".FromTill(0, 0));
     

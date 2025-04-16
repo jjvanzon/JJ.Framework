@@ -76,6 +76,7 @@ namespace JJ.Framework.Common
 
         public static string FromTill(this string input, int startIndex, int endIndex)
         {
+            if (endIndex < startIndex) throw new Exception("endIndex lies before startIndex.");
             return input.Substring(startIndex, endIndex - startIndex + 1);
         }
 
