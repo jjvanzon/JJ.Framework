@@ -17,9 +17,14 @@ String Extensions
 -----------------
 
 - `Left` / `Right`
-	* Returns the left or right part of a string. Throws an exception if the string has less characters than the length provided.
+	* Returns the left or right part of a string:  
+	`"1234".Left(2)` = `"12"`  
+	`"1234".Right(2)` = `"34"`  
+    (Throws an exception if the string is shorter than the requested length.)
 - `FromTill`
-	* Takes the middle of a string by specifying the zero-based start index and the end index. Throws an exception if the string has less characters than the length provided.
+	* Takes the middle of a string by specifying the zero-based start index and the end index:  
+    `"12345".FromTill(2, 3)` = `"34"`  
+    (Throws an exception if the indexes are out of range.)
 - `CutLeft` / `CutRight`
 	* Trims off at most one occurrence of a value from the given string.
 - `CutLeftUntil` / `CutRightUntil`
@@ -45,8 +50,8 @@ Collection Extensions
     * Trims all the strings in the collection.
 - `Distinct`
     * Variation that takes a key selector that determines what makes an item unique, e.g.
-    `myItems.Distinct(x =`>` x.LastName);` For multi-part as keys, use:
-    `myItems.Distinct(x =`>` new { x.FirstName, x.LastName });`
+    `myItems.Distinct(x => x.LastName);` For multi-part as keys, use:
+    `myItems.Distinct(x => new { x.FirstName, x.LastName });`
 - `Except` 
     * Variations with:
     * A single item, e.g. `myCollection.Except(myItem);`
