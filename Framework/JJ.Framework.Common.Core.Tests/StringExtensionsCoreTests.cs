@@ -117,7 +117,7 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void CutLeft_NegativeLength_Exception() 
-        => ThrowsException(() => "12345".CutRight(-1));
+        => ThrowsException(() => "12345".CutLeft(-1));
     
     /// <inheritdoc cref="_harshnullstringtest" />
     [TestMethod]
@@ -155,7 +155,7 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void CutRight_Char_OneMatch() 
-        => AreEqual("Lalal", () => "Lalala".CutRight('a'));
+        => AreEqual("Lalala", () => "Lalalaa".CutRight('a'));
     
     [TestMethod]
     public void CutRight_Char_MoreMatches_TrimsOne() 

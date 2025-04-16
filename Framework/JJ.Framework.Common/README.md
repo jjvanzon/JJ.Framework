@@ -17,16 +17,19 @@ String Extensions
 -----------------
 
 - `Left` / `Right`
-	* Returns the left or right part of a string:  
-	`"1234".Left(2)` = `"12"`  
-	`"1234".Right(2)` = `"34"`  
+	* Return the left or right part of a string:  
+	`"12345".Left(2)` = `"12"`  
+	`"12345".Right(2)` = `"45"`  
     (Throws an exception if the string is shorter than the requested length.)
 - `FromTill`
 	* Takes the middle of a string by specifying the zero-based start index and the end index:  
     `"12345".FromTill(2, 3)` = `"34"`  
     (Throws an exception if the indexes are out of range.)
 - `CutLeft` / `CutRight`
-	* Trims off at most one occurrence of a value from the given string.
+	* Trim off at most one occurrence of a value from the given string:  
+	`"BlaLala".CutLeft("Bla")` = `"Lala"`  
+    `"Lalalaa".CutRight('a')` = `"Lalala"`  
+    `"12345".CutRight(2)` = `"123"`  
 - `CutLeftUntil` / `CutRightUntil`
 	* Cuts off part of a string until the specified delimiter and returns what remains including the delimiter itself.
 - `RemoveExcessiveWhiteSpace`
