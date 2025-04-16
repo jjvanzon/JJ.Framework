@@ -9,15 +9,15 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void Left_Core_Test() 
-        => AreEqual("12", () => "1234".Left(2));
+        => AreEqual("12", () => "12345".Left(2));
 
     [TestMethod]
     public void Left_NotEnoughCharacters_Exception()
-        => ThrowsException(() => "1234".Left(5));
+        => ThrowsException(() => "12345".Left(6));
 
     [TestMethod]
     public void Left_ZeroLengthParameter() 
-        => AreEqual("", () => "1234".Left(0));
+        => AreEqual("", () => "12345".Left(0));
     
     [TestMethod]
     public void Left_ZeroLengthInput() 
@@ -32,15 +32,15 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void Right_Core_Test() 
-        => AreEqual("34", () => "1234".Right(2));
+        => AreEqual("45", () => "12345".Right(2));
     
     [TestMethod]
     public void Right_NotEnoughCharacters_Exception()
-        => ThrowsException(() => "1234".Right(5));
+        => ThrowsException(() => "12345".Right(6));
     
     [TestMethod]
     public void Right_ZeroLengthParameter() 
-        => AreEqual("", () => "1234".Right(0));
+        => AreEqual("", () => "12345".Right(0));
 
     [TestMethod]
     public void Right_ZeroLengthInput() 
@@ -101,11 +101,11 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void CutLeft_Length_Core_Test() 
-        => AreEqual("34", () => "1234".CutLeft(2));
+        => AreEqual("345", () => "12345".CutLeft(2));
     
     [TestMethod]
     public void CutLeft_Length_Zero() 
-        => AreEqual("1234", () => "1234".CutLeft(0));
+        => AreEqual("12345", () => "12345".CutLeft(0));
     
     [TestMethod]
     public void CutLeft_Length_EmptyInput() 
@@ -113,11 +113,11 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void CutLeft_Length_TooLong_Exception()
-        => ThrowsException(() => "1234".CutLeft(5));
+        => ThrowsException(() => "12345".CutLeft(6));
     
     [TestMethod]
     public void CutLeft_NegativeLength_Exception() 
-        => ThrowsException(() => "1234".CutRight(-1));
+        => ThrowsException(() => "12345".CutRight(-1));
     
     /// <inheritdoc cref="_harshnullstringtest" />
     [TestMethod]
@@ -174,11 +174,11 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void CutRight_Length_Core_Test() 
-        => AreEqual("12", () => "1234".CutRight(2));
+        => AreEqual("123", () => "12345".CutRight(2));
     
     [TestMethod]
     public void CutRight_Length_Zero() 
-        => AreEqual("1234", () => "1234".CutRight(0));
+        => AreEqual("12345", () => "12345".CutRight(0));
     
     [TestMethod]
     public void CutRight_Length_EmptyInput() 
@@ -186,11 +186,11 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void CutRight_Length_TooLong_Exception()
-        => ThrowsException(() => "1234".CutRight(5));
+        => ThrowsException(() => "12345".CutRight(6));
 
     [TestMethod]
     public void CutRight_NegativeLength_Exception() 
-        => ThrowsException(() => "1234".CutRight(-1));
+        => ThrowsException(() => "12345".CutRight(-1));
     
     /// <inheritdoc cref="_harshnullstringtest" />
     [TestMethod]
