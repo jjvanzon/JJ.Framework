@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
-    <Description>General‑purpose .NET extensions for strings, collections, tree traversal, embedded resources and a exception types.</Description>
+    <Description>General‑purpose .NET extensions for strings, collections, tree traversal, embedded resources and exception types.</Description>
     <PackageTags>utility; extensions; helpers; string; collections; linq; tree; traversal; embedded; resources; extension; helper; strings; collection; recursive; recursion</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common</RepositoryUrl>    
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common</PackageProjectUrl>    
