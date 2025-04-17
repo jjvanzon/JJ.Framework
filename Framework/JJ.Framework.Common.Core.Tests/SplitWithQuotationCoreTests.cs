@@ -8,6 +8,14 @@ public class SplitWithQuotationCoreTests
     private static readonly string _null = null;
     
     [TestMethod]
+    public void SplitWithQuotation_SimpleExample()
+    {
+        string[] actual   = "apple|~banana|split~|cherry".SplitWithQuotation("|", '~');
+        string[] expected = [ "apple", "banana|split", "cherry" ];
+        CollectionAssert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
     public void SplitWithQuotation_ComplexExample()
     {
         string input = 

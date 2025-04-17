@@ -88,8 +88,16 @@ public class SplitCoreTests
             AreEqual("a, b, c", () => split[0]);
         }
     }
-    
+
     // Split with Params Seps
+
+    [TestMethod]
+    public void Split_ParamsSeps_Example()
+    {
+        string[] result   = "apple-banana|cherry".Split("-", "|");
+        string[] expected = [ "apple", "banana", "cherry" ];
+        CollectionAssert.AreEqual(expected, result);
+    }
     
     [TestMethod]
     public void Split_ParamsSeps_CoreTest()

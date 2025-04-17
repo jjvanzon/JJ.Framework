@@ -37,7 +37,7 @@ for (int i = 0; i < expected.Length; i++)
     }
 ```
 
-```
+```cs
     if (string.IsNullOrEmpty(input)) return input; // Is lenient about indices.
     
     if (startIndex < 0) throw new Exception("startIndex is less than 0.");
@@ -45,3 +45,5 @@ for (int i = 0; i < expected.Length; i++)
     if (startIndex >= input.Length) throw new Exception("startIndex lies after the input string.");
     if (endIndex   >= input.Length) throw new Exception("endIndex lies after the input string.");
 ```
+
+    `"Lalalaa".CutRight('a')` = `"Lalala"`  

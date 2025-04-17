@@ -4,6 +4,8 @@
 public class StringExtensionsCasingCoreTests
 {
     private static readonly string _null = null;
+
+    // StartWithCap
     
     [TestMethod]
     public void StartWithCap_Core_Test() 
@@ -20,6 +22,12 @@ public class StringExtensionsCasingCoreTests
     [TestMethod]
     public void StartWithCap_AlreadyStartsWithCap() 
         => AreEqual("Test", () => "Test".StartWithCap());
+
+    // StartWithLowerCase
+    
+    [TestMethod]
+    public void StartWithLowerCase_Example() 
+        => AreEqual("test", () => "Test".StartWithLowerCase());
     
     [TestMethod]
     public void StartWithLowerCase_Core_Test() 

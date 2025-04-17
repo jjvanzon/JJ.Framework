@@ -251,18 +251,18 @@ public class StringExtensionsCoreTests
     [TestMethod]
     public void CutLeftUntil_NoMatch() 
         => AreEqual("1234", () => "1234".CutLeftUntil("abc"));
-    
+
     [TestMethod]
-    public void CutLeftUntil_OneMatch()
-        => AreEqual("abc 5678", () => "1234 abc 5678".CutLeftUntil("abc"));
+    public void CutLeftUntil_OneMatch() 
+        => AreEqual("world!", () => "Hello world!".CutLeftUntil("world"));
     
     [TestMethod]
     public void CutLeftUntil_MoreMatches_StopsAtFirst() 
-        => AreEqual("abc abc 5678", () => "1234 abc abc 5678".CutLeftUntil("abc"));
+        => AreEqual("abc abc 34", () => "12 abc abc 34".CutLeftUntil("abc"));
     
     [TestMethod]
     public void CutLeftUntil_UntilWhiteSpace_Succeeds() 
-        => AreEqual(" abc", () => "1234 abc".CutLeftUntil(" "));
+        => AreEqual(" abc", () => "12 abc".CutLeftUntil(" "));
     
     [TestMethod]
     public void CutLeftUntil_UntilEmpty_Exception() 
@@ -289,15 +289,15 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void CutRightUntil_OneMatch()
-        => AreEqual("1234 abc", () => "1234 abc 5678".CutRightUntil("abc"));
+        => AreEqual("12 abc", () => "12 abc 34".CutRightUntil("abc"));
     
     [TestMethod]
     public void CutRightUntil_MoreMatches_StopsAtFirst() 
-        => AreEqual("1234 abc abc", () => "1234 abc abc 5678".CutRightUntil("abc"));
+        => AreEqual("12 abc abc", () => "12 abc abc 34".CutRightUntil("abc"));
     
     [TestMethod]
     public void CutRightUntil_UntilWhiteSpace_Succeeds() 
-        => AreEqual("1234 ", () => "1234 abc".CutRightUntil(" "));
+        => AreEqual("12 ", () => "12 abc".CutRightUntil(" "));
     
     [TestMethod]
     public void CutRightUntil_UntilEmpty_Exception() 
@@ -347,15 +347,15 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void Replace_IgnoreCase() 
-        => AreEqual("abcdef", "abcDEF".Replace("def", "def", ignoreCase: true));
+        => AreEqual("abcGHI", "abcDEF".Replace("def", "GHI", ignoreCase: true));
     
     [TestMethod]
     public void Replace_CaseSensitive() 
-        => AreEqual("abcDEF", "abcDEF".Replace("def", "def", ignoreCase: false));
+        => AreEqual("abcDEF", "abcDEF".Replace("def", "GHI", ignoreCase: false));
     
     [TestMethod]
     public void Replace_CaseSensitive_Implied() 
-        => AreEqual("abcDEF", () => "abcDEF".Replace("def", "def"));
+        => AreEqual("abcDEF", () => "abcDEF".Replace("def", "GHI"));
 
     [TestMethod]
     public void Replace_NoMatch_Works() 
@@ -367,11 +367,11 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void Replace_EmptyOldValue_DoesNothing() 
-        => AreEqual("abcdef", () => "abcdef".Replace("", "def", true));
+        => AreEqual("abcdef", () => "abcdef".Replace("", "ghi", true));
     
     [TestMethod]
     public void Replace_NullOldValue_DoesNothing() 
-        => AreEqual("abcdef", () => "abcdef".Replace(null, "def", true));
+        => AreEqual("abcdef", () => "abcdef".Replace(null, "ghi", true));
 
     [TestMethod]
     public void Replace_EmptyNewValue_RemovesMatches() 

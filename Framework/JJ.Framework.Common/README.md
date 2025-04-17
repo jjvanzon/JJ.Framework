@@ -28,22 +28,31 @@ String Extensions
 - `CutLeft` / `CutRight`
 	* Trim off at most one occurrence of a value from the given string:  
 	`"BlaLala".CutLeft("Bla")` = `"Lala"`  
-    `"Lalalaa".CutRight('a')` = `"Lalala"`  
     `"12345".CutRight(2)` = `"123"`  
 - `CutLeftUntil` / `CutRightUntil`
-	* Cuts off part of a string until the specified delimiter and returns what remains including the delimiter itself.
+	* Cuts off part of a string until the specified delimiter and returns what remains including the delimiter itself:  
+	`"12 abc 34".CutRightUntil("abc")` = `"12 abc"`
+	`"Hello world!".CutLeftUntil("world")` = `"world!"`
 - `RemoveExcessiveWhiteSpace`
-	* Trims and replaces sequences of two or more white space characters by a single space.
+	* Trims and replaces sequences of two or more white space characters by a single space:
+	`"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
 - `Replace`
-	* Variation on `String.Replace` with the ability to ignore case.
+	* Variation on `String.Replace` with the ability to ignore case:  
+	`"abcDEF".Replace("def", "GHI", ignoreCase: true)` = `"abcGHI"`
 - `StartWithCap`
-	* Turns the first character into a capital letter.
+	* Turns the first character into a capital letter:  
+	`"test".StartWithCap()` = `"Test"`
 - `StartWithLowerCase`
-	* Turns the first character into a lower-case letter.
+	* Turns the first character into a lower-case letter.  
+    `"TEST".StartWithLowerCase()` = `"tEST"`
 - `Split`
-    * Overloads mostly missing before .NET 5 + one that takes params for split characters.
+    * Overloads mostly missing before .NET 5 + one that takes `params` for split characters:  
+    `"apple-banana|cherry".Split("-", "|")` =  
+    `[ "apple", "banana", "cherry" ]`
 - `SplitWithQuotation`
-    * Allows you to parse CSV-like lines including quotation for the ability to include the separator character and quote characters in the values themselves.
+    * Allows you to parse CSV-like lines including quotation for the ability to include the separator character and quote characters in the values themselves:  
+    `"apple|~banana|split~|cherry".SplitWithQuotation("|", '~')` =  
+    `[ "apple", "banana|split", "cherry" ]`
 
 
 Collection Extensions
