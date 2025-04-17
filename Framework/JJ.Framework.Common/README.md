@@ -147,7 +147,7 @@ Exception Types
 Offers a minimal amount of 2 exception types with subtle differences:
 
 - `InvalidValueException`
-    - With mesages like:
+    - With messages like:
       `Invalid CustomerType value: 'Undefined'.`
 - `ValueNotSupportedException`
     - With messages like:
@@ -158,7 +158,7 @@ Misc Helpers
 ------------
 
 - `ConfigurationHelper`
-    - Legacy helper for using configuration settings on platforms where `System.Configuration` is not available.
+    - Legacy helper for using configuration settings on platforms where `System.Configuration` was not available.
 - `CultureHelper`
     - To set thread culture with a single code line.
 - `EmbeddedResourceHelper`
