@@ -18,40 +18,40 @@ String Extensions
 
 - `Left` / `Right`
 	* Return the left or right part of a string:  
-	`"12345".Left(2)` = `"12"`  
-	`"12345".Right(2)` = `"45"`  
-    (Throws an exception if the string is shorter than the requested length.)
+	* `"12345".Left(2)` = `"12"`  
+	* `"12345".Right(2)` = `"45"`  
+    * (Throws an exception if the string is shorter than the requested length.)
 - `FromTill`
 	* Takes the middle of a string by specifying the zero-based start index and the end index:  
-    `"12345".FromTill(2, 3)` = `"34"`  
-    (Throws an exception if the indexes are out of range.)
+    * `"12345".FromTill(2, 3)` = `"34"`  
+    * (Throws an exception if the indexes are out of range.)
 - `CutLeft` / `CutRight`
 	* Trim off at most one occurrence of a value from the given string:  
-	`"BlaLala".CutLeft("Bla")` = `"Lala"`  
-    `"12345".CutRight(2)` = `"123"`  
+	* `"BlaLala".CutLeft("Bla")` = `"Lala"`  
+    * `"12345".CutRight(2)` = `"123"`  
 - `CutLeftUntil` / `CutRightUntil`
-	* Cuts off part of a string until the specified delimiter and returns what remains including the delimiter itself:  
-	`"12 abc 34".CutRightUntil("abc")` = `"12 abc"`
-	`"Hello world!".CutLeftUntil("world")` = `"world!"`
+    * Cuts off part of a string until the specified delimiter and returns what remains including the delimiter itself:  
+	* `"Path/to/file.txt".CutRightUntil("/")` = `"Path/to/"`  
+	* `"Hello world!".CutLeftUntil("world")` = `"world!"`
 - `RemoveExcessiveWhiteSpace`
-	* Trims and replaces sequences of two or more white space characters by a single space:
-	`"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
+	* Trims and replaces sequences of two or more white space characters by a single space:  
+	* `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
 - `Replace`
 	* Variation on `String.Replace` with the ability to ignore case:  
-	`"abcDEF".Replace("def", "GHI", ignoreCase: true)` = `"abcGHI"`
+	* `"abcDEF".Replace("def", "GHI", ignoreCase: true)` = `"abcGHI"`
 - `StartWithCap`
 	* Turns the first character into a capital letter:  
-	`"test".StartWithCap()` = `"Test"`
+	* `"test".StartWithCap()` = `"Test"`
 - `StartWithLowerCase`
 	* Turns the first character into a lower-case letter.  
-    `"TEST".StartWithLowerCase()` = `"tEST"`
+    * `"TEST".StartWithLowerCase()` = `"tEST"`
 - `Split`
-    * Overloads mostly missing before .NET 5 + one that takes `params` for split characters:  
-    `"apple-banana|cherry".Split("-", "|")` =  
+    * A variant one that takes `params` for split characters + overloads mostly missing before .NET 5:  
+    * `"apple-banana|cherry".Split("-", "|")` =  
     `[ "apple", "banana", "cherry" ]`
 - `SplitWithQuotation`
     * Allows you to parse CSV-like lines including quotation for the ability to include the separator character and quote characters in the values themselves:  
-    `"apple|~banana|split~|cherry".SplitWithQuotation("|", '~')` =  
+    * `"apple|~banana|split~|cherry".SplitWithQuotation("|", '~')` =  
     `[ "apple", "banana|split", "cherry" ]`
 
 

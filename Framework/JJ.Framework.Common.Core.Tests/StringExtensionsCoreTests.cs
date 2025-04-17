@@ -282,7 +282,13 @@ public class StringExtensionsCoreTests
         => ThrowsException(() => _null.CutLeftUntil("abc"));
     
     // CutRightUntil
-    
+        
+    [TestMethod]
+    public void CutRightUntil_Example() 
+    {
+        AreEqual("Path/to/", () => "Path/to/file.txt".CutRightUntil("/"));
+    }
+
     [TestMethod]
     public void CutRightUntil_NoMatch() 
         => AreEqual("1234", () => "1234".CutRightUntil("abc"));
