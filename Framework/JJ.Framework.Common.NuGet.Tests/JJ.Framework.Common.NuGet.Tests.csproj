@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
+    <Version>0.250.$(BuildNum)</Version>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.Common" Version="0.250.2092" />
+    <PackageReference Include="MSTest" Version="3.7.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.Common.Tests\StringExtensions_Split_Tests.cs" />
+    <Compile Include="..\JJ.Framework.Common.Tests\StringExtensionsTests.cs" />
+  </ItemGroup>
+</Project>

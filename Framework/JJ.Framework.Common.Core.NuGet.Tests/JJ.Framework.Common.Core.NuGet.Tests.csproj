@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
+    <Version>0.250.$(BuildNum)</Version>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <NoWarn>1701;1702;CA1806;CS0219;CS0618</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.Framework.Common" Version="0.250.2092" />
+    <PackageReference Include="JJ.Framework.Common.Core" Version="2.0.2092" />
+    <PackageReference Include="JJ.Framework.IO" Version="0.250.2092" />
+    <PackageReference Include="JJ.Framework.IO.Core" Version="2.0.2092" />
+    <PackageReference Include="JJ.Framework.Testing" Version="0.250.2092" />
+    <PackageReference Include="JJ.Framework.Testing.Core" Version="2.0.2092" />
+    <PackageReference Include="MSTest" Version="3.7.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JJ.Framework.Common.Core.Tests.Helpers\JJ.Framework.Common.Core.Tests.Helpers.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\JJ.Framework.Common.Core.Tests\EmbeddedResourceFile1_WithoutSubNameSpace.txt" />
+    <EmbeddedResource Include="..\JJ.Framework.Common.Core.Tests\EmbeddedResourceFile2_WithoutSubNameSpace.txt" />
+    <EmbeddedResource Include="..\JJ.Framework.Common.Core.Tests\TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" Link="TestResources\EmbeddedResourceFile1_WithSubNameSpace.txt" />
+    <EmbeddedResource Include="..\JJ.Framework.Common.Core.Tests\TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" Link="TestResources\EmbeddedResourceFile2_WithSubNameSpace.txt" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Include="..\JJ.Framework.Common.Core.Tests\Helpers\DebuggerDisplayFormatter.cs" />
+    <Compile Include="..\JJ.Framework.Common.Core.Tests\*.cs" />
+  </ItemGroup>
+
+</Project>
