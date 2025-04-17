@@ -38,7 +38,7 @@ String Extensions
 	* `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
 - `Replace`
 	* Variation on `String.Replace` with the ability to ignore case:  
-	* `"abcDEF".Replace("def", "GHI", ignoreCase: true)` = `"abcGHI"`
+	* `"HelloWORLD".Replace("world", "Universe", ignoreCase: true)` = `"HelloUniverse"`
 - `StartWithCap`
 	* Turns the first character into a capital letter:  
 	* `"test".StartWithCap()` = `"Test"`
@@ -62,8 +62,9 @@ Collection Extensions
     * Trims all the strings in the collection.
 - `Distinct`
     * Variation that takes a key selector that determines what makes an item unique, e.g.
-    `myItems.Distinct(x => x.LastName);` For multi-part as keys, use:
-    `myItems.Distinct(x => new { x.FirstName, x.LastName });`
+    * `myItems.Distinct(x => x.LastName);`
+    * For multi-part as keys, use:
+    * `myItems.Distinct(x => new { x.FirstName, x.LastName });`
 - `Except` 
     * Variations with:
     * A single item, e.g. `myCollection.Except(myItem);`

@@ -353,10 +353,14 @@ public class StringExtensionsCoreTests
     
     [TestMethod]
     public void Replace_IgnoreCase() 
-        => AreEqual("abcGHI", "abcDEF".Replace("def", "GHI", ignoreCase: true));
+        => AreEqual("HelloUniverse", "HelloWORLD".Replace("world", "Universe", ignoreCase: true));
     
     [TestMethod]
-    public void Replace_CaseSensitive() 
+    public void Replace_CaseSensitive_WithMatch() 
+        => AreEqual("abcGHI", "abcDEF".Replace("DEF", "GHI", ignoreCase: false));
+    
+    [TestMethod]
+    public void Replace_CaseSensitive_NoMatch() 
         => AreEqual("abcDEF", "abcDEF".Replace("def", "GHI", ignoreCase: false));
     
     [TestMethod]

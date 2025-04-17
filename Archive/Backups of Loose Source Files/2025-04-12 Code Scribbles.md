@@ -46,4 +46,10 @@ for (int i = 0; i < expected.Length; i++)
     if (endIndex   >= input.Length) throw new Exception("endIndex lies after the input string.");
 ```
 
+```
     `"Lalalaa".CutRight('a')` = `"Lalala"`  
+```
+
+```cs
+    AreEqual("abcGHI", "abcDEF".Replace("def", "GHI", ignoreCase: true));
+```
