@@ -2,7 +2,6 @@
 
 using System.IO;
 using System.Reflection;
-using JJ.Framework.Common.Core.Tests.Helpers;
 using JJ.Framework.IO;
 using JJ.Framework.IO.Core;
 
@@ -19,9 +18,11 @@ namespace JJ.Framework.Common.Core.Tests
         private const string EXPECTED_TEXT_OF_FILE_1_WITH_SUB_NAME_SPACE = "Text of embedded resource file 1 with sub name space";
         private const string EXPECTED_TEXT_OF_FILE_2_WITH_SUB_NAME_SPACE = "Text of embedded resource file 2 with sub name space";
 
-        private static readonly Assembly _assembly = typeof(EmbeddedResourceHelperLegacyTests).Assembly;
-        private static readonly Assembly _assembly2 = typeof(DummyClass).Assembly;
+        private static readonly Assembly _currentAssembly = typeof(EmbeddedResourceHelperLegacyTests).Assembly;
+        private static readonly Assembly _otherAssembly = typeof(DummyClass).Assembly;
+        private static readonly string _currentAssemblyName = _currentAssembly.GetName().Name;
 
+        
         private static readonly Encoding _encoding = Encoding.UTF8;
         private static readonly byte[] _expectedBytes_OfFile1_WithoutSubNameSpace = StreamHelperLegacy.StringToBytes(EXPECTED_TEXT_OF_FILE_1_WITHOUT_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
         private static readonly byte[] _expectedBytes_OfFile2_WithoutSubNameSpace = StreamHelperLegacy.StringToBytes(EXPECTED_TEXT_OF_FILE_2_WITHOUT_SUB_NAME_SPACE, _encoding, includeByteOrderMark: true);
@@ -35,12 +36,12 @@ namespace JJ.Framework.Common.Core.Tests
         {
             {
                 string expectedText1 = EXPECTED_TEXT_OF_FILE_1_WITHOUT_SUB_NAME_SPACE;
-                string actualText1 = EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
+                string actualText1 = EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedText1, () => actualText1);
             }
             {
                 string expectedText2 = EXPECTED_TEXT_OF_FILE_2_WITHOUT_SUB_NAME_SPACE;
-                string actualText2 = EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
+                string actualText2 = EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedText2, () => actualText2);
             }
         }
@@ -50,12 +51,12 @@ namespace JJ.Framework.Common.Core.Tests
         {
             {
                 string expectedText1 = EXPECTED_TEXT_OF_FILE_1_WITHOUT_SUB_NAME_SPACE;
-                string actualText1 = EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, null, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
+                string actualText1 = EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, null, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedText1, () => actualText1);
             }
             {
                 string expectedText2 = EXPECTED_TEXT_OF_FILE_2_WITHOUT_SUB_NAME_SPACE;
-                string actualText2 = EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, "", "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
+                string actualText2 = EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, "", "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedText2, () => actualText2);
             }
         }
@@ -65,12 +66,12 @@ namespace JJ.Framework.Common.Core.Tests
         {
             {
                 string expectedText1 = EXPECTED_TEXT_OF_FILE_1_WITH_SUB_NAME_SPACE;
-                string actualText1 = EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, "TestResources", "EmbeddedResourceFile1_WithSubNameSpace.txt");
+                string actualText1 = EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, "TestResources", "EmbeddedResourceFile1_WithSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedText1, () => actualText1);
             }
             {
                 string expectedText2 = EXPECTED_TEXT_OF_FILE_2_WITH_SUB_NAME_SPACE;
-                string actualText2 = EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, "TestResources", "EmbeddedResourceFile2_WithSubNameSpace.txt");
+                string actualText2 = EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, "TestResources", "EmbeddedResourceFile2_WithSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedText2, () => actualText2);
             }
         }
@@ -82,13 +83,13 @@ namespace JJ.Framework.Common.Core.Tests
         {
             {
                 byte[] expectedBytes1 = _expectedBytes_OfFile1_WithoutSubNameSpace;
-                byte[] actualBytes1 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
+                byte[] actualBytes1 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
                 bool bytesAreValid1 = actualBytes1.SequenceEqual(expectedBytes1);
                 AssertHelper.IsTrue(() => bytesAreValid1);
             }
             {
                 byte[] expectedBytes2 = _expectedBytes_OfFile2_WithoutSubNameSpace;
-                byte[] actualBytes2 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
+                byte[] actualBytes2 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
                 bool bytesAreValid2 = actualBytes2.SequenceEqual(expectedBytes2);
                 AssertHelper.IsTrue(() => bytesAreValid2);
             }
@@ -99,13 +100,13 @@ namespace JJ.Framework.Common.Core.Tests
         {
             {
                 byte[] expectedBytes1 = _expectedBytes_OfFile1_WithoutSubNameSpace;
-                byte[] actualBytes1 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, null, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
+                byte[] actualBytes1 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, null, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
                 bool bytesAreValid1 = actualBytes1.SequenceEqual(expectedBytes1);
                 AssertHelper.IsTrue(() => bytesAreValid1);
             }
             {
                 byte[] expectedBytes2 = _expectedBytes_OfFile2_WithoutSubNameSpace;
-                byte[] actualBytes2 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, "", "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
+                byte[] actualBytes2 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, "", "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
                 bool bytesAreValid2 = actualBytes2.SequenceEqual(expectedBytes2);
                 AssertHelper.IsTrue(() => bytesAreValid2);
             }
@@ -116,13 +117,13 @@ namespace JJ.Framework.Common.Core.Tests
         {
             {
                 byte[] expectedBytes1 = _expectedBytes_OfFile1_WithSubNameSpace;
-                byte[] actualBytes1 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, "TestResources", "EmbeddedResourceFile1_WithSubNameSpace.txt");
+                byte[] actualBytes1 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, "TestResources", "EmbeddedResourceFile1_WithSubNameSpace.txt");
                 bool bytesAreValid1 = actualBytes1.SequenceEqual(expectedBytes1);
                 AssertHelper.IsTrue(() => bytesAreValid1);
             }
             {
                 byte[] expectedBytes2 = _expectedBytes_OfFile2_WithSubNameSpace;
-                byte[] actualBytes2 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, "TestResources", "EmbeddedResourceFile2_WithSubNameSpace.txt");
+                byte[] actualBytes2 = EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, "TestResources", "EmbeddedResourceFile2_WithSubNameSpace.txt");
                 bool bytesAreValid2 = actualBytes2.SequenceEqual(expectedBytes2);
                 AssertHelper.IsTrue(() => bytesAreValid2);
             }
@@ -134,13 +135,13 @@ namespace JJ.Framework.Common.Core.Tests
         public void Test_EmbeddedResourceHelper_GetStream_WithoutSubNameSpace_Succeeds()
         {
             {
-                Stream stream1 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
+                Stream stream1 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
                 string expectedText1 = EXPECTED_TEXT_OF_FILE_1_WITHOUT_SUB_NAME_SPACE;
                 string actualText1 = StreamHelper.StreamToString(stream1, _encoding);
                 AssertHelper.AreEqual(expectedText1, () => actualText1);
             }
             {
-                Stream stream2 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
+                Stream stream2 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
                 string expectedText2 = EXPECTED_TEXT_OF_FILE_2_WITHOUT_SUB_NAME_SPACE;
                 string actualText2 = StreamHelper.StreamToString(stream2, _encoding);
                 AssertHelper.AreEqual(expectedText2, () => actualText2);
@@ -151,13 +152,13 @@ namespace JJ.Framework.Common.Core.Tests
         public void Test_EmbeddedResourceHelper_GetStream_SubNameSpaceNullOrEmpty_Succeeds()
         {
             {
-                Stream stream1 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, null, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
+                Stream stream1 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, null, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
                 string expectedText1 = EXPECTED_TEXT_OF_FILE_1_WITHOUT_SUB_NAME_SPACE;
                 string actualText1 = StreamHelper.StreamToString(stream1, _encoding);
                 AssertHelper.AreEqual(expectedText1, () => actualText1);
             }
             {
-                Stream stream2 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, "", "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
+                Stream stream2 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, "", "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
                 string expectedText2 = EXPECTED_TEXT_OF_FILE_2_WITHOUT_SUB_NAME_SPACE;
                 string actualText2 = StreamHelper.StreamToString(stream2, _encoding);
                 AssertHelper.AreEqual(expectedText2, () => actualText2);
@@ -168,13 +169,13 @@ namespace JJ.Framework.Common.Core.Tests
         public void Test_EmbeddedResourceHelper_GetStream_WithSubNameSpace_Succeeds()
         {
             {
-                Stream stream1 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, "TestResources", "EmbeddedResourceFile1_WithSubNameSpace.txt");
+                Stream stream1 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, "TestResources", "EmbeddedResourceFile1_WithSubNameSpace.txt");
                 string expectedText1 = EXPECTED_TEXT_OF_FILE_1_WITH_SUB_NAME_SPACE;
                 string actualText1 = StreamHelper.StreamToString(stream1, _encoding);
                 AssertHelper.AreEqual(expectedText1, () => actualText1);
             }
             {
-                Stream stream2 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, "TestResources", "EmbeddedResourceFile2_WithSubNameSpace.txt");
+                Stream stream2 = EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, "TestResources", "EmbeddedResourceFile2_WithSubNameSpace.txt");
                 string expectedText2 = EXPECTED_TEXT_OF_FILE_2_WITH_SUB_NAME_SPACE;
                 string actualText2 = StreamHelper.StreamToString(stream2, _encoding);
                 AssertHelper.AreEqual(expectedText2, () => actualText2);
@@ -187,13 +188,13 @@ namespace JJ.Framework.Common.Core.Tests
         public void Test_EmbeddedResourceReader_GetName_WithoutSubNameSpace_Succeeds()
         {
             {
-                string expectedName1 = "JJ.Framework.Common.Core.Tests.EmbeddedResourceFile1_WithoutSubNameSpace.txt";
-                string actualName1 = EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
+                string expectedName1 = _currentAssemblyName + ".EmbeddedResourceFile1_WithoutSubNameSpace.txt";
+                string actualName1 = EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedName1, () => actualName1);
             }
             {
-                string expectedName2 = "JJ.Framework.Common.Core.Tests.EmbeddedResourceFile2_WithoutSubNameSpace.txt";
-                string actualName2 = EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
+                string expectedName2 = _currentAssemblyName + ".EmbeddedResourceFile2_WithoutSubNameSpace.txt";
+                string actualName2 = EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedName2, () => actualName2);
             }
         }
@@ -202,13 +203,13 @@ namespace JJ.Framework.Common.Core.Tests
         public void Test_EmbeddedResourceReader_GetName_SubNameSpaceNullOrEmpty_Succeeds()
         {
             {
-                string expectedName1 = "JJ.Framework.Common.Core.Tests.EmbeddedResourceFile1_WithoutSubNameSpace.txt";
-                string actualName1 = EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, null, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
+                string expectedName1 = _currentAssemblyName + ".EmbeddedResourceFile1_WithoutSubNameSpace.txt";
+                string actualName1 = EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, null, "EmbeddedResourceFile1_WithoutSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedName1, () => actualName1);
             }
             {
-                string expectedName2 = "JJ.Framework.Common.Core.Tests.EmbeddedResourceFile2_WithoutSubNameSpace.txt";
-                string actualName2 = EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, "", "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
+                string expectedName2 = _currentAssemblyName + ".EmbeddedResourceFile2_WithoutSubNameSpace.txt";
+                string actualName2 = EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, "", "EmbeddedResourceFile2_WithoutSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedName2, () => actualName2);
             }
         }
@@ -217,13 +218,13 @@ namespace JJ.Framework.Common.Core.Tests
         public void Test_EmbeddedResourceReader_GetName_WithSubNameSpace_Succeeds()
         {
             {
-                string expectedName1 = "JJ.Framework.Common.Core.Tests.TestResources.EmbeddedResourceFile1_WithSubNameSpace.txt";
-                string actualName1 = EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, "TestResources", "EmbeddedResourceFile1_WithSubNameSpace.txt");
+                string expectedName1 = _currentAssemblyName + ".TestResources.EmbeddedResourceFile1_WithSubNameSpace.txt";
+                string actualName1 = EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, "TestResources", "EmbeddedResourceFile1_WithSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedName1, () => actualName1);
             }
             {
-                string expectedName2 = "JJ.Framework.Common.Core.Tests.TestResources.EmbeddedResourceFile2_WithSubNameSpace.txt";
-                string actualName2 = EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, "TestResources", "EmbeddedResourceFile2_WithSubNameSpace.txt");
+                string expectedName2 = _currentAssemblyName + ".TestResources.EmbeddedResourceFile2_WithSubNameSpace.txt";
+                string actualName2 = EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, "TestResources", "EmbeddedResourceFile2_WithSubNameSpace.txt");
                 AssertHelper.AreEqual(expectedName2, () => actualName2);
             }
         }
@@ -233,10 +234,10 @@ namespace JJ.Framework.Common.Core.Tests
         [TestMethod]
         public void Test_EmbeddedResourceHelper_ResourcesFromDifferentAssemblies()
         {
-            string textFromTestAssembly = EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, "TestResources", "EmbeddedResourceFile1_WithSubNameSpace.txt");
+            string textFromTestAssembly = EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, "TestResources", "EmbeddedResourceFile1_WithSubNameSpace.txt");
             AssertHelper.AreEqual(EXPECTED_TEXT_OF_FILE_1_WITH_SUB_NAME_SPACE, () => textFromTestAssembly);
 
-            string textFromHelperAssembly = EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly2, "TestResources", "EmbeddedResourceFile.txt");
+            string textFromHelperAssembly = EmbeddedResourceHelper.GetEmbeddedResourceText(_otherAssembly, "TestResources", "EmbeddedResourceFile.txt");
             AssertHelper.AreEqual("Text from different assembly.", () => textFromHelperAssembly);
         }
 
@@ -245,52 +246,52 @@ namespace JJ.Framework.Common.Core.Tests
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetText_WithoutSubNameSpace_NonExistent_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, "ImaginaryFile.txt"),
-                "Embedded resource 'JJ.Framework.Common.Core.Tests.ImaginaryFile.txt' not found.");
+                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, "ImaginaryFile.txt"),
+                $"Embedded resource '{_currentAssemblyName}.ImaginaryFile.txt' not found.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetText_WithSubNameSpace_NonExistent_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, "TestResources", "ImaginaryFile.txt"),
-                "Embedded resource 'JJ.Framework.Common.Core.Tests.TestResources.ImaginaryFile.txt' not found.");
+                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, "TestResources", "ImaginaryFile.txt"),
+                $"Embedded resource '{_currentAssemblyName}.TestResources.ImaginaryFile.txt' not found.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithoutSubNameSpace_NonExistent_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, "ImaginaryFile.txt"),
-                "Embedded resource 'JJ.Framework.Common.Core.Tests.ImaginaryFile.txt' not found.");
+                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, "ImaginaryFile.txt"),
+                $"Embedded resource '{_currentAssemblyName}.ImaginaryFile.txt' not found.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithSubNameSpace_NonExistent_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, "TestResources", "ImaginaryFile.txt"),
-                "Embedded resource 'JJ.Framework.Common.Core.Tests.TestResources.ImaginaryFile.txt' not found.");
+                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, "TestResources", "ImaginaryFile.txt"),
+                $"Embedded resource '{_currentAssemblyName}.TestResources.ImaginaryFile.txt' not found.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithoutSubNameSpace_NonExistent_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, "ImaginaryFile.txt"),
-                "Embedded resource 'JJ.Framework.Common.Core.Tests.ImaginaryFile.txt' not found.");
+                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, "ImaginaryFile.txt"),
+                $"Embedded resource '{_currentAssemblyName}.ImaginaryFile.txt' not found.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithSubNameSpace_NonExistent_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, "TestResources", "ImaginaryFile.txt"),
-                "Embedded resource 'JJ.Framework.Common.Core.Tests.TestResources.ImaginaryFile.txt' not found.");
+                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, "TestResources", "ImaginaryFile.txt"),
+                $"Embedded resource '{_currentAssemblyName}.TestResources.ImaginaryFile.txt' not found.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithoutSubNameSpace_NonExistent_Succeeds()
         {
-            string expectedName = "JJ.Framework.Common.Core.Tests.ImaginaryFile.txt";
-            string actualName = EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, "ImaginaryFile.txt");
+            string expectedName = _currentAssemblyName + ".ImaginaryFile.txt";
+            string actualName = EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, "ImaginaryFile.txt");
             AssertHelper.AreEqual(expectedName, () => actualName);
         }
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithSubNameSpace_NonExistent_Succeeds()
         {
-            string expectedName = "JJ.Framework.Common.Core.Tests.TestResources.ImaginaryFile.txt";
-            string actualName = EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, "TestResources", "ImaginaryFile.txt");
+            string expectedName = _currentAssemblyName + ".TestResources.ImaginaryFile.txt";
+            string actualName = EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, "TestResources", "ImaginaryFile.txt");
             AssertHelper.AreEqual(expectedName, () => actualName);
         }
 
@@ -349,145 +350,145 @@ namespace JJ.Framework.Common.Core.Tests
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetText_WithoutSubNameSpace_FileNameNull_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, fileName: null),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, fileName: null),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetText_WithoutSubNameSpace_FileNameIsSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, fileName: ""),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, fileName: ""),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetText_WithoutSubNameSpace_FileNameIsWhiteSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, fileName: "    "),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, fileName: "    "),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetText_WithSubNameSpace_FileNameNull_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, "TestResources", fileName: null),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, "TestResources", fileName: null),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetText_WithSubNameSpace_FileNameIsSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, "TestResources", fileName: ""),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, "TestResources", fileName: ""),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetText_WithSubNameSpace_FileNameIsWhiteSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_assembly, "TestResources", fileName: "    "),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceText(_currentAssembly, "TestResources", fileName: "    "),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithoutSubNameSpace_FileNameNull_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, fileName: null),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, fileName: null),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithoutSubNameSpace_FileNameIsSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, fileName: ""),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, fileName: ""),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithoutSubNameSpace_FileNameIsWhiteSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, fileName: "    "),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, fileName: "    "),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithSubNameSpace_FileNameNull_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, "TestResources", fileName: null),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, "TestResources", fileName: null),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithSubNameSpace_FileNameIsSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, "TestResources", fileName: ""),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, "TestResources", fileName: ""),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetBytes_WithSubNameSpace_FileNameIsWhiteSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_assembly, "TestResources", fileName: "    "),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceBytes(_currentAssembly, "TestResources", fileName: "    "),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithoutSubNameSpace_FileNameNull_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, fileName: null),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, fileName: null),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithoutSubNameSpace_FileNameIsSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, fileName: ""),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, fileName: ""),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithoutSubNameSpace_FileNameIsWhiteSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, fileName: "    "),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, fileName: "    "),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithSubNameSpace_FileNameNull_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, "TestResources", fileName: null),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, "TestResources", fileName: null),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithSubNameSpace_FileNameIsSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, "TestResources", fileName: ""),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, "TestResources", fileName: ""),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetStream_WithSubNameSpace_FileNameIsWhiteSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_assembly, "TestResources", fileName: "    "),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceStream(_currentAssembly, "TestResources", fileName: "    "),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithoutSubNameSpace_FileNameNull_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, fileName: null),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, fileName: null),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithoutSubNameSpace_FileNameIsSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, fileName: ""),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, fileName: ""),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithoutSubNameSpace_FileNameIsWhiteSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, fileName: "    "),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, fileName: "    "),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithSubNameSpace_FileNameNull_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, "TestResources", fileName: null),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, "TestResources", fileName: null),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithSubNameSpace_FileNameIsSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, "TestResources", fileName: ""),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, "TestResources", fileName: ""),
                 "fileName is null or white space.");
 
         [TestMethod]
         public void Test_EmbeddedResourceReader_GetName_WithSubNameSpace_FileNameIsWhiteSpace_ThrowsException()
             => AssertHelper.ThrowsException(
-                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_assembly, "TestResources", fileName: "    "),
+                () => EmbeddedResourceHelper.GetEmbeddedResourceName(_currentAssembly, "TestResources", fileName: "    "),
                 "fileName is null or white space.");
     }
 }
