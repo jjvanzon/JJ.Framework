@@ -41,21 +41,16 @@ String Extensions
 	* `"Path/to/file.txt".CutRightUntil("/")` = `"Path/to/"`  
 	* `"Hello world!".CutLeftUntil("world")` = `"world!"`
   
-- `RemoveExcessiveWhiteSpace`
-  
-	* Trim and replace sequences of two or more white space characters by a single space:  
-	* `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
-  
-- `Replace`
-  
-	* `String.Replace` variant with optional case-insensitive match:  
-	* `"HelloWORLD".Replace("world", "Universe",` __`ignoreCase: true`__ `)` = `"HelloUniverse"`
-  
 - `StartWithCap` / `StartWithLowerCase`
   
 	* Change just the first character's case:   
 	* `"test".StartWithCap()` = `"Test"`
     * `"TEST".StartWithLowerCase()` = `"tEST"`
+  
+- `RemoveExcessiveWhiteSpace`
+  
+	* Trim and replace sequences of two or more white space characters by a single space:  
+	* `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
   
 - `Split`
   
@@ -66,15 +61,15 @@ String Extensions
   
     * Parse CSV-like lines honoring quotes to allow use of separator and quote characters within the values themselves:  
     * `"apple|~banana|split~|cherry".SplitWithQuotation("|", '~')` = `[ "apple", "banana|split", "cherry" ]`
+  
+- `Replace`
+  
+	* `String.Replace` variant with optional case-insensitive match:  
+	* `"HelloWORLD".Replace("world", "Universe",` __`ignoreCase: true`__ `)` = `"HelloUniverse"`
 
 
 Collection Extensions
 ---------------------
-
-- `TrimAll`
-
-    * Trims all the strings in the collection:
-    * `string[] trimmedTexts = myTexts.TrimAll()`
 
 - `Distinct`
 
@@ -111,6 +106,11 @@ Collection Extensions
 - `AsEnumerable`
     * Converts a single item to a enumerable. Example: `IEnumerable<int> myInts = 3.AsEnumerable();`
 
+- `TrimAll`
+
+    * Trims all the strings in the collection:
+    * `string[] trimmedTexts = myTexts.TrimAll()`
+
 
 Recursive Collection Extensions
 -------------------------------
@@ -119,10 +119,13 @@ Recursive Collection Extensions
 
 This line of code:
 
+    ```cs
     var allItems = myRootItems.UnionRecursive(x => x.Children);
+    ```
 
 Gives you a list of all the nodes in a tree structure like the following:
 
+    ```cs
     var root = new Item
     {
         Children = new[]
@@ -145,6 +148,7 @@ Gives you a list of all the nodes in a tree structure like the following:
             },
         }
     };
+    ```
 
 There is also a `SelectRecursive` method:
 
@@ -158,28 +162,34 @@ KeyValuePairHelper
 
 Converts a single array to `KeyValuePair` or `Dictionary`, where the 1st item is a name, the 2nd a value, the 3rd a name, the 4th a value, etc. This can be useful to be able to specify name/value pairs as `params` (variable amount of arguments). For instance:
 
+    ```cs
     void MyMethod(params object[] namesAndValues)
     {
         var dictionary = KeyValuePairHelper.ConvertNamesAndValuesListToDictionary(namesAndValues);
         ...
     }
+    ```
 
 Calling MyMethod  looks like this:
 
+    ```cs
     MyMethod("Name1", 3, "Name2", 5, "Name3", 6);
-
+    ```
 
 Exception Types
 ---------------
 
-Offers a minimal amount of 2 exception types with subtle differences:
+2 exception types with subtle differences:
 
 - `InvalidValueException`
+
     - With messages like:  
       `Invalid CustomerType value: 'Undefined'.`  
       when you throw:  
       `throw new InvalidValueException(CustomerType.Undefined)`
+
 - `ValueNotSupportedException`
+
     - With messages like:  
       `CustomerType value: 'Subscriber' is not supported.`  
       when you throw:  
@@ -189,11 +199,11 @@ Offers a minimal amount of 2 exception types with subtle differences:
 Misc Helpers
 ------------
 
-- `ConfigurationHelper`
-    - Legacy helper for using configuration settings on platforms where `System.Configuration` was not available.
-- `CultureHelper`
-    - To set thread culture with a single code line.
 - `EmbeddedResourceHelper`
     - Make it a little easier to get embedded resource `Streams`, `bytes` and `strings`.
+- `CultureHelper`
+    - To set thread culture with a single code line.
+- `ConfigurationHelper`
+    - Legacy helper for using configuration settings on platforms where `System.Configuration` was not available.
 - `KeyHelper`
     - Utility to produce keys for use in `Dictionaries` by concatinating values with a `GUID` separator in between.
