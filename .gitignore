@@ -12,3 +12,4 @@ TestResults
 nCrunchTemp*.*
 .NCrunch*
 NCrunch*.xml
+.idea
