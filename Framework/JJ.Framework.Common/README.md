@@ -17,41 +17,55 @@ String Extensions
 -----------------
 
 - `Left` / `Right`
+
 	* Return the left or right part of a string:  
 	* `"12345".Left(2)` = `"12"`  
 	* `"12345".Right(2)` = `"45"`  
-    * (Throws an exception if the string is shorter than the requested length.)
+    * (Throws exception if string shorter than requested length.)
 
 - `FromTill`
-	* Takes the middle of a string by specifying the zero-based start index and the end index:  
+
+	* Take the middle of a string by start/end index (zero‑based, inclusive)  
     * `"12345".FromTill(2, 3)` = `"34"`  
-    * (Throws an exception if the indexes are out of range.)
+    * (Throws exception if indexes out of range.)
+
 - `CutLeft` / `CutRight`
-	* Trim off at most one occurrence of a value from the given string:  
+
+	* Trim at most one occurrence of a value from the given string:  
 	* `"BlaLala".CutLeft("Bla")` = `"Lala"`  
     * `"12345".CutRight(2)` = `"123"`  
+
 - `CutLeftUntil` / `CutRightUntil`
-    * Cuts off part of a string until the specified delimiter and returns what remains including the delimiter itself:  
+
+    * Remove text until the delimiter, keeping the delimiter:  
 	* `"Path/to/file.txt".CutRightUntil("/")` = `"Path/to/"`  
 	* `"Hello world!".CutLeftUntil("world")` = `"world!"`
+
 - `RemoveExcessiveWhiteSpace`
-	* Trims and replaces sequences of two or more white space characters by a single space:  
+
+	* Trim and replace sequences of two or more white space characters by a single space:  
 	* `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
+
 - `Replace`
-	* Variation on `String.Replace` with the ability to ignore case:  
+
+	* `String.Replace` variant with optional case-insensitive match:  
 	* `"HelloWORLD".Replace("world", "Universe", ignoreCase: true)` = `"HelloUniverse"`
-- `StartWithCap`
-	* Turns the first character into a capital letter:  
+
+- `StartWithCap` / `StartWithLowerCase`
+
+	* Change just the first character's case:   
 	* `"test".StartWithCap()` = `"Test"`
-- `StartWithLowerCase`
-	* Turns the first character into a lower-case letter.  
     * `"TEST".StartWithLowerCase()` = `"tEST"`
+
 - `Split`
-    * A variant one that takes `params` for split characters + overloads mostly missing before .NET 5:  
+
+    * Adds overloads missing until .NET 5 and a `params` variant for delimiters:  
     * `"apple-banana|cherry".Split("-", "|")` =  
     `[ "apple", "banana", "cherry" ]`
+
 - `SplitWithQuotation`
-    * Allows you to parse CSV-like lines including quotation for the ability to include the separator character and quote characters in the values themselves:  
+
+    * Parse CSV-like lines honoring quotes to allow use of separator and quote characters within the values themselves:  
     * `"apple|~banana|split~|cherry".SplitWithQuotation("|", '~')` =  
     `[ "apple", "banana|split", "cherry" ]`
 
@@ -60,27 +74,41 @@ Collection Extensions
 ---------------------
 
 - `TrimAll`
+
     * Trims all the strings in the collection.
+
 - `Distinct`
+
     * Variation that takes a key selector that determines what makes an item unique, e.g.
     * `myItems.Distinct(x => x.LastName);`
     * For multi-part as keys, use:
     * `myItems.Distinct(x => new { x.FirstName, x.LastName });`
+
 - `Except` 
+
     * Variations with:
     * A single item, e.g. `myCollection.Except(myItem);`
     * The choice to keep duplicates. (The original `Except` method from .NET automatically does a distinct, which is something you do not always want.)
+
 - `Union`
+
     * Variations with:
     * A single item, e.g. `myCollection.Union(myItem);`
     * Starts with a single item and then adds a collection to it e.g. `myItem.Union(myCollection);`
+
 - `ForEach`
+
     * Not all collection types have the `ForEach` method. Here you have an overload for `IEnumerable`<`T`> so you can use it for more collection types.
+
 - `Add`
+
     * Add multiple items to a collection by means of a comma separated argument list, e.g.
     `myCollection.Add(1, 5, 12);`
+
 - `AddRange`
+
     * `AddRange` is a member of `List`<`T`>. Here is a variation for `IList`<`T`> to support more collection types.
+
 - `AsEnumerable`
     * Converts a single item to a enumerable. Example: `IEnumerable<int> myInts = 3.AsEnumerable();`
 
