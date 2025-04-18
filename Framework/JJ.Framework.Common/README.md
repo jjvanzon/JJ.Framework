@@ -21,7 +21,7 @@ String Extensions
 	* `"12345".Left(2)` = `"12"`  
 	* `"12345".Right(2)` = `"45"`  
     * (Throws an exception if the string is shorter than the requested length.)
-  
+
 - `FromTill`
 	* Takes the middle of a string by specifying the zero-based start index and the end index:  
     * `"12345".FromTill(2, 3)` = `"34"`  
