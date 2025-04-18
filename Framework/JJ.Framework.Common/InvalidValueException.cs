@@ -10,7 +10,7 @@ namespace JJ.Framework.Common
         private const string MESSAGE = "Invalid {0} value: '{1}'.";
 
         public InvalidValueException(object value)
-            : base(String.Format(MESSAGE, value?.GetType(), value))
+            : base(String.Format(MESSAGE, value?.GetType().Name, value))
         { }
     }
 }

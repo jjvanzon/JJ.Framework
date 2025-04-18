@@ -1,7 +1,7 @@
 JJ.Framework.Common
 ===================
 
-A mixed bag of general-purpose utilities with minimal dependencies. Later versions of this library split functionality into focused packages like `JJ.Framework.Text`, `JJ.Framework.Collections`, and `JJ.Framework.Exceptions`. This "prequel" version, contains a little bit of everything: a version released in aid of releasing older legacy apps, still holding value.
+A mixed bag of general-purpose utilities with minimal dependencies. Later versions of this library split functionality into focused packages like `JJ.Framework.Text`, `JJ.Framework.Collections`, and `JJ.Framework.Exceptions`. This "prequel" version contains a little bit of everything: a version released in aid of releasing older legacy apps, still holding value.
 
 __Contents__
 
@@ -16,58 +16,56 @@ __Contents__
 String Extensions
 -----------------
 
-- `Left` / `Right`
-
+- `Left` / `Right`  
+    
 	* Return the left or right part of a string:  
 	* `"12345".Left(2)` = `"12"`  
 	* `"12345".Right(2)` = `"45"`  
-    * (Throws exception if string shorter than requested length.)
-
+    * (Throws exception if string shorter than requested length.)  
+    
 - `FromTill`
-
+  
 	* Take the middle of a string by start/end index (zero‑based, inclusive)  
     * `"12345".FromTill(2, 3)` = `"34"`  
     * (Throws exception if indexes out of range.)
-
+  
 - `CutLeft` / `CutRight`
-
+  
 	* Trim at most one occurrence of a value from the given string:  
 	* `"BlaLala".CutLeft("Bla")` = `"Lala"`  
     * `"12345".CutRight(2)` = `"123"`  
-
+  
 - `CutLeftUntil` / `CutRightUntil`
-
+  
     * Remove text until the delimiter, keeping the delimiter:  
 	* `"Path/to/file.txt".CutRightUntil("/")` = `"Path/to/"`  
 	* `"Hello world!".CutLeftUntil("world")` = `"world!"`
-
+  
 - `RemoveExcessiveWhiteSpace`
-
+  
 	* Trim and replace sequences of two or more white space characters by a single space:  
 	* `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
-
+  
 - `Replace`
-
+  
 	* `String.Replace` variant with optional case-insensitive match:  
-	* `"HelloWORLD".Replace("world", "Universe", ignoreCase: true)` = `"HelloUniverse"`
-
+	* `"HelloWORLD".Replace("world", "Universe",` __`ignoreCase: true`__ `)` = `"HelloUniverse"`
+  
 - `StartWithCap` / `StartWithLowerCase`
-
+  
 	* Change just the first character's case:   
 	* `"test".StartWithCap()` = `"Test"`
     * `"TEST".StartWithLowerCase()` = `"tEST"`
-
+  
 - `Split`
-
+  
     * Adds overloads missing until .NET 5 and a `params` variant for delimiters:  
-    * `"apple-banana|cherry".Split("-", "|")` =  
-    `[ "apple", "banana", "cherry" ]`
-
+    * `"apple-banana|cherry".Split("-", "|")` = `[ "apple", "banana", "cherry" ]`
+  
 - `SplitWithQuotation`
-
+  
     * Parse CSV-like lines honoring quotes to allow use of separator and quote characters within the values themselves:  
-    * `"apple|~banana|split~|cherry".SplitWithQuotation("|", '~')` =  
-    `[ "apple", "banana|split", "cherry" ]`
+    * `"apple|~banana|split~|cherry".SplitWithQuotation("|", '~')` = `[ "apple", "banana|split", "cherry" ]`
 
 
 Collection Extensions
@@ -75,7 +73,8 @@ Collection Extensions
 
 - `TrimAll`
 
-    * Trims all the strings in the collection.
+    * Trims all the strings in the collection:
+    * `string[] trimmedTexts = myTexts.TrimAll()`
 
 - `Distinct`
 
@@ -176,11 +175,15 @@ Exception Types
 Offers a minimal amount of 2 exception types with subtle differences:
 
 - `InvalidValueException`
-    - With messages like:
-      `Invalid CustomerType value: 'Undefined'.`
+    - With messages like:  
+      `Invalid CustomerType value: 'Undefined'.`  
+      when you throw:  
+      `throw new InvalidValueException(CustomerType.Undefined)`
 - `ValueNotSupportedException`
-    - With messages like:
-      `CustomerType value 'Subscriber' is not supported.`
+    - With messages like:  
+      `CustomerType value: 'Subscriber' is not supported.`  
+      when you throw:  
+      `throw new ValueNotSupportedException(CustomerType.Subscriber)`
 
 
 Misc Helpers

@@ -10,7 +10,7 @@ namespace JJ.Framework.Common
         private const string MESSAGE = "{0} value: '{1}' is not supported.";
 
         public ValueNotSupportedException(object value)
-            : base(String.Format(MESSAGE, value?.GetType(), value))
+            : base(String.Format(MESSAGE, value?.GetType().Name, value))
         { }
     }
 }
