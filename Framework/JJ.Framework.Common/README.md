@@ -47,11 +47,6 @@ String Extensions
 	* `"test".StartWithCap()` = `"Test"`
     * `"TEST".StartWithLowerCase()` = `"tEST"`
   
-- `RemoveExcessiveWhiteSpace`
-  
-	* Trim and replace sequences of two or more white space characters by a single space:  
-	* `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
-  
 - `Split`
   
     * Adds overloads missing until .NET 5 and a `params` variant for delimiters:  
@@ -61,7 +56,12 @@ String Extensions
   
     * Parse CSV-like lines honoring quotes to allow use of separator and quote characters within the values themselves:  
     * `"apple|~banana|split~|cherry".SplitWithQuotation("|", '~')` = `[ "apple", "banana|split", "cherry" ]`
+    
+- `RemoveExcessiveWhiteSpace`
   
+	* Trim and replace sequences of two or more white space characters by a single space:  
+	* `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`
+
 - `Replace`
   
 	* `String.Replace` variant with optional case-insensitive match:  
@@ -90,10 +90,6 @@ Collection Extensions
     * A single item, e.g. `myCollection.Union(myItem);`
     * Starts with a single item and then adds a collection to it e.g. `myItem.Union(myCollection);`
 
-- `ForEach`
-
-    * Not all collection types have the `ForEach` method. Here you have an overload for `IEnumerable`<`T`> so you can use it for more collection types.
-
 - `Add`
 
     * Add multiple items to a collection by means of a comma separated argument list, e.g.
@@ -102,6 +98,10 @@ Collection Extensions
 - `AddRange`
 
     * `AddRange` is a member of `List`<`T`>. Here is a variation for `IList`<`T`> to support more collection types.
+
+- `ForEach`
+
+    * Not all collection types have the `ForEach` method. Here you have an overload for `IEnumerable`<`T`> so you can use it for more collection types.
 
 - `AsEnumerable`
     * Converts a single item to a enumerable. Example: `IEnumerable<int> myInts = 3.AsEnumerable();`
@@ -119,40 +119,42 @@ Recursive Collection Extensions
 
 This line of code:
 
-    ```cs
-    var allItems = myRootItems.UnionRecursive(x => x.Children);
-    ```
+```cs
+var allItems = myRootItems.UnionRecursive(x => x.Children);
+```
 
 Gives you a list of all the nodes in a tree structure like the following:
 
-    ```cs
-    var root = new Item
+```cs
+var root = new Item
+{
+    Children = new[]
     {
-        Children = new[]
+        new Item()
+        new Item
         {
-            new Item()
-            new Item
+            Children = new[]
             {
-                Children = new[]
-                {
-                    new Item()
-                }
-            },
-            new Item
+                new Item()
+            }
+        },
+        new Item
+        {
+            Children = new[]
             {
-                Children = new[]
-                {
-                    new Item(),
-                    new Item(),
-                }
-            },
-        }
-    };
-    ```
+                new Item(),
+                new Item(),
+            }
+        },
+    }
+};
+```
 
 There is also a `SelectRecursive` method:
 
-    var allItemsExceptRoots = myRootItems.SelectRecursive(x => x.Children);
+```cs
+var allItemsExceptRoots = myRootItems.SelectRecursive(x => x.Children);
+```
 
 The difference with `UnionRecursive` is that `SelectRecursive` does not include the roots in the result collection.
 
@@ -162,19 +164,19 @@ KeyValuePairHelper
 
 Converts a single array to `KeyValuePair` or `Dictionary`, where the 1st item is a name, the 2nd a value, the 3rd a name, the 4th a value, etc. This can be useful to be able to specify name/value pairs as `params` (variable amount of arguments). For instance:
 
-    ```cs
-    void MyMethod(params object[] namesAndValues)
-    {
-        var dictionary = KeyValuePairHelper.ConvertNamesAndValuesListToDictionary(namesAndValues);
-        ...
-    }
-    ```
+```cs
+void MyMethod(params object[] namesAndValues)
+{
+    var dictionary = KeyValuePairHelper.ConvertNamesAndValuesListToDictionary(namesAndValues);
+    ...
+}
+```
 
 Calling MyMethod  looks like this:
 
-    ```cs
-    MyMethod("Name1", 3, "Name2", 5, "Name3", 6);
-    ```
+```cs
+MyMethod("Name1", 3, "Name2", 5, "Name3", 6);
+```
 
 Exception Types
 ---------------
@@ -200,10 +202,17 @@ Misc Helpers
 ------------
 
 - `EmbeddedResourceHelper`
+
     - Make it a little easier to get embedded resource `Streams`, `bytes` and `strings`.
+
 - `CultureHelper`
+
     - To set thread culture with a single code line.
+
 - `ConfigurationHelper`
+
     - Legacy helper for using configuration settings on platforms where `System.Configuration` was not available.
+
 - `KeyHelper`
+
     - Utility to produce keys for use in `Dictionaries` by concatinating values with a `GUID` separator in between.
