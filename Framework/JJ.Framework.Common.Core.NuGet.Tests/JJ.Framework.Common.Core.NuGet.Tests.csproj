@@ -31,7 +31,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Common.Core.Tests\Helpers\DebuggerDisplayFormatter.cs" />
+    <Compile Include="..\JJ.Framework.Common.Core.Tests\Helpers\*.cs" />
     <Compile Include="..\JJ.Framework.Common.Core.Tests\*.cs" />
   </ItemGroup>
 
