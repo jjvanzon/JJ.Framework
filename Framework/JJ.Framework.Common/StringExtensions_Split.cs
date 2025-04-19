@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using JJ.Framework.Common.docs;
 
 namespace JJ.Framework.Common
 {
+    /// <inheritdoc cref="_split" />
     public static partial class StringExtensions_Split
     {
+        /// <inheritdoc cref="_split" />
         public static string[] Split(this string input, char separator, StringSplitOptions options)
         {
             return input.Split(new char[] { separator }, options);
         }
 
+        /// <inheritdoc cref="_split" />
         public static string[] Split(this string input, string separator, StringSplitOptions options)
         {
             return input.Split(new string[] { separator }, options);
@@ -27,6 +29,7 @@ namespace JJ.Framework.Common
             return values;
         }
 
+        /// <inheritdoc cref="_split" />
         public static string[] Split(this string value, params string[] separators)
         {
             return value.Split(separators, StringSplitOptions.None);

@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace JJ.Framework.Common
 {
-    /// <summary>
+    /// <remarks>
     /// For using configuration settings when you cannot be dependent on System.Configuration.
-    /// </summary>
+    /// </remarks>
     public static class ConfigurationHelper
     {
         private static object _sectionsLock = new object();
         private static IDictionary<Type, object> _sections = new Dictionary<Type, object>();
 
+        /// <inheritdoc cref="_configurationhelper" />
         public static T GetSection<T>()
         {
             lock (_sectionsLock)
@@ -29,6 +31,7 @@ namespace JJ.Framework.Common
             }
         }
 
+        /// <inheritdoc cref="_configurationhelper" />
         public static void SetSection<T>(T section)
         {
             if (section == null) throw new ArgumentNullException("section");

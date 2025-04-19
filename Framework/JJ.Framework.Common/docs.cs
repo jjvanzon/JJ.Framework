@@ -1,6 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
 // ReSharper disable IdentifierTypo
-
+// ReSharper disable UnusedType.Global
 #pragma warning disable IDE1006
 
 namespace JJ.Framework.Common
@@ -22,7 +22,7 @@ namespace JJ.Framework.Common
         /// Quote character. If set, text enclosed in quotes will be treated as a single value,
         /// even if it contains the separator. To embed quotes in the value again, repeat the quote character twice.
         /// </param>
-        public struct _splitwithquotation { }
+        public struct _splitwithquotationbase { }
         
         
         /// <summary>
@@ -678,7 +678,7 @@ namespace JJ.Framework.Common
         /// </summary>
         public struct _split { }
         
-        /// <summary>
+        /// <remarks>
         /// <list type="bullet">
         /// <item><p><c>SplitWithQuotation</c></p>
         /// <list type="bullet">
@@ -687,8 +687,9 @@ namespace JJ.Framework.Common
         /// </list>
         /// </item>
         /// </list>
-        /// </summary>
-        public struct _splitwithquotation2 { }
+        /// </remarks>
+        /// <inheritdoc cref="_splitwithquotationbase" />
+        public struct _splitwithquotation { }
         
         /// <summary>
         /// <list type="bullet">

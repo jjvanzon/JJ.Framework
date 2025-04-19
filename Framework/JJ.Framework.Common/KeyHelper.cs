@@ -5,14 +5,16 @@ using System.Text;
 
 namespace JJ.Framework.Common
 {
+    /// <inheritdoc cref="_keyhelper" />
     public static class KeyHelper
     {
         private static string _separator = Guid.NewGuid().ToString();
 
-        /// <summary>
+        /// <remarks>
         /// Turns several objects into a single string key.
         /// Only works if the objects' ToString() methods return something unique.
-        /// </summary>
+        /// </remarks>
+        /// <inheritdoc cref="_keyhelper" />
         public static string CreateKey(object[] values)
         {
             string[] strings = new string[values.Length];

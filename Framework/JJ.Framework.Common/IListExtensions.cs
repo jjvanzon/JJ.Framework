@@ -6,8 +6,10 @@ using System.Text;
 
 namespace JJ.Framework.Common
 {
+    /// <inheritdoc cref="_collectionextensions" />
     public static class IListExtensions
     {
+        /// <inheritdoc cref="_addrange" />
         public static void AddRange<T>(this IList<T> collection, IEnumerable<T> items)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));
@@ -19,6 +21,7 @@ namespace JJ.Framework.Common
             }
         }
 
+        /// <inheritdoc cref="_add" />
         public static void Add<T>(this IList<T> collection, params T[] items)
         {
             if (collection == null) throw new ArgumentNullException(nameof(collection));

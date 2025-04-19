@@ -6,83 +6,94 @@ using System.Text.RegularExpressions;
 
 namespace JJ.Framework.Common
 {
+    /// <inheritdoc cref="_stringextensions" />
     public static partial class StringExtensions
     {
-        /// <summary>
+        /// <returns>
         /// Returns the left part of a string.
-        /// </summary>
+        /// </returns>
+        /// <inheritdoc cref="_leftright" />
         public static string Left(this string input, int length)
         {
             return input.Substring(0, length);
         }
 
-        /// <summary>
+        /// <returns>
         /// Returns the right part of a string.
-        /// </summary>
+        /// </returns>
+        /// <inheritdoc cref="_leftright" />
         public static string Right(this string input, int length)
         {
             return input.Substring(input.Length - length, length);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Cuts off the right part of a string and returns the string with a portion cut off.
-        /// </summary>
+        /// </remarks>
+        /// <inheritdoc cref="_cutleftorright" />
         public static string CutRight(this string input, char chr)
         {
             return CutRight(input, chr.ToString());
         }
 
-        /// <summary>
+        /// <remarks>
         /// Cuts off the right part of a string and returns what remains with a portion cut off.
         /// </summary>
+        /// <inheritdoc cref="_cutleftorright" />
         public static string CutRight(this string input, string end)
         {
             if (input.EndsWith(end)) return input.CutRight(end.Length);
             return input;
         }
 
-        /// <summary>
+        /// <remarks>
         /// Cuts off the right part of a string and returns what remains with a portion cut off.
-        /// </summary>
+        /// </remarks>
+        /// <inheritdoc cref="_cutleftorright" />
         public static string CutRight(this string input, int length)
         {
             return input.Left(input.Length - length);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Cuts off the left part of a string and returns what remains with a portion cut off.
-        /// </summary>
+        /// </remarks>
+        /// <inheritdoc cref="_cutleftorright" />
         public static string CutLeft(this string input, char chr)
         {
             return CutLeft(input, chr.ToString());
         }
 
-        /// <summary>
+        /// <remarks>
         /// Cuts off the left part of a string and returns what remains with a portion cut off.
-        /// </summary>
+        /// </remarks>
+        /// <inheritdoc cref="_cutleftorright" />
         public static string CutLeft(this string input, string start)
         {
             if (input.StartsWith(start)) return input.CutLeft(start.Length);
             return input;
         }
 
-        /// <summary>
+        /// <remarks>
         /// Cuts off the left part of a string and returns what remains with a portion cut off.
-        /// </summary>
+        /// </remarks>
+        /// <inheritdoc cref="_cutleftorright" />
         public static string CutLeft(this string input, int length)
         {
             return input.Right(input.Length - length);
         }
 
+        /// <inheritdoc cref="_fromtill" />
         public static string FromTill(this string input, int startIndex, int endIndex)
         {
             if (endIndex < startIndex) throw new Exception("endIndex lies before startIndex.");
             return input.Substring(startIndex, endIndex - startIndex + 1);
         }
 
-        /// <summary>
+        /// <remarks>
         /// Cuts off the right part of a string until the specified delimiter and returns what remains with a portion cut off still including the delimiter itself.
-        /// </summary>
+        /// </remarks>
+        /// <inheritdoc cref="_cutleftorrightuntil" />
         public static string CutRightUntil(this string input, string until)
         {   
             if (string.IsNullOrEmpty(until)) throw new Exception($"{nameof(until)} is null or empty.");
@@ -92,9 +103,10 @@ namespace JJ.Framework.Common
             return output;
         }
 
-        /// <summary>
+        /// <remarks>
         /// Cuts off the left part of a string until the specified delimiter and returns what remains with a portion cut off still including the delimiter itself.
-        /// </summary>
+        /// </remarks>
+        /// <inheritdoc cref="_cutleftorrightuntil" />
         public static string CutLeftUntil(this string input, string until)
         {
             if (string.IsNullOrEmpty(until)) throw new Exception($"{nameof(until)} is null or empty.");
@@ -104,9 +116,10 @@ namespace JJ.Framework.Common
             return output;
         }
 
-        /// <summary>
+        /// <remarks>
         /// Trims and replaces sequences of two or more white space characters by a single space.
-        /// </summary>
+        /// </remarks>
+        /// <inheritdoc cref="_removeexcessivewhitespace" />
         public static string RemoveExcessiveWhiteSpace(this string text)
         {
             text = text.Trim();
@@ -118,6 +131,7 @@ namespace JJ.Framework.Common
             return text;
         }
 
+        /// <inheritdoc cref="_replace" />
         public static string Replace(this string input, string oldValue, string newValue, bool ignoreCase)
         {
             if (string.IsNullOrEmpty(input)) return input;

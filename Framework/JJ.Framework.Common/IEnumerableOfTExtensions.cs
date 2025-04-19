@@ -5,20 +5,23 @@ using System.Text;
 
 namespace JJ.Framework.Common
 {
+    /// <inheritdoc cref="_collectionextensions" />
     public static class IEnumerableOfTExtensions
     {
         private static string _separatorGuid;
         private static string _nullGuid;
 
+        /// <inheritdoc cref="_collectionextensions" />
         static IEnumerableOfTExtensions()
         {
             _separatorGuid = Guid.NewGuid().ToString();
             _nullGuid = Guid.NewGuid().ToString();
         }
 
-        /// <summary>
+        /// <returns>
         /// Does not include the collection it is executed upon in the result.
-        /// </summary>
+        /// </returns>
+        /// <inheritdoc cref="_selectrecursive" />
         public static IEnumerable<T> SelectRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
         {
             // TODO: Beware: nested enumerators.
@@ -43,9 +46,10 @@ namespace JJ.Framework.Common
             }
         }
 
-        /// <summary>
+        /// <returns>
         /// Includes the collection it is executed upon in the result.
-        /// </summary>
+        /// </returns>
+        /// <inheritdoc cref="_unionrecursive" />
         public static IEnumerable<T> UnionRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
         {
             if (collection == null) throw new ArgumentNullException("collection");
@@ -62,9 +66,10 @@ namespace JJ.Framework.Common
             }
         }
 
-        /// <summary>
+        /// <returns>
         /// Does not include the collection it is executed upon in the result.
-        /// </summary>
+        /// </returns>
+        /// <inheritdoc cref="_selectrecursive" />
         public static IEnumerable<T> SelectRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
         {
             // TODO: Beware: nested enumerators.
@@ -91,9 +96,10 @@ namespace JJ.Framework.Common
             }
         }
 
-        /// <summary>
+        /// <returns>
         /// Includes the collection it is executed upon in the result.
-        /// </summary>
+        /// </returns>
+        /// <inheritdoc cref="_unionrecursive" />
         public static IEnumerable<T> UnionRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
         {
             if (collection == null) throw new ArgumentNullException("collection");
@@ -115,6 +121,7 @@ namespace JJ.Framework.Common
         /// Not all collection types have the ForEach method. Here you have an overload for IEnumerable&lt;T&gt; so you
         /// can use it for more collection types.
         /// </summary>
+        /// <inheritdoc cref="_foreach" />
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
@@ -127,6 +134,7 @@ namespace JJ.Framework.Common
         }
 
         /// <summary> An overload of Except that takes just a single item, e.g. myCollection.Except(myItem); </summary>
+        /// <inheritdoc cref="_except" />
         public static IEnumerable<T> Except<T>(this IEnumerable<T> enumerable, T x)
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
@@ -136,6 +144,7 @@ namespace JJ.Framework.Common
         /// <summary>
         /// Original Except from .NET automatically also does a distinct, which is something you do not always want.
         /// </summary>
+        /// <inheritdoc cref="_except" />
         public static IEnumerable<T> Except<T>(this IEnumerable<T> source, IEnumerable<T> input, bool distinct)
         {
             if (input == null) throw new ArgumentNullException(nameof(input));
@@ -150,17 +159,20 @@ namespace JJ.Framework.Common
             }
         }
 
+        /// <inheritdoc cref="_union" />
         public static IEnumerable<T> Union<T>(this IEnumerable<T> enumerable, T x)
         {
             return enumerable.Union(new T[] { x });
         }
 
+        /// <inheritdoc cref="_union" />
         public static IEnumerable<T> Union<T>(this T x, IEnumerable<T> enumerable)
         {
             return new T[] { x }.Union(enumerable);
         }
 
         // TODO: TKey is strange. You would think that the different elements of the key are not always of the same type.
+        /// <inheritdoc cref="_distinct" />
         public static IEnumerable<TItem> Distinct<TItem, TKey>(this IEnumerable<TItem> enumerable, params Func<TItem, TKey>[] keys)
         {
             if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
@@ -201,6 +213,7 @@ namespace JJ.Framework.Common
             }
         }
 
+        /// <inheritdoc cref="_asenumerable" />
         public static IEnumerable<TItem> AsEnumerable<TItem>(this TItem item)
         {
             return new TItem[] { item };

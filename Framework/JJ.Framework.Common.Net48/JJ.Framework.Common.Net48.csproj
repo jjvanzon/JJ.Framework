@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\JJ.Framework.Common\StringExtensions.cs" />
     <Compile Include="..\JJ.Framework.Common\docs.cs" />
+    <Compile Include="..\JJ.Framework.Common\GlobalUsings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Net48\JJ.Framework.PlatformCompatibility.Net48.csproj">

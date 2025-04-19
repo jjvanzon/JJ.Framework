@@ -9,27 +9,33 @@ using System.Text;
 
 namespace JJ.Framework.Common
 {
+    /// <inheritdoc cref="_embeddedresourcehelper" />
     public static class EmbeddedResourceHelper
     {
+        /// <inheritdoc cref="_embeddedresourcehelper" />
         public static string GetEmbeddedResourceText(Assembly assembly, string fileName)
         {
             return GetEmbeddedResourceText(assembly, null, fileName);
         }
 
+        /// <inheritdoc cref="_embeddedresourcehelper" />
         public static byte[] GetEmbeddedResourceBytes(Assembly assembly, string fileName)
         {
             return GetEmbeddedResourceBytes(assembly, null, fileName);
         }
 
+        /// <inheritdoc cref="_embeddedresourcehelper" />
         public static Stream GetEmbeddedResourceStream(Assembly assembly, string fileName)
         {
             return GetEmbeddedResourceStream(assembly, null, fileName);
         }
        
         // Copied from 2021 version
+        /// <inheritdoc cref="_embeddedresourcehelper" />
         public static string GetEmbeddedResourceName(Assembly assembly, string fileName)
             => GetEmbeddedResourceName(assembly, null, fileName);
 
+        /// <inheritdoc cref="_embeddedresourcehelper" />
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
         public static string GetEmbeddedResourceText(Assembly assembly, string subNamespace, string fileName)
         {
@@ -39,6 +45,7 @@ namespace JJ.Framework.Common
             }
         }
 
+        /// <inheritdoc cref="_embeddedresourcehelper" />
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
         public static byte[] GetEmbeddedResourceBytes(Assembly assembly, string subNamespace, string fileName)
         {
@@ -53,6 +60,7 @@ namespace JJ.Framework.Common
             }
         }
 
+        /// <inheritdoc cref="_embeddedresourcehelper" />
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
         public static Stream GetEmbeddedResourceStream(Assembly assembly, string subNamespace, string fileName)
         {
@@ -65,6 +73,7 @@ namespace JJ.Framework.Common
             return stream;
         }
 
+        /// <inheritdoc cref="_embeddedresourcehelper" />
         /// <param name="subNamespace">Similar to the subfolder in which the embedded resource resides.</param>
         public static string GetEmbeddedResourceName(Assembly assembly, string subNamespace, string fileName)
         {

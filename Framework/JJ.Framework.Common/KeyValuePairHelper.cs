@@ -5,8 +5,10 @@ using System.Text;
 
 namespace JJ.Framework.Common
 {
+    /// <inheritdoc cref="_keyvaluepairhelper" />
     public static class KeyValuePairHelper
     {
+        /// <inheritdoc cref="_keyvaluepairhelper" />
         public static IDictionary<string, object> ConvertNamesAndValuesListToDictionary(params IList<object> namesAndValues)
         {
             var dictionary = new Dictionary<string, object>();
@@ -14,6 +16,7 @@ namespace JJ.Framework.Common
             return dictionary;
         }
 
+        /// <inheritdoc cref="_keyvaluepairhelper" />
         public static IList<KeyValuePair<string, object>> ConvertNamesAndValuesListToKeyValuePairs(params IList<object> namesAndValues)
         {
             var list = new List<KeyValuePair<string, object>>();
@@ -21,6 +24,7 @@ namespace JJ.Framework.Common
             return list;
         }
 
+        /// <inheritdoc cref="_keyvaluepairhelper" />
         private static void ConvertNamesAndValuesListWithDelegate(IList<object> namesAndValues, Action<string, object> addDelegate)
         {
             // Allow converting null to null.

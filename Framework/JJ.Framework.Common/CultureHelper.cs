@@ -8,8 +8,10 @@ using System.Threading;
 
 namespace JJ.Framework.Common
 {
+    /// <inheritdoc cref="_culturehelper" />
     public static class CultureHelper
     {
+        /// <inheritdoc cref="_culturehelper" />
         public static void SetThreadCulture(string cultureName)
         {
             CultureInfo cultureInfo = CultureInfo_PlatformSafe.GetCultureInfo(cultureName);
