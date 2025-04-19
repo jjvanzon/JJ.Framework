@@ -104,7 +104,8 @@ Collection Extensions
     * Not all collection types have the `ForEach` method. Here you have an overload for `IEnumerable`<`T`> so you can use it for more collection types.
 
 - `AsEnumerable`
-    * Converts a single item to a enumerable. Example: `IEnumerable<int> myInts = 3.AsEnumerable();`
+    * Converts a single item to a enumerable, so you can for instance use it with `LINQ`:
+    * `IEnumerable<int> myInts = 3.AsEnumerable();`
 
 - `TrimAll`
 
@@ -172,7 +173,7 @@ void MyMethod(params object[] namesAndValues)
 }
 ```
 
-Calling MyMethod  looks like this:
+Calling `MyMethod` looks like this:
 
 ```cs
 MyMethod("Name1", 3, "Name2", 5, "Name3", 6);
