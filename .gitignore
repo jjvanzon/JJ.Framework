@@ -4,12 +4,14 @@ obj
 *.csproj.vspscc
 *.user
 packages
-!Archive/**
+#!Archive/**
 TestResults
 *.cache
+.idea
+
+# NCrunch
 *.ncrunchproject
 *.ncrunchsolution
 nCrunchTemp*.*
 .NCrunch*
 NCrunch*.xml
-.idea
