@@ -53,3 +53,12 @@ for (int i = 0; i < expected.Length; i++)
 ```cs
     AreEqual("abcGHI", "abcDEF".Replace("def", "GHI", ignoreCase: true));
 ```
+
+
+```xml
+  <ItemGroup Condition="$(MSBuildProjectName.StartsWith('JJ.'))
+                   And '$(MSBuildProjectName)' != 'JJ.Framework.Build' 
+                   And '$(MSBuildProjectName)' != 'JJ.Framework.Versioning.Core'">
+    <ProjectReference Include="$(SolutionDir)\Framework\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+  </ItemGroup>
+```
