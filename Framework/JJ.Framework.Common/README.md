@@ -254,7 +254,7 @@ Misc Helpers
 
 - `KeyHelper`
 
-    - Utility to produce keys for use in `Dictionaries` by concatinating values with a `GUID` separator in between.
+    - Utility to produce keys for use in `Dictionaries` by concatenating values with a `GUID` separator in between.
 
 💬 Feedback
 ============
