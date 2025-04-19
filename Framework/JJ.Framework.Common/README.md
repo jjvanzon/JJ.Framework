@@ -21,46 +21,46 @@ String Extensions
 	* Return the left or right part of a string:  
 	* `"12345".Left(2)` = `"12"`  
 	* `"12345".Right(2)` = `"45"`  
-    * (Throws exception if string shorter than requested length.)<br/>
+    * (Throws exception if string shorter than requested length.)<br/><br/>
 
 - `FromTill`
 
 	* Take the middle of a string by start/end index (zero‑based, inclusive)  
     * `"12345".FromTill(2, 3)` = `"34"`  
-    * (Throws exception if indexes out of range.)<br/>
+    * (Throws exception if indexes out of range.)<br/><br/>
 
 - `CutLeft` / `CutRight`
 
 	* Trim at most one occurrence of a value from the given string:  
 	* `"BlaLala".CutLeft("Bla")` = `"Lala"`  
-    * `"12345".CutRight(2)` = `"123"`<br/>
+    * `"12345".CutRight(2)` = `"123"`<br/><br/>
 
 - `CutLeftUntil` / `CutRightUntil`
 
     * Remove text until the delimiter, keeping the delimiter:  
 	* `"Path/to/file.txt".CutRightUntil("/")` = `"Path/to/"`  
-	* `"Hello world!".CutLeftUntil("world")` = `"world!"`<br/>
+	* `"Hello world!".CutLeftUntil("world")` = `"world!"`<br/><br/>
 
 - `StartWithCap` / `StartWithLowerCase`
 
 	* Change just the first character's case:   
 	* `"test".StartWithCap()` = `"Test"`
-    * `"TEST".StartWithLowerCase()` = `"tEST"`<br/>
+    * `"TEST".StartWithLowerCase()` = `"tEST"`<br/><br/>
 
 - `Split`
 
     * Adds overloads missing until .NET 5 and a `params` variant for delimiters:  
-    * `"apple-banana|cherry".Split("-", "|")` = `[ "apple", "banana", "cherry" ]`<br/>
+    * `"apple-banana|cherry".Split("-", "|")` = `[ "apple", "banana", "cherry" ]`<br/><br/>
 
 - `SplitWithQuotation`
 
     * Parse CSV-like lines honoring quotes to allow use of separator and quote characters within the values themselves:  
-    * `"apple|~banana|split~|cherry".SplitWithQuotation("|", '~')` = `[ "apple", "banana|split", "cherry" ]`<br/>
+    * `"apple|~banana|split~|cherry".SplitWithQuotation("|", '~')` = `[ "apple", "banana|split", "cherry" ]`<br/><br/>
 
 - `RemoveExcessiveWhiteSpace`
 
 	* Trim and replace sequences of two or more white space characters by a single space:  
-	* `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`<br/>
+	* `"    This  is  a   test. ".RemoveExcessiveWhiteSpace()` = `"This is a test."`<br/><br/>
 
 - `Replace`
 
@@ -76,36 +76,36 @@ Collection Extensions
     * Variation that takes a key selector that determines what makes an item unique, e.g.
     * `myItems.Distinct(x => x.LastName);`
     * For multi-part as keys, use:
-    * `myItems.Distinct(x => new { x.FirstName, x.LastName });`<br/>
+    * `myItems.Distinct(x => new { x.FirstName, x.LastName });`<br/><br/>
 
 - `Except` 
 
     * Variations with:
     * A single item, e.g. `myCollection.Except(myItem);`
-    * The choice to keep duplicates. (The original `Except` method from .NET automatically does a distinct, which is something you do not always want.)<br/>
+    * The choice to keep duplicates. (The original `Except` method from .NET automatically does a distinct, which is something you do not always want.)<br/><br/>
 
 - `Union`
 
     * Variations with:
     * A single item, e.g. `myCollection.Union(myItem);`
-    * Starts with a single item and then adds a collection to it e.g. `myItem.Union(myCollection);`<br/>
+    * Starts with a single item and then adds a collection to it e.g. `myItem.Union(myCollection);`<br/><br/>
 
 - `Add`
 
     * Add multiple items to a collection by means of a comma separated argument list, e.g.
-    `myCollection.Add(1, 5, 12);`<br/>
+    `myCollection.Add(1, 5, 12);`<br/><br/>
 
 - `AddRange`
 
-    * `AddRange` is a member of `List`<`T`>. Here is a variation for `IList`<`T`> to support more collection types.<br/>
+    * `AddRange` is a member of `List`<`T`>. Here is a variation for `IList`<`T`> to support more collection types.<br/><br/>
 
 - `ForEach`
 
-    * Not all collection types have the `ForEach` method. Here you have an overload for `IEnumerable`<`T`> so you can use it for more collection types.<br/>
+    * Not all collection types have the `ForEach` method. Here you have an overload for `IEnumerable`<`T`> so you can use it for more collection types.<br/><br/>
 
 - `AsEnumerable`
     * Converts a single item to a enumerable, so you can for instance use it with `LINQ`:
-    * `IEnumerable<int> myInts = 3.AsEnumerable();`<br/>
+    * `IEnumerable<int> myInts = 3.AsEnumerable();`<br/><br/>
 
 - `TrimAll`
 
@@ -189,7 +189,7 @@ Exception Types
     - With messages like:  
       `Invalid CustomerType value: 'Undefined'.`  
       when you throw:  
-      `throw new InvalidValueException(CustomerType.Undefined)`<br/>
+      `throw new InvalidValueException(CustomerType.Undefined)`<br/><br/>
 
 - `ValueNotSupportedException`
 
@@ -204,16 +204,21 @@ Misc Helpers
 
 - `EmbeddedResourceHelper`
 
-    - Make it a little easier to get embedded resource `Streams`, `bytes` and `strings`.<br/>
+    - Make it a little easier to get embedded resource `Streams`, `bytes` and `strings`.<br/><br/>
 
 - `CultureHelper`
 
-    - To set thread culture with a single code line.<br/>
+    - To set thread culture with a single code line.<br/><br/>
 
 - `ConfigurationHelper`
 
-    - Legacy helper for using configuration settings on platforms where `System.Configuration` was not available.<br/>
+    - Legacy helper for using configuration settings on platforms where `System.Configuration` was not available.<br/><br/>
 
 - `KeyHelper`
 
     - Utility to produce keys for use in `Dictionaries` by concatinating values with a `GUID` separator in between.
+
+💬 Feedback
+============
+
+Found an issue? [Let me know.](https://jjvanzon.github.io/#-how-to-reach-me)
