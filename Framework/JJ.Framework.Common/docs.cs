@@ -53,40 +53,32 @@ namespace JJ.Framework.Common
 
         /// <summary>
         /// <code>CutLeft/CutRight</code>
-        /// <para>
-        /// - Trim at most one occurrence of a value from the given string: <br/>
+        /// <para> Trim at most one occurrence of a value from the given string: </para>
         /// - <c>&quot;BlaLala&quot;.CutLeft(&quot;Bla&quot;)</c> = <c>&quot;Lala&quot;</c> <br/>
         /// - <c>&quot;12345&quot;.CutRight(2)</c> = <c>&quot;123&quot;</c> <br/>
-        /// </para>
         /// </summary>
         public struct _cutleftorright { }
         
         /// <summary>
         /// <code>CutLeftUntil / CutRightUntil</code>
-        /// <para>
-        /// - Remove text until the delimiter, keeping the delimiter:<br/>
+        /// <para>Remove text until the delimiter, keeping the delimiter:</para>
         /// - <c>&quot;Path/to/file.txt&quot;.CutRightUntil(&quot;/&quot;)</c> = <c>&quot;Path/to/&quot;</c><br/>
         /// - <c>&quot;Hello world!&quot;.CutLeftUntil(&quot;world&quot;)</c> = <c>&quot;world!&quot;</c><br/>
-        /// </para>
         /// </summary>
         public struct _cutleftorrightuntil { }
 
         /// <summary>
         /// <code>StartWithCap / StartWithLowerCase</code>
-        /// <para>
-        /// - Change just the first character's case:<br/>
+        /// <para>Change just the first character's case:</para>
         /// - <c>&quot;test&quot;.StartWithCap()</c> = <c>&quot;Test&quot;</c><br/>
         /// - <c>&quot;TEST&quot;.StartWithLowerCase()</c> = <c>&quot;tEST&quot;</c><br/>
-        /// </para>
         /// </summary>
         public struct _startwithcaporlowercase { }
         
         /// <summary>
         /// <code>Split</code>
-        /// <para>
-        /// - Adds overloads missing until .NET 5 and a <c>params</c> variant for delimiters:<br/>
+        /// <para>Adds overloads missing until .NET 5 and a <c>params</c> variant for delimiters:</para>
         /// - <c>&quot;apple-banana|cherry&quot;.Split(&quot;-&quot;, &quot;|&quot;)</c> = <c>[ &quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot; ]</c><br/>
-        /// </para>
         /// </summary>
         public struct _split { }
             
@@ -107,10 +99,8 @@ namespace JJ.Framework.Common
 
         /// <remarks>
         /// <code>SplitWithQuotation</code>
-        /// <para>
-        /// - Parse CSV-like lines honoring quotes to allow use of separator and quote characters within the values themselves:<br/>
+        /// <para>Parse CSV-like lines honoring quotes to allow use of separator and quote characters within the values themselves:</para>
         /// - <c>&quot;apple|~banana|split~|cherry&quot;.SplitWithQuotation(&quot;|&quot;, '~')</c> = <c>[ &quot;apple&quot;, &quot;banana|split&quot;, &quot;cherry&quot; ]</c><br/>
-        /// </para>
         /// </remarks>
         /// <inheritdoc cref="_splitwithquotationbase" />
         public struct _splitwithquotation { }
@@ -118,19 +108,15 @@ namespace JJ.Framework.Common
 
         /// <summary>
         /// <code>RemoveExcessiveWhiteSpace</code>
-        /// <para>
-        /// - Trim and replace sequences of two or more white space characters by a single space:<br/>
+        /// <para>Trim and replace sequences of two or more white space characters by a single space:</para>
         /// - <c>&quot;    This  is  a   test. &quot;.RemoveExcessiveWhiteSpace()</c> = <c>&quot;This is a test.&quot;</c><br/>
-        /// </para>
         /// </summary>
         public struct _removeexcessivewhitespace { }
         
         /// <summary>
         /// <code>Replace</code>
-        /// <para>
-        /// - <c>String.Replace</c> variant with optional case-insensitive match:<br/>
+        /// <para><c>String.Replace</c> variant with optional case-insensitive match:</para>
         /// - <c>&quot;HelloWORLD&quot;.Replace(&quot;world&quot;, &quot;Universe&quot;,</c> <b><c>ignoreCase: true</c></b> <c>)</c> = <c>&quot;HelloUniverse&quot;</c><br/>
-        /// </para>
         /// </summary>
         public struct _replace { }
         
@@ -141,75 +127,60 @@ namespace JJ.Framework.Common
         
         /// <summary>
         /// <code>Distinct</code>
-        /// <para>
-        /// - Variation that takes a key selector that determines what makes an item unique, e.g.<br/>
+        /// <para>Variation that takes a key selector that determines what makes an item unique, e.g.</para>
         /// - <c>myItems.Distinct(x =&gt; x.LastName);</c><br/>
         /// - For multi-part as keys, use:<br/>
         /// - <c>myItems.Distinct(x =&gt; new { x.FirstName, x.LastName });</c><br/>
-        /// </para>
         /// </summary>
         public struct _distinct { }
         
         /// <summary>
         /// <code>Except</code>
-        /// <para>
-        /// - Variations with:<br/>
+        /// <para>Variations with:</para>
         /// - A single item, e.g. <c>myCollection.Except(myItem);</c><br/>
-        /// - The choice to keep duplicates. (The original <c>Except</c> method from .NET automatically does a distinct, which is something you do not always want.)<br/>
-        /// </para>
+        /// - The choice to keep duplicates.
+        /// <para>(The original <c>Except</c> method from .NET automatically does a distinct, which is something you do not always want.)</para>
         /// </summary>
         public struct _except { }
         
         /// <summary>
         /// <code>Union</code>
-        /// <para>
-        /// - Variations with:<br/>
+        /// <para>Variations with:</para>
         /// - A single item, e.g. <c>myCollection.Union(myItem);</c><br/>
         /// - Starts with a single item and then adds a collection to it e.g. <c>myItem.Union(myCollection);</c><br/>
-        /// </para>
         /// </summary>
         public struct _union { }
         
         /// <summary>
         /// <code>Add</code>
-        /// <para>
-        /// - Add multiple items to a collection by means of a comma separated argument list, e.g.
+        /// <para>Add multiple items to a collection by means of a comma separated argument list:</para>
         /// <c>myCollection.Add(1, 5, 12);</c><br/>
-        /// </para>
         /// </summary>
         public struct _add { }
         
         /// <summary>
         /// <code>AddRange</code>
-        /// <para>
-        /// - <c>AddRange</c> is a member of <c>List</c>&lt;<c>T</c>&gt;. Here is a variation for <c>IList</c>&lt;<c>T</c>&gt; to support more collection types.<br/>
-        /// </para>
+        /// <para><c>AddRange</c> is a member of <c>List</c>&lt;<c>T</c>&gt;. Here is a variation for <c>IList</c>&lt;<c>T</c>&gt; to support more collection types.</para>
         /// </summary>
         public struct _addrange { }
         
         /// <summary>
         /// <code>ForEach</code>
-        /// <para>
-        /// - Not all collection types have the <c>ForEach</c> method. Here you have an overload for <c>IEnumerable</c>&lt;<c>T</c>&gt; so you can use it for more collection types.<br/>
-        /// </para>
+        /// <para>Not all collection types have the <c>ForEach</c> method. Here you have an overload for <c>IEnumerable</c>&lt;<c>T</c>&gt; so you can use it for more collection types.</para>
         /// </summary>
         public struct _foreach { }
         
         /// <summary>
         /// <c>AsEnumerable</c>
-        /// <para>
-        /// - Converts a single item to a enumerable, so you can for instance use it with <c>LINQ</c>:<br/>
+        /// <para>Convert a single item to a enumerable, so you can for instance use it with <c>LINQ</c>:</para>
         /// - <c>IEnumerable&lt;int&gt; myInts = 3.AsEnumerable();</c><br/>
-        /// </para>
         /// </summary>
         public struct _asenumerable { }
         
         /// <summary>
         /// <code>TrimAll</code>
-        /// <para>
-        /// - Trims all the strings in the collection:<br/>
+        /// <para>Trims all the strings in the collection:</para>
         /// - <c>string[] trimmedTexts = myTexts.TrimAll()</c><br/>
-        /// </para>
         /// </summary>
         public struct _trimall { }
         
@@ -221,10 +192,10 @@ namespace JJ.Framework.Common
         public struct _recursivecollectionextensions { }
         
         /// <summary>
-        /// <p>This line of code:</p>
+        /// <para>This line of code:</para>
         /// <code>var allItems = myRootItems.UnionRecursive(x =&gt; x.Children);
         /// </code>
-        /// <p>Gives you a list of all the nodes in a tree structure like the following:</p>
+        /// <para>Gives you a list of all the nodes in a tree structure like the following:</para>
         /// <code>var root = new Item
         /// {
         ///     Children = new[]
@@ -252,23 +223,23 @@ namespace JJ.Framework.Common
         public struct _unionrecursive { }
         
         /// <summary>
-        /// <p>There is also a <c>SelectRecursive</c> method:</p>
+        /// <para>There is also a <c>SelectRecursive</c> method:</para>
         /// <code>var allItemsExceptRoots = myRootItems.SelectRecursive(x =&gt; x.Children);
         /// </code>
-        /// <p>The difference with <c>UnionRecursive</c> is that <c>SelectRecursive</c> does not include the roots in the result collection.</p>
+        /// <para>The difference with <c>UnionRecursive</c> is that <c>SelectRecursive</c> does not include the roots in the result collection.</para>
         /// </summary>
         public struct _selectrecursive { }
         
         /// <summary>
         /// <b>KeyValuePairHelper</b>
-        /// <p>Converts a single array to <c>KeyValuePair</c> or <c>Dictionary</c>, where the 1st item is a name, the 2nd a value, the 3rd a name, the 4th a value, etc. This can be useful to be able to specify name/value pairs as <c>params</c> (variable amount of arguments). For instance:</p>
+        /// <para>Converts a single array to <c>KeyValuePair</c> or <c>Dictionary</c>, where the 1st item is a name, the 2nd a value, the 3rd a name, the 4th a value, etc. This can be useful to be able to specify name/value pairs as <c>params</c> (variable amount of arguments). For instance:</para>
         /// <code>void MyMethod(params object[] namesAndValues)
         /// {
         ///     var dictionary = KeyValuePairHelper.ConvertNamesAndValuesListToDictionary(namesAndValues);
         ///     ...
         /// }
         /// </code>
-        /// <p>Calling <c>MyMethod</c> looks like this:</p>
+        /// <para>Calling <c>MyMethod</c> looks like this:</para>
         /// <code>MyMethod(&quot;Name1&quot;, 3, &quot;Name2&quot;, 5, &quot;Name3&quot;, 6);
         /// </code>
         /// </summary>
@@ -276,29 +247,25 @@ namespace JJ.Framework.Common
         
         /// <summary>
         /// <b>Exception Types</b>
-        /// <p>2 exception types with subtle differences:</p>
+        /// <para>2 exception types with subtle differences:</para>
         /// </summary>
         public struct _exceptiontypes { }
         
         /// <summary>
         /// <code>InvalidValueException</code>
-        /// <para>
-        /// - With messages like:<br/>
-        /// <c>Invalid CustomerType value: 'Undefined'.</c><br/>
-        /// when you throw:<br/>
-        /// <c>throw new InvalidValueException(CustomerType.Undefined)</c><br/>
-        /// </para>
+        /// <para>With messages like:</para>
+        /// <c>Invalid CustomerType value: 'Undefined'.</c>
+        /// <para>when you throw:</para>
+        /// <c>throw new InvalidValueException(CustomerType.Undefined)</c>
         /// </summary>
         public struct _invalidvalueexception { }
         
         /// <summary>
         /// <code>ValueNotSupportedException</code>
-        /// <para>
-        /// - With messages like:<br/>
-        /// <c>CustomerType value: 'Subscriber' is not supported.</c><br/>
-        /// when you throw:<br/>
-        /// <c>throw new ValueNotSupportedException(CustomerType.Subscriber)</c><br/>
-        /// </para>
+        /// <para>With messages like:</para>
+        /// <c>CustomerType value: 'Subscriber' is not supported.</c>
+        /// <para>when you throw:</para>
+        /// <c>throw new ValueNotSupportedException(CustomerType.Subscriber)</c>
         /// </summary>
         public struct _valuenotsupportedexception { }
         
@@ -309,33 +276,25 @@ namespace JJ.Framework.Common
         
         /// <summary>
         /// <code>EmbeddedResourceHelper</code>
-        /// <para>
-        /// - Make it a little easier to get embedded resource <c>Streams</c>, <c>bytes</c> and <c>strings</c>.<br/>
-        /// </para>
+        /// <para>Make it a little easier to get embedded resource <c>Streams</c>, <c>bytes</c> and <c>strings</c>.</para>
         /// </summary>
         public struct _embeddedresourcehelper { }
         
         /// <summary>
         /// <code>CultureHelper</code>
-        /// <para>
-        /// - To set thread culture with a single code line.<br/>
-        /// </para>
+        /// <para>To set thread culture with a single code line.</para>
         /// </summary>
         public struct _culturehelper { }
         
         /// <summary>
         /// <code>ConfigurationHelper</code>
-        /// <para>
-        /// - Legacy helper for using configuration settings on platforms where <c>System.Configuration</c> was not available.<br/>
-        /// </para>
+        /// <para>Legacy helper for using configuration settings on platforms where <c>System.Configuration</c> was not available.</para>
         /// </summary>
         public struct _configurationhelper { }
         
         /// <summary>
         /// <code>KeyHelper</code>
-        /// <para>
-        /// - Utility to produce keys for use in <c>Dictionaries</c> by concatenating values with a <c>GUID</c> separator in between.<br/>
-        /// </para>
+        /// <para>Utility to produce keys for use in <c>Dictionaries</c> by concatenating values with a <c>GUID</c> separator in between.</para>
         /// </summary>
         public struct _keyhelper { }
     }
