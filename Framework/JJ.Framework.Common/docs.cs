@@ -63,30 +63,30 @@ namespace JJ.Framework.Common
         
         /// <summary>
         /// <code>CutLeftUntil / CutRightUntil</code>
-        /// <list type="bullet">
-        /// <item>Remove text until the delimiter, keeping the delimiter:</item>
-        /// <item><c>&quot;Path/to/file.txt&quot;.CutRightUntil(&quot;/&quot;)</c> = <c>&quot;Path/to/&quot;</c></item>
-        /// <item><c>&quot;Hello world!&quot;.CutLeftUntil(&quot;world&quot;)</c> = <c>&quot;world!&quot;</c></item>
-        /// </list>
+        /// <para>
+        /// - Remove text until the delimiter, keeping the delimiter:<br/>
+        /// - <c>&quot;Path/to/file.txt&quot;.CutRightUntil(&quot;/&quot;)</c> = <c>&quot;Path/to/&quot;</c><br/>
+        /// - <c>&quot;Hello world!&quot;.CutLeftUntil(&quot;world&quot;)</c> = <c>&quot;world!&quot;</c><br/>
+        /// </para>
         /// </summary>
         public struct _cutleftorrightuntil { }
 
         /// <summary>
         /// <code>StartWithCap / StartWithLowerCase</code>
-        /// <list type="bullet">
-        /// <item>Change just the first character's case:</item>
-        /// <item><c>&quot;test&quot;.StartWithCap()</c> = <c>&quot;Test&quot;</c></item>
-        /// <item><c>&quot;TEST&quot;.StartWithLowerCase()</c> = <c>&quot;tEST&quot;</c></item>
-        /// </list>
+        /// <para>
+        /// - Change just the first character's case:<br/>
+        /// - <c>&quot;test&quot;.StartWithCap()</c> = <c>&quot;Test&quot;</c><br/>
+        /// - <c>&quot;TEST&quot;.StartWithLowerCase()</c> = <c>&quot;tEST&quot;</c><br/>
+        /// </para>
         /// </summary>
         public struct _startwithcaporlowercase { }
         
         /// <summary>
         /// <code>Split</code>
-        /// <list type="bullet">
-        /// <item>Adds overloads missing until .NET 5 and a <c>params</c> variant for delimiters:</item>
-        /// <item><c>&quot;apple-banana|cherry&quot;.Split(&quot;-&quot;, &quot;|&quot;)</c> = <c>[ &quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot; ]</c></item>
-        /// </list>
+        /// <para>
+        /// - Adds overloads missing until .NET 5 and a <c>params</c> variant for delimiters:<br/>
+        /// - <c>&quot;apple-banana|cherry&quot;.Split(&quot;-&quot;, &quot;|&quot;)</c> = <c>[ &quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot; ]</c><br/>
+        /// </para>
         /// </summary>
         public struct _split { }
             
@@ -107,10 +107,10 @@ namespace JJ.Framework.Common
 
         /// <remarks>
         /// <code>SplitWithQuotation</code>
-        /// <list type="bullet">
-        /// <item>Parse CSV-like lines honoring quotes to allow use of separator and quote characters within the values themselves:</item>
-        /// <item><c>&quot;apple|~banana|split~|cherry&quot;.SplitWithQuotation(&quot;|&quot;, '~')</c> = <c>[ &quot;apple&quot;, &quot;banana|split&quot;, &quot;cherry&quot; ]</c></item>
-        /// </list>
+        /// <para>
+        /// - Parse CSV-like lines honoring quotes to allow use of separator and quote characters within the values themselves:<br/>
+        /// - <c>&quot;apple|~banana|split~|cherry&quot;.SplitWithQuotation(&quot;|&quot;, '~')</c> = <c>[ &quot;apple&quot;, &quot;banana|split&quot;, &quot;cherry&quot; ]</c><br/>
+        /// </para>
         /// </remarks>
         /// <inheritdoc cref="_splitwithquotationbase" />
         public struct _splitwithquotation { }
@@ -118,19 +118,19 @@ namespace JJ.Framework.Common
 
         /// <summary>
         /// <code>RemoveExcessiveWhiteSpace</code>
-        /// <list type="bullet">
-        /// <item>Trim and replace sequences of two or more white space characters by a single space:</item>
-        /// <item><c>&quot;    This  is  a   test. &quot;.RemoveExcessiveWhiteSpace()</c> = <c>&quot;This is a test.&quot;</c></item>
-        /// </list>
+        /// <para>
+        /// - Trim and replace sequences of two or more white space characters by a single space:<br/>
+        /// - <c>&quot;    This  is  a   test. &quot;.RemoveExcessiveWhiteSpace()</c> = <c>&quot;This is a test.&quot;</c><br/>
+        /// </para>
         /// </summary>
         public struct _removeexcessivewhitespace { }
         
         /// <summary>
         /// <code>Replace</code>
-        /// <list type="bullet">
-        /// <item><c>String.Replace</c> variant with optional case-insensitive match:</item>
-        /// <item><c>&quot;HelloWORLD&quot;.Replace(&quot;world&quot;, &quot;Universe&quot;,</c> <b><c>ignoreCase: true</c></b> <c>)</c> = <c>&quot;HelloUniverse&quot;</c></item>
-        /// </list>
+        /// <para>
+        /// - <c>String.Replace</c> variant with optional case-insensitive match:<br/>
+        /// - <c>&quot;HelloWORLD&quot;.Replace(&quot;world&quot;, &quot;Universe&quot;,</c> <b><c>ignoreCase: true</c></b> <c>)</c> = <c>&quot;HelloUniverse&quot;</c><br/>
+        /// </para>
         /// </summary>
         public struct _replace { }
         
@@ -141,75 +141,75 @@ namespace JJ.Framework.Common
         
         /// <summary>
         /// <code>Distinct</code>
-        /// <list type="bullet">
-        /// <item>Variation that takes a key selector that determines what makes an item unique, e.g.</item>
-        /// <item><c>myItems.Distinct(x =&gt; x.LastName);</c></item>
-        /// <item>For multi-part as keys, use:</item>
-        /// <item><c>myItems.Distinct(x =&gt; new { x.FirstName, x.LastName });</c></item>
-        /// </list>
+        /// <para>
+        /// - Variation that takes a key selector that determines what makes an item unique, e.g.<br/>
+        /// - <c>myItems.Distinct(x =&gt; x.LastName);</c><br/>
+        /// - For multi-part as keys, use:<br/>
+        /// - <c>myItems.Distinct(x =&gt; new { x.FirstName, x.LastName });</c><br/>
+        /// </para>
         /// </summary>
         public struct _distinct { }
         
         /// <summary>
         /// <code>Except</code>
-        /// <list type="bullet">
-        /// <item>Variations with:</item>
-        /// <item>A single item, e.g. <c>myCollection.Except(myItem);</c></item>
-        /// <item>The choice to keep duplicates. (The original <c>Except</c> method from .NET automatically does a distinct, which is something you do not always want.)</item>
-        /// </list>
+        /// <para>
+        /// - Variations with:<br/>
+        /// - A single item, e.g. <c>myCollection.Except(myItem);</c><br/>
+        /// - The choice to keep duplicates. (The original <c>Except</c> method from .NET automatically does a distinct, which is something you do not always want.)<br/>
+        /// </para>
         /// </summary>
         public struct _except { }
         
         /// <summary>
         /// <code>Union</code>
-        /// <list type="bullet">
-        /// <item>Variations with:</item>
-        /// <item>A single item, e.g. <c>myCollection.Union(myItem);</c></item>
-        /// <item>Starts with a single item and then adds a collection to it e.g. <c>myItem.Union(myCollection);</c></item>
-        /// </list>
+        /// <para>
+        /// - Variations with:<br/>
+        /// - A single item, e.g. <c>myCollection.Union(myItem);</c><br/>
+        /// - Starts with a single item and then adds a collection to it e.g. <c>myItem.Union(myCollection);</c><br/>
+        /// </para>
         /// </summary>
         public struct _union { }
         
         /// <summary>
         /// <code>Add</code>
-        /// <list type="bullet">
-        /// <item>Add multiple items to a collection by means of a comma separated argument list, e.g.
-        /// <c>myCollection.Add(1, 5, 12);</c></item>
-        /// </list>
+        /// <para>
+        /// - Add multiple items to a collection by means of a comma separated argument list, e.g.
+        /// <c>myCollection.Add(1, 5, 12);</c><br/>
+        /// </para>
         /// </summary>
         public struct _add { }
         
         /// <summary>
         /// <code>AddRange</code>
-        /// <list type="bullet">
-        /// <item><c>AddRange</c> is a member of <c>List</c>&lt;<c>T</c>&gt;. Here is a variation for <c>IList</c>&lt;<c>T</c>&gt; to support more collection types.</item>
-        /// </list>
+        /// <para>
+        /// - <c>AddRange</c> is a member of <c>List</c>&lt;<c>T</c>&gt;. Here is a variation for <c>IList</c>&lt;<c>T</c>&gt; to support more collection types.<br/>
+        /// </para>
         /// </summary>
         public struct _addrange { }
         
         /// <summary>
         /// <code>ForEach</code>
-        /// <list type="bullet">
-        /// <item>Not all collection types have the <c>ForEach</c> method. Here you have an overload for <c>IEnumerable</c>&lt;<c>T</c>&gt; so you can use it for more collection types.</item>
-        /// </list>
+        /// <para>
+        /// - Not all collection types have the <c>ForEach</c> method. Here you have an overload for <c>IEnumerable</c>&lt;<c>T</c>&gt; so you can use it for more collection types.<br/>
+        /// </para>
         /// </summary>
         public struct _foreach { }
         
         /// <summary>
         /// <c>AsEnumerable</c>
-        /// <list type="bullet">
-        /// <item>Converts a single item to a enumerable, so you can for instance use it with <c>LINQ</c>:</item>
-        /// <item><c>IEnumerable&lt;int&gt; myInts = 3.AsEnumerable();</c></item>
-        /// </list>
+        /// <para>
+        /// - Converts a single item to a enumerable, so you can for instance use it with <c>LINQ</c>:<br/>
+        /// - <c>IEnumerable&lt;int&gt; myInts = 3.AsEnumerable();</c><br/>
+        /// </para>
         /// </summary>
         public struct _asenumerable { }
         
         /// <summary>
         /// <code>TrimAll</code>
-        /// <list type="bullet">
-        /// <item>Trims all the strings in the collection:</item>
-        /// <item><c>string[] trimmedTexts = myTexts.TrimAll()</c></item>
-        /// </list>
+        /// <para>
+        /// - Trims all the strings in the collection:<br/>
+        /// - <c>string[] trimmedTexts = myTexts.TrimAll()</c><br/>
+        /// </para>
         /// </summary>
         public struct _trimall { }
         
@@ -282,23 +282,23 @@ namespace JJ.Framework.Common
         
         /// <summary>
         /// <code>InvalidValueException</code>
-        /// <list type="bullet">
-        /// <item>With messages like:<br/>
+        /// <para>
+        /// - With messages like:<br/>
         /// <c>Invalid CustomerType value: 'Undefined'.</c><br/>
         /// when you throw:<br/>
-        /// <c>throw new InvalidValueException(CustomerType.Undefined)</c></item>
-        /// </list>
+        /// <c>throw new InvalidValueException(CustomerType.Undefined)</c><br/>
+        /// </para>
         /// </summary>
         public struct _invalidvalueexception { }
         
         /// <summary>
         /// <code>ValueNotSupportedException</code>
-        /// <list type="bullet">
-        /// <item>With messages like:<br/>
+        /// <para>
+        /// - With messages like:<br/>
         /// <c>CustomerType value: 'Subscriber' is not supported.</c><br/>
         /// when you throw:<br/>
-        /// <c>throw new ValueNotSupportedException(CustomerType.Subscriber)</c></item>
-        /// </list>
+        /// <c>throw new ValueNotSupportedException(CustomerType.Subscriber)</c><br/>
+        /// </para>
         /// </summary>
         public struct _valuenotsupportedexception { }
         
@@ -309,33 +309,33 @@ namespace JJ.Framework.Common
         
         /// <summary>
         /// <code>EmbeddedResourceHelper</code>
-        /// <list type="bullet">
-        /// <item>Make it a little easier to get embedded resource <c>Streams</c>, <c>bytes</c> and <c>strings</c>.</item>
-        /// </list>
+        /// <para>
+        /// - Make it a little easier to get embedded resource <c>Streams</c>, <c>bytes</c> and <c>strings</c>.<br/>
+        /// </para>
         /// </summary>
         public struct _embeddedresourcehelper { }
         
         /// <summary>
         /// <code>CultureHelper</code>
-        /// <list type="bullet">
-        /// <item>To set thread culture with a single code line.</item>
-        /// </list>
+        /// <para>
+        /// - To set thread culture with a single code line.<br/>
+        /// </para>
         /// </summary>
         public struct _culturehelper { }
         
         /// <summary>
         /// <code>ConfigurationHelper</code>
-        /// <list type="bullet">
-        /// <item>Legacy helper for using configuration settings on platforms where <c>System.Configuration</c> was not available.</item>
-        /// </list>
+        /// <para>
+        /// - Legacy helper for using configuration settings on platforms where <c>System.Configuration</c> was not available.<br/>
+        /// </para>
         /// </summary>
         public struct _configurationhelper { }
         
         /// <summary>
         /// <code>KeyHelper</code>
-        /// <list type="bullet">
-        /// <item>Utility to produce keys for use in <c>Dictionaries</c> by concatenating values with a <c>GUID</c> separator in between.</item>
-        /// </list>
+        /// <para>
+        /// - Utility to produce keys for use in <c>Dictionaries</c> by concatenating values with a <c>GUID</c> separator in between.<br/>
+        /// </para>
         /// </summary>
         public struct _keyhelper { }
     }
