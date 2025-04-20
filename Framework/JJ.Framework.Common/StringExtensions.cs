@@ -38,7 +38,7 @@ namespace JJ.Framework.Common
 
         /// <remarks>
         /// Cuts off the right part of a string and returns what remains with a portion cut off.
-        /// </summary>
+        /// </remarks>
         /// <inheritdoc cref="_cutleftorright" />
         public static string CutRight(this string input, string end)
         {

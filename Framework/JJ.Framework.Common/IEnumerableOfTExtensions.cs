@@ -18,9 +18,9 @@ namespace JJ.Framework.Common
             _nullGuid = Guid.NewGuid().ToString();
         }
 
-        /// <returns>
+        /// <remarks>
         /// Does not include the collection it is executed upon in the result.
-        /// </returns>
+        /// </remarks>
         /// <inheritdoc cref="_selectrecursive" />
         public static IEnumerable<T> SelectRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
         {
@@ -46,9 +46,9 @@ namespace JJ.Framework.Common
             }
         }
 
-        /// <returns>
+        /// <remarks>
         /// Includes the collection it is executed upon in the result.
-        /// </returns>
+        /// </remarks>
         /// <inheritdoc cref="_unionrecursive" />
         public static IEnumerable<T> UnionRecursive<T>(this IEnumerable<T> collection, Func<T, IEnumerable<T>> selector)
         {
@@ -66,9 +66,9 @@ namespace JJ.Framework.Common
             }
         }
 
-        /// <returns>
+        /// <remarks>
         /// Does not include the collection it is executed upon in the result.
-        /// </returns>
+        /// </remarks>
         /// <inheritdoc cref="_selectrecursive" />
         public static IEnumerable<T> SelectRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
         {
@@ -96,9 +96,9 @@ namespace JJ.Framework.Common
             }
         }
 
-        /// <returns>
+        /// <remarks>
         /// Includes the collection it is executed upon in the result.
-        /// </returns>
+        /// </remarks>
         /// <inheritdoc cref="_unionrecursive" />
         public static IEnumerable<T> UnionRecursive<T>(this IList<T> collection, Func<T, IList<T>> selector)
         {
