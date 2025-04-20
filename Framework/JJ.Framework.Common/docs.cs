@@ -54,31 +54,39 @@ namespace JJ.Framework.Common
         /// <summary>
         /// <b>CutLeft/CutRight</b>
         /// <para> Trim at most one occurrence of a value from the given string: </para>
-        /// - <c>&quot;BlaLala&quot;.CutLeft(&quot;Bla&quot;)</c> = <c>&quot;Lala&quot;</c> <br/>
-        /// - <c>&quot;12345&quot;.CutRight(2)</c> = <c>&quot;123&quot;</c> <br/>
+        /// <code>
+        /// &quot;BlaLala&quot;.CutLeft(&quot;Bla&quot;) = &quot;Lala&quot;
+        /// &quot;12345&quot;.CutRight(2) = &quot;123&quot;
+        /// </code>
         /// </summary>
         public struct _cutleftorright { }
         
         /// <summary>
         /// <b>CutLeftUntil / CutRightUntil</b>
         /// <para>Remove text until the delimiter, keeping the delimiter:</para>
-        /// - <c>&quot;Path/to/file.txt&quot;.CutRightUntil(&quot;/&quot;)</c> = <c>&quot;Path/to/&quot;</c><br/>
-        /// - <c>&quot;Hello world!&quot;.CutLeftUntil(&quot;world&quot;)</c> = <c>&quot;world!&quot;</c><br/>
+        /// <code>
+        /// &quot;Path/to/file.txt&quot;.CutRightUntil(&quot;/&quot;) = &quot;Path/to/&quot;
+        /// &quot;Hello world!&quot;.CutLeftUntil(&quot;world&quot;) = &quot;world!&quot;
+        /// </code>
         /// </summary>
         public struct _cutleftorrightuntil { }
 
         /// <summary>
         /// <b>StartWithCap / StartWithLowerCase</b>
         /// <para>Change just the first character's case:</para>
-        /// - <c>&quot;test&quot;.StartWithCap()</c> = <c>&quot;Test&quot;</c><br/>
-        /// - <c>&quot;TEST&quot;.StartWithLowerCase()</c> = <c>&quot;tEST&quot;</c><br/>
+        /// <code>
+        /// &quot;test&quot;.StartWithCap() = &quot;Test&quot;
+        /// &quot;TEST&quot;.StartWithLowerCase() = &quot;tEST&quot;
+        /// </code>
         /// </summary>
         public struct _startwithcaporlowercase { }
         
         /// <summary>
         /// <b>Split</b>
         /// <para>Adds overloads missing until .NET 5 and a <c>params</c> variant for delimiters:</para>
-        /// - <c>&quot;apple-banana|cherry&quot;.Split(&quot;-&quot;, &quot;|&quot;)</c> = <c>[ &quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot; ]</c><br/>
+        /// <code>
+        /// &quot;apple-banana|cherry&quot;.Split(&quot;-&quot;, &quot;|&quot;) = [ &quot;apple&quot;, &quot;banana&quot;, &quot;cherry&quot; ]
+        /// </code>
         /// </summary>
         public struct _split { }
             
@@ -100,7 +108,10 @@ namespace JJ.Framework.Common
         /// <remarks>
         /// <b>SplitWithQuotation</b>
         /// <para>Parse CSV-like lines honoring quotes to allow use of separator and quote characters within the values themselves:</para>
-        /// - <c>&quot;apple|~banana|split~|cherry&quot;.SplitWithQuotation(&quot;|&quot;, '~')</c> = <c>[ &quot;apple&quot;, &quot;banana|split&quot;, &quot;cherry&quot; ]</c><br/>
+        /// <code>
+        /// &quot;apple|~banana|split~|cherry&quot;.SplitWithQuotation(&quot;|&quot;, '~') =
+        /// [ &quot;apple&quot;, &quot;banana|split&quot;, &quot;cherry&quot; ]
+        /// </code>
         /// </remarks>
         /// <inheritdoc cref="_splitwithquotationbase" />
         public struct _splitwithquotation { }
@@ -109,14 +120,18 @@ namespace JJ.Framework.Common
         /// <summary>
         /// <b>RemoveExcessiveWhiteSpace</b>
         /// <para>Trim and replace sequences of two or more white space characters by a single space:</para>
-        /// - <c>&quot;    This  is  a   test. &quot;.RemoveExcessiveWhiteSpace()</c> = <c>&quot;This is a test.&quot;</c><br/>
+        /// <code>
+        /// &quot;    This  is  a   test. &quot;.RemoveExcessiveWhiteSpace() = &quot;This is a test.&quot;
+        /// </code>
         /// </summary>
         public struct _removeexcessivewhitespace { }
         
         /// <summary>
         /// <b>Replace</b>
         /// <para><c>String.Replace</c> variant with optional case-insensitive match:</para>
-        /// - <c>&quot;HelloWORLD&quot;.Replace(&quot;world&quot;, &quot;Universe&quot;,</c> <b><c>ignoreCase: true</c></b> <c>)</c> = <c>&quot;HelloUniverse&quot;</c><br/>
+        /// <code>
+        /// &quot;HelloWORLD&quot;.Replace(&quot;world&quot;, &quot;Universe&quot;, <b>ignoreCase: true</b>) = &quot;HelloUniverse&quot;
+        /// </code>
         /// </summary>
         public struct _replace { }
         
@@ -128,9 +143,9 @@ namespace JJ.Framework.Common
         /// <summary>
         /// <b>Distinct</b>
         /// <para>Variation that takes a key selector that determines what makes an item unique, e.g.</para>
-        /// - <c>myItems.Distinct(x =&gt; x.LastName);</c><br/>
-        /// - For multi-part as keys, use:<br/>
-        /// - <c>myItems.Distinct(x =&gt; new { x.FirstName, x.LastName });</c><br/>
+        /// <code>myItems.Distinct(x =&gt; x.LastName);</code>
+        /// <para>For multi-part as keys, use:</para>
+        /// <code>myItems.Distinct(x =&gt; new { x.FirstName, x.LastName });</code>
         /// </summary>
         public struct _distinct { }
         
@@ -154,7 +169,7 @@ namespace JJ.Framework.Common
         /// <summary>
         /// <b>Add</b>
         /// <para>Add multiple items to a collection by means of a comma separated argument list:</para>
-        /// <c>myCollection.Add(1, 5, 12);</c><br/>
+        /// <code>myCollection.Add(1, 5, 12);</code>
         /// </summary>
         public struct _add { }
         
@@ -173,14 +188,14 @@ namespace JJ.Framework.Common
         /// <summary>
         /// <b>AsEnumerable</b>
         /// <para>Convert a single item to a enumerable, so you can for instance use it with <c>LINQ</c>:</para>
-        /// - <c>IEnumerable&lt;int&gt; myInts = 3.AsEnumerable();</c><br/>
+        /// <code>IEnumerable&lt;int&gt; myInts = 3.AsEnumerable();</code>
         /// </summary>
         public struct _asenumerable { }
         
         /// <summary>
         /// <b>TrimAll</b>
         /// <para>Trims all the strings in the collection:</para>
-        /// - <c>string[] trimmedTexts = myTexts.TrimAll()</c><br/>
+        /// <code>string[] trimmedTexts = myTexts.TrimAll()</code>
         /// </summary>
         public struct _trimall { }
         
@@ -193,8 +208,7 @@ namespace JJ.Framework.Common
         
         /// <summary>
         /// <para>This line of code:</para>
-        /// <code>var allItems = myRootItems.UnionRecursive(x =&gt; x.Children);
-        /// </code>
+        /// <code>var allItems = myRootItems.UnionRecursive(x =&gt; x.Children);</code>
         /// <para>Gives you a list of all the nodes in a tree structure like the following:</para>
         /// <code>var root = new Item
         /// {
@@ -224,8 +238,7 @@ namespace JJ.Framework.Common
         
         /// <summary>
         /// <para>There is also a <c>SelectRecursive</c> method:</para>
-        /// <code>var allItemsExceptRoots = myRootItems.SelectRecursive(x =&gt; x.Children);
-        /// </code>
+        /// <code>var allItemsExceptRoots = myRootItems.SelectRecursive(x =&gt; x.Children);</code>
         /// <para>The difference with <c>UnionRecursive</c> is that <c>SelectRecursive</c> does not include the roots in the result collection.</para>
         /// </summary>
         public struct _selectrecursive { }
@@ -240,32 +253,31 @@ namespace JJ.Framework.Common
         /// }
         /// </code>
         /// <para>Calling <c>MyMethod</c> looks like this:</para>
-        /// <code>MyMethod(&quot;Name1&quot;, 3, &quot;Name2&quot;, 5, &quot;Name3&quot;, 6);
-        /// </code>
+        /// <code>MyMethod(&quot;Name1&quot;, 3, &quot;Name2&quot;, 5, &quot;Name3&quot;, 6);</code>
         /// </summary>
         public struct _keyvaluepairhelper { }
         
         /// <summary>
         /// <b>Exception Types</b>
-        /// <para>2 exception types with subtle differences:</para>
+        /// <para>2 exception types with subtle differences.</para>
         /// </summary>
         public struct _exceptiontypes { }
         
         /// <summary>
         /// <b>InvalidValueException</b>
         /// <para>With messages like:</para>
-        /// <c>Invalid CustomerType value: 'Undefined'.</c>
+        /// <code>Invalid CustomerType value: 'Undefined'.</code>
         /// <para>when you throw:</para>
-        /// <c>throw new InvalidValueException(CustomerType.Undefined)</c>
+        /// <code>throw new InvalidValueException(CustomerType.Undefined)</code>
         /// </summary>
         public struct _invalidvalueexception { }
         
         /// <summary>
         /// <b>ValueNotSupportedException</b>
         /// <para>With messages like:</para>
-        /// <c>CustomerType value: 'Subscriber' is not supported.</c>
+        /// <code>CustomerType value: 'Subscriber' is not supported.</code>
         /// <para>when you throw:</para>
-        /// <c>throw new ValueNotSupportedException(CustomerType.Subscriber)</c>
+        /// <code>throw new ValueNotSupportedException(CustomerType.Subscriber)</code>
         /// </summary>
         public struct _valuenotsupportedexception { }
         
@@ -276,7 +288,7 @@ namespace JJ.Framework.Common
         
         /// <summary>
         /// <b>EmbeddedResourceHelper</b>
-        /// <para>Make it a little easier to get embedded resource <c>Streams</c>, <c>bytes</c> and <c>strings</c>.</para>
+        /// <para>Makes it a little easier to get embedded resource <c>Streams</c>, <c>bytes</c> and <c>strings</c>.</para>
         /// </summary>
         public struct _embeddedresourcehelper { }
         
