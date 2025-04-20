@@ -30,6 +30,13 @@ namespace JJ.Framework.Common
         public struct _jjframeworkcommon { }
 
         /// <summary>
+        /// <b>String Extensions</b><br/>
+        /// Provides extension methods for working with strings, offering convenience utilities 
+        /// for formatting, trimming, and manipulating content such as casing and splitting.
+        /// </summary>
+        public struct _stringextensions { }
+
+        /// <summary>
         /// <b>Left / Right</b><br/>
         /// Return the left or right part of a string.<br/>
         /// (Throws if string shorter than requested length.)

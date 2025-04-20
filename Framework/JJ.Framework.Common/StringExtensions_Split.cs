@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace JJ.Framework.Common
 {
-    /// <inheritdoc cref="_split" />
+    /// <inheritdoc cref="_stringextensions" />
     public static partial class StringExtensions_Split
     {
         /// <inheritdoc cref="_split" />
