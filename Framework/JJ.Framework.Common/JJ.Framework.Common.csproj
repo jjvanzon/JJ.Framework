@@ -7,7 +7,7 @@
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common</RepositoryUrl>    
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common</PackageProjectUrl>    
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>CS1573;IDE0063;IDE0034;IDE0057</NoWarn>
+    <NoWarn>$(NoWarn);CS1573;IDE0063;IDE0034;IDE0057</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />
