@@ -619,3 +619,33 @@ for (int i = 0; i < expected.Length; i++)
 
 ```
 
+```
+        
+        /// <summary>
+        /// <b>String Extensions</b>
+        /// </summary>
+        public struct _stringextensions { }
+
+        /// <summary>
+        /// <b>Collection Extensions</b>
+        /// </summary>
+        public struct _collectionextensions { }
+
+        /// <b>Add</b><br/>
+
+        /// <b>AddRange</b><br/>
+
+        /// <b>TrimAll</b>
+        
+        /// <summary>
+        /// <b>Exception Types</b>
+        /// <para>2 exception types with subtle differences.</para>
+        /// </summary>
+        public struct _exceptiontypes { }
+        
+        /// <summary>
+        /// <b>Misc Helpers</b>
+        /// </summary>
+        public struct _mischelpers { }
+
+```
