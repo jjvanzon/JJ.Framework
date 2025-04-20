@@ -1,7 +1,9 @@
-﻿// ReSharper disable InconsistentNaming
+﻿
+// ReSharper disable InconsistentNaming
 // ReSharper disable IdentifierTypo
 // ReSharper disable UnusedType.Global
 #pragma warning disable IDE1006
+#pragma warning disable CS1572 // XML comment has a param tag, but there is no parameter by that name
 
 namespace JJ.Framework.Common
 {
@@ -129,6 +131,13 @@ namespace JJ.Framework.Common
         public struct _replace { }
         
         /// <summary>
+        /// <b>Collection Extensions</b><br/>
+        /// Provide extension methods for working with collections, offering convenience utilities 
+        /// for common operations such as filtering, transformation, structural adjustments and tree traversal.
+        /// </summary>
+        public struct _collectionextensions { }
+
+        /// <summary>
         /// <b>Distinct</b>
         /// <para>Variation that takes a key selector that determines what makes an item unique:</para>
         /// <code>myItems.Distinct(x =&gt; x.LastName);</code>
@@ -159,7 +168,7 @@ namespace JJ.Framework.Common
         public struct _add { }
         
         /// <summary>
-        /// <c>AddRange</c> is a member of <c>List</c>&lt;<c>T</c>&gt;. Here is a variation for <c>IList</c>&lt;<c>T</c>&gt; to support more collection types.
+        /// <c>AddRange</c> is a member of <c>List</c>&lt;<c>T</c>&gt;. Here is a variation for the interface type <c>IList</c>&lt;<c>T</c>&gt; to support more collection types.
         /// </summary>
         public struct _addrange { }
         
@@ -223,10 +232,9 @@ namespace JJ.Framework.Common
         public struct _unionrecursive { }
         
         /// <summary>
-        /// <para>
-        /// <b>Recursive Collection Extensions</b><br/>
-        /// <c>LINQ</c> methods already allow you to process a whole <b>collection</b> of items in one blow. Process a whole <b>tree</b> of items in one blow? For many cases these <b>Recursive Collection Extensions</b> offer a one-line solution.</para>
-        /// <b>SelectRecursive</b><br/>
+        /// <para><b>Recursive Collection Extensions</b></para>
+        /// <para><c>LINQ</c> methods already allow you to process a whole <b>collection</b> of items in one blow. Process a whole <b>tree</b> of items in one blow? For many cases these <b>Recursive Collection Extensions</b> offer a one-line solution.</para>
+        /// <para><b>SelectRecursive</b></para>
         /// <para>The difference with <c>UnionRecursive</c> is that <c>SelectRecursive</c> does not include the roots in the result collection:</para>
         /// <code>var allItemsExceptRoots = myRootItems.SelectRecursive(x =&gt; x.Children);</code>
         /// </summary>
