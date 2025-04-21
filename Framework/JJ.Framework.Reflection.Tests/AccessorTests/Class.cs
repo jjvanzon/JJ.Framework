@@ -1,4 +1,7 @@
 ﻿// ReSharper disable UnusedParameter.Local
+// ReSharper disable UnusedMember.Local
+// ReSharper disable RedundantUsingDirective
+#pragma warning disable CS0169 // Field is never used
 
 using System;
 using System.Collections.Generic;
@@ -11,7 +14,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
     public class Class
     {
         private int _field;
-
+        
         private int Property { get; set; }
 
         private void VoidMethod()

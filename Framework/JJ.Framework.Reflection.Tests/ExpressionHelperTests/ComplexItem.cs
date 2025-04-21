@@ -1,4 +1,7 @@
-﻿using System;
+﻿// ReSharper disable UnusedParameter.Global
+// ReSharper disable FieldCanBeMadeReadOnly.Global
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
