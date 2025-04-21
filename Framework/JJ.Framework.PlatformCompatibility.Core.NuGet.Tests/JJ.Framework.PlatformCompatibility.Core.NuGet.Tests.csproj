@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.PlatformCompatibility" Version="0.250.2171" />
+    <PackageReference Include="JJ.Framework.PlatformCompatibility" Version="0.250.2175" />
     <PackageReference Include="JJ.Framework.Testing" Version="0.250.2171" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="2.1.2171" />
     <PackageReference Include="MSTest" Version="3.7.3" />
