@@ -2,6 +2,10 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net5.0;net461</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
+    <!-- Disabled warning IDE0060: Remove unused parameter -->
+    <NoWarn>$(NoWarn);IDE0060</NoWarn>
+    <!-- Disabled warning CS0649: Field 'field' is never assigned to, and will always have its default value 'value' -->
+    <NoWarn>$(NoWarn);CS0649</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MSTest" Version="3.7.3" />

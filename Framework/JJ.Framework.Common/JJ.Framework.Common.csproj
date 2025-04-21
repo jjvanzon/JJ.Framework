@@ -7,7 +7,12 @@
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common</RepositoryUrl>    
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common</PackageProjectUrl>    
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn);CS1573;IDE0063;IDE0034;IDE0057</NoWarn>
+    <!-- Disabled warning IDE0063: Use simple 'using' statement -->
+    <NoWarn>$(NoWarn);IDE0063</NoWarn>
+    <!-- Disabled warning IDE0034: Simplify 'default' expression -->
+    <NoWarn>$(NoWarn);IDE0034</NoWarn>
+    <!-- Disabled warning IDE0057: Use range operator -->
+    <NoWarn>$(NoWarn);IDE0057</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\PlatformCompatibility\JJ.Framework.PlatformCompatibility.csproj" />

@@ -649,3 +649,7 @@ for (int i = 0; i < expected.Length; i++)
         public struct _mischelpers { }
 
 ```
+
+```cs
+public override int GetHashCode() => HashCode.Combine(Coalesced, Nully);
+```
