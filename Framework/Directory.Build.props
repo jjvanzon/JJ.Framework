@@ -27,6 +27,7 @@
     <NoWarn>$(NoWarn);CS8632</NoWarn>
     <!-- Disabled warning CS1573: Parameter 'parameter' has no matching param tag in the XML comment for 'parameter' (but other parameters do) -->
     <NoWarn>$(NoWarn);CS1573</NoWarn>
+    <!-- See also: Directory.Build.targets for more disabled warnings. -->
   </PropertyGroup>
 
   <!-- Icon -->

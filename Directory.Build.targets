@@ -1,4 +1,8 @@
 <Project>
+  <PropertyGroup>
+    <!-- Disabled warning NU1605: Detected package downgrade -->
+    <NoWarn>$(NoWarn);NU1605</NoWarn>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="$(MSBuildProjectDirectory)/*.ncrunchproject" />
   </ItemGroup>

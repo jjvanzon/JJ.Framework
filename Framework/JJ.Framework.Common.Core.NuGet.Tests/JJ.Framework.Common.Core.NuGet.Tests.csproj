@@ -10,11 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JJ.Framework.Common" Version="0.250.2115" />
-    <PackageReference Include="JJ.Framework.Common.Core" Version="2.1.2115" />
-    <PackageReference Include="JJ.Framework.IO" Version="0.250.2115" />
+    <PackageReference Include="JJ.Framework.Common" Version="0.250.2171" />
+    <PackageReference Include="JJ.Framework.Common.Core" Version="2.1.2171" />
+    <PackageReference Include="JJ.Framework.IO" Version="0.250.2171" />
     <PackageReference Include="JJ.Framework.IO.Core" Version="2.0.2106" />
-    <PackageReference Include="JJ.Framework.Testing" Version="0.250.2115" />
+    <PackageReference Include="JJ.Framework.Testing" Version="0.250.2171" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="2.0.2093" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
