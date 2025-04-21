@@ -8,7 +8,8 @@ using JJ.Framework.PlatformCompatibility;
 
 namespace JJ.Framework.Reflection
 {
-    [Obsolete("May not give much performance gain because the dictionaries use complex keys. You might want to use ReflectionCache instead.")]
+    // Outcommented: Deprecating this makes no sense if ReflectionCache does not fully replace it.
+    //[Obsolete("May not give much performance gain because the dictionaries use complex keys. You might want to use ReflectionCache instead.")]
     public static class StaticReflectionCache
     {
         // TODO: The use of these Tuples as keys (or at least the ones in JJ.Framework.PlatformCompatibility), are not fast dictionary keys.
