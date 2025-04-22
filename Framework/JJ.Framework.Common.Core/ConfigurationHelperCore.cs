@@ -1,10 +1,11 @@
-﻿namespace JJ.Framework.Common.Core;
+﻿using JJ.Framework.Common.Core.docs;
 
+namespace JJ.Framework.Common.Core;
+
+/// <inheritdoc cref="_configurationhelpercore" />
 public static class ConfigurationHelperCore
 {
-    /// <summary>
-    /// Compensates for missing null-tolerant version in ConfigurationHelper.
-    /// </summary>
+    /// <inheritdoc cref="_configurationhelpercore" />
     public static T? TryGetSection<T>()
     {
         try
