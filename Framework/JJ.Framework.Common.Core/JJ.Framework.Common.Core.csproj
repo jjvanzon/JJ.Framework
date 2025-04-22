@@ -1,11 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
-    <Version>2.1.$(BuildNum)</Version>
+    <Version>2.2.$(BuildNum)</Version>
+    <Description>Tiny extension to JJ.Framework.Common to complement a code freeze from 2015.</Description>
+    <PackageTags>utility; extensions; helpers; extension; helper</PackageTags>
+    <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common.Core</RepositoryUrl>    
+    <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Common.Core</PackageProjectUrl>    
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
+  
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Build\JJ.Framework.Build.csproj" TreatAsUsed="True" />
     <ProjectReference Include="..\JJ.Framework.Common\JJ.Framework.Common.csproj" />
-    <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
   </ItemGroup>
 </Project>
