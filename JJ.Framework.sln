@@ -181,6 +181,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		resources\iis-components.png = resources\iis-components.png
 		Introduction.txt = Introduction.txt
 		JJ.Framework.sln.DotSettings = JJ.Framework.sln.DotSettings
+		JJ.Framework.v3.ncrunchsolution = JJ.Framework.v3.ncrunchsolution
 		LICENSE.TXT = LICENSE.TXT
 		NuGet.config = NuGet.config
 		README.MD = README.MD

@@ -11,7 +11,7 @@ TestResults
 
 # NCrunch
 #*.ncrunchproject
-*.ncrunchsolution
+#*.ncrunchsolution
 nCrunchTemp*.*
 .NCrunch*
 NCrunch*.xml
