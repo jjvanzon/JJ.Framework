@@ -10,7 +10,7 @@ TestResults
 .idea
 
 # NCrunch
-*.ncrunchproject
+#*.ncrunchproject
 *.ncrunchsolution
 nCrunchTemp*.*
 .NCrunch*
