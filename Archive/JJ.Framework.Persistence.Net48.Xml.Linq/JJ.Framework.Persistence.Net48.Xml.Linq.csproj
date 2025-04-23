@@ -33,6 +33,30 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JJ.Framework.Build, Version=2.2.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Build.2.2.2208\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Common, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.0.250.2208\lib\netstandard2.0\JJ.Framework.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.IO, Version=0.250.2206.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.IO.0.250.2206\lib\netstandard2.0\JJ.Framework.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Mathematics, Version=0.250.2206.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Mathematics.0.250.2206\lib\netstandard2.0\JJ.Framework.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Persistence, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Persistence.0.250.2208\lib\netstandard2.0\JJ.Framework.Persistence.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.PlatformCompatibility, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.0.250.2208\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Reflection, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.0.250.2208\lib\netstandard2.0\JJ.Framework.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Xml.Linq, Version=0.250.2206.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Xml.Linq.0.250.2206\lib\netstandard2.0\JJ.Framework.Xml.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
@@ -52,26 +76,8 @@
     <Compile Include="..\JJ.Framework.Persistence.Xml.Linq\XmlToEntityConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Common.Net48\JJ.Framework.Common.Net48.csproj">
-      <Project>{d78bdcb6-13a6-4031-b4cb-431b1cd9d7fd}</Project>
-      <Name>JJ.Framework.Common.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj">
-      <Project>{ae52e0ea-08bd-4e7c-9b79-98395653bacb}</Project>
-      <Name>JJ.Framework.Persistence.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Net48\JJ.Framework.PlatformCompatibility.Net48.csproj">
-      <Project>{1045208b-679d-40f0-bdba-68f3d1dccbd3}</Project>
-      <Name>JJ.Framework.PlatformCompatibility.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Reflection.Net48\JJ.Framework.Reflection.Net48.csproj">
-      <Project>{a682483b-3918-43ad-b3a3-80aaf1fe3721}</Project>
-      <Name>JJ.Framework.Reflection.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Xml.Linq.Net48\JJ.Framework.Xml.Linq.Net48.csproj">
-      <Project>{5d3c7212-1cd1-46b8-acb1-65bb08f26801}</Project>
-      <Name>JJ.Framework.Xml.Linq.Net48</Name>
-    </ProjectReference>
+    <None Include="jj.framework.persistence example.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

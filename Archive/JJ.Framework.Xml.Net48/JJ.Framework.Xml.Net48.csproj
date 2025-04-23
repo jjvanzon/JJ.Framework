@@ -56,18 +56,6 @@
       <Project>{f9192cf8-4cfe-4281-8a0e-167b09c571cb}</Project>
       <Name>SgmlReaderDll.Net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Common.Net48\JJ.Framework.Common.Net48.csproj">
-      <Project>{d78bdcb6-13a6-4031-b4cb-431b1cd9d7fd}</Project>
-      <Name>JJ.Framework.Common.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Net48\JJ.Framework.PlatformCompatibility.Net48.csproj">
-      <Project>{1045208b-679d-40f0-bdba-68f3d1dccbd3}</Project>
-      <Name>JJ.Framework.PlatformCompatibility.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Reflection.Net48\JJ.Framework.Reflection.Net48.csproj">
-      <Project>{a682483b-3918-43ad-b3a3-80aaf1fe3721}</Project>
-      <Name>JJ.Framework.Reflection.Net48</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

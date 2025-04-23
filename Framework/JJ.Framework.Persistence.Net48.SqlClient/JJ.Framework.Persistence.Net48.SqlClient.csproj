@@ -31,6 +31,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JJ.Framework.Build, Version=2.2.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Build.2.2.2208\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Common, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.0.250.2208\lib\netstandard2.0\JJ.Framework.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.IO, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.IO.0.250.2208\lib\netstandard2.0\JJ.Framework.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.PlatformCompatibility, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.0.250.2208\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Reflection, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.0.250.2208\lib\netstandard2.0\JJ.Framework.Reflection.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -42,22 +57,7 @@
     <Compile Include="..\JJ.Framework.Persistence.SqlClient\SqlExecutor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Common.Net48\JJ.Framework.Common.Net48.csproj">
-      <Project>{d78bdcb6-13a6-4031-b4cb-431b1cd9d7fd}</Project>
-      <Name>JJ.Framework.Common.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.IO.Net48\JJ.Framework.IO.Net48.csproj">
-      <Project>{675bb071-9e2d-4da5-a288-2a6db5ee0b1a}</Project>
-      <Name>JJ.Framework.IO.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Net48\JJ.Framework.PlatformCompatibility.Net48.csproj">
-      <Project>{1045208b-679d-40f0-bdba-68f3d1dccbd3}</Project>
-      <Name>JJ.Framework.PlatformCompatibility.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Reflection.Net48\JJ.Framework.Reflection.Net48.csproj">
-      <Project>{a682483b-3918-43ad-b3a3-80aaf1fe3721}</Project>
-      <Name>JJ.Framework.Reflection.Net48</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

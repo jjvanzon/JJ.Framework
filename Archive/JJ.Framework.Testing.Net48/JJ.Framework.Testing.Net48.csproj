@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A682483B-3918-43AD-B3A3-80AAF1FE3721}</ProjectGuid>
+    <ProjectGuid>{8AC733E3-A88D-4083-9AC6-8F7860EF5FD3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Reflection</RootNamespace>
-    <AssemblyName>JJ.Framework.Reflection.Net48</AssemblyName>
+    <RootNamespace>JJ.Framework.Testing</RootNamespace>
+    <AssemblyName>JJ.Framework.Testing.Net48</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -37,30 +37,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Reflection\Accessor.cs" />
-    <Compile Include="..\JJ.Framework.Reflection\MethodCallParameterInfo.cs" />
-    <Compile Include="..\JJ.Framework.Reflection\ExpressionHelper.cs" />
-    <Compile Include="..\JJ.Framework.Reflection\ExpressionToTextTranslator.cs" />
-    <Compile Include="..\JJ.Framework.Reflection\ExpressionToValueTranslator.cs" />
-    <Compile Include="..\JJ.Framework.Reflection\MethodCallInfo.cs" />
-    <Compile Include="..\JJ.Framework.Reflection\NullException.cs" />
+    <Compile Include="..\JJ.Framework.Testing\AssertHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\JJ.Framework.Reflection\ReflectionCache.cs" />
-    <Compile Include="..\JJ.Framework.Reflection\StaticReflectionCache.cs" />
-    <Compile Include="..\JJ.Framework.Reflection\ReflectionHelper.cs" />
-    <Compile Include="..\JJ.Framework.Reflection\TypeExtensions.cs" />
+    <Compile Include="..\JJ.Framework.Testing\TestHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Common.Net48\JJ.Framework.Common.Net48.csproj">
-      <Project>{d78bdcb6-13a6-4031-b4cb-431b1cd9d7fd}</Project>
-      <Name>JJ.Framework.Common.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Net48\JJ.Framework.PlatformCompatibility.Net48.csproj">
-      <Project>{1045208b-679d-40f0-bdba-68f3d1dccbd3}</Project>
-      <Name>JJ.Framework.PlatformCompatibility.Net48</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

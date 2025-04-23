@@ -42,6 +42,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\External Components\NHibernate\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="JJ.Framework.Build, Version=2.2.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Build.2.2.2208\lib\netstandard2.0\JJ.Framework.Build.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Common, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Common.0.250.2208\lib\netstandard2.0\JJ.Framework.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.PlatformCompatibility, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.PlatformCompatibility.0.250.2208\lib\netstandard2.0\JJ.Framework.PlatformCompatibility.dll</HintPath>
+    </Reference>
+    <Reference Include="JJ.Framework.Reflection, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Reflection.0.250.2208\lib\netstandard2.0\JJ.Framework.Reflection.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\External Components\NHibernate\NHibernate.dll</HintPath>
@@ -68,10 +80,9 @@
       <Project>{2351d739-c39f-4eb1-a3e8-69f195b1e1fd}</Project>
       <Name>JJ.Framework.Persistence.Net48.SqlClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Reflection.Net48\JJ.Framework.Reflection.Net48.csproj">
-      <Project>{a682483b-3918-43ad-b3a3-80aaf1fe3721}</Project>
-      <Name>JJ.Framework.Reflection.Net48</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -56,6 +56,9 @@
     <Reference Include="JJ.Framework.Reflection, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Reflection.0.250.2208\lib\netstandard2.0\JJ.Framework.Reflection.dll</HintPath>
     </Reference>
+    <Reference Include="JJ.Framework.Testing, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JJ.Framework.Testing.0.250.2208\lib\netstandard2.0\JJ.Framework.Testing.dll</HintPath>
+    </Reference>
     <Reference Include="JJ.Framework.Xml.Linq, Version=0.250.2208.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JJ.Framework.Xml.Linq.0.250.2208\lib\netstandard2.0\JJ.Framework.Xml.Linq.dll</HintPath>
     </Reference>
@@ -98,10 +101,6 @@
     <ProjectReference Include="..\JJ.Framework.Soap\JJ.Framework.Soap.Net48.csproj">
       <Project>{2b86213c-a758-4db9-bd37-5e7d2f4d7c4d}</Project>
       <Name>JJ.Framework.Soap.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Testing.Net48\JJ.Framework.Testing.Net48.csproj">
-      <Project>{8ac733e3-a88d-4083-9ac6-8f7860ef5fd3}</Project>
-      <Name>JJ.Framework.Testing.Net48</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

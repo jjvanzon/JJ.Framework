@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B9CAFD1C-5F1B-4609-B20C-1BAA02FE4000}</ProjectGuid>
+    <ProjectGuid>{C90BBAAA-87E9-435D-B6D0-E705CF4B7166}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JJ.Framework.Persistence.Xml</RootNamespace>
-    <AssemblyName>JJ.Framework.Persistence.Net48.Xml</AssemblyName>
+    <RootNamespace>JJ.Framework.Presentation</RootNamespace>
+    <AssemblyName>JJ.Framework.Presentation.Net48</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -35,41 +35,20 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.Persistence.Xml\Internal\IEntityStore.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.Xml\Internal\ReflectionCacheWrapper.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.Xml\Internal\XmlMappingResolver.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.Xml\Internal\EntityStore.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.Xml\IXmlMapping.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.Xml\IdentityType.cs" />
+    <Compile Include="..\JJ.Framework.Presentation\ActionInfo.cs" />
+    <Compile Include="..\JJ.Framework.Presentation\ActionDispatcher.cs" />
+    <Compile Include="..\JJ.Framework.Presentation\NotAuthorizedViewModel.cs" />
+    <Compile Include="..\JJ.Framework.Presentation\ActionParameterInfo.cs" />
+    <Compile Include="..\JJ.Framework.Presentation\PreviousViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.Xml\Internal\XmlElementAccessor.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.Xml\XmlContext.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.Xml\XmlMapping.cs" />
-    <Compile Include="..\JJ.Framework.Persistence.Xml\XmlToEntityConverter.cs" />
+    <Compile Include="..\JJ.Framework.Presentation\UnexpectedViewModelTypeException.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JJ.Framework.Common.Net48\JJ.Framework.Common.Net48.csproj">
-      <Project>{d78bdcb6-13a6-4031-b4cb-431b1cd9d7fd}</Project>
-      <Name>JJ.Framework.Common.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Persistence.Net48\JJ.Framework.Persistence.Net48.csproj">
-      <Project>{ae52e0ea-08bd-4e7c-9b79-98395653bacb}</Project>
-      <Name>JJ.Framework.Persistence.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.PlatformCompatibility.Net48\JJ.Framework.PlatformCompatibility.Net48.csproj">
-      <Project>{1045208b-679d-40f0-bdba-68f3d1dccbd3}</Project>
-      <Name>JJ.Framework.PlatformCompatibility.Net48</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JJ.Framework.Reflection.Net48\JJ.Framework.Reflection.Net48.csproj">
       <Project>{a682483b-3918-43ad-b3a3-80aaf1fe3721}</Project>
       <Name>JJ.Framework.Reflection.Net48</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JJ.Framework.Xml.Net48\JJ.Framework.Xml.Net48.csproj">
-      <Project>{f619d822-7e45-42cd-9b99-a22396869fcf}</Project>
-      <Name>JJ.Framework.Xml.Net48</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
