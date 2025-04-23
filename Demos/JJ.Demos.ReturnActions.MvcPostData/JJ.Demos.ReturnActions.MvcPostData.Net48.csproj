@@ -23,6 +23,8 @@
     <TargetFrameworkProfile />
     <Use64BitIISExpress />
     <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -224,9 +226,9 @@
       <Project>{fed3c829-d92a-4800-9462-a175ccac4c70}</Project>
       <Name>JJ.Framework.Presentation.Mvc.Net48</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation.Net48\JJ.Framework.Presentation.Net48.csproj">
-      <Project>{c90bbaaa-87e9-435d-b6d0-e705cf4b7166}</Project>
-      <Name>JJ.Framework.Presentation.Net48</Name>
+    <ProjectReference Include="..\..\Framework\JJ.Framework.Presentation\JJ.Framework.Presentation.csproj">
+      <Project>{79b0eac3-5159-4fc8-b3d8-53315b205444}</Project>
+      <Name>JJ.Framework.Presentation</Name>
     </ProjectReference>
     <ProjectReference Include="..\JJ.Demos.ReturnActions\JJ.Demos.ReturnActions.Net48.csproj">
       <Project>{757f8b06-8527-4daa-a206-e26eb167ca13}</Project>
@@ -265,6 +267,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
