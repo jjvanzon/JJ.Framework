@@ -1,7 +1,7 @@
 JJ.Framework.Common
 ===================
 
-A mixed bag of general-purpose utilities with minimal dependencies. Later versions of this library split functionality into focused packages like [JJ.Framework.Text](https://www.nuget.org/packages/JJ.Framework.Text), [JJ.Framework.Collections](https://www.nuget.org/packages/JJ.Framework.Collections), and [JJ.Framework.Exceptions](https://www.nuget.org/packages/JJ.Framework.Exceptions). This "prequel" version contains a little bit of everything: A version released in aid of releasing older legacy apps, still holding value. Now targets `.NET 9` and `.NET Standard` for wide compatibility and tested with `100%` code coverage.
+A mixed bag of general-purpose utilities with minimal dependencies. Later versions of this library split functionality into focused packages like [JJ.Framework.Text](https://www.nuget.org/packages/JJ.Framework.Text), [JJ.Framework.Collections](https://www.nuget.org/packages/JJ.Framework.Collections), and [JJ.Framework.Exceptions](https://www.nuget.org/packages/JJ.Framework.Exceptions). This "prequel" version contains a little bit of everything: a version released in aid of releasing older legacy apps, still holding value. Now targets `.NET 9` and `.NET Standard` for wide compatibility and tested with 💯`%` code coverage.
 
 __Contents__
 

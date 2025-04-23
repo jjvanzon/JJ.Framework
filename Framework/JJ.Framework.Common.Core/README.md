@@ -5,7 +5,7 @@ A tiny extension to [JJ.Framework.Common](https://www.nuget.org/packages/JJ.Fram
 
 - `ConfigurationHelperCore`
 
-    - `TryGetSection` method that complements `GetSection` but now when the configuration section is not found, null is returned, instead of a crash.
+    - `TryGetSection` method that complements `GetSection` but now when the configuration section is not found, `null` is returned, instead of a crash.
 
 -----
 
