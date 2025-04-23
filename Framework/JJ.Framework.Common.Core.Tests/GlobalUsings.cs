@@ -14,4 +14,3 @@ global using static JJ.Framework.Common.Core.Tests.Helpers.DebuggerDisplayFormat
 global using static JJ.Framework.Testing.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertHelperCore;
 global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-//global using static Microsoft.VisualStudio.TestTools.UnitTesting.CollectionAssert; // Will clash. Assert.AreEqual is picked first, even when it is a collection.
