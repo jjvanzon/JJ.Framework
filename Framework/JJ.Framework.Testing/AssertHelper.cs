@@ -1,4 +1,6 @@
 ﻿// ReSharper disable UnusedParameter.Local
+// ReSharper disable RedundantBoolCompare
+
 using JJ.Framework.Reflection;
 using System;
 using System.Collections.Generic;

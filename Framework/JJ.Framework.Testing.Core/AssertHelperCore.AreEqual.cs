@@ -7,11 +7,10 @@ public static partial class AssertHelperCore
     // AreEqual
     
     public static void AreEqual(object? expected, object? actual) 
-        => ExpectedActualCheckCore(Equals, GetCurrentMethod().Name, expected, actual);
+        => Check(expected, actual, Equals);
     
-    // TODO: New syntax?
-    //public static void AreEqual(object? expected, object? actual) 
-    //    => Check(expected, actual, Equals);
+    public static void AreEqual(object? expected, object? actual, string message) 
+        => Check(expected, actual, message, Equals);
     
     /// <inheritdoc cref="_deltadirection" />
     public static void AreEqual(int expected, Expression<Func<int>> actualExpression, int delta, DeltaDirectionEnum direction = None)
@@ -21,15 +20,15 @@ public static partial class AssertHelperCore
 
         if (direction == None)
         {
-            ExpectedActualCheckCore(actual => Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);
+            Check(expected, actualExpression, actual => Abs(actual - expected) <= delta);
         }
         else if (direction == Up)
         {
-            ExpectedActualCheckCore(actual => actual - expected >= 0 && Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);   
+            Check(expected, actualExpression, actual => actual - expected >= 0 && Abs(actual - expected) <= delta);   
         }
         else if (direction == Down)
         {
-            ExpectedActualCheckCore(actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta), nameof(AreEqual), expected, actualExpression);   
+            Check(expected, actualExpression, actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta));   
         }
         else
         {
@@ -45,15 +44,15 @@ public static partial class AssertHelperCore
 
         if (direction == None)
         {
-            ExpectedActualCheckCore(actual => Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);
+            Check(expected, actualExpression, actual => Abs(actual - expected) <= delta);
         }
         else if (direction == Up)
         {
-            ExpectedActualCheckCore(actual => actual - expected >= 0 && Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);   
+            Check(expected, actualExpression, actual => actual - expected >= 0 && Abs(actual - expected) <= delta);   
         }
         else if (direction == Down)
         {
-            ExpectedActualCheckCore(actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta), nameof(AreEqual), expected, actualExpression);   
+            Check(expected, actualExpression, actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta));   
         }
         else
         {

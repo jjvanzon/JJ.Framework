@@ -13,6 +13,6 @@ global using static System.Reflection.MethodBase;
 global using static JJ.Framework.Testing.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertHelperCore;
 global using static JJ.Framework.Testing.Core.AssertHelperLegacy;
-global using static JJ.Framework.Testing.Core.TestHelperLegacy;
 global using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
+global using static JJ.Framework.Reflection.ExpressionHelper;

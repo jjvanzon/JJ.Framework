@@ -55,6 +55,7 @@ public static partial class AssertHelperCore
 
     public static void ThrowsExceptionContaining<TException>(Action statement, params string[] expectedTexts)
         => ThrowsExceptionContaining(statement, typeof(TException), expectedTexts);
+    
     // Overloads with Func (extends Action variants, avoids shadow by MSTest)
 
     public static void ThrowsException(Func<object?> statement, string expectedMessage) 
