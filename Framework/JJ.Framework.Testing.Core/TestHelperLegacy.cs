@@ -9,7 +9,7 @@ namespace JJ.Framework.Testing.Core
     {
         private const string TESTED_PROPERTY_MESSAGE = "Tested member: '{0}'.";
         
-        public static string FormatTestedPropertyMessage(string propertyDescription)
+        public static string FormatTestedPropertyMessageLegacy(string propertyDescription)
             => string.Format(TESTED_PROPERTY_MESSAGE, propertyDescription);
     }
 }

@@ -35,5 +35,16 @@ public class ExpressionHelperCoreTests
         => ThrowsException
             <NotSupportedException>(
             () => GetMethodCallInfo(() => 1),
-            "MethodCallInfo call cannot be retrieved from NodeType Constant.");
+            "MethodCallInfo cannot be retrieved from NodeType Constant.");
+
+    [TestMethod]
+    public void GetText_NodeType_NotSupportedException()
+    {
+        int number1 = 1;
+        
+        ThrowsException(
+            () => GetText(() => number1 == 1), 
+            "Name cannot be obtained from Equal.");
+        
+    }
 }

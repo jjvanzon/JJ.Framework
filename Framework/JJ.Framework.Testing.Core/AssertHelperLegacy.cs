@@ -21,16 +21,22 @@ namespace JJ.Framework.Testing.Core
                     name = ExpressionHelper.GetText(actualExpression);
                 }
                 
-                string message     = TestHelperLegacy.FormatTestedPropertyMessage(name);
+                string message     = TestHelperLegacy.FormatTestedPropertyMessageLegacy(name);
                 string fullMessage = GetExpectedActualMessageLegacy(methodName, expected, actual, message);
                 throw new Exception(fullMessage);
             }
         }
         
-        private static string GetExpectedActualMessageLegacy<T>(string methodName, T expected, T actual, string message)
+        internal static string GetExpectedActualMessageLegacy<T>(string methodName, T expected, T actual, string message)
             => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>, Actual <{(actual != null ? actual.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";
         
-        
+        internal static string GetFailureMessageLegacy(string methodName, string message)
+        {
+            string separator = !string.IsNullOrEmpty(message) ? " " : "";
+
+            return $"Assert.{methodName} failed.{separator}{message}";
+        }
+
         public static void ThrowsException_OrInnerException(Action statement, Type expectedExceptionType, string expectedMessage)
         {
             if (statement             == null) throw new NullException(() => statement);

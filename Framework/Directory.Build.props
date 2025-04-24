@@ -21,16 +21,24 @@
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework</PackageProjectUrl>
     <PackageIcon>jj-icon-64x64-margin4.png</PackageIcon>
     <SuppressTfmSupportBuildWarnings>True</SuppressTfmSupportBuildWarnings>
-    <!-- Disabled warnings -->
+  </PropertyGroup>
+
+  <!-- Warnings Disabled Globally -->
+  <PropertyGroup>
     <NoWarn>$(NoWarn);NU1701</NoWarn> <!--Package was not restored with project target framework.-->
     <NoWarn>$(NoWarn);CS8632</NoWarn> <!--Nullable annotation used without nullable option on.-->
     <NoWarn>$(NoWarn);CS1573</NoWarn> <!--Parameter 'parameter' has no matching param tag in the XML comment for 'parameter' (but other parameters do)-->
     <!-- See also: Directory.Build.targets for more disabled warnings. -->
   </PropertyGroup>
 
-  <!-- Disable additional warnings for Test projects. -->
+  <!-- Warnings Disabled for Tests -->
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('Tests'))">
     <NoWarn>$(NoWarn);CS0414</NoWarn> <!--Field is assigned but its value is never used-->
+  </PropertyGroup>
+
+  <!-- Warnings Disabled for Legacy Code -->
+  <PropertyGroup Condition="!$(MSBuildProjectName.Contains('Core'))">
+    <!-- TODO: Add as needed. -->
   </PropertyGroup>
 
   <!-- Establish Determinism (green check in NuGet Package Explorer page) -->

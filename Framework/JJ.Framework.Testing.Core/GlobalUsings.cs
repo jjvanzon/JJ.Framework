@@ -1,0 +1,18 @@
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Linq.Expressions;
+global using JJ.Framework.Common;
+global using JJ.Framework.Text.Core;
+global using JJ.Framework.Reflection;
+global using JJ.Framework.Testing.Core.docs;
+global using static System.Math;
+global using static System.String;
+global using static System.Reflection.MethodBase;
+global using static JJ.Framework.Testing.AssertHelper;
+global using static JJ.Framework.Testing.Core.AssertHelperCore;
+global using static JJ.Framework.Testing.Core.AssertHelperLegacy;
+global using static JJ.Framework.Testing.Core.TestHelperLegacy;
+global using static JJ.Framework.Testing.Core.DeltaDirectionEnum;
+global using static JJ.Framework.Existence.Core.FilledInHelper;
