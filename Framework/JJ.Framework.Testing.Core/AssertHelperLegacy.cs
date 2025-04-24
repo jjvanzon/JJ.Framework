@@ -10,6 +10,7 @@ namespace JJ.Framework.Testing.Core
 {
     public static class AssertHelperLegacy
     {
+        /*
         internal static void ExpectedActualCheckLegacy<T>(Func<T, bool> condition, string methodName, T expected, Expression<Func<T>> actualExpression, string name = null)
         {
             T actual = ExpressionHelper.GetValue(actualExpression);
@@ -26,6 +27,7 @@ namespace JJ.Framework.Testing.Core
                 throw new Exception(fullMessage);
             }
         }
+        */
         
         internal static string GetExpectedActualMessageLegacy<T>(string methodName, T expected, T actual, string message)
             => $@"Assert.{methodName} failed. Expected <{(expected != null ? expected.ToString() : "null")}>, Actual <{(actual != null ? actual.ToString() : "null")}>.{(!string.IsNullOrEmpty(message) ? " " : "")}{message}";

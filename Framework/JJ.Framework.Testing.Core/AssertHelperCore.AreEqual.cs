@@ -7,7 +7,7 @@ public static partial class AssertHelperCore
     // AreEqual
     
     public static void AreEqual(object? expected, object? actual) 
-        => ExpectedActualCheckCore(() => Equals(expected, actual), GetCurrentMethod().Name, expected, actual);
+        => ExpectedActualCheckCore(Equals, GetCurrentMethod().Name, expected, actual);
     
     // TODO: New syntax?
     //public static void AreEqual(object? expected, object? actual) 
@@ -21,15 +21,15 @@ public static partial class AssertHelperCore
 
         if (direction == None)
         {
-            ExpectedActualCheckLegacy(actual => Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);
+            ExpectedActualCheckCore(actual => Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);
         }
         else if (direction == Up)
         {
-            ExpectedActualCheckLegacy(actual => actual - expected >= 0 && Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);   
+            ExpectedActualCheckCore(actual => actual - expected >= 0 && Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);   
         }
         else if (direction == Down)
         {
-            ExpectedActualCheckLegacy(actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta), nameof(AreEqual), expected, actualExpression);   
+            ExpectedActualCheckCore(actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta), nameof(AreEqual), expected, actualExpression);   
         }
         else
         {
@@ -45,15 +45,15 @@ public static partial class AssertHelperCore
 
         if (direction == None)
         {
-            ExpectedActualCheckLegacy(actual => Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);
+            ExpectedActualCheckCore(actual => Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);
         }
         else if (direction == Up)
         {
-            ExpectedActualCheckLegacy(actual => actual - expected >= 0 && Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);   
+            ExpectedActualCheckCore(actual => actual - expected >= 0 && Abs(actual - expected) <= delta, nameof(AreEqual), expected, actualExpression);   
         }
         else if (direction == Down)
         {
-            ExpectedActualCheckLegacy(actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta), nameof(AreEqual), expected, actualExpression);   
+            ExpectedActualCheckCore(actual => actual - expected <= 0 && Abs(actual - expected) <= Abs(delta), nameof(AreEqual), expected, actualExpression);   
         }
         else
         {
