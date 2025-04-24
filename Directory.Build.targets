@@ -1,7 +1,9 @@
 <Project>
   <PropertyGroup>
-    <!-- Disabled warning NU1605: Detected package downgrade -->
-    <NoWarn>$(NoWarn);NU1605</NoWarn>
+    <!-- Disabled Warnings -->
+    <NoWarn>$(NoWarn);NU1605</NoWarn> <!--Detected package downgrade-->
+    <NoWarn>$(NoWarn);CA1822</NoWarn> <!--Mark members as static-->
+    <!-- NOTE: Most warning squelches are in Directory.Build.props instead. -->
   </PropertyGroup>
   <ItemGroup>
     <None Remove="$(MSBuildProjectDirectory)/*.ncrunchproject" />

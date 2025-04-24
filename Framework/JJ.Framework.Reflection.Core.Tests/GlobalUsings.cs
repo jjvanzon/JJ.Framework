@@ -1,0 +1,13 @@
+﻿global using System;
+global using System.Collections;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Reflection;
+global using System.Runtime.Serialization;
+global using System.Text;
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using static System.String;
+global using static JJ.Framework.Testing.AssertHelper;
+global using static JJ.Framework.Reflection.Core.ReflectionHelperCore;
+global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+
