@@ -43,4 +43,14 @@ public void ExpressionHelper_ConvertCall_Implicit_ThroughExpressionType()
 
         Expression<Func<object>> expression = () => (object)constant;
 
+    
+    private void AssertConvertConstant(LambdaExpression expression) 
+        => AssertIsWrappedInConvert(expression, ExpressionType.Constant);
+
+    private static void AssertIsWrappedInConvert(LambdaExpression expression, ExpressionType expectedInnerNodeType)
+    {
+        // TODO: Has weird failure message for AssertConvertConstant.
+        // IsOfType<UnaryExpression>(() => expression.Body);
+        Assert.IsInstanceOfType<UnaryExpression>(expression.Body);
+    }
 ```

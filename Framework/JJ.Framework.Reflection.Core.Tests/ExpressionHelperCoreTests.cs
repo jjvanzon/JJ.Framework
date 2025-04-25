@@ -12,6 +12,12 @@ public class ExpressionHelperCoreTests
 {
     private void VoidMethod() { } // ncrunch: no coverage
     private int IntMethod() => 1; // ncrunch: no coverage
+    private int MethodWith2Parameters(int a, int b) => 1; // ncrunch: no coverage
+    
+    private class TestIndexer
+    {
+        public int this[int x, int y] => 1;
+    }
     
     // Overloads
     
@@ -64,6 +70,25 @@ public class ExpressionHelperCoreTests
     }
     
     // Expression Node Constructions
+    
+    [TestMethod]
+    public void ExpressionHelper_Indexer_WithMultipleArguments()
+    {
+        var indexer = new TestIndexer();
+        string text = GetText(() => indexer[1, 2]);
+        int value = GetValue(() => indexer[1, 2]);
+        AreEqual("indexer[1, 2]", () => text);
+        AreEqual(1, () => value);
+    }
+    
+    [TestMethod]
+    public void ExpressionHelper_Method_WithMultipleArguments()
+    {
+        string text = GetText(() => MethodWith2Parameters(1, 2));
+        int value = GetValue(() => MethodWith2Parameters(1, 2));
+        AreEqual("MethodWith2Parameters(1, 2)", () => text);
+        AreEqual(1, () => value);
+    }
     
     [TestMethod]
     public void ExpressionHelper_ConvertCall_Explicit()
@@ -146,17 +171,15 @@ public class ExpressionHelperCoreTests
     private void AssertNestedConvert(LambdaExpression expression) 
         => AssertIsWrappedInConvert(expression, ExpressionType.Convert);
     
-    private static void AssertIsWrappedInConvert(LambdaExpression expression, ExpressionType expectedInnerNodeType)
+    private static void AssertIsWrappedInConvert(LambdaExpression expression, ExpressionType innerNodeType)
     {
         IsNotNull(() => expression);
         IsNotNull(() => expression.Body);
-        // TODO: Has weird failure message for AssertConvertConstant.
-        //IsOfType<UnaryExpression>(() => expression.Body);
-        Assert.IsInstanceOfType<UnaryExpression>(expression.Body);
+        IsOfType<UnaryExpression>(() => expression.Body);
         AreEqual(ExpressionType.Convert, () => expression.Body.NodeType);
         
         UnaryExpression unaryExpression = (UnaryExpression)expression.Body;
         IsNotNull(() => unaryExpression.Operand);
-        AreEqual(expectedInnerNodeType, () => unaryExpression.Operand.NodeType);
+        AreEqual(innerNodeType, () => unaryExpression.Operand.NodeType);
     }
 }
