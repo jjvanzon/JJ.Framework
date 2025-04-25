@@ -1,4 +1,5 @@
 // ReSharper disable UnusedParameter.Local
+// ReSharper disable RedundantCast
 
 using System.Linq.Expressions;
 using static JJ.Framework.Reflection.ExpressionHelper;
@@ -105,28 +106,12 @@ public class ExpressionHelperCoreTests
     public void ExpressionHelper_ConvertsConstant_Implicit()
     {
         const int constant = 1;
-        //int constant = 1;
-        //double targetType = 2;
-        
-        // Compiler "helpfully" optimizes out our conversions. Trying different ways to get it to work.
-        //var expression = CauseConvert(() => constant, targetType);
-        //Expression<Func<double>> expression = () => (double)constant;
-        //Expression<Func<double>> expression = () => constant;
-        //Expression<Func<double>> expression = () => 1 + 1;
-        Expression<Func<double>> expression = ConstructConstConvert(constant);
-        
+        Expression<Func<object>> expression = () => (object)constant;
         string text  = GetText(expression);
-        double value = GetValue(expression);
+        object value = GetValue(expression);
         AssertConvertConstant(expression);
         AreEqual("1", () => text);
         AreEqual(1, () => value);
-    }
-    
-    private static Expression<Func<double>> ConstructConstConvert(int value)
-    {
-        var intConst = Expression.Constant(value, typeof(int));
-        var asDouble = Expression.Convert(intConst, typeof(double));
-        return Expression.Lambda<Func<double>>(asDouble);
     }
     
     /*

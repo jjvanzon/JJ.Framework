@@ -35,6 +35,7 @@
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('Tests'))">
     <NoWarn>$(NoWarn);CS0414</NoWarn> <!--Field is assigned but its value is never used-->
     <NoWarn>$(NoWarn);IDE0060</NoWarn> <!--Remove unused parameter-->
+    <NoWarn>$(NoWarn);IDE0004</NoWarn> <!--Remove unnecessary cast-->
   </PropertyGroup>
 
   <!-- Warnings Disabled for Legacy Code -->
