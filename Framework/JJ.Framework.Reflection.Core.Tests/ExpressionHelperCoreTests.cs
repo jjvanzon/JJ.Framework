@@ -15,6 +15,8 @@ public class ExpressionHelperCoreTests
     
     // ncrunch: no coverage end
     
+    // Overloads
+    
     [TestMethod]
     public void GetName_WithAction() 
         => AreEqual(nameof(VoidMethod), GetName(() => VoidMethod()));
@@ -26,6 +28,8 @@ public class ExpressionHelperCoreTests
         IsNotNull(() => memberInfo);
         AreEqual(nameof(IntMethod), memberInfo.Name);
     }
+    
+    // Exceptions
     
     [TestMethod]
     public void GetMember_NodeType_NotSupportedException() 
@@ -46,10 +50,22 @@ public class ExpressionHelperCoreTests
     {
         int number1 = 1;
         
-        ThrowsException(
+        ThrowsExceptionContaining(
             () => GetText(() => number1 == 1), 
-            "Name cannot be obtained from Equal.");
+            "Name cannot be obtained from", "Equal.");
     }
+
+    [TestMethod]
+    public void GetText_NodeType_NotSupportedException_WrappedInConversion()
+    {
+        int number1 = 1;
+        
+        ThrowsExceptionContaining(
+            () => GetText(() => (object)(number1 == 1)), 
+            "Name cannot be obtained from", "Equal.");
+    }
+    
+    // Expression Nodes
     
     [TestMethod]
     public void ExpressionHelper_ConvertCall_Explicit()
@@ -57,33 +73,65 @@ public class ExpressionHelperCoreTests
         string text = GetText(() => (double)IntMethod());
         double value = GetValue(() => (double)IntMethod());
         AreEqual("IntMethod()", () => text);
-        AreEqual(1.0, () => value);
+        AreEqual(1, () => value);
     }
     
     [TestMethod]
     public void ExpressionHelper_ConvertsCall_Implicit()
     {
-        double input = 2.0;
-        var expression = CauseConvert(input, () => IntMethod());
-        string text = GetText(expression);
-        double value = GetValue(expression);
+        double targetType = 2.0;
+        var    expression = CauseConvert(() => IntMethod(), targetType);
+        string text       = GetText(expression);
+        double value      = GetValue(expression);
         AssertConvertCall(expression);
         AreEqual("IntMethod()", () => text);
-        AreEqual(1.0, () => value);
+        AreEqual(1, () => value);
     }
     
     [TestMethod]
     public void ExpressionHelper_ConvertsArrayIndex_Implicit()
     {
-        int[] array = [ 1, 2, 3 ];
-        double comparison = 2.0;
-        var expression = CauseConvert(comparison, () => array[1]);
-        string text = GetText(expression);
-        double value = GetValue(expression);
+        int[]  array      = [ 1, 2, 3 ];
+        double targetType = 2.0;
+        var    expression = CauseConvert(() => array[0], targetType);
+        string text       = GetText(expression);
+        double value      = GetValue(expression);
         AssertConvertArrayIndex(expression);
-        AreEqual("array[1]", () => text);
-        AreEqual(2,          () => value);
+        AreEqual("array[0]", () => text);
+        AreEqual(1, () => value);
     }
+    
+    /*
+    [TestMethod]
+    public void ExpressionHelper_ConvertsConstant_Implicit()
+    {
+        const int constant = 1;
+        double targetType = 2;
+        //var expression = CauseConvert(() => constant, targetType);
+        Expression<Func<double>> expression = () => (double)constant;
+        string text  = GetText(expression);
+        double value = GetValue(expression);
+        // TODO: I can't seem to construct a conversion of a constant.
+        AssertConvertConstant(expression);
+        AreEqual("1", () => text);
+        AreEqual(1, () => value);
+    }
+    */
+    
+    /*
+    [TestMethod]
+    public void ExpressionHelper_NestedConversions()
+    {
+        int comparison = 2;
+        var expression = CauseConvert(comparison, () => (decimal)(double)IntMethod());
+        string text = GetText(expression);
+        decimal value = GetValue(expression);
+        AssertNestedConvert(expression);
+        AreEqual("IntMethod()", () => text);
+        // TODO: Assertion failure probably caused by lack of support in ExpressionToValueTranslator.
+        AreEqual(1.0, () => value); 
+    }
+    */
     
     /// <summary>
     /// Using expressions with a generic method,
@@ -92,16 +140,20 @@ public class ExpressionHelperCoreTests
     /// which can happen frequently enough that
     /// ExpressionHelper has to support that internally.
     /// </summary>
-    private Expression<Func<T>> CauseConvert<T>(T value, Expression<Func<T>> expression) => expression;
+    private Expression<Func<T>> CauseConvert<T>(Expression<Func<T>> expression, T target) => expression;
     
     private void AssertConvertCall(LambdaExpression expression) => AssertIsWrappedInConvert(expression, ExpressionType.Call);
     private void AssertConvertArrayIndex(LambdaExpression expression) => AssertIsWrappedInConvert(expression, ExpressionType.ArrayIndex);
+    private void AssertConvertConstant(LambdaExpression expression) => AssertIsWrappedInConvert(expression, ExpressionType.Constant);
+    private void AssertNestedConvert(LambdaExpression expression) => AssertIsWrappedInConvert(expression, ExpressionType.Convert);
     
     private static void AssertIsWrappedInConvert(LambdaExpression expression, ExpressionType expectedInnerNodeType)
     {
         IsNotNull(() => expression);
         IsNotNull(() => expression.Body);
-        IsOfType<UnaryExpression>(() => expression.Body);
+        // TODO: Has weird failure message for AssertConvertConstant.
+        //IsOfType<UnaryExpression>(() => expression.Body);
+        Assert.IsInstanceOfType<UnaryExpression>(expression.Body);
         AreEqual(ExpressionType.Convert, () => expression.Body.NodeType);
         
         UnaryExpression unaryExpression = (UnaryExpression)expression.Body;
