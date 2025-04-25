@@ -34,6 +34,7 @@
   <!-- Warnings Disabled for Tests -->
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('Tests'))">
     <NoWarn>$(NoWarn);CS0414</NoWarn> <!--Field is assigned but its value is never used-->
+    <NoWarn>$(NoWarn);IDE0060</NoWarn> <!--Remove unused parameter-->
   </PropertyGroup>
 
   <!-- Warnings Disabled for Legacy Code -->

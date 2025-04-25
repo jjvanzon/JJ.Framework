@@ -653,3 +653,28 @@ for (int i = 0; i < expected.Length; i++)
 ```cs
 public override int GetHashCode() => HashCode.Combine(Coalesced, Nully);
 ```
+
+```cs
+[TestMethod]
+public void ExpressionHelper_ConvertCall_Implicit_ThroughExpressionType()
+{
+    // This expression has return type double, while the method returns int,
+    // causing the expression tree to contain an implicit conversion to double,
+    // which ExpressionHelper then needs to support internally.
+    Expression<Func<double>> expression = () => IntMethod();
+    
+    string text = GetText(expression);
+    double value = GetValue(expression);
+    AreEqual("IntMethod()", () => text);
+    AreEqual(1.0, () => value);
+}
+
+    {
+        IsNotNull(() => expression);
+        Type concreteType = expression.GetType();
+        //AreEqual(typeof(), () => concreteType);
+        
+        return expression;
+    }
+
+```
