@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using static JJ.Framework.Reflection.ExpressionHelper;
 namespace JJ.Framework.Reflection.Core.Tests;
 
@@ -7,7 +8,7 @@ public class ExpressionHelperCoreTests
     // ncrunch: no coverage start
     
     private void VoidMethod() { }
-    private int IntMethod() => default;
+    private int IntMethod() => 1;
     
     // ncrunch: no coverage end
     
@@ -45,6 +46,18 @@ public class ExpressionHelperCoreTests
         ThrowsException(
             () => GetText(() => number1 == 1), 
             "Name cannot be obtained from Equal.");
-        
     }
+    
+    [TestMethod]
+    public void ExpressionHelper_ConvertCall()
+    {
+        string text = GetText(() => (double)IntMethod());
+        double value = GetValue(() => (double)IntMethod());
+        AreEqual("IntMethod()", () => text);
+        AreEqual(1.0, () => value);
+    }
+    
+    //private double CauseConvert(Expression<Func<double>> expression)
+    //{
+    //}
 }
