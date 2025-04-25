@@ -1,5 +1,6 @@
 // ReSharper disable UnusedParameter.Local
 // ReSharper disable RedundantCast
+// ReSharper disable ExpressionIsAlwaysNull
 
 using System.Linq.Expressions;
 using static JJ.Framework.Reflection.ExpressionHelper;
@@ -9,12 +10,8 @@ namespace JJ.Framework.Reflection.Core.Tests;
 [TestClass]
 public class ExpressionHelperCoreTests
 {
-    // ncrunch: no coverage start
-    
-    private void VoidMethod() { }
-    private int IntMethod() => 1;
-    
-    // ncrunch: no coverage end
+    private void VoidMethod() { } // ncrunch: no coverage
+    private int IntMethod() => 1; // ncrunch: no coverage
     
     // Overloads
     
@@ -66,7 +63,7 @@ public class ExpressionHelperCoreTests
             "Name cannot be obtained from", "Equal.");
     }
     
-    // Expression Nodes
+    // Expression Node Constructions
     
     [TestMethod]
     public void ExpressionHelper_ConvertCall_Explicit()
@@ -106,7 +103,9 @@ public class ExpressionHelperCoreTests
     public void ExpressionHelper_ConvertsConstant_Implicit()
     {
         const int constant = 1;
-        object targetType = 2;
+        // Cast to object forces boxing, keeping the compiler from optimizing away
+        // the convert expression tree node we're trying to test.
+        object? targetType = null;
         var expression = CauseConvert(() => constant, targetType);
         string text  = GetText(expression);
         object value = GetValue(expression);
@@ -115,34 +114,37 @@ public class ExpressionHelperCoreTests
         AreEqual(1, () => value);
     }
     
-    /*
     [TestMethod]
     public void ExpressionHelper_NestedConversions()
     {
-        int comparison = 2;
-        var expression = CauseConvert(comparison, () => (decimal)(double)IntMethod());
+        object? targetType = null;
+        var expression = CauseConvert(() => (decimal)(double)IntMethod(), targetType);
         string text = GetText(expression);
-        decimal value = GetValue(expression);
+        object value = GetValue(expression);
         AssertNestedConvert(expression);
         AreEqual("IntMethod()", () => text);
-        // TODO: Assertion failure probably caused by lack of support in ExpressionToValueTranslator.
-        AreEqual(1.0, () => value); 
+        AreEqual(1m, () => value); 
     }
-    */
     
     /// <summary>
+    /// This helper stimulates the construction of a Convert node.
     /// Using expressions with a generic method,
     /// can easily cause an implicit conversion
-    /// that leaks into the expression tree,
-    /// which can happen frequently enough that
-    /// ExpressionHelper has to support that internally.
+    /// that leaks into the expression tree.
     /// </summary>
     private Expression<Func<T>> CauseConvert<T>(Expression<Func<T>> expression, T target) => expression;
     
-    private void AssertConvertCall(LambdaExpression expression) => AssertIsWrappedInConvert(expression, ExpressionType.Call);
-    private void AssertConvertArrayIndex(LambdaExpression expression) => AssertIsWrappedInConvert(expression, ExpressionType.ArrayIndex);
-    private void AssertConvertConstant(LambdaExpression expression) => AssertIsWrappedInConvert(expression, ExpressionType.Constant);
-    private void AssertNestedConvert(LambdaExpression expression) => AssertIsWrappedInConvert(expression, ExpressionType.Convert);
+    private void AssertConvertCall(LambdaExpression expression) 
+        => AssertIsWrappedInConvert(expression, ExpressionType.Call);
+    
+    private void AssertConvertArrayIndex(LambdaExpression expression) 
+        => AssertIsWrappedInConvert(expression, ExpressionType.ArrayIndex);
+    
+    private void AssertConvertConstant(LambdaExpression expression) 
+        => AssertIsWrappedInConvert(expression, ExpressionType.Constant);
+    
+    private void AssertNestedConvert(LambdaExpression expression) 
+        => AssertIsWrappedInConvert(expression, ExpressionType.Convert);
     
     private static void AssertIsWrappedInConvert(LambdaExpression expression, ExpressionType expectedInnerNodeType)
     {

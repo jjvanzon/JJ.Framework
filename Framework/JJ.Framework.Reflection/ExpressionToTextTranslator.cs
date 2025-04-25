@@ -1,5 +1,4 @@
 ﻿// ReSharper disable RedundantToStringCall
-// ReSharper disable RedundantToStringCall
 
 using System;
 using System.Collections.Generic;
