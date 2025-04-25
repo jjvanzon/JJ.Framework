@@ -61,29 +61,26 @@ public class ExpressionHelperCoreTests
     }
     
     [TestMethod]
-    public void ExpressionHelper_ConvertCall_Implicit()
+    public void ExpressionHelper_ConvertsCall_Implicit()
     {
         double input = 2.0;
         var expression = CauseConvert(input, () => IntMethod());
         string text = GetText(expression);
         double value = GetValue(expression);
+        AssertConvertCall(expression);
         AreEqual("IntMethod()", () => text);
         AreEqual(1.0, () => value);
     }
     
-    // TODO: Test the same as the above for an array indexer access.
     [TestMethod]
-    public void ExpressionHelper_ConvertArrayIndexer_Implicit()
+    public void ExpressionHelper_ConvertsArrayIndex_Implicit()
     {
-        int[]  array      = { 1, 2, 3 };
-        double comparison = 2;
-        
+        int[] array = [ 1, 2, 3 ];
+        double comparison = 2.0;
         var expression = CauseConvert(comparison, () => array[1]);
-        AssertIsConvertArrayIndexer(expression);
-        
         string text = GetText(expression);
         double value = GetValue(expression);
-        
+        AssertConvertArrayIndex(expression);
         AreEqual("array[1]", () => text);
         AreEqual(2,          () => value);
     }
@@ -97,15 +94,18 @@ public class ExpressionHelperCoreTests
     /// </summary>
     private Expression<Func<T>> CauseConvert<T>(T value, Expression<Func<T>> expression) => expression;
     
-    private void AssertIsConvertArrayIndexer(LambdaExpression expression)
+    private void AssertConvertCall(LambdaExpression expression) => AssertIsWrappedInConvert(expression, ExpressionType.Call);
+    private void AssertConvertArrayIndex(LambdaExpression expression) => AssertIsWrappedInConvert(expression, ExpressionType.ArrayIndex);
+    
+    private static void AssertIsWrappedInConvert(LambdaExpression expression, ExpressionType expectedInnerNodeType)
     {
         IsNotNull(() => expression);
         IsNotNull(() => expression.Body);
         IsOfType<UnaryExpression>(() => expression.Body);
         AreEqual(ExpressionType.Convert, () => expression.Body.NodeType);
-
+        
         UnaryExpression unaryExpression = (UnaryExpression)expression.Body;
         IsNotNull(() => unaryExpression.Operand);
-        AreEqual(ExpressionType.ArrayIndex, () => unaryExpression.Operand.NodeType);
+        AreEqual(expectedInnerNodeType, () => unaryExpression.Operand.NodeType);
     }
 }
