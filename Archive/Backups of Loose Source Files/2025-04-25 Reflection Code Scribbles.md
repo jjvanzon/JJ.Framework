@@ -41,4 +41,6 @@ public void ExpressionHelper_ConvertCall_Implicit_ThroughExpressionType()
         return Expression.Lambda<Func<double>>(asDouble);
     }
 
+        Expression<Func<object>> expression = () => (object)constant;
+
 ```

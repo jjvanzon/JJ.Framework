@@ -106,7 +106,8 @@ public class ExpressionHelperCoreTests
     public void ExpressionHelper_ConvertsConstant_Implicit()
     {
         const int constant = 1;
-        Expression<Func<object>> expression = () => (object)constant;
+        object targetType = 2;
+        var expression = CauseConvert(() => constant, targetType);
         string text  = GetText(expression);
         object value = GetValue(expression);
         AssertConvertConstant(expression);
