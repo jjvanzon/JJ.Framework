@@ -114,7 +114,7 @@ namespace JJ.Framework.Reflection
                     return;
 
                 default:
-                    throw new NotSupportedException(String.Format("Member types other than FieldInfo and PropertyInfo are not supported. Member type = {0}", node.Member.GetType().Name));
+                    throw new NotSupportedException(String.Format("Member types other than FieldInfo and PropertyInfo are not supported. Member type = {0}", node.Member.GetType().Name)); // ncrunch: no coverage
             }
         }
 

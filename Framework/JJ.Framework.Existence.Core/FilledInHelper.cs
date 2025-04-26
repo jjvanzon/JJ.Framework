@@ -41,6 +41,10 @@ namespace JJ.Framework.Existence.Core
         public static bool IsNully<T>(T              value)                  => !FilledIn(value);
         public static bool IsNully<T>(T?             value) where T : struct => !FilledIn(value);
         
+        // TODO: Use Flags enums for more meaningful single-word parameters, e.g. `IgnoreCase` instead of `true`.
+        // Or sneakier: fake it with a lower case `IgnoreCaseFlags.ignoreCase` so you can type Is(value, ignoreCase),
+        // as if that's new boolean syntax.
+        
         public static bool Is(string value, string comparison)                  => Is(value, comparison, ignoreCase: true);
         public static bool Is(string value, string comparison, bool ignoreCase) => string.Equals(value, comparison, ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal);
         
