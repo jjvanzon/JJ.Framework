@@ -1,8 +1,6 @@
 ﻿// ReSharper disable UnusedMember.Local
-// ReSharper disable RedundantAssignment
-// ReSharper disable ConvertToAutoProperty
 
-using System.Xml.Linq;
+using static System.Reflection.BindingFlags;
 using static JJ.Framework.Reflection.ReflectionHelper;
 
 namespace JJ.Framework.Reflection.Core.Tests;
@@ -21,6 +19,17 @@ public class ReflectionCacheCoreTests
         public  string TestProperty2 { get => _testField2; set => _testField2 = value; } // ncrunch: no coverage
     }
     
+    private class NoConstructorClass
+    {
+        private NoConstructorClass() { }
+    }
+    
+    private class MultipleConstructorsClass
+    {
+        public MultipleConstructorsClass() { }
+        public MultipleConstructorsClass(int i) { }
+    }
+
     // NOTE: Tested methods are run twice to hit cache retrieval.
     
     [TestMethod]
@@ -90,9 +99,9 @@ public class ReflectionCacheCoreTests
         
         for (int i = 0; i < REPEATS; i++)
         {
-            Type type = reflectionCache.GetTypeByShortName("ReflectionCache");
+            Type type = reflectionCache.GetTypeByShortName("ReflectionCacheCoreTests");
             IsNotNull(() => type);
-            AreEqual(typeof(ReflectionCache), () => type);
+            AreEqual(typeof(ReflectionCacheCoreTests), () => type);
         }
     }
     
@@ -116,9 +125,9 @@ public class ReflectionCacheCoreTests
         
         for (int i = 0; i < REPEATS; i++)
         {
-            Type type = reflectionCache.TryGetTypeByShortName("ReflectionCache");
+            Type type = reflectionCache.TryGetTypeByShortName("ReflectionCacheCoreTests");
             IsNotNull(() => type);
-            AreEqual(typeof(ReflectionCache), () => type);
+            AreEqual(typeof(ReflectionCacheCoreTests), () => type);
         }
     }
 
@@ -142,7 +151,7 @@ public class ReflectionCacheCoreTests
         for (int i = 0; i < REPEATS; i++)
         {
             ThrowsExceptionContaining(
-                () => reflectionCache.GetTypeByShortName("Duplicate13017ef1"),
+                () => reflectionCache.GetTypeByShortName("DuplicateClass_13017ef1"),
                 "Type with short name", "multiple");
         }
     }
@@ -168,12 +177,12 @@ public class ReflectionCacheCoreTests
         
         for (int i = 0; i < REPEATS; i++)
         {
-            IList<Type> types = reflectionCache.GetTypesByShortName("ReflectionCache");
+            IList<Type> types = reflectionCache.GetTypesByShortName("ReflectionCacheCoreTests");
             
             IsNotNull(  () => types);
             AreEqual(1, () => types.Count);
             IsNotNull(  () => types[0]);
-            AreEqual(typeof(ReflectionCache), () => types[0]);
+            AreEqual(typeof(ReflectionCacheCoreTests), () => types[0]);
         }
     }
         
@@ -184,15 +193,55 @@ public class ReflectionCacheCoreTests
         
         for (int i = 0; i < REPEATS; i++)
         {
-            IList<Type> types = reflectionCache.GetTypesByShortName("Duplicate13017ef1");
+            IList<Type> types = reflectionCache.GetTypesByShortName("DuplicateClass_13017ef1");
 
             IsNotNull(() => types);
             AreEqual(2, () => types.Count);
             IsNotNull(() => types[0]);
             IsNotNull(() => types[1]);
             NotEqual(types[0], () => types[1]);
-            IsTrue(types.Any(x => x == typeof(Namespace1.Duplicate13017ef1)));
-            IsTrue(types.Any(x => x == typeof(Namespace2.Duplicate13017ef1)));
+            IsTrue(types.Any(x => x == typeof(Namespace1.DuplicateClass_13017ef1)));
+            IsTrue(types.Any(x => x == typeof(Namespace2.DuplicateClass_13017ef1)));
+        }
+    }
+    
+    // TODO: Tests for GetConstructor with private classes with 0, 1 or multiple matches. Only with 1 succeeds, others throw.
+    
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_Single()
+    {
+        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
+        
+        for (int i = 0; i < REPEATS; i++)
+        {
+            ConstructorInfo constructor = reflectionCache.GetConstructor(typeof(TestClass));
+            IsNotNull(() => constructor);
+        }
+    }
+    
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_None_Throws()
+    {
+        var reflectionCache = new ReflectionCache(Public | Instance);
+        
+        for (int i = 0; i < REPEATS; i++)
+        {
+            ThrowsExceptionContaining(
+                () => reflectionCache.GetConstructor(typeof(NoConstructorClass)), 
+                "No constructor found");
+        }
+    }
+    
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_Multiple_Throws()
+    {
+        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
+        
+        for (int i = 0; i < REPEATS; i++)
+        {
+            ThrowsExceptionContaining(
+                () => reflectionCache.GetConstructor(typeof(MultipleConstructorsClass)), 
+                "Multiple constructors found");
         }
     }
 }

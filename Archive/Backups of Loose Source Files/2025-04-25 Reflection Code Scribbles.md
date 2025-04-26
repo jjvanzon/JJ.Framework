@@ -54,3 +54,5 @@ public void ExpressionHelper_ConvertCall_Implicit_ThroughExpressionType()
         Assert.IsInstanceOfType<UnaryExpression>(expression.Body);
     }
 ```
+
+How nice of NCrunch to load assemblies multiple times in the AppDomain to make sure my reflection tests are indeterministic.

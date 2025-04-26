@@ -1,2 +1,2 @@
 ﻿namespace JJ.Framework.Reflection.Core.Tests.Namespace2;
-internal class Duplicate13017ef1;
+internal class DuplicateClass_13017ef1;
