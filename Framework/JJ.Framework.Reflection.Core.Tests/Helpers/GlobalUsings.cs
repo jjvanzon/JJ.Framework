@@ -1,4 +1,7 @@
-﻿global using System;
+﻿// ReSharper disable RedundantUsingDirective.Global
+#pragma warning disable IDE0005
+
+global using System;
 global using System.Collections;
 global using System.Collections.Generic;
 global using System.Linq;
@@ -7,7 +10,7 @@ global using System.Runtime.Serialization;
 global using System.Text;
 global using Microsoft.VisualStudio.TestTools.UnitTesting;
 global using JJ.Framework.Testing;
-global using JJ.Framework.Testing.Core;
+global using JJ.Framework.Reflection.Core.Tests;
 global using static System.String;
 global using static JJ.Framework.Reflection.Core.ReflectionHelperCore;
 global using static JJ.Framework.Testing.AssertHelper;

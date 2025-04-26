@@ -200,8 +200,8 @@ public class ReflectionCacheCoreTests
             IsNotNull(() => types[0]);
             IsNotNull(() => types[1]);
             NotEqual(types[0], () => types[1]);
-            IsTrue(types.Any(x => x == typeof(Namespace1.DuplicateClass_13017ef1)));
-            IsTrue(types.Any(x => x == typeof(Namespace2.DuplicateClass_13017ef1)));
+            IsTrue(types.Any(x => x == typeof(Helpers.Namespace1.DuplicateClass_13017ef1)));
+            IsTrue(types.Any(x => x == typeof(Helpers.Namespace2.DuplicateClass_13017ef1)));
         }
     }
     

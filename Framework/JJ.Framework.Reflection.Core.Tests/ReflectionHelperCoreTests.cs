@@ -235,7 +235,7 @@ public class ReflectionHelperCoreTests
         }
     }
 
-    // Duplicate Tests
+    // Duplicates Tests
 
     [TestMethod]
     public void GetRecursive_DuplicatesTest()
