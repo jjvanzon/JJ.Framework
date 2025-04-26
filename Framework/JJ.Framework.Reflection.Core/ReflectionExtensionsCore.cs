@@ -19,55 +19,55 @@ namespace JJ.Framework.Reflection.Core
         
         // Types
         
-        /// <inheritdoc cref="docs._typesrecursive" />
-        public static ICollection<Type> GetTypesRecursive(this Type type)
-            => ReflectionHelperCore.GetTypesRecursive(type);
+        /// <inheritdoc cref="_typesinhierarchy" />
+        public static ICollection<Type> GetTypesInHierarchy(this Type type)
+            => ReflectionHelperCore.GetTypesInHierarchy(type);
 
-        /// <inheritdoc cref="docs._typesrecursive" />
-        public static void AddTypesRecursive(this Type type, ICollection<Type> coll)
-            => ReflectionHelperCore.AddTypesRecursive(type, coll);
+        /// <inheritdoc cref="_typesinhierarchy" />
+        public static void AddTypesInHierarchy(this Type type, ICollection<Type> coll)
+            => ReflectionHelperCore.AddTypesInHierarchy(type, coll);
 
-        /// <inheritdoc cref="docs._typesrecursive" />
-        public static bool HasTypeRecursive(this Type type, Type type2)
-            => ReflectionHelperCore.HasTypeRecursive(type, type2);
+        /// <inheritdoc cref="_typesinhierarchy" />
+        public static bool HasTypeInHierarchy(this Type type, Type type2)
+            => ReflectionHelperCore.HasTypeInHierarchy(type, type2);
         
-        public static bool HasTypeRecursive<TSecondType>(this Type firstType) 
-            => ReflectionHelperCore.HasTypeRecursive(firstType, typeof(TSecondType));
+        public static bool HasTypeInHierarchy<TSecondType>(this Type firstType) 
+            => ReflectionHelperCore.HasTypeInHierarchy(firstType, typeof(TSecondType));
 
         // Classes
 
-        /// <inheritdoc cref="docs._classesrecursive" />
-        public static ICollection<Type> GetClassesRecursive(this Type type)
-            => ReflectionHelperCore.GetClassesRecursive(type);
+        /// <inheritdoc cref="_classesinhierarchy" />
+        public static ICollection<Type> GetClassesInHierarchy(this Type type)
+            => ReflectionHelperCore.GetClassesInHierarchy(type);
 
-        /// <inheritdoc cref="docs._classesrecursive" />
-        public static void AddClassesRecursive(this Type type, ICollection<Type> coll)
-            => ReflectionHelperCore.AddClassesRecursive(type, coll);
+        /// <inheritdoc cref="_classesinhierarchy" />
+        public static void AddClassesInHierarchy(this Type type, ICollection<Type> coll)
+            => ReflectionHelperCore.AddClassesInHierarchy(type, coll);
         
-        /// <inheritdoc cref="docs._classesrecursive" />
-        public static bool HasClassRecursive(this Type type, Type type2)
-            => ReflectionHelperCore.HasClassRecursive(type, type2);
+        /// <inheritdoc cref="_classesinhierarchy" />
+        public static bool HasClassInHierarchy(this Type type, Type type2)
+            => ReflectionHelperCore.HasClassInHierarchy(type, type2);
 
-        /// <inheritdoc cref="docs._classesrecursive" />
-        public static bool HasClassRecursive<TSecond>(this Type first)
-            => ReflectionHelperCore.HasClassRecursive(first, typeof(TSecond));
+        /// <inheritdoc cref="_classesinhierarchy" />
+        public static bool HasClassInHierarchy<TSecond>(this Type first)
+            => ReflectionHelperCore.HasClassInHierarchy(first, typeof(TSecond));
 
         // Interfaces
 
-        /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static ICollection<Type> GetInterfacesRecursive(this Type type)
-            => ReflectionHelperCore.GetInterfacesRecursive(type);
+        /// <inheritdoc cref="_interfacesinhierarchy" />
+        public static ICollection<Type> GetInterfacesInHierarchy(this Type type)
+            => ReflectionHelperCore.GetInterfacesInHierarchy(type);
 
-        /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static void AddInterfacesRecursive(this Type type, ICollection<Type> coll)
-            => ReflectionHelperCore.AddInterfacesRecursive(type, coll);
+        /// <inheritdoc cref="_interfacesinhierarchy" />
+        public static void AddInterfacesInHierarchy(this Type type, ICollection<Type> coll)
+            => ReflectionHelperCore.AddInterfacesInHierarchy(type, coll);
         
-        /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static bool HasInterfaceRecursive(this Type type, Type type2)
-            => ReflectionHelperCore.HasInterfaceRecursive(type, type2);
+        /// <inheritdoc cref="_interfacesinhierarchy" />
+        public static bool HasInterfaceInHierarchy(this Type type, Type type2)
+            => ReflectionHelperCore.HasInterfaceInHierarchy(type, type2);
 
-        /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static bool HasInterfaceRecursive<TSecond>(this Type first)
-            => ReflectionHelperCore.HasInterfaceRecursive(first, typeof(TSecond));
+        /// <inheritdoc cref="_interfacesinhierarchy" />
+        public static bool HasInterfaceInHierarchy<TSecond>(this Type first)
+            => ReflectionHelperCore.HasInterfaceInHierarchy(first, typeof(TSecond));
     }
 }

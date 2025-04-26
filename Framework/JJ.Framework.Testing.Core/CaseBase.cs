@@ -35,7 +35,7 @@ namespace JJ.Framework.Testing.Core
         
         private IList<FieldInfo> GetCasePropFields()
             => GetType().GetFields(BINDING_FLAGS_ALL)
-                        .Where(x => x.FieldType.HasInterfaceRecursive<ICaseProp>())
+                        .Where(x => x.FieldType.HasInterfaceInHierarchy<ICaseProp>())
                         .ToArray();
         
         private void AutoCreateProps() => GetCasePropFields().Where(x => x.GetValue(this) == null)

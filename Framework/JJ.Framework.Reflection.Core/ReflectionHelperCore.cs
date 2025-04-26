@@ -35,60 +35,60 @@ namespace JJ.Framework.Reflection.Core
     
         // Types
 
-        /// <inheritdoc cref="docs._typesrecursive" />
-        public static ICollection<Type> GetTypesRecursive(Type type)
+        /// <inheritdoc cref="docs._typesinhierarchy" />
+        public static ICollection<Type> GetTypesInHierarchy(Type type)
         {
             if (type == null) throw new NullException(() => type);
             var coll = new HashSet<Type>();
-            AddTypesRecursive(type, coll);
+            AddTypesInHierarchy(type, coll);
             return coll;
         }
         
-        /// <inheritdoc cref="docs._typesrecursive" />
-        public static ICollection<Type> GetTypesRecursive<TType>() => GetTypesRecursive(typeof(TType));
+        /// <inheritdoc cref="docs._typesinhierarchy" />
+        public static ICollection<Type> GetTypesInHierarchy<TType>() => GetTypesInHierarchy(typeof(TType));
     
-        /// <inheritdoc cref="docs._typesrecursive" />
-        public static void AddTypesRecursive(Type type, ICollection<Type> coll)
+        /// <inheritdoc cref="docs._typesinhierarchy" />
+        public static void AddTypesInHierarchy(Type type, ICollection<Type> coll)
         {
             if (type == null) throw new NullException(() => type);
             if (coll == null) throw new NullException(() => coll);
 
-            AddClassesRecursive(type, coll);
-            AddInterfacesRecursive(type, coll);
+            AddClassesInHierarchy(type, coll);
+            AddInterfacesInHierarchy(type, coll);
         }
                 
-        /// <inheritdoc cref="docs._typesrecursive" />
-        public static void AddTypesRecursive<TType>(ICollection<Type> coll) => AddTypesRecursive(typeof(TType), coll);
+        /// <inheritdoc cref="docs._typesinhierarchy" />
+        public static void AddTypesInHierarchy<TType>(ICollection<Type> coll) => AddTypesInHierarchy(typeof(TType), coll);
 
-        /// <inheritdoc cref="docs._typesrecursive" />
-        public static bool HasTypeRecursive(Type type, Type secondType)
+        /// <inheritdoc cref="docs._typesinhierarchy" />
+        public static bool HasTypeInHierarchy(Type type, Type secondType)
         {
             if (secondType == null) throw new NullException(() => secondType);
-            return GetTypesRecursive(type).Contains(secondType);
+            return GetTypesInHierarchy(type).Contains(secondType);
         }
 
-        /// <inheritdoc cref="docs._typesrecursive" />
-        public static bool HasTypeRecursive<TFirst>(Type secondType) => HasTypeRecursive(typeof(TFirst), secondType);
+        /// <inheritdoc cref="docs._typesinhierarchy" />
+        public static bool HasTypeInHierarchy<TFirst>(Type secondType) => HasTypeInHierarchy(typeof(TFirst), secondType);
         
-        /// <inheritdoc cref="docs._typesrecursive" />
-        public static bool HasTypeRecursive<TFirst, TSecond>() => HasTypeRecursive(typeof(TFirst), typeof(TSecond));
+        /// <inheritdoc cref="docs._typesinhierarchy" />
+        public static bool HasTypeInHierarchy<TFirst, TSecond>() => HasTypeInHierarchy(typeof(TFirst), typeof(TSecond));
         
         // Classes
 
-        /// <inheritdoc cref="docs._classesrecursive" />
-        public static ICollection<Type> GetClassesRecursive(Type type)
+        /// <inheritdoc cref="_classesinhierarchy" />
+        public static ICollection<Type> GetClassesInHierarchy(Type type)
         {
             if (type == null) throw new NullException(() => type);
             var coll = new HashSet<Type>();
-            AddClassesRecursive(type, coll);
+            AddClassesInHierarchy(type, coll);
             return coll;
         }
 
-        /// <inheritdoc cref="docs._classesrecursive" />
-        public static ICollection<Type> GetClassesRecursive<T>() => GetClassesRecursive(typeof(T));
+        /// <inheritdoc cref="_classesinhierarchy" />
+        public static ICollection<Type> GetClassesInHierarchy<T>() => GetClassesInHierarchy(typeof(T));
         
-        /// <inheritdoc cref="docs._classesrecursive" />
-        public static void AddClassesRecursive(Type type, ICollection<Type> coll)
+        /// <inheritdoc cref="_classesinhierarchy" />
+        public static void AddClassesInHierarchy(Type type, ICollection<Type> coll)
         {
             if (type == null) throw new NullException(() => type);
             if (coll == null) throw new NullException(() => coll);
@@ -102,38 +102,38 @@ namespace JJ.Framework.Reflection.Core
             }
         }
 
-        /// <inheritdoc cref="docs._classesrecursive" />
-        public static void AddClassesRecursive<T>(ICollection<Type> coll) => AddClassesRecursive(typeof(T), coll);
+        /// <inheritdoc cref="_classesinhierarchy" />
+        public static void AddClassesInHierarchy<T>(ICollection<Type> coll) => AddClassesInHierarchy(typeof(T), coll);
 
-        /// <inheritdoc cref="docs._classesrecursive" />
-        public static bool HasClassRecursive(Type type, Type secondType)
+        /// <inheritdoc cref="_classesinhierarchy" />
+        public static bool HasClassInHierarchy(Type type, Type secondType)
         {
             if (secondType == null) throw new NullException(() => secondType);
             if (!secondType.IsClass) throw new Exception($"{nameof(secondType)} '{secondType.Name}' is not a class.");
-            return GetClassesRecursive(type).Contains(secondType);
+            return GetClassesInHierarchy(type).Contains(secondType);
         }
         
-        /// <inheritdoc cref="docs._classesrecursive" />
-        public static bool HasClassRecursive<TFirst>(Type secondType) => HasClassRecursive(typeof(TFirst), secondType);
+        /// <inheritdoc cref="_classesinhierarchy" />
+        public static bool HasClassInHierarchy<TFirst>(Type secondType) => HasClassInHierarchy(typeof(TFirst), secondType);
         
-        /// <inheritdoc cref="docs._classesrecursive" />
-        public static bool HasClassRecursive<TFirst, TSecond>() => HasClassRecursive(typeof(TFirst), typeof(TSecond));
+        /// <inheritdoc cref="_classesinhierarchy" />
+        public static bool HasClassInHierarchy<TFirst, TSecond>() => HasClassInHierarchy(typeof(TFirst), typeof(TSecond));
 
         // Interfaces
                 
-        /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static ICollection<Type> GetInterfacesRecursive(Type type)
+        /// <inheritdoc cref="docs._interfacesinhierarchy" />
+        public static ICollection<Type> GetInterfacesInHierarchy(Type type)
         {
             var list = new HashSet<Type>();
-            AddInterfacesRecursive(type, list);
+            AddInterfacesInHierarchy(type, list);
             return list;
         }
 
-        /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static ICollection<Type> GetInterfacesRecursive<T>() => GetInterfacesRecursive(typeof(T));
+        /// <inheritdoc cref="docs._interfacesinhierarchy" />
+        public static ICollection<Type> GetInterfacesInHierarchy<T>() => GetInterfacesInHierarchy(typeof(T));
 
-        /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static void AddInterfacesRecursive(Type type, ICollection<Type> coll)
+        /// <inheritdoc cref="docs._interfacesinhierarchy" />
+        public static void AddInterfacesInHierarchy(Type type, ICollection<Type> coll)
         {
             if (type == null) throw new NullException(() => type);
             if (coll == null) throw new NullException(() => coll);
@@ -142,21 +142,21 @@ namespace JJ.Framework.Reflection.Core
             coll.AddRange(type.GetInterfaces()); // GetInterfaces from .NET is already recursive.
         }
 
-        /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static void AddInterfacesRecursive<T>(ICollection<Type> coll) => AddInterfacesRecursive(typeof(T), coll);
+        /// <inheritdoc cref="docs._interfacesinhierarchy" />
+        public static void AddInterfacesInHierarchy<T>(ICollection<Type> coll) => AddInterfacesInHierarchy(typeof(T), coll);
 
-        /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static bool HasInterfaceRecursive(Type type, Type secondType)
+        /// <inheritdoc cref="docs._interfacesinhierarchy" />
+        public static bool HasInterfaceInHierarchy(Type type, Type secondType)
         {
             if (secondType == null) throw new NullException(() => secondType);
             if (!secondType.IsInterface) throw new Exception($"{nameof(secondType)} {secondType.Name} is not an interface.");
-            return GetInterfacesRecursive(type).Contains(secondType);
+            return GetInterfacesInHierarchy(type).Contains(secondType);
         }
         
-        /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static bool HasInterfaceRecursive<TFirst>(Type secondType) => HasInterfaceRecursive(typeof(TFirst), secondType);
+        /// <inheritdoc cref="docs._interfacesinhierarchy" />
+        public static bool HasInterfaceInHierarchy<TFirst>(Type secondType) => HasInterfaceInHierarchy(typeof(TFirst), secondType);
         
-        /// <inheritdoc cref="docs._interfacesrecursive" />
-        public static bool HasInterfaceRecursive<TFirst, TSecond>() => HasInterfaceRecursive(typeof(TFirst), typeof(TSecond));
+        /// <inheritdoc cref="docs._interfacesinhierarchy" />
+        public static bool HasInterfaceInHierarchy<TFirst, TSecond>() => HasInterfaceInHierarchy(typeof(TFirst), typeof(TSecond));
     }
 }

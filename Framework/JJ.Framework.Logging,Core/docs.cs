@@ -40,11 +40,6 @@ namespace JJ.Framework.Logging.Core
         /// <param name="destCases">The cases to which the template is applied.</param>
         /// <returns>A collection of cases derived from the template.</returns>
         public struct _casetemplate { }
-
-        /// <summary>
-        /// Handles a collection of this class and its base classes recursively.
-        /// </summary>
-        public struct _classesrecursive { }
        
         /// <summary>
         /// Does not include the ".wishes" part for future compatibility.
@@ -56,11 +51,6 @@ namespace JJ.Framework.Logging.Core
         /// If the collection is empty, returns 1 (the null-operation for a multiplication).
         /// </summary> 
         public struct _frameworkwishproduct { }
-        
-        /// <summary>
-        /// Handles a collection of this interface or its deeper interfaces recursively.
-        /// </summary>
-        public struct _interfacesrecursive { }
 
         /// <summary>
         /// A separate excluded categories collection allows filtering out categories 
@@ -109,10 +99,5 @@ namespace JJ.Framework.Logging.Core
         /// This null-tolerant version is missing in JJ.Framework.Configuration for now.
         /// </summary> 
         public struct _trygetsection { }
-
-        /// <summary>
-        /// Handles a collection of this type and its base classes and interfaces recursively.
-        /// </summary>
-        public struct _typesrecursive { }
     }
 }
