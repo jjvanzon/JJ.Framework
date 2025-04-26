@@ -1,4 +1,5 @@
-﻿using static JJ.Framework.Reflection.ReflectionHelper;
+﻿using JJ.Framework.Tests.Helpers;
+using static JJ.Framework.Reflection.ReflectionHelper;
 
 namespace JJ.Framework.Reflection.Core.Tests;
 
@@ -40,16 +41,13 @@ public class ReflectionHelper_Misc_Tests
                 $"Field '❌' not found on type '{GetType().FullName}'.");
         }
     }
-    
-    
-    // TODO: Test GetImplementation, TryGetImplementation and GetImplementations with none-single-multiple test variants. Use them to retrieve (multiple) implementations of an interface type from an assembly. Add helper types here too.
 
     // Implementations
     
     private interface IInterfaceNone;
     private interface IInterface1;
-    private interface IInterface2;
-    private class SingleImplementation : IInterface1;
+    private interface IInterface2 : IDummy;
+    private class SingleImplementation : IInterface1, IDummy;
     private class MultipleImplementations1 : IInterface2;
     private class MultipleImplementations2 : IInterface2;
 
@@ -129,4 +127,7 @@ public class ReflectionHelper_Misc_Tests
         IsTrue(() => implementations.Contains(typeof(MultipleImplementations1)));
         IsTrue(() => implementations.Contains(typeof(MultipleImplementations2)));
     }
+    
+    // TODO: Test GetImplementations that takes multiple assemblies.
+    
 }
