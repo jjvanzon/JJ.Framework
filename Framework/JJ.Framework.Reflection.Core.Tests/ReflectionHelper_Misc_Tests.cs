@@ -46,58 +46,66 @@ public class ReflectionHelper_Misc_Tests
 
     // Implementations
     
-    interface IInterfaceNone;
-    interface IInterface1;
-    interface IInterface2;
-    class SingleImplementation : IInterface1;
-    class MultipleImplementations1 : IInterface2;
-    class MultipleImplementations2 : IInterface2;
+    private interface IInterfaceNone;
+    private interface IInterface1;
+    private interface IInterface2;
+    private class SingleImplementation : IInterface1;
+    private class MultipleImplementations1 : IInterface2;
+    private class MultipleImplementations2 : IInterface2;
+
+    private Assembly Assembly => GetType().Assembly;
         
     // TryGetImplementation
     
     [TestMethod]
     public void TryGetImplementation_NotFound()
     {
-        Type implementation = TryGetImplementation<IInterfaceNone>(GetType().Assembly);
+        Type implementation = TryGetImplementation<IInterfaceNone>(Assembly);
         IsNull(() => implementation);
     }
     
     [TestMethod]
     public void TryGetImplementationTest_Single()
     {
-        Type implementation = TryGetImplementation<IInterface1>(GetType().Assembly);
+        Type implementation = TryGetImplementation<IInterface1>(Assembly);
         IsNotNull(() => implementation);
         AreEqual(typeof(SingleImplementation), () => implementation);
     }
              
     [TestMethod]
     public void TryGetImplementation_Multiple_Exception() 
-        => ThrowsException(() => GetImplementation<IInterface2>(GetType().Assembly));
+        => ThrowsExceptionContaining(
+            () => GetImplementation<IInterface2>(Assembly),
+            "Multiple implementations", "found");
     
     // GetImplementation
     
     [TestMethod]
     public void GetImplementation_NotFound_Exception() 
-        => ThrowsException(() => GetImplementation<IInterfaceNone>(GetType().Assembly));
+        => ThrowsExceptionContaining(
+            () => GetImplementation<IInterfaceNone>(Assembly),
+            "No implementation", "found");
     
     [TestMethod]
     public void GetImplementation_Single()
     {
-        Type implementation = GetImplementation<IInterface1>(GetType().Assembly);
+        Type implementation = GetImplementation<IInterface1>(Assembly);
         IsNotNull(() => implementation);
         AreEqual(typeof(SingleImplementation), () => implementation);
     }
         
     [TestMethod]
     public void GetImplementation_Multiple_Exception() 
-        => ThrowsException(() => GetImplementation<IInterface2>(GetType().Assembly));
+        => ThrowsExceptionContaining(
+            () => GetImplementation<IInterface2>(Assembly),
+            "Multiple implementations", "found");
     
     // GetImplementations
     
     [TestMethod]
     public void GetImplementations_None()
     {
-        IList<Type> implementations = GetImplementations<IInterfaceNone>(GetType().Assembly);
+        IList<Type> implementations = GetImplementations<IInterfaceNone>(Assembly);
         IsNotNull( () => implementations);
         AreEqual(0,() => implementations.Count);
     }
@@ -105,7 +113,7 @@ public class ReflectionHelper_Misc_Tests
     [TestMethod]
     public void GetImplementations_Single()
     {
-        IList<Type> implementations = GetImplementations<IInterface1>(GetType().Assembly);
+        IList<Type> implementations = GetImplementations<IInterface1>(Assembly);
         IsNotNull( () => implementations);
         AreEqual(1,() => implementations.Count);
         IsNotNull( () => implementations[0]);
@@ -115,7 +123,7 @@ public class ReflectionHelper_Misc_Tests
     [TestMethod]
     public void GetImplementations_Multiple()
     {
-        IList<Type> implementations = GetImplementations<IInterface2>(GetType().Assembly);
+        IList<Type> implementations = GetImplementations<IInterface2>(Assembly);
         IsNotNull( () => implementations);
         AreEqual(2,() => implementations.Count);
         IsTrue(() => implementations.Contains(typeof(MultipleImplementations1)));
