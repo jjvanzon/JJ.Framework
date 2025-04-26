@@ -193,7 +193,7 @@ namespace JJ.Framework.Reflection
                 return true;
             }
 
-            return false;
+            return false; // ncrunch: no coverage
         }
 
         public static bool IsStatic(MemberInfo member)
