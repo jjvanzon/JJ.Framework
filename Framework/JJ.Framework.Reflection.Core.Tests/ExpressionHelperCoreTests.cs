@@ -1,6 +1,8 @@
 // ReSharper disable UnusedParameter.Local
 // ReSharper disable RedundantCast
 // ReSharper disable ExpressionIsAlwaysNull
+// ReSharper disable EventNeverSubscribedTo.Local
+// ReSharper disable ValueParameterNotUsed
 
 using System.Linq.Expressions;
 using static JJ.Framework.Reflection.ExpressionHelper;
@@ -10,10 +12,16 @@ namespace JJ.Framework.Reflection.Core.Tests;
 [TestClass]
 public class ExpressionHelperCoreTests
 {
-    private void VoidMethod() { } // ncrunch: no coverage
-    private int IntMethod() => 1; // ncrunch: no coverage
-    private int MethodWith2Parameters(int a, int b) => 1; // ncrunch: no coverage
+    // ncrunch: no coverage start
     
+    private void VoidMethod() { }
+    private int GetInt() => 1;
+    private int MethodWith2Parameters(int a, int b) => 1;
+    private int[] GetArray() => [1, 2, 3];
+    private event EventHandler Event { add { } remove { } }
+    
+    // ncrunch: no coverage end
+
     private class TestIndexer
     {
         public int this[int x, int y] => 1;
@@ -23,51 +31,87 @@ public class ExpressionHelperCoreTests
     
     [TestMethod]
     public void GetName_WithAction() 
-        => AreEqual(nameof(VoidMethod), GetName(() => VoidMethod()));
+        => AreEqual("VoidMethod", GetName(() => VoidMethod()));
 
     [TestMethod]
     public void GetMember_WithFunc()
     {
-        var memberInfo = GetMember(() => IntMethod());
+        var memberInfo = GetMember(() => GetInt());
         IsNotNull(() => memberInfo);
-        AreEqual(nameof(IntMethod), memberInfo.Name);
+        AreEqual("GetInt", memberInfo.Name);
     }
     
     // Exceptions
-    
-    [TestMethod]
-    public void GetMember_NodeType_NotSupportedException() 
-        => ThrowsException
-            <NotSupportedException>(
-            () => GetMember(() => 1), 
-            "Member cannot be retrieved from NodeType Constant.");
-    
-    [TestMethod]
-    public void GetMethodCallInfo_NodeType_NotSupportedException() 
-        => ThrowsException
-            <NotSupportedException>(
-            () => GetMethodCallInfo(() => 1),
-            "MethodCallInfo cannot be retrieved from NodeType Constant.");
 
     [TestMethod]
-    public void GetText_NodeType_NotSupportedException()
+    public void ExpressionHelper_NodeType_NotSupported()
     {
         int number1 = 1;
         
         ThrowsExceptionContaining(
             () => GetText(() => number1 == 1), 
-            "Name cannot be obtained from", "Equal.");
+            "cannot be", "from", "Equal");
+        
+        ThrowsExceptionContaining(
+            () => GetValue(() => number1 == 1), 
+            "cannot be", "from", "Equal");
     }
 
     [TestMethod]
-    public void GetText_NodeType_NotSupportedException_WrappedInConversion()
+    public void ExpressionHelper_NodeType_NotSupported_WrappedInConversion()
     {
         int number1 = 1;
         
         ThrowsExceptionContaining(
             () => GetText(() => (object)(number1 == 1)), 
-            "Name cannot be obtained from", "Equal.");
+            "cannot be", "from", "Equal");
+        
+        ThrowsExceptionContaining(
+            () => GetValue(() => (object)(number1 == 1)), 
+            "cannot be", "from", "Equal");
     }
+        
+    [TestMethod]
+    public void GetValue_ArrayIndex_NodeType_NotSupported()
+    {
+        int[] array = [ 1, 2, 3 ];
+        ThrowsExceptionContaining(
+            () => GetValue(() => array[GetInt()]),
+            "Call", "not supported");
+    }
+        
+    // NOTE: The exception we are trying to test is unreachable.
+    //[TestMethod]
+    //public void GetValue_Member_NodeType_NotSupported()
+    //{
+    //    ThrowsExceptionContaining(
+    //        () => GetValue(() => Event),
+    //        "Event", "not supported");
+    //}
+    
+    [TestMethod]
+    public void ExpressionHelper_ArrayLength_NodeType_NotSupported()
+    {
+        ThrowsExceptionContaining(
+            () => GetText(() => GetArray().Length),
+            "cannot be", "from", "Call");
+
+        ThrowsExceptionContaining(
+            () => GetValue(() => GetArray().Length),
+            "cannot be", "from", "Call");
+    }
+    
+    [TestMethod]
+    public void GetMember_NodeType_NotSupportedException() 
+        => ThrowsExceptionContaining(
+            () => GetMember(() => 1), 
+            "cannot be", "from", "Constant");
+    
+    [TestMethod]
+    public void GetMethodCallInfo_NodeType_NotSupportedException() 
+        => ThrowsExceptionContaining(
+            () => GetMethodCallInfo(() => 1),
+            "cannot be", "from", "Constant.");
     
     // Expression Node Constructions
     
@@ -93,9 +137,9 @@ public class ExpressionHelperCoreTests
     [TestMethod]
     public void ExpressionHelper_ConvertCall_Explicit()
     {
-        string text = GetText(() => (double)IntMethod());
-        double value = GetValue(() => (double)IntMethod());
-        AreEqual("IntMethod()", () => text);
+        string text = GetText(() => (double)GetInt());
+        double value = GetValue(() => (double)GetInt());
+        AreEqual("GetInt()", () => text);
         AreEqual(1, () => value);
     }
     
@@ -103,11 +147,11 @@ public class ExpressionHelperCoreTests
     public void ExpressionHelper_ConvertsCall_Implicit()
     {
         double targetType = 2.0;
-        var    expression = CauseConvert(() => IntMethod(), targetType);
+        var    expression = CauseConvert(() => GetInt(), targetType);
         string text       = GetText(expression);
         double value      = GetValue(expression);
         AssertConvertCall(expression);
-        AreEqual("IntMethod()", () => text);
+        AreEqual("GetInt()", () => text);
         AreEqual(1, () => value);
     }
     
@@ -143,11 +187,11 @@ public class ExpressionHelperCoreTests
     public void ExpressionHelper_NestedConversions()
     {
         object? targetType = null;
-        var expression = CauseConvert(() => (decimal)(double)IntMethod(), targetType);
+        var expression = CauseConvert(() => (decimal)(double)GetInt(), targetType);
         string text = GetText(expression);
         object value = GetValue(expression);
         AssertNestedConvert(expression);
-        AreEqual("IntMethod()", () => text);
+        AreEqual("GetInt()", () => text);
         AreEqual(1m, () => value); 
     }
     

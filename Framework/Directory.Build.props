@@ -36,6 +36,8 @@
     <NoWarn>$(NoWarn);CS0414</NoWarn> <!--Field is assigned but its value is never used-->
     <NoWarn>$(NoWarn);IDE0060</NoWarn> <!--Remove unused parameter-->
     <NoWarn>$(NoWarn);IDE0004</NoWarn> <!--Remove unnecessary cast-->
+    <NoWarn>$(NoWarn);IDE0051</NoWarn> <!--Remove unused private members-->
+    <NoWarn>$(NoWarn);CS0067</NoWarn> <!--Event never invoked-->
   </PropertyGroup>
 
   <!-- Warnings Disabled for Legacy Code -->
