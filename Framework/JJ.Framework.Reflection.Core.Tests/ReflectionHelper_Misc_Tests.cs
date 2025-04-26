@@ -128,6 +128,18 @@ public class ReflectionHelper_Misc_Tests
         IsTrue(() => implementations.Contains(typeof(MultipleImplementations2)));
     }
     
-    // TODO: Test GetImplementations that takes multiple assemblies.
-    
+    [TestMethod]
+    public void GetImplementations_MultipleAssemblies()
+    {
+        IList<Assembly> assemblies = [ Assembly, typeof(IDummy).Assembly ];
+        IList<Type> implementations = GetImplementations<IDummy>(assemblies);
+        IsNotNull(() => implementations);
+        AreEqual(5, () => implementations.Count);
+        // NOTE: Very particular that it includes interface types. Correcting it would be too invasive to the code freeze.
+        IsTrue(() => implementations.Contains(typeof(IInterface2)));
+        IsTrue(() => implementations.Contains(typeof(DummyClass)));
+        IsTrue(() => implementations.Contains(typeof(SingleImplementation)));
+        IsTrue(() => implementations.Contains(typeof(MultipleImplementations1)));
+        IsTrue(() => implementations.Contains(typeof(MultipleImplementations2)));
+    }
 }
