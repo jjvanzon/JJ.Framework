@@ -124,6 +124,9 @@ namespace JJ.Framework.Reflection
                     {
                         list.AddRange(assembly.GetTypes().Where(x => String.Equals(x.Name, shortTypeName)));
                     }
+              
+                    // ncrunch: no coverage start
+                    
                     catch (ReflectionTypeLoadException)
                     {
                         // Ignore.
@@ -131,9 +134,11 @@ namespace JJ.Framework.Reflection
                         // and why it says the assembly cannot be loaded (file not found),
                         // while it clearly is part of the app domain.
                     }
+                    
+                    // ncrunch: no coverage end
                 }
                 types = list.ToArray();
-
+                                           
                 _typeByShortNameDictionary.Add(shortTypeName, types);
                 return types;
             }
