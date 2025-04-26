@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
-public class ReflectionHelperCoreTests
+public class ReflectionHelper_TypeHierarchy_Tests
 {
     // Assemblies
     
