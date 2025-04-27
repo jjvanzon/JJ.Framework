@@ -10,13 +10,17 @@ public class ReflectionCacheCoreTests
 {
     private const int REPEATS = 2;
     private string _nonExistentName = Guid.NewGuid().ToString();
-   
+
+    // ncrunch: no coverage start
+    
     private class TestClass
     {
         private int    _testField;
         private string _testField2;
-        public  int    TestProperty  { get => _testField;  set => _testField = value; } // ncrunch: no coverage
-        public  string TestProperty2 { get => _testField2; set => _testField2 = value; } // ncrunch: no coverage
+        public  int    TestProperty  { get => _testField;  set => _testField = value; } 
+        public  string TestProperty2 { get => _testField2; set => _testField2 = value; }
+        public int TestMethod() => 0;
+        public string TestMethod2(int index, string text) => "";
     }
 
     private class ClassWithIndexers
@@ -38,6 +42,8 @@ public class ReflectionCacheCoreTests
         public MultipleConstructorsClass(int i) { }
     }
 
+    // ncrunch: no coverage end
+    
     // NOTE: Tested methods are run twice to hit cache retrieval.
     
     // Properties
@@ -236,6 +242,202 @@ public class ReflectionCacheCoreTests
         AreEqual("_testField2",  () => fields[1].Name);
     }
     
+    // Methods
+    
+    [TestMethod]
+    public void StaticReflectionCache_GetMethod_Core_Test()
+    {
+        for (int i = 0; i < REPEATS; i++)
+        {
+            MethodInfo method = StaticReflectionCache.GetMethod(typeof(TestClass), "TestMethod");
+            AssertMethod(method);
+            
+            // NOTE: It's pretty strict you need to supply parameter types.
+            MethodInfo method2 = StaticReflectionCache.GetMethod(typeof(TestClass), "TestMethod2", typeof(int), typeof(string));
+            AssertMethod2(method2);
+        }
+    }
+    
+    [TestMethod]
+    public void StaticReflectionCache_TryGetMethod_Core_Test()
+    {
+        for (int i = 0; i < REPEATS; i++)
+        {
+            MethodInfo method = StaticReflectionCache.TryGetMethod(typeof(TestClass), "TestMethod");
+            AssertMethod(method);
+
+            // NOTE: It's pretty strict you need to supply parameter types.
+            MethodInfo method2 = StaticReflectionCache.TryGetMethod(typeof(TestClass), "TestMethod2", typeof(int), typeof(string));
+            AssertMethod2(method2);
+        } 
+     }
+    
+    [TestMethod]
+    public void StaticReflectionCache_GetMethod_NotFound_Throws()
+    {
+        ThrowsExceptionContaining(
+            () => StaticReflectionCache.GetMethod(typeof(TestClass), _nonExistentName), 
+            "Method", "not found");
+    }
+    
+    [TestMethod]
+    public void StaticReflectionCache_TryGetMethod_NotFound_ReturnsNull()
+    {
+        MethodInfo method = StaticReflectionCache.TryGetMethod(typeof(TestClass), _nonExistentName);
+        IsNull(() => method);
+    }
+    
+    [TestMethod]
+    public void StaticReflectionCache_GetMethods()
+    {
+        for (int i = 0; i < REPEATS; i++)
+        {
+            IList<MethodInfo> methods = StaticReflectionCache.GetMethods(typeof(TestClass), BINDING_FLAGS_ALL);
+            IsNotNull(() => methods);
+
+            MethodInfo method = methods.FirstOrDefault(x => x.Name == "TestMethod");
+            AssertMethod(method);
+            
+            MethodInfo method2 = methods.FirstOrDefault(x => x.Name == "TestMethod2");
+            AssertMethod2(method2);
+        }
+    }
+    
+    private static void AssertMethod(MethodInfo method)
+    {
+        IsNotNull(() => method);
+        AreEqual("TestMethod", () => method.Name);
+        AreEqual(typeof(int),  () => method.ReturnType);
+        
+        var parameters = method.GetParameters();
+        IsNotNull(() => parameters);
+        AreEqual(0, () => parameters.Length);
+    }
+    
+    private static void AssertMethod2(MethodInfo method2)
+    {
+        IsNotNull(() => method2);
+        AreEqual("TestMethod2",  () => method2.Name);
+        AreEqual(typeof(string), () => method2.ReturnType);
+        
+        var parameters = method2.GetParameters();
+        AreEqual(2,              () => parameters.Length);
+        AreEqual(typeof(int),    () => parameters[0].ParameterType);
+        AreEqual(typeof(string), () => parameters[1].ParameterType);
+    }
+    
+    // Indexers
+    
+    [TestMethod]
+    public void StaticReflectionCache_GetIndexer_Core_Test()
+    {
+        for (int i = 0; i < REPEATS; i++)
+        {
+            PropertyInfo indexer = StaticReflectionCache.GetIndexer(typeof(ClassWithIndexers), typeof(int));
+            AssertIndexer1(indexer);
+             
+            PropertyInfo indexer2 = StaticReflectionCache.GetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string));
+            AssertIndexer2(indexer2);
+        }
+    }
+    
+    [TestMethod]
+    public void StaticReflectionCache_TryGetIndexer_Core_Test()
+    {
+        for (int i = 0; i < REPEATS; i++)
+        {
+            PropertyInfo indexer = StaticReflectionCache.TryGetIndexer(typeof(ClassWithIndexers), typeof(int));
+            AssertIndexer1(indexer);
+            
+            PropertyInfo indexer2 = StaticReflectionCache.TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string));
+            AssertIndexer2(indexer2);
+        }
+    }
+
+    private void AssertIndexer1(PropertyInfo indexer)
+    {
+        IsNotNull(() => indexer);
+        AreEqual(typeof(int), () => indexer.PropertyType);
+        
+        ParameterInfo[] parameters = indexer.GetIndexParameters();
+        IsNotNull(() => parameters);
+        AreEqual(1, () => parameters.Length);
+        IsNotNull(() => parameters[0]);
+        AreEqual(typeof(int), () => parameters[0].ParameterType);
+    }
+        
+    private void AssertIndexer2(PropertyInfo indexer)
+    {
+        IsNotNull(() => indexer);
+        AreEqual(typeof(int), () => indexer.PropertyType);
+        
+        ParameterInfo[] parameters = indexer.GetIndexParameters();
+        IsNotNull(() => parameters);
+        AreEqual(2, () => parameters.Length);
+        IsNotNull(() => parameters[0]);
+        IsNotNull(() => parameters[1]);
+        AreEqual(typeof(int),    () => parameters[0].ParameterType);
+        AreEqual(typeof(string), () => parameters[1].ParameterType);
+    }
+    
+    [TestMethod]
+    public void StaticReflectionCache_GetIndexer_NotFound_Throws()
+    {
+        ThrowsExceptionContaining(
+            () => StaticReflectionCache.GetIndexer(typeof(ClassWithoutIndexer), typeof(int)), 
+            "Indexer not found");
+    }
+    
+    [TestMethod]
+    public void StaticReflectionCache_TryGetIndexer_NotFound_ReturnsNull()
+    {
+        for (int i = 0; i < REPEATS; i++)
+        {
+            PropertyInfo indexer = StaticReflectionCache.TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string));
+            IsNull(() => indexer);
+        }
+    }
+    
+    // Constructor Tests
+    
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_Single()
+    {
+        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
+        
+        for (int i = 0; i < REPEATS; i++)
+        {
+            ConstructorInfo constructor = reflectionCache.GetConstructor(typeof(TestClass));
+            IsNotNull(() => constructor);
+        }
+    }
+    
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_None_Throws()
+    {
+        var reflectionCache = new ReflectionCache(Public | Instance);
+        
+        for (int i = 0; i < REPEATS; i++)
+        {
+            ThrowsExceptionContaining(
+                () => reflectionCache.GetConstructor(typeof(NoConstructorClass)), 
+                "No constructor found");
+        }
+    }
+    
+    [TestMethod]
+    public void ReflectionCache_GetConstructor_Multiple_Throws()
+    {
+        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
+        
+        for (int i = 0; i < REPEATS; i++)
+        {
+            ThrowsExceptionContaining(
+                () => reflectionCache.GetConstructor(typeof(MultipleConstructorsClass)), 
+                "Multiple constructors found");
+        }
+    }
+    
     // GetTypeByShortName
     
     [TestMethod]
@@ -348,118 +550,6 @@ public class ReflectionCacheCoreTests
             NotEqual(types[0], () => types[1]);
             IsTrue(types.Any(x => x == typeof(Helpers.Namespace1.DuplicateClass_13017ef1)));
             IsTrue(types.Any(x => x == typeof(Helpers.Namespace2.DuplicateClass_13017ef1)));
-        }
-    }
-    
-    // Indexers
-    
-    [TestMethod]
-    public void StaticReflectionCache_GetIndexer_Core_Test()
-    {
-        for (int i = 0; i < REPEATS; i++)
-        {
-            PropertyInfo indexer = StaticReflectionCache.GetIndexer(typeof(ClassWithIndexers), typeof(int));
-            AssertIndexer1(indexer);
-             
-            PropertyInfo indexer2 = StaticReflectionCache.GetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string));
-            AssertIndexer2(indexer2);
-        }
-    }
-    
-    [TestMethod]
-    public void StaticReflectionCache_TryGetIndexer_Core_Test()
-    {
-        for (int i = 0; i < REPEATS; i++)
-        {
-            PropertyInfo indexer = StaticReflectionCache.TryGetIndexer(typeof(ClassWithIndexers), typeof(int));
-            AssertIndexer1(indexer);
-            
-            PropertyInfo indexer2 = StaticReflectionCache.TryGetIndexer(typeof(ClassWithIndexers), typeof(int), typeof(string));
-            AssertIndexer2(indexer2);
-        }
-    }
-
-    private void AssertIndexer1(PropertyInfo indexer)
-    {
-        IsNotNull(() => indexer);
-        AreEqual(typeof(int), () => indexer.PropertyType);
-        
-        ParameterInfo[] parameters = indexer.GetIndexParameters();
-        IsNotNull(() => parameters);
-        AreEqual(1, () => parameters.Length);
-        IsNotNull(() => parameters[0]);
-        AreEqual(typeof(int), () => parameters[0].ParameterType);
-    }
-        
-    private void AssertIndexer2(PropertyInfo indexer)
-    {
-        IsNotNull(() => indexer);
-        AreEqual(typeof(int), () => indexer.PropertyType);
-        
-        ParameterInfo[] parameters = indexer.GetIndexParameters();
-        IsNotNull(() => parameters);
-        AreEqual(2, () => parameters.Length);
-        IsNotNull(() => parameters[0]);
-        IsNotNull(() => parameters[1]);
-        AreEqual(typeof(int),    () => parameters[0].ParameterType);
-        AreEqual(typeof(string), () => parameters[1].ParameterType);
-    }
-    
-    [TestMethod]
-    public void StaticReflectionCache_GetIndexer_NotFound_Throws()
-    {
-        ThrowsExceptionContaining(
-            () => StaticReflectionCache.GetIndexer(typeof(ClassWithoutIndexer), typeof(int)), 
-            "Indexer not found");
-    }
-    
-    [TestMethod]
-    public void StaticReflectionCache_TryGetIndexer_NotFound_ReturnsNull()
-    {
-        for (int i = 0; i < REPEATS; i++)
-        {
-            PropertyInfo indexer = StaticReflectionCache.TryGetIndexer(typeof(ClassWithoutIndexer), typeof(int), typeof(string));
-            IsNull(() => indexer);
-        }
-    }
-    
-    // Constructor Tests
-    
-    [TestMethod]
-    public void ReflectionCache_GetConstructor_Single()
-    {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        
-        for (int i = 0; i < REPEATS; i++)
-        {
-            ConstructorInfo constructor = reflectionCache.GetConstructor(typeof(TestClass));
-            IsNotNull(() => constructor);
-        }
-    }
-    
-    [TestMethod]
-    public void ReflectionCache_GetConstructor_None_Throws()
-    {
-        var reflectionCache = new ReflectionCache(Public | Instance);
-        
-        for (int i = 0; i < REPEATS; i++)
-        {
-            ThrowsExceptionContaining(
-                () => reflectionCache.GetConstructor(typeof(NoConstructorClass)), 
-                "No constructor found");
-        }
-    }
-    
-    [TestMethod]
-    public void ReflectionCache_GetConstructor_Multiple_Throws()
-    {
-        var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
-        
-        for (int i = 0; i < REPEATS; i++)
-        {
-            ThrowsExceptionContaining(
-                () => reflectionCache.GetConstructor(typeof(MultipleConstructorsClass)), 
-                "Multiple constructors found");
         }
     }
 }
