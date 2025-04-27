@@ -19,7 +19,7 @@ Converts many types of lambda expressions into text or retrieves its resulting v
 For instance:
 
 ```cs
-ExpressionHelper.GetText(() => myParam.MyProperty.MyList[i].MySomething)
+GetText(() => myParam.MyProperty.MyList[i].MySomething)
 ```
 
 Will return the string:
@@ -31,7 +31,7 @@ Will return the string:
 Similarly you can retrieve its value:
 
 ```cs
-ExpressionHelper.GetValue(() => myParam.MyProperty.MyList[i].MySomething)
+GetValue(() => myParam.MyProperty.MyList[i].MySomething)
 ```
 
 which can return:
@@ -45,7 +45,7 @@ It can also give you method info, parameter names and parameter value info from 
 For instance:
 
 ```cs
-ExpressionHelper.GetMethodCallInfo(() => MyMethod(3));
+GetMethodCallInfo(() => MyMethod(3));
 ```
 
 Will return:
