@@ -2,8 +2,9 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
-    <Description>Expressions like ""myParam.MyList[i].MyProperty"" can be converted to text or their value retrieved or info like { ""MyMethod"", Parameters = { ""myParameter"", int, 3 } } Accessor IsIndexer IsStatic GetImplementations GetItemType GetFieldOrException TypesFromObjects IsAssignableFrom IsAssignableTo  ReflectionCache with fast GetProperties GetFields GetMethods GetIndexer GetConstructor GetTypeByShortName. </Description>
-    <PackageTags>reflection extensions expressions lambda text accessor implementations</PackageTags>
+    <Description>
+      For working with expressions and reflection. Convert lambdas myParam.MyList[i].MyProperty to readable text. Get method call information like { "MyMethod", Parameters = { "myParameter", int, 3 } }. Support plug-ins with the GetImplementations and GetTypeByShortName helpers. Accessor for accessing private members. ReflectionCache for faster access to GetProperties GetFields GetMethods GetIndexer GetConstructor. Other helpers like IsIndexer IsStatic and more!</Description>
+    <PackageTags>Reflection; Expressions; Lambda; Extensions; Plug-Ins; Accessor; IsIndexer; IsStatic; GetImplementations; GetItemType; ReflectionCache; GetProperties; GetFields; GetMethods; GetIndexer; GetConstructor; GetTypeByShortName; TypesFromObjects; IsAssignableFrom; IsAssignableTo</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection</PackageProjectUrl>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
