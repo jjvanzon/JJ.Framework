@@ -55,4 +55,10 @@ public void ExpressionHelper_ConvertCall_Implicit_ThroughExpressionType()
     }
 ```
 
-How nice of NCrunch to load assemblies multiple times in the AppDomain to make sure my reflection tests are indeterministic.
+    /// <summary> Compiler-generated [DefaultMember("Item")] because of the indexer  </summary>
+    /// <summary> Has Item property, but not DefaultMemberAttribute. Kinda kike an indexer. </summary>
+    /// <summary> Has Item property, but not DefaultMemberAttribute. Kinda kike an indexer. </summary>
+    /// <summary> Normal-ish class without an indexer </summary>
+
+        //ThrowsException(() => IsStatic(GetType().GetEvents()[0]), "IsStatic cannot be obtained from member of type 'System.Reflection.EventInfo'.");
+        //ThrowsException(() => IsStatic(GetType().GetProperties().Where(x => x.GetIndexParameters().Length > 0).First()), "IsStatic cannot be obtained from member of type 'System.Reflection.PropertyInfo'.");

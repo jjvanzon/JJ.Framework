@@ -58,17 +58,15 @@ public class ReflectionHelper_Misc_Tests
         AreEqual(typeof(DummyClass), () => GetItemType(typeof(IList<DummyClass>)));
     }
 
-    #warning TODO: Odd exception messages
-
     [TestMethod]
     public void GetItemType_Exception_NotACollection() 
-        => ThrowsException(() => GetItemType(this)/*, 
-            "Type 'ReflectionHelper_Misc_Tests' has no item type."*/);
+        => ThrowsException(() => GetItemType(this), 
+            "Type 'ReflectionHelper_Misc_Tests' has no item type.");
     
     [TestMethod]
     public void GetItemType_Exception_NonGenericCollection() 
-        => ThrowsException(() => GetItemType(typeof(ArrayList))/*, 
-            "Type 'ArrayList' has no item type."*/);
+        => ThrowsException(() => GetItemType(typeof(ArrayList)), 
+            "Type 'ArrayList' has no item type.");
 
     // IsStatic 
 
@@ -109,7 +107,7 @@ public class ReflectionHelper_Misc_Tests
     {
         EventInfo eventInfo = GetType().GetEvent("StaticEvent");
         IsNotNull(() => eventInfo);
-        ThrowsExceptionContaining(() => IsStatic(eventInfo), "IsStatic cannot be obtained from member of type", "EventInfo");
+        ThrowsException(() => IsStatic(eventInfo), "IsStatic cannot be obtained from member of type 'EventInfo'.");
         ThrowsException(() => IsStatic(null), "member cannot be null.");
     }
 }
