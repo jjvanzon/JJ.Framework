@@ -55,10 +55,30 @@ public void ExpressionHelper_ConvertCall_Implicit_ThroughExpressionType()
     }
 ```
 
+```cs
     /// <summary> Compiler-generated [DefaultMember("Item")] because of the indexer  </summary>
     /// <summary> Has Item property, but not DefaultMemberAttribute. Kinda kike an indexer. </summary>
     /// <summary> Has Item property, but not DefaultMemberAttribute. Kinda kike an indexer. </summary>
     /// <summary> Normal-ish class without an indexer </summary>
+```
 
+```cs
         //ThrowsException(() => IsStatic(GetType().GetEvents()[0]), "IsStatic cannot be obtained from member of type 'System.Reflection.EventInfo'.");
         //ThrowsException(() => IsStatic(GetType().GetProperties().Where(x => x.GetIndexParameters().Length > 0).First()), "IsStatic cannot be obtained from member of type 'System.Reflection.PropertyInfo'.");
+```
+
+```cs
+    // TODO: TryGetItemType variants
+
+    [TestMethod]
+    public void TryGetItemType_Baseline()
+    {
+        IsNull(() => TryGetItemType(null));
+        IsNull(() => TryGetItemType(this));
+        IsNull(() => TryGetItemType(typeof(ArrayList)));
+        AreEqual(typeof(int),        () => TryGetItemType(new[] { 1, 2, 3 }));
+        AreEqual(typeof(int),        () => TryGetItemType(typeof(int[])));
+        AreEqual(typeof(int),        () => TryGetItemType(typeof(List<int>)));
+        AreEqual(typeof(DummyClass), () => TryGetItemType(typeof(IList<DummyClass>)));
+    }
+```

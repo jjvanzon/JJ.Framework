@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using JJ.Framework.Tests.Helpers;
+﻿using JJ.Framework.Tests.Helpers;
 using static JJ.Framework.Reflection.ReflectionHelper;
 
 namespace JJ.Framework.Reflection.Core.Tests;
@@ -7,6 +6,8 @@ namespace JJ.Framework.Reflection.Core.Tests;
 [TestClass]
 public class ReflectionHelper_Misc_Tests
 {
+    // ncrunch: no coverage start
+    
     public int _field = 1;
     public int Property { get; set; } = 2;
     public int Method() => 3;
@@ -14,6 +15,8 @@ public class ReflectionHelper_Misc_Tests
     public static int StaticProperty { get; set; } = 5;
     public static int StaticMethod() => 6;
     public static event EventHandler StaticEvent;
+    
+    // ncrunch: no coverage end
 
     // Assemblies
     
@@ -32,9 +35,9 @@ public class ReflectionHelper_Misc_Tests
             fieldName => GetFieldOrException(GetType(), fieldName)
         };
 
-        foreach (var synonym in synonyms)
+        foreach (var getField in synonyms)
         {
-            FieldInfo field = synonym("_field");
+            FieldInfo field = getField("_field");
 
             IsNotNull(() => field);
             AreEqual("_field", () => field.Name);
@@ -42,32 +45,97 @@ public class ReflectionHelper_Misc_Tests
             AreEqual(typeof(int), () => field.FieldType);
 
             ThrowsException(
-                () => synonym("❌"),
+                () => getField("❌"),
                 $"Field '❌' not found on type '{GetType().FullName}'.");
         }
     }
 
-    // GetItemType Edge Cases
+    // ItemTypes
     
     [TestMethod]
-    public void GetItemType_BaseLine()
+    public void ItemTypes_WithCollectionInstance()
     {
-        AreEqual(typeof(int), () => GetItemType(new[] { 1, 2, 3 }));
-        AreEqual(typeof(int), () => GetItemType(typeof(int[])));
-        AreEqual(typeof(int), () => GetItemType(typeof(List<int>)));
-        AreEqual(typeof(DummyClass), () => GetItemType(typeof(IList<DummyClass>)));
+        IList<Func<object, Type>> synonyms = 
+        [
+            x => GetItemType(x),
+            x => x.GetItemType()
+        ];
+        
+        foreach (var getItemType in synonyms)
+        {
+            Type itemType = getItemType(new[] { 1, 2, 3 });
+            AreEqual(typeof(int), itemType);
+        }
+    }
+    
+    [TestMethod]
+    public void ItemTypes_WithCollectionType()
+    {
+        IList<Func<Type, Type>> synonyms = 
+        [
+            x =>      GetItemType(x),
+            x => x.   GetItemType( ),
+            x =>   TryGetItemType(x),
+            x => x.TryGetItemType( ) 
+        ];
+         
+        foreach (var getItemType in synonyms)
+        {
+            AreEqual(typeof(int), getItemType(typeof(int[])));
+            AreEqual(typeof(int), getItemType(typeof(List<int>)));
+            AreEqual(typeof(DummyClass), getItemType(typeof(IList<DummyClass>)));
+        }
     }
 
     [TestMethod]
-    public void GetItemType_Exception_NotACollection() 
-        => ThrowsException(() => GetItemType(this), 
-            "Type 'ReflectionHelper_Misc_Tests' has no item type.");
-    
-    [TestMethod]
-    public void GetItemType_Exception_NonGenericCollection() 
-        => ThrowsException(() => GetItemType(typeof(ArrayList)), 
-            "Type 'ArrayList' has no item type.");
+    public void GetItemType_NoItemTypeException()
+    {
+        IList<Func<Type, Type>> funcs = 
+        [
+            x => GetItemType(x),
+            x => x.GetItemType()
+        ];
+        
+        IList<Type> types =
+        [
+            GetType(),
+            typeof(int),
+            typeof(ArrayList),
+            typeof(DummyClass),
+        ];
 
+        foreach (Type type in types)
+        foreach (var getItemType in funcs)
+        { 
+            ThrowsExceptionContaining(() => getItemType(type), "has no item type.");
+        }
+    }
+
+    [TestMethod]
+    public void TryGetItemType_NoItemType_ReturnsNull()
+    {
+        IList<Func<Type, Type>> synonyms = 
+        [
+            x => TryGetItemType(x),
+            x => x.TryGetItemType()
+        ];
+        
+        IList<Type> types =
+        [
+            GetType(),
+            typeof(int),
+            typeof(ArrayList),
+            typeof(DummyClass),
+        ];
+
+        foreach (Type type in types)
+        foreach (var tryGetItemType in synonyms)
+        {
+            Type itemType = tryGetItemType(type);
+            IsNull(() => itemType);
+        }
+    }
+    
     // IsStatic 
 
     [TestMethod]    
