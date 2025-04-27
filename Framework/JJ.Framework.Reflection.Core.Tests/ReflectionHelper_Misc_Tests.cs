@@ -107,7 +107,7 @@ public class ReflectionHelper_Misc_Tests
     {
         EventInfo eventInfo = GetType().GetEvent("StaticEvent");
         IsNotNull(() => eventInfo);
-        ThrowsException(() => IsStatic(eventInfo), "IsStatic cannot be obtained from member of type 'EventInfo'.");
+        ThrowsException(() => IsStatic(eventInfo), "IsStatic cannot be obtained from member of type 'Event'.");
         ThrowsException(() => IsStatic(null), "member cannot be null.");
     }
 }

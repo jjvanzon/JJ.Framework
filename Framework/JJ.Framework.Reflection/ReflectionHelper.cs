@@ -219,7 +219,7 @@ namespace JJ.Framework.Reflection
                     return getterOrSetter.IsStatic;
 
                 default:
-                    throw new Exception(String.Format("IsStatic cannot be obtained from member of type '{0}'.", member.Name));
+                    throw new Exception(String.Format("IsStatic cannot be obtained from member of type '{0}'.", memberType));
             }
         }
 
