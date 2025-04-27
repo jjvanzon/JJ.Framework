@@ -1,9 +1,19 @@
 JJ.Framework.Reflection
 =======================
 
-Extensions to the `System.Reflection` and `System.Linq.Expressions` namespaces.
+Extensions to the `System.Reflection` and `System.Linq.Expressions` namespaces. Work with expressions and reflection. Turn lambdas into text:
 
-Work with __expressions__ and __reflection__. Turn lambdas into text: `"myParam.MyList[i].MyProperty"`. Extract structured method call data: `{ "MyMethod", Parameters = { "myParameter", int, 3 } }`. Find types and implementations for plug-ins. Access private members with `Accessors`. Use `ReflectionCache` for fast access to properties, fields, methods and indexers. Includes helpers like `IsIndexer`, `IsStatic` and more!
+```cs
+"myParam.MyList[i].MyProperty"
+```
+
+Extract structured method call data:
+
+```cs
+{ "MyMethod", Parameters = { "myParameter", int, 3 } }
+```
+
+Find types and implementations for plug-ins. Access private members with `Accessors`. Use `ReflectionCache` for fast access to properties, fields, methods and indexers. Includes helpers like `IsIndexer`, `IsStatic` and more!
 
 - [ExpressionHelper](#expressionhelper)
 - [Accessor](#accessor)
