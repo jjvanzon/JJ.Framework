@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Version>0.250.$(BuildNum)</Version>
-    <Description>Expressions like ""myParam.MyList[i].MyProperty"" can be converted to text or their value retrieved or info like { ""MyMethod"", Parameters = { ""myParameter"", int, 3 } } Accessor IsIndexer IsNullableType IsProperty IsReferenceType IsStatic IsSimpleType IsDefault GetBaseClasses GetImplementations GetItemType GetPropertyOrException GetUnderlyingNullableTypeFast TypesFromObjects. ReflectionCache with fast GetProperties GetFields GetConstructor GetTypeByShortName. Overloads for PropertInfo.GetValue IsAssignableFrom IsAssignableTo CreateInstance.</Description>
+    <Description>Expressions like ""myParam.MyList[i].MyProperty"" can be converted to text or their value retrieved or info like { ""MyMethod"", Parameters = { ""myParameter"", int, 3 } } Accessor IsIndexer IsStatic GetImplementations GetItemType GetFieldOrException TypesFromObjects IsAssignableFrom IsAssignableTo  ReflectionCache with fast GetProperties GetFields GetMethods GetIndexer GetConstructor GetTypeByShortName. </Description>
     <PackageTags>reflection extensions expressions lambda text accessor implementations</PackageTags>
     <RepositoryUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection</RepositoryUrl>
     <PackageProjectUrl>https://github.com/jjvanzon/JJ.Framework/tree/main/Framework/JJ.Framework.Reflection</PackageProjectUrl>
