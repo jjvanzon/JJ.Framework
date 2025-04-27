@@ -8,7 +8,7 @@ __Contents__
 - [ExpressionHelper](#expressionhelper)
 - [Accessor](#accessor)
 - [ReflectionCache](#reflectioncache)
-- [Reflection Extensions and Helpers](#reflection-extensions-and-helpers)
+- [Reflection Helpers](#reflection-helpers)
 
 
 ExpressionHelper
@@ -134,40 +134,22 @@ You can also get other types of constructs in a fast way:
 
 In this version, some of the options may only be available in the `StaticReflectionCache` variant. That variant may perform slightly less fast.
 
-Reflection Extensions and Helpers
----------------------------------
+Reflection Helpers
+------------------
 
 Various helper methods, but one of the most useful features is the `GetImplementation` method and variations thereof, which allow you to retrieve implementations of a specified base class or interface from an assembly, which is useful for plug-in development.
 
 * `GetImplementations`
     * Allows you to retrieve implementations of a specified base class or interface from an assembly, which is useful for plug-in development.
-
------
-
 * `GetItemType`
     * Gets the item type of a collection type.
-
------
-
 * `IsIndexer`
     * Can tell you if a `MethodBase` points to an indexer property.
-
------
-
 * `IsStatic`
     * Can tell you if a `MemberInfo` is static.
-
------
-
 * `TypesFromObjects`
     * You can pass objects to it, and it will return the concrete types of those objects, with some tolerance for nulls.
-
------
-
 * `IsAssignableFrom` / `IsAssignableTo`
     * Similar to the original `Type.IsAssignableFrom`, but now also an `IsAssignableTo` variation, if you find that more intuitive.
-
------
-
 * `GetFieldOrException`
     * `Type.GetField` returns null if the field does not exist. This method is a little safer than that and throws a clear exception if the field does not exist.
