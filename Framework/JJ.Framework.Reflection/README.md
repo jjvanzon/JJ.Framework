@@ -3,7 +3,7 @@ JJ.Framework.Reflection
 
 Extensions to the `System.Reflection` and `System.Linq.Expressions` namespaces.
 
-Work with expressions and reflection. Turn lambdas into text: "myParam.MyList[i].MyProperty". Extract structured method call data: { "MyMethod", Parameters = { "myParameter", int, 3 } }. Find types and implementations for plug-ins. Access private members with Accessors. Use ReflectionCache for fast access to properties, fields, methods and indexers. Includes helpers like IsIndexer, IsStatic and more!
+Work with __expressions__ and __reflection__. Turn lambdas into text: `"myParam.MyList[i].MyProperty"`. Extract structured method call data: `{ "MyMethod", Parameters = { "myParameter", int, 3 } }`. Find types and implementations for plug-ins. Access private members with `Accessors`. Use `ReflectionCache` for fast access to properties, fields, methods and indexers. Includes helpers like `IsIndexer`, `IsStatic` and more!
 
 - [ExpressionHelper](#expressionhelper)
 - [Accessor](#accessor)
@@ -103,8 +103,8 @@ class MyAccessor
 }
 ```
 
-__Limitations__  
-If `Accessor` doesn't suffice for some use case, it might be an idea to use `System.Reflection` directly or `PrivateObject` and `PrivateType` from a test framework you might use. Those may have slightly more complex syntax, but may offer a diversion where this `Accessor` class might not help you.
+*Limitations*  
+If `Accessor` doesn't suffice for some use case, it might be an idea to use `System.Reflection` directly or `PrivateObject` and `PrivateType` from a test framework you might use. Those may have slightly more complex syntax, but may offer a diversion where this `Accessor` class might not be able to help you.
 
 
 ReflectionCache
@@ -118,7 +118,8 @@ Example:
 private static readonly ReflectionCache _reflectionCache 
     = new ReflectionCache(BindingFlags.Public | BindingFlags.Instance);
 
-PropertyInfo[] properties = _reflectionCache.GetProperties(typeof(MyClass));
+PropertyInfo[] properties 
+    = _reflectionCache.GetProperties(typeof(MyClass));
 ```
 
 You can also get other types of constructs in a fast way:
@@ -150,3 +151,8 @@ Various helper methods, but one of the most useful features is the `GetImplement
     * Similar to the original `Type.IsAssignableFrom`, but now also an `IsAssignableTo` variation, if you find that more intuitive.
 * `GetFieldOrException`
     * `Type.GetField` returns null if the field does not exist. This method is a little safer than that and throws a clear exception if the field does not exist.
+
+💬 Feedback
+============
+
+Found an issue? [Let me know.](https://jjvanzon.github.io/#-how-to-reach-me)
