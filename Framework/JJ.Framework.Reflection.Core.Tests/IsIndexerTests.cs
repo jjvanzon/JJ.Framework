@@ -2,11 +2,10 @@
 using static JJ.Framework.Reflection.ReflectionHelper;
 
 namespace JJ.Framework.Reflection.Core.Tests;
-internal class IsIndexerTests
-{
-    
-    // IsIndexerMethod
 
+[TestClass]
+public class IsIndexerTests
+{
     // ncrunch: no coverage start
     
     private class WithIndexer
