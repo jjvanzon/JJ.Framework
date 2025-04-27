@@ -49,12 +49,6 @@
       <Value>Framework\JJ.Framework.Soap.Tests\JJ.Framework.Soap.Net48.Tests.csproj</Value>
       <Value>Framework\JJ.Framework.Soap.Tests.Server\JJ.Framework.Soap.Net48.Tests.Server.csproj</Value>
       <Value>Framework\JJ.Framework.Soap.Tests.ServiceInterface\JJ.Framework.Soap.Net48.Tests.ServiceInterface.csproj</Value>
-      <Value>Framework\JJ.Framework.Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net461</Value>
-      <Value>Framework\JJ.Framework.Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net5.0</Value>
-      <Value>Framework\JJ.Framework.Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net6.0</Value>
-      <Value>Framework\JJ.Framework.Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net7.0</Value>
-      <Value>Framework\JJ.Framework.Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.Reflection.Core.Tests\JJ.Framework.Reflection.Core.Tests.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Reflection.Tests\JJ.Framework.Reflection.Tests.csproj:net461</Value>
       <Value>Framework\JJ.Framework.Reflection.Tests\JJ.Framework.Reflection.Tests.csproj:net5.0</Value>
       <Value>Framework\JJ.Framework.Reflection.Tests\JJ.Framework.Reflection.Tests.csproj:net6.0</Value>

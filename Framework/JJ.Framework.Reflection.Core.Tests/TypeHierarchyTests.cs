@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
-public class ReflectionHelper_TypeHierarchy_Tests
+public class TypeHierarchyTests
 {
     // Types
 
@@ -218,15 +218,14 @@ public class ReflectionHelper_TypeHierarchy_Tests
         {
             IList<Type> types = synonym();
 
+            
             // Group by key to detect duplicates
             IList<Type> duplicates = types.GroupBy(x => x)
                                           .Where(x => x.Count() > 1)
-                                          .Select(x => x.Key)
+                                          .Select(x => x.Key)  // ncrunch: no coverage start
                                           .ToArray();
-            if (duplicates.Count > 0)
-            {
-                Fail($"Found duplicate types: {Join(", ", duplicates.Select(t => t.Name))}");
-            }
+
+            IsTrue(duplicates.Count == 0, $"Found duplicate types: {Join(", ", duplicates.Select(t => t.Name))}");
         }
     }
 }
