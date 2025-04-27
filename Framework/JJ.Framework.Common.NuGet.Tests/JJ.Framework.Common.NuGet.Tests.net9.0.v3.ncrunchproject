@@ -2,6 +2,7 @@
   <Settings>
     <HiddenComponentWarnings>
       <Value>CopyReferencedAssembliesToWorkspaceIsOn</Value>
+      <Value>LostReference</Value>
     </HiddenComponentWarnings>
   </Settings>
 </ProjectConfiguration>

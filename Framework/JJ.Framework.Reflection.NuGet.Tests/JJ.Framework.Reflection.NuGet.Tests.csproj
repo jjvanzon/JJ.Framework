@@ -10,13 +10,16 @@
 
   <ItemGroup>
     <PackageReference Include="JJ.Framework.PlatformCompatibility" Version="0.250.2313" />
+    <PackageReference Include="JJ.Framework.Reflection" Version="0.250.2313" />
     <PackageReference Include="JJ.Framework.Testing" Version="0.250.2313" />
     <PackageReference Include="JJ.Framework.Testing.Core" Version="2.2.2313" />
     <PackageReference Include="MSTest" Version="3.7.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\JJ.Framework.PlatformCompatibility.Core.Tests\*.cs" />
+    <Compile Include="..\JJ.Framework.Reflection.Tests\*.cs" />
+    <Compile Include="..\JJ.Framework.Reflection.Tests\AccessorTests\*.cs" />
+    <Compile Include="..\JJ.Framework.Reflection.Tests\ExpressionHelperTests\*.cs" />
   </ItemGroup>
 
   <ItemGroup>
