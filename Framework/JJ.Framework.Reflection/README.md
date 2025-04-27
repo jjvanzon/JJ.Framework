@@ -3,7 +3,7 @@ JJ.Framework.Reflection
 
 Extensions to the `System.Reflection` and `System.Linq.Expressions` namespaces.
 
-__Contents__
+Work with expressions and reflection. Turn lambdas into text: "myParam.MyList[i].MyProperty". Extract structured method call data: { "MyMethod", Parameters = { "myParameter", int, 3 } }. Find types and implementations for plug-ins. Access private members with Accessors. Use ReflectionCache for fast access to properties, fields, methods and indexers. Includes helpers like IsIndexer, IsStatic and more!
 
 - [ExpressionHelper](#expressionhelper)
 - [Accessor](#accessor)
@@ -103,11 +103,8 @@ class MyAccessor
 }
 ```
 
-__Limitations__
-
-There are limitations to this `Accessor` class.
-
-Perhaps for these cases it might be a solution to use `System.Reflection` directly or `PrivateObject` and `PrivateType` from a test framework. Those may have slightly more complex syntax, but may offer a diversion where this `Accessor` class cannot not help you.
+__Limitations__  
+If `Accessor` doesn't suffice for some use case, it might be an idea to use `System.Reflection` directly or `PrivateObject` and `PrivateType` from a test framework you might use. Those may have slightly more complex syntax, but may offer a diversion where this `Accessor` class might not help you.
 
 
 ReflectionCache
@@ -143,8 +140,8 @@ Various helper methods, but one of the most useful features is the `GetImplement
     * Allows you to retrieve implementations of a specified base class or interface from an assembly, which is useful for plug-in development.
 * `GetItemType`
     * Gets the item type of a collection type.
-* `IsIndexer`
-    * Can tell you if a `MethodBase` points to an indexer property.
+* `IsIndexerMethod`
+    * Can tell you if a `MethodInfo` points to an indexer property.
 * `IsStatic`
     * Can tell you if a `MemberInfo` is static.
 * `TypesFromObjects`
