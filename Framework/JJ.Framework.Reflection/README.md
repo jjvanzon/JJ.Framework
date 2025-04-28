@@ -159,8 +159,6 @@ Various helper methods, but one of the most useful features is the `GetImplement
     * You can pass objects to it, and it will return the concrete types of those objects, with some tolerance for nulls.
 * `IsAssignableFrom` / `IsAssignableTo`
     * Similar to the original `Type.IsAssignableFrom`, but now also an `IsAssignableTo` variation, if you find that more intuitive.
-* `GetFieldOrException`
-    * `Type.GetField` returns null if the field does not exist. This method is a little safer than that and throws a clear exception if the field does not exist.
 
 💬 Feedback
 ============
