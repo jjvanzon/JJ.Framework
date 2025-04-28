@@ -7,8 +7,6 @@ using System.Text;
 
 namespace JJ.Framework.Reflection.Core
 {
-    // TODO: Rename File
-
     public class AccessorCore : AccessorLegacy
     {
         public AccessorCore(string typeName, params object[] args) : base(typeName, args) { }
