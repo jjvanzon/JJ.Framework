@@ -208,10 +208,15 @@ namespace JJ.Framework.Reflection
                     throw new ArgumentException(String.Format("Value cannot be obtained from NodeType {0}.", node.Operand.NodeType));
             }
 
+            Type type = node.Type;
+            if (type.IsNullableType())
+            {
+                type = Nullable.GetUnderlyingType(type);
+            }
             object obj = _stack.Pop();
             if (obj is IConvertible)
             {
-                obj = Convert.ChangeType(obj, node.Type);
+                obj = Convert.ChangeType(obj, type);
             }
             _stack.Push(obj);
         }
