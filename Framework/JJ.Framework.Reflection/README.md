@@ -114,7 +114,7 @@ class MyAccessor
 ```
 
 *Limitations*  
-If `Accessor` doesn't suffice for some use case, it might be an idea to use `System.Reflection` directly or `PrivateObject` and `PrivateType` from a test framework you might use. Those may have slightly more complex syntax, but may offer a diversion where this `Accessor` class might not be able to help you.
+`Accessor` may suffice for most use cases, but there are some casees where it might be an idea to use `System.Reflection` directly or `PrivateObject` and `PrivateType` from a test framework you might use. Those may have slightly more complex syntax, but may offer a diversion where this `Accessor` class might not be able to help you.
 
 
 ReflectionCache
