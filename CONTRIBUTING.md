@@ -98,6 +98,7 @@ Code Copies
 
 `.Core` may also contain "copies from new" cherry-picked from the newest commits in the `legacy` branch. We started our new `main` from an older snapshot, yet there's valuable stuff in later commits. By incorporating that into `.Core`, we get all the sweet stuff out there that we want.
 
+
 The King and the Ice Queen
 --------------------------
 
@@ -108,6 +109,12 @@ The `legacy` HEAD, that is, the latest state of the `legacy`, may colloqially be
 <h3>The Ice Queen</h3>
 
 The code pulled from an earlier point in history may be referred to as __The Ice Queen__. She only changs minimally to avoid clashes with future historical pulls, but is essentially rigid and unchanging in her rule.
+
+<h3>The New Core</h3>
+
+The __New Core__ is like the revolution. They are they way forward, but can't do without the *King* and *Queen.* The pilars of power have to be respected.
+
+The *King* is still open to change, as long as the *New Core* shares its updates. The *Queen*, not so much.
 
 
 Legacy Conclusion
