@@ -15,7 +15,7 @@ namespace JJ.Framework.Reflection.Core
     /// </summary>
     public partial class AccessorLegacy // Adapted
     {
-        //private static readonly ReflectionCache _reflectionCache = new ReflectionCache();
+        private static readonly ReflectionCacheLegacy _reflectionCache = new ReflectionCacheLegacy();
         
         private readonly object _object;
         private readonly Type   _objectType;
