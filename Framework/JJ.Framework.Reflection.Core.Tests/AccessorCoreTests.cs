@@ -41,8 +41,8 @@ public class AccessorCoreTests
     
     private class TestAccessor_MethodCall_ByName : TestAccessorBase
     {
-        public string MyPrivateMethod(int para) =>
-            (string)_accessor.InvokeMethod("MyPrivateMethod", para);
+        public void MyPrivateMethod() =>
+            _accessor.InvokeMethod("MyPrivateMethod", 10);
     }
             
     [TestMethod]
@@ -63,7 +63,7 @@ public class AccessorCoreTests
     public void AccessorCore_MethodCall_ByName()
     {
         var accessor = new TestAccessor_MethodCall_ByName();
-        AreEqual("30", () => accessor.MyPrivateMethod(3));
+        accessor.MyPrivateMethod();
     }
 
     // Property Access
@@ -175,7 +175,8 @@ public class AccessorCoreTests
     public void AccessorCore_Wrapper()
     {
         var accessor = new MyAccessor(new MyClass());
-        string myString= accessor.MyPrivateMethod(1);
+        string myString = accessor.MyPrivateMethod(10);
+        AreEqual("100", () => myString);
     }
     
     class MyAccessor(MyClass myObject)
