@@ -6,11 +6,11 @@ public static partial class AssertHelperCore
 {
     // AreEqual
     
-    public static void AreEqual(object? expected, object? actual) 
-        => Check(expected, actual, Equals);
+    public static void AreEqual<T>(T expected, T actual) 
+        => Check(expected, actual, () => Equals(expected, actual));
     
-    public static void AreEqual(object? expected, object? actual, string message) 
-        => Check(expected, actual, message, Equals);
+    public static void AreEqual<T>(T expected, T actual, string message) 
+        => Check(expected, actual, message, () => Equals(expected, actual));
     
     /// <inheritdoc cref="_deltadirection" />
     public static void AreEqual(int expected, Expression<Func<int>> actualExpression, int delta, DeltaDirectionEnum direction = None)
