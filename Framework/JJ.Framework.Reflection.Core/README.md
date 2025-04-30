@@ -10,7 +10,7 @@ AccessorCore
 `[ TODO: Verify example code. ]`
 
 
-Allows easy access to the `internal`, `private` or `protected` elements of an `assembly` or `class` or other constructs.
+Allows easy access to the `internal`, `private` or `protected` elements of `assemblies` or `classes` and other constructs.
 
 -----
 
@@ -44,7 +44,13 @@ public int MyPrivateMethod(int myParameter) =>
     _accessor.InvokeMethod(() => MyPrivateMethod(myParameter));
 ```
 
-There the method to call, its parameters, values, and return type are inferred from the __lambda__ expression `() => MyPrivateMethod(myParameter)`. `Accessors` can use the info from that expression to make the call.
+There the method to call, its parameters, values, and return type are inferred from the __lambda__ expression:
+
+```cs
+() => MyPrivateMethod(myParameter)
+```
+
+The `Accessor` can use the info from that expression to make the call.
 
 ### Supported Constructs
 
@@ -62,7 +68,7 @@ Here's an example for a property:
 public int MyProperty => _accessor.GetPropertyValue(() => MyProperty);
 ```
 
-I like that syntax most but there are other syntaxes available:
+I personally like that syntax most but there are other syntaxes available:
 
 ```cs
 public int MyProperty => _accessor.GetPropertyValue<int>();
@@ -70,35 +76,95 @@ public int MyProperty => (int)_accessor.GetPropertyValue();
 public int MyProperty => _accessor.GetPropertyValue<int>("MyProperty");
 ```
 
-### Instance and Static Types and by Name
+### Specifying the Instance, Statics or Type Name
 
-Specifying the `object` and `Type` the accessor should act upon.
+Specifying what object to access, is done through the constructor of `AccessorCore`.
 
-`[ TODO ]`
+If you pass an `object` to it, that's usually enough:
+
+```cs
+var accessor = new AccessorCore(myObject);
+```
+
+If you want to access static members, you'd have to pass it the `Type` instead:
+
+```cs
+var accessor = new AccessorCore(typeof(MyStaticClass))
+```
+
+But to access the `base` class members of an object, you pass it both `Type` and `object`:
+
+```cs
+var accessor = new AccessorCore(myObject, typeof(TheBaseClass))
+```
+
+
+So if you want to access both *concrete* and *base* members, you need 2 `AccessorCore` instances:
+
+```cs
+var concreteAccessor = new AccessorCore(myObject);
+var baseAccessor = new AccessorCore(myObject, typeof(TheBaseClass))
+```
+
+Lastly, for `internal` classes, you might not be able to say `typeof(TheBaseClass)`. This is because `TheBaseClass` might not be in scope. Then you'd need to specify the type name instead:
+
+```cs
+_accessor = new AccessorCore("MyNamespace.MyPrivateClass, MyAssembly");
+```
 
 ### Accessor Wrappers
 
-`[ TODO ]`
+Programming your own wrapper accesors might be a good idea. Then you make access to the internals even easier with syntax as follows:
+
+```cs
+var accessor = new MyAccessor(new MyObject());
+int myInt = accessor.MyPrivateMethod(1);
+```
+
+
+You'd need to program that accessor class though, using `AccessorCore` as a base:
+
+```cs
+class MyAccessor
+{
+    private AccessorCore _accessor;
+
+    public MyAccessor(MyClass myObject) => _accessor = new Accessor(myObject);
+
+    public int MyPrivateMethod(int myParameter) 
+        => (int)_accessor.InvokeMethod(myParameter);
+}
+```
 
 ### Tricky Cases
 
-It can get tricky when the same method name is used for multiple overloads, that differ by parameter types. Usually it works out, but when passing `null` or `object` it can get confused. You can help it out by specifying parameter types explicitly:
+It can get tricky when the same method name is used for multiple overloads, that differ by parameter types. Usually it works out, but when passing `null` or `object` it can get confused. You can help `AccessorCore` out by explicitly specifying parameter types, here specified as `<int?>`:
 
 ```cs
 public int MyPrivateMethod(int? myParameter) =>
     _accessor.InvokeMethod<int?>(myParameter);
 ```
 
-There you passed a type argument `<int?>` for that.
+You can also pass the parameter values and types as separate collections:
 
 ```cs
 public int MyPrivateMethod(int? myParameter) =>
     _accessor.InvokeMethod( [ myParameter ], [ typeof(int?) ] );
 ```
 
-There you  pass the parameter values and types as separate collections.
+You can leave out types that don't cause ambiguity:
 
-As you can see, syntax gets more convoluted in more specific cases. Eventually `AccessorCore` might noit help you much more than `System.Reflection` already could. Then you still have the options to use `PrivateObject` and `PrivateType` from a test framework you might use, or the ultimate fallback to `System.Reflection` itself.
+```cs
+public int MyPrivateMethod2(int? myParameter1 int? int myParameter2) =>
+    _accessor.InvokeMethod( [ myParameter1, myParameter2 ], [ null, typeof(int?) ] );
+```
 
-`AccessorCore` is there to have short syntax for cases that just resolve easily, without having to break your head over complicated `Reflection` code while you have other things on your mind.
+As you can see, syntax gets more convoluted in more specific cases. Eventually `AccessorCore` might not help you much more than `System.Reflection` already could. Then you still have the options to use `PrivateObject` and `PrivateType` from a test framework you might use, or the ultimate fallback to `System.Reflection` itself.
 
+`AccessorCore` is there to have short syntax for cases that resolve easily, without having to break your head over complicated `Reflection` code while you have other things on your mind.
+
+
+💬 Feedback
+============
+
+Found an issue? [Let me know.](https://jjvanzon.github.io/#-how-to-reach-me)
