@@ -33,7 +33,7 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
         [TestMethod]
         public void Test_Accessor_UsingStrings_Indexer_InBaseClass()
         {
-            var obj = new DerivedClass();
+            var obj = new DerivedClassLegacy();
             // ReSharper disable once UseObjectOrCollectionInitializer
             var accessor = new ClassAccessorLegacy_UsingStrings(obj, typeof(Class));
             accessor[1] = 1;

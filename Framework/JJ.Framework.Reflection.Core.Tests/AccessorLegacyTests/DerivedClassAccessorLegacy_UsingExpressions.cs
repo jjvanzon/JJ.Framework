@@ -2,7 +2,7 @@
 {
     internal class DerivedClassAccessorLegacy_UsingExpressions : DerivedClassAccessorLegacyBase
     {
-        public DerivedClassAccessorLegacy_UsingExpressions(DerivedClass obj)
+        public DerivedClassAccessorLegacy_UsingExpressions(DerivedClassLegacy obj)
             : base(obj) { }
 
         public override int MemberToHide

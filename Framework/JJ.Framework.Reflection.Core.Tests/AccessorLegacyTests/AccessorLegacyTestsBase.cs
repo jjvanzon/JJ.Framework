@@ -5,8 +5,8 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
     public abstract class AccessorLegacyTestsBase
     {
         protected abstract IClassAccessorLegacy CreateClassAccessor(Class obj);
-        protected abstract IDerivedClassAccessorLegacy CreateDerivedClassAccessor(DerivedClass obj);
-        protected abstract IClassAccessorLegacy CreateBaseAccessor(DerivedClass obj);
+        protected abstract IDerivedClassAccessorLegacy CreateDerivedClassAccessor(DerivedClassLegacy obj);
+        protected abstract IClassAccessorLegacy CreateBaseAccessor(DerivedClassLegacy obj);
 
         protected void Test_Accessor_Field()
         {
@@ -22,7 +22,7 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 
         protected void Test_Accessor_Field_InBaseClass()
         {
-            var obj = new DerivedClass();
+            var obj = new DerivedClassLegacy();
             IClassAccessorLegacy accessor = CreateBaseAccessor(obj);
 
             accessor._field = 1;
@@ -46,7 +46,7 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 
         protected void Test_Accessor_Property_InBaseClass()
         {
-            var obj = new DerivedClass();
+            var obj = new DerivedClassLegacy();
             IClassAccessorLegacy accessor = CreateBaseAccessor(obj);
 
             accessor.Property = 1;
@@ -65,14 +65,14 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 
         protected void Test_Accessor_Method_InBaseClass()
         {
-            var obj = new DerivedClass();
+            var obj = new DerivedClassLegacy();
             IClassAccessorLegacy accessor = CreateBaseAccessor(obj);
             AssertHelper.AreEqual(1, () => accessor.IntMethodInt(1));
         }
 
         protected void Test_Accessor_HiddenMember()
         {
-            var obj = new DerivedClass();
+            var obj = new DerivedClassLegacy();
             IDerivedClassAccessorLegacy accessor = CreateDerivedClassAccessor(obj);
 
             accessor.MemberToHide = 1;

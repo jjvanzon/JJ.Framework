@@ -2,7 +2,7 @@
 {
     internal class DerivedClassAccessorLegacy_UsingStrings : DerivedClassAccessorLegacyBase
     {
-        public DerivedClassAccessorLegacy_UsingStrings(DerivedClass obj)
+        public DerivedClassAccessorLegacy_UsingStrings(DerivedClassLegacy obj)
             : base(obj)
         { }
 

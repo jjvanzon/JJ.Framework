@@ -5,7 +5,7 @@
         protected readonly AccessorLegacy _accessor;
         protected readonly AccessorLegacy _baseAccessor;
 
-        public DerivedClassAccessorLegacyBase(DerivedClass obj)
+        public DerivedClassAccessorLegacyBase(DerivedClassLegacy obj)
         {
             _accessor = new AccessorLegacy(obj);
             _baseAccessor = new AccessorLegacy(obj, typeof(Class));

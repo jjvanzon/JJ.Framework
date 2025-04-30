@@ -13,13 +13,13 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
             return accessor;
         }
 
-        protected override IDerivedClassAccessorLegacy CreateDerivedClassAccessor(DerivedClass obj)
+        protected override IDerivedClassAccessorLegacy CreateDerivedClassAccessor(DerivedClassLegacy obj)
         {
             var accessor = new DerivedClassAccessorLegacy_UsingStrings(obj);
             return accessor;
         }
 
-        protected override IClassAccessorLegacy CreateBaseAccessor(DerivedClass obj)
+        protected override IClassAccessorLegacy CreateBaseAccessor(DerivedClassLegacy obj)
         {
             var accessor = new ClassAccessorLegacy_UsingStrings(obj, typeof(Class));
             return accessor;
