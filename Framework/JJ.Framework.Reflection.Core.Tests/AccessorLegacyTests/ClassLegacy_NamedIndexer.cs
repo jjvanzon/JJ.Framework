@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 {
-    internal class Class_NamedIndexer
+    internal class ClassLegacy_NamedIndexer
     {
         private readonly Dictionary<int, int> _intDictionary = new Dictionary<int, int>();
 

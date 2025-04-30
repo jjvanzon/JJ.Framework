@@ -4,13 +4,13 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 {
     public abstract class AccessorLegacyTestsBase
     {
-        protected abstract IClassAccessorLegacy CreateClassAccessor(Class obj);
+        protected abstract IClassAccessorLegacy CreateClassAccessor(ClassLegacy obj);
         protected abstract IDerivedClassAccessorLegacy CreateDerivedClassAccessor(DerivedClassLegacy obj);
         protected abstract IClassAccessorLegacy CreateBaseAccessor(DerivedClassLegacy obj);
 
         protected void Test_Accessor_Field()
         {
-            var obj = new Class();
+            var obj = new ClassLegacy();
             IClassAccessorLegacy accessor = CreateClassAccessor(obj);
 
             accessor._field = 1;
@@ -34,7 +34,7 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 
         protected void Test_Accessor_Property()
         {
-            var obj = new Class();
+            var obj = new ClassLegacy();
             IClassAccessorLegacy accessor = CreateClassAccessor(obj);
 
             accessor.Property = 1;
@@ -58,7 +58,7 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 
         protected void Test_Accessor_Method()
         {
-            var obj = new Class();
+            var obj = new ClassLegacy();
             IClassAccessorLegacy accessor = CreateClassAccessor(obj);
             AssertHelper.AreEqual(1, () => accessor.IntMethodInt(1));
         }
@@ -84,42 +84,42 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 
         protected void Test_Accessor_VoidMethod()
         {
-            var obj = new Class();
+            var obj = new ClassLegacy();
             IClassAccessorLegacy accessor = CreateClassAccessor(obj);
             accessor.VoidMethod();
         }
 
         protected void Test_Accessor_VoidMethodInt()
         {
-            var obj = new Class();
+            var obj = new ClassLegacy();
             IClassAccessorLegacy accessor = CreateClassAccessor(obj);
             accessor.VoidMethodInt(1);
         }
 
         protected void Test_Accessor_VoidMethodIntInt()
         {
-            var obj = new Class();
+            var obj = new ClassLegacy();
             IClassAccessorLegacy accessor = CreateClassAccessor(obj);
             accessor.VoidMethodIntInt(1, 1);
         }
 
         protected void Test_Accessor_IntMethod()
         {
-            var obj = new Class();
+            var obj = new ClassLegacy();
             IClassAccessorLegacy accessor = CreateClassAccessor(obj);
             AssertHelper.AreEqual(1, () => accessor.IntMethod());
         }
 
         protected void Test_Accessor_IntMethodInt()
         {
-            var obj = new Class();
+            var obj = new ClassLegacy();
             IClassAccessorLegacy accessor = CreateClassAccessor(obj);
             AssertHelper.AreEqual(1, () => accessor.IntMethodInt(1));
         }
 
         protected void Test_Accessor_IntMethodIntInt()
         {
-            var obj = new Class();
+            var obj = new ClassLegacy();
             IClassAccessorLegacy accessor = CreateClassAccessor(obj);
             AssertHelper.AreEqual(1, () => accessor.IntMethodIntInt(1, 1));
         }

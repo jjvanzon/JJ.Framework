@@ -6,9 +6,9 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
     {
         protected readonly AccessorLegacy _accessor;
 
-        public ClassAccessorLegacyBase(Class obj) => _accessor = new AccessorLegacy(obj);
+        public ClassAccessorLegacyBase(ClassLegacy obj) => _accessor = new AccessorLegacy(obj);
 
-        public ClassAccessorLegacyBase(Class obj, Type type) => _accessor = new AccessorLegacy(obj, type);
+        public ClassAccessorLegacyBase(ClassLegacy obj, Type type) => _accessor = new AccessorLegacy(obj, type);
 
         public int this[int index]
         {

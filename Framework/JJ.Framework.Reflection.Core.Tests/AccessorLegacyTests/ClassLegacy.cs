@@ -10,7 +10,7 @@
 
 namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 {
-    public class Class
+    public class ClassLegacy
     {
         private int _field;
 

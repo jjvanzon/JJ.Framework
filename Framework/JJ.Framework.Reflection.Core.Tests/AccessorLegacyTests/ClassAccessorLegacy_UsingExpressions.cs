@@ -7,13 +7,13 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
     {
         private static readonly AccessorLegacy _staticAccessor;
 
-        public ClassAccessorLegacy_UsingExpressions(Class obj)
+        public ClassAccessorLegacy_UsingExpressions(ClassLegacy obj)
             : base(obj) { }
 
-        public ClassAccessorLegacy_UsingExpressions(Class obj, Type type)
+        public ClassAccessorLegacy_UsingExpressions(ClassLegacy obj, Type type)
             : base(obj, type) { }
 
-        static ClassAccessorLegacy_UsingExpressions() => _staticAccessor = new AccessorLegacy(typeof(Class));
+        static ClassAccessorLegacy_UsingExpressions() => _staticAccessor = new AccessorLegacy(typeof(ClassLegacy));
 
         public override int _field
         {

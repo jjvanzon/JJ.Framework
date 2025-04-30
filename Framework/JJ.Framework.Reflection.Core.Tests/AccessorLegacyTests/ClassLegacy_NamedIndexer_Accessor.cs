@@ -1,10 +1,10 @@
 ﻿namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 {
-    internal class Class_NamedIndexer_Accessor
+    internal class ClassLegacy_NamedIndexer_Accessor
     {
         private readonly AccessorLegacy _accessor;
 
-        public Class_NamedIndexer_Accessor(Class_NamedIndexer obj) => _accessor = new AccessorLegacy(obj);
+        public ClassLegacy_NamedIndexer_Accessor(ClassLegacy_NamedIndexer obj) => _accessor = new AccessorLegacy(obj);
 
         public int this[int index]
         {

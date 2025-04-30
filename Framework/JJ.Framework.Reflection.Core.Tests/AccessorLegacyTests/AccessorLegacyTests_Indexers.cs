@@ -9,7 +9,7 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
         [TestMethod]
         public void Test_Accessor_UsingStrings_Indexer_Int()
         {
-            var obj = new Class();
+            var obj = new ClassLegacy();
             // ReSharper disable once UseObjectOrCollectionInitializer
             var accessor = new ClassAccessorLegacy_UsingStrings(obj);
             accessor[1] = 1;
@@ -21,7 +21,7 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
         [TestMethod]
         public void Test_Accessor_UsingStrings_Indexer_String()
         {
-            var obj = new Class();
+            var obj = new ClassLegacy();
             // ReSharper disable once UseObjectOrCollectionInitializer
             var accessor = new ClassAccessorLegacy_UsingStrings(obj);
             accessor["A"] = "1";
@@ -35,7 +35,7 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
         {
             var obj = new DerivedClassLegacy();
             // ReSharper disable once UseObjectOrCollectionInitializer
-            var accessor = new ClassAccessorLegacy_UsingStrings(obj, typeof(Class));
+            var accessor = new ClassAccessorLegacy_UsingStrings(obj, typeof(ClassLegacy));
             accessor[1] = 1;
             accessor[2] = 2;
             AssertHelper.AreEqual(1, () => accessor[1]);
@@ -45,9 +45,9 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
         [TestMethod]
         public void Test_Accessor_UsingStrings_Indexer_Named()
         {
-            var obj = new Class_NamedIndexer();
+            var obj = new ClassLegacy_NamedIndexer();
             // ReSharper disable once UseObjectOrCollectionInitializer
-            var accessor = new Class_NamedIndexer_Accessor(obj);
+            var accessor = new ClassLegacy_NamedIndexer_Accessor(obj);
             accessor[1] = 1;
             accessor[2] = 2;
             AssertHelper.AreEqual(1, () => accessor[1]);

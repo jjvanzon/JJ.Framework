@@ -2,11 +2,11 @@
 
 namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 {
-    internal class Class_RefParameters_InstanceMethods_Accessor
+    internal class ClassLegacy_RefParameters_InstanceMethods_Accessor
     {
         private readonly AccessorLegacy _accessor;
 
-        public Class_RefParameters_InstanceMethods_Accessor() => _accessor = new AccessorLegacy(new Class_RefParameters_InstanceMethods());
+        public ClassLegacy_RefParameters_InstanceMethods_Accessor() => _accessor = new AccessorLegacy(new ClassLegacy_RefParameters_InstanceMethods());
 
         // 1 Parameter
 

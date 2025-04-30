@@ -6,7 +6,7 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
     [TestClass]
     public class AccessorLegacyTests_UsingExpressions : AccessorLegacyTestsBase
     {
-        protected override IClassAccessorLegacy CreateClassAccessor(Class obj)
+        protected override IClassAccessorLegacy CreateClassAccessor(ClassLegacy obj)
         {
             var accessor = new ClassAccessorLegacy_UsingExpressions(obj);
             return accessor;
@@ -20,7 +20,7 @@ namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 
         protected override IClassAccessorLegacy CreateBaseAccessor(DerivedClassLegacy obj)
         {
-            var accessor = new ClassAccessorLegacy_UsingExpressions(obj, typeof(Class));
+            var accessor = new ClassAccessorLegacy_UsingExpressions(obj, typeof(ClassLegacy));
             return accessor;
         }
 

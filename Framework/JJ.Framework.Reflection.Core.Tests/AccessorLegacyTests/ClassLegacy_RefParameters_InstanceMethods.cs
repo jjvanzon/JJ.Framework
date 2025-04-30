@@ -9,7 +9,7 @@ using JJ.Framework.Reflection.Core.Tests.Helpers;
 
 namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 {
-    internal class Class_RefParameters_InstanceMethods
+    internal class ClassLegacy_RefParameters_InstanceMethods
     {
         // 1 Parameter
 
