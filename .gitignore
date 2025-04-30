@@ -10,5 +10,10 @@ TestResults
 **/Debug/**
 **/Release/**
 UpgradeLog.htm
+
+# NCrunch
 *.ncrunchsolution
 *.ncrunchproject
+nCrunchTemp*.*
+.NCrunch*
+NCrunch*.xml
