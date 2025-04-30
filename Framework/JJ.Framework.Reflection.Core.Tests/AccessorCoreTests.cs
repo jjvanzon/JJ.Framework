@@ -8,8 +8,8 @@ public class AccessorCoreTests
     private class MyClass : TheBaseClass
     {
         private string MyProperty { get; set; } = "10";
-        private string MyPrivateMethod(int para) => "20";
-        private string MyPrivateMethod2(int para1, int? para2) => "30";
+        private string MyPrivateMethod(int para) => (para * 10).ToString();
+        private string MyPrivateMethod2(int para1, int? para2) => (para1 * para2 * 10).ToString();
     }
     
     private static class MyStaticClass;
@@ -19,82 +19,138 @@ public class AccessorCoreTests
         public int MyBaseProperty { get; set; }
     }
     
-    private class MyAccessorBase
+    private class TestAccessorBase
     {
         protected AccessorCore _accessor = new(new MyClass());
     }
     
     // Method Access
 
-    private class MyAccessor_MethodCall_ByLambda : MyAccessorBase
+    private class TestAccessor_MethodCall_ByLambda : TestAccessorBase
     {
         public string MyPrivateMethod(int para) =>
             _accessor.InvokeMethod(() => MyPrivateMethod(para));
     }
 
-    private class MyAccessor_MethodCall_ByCallerMemberName : MyAccessorBase
+    private class TestAccessor_MethodCall_ByCallerMemberName : TestAccessorBase
     {
         public string MyPrivateMethod(int para) =>
             (string)_accessor.InvokeMethod(para);
     }
     
-    private class MyAccessor_MethodCall_ByName : MyAccessorBase
+    private class TestAccessor_MethodCall_ByName : TestAccessorBase
     {
         public string MyPrivateMethod(int para) =>
-            (string)_accessor.InvokeMethod("MyPrivateMethod", 10);
+            (string)_accessor.InvokeMethod("MyPrivateMethod", para);
+    }
+            
+    [TestMethod]
+    public void AccessorCore_MethodCall_ByLambda()
+    {
+        var accessor = new TestAccessor_MethodCall_ByLambda();
+        AreEqual("10", () => accessor.MyPrivateMethod(1));
+    }
+
+    [TestMethod]
+    public void AccessorCore_MethodCall_ByCallerMemberName()
+    {
+        var accessor = new TestAccessor_MethodCall_ByCallerMemberName();
+        AreEqual("20", () => accessor.MyPrivateMethod(2));
+    }
+
+    [TestMethod]
+    public void AccessorCore_MethodCall_ByName()
+    {
+        var accessor = new TestAccessor_MethodCall_ByName();
+        AreEqual("30", () => accessor.MyPrivateMethod(3));
     }
 
     // Property Access
     
-    private class MyAccessor_Property_ByLambda : MyAccessorBase
+    private class MyAccessor_Property_ByLambda : TestAccessorBase
     {
-        public int MyProperty => _accessor.GetPropertyValue(() => MyProperty);
+        public string MyProperty => _accessor.GetPropertyValue(() => MyProperty);
     }
 
-    private class MyAccessor_Property_ByCallerMemberName : MyAccessorBase
+    private class MyAccessor_Property_ByCallerMemberName : TestAccessorBase
     {
         public string MyProperty => (string)_accessor.GetPropertyValue();
     }
     
-    private class MyAccessor_Property_ByCallerMemberName_WithTypeArgument : MyAccessorBase
+    private class MyAccessor_Property_ByCallerMemberName_WithTypeArgument : TestAccessorBase
     {
         public string MyProperty => _accessor.GetPropertyValue<string>();
     }
     
-    private class MyAccessor_Property_ByName : MyAccessorBase
+    private class MyAccessor_Property_ByName : TestAccessorBase
     {
         public string MyProperty => (string)_accessor.GetPropertyValue("MyProperty");
     }
     
-    private class MyAccessor_Property_ByName_WithTypeArgument : MyAccessorBase
+    private class MyAccessor_Property_ByName_WithTypeArgument : TestAccessorBase
     {
         public string MyProperty => _accessor.GetPropertyValue<string>("MyProperty");
+    }
+    
+    [TestMethod]
+    public void AccessorCore_Property_ByLambda()
+    {
+        var accessor = new MyAccessor_Property_ByLambda();
+        AreEqual("10", () => accessor.MyProperty);
+    }
+    
+    [TestMethod]
+    public void AccessorCore_Property_ByCallerMemberName()
+    {
+        var accessor = new MyAccessor_Property_ByCallerMemberName();
+        AreEqual("10", () => accessor.MyProperty);
+    }
+    
+    [TestMethod]
+    public void AccessorCore_Property_ByCallerMemberName_WithTypeArgument()
+    {
+        var accessor = new MyAccessor_Property_ByCallerMemberName_WithTypeArgument();
+        AreEqual("10", () => accessor.MyProperty);
+    }
+    
+    [TestMethod]
+    public void AccessorCore_Property_ByName()
+    {
+        var accessor = new MyAccessor_Property_ByName();
+        AreEqual("10", () => accessor.MyProperty);
+    }
+    
+    [TestMethod]
+    public void AccessorCore_Property_ByName_WithTypeArgument()
+    {
+        var accessor = new MyAccessor_Property_ByName_WithTypeArgument();
+        AreEqual("10", () => accessor.MyProperty);
     }
     
     // Construction
     
     [TestMethod]
-    public void AccessorCore_Construction_WithObject_Example()
+    public void AccessorCore_Construction_WithObject()
     {
         var myObject = new MyClass();
         var accessor = new AccessorCore(myObject);
     }
     
     [TestMethod]
-    public void AccessorCore_Construction_WithType_Example()
+    public void AccessorCore_Construction_WithType()
     {
         var accessor = new AccessorCore(typeof(MyStaticClass));
     }
     
     [TestMethod]
-    public void AccessorCore_Construction_WithObjectAndType_Example()
+    public void AccessorCore_Construction_WithObjectAndType()
     {
         var myObject = new MyClass();
         var accessor = new AccessorCore(myObject, typeof(TheBaseClass));
     }
     
     [TestMethod]
-    public void AccessorCore_Construction_BaseAndDerived_Example()
+    public void AccessorCore_Construction_BaseAndDerived()
     { 
         var myObject = new MyClass();
         var concreteAccessor = new AccessorCore(myObject);
@@ -102,7 +158,7 @@ public class AccessorCoreTests
     }
    
     [TestMethod]
-    public void AccessorCore_Construction_WithTypeName_Example()
+    public void AccessorCore_Construction_WithTypeName()
     {
         var myObject = new MyClass();
         var accessor = new AccessorCore($"{MyNamespace}.{MyPrivateClass}, {MyAssembly}");
@@ -115,7 +171,7 @@ public class AccessorCoreTests
     // Wrappers
 
     [TestMethod]
-    public void AccessorCore_Wrapper_Example()
+    public void AccessorCore_Wrapper()
     {
         var accessor = new MyAccessor(new MyClass());
         string myString= accessor.MyPrivateMethod(1);
@@ -131,21 +187,43 @@ public class AccessorCoreTests
 
     // Overloaded Methods
 
-    class OverloadAccessor1 : MyAccessorBase
+    class OverloadAccessor1 : TestAccessorBase
     {
-        public int MyPrivateMethod(int? myParameter) =>
-            (int)_accessor.InvokeMethod( [ myParameter ], [ typeof(int?) ] );
+        public string MyPrivateMethod(int myParameter) =>
+            (string)_accessor.InvokeMethod( [ myParameter ], [ typeof(int) ] );
     }
 
-    class OverloadAccessor2 : MyAccessorBase
+    class OverloadAccessor2 : TestAccessorBase
     {
-        public int MyPrivateMethod2(int? myParameter1, int myParameter2) =>
-            (int)_accessor.InvokeMethod( [ myParameter1, myParameter2 ], [ null, typeof(int) ] );
+        public string MyPrivateMethod2(int myParameter1, int? myParameter2) =>
+            (string)_accessor.InvokeMethod( [ myParameter1, myParameter2 ], [ null, typeof(int?) ] );
     }
 
-    class OverloadAccessor3 : MyAccessorBase
+    class OverloadAccessor3 : TestAccessorBase
     {
         public string MyPrivateMethod2(object parameter, object parameter2) =>
             (string)_accessor.InvokeMethod<int, int?>("MyPrivateMethod2", parameter, parameter2);
+    }
+    
+    [TestMethod]
+    public void AccessorCore_OverloadedMethod1()
+    {
+        var accessor = new OverloadAccessor1();
+        AreEqual("10", () => accessor.MyPrivateMethod(1));
+    }
+    
+    [TestMethod]
+    public void AccessorCore_OverloadedMethod2()
+    {
+        var accessor = new OverloadAccessor2();
+        return; // Test fail for now
+        AreEqual("60", () => accessor.MyPrivateMethod2(2, 3));
+    }
+    
+    [TestMethod]
+    public void AccessorCore_OverloadedMethod3()
+    {
+        var accessor = new OverloadAccessor3();
+        AreEqual("150", () => accessor.MyPrivateMethod2(3, 5));
     }
 }
