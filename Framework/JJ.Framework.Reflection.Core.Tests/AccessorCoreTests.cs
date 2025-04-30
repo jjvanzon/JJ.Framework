@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Reflection.Core.Tests;
+﻿// ReSharper disable RedundantArgumentDefaultValue
+namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
 public class AccessorCoreTests
@@ -216,7 +217,6 @@ public class AccessorCoreTests
     public void AccessorCore_OverloadedMethod2()
     {
         var accessor = new OverloadAccessor2();
-        return; // Test fail for now
         AreEqual("60", () => accessor.MyPrivateMethod2(2, 3));
     }
     
