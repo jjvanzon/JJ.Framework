@@ -9,9 +9,13 @@ namespace JJ.Framework.Reflection.Core
 {
     public class AccessorCore : AccessorLegacy
     {
+        /// <inheritdoc />
         public AccessorCore(string typeName, params object[] args) : base(typeName, args) { }
+        /// <inheritdoc />
         public AccessorCore(object obj) : base(obj) { }
+        /// <inheritdoc />
         public AccessorCore(Type objectType) : base(objectType) { }
+        /// <inheritdoc />
         public AccessorCore(object obj, Type objectType) : base(obj, objectType) { }
 
         // Variations with CallerMemberName
@@ -39,17 +43,14 @@ namespace JJ.Framework.Reflection.Core
 
         // Redefined all base members, to prevent overloads in derived class from shadowing better matches in the base class.
 
-        /// <inheritdoc cref="AccessorLegacy.GetFieldValue{T}(Expression{Func{T}})" />
+        /// <inheritdoc cref="_nameexpression" />
         public new T GetFieldValue<T>(Expression<Func<T>> nameExpression) => base.GetFieldValue(nameExpression);
-        /// <inheritdoc cref="AccessorLegacy.GetFieldValue(string)" />
         public new object GetFieldValue(string name) => base.GetFieldValue(name);
-        /// <inheritdoc cref="AccessorLegacy.SetFieldValue{T}(Expression{Func{T}}, T)" />
+        /// <inheritdoc cref="_nameexpression" />
         public new void SetFieldValue<T>(Expression<Func<T>> nameExpression, T value) => base.SetFieldValue(nameExpression, value);
-        /// <inheritdoc cref="AccessorLegacy.SetFieldValue(string, object)" />
         public new void SetFieldValue(string name, object value) => base.SetFieldValue(name, value);
-        /// <inheritdoc cref="AccessorLegacy.GetPropertyValue{T}(Expression{Func{T}})" />
+        /// <inheritdoc cref="_nameexpression" />
         public new T GetPropertyValue<T>(Expression<Func<T>> nameExpression) => base.GetPropertyValue(nameExpression);
-        /// <inheritdoc cref="AccessorLegacy.SetPropertyValue(string, object)" />
         public new void SetPropertyValue(string name, object value) => base.SetPropertyValue(name, value);
 
         /// <inheritdoc cref="_acessorinvokemethod" />
