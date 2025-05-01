@@ -54,6 +54,11 @@
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
 
+  <!-- Experimental NuGet restore alternative, hopefully faster. -->
+  <PropertyGroup>
+    <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
+  </PropertyGroup>
+  
   <!-- Icon -->
   
   <ItemGroup>
