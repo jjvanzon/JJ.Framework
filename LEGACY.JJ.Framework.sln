@@ -125,6 +125,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65FB0FF9-90BB-4A75-8A90-ADE03931C8EE}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
 		iis-components.png = iis-components.png
 		jj-icon-64x64-margin4.png = jj-icon-64x64-margin4.png
 		jj-icon-64x64.png = jj-icon-64x64.png
@@ -166,8 +168,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter", "Demos\ReturnActions.WithViewMapping.Mvc.UrlParameter\JJ.Demos.ReturnActions.WithViewMapping.Mvc.UrlParameter.csproj", "{E9EA697A-8049-4E6B-98DA-5EAA69E28A2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JJ.Framework.CodeAnalysis", "Framework\CodeAnalysis\JJ.Framework.CodeAnalysis.csproj", "{5859488A-6CFC-49D8-9376-2B28EF3A3C9A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Framework.CodeAnalysis.Vsix", "Framework\CodeAnalysis.Vsix\JJ.Framework.CodeAnalysis.Vsix.csproj", "{B01FC573-D952-41D4-A4FB-81B343EB8E1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JJ.Demos.ReturnActions.Framework.Presentation", "Demos\ReturnActions.Framework.Presentation\JJ.Demos.ReturnActions.Framework.Presentation.csproj", "{E36E358C-435E-4038-B49C-EE80BE57C72E}"
 EndProject
@@ -1096,16 +1096,6 @@ Global
 		{5859488A-6CFC-49D8-9376-2B28EF3A3C9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5859488A-6CFC-49D8-9376-2B28EF3A3C9A}.Release|x64.ActiveCfg = Release|Any CPU
 		{5859488A-6CFC-49D8-9376-2B28EF3A3C9A}.Release|x64.Build.0 = Release|Any CPU
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Debug|x64.Build.0 = Debug|Any CPU
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.NPDebug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.NPDebug|Any CPU.Build.0 = Debug|Any CPU
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.NPDebug|x64.ActiveCfg = Debug|Any CPU
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.NPDebug|x64.Build.0 = Debug|Any CPU
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Release|x64.ActiveCfg = Release|Any CPU
-		{B01FC573-D952-41D4-A4FB-81B343EB8E1A}.Release|x64.Build.0 = Release|Any CPU
 		{E36E358C-435E-4038-B49C-EE80BE57C72E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E36E358C-435E-4038-B49C-EE80BE57C72E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E36E358C-435E-4038-B49C-EE80BE57C72E}.Debug|x64.ActiveCfg = Debug|Any CPU
