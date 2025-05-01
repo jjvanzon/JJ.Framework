@@ -103,15 +103,15 @@ namespace JJ.Framework.Reflection.Core
 
         // Methods
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public void InvokeMethod(Expression<Action> callExpression) 
             => InvokeMethod((LambdaExpression)callExpression);
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public T InvokeMethod<T>(Expression<Func<T>> callExpression) 
             => (T)InvokeMethod((LambdaExpression)callExpression);
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(LambdaExpression callExpression)
         {
             MethodCallInfo methodCallInfo = ExpressionHelper.GetMethodCallInfo(callExpression);
@@ -122,7 +122,7 @@ namespace JJ.Framework.Reflection.Core
                 methodCallInfo.Parameters.Select(x => x.ParameterType).ToArray());
         }
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(string name, params object[] parameters)
         {
             MethodInfo method;
@@ -151,7 +151,7 @@ namespace JJ.Framework.Reflection.Core
             return method.Invoke(_object, parameters);
         }
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(string name, object[] parameters, Type[] parameterTypes)
         {
             parameterTypes = ComplementParameterTypes(parameterTypes, parameters);
@@ -159,35 +159,35 @@ namespace JJ.Framework.Reflection.Core
             return method.Invoke(_object, parameters);
         }
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1>(string name, TArg1 parameter)
             => InvokeMethod(name, new object[] { parameter }, new Type[] { typeof(TArg1) });
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2) });
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2, TArg3>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3) });
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) });
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) });
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) });
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) });
 
-        /// <inheritdoc cref="_acessorinvokemethod" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments)
         {
             parameterTypes = ComplementParameterTypes(parameterTypes, parameters);

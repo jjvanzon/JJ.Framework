@@ -102,7 +102,7 @@ namespace JJ.Framework.Reflection.Core
         /// <param name="callExpression">
         /// An expression from which the member name, parameter types and parameter values are extracted.
         /// </param>
-        public struct _acessorinvokemethod { }
+        public struct _invokemethod { }
 
         /// <summary>
         /// Complements null parameter types with types from parameter values (concrete types).
