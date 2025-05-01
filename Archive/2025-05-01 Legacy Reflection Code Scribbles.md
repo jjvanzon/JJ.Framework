@@ -1,0 +1,2 @@
+- *Interface* parameters might not work. More generally: *abstract* parameters types might not work. This is because the parameter types are sometimes assumed to be the type of the *object* / the *concrete* type.
+- Passing a *null* value to a parameter can result in failure by the `Accessor` class to find the right method.
