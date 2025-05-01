@@ -137,6 +137,13 @@ namespace JJ.Framework.Reflection
                 method = _reflectionCache.TryGetMethod(_objectType, name, parameterTypes);
             }
 
+            // Get parameter types from 2 stack frames up to accomodate layers of method delegation.
+            if (method == null)
+            {
+                Type[] parameterTypes = new StackTrace().GetFrame(2)?.GetMethod().GetParameters().Select(x => x.ParameterType).ToArray();
+                method = _reflectionCache.TryGetMethod(_objectType, name, parameterTypes);
+            }
+
             // Try getting parameter types from parameter values.
             if (method == null)
             {
