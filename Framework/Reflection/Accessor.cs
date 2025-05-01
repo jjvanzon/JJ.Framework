@@ -4,16 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using JetBrains.Annotations;
+using JJ.Framework.Reflection.docs;
 // ReSharper disable RedundantExplicitArrayCreation
 
 namespace JJ.Framework.Reflection
 {
-    /// <summary>
-    /// Attempts to make it easier to access members public, private or protected.
-    /// To access base class members, a separate Accessor object might be instantiated compared to accessing derived class members.
-    /// To access internal classes, maybe use a .NET Type string, GetType / or CreateInstance.
-    /// A limitation is that it might not invoke private or internal constructors (yet).
-    /// </summary>
+    /// <inheritdoc cref="_accessor" />
     [PublicAPI]
     public partial class Accessor
     {
@@ -22,7 +18,7 @@ namespace JJ.Framework.Reflection
         private readonly object _object;
         private readonly Type _objectType;
 
-        /// <summary> Use this constructor to access instance members of internal classes. </summary>
+        /// <inheritdoc cref="_accessorconstructorwithtypename" />
         public Accessor(string typeName, params object[] args)
         {
             _objectType = Type.GetType(typeName);
@@ -35,17 +31,17 @@ namespace JJ.Framework.Reflection
             _object = Activator.CreateInstance(_objectType, args);
         }
 
-        /// <summary> Use this constructor to access instance members. </summary>
+        /// <inheritdoc cref="_accessorconstructorwithobject" />
         public Accessor(object obj)
         {
             _object = obj ?? throw new ArgumentNullException(nameof(obj));
             _objectType = obj.GetType();
         }
 
-        /// <summary> Use this constructor to access static members. </summary>
+        /// <inheritdoc cref="_accessorconstructorwithtype" />
         public Accessor(Type objectType) => _objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
 
-        /// <summary> Use this constructor to access members of the base class. </summary>
+        /// <inheritdoc cref="_accessorconstructorwithobjectandtype" />
         public Accessor(object obj, Type objectType)
         {
             _object = obj ?? throw new ArgumentNullException(nameof(obj));
@@ -54,10 +50,7 @@ namespace JJ.Framework.Reflection
 
         // Fields
 
-        /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted.
-        /// Only the last name in the expression might be used and possibly the return type.
-        /// </param>
+        /// <inheritdoc cref="_nameexpression" />
         public T GetFieldValue<T>(Expression<Func<T>> nameExpression)
         {
             string name = ExpressionHelper.GetName(nameExpression);
@@ -70,10 +63,7 @@ namespace JJ.Framework.Reflection
             return field.GetValue(_object);
         }
 
-        /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted.
-        /// Only the last name in the expression might be used and possibly the return type.
-        /// </param>
+        /// <inheritdoc cref="_nameexpression" />
         public void SetFieldValue<T>(Expression<Func<T>> nameExpression, T value)
         {
             string name = ExpressionHelper.GetName(nameExpression);
@@ -88,10 +78,7 @@ namespace JJ.Framework.Reflection
 
         // Properties
 
-        /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted.
-        /// Only the last name in the expression might be used and possibly the return type.
-        /// </param>
+        /// <inheritdoc cref="_nameexpression" />
         public T GetPropertyValue<T>(Expression<Func<T>> nameExpression)
         {
             string name = ExpressionHelper.GetName(nameExpression);
@@ -104,10 +91,7 @@ namespace JJ.Framework.Reflection
             return property.GetValue(_object, null);
         }
 
-        /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted.
-        /// Only the last name in the expression might be used and possibly the return type.
-        /// </param>
+        /// <inheritdoc cref="_nameexpression" />
         public void SetPropertyValue<T>(Expression<Func<T>> nameExpression, T value)
         {
             string name = ExpressionHelper.GetName(nameExpression);
@@ -122,24 +106,15 @@ namespace JJ.Framework.Reflection
 
         // Methods
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
-        /// <param name="callExpression">
-        /// An expression from which the member name, parameter types and parameter values might be extracted.
-        /// </param>
+        /// <inheritdoc cref="_invokemethod" />
         public void InvokeMethod(Expression<Action> callExpression) 
             => InvokeMethod((LambdaExpression)callExpression);
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
-        /// <param name="callExpression">
-        /// An expression from which the member name, parameter types and parameter values might be extracted.
-        /// </param>
+        /// <inheritdoc cref="_invokemethod" />
         public T InvokeMethod<T>(Expression<Func<T>> callExpression) 
             => (T)InvokeMethod((LambdaExpression)callExpression);
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
-        /// <param name="callExpression">
-        /// An expression from which the member name, parameter types and parameter values might be extracted.
-        /// </param>
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(LambdaExpression callExpression)
         {
             MethodCallInfo methodCallInfo = ExpressionHelper.GetMethodCallInfo(callExpression);
@@ -150,7 +125,7 @@ namespace JJ.Framework.Reflection
                 methodCallInfo.Parameters.Select(x => x.ParameterType).ToArray());
         }
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(string name, params object[] parameters)
         {
             MethodInfo method;
@@ -172,60 +147,7 @@ namespace JJ.Framework.Reflection
             return method.Invoke(_object, parameters);
         }
 
-        /// <summary>
-        /// <para>
-        /// May call a method, that might not be accessible normally,
-        /// but can be accessed through this Accessor class anyway.
-        /// </para>
-        /// 
-        /// <para>
-        /// The Accessor class may try to find the method to call,
-        /// based on its name and parameter types.
-        /// </para>
-        ///
-        /// <para>
-        /// You might program a custom wrapper Accessor class,
-        /// having methods that are like the ones that you try to call.
-        /// </para>
-        ///
-        /// <para>
-        /// The InvokeMethod overload that takes a lambda expression might be a first choice,
-        /// because it may resolve the parameter types quite elegantly.
-        /// </para>
-        /// 
-        /// <para>
-        /// If that does not work, second in line might be, the InvokeMethod overloads,
-        /// that takes a name and parameter objects.
-        /// That overload attempts to guess the parameter types
-        /// based on the signature of the calling method
-        /// (which may work for custom Accessor classes).
-        /// Otherwise it may try to guess parameter types based on the values that were passed
-        /// (which however, may not always be specific enough).
-        /// </para>
-        ///
-        /// <para>
-        /// Last in line might be overloads, that specify parameter types explicitly.
-        /// That can be done with an array of Types or with type arguments.
-        /// Calls to these overloads may seem less elegant,
-        /// but there may sometimes be no other option left.
-        /// There is some lenience in leaving out certain parameter types (using null)
-        /// that might be guessed based on the values.
-        /// </para>
-        ///
-        /// <para>
-        /// There may also be an overload to specify generic type arguments.
-        /// </para>
-        ///
-        /// <para>
-        /// In case of ref and out parameters, specifying the parameter types explicitly
-        /// may be the only option. InvokeMethod may use ref parameters which may work for both ref and out parameters.
-        /// </para>
-        /// </summary>
-        ///
-        /// <param name="parameterTypes">
-        /// Nullable. Some items can be left null. It can also have less items, than there are parameters.
-        /// It may be complemented with the concrete types of the passed parameter values.
-        /// </param>
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(string name, object[] parameters, Type[] parameterTypes)
         {
             parameterTypes = ComplementParameterTypes(parameterTypes, parameters);
@@ -233,35 +155,35 @@ namespace JJ.Framework.Reflection
             return method.Invoke(_object, parameters);
         }
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1>(string name, TArg1 parameter)
             => InvokeMethod(name, new object[] { parameter }, new Type[] { typeof(TArg1) });
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2) });
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2, TArg3>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3) });
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) });
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) });
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) });
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(string name, params object[] parameters)
             => InvokeMethod(name, parameters, new[] { typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) });
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments)
         {
             parameterTypes = ComplementParameterTypes(parameterTypes, parameters);
@@ -294,7 +216,7 @@ namespace JJ.Framework.Reflection
 
         // Helpers
 
-        /// <summary> Complement null parameter types with types from parameter values (concrete types). </summary>
+        /// <inheritdoc cref="_complementparametertypes" />
         private static Type[] ComplementParameterTypes(Type[] parameterTypes, object[] parameters)
         {
             if (parameters == null) throw new ArgumentNullException(nameof(parameters));
