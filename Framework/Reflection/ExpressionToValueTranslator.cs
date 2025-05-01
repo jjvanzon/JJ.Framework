@@ -177,10 +177,15 @@ namespace JJ.Framework.Reflection
         {
             Visit(node.Operand);
 
+            Type type = node.Type;
+            if (type.IsNullableType())
+            {
+                type = Nullable.GetUnderlyingType(type);
+            }
             object obj = _stack.Pop();
             if (obj is IConvertible)
             {
-                obj = Convert.ChangeType(obj, node.Type);
+                obj = Convert.ChangeType(obj, type);
             }
             _stack.Push(obj);
         }
