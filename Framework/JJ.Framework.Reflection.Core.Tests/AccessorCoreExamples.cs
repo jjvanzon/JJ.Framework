@@ -188,43 +188,69 @@ public class AccessorCoreExamples
     }
 
     // Overloaded Methods
-
+    
     class OverloadAccessor1 : TestAccessorBase
     {
-        public string MyPrivateMethod(int myParameter) =>
-            (string)_accessor.InvokeMethod( [ myParameter ], [ typeof(int) ] );
+        public string MyPrivateMethod2(int para1, int? para2) =>
+            (string)_accessor.InvokeMethod(para1, para2);
     }
 
     class OverloadAccessor2 : TestAccessorBase
     {
-        public string MyPrivateMethod2(int myParameter1, int? myParameter2) =>
-            (string)_accessor.InvokeMethod( [ myParameter1, myParameter2 ], [ null, typeof(int?) ] );
+        public string MyPrivateMethod2(int para1, int? para2) =>
+            _accessor.InvokeMethod<string>(para1, para2);
     }
 
     class OverloadAccessor3 : TestAccessorBase
     {
-        public string MyPrivateMethod2(object parameter, object parameter2) =>
-            (string)_accessor.InvokeMethod<int, int?>("MyPrivateMethod2", parameter, parameter2);
+        public string MyPrivateMethod(int para) =>
+            (string)_accessor.InvokeMethod( [ para ], [ typeof(int) ] );
+    }
+
+    class OverloadAccessor4 : TestAccessorBase
+    {
+        public string MyPrivateMethod2(int para1, int? para2) =>
+            (string)_accessor.InvokeMethod( [ para1, para2 ], [ null, typeof(int?) ] );
+    }
+
+    class OverloadAccessor5 : TestAccessorBase
+    {
+        public string MyPrivateMethod2(object para, object para2) =>
+            (string)_accessor.InvokeMethod<int, int?>("MyPrivateMethod2", para, para2);
     }
     
     [TestMethod]
     public void AccessorCore_OverloadedMethod1()
     {
         var accessor = new OverloadAccessor1();
-        AreEqual("10", () => accessor.MyPrivateMethod(1));
+        AreEqual("60", () => accessor.MyPrivateMethod2(2, 3));
     }
     
     [TestMethod]
     public void AccessorCore_OverloadedMethod2()
     {
         var accessor = new OverloadAccessor2();
-        AreEqual("60", () => accessor.MyPrivateMethod2(2, 3));
+        AreEqual("150", () => accessor.MyPrivateMethod2(3, 5));
     }
     
     [TestMethod]
     public void AccessorCore_OverloadedMethod3()
     {
         var accessor = new OverloadAccessor3();
-        AreEqual("150", () => accessor.MyPrivateMethod2(3, 5));
+        AreEqual("10", () => accessor.MyPrivateMethod(1));
+    }
+    
+    [TestMethod]
+    public void AccessorCore_OverloadedMethod4()
+    {
+        var accessor = new OverloadAccessor4();
+        AreEqual("350", () => accessor.MyPrivateMethod2(5, 7));
+    }
+    
+    [TestMethod]
+    public void AccessorCore_OverloadedMethod5()
+    {
+        var accessor = new OverloadAccessor5();
+        AreEqual("770", () => accessor.MyPrivateMethod2(7, 11));
     }
 }

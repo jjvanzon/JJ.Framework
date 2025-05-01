@@ -7,12 +7,7 @@ using System.Reflection;
 
 namespace JJ.Framework.Reflection.Core
 {
-    /// <summary>
-    /// Attempts to make it easier to access members public, private or protected.
-    /// To access base class members, a separate Accessor object might be instantiated compared to accessing derived class members.
-    /// To access internal classes, maybe use a .NET Type string, GetType / or CreateInstance.
-    /// A limitation is that it might not invoke private or internal constructors (yet).
-    /// </summary>
+    /// <inheritdoc cref="_accessor" />
     public partial class AccessorLegacy
     {
         private static readonly ReflectionCacheLegacy _reflectionCache = new ReflectionCacheLegacy();
@@ -33,17 +28,17 @@ namespace JJ.Framework.Reflection.Core
             _object = Activator.CreateInstance(_objectType, args);
         }
 
-        /// <summary> Use this constructor to access instance members. </summary>
+        /// <inheritdoc cref="_accessorconstructorwithobject" />
         public AccessorLegacy(object obj)
         {
             _object = obj ?? throw new ArgumentNullException(nameof(obj));
             _objectType = obj.GetType();
         }
 
-        /// <summary> Use this constructor to access static members. </summary>
+        /// <inheritdoc cref="_accessorconstructorwithtype" />
         public AccessorLegacy(Type objectType) => _objectType = objectType ?? throw new ArgumentNullException(nameof(objectType));
 
-        /// <summary> Use this constructor to access members of the base class. </summary>
+        /// <inheritdoc cref="_accessorconstructorwithobjectandtype" />
         public AccessorLegacy(object obj, Type objectType)
         {
             _object = obj ?? throw new ArgumentNullException(nameof(obj));
@@ -52,10 +47,7 @@ namespace JJ.Framework.Reflection.Core
 
         // Fields
 
-        /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted.
-        /// Only the last name in the expression might be used and possibly the return type.
-        /// </param>
+        /// <inheritdoc cref="_nameexpression" />
         public T GetFieldValue<T>(Expression<Func<T>> nameExpression)
         {
             string name = ExpressionHelper.GetName(nameExpression);
@@ -68,10 +60,7 @@ namespace JJ.Framework.Reflection.Core
             return field.GetValue(_object);
         }
 
-        /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted.
-        /// Only the last name in the expression might be used and possibly the return type.
-        /// </param>
+        /// <inheritdoc cref="_nameexpression" />
         public void SetFieldValue<T>(Expression<Func<T>> nameExpression, T value)
         {
             string name = ExpressionHelper.GetName(nameExpression);
@@ -86,10 +75,7 @@ namespace JJ.Framework.Reflection.Core
 
         // Properties
 
-        /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted.
-        /// Only the last name in the expression might be used and possibly the return type.
-        /// </param>
+        /// <inheritdoc cref="_nameexpression" />
         public T GetPropertyValue<T>(Expression<Func<T>> nameExpression)
         {
             string name = ExpressionHelper.GetName(nameExpression);
@@ -102,10 +88,7 @@ namespace JJ.Framework.Reflection.Core
             return property.GetValue(_object, null);
         }
 
-        /// <param name="nameExpression">
-        /// An expression from which the member name will be extracted.
-        /// Only the last name in the expression might be used and possibly the return type.
-        /// </param>
+        /// <inheritdoc cref="_nameexpression" />
         public void SetPropertyValue<T>(Expression<Func<T>> nameExpression, T value)
         {
             string name = ExpressionHelper.GetName(nameExpression);
@@ -121,23 +104,14 @@ namespace JJ.Framework.Reflection.Core
         // Methods
 
         /// <inheritdoc cref="_acessorinvokemethod" />
-        /// <param name="callExpression">
-        /// An expression from which the member name, parameter types and parameter values might be extracted.
-        /// </param>
         public void InvokeMethod(Expression<Action> callExpression) 
             => InvokeMethod((LambdaExpression)callExpression);
 
         /// <inheritdoc cref="_acessorinvokemethod" />
-        /// <param name="callExpression">
-        /// An expression from which the member name, parameter types and parameter values might be extracted.
-        /// </param>
         public T InvokeMethod<T>(Expression<Func<T>> callExpression) 
             => (T)InvokeMethod((LambdaExpression)callExpression);
 
         /// <inheritdoc cref="_acessorinvokemethod" />
-        /// <param name="callExpression">
-        /// An expression from which the member name, parameter types and parameter values might be extracted.
-        /// </param>
         public object InvokeMethod(LambdaExpression callExpression)
         {
             MethodCallInfo methodCallInfo = ExpressionHelper.GetMethodCallInfo(callExpression);
@@ -157,6 +131,13 @@ namespace JJ.Framework.Reflection.Core
             // (assuming a wrapping accessor class with methods that define the signatures.)
             {
                 Type[] parameterTypes = new StackTrace().GetFrame(1)?.GetMethod().GetParameters().Select(x => x.ParameterType).ToArray();
+                method = _reflectionCache.TryGetMethod(_objectType, name, parameterTypes);
+            }
+
+            // Get parameter types from 2 stack frames up to accomodate layers of method delegation.
+            if (method == null)
+            {
+                Type[] parameterTypes = new StackTrace().GetFrame(2)?.GetMethod().GetParameters().Select(x => x.ParameterType).ToArray();
                 method = _reflectionCache.TryGetMethod(_objectType, name, parameterTypes);
             }
 
@@ -239,7 +220,7 @@ namespace JJ.Framework.Reflection.Core
 
         // Helpers
 
-        /// <summary> Complement null parameter types with types from parameter values (concrete types). </summary>
+        /// <inheritdoc cref="_complementparametertypes" />
         private static Type[] ComplementParameterTypes(Type[] parameterTypes, object[] parameters)
         {
             if (parameters == null) throw new ArgumentNullException(nameof(parameters));

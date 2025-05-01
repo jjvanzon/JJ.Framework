@@ -16,15 +16,25 @@ namespace JJ.Framework.Reflection.Core
 
         // Variations with CallerMemberName
         
+        /// <inheritdoc cref="_acessorinvokemethod" />
         public object InvokeMethod([CallerMemberName] string callerMemberName = null) => base.InvokeMethod(callerMemberName);
+        /// <inheritdoc cref="_acessorinvokemethod" />
         public object InvokeMethod<T>([CallerMemberName] string callerMemberName = null) => (T)base.InvokeMethod(callerMemberName);
+        /// <inheritdoc cref="_acessorinvokemethod" />
         public object InvokeMethod(object param1, [CallerMemberName] string callerMemberName = null) => base.InvokeMethod(callerMemberName, param1);
+        /// <inheritdoc cref="_acessorinvokemethod" />
         public T InvokeMethod<T>(object param1, [CallerMemberName] string callerMemberName = null) => (T)base.InvokeMethod(callerMemberName, param1);
+        /// <inheritdoc cref="_acessorinvokemethod" />
         public object InvokeMethod(object param1, object param2, [CallerMemberName] string callerMemberName = null) => base.InvokeMethod(callerMemberName, param1, param2);
+        /// <inheritdoc cref="_acessorinvokemethod" />
         public T InvokeMethod<T>(object param1, object param2, [CallerMemberName] string callerMemberName = null) => (T)base.InvokeMethod(callerMemberName, param1, param2);
+        /// <inheritdoc cref="_acessorinvokemethod" />
         public object InvokeMethod(object param1, object param2, object param3, [CallerMemberName] string callerMemberName = null) => base.InvokeMethod(callerMemberName, param1, param2, param3);
+        /// <inheritdoc cref="_acessorinvokemethod" />
         public T InvokeMethod<T>(object param1, object param2, object param3, [CallerMemberName] string callerMemberName = null) => (T)base.InvokeMethod(callerMemberName, param1, param2, param3);
+        /// <inheritdoc cref="_acessorinvokemethod" />
         public new object GetPropertyValue([CallerMemberName] string callerMemberName = null) => base.GetPropertyValue(callerMemberName);
+        /// <inheritdoc cref="_acessorinvokemethod" />
         public T GetPropertyValue<T>([CallerMemberName] string callerMemberName = null) => (T)base.GetPropertyValue(callerMemberName);
 
         // Redefined all base members, to prevent overloads in derived class from shadowing better matches in the base class.
