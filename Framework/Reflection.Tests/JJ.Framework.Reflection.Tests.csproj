@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessorTests\AccessorTests_Examples.cs" />
     <Compile Include="AccessorTests\AccessorTests_Indexers.cs" />
     <Compile Include="AccessorTests\AccessorTests_RefParameters_InstanceMethods.cs" />
     <Compile Include="AccessorTests\AccessorTests_RefParameters_StaticMethods.cs" />
@@ -114,6 +115,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="JJ.Framework.Reflection.Tests.csproj.DotSettings" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
