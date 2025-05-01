@@ -7,7 +7,7 @@ namespace JJ.Framework.Reflection.Core
     {
         // 1 Parameter
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public TRet InvokeMethod<TRet, TArg1>(string name, ref TArg1 arg)
         {
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType() };
@@ -23,7 +23,7 @@ namespace JJ.Framework.Reflection.Core
 
         // 2 Parameters
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public TRet InvokeMethod<TRet, TArg1, TArg2>(string name, ref TArg1 arg1, TArg2 arg2)
         {
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2) };
@@ -37,7 +37,7 @@ namespace JJ.Framework.Reflection.Core
             return ret;
         }
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public TRet InvokeMethod<TRet, TArg1, TArg2>(string name, TArg1 arg1, ref TArg2 arg2)
         {
             Type[] parameterTypes = { typeof(TArg1), typeof(TArg2).MakeByRefType() };
@@ -51,7 +51,7 @@ namespace JJ.Framework.Reflection.Core
             return ret;
         }
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public TRet InvokeMethod<TRet, TArg1, TArg2>(string name, ref TArg1 arg1, ref TArg2 arg2)
         {
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2).MakeByRefType() };
@@ -68,7 +68,7 @@ namespace JJ.Framework.Reflection.Core
 
         // 3 Parameters
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public TRet InvokeMethod<TRet, TArg1, TArg2, TArg3>(string name, ref TArg1 arg1, TArg2 arg2, TArg3 arg3)
         {
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2), typeof(TArg3) };
@@ -82,7 +82,7 @@ namespace JJ.Framework.Reflection.Core
             return ret;
         }
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public TRet InvokeMethod<TRet, TArg1, TArg2, TArg3>(string name, TArg1 arg1, ref TArg2 arg2, TArg3 arg3)
         {
             Type[] parameterTypes = { typeof(TArg1), typeof(TArg2).MakeByRefType(), typeof(TArg3) };
@@ -96,7 +96,7 @@ namespace JJ.Framework.Reflection.Core
             return ret;
         }
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public TRet InvokeMethod<TRet, TArg1, TArg2, TArg3>(string name, ref TArg1 arg1, ref TArg2 arg2, TArg3 arg3)
         {
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2).MakeByRefType(), typeof(TArg3) };
@@ -111,7 +111,7 @@ namespace JJ.Framework.Reflection.Core
             return ret;
         }
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public TRet InvokeMethod<TRet, TArg1, TArg2, TArg3>(string name, TArg1 arg1, TArg2 arg2, ref TArg3 arg3)
         {
             Type[] parameterTypes = { typeof(TArg1), typeof(TArg2), typeof(TArg3).MakeByRefType() };
@@ -125,7 +125,7 @@ namespace JJ.Framework.Reflection.Core
             return ret;
         }
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public TRet InvokeMethod<TRet, TArg1, TArg2, TArg3>(string name, ref TArg1 arg1, TArg2 arg2, ref TArg3 arg3)
         {
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2), typeof(TArg3).MakeByRefType() };
@@ -140,7 +140,7 @@ namespace JJ.Framework.Reflection.Core
             return ret;
         }
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public TRet InvokeMethod<TRet, TArg1, TArg2, TArg3>(string name, TArg1 arg1, ref TArg2 arg2, ref TArg3 arg3)
         {
             Type[] parameterTypes = { typeof(TArg1), typeof(TArg2).MakeByRefType(), typeof(TArg3).MakeByRefType() };
@@ -155,7 +155,7 @@ namespace JJ.Framework.Reflection.Core
             return ret;
         }
 
-        /// <inheritdoc cref="InvokeMethod(string, object[], Type[])" />
+        /// <inheritdoc cref="_invokemethod" />
         public TRet InvokeMethod<TRet, TArg1, TArg2, TArg3>(string name, ref TArg1 arg1, ref TArg2 arg2, ref TArg3 arg3)
         {
             Type[] parameterTypes = { typeof(TArg1).MakeByRefType(), typeof(TArg2).MakeByRefType(), typeof(TArg3).MakeByRefType() };
