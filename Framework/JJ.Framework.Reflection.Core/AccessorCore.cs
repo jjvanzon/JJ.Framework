@@ -30,27 +30,27 @@ namespace JJ.Framework.Reflection.Core
         /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod([CallerMemberName] string callerMemberName = null) 
             => base.InvokeMethod(callerMemberName);
-        /// <inheritdoc cref="_invokemethod" />
-        public object InvokeMethod<T>([CallerMemberName] string callerMemberName = null) 
-            => (T)base.InvokeMethod(callerMemberName);
+        ///// <inheritdoc cref="_invokemethod" />
+        //public object InvokeMethod<T>([CallerMemberName] string callerMemberName = null) 
+        //    => (T)base.InvokeMethod(callerMemberName);
         /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(object param1, [CallerMemberName] string callerMemberName = null) 
             => base.InvokeMethod(callerMemberName, param1);
-        /// <inheritdoc cref="_invokemethod" />
-        public T InvokeMethod<T>(object param1, [CallerMemberName] string callerMemberName = null) 
-            => (T)base.InvokeMethod(callerMemberName, param1);
+        ///// <inheritdoc cref="_invokemethod" />
+        //public T InvokeMethod<T>(object param1, [CallerMemberName] string callerMemberName = null) 
+        //    => (T)base.InvokeMethod(callerMemberName, param1);
         /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(object param1, object param2, [CallerMemberName] string callerMemberName = null)
             => base.InvokeMethod(callerMemberName, param1, param2);
-        /// <inheritdoc cref="_invokemethod" />
-        public T InvokeMethod<T>(object param1, object param2, [CallerMemberName] string callerMemberName = null) 
-            => (T)base.InvokeMethod(callerMemberName, param1, param2);
+        ///// <inheritdoc cref="_invokemethod" />
+        //public T InvokeMethod<T>(object param1, object param2, [CallerMemberName] string callerMemberName = null) 
+        //    => (T)base.InvokeMethod(callerMemberName, param1, param2);
         /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(object param1, object param2, object param3, [CallerMemberName] string callerMemberName = null) 
             => base.InvokeMethod(callerMemberName, param1, param2, param3);
         /// <inheritdoc cref="_invokemethod" />
-        public T InvokeMethod<T>(object param1, object param2, object param3, [CallerMemberName] string callerMemberName = null) 
-            => (T)base.InvokeMethod(callerMemberName, param1, param2, param3);
+        //public T InvokeMethod<T>(object param1, object param2, object param3, [CallerMemberName] string callerMemberName = null) 
+        //    => (T)base.InvokeMethod(callerMemberName, param1, param2, param3);
         /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(object[] parameters, [CallerMemberName] string callerMemberName = null) 
             => base.InvokeMethod(callerMemberName, parameters);
@@ -100,8 +100,8 @@ namespace JJ.Framework.Reflection.Core
         public new object InvokeMethod(string name, object[] parameters, Type[] parameterTypes) 
             => base.InvokeMethod(name, parameters, parameterTypes);
         /// <inheritdoc cref="_invokemethod" />
-        public new object InvokeMethod<TArg1>(string name, TArg1 parameter) 
-            => base.InvokeMethod(name, parameter);
+        public new object InvokeMethod<TArg1>(string name, params object[] parameters) 
+            => base.InvokeMethod<TArg1>(name, parameters);
         /// <inheritdoc cref="_invokemethod" />
         public new object InvokeMethod<TArg1, TArg2>(string name, params object[] parameters) 
             => base.InvokeMethod<TArg1, TArg2>(name, parameters);
@@ -120,7 +120,10 @@ namespace JJ.Framework.Reflection.Core
         /// <inheritdoc cref="_invokemethod" />
         public new object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(string name, params object[] parameters) 
             => base.InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(name, parameters);
-        
+        /// <inheritdoc cref="_invokemethod" />
+        public new object InvokeMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments)
+            => base.InvokeMethod(name, parameters, parameterTypes, typeArguments);
+
         public new object GetIndexerValue(params object[] parameters) 
             => base.GetIndexerValue(parameters);
         public new void SetIndexerValue(params object[] parametersAndValue) 

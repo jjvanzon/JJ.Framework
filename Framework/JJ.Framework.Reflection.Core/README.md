@@ -48,8 +48,9 @@ The `Accessor` can use the info from the expression to make the call.
 - `Fields`
 - `Properties`
 - `Methods`
-- `Indexers`
-- `ref` and `out`
+- `Indexers[]`
+- `<Type>` arguments
+- `ref` and `out` parameters
 
 Here's an example for a property:
 
