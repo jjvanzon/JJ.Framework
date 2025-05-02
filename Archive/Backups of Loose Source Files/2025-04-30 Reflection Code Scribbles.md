@@ -175,3 +175,9 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
         public new void SetIndexerValue(params object[] parametersAndValue) 
             => base.SetIndexerValue(parametersAndValue);
 ```
+
+
+```cs
+            PropertyInfo? property = _reflectionCache.TryGetProperty(_type, name);
+            if (property != null) return property.GetValue(_object, null);
+```
