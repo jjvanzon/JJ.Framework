@@ -11,7 +11,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
 {
     internal static class PlatformHelper_Accessor
     {
-        private static readonly AccessorCore _accessor = new AccessorCore(typeof(JJ.Framework.PlatformCompatibility.Obsolete.PlatformHelper));
+        private static readonly AccessorLegacy _accessor = new AccessorLegacy(typeof(JJ.Framework.PlatformCompatibility.Obsolete.PlatformHelper));
 
         public static MemberTypes_PlatformSafe MemberInfo_MemberType_PlatformSafe(MemberInfo memberInfo)
             => _accessor.InvokeMethod(() => MemberInfo_MemberType_PlatformSafe(memberInfo));

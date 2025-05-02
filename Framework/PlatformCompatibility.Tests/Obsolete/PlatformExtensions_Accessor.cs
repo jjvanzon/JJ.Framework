@@ -11,9 +11,9 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
 {
     internal static class PlatformExtensions_Accessor
     {
-        private static readonly AccessorCore _accessor
-            = new AccessorCore(Type.GetType("JJ.Framework.PlatformCompatibility.Obsolete.PlatformExtensions, " +
-                                        "JJ.Framework.PlatformCompatibility"));
+        private static readonly AccessorLegacy _accessor
+            = new AccessorLegacy(Type.GetType("JJ.Framework.PlatformCompatibility.Obsolete.PlatformExtensions, " +
+                                              "JJ.Framework.PlatformCompatibility"));
 
         public static MemberTypes_PlatformSafe MemberType_PlatformSafe(MemberInfo memberInfo)
             => _accessor.InvokeMethod(() => MemberType_PlatformSafe(memberInfo));
