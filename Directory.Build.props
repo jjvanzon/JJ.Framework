@@ -1,4 +1,9 @@
 <Project>
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  
+  <!-- Disable Warnings for Test Projects -->
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('Tests'))">
     <NoWarn>$(NoWarn);CS0414</NoWarn> <!--Field is assigned but its value is never used-->
     <NoWarn>$(NoWarn);IDE0060</NoWarn> <!--Unused parameter-->

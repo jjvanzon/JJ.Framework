@@ -1,23 +1,20 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
-using JetBrains.Annotations;
-using JJ.Framework.Reflection.docs;
-// ReSharper disable RedundantExplicitArrayCreation
+using System.Runtime.CompilerServices;
 
 namespace JJ.Framework.Reflection
 {
     /// <inheritdoc cref="_accessor" />
-    [PublicAPI]
     public partial class Accessor
     {
-        private static readonly ReflectionCache _reflectionCache = new ReflectionCache();
+        private static readonly ReflectionCache _reflectionCache = new();
 
         private readonly object _object;
         private readonly Type _objectType;
 
+        // Constructors
+        
         /// <inheritdoc cref="_accessorconstructorwithtypename" />
         public Accessor(string typeName, params object[] args)
         {
@@ -57,7 +54,10 @@ namespace JJ.Framework.Reflection
             return (T)GetFieldValue(name);
         }
 
-        public object GetFieldValue(string name)
+        public T GetFieldValue<T>([CallerMemberName] string name = "")
+            => (T)GetFieldValue(name);
+
+        public object GetFieldValue([CallerMemberName] string name = "")
         {
             FieldInfo field = _reflectionCache.GetField(_objectType, name);
             return field.GetValue(_object);
@@ -70,22 +70,31 @@ namespace JJ.Framework.Reflection
             SetFieldValue(name, value);
         }
 
+        public void SetFieldValue(object value, [CallerMemberName] string name = "")
+            => SetFieldValue(name, value);
+
         public void SetFieldValue(string name, object value)
         {
             FieldInfo field = _reflectionCache.GetField(_objectType, name);
             field.SetValue(_object, value);
         }
-
+        
         // Properties
 
         /// <inheritdoc cref="_nameexpression" />
         public T GetPropertyValue<T>(Expression<Func<T>> nameExpression)
+            => (T)GetPropertyValue((LambdaExpression)nameExpression);
+
+        public object GetPropertyValue(LambdaExpression nameExpression)
         {
             string name = ExpressionHelper.GetName(nameExpression);
-            return (T)GetPropertyValue(name);
+            return GetPropertyValue(name);
         }
+        
+        public T GetPropertyValue<T>([CallerMemberName] string name = "")
+            => (T)GetPropertyValue(name);
 
-        public object GetPropertyValue(string name)
+        public object GetPropertyValue([CallerMemberName] string name = "")
         {
             PropertyInfo property = _reflectionCache.GetProperty(_objectType, name);
             return property.GetValue(_object, null);
@@ -98,6 +107,9 @@ namespace JJ.Framework.Reflection
             SetPropertyValue(name, value);
         }
 
+        public void SetPropertyValue(object value, [CallerMemberName] string name = "")
+            => SetPropertyValue(name, value);
+
         public void SetPropertyValue(string name, object value)
         {
             PropertyInfo property = _reflectionCache.GetProperty(_objectType, name);
@@ -105,6 +117,8 @@ namespace JJ.Framework.Reflection
         }
 
         // Methods
+        
+        // With Lambdas
 
         /// <inheritdoc cref="_invokemethod" />
         public void InvokeMethod(Expression<Action> callExpression) 
@@ -124,7 +138,9 @@ namespace JJ.Framework.Reflection
                 methodCallInfo.Parameters.Select(x => x.Value).ToArray(),
                 methodCallInfo.Parameters.Select(x => x.ParameterType).ToArray());
         }
-
+        
+        // With params
+        
         /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(string name, params object[] parameters)
         {
@@ -154,11 +170,77 @@ namespace JJ.Framework.Reflection
             return method.Invoke(_object, parameters);
         }
 
+        // With CallerMemberName
+
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod([CallerMemberName] string callerMemberName = null) 
+            => InvokeMethod(callerMemberName, [ ]);
+        
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object param1, [CallerMemberName] string callerMemberName = null) 
+            => InvokeMethod(callerMemberName, param1);
+        
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object param1, object param2, [CallerMemberName] string callerMemberName = null)
+            => InvokeMethod(callerMemberName, param1, param2);
+        
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object param1, object param2, object param3, [CallerMemberName] string callerMemberName = null) 
+            => InvokeMethod(callerMemberName, param1, param2, param3);
+
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object param1, object param2, object param3, object param4, [CallerMemberName] string callerMemberName = null) 
+            => InvokeMethod(callerMemberName, param1, param2, param3, param4);
+
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object param1, object param2, object param3, object param4, object param5, [CallerMemberName] string callerMemberName = null) 
+            => InvokeMethod(callerMemberName, param1, param2, param3, param4, param5);
+
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object param1, object param2, object param3, object param4, object param5, object param6, [CallerMemberName] string callerMemberName = null) 
+            => InvokeMethod(callerMemberName, param1, param2, param3, param4, param5, param6);
+
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object param1, object param2, object param3, object param4, object param5, object param6, object param7, [CallerMemberName] string callerMemberName = null) 
+            => InvokeMethod(callerMemberName, param1, param2, param3, param4, param5, param6, param7);
+
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object param1, object param2, object param3, object param4, object param5, object param6, object param7, object param8, [CallerMemberName] string callerMemberName = null) 
+            => InvokeMethod(callerMemberName, param1, param2, param3, param4, param5, param6, param7, param8);
+
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object param1, object param2, object param3, object param4, object param5, object param6, object param7, object param8, object param9, [CallerMemberName] string callerMemberName = null) 
+            => InvokeMethod(callerMemberName, param1, param2, param3, param4, param5, param6, param7, param8, param9);
+
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object param1, object param2, object param3, object param4, object param5, object param6, object param7, object param8, object param9, object param10, [CallerMemberName] string callerMemberName = null) 
+            => InvokeMethod(callerMemberName, param1, param2, param3, param4, param5, param6, param7, param8, param9, param10);
+        
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object[] parameters, [CallerMemberName] string name = null)
+            => InvokeMethod(name, parameters);
+
+        // With Parameter Types
+                
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(object[] parameters, Type[] parameterTypes, [CallerMemberName] string callerMemberName = null) 
+            => InvokeMethod(callerMemberName, parameters, parameterTypes);
+
         /// <inheritdoc cref="_invokemethod" />
         public object InvokeMethod(string name, object[] parameters, Type[] parameterTypes)
         {
             parameterTypes = ComplementParameterTypes(parameterTypes, parameters);
             MethodInfo method = _reflectionCache.GetMethod(_objectType, name, parameterTypes);
+            return method.Invoke(_object, parameters);
+        }
+        
+        // With Type Arguments
+        
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments)
+        {
+            parameterTypes = ComplementParameterTypes(parameterTypes, parameters);
+            MethodInfo method = _reflectionCache.GetMethod(_objectType, name, parameterTypes, typeArguments);
             return method.Invoke(_object, parameters);
         }
 
@@ -191,12 +273,16 @@ namespace JJ.Framework.Reflection
             => InvokeMethod(name, parameters, [ ], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
 
         /// <inheritdoc cref="_invokemethod" />
-        public object InvokeMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments)
-        {
-            parameterTypes = ComplementParameterTypes(parameterTypes, parameters);
-            MethodInfo method = _reflectionCache.GetMethod(_objectType, name, parameterTypes, typeArguments);
-            return method.Invoke(_object, parameters);
-        }
+        public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(string name, params object[] parameters)
+            => InvokeMethod(name, parameters, [ ], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8) ]);
+
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(string name, params object[] parameters)
+            => InvokeMethod(name, parameters, [ ], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8), typeof(TArg9) ]);
+
+        /// <inheritdoc cref="_invokemethod" />
+        public object InvokeMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>(string name, params object[] parameters)
+            => InvokeMethod(name, parameters, [ ], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8), typeof(TArg9), typeof(TArg10) ]);
 
         // Indexers
 
@@ -220,7 +306,27 @@ namespace JJ.Framework.Reflection
             PropertyInfo property = _reflectionCache.GetIndexer(_objectType, parameterTypes);
             property.SetValue(_object, value, parameters);
         }
-
+        
+        // With Parameter Types
+        
+        public object GetIndexerValue(object[] parameters, Type[] parameterTypes)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            if (parameters.Length < 1) throw new Exception("parameters.Length must be at least 1.");
+            parameterTypes = ComplementParameterTypes(parameterTypes, parameters);
+            PropertyInfo property = _reflectionCache.GetIndexer(_objectType, parameterTypes);
+            return property.GetValue(_object, parameters);
+        }
+        
+        public void SetIndexerValue(object[] parameters, Type[] parameterTypes, object value)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            if (parameters.Length < 1) throw new Exception("parameters.Length must be at least 1.");
+            parameterTypes = ComplementParameterTypes(parameterTypes, parameters);
+            PropertyInfo property = _reflectionCache.GetIndexer(_objectType, parameterTypes);
+            property.SetValue(_object, value, parameters);
+        }
+        
         // Helpers
 
         /// <inheritdoc cref="_complementparametertypes" />

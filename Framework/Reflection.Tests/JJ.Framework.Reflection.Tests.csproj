@@ -91,6 +91,7 @@
     <Compile Include="ExpressionHelperTests\Item.cs" />
     <Compile Include="ExpressionHelperTests\StaticClass.cs" />
     <Compile Include="ExpressionHelperTests\StaticClassT.cs" />
+    <Compile Include="GlobalUsings.cs" />
     <Compile Include="ParseHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionCacheTests\ReflectionCacheTests.cs" />
