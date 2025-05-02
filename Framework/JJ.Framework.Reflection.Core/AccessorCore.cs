@@ -42,9 +42,9 @@ public class AccessorCore
     // Fields and Properties
 
     /// <inheritdoc cref="_nameexpression" />
-    public T?      Get<T>(Expression<Func<T>> nameLambda) => Get<T>(GetName(nameLambda));
-    public T?      Get<T>([Caller] string name = "") => (T?)Get(name);
-    public object? Get   ([Caller] string name = "")
+    public T?      Get<T>(Expression<Func<T>> nameLambda) =>     Get<T>(GetName(nameLambda));
+    public T?      Get<T>(    [Caller] string name = "" ) => (T?)Get(name);
+    public object? Get   (    [Caller] string name = "" )
     {
         foreach (Type type in _types)
         {
@@ -58,12 +58,12 @@ public class AccessorCore
     }
 
     /// <inheritdoc cref="_nameexpression" />
-    public void Set<T>  (Expression<Func<T>> nameLambda, T value)  => SetCore(GetName(nameLambda), value);
-    public void Set<T>  (T       value, [Caller] string name = "") => SetCore(name, value);
-    public void Set     (object? value, [Caller] string name = "") => SetCore(name, value);
-    public void Set<T>  (string  name,  T       value)             => SetCore(name, value);
-    public void Set     (string  name,  object? value)             => SetCore(name, value);
-    private void SetCore(string  name,  object? value)
+    public void Set<T>  (Expression<Func<T>> nameLambda, T value    ) => SetCore(GetName(nameLambda), value);
+    public void Set<T>  (T       value,   [Caller] string  name = "") => SetCore(name, value);
+    public void Set     (object? value,   [Caller] string  name = "") => SetCore(name, value);
+    public void Set<T>  (string  name ,            T       value    ) => SetCore(name, value);
+    public void Set     (string  name ,            object? value    ) => SetCore(name, value);
+    private void SetCore(string  name ,            object? value    )
     {
         foreach (Type type in _types)
         {
@@ -116,13 +116,13 @@ public class AccessorCore
     // With params
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(string name, params object[] parameters)
+    public object? Call(string name, params object?[] parameters)
         => CallCore(name, parameters);
 
     // With CallerMemberName
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object[] parameters, [Caller] string name = "")
+    public object? Call(object?[] parameters, [Caller] string name = "")
         => CallCore(name, parameters);
 
     /// <inheritdoc cref="_invokemethod" />
@@ -130,89 +130,89 @@ public class AccessorCore
         => CallCore(name);
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object param1, [Caller] string name = "")
+    public object? Call(object? param1, [Caller] string name = "")
         => CallCore(name, [ param1 ]);
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object param1, object param2, [Caller] string name = "")
+    public object? Call(object? param1, object? param2, [Caller] string name = "")
         => CallCore(name, [ param1, param2 ]);
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object param1, object param2, object param3, [Caller] string name = "")
+    public object? Call(object? param1, object? param2, object? param3, [Caller] string name = "")
         => CallCore(name, [ param1, param2, param3 ]);
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object param1, object param2, object param3, object param4, [Caller] string name = "")
+    public object? Call(object? param1, object? param2, object? param3, object? param4, [Caller] string name = "")
         => CallCore(name, [ param1, param2, param3, param4 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object param1, object param2, object param3, object param4, object param5, [Caller] string name = "")
+    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, [Caller] string name = "")
         => CallCore(name, [ param1, param2, param3, param4, param5 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object param1, object param2, object param3, object param4, object param5, object param6, [Caller] string name = "")
+    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, object? param6, [Caller] string name = "")
         => CallCore(name, [ param1, param2, param3, param4, param5, param6 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object param1, object param2, object param3, object param4, object param5, object param6, object param7, [Caller] string name = "")
+    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, object? param6, object? param7, [Caller] string name = "")
         => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object param1, object param2, object param3, object param4, object param5, object param6, object param7, object param8, [Caller] string name = "")
+    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, object? param6, object? param7, object? param8, [Caller] string name = "")
         => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object param1, object param2, object param3, object param4, object param5, object param6, object param7, object param8, object param9, [Caller] string name = "")
+    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, object? param6, object? param7, object? param8, object? param9, [Caller] string name = "")
         => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8, param9 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object param1, object param2, object param3, object param4, object param5, object param6, object param7, object param8, object param9, object param10, [Caller] string name = "")
+    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, object? param6, object? param7, object? param8, object? param9, object? param10, [Caller] string name = "")
         => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8, param9, param10 ]);
 
     // With Type Arguments
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments)
+    public object? Call(string name, object?[] parameters, Type?[] parameterTypes, Type[] typeArguments)
         => CallCore(name, parameters, parameterTypes, typeArguments);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1>(string name, params object[] parameters)
+    public object? Call<TArg1>(string name, params object?[] parameters)
         => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2>(string name, params object[] parameters)
+    public object? Call<TArg1, TArg2>(string name, params object?[] parameters)
         => CallCore(name, parameters, [], typeArguments:[ typeof(TArg1), typeof(TArg2) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3>(string name, params object[] parameters)
+    public object? Call<TArg1, TArg2, TArg3>(string name, params object?[] parameters)
         => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4>(string name, params object[] parameters)
+    public object? Call<TArg1, TArg2, TArg3, TArg4>(string name, params object?[] parameters)
         => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5>(string name, params object[] parameters)
+    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5>(string name, params object?[] parameters)
         => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(string name, params object[] parameters)
+    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(string name, params object?[] parameters)
         => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(string name, params object[] parameters)
+    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(string name, params object?[] parameters)
         => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(string name, params object[] parameters)
+    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(string name, params object?[] parameters)
         => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(string name, params object[] parameters)
+    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(string name, params object?[] parameters)
         => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8), typeof(TArg9) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>(string name, params object[] parameters)
+    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>(string name, params object?[] parameters)
         => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8), typeof(TArg9), typeof(TArg10) ]);
 
     // With Collections
