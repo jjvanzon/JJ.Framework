@@ -7,6 +7,7 @@ using JJ.Framework.Common;
 // ReSharper disable ReplaceWithSingleCallToSingle
 // ReSharper disable InvertIf
 // ReSharper disable RedundantIfElseBlock
+// ReSharper disable CoVariantArrayConversion
 
 namespace JJ.Framework.Reflection.Core
 {
@@ -20,12 +21,12 @@ namespace JJ.Framework.Reflection.Core
 
         // Property
 
-        private readonly Dictionary<(Type, string), PropertyInfo> _propertyDictionary = new Dictionary<(Type, string), PropertyInfo>();
-        private readonly object _propertyDictionaryLock = new object();
+        private readonly Dictionary<(Type, string), PropertyInfo> _propertyDictionary = new();
+        private readonly object _propertyDictionaryLock = new ();
 
         public PropertyInfo GetProperty(Type type, string name)
         {
-            PropertyInfo property = TryGetProperty(type, name);
+            PropertyInfo? property = TryGetProperty(type, name);
             if (property == null)
             {
                 throw new Exception($"Property '{name}' not found.");
@@ -33,7 +34,7 @@ namespace JJ.Framework.Reflection.Core
             return property;
         }
 
-        public PropertyInfo TryGetProperty(Type type, string name)
+        public PropertyInfo? TryGetProperty(Type type, string name)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
 
@@ -41,7 +42,7 @@ namespace JJ.Framework.Reflection.Core
             {
                 var key = (type, name);
                 
-                if (_propertyDictionary.TryGetValue(key, out PropertyInfo property))
+                if (_propertyDictionary.TryGetValue(key, out PropertyInfo? property))
                 {
                     return property;
                 }
@@ -55,8 +56,8 @@ namespace JJ.Framework.Reflection.Core
 
         // Properties
 
-        private readonly Dictionary<Type, PropertyInfo[]> _propertiesDictionary = new Dictionary<Type, PropertyInfo[]>();
-        private readonly object _propertiesDictionaryLock = new object();
+        private readonly Dictionary<Type, PropertyInfo[]> _propertiesDictionary = new();
+        private readonly object _propertiesDictionaryLock = new();
 
         public PropertyInfo[] GetProperties(Type type)
         {
@@ -76,8 +77,8 @@ namespace JJ.Framework.Reflection.Core
 
         // PropertyDictionaries
 
-        private readonly Dictionary<Type, Dictionary<string, PropertyInfo>> _propertyDictionaryDictionary = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
-        private readonly object _propertyDictionaryDictionaryLock = new object();
+        private readonly Dictionary<Type, Dictionary<string, PropertyInfo>> _propertyDictionaryDictionary = new();
+        private readonly object _propertyDictionaryDictionaryLock = new();
 
         public Dictionary<string, PropertyInfo> GetPropertyDictionary(Type type)
         {
@@ -97,12 +98,12 @@ namespace JJ.Framework.Reflection.Core
 
         // Field
 
-        private readonly Dictionary<(Type, string), FieldInfo> _fieldDictionary = new Dictionary<(Type, string), FieldInfo>();
-        private readonly object _fieldDictionaryLock = new object();
+        private readonly Dictionary<(Type, string), FieldInfo> _fieldDictionary = new();
+        private readonly object _fieldDictionaryLock = new();
 
         public FieldInfo GetField(Type type, string name)
         {
-            FieldInfo field = TryGetField(type, name);
+            FieldInfo? field = TryGetField(type, name);
             if (field == null)
             {
                 throw new Exception($"Field '{name}' not found.");
@@ -110,7 +111,7 @@ namespace JJ.Framework.Reflection.Core
             return field;
         }
 
-        public FieldInfo TryGetField(Type type, string name)
+        public FieldInfo? TryGetField(Type type, string name)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
 
@@ -118,7 +119,7 @@ namespace JJ.Framework.Reflection.Core
             {
                 var key = (type, name);
 
-                if (_fieldDictionary.TryGetValue(key, out FieldInfo field))
+                if (_fieldDictionary.TryGetValue(key, out FieldInfo? field))
                 {
                     return field;
                 }
@@ -133,7 +134,7 @@ namespace JJ.Framework.Reflection.Core
         // Fields
 
         private readonly Dictionary<Type, FieldInfo[]> _fieldsDictionary = new Dictionary<Type, FieldInfo[]>();
-        private readonly object _fieldsDictionaryLock = new object();
+        private readonly object _fieldsDictionaryLock = new();
 
         public FieldInfo[] GetFields(Type type)
         {
@@ -154,11 +155,11 @@ namespace JJ.Framework.Reflection.Core
         // Indexer
 
         private readonly Dictionary<(Type, string parameterTypesKey), PropertyInfo> _indexerDictionary = new Dictionary<(Type, string), PropertyInfo>();
-        private readonly object _indexerDictionaryLock = new object();
+        private readonly object _indexerDictionaryLock = new();
 
         public PropertyInfo GetIndexer(Type type, params Type[] parameterTypes)
         {
-            PropertyInfo property = TryGetIndexer(type, parameterTypes);
+            PropertyInfo? property = TryGetIndexer(type, parameterTypes);
             if (property == null)
             {
                 throw new Exception($"Indexer not found with parameterTypes '{string.Join(", ", parameterTypes.Select(x => x.ToString()))}'.");
@@ -166,24 +167,24 @@ namespace JJ.Framework.Reflection.Core
             return property;
         }
 
-        public PropertyInfo TryGetIndexer(Type type, params Type[] parameterTypes)
+        public PropertyInfo? TryGetIndexer(Type type, params Type[] parameterTypes)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
             if (parameterTypes.Length == 0) throw new Exception("parameterTypes.Length is 0.");
-
+            
             string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
 
             lock (_indexerDictionaryLock)
             {
                 var key = (type, parameterTypesKey);
 
-                if (_indexerDictionary.TryGetValue(key, out PropertyInfo property))
+                if (_indexerDictionary.TryGetValue(key, out PropertyInfo? property))
                 {
                     return property;
                 }
 
-                var defaultMemberAttribute = (DefaultMemberAttribute)type.GetCustomAttributes(typeof(DefaultMemberAttribute), inherit: true).SingleOrDefault();
+                var defaultMemberAttribute = (DefaultMemberAttribute?)type.GetCustomAttributes(typeof(DefaultMemberAttribute), inherit: true).SingleOrDefault();
                 if (defaultMemberAttribute == null)
                 {
                     return null;
@@ -199,11 +200,11 @@ namespace JJ.Framework.Reflection.Core
         // Method
 
         private readonly Dictionary<(Type, string, string parameterTypesKey), MethodInfo> _methodDictionary = new Dictionary<(Type, string, string), MethodInfo>();
-        private readonly object _methodDictionaryLock = new object();
+        private readonly object _methodDictionaryLock = new();
 
         public MethodInfo GetMethod(Type type, string name, params Type[] parameterTypes)
         {
-            MethodInfo method = TryGetMethod(type, name, parameterTypes);
+            MethodInfo? method = TryGetMethod(type, name, parameterTypes);
             if (method == null)
             {
                 throw new Exception($"Method '{name}' not found.");
@@ -211,7 +212,7 @@ namespace JJ.Framework.Reflection.Core
             return method;
         }
 
-        public MethodInfo TryGetMethod(Type type, string name, params Type[] parameterTypes)
+        public MethodInfo? TryGetMethod(Type type, string name, params Type[] parameterTypes)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
@@ -222,7 +223,7 @@ namespace JJ.Framework.Reflection.Core
             {
                 var key = (type, name, parameterTypesKey);
 
-                if (_methodDictionary.TryGetValue(key, out MethodInfo method))
+                if (_methodDictionary.TryGetValue(key, out MethodInfo? method))
                 {
                     return method;
                 }
@@ -236,14 +237,14 @@ namespace JJ.Framework.Reflection.Core
 
         // Method (with Type Arguments)
 
-        private readonly Dictionary<(Type, string name, string parameterTypesKey, string typeArgumentsKey), MethodInfo> _methodWithTypeArgumentsDictionary 
-            = new Dictionary<(Type, string, string, string), MethodInfo>();
+        private readonly Dictionary<(Type, string name, string parameterTypesKey, string typeArgumentsKey), MethodInfo?> _methodWithTypeArgumentsDictionary 
+            = new();
 
-        private readonly object _methodWithTypeArgumentsDictionaryLock = new object();
+        private readonly object _methodWithTypeArgumentsDictionaryLock = new();
 
         public MethodInfo GetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
-            MethodInfo method = TryGetMethod(type, name, parameterTypes, typeArguments);
+            MethodInfo? method = TryGetMethod(type, name, parameterTypes, typeArguments);
             if (method == null)
             {
                 throw new Exception(
@@ -254,7 +255,7 @@ namespace JJ.Framework.Reflection.Core
             return method;
         }
 
-        public MethodInfo TryGetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
+        public MethodInfo? TryGetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
@@ -267,7 +268,7 @@ namespace JJ.Framework.Reflection.Core
             {
                 var key = (type, name, parameterTypesKey, typeArgumentsKey);
 
-                if (_methodWithTypeArgumentsDictionary.TryGetValue(key, out MethodInfo method))
+                if (_methodWithTypeArgumentsDictionary.TryGetValue(key, out MethodInfo? method))
                 {
                     return method;
                 }
@@ -280,7 +281,7 @@ namespace JJ.Framework.Reflection.Core
             }
         }
 
-        private MethodInfo TryResolveGenericMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
+        private MethodInfo? TryResolveGenericMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
             IList<MethodInfo> methods = GetMethods(type).Where(x => string.Equals(x.Name, name))
                                                         .Where(x => x.GetParameters()
@@ -310,7 +311,7 @@ namespace JJ.Framework.Reflection.Core
 
         // Methods
 
-        private readonly Dictionary<Type, MethodInfo[]> _methodsDictionary = new Dictionary<Type, MethodInfo[]>();
+        private readonly Dictionary<Type, MethodInfo[]> _methodsDictionary = new();
         private readonly object _methodsDictionaryLock = new object();
 
         public MethodInfo[] GetMethods(Type type)
@@ -333,12 +334,12 @@ namespace JJ.Framework.Reflection.Core
 
         // Types
 
-        private readonly Dictionary<string, Type[]> _typeByShortNameDictionary = new Dictionary<string, Type[]>();
-        private readonly object _typeByShortNameDictionaryLock = new object();
+        private readonly Dictionary<string, Type[]> _typeByShortNameDictionary = new();
+        private readonly object _typeByShortNameDictionaryLock = new();
 
         public Type GetTypeByShortName(string shortTypeName)
         {
-            Type type = TryGetTypeByShortName(shortTypeName);
+            Type? type = TryGetTypeByShortName(shortTypeName);
             if (type == null)
             {
                 throw new Exception($"Type with short name '{shortTypeName}' not found in the AppDomain's assemblies.");
@@ -346,7 +347,7 @@ namespace JJ.Framework.Reflection.Core
             return type;
         }
 
-        public Type TryGetTypeByShortName(string shortTypeName)
+        public Type? TryGetTypeByShortName(string shortTypeName)
         {
             IList<Type> types = GetTypesByShortName(shortTypeName);
 
@@ -399,7 +400,7 @@ namespace JJ.Framework.Reflection.Core
         // Constructor
 
         private readonly IDictionary<Type, ConstructorInfo> _constructorDictionary = new Dictionary<Type, ConstructorInfo>();
-        private readonly object _constructorDictionaryLock = new object();
+        private readonly object _constructorDictionaryLock = new();
 
         public ConstructorInfo GetConstructor(Type type)
         {
@@ -431,46 +432,46 @@ namespace JJ.Framework.Reflection.Core
         // Generic Overloads
 
         public MethodInfo GetMethod<TArg1>(Type type, string name)
-            => GetMethod(type, name, typeof(TArg1));
+            => GetMethod(type, name, [ ], [ typeof(TArg1) ]);
 
         public MethodInfo GetMethod<TArg1, TArg2>(Type type, string name)
-            => GetMethod(type, name, typeof(TArg1), typeof(TArg2));
+            => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2) ]);
 
         public MethodInfo GetMethod<TArg1, TArg2, TArg3>(Type type, string name)
-            => GetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3));
+            => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ]);
 
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4>(Type type, string name)
-            => GetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
+            => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ]);
 
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type, string name)
-            => GetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
+            => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ]);
 
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type, string name)
-            => GetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
+            => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ]);
 
         public MethodInfo GetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type, string name)
-            => GetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
+            => GetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
 
-        public MethodInfo TryGetMethod<TArg1>(Type type, string name)
-            => TryGetMethod(type, name, typeof(TArg1));
+        public MethodInfo? TryGetMethod<TArg1>(Type type, string name)
+            => TryGetMethod(type, name, [ ], [ typeof(TArg1) ]);
 
-        public MethodInfo TryGetMethod<TArg1, TArg2>(Type type, string name)
-            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2));
+        public MethodInfo? TryGetMethod<TArg1, TArg2>(Type type, string name)
+            => TryGetMethod(type, name, [ ] , [ typeof(TArg1), typeof(TArg2) ]);
 
-        public MethodInfo TryGetMethod<TArg1, TArg2, TArg3>(Type type, string name)
-            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3));
+        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3>(Type type, string name)
+            => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ]);
 
-        public MethodInfo TryGetMethod<TArg1, TArg2, TArg3, TArg4>(Type type, string name)
-            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
+        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4>(Type type, string name)
+            => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ]);
 
-        public MethodInfo TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type, string name)
-            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
+        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type, string name)
+            => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ]);
 
-        public MethodInfo TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type, string name)
-            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
+        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type, string name)
+            => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ]);
 
-        public MethodInfo TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type, string name)
-            => TryGetMethod(type, name, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
+        public MethodInfo? TryGetMethod<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type, string name)
+            => TryGetMethod(type, name, [ ], [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
 
         public PropertyInfo GetIndexer<TArg1>(Type type)
             => GetIndexer(type, typeof(TArg1));
@@ -493,25 +494,25 @@ namespace JJ.Framework.Reflection.Core
         public PropertyInfo GetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type)
             => GetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
 
-        public PropertyInfo TryGetIndexer<TArg1>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1>(Type type)
             => TryGetIndexer(type, typeof(TArg1));
 
-        public PropertyInfo TryGetIndexer<TArg1, TArg2>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2>(Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2));
 
-        public PropertyInfo TryGetIndexer<TArg1, TArg2, TArg3>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3>(Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3));
 
-        public PropertyInfo TryGetIndexer<TArg1, TArg2, TArg3, TArg4>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4>(Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4));
 
-        public PropertyInfo TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5>(Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5));
 
-        public PropertyInfo TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6));
 
-        public PropertyInfo TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type)
+        public PropertyInfo? TryGetIndexer<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(Type type)
             => TryGetIndexer(type, typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7));
     }
 }
