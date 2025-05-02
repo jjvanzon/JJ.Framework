@@ -244,6 +244,9 @@ namespace JJ.Framework.Reflection.Core
 
         public MethodInfo GetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
+            if (typeArguments == null) throw new NullException(() => typeArguments);
+            if (typeArguments.Length == 0) return GetMethod(type, name, parameterTypes);
+            
             MethodInfo? method = TryGetMethod(type, name, parameterTypes, typeArguments);
             if (method == null)
             {
@@ -257,9 +260,11 @@ namespace JJ.Framework.Reflection.Core
 
         public MethodInfo? TryGetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
+            if (typeArguments == null) throw new NullException(() => typeArguments);
+            if (typeArguments.Length == 0) return TryGetMethod(type, name, parameterTypes);
+
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
-            if (typeArguments == null) throw new ArgumentNullException(nameof(typeArguments));
 
             string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
             string typeArgumentsKey = KeyHelper.CreateKey(typeArguments);

@@ -195,13 +195,13 @@ public class AccessorLegacyExamples
             (string)_accessor.InvokeMethod(para1, para2);
     }
 
-    class OverloadAccessor3 : TestAccessorBase
+    class OverloadAccessor2 : TestAccessorBase
     {
         public string MyPrivateMethod(int para) =>
             (string)_accessor.InvokeMethod( [ para ], [ typeof(int) ] );
     }
 
-    class OverloadAccessor4 : TestAccessorBase
+    class OverloadAccessor3 : TestAccessorBase
     {
         public string MyPrivateMethod2(int para1, int? para2) =>
             (string)_accessor.InvokeMethod( [ para1, para2 ], [ null, typeof(int?) ] );
@@ -215,16 +215,16 @@ public class AccessorLegacyExamples
     }
     
     [TestMethod]
-    public void AccessorLegacy_OverloadedMethod3()
+    public void AccessorLegacy_OverloadedMethod2()
     {
-        var accessor = new OverloadAccessor3();
+        var accessor = new OverloadAccessor2();
         AreEqual("10", () => accessor.MyPrivateMethod(1));
     }
     
     [TestMethod]
-    public void AccessorLegacy_OverloadedMethod4()
+    public void AccessorLegacy_OverloadedMethod3()
     {
-        var accessor = new OverloadAccessor4();
+        var accessor = new OverloadAccessor3();
         AreEqual("350", () => accessor.MyPrivateMethod2(5, 7));
     }
 }

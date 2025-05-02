@@ -147,12 +147,13 @@ namespace JJ.Framework.Reflection
 
         // Other
 
-        public static Type[] TypesFromObjects(params object[] objects)
+        public static Type[] TypesFromObjects(params ICollection<object> objects)
         {
-            Type[] types = new Type[objects.Length];
-            for (int i = 0; i < objects.Length; i++)
+            object[] arr = objects.ToArray();
+            Type[] types = new Type[objects.Count];
+            for (int i = 0; i < arr.Length; i++)
             {
-                object parameter = objects[i];
+                object parameter = arr[i];
 
                 if (parameter != null)
                 {
