@@ -116,142 +116,142 @@ public class AccessorCore
     // With params
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(string name, params object?[] parameters)
-        => CallCore(name, parameters);
+    public object? Call(string name, params object?[] args)
+        => CallCore(name, args);
 
     // With CallerMemberName
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object?[] parameters, [Caller] string name = "")
-        => CallCore(name, parameters);
+    public object? Call(object?[] args, [Caller] string name = "")
+        => CallCore(name, args);
 
     /// <inheritdoc cref="_invokemethod" />
     public object? Call([Caller] string name = "")
         => CallCore(name);
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object? param1, [Caller] string name = "")
-        => CallCore(name, [ param1 ]);
+    public object? Call(object? arg1, [Caller] string name = "")
+        => CallCore(name, [ arg1 ]);
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object? param1, object? param2, [Caller] string name = "")
-        => CallCore(name, [ param1, param2 ]);
+    public object? Call(object? arg1, object? arg2, [Caller] string name = "")
+        => CallCore(name, [ arg1, arg2 ]);
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object? param1, object? param2, object? param3, [Caller] string name = "")
-        => CallCore(name, [ param1, param2, param3 ]);
+    public object? Call(object? arg1, object? arg2, object? arg3, [Caller] string name = "")
+        => CallCore(name, [ arg1, arg2, arg3 ]);
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object? param1, object? param2, object? param3, object? param4, [Caller] string name = "")
-        => CallCore(name, [ param1, param2, param3, param4 ]);
+    public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, [Caller] string name = "")
+        => CallCore(name, [ arg1, arg2, arg3, arg4 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, [Caller] string name = "")
-        => CallCore(name, [ param1, param2, param3, param4, param5 ]);
+    public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, [Caller] string name = "")
+        => CallCore(name, [ arg1, arg2, arg3, arg4, arg5 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, object? param6, [Caller] string name = "")
-        => CallCore(name, [ param1, param2, param3, param4, param5, param6 ]);
+    public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, [Caller] string name = "")
+        => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, object? param6, object? param7, [Caller] string name = "")
-        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7 ]);
+    public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, [Caller] string name = "")
+        => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, object? param6, object? param7, object? param8, [Caller] string name = "")
-        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8 ]);
+    public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, [Caller] string name = "")
+        => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, object? param6, object? param7, object? param8, object? param9, [Caller] string name = "")
-        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8, param9 ]);
+    public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, object? arg9, [Caller] string name = "")
+        => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9 ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object? param1, object? param2, object? param3, object? param4, object? param5, object? param6, object? param7, object? param8, object? param9, object? param10, [Caller] string name = "")
-        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8, param9, param10 ]);
+    public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, object? arg9, object? arg10, [Caller] string name = "")
+        => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10 ]);
 
-    // With Type Arguments
+    // With Type Args
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(string name, object?[] parameters, Type?[] parameterTypes, Type[] typeArguments)
-        => CallCore(name, parameters, parameterTypes, typeArguments);
+    public object? Call(string name, object?[] args, Type?[] argTypes, Type[] typeArgs)
+        => CallCore(name, args, argTypes, typeArgs);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1>(string name, params object?[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1) ]);
+    public object? Call<T>(string name, params object?[] args)
+        => CallCore(name, args, [], typeArgs: [ typeof(T) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2>(string name, params object?[] parameters)
-        => CallCore(name, parameters, [], typeArguments:[ typeof(TArg1), typeof(TArg2) ]);
+    public object? Call<T1, T2>(string name, params object?[] args)
+        => CallCore(name, args, [], typeArgs:[ typeof(T1), typeof(T2) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3>(string name, params object?[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ]);
+    public object? Call<T1, T2, T3>(string name, params object?[] args)
+        => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4>(string name, params object?[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ]);
+    public object? Call<T1, T2, T3, T4>(string name, params object?[] args)
+        => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5>(string name, params object?[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ]);
+    public object? Call<T1, T2, T3, T4, T5>(string name, params object?[] args)
+        => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(string name, params object?[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ]);
+    public object? Call<T1, T2, T3, T4, T5, T6>(string name, params object?[] args)
+        => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(string name, params object?[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
+    public object? Call<T1, T2, T3, T4, T5, T6, T7>(string name, params object?[] args)
+        => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(string name, params object?[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8) ]);
+    public object? Call<T1, T2, T3, T4, T5, T6, T7, T8>(string name, params object?[] args)
+        => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7), typeof(T8) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(string name, params object?[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8), typeof(TArg9) ]);
+    public object? Call<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string name, params object?[] args)
+        => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7), typeof(T8), typeof(T9) ]);
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>(string name, params object?[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8), typeof(TArg9), typeof(TArg10) ]);
+    public object? Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(string name, params object?[] args)
+        => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7), typeof(T8), typeof(T9), typeof(T10) ]);
 
     // With Collections
 
     public object? Call(
         string name,
-        ICollection<object?> parameters)
-        => CallCore(name, parameters);
+        ICollection<object?> args)
+        => CallCore(name, args);
 
     public object? Call(
-        ICollection<object?> parameters,
+        ICollection<object?> args,
         [Caller] string name = "")
-        => CallCore(name, parameters);
+        => CallCore(name, args);
 
     public object? Call(
         string name,
-        ICollection<object?> parameters,
-        ICollection<Type?> parameterTypes)
-        => CallCore(name, parameters, parameterTypes);
+        ICollection<object?> args,
+        ICollection<Type?> argTypes)
+        => CallCore(name, args, argTypes);
 
     public object? Call(
-        ICollection<object?> parameters,
-        ICollection<Type?> parameterTypes,
+        ICollection<object?> args,
+        ICollection<Type?> argTypes,
         [Caller] string name = "")
-        => CallCore(name, parameters, parameterTypes);
+        => CallCore(name, args, argTypes);
 
     public object? Call(
         string name,
-        ICollection<object?> parameters,
-        ICollection<Type?> parameterTypes,
-        ICollection<Type> typeArguments)
-        => CallCore(name, parameters, parameterTypes, typeArguments);
+        ICollection<object?> args,
+        ICollection<Type?> argTypes,
+        ICollection<Type> typeArgs)
+        => CallCore(name, args, argTypes, typeArgs);
 
     public object? Call(
-        ICollection<object?> parameters,
-        ICollection<Type?> parameterTypes,
-        ICollection<Type> typeArguments,
+        ICollection<object?> args,
+        ICollection<Type?> argTypes,
+        ICollection<Type> typeArgs,
         [Caller] string name = "")
-        => CallCore(name, parameters, parameterTypes, typeArguments);
+        => CallCore(name, args, argTypes, typeArgs);
 
     // TODO: Indexers
 
@@ -263,32 +263,32 @@ public class AccessorCore
     
     private object? CallCore(
         string name,
-        ICollection<object?> parameters)
-        => ResolveMethod(name, parameters, [], []).Invoke(_object, parameters.ToArray());
+        ICollection<object?> args)
+        => ResolveMethod(name, args, [], []).Invoke(_object, args.ToArray());
 
     private object? CallCore(
         string name,
-        ICollection<object?> parameters,
-        ICollection<Type?> parameterTypes)
-        => ResolveMethod(name, parameters, parameterTypes, []).Invoke(_object, parameters.ToArray());
+        ICollection<object?> args,
+        ICollection<Type?> argTypes)
+        => ResolveMethod(name, args, argTypes, []).Invoke(_object, args.ToArray());
 
     private object? CallCore(
         string name,
-        ICollection<object?> parameters,
-        ICollection<Type?> parameterTypes,
-        ICollection<Type> typeArguments)
-        => ResolveMethod(name, parameters, parameterTypes, typeArguments).Invoke(_object, parameters.ToArray());
+        ICollection<object?> args,
+        ICollection<Type?> argTypes,
+        ICollection<Type> typeArgs)
+        => ResolveMethod(name, args, argTypes, typeArgs).Invoke(_object, args.ToArray());
 
     private MethodInfo ResolveMethod(
         string name,
-        ICollection<object?> parameters,
-        ICollection<Type?> parameterTypes,
-        ICollection<Type> typeArguments)
+        ICollection<object?> args,
+        ICollection<Type?> argTypes,
+        ICollection<Type> typeArgs)
     {
-        var complementedParameterTypes = ComplementParameterTypes(parameters, parameterTypes);
+        var complementedArgTypes = ComplementArgTypes(args, argTypes);
         foreach (Type type in _types)
         {
-            MethodInfo? method = _reflectionCache.TryGetMethod(type, name, complementedParameterTypes.ToArray(), typeArguments.ToArray());
+            MethodInfo? method = _reflectionCache.TryGetMethod(type, name, complementedArgTypes.ToArray(), typeArgs.ToArray());
             if (method != null) return method;
         }
 
@@ -298,10 +298,10 @@ public class AccessorCore
         foreach (StackFrame? stackFrame in stackFrames)
         {
             if (stackFrame == null) continue;
-            var stackFrameParameterTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
+            var stackFrameArgTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
             foreach (Type type in _types)
             {
-                MethodInfo? method = _reflectionCache.TryGetMethod(type, name, stackFrameParameterTypes.ToArray(), typeArguments.ToArray());
+                MethodInfo? method = _reflectionCache.TryGetMethod(type, name, stackFrameArgTypes.ToArray(), typeArgs.ToArray());
                 if (method != null) return method;
             }
         }
@@ -310,13 +310,13 @@ public class AccessorCore
     }
 
     /// <inheritdoc cref="_complementparametertypes" />
-    private Type[] ComplementParameterTypes(ICollection<object?> parameters, ICollection<Type?> parameterTypes)
+    private Type[] ComplementArgTypes(ICollection<object?> args, ICollection<Type?> argTypes)
     {
-        if (parameterTypes.Count > parameters.Count) throw new ArgumentException("More parameterTypes than parameters.");
-        Type?[] parameterTypesArray = parameterTypes.ToArray();
-        Resize(ref parameterTypesArray, parameters.Count); // Lenience for missing parameterTypes array elements.
-        Type[] parameterTypesFromObjects = TypesFromObjects(parameters);
-        Type[] resolvedParameterTypes = parameterTypesArray.Zip(parameterTypesFromObjects, (x, y) => x ?? y).ToArray();
-        return resolvedParameterTypes;
+        if (argTypes.Count > args.Count) throw new Exception("More argTypes than args.");
+        Type?[] argTypesArray = argTypes.ToArray();
+        Resize(ref argTypesArray, args.Count); // Lenience for missing argTypes array elements.
+        Type[] argTypesFromObjects = TypesFromObjects(args);
+        Type[] resolvedArgTypes = argTypesArray.Zip(argTypesFromObjects, (x, y) => x ?? y).ToArray();
+        return resolvedArgTypes;
     }
 }
