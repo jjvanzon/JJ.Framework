@@ -114,7 +114,7 @@ The code pulled from an earlier point in history may be referred to as __The Ice
 
 The __New Core__ is like the revolution. They are they way forward, but can't do without the *King* and *Queen.* The pilars of power have to be respected.
 
-The *King* is still open to change, as long as the *New Core* shares its updates. The *Queen*, not so much.
+The *King* is still open to change, as long as the *New Core* shares its updates. The *Queen*, not so much. When serving the King, ensure his legacy remains intact; backwards compatibility is a given!
 
 
 Legacy Conclusion
