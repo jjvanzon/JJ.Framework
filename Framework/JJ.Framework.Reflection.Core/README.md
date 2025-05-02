@@ -124,30 +124,19 @@ class MyAccessor(MyClass myObject)
 
 ### Tricky Cases
 
-It can get tricky when the same method name is used for multiple overloads, that differ by parameter types. Usually it works out, but `AccessorCore` can get confused when passed `null`, `object` or the parameter is a base type that differs from the specific type you pass as an argument. In these cases, you can help out `AccessorCore` by explicitly specifying parameter types:
-
-You can pass the parameter values and types as separate collections:
+It can get tricky when the same method name is used for multiple overloads, that differ by parameter types. Usually it works out, but `AccessorCore` can get confused when passed `null`, `object` or the parameter is a base type that differs from the specific type you pass as an argument. In these cases, it can help `AccessorCore` to explicitly specify the parameter types:
 
 ```cs
 public string MyPrivateMethod(int para) =>
     (string)_accessor.InvokeMethod( [ para ], [ typeof(int) ] );
 ```
 
-You can use `null` for parameter types that don't cause ambiguity:
+You can use `null` for parameter types that didn't cause the ambiguity:
 
 ```cs
 public string MyPrivateMethod2(int para1, int? para2) =>
     (string)_accessor.InvokeMethod( [ para1, para2 ], [ null, typeof(int?) ] );
 ```
-
-You can also use type arguments:
-
-```cs
-public string MyPrivateMethod2(object para, object para2) =>
-    (string)_accessor.InvokeMethod<int, int?>("MyPrivateMethod2", para, para2);
-```
-
-Unfortunately the type argument syntax clashes a little, where it is unclear whether a type argument is used for the return type or for the parameter types. And also, all of a sudden, the member name is required.
 
 As you can see, syntax gets more convoluted in more specific cases. Eventually `AccessorCore` might not help you much more than `System.Reflection` already could. Then you still have the options to use `PrivateObject` and `PrivateType` from a test framework you might use, or the ultimate fallback to `System.Reflection` itself.
 
