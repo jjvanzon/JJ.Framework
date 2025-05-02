@@ -1,8 +1,5 @@
 ﻿using System;
 
-// ReSharper disable UnusedParameter.Global
-#pragma warning disable IDE0060 // Remove unused parameter
-
 namespace JJ.Framework.Reflection.Core.Tests.ReflectionCacheLegacyTests
 {
     public static class ReflectionCacheLegacyTests_HelperClass
