@@ -176,41 +176,87 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
             => base.SetIndexerValue(parametersAndValue);
 ```
 
+### New AccessorCore
+
 
 ```cs
             PropertyInfo? property = _reflectionCache.TryGetProperty(_type, name);
             if (property != null) return property.GetValue(_object, null);
 ```
 
+```cs
+
+    private object CallCore(string name, object[] parameters)
+        => GetMethod(name, parameters).Invoke(_object, parameters);
+    
+    private object CallCore(string name, object[] parameters, Type[] parameterTypes)
+        => GetMethod(name, parameters, parameterTypes).Invoke(_object, parameters);
+
+    
+    private MethodInfo GetMethod(string name, object[] parameters)
+        => GetMethod(name, parameters, [], [], []);
+
+    private MethodInfo GetMethod(string name, object[] parameters, Type[] parameterTypes)
+        => GetMethod(name, parameters, parameterTypes, [], []);
+
+    private MethodInfo GetMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments)
+        => GetMethod(name, parameters, parameterTypes, typeArguments, []);
+    
+    private MethodInfo GetMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments, StackFrame[] stackFrames)
+    {
+        parameterTypes = ComplementParameterTypes(parameterTypes, parameters, stackFrames);
+        
+        foreach (Type type in _types)
+        {
+            var method = _reflectionCache.TryGetMethod(type, name, parameterTypes, typeArguments);
+            if (method != null) return method;
+        }
+        
+        throw new Exception($"Method '{name}' not found.");
+    }
+
+        // Try resolve parameterless
+        if (parameters.Count == 0)
+        {
+            foreach (Type type in _types)
+            {
+                MethodInfo? method = _reflectionCache.TryGetMethod(type, name, [], typeArguments.ToArray());
+                if (method != null) return method;
+            }
+        }
+
+        // Try resolve from parameter types and values.
+        if (parameterTypes.Count > 0)
+        {
+        }
+
+        if (parameterTypes == null) throw new ArgumentNullException(nameof(parameters));
+        if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+
 ```
 
-    //private object CallCore(string name, object[] parameters)
-    //    => GetMethod(name, parameters).Invoke(_object, parameters);
-    
-    //private object CallCore(string name, object[] parameters, Type[] parameterTypes)
-    //    => GetMethod(name, parameters, parameterTypes).Invoke(_object, parameters);
+### AccessorCoreTests_Examples
 
+```cs
+        protected AccessorCore _accessor = new(new MyClass());
     
-    //private MethodInfo GetMethod(string name, object[] parameters)
-    //    => GetMethod(name, parameters, [], [], []);
-
-    //private MethodInfo GetMethod(string name, object[] parameters, Type[] parameterTypes)
-    //    => GetMethod(name, parameters, parameterTypes, [], []);
-
-    //private MethodInfo GetMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments)
-    //    => GetMethod(name, parameters, parameterTypes, typeArguments, []);
+    [TestMethod]
+    public void AccessorLegacy_Construction_WithObjectAndType()
+    {
+        var myObject = new MyClass();
+        var accessor = new AccessorCore(myObject, typeof(TheBaseClass));
+    }
     
-    //private MethodInfo GetMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments, StackFrame[] stackFrames)
-    //{
-    //    parameterTypes = ComplementParameterTypes(parameterTypes, parameters, stackFrames);
-        
-    //    foreach (Type type in _types)
-    //    {
-    //        var method = _reflectionCache.TryGetMethod(type, name, parameterTypes, typeArguments);
-    //        if (method != null) return method;
-    //    }
-        
-    //    throw new Exception($"Method '{name}' not found.");
-    //}
+    [TestMethod]
+    public void AccessorLegacy_Construction_BaseAndDerived()
+    { 
+        var myObject = new MyClass();
+        var concreteAccessor = new AccessorCore(myObject);
+        var baseAccessor = new AccessorCore(myObject, typeof(TheBaseClass));
+    }
+
+        var accessor = new AccessorCore($"{MyNamespace}.{MyPrivateClass}, {MyAssembly}");
+    string MyNamespace => GetType().Namespace; 
+    string MyAssembly => GetType().Assembly.GetName().Name;
 
 ```

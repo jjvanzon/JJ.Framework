@@ -285,34 +285,20 @@ public class AccessorCore
         ICollection<Type?> parameterTypes,
         ICollection<Type> typeArguments)
     {
-        // Try resolve parameterless
-        //if (parameters.Count == 0)
-        //{
-        //    foreach (Type type in _types)
-        //    {
-        //        MethodInfo? method = _reflectionCache.TryGetMethod(type, name, [], typeArguments.ToArray());
-        //        if (method != null) return method;
-        //    }
-        //}
-
-        // Try resolve from parameter types and values.
-        //if (parameterTypes.Count > 0)
+        var complementedParameterTypes = ComplementParameterTypes(parameters, parameterTypes);
+        foreach (Type type in _types)
         {
-            var complementedParameterTypes = ComplementParameterTypes(parameters, parameterTypes);
-            foreach (Type type in _types)
-            {
-                MethodInfo? method = _reflectionCache.TryGetMethod(type, name, complementedParameterTypes.ToArray(), typeArguments.ToArray());
-                if (method != null) return method;
-            }
+            MethodInfo? method = _reflectionCache.TryGetMethod(type, name, complementedParameterTypes.ToArray(), typeArguments.ToArray());
+            if (method != null) return method;
         }
 
         // Try resolve with stack trace info.
         StackTrace stackTrace = new();
-        ICollection<StackFrame?> stackFrames = [ stackTrace.GetFrame(1), stackTrace.GetFrame(2) ];
+        ICollection<StackFrame?> stackFrames = [ stackTrace.GetFrame(2), stackTrace.GetFrame(3) ];
         foreach (StackFrame? stackFrame in stackFrames)
         {
             if (stackFrame == null) continue;
-            var stackFrameParameterTypes = stackFrame.GetMethod().GetParameters().Select(x => x.ParameterType).ToArray();
+            var stackFrameParameterTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
             foreach (Type type in _types)
             {
                 MethodInfo? method = _reflectionCache.TryGetMethod(type, name, stackFrameParameterTypes.ToArray(), typeArguments.ToArray());
@@ -326,8 +312,6 @@ public class AccessorCore
     /// <inheritdoc cref="_complementparametertypes" />
     private Type[] ComplementParameterTypes(ICollection<object?> parameters, ICollection<Type?> parameterTypes)
     {
-        //if (parameterTypes == null) throw new ArgumentNullException(nameof(parameters));
-        //if (parameters == null) throw new ArgumentNullException(nameof(parameters));
         if (parameterTypes.Count > parameters.Count) throw new ArgumentException("More parameterTypes than parameters.");
         Type?[] parameterTypesArray = parameterTypes.ToArray();
         Resize(ref parameterTypesArray, parameters.Count); // Lenience for missing parameterTypes array elements.
