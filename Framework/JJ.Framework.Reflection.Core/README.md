@@ -3,21 +3,32 @@ JJ.Framework.Reflection.Core
 
 Work with __Expressions__ and __Reflection__: two flexible techniques for inspecting code structure at run-time.
 
+- [AccessorCore](#accessorcore)
+    - [Constructs](#constructs)
+    - [Instance, Statics, Types](#instance-statics-types)
+    - [Wrappers](#wrappers)
+    - [Tricky Cases](#tricky-cases)
 
 AccessorCore
 ------------
 
 Allows easy access to the `internal`, `private` or `protected` elements of `assemblies` or `classes` and other constructs.
+Let's take this example `class` with one `private` method:
 
-For instance, this invokes a `private` method:
+```cs
+class MyClass
+{
+    private int MyPrivateMethod(int myParameter) => 3;
+}
+```
+
+You can invoke that `private` method like this:
 
 ```cs
 _accessor.InvokeMethod("MyPrivateMethod", 10);
 ```
 
-`MyPrivateMethod` has one parameter, there set to `10`.
-
-This other option makes the same call:
+This is another option to make the same call:
 
 ```cs
 public string MyPrivateMethod(int para) =>
@@ -41,16 +52,16 @@ There the method to call, its parameters, values, and return type are inferred f
 
 The `Accessor` can use the info from the expression to make the call.
 
-### Supported Constructs
+### Constructs
 
-`AccessorCore` supports:
+`AccessorCore` supports the following constructs:
 
 - `Fields`
 - `Properties`
 - `Methods`
 - `Indexers[]`
 - `<Type>` arguments
-- `ref` and `out` parameters
+- `ref` and `out` for (up to 3) parameters
 
 Here's an example for a property:
 
@@ -66,7 +77,7 @@ public string MyProperty => (string)_accessor.GetPropertyValue();
 public string MyProperty => _accessor.GetPropertyValue<string>("MyProperty");
 ```
 
-### Specifying the Instance, Statics or Type Name
+### Instance, Statics, Types
 
 Specifying what object to access, is done through the constructor of `AccessorCore`.
 
@@ -101,7 +112,7 @@ Lastly, for `internal` classes, you might not be able to say `typeof(TheBaseClas
 var accessor = new AccessorCore("MyNamespace.MyPrivateClass, MyAssembly");
 ```
 
-### Accessor Wrappers
+### Wrappers
 
 Programming your own wrapper accesors might be a good idea. Then you make access to the internals even easier with syntax as follows:
 
