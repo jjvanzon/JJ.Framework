@@ -50,8 +50,6 @@ There the method to call, its parameters, values, and return type are inferred f
 () => MyPrivateMethod(para)
 ```
 
-The `Accessor` can use the info from the expression to make the call.
-
 ### Constructs
 
 `AccessorCore` supports the following constructs:
@@ -61,7 +59,7 @@ The `Accessor` can use the info from the expression to make the call.
 - `Methods`
 - `Indexers[]`
 - `<Type>` arguments
-- `ref` and `out` for (up to 3) parameters
+- `ref` and `out` for up to 3 parameters
 
 Here's an example for a property:
 
@@ -81,13 +79,13 @@ public string MyProperty => _accessor.GetPropertyValue<string>("MyProperty");
 
 Specifying what object to access, is done through the constructor of `AccessorCore`.
 
-If you pass an `object` to it, that's usually enough:
+Passing an `object` to it is usually enough:
 
 ```cs
 var accessor = new AccessorCore(myObject);
 ```
 
-If you want to access `static` members, you'd have to pass it the `Type` instead:
+If you want to access `static` members, you'd have to pass it a `Type` instead:
 
 ```cs
 var accessor = new AccessorCore(typeof(MyStaticClass));
@@ -106,7 +104,7 @@ var concreteAccessor = new AccessorCore(myObject);
 var baseAccessor = new AccessorCore(myObject, typeof(TheBaseClass));
 ```
 
-Lastly, for `internal` classes, you might not be able to say `typeof(TheBaseClass)`. This is because `TheBaseClass` might not be in scope. Then you'd need to specify the type name instead:
+Lastly, for `internal` classes, you might not be able to pass `typeof(TheBaseClass)`. This is because `TheBaseClass` might not be in scope. Then you'd need to specify the type name instead:
 
 ```cs
 var accessor = new AccessorCore("MyNamespace.MyPrivateClass, MyAssembly");
