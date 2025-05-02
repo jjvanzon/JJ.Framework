@@ -28,6 +28,7 @@
     <NoWarn>$(NoWarn);NU1701</NoWarn> <!--Package was not restored with project target framework.-->
     <NoWarn>$(NoWarn);CS8632</NoWarn> <!--Nullable annotation used without nullable option on.-->
     <NoWarn>$(NoWarn);CS1573</NoWarn> <!--Parameter 'parameter' has no matching param tag in the XML comment for 'parameter' (but other parameters do)-->
+    <NoWarn>$(NoWarn);CA1510</NoWarn> <!--Use ThrowIfNull-->
     <!-- See also: Directory.Build.targets for more disabled warnings. -->
   </PropertyGroup>
 

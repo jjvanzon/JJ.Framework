@@ -90,8 +90,7 @@ public class AccessorCore
         CallCore(
             info.Name,
             info.Parameters.Select(x => x.Value        ).ToArray(),
-            info.Parameters.Select(x => x.ParameterType).ToArray(),
-            new StackTrace().GetFrame(2));
+            info.Parameters.Select(x => x.ParameterType).ToArray());
     }
     
     /// <inheritdoc cref="_invokemethod" />
@@ -102,8 +101,7 @@ public class AccessorCore
         return (T)CallCore(
             info.Name,
             info.Parameters.Select(x => x.Value        ).ToArray(),
-            info.Parameters.Select(x => x.ParameterType).ToArray(),
-            new StackTrace().GetFrame(2));
+            info.Parameters.Select(x => x.ParameterType).ToArray());
     }
     
     /// <inheritdoc cref="_invokemethod" />
@@ -114,147 +112,165 @@ public class AccessorCore
         return CallCore(
             info.Name, 
             info.Parameters.Select(x => x.Value        ).ToArray(), 
-            info.Parameters.Select(x => x.ParameterType).ToArray(),
-            new StackTrace().GetFrame(2));
+            info.Parameters.Select(x => x.ParameterType).ToArray());
     }
             
     // With params
     
     /// <inheritdoc cref="_invokemethod" />
     public object Call(string name, params object[] parameters) 
-        => CallCore(name, parameters, new StackTrace().GetFrame(1));
+        => CallCore(name, parameters);
     
     // With CallerMemberName
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call(object[] parameters, [Caller] string name = "")
-        => CallCore(name, parameters, new StackTrace().GetFrame(1));
+        => CallCore(name, parameters);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call([Caller] string name = "") 
-        => CallCore(name, new StackTrace().GetFrame(1));
+        => CallCore(name);
     
     /// <inheritdoc cref="_invokemethod" />
     public object Call(object param1, [Caller] string name = "") 
-        => CallCore(name, [ param1 ], new StackTrace().GetFrame(1));
+        => CallCore(name, [ param1 ]);
     
     /// <inheritdoc cref="_invokemethod" />
     public object Call(object param1, object param2, [Caller] string name = "")
-        => CallCore(name, [ param1, param2 ], new StackTrace().GetFrame(1));
+        => CallCore(name, [ param1, param2 ]);
     
     /// <inheritdoc cref="_invokemethod" />
     public object Call(object param1, object param2, object param3, [Caller] string name = "") 
-        => CallCore(name, [ param1, param2, param3 ], new StackTrace().GetFrame(1));
+        => CallCore(name, [ param1, param2, param3 ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call(object param1, object param2, object param3, object param4, [Caller] string name = "") 
-        => CallCore(name, [ param1, param2, param3, param4 ], new StackTrace().GetFrame(1));
+        => CallCore(name, [ param1, param2, param3, param4 ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call(object param1, object param2, object param3, object param4, object param5, [Caller] string name = "") 
-        => CallCore(name, [ param1, param2, param3, param4, param5 ], new StackTrace().GetFrame(1));
+        => CallCore(name, [ param1, param2, param3, param4, param5 ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call(object param1, object param2, object param3, object param4, object param5, object param6, [Caller] string name = "") 
-        => CallCore(name, [ param1, param2, param3, param4, param5, param6 ], new StackTrace().GetFrame(1));
+        => CallCore(name, [ param1, param2, param3, param4, param5, param6 ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call(object param1, object param2, object param3, object param4, object param5, object param6, object param7, [Caller] string name = "") 
-        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7 ], new StackTrace().GetFrame(1));
+        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7 ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call(object param1, object param2, object param3, object param4, object param5, object param6, object param7, object param8, [Caller] string name = "") 
-        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8 ], new StackTrace().GetFrame(1));
+        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8 ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call(object param1, object param2, object param3, object param4, object param5, object param6, object param7, object param8, object param9, [Caller] string name = "") 
-        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8, param9 ], new StackTrace().GetFrame(1));
+        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8, param9 ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call(object param1, object param2, object param3, object param4, object param5, object param6, object param7, object param8, object param9, object param10, [Caller] string name = "") 
-        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8, param9, param10 ], new StackTrace().GetFrame(1));
+        => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8, param9, param10 ]);
 
     // With Type Arguments
     
     /// <inheritdoc cref="_invokemethod" />
     public object Call(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments) 
-        => CallCore(name, parameters, parameterTypes, typeArguments, new StackTrace().GetFrame(1));
+        => CallCore(name, parameters, parameterTypes, typeArguments);
     
     /// <inheritdoc cref="_invokemethod" />
     public object Call<TArg1>(string name, params object[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1) ], new StackTrace().GetFrame(1));
+        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1) ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call<TArg1, TArg2>(string name, params object[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2) ], new StackTrace().GetFrame(1));
+        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2) ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call<TArg1, TArg2, TArg3>(string name, params object[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ], new StackTrace().GetFrame(1));
+        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3) ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call<TArg1, TArg2, TArg3, TArg4>(string name, params object[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ], new StackTrace().GetFrame(1));
+        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4) ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call<TArg1, TArg2, TArg3, TArg4, TArg5>(string name, params object[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ], new StackTrace().GetFrame(1));
+        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5) ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(string name, params object[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ], new StackTrace().GetFrame(1));
+        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6) ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(string name, params object[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ], new StackTrace().GetFrame(1));
+        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7) ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(string name, params object[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8) ], new StackTrace().GetFrame(1));
+        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8) ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(string name, params object[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8), typeof(TArg9) ], new StackTrace().GetFrame(1));
+        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8), typeof(TArg9) ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object Call<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, TArg10>(string name, params object[] parameters)
-        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8), typeof(TArg9), typeof(TArg10) ], new StackTrace().GetFrame(1));
+        => CallCore(name, parameters, [], typeArguments: [ typeof(TArg1), typeof(TArg2), typeof(TArg3), typeof(TArg4), typeof(TArg5), typeof(TArg6), typeof(TArg7), typeof(TArg8), typeof(TArg9), typeof(TArg10) ]);
     
     // Helpers
 
     private object CallCore(
+        string name)
+        => ResolveMethod(name, [], [], []).Invoke(_object, []);
+
+    private object CallCore(
         string name, 
-        params ICollection<StackFrame?> stackFrames)
-        => GetMethod(name, [], [], [], stackFrames).Invoke(_object, []);
+        ICollection<object?> parameters)
+        => ResolveMethod(name, parameters, [], []).Invoke(_object, parameters.ToArray());
 
     private object CallCore(
         string name, 
         ICollection<object?> parameters, 
-        params ICollection<StackFrame?> stackFrames)
-        => GetMethod(name, parameters, [], [], stackFrames).Invoke(_object, parameters.ToArray());
-
-    private object CallCore(
-        string name, 
-        ICollection<object?> parameters, 
-        ICollection<Type?> parameterTypes, 
-        params ICollection<StackFrame?> stackFrames)
-        => GetMethod(name, parameters, parameterTypes, [], stackFrames).Invoke(_object, parameters.ToArray());
+        ICollection<Type?> parameterTypes)
+        => ResolveMethod(name, parameters, parameterTypes, []).Invoke(_object, parameters.ToArray());
     
     private object CallCore(
         string name, 
         ICollection<object?> parameters, 
         ICollection<Type?> parameterTypes, 
-        ICollection<Type> typeArguments, 
-        params ICollection<StackFrame?> stackFrames)
-        => GetMethod(name, parameters, parameterTypes, typeArguments, stackFrames).Invoke(_object, parameters.ToArray());
+        ICollection<Type> typeArguments)
+        => ResolveMethod(name, parameters, parameterTypes, typeArguments).Invoke(_object, parameters.ToArray());
         
-    private MethodInfo GetMethod(
+    private MethodInfo ResolveMethod(
         string name, 
         ICollection<object?> parameters, 
         ICollection<Type?> parameterTypes, 
-        ICollection<Type> typeArguments,
-        ICollection<StackFrame?> stackFrames)
+        ICollection<Type> typeArguments)
     {
+        // Try resolve parameterless
+        if (parameters.Count == 0)
+        {
+            foreach (Type type in _types)
+            {
+                MethodInfo? method = _reflectionCache.TryGetMethod(type, name, [], typeArguments.ToArray());
+                if (method != null) return method;
+            }
+        }
+            
+        // Try resolve from parameter types and values.
+        if (parameterTypes.Count > 0)
+        { 
+            var complementedParameterTypes = ComplementParameterTypes(parameters, parameterTypes);
+            foreach (Type type in _types)
+            {
+                MethodInfo? method = _reflectionCache.TryGetMethod(type, name, complementedParameterTypes.ToArray(), typeArguments.ToArray());
+                if (method != null) return method;
+            }
+        }
+
+        // Try resolve with stack trace info.
+        StackTrace stackTrace = new();
+        ICollection<StackFrame?> stackFrames = [ stackTrace.GetFrame(1), stackTrace.GetFrame(2) ];
         foreach (StackFrame? stackFrame in stackFrames)
         {
             if (stackFrame == null) continue;
@@ -266,23 +282,14 @@ public class AccessorCore
             }
         }
         
-        { 
-            var complementedParameterTypes = ComplementParameterTypes(parameters, parameterTypes);
-            foreach (Type type in _types)
-            {
-                MethodInfo? method = _reflectionCache.TryGetMethod(type, name, complementedParameterTypes.ToArray(), typeArguments.ToArray());
-                if (method != null) return method;
-            }
-        }
-        
         throw new Exception($"Method '{name}' not found.");
     }
     
     /// <inheritdoc cref="_complementparametertypes" />
     private Type[] ComplementParameterTypes(ICollection<object?> parameters, ICollection<Type?> parameterTypes)
     {
-        if (parameterTypes == null) throw new ArgumentNullException(nameof(parameters));
-        if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+        //if (parameterTypes == null) throw new ArgumentNullException(nameof(parameters));
+        //if (parameters == null) throw new ArgumentNullException(nameof(parameters));
         if (parameterTypes.Count > parameters.Count) throw new ArgumentException("More parameterTypes than parameters.");
         Type?[] parameterTypesArray = parameterTypes.ToArray();
         Resize(ref parameterTypesArray, parameters.Count); // Lenience for missing parameterTypes array elements.
