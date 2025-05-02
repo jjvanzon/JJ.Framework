@@ -325,7 +325,7 @@ namespace JJ.Framework.Reflection.Core
         // Helpers
 
         /// <inheritdoc cref="_complementparametertypes" />
-        private static Type[] ComplementParameterTypes(Type[]? parameterTypes, object[] parameters)
+        private static Type[] ComplementParameterTypes(Type?[]? parameterTypes, object[] parameters)
         {
             if (parameters == null) throw new ArgumentNullException(nameof(parameters));
             parameterTypes ??= [ ];
@@ -336,9 +336,9 @@ namespace JJ.Framework.Reflection.Core
             // Lenience for missing parameterTypes array elements.
             Array.Resize(ref parameterTypes, parameterTypesFromObjects.Length); 
 
-            parameterTypes = parameterTypes.Zip(parameterTypesFromObjects, (x, y) => x ?? y).ToArray();
+            Type[] parameterTypes2 = parameterTypes.Zip(parameterTypesFromObjects, (x, y) => x ?? y).ToArray();
 
-            return parameterTypes;
+            return parameterTypes2;
         }
     }
 }

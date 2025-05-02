@@ -181,3 +181,36 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
             PropertyInfo? property = _reflectionCache.TryGetProperty(_type, name);
             if (property != null) return property.GetValue(_object, null);
 ```
+
+```
+
+    //private object CallCore(string name, object[] parameters)
+    //    => GetMethod(name, parameters).Invoke(_object, parameters);
+    
+    //private object CallCore(string name, object[] parameters, Type[] parameterTypes)
+    //    => GetMethod(name, parameters, parameterTypes).Invoke(_object, parameters);
+
+    
+    //private MethodInfo GetMethod(string name, object[] parameters)
+    //    => GetMethod(name, parameters, [], [], []);
+
+    //private MethodInfo GetMethod(string name, object[] parameters, Type[] parameterTypes)
+    //    => GetMethod(name, parameters, parameterTypes, [], []);
+
+    //private MethodInfo GetMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments)
+    //    => GetMethod(name, parameters, parameterTypes, typeArguments, []);
+    
+    //private MethodInfo GetMethod(string name, object[] parameters, Type[] parameterTypes, Type[] typeArguments, StackFrame[] stackFrames)
+    //{
+    //    parameterTypes = ComplementParameterTypes(parameterTypes, parameters, stackFrames);
+        
+    //    foreach (Type type in _types)
+    //    {
+    //        var method = _reflectionCache.TryGetMethod(type, name, parameterTypes, typeArguments);
+    //        if (method != null) return method;
+    //    }
+        
+    //    throw new Exception($"Method '{name}' not found.");
+    //}
+
+```
