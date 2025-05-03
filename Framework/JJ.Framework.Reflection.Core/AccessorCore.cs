@@ -80,44 +80,52 @@ public class AccessorCore
     
     // TODO: Use actual indexers [] for this (keep the Get and Set; they're flexible).
 
-    public object? Get(params ICollection<object?> indexes)
-    {
-        if (indexes == null) throw new ArgumentNullException(nameof(indexes));
-        if (indexes.Count < 1) throw new Exception("indexes.Count must be at least 1.");
-        
-        // TODO: Resolve them with local helper ComplementArgTypes?
-        Type[] indexTypes = TypesFromObjects(indexes);
-        
-        foreach (Type type in _types)
-        {
-            var property = _reflectionCache.TryGetIndexer(type, indexTypes);
-            if (property != null) return property.GetValue(Obj, indexes.ToArray());
-        }
-        
-        throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => x.ToString()))}].");
-    }
-
+    public object? Get(params ICollection<object?> indexes) => Get(indexes, [ ]);
+    
     public void Set(params ICollection<object?> indexesAndValue)
     {
         if (indexesAndValue == null) throw new ArgumentNullException(nameof(indexesAndValue));
         if (indexesAndValue.Count < 2) throw new Exception("indexesAndValue.Count must be at least 2");
         
-        object?[] parameters = indexesAndValue.Take(indexesAndValue.Count - 1).ToArray();
+        object?[] indexes = indexesAndValue.Take(indexesAndValue.Count - 1).ToArray();
         object? value = indexesAndValue.Last();
+     
+        Set(indexes, value, [ ]);
+    }
+    
+    public object? Get(ICollection<object?> indexes, ICollection<Type?> indexTypes)
+    {
+        if (indexes == null) throw new ArgumentNullException(nameof(indexes));
+        if (indexes.Count < 1) throw new Exception("indexes.Count must be at least 1.");
         
-        // TODO: Resolve them with local helper ComplementArgTypes?
-        Type[] indexTypes = TypesFromObjects(parameters);
+        // TODO: Now getting it from StackFrame inspection is not done yet.
+        ICollection<Type> complementedIndexTypes = ComplementArgTypes(indexes, indexTypes);
         
         foreach (Type type in _types)
         {
-            var property = _reflectionCache.TryGetIndexer(type, indexTypes);
-            if (property != null) { property.SetValue(Obj, value, parameters); return; }
+            var property = _reflectionCache.TryGetIndexer(type, complementedIndexTypes.ToArray());
+            if (property != null) return property.GetValue(Obj, indexes.ToArray());
         }
         
-        throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => x.ToString()))}].");
+        throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => $"{x}"))}].");
     }
-    
-    // TODO: Variants with explicit parameter types.
+
+    public void Set(ICollection<object?> indexes, object? value, ICollection<Type?> indexTypes)
+    {
+        if (indexes    == null) throw new NullException(() => indexes);
+        if (indexTypes == null) throw new NullException(() => indexTypes);
+        
+        // TODO: Now getting it from StackFrame inspection is not done yet.
+        ICollection<Type> complementedIndexTypes = ComplementArgTypes(indexes, indexTypes);
+        
+        foreach (Type type in _types)
+        {
+            var property = _reflectionCache.TryGetIndexer(type, complementedIndexTypes.ToArray());
+            if (property != null) { property.SetValue(Obj, value, indexes.ToArray()); return; }
+        }
+        
+        throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => $"{x}"))}].");
+    }
 
     // Methods
 
@@ -334,7 +342,7 @@ public class AccessorCore
         ICollection<Type?> argTypes,
         ICollection<Type> typeArgs)
     {
-        var complementedArgTypes = ComplementArgTypes(args, argTypes);
+        ICollection<Type> complementedArgTypes = ComplementArgTypes(args, argTypes);
         foreach (Type type in _types)
         {
             MethodInfo? method = _reflectionCache.TryGetMethod(type, name, complementedArgTypes.ToArray(), typeArgs.ToArray());
@@ -360,7 +368,7 @@ public class AccessorCore
 
     
     /// <inheritdoc cref="_complementparametertypes" />
-    private Type[] ComplementArgTypes(ICollection<object?> args, ICollection<Type?> argTypes)
+    private ICollection<Type> ComplementArgTypes(ICollection<object?> args, ICollection<Type?> argTypes)
     {
         if (argTypes.Count > args.Count) throw new Exception("More argTypes than args.");
         Type?[] argTypesArray = argTypes.ToArray();
