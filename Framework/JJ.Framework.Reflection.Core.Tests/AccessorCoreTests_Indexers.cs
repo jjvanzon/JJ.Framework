@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Reflection.Core.Tests;
+﻿using JJ.Framework.Testing.Core;
+
+namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
 public class AccessorCoreTests_Indexers
@@ -107,21 +109,14 @@ public class AccessorCoreTests_Indexers
     // With Overloads
                 
     [TestMethod]
-    public void AccessorCore_Indexer_Overloads()
+    public void AccessorCore_Indexer_Overloads_NotFound()
     {
         var obj = new MyClass_WithOverloads();
         var accessor = new MyAccessor_WithOverloads(obj);
         
-        // Gave error. Yet to debug.
-        return;
-        
-        // Get  
-        int number = (int)accessor[null];
-        AreEqual(Int32.MaxValue, number);
-        
-        // Set
-        accessor[null] = 5;
-        AreEqual(5, accessor[null]);
+        ThrowsException(
+            () => { int number = (int)accessor[null]; },
+            "No indexer found with argument types [System.Object].");
     }
 
     private class MyAccessor_WithOverloads(MyClass_WithOverloads obj)
@@ -141,7 +136,7 @@ public class AccessorCoreTests_Indexers
 
         private int this[int i]
         {
-            get => _numberDic[i ];
+            get => _numberDic[i];
             set => _numberDic[i] = value;
         }
 

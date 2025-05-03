@@ -441,7 +441,7 @@ public class AccessorCore
             }
         }
 
-        throw new Exception($"Indexer not found with index types: [{Join(", ", complementedArgTypes.Select(x => $"{x}"))}].");
+        throw new Exception($"No indexer found with argument types [{Join(", ", complementedArgTypes.Select(x => $"{x}"))}].");
     }
     
     /// <inheritdoc cref="_complementparametertypes" />
