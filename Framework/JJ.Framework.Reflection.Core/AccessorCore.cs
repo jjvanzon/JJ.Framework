@@ -122,6 +122,9 @@ public class AccessorCore
     // With params
 
     /// <inheritdoc cref="_invokemethod" />
+    #if NET9_0_OR_GREATER
+    [OverloadResolutionPriority(1)] 
+    #endif
     public object? Call(string name, params object?[] args)
         => CallCore(name, args);
 
@@ -181,6 +184,8 @@ public class AccessorCore
     public object? Call(string name, object?[] args, Type?[] argTypes, Type[] typeArgs)
         => CallCore(name, args, argTypes, typeArgs);
     
+    // TODO: CallerMemberName variants.
+    
     /// <inheritdoc cref="_invokemethod" />
     public object? Call<T>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T) ]);
@@ -223,6 +228,9 @@ public class AccessorCore
 
     // With Collections
 
+    #if NET9_0_OR_GREATER
+    [OverloadResolutionPriority(1)] 
+    #endif
     public object? Call(
         string name,
         ICollection<object?> args)
@@ -233,6 +241,9 @@ public class AccessorCore
         [Caller] string name = "")
         => CallCore(name, args);
 
+    #if NET9_0_OR_GREATER
+    [OverloadResolutionPriority(1)] 
+    #endif
     public object? Call(
         string name,
         ICollection<object?> args,
@@ -245,6 +256,9 @@ public class AccessorCore
         [Caller] string name = "")
         => CallCore(name, args, argTypes);
 
+    #if NET9_0_OR_GREATER
+    [OverloadResolutionPriority(1)] 
+    #endif
     public object? Call(
         string name,
         ICollection<object?> args,
