@@ -274,5 +274,30 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
     [OverloadResolutionPriority(1)] 
     #end if
     public void Set    (string  name ,            object? value    ) => SetCore(name, value);
+```
 
+### AccessorCore Indexers
+
+```cs
+    // TODO: Now getting it from StackFrame inspection is not done yet.
+    ICollection<Type> complementedIndexTypes = ComplementArgTypes(indexes, indexTypes);
+    
+    foreach (Type type in _typesInHierarchy)
+    {
+        var property = _reflectionCacheLegacy.TryGetIndexer(type, complementedIndexTypes.ToArray());
+        if (property != null) return property.GetValue(Obj, indexes.ToArray());
+    }
+    
+    throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => $"{x}"))}].");
+
+    // TODO: Now getting it from StackFrame inspection is not done yet.
+    ICollection<Type> complementedIndexTypes = ComplementArgTypes(indexes, indexTypes);
+    
+    foreach (Type type in _typesInHierarchy)
+    {
+        var property = _reflectionCacheLegacy.TryGetIndexer(type, complementedIndexTypes.ToArray());
+        if (property != null) { property.SetValue(Obj, value, indexes.ToArray()); return; }
+    }
+    
+    throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => $"{x}"))}].");
 ```

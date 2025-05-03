@@ -59,8 +59,8 @@ public class AccessorCore
     }
 
     [OverloadPriority(1)]
-    public void Set<T>(string name, T value) => SetCore(name, value);
-    public void Set<T>(T value, [Caller] string name = "") => SetCore(name, value);
+    public void Set<T>(string name ,               T value    ) => SetCore(name, value);
+    public void Set<T>(T      value, [Caller] string name = "") => SetCore(name, value);
     /// <inheritdoc cref="_nameexpression" />
     public void Set<T>(Expression<Func<T>> nameLambda, T value) => SetCore(GetName(nameLambda), value);
     private void SetCore(string name, object? value)
@@ -78,57 +78,75 @@ public class AccessorCore
     
     // Indexers
     
+    // With Indexer
+    
     public object? this[params ICollection<object?> indexes]
     {
-        get => Get(indexes);
-        set => Set(indexes, value);
+        get
+        {
+            AssertIndexes(indexes);
+            
+            var property = ResolveIndexer(indexes, [ ]);
+            return property.GetValue(Obj, indexes.ToArray());
+        }
+        set
+        {
+            AssertIndexes(indexes);
+            
+            var property = ResolveIndexer(indexes, [ ]);
+            property.SetValue(Obj, value, indexes.ToArray());
+        }
     }
     
-    public object? Get(params ICollection<object?> indexes) => Get(indexes, [ ]);
+    // With Params
+    
+    public object? Get(params ICollection<object?> indexes)
+    {
+        AssertIndexes(indexes);
+        var property = ResolveIndexer(indexes, [ ]);
+        return property.GetValue(Obj, indexes.ToArray());
+    }
     
     public void Set(params ICollection<object?> indexesAndValue)
     {
-        if (indexesAndValue == null) throw new ArgumentNullException(nameof(indexesAndValue));
-        if (indexesAndValue.Count < 2) throw new Exception("indexesAndValue.Count must be at least 2");
+        AssertIndexesAndValue(indexesAndValue);
         
         object?[] indexes = indexesAndValue.Take(indexesAndValue.Count - 1).ToArray();
         object? value = indexesAndValue.Last();
-     
-        Set(indexes, value, [ ]);
+        
+        var property = ResolveIndexer(indexes, [ ]);
+        property.SetValue(Obj, value, indexes);
     }
+    
+    // With Collections
     
     public object? Get(ICollection<object?> indexes, ICollection<Type?> indexTypes)
     {
-        if (indexes == null) throw new ArgumentNullException(nameof(indexes));
-        if (indexes.Count < 1) throw new Exception("indexes.Count must be at least 1.");
-        
-        // TODO: Now getting it from StackFrame inspection is not done yet.
-        ICollection<Type> complementedIndexTypes = ComplementArgTypes(indexes, indexTypes);
-        
-        foreach (Type type in _types)
-        {
-            var property = _reflectionCacheLegacy.TryGetIndexer(type, complementedIndexTypes.ToArray());
-            if (property != null) return property.GetValue(Obj, indexes.ToArray());
-        }
-        
-        throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => $"{x}"))}].");
+        AssertIndexes(indexes);
+        var property = ResolveIndexer(indexes, indexTypes);
+        return property.GetValue(Obj, indexes.ToArray());
     }
 
     public void Set(ICollection<object?> indexes, object? value, ICollection<Type?> indexTypes)
     {
-        if (indexes    == null) throw new NullException(() => indexes);
-        if (indexTypes == null) throw new NullException(() => indexTypes);
+        AssertIndexes(indexes);
+        if (indexTypes == null) throw new ArgumentNullException(nameof(indexTypes));
+        var property = ResolveIndexer(indexes, indexTypes);
+        property.SetValue(Obj, value, indexes.ToArray());
+    }
+    
+    // Helpers
+    
+    private static void AssertIndexes(ICollection<object?> indexes)
+    {
+        if (indexes == null) throw new ArgumentNullException(nameof(indexes));
+        if (indexes.Count < 1) throw new Exception("indexes.Count must be at least 1.");
+    }
         
-        // TODO: Now getting it from StackFrame inspection is not done yet.
-        ICollection<Type> complementedIndexTypes = ComplementArgTypes(indexes, indexTypes);
-        
-        foreach (Type type in _types)
-        {
-            var property = _reflectionCacheLegacy.TryGetIndexer(type, complementedIndexTypes.ToArray());
-            if (property != null) { property.SetValue(Obj, value, indexes.ToArray()); return; }
-        }
-        
-        throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => $"{x}"))}].");
+    private static void AssertIndexesAndValue(ICollection<object?> indexesAndValue)
+    {
+        if (indexesAndValue == null) throw new ArgumentNullException(nameof(indexesAndValue));
+        if (indexesAndValue.Count < 2) throw new Exception("indexesAndValue.Count must be at least 2");
     }
 
     // Methods
@@ -355,11 +373,19 @@ public class AccessorCore
 
         // Try resolve with stack trace info.
         StackTrace stackTrace = new();
-        ICollection<StackFrame?> stackFrames = [ stackTrace.GetFrame(2), stackTrace.GetFrame(3) ];
+        ICollection<StackFrame?> stackFrames =
+        [
+            stackTrace.GetFrame(4), // Likeliest
+            stackTrace.GetFrame(5), // Lenience for delegation structures
+            stackTrace.GetFrame(3), // For inlining
+            stackTrace.GetFrame(2), // For inlining 
+            stackTrace.GetFrame(1)  // For inlining
+        ];
+        
         foreach (StackFrame? stackFrame in stackFrames)
         {
             if (stackFrame == null) continue;
-            var stackFrameArgTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
+            ICollection<Type> stackFrameArgTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
             foreach (Type type in _types)
             {
                 MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, stackFrameArgTypes.ToArray(), typeArgs.ToArray());
@@ -370,6 +396,47 @@ public class AccessorCore
         throw new Exception($"Method '{name}' not found.");
     }
 
+    private PropertyInfo ResolveIndexer(
+        ICollection<object?> indexes,
+        ICollection<Type?> indexTypes)
+    {
+        ICollection<Type> complementedIndexTypes = ComplementArgTypes(indexes, indexTypes);
+        foreach (Type type in _types)
+        {
+            PropertyInfo? property = _reflectionCacheLegacy.TryGetIndexer(type, complementedIndexTypes.ToArray());
+            if (property != null) return property;
+        }
+
+        // Try resolve with stack trace info.
+        StackTrace stackTrace = new();
+        ICollection<StackFrame?> stackFrames =
+        [
+            stackTrace.GetFrame(2), // Likeliest frame.
+            stackTrace.GetFrame(3), // Lenience for delegation structures / inlining
+            stackTrace.GetFrame(4), // Lenience for delegation structures
+            stackTrace.GetFrame(1)  // For inlining
+        ];
+        foreach (StackFrame? stackFrame in stackFrames)
+        {
+            if (stackFrame == null) continue;
+            
+            ICollection<Type> stackFrameArgTypes
+                = stackFrame.GetMethod()?
+                            .GetParameters()
+                            .Select(x => x.ParameterType)
+                            .ToArray()
+                            .Take(indexes.Count)
+                            .ToArray() ?? [ ];
+            
+            foreach (Type type in _types)
+            {
+                PropertyInfo? property = _reflectionCacheLegacy.TryGetIndexer(type, stackFrameArgTypes.ToArray());
+                if (property != null) return property;
+            }
+        }
+
+        throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => $"{x}"))}].");
+    }
     
     /// <inheritdoc cref="_complementparametertypes" />
     private ICollection<Type> ComplementArgTypes(ICollection<object?> args, ICollection<Type?> argTypes)
