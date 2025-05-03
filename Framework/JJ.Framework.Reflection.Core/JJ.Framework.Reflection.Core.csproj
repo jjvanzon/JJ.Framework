@@ -9,6 +9,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Collections.Core\JJ.Framework.Collections.Core.csproj" />
+    <ProjectReference Include="..\JJ.Framework.Common.Core\JJ.Framework.Common.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Reflection\JJ.Framework.Reflection.csproj" />
   </ItemGroup>
 </Project>

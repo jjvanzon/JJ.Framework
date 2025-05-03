@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System.Diagnostics; // For StackTrace
 
 namespace JJ.Framework.Reflection.Core;
 
@@ -6,14 +6,14 @@ public class AccessorCore
 {
     private static readonly ReflectionCacheLegacy _reflectionCache = new();
 
-    private readonly object? _object;
+    public object? Obj { get; }
     private readonly ICollection<Type> _types;
 
     // Constructors
 
     public AccessorCore(object obj)
     {
-        _object = obj ?? throw new NullException(() => obj);
+        Obj = obj ?? throw new NullException(() => obj);
         _types = obj.GetType().GetTypesInHierarchy();
     }
 
@@ -21,14 +21,14 @@ public class AccessorCore
     {
         if (type == null) throw new NullException(() => type);
         _types = type.GetTypesInHierarchy();
-        _object = TryCreateObject(type, constructArgs);
+        Obj = TryCreateObject(type, constructArgs);
     }
 
     public AccessorCore(string shortTypeName, params object[] constructArgs)
     {
         Type type = _reflectionCache.GetTypeByShortName(shortTypeName);
         _types = type.GetTypesInHierarchy();
-        _object = TryCreateObject(type, constructArgs);
+        Obj = TryCreateObject(type, constructArgs);
     }
 
     private object? TryCreateObject(Type type, object[] constructArgs)
@@ -49,34 +49,27 @@ public class AccessorCore
         foreach (Type type in _types)
         {
             var property = _reflectionCache.TryGetProperty(type, name);
-            if (property != null) return property.GetValue(_object, null);
+            if (property != null) return property.GetValue(Obj, null);
             var field = _reflectionCache.TryGetField(type, name);
-            if (field != null) return field.GetValue(_object);
+            if (field != null) return field.GetValue(Obj);
         }
 
         throw new Exception($"Property or field '{name}' not found.");
     }
 
+    [OverloadPrio(1)]
+    public void Set<T>(string name, T value) => SetCore(name, value);
+    public void Set<T>(T value, [Caller] string name = "") => SetCore(name, value);
     /// <inheritdoc cref="_nameexpression" />
-    public   void Set<T> (Expression<Func<T>> nameLambda, T value    ) => SetCore(GetName(nameLambda), value);
-    public   void Set<T> (T       value,   [Caller] string  name = "") => SetCore(name, value);
-    //public void Set    (object? value,   [Caller] string  name = "") => SetCore(name, value);
-    #if NET9_0_OR_GREATER
-    [OverloadResolutionPriority(1)] 
-    #endif
-    public   void Set<T> (string  name ,            T       value    ) => SetCore(name, value);
-    //#if NET9_0_OR_GREATER
-    //[OverloadResolutionPriority(1)] 
-    //#end if
-    //public void Set    (string  name ,            object? value    ) => SetCore(name, value);
-    private  void SetCore(string  name ,            object? value    )
+    public void Set<T>(Expression<Func<T>> nameLambda, T value) => SetCore(GetName(nameLambda), value);
+    private void SetCore(string name, object? value)
     {
         foreach (Type type in _types)
         {
             var property = _reflectionCache.TryGetProperty(type, name);
-            if (property != null) { property.SetValue(_object, value, null); return; }
+            if (property != null) { property.SetValue(Obj, value, null); return; }
             var field = _reflectionCache.TryGetField(type, name);
-            if (field != null) { field.SetValue(_object, value); return; }
+            if (field != null) { field.SetValue(Obj, value); return; }
         }
 
         throw new Exception($"Property or field '{name}' not found.");
@@ -122,9 +115,7 @@ public class AccessorCore
     // With params
 
     /// <inheritdoc cref="_invokemethod" />
-    #if NET9_0_OR_GREATER
-    [OverloadResolutionPriority(1)] 
-    #endif
+    [OverloadPrio(1)] 
     public object? Call(string name, params object?[] args)
         => CallCore(name, args);
 
@@ -228,9 +219,7 @@ public class AccessorCore
 
     // With Collections
 
-    #if NET9_0_OR_GREATER
-    [OverloadResolutionPriority(1)] 
-    #endif
+    [OverloadPrio(1)] 
     public object? Call(
         string name,
         ICollection<object?> args)
@@ -241,9 +230,7 @@ public class AccessorCore
         [Caller] string name = "")
         => CallCore(name, args);
 
-    #if NET9_0_OR_GREATER
-    [OverloadResolutionPriority(1)] 
-    #endif
+    [OverloadPrio(1)] 
     public object? Call(
         string name,
         ICollection<object?> args,
@@ -256,9 +243,7 @@ public class AccessorCore
         [Caller] string name = "")
         => CallCore(name, args, argTypes);
 
-    #if NET9_0_OR_GREATER
-    [OverloadResolutionPriority(1)] 
-    #endif
+    [OverloadPrio(1)] 
     public object? Call(
         string name,
         ICollection<object?> args,
@@ -279,25 +264,25 @@ public class AccessorCore
     
     private object? CallCore(
         string name)
-        => ResolveMethod(name, [], [], []).Invoke(_object, []);
+        => ResolveMethod(name, [], [], []).Invoke(Obj, []);
     
     private object? CallCore(
         string name,
         ICollection<object?> args)
-        => ResolveMethod(name, args, [], []).Invoke(_object, args.ToArray());
+        => ResolveMethod(name, args, [], []).Invoke(Obj, args.ToArray());
 
     private object? CallCore(
         string name,
         ICollection<object?> args,
         ICollection<Type?> argTypes)
-        => ResolveMethod(name, args, argTypes, []).Invoke(_object, args.ToArray());
+        => ResolveMethod(name, args, argTypes, []).Invoke(Obj, args.ToArray());
 
     private object? CallCore(
         string name,
         ICollection<object?> args,
         ICollection<Type?> argTypes,
         ICollection<Type> typeArgs)
-        => ResolveMethod(name, args, argTypes, typeArgs).Invoke(_object, args.ToArray());
+        => ResolveMethod(name, args, argTypes, typeArgs).Invoke(Obj, args.ToArray());
 
     private MethodInfo ResolveMethod(
         string name,

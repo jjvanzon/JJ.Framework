@@ -268,4 +268,11 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
     /// <inheritdoc cref="_invokemethod" />
     public object? Call(object? param1 = null, object? param2 = null, object? param3 = null, object? param4 = null, object? param5 = null, object? param6 = null, object? param7 = null, object? param8 = null, object? param9 = null, object? param10 = null, [Caller] string name = "")
         => CallCore(name, [ param1, param2, param3, param4, param5, param6, param7, param8, param9, param10 ]);
+
+    public void Set    (object? value,   [Caller] string  name = "") => SetCore(name, value);
+    #if NET9_0_OR_GREATER
+    [OverloadResolutionPriority(1)] 
+    #end if
+    public void Set    (string  name ,            object? value    ) => SetCore(name, value);
+
 ```
