@@ -42,7 +42,7 @@ public class AccessorCore
     // Fields and Properties
 
     /// <inheritdoc cref="_nameexpression" />
-    public T?      Get<T>(Expression<Func<T>> nameLambda) =>     Get<T>(GetName(nameLambda));
+    public T?      Get<T>(Expression<Func<T>> nameLambda) => (T?)Get(GetName(nameLambda));
     public T?      Get<T>(    [Caller] string name = "" ) => (T?)Get(name);
     public object? Get   (    [Caller] string name = "" )
     {
@@ -60,9 +60,9 @@ public class AccessorCore
     /// <inheritdoc cref="_nameexpression" />
     public void Set<T>  (Expression<Func<T>> nameLambda, T value    ) => SetCore(GetName(nameLambda), value);
     public void Set<T>  (T       value,   [Caller] string  name = "") => SetCore(name, value);
-    public void Set     (object? value,   [Caller] string  name = "") => SetCore(name, value);
+    //public void Set     (object? value,   [Caller] string  name = "") => SetCore(name, value);
     public void Set<T>  (string  name ,            T       value    ) => SetCore(name, value);
-    public void Set     (string  name ,            object? value    ) => SetCore(name, value);
+    //public void Set     (string  name ,            object? value    ) => SetCore(name, value);
     private void SetCore(string  name ,            object? value    )
     {
         foreach (Type type in _types)
