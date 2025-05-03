@@ -274,6 +274,13 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
     [OverloadResolutionPriority(1)] 
     #end if
     public void Set    (string  name ,            object? value    ) => SetCore(name, value);
+
+    
+    ///// <inheritdoc cref="_invokemethod" />
+    //[OverloadPriority(1)] 
+    //public object? Call(string name, params object?[] args)
+    //    => CallCore(name, args);
+
 ```
 
 ### AccessorCore Indexers

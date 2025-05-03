@@ -8,27 +8,27 @@ public class AccessorCore
     private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
 
     public object? Obj { get; }
-    private readonly ICollection<Type> _typesInHierachy;
+    private readonly ICollection<Type> _typesInHierarchy;
 
     // Constructors
 
     public AccessorCore(object obj)
     {
         Obj = obj ?? throw new NullException(() => obj);
-        _typesInHierachy = obj.GetType().GetTypesInHierarchy();
+        _typesInHierarchy = obj.GetType().GetTypesInHierarchy();
     }
 
     public AccessorCore(Type type, params ICollection<object?> constructArgs)
     {
         if (type == null) throw new NullException(() => type);
-        _typesInHierachy = type.GetTypesInHierarchy();
+        _typesInHierarchy = type.GetTypesInHierarchy();
         Obj = TryCreateObject(type, constructArgs);
     }
 
     public AccessorCore(string shortTypeName, params ICollection<object?> constructArgs)
     {
         Type type = _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
-        _typesInHierachy = type.GetTypesInHierarchy();
+        _typesInHierarchy = type.GetTypesInHierarchy();
         Obj = TryCreateObject(type, constructArgs);
     }
     
@@ -43,11 +43,13 @@ public class AccessorCore
     // Fields and Properties
 
     /// <inheritdoc cref="_nameexpression" />
-    public T?      Get<T>(Expression<Func<T>> nameLambda) => (T?)Get(GetName(nameLambda));
-    public T?      Get<T>(    [Caller] string name = "" ) => (T?)Get(name);
-    public object? Get   (    [Caller] string name = "" )
+    public T? Get<T>(Expression<Func<T>> nameLambda) => (T?)Get(GetName(nameLambda));
+    
+    public T? Get<T>([Caller] string name = "") => (T?)Get(name);
+    
+    public object? Get([Caller] string name = "")
     {
-        foreach (Type type in _typesInHierachy)
+        foreach (Type type in _typesInHierarchy)
         {
             var property = _reflectionCacheLegacy.TryGetProperty(type, name);
             if (property != null) return property.GetValue(Obj, null);
@@ -57,15 +59,18 @@ public class AccessorCore
 
         throw new Exception($"Property or field '{name}' not found.");
     }
-
+    
     [OverloadPriority(1)]
-    public void Set<T>(string name ,               T value    ) => SetCore(name, value);
-    public void Set<T>(T      value, [Caller] string name = "") => SetCore(name, value);
+    public void Set<T>(string name, T value) => SetCore(name, value);
+    
+    public void Set<T>(T value, [Caller] string name = "") => SetCore(name, value);
+    
     /// <inheritdoc cref="_nameexpression" />
     public void Set<T>(Expression<Func<T>> nameLambda, T value) => SetCore(GetName(nameLambda), value);
+    
     private void SetCore(string name, object? value)
     {
-        foreach (Type type in _typesInHierachy)
+        foreach (Type type in _typesInHierarchy)
         {
             var property = _reflectionCacheLegacy.TryGetProperty(type, name);
             if (property != null) { property.SetValue(Obj, value, null); return; }
@@ -85,14 +90,12 @@ public class AccessorCore
         get
         {
             AssertIndexes(indexes);
-            
             var property = ResolveIndexer(indexes, [ ]);
             return property.GetValue(Obj, indexes.ToArray());
         }
         set
         {
             AssertIndexes(indexes);
-            
             var property = ResolveIndexer(indexes, [ ]);
             property.SetValue(Obj, value, indexes.ToArray());
         }
@@ -187,11 +190,6 @@ public class AccessorCore
     }
 
     // With params
-
-    ///// <inheritdoc cref="_invokemethod" />
-    //[OverloadPriority(1)] 
-    //public object? Call(string name, params object?[] args)
-    //    => CallCore(name, args);
 
     // With CallerMemberName
 
@@ -365,7 +363,7 @@ public class AccessorCore
         ICollection<Type> typeArgs)
     {
         ICollection<Type> complementedArgTypes = ComplementArgTypes(args, argTypes);
-        foreach (Type type in _typesInHierachy)
+        foreach (Type type in _typesInHierarchy)
         {
             MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, complementedArgTypes.ToArray(), typeArgs.ToArray());
             if (method != null) return method;
@@ -386,7 +384,7 @@ public class AccessorCore
         {
             if (stackFrame == null) continue;
             ICollection<Type> stackFrameArgTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
-            foreach (Type type in _typesInHierachy)
+            foreach (Type type in _typesInHierarchy)
             {
                 MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, stackFrameArgTypes.ToArray(), typeArgs.ToArray());
                 if (method != null) return method;
@@ -401,7 +399,7 @@ public class AccessorCore
         ICollection<Type?> indexTypes)
     {
         ICollection<Type> complementedIndexTypes = ComplementArgTypes(indexes, indexTypes);
-        foreach (Type type in _typesInHierachy)
+        foreach (Type type in _typesInHierarchy)
         {
             PropertyInfo? property = _reflectionCacheLegacy.TryGetIndexer(type, complementedIndexTypes.ToArray());
             if (property != null) return property;
@@ -428,7 +426,7 @@ public class AccessorCore
                             .Take(indexes.Count)
                             .ToArray() ?? [ ];
             
-            foreach (Type type in _typesInHierachy)
+            foreach (Type type in _typesInHierarchy)
             {
                 PropertyInfo? property = _reflectionCacheLegacy.TryGetIndexer(type, stackFrameArgTypes.ToArray());
                 if (property != null) return property;
