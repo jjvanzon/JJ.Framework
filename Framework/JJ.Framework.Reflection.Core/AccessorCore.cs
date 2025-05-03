@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics; // For StackTrace
+using static System.String; 
 
 namespace JJ.Framework.Reflection.Core;
 
@@ -30,7 +31,7 @@ public class AccessorCore
         _types = type.GetTypesInHierarchy();
         Obj = TryCreateObject(type, constructArgs);
     }
-
+    
     private object? TryCreateObject(Type type, ICollection<object?> constructArgs)
     {
         if (constructArgs == null) throw new NullException(() => constructArgs);
@@ -74,6 +75,49 @@ public class AccessorCore
 
         throw new Exception($"Property or field '{name}' not found.");
     }
+    
+    // Indexers
+    
+    // TODO: Use actual indexers [] for this (keep the Get and Set; they're flexible).
+
+    public object? Get(params ICollection<object?> indexes)
+    {
+        if (indexes == null) throw new ArgumentNullException(nameof(indexes));
+        if (indexes.Count < 1) throw new Exception("indexes.Count must be at least 1.");
+        
+        // TODO: Resolve them with local helper ComplementArgTypes?
+        Type[] indexTypes = TypesFromObjects(indexes);
+        
+        foreach (Type type in _types)
+        {
+            var property = _reflectionCache.TryGetIndexer(type, indexTypes);
+            if (property != null) return property.GetValue(Obj, indexes.ToArray());
+        }
+        
+        throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => x.ToString()))}].");
+    }
+
+    public void Set(params ICollection<object?> indexesAndValue)
+    {
+        if (indexesAndValue == null) throw new ArgumentNullException(nameof(indexesAndValue));
+        if (indexesAndValue.Count < 2) throw new Exception("indexesAndValue.Count must be at least 2");
+        
+        object?[] parameters = indexesAndValue.Take(indexesAndValue.Count - 1).ToArray();
+        object? value = indexesAndValue.Last();
+        
+        // TODO: Resolve them with local helper ComplementArgTypes?
+        Type[] indexTypes = TypesFromObjects(parameters);
+        
+        foreach (Type type in _types)
+        {
+            var property = _reflectionCache.TryGetIndexer(type, indexTypes);
+            if (property != null) { property.SetValue(Obj, value, parameters); return; }
+        }
+        
+        throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => x.ToString()))}].");
+    }
+    
+    // TODO: Variants with explicit parameter types.
 
     // Methods
 
@@ -314,6 +358,7 @@ public class AccessorCore
         throw new Exception($"Method '{name}' not found.");
     }
 
+    
     /// <inheritdoc cref="_complementparametertypes" />
     private Type[] ComplementArgTypes(ICollection<object?> args, ICollection<Type?> argTypes)
     {
