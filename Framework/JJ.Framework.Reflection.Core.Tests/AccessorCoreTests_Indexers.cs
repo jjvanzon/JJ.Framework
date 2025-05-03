@@ -1,6 +1,4 @@
-﻿using JJ.Framework.Testing.Core;
-
-namespace JJ.Framework.Reflection.Core.Tests;
+﻿namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
 public class AccessorCoreTests_Indexers
@@ -11,38 +9,38 @@ public class AccessorCoreTests_Indexers
     public void AccessorCore_Indexer_RawAccessor()
     {
         var obj = new MyClass();
-        var accessor = new AccessorCore(obj);
+        var accessorRaw = new AccessorCore(obj);
         
         // Get with indexer 
-        int number = (int)accessor[1]!;
-        AreEqual(1, number);
+        var number = (int?)accessorRaw[1];
+        AreEqual(1, () => number);
         
         // Set with indexer 
-        accessor[1] = 2;
-        AreEqual(2, accessor[1]);
+        accessorRaw[1] = 2;
+        AreEqual(2, accessorRaw[1]);
 
         // Get with method
-        number = (int)accessor.Get(3)!;
-        AreEqual(3, number);
+        number = (int?)accessorRaw.Get(3);
+        AreEqual(3, () => number);
 
         // Set with method
-        accessor.Set(3, 4);
-        AreEqual(4, accessor[3]);
+        accessorRaw.Set(3, 4);
+        AreEqual(4, accessorRaw[3]);
     }
     
     [TestMethod]
-    public void AccessorCore_Indexer_UsingComposition()
+    public void AccessorCore_Indexer_WrapperAccessor()
     {
         var obj = new MyClass();
-        var accessor = new MyAccessor(obj);
+        var myAccessor = new MyAccessor(obj);
         
         // Get  
-        int number = (int)accessor[1];
+        int number = (int)myAccessor[1];
         AreEqual(1, number);
         
         // Set
-        accessor[1] = 2;
-        AreEqual(2, accessor[1]);
+        myAccessor[1] = 2;
+        AreEqual(2, myAccessor[1]);
     }
         
     private class MyAccessor(MyClass obj)
@@ -120,7 +118,7 @@ public class AccessorCoreTests_Indexers
     }
                 
     [TestMethod]
-    public void AccessorCore_Indexer_Overloads_Resolved_ByStackTraceInspection()
+    public void AccessorCore_Indexer_Overload_ResolvedFromStackFrame()
     {
         var obj = new MyClass_WithOverloads();
         var accessor = new MyAccessor_WithOverloads(obj);
