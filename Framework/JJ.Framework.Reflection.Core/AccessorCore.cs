@@ -5,7 +5,7 @@ namespace JJ.Framework.Reflection.Core;
 
 public class AccessorCore
 {
-    private static readonly ReflectionCacheLegacy _reflectionCache = new();
+    private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
 
     public object? Obj { get; }
     private readonly ICollection<Type> _types;
@@ -27,7 +27,7 @@ public class AccessorCore
 
     public AccessorCore(string shortTypeName, params ICollection<object?> constructArgs)
     {
-        Type type = _reflectionCache.GetTypeByShortName(shortTypeName);
+        Type type = _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
         _types = type.GetTypesInHierarchy();
         Obj = TryCreateObject(type, constructArgs);
     }
@@ -49,9 +49,9 @@ public class AccessorCore
     {
         foreach (Type type in _types)
         {
-            var property = _reflectionCache.TryGetProperty(type, name);
+            var property = _reflectionCacheLegacy.TryGetProperty(type, name);
             if (property != null) return property.GetValue(Obj, null);
-            var field = _reflectionCache.TryGetField(type, name);
+            var field = _reflectionCacheLegacy.TryGetField(type, name);
             if (field != null) return field.GetValue(Obj);
         }
 
@@ -67,9 +67,9 @@ public class AccessorCore
     {
         foreach (Type type in _types)
         {
-            var property = _reflectionCache.TryGetProperty(type, name);
+            var property = _reflectionCacheLegacy.TryGetProperty(type, name);
             if (property != null) { property.SetValue(Obj, value, null); return; }
-            var field = _reflectionCache.TryGetField(type, name);
+            var field = _reflectionCacheLegacy.TryGetField(type, name);
             if (field != null) { field.SetValue(Obj, value); return; }
         }
 
@@ -107,7 +107,7 @@ public class AccessorCore
         
         foreach (Type type in _types)
         {
-            var property = _reflectionCache.TryGetIndexer(type, complementedIndexTypes.ToArray());
+            var property = _reflectionCacheLegacy.TryGetIndexer(type, complementedIndexTypes.ToArray());
             if (property != null) return property.GetValue(Obj, indexes.ToArray());
         }
         
@@ -124,7 +124,7 @@ public class AccessorCore
         
         foreach (Type type in _types)
         {
-            var property = _reflectionCache.TryGetIndexer(type, complementedIndexTypes.ToArray());
+            var property = _reflectionCacheLegacy.TryGetIndexer(type, complementedIndexTypes.ToArray());
             if (property != null) { property.SetValue(Obj, value, indexes.ToArray()); return; }
         }
         
@@ -349,7 +349,7 @@ public class AccessorCore
         ICollection<Type> complementedArgTypes = ComplementArgTypes(args, argTypes);
         foreach (Type type in _types)
         {
-            MethodInfo? method = _reflectionCache.TryGetMethod(type, name, complementedArgTypes.ToArray(), typeArgs.ToArray());
+            MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, complementedArgTypes.ToArray(), typeArgs.ToArray());
             if (method != null) return method;
         }
 
@@ -362,7 +362,7 @@ public class AccessorCore
             var stackFrameArgTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
             foreach (Type type in _types)
             {
-                MethodInfo? method = _reflectionCache.TryGetMethod(type, name, stackFrameArgTypes.ToArray(), typeArgs.ToArray());
+                MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, stackFrameArgTypes.ToArray(), typeArgs.ToArray());
                 if (method != null) return method;
             }
         }
