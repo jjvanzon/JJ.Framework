@@ -17,26 +17,26 @@ public class AccessorCore
         _types = obj.GetType().GetTypesInHierarchy();
     }
 
-    public AccessorCore(Type type, params object[] constructArgs)
+    public AccessorCore(Type type, params ICollection<object?> constructArgs)
     {
         if (type == null) throw new NullException(() => type);
         _types = type.GetTypesInHierarchy();
         Obj = TryCreateObject(type, constructArgs);
     }
 
-    public AccessorCore(string shortTypeName, params object[] constructArgs)
+    public AccessorCore(string shortTypeName, params ICollection<object?> constructArgs)
     {
         Type type = _reflectionCache.GetTypeByShortName(shortTypeName);
         _types = type.GetTypesInHierarchy();
         Obj = TryCreateObject(type, constructArgs);
     }
 
-    private object? TryCreateObject(Type type, object[] constructArgs)
+    private object? TryCreateObject(Type type, ICollection<object?> constructArgs)
     {
         if (constructArgs == null) throw new NullException(() => constructArgs);
         var constructorTypes = TypesFromObjects(constructArgs);
         ConstructorInfo? constructor = type.GetConstructor(constructorTypes);
-        return constructor?.Invoke(constructArgs);
+        return constructor?.Invoke(constructArgs.ToArray());
     }
 
     // Fields and Properties
@@ -114,10 +114,10 @@ public class AccessorCore
 
     // With params
 
-    /// <inheritdoc cref="_invokemethod" />
-    [OverloadPrio(1)] 
-    public object? Call(string name, params object?[] args)
-        => CallCore(name, args);
+    ///// <inheritdoc cref="_invokemethod" />
+    //[OverloadPriority(1)] 
+    //public object? Call(string name, params object?[] args)
+    //    => CallCore(name, args);
 
     // With CallerMemberName
 
@@ -222,7 +222,7 @@ public class AccessorCore
     [OverloadPrio(1)] 
     public object? Call(
         string name,
-        ICollection<object?> args)
+        params ICollection<object?> args)
         => CallCore(name, args);
 
     public object? Call(
