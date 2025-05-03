@@ -78,8 +78,12 @@ public class AccessorCore
     
     // Indexers
     
-    // TODO: Use actual indexers [] for this (keep the Get and Set; they're flexible).
-
+    public object? this[params ICollection<object?> indexes]
+    {
+        get => Get(indexes);
+        set => Set(indexes, value);
+    }
+    
     public object? Get(params ICollection<object?> indexes) => Get(indexes, [ ]);
     
     public void Set(params ICollection<object?> indexesAndValue)
