@@ -383,10 +383,14 @@ public class AccessorCore
         foreach (StackFrame? stackFrame in stackFrames)
         {
             if (stackFrame == null) continue;
-            ICollection<Type> stackFrameArgTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
+            Type[] stackFrameArgTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
+            
+            // TODO: Check on arg count to short circuit for performance?
+            //if (stackFrameArgTypes.Length != complementedArgTypes.Count) continue; // Short circuit for performance.
+            
             foreach (Type type in _typesInHierarchy)
             {
-                MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, stackFrameArgTypes.ToArray(), typeArgs.ToArray());
+                MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, stackFrameArgTypes, typeArgs.ToArray());
                 if (method != null) return method;
             }
         }
@@ -418,7 +422,7 @@ public class AccessorCore
         {
             if (stackFrame == null) continue;
             
-            ICollection<Type> stackFrameArgTypes
+            Type[] stackFrameArgTypes
                 = stackFrame.GetMethod()?
                             .GetParameters()
                             .Select(x => x.ParameterType)
@@ -426,14 +430,18 @@ public class AccessorCore
                             .Take(indices.Count)
                             .ToArray() ?? [ ];
             
+            // TODO: Check on arg count to short circuit for performance?
+            //if (stackFrameArgTypes.Length != indices.Count) continue; // Short circuit for performance.
+            if (stackFrameArgTypes.Length == 0) continue; // Can't be an indexer without any args.
+
             foreach (Type type in _typesInHierarchy)
             {
-                PropertyInfo? indexProp = _reflectionCacheLegacy.TryGetIndexer(type, stackFrameArgTypes.ToArray());
+                PropertyInfo? indexProp = _reflectionCacheLegacy.TryGetIndexer(type, stackFrameArgTypes);
                 if (indexProp != null) return indexProp;
             }
         }
 
-        throw new Exception($"Indexer not found with index types: [{Join(", ", argTypes.Select(x => $"{x}"))}].");
+        throw new Exception($"Indexer not found with index types: [{Join(", ", complementedArgTypes.Select(x => $"{x}"))}].");
     }
     
     /// <inheritdoc cref="_complementparametertypes" />
