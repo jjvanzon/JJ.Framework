@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using JJ.Framework.Common;
+using static System.StringComparison;
 
 // ReSharper disable ReplaceWithSingleCallToSingle
 // ReSharper disable InvertIf
@@ -385,7 +386,9 @@ namespace JJ.Framework.Reflection.Core
                 {
                     try
                     {
-                        list.AddRange(assembly.GetTypes().Where(x => string.Equals(x.Name, shortTypeName)));
+                        list.AddRange(assembly.GetTypes().Where(x => string.Equals(x.Name, shortTypeName, OrdinalIgnoreCase) ||
+                                                                     string.Equals(x.FullName, shortTypeName, OrdinalIgnoreCase) ||
+                                                                     string.Equals(x.AssemblyQualifiedName, shortTypeName, OrdinalIgnoreCase)));
                     }
                     catch (ReflectionTypeLoadException)
                     {

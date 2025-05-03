@@ -1,5 +1,6 @@
 ﻿// ReSharper disable UnusedParameter.Local
 namespace JJ.Framework.Common.Core;
+
 public class EmptyAttribute : Attribute 
 {
     public EmptyAttribute() { }
