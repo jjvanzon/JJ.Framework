@@ -356,6 +356,8 @@ public class AccessorCore
         ICollection<Type> typeArgs)
         => ResolveMethod(name, args, argTypes, typeArgs).Invoke(Obj, args.ToArray());
 
+    // Super Magic Resolvers
+    
     private MethodInfo ResolveMethod(
         string name,
         ICollection<object?> args,
@@ -395,14 +397,14 @@ public class AccessorCore
     }
 
     private PropertyInfo ResolveIndexer(
-        ICollection<object?> indexes,
-        ICollection<Type?> indexTypes)
+        ICollection<object?> indices,
+        ICollection<Type?> argTypes)
     {
-        ICollection<Type> complementedIndexTypes = ComplementArgTypes(indexes, indexTypes);
+        var complementedArgTypes = ComplementArgTypes(indices, argTypes).ToArray();
         foreach (Type type in _typesInHierarchy)
         {
-            PropertyInfo? property = _reflectionCacheLegacy.TryGetIndexer(type, complementedIndexTypes.ToArray());
-            if (property != null) return property;
+            PropertyInfo? indexProperty = _reflectionCacheLegacy.TryGetIndexer(type, complementedArgTypes);
+            if (indexProperty != null) return indexProperty;
         }
 
         // Try resolve with stack trace info.
@@ -423,17 +425,17 @@ public class AccessorCore
                             .GetParameters()
                             .Select(x => x.ParameterType)
                             .ToArray()
-                            .Take(indexes.Count)
+                            .Take(indices.Count)
                             .ToArray() ?? [ ];
             
             foreach (Type type in _typesInHierarchy)
             {
-                PropertyInfo? property = _reflectionCacheLegacy.TryGetIndexer(type, stackFrameArgTypes.ToArray());
-                if (property != null) return property;
+                PropertyInfo? indexProperty = _reflectionCacheLegacy.TryGetIndexer(type, stackFrameArgTypes.ToArray());
+                if (indexProperty != null) return indexProperty;
             }
         }
 
-        throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => $"{x}"))}].");
+        throw new Exception($"Indexer not found with index types: [{Join(", ", argTypes.Select(x => $"{x}"))}].");
     }
     
     /// <inheritdoc cref="_complementparametertypes" />
