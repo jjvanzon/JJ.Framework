@@ -115,8 +115,20 @@ public class AccessorCoreTests_Indexers
         var accessor = new MyAccessor_WithOverloads(obj);
         
         ThrowsException(
-            () => { int number = (int)accessor[null]; },
+            () => { int number = accessor[null]; },
             "No indexer found with argument types [System.Object].");
+    }
+                
+    [TestMethod]
+    public void AccessorCore_Indexer_Overloads_Resolved_ByStackTraceInspection()
+    {
+        var obj = new MyClass_WithOverloads();
+        var accessor = new MyAccessor_WithOverloads(obj);
+        int? nully = null;
+        
+        string text = accessor[2, nully];
+        
+        AreEqual("", () => text);
     }
 
     private class MyAccessor_WithOverloads(MyClass_WithOverloads obj)
@@ -128,6 +140,18 @@ public class AccessorCoreTests_Indexers
             get => (int)_accessor[i]!;
             set => _accessor[i] = value;
         }
+        
+        public string this[int para1, int? para2]
+        {
+            get => (string)_accessor[para1, para2]!;
+            set => _accessor[para1, para2] = value;
+        }
+        
+        //public string this[int para1, string para2]
+        //{
+        //    get => (string)_accessor[para1, para2]!;
+        //    set => _accessor[para1, para2] = value;
+        //}
     }
 
     private class MyClass_WithOverloads
