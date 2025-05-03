@@ -85,71 +85,71 @@ public class AccessorCore
     
     // With Indexer
     
-    public object? this[params ICollection<object?> indexes]
+    public object? this[params ICollection<object?> indices]
     {
         get
         {
-            AssertIndexes(indexes);
-            var property = ResolveIndexer(indexes, [ ]);
-            return property.GetValue(Obj, indexes.ToArray());
+            AssertIndices(indices);
+            var property = ResolveIndexer(indices, [ ]);
+            return property.GetValue(Obj, indices.ToArray());
         }
         set
         {
-            AssertIndexes(indexes);
-            var property = ResolveIndexer(indexes, [ ]);
-            property.SetValue(Obj, value, indexes.ToArray());
+            AssertIndices(indices);
+            var property = ResolveIndexer(indices, [ ]);
+            property.SetValue(Obj, value, indices.ToArray());
         }
     }
     
     // With Params
     
-    public object? Get(params ICollection<object?> indexes)
+    public object? Get(params ICollection<object?> indices)
     {
-        AssertIndexes(indexes);
-        var property = ResolveIndexer(indexes, [ ]);
-        return property.GetValue(Obj, indexes.ToArray());
+        AssertIndices(indices);
+        var property = ResolveIndexer(indices, [ ]);
+        return property.GetValue(Obj, indices.ToArray());
     }
     
-    public void Set(params ICollection<object?> indexesAndValue)
+    public void Set(params ICollection<object?> indicesAndValue)
     {
-        AssertIndexesAndValue(indexesAndValue);
+        AssertIndicesAndValue(indicesAndValue);
         
-        object?[] indexes = indexesAndValue.Take(indexesAndValue.Count - 1).ToArray();
-        object? value = indexesAndValue.Last();
+        object?[] indices = indicesAndValue.Take(indicesAndValue.Count - 1).ToArray();
+        object? value = indicesAndValue.Last();
         
-        var property = ResolveIndexer(indexes, [ ]);
-        property.SetValue(Obj, value, indexes);
+        var property = ResolveIndexer(indices, [ ]);
+        property.SetValue(Obj, value, indices);
     }
     
     // With Collections
     
-    public object? Get(ICollection<object?> indexes, ICollection<Type?> indexTypes)
+    public object? Get(ICollection<object?> indices, ICollection<Type?> argTypes)
     {
-        AssertIndexes(indexes);
-        var property = ResolveIndexer(indexes, indexTypes);
-        return property.GetValue(Obj, indexes.ToArray());
+        AssertIndices(indices);
+        var property = ResolveIndexer(indices, argTypes);
+        return property.GetValue(Obj, indices.ToArray());
     }
 
-    public void Set(ICollection<object?> indexes, object? value, ICollection<Type?> indexTypes)
+    public void Set(ICollection<object?> indices, object? value, ICollection<Type?> argTypes)
     {
-        AssertIndexes(indexes);
-        if (indexTypes == null) throw new ArgumentNullException(nameof(indexTypes));
-        var property = ResolveIndexer(indexes, indexTypes);
-        property.SetValue(Obj, value, indexes.ToArray());
+        AssertIndices(indices);
+        if (argTypes == null) throw new ArgumentNullException(nameof(argTypes));
+        var property = ResolveIndexer(indices, argTypes);
+        property.SetValue(Obj, value, indices.ToArray());
     }
     
     // Helpers
     
-    private static void AssertIndexes(ICollection<object?> indexes)
+    private static void AssertIndices(ICollection<object?> indices)
     {
-        if (indexes == null) throw new ArgumentNullException(nameof(indexes));
-        if (indexes.Count < 1) throw new Exception("indexes.Count must be at least 1.");
+        if (indices == null) throw new ArgumentNullException(nameof(indices));
+        if (indices.Count < 1) throw new Exception("indices.Count must be at least 1.");
     }
         
-    private static void AssertIndexesAndValue(ICollection<object?> indexesAndValue)
+    private static void AssertIndicesAndValue(ICollection<object?> indicesAndValue)
     {
-        if (indexesAndValue == null) throw new ArgumentNullException(nameof(indexesAndValue));
-        if (indexesAndValue.Count < 2) throw new Exception("indexesAndValue.Count must be at least 2");
+        if (indicesAndValue == null) throw new ArgumentNullException(nameof(indicesAndValue));
+        if (indicesAndValue.Count < 2) throw new Exception("indicesAndValue.Count must be at least 2");
     }
 
     // Methods
@@ -330,8 +330,6 @@ public class AccessorCore
         [Caller] string name = "")
         => CallCore(name, args, argTypes, typeArgs);
 
-    // TODO: Indexers
-
     // Helpers
     
     private object? CallCore(
@@ -403,8 +401,8 @@ public class AccessorCore
         var complementedArgTypes = ComplementArgTypes(indices, argTypes).ToArray();
         foreach (Type type in _typesInHierarchy)
         {
-            PropertyInfo? indexProperty = _reflectionCacheLegacy.TryGetIndexer(type, complementedArgTypes);
-            if (indexProperty != null) return indexProperty;
+            PropertyInfo? indexProp = _reflectionCacheLegacy.TryGetIndexer(type, complementedArgTypes);
+            if (indexProp != null) return indexProp;
         }
 
         // Try resolve with stack trace info.
@@ -430,8 +428,8 @@ public class AccessorCore
             
             foreach (Type type in _typesInHierarchy)
             {
-                PropertyInfo? indexProperty = _reflectionCacheLegacy.TryGetIndexer(type, stackFrameArgTypes.ToArray());
-                if (indexProperty != null) return indexProperty;
+                PropertyInfo? indexProp = _reflectionCacheLegacy.TryGetIndexer(type, stackFrameArgTypes.ToArray());
+                if (indexProp != null) return indexProp;
             }
         }
 
