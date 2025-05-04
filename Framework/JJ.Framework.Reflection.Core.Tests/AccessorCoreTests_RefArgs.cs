@@ -203,7 +203,7 @@ public class AccessorCoreTests_RefArgs
         // 2 Parameters
 
         public long MyMethod(ref float arg1, double arg2) 
-            => (long)Call("MyMethod", ref arg1, arg2)!;
+            => (long)Call(Name(), ref arg1, arg2)!;
 
         public DateTime MyMethod(TimeSpan arg1, out string arg2)
         {
@@ -214,7 +214,7 @@ public class AccessorCoreTests_RefArgs
         public Guid MyMethod(ref string arg1, out TimeSpan arg2)
         {
             arg2 = default;
-            return (Guid)Call(Name(), ref arg1, ref arg2)!;
+            return (Guid)Call("MyMethod", ref arg1, ref arg2)!;
         }
 
         // 3 Parameters

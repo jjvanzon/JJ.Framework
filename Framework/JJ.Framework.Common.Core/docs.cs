@@ -21,6 +21,6 @@ namespace JJ.Framework.Common.Core
         /// <summary> 
         /// Returns the current method name or current property name.
         /// </summary> 
-        public struct _membername { }
+        public struct _name { }
     }
 }
