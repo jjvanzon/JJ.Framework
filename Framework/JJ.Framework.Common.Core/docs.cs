@@ -17,5 +17,10 @@ namespace JJ.Framework.Common.Core
         /// Shorthand to check if an environment variable is defined with a specific key and value.
         /// </summary>
         public struct _environmentvariableisdefined { }
+
+        /// <summary> 
+        /// Returns the current method name or current property name.
+        /// </summary> 
+        public struct _membername { }
     }
 }
