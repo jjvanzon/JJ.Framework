@@ -330,3 +330,12 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
         set => _text = value;
     }
 ```
+
+### AccessorCore Ref Args
+
+```cs
+    MethodInfo method = _reflectionCacheLegacy.GetMethod(_objectType, name, [ typeof(TArg1).MakeByRefType() ]);
+    MethodInfo method = ResolveMethod(name, args, [ typeof(TArg1).MakeByRefType() ], [ ]);
+    Type[] argTypes = [ typeof(TArg).MakeByRefType() ];
+    MethodInfo method = ResolveMethod(name, args, argTypes, [ ]);
+```

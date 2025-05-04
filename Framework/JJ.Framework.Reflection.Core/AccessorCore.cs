@@ -3,7 +3,7 @@ using static System.String;
 
 namespace JJ.Framework.Reflection.Core;
 
-public class AccessorCore
+public partial class AccessorCore
 {
     private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
 
@@ -291,17 +291,20 @@ public class AccessorCore
 
     // With Collections
 
+    /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)] 
     public object? Call(
         string name,
         params ICollection<object?> args)
         => CallCore(name, args);
 
+    /// <inheritdoc cref="_invokemethod" />
     public object? Call(
         ICollection<object?> args,
         [Caller] string name = "")
         => CallCore(name, args);
 
+    /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)] 
     public object? Call(
         string name,
@@ -309,12 +312,14 @@ public class AccessorCore
         ICollection<Type?> argTypes)
         => CallCore(name, args, argTypes);
 
+    /// <inheritdoc cref="_invokemethod" />
     public object? Call(
         ICollection<object?> args,
         ICollection<Type?> argTypes,
         [Caller] string name = "")
         => CallCore(name, args, argTypes);
 
+    /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)] 
     public object? Call(
         string name,
@@ -323,6 +328,7 @@ public class AccessorCore
         ICollection<Type> typeArgs)
         => CallCore(name, args, argTypes, typeArgs);
 
+    /// <inheritdoc cref="_invokemethod" />
     public object? Call(
         ICollection<object?> args,
         ICollection<Type?> argTypes,
@@ -332,21 +338,25 @@ public class AccessorCore
 
     // Helpers
     
+    /// <inheritdoc cref="_invokemethod" />
     private object? CallCore(
         string name)
         => ResolveMethod(name, [], [], []).Invoke(Obj, []);
     
+    /// <inheritdoc cref="_invokemethod" />
     private object? CallCore(
         string name,
         ICollection<object?> args)
         => ResolveMethod(name, args, [], []).Invoke(Obj, args.ToArray());
 
+    /// <inheritdoc cref="_invokemethod" />
     private object? CallCore(
         string name,
         ICollection<object?> args,
         ICollection<Type?> argTypes)
         => ResolveMethod(name, args, argTypes, []).Invoke(Obj, args.ToArray());
 
+    /// <inheritdoc cref="_invokemethod" />
     private object? CallCore(
         string name,
         ICollection<object?> args,
