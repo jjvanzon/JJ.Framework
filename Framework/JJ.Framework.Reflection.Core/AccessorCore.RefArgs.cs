@@ -21,14 +21,14 @@ public partial class AccessorCore
     }
     
     // 2 Parameters
-        
+    
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2>(ref TArg1 arg, TArg2 arg2, [Caller] string name = "")
+    public object? Call<TArg1>(ref TArg1 arg, object? arg2, [Caller] string name = "")
         => Call(name, ref arg, arg2);
 
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
-    public object? Call<TArg1, TArg2>(string name, ref TArg1 arg1, TArg2 arg2)
+    public object? Call<TArg1>(string name, ref TArg1 arg1, object? arg2)
     {
         object?[] args = [ arg1, arg2 ];
         object? ret = ResolveMethod(name, args, [ ], [ ]).Invoke(Obj, args);
@@ -37,19 +37,19 @@ public partial class AccessorCore
     }
            
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2>(TArg1 arg, ref TArg2 arg2, [Caller] string name = "")
+    public object? Call<TArg2>(object? arg, ref TArg2 arg2, [Caller] string name = "")
         => Call(name, arg, ref arg2);
 
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
-    public object? Call<TArg1, TArg2>(string name, TArg1 arg1, ref TArg2 arg2)
+    public object? Call<TArg2>(string name, object? arg1, ref TArg2 arg2)
     {
         object?[] args = [ arg1, arg2 ];
         object? ret = ResolveMethod(name, args, [ ], [ ]).Invoke(Obj, args);
         arg2 = (TArg2)args[1]!;
         return ret;
     }
-           
+    
     /// <inheritdoc cref="_invokemethod" />
     public object? Call<TArg1, TArg2>(ref TArg1 arg, ref TArg2 arg2, [Caller] string name = "")
         => Call(name, arg, ref arg2);
@@ -68,12 +68,12 @@ public partial class AccessorCore
     // 3 Parameters
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3>(ref TArg1 arg1, TArg2 arg2, TArg3 arg3, [Caller] string name = "")
+    public object? Call<TArg1>(ref TArg1 arg1, object? arg2, object? arg3, [Caller] string name = "")
         => Call(name, ref arg1, arg2, arg3);
 
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
-    public object? Call<TArg1, TArg2, TArg3>(string name, ref TArg1 arg1, TArg2 arg2, TArg3 arg3)
+    public object? Call<TArg1>(string name, ref TArg1 arg1, object? arg2, object? arg3)
     {
         object?[] args = [ arg1, arg2, arg3 ];
         object? ret  = ResolveMethod(name, args, [ ], [ ]).Invoke(Obj, args);
@@ -82,12 +82,12 @@ public partial class AccessorCore
     }
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3>(TArg1 arg1, ref TArg2 arg2, TArg3 arg3, [Caller] string name = "")
+    public object? Call<TArg2>(object? arg1, ref TArg2 arg2, object? arg3, [Caller] string name = "")
         => Call(name, arg1, ref arg2, arg3);
 
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
-    public object? Call<TArg1, TArg2, TArg3>(string name, TArg1 arg1, ref TArg2 arg2, TArg3 arg3)
+    public object? Call<TArg2>(string name, object? arg1, ref TArg2 arg2, object? arg3)
     {
         object?[] args = [ arg1, arg2, arg3 ];
         object? ret  = ResolveMethod(name, args, [ ], [ ]).Invoke(Obj, args);
@@ -96,12 +96,12 @@ public partial class AccessorCore
     }
         
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3>(ref TArg1 arg1, ref TArg2 arg2, TArg3 arg3, [Caller] string name = "")
+    public object? Call<TArg1, TArg2>(ref TArg1 arg1, ref TArg2 arg2, object? arg3, [Caller] string name = "")
         => Call(name, ref arg1, ref arg2, arg3);
 
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
-    public object? Call<TArg1, TArg2, TArg3>(string name, ref TArg1 arg1, ref TArg2 arg2, TArg3 arg3)
+    public object? Call<TArg1, TArg2>(string name, ref TArg1 arg1, ref TArg2 arg2, object? arg3)
     {
         object?[] args = [ arg1, arg2, arg3 ];
         object? ret  = ResolveMethod(name, args, [ ], [ ]).Invoke(Obj, args);
@@ -111,12 +111,12 @@ public partial class AccessorCore
     }
      
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3>(TArg1 arg1, TArg2 arg2, ref TArg3 arg3, [Caller] string name = "")
+    public object? Call<TArg3>(object? arg1, object? arg2, ref TArg3 arg3, [Caller] string name = "")
         => Call(name, arg1, arg2, ref arg3);
 
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
-    public object? Call<TArg1, TArg2, TArg3>(string name, TArg1 arg1, TArg2 arg2, ref TArg3 arg3)
+    public object? Call<TArg3>(string name, object? arg1, object? arg2, ref TArg3 arg3)
     {
         object?[] args = [ arg1, arg2, arg3 ];
         object? ret  = ResolveMethod(name, args, [ ], [ ]).Invoke(Obj, args);
@@ -125,12 +125,12 @@ public partial class AccessorCore
     }
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3>(ref TArg1 arg1, TArg2 arg2, ref TArg3 arg3, [Caller] string name = "")
+    public object? Call<TArg1, TArg3>(ref TArg1 arg1, object? arg2, ref TArg3 arg3, [Caller] string name = "")
         => Call(name, ref arg1, arg2, ref arg3);
     
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
-    public object? Call<TArg1, TArg2, TArg3>(string name, ref TArg1 arg1, TArg2 arg2, ref TArg3 arg3)
+    public object? Call<TArg1, TArg3>(string name, ref TArg1 arg1, object? arg2, ref TArg3 arg3)
     {
         object?[] args = [ arg1, arg2, arg3 ];
         object? ret  = ResolveMethod(name, args, [ ], [ ]).Invoke(Obj, args);
@@ -140,12 +140,12 @@ public partial class AccessorCore
     }
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TArg1, TArg2, TArg3>(TArg1 arg1, ref TArg2 arg2, ref TArg3 arg3, [Caller] string name = "")
+    public object? Call<TArg2, TArg3>(object? arg1, ref TArg2 arg2, ref TArg3 arg3, [Caller] string name = "")
         => Call(name, arg1, ref arg2, ref arg3);
     
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
-    public object? Call<TArg1, TArg2, TArg3>(string name, TArg1 arg1, ref TArg2 arg2, ref TArg3 arg3)
+    public object? Call<TArg2, TArg3>(string name, object? arg1, ref TArg2 arg2, ref TArg3 arg3)
     {
         object?[] args = [ arg1, arg2, arg3 ];
         object? ret  = ResolveMethod(name, args, [ ], [ ]).Invoke(Obj, args);
