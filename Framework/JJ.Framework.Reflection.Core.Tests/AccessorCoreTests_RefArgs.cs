@@ -1,6 +1,6 @@
-﻿// ReSharper disable InlineOutVariableDeclaration
-
-using static JJ.Framework.Reflection.Core.Tests.Helpers.ParseHelperLegacy;
+﻿using static JJ.Framework.Reflection.Core.Tests.Helpers.ParseHelperLegacy;
+// ReSharper disable InlineOutVariableDeclaration
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
 
 namespace JJ.Framework.Reflection.Core.Tests;
 
@@ -9,7 +9,7 @@ public class AccessorCoreTests_RefArgs
 {
     // Test Methods
     
-    // 1 Parameter
+    // 1 Parameter Tests
     
     [TestMethod]
     public void AccessorCore_1Out()
@@ -23,7 +23,7 @@ public class AccessorCoreTests_RefArgs
         IsTrue(() => ret);
     }
     
-    // 2 Parameters
+    // 2 Parameters Tests
 
     [TestMethod]
     public void AccessorCore_ByRef_ByVal()
@@ -70,6 +70,128 @@ public class AccessorCoreTests_RefArgs
         AreEqual(new Guid("00000000-0000-0000-0000-000000000012"), () => ret);
     }
     
+    // 3 Parameter Tests
+    
+    // TODO: Inline out variables for variation and terseness
+    
+    [TestMethod]
+    public void AccessorCore_ByRef_ByVal_ByVal()
+    {
+        var accessor = new MyAccessor();
+
+        double arg1 = 13;
+        float arg2 = 15;
+        long arg3 = 16;
+
+        DateTime ret = accessor.MyMethod(ref arg1, arg2, arg3);
+
+        AreEqual(14, () => arg1);
+        AreEqual(15, () => arg2);
+        AreEqual(16, () => arg3);
+        AreEqual(ParseDateTime("2017-01-01"), () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_ByVal_ByRef_ByVal()
+    {
+        var accessor = new MyAccessor();
+
+        bool arg1 = true;
+        int arg2;
+        long arg3 = 19;
+
+        int ret = accessor.MyMethod(arg1, out arg2, arg3);
+
+        AreEqual(true, () => arg1);
+        AreEqual(18, () => arg2);
+        AreEqual(19, () => arg3);
+        AreEqual(20, () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_ByRef_ByRef_ByVal()
+    {
+        var accessor = new MyAccessor();
+
+        double arg1 = 21;
+        DateTime arg2;
+        TimeSpan arg3 = ParseTimeSpan("00:24");
+
+        float ret = accessor.MyMethod(ref arg1, out arg2, arg3);
+
+        AreEqual(22, () => arg1);
+        AreEqual(ParseDateTime("2023-01-01"), () => arg2);
+        AreEqual(ParseTimeSpan("00:24"), () => arg3);
+        AreEqual(25, () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_ByVal_ByVal_ByRef()
+    {
+        var accessor = new MyAccessor();
+
+        Guid arg1 = new Guid("00000000-0000-0000-0000-000000000026");
+        string arg2 = "27";
+        TimeSpan arg3 = ParseTimeSpan("00:28");
+
+        string ret = accessor.MyMethod(arg1, arg2, ref arg3);
+
+        AreEqual(new Guid("00000000-0000-0000-0000-000000000026"), () => arg1);
+        AreEqual("27", () => arg2);
+        AreEqual(ParseTimeSpan("00:29"), () => arg3);
+        AreEqual("30", () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_ByRef_ByVal_ByRef()
+    {
+        var accessor = new MyAccessor();
+
+        double arg1;
+        float arg2 = 32;
+        long arg3 = 33;
+
+        DateTime ret = accessor.MyMethod(out arg1, arg2, ref arg3);
+
+        AreEqual(31, () => arg1);
+        AreEqual(32, () => arg2);
+        AreEqual(34, () => arg3);
+        AreEqual(ParseDateTime("2035-01-01"), () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_ByVal_ByRef_ByRef()
+    {
+        var accessor = new MyAccessor();
+
+        bool arg1 = true;
+        int arg2;
+        long arg3 = 37;
+
+        int ret = accessor.MyMethod(arg1, out arg2, ref arg3);
+
+        AreEqual(true, () => arg1);
+        AreEqual(36, () => arg2);
+        AreEqual(38, () => arg3);
+        AreEqual(39, () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_ByRef_ByRef_ByRef()
+    {
+        var accessor = new MyAccessor();
+
+        double arg1;
+        DateTime arg2 = ParseDateTime("2041-01-01");
+        TimeSpan arg3;
+
+        float ret = accessor.MyMethod(out arg1, ref arg2, out arg3);
+
+        AreEqual(40, () => arg1);
+        AreEqual(ParseDateTime("2042-01-01"), () => arg2);
+        AreEqual(ParseTimeSpan("00:43"), () => arg3);
+        AreEqual(44, () => ret);
+    }
     
     // Accessor Class
     
@@ -85,6 +207,8 @@ public class AccessorCoreTests_RefArgs
 
         // 2 Parameters
 
+        // TODO: Use overload with explicit name at the front for variance.
+        
         public long MyMethod(ref float arg1, double arg2) 
             => (long)Call(ref arg1, arg2)!;
 
@@ -98,6 +222,45 @@ public class AccessorCoreTests_RefArgs
         {
             arg2 = default;
             return (Guid)Call(ref arg1, ref arg2)!;
+        }
+
+        // 3 Parameters
+
+        public DateTime MyMethod(ref double arg1, float arg2, long arg3)
+            => (DateTime)Call(ref arg1, arg2, arg3)!;
+
+        public int MyMethod(bool arg1, out int arg2, long arg3)
+        {
+            arg2 = default;
+            return (int)Call(arg1, ref arg2, arg3)!;
+        }
+
+        public float MyMethod(ref double arg1, out DateTime arg2, TimeSpan arg3)
+        {
+            arg2 = default;
+            return (float)Call(ref arg1, ref arg2, arg3)!;
+        }
+
+        public string MyMethod(Guid arg1, string arg2, ref TimeSpan arg3)
+            => (string)Call(arg1, arg2, ref arg3)!;
+
+        public DateTime MyMethod(out double arg1, float arg2, ref long arg3)
+        {
+            arg1 = default;
+            return (DateTime)Call(ref arg1, arg2, ref arg3)!;
+        }
+
+        public int MyMethod(bool arg1, out int arg2, ref long arg3)
+        {
+            arg2 = default;
+            return (int)Call(arg1, ref arg2, ref arg3)!;
+        }
+
+        public float MyMethod(out double arg1, ref DateTime arg2, out TimeSpan arg3)
+        {
+            arg1 = default;
+            arg3 = default;
+            return (float)Call(ref arg1, ref arg2, ref arg3)!;
         }
     }
     
@@ -136,6 +299,70 @@ public class AccessorCoreTests_RefArgs
             arg1 = "10";
             arg2 = ParseTimeSpan("00:11");
             return new Guid("00000000-0000-0000-0000-000000000012");
+        }
+
+        // 3 Parameters
+
+        private DateTime MyMethod(ref double arg1, float arg2, long arg3)
+        {
+            AreEqual(13d, arg1, nameof(arg1));
+            arg1 = 14;
+            AreEqual(15f, () => arg2);
+            AreEqual(16, () => arg3);
+            return ParseDateTime("2017-01-01");
+        }
+
+        private int MyMethod(bool arg1, out int arg2, long arg3)
+        {
+            IsTrue(() => arg1);
+            arg2 = 18;
+            AreEqual(19, () => arg3);
+            return 20;
+        }
+
+        private float MyMethod(ref double arg1, out DateTime arg2, TimeSpan arg3)
+        {
+            AreEqual(21d, arg1, nameof(arg1));
+            arg1 = 22;
+            arg2 = ParseDateTime("2023-01-01");
+            AreEqual(ParseTimeSpan("00:24"), () => arg3);
+            return 25;
+        }
+
+        private string MyMethod(Guid arg1, string arg2, ref TimeSpan arg3)
+        {
+            AreEqual(new Guid("00000000-0000-0000-0000-000000000026"), () => arg1);
+            AreEqual("27", () => arg2);
+            AreEqual(ParseTimeSpan("00:28"), arg3, nameof(arg3));
+            arg3 = ParseTimeSpan("00:29");
+            return "30";
+        }
+
+        private DateTime MyMethod(out double arg1, float arg2, ref long arg3)
+        {
+            arg1 = 31;
+            AreEqual(32f, () => arg2);
+            AreEqual(33l, arg3, nameof(arg3));
+            arg3 = 34;
+            return ParseDateTime("2035-01-01");
+        }
+
+        private int MyMethod(bool arg1, out int arg2, ref long arg3)
+        {
+            IsTrue(() => arg1);
+            arg2 = 36;
+            AreEqual(37l, arg3, nameof(arg3));
+            arg3 = 38;
+            return 39;
+        }
+
+        private float MyMethod(out double arg1, ref DateTime arg2, out TimeSpan arg3)
+        {
+            arg1 = 40;
+            AreEqual(ParseDateTime("2041-01-01"), arg2, nameof(arg2));
+            arg2 = ParseDateTime("2042-01-01");
+            arg3 = ParseTimeSpan("00:43");
+            return 44;
         }
     }
 }
