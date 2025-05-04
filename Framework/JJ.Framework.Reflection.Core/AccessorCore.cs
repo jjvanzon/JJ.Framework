@@ -385,8 +385,7 @@ public class AccessorCore
             if (stackFrame == null) continue;
             Type[] stackFrameArgTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
             
-            // TODO: Check on arg count to short circuit for performance?
-            if (stackFrameArgTypes.Length != complementedArgTypes.Count) continue; // Short circuit for performance.
+            if (stackFrameArgTypes.Length != complementedArgTypes.Count) continue;
             
             foreach (Type type in _typesInHierarchy)
             {
@@ -405,8 +404,8 @@ public class AccessorCore
         var complementedArgTypes = ComplementArgTypes(indices, argTypes).ToArray();
         foreach (Type type in _typesInHierarchy)
         {
-            PropertyInfo? indexProp = _reflectionCacheLegacy.TryGetIndexer(type, complementedArgTypes);
-            if (indexProp != null) return indexProp;
+            PropertyInfo? indexerProp = _reflectionCacheLegacy.TryGetIndexer(type, complementedArgTypes);
+            if (indexerProp != null) return indexerProp;
         }
 
         // Try resolve with stack trace info.
@@ -426,18 +425,16 @@ public class AccessorCore
                 = stackFrame.GetMethod()?
                             .GetParameters()
                             .Select(x => x.ParameterType)
-                            .ToArray()
-                            .Take(indices.Count)
+                            //.ToArray()
+                            //.Take(indices.Count) // TODO: Might remove. Exact matches might be better.
                             .ToArray() ?? [ ];
             
-            // TODO: Check on arg count to short circuit for performance?
-            if (stackFrameArgTypes.Length != indices.Count) continue; // Short circuit for performance.
-            //if (stackFrameArgTypes.Length == 0) continue; // Can't be an indexer without any args.
+            if (stackFrameArgTypes.Length != indices.Count) continue; 
 
             foreach (Type type in _typesInHierarchy)
             {
-                PropertyInfo? indexProp = _reflectionCacheLegacy.TryGetIndexer(type, stackFrameArgTypes);
-                if (indexProp != null) return indexProp;
+                PropertyInfo? indexerProp = _reflectionCacheLegacy.TryGetIndexer(type, stackFrameArgTypes);
+                if (indexerProp != null) return indexerProp;
             }
         }
 
@@ -448,10 +445,10 @@ public class AccessorCore
     private ICollection<Type> ComplementArgTypes(ICollection<object?> args, ICollection<Type?> argTypes)
     {
         if (argTypes.Count > args.Count) throw new Exception("More argTypes than args.");
-        Type?[] argTypesArray = argTypes.ToArray();
-        Resize(ref argTypesArray, args.Count); // Lenience for missing argTypes array elements.
+        Type?[] argTypesArr = argTypes.ToArray();
+        Resize(ref argTypesArr, args.Count); // Lenience for missing argTypes array elements.
         Type[] argTypesFromObjects = TypesFromObjects(args);
-        Type[] resolvedArgTypes = argTypesArray.Zip(argTypesFromObjects, (x, y) => x ?? y).ToArray();
+        Type[] resolvedArgTypes = argTypesArr.Zip(argTypesFromObjects, (x, y) => x ?? y).ToArray();
         return resolvedArgTypes;
     }
 }
