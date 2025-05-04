@@ -29,6 +29,7 @@
     <NoWarn>$(NoWarn);CS8632</NoWarn> <!--Nullable annotation used without nullable option on.-->
     <NoWarn>$(NoWarn);CS1573</NoWarn> <!--Parameter 'parameter' has no matching param tag in the XML comment for 'parameter' (but other parameters do)-->
     <NoWarn>$(NoWarn);CA1510</NoWarn> <!--Use ThrowIfNull-->
+    <NoWarn>$(NoWarn);CS0078</NoWarn> <!--The 'l' suffix is easily confused with the digit '1'-->
     <!-- See also: Directory.Build.targets for more disabled warnings. -->
   </PropertyGroup>
 

@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Reflection.Core.Tests;
+﻿// ReSharper disable InlineOutVariableDeclaration
+namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
 public class AccessorCoreTests_RefArgs
@@ -6,28 +7,30 @@ public class AccessorCoreTests_RefArgs
     [TestMethod]
     public void AccessorCore_1RefArg()
     {
-        var obj = new MyClass();
-        var accessor = new MyAccessor(obj);
+        var accessor = new MyAccessor();
         
-        int num = 14;
-        bool isEven = accessor.MyMethod(ref num);
+        int arg;
+        bool ret = accessor.MyMethod(out arg);
         
-        IsTrue(() => isEven);
-        AreEqual(15, () => num);
+        AreEqual(1, () => arg);
+        IsTrue(() => ret);
     }
     
-    private class MyAccessor(MyClass obj) : AccessorCore(obj)
+    private class MyAccessor() : AccessorCore(new MyClass())
     {
-        public bool MyMethod(ref int num) => (bool)Call(ref num);
+        public bool MyMethod(out int arg)
+        {
+            arg = default;
+            return (bool)Call(ref arg)!;
+        }
     }
     
     private class MyClass
     {
-        private bool MyMethod(ref int num)
+        private bool MyMethod(out int arg)
         {
-            bool isEven = num % 2 == 0;
-            num++;
-            return isEven;
+            arg = 1;
+            return true;
         }
     }
 }

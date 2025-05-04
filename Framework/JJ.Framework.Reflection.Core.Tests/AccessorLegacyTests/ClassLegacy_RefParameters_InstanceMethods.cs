@@ -1,11 +1,6 @@
-﻿using System;
-using JJ.Framework.Reflection.Core.Tests.Helpers;
+﻿using JJ.Framework.Reflection.Core.Tests.Helpers;
 
-// ReSharper disable UnusedMember.Local
-// ReSharper disable RedundantBoolCompare
 // ReSharper disable CompareOfFloatsByEqualityOperator
-#pragma warning disable IDE0051 // Remove unused private members
-#pragma warning disable CS0078 // The 'l' suffix is easily confused with the digit '1'
 
 namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 {

@@ -223,4 +223,34 @@ public class AccessorCoreTests_Examples
         var accessor = new OverloadAccessor4();
         AreEqual("", () => accessor.MyMethod2(5, null));
     }
+    
+    // Ref Args
+    
+    [TestMethod]
+    public void AccessorCore_RefArg()
+    {
+        var obj = new MyClassWithRef();
+        var accessor = new MyAccessorWithRef(obj);
+        
+        int num = 14;
+        bool isEven = accessor.MyMethod(ref num);
+        
+        IsTrue(() => isEven);
+        AreEqual(15, () => num);
+    }
+    
+    private class MyAccessorWithRef(MyClassWithRef obj) : AccessorCore(obj)
+    {
+        public bool MyMethod(ref int num) => (bool)Call(ref num)!;
+    }
+    
+    private class MyClassWithRef
+    {
+        private bool MyMethod(ref int num)
+        {
+            bool isEven = num % 2 == 0;
+            num++;
+            return isEven;
+        }
+    }
 }

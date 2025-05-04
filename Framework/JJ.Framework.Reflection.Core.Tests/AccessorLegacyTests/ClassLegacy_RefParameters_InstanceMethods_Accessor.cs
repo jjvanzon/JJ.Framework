@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
+﻿namespace JJ.Framework.Reflection.Core.Tests.AccessorLegacyTests
 {
     internal class ClassLegacy_RefParameters_InstanceMethods_Accessor
     {
