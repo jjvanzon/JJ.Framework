@@ -18,8 +18,7 @@ public class AccessorCoreTests_RefArgs
     
     private class MyAccessor(MyClass obj) : AccessorCore(obj)
     {
-        public bool MyMethod(ref int num)
-            => (bool)Call(ref num);
+        public bool MyMethod(ref int num) => (bool)Call(ref num);
     }
     
     private class MyClass
