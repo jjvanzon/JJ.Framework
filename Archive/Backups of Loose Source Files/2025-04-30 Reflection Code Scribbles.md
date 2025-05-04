@@ -338,4 +338,10 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
     MethodInfo method = ResolveMethod(name, args, [ typeof(TArg1).MakeByRefType() ], [ ]);
     Type[] argTypes = [ typeof(TArg).MakeByRefType() ];
     MethodInfo method = ResolveMethod(name, args, argTypes, [ ]);
+    
+    private class MyAccessorWithLambda(MyClass obj) : AccessorCore(obj)
+    {
+        public bool MyMethod(ref int num)
+            => Call(() => MyMethod(ref num));
+    }
 ```
