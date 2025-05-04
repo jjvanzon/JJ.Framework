@@ -22,6 +22,12 @@ public class AccessorCoreTests_RefArgs
             => (bool)Call(ref num);
     }
     
+    //private class MyAccessorWithLambda(MyClass obj) : AccessorCore(obj)
+    //{
+    //    public bool MyMethod(ref int num)
+    //        => Call(() => MyMethod(ref num));
+    //}
+    
     private class MyClass
     {
         private bool MyMethod(ref int num)
