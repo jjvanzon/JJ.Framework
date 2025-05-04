@@ -188,8 +188,25 @@ public class AccessorCoreTests_RefArgs
         AreEqual(44, () => ret);
     }
     
-    // Accessor Class
+    // 4 Parameter Tests
     
+    [TestMethod]
+    public void AccessorCore_ByRef_ByVal_ByVal_ByVal()
+    {
+        var accessor = new MyAccessor();
+        
+        int arg1 = 45;
+        long arg2 = 47;
+        float arg3 = 48;
+        double arg4 = 49;
+        byte ret = accessor.MyMethod(ref arg1, arg2, arg3, arg4);
+        
+        AreEqual(46, () => arg1);
+        AreEqual(50, () => ret);
+    }
+
+    // Accessor Class
+
     private class MyAccessor() : AccessorCore(new MyClass())
     {
         // 1 Parameter
@@ -200,7 +217,7 @@ public class AccessorCoreTests_RefArgs
             return (bool)Call(ref arg)!;
         }
 
-        // 2 Parameters
+        // 2 Parameters (+ explicit names)
 
         public long MyMethod(ref float arg1, double arg2) 
             => (long)Call(Name(), ref arg1, arg2)!;
@@ -217,7 +234,7 @@ public class AccessorCoreTests_RefArgs
             return (Guid)Call("MyMethod", ref arg1, ref arg2)!;
         }
 
-        // 3 Parameters
+        // 3 Parameters (+ inline out parameters)
 
         public DateTime MyMethod(ref double arg1, float arg2, long arg3)
             => (DateTime)Call(ref arg1, arg2, arg3)!;
@@ -254,6 +271,13 @@ public class AccessorCoreTests_RefArgs
             arg1 = default;
             arg3 = default;
             return (float)Call(ref arg1, ref arg2, ref arg3)!;
+        }
+        
+        // 4 Parameters
+        
+        public byte MyMethod(ref int arg1, long arg2, float arg3, double arg4)
+        {
+            return (byte)Call(ref arg1, arg2, arg3, arg4)!;
         }
     }
     
@@ -357,5 +381,48 @@ public class AccessorCoreTests_RefArgs
             arg3 = ParseTimeSpan("00:43");
             return 44;
         }
+        
+        // 4 Parameters
+        
+        private byte MyMethod(ref int arg1, long arg2, float arg3, double arg4)
+        {
+            AreEqual(45, arg1, nameof(arg1));
+            arg1 = 46;
+            AreEqual(47, () => arg2);
+            AreEqual(48, () => arg3);
+            AreEqual(49, () => arg4);
+            return 50;
+        }
+        
+        private decimal MyMethod(bool arg1, out string arg2, DateTime arg3, TimeSpan arg4)
+        {
+            AreEqual(true, () => arg1);
+            arg2 = "52";
+            AreEqual(ParseDateTime("2053-01-01"), () => arg3);
+            AreEqual(ParseTimeSpan("00:54"), () => arg4);
+            return 55;
+        }
+        
+        private Guid MyMethod(ref byte arg1, out int arg2, long arg3, float arg4)
+        {
+            AreEqual(56, arg1, nameof(arg1));
+            arg1 = 57;
+            arg2 = 58;
+            AreEqual(59, () => arg3);
+            AreEqual(60, () => arg4);
+            return new Guid("00000000-0000-0000-0000-000000000061");
+        }
+
+        private double MyMethod(decimal arg1, bool arg2, ref string arg3, DateTime arg4)
+        {
+            AreEqual(62, () => arg1);
+            AreEqual(true, () => arg2);
+            AreEqual("63", arg3, nameof(arg3));
+            arg3 = "64";
+            AreEqual(ParseDateTime("2065-01-01"), () => arg4);
+            return 66;
+        }
+
+        // ...
     }
 }
