@@ -386,7 +386,7 @@ public class AccessorCore
             Type[] stackFrameArgTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
             
             // TODO: Check on arg count to short circuit for performance?
-            //if (stackFrameArgTypes.Length != complementedArgTypes.Count) continue; // Short circuit for performance.
+            if (stackFrameArgTypes.Length != complementedArgTypes.Count) continue; // Short circuit for performance.
             
             foreach (Type type in _typesInHierarchy)
             {
@@ -431,8 +431,8 @@ public class AccessorCore
                             .ToArray() ?? [ ];
             
             // TODO: Check on arg count to short circuit for performance?
-            //if (stackFrameArgTypes.Length != indices.Count) continue; // Short circuit for performance.
-            if (stackFrameArgTypes.Length == 0) continue; // Can't be an indexer without any args.
+            if (stackFrameArgTypes.Length != indices.Count) continue; // Short circuit for performance.
+            //if (stackFrameArgTypes.Length == 0) continue; // Can't be an indexer without any args.
 
             foreach (Type type in _typesInHierarchy)
             {

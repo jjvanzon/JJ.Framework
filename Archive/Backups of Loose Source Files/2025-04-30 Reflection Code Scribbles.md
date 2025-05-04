@@ -308,3 +308,25 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
     
     throw new Exception($"Indexer not found with index types: [{Join(", ", indexTypes.Select(x => $"{x}"))}].");
 ```
+
+### AccessorCore Indexer Tests
+
+```cs
+    public AccessorCoreTests_Indexers() => _accessor = new AccessorCore(this);
+
+    private readonly AccessorCore _accessor;
+    private Dictionary<int, int> _numberDic = CreateNumberDic();
+    private string _text = "11";
+    
+    public int this[int index] 
+    { 
+        get => _numberDic[index]; 
+        set => _numberDic[index] = value; 
+    }
+    
+    public string this[string key]
+    {
+        get => _text; 
+        set => _text = value;
+    }
+```
