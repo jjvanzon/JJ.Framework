@@ -1,6 +1,8 @@
-﻿using static JJ.Framework.Reflection.Core.Tests.Helpers.ParseHelperLegacy;
+﻿using static JJ.Framework.Common.Core.NameHelper;
+using static JJ.Framework.Reflection.Core.Tests.Helpers.ParseHelperLegacy;
 // ReSharper disable InlineOutVariableDeclaration
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
+// ReSharper disable ConvertToConstant.Local
 
 namespace JJ.Framework.Reflection.Core.Tests;
 
@@ -72,8 +74,6 @@ public class AccessorCoreTests_RefArgs
     
     // 3 Parameter Tests
     
-    // TODO: Inline out variables for variation and terseness
-    
     [TestMethod]
     public void AccessorCore_ByRef_ByVal_ByVal()
     {
@@ -97,10 +97,9 @@ public class AccessorCoreTests_RefArgs
         var accessor = new MyAccessor();
 
         bool arg1 = true;
-        int arg2;
         long arg3 = 19;
 
-        int ret = accessor.MyMethod(arg1, out arg2, arg3);
+        int ret = accessor.MyMethod(arg1, out int arg2, arg3);
 
         AreEqual(true, () => arg1);
         AreEqual(18, () => arg2);
@@ -114,10 +113,9 @@ public class AccessorCoreTests_RefArgs
         var accessor = new MyAccessor();
 
         double arg1 = 21;
-        DateTime arg2;
         TimeSpan arg3 = ParseTimeSpan("00:24");
 
-        float ret = accessor.MyMethod(ref arg1, out arg2, arg3);
+        float ret = accessor.MyMethod(ref arg1, out DateTime arg2, arg3);
 
         AreEqual(22, () => arg1);
         AreEqual(ParseDateTime("2023-01-01"), () => arg2);
@@ -146,12 +144,11 @@ public class AccessorCoreTests_RefArgs
     public void AccessorCore_ByRef_ByVal_ByRef()
     {
         var accessor = new MyAccessor();
-
-        double arg1;
+        
         float arg2 = 32;
         long arg3 = 33;
 
-        DateTime ret = accessor.MyMethod(out arg1, arg2, ref arg3);
+        DateTime ret = accessor.MyMethod(out double arg1, arg2, ref arg3);
 
         AreEqual(31, () => arg1);
         AreEqual(32, () => arg2);
@@ -165,10 +162,9 @@ public class AccessorCoreTests_RefArgs
         var accessor = new MyAccessor();
 
         bool arg1 = true;
-        int arg2;
         long arg3 = 37;
 
-        int ret = accessor.MyMethod(arg1, out arg2, ref arg3);
+        int ret = accessor.MyMethod(arg1, out int arg2, ref arg3);
 
         AreEqual(true, () => arg1);
         AreEqual(36, () => arg2);
@@ -180,12 +176,11 @@ public class AccessorCoreTests_RefArgs
     public void AccessorCore_ByRef_ByRef_ByRef()
     {
         var accessor = new MyAccessor();
-
-        double arg1;
+        
         DateTime arg2 = ParseDateTime("2041-01-01");
         TimeSpan arg3;
 
-        float ret = accessor.MyMethod(out arg1, ref arg2, out arg3);
+        float ret = accessor.MyMethod(out double arg1, ref arg2, out arg3);
 
         AreEqual(40, () => arg1);
         AreEqual(ParseDateTime("2042-01-01"), () => arg2);
@@ -207,21 +202,19 @@ public class AccessorCoreTests_RefArgs
 
         // 2 Parameters
 
-        // TODO: Use overload with explicit name at the front for variance.
-        
         public long MyMethod(ref float arg1, double arg2) 
-            => (long)Call(ref arg1, arg2)!;
+            => (long)Call("MyMethod", ref arg1, arg2)!;
 
         public DateTime MyMethod(TimeSpan arg1, out string arg2)
         {
             arg2 = default;
-            return (DateTime)Call(arg1, ref arg2)!;
+            return (DateTime)Call(nameof(MyMethod), arg1, ref arg2)!;
         }
 
         public Guid MyMethod(ref string arg1, out TimeSpan arg2)
         {
             arg2 = default;
-            return (Guid)Call(ref arg1, ref arg2)!;
+            return (Guid)Call(Name(), ref arg1, ref arg2)!;
         }
 
         // 3 Parameters
