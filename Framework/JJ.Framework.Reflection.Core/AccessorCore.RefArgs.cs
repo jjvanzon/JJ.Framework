@@ -23,8 +23,8 @@ public partial class AccessorCore
     // 2 Parameters
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TRef1>(ref TRef1 arg, object? arg2, [Caller] string name = "")
-        => Call(name, ref arg, arg2);
+    public object? Call<TRef1>(ref TRef1 arg1, object? arg2, [Caller] string name = "")
+        => Call(name, ref arg1, arg2);
 
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
@@ -37,8 +37,8 @@ public partial class AccessorCore
     }
            
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TRef2>(object? arg, ref TRef2 arg2, [Caller] string name = "")
-        => Call(name, arg, ref arg2);
+    public object? Call<TRef2>(object? arg1, ref TRef2 arg2, [Caller] string name = "")
+        => Call(name, arg1, ref arg2);
 
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
@@ -51,8 +51,8 @@ public partial class AccessorCore
     }
     
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TRef1, TRef2>(ref TRef1 arg, ref TRef2 arg2, [Caller] string name = "")
-        => Call(name, arg, ref arg2);
+    public object? Call<TRef1, TRef2>(ref TRef1 arg1, ref TRef2 arg2, [Caller] string name = "")
+        => Call(name, ref arg1, ref arg2);
 
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
