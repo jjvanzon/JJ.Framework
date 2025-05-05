@@ -282,8 +282,40 @@ public class AccessorCoreTests_RefArgs
         AreEqual(false, arg3, nameof(arg3));
         AreEqual(75, () => ret);
     }
+        
+    [TestMethod]
+    public void AccessorCore_RefRefRefVal()
+    {
+        var accessor = new MyAccessor();
+        
+        var arg1 = FromMinutes(0);
+        var arg2 = ToGuid(77);
+        var arg3 = (byte)0;
+        var arg4 = 80;
+        var ret = accessor.MyMethod(out arg1, ref arg2, out arg3, arg4);
+        
+        AreEqual(FromMinutes(76), arg1, nameof(arg1));
+        AreEqual(ToGuid(78), arg2, nameof(arg2));
+        AreEqual(79, arg3, nameof(arg3));
+        AreEqual(FromYear(2081), () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_ValValValRef()
+    {
+        var accessor = new MyAccessor();
+        
+        var arg1 = 82;
+        var arg2 = 83;
+        var arg3 = 84;
+        var arg4 = true;
+        var ret = accessor.MyMethod(arg1, arg2, arg3, ref arg4);
+        
+        AreEqual(false, () => arg4);
+        AreEqual(85, () => ret);
+    }
     
-    
+
     
     
     
@@ -617,105 +649,105 @@ public class AccessorCoreTests_RefArgs
 
         private DateTime MyMethod(out TimeSpan arg1, ref Guid arg2, out byte arg3, int arg4)
         {
-            arg1 = FromMinutes(77);
-            AreEqual(ToGuid(78), arg2, nameof(arg2));
-            arg2 = ToGuid(79);
-            arg3 = 80;
-            AreEqual(81, () => arg4);
-            return FromYear(2082);
+            arg1 = FromMinutes(76);
+            AreEqual(ToGuid(77), arg2, nameof(arg2));
+            arg2 = ToGuid(78);
+            arg3 = 79;
+            AreEqual(80, () => arg4);
+            return FromYear(2081);
         }
 
         private long MyMethod(float arg1, double arg2, decimal arg3, ref bool arg4)
         {
-            AreEqual(83, () => arg1);
-            AreEqual(84, () => arg2);
-            AreEqual(85, () => arg3);
+            AreEqual(82, () => arg1);
+            AreEqual(83, () => arg2);
+            AreEqual(84, () => arg3);
             AreEqual(true, arg4, nameof(arg4));
             arg4 = false;
-            return 86;
+            return 85;
         }
 
         private string MyMethod(out DateTime arg1, TimeSpan arg2, Guid arg3, ref byte arg4)
         {
-            arg1 = FromYear(2087);
-            AreEqual(FromMinutes(88), () => arg2);
-            AreEqual(ToGuid(89), () => arg3);
-            AreEqual(90, arg4, nameof(arg4));
-            arg4 = 91;
-            return "92";
+            arg1 = FromYear(2086);
+            AreEqual(FromMinutes(87), () => arg2);
+            AreEqual(ToGuid(88), () => arg3);
+            AreEqual(89, arg4, nameof(arg4));
+            arg4 = 90;
+            return "91";
         }
         
         private int MyMethod(long arg1, out float arg2, double arg3, ref decimal arg4)
         {
-            AreEqual(93, () => arg1);
-            arg2 = 94;
-            AreEqual(95, () => arg3);
-            AreEqual(96, arg4, nameof(arg4));
-            arg4 = 97;
-            return 98;
+            AreEqual(92, () => arg1);
+            arg2 = 93;
+            AreEqual(94, () => arg3);
+            AreEqual(95, arg4, nameof(arg4));
+            arg4 = 96;
+            return 97;
         }
         
         private bool MyMethod(out string arg1, ref DateTime arg2, TimeSpan arg3, out Guid arg4)
         {
-            arg1 = "99";
-            AreEqual(FromYear(2100), arg2, nameof(arg2));
-            arg2 = FromYear(2101);
-            AreEqual(FromMinutes(102),  () => arg3);
-            arg4 = new Guid("00000000-0000-0000-0000-000000000103");
+            arg1 = "98";
+            AreEqual(FromYear(2099), arg2, nameof(arg2));
+            arg2 = FromYear(2100);
+            AreEqual(FromMinutes(101),  () => arg3);
+            arg4 = ToGuid(102);
             return true;
         }
         
         private byte MyMethod(int arg1, long arg2, ref float arg3, out double arg4)
         {
-            AreEqual(104, () => arg1);
-            AreEqual(105, () => arg2);
-            AreEqual(106, arg3, nameof(arg3));
-            arg3 = 107;
-            arg4 = 108;
-            return 109;
+            AreEqual(103, () => arg1);
+            AreEqual(104, () => arg2);
+            AreEqual(105, arg3, nameof(arg3));
+            arg3 = 106;
+            arg4 = 107;
+            return 108;
         }
         
         private decimal MyMethod(ref bool arg1, string arg2, out DateTime arg3, ref TimeSpan arg4)
         {
             AreEqual(true, arg1, nameof(arg1));
             arg1 = false;
-            AreEqual("110", () => arg2);
-            arg3 = FromYear(2111);
-            AreEqual(FromMinutes(112), arg4, nameof(arg4));
-            arg4 = FromMinutes(113);
-            return 114;
+            AreEqual("109", () => arg2);
+            arg3 = FromYear(2110);
+            AreEqual(FromMinutes(111), arg4, nameof(arg4));
+            arg4 = FromMinutes(112);
+            return 113;
         }
         
         private Guid MyMethod(byte arg1, out int arg2, ref long arg3, out float arg4)
         {
-            AreEqual(115, () => arg1);
-            arg2 = 116;
-            AreEqual(117, arg3, nameof(arg3));
-            arg3 = 118;
-            arg4 = 119;
-            return new Guid("00000000-0000-0000-0000-000000000120");
+            AreEqual(114, () => arg1);
+            arg2 = 115;
+            AreEqual(116, arg3, nameof(arg3));
+            arg3 = 117;
+            arg4 = 118;
+            return ToGuid(119);
         }
         
         private double MyMethod(ref decimal arg1, out bool arg2, ref string arg3, out DateTime arg4)
         {
-            AreEqual(121, arg1, nameof(arg1));
-            arg1 = 122;
+            AreEqual(120, arg1, nameof(arg1));
+            arg1 = 121;
             arg2 = true;
-            AreEqual("123", arg3, nameof(arg3));
-            arg3 = "124";
-            arg4 = FromYear(2125);
-            return 126;
+            AreEqual("122", arg3, nameof(arg3));
+            arg3 = "123";
+            arg4 = FromYear(2124);
+            return 125;
         }
         
         private TimeSpan MyMethod(ref Guid arg1, out byte arg2, ref int arg3, out long arg4)
         {
-            AreEqual(new Guid("00000000-0000-0000-0000-000000000127"), arg1, nameof(arg1));
-            arg1 = new Guid("00000000-0000-0000-0000-000000000128");
-            arg2 = 129;
-            AreEqual(130, arg3, nameof(arg3));
-            arg3 = 131;
-            arg4 = 132; 
-            return FromMinutes(133);
+            AreEqual(ToGuid(126), arg1, nameof(arg1));
+            arg1 = ToGuid(127);
+            arg2 = 128;
+            AreEqual(129, arg3, nameof(arg3));
+            arg3 = 130;
+            arg4 = 131; 
+            return FromMinutes(132);
         }
     }
 }
