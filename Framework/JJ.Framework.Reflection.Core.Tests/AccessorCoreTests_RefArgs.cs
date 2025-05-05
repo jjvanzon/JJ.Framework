@@ -267,30 +267,21 @@ public class AccessorCoreTests_RefArgs
         AreEqual(FromMinutes(71), () => ret);
     }
     
-    /*
     [TestMethod]
     public void AccessorCore_ValRefRefVal()
     {
         var accessor = new MyAccessor();
         
-        // public TimeSpan MyMethod(out Guid arg1, byte arg2, ref int arg3, long arg4)
-        
         var arg1 = 72;
-        var arg2 = (byte)0;
-        var arg3 = (int)74;
-        var arg4 = 76;
+        var arg2 = (decimal)0;
+        var arg3 = true;
+        var arg4 = "74";
         var ret = accessor.MyMethod(arg1, out arg2, ref arg3, arg4);
         
         AreEqual(73, arg2, nameof(arg2));
-        AreEqual(75, arg3, nameof(arg3));
-        AreEqual(FromMinutes(77), () => ret);
+        AreEqual(false, arg3, nameof(arg3));
+        AreEqual(75, () => ret);
     }
-    */
-    
-    
-    
-    
-    
     
     
     
@@ -392,24 +383,11 @@ public class AccessorCoreTests_RefArgs
             arg1 = default;
             return (TimeSpan)Call(ref arg1, arg2, ref arg3, arg4)!;
         }
-
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        public float MyMethod(out double arg1, ref decimal arg2, bool arg3, string arg4)
+        public float MyMethod(double arg1, out decimal arg2, ref bool arg3, string arg4)
         {
-            arg1 = default;
-            return (float)Call(ref arg1, ref arg2, arg3, arg4)!;
+            arg2 = default;
+            return (float)Call(arg1, ref arg2, ref arg3, arg4)!;
         }
 
         public DateTime MyMethod(out TimeSpan arg1, ref Guid arg2, out byte arg3, int arg4)
@@ -627,20 +605,14 @@ public class AccessorCoreTests_RefArgs
             return FromMinutes(71);
         }
 
-        
-        
-        
-        
-        
-        
-        private float MyMethod(out double arg1, ref decimal arg2, bool arg3, string arg4)
+        private float MyMethod(double arg1, out decimal arg2, ref bool arg3, string arg4)
         {
-            arg1 = 72;
-            AreEqual(73, arg2, nameof(arg2));
-            arg2 = 74;
-            AreEqual(true, () => arg3);
-            AreEqual("75", () => arg4);
-            return 76;
+            AreEqual(72, arg1, nameof(arg2));
+            arg2 = 73;
+            AreEqual(true, arg3, nameof(arg3));
+            arg3 = false;
+            AreEqual("74", () => arg4);
+            return 75;
         }
 
         private DateTime MyMethod(out TimeSpan arg1, ref Guid arg2, out byte arg3, int arg4)
