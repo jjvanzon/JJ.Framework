@@ -6,7 +6,6 @@ public partial class AccessorCore
     // NOTE: Multiple layers of Priorities are used.
     // This disambiguates explicit last string arguments from optional Caller arguments.
     // See, (arg, name?) can conflict with (arg1, arg2) which can conflict with (arg1, arg2, name?) too.
-    // Therefor, more parameters get higher priority and Caller arguments get lower priority.
     
     // 1 Parameter
     
@@ -390,16 +389,16 @@ public partial class AccessorCore
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(1)]
     public object? Call<TRef4>(object? arg1, object? arg2, object? arg3, ref TRef4 arg4, [Caller] string name = "")
-        => Call(name, ref arg1, arg2, arg3, arg4);
+        => Call(name, arg1, arg2, arg3, ref arg4);
     
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(2)]
     public object? Call(object? arg1, object? arg2, object? arg3, ref string arg4, [Caller] string name = "")
-        => Call(name, ref arg1, arg2, arg3, arg4);
+        => Call(name, arg1, arg2, arg3, ref arg4);
     
     /// <inheritdoc cref="_invokemethod" />
     [OverloadPriority(3)]
-    public object? Call<TRef4>(string name, ref object? arg1, object? arg2, object? arg3, ref TRef4 arg4)
+    public object? Call<TRef4>(string name, object? arg1, object? arg2, object? arg3, ref TRef4 arg4)
     {
         object?[] args = [ arg1, arg2, arg3, arg4 ];
         object? ret  = ResolveMethod(name, args, [ ], [ ]).Invoke(Obj, args);
