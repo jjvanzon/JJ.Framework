@@ -378,7 +378,7 @@ public class AccessorCoreTests_RefArgs
             arg1 = 40;
             AreEqual(ParseDateTime("2041-01-01"), arg2, nameof(arg2));
             arg2 = ParseDateTime("2042-01-01");
-            arg3 = ParseTimeSpan("00:43");
+            arg3 = TimeSpan.FromMinutes(43);
             return 44;
         }
         
@@ -399,7 +399,7 @@ public class AccessorCoreTests_RefArgs
             AreEqual(true, () => arg1);
             arg2 = "52";
             AreEqual(ParseDateTime("2053-01-01"), () => arg3);
-            AreEqual(ParseTimeSpan("00:54"), () => arg4);
+            AreEqual(TimeSpan.FromMinutes(54), () => arg4);
             return 55;
         }
         
@@ -423,6 +423,127 @@ public class AccessorCoreTests_RefArgs
             return 66;
         }
 
-        // ...
+        private TimeSpan MyMethod(out Guid arg1, byte arg2, ref int arg3, long arg4)
+        {
+            arg1 =  new Guid("00000000-0000-0000-0000-000000000067");
+            AreEqual(68, () => arg2);
+            AreEqual(69, arg3, nameof(arg3));
+            arg3 = 70;
+            AreEqual(71, () => arg4);
+            return TimeSpan.FromMinutes(72);
+        }
+
+        private float MyMethod(out double arg1, ref decimal arg2, bool arg3, string arg4)
+        {
+            arg1 = 73;
+            AreEqual(74, arg2, nameof(arg2));
+            arg2 = 75;
+            AreEqual(true, () => arg3);
+            AreEqual("76", () => arg4);
+            return 77;
+        }
+
+        private DateTime MyMethod(out TimeSpan arg1, ref Guid arg2, out byte arg3, int arg4)
+        {
+            arg1 = TimeSpan.FromMinutes(78);
+            AreEqual(new Guid("00000000-0000-0000-0000-000000000079"), arg2, nameof(arg2));
+            arg2 = new Guid("00000000-0000-0000-0000-000000000080");
+            arg3 = 81;
+            AreEqual(82, () => arg4);
+            return ParseDateTime("2083-01-01");
+        }
+
+        private long MyMethod(float arg1, double arg2, decimal arg3, ref bool arg4)
+        {
+            AreEqual(84, () => arg1);
+            AreEqual(85, () => arg2);
+            AreEqual(86, () => arg3);
+            AreEqual(true, arg4, nameof(arg4));
+            arg4 = false;
+            return 87;
+        }
+
+        private string MyMethod(out DateTime arg1, TimeSpan arg2, Guid arg3, ref byte arg4)
+        {
+            arg1 = ParseDateTime("2088-01-01");
+            AreEqual(TimeSpan.FromMinutes(89), () => arg2);
+            AreEqual(new Guid("00000000-0000-0000-0000-000000000090"), () => arg3);
+            AreEqual(91, arg4, nameof(arg4));
+            arg4 = 92;
+            return "93";
+        }
+        
+        private int MyMethod(long arg1, out float arg2, double arg3, ref decimal arg4)
+        {
+            AreEqual(94, () => arg1);
+            arg2 = 95;
+            AreEqual(96, () => arg3);
+            AreEqual(97, arg4, nameof(arg4));
+            arg4 = 98;
+            return 99;
+        }
+        
+        private bool MyMethod(out string arg1, ref DateTime arg2, TimeSpan arg3, out Guid arg4)
+        {
+            arg1 = "100";
+            AreEqual(ParseDateTime("2101-01-01"), arg2, nameof(arg2));
+            arg2 = ParseDateTime("2102-01-01");
+            AreEqual(TimeSpan.FromMinutes(103),  () => arg3);
+            arg4 = new Guid("00000000-0000-0000-0000-000000000104");
+            return true;
+        }
+        
+        private byte MyMethod(int arg1, long arg2, ref float arg3, out double arg4)
+        {
+            AreEqual(105, () => arg1);
+            AreEqual(106, () => arg2);
+            AreEqual(107, arg3, nameof(arg3));
+            arg3 = 108;
+            arg4 = 109;
+            return 110;
+        }
+        
+        private decimal MyMethod(ref bool arg1, string arg2, out DateTime arg3, ref TimeSpan arg4)
+        {
+            AreEqual(true, arg1, nameof(arg1));
+            arg1 = false;
+            AreEqual("111", () => arg2);
+            arg3 = ParseDateTime("2112-01-01");
+            AreEqual(TimeSpan.FromMinutes(113), arg4, nameof(arg4));
+            arg4 = TimeSpan.FromMinutes(114);
+            return 115;
+        }
+        
+        private Guid MyMethod(byte arg1, out int arg2, ref long arg3, out float arg4)
+        {
+            AreEqual(116, () => arg1);
+            arg2 = 117;
+            AreEqual(118, arg3, nameof(arg3));
+            arg3 = 119;
+            arg4 = 120;
+            return new Guid("00000000-0000-0000-0000-000000000121");
+        }
+        
+        private double MyMethod(ref decimal arg1, out bool arg2, ref string arg3, out DateTime arg4)
+        {
+            AreEqual(122, arg1, nameof(arg1));
+            arg1 = 123;
+            arg2 = true;
+            AreEqual("124", arg3, nameof(arg3));
+            arg3 = "125";
+            arg4 = ParseDateTime("2126-01-01");
+            return 127;
+        }
+        
+        private TimeSpan MyMethod(ref Guid arg1, out byte arg2, ref int arg3, out long arg4)
+        {
+            AreEqual(new Guid("00000000-0000-0000-0000-000000000128"), arg1, nameof(arg1));
+            arg1 = new Guid("00000000-0000-0000-0000-000000000129");
+            arg2 = 130;
+            AreEqual(131, arg3, nameof(arg3));
+            arg3 = 132;
+            arg4 = 133; 
+            return TimeSpan.FromMinutes(134);
+        }
     }
 }
