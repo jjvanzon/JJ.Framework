@@ -256,7 +256,7 @@ public class AccessorCoreTests_RefArgs
     {
         var accessor = new MyAccessor();
         
-        var arg1 = default(Guid);
+        var arg1 = ToGuid(0);
         var arg2 = (byte)67;
         var arg3 = 68;
         var arg4 = 70;
@@ -267,6 +267,25 @@ public class AccessorCoreTests_RefArgs
         AreEqual(FromMinutes(71), () => ret);
     }
     
+    /*
+    [TestMethod]
+    public void AccessorCore_ValRefRefVal()
+    {
+        var accessor = new MyAccessor();
+        
+        // public TimeSpan MyMethod(out Guid arg1, byte arg2, ref int arg3, long arg4)
+        
+        var arg1 = 72;
+        var arg2 = (byte)0;
+        var arg3 = (int)74;
+        var arg4 = 76;
+        var ret = accessor.MyMethod(arg1, out arg2, ref arg3, arg4);
+        
+        AreEqual(73, arg2, nameof(arg2));
+        AreEqual(75, arg3, nameof(arg3));
+        AreEqual(FromMinutes(77), () => ret);
+    }
+    */
     
     
     
@@ -374,6 +393,19 @@ public class AccessorCoreTests_RefArgs
             return (TimeSpan)Call(ref arg1, arg2, ref arg3, arg4)!;
         }
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         public float MyMethod(out double arg1, ref decimal arg2, bool arg3, string arg4)
         {
             arg1 = default;
@@ -595,6 +627,12 @@ public class AccessorCoreTests_RefArgs
             return FromMinutes(71);
         }
 
+        
+        
+        
+        
+        
+        
         private float MyMethod(out double arg1, ref decimal arg2, bool arg3, string arg4)
         {
             arg1 = 72;
