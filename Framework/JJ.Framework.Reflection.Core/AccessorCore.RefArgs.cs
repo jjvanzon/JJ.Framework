@@ -274,9 +274,9 @@ public partial class AccessorCore
         arg3 = (TRef3)args[2]!;
         return ret;
     }    
-
+    
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call<TRef4>(ref object? arg1, object? arg2, object? arg3, ref TRef4 arg4, [Caller] string name = "")
+    public object? Call<TRef4>(object? arg1, object? arg2, object? arg3, ref TRef4 arg4, [Caller] string name = "")
         => Call(name, ref arg1, arg2, arg3, arg4);
     
     /// <inheritdoc cref="_invokemethod" />
