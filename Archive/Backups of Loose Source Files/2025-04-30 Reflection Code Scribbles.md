@@ -345,3 +345,71 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
             => Call(() => MyMethod(ref num));
     }
 ```
+
+### AccessorCore Ref Args Tests (Duplicate Case)
+
+```cs
+    
+    public TimeSpan MyMethod(ref Guid arg1, out byte arg2, ref int arg3, out long arg4)
+    {
+        arg2 = default;
+        arg4 = default;
+        return (TimeSpan)Call(ref arg1, ref arg2, ref arg3, ref arg4)!;
+    }
+        
+    private TimeSpan MyMethod(ref Guid arg1, out byte arg2, ref int arg3, out long arg4)
+    {
+        AreEqual(ToGuid(126), arg1, nameof(arg1));
+        arg1 = ToGuid(127);
+        arg2 = 128;
+        AreEqual(129, arg3, nameof(arg3));
+        arg3 = 130;
+        arg4 = 131; 
+        return FromSeconds(132);
+    }
+```
+
+### AccessorByName that couldn't delegate.
+
+```cs
+    private class MyAccessorByName : MyAccessor
+    {
+        // 1 Parameter
+        
+        public new bool MyMethod(out int arg) => base.MyMethod(out arg);
+
+        // 2 Parameters (+ explicit names)
+        
+        public new long     MyMethod(ref float  arg1, double       arg2) => base.MyMethod(ref arg1, arg2);
+        public new DateTime MyMethod(TimeSpan   arg1, out string   arg2) => base.MyMethod(arg1,     out arg2);
+        public     Guid     MyMethod(ref string arg1, out TimeSpan arg2) => base.MyMethod(ref arg1, out arg2);
+
+        // 3 Parameters (+ inline out parameters)
+        
+        public new DateTime MyMethod(ref double arg1, float        arg2, long         arg3) => base.MyMethod(ref arg1, arg2,     arg3);
+        public new int      MyMethod(bool       arg1, out int      arg2, long         arg3) => base.MyMethod(arg1,     out arg2, arg3);
+        public new float    MyMethod(ref double arg1, out DateTime arg2, TimeSpan     arg3) => base.MyMethod(ref arg1, out arg2, arg3);
+        public new string   MyMethod(Guid       arg1, string       arg2, ref TimeSpan arg3) => base.MyMethod(arg1,     arg2,     ref arg3);
+        public new DateTime MyMethod(out double arg1, float        arg2, ref long     arg3) => base.MyMethod(out arg1, arg2,     ref arg3);
+        public new int      MyMethod(bool       arg1, out int      arg2, ref long     arg3) => base.MyMethod(arg1,     out arg2, ref arg3);
+        public new float    MyMethod(out double arg1, ref DateTime arg2, out TimeSpan arg3) => base.MyMethod(out arg1, ref arg2, out arg3);
+
+        // 4 Parameters
+
+        public new byte     MyMethod(ref int      arg1, long         arg2, float        arg3, double       arg4) => base.MyMethod(ref arg1, arg2,     arg3,     arg4);
+        public new decimal  MyMethod(bool         arg1, out string   arg2, DateTime     arg3, TimeSpan     arg4) => base.MyMethod(arg1,     out arg2, arg3,     arg4);
+        public new Guid     MyMethod(ref byte     arg1, out int      arg2, long         arg3, float        arg4) => base.MyMethod(ref arg1, out arg2, arg3,     arg4);
+        public new double   MyMethod(decimal      arg1, bool         arg2, ref string   arg3, DateTime     arg4) => base.MyMethod(arg1,     arg2,     ref arg3, arg4);
+        public new TimeSpan MyMethod(out Guid     arg1, byte         arg2, ref int      arg3, long         arg4) => base.MyMethod(out arg1, arg2,     ref arg3, arg4);
+        public new float    MyMethod(double       arg1, out decimal  arg2, ref bool     arg3, string       arg4) => base.MyMethod(arg1,     out arg2, ref arg3, arg4);
+        public new DateTime MyMethod(out TimeSpan arg1, ref Guid     arg2, out byte     arg3, int          arg4) => base.MyMethod(out arg1, ref arg2, out arg3, arg4);
+        public new long     MyMethod(float        arg1, double       arg2, decimal      arg3, ref bool     arg4) => base.MyMethod(arg1,     arg2,     arg3,     ref arg4);
+        public new string   MyMethod(out DateTime arg1, TimeSpan     arg2, Guid         arg3, ref byte     arg4) => base.MyMethod(out arg1, arg2,     arg3,     ref arg4);
+        public new int      MyMethod(long         arg1, out float    arg2, double       arg3, ref decimal  arg4) => base.MyMethod(arg1,     out arg2, arg3,     ref arg4);
+        public new bool     MyMethod(out string   arg1, ref DateTime arg2, TimeSpan     arg3, out Guid     arg4) => base.MyMethod(out arg1, ref arg2, arg3,     out arg4);
+        public new byte     MyMethod(int          arg1, long         arg2, ref float    arg3, out double   arg4) => base.MyMethod(arg1,     arg2,     ref arg3, out arg4);
+        public new decimal  MyMethod(ref bool     arg1, string       arg2, out DateTime arg3, ref TimeSpan arg4) => base.MyMethod(ref arg1, arg2,     out arg3, ref arg4);
+        public new Guid     MyMethod(byte         arg1, out int      arg2, ref long     arg3, out float    arg4) => base.MyMethod(arg1,     out arg2, ref arg3, out arg4);
+        public new double   MyMethod(ref decimal  arg1, out bool     arg2, ref string   arg3, out DateTime arg4) => base.MyMethod(ref arg1, out arg2, ref arg3, out arg4);
+    }
+```
