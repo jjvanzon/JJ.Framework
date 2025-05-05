@@ -1,6 +1,7 @@
 ﻿using static System.TimeSpan;
 using static JJ.Framework.Common.Core.NameHelper;
 using static JJ.Framework.Reflection.Core.Tests.Helpers.ParseHelperLegacy;
+using static JJ.Framework.Reflection.Core.Tests.Helpers.ParseHelperCore;
 // ReSharper disable InlineOutVariableDeclaration
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
 // ReSharper disable ConvertToConstant.Local
@@ -29,7 +30,7 @@ public class AccessorCoreTests_RefArgs
     // 2 Parameters Tests
 
     [TestMethod]
-    public void AccessorCore_ByRef_ByVal()
+    public void AccessorCore_RefVal()
     {
         var accessor = new MyAccessor();
      
@@ -44,7 +45,7 @@ public class AccessorCoreTests_RefArgs
     }
 
     [TestMethod]
-    public void AccessorCore_ByVal_ByRef()
+    public void AccessorCore_ValRef()
     {
         var accessor = new MyAccessor();
 
@@ -59,7 +60,7 @@ public class AccessorCoreTests_RefArgs
     }
 
     [TestMethod]
-    public void AccessorCore_ByRef_ByRef()
+    public void AccessorCore_RefRef()
     {
         var accessor = new MyAccessor();
         
@@ -76,7 +77,7 @@ public class AccessorCoreTests_RefArgs
     // 3 Parameter Tests
     
     [TestMethod]
-    public void AccessorCore_ByRef_ByVal_ByVal()
+    public void AccessorCore_RefValVal()
     {
         var accessor = new MyAccessor();
 
@@ -93,7 +94,7 @@ public class AccessorCoreTests_RefArgs
     }
 
     [TestMethod]
-    public void AccessorCore_ByVal_ByRef_ByVal()
+    public void AccessorCore_ValRefVal()
     {
         var accessor = new MyAccessor();
 
@@ -109,7 +110,7 @@ public class AccessorCoreTests_RefArgs
     }
 
     [TestMethod]
-    public void AccessorCore_ByRef_ByRef_ByVal()
+    public void AccessorCore_RefRefVal()
     {
         var accessor = new MyAccessor();
 
@@ -125,7 +126,7 @@ public class AccessorCoreTests_RefArgs
     }
 
     [TestMethod]
-    public void AccessorCore_ByVal_ByVal_ByRef()
+    public void AccessorCore_ValValRef()
     {
         var accessor = new MyAccessor();
 
@@ -142,7 +143,7 @@ public class AccessorCoreTests_RefArgs
     }
 
     [TestMethod]
-    public void AccessorCore_ByRef_ByVal_ByRef()
+    public void AccessorCore_RefValRef()
     {
         var accessor = new MyAccessor();
         
@@ -158,7 +159,7 @@ public class AccessorCoreTests_RefArgs
     }
 
     [TestMethod]
-    public void AccessorCore_ByVal_ByRef_ByRef()
+    public void AccessorCore_ValRefRef()
     {
         var accessor = new MyAccessor();
 
@@ -174,7 +175,7 @@ public class AccessorCoreTests_RefArgs
     }
 
     [TestMethod]
-    public void AccessorCore_ByRef_ByRef_ByRef()
+    public void AccessorCore_RefRefRef()
     {
         var accessor = new MyAccessor();
         
@@ -192,35 +193,87 @@ public class AccessorCoreTests_RefArgs
     // 4 Parameter Tests
     
     [TestMethod]
-    public void AccessorCore_ByRef_ByVal_ByVal_ByVal()
+    public void AccessorCore_RefValValVal()
     {
         var accessor = new MyAccessor();
         
-        int arg1 = 45;
-        long arg2 = 47;
-        float arg3 = 48;
-        double arg4 = 49;
-        byte ret = accessor.MyMethod(ref arg1, arg2, arg3, arg4);
+        var arg1 = 45;
+        var arg2 = 47;
+        var arg3 = 48;
+        var arg4 = 49;
+        var ret = accessor.MyMethod(ref arg1, arg2, arg3, arg4);
         
         AreEqual(46, () => arg1);
         AreEqual(50, () => ret);
     }
         
     [TestMethod]
-    public void AccessorCore_ByVal_ByRef_ByVal_ByVal()
+    public void AccessorCore_ValRefValVal()
     {
         var accessor = new MyAccessor();
         
-        bool arg1 = true;
-        string arg2;
-        DateTime arg3 = ParseDateTime("2052-01-01");
-        TimeSpan arg4 = FromMinutes(53);
-        decimal ret = accessor.MyMethod(arg1, out arg2, arg3, arg4);
+        var arg1 = true;
+        var arg2 = "";
+        var arg3 = ParseDateTime("2052-01-01");
+        var arg4 = FromMinutes(53);
+        var ret = accessor.MyMethod(arg1, out arg2, arg3, arg4);
         
         AreEqual("51", () => arg2);
         AreEqual(54, () => ret);
     }
+        
+    [TestMethod]
+    public void AccessorCore_RefRefValVal()
+    {
+        var accessor = new MyAccessor();
+        
+        var arg1 = (byte)55;
+        var arg2 = 56;
+        var arg3 = 58;
+        var arg4 = 59;
+        var ret = accessor.MyMethod(ref arg1, out arg2, arg3, arg4);
+        
+        AreEqual(57, () => arg2);
+        AreEqual(new Guid("00000000-0000-0000-0000-000000000060"), () => ret);
+    }
+        
+    [TestMethod]
+    public void AccessorCore_ValValRefVal()
+    {
+        var accessor = new MyAccessor();
+        
+        var arg1 = 61;
+        var arg2 = true;
+        var arg3 = "62";
+        var arg4 = ParseDateTime("2064-01-01");
+        var ret = accessor.MyMethod(arg1, arg2, ref arg3, arg4);
+        
+        AreEqual("63", arg3, nameof(arg2));
+        AreEqual(65, () => ret);
+    }
+        
+    [TestMethod]
+    public void AccessorCore_RefValRefVal()
+    {
+        var accessor = new MyAccessor();
+        
+        var arg1 = default(Guid);
+        var arg2 = (byte)67;
+        var arg3 = 68;
+        var arg4 = 70;
+        var ret = accessor.MyMethod(out arg1, arg2, ref arg3, arg4);
 
+        AreEqual(ToGuid(66), () => arg1);
+        AreEqual(69, arg3, nameof(arg3));
+        AreEqual(FromMinutes(71), () => ret);
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     
