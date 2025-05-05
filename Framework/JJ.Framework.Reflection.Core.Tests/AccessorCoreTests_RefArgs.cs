@@ -48,12 +48,12 @@ public class AccessorCoreTests_RefArgs
     {
         var accessor = new MyAccessor();
 
-        TimeSpan arg1 = FromMinutes(06);
+        TimeSpan arg1 = FromSeconds(06);
         string arg2;
 
         DateTime ret = accessor.MyMethod(arg1, out arg2);
 
-        AreEqual(FromMinutes(06), () => arg1);
+        AreEqual(FromSeconds(06), () => arg1);
         AreEqual("7", () => arg2);
         AreEqual(FromYear(8), () => ret);
     }
@@ -69,7 +69,7 @@ public class AccessorCoreTests_RefArgs
         Guid ret = accessor.MyMethod(ref arg1, out arg2);
 
         AreEqual("10", () => arg1);
-        AreEqual(FromMinutes(11), () => arg2);
+        AreEqual(FromSeconds(11), () => arg2);
         AreEqual(ToGuid(12), () => ret);
     }
     
@@ -114,13 +114,13 @@ public class AccessorCoreTests_RefArgs
         var accessor = new MyAccessor();
 
         double arg1 = 21;
-        TimeSpan arg3 = FromMinutes(24);
+        TimeSpan arg3 = FromSeconds(24);
 
         float ret = accessor.MyMethod(ref arg1, out DateTime arg2, arg3);
 
         AreEqual(22, () => arg1);
         AreEqual(FromYear(23), () => arg2);
-        AreEqual(FromMinutes(24), () => arg3);
+        AreEqual(FromSeconds(24), () => arg3);
         AreEqual(25, () => ret);
     }
 
@@ -131,13 +131,13 @@ public class AccessorCoreTests_RefArgs
 
         Guid arg1 = ToGuid(26);
         string arg2 = "27";
-        TimeSpan arg3 = FromMinutes(28);
+        TimeSpan arg3 = FromSeconds(28);
 
         string ret = accessor.MyMethod(arg1, arg2, ref arg3);
 
         AreEqual(ToGuid(26), () => arg1);
         AreEqual("27", () => arg2);
-        AreEqual(FromMinutes(29), () => arg3);
+        AreEqual(FromSeconds(29), () => arg3);
         AreEqual("30", () => ret);
     }
 
@@ -185,7 +185,7 @@ public class AccessorCoreTests_RefArgs
 
         AreEqual(40, () => arg1);
         AreEqual(FromYear(42), () => arg2);
-        AreEqual(FromMinutes(43), () => arg3);
+        AreEqual(FromSeconds(43), () => arg3);
         AreEqual(44, () => ret);
     }
     
@@ -214,7 +214,7 @@ public class AccessorCoreTests_RefArgs
         var arg1 = true;
         var arg2 = "";
         var arg3 = FromYear(52);
-        var arg4 = FromMinutes(53);
+        var arg4 = FromSeconds(53);
         var ret = accessor.MyMethod(arg1, out arg2, arg3, arg4);
         
         AreEqual("51", () => arg2);
@@ -247,7 +247,7 @@ public class AccessorCoreTests_RefArgs
         var arg4 = FromYear(64);
         var ret = accessor.MyMethod(arg1, arg2, ref arg3, arg4);
         
-        AreEqual("63", arg3, nameof(arg2));
+        AreEqual("63", () => arg3);
         AreEqual(65, () => ret);
     }
         
@@ -263,8 +263,8 @@ public class AccessorCoreTests_RefArgs
         var ret = accessor.MyMethod(out arg1, arg2, ref arg3, arg4);
 
         AreEqual(ToGuid(66), () => arg1);
-        AreEqual(69, arg3, nameof(arg3));
-        AreEqual(FromMinutes(71), () => ret);
+        AreEqual(69, () => arg3);
+        AreEqual(FromSeconds(71), () => ret);
     }
     
     [TestMethod]
@@ -278,8 +278,8 @@ public class AccessorCoreTests_RefArgs
         var arg4 = "74";
         var ret = accessor.MyMethod(arg1, out arg2, ref arg3, arg4);
         
-        AreEqual(73, arg2, nameof(arg2));
-        AreEqual(false, arg3, nameof(arg3));
+        AreEqual(73, () => arg2);
+        AreEqual(false, () => arg3);
         AreEqual(75, () => ret);
     }
         
@@ -288,15 +288,15 @@ public class AccessorCoreTests_RefArgs
     {
         var accessor = new MyAccessor();
         
-        var arg1 = FromMinutes(0);
+        var arg1 = FromSeconds(0);
         var arg2 = ToGuid(77);
         var arg3 = (byte)0;
         var arg4 = 80;
         var ret = accessor.MyMethod(out arg1, ref arg2, out arg3, arg4);
         
-        AreEqual(FromMinutes(76), arg1, nameof(arg1));
-        AreEqual(ToGuid(78), arg2, nameof(arg2));
-        AreEqual(79, arg3, nameof(arg3));
+        AreEqual(FromSeconds(76), () => arg1);
+        AreEqual(ToGuid(78), () => arg2);
+        AreEqual(79, () => arg3);
         AreEqual(FromYear(81), () => ret);
     }
 
@@ -321,7 +321,7 @@ public class AccessorCoreTests_RefArgs
         var accessor = new MyAccessor();
         
         var arg1 = default(DateTime);
-        var arg2 = FromMinutes(87);
+        var arg2 = FromSeconds(87);
         var arg3 = ToGuid(88);
         var arg4 = (byte)89;
         var ret = accessor.MyMethod(out arg1, arg2, arg3, ref arg4);
@@ -330,13 +330,107 @@ public class AccessorCoreTests_RefArgs
         AreEqual(90, () => arg4);
         AreEqual("91", () => ret);
     }
-    
 
-    
-    
-    
-    
-    
+    [TestMethod]
+    public void AccessorCore_ValRefValRef()
+    {
+        var accessor = new MyAccessor();
+        
+        var arg1 = 92;
+        var arg2 = (float)0;
+        var arg3 = 94;
+        var arg4 = (decimal)95;
+        var ret = accessor.MyMethod(arg1, out arg2, arg3, ref arg4);
+        
+        AreEqual(93, () => arg2);
+        AreEqual(96, () => arg4);
+        AreEqual(97, () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_RefRefValRef()
+    {
+        var accessor = new MyAccessor();
+        
+        var arg1 = "";
+        var arg2 = FromYear(99);
+        var arg3 = FromSeconds(101);
+        var arg4 = ToGuid(0);
+        var ret = accessor.MyMethod(out arg1, ref arg2, arg3, out arg4);
+        
+        AreEqual("98", () => arg1);
+        AreEqual(FromYear(100), () => arg2);
+        AreEqual(ToGuid(102), () => arg4);
+        AreEqual(true, () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_ValValRefRef()
+    {
+        var accessor = new MyAccessor();
+        
+        var arg1 = 103;
+        var arg2 = 104;
+        var arg3 = (float)105;
+        var arg4 = (double)0;
+        var ret = accessor.MyMethod(arg1, arg2, ref arg3, out arg4);
+        
+        AreEqual(106, () => arg3);
+        AreEqual(107, () => arg4);
+        AreEqual(108, () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_RefValRefRef()
+    {
+        var accessor = new MyAccessor();
+        
+        var arg1 = true;
+        var arg2 = "109";
+        var arg3 = default(DateTime);
+        var arg4 = FromSeconds(111);
+        var ret = accessor.MyMethod(ref arg1, arg2, out arg3, ref arg4);
+        
+        AreEqual(false, () => arg1);
+        AreEqual(FromYear(110), () => arg3);
+        AreEqual(FromSeconds(112), () => arg4);
+        AreEqual(113, () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_ValRefRefRef()
+    {
+        var accessor = new MyAccessor();
+        
+        var arg1 = (byte)114;
+        var arg2 = (int)0;
+        var arg3 = (long)116;
+        var arg4 = (float)0;
+        var ret = accessor.MyMethod(arg1, out arg2, ref arg3, out arg4);
+        
+        AreEqual(115, () => arg2);
+        AreEqual(117, () => arg3);
+        AreEqual(118, () => arg4);
+        AreEqual(ToGuid(119), () => ret);
+    }
+
+    [TestMethod]
+    public void AccessorCore_RefRefRefRef()
+    {
+        var accessor = new MyAccessor();
+        
+        var arg1 = (decimal)120;
+        var arg2 = default(bool);
+        var arg3 = "122";
+        var arg4 = default(DateTime);
+        var ret = accessor.MyMethod(ref arg1, out arg2, ref arg3, out arg4);
+        
+        AreEqual(121, () => arg1);
+        AreEqual(true, () => arg2);
+        AreEqual("123", () => arg3);
+        AreEqual(FromYear(124), () => arg4);
+        AreEqual(125, () => ret);
+    }
     
     // Accessor Class
 
@@ -493,12 +587,12 @@ public class AccessorCoreTests_RefArgs
             return (double)Call(ref arg1, ref arg2, ref arg3, ref arg4)!;
         }
         
-        public TimeSpan MyMethod(ref Guid arg1, out byte arg2, ref int arg3, out long arg4)
-        {
-            arg2 = default;
-            arg4 = default;
-            return (TimeSpan)Call(ref arg1, ref arg2, ref arg3, ref arg4)!;
-        }
+        //public TimeSpan MyMethod(ref Guid arg1, out byte arg2, ref int arg3, out long arg4)
+        //{
+        //    arg2 = default;
+        //    arg4 = default;
+        //    return (TimeSpan)Call(ref arg1, ref arg2, ref arg3, ref arg4)!;
+        //}
     }
     
     // Target Class
@@ -525,7 +619,7 @@ public class AccessorCoreTests_RefArgs
 
         private DateTime MyMethod(TimeSpan arg1, out string arg2)
         {
-            AreEqual(FromMinutes(6), () => arg1);
+            AreEqual(FromSeconds(6), () => arg1);
             arg2 = "7";
             return FromYear(8);
         }
@@ -534,7 +628,7 @@ public class AccessorCoreTests_RefArgs
         {
             AreEqual("9", arg1, nameof(arg1));
             arg1 = "10";
-            arg2 = FromMinutes(11);
+            arg2 = FromSeconds(11);
             return ToGuid(12);
         }
 
@@ -562,7 +656,7 @@ public class AccessorCoreTests_RefArgs
             AreEqual(21d, arg1, nameof(arg1));
             arg1 = 22;
             arg2 = FromYear(23);
-            AreEqual(FromMinutes(24), () => arg3);
+            AreEqual(FromSeconds(24), () => arg3);
             return 25;
         }
 
@@ -570,8 +664,8 @@ public class AccessorCoreTests_RefArgs
         {
             AreEqual(ToGuid(26), () => arg1);
             AreEqual("27", () => arg2);
-            AreEqual(FromMinutes(28), arg3, nameof(arg3));
-            arg3 = FromMinutes(29);
+            AreEqual(FromSeconds(28), arg3, nameof(arg3));
+            arg3 = FromSeconds(29);
             return "30";
         }
 
@@ -598,7 +692,7 @@ public class AccessorCoreTests_RefArgs
             arg1 = 40;
             AreEqual(FromYear(41), arg2, nameof(arg2));
             arg2 = FromYear(42);
-            arg3 = FromMinutes(43);
+            arg3 = FromSeconds(43);
             return 44;
         }
         
@@ -619,7 +713,7 @@ public class AccessorCoreTests_RefArgs
             AreEqual(true, () => arg1);
             arg2 = "51";
             AreEqual(FromYear(52), () => arg3);
-            AreEqual(FromMinutes(53), () => arg4);
+            AreEqual(FromSeconds(53), () => arg4);
             return 54;
         }
         
@@ -650,7 +744,7 @@ public class AccessorCoreTests_RefArgs
             AreEqual(68, arg3, nameof(arg3));
             arg3 = 69;
             AreEqual(70, () => arg4);
-            return FromMinutes(71);
+            return FromSeconds(71);
         }
 
         private float MyMethod(double arg1, out decimal arg2, ref bool arg3, string arg4)
@@ -665,7 +759,7 @@ public class AccessorCoreTests_RefArgs
 
         private DateTime MyMethod(out TimeSpan arg1, ref Guid arg2, out byte arg3, int arg4)
         {
-            arg1 = FromMinutes(76);
+            arg1 = FromSeconds(76);
             AreEqual(ToGuid(77), arg2, nameof(arg2));
             arg2 = ToGuid(78);
             arg3 = 79;
@@ -686,7 +780,7 @@ public class AccessorCoreTests_RefArgs
         private string MyMethod(out DateTime arg1, TimeSpan arg2, Guid arg3, ref byte arg4)
         {
             arg1 = FromYear(86);
-            AreEqual(FromMinutes(87), () => arg2);
+            AreEqual(FromSeconds(87), () => arg2);
             AreEqual(ToGuid(88), () => arg3);
             AreEqual(89, arg4, nameof(arg4));
             arg4 = 90;
@@ -707,8 +801,8 @@ public class AccessorCoreTests_RefArgs
         {
             arg1 = "98";
             AreEqual(FromYear(99), arg2, nameof(arg2));
-            arg2 = FromYear(2100);
-            AreEqual(FromMinutes(101),  () => arg3);
+            arg2 = FromYear(100);
+            AreEqual(FromSeconds(101),  () => arg3);
             arg4 = ToGuid(102);
             return true;
         }
@@ -728,9 +822,9 @@ public class AccessorCoreTests_RefArgs
             AreEqual(true, arg1, nameof(arg1));
             arg1 = false;
             AreEqual("109", () => arg2);
-            arg3 = FromYear(2110);
-            AreEqual(FromMinutes(111), arg4, nameof(arg4));
-            arg4 = FromMinutes(112);
+            arg3 = FromYear(110);
+            AreEqual(FromSeconds(111), arg4, nameof(arg4));
+            arg4 = FromSeconds(112);
             return 113;
         }
         
@@ -751,19 +845,19 @@ public class AccessorCoreTests_RefArgs
             arg2 = true;
             AreEqual("122", arg3, nameof(arg3));
             arg3 = "123";
-            arg4 = FromYear(2124);
+            arg4 = FromYear(124);
             return 125;
         }
         
-        private TimeSpan MyMethod(ref Guid arg1, out byte arg2, ref int arg3, out long arg4)
-        {
-            AreEqual(ToGuid(126), arg1, nameof(arg1));
-            arg1 = ToGuid(127);
-            arg2 = 128;
-            AreEqual(129, arg3, nameof(arg3));
-            arg3 = 130;
-            arg4 = 131; 
-            return FromMinutes(132);
-        }
+        //private TimeSpan MyMethod(ref Guid arg1, out byte arg2, ref int arg3, out long arg4)
+        //{
+        //    AreEqual(ToGuid(126), arg1, nameof(arg1));
+        //    arg1 = ToGuid(127);
+        //    arg2 = 128;
+        //    AreEqual(129, arg3, nameof(arg3));
+        //    arg3 = 130;
+        //    arg4 = 131; 
+        //    return FromSeconds(132);
+        //}
     }
 }
