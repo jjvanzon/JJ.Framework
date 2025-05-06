@@ -60,7 +60,7 @@ public partial class AccessorCore
         throw new Exception($"Property or field '{name}' not found.");
     }
     
-    [OverloadPriority(1)]
+    [Priority(1)]
     public void Set<T>(string name, T value) => SetCore(name, value);
     
     public void Set<T>(T value, [Caller] string name = "") => SetCore(name, value);
@@ -292,7 +292,7 @@ public partial class AccessorCore
     // With Collections
 
     /// <inheritdoc cref="_invokemethod" />
-    [OverloadPriority(1)] 
+    [Priority(1)] 
     public object? Call(
         string name,
         params ICollection<object?> args)
@@ -305,7 +305,7 @@ public partial class AccessorCore
         => CallCore(name, args);
 
     /// <inheritdoc cref="_invokemethod" />
-    [OverloadPriority(1)] 
+    [Priority(1)] 
     public object? Call(
         string name,
         ICollection<object?> args,
@@ -320,7 +320,7 @@ public partial class AccessorCore
         => CallCore(name, args, argTypes);
 
     /// <inheritdoc cref="_invokemethod" />
-    [OverloadPriority(1)] 
+    [Priority(1)] 
     public object? Call(
         string name,
         ICollection<object?> args,
