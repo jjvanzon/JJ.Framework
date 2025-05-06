@@ -70,7 +70,7 @@ public class AccessorCoreTests_Call
         public DateTime Add(DateTime arg1, TimeSpan arg2, double hours) => (DateTime)_accessor.Call(arg1, arg2, hours)!;
         public string Concat(string arg1, float arg2, bool arg3, int arg4) => (string)_accessor.Call([arg1, arg2, arg3, arg4])!;
         public string Concat(string arg1, string arg2, int arg3, float arg4) => (string)_accessor.Call([arg1, arg2, arg3, arg4])!;
-        public string Concat(int arg1, float arg2, bool arg3, string arg4) => (string)_accessor.Call(arg1, arg2, arg3, arg4)!;
+        public string Concat(int arg1, float arg2, bool arg3, string arg4) => (string)_accessor.Call([arg1, arg2, arg3, arg4])!;
         public string Concat(int arg1, float arg2, string arg3, string arg4) => (string)_accessor.Call([arg1, arg2, arg3, arg4])!;
 
     }
