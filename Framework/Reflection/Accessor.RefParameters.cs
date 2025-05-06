@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Reflection;
-using JJ.Framework.Reflection.docs;
 
 namespace JJ.Framework.Reflection
 {
