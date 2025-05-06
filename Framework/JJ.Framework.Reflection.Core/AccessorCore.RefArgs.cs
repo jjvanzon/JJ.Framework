@@ -3,8 +3,8 @@ public partial class AccessorCore
 {
     // NOTE: Lambda-style expression trees not supported; they cannot provide a conveniently notation for ref args.
     // NOTE: Type arguments are needed, because `object?` would not be a specific enough type for refs.
-    // NOTE: Multiple layers of Priorities are used.
-    // This disambiguates explicit last string arguments from optional Caller arguments.
+    // NOTE: Multiple layers of Priorities are used,
+    // to disambiguates explicit last string arguments from optional Caller arguments.
     // See, (arg, name?) can conflict with (arg1, arg2) which can conflict with (arg1, arg2, name?) too.
     
     // 1 Parameter
