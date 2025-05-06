@@ -4,7 +4,7 @@
 public class AccessorTests_Exception
 {
     [TestMethod]
-    public void AccessorLegacy_Constructor_WithTypeName_TypeNotFound_Exception()
+    public void Accessor_Constructor_WithTypeName_TypeNotFound_Exception()
     {
         var wrongTypeName = "NonExistentNamespace.NonExistentType";
         ThrowsException(

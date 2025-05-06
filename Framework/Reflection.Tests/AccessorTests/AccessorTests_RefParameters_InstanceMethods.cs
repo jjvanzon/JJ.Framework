@@ -1,12 +1,6 @@
-﻿using System;
-using JJ.Framework.Testing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-// ReSharper disable InlineOutVariableDeclaration
+﻿using static JJ.Framework.Reflection.Tests.Helpers.ParseHelper;
 
-// ReSharper disable ConvertToConstant.Local
-// ReSharper disable InlineOutVariableDeclaration
-// ReSharper disable NotAccessedVariable
-// ReSharper disable UnusedVariable
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
 #pragma warning disable IDE0018 // Inline variable declaration
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
@@ -23,8 +17,8 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
             bool ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithOneParameter(out arg);
 
-            AssertHelper.AreEqual(1, () => arg);
-            AssertHelper.AreEqual(true, () => ret);
+            AreEqual(1, () => arg);
+            AreEqual(true, () => ret);
         }
 
         // 2 Parameters
@@ -37,22 +31,22 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
             long ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithTwoParameters(ref arg1, arg2);
 
-            AssertHelper.AreEqual(3, () => arg1);
-            AssertHelper.AreEqual(4, () => arg2);
-            AssertHelper.AreEqual(5, () => ret);
+            AreEqual(3, () => arg1);
+            AreEqual(4, () => arg2);
+            AreEqual(5, () => ret);
         }
 
         [TestMethod]
         public void Test_Accessor_RefParameters_InstanceMethod_WithTwoParameters_ByVal_ByRef()
         {
-            TimeSpan arg1 = ParseHelper.ParseTimeSpan("00:06");
+            TimeSpan arg1 = ParseTimeSpan("00:06");
             string arg2;
 
             DateTime ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithTwoParameters(arg1, out arg2);
 
-            AssertHelper.AreEqual(ParseHelper.ParseTimeSpan("00:06"), () => arg1);
-            AssertHelper.AreEqual("7", () => arg2);
-            AssertHelper.AreEqual(ParseHelper.ParseDateTime("2008-01-01"), () => ret);
+            AreEqual(ParseTimeSpan("00:06"), () => arg1);
+            AreEqual("7", () => arg2);
+            AreEqual(ParseDateTime("2008-01-01"), () => ret);
         }
 
         [TestMethod]
@@ -63,9 +57,9 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
             Guid ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithTwoParameters(ref arg1, out arg2);
 
-            AssertHelper.AreEqual("10", () => arg1);
-            AssertHelper.AreEqual(ParseHelper.ParseTimeSpan("00:11"), () => arg2);
-            AssertHelper.AreEqual(new Guid("00000000-0000-0000-0000-000000000012"), () => ret);
+            AreEqual("10", () => arg1);
+            AreEqual(ParseTimeSpan("00:11"), () => arg2);
+            AreEqual(new Guid("00000000-0000-0000-0000-000000000012"), () => ret);
         }
 
         // 3 Parameters
@@ -79,10 +73,10 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
             DateTime ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithThreeParameters(ref arg1, arg2, arg3);
 
-            AssertHelper.AreEqual(14, () => arg1);
-            AssertHelper.AreEqual(15, () => arg2);
-            AssertHelper.AreEqual(16, () => arg3);
-            AssertHelper.AreEqual(ParseHelper.ParseDateTime("2017-01-01"), () => ret);
+            AreEqual(14, () => arg1);
+            AreEqual(15, () => arg2);
+            AreEqual(16, () => arg3);
+            AreEqual(ParseDateTime("2017-01-01"), () => ret);
         }
 
         [TestMethod]
@@ -94,10 +88,10 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
             int ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithThreeParameters(arg1, out arg2, arg3);
 
-            AssertHelper.AreEqual(true, () => arg1);
-            AssertHelper.AreEqual(18, () => arg2);
-            AssertHelper.AreEqual(19, () => arg3);
-            AssertHelper.AreEqual(20, () => ret);
+            AreEqual(true, () => arg1);
+            AreEqual(18, () => arg2);
+            AreEqual(19, () => arg3);
+            AreEqual(20, () => ret);
         }
 
         [TestMethod]
@@ -105,14 +99,14 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         {
             double arg1 = 21;
             DateTime arg2;
-            TimeSpan arg3 = ParseHelper.ParseTimeSpan("00:24");
+            TimeSpan arg3 = ParseTimeSpan("00:24");
 
             float ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithThreeParameters(ref arg1, out arg2, arg3);
 
-            AssertHelper.AreEqual(22, () => arg1);
-            AssertHelper.AreEqual(ParseHelper.ParseDateTime("2023-01-01"), () => arg2);
-            AssertHelper.AreEqual(ParseHelper.ParseTimeSpan("00:24"), () => arg3);
-            AssertHelper.AreEqual(25, () => ret);
+            AreEqual(22, () => arg1);
+            AreEqual(ParseDateTime("2023-01-01"), () => arg2);
+            AreEqual(ParseTimeSpan("00:24"), () => arg3);
+            AreEqual(25, () => ret);
         }
 
         [TestMethod]
@@ -120,14 +114,14 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         {
             Guid arg1 = new Guid("00000000-0000-0000-0000-000000000026");
             string arg2 = "27";
-            TimeSpan arg3 = ParseHelper.ParseTimeSpan("00:28");
+            TimeSpan arg3 = ParseTimeSpan("00:28");
 
             string ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithThreeParameters(arg1, arg2, ref arg3);
 
-            AssertHelper.AreEqual(new Guid("00000000-0000-0000-0000-000000000026"), () => arg1);
-            AssertHelper.AreEqual("27", () => arg2);
-            AssertHelper.AreEqual(ParseHelper.ParseTimeSpan("00:29"), () => arg3);
-            AssertHelper.AreEqual("30", () => ret);
+            AreEqual(new Guid("00000000-0000-0000-0000-000000000026"), () => arg1);
+            AreEqual("27", () => arg2);
+            AreEqual(ParseTimeSpan("00:29"), () => arg3);
+            AreEqual("30", () => ret);
         }
 
         [TestMethod]
@@ -139,10 +133,10 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
             DateTime ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithThreeParameters(out arg1, arg2, ref arg3);
 
-            AssertHelper.AreEqual(31, () => arg1);
-            AssertHelper.AreEqual(32, () => arg2);
-            AssertHelper.AreEqual(34, () => arg3);
-            AssertHelper.AreEqual(ParseHelper.ParseDateTime("2035-01-01"), () => ret);
+            AreEqual(31, () => arg1);
+            AreEqual(32, () => arg2);
+            AreEqual(34, () => arg3);
+            AreEqual(ParseDateTime("2035-01-01"), () => ret);
         }
 
         [TestMethod]
@@ -154,25 +148,25 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
             int ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithThreeParameters(arg1, out arg2, ref arg3);
 
-            AssertHelper.AreEqual(true, () => arg1);
-            AssertHelper.AreEqual(36, () => arg2);
-            AssertHelper.AreEqual(38, () => arg3);
-            AssertHelper.AreEqual(39, () => ret);
+            AreEqual(true, () => arg1);
+            AreEqual(36, () => arg2);
+            AreEqual(38, () => arg3);
+            AreEqual(39, () => ret);
         }
 
         [TestMethod]
         public void Test_Accessor_RefParameters_InstanceMethod_WithThreeParameters_ByRef_ByRef_ByRef()
         {
             double arg1;
-            DateTime arg2 = ParseHelper.ParseDateTime("2041-01-01");
+            DateTime arg2 = ParseDateTime("2041-01-01");
             TimeSpan arg3;
 
             float ret = new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithThreeParameters(out arg1, ref arg2, out arg3);
 
-            AssertHelper.AreEqual(40, () => arg1);
-            AssertHelper.AreEqual(ParseHelper.ParseDateTime("2042-01-01"), () => arg2);
-            AssertHelper.AreEqual(ParseHelper.ParseTimeSpan("00:43"), () => arg3);
-            AssertHelper.AreEqual(44, () => ret);
+            AreEqual(40, () => arg1);
+            AreEqual(ParseDateTime("2042-01-01"), () => arg2);
+            AreEqual(ParseTimeSpan("00:43"), () => arg3);
+            AreEqual(44, () => ret);
         }
 
         // Misc
@@ -180,11 +174,11 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         [TestMethod]
         public void Test_Accessor_RefParameters_InstanceMethod_WithReturnTypeVoid()
         {
-            DateTime arg = ParseHelper.ParseDateTime("2045-01-01");
+            DateTime arg = ParseDateTime("2045-01-01");
 
             new Class_RefParameters_InstanceMethods_Accessor().InstanceMethod_WithReturnTypeVoid(ref arg);
 
-            AssertHelper.AreEqual(ParseHelper.ParseDateTime("2046-01-01"), () => arg);
+            AreEqual(ParseDateTime("2046-01-01"), () => arg);
         }
     }
 }

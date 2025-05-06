@@ -1,6 +1,5 @@
 ﻿using System;
-using static JJ.Framework.Testing.AssertHelper;
-using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using JJ.Framework.Reflection.Tests.Helpers;
 
 // ReSharper disable UnusedMember.Local
 // ReSharper disable RedundantBoolCompare

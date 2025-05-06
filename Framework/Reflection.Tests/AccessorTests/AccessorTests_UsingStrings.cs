@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
+
 {
     [TestClass]
     public class AccessorTests_UsingStrings : AccessorTestsBase

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 
-namespace JJ.Framework.Reflection.Tests
+namespace JJ.Framework.Reflection.Tests.Helpers
 {
     internal static class ParseHelper
     {

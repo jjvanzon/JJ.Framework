@@ -1,4 +1,5 @@
 ﻿using System;
+using JJ.Framework.Reflection.Tests.Helpers;
 using JJ.Framework.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 // ReSharper disable InlineOutVariableDeclaration

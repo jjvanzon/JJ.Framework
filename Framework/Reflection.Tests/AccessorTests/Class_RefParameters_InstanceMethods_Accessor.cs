@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace JJ.Framework.Reflection.Tests.AccessorTests
+﻿namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
     internal class Class_RefParameters_InstanceMethods_Accessor
     {

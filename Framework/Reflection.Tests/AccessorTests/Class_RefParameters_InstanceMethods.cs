@@ -1,12 +1,4 @@
-﻿using System;
-using static JJ.Framework.Testing.AssertHelper;
-using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
-
-// ReSharper disable UnusedMember.Local
-// ReSharper disable RedundantBoolCompare
-// ReSharper disable CompareOfFloatsByEqualityOperator
-#pragma warning disable IDE0051 // Remove unused private members
-#pragma warning disable CS0078 // The 'l' suffix is easily confused with the digit '1'
+﻿using static JJ.Framework.Reflection.Tests.Helpers.ParseHelper;
 
 namespace JJ.Framework.Reflection.Tests.AccessorTests
 {
@@ -32,16 +24,16 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
         private DateTime InstanceMethod_WithTwoParameters(TimeSpan arg1, out string arg2)
         {
-            AreEqual(ParseHelper.ParseTimeSpan("00:06"), () => arg1);
+            AreEqual(ParseTimeSpan("00:06"), () => arg1);
             arg2 = "7";
-            return ParseHelper.ParseDateTime("2008-01-01");
+            return ParseDateTime("2008-01-01");
         }
 
         private Guid InstanceMethod_WithTwoParameters(ref string arg1, out TimeSpan arg2)
         {
             AreEqual("9", arg1, nameof(arg1));
             arg1 = "10";
-            arg2 = ParseHelper.ParseTimeSpan("00:11");
+            arg2 = ParseTimeSpan("00:11");
             return new Guid("00000000-0000-0000-0000-000000000012");
         }
 
@@ -53,7 +45,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
             arg1 = 14;
             AreEqual(15f, () => arg2);
             AreEqual(16, () => arg3);
-            return ParseHelper.ParseDateTime("2017-01-01");
+            return ParseDateTime("2017-01-01");
         }
 
         private int InstanceMethod_WithThreeParameters(bool arg1, out int arg2, long arg3)
@@ -68,8 +60,8 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         {
             AreEqual(21d, arg1, nameof(arg1));
             arg1 = 22;
-            arg2 = ParseHelper.ParseDateTime("2023-01-01");
-            AreEqual(ParseHelper.ParseTimeSpan("00:24"), () => arg3);
+            arg2 = ParseDateTime("2023-01-01");
+            AreEqual(ParseTimeSpan("00:24"), () => arg3);
             return 25;
         }
 
@@ -77,8 +69,8 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         {
             AreEqual(new Guid("00000000-0000-0000-0000-000000000026"), () => arg1);
             AreEqual("27", () => arg2);
-            AreEqual(ParseHelper.ParseTimeSpan("00:28"), arg3, nameof(arg3));
-            arg3 = ParseHelper.ParseTimeSpan("00:29");
+            AreEqual(ParseTimeSpan("00:28"), arg3, nameof(arg3));
+            arg3 = ParseTimeSpan("00:29");
             return "30";
         }
 
@@ -88,7 +80,7 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
             AreEqual(32f, () => arg2);
             AreEqual(33l, arg3, nameof(arg3));
             arg3 = 34;
-            return ParseHelper.ParseDateTime("2035-01-01");
+            return ParseDateTime("2035-01-01");
         }
 
         private int InstanceMethod_WithThreeParameters(bool arg1, out int arg2, ref long arg3)
@@ -103,9 +95,9 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
         private float InstanceMethod_WithThreeParameters(out double arg1, ref DateTime arg2, out TimeSpan arg3)
         {
             arg1 = 40;
-            AreEqual(ParseHelper.ParseDateTime("2041-01-01"), arg2, nameof(arg2));
-            arg2 = ParseHelper.ParseDateTime("2042-01-01");
-            arg3 = ParseHelper.ParseTimeSpan("00:43");
+            AreEqual(ParseDateTime("2041-01-01"), arg2, nameof(arg2));
+            arg2 = ParseDateTime("2042-01-01");
+            arg3 = ParseTimeSpan("00:43");
             return 44;
         }
 
@@ -113,8 +105,8 @@ namespace JJ.Framework.Reflection.Tests.AccessorTests
 
         private void InstanceMethod_WithReturnTypeVoid(ref DateTime arg)
         {
-            AreEqual(ParseHelper.ParseDateTime("2045-01-01"), arg, nameof(arg));
-            arg = ParseHelper.ParseDateTime("2046-01-01");
+            AreEqual(ParseDateTime("2045-01-01"), arg, nameof(arg));
+            arg = ParseDateTime("2046-01-01");
         }
     }
 }
