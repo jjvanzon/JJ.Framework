@@ -2,7 +2,7 @@
 namespace JJ.Framework.Reflection.Tests.AccessorTests;
 
 [TestClass]
-public class AccessorExamples
+public class AccessorTests_Examples
 {
     // Helper Classes
     
