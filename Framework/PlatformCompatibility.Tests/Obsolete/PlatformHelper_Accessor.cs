@@ -3,7 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Xml.Linq;
-using JJ.Framework.Reflection.Core;
+using JJ.Framework.Reflection;
 
 // ReSharper disable UnusedParameter.Global
 
@@ -11,7 +11,7 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
 {
     internal static class PlatformHelper_Accessor
     {
-        private static readonly AccessorLegacy _accessor = new AccessorLegacy(typeof(JJ.Framework.PlatformCompatibility.Obsolete.PlatformHelper));
+        private static readonly Accessor _accessor = new Accessor(typeof(JJ.Framework.PlatformCompatibility.Obsolete.PlatformHelper));
 
         public static MemberTypes_PlatformSafe MemberInfo_MemberType_PlatformSafe(MemberInfo memberInfo)
             => _accessor.InvokeMethod(() => MemberInfo_MemberType_PlatformSafe(memberInfo));
