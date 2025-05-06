@@ -1,4 +1,5 @@
-﻿using System.Diagnostics; // For StackTrace
+﻿using System.Diagnostics;
+using static System.StringComparison; // For StackTrace
 
 namespace JJ.Framework.Reflection.Core;
 
@@ -433,20 +434,35 @@ public partial class AccessorCore
         foreach (StackFrame? stackFrame in stackFrames)
         {
             if (stackFrame == null) continue;
-            Type[] stackFrameArgTypes = stackFrame.GetMethod()?.GetParameters().Select(x => x.ParameterType).ToArray() ?? [ ];
-            
-            if (stackFrameArgTypes.Length != complementedArgTypes.Count) continue;
-            
+
+            MethodBase? stackMethod = stackFrame.GetMethod();
+
+            if (stackMethod == null) continue;
+
+            // Method name must match
+            // (Avoids security pitfall: Prevents unintended method from being run.)
+            if (!string.Equals(stackMethod.Name, name, OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            Type[] argTypesFromStack = stackMethod.GetParameters().Select(x => x.ParameterType).ToArray();
+            if (argTypesFromStack.Length != args.Count) continue;
+
             foreach (Type type in _typesInHierarchy)
             {
-                MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, stackFrameArgTypes, typeArgs.ToArray());
+                MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, argTypesFromStack, typeArgs.ToArray());
                 if (method != null) return method;
             }
         }
 
-        throw new Exception($"Method '{name}' not found.");
+        throw new Exception($"Method '{name}' not found with argument types ({FormatArgTypes(complementedArgTypes)}).");
+        
     }
 
+    private static string FormatArgTypes(ICollection<Type> complementedArgTypes) 
+        => Join(", ", complementedArgTypes.Select(x => $"{x}"));
+    
     private PropertyInfo ResolveIndexer(
         ICollection<object?> indices,
         ICollection<Type?> argTypes)
@@ -471,22 +487,22 @@ public partial class AccessorCore
         {
             if (stackFrame == null) continue;
             
-            Type[] stackFrameArgTypes
+            Type[] argTypesFromStack
                 = stackFrame.GetMethod()?
                             .GetParameters()
                             .Select(x => x.ParameterType)
                             .ToArray() ?? [ ];
             
-            if (stackFrameArgTypes.Length != indices.Count) continue; 
+            if (argTypesFromStack.Length != indices.Count) continue; 
 
             foreach (Type type in _typesInHierarchy)
             {
-                PropertyInfo? indexerProp = _reflectionCacheLegacy.TryGetIndexer(type, stackFrameArgTypes);
+                PropertyInfo? indexerProp = _reflectionCacheLegacy.TryGetIndexer(type, argTypesFromStack);
                 if (indexerProp != null) return indexerProp;
             }
         }
 
-        throw new Exception($"No indexer found with argument types [{Join(", ", complementedArgTypes.Select(x => $"{x}"))}].");
+        throw new Exception($"No indexer found with argument types [{FormatArgTypes(complementedArgTypes)}].");
     }
     
     /// <inheritdoc cref="_complementparametertypes" />

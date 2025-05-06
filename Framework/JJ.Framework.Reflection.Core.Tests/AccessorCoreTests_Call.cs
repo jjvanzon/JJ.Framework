@@ -85,8 +85,7 @@ public class AccessorCoreTests_Call
         private string Concat(string arg1, string arg2, int arg3, float arg4) => $"{arg1}{arg2}{arg3}{arg4}";
         private string Concat(int arg1, float arg2, bool arg3, string arg4) => $"{arg1}{arg2}{arg3}{arg4}";
         private string Concat(int arg1, float arg2, string arg3, string arg4) => $"{arg1}{arg2}{arg3}{arg4}";
-        // TODO: One that distinguishes only by name, while parameter types are the same.
-
+        // TODO: 2 methods distinguish only by name, while parameter types are the same.
 
 
         // TODO: Generate different methods with successively more parameters (up to 10 parameters), with overlap in names and varying parameter/return types.
