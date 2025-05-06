@@ -413,3 +413,10 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
         public new double   MyMethod(ref decimal  arg1, out bool     arg2, ref string   arg3, out DateTime arg4) => base.MyMethod(ref arg1, out arg2, ref arg3, out arg4);
     }
 ```
+
+### AccessorCore
+
+```cs
+    //.ToArray()
+    //.Take(indices.Count) // TODO: Might remove. Exact matches might be better.
+```

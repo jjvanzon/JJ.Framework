@@ -11,26 +11,26 @@ namespace JJ.Framework.PlatformCompatibility.Tests.Obsolete
 {
     internal static class PlatformExtensions_Accessor
     {
-        private static readonly Accessor _accessor
-            = new Accessor(Type.GetType("JJ.Framework.PlatformCompatibility.Obsolete.PlatformExtensions, " +
-                                        "JJ.Framework.PlatformCompatibility"));
+        private static readonly AccessorCore _accessor
+            = new AccessorCore(Type.GetType("JJ.Framework.PlatformCompatibility.Obsolete.PlatformExtensions, " +
+                                            "JJ.Framework.PlatformCompatibility"));
 
         public static MemberTypes_PlatformSafe MemberType_PlatformSafe(MemberInfo memberInfo)
-            => _accessor.InvokeMethod(() => MemberType_PlatformSafe(memberInfo));
+            => _accessor.Call(() => MemberType_PlatformSafe(memberInfo));
 
         public static Type GetInterface_PlatformSafe(Type type, string name)
-            => _accessor.InvokeMethod(() => GetInterface_PlatformSafe(type, name));
+            => _accessor.Call(() => GetInterface_PlatformSafe(type, name));
 
         public static void Save_PlatformSafe(XDocument doc, string fileName)
-            => _accessor.InvokeMethod(() => Save_PlatformSafe(doc, fileName));
+            => _accessor.Call(() => Save_PlatformSafe(doc, fileName));
 
         public static void Save_PlatformSafe(XElement element, string fileName)
-            => _accessor.InvokeMethod(() => Save_PlatformSafe(element, fileName));
+            => _accessor.Call(() => Save_PlatformSafe(element, fileName));
 
         public static void Save_PlatformSafe(XElement element, Stream stream)
-            => _accessor.InvokeMethod(() => Save_PlatformSafe(element, stream));
+            => _accessor.Call(() => Save_PlatformSafe(element, stream));
 
         public static object GetValue_PlatformSafe(PropertyInfo propertyInfo, object obj, params object[] parameters)
-            => _accessor.InvokeMethod(() => GetValue_PlatformSafe(propertyInfo, obj, parameters));
+            => _accessor.Call(() => GetValue_PlatformSafe(propertyInfo, obj, parameters));
     }
 }
