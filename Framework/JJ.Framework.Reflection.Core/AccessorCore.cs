@@ -194,10 +194,6 @@ public partial class AccessorCore
     // With CallerMemberName
 
     /// <inheritdoc cref="_invokemethod" />
-    public object? Call(object?[] args, [Caller] string name = "")
-        => CallCore(name, args);
-
-    /// <inheritdoc cref="_invokemethod" />
     public object? Call([Caller] string name = "")
         => CallCore(name);
 
@@ -242,12 +238,6 @@ public partial class AccessorCore
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10 ]);
 
     // With Type Args
-
-    /// <inheritdoc cref="_invokemethod" />
-    public object? Call(string name, object?[] args, Type?[] argTypes, Type[] typeArgs)
-        => CallCore(name, args, argTypes, typeArgs);
-    
-    // TODO: CallerMemberName variants.
     
     /// <inheritdoc cref="_invokemethod" />
     public object? Call<T>(string name, params object?[] args)
@@ -435,8 +425,6 @@ public partial class AccessorCore
                 = stackFrame.GetMethod()?
                             .GetParameters()
                             .Select(x => x.ParameterType)
-                            //.ToArray()
-                            //.Take(indices.Count) // TODO: Might remove. Exact matches might be better.
                             .ToArray() ?? [ ];
             
             if (stackFrameArgTypes.Length != indices.Count) continue; 
