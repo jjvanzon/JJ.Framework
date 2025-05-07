@@ -114,7 +114,7 @@ public class AccessorCoreTests_Indexers
         
         ThrowsException(
             () => { int number = accessor[null]; },
-            "No indexer found with argument types [System.Object].");
+            "No indexer found with argument types [Object].");
     }
                 
     [TestMethod]

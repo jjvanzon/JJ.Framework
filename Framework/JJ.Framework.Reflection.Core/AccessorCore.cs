@@ -411,7 +411,7 @@ public partial class AccessorCore
     }
 
     private static string FormatArgTypes(ICollection<Type> complementedArgTypes) 
-        => Join(", ", complementedArgTypes.Select(x => $"{x}"));
+        => Join(", ", complementedArgTypes.Select(x => $"{x.Name}"));
     
     private PropertyInfo ResolveIndexer(
         ICollection<object?> indices,
