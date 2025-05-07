@@ -1,6 +1,6 @@
 ﻿using static System.TimeSpan;
 using static JJ.Framework.Common.Core.NameHelper;
-using static JJ.Framework.Reflection.Core.Tests.Helpers.ParseHelperCore;
+using static JJ.Framework.Reflection.Core.Tests.Helpers.FormatHelper;
 
 // ReSharper disable InlineOutVariableDeclaration
 // ReSharper disable ConditionIsAlwaysTrueOrFalse
