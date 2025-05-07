@@ -1,5 +1,7 @@
-﻿using JJ.Framework.Reflection.Core.Tests.Helpers;
+﻿using System.Globalization;
+using JJ.Framework.Reflection.Core.Tests.Helpers;
 using static System.TimeSpan;
+using static JJ.Framework.Common.Core.NameHelper;
 using static JJ.Framework.Reflection.Core.Tests.Helpers.FormatHelper;
 // ReSharper disable ReplaceWithSingleCallToCount
 // ReSharper disable RedundantBoolCompare
@@ -201,6 +203,57 @@ public class AccessorCoreTests_Call
         // End with 2 Strings
         public string Concat(int    arg1, float  arg2, string arg3, string arg4) => (string)_accessor.Call([ arg1, arg2, arg3, arg4 ])!;
 
+        // With Type Arguments
+
+        private string Concat
+            <T1>
+            (byte arg1) 
+            => (string)_accessor.Call<T1>(Name(), arg1);
+
+        private string Concat
+            <T1, T2>
+            (short arg1, int arg2)
+            => (string)_accessor.Call<T1, T2>(Name(), arg1, arg2);
+
+        private string 
+            Concat<T1, T2, T3>
+            (long arg1, float arg2, double arg3)
+            => (string)_accessor.Call<T1, T2, T3>(Name(), arg1, arg2, arg3);
+
+        private string 
+            Concat<T1, T2, T3, T4>
+            (decimal arg1, bool arg2, string arg3, char arg4)
+            => (string)_accessor.Call<T1, T2, T3, T4>(Name(), arg1, arg2, arg3, arg4);
+
+        private string 
+            Concat<T1, T2, T3, T4, T5>
+            (DateTime arg1, TimeSpan arg2, Guid arg3, CultureInfo arg4, DayOfWeek arg5)
+            => (string)_accessor.Call<T1, T2, T3, T4, T5>(Name(), arg1, arg2, arg3, arg4, arg5);
+
+        private string 
+            Concatenate<T1, T2, T3, T4, T5, T6>
+            (T1 arg1, byte arg2, T3 arg3, short arg4, T5 arg5, int arg6)
+            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6>(Name(), arg1, arg2, arg3, arg4, arg5, arg6);
+
+        private string Concatenate
+            <T1, T2, T3, T4, T5, T6, T7>
+            (long arg1, T2 arg2, float arg3, T4 arg4, double arg5, T6 arg6, decimal arg7)
+            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+
+        private string Concatenate
+            <T1, T2, T3, T4, T5, T6, T7, T8>
+            (T1 arg1, bool arg2, T3 arg3, string arg4, T5 arg5, char arg6, T7 arg7, DateTime arg8)
+            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+
+        private string Concatenate
+            <T1, T2, T3, T4, T5, T6, T7, T8, T9>
+            (TimeSpan arg1, T2 arg2, Guid arg3, T4 arg4, CultureInfo arg5, T6 arg6, DayOfWeek arg7, T8 arg8, byte arg9)
+            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+
+        private string Concatenate
+            <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
+            (T1 arg1, short arg2, int arg3, long arg4, float arg5, double arg6, decimal arg7, bool arg8, string arg9, T10 arg10)
+            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
     }
     
     private class MyClass
@@ -257,5 +310,67 @@ public class AccessorCoreTests_Call
 
         // End with 2 Strings
         private string Concat(int    arg1, float  arg2, string arg3, string arg4) => $"{arg1}{arg2}{arg3}{arg4}";
+
+        // With Type Arguments
+
+        private string Concat
+            <T1>
+            (byte arg1) 
+            => $"<{typeof(T1).Name}>" +
+               $"({arg1})";
+
+        private string Concat
+            <T1, T2>
+            (short arg1, int arg2)
+            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}>" +
+               $"({arg1}, {arg2})";
+
+        private string 
+            Concat<T1, T2, T3>
+            (long arg1, float arg2, double arg3)
+            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}>" +
+               $"({arg1}, {arg2}, {arg3})";
+
+        private string 
+            Concat<T1, T2, T3, T4>
+            (decimal arg1, bool arg2, string arg3, char arg4) 
+            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}>" +
+               $"({arg1}, {arg2}, {arg3}, {arg4})";
+
+        private string 
+            Concat<T1, T2, T3, T4, T5>
+            (DateTime arg1, TimeSpan arg2, Guid arg3, CultureInfo arg4, DayOfWeek arg5) 
+            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}>" +
+               $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5})";
+
+        private string 
+            Concatenate<T1, T2, T3, T4, T5, T6>
+            (T1 arg1, byte arg2, T3 arg3, short arg4, T5 arg5, int arg6)
+            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}>" +
+               $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6})";
+
+        private string Concatenate
+            <T1, T2, T3, T4, T5, T6, T7>
+            (long arg1, T2 arg2, float arg3, T4 arg4, double arg5, T6 arg6, decimal arg7)
+            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}>" +
+               $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7})";
+
+        private string Concatenate
+            <T1, T2, T3, T4, T5, T6, T7, T8>
+            (T1 arg1, bool arg2, T3 arg3, string arg4, T5 arg5, char arg6, T7 arg7, DateTime arg8) 
+            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}, {typeof(T8).Name}>" +
+               $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7}, {arg8})";
+
+        private string Concatenate
+            <T1, T2, T3, T4, T5, T6, T7, T8, T9>
+            (TimeSpan arg1, T2 arg2, Guid arg3, T4 arg4, CultureInfo arg5, T6 arg6, DayOfWeek arg7, T8 arg8, byte arg9)
+            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}, {typeof(T8).Name}, {typeof(T9).Name}>" +
+               $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7}, {arg8}, {arg9})";
+
+        private string Concatenate
+            <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
+            (T1 arg1, short arg2, int arg3, long arg4, float arg5, double arg6, decimal arg7, bool arg8, string arg9, T10 arg10) 
+            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}, {typeof(T8).Name}, {typeof(T9).Name}, {typeof(T10).Name}>" +
+               $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7}, {arg8}, {arg9}, {arg10})";
     }
 }
