@@ -1,9 +1,4 @@
-﻿using System.Globalization;
-using JJ.Framework.Reflection.Core.Tests.Helpers;
-using static System.DayOfWeek;
-using static System.Globalization.CultureInfo;
-using static System.TimeSpan;
-using static JJ.Framework.Reflection.Core.Tests.Helpers.FormatHelper;
+﻿using static System.TimeSpan;
 // ReSharper disable ReplaceWithSingleCallToCount
 // ReSharper disable RedundantBoolCompare
 
@@ -49,7 +44,7 @@ public class AccessorCoreTests_Call
         // 3 Args
         {
             DateTime ret = accessor.AddDate(FromYear(2000), FromDays(1), 10);
-            AreEqual(DateTime.Parse("2000-01-02 10:00"), () => ret);
+            AreEqual(ToDateTime("2000-01-02 10:00"), () => ret);
         }
         // 4 Args
         {
@@ -73,7 +68,7 @@ public class AccessorCoreTests_Call
         }
         // 8 Args
         {
-            string formattedDateTime = accessor.FormatDateTime(1, 2, 3, 4, 5, 6, 7, 'A');
+            string formattedDateTime = accessor.ConcatDateTime(1, 2, 3, 4, 5, 6, 7, 'A');
             AreEqual("0001-02-03 04:05:06.007A", () => formattedDateTime);
         }
         // 9 Args
@@ -121,12 +116,17 @@ public class AccessorCoreTests_Call
         // 5 Type Arguments
         {
             var concat = accessor.Concat<int, string, float, bool, DateTime>(FromYear(1), FromSeconds(2), ToGuid(3), GetCultureInfo("nl-NL"), Tuesday);
-            AreEqual("<Int32, String, Single, Boolean, DateTime>(0001-01-01 00:00:00, 00:00:02, 00000000-0000-0000-0000-000000000003, nl-NL, Tuesday)", () => concat);
+            AreEqual("<Int32, String, Single, Boolean, DateTime>(0001-01-01 00:00:00.000, 00:00:02, 00000000-0000-0000-0000-000000000003, nl-NL, Tuesday)", () => concat);
         }
         // 6 Type Arguments
         //{
         //    var concat = accessor.Concatenate<int, string, float, bool, DateTime, TimeSpan>(1, 2, 3, 4, FromYear(5), 6);
         //    AreEqual("<Int32, String, Single, Boolean, DateTime, TimeSpan>(1, 2, 3, 4, 0005-01-01 00:00:00, 6)", () => concat);
+        //}
+        // 7 Type Arguments
+        //{
+        //    var concat = accessor.Concatenate<int, string, float, bool, DateTime, TimeSpan, Guid>(1, "2", 3, true, 5, FromSeconds(6), 7);
+        //    AreEqual("<Int32, String, Single, Boolean, DateTime, TimeSpan, Guid>(1, 2, 3, true, 5, 00:06:00, 7)", () => concat);
         //}
     }
             
@@ -198,7 +198,7 @@ public class AccessorCoreTests_Call
             => (long)_accessor.Call(a1, a2, a3, a4, a5, a6, a7)!;
 
         // 8 Args
-        public string FormatDateTime(byte a, short b, int c, long d, float e, double f, decimal g, char h)
+        public string ConcatDateTime(byte a, short b, int c, long d, float e, double f, decimal g, char h)
             => (string)_accessor.Call(a, b, c, d, e, f, g, h)!;
 
         // 9 Args
@@ -310,7 +310,7 @@ public class AccessorCoreTests_Call
         private long     AddLongs      (long     a1,   long     a2,   long   a3,   long  a4,   long  a5, long   a6, long    a7)                             => a1 + a2 + a3 + a4 + a5 + a6 + a7;
         
         // 8 Args
-        private string   FormatDateTime(byte     a,    short    b,    int    c,    long  d,    float e,  double f,  decimal g,  char h)                     => FormatHelper.FormatDateTime(new DateTime(a, b, c, (int)d, (int)e, (int)f, (int)g)) + h;
+        private string   ConcatDateTime(byte     a,    short    b,    int    c,    long  d,    float e,  double f,  decimal g,  char h)                     => FormatDateTime(new DateTime(a, b, c, (int)d, (int)e, (int)f, (int)g)) + h;
         
 
         // 2 methods distinguished by name, while parameter types are same:
@@ -368,7 +368,7 @@ public class AccessorCoreTests_Call
             Concat<T1, T2, T3, T4, T5>
             (DateTime arg1, TimeSpan arg2, Guid arg3, CultureInfo arg4, DayOfWeek arg5) 
             => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}>" +
-               $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5})";
+               $"({FormatDateTime(arg1)}, {arg2}, {arg3}, {arg4}, {arg5})";
 
         private string 
             Concatenate<T1, T2, T3, T4, T5, T6>
@@ -386,7 +386,7 @@ public class AccessorCoreTests_Call
             <T1, T2, T3, T4, T5, T6, T7, T8>
             (T1 arg1, bool arg2, T3 arg3, string arg4, T5 arg5, char arg6, T7 arg7, DateTime arg8) 
             => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}, {typeof(T8).Name}>" +
-               $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7}, {arg8})";
+               $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7}, {FormatDateTime(arg8)})";
 
         private string Concatenate
             <T1, T2, T3, T4, T5, T6, T7, T8, T9>
