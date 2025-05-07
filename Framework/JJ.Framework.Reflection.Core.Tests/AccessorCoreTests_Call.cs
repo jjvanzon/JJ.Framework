@@ -1,7 +1,8 @@
 ﻿using System.Globalization;
 using JJ.Framework.Reflection.Core.Tests.Helpers;
+using static System.DayOfWeek;
+using static System.Globalization.CultureInfo;
 using static System.TimeSpan;
-using static JJ.Framework.Common.Core.NameHelper;
 using static JJ.Framework.Reflection.Core.Tests.Helpers.FormatHelper;
 // ReSharper disable ReplaceWithSingleCallToCount
 // ReSharper disable RedundantBoolCompare
@@ -14,8 +15,8 @@ public class AccessorCoreTests_Call
     [TestMethod]
     public void AccessorCore_Call_ByName()
     {
-        var myClass  = new MyClass();
-        var accessor = new AccessorCore(myClass);
+        var obj  = new MyClass();
+        var accessor = new AccessorCore(obj);
         
         var number = (int)accessor.Call("MyMethod")!;
         AreEqual(1, () => number);
@@ -27,87 +28,113 @@ public class AccessorCoreTests_Call
     [TestMethod]
     public void AccessorCore_Call_WithCallerMemberName()
     {
-        var myClass  = new MyClass();
-        var accessor = new MyAccessor(myClass);
+        var obj  = new MyClass();
+        var accessor = new MyAccessor(obj);
 
         // 0 Args
         {
             int number = accessor.MyMethod()!;
             AreEqual(1, () => number);
         }
-
         // 1 Args
         {
             string text = accessor.MyMethod(2)!;
             AreEqual("2", () => text);
         }
-
         // 2 Args
         {
             long number = accessor.Add(1, 2)!;
             AreEqual(3, () => number);
         }
-
         // 3 Args
         {
             DateTime ret = accessor.AddDate(FromYear(2000), FromDays(1), 10);
             AreEqual(DateTime.Parse("2000-01-02 10:00"), () => ret);
         }
-
         // 4 Args
         {
             string concat = accessor.Concat(1, true, 2.0f, 'A');
             AreEqual("1True2A", () => concat);
         }
-
         // 5 Args
         {
             string concat = accessor.Concat(1, 2, "A", 3, 4);
             AreEqual("12A34", () => concat);
         }
-
         // 6 Args
         {
             double number = accessor.Add(1, 2, 3, 4, true, 5);
             AreEqual(16, () => number);
         }
-
         // 7 Args
         {
             long number = accessor.AddLongs(1, 2, 3, 4, 5, 6, 7);
             AreEqual(28, () => number);
         }
-
         // 8 Args
         {
             string formattedDateTime = accessor.FormatDateTime(1, 2, 3, 4, 5, 6, 7, 'A');
             AreEqual("0001-02-03 04:05:06.007A", () => formattedDateTime);
         }
-
         // 9 Args
         {
             string text = accessor.FormatSum(1, 2, 3, 4, 5, 6, 7, 8, 9);
             AreEqual("Sum: 45", () => text);
         }
-
         // 9 Args with Void Return
         {
             accessor.LogSum(1, 2, 3, 4, 5, 6, 7, 8, 9); 
         }
-
         // 10 Args
         {
             int count = accessor.CountWhereTrue(true, false, true, true, true, false, true, false, true, false);
             AreEqual(6, () => count);
         }
-
     }
-        
+
+    [TestMethod]
+    public void AccessorCore_Call_WithTypeArguments()   
+    {
+        var obj = new MyClass();
+        var accessor = new MyAccessor(obj);
+
+        // 1 Type Argument
+        {
+            var concat = accessor.Concat<int>(1);
+            AreEqual("<Int32>(1)", () => concat);
+        }
+        // 2 Type Arguments
+        {
+            var concat = accessor.Concat<int, string>(1, 2);
+            AreEqual("<Int32, String>(1, 2)", () => concat);
+        }
+        // 3 Type Arguments
+        {
+            var concat = accessor.Concat<int, string, float>(1, 2, 3);
+            AreEqual("<Int32, String, Single>(1, 2, 3)", () => concat);
+        }
+        // 4 Type Arguments
+        {
+            var concat = accessor.Concat<int, string, float, bool>(1, true, "3", '4');
+            AreEqual("<Int32, String, Single, Boolean>(1, True, 3, 4)", () => concat);
+        }
+        // 5 Type Arguments
+        {
+            var concat = accessor.Concat<int, string, float, bool, DateTime>(FromYear(1), FromSeconds(2), ToGuid(3), GetCultureInfo("nl-NL"), Tuesday);
+            AreEqual("<Int32, String, Single, Boolean, DateTime>(0001-01-01 00:00:00, 00:00:02, 00000000-0000-0000-0000-000000000003, nl-NL, Tuesday)", () => concat);
+        }
+        // 6 Type Arguments
+        //{
+        //    var concat = accessor.Concatenate<int, string, float, bool, DateTime, TimeSpan>(1, 2, 3, 4, FromYear(5), 6);
+        //    AreEqual("<Int32, String, Single, Boolean, DateTime, TimeSpan>(1, 2, 3, 4, 0005-01-01 00:00:00, 6)", () => concat);
+        //}
+    }
+            
     [TestMethod]
     public void AccessorCore_Call_StringConfusedWithName_SolvedWithCollectionExpression()
     {
-        var myClass  = new MyClass();
-        var accessor = new MyAccessor(myClass);
+        var obj  = new MyClass();
+        var accessor = new MyAccessor(obj);
 
         // Start with String
         {
@@ -205,52 +232,52 @@ public class AccessorCoreTests_Call
 
         // With Type Arguments
 
-        private string Concat
+        public string Concat
             <T1>
             (byte arg1) 
             => (string)_accessor.Call<T1>(Name(), arg1);
 
-        private string Concat
+        public string Concat
             <T1, T2>
             (short arg1, int arg2)
             => (string)_accessor.Call<T1, T2>(Name(), arg1, arg2);
 
-        private string 
+        public string 
             Concat<T1, T2, T3>
             (long arg1, float arg2, double arg3)
             => (string)_accessor.Call<T1, T2, T3>(Name(), arg1, arg2, arg3);
 
-        private string 
+        public string 
             Concat<T1, T2, T3, T4>
             (decimal arg1, bool arg2, string arg3, char arg4)
             => (string)_accessor.Call<T1, T2, T3, T4>(Name(), arg1, arg2, arg3, arg4);
 
-        private string 
+        public string 
             Concat<T1, T2, T3, T4, T5>
             (DateTime arg1, TimeSpan arg2, Guid arg3, CultureInfo arg4, DayOfWeek arg5)
             => (string)_accessor.Call<T1, T2, T3, T4, T5>(Name(), arg1, arg2, arg3, arg4, arg5);
 
-        private string 
+        public string 
             Concatenate<T1, T2, T3, T4, T5, T6>
             (T1 arg1, byte arg2, T3 arg3, short arg4, T5 arg5, int arg6)
             => (string)_accessor.Call<T1, T2, T3, T4, T5, T6>(Name(), arg1, arg2, arg3, arg4, arg5, arg6);
 
-        private string Concatenate
+        public string Concatenate
             <T1, T2, T3, T4, T5, T6, T7>
             (long arg1, T2 arg2, float arg3, T4 arg4, double arg5, T6 arg6, decimal arg7)
             => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 
-        private string Concatenate
+        public string Concatenate
             <T1, T2, T3, T4, T5, T6, T7, T8>
             (T1 arg1, bool arg2, T3 arg3, string arg4, T5 arg5, char arg6, T7 arg7, DateTime arg8)
             => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 
-        private string Concatenate
+        public string Concatenate
             <T1, T2, T3, T4, T5, T6, T7, T8, T9>
             (TimeSpan arg1, T2 arg2, Guid arg3, T4 arg4, CultureInfo arg5, T6 arg6, DayOfWeek arg7, T8 arg8, byte arg9)
             => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
 
-        private string Concatenate
+        public string Concatenate
             <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
             (T1 arg1, short arg2, int arg3, long arg4, float arg5, double arg6, decimal arg7, bool arg8, string arg9, T10 arg10)
             => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
@@ -322,55 +349,55 @@ public class AccessorCoreTests_Call
         private string Concat
             <T1, T2>
             (short arg1, int arg2)
-            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}>" +
+            => $"<{typeof(T1).Name}, {typeof(T2).Name}>" +
                $"({arg1}, {arg2})";
 
         private string 
             Concat<T1, T2, T3>
             (long arg1, float arg2, double arg3)
-            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}>" +
+            => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}>" +
                $"({arg1}, {arg2}, {arg3})";
 
         private string 
             Concat<T1, T2, T3, T4>
             (decimal arg1, bool arg2, string arg3, char arg4) 
-            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}>" +
+            => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}>" +
                $"({arg1}, {arg2}, {arg3}, {arg4})";
 
         private string 
             Concat<T1, T2, T3, T4, T5>
             (DateTime arg1, TimeSpan arg2, Guid arg3, CultureInfo arg4, DayOfWeek arg5) 
-            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}>" +
+            => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}>" +
                $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5})";
 
         private string 
             Concatenate<T1, T2, T3, T4, T5, T6>
             (T1 arg1, byte arg2, T3 arg3, short arg4, T5 arg5, int arg6)
-            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}>" +
+            => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}>" +
                $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6})";
 
         private string Concatenate
             <T1, T2, T3, T4, T5, T6, T7>
             (long arg1, T2 arg2, float arg3, T4 arg4, double arg5, T6 arg6, decimal arg7)
-            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}>" +
+            => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}>" +
                $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7})";
 
         private string Concatenate
             <T1, T2, T3, T4, T5, T6, T7, T8>
             (T1 arg1, bool arg2, T3 arg3, string arg4, T5 arg5, char arg6, T7 arg7, DateTime arg8) 
-            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}, {typeof(T8).Name}>" +
+            => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}, {typeof(T8).Name}>" +
                $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7}, {arg8})";
 
         private string Concatenate
             <T1, T2, T3, T4, T5, T6, T7, T8, T9>
             (TimeSpan arg1, T2 arg2, Guid arg3, T4 arg4, CultureInfo arg5, T6 arg6, DayOfWeek arg7, T8 arg8, byte arg9)
-            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}, {typeof(T8).Name}, {typeof(T9).Name}>" +
+            => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}, {typeof(T8).Name}, {typeof(T9).Name}>" +
                $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7}, {arg8}, {arg9})";
 
         private string Concatenate
             <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
             (T1 arg1, short arg2, int arg3, long arg4, float arg5, double arg6, decimal arg7, bool arg8, string arg9, T10 arg10) 
-            => $"{Name()}<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}, {typeof(T8).Name}, {typeof(T9).Name}, {typeof(T10).Name}>" +
+            => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}, {typeof(T8).Name}, {typeof(T9).Name}, {typeof(T10).Name}>" +
                $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7}, {arg8}, {arg9}, {arg10})";
     }
 }

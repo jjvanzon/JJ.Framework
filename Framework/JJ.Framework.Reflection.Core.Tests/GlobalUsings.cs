@@ -13,6 +13,7 @@ global using JJ.Framework.Testing;
 global using JJ.Framework.Reflection.Core;
 global using JJ.Framework.Reflection.Core.Tests;
 global using static System.String;
+global using static JJ.Framework.Common.Core.NameHelper;
 global using static JJ.Framework.Reflection.Core.ReflectionHelperCore;
 global using static JJ.Framework.Testing.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertHelperCore;
