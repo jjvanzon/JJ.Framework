@@ -363,7 +363,7 @@ public partial class AccessorCore
         ICollection<Type?> argTypes,
         ICollection<Type> typeArgs)
     {
-        ICollection<Type> complementedArgTypes = ComplementArgTypes(args, argTypes);
+        ICollection<Type> complementedArgTypes = ComplementArgTypes(argTypes, args);
         foreach (Type type in _typesInHierarchy)
         {
             MethodInfo? method = _reflectionCacheLegacy.TryGetMethod(type, name, complementedArgTypes.ToArray(), typeArgs.ToArray());
@@ -406,18 +406,20 @@ public partial class AccessorCore
             }
         }
 
-        throw new Exception($"Method '{name}' not found with argument types ({FormatArgTypes(complementedArgTypes)}).");
+        throw new Exception(
+            $"Method '{name}' not found with argument types ({FormatTypes(complementedArgTypes)})" +
+            (typeArgs.Any() ? $" and type arguments <{FormatTypes(typeArgs)}>." : "."));
         
     }
 
-    private static string FormatArgTypes(ICollection<Type> complementedArgTypes) 
-        => Join(", ", complementedArgTypes.Select(x => $"{x.Name}"));
+    private static string FormatTypes(ICollection<Type> types) 
+        => Join(", ", types.Select(x => $"{x.Name}"));
     
     private PropertyInfo ResolveIndexer(
         ICollection<object?> indices,
         ICollection<Type?> argTypes)
     {
-        var complementedArgTypes = ComplementArgTypes(indices, argTypes).ToArray();
+        var complementedArgTypes = ComplementArgTypes(argTypes, indices).ToArray();
         foreach (Type type in _typesInHierarchy)
         {
             PropertyInfo? indexerProp = _reflectionCacheLegacy.TryGetIndexer(type, complementedArgTypes);
@@ -452,11 +454,11 @@ public partial class AccessorCore
             }
         }
 
-        throw new Exception($"No indexer found with argument types [{FormatArgTypes(complementedArgTypes)}].");
+        throw new Exception($"No indexer found with argument types [{FormatTypes(complementedArgTypes)}].");
     }
     
     /// <inheritdoc cref="_complementparametertypes" />
-    private ICollection<Type> ComplementArgTypes(ICollection<object?> args, ICollection<Type?> argTypes)
+    private ICollection<Type> ComplementArgTypes(ICollection<Type?> argTypes, ICollection<object?> args)
     {
         if (argTypes.Count > args.Count) throw new Exception("More argTypes than args.");
         Type?[] argTypesArr = argTypes.ToArray();
