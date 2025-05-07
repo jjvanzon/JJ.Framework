@@ -205,91 +205,41 @@ public partial class AccessorCore
 
     // With CallerMemberName
 
-    ///// <inheritdoc cref="_invokemethod" />
-    //[Priority(2)] 
-    //public object? Call(string arg1, [Caller] string name = "")
-    //    => CallCore(name, [ arg1 ]);
-
     /// <inheritdoc cref="_invokemethod" />
     public object? Call(object? arg1, [Caller] string name = "")
         => CallCore(name, [ arg1 ]);
-
-    ///// <inheritdoc cref="_invokemethod" />
-    //[Priority(2)]
-    //public object? Call(object? arg1, string arg2, [Caller] string name = "")
-    //    => CallCore(name, [ arg1, arg2 ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object? Call(object? arg1, object? arg2, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2 ]);
 
-    ///// <inheritdoc cref="_invokemethod" />
-    //[Priority(2)]
-    //public object? Call(object? arg1, object? arg2, string arg3, [Caller] string name = "")
-    //    => CallCore(name, [ arg1, arg2, arg3 ]);
-
     /// <inheritdoc cref="_invokemethod" />
     public object? Call(object? arg1, object? arg2, object? arg3, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3 ]);
-
-    ///// <inheritdoc cref="_invokemethod" />
-    //[Priority(2)]
-    //public object? Call(object? arg1, object? arg2, object? arg3, string arg4, [Caller] string name = "")
-    //    => CallCore(name, [ arg1, arg2, arg3, arg4 ]);
 
     /// <inheritdoc cref="_invokemethod" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4 ]);
     
-    ///// <inheritdoc cref="_invokemethod" />
-    //[Priority(2)]
-    //public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, string arg5, [Caller] string name = "")
-    //    => CallCore(name, [ arg1, arg2, arg3, arg4, arg5 ]);
-    
     /// <inheritdoc cref="_invokemethod" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5 ]);
-    
-    ///// <inheritdoc cref="_invokemethod" />
-    //[Priority(2)]
-    //public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, string arg6, [Caller] string name = "")
-    //    => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6 ]);
     
     /// <inheritdoc cref="_invokemethod" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6 ]);
     
-    ///// <inheritdoc cref="_invokemethod" />
-    //[Priority(2)]
-    //public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, string arg7, [Caller] string name = "")
-    //    => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7 ]);
-    
     /// <inheritdoc cref="_invokemethod" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7 ]);
-    
-    ///// <inheritdoc cref="_invokemethod" />
-    //[Priority(2)]
-    //public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, string arg8, [Caller] string name = "")
-    //    => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8 ]);
     
     /// <inheritdoc cref="_invokemethod" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8 ]);
     
-    ///// <inheritdoc cref="_invokemethod" />
-    //[Priority(2)]
-    //public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, string arg9, [Caller] string name = "")
-    //    => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9 ]);
-    
     /// <inheritdoc cref="_invokemethod" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, object? arg9, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9 ]);
-    
-    ///// <inheritdoc cref="_invokemethod" />
-    //[Priority(2)]
-    //public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, object? arg9, string arg10, [Caller] string name = "")
-    //    => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10 ]);
     
     /// <inheritdoc cref="_invokemethod" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, object? arg9, object? arg10, [Caller] string name = "")
