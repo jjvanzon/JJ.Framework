@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using JJ.Framework.Common;
 using static System.StringComparison;
+using static JJ.Framework.Common.KeyHelper;
 
 // ReSharper disable ReplaceWithSingleCallToSingle
 // ReSharper disable InvertIf
@@ -163,7 +163,7 @@ namespace JJ.Framework.Reflection.Core
             PropertyInfo? property = TryGetIndexer(type, parameterTypes);
             if (property == null)
             {
-                throw new Exception($"Indexer not found with parameterTypes '{string.Join(", ", parameterTypes.Select(x => x.ToString()))}'.");
+                throw new Exception($"Indexer not found with parameterTypes '{Join(", ", parameterTypes.Select(x => x.ToString()))}'.");
             }
             return property;
         }
@@ -174,7 +174,7 @@ namespace JJ.Framework.Reflection.Core
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
             if (parameterTypes.Length == 0) throw new Exception("parameterTypes.Length is 0.");
             
-            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
+            string parameterTypesKey = CreateKey(parameterTypes);
 
             lock (_indexerDictionaryLock)
             {
@@ -218,7 +218,7 @@ namespace JJ.Framework.Reflection.Core
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
 
-            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
+            string parameterTypesKey = CreateKey(parameterTypes);
 
             lock (_methodDictionaryLock)
             {
@@ -253,7 +253,7 @@ namespace JJ.Framework.Reflection.Core
             {
                 throw new Exception(
                     $"Method '{name}' with {typeArguments.Length} type arguments not found " +
-                    $"with parameters ({string.Join(", ", parameterTypes.Select(x => $"{x.Name}"))}) " +
+                    $"with parameters ({Join(", ", parameterTypes.Select(x => $"{x.Name}"))}) " +
                     $"in type '{type}'.");
             }
             return method;
@@ -267,8 +267,8 @@ namespace JJ.Framework.Reflection.Core
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
 
-            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
-            string typeArgumentsKey = KeyHelper.CreateKey(typeArguments);
+            string parameterTypesKey = CreateKey(parameterTypes);
+            string typeArgumentsKey = CreateKey(typeArguments);
 
             lock (_methodWithTypeArgumentsDictionaryLock)
             {
@@ -289,10 +289,8 @@ namespace JJ.Framework.Reflection.Core
 
         private MethodInfo? TryResolveGenericMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
-            IList<MethodInfo> methods = GetMethods(type).Where(x => string.Equals(x.Name, name))
-                                                        .Where(x => x.GetParameters()
-                                                                     .Select(y => y.ParameterType)
-                                                                     .SequenceEqual(parameterTypes))
+            IList<MethodInfo> methods = GetMethods(type).Where(x => string.Equals(x.Name, name, Ordinal))
+                                                        .Where(x => ArgTypesMatch(x, parameterTypes))
                                                         .ToArray();
             switch (methods.Count)
             {
@@ -311,10 +309,41 @@ namespace JJ.Framework.Reflection.Core
                 default:
                     throw new Exception(
                         $"Type '{type}' appears to have multiple methods with name '{name}' and " +
-                        $"parameter types {string.Join(", ", parameterTypes.Select(x => $"'{x.Name}'"))}.");
+                        $"parameter types {Join(", ", parameterTypes.Select(x => $"'{x.Name}'"))}.");
             }
         }
+       
+        private bool ArgTypesMatch(MethodInfo openMethod, Type[] closedTypes)
+        {
+            Type[] openTypes = openMethod.GetParameters().Select(x => x.ParameterType).ToArray();
+            return ArgTypesMatch(openTypes, closedTypes);
+        }
 
+        private static bool ArgTypesMatch(Type[] openTypes, Type[] closedTypes)
+        {
+            if (openTypes.Length != closedTypes.Length)
+            {
+                return false;
+            }
+            
+            for (int i = 0; i < openTypes.Length; i++)
+            {
+                if(openTypes[i].IsGenericParameter)
+                {
+                    // Ignore generic parameters.
+                    continue;
+                }
+                
+                // Match non-generic parameters
+                if (openTypes[i] != closedTypes[i])
+                {
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
         // Methods
 
         private readonly Dictionary<Type, MethodInfo[]> _methodsDictionary = new();
@@ -368,7 +397,7 @@ namespace JJ.Framework.Reflection.Core
                 default:
                     throw new Exception(
                         $"Type with short name '{shortTypeName}' found multiple times in the AppDomain's assemblies. " + 
-                        $"Found types:{Environment.NewLine}{string.Join(Environment.NewLine, types.Select(x => x.FullName))}");
+                        $"Found types:{Environment.NewLine}{Join(Environment.NewLine, types.Select(x => x.FullName))}");
             }
         }
 
@@ -432,7 +461,7 @@ namespace JJ.Framework.Reflection.Core
                     default:
                         throw new Exception(
                             $"Multiple constructors found on type '{type.FullName}' for '{new { _bindingFlags }}'. " +
-                            $"Found constructors: {string.Join(", ", constructors)}");
+                            $"Found constructors: {Join(", ", constructors)}");
                 }
             }
         }
