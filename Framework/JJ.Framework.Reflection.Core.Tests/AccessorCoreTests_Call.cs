@@ -93,6 +93,8 @@ public class AccessorCoreTests_Call
         var obj = new MyClass();
         var accessor = new MyAccessor(obj);
 
+        // TODO: Variance on the type arguments. Too much kept the same in cases.
+
         // 1 Type Argument
         {
             var concat = accessor.Concat<int>(1);
@@ -115,19 +117,24 @@ public class AccessorCoreTests_Call
         }
         // 5 Type Arguments
         {
-            var concat = accessor.Concat<int, string, float, bool, DateTime>(FromYear(1), FromSeconds(2), ToGuid(3), GetCultureInfo("nl-NL"), Tuesday);
-            AreEqual("<Int32, String, Single, Boolean, DateTime>(0001-01-01 00:00:00.000, 00:00:02, 00000000-0000-0000-0000-000000000003, nl-NL, Tuesday)", () => concat);
+            var concat = accessor.Concat<int, string, float, bool, char>(FromYear(1), FromSeconds(2), ToGuid(3), GetCultureInfo("nl-NL"), Tuesday);
+            AreEqual("<Int32, String, Single, Boolean, Char>(1, 00:00:02, 00000000-0000-0000-0000-000000000003, nl-NL, Tuesday)", () => concat);
         }
         // 6 Type Arguments
-        //{
-        //    var concat = accessor.Concatenate<int, string, float, bool, DateTime, TimeSpan>(1, 2, 3, 4, FromYear(5), 6);
-        //    AreEqual("<Int32, String, Single, Boolean, DateTime, TimeSpan>(1, 2, 3, 4, 0005-01-01 00:00:00, 6)", () => concat);
-        //}
+        {
+            var concat = accessor.Concatenate<int, string, float, bool, char, TimeSpan>(1, 2, 3, 4, (char)5, 6);
+            AreEqual($"<Int32, String, Single, Boolean, Char, TimeSpan>(1, 2, 3, 4, {(char)5}, 6)", () => concat);
+        }
         // 7 Type Arguments
-        //{
-        //    var concat = accessor.Concatenate<int, string, float, bool, DateTime, TimeSpan, Guid>(1, "2", 3, true, 5, FromSeconds(6), 7);
-        //    AreEqual("<Int32, String, Single, Boolean, DateTime, TimeSpan, Guid>(1, 2, 3, true, 5, 00:06:00, 7)", () => concat);
-        //}
+        {
+            var concat = accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid>(1, "2", 3, true, 5, FromSeconds(6), 7);
+            AreEqual("<Int32, String, Single, Boolean, Char, TimeSpan, Guid>(1, 2, 3, True, 5, 00:00:06, 7)", () => concat);
+        }
+        // 8 Type Arguments
+        {
+            var concat = accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid, CultureInfo>(1, true, 3, "4", (char)5, (char)6, ToGuid(7), FromYear(8));
+            AreEqual($"<Int32, String, Single, Boolean, Char, TimeSpan, Guid, CultureInfo>(1, True, 3, 4, {(char)5}, {(char)6}, 00000000-0000-0000-0000-000000000007, 8)", () => concat);
+        }
     }
             
     [TestMethod]
@@ -368,7 +375,7 @@ public class AccessorCoreTests_Call
             Concat<T1, T2, T3, T4, T5>
             (DateTime arg1, TimeSpan arg2, Guid arg3, CultureInfo arg4, DayOfWeek arg5) 
             => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}>" +
-               $"({FormatDateTime(arg1)}, {arg2}, {arg3}, {arg4}, {arg5})";
+               $"({arg1.Year}, {arg2}, {arg3}, {arg4}, {arg5})";
 
         private string 
             Concatenate<T1, T2, T3, T4, T5, T6>
@@ -386,7 +393,7 @@ public class AccessorCoreTests_Call
             <T1, T2, T3, T4, T5, T6, T7, T8>
             (T1 arg1, bool arg2, T3 arg3, string arg4, T5 arg5, char arg6, T7 arg7, DateTime arg8) 
             => $"<{typeof(T1).Name}, {typeof(T2).Name}, {typeof(T3).Name}, {typeof(T4).Name}, {typeof(T5).Name}, {typeof(T6).Name}, {typeof(T7).Name}, {typeof(T8).Name}>" +
-               $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7}, {FormatDateTime(arg8)})";
+               $"({arg1}, {arg2}, {arg3}, {arg4}, {arg5}, {arg6}, {arg7}, {arg8.Year})";
 
         private string Concatenate
             <T1, T2, T3, T4, T5, T6, T7, T8, T9>
