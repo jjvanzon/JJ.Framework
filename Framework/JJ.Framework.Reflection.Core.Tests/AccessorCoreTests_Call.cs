@@ -135,6 +135,16 @@ public class AccessorCoreTests_Call
             var concat = accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid, CultureInfo>(1, true, 3, "4", (char)5, (char)6, ToGuid(7), FromYear(8));
             AreEqual($"<Int32, String, Single, Boolean, Char, TimeSpan, Guid, CultureInfo>(1, True, 3, 4, {(char)5}, {(char)6}, 00000000-0000-0000-0000-000000000007, 8)", () => concat);
         }
+        // 9 Type Arguments
+        {
+            var concat = accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid, CultureInfo, DayOfWeek>(FromSeconds(1), "2", ToGuid(3), true, GetCultureInfo("nl-NL"), FromSeconds(6), Wednesday, GetCultureInfo("de-DE"), 9);
+            AreEqual("<Int32, String, Single, Boolean, Char, TimeSpan, Guid, CultureInfo, DayOfWeek>(00:00:01, 2, 00000000-0000-0000-0000-000000000003, True, nl-NL, 00:00:06, Wednesday, de-DE, 9)", () => concat);
+        }
+        // 10 Type Arguments
+        {
+            var concat = accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid, CultureInfo, DayOfWeek, byte>(1, 2, 3, 4, 5, 6, 7, true, "9", 10);
+            AreEqual("<Int32, String, Single, Boolean, Char, TimeSpan, Guid, CultureInfo, DayOfWeek, Byte>(1, 2, 3, 4, 5, 6, 7, True, 9, 10)", () => concat);
+        }
     }
             
     [TestMethod]
@@ -346,6 +356,8 @@ public class AccessorCoreTests_Call
         private string Concat(int    arg1, float  arg2, string arg3, string arg4) => $"{arg1}{arg2}{arg3}{arg4}";
 
         // With Type Arguments
+
+        // TODO: Flip arities: pair 1 type arg with 10 args, 2 type args with 9 args, etc. for variance?
 
         private string Concat
             <T1>
