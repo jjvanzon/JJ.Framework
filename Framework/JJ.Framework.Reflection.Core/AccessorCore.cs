@@ -156,7 +156,7 @@ public partial class AccessorCore
 
     // With Lambdas
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public void Call(Expression<Action> callLambda)
     {
         MethodCallInfo info = GetMethodCallInfo(callLambda);
@@ -167,7 +167,7 @@ public partial class AccessorCore
             info.Parameters.Select(x => x.ParameterType).ToArray());
     }
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public T? Call<T>(Expression<Func<T>> callLambda)
     {
         MethodCallInfo info = GetMethodCallInfo(callLambda);
@@ -178,7 +178,7 @@ public partial class AccessorCore
             info.Parameters.Select(x => x.ParameterType).ToArray());
     }
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(LambdaExpression callLambda)
     {
         MethodCallInfo info = GetMethodCallInfo(callLambda);
@@ -191,12 +191,12 @@ public partial class AccessorCore
 
     // With Name + Params
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     [Priority(3)]
     public object? Call([Caller] string name = "")
         => CallCore(name);
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     [Priority(3)] 
     public object? Call(
         string name,
@@ -205,55 +205,55 @@ public partial class AccessorCore
 
     // With CallerMemberName
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(object? arg1, [Caller] string name = "")
         => CallCore(name, [ arg1 ]);
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(object? arg1, object? arg2, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2 ]);
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(object? arg1, object? arg2, object? arg3, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3 ]);
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4 ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5 ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6 ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7 ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8 ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, object? arg9, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9 ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(object? arg1, object? arg2, object? arg3, object? arg4, object? arg5, object? arg6, object? arg7, object? arg8, object? arg9, object? arg10, [Caller] string name = "")
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10 ]);
 
     // With Collections
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(
         ICollection<object?> args,
         [Caller] string name = "")
         => CallCore(name, args);
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     [Priority(1)] 
     public object? Call(
         string name,
@@ -261,14 +261,15 @@ public partial class AccessorCore
         ICollection<Type?> argTypes)
         => CallCore(name, args, argTypes);
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(
         ICollection<object?> args,
         ICollection<Type?> argTypes,
         [Caller] string name = "")
         => CallCore(name, args, argTypes);
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call
+    /// " />
     [Priority(1)] 
     public object? Call(
         string name,
@@ -277,7 +278,7 @@ public partial class AccessorCore
         ICollection<Type> typeArgs)
         => CallCore(name, args, argTypes, typeArgs);
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call(
         ICollection<object?> args,
         ICollection<Type?> argTypes,
@@ -287,67 +288,67 @@ public partial class AccessorCore
     
     // With Type Args
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call<T>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T) ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call<T1, T2>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs:[ typeof(T1), typeof(T2) ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call<T1, T2, T3>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3) ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call<T1, T2, T3, T4>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4) ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call<T1, T2, T3, T4, T5>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5) ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call<T1, T2, T3, T4, T5, T6>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6) ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call<T1, T2, T3, T4, T5, T6, T7>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7) ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call<T1, T2, T3, T4, T5, T6, T7, T8>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7), typeof(T8) ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7), typeof(T8), typeof(T9) ]);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     public object? Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(string name, params object?[] args)
         => CallCore(name, args, [], typeArgs: [ typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(T5), typeof(T6), typeof(T7), typeof(T8), typeof(T9), typeof(T10) ]);
 
     // Helpers
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     private object? CallCore(
         string name)
         => ResolveMethod(name, [], [], []).Invoke(Obj, []);
     
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     private object? CallCore(
         string name,
         ICollection<object?> args)
         => ResolveMethod(name, args, [], []).Invoke(Obj, args.ToArray());
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     private object? CallCore(
         string name,
         ICollection<object?> args,
         ICollection<Type?> argTypes)
         => ResolveMethod(name, args, argTypes, []).Invoke(Obj, args.ToArray());
 
-    /// <inheritdoc cref="_invokemethod" />
+    /// <inheritdoc cref="_call" />
     private object? CallCore(
         string name,
         ICollection<object?> args,

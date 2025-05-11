@@ -313,29 +313,29 @@ namespace JJ.Framework.Reflection.Core
             }
         }
        
-        private bool ArgTypesMatch(MethodInfo openMethod, Type[] closedTypes)
+        private bool ArgTypesMatch(MethodInfo openMethod, Type[] closedArgTypes)
         {
-            Type[] openTypes = openMethod.GetParameters().Select(x => x.ParameterType).ToArray();
-            return ArgTypesMatch(openTypes, closedTypes);
+            Type[] openArgTypes = openMethod.GetParameters().Select(x => x.ParameterType).ToArray();
+            return ArgTypesMatch(openArgTypes, closedArgTypes);
         }
 
-        private static bool ArgTypesMatch(Type[] openTypes, Type[] closedTypes)
+        private static bool ArgTypesMatch(Type[] openArgTypes, Type[] closedArgTypes)
         {
-            if (openTypes.Length != closedTypes.Length)
+            if (openArgTypes.Length != closedArgTypes.Length)
             {
                 return false;
             }
             
-            for (int i = 0; i < openTypes.Length; i++)
+            for (int i = 0; i < openArgTypes.Length; i++)
             {
-                if(openTypes[i].IsGenericParameter)
+                if(openArgTypes[i].IsGenericParameter)
                 {
                     // Ignore generic parameters.
                     continue;
                 }
                 
                 // Match non-generic parameters
-                if (openTypes[i] != closedTypes[i])
+                if (openArgTypes[i] != closedArgTypes[i])
                 {
                     return false;
                 }
