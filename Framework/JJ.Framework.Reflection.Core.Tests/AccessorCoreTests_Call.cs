@@ -1,6 +1,7 @@
 ﻿using static System.TimeSpan;
 // ReSharper disable ReplaceWithSingleCallToCount
 // ReSharper disable RedundantBoolCompare
+// ReSharper disable RedundantExplicitParamsArrayCreation
 
 namespace JJ.Framework.Reflection.Core.Tests;
 
@@ -88,7 +89,7 @@ public class AccessorCoreTests_Call
     }
 
     [TestMethod]
-    public void AccessorCore_Call_WithTypeArguments()   
+    public void AccessorCore_Call_WithTypeArguments()
     {
         var obj = new MyClass();
         var accessor = new MyAccessor(obj);
@@ -146,7 +147,137 @@ public class AccessorCoreTests_Call
             AreEqual("<Int32, String, Single, Boolean, Char, TimeSpan, Guid, CultureInfo, DayOfWeek, Byte>(1, 2, 3, 4, 5, 6, 7, True, 9, 10)", () => concat);
         }
     }
+    
+    [TestMethod]
+    public void AccessorCore_Call_WithCollections()
+    {
+        var obj      = new MyClass();
+        var accessor = new AccessorCore(obj);
+
+        // With arg collection
+        {
+            string text = (string)accessor.Call("MyMethod", [ 2 ])!;
+            AreEqual("2", () => text);
+       
+            var dateTime = (DateTime)accessor.Call("AddDate", [ FromYear(2000), FromDays(1), 10 ])!;
+            AreEqual(ToDateTime("2000-01-02 10:00"), () => dateTime);
+        }
+
+        // With arg type collection (needed to distinguish several null-accepting overloads.
+        {
+            ThrowsException(() => accessor.Call("AcceptsNull"),
+                            "Method 'AcceptsNull' not found with argument types ().");
+
+            ThrowsException(() => accessor.Call("AcceptsNull", [ null ]),
+                            "Method 'AcceptsNull' not found with argument types (Object).");
             
+            var text1 = 
+                (string?)accessor.Call(
+                    "AcceptsNull", 
+                    args: [ null ], 
+                    argTypes: [ typeof(string) ]);
+
+            AreEqual("null|null", () => text1);
+
+            var text2 = 
+                (string?)accessor.Call(
+                    "AcceptsNull", 
+                    args: [ null ], 
+                    argTypes: [ typeof(int) ]);
+
+            AreEqual("null", () => text2);
+
+            accessor.Call(
+                "AcceptsNull", 
+                args: [ null ], 
+                argTypes: [ typeof(CultureInfo) ]);
+        }
+
+        // With type argument collection
+        {
+            // TODO: Prevent empty collection with optional parameters?
+            // TODO: Test where argTypes are used/required.
+
+            var concat = accessor.Call(
+                "Concat", 
+                args: [ 1m, true, "3", '4' ], 
+                argTypes: [ ], 
+                typeArgs: [ typeof(int), typeof(string), typeof(float), typeof(bool) ]);
+
+            AreEqual("<Int32, String, Single, Boolean>(1, True, 3, 4)", () => concat);
+
+        }
+    }
+
+    [TestMethod]
+    public void AccessorCore_Call_WithCollections_AndCallerMemberName()
+    {
+        var obj = new MyClass();
+        var myAccessor = new MyAccessor_WithCollections_AndCallerMemberName(obj);
+
+        // With arg collection and CallerMemberName
+        {
+            string text = myAccessor.MyMethod(3);
+            AreEqual("3", () => text);
+
+            DateTime dateTime = myAccessor.AddDate(FromYear(2001), FromDays(2), 20);
+            AreEqual(ToDateTime("2001-01-03 20:00"), () => dateTime);
+    
+        }
+        
+        // With arg type collection (needed to distinguish several null-accepting overloads.
+        {
+            ThrowsException(
+                () => myAccessor.AcceptsNull(null),
+                "Method 'AcceptsNull' not found with argument types (Object).");
+
+            var text1 = myAccessor.AcceptsNull("hi");
+            AreEqual("hi|hi", () => text1);
+
+            var text2 = myAccessor.AcceptsNull(3);
+            AreEqual("3", () => text2);
+
+            myAccessor.AcceptsNull(GetCultureInfo("nl-NL"));
+        }
+
+        // With type argument collection and CallerMemberName
+        {
+            var concat = myAccessor.Concat<decimal, short, object, CultureInfo>(3m, true, "5", '7');
+            AreEqual("<Decimal, Int16, Object, CultureInfo>(3, True, 5, 7)", () => concat);
+        }
+    }
+
+    private class MyAccessor_WithCollections_AndCallerMemberName(MyClass obj)
+    {
+        private readonly AccessorCore _accessor = new (obj);
+
+        // Essentially copies of methods in MyAccessor, but then passing collections to the Call.
+
+        // 1 Arg
+        public string MyMethod(int arg1) 
+            => (string)_accessor.Call([ arg1 ])!;
+
+        // 3 Args
+        public DateTime AddDate(DateTime arg1, TimeSpan arg2, double hours) 
+            => (DateTime)_accessor.Call([ arg1, arg2, hours ])!;
+
+        public object AcceptsNull(object arg) => arg switch
+        {
+            string      => _accessor.Call("AcceptsNull", [ arg ], [ typeof(string) ]),
+            int         => _accessor.Call("AcceptsNull", [ arg ], [ typeof(int) ]),
+            CultureInfo => _accessor.Call("AcceptsNull", [ arg ], [ typeof(CultureInfo) ]),
+            _           => _accessor.Call("AcceptsNull", [ arg ])
+        };
+
+        public string 
+            Concat<T1, T2, T3, T4>
+            (decimal arg1, bool arg2, string arg3, char arg4)
+            => (string)_accessor.Call(
+                [ arg1, arg2, arg3, arg4 ],
+                [ ],
+                [ typeof(T1), typeof(T2), typeof(T3), typeof(T4) ]);
+    }
+    
     [TestMethod]
     public void AccessorCore_Call_StringConfusedWithName_SolvedWithCollectionExpression()
     {
@@ -354,6 +485,12 @@ public class AccessorCoreTests_Call
 
         // End with 2 Strings
         private string Concat(int    arg1, float  arg2, string arg3, string arg4) => $"{arg1}{arg2}{arg3}{arg4}";
+
+        // Overloads indistinguishable by null
+
+        private string AcceptsNull(string? text) => (text ?? "null") + "|" + (text ?? "null");
+        private string AcceptsNull(int? number) => number?.ToString() ?? "null";
+        private void AcceptsNull(CultureInfo? cultureInfo) { }
 
         // With Type Arguments
 
