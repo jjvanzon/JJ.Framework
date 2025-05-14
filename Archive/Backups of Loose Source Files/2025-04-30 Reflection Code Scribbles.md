@@ -471,3 +471,59 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
         => CallCore(name, [ arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10 ]);
 
 ```
+
+
+### AccessorCore Tests
+
+```cs
+        // By CallerMemberName + Type Arg
+        {
+            var accessor = new Accessor_WithCallerMemberName_AndTypeArg(obj);
+
+            accessor.MyProperty1 = 10;
+            AreEqual(10, () => accessor.MyProperty1);
+
+            accessor.MyProperty2 = "Hello";
+            AreEqual("Hello", () => accessor.MyProperty2);
+
+            accessor._myField1 = true;
+            IsTrue(() => accessor._myField1);
+
+            accessor._myField2 = 20.5;
+            AreEqual(20.5, () => accessor._myField2);
+        }
+
+        // By CallerMemberName + Cast
+        {
+            var accessor = new Accessor_WithCallerMemberName_AndCast(obj);
+
+            accessor.MyProperty1 = 10;
+            AreEqual(10, () => accessor.MyProperty1);
+
+            accessor.MyProperty2 = "Hello";
+            AreEqual("Hello", () => accessor.MyProperty2);
+
+            accessor._myField1 = true;
+            IsTrue(() => accessor._myField1);
+
+            accessor._myField2 = 20.5;
+            AreEqual(20.5, () => accessor._myField2);
+        }
+
+        // TODO: With explicit name
+        {
+            var accessor = new Accessor_WithExplicitName_AndCast(obj);
+            
+            accessor.MyProperty1 = 10;
+            AreEqual(10, () => accessor.MyProperty1);
+            
+            accessor.MyProperty2 = "Hello";
+            AreEqual("Hello", () => accessor.MyProperty2);
+            
+            accessor._myField1 = true;
+            IsTrue(() => accessor._myField1);
+            
+            accessor._myField2 = 20.5;
+            AreEqual(20.5, () => accessor._myField2);
+        }
+```

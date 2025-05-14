@@ -1,10 +1,6 @@
 ﻿using static System.TimeSpan;
-using static JJ.Framework.Common.Core.NameHelper;
-using static JJ.Framework.Reflection.Core.Tests.Helpers.FormatHelper;
 
-// ReSharper disable InlineOutVariableDeclaration
-// ReSharper disable ConditionIsAlwaysTrueOrFalse
-// ReSharper disable ConvertToConstant.Local
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
 
 namespace JJ.Framework.Reflection.Core.Tests;
 

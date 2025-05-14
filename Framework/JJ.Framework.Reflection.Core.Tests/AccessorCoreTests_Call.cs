@@ -1,7 +1,4 @@
 ﻿using static System.TimeSpan;
-// ReSharper disable ReplaceWithSingleCallToCount
-// ReSharper disable RedundantBoolCompare
-// ReSharper disable RedundantExplicitParamsArrayCreation
 
 namespace JJ.Framework.Reflection.Core.Tests;
 
@@ -205,7 +202,6 @@ public class AccessorCoreTests_Call
                 typeArgs: [ typeof(int), typeof(string), typeof(float), typeof(bool) ]);
 
             AreEqual("<Int32, String, Single, Boolean>(1, True, 3, 4)", () => concat);
-
         }
     }
 
@@ -258,16 +254,17 @@ public class AccessorCoreTests_Call
             => (string)_accessor.Call([ arg1 ])!;
 
         // 3 Args
-        public DateTime AddDate(DateTime arg1, TimeSpan arg2, double hours) 
-            => (DateTime)_accessor.Call([ arg1, arg2, hours ])!;
+        public DateTime AddDate(DateTime dateTime, TimeSpan timeSpan, double hours) 
+            => (DateTime)_accessor.Call([ dateTime, timeSpan, hours ])!;
 
-        public object AcceptsNull(object arg) => arg switch
+        public object AcceptsNull(object obj) => obj switch
         {
-            string      => _accessor.Call("AcceptsNull", [ arg ], [ typeof(string) ]),
-            int         => _accessor.Call("AcceptsNull", [ arg ], [ typeof(int) ]),
-            CultureInfo => _accessor.Call("AcceptsNull", [ arg ], [ typeof(CultureInfo) ]),
-            _           => _accessor.Call("AcceptsNull", [ arg ])
+            string      => _accessor.Call("AcceptsNull", [ obj ], [ typeof(string) ]),
+            int         => _accessor.Call("AcceptsNull", [ obj ], [ typeof(int) ]),
+            CultureInfo => _accessor.Call("AcceptsNull", [ obj ], [ typeof(CultureInfo) ]),
+            _           => _accessor.Call("AcceptsNull", [ obj ])
         };
+
 
         public string 
             Concat<T1, T2, T3, T4>
@@ -275,6 +272,7 @@ public class AccessorCoreTests_Call
             => (string)_accessor.Call(
                 [ arg1, arg2, arg3, arg4 ],
                 [ ],
+                // TODO: Mixed open and closed argument types.
                 [ typeof(T1), typeof(T2), typeof(T3), typeof(T4) ]);
     }
     
