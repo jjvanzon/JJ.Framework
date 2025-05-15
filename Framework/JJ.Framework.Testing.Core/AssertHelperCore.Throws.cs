@@ -5,7 +5,10 @@ namespace JJ.Framework.Testing.Core;
 public static partial class AssertHelperCore
 {
     // ThrowsException Checks
-    
+
+    public static void ThrowsExceptionContaining(Func<object?> statement, params string[] expectedTexts)
+        => ThrowsExceptionContaining(() => { statement(); }, expectedTexts);
+
     public static void ThrowsExceptionContaining(Action statement, params string[] expectedTexts)
     {
         if (statement == null) throw new NullException(() => statement);
@@ -28,6 +31,9 @@ public static partial class AssertHelperCore
         throw new Exception("An exception should have occurred.");
     }
     
+    public static void ThrowsExceptionContaining(Func<object?> statement, Type exceptionType, params string[] expectedTexts)
+        => ThrowsExceptionContaining(() => { statement(); }, exceptionType, expectedTexts);
+
     public static void ThrowsExceptionContaining(Action statement, Type exceptionType, params string[] expectedTexts)
     {
         if (statement == null) throw new NullException(() => statement);
@@ -53,11 +59,19 @@ public static partial class AssertHelperCore
         throw new Exception("An exception should have occurred.");
     }
 
+    public static void ThrowsExceptionContaining<TException>(Func<object?> statement, params string[] expectedTexts)
+        => ThrowsExceptionContaining(statement, typeof(TException), expectedTexts);
+
     public static void ThrowsExceptionContaining<TException>(Action statement, params string[] expectedTexts)
         => ThrowsExceptionContaining(statement, typeof(TException), expectedTexts);
     
-    // Overloads with Func (extends Action variants, avoids shadow by MSTest)
+    // Overloads with Func
+    
+    // (extends Action variants, avoids shadow by MSTest)
 
+    public static void ThrowsException(Func<object?> statement)
+        => AssertHelper.ThrowsException(() => statement());
+        
     public static void ThrowsException(Func<object?> statement, string expectedMessage) 
         => AssertHelper.ThrowsException(() => statement(), expectedMessage);
     
