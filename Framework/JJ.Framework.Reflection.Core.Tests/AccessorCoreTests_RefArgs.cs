@@ -917,7 +917,7 @@ public class AccessorCoreTests_RefArgs
         
         public virtual bool MyMethod(out string arg)
         {
-            arg = default;
+            arg = "";
             return (bool)Call(Name(), ref arg)!;
         }
         
@@ -937,7 +937,7 @@ public class AccessorCoreTests_RefArgs
         
         public virtual DateTime MyMethod(TimeSpan arg1, out string arg2)
         {
-            arg2 = default;
+            arg2 = "";
             return (DateTime)Call(arg1, ref arg2)!;
         }
         
@@ -949,7 +949,7 @@ public class AccessorCoreTests_RefArgs
         
         public virtual Guid MyMethod(ref string arg1, out string arg2)
         {
-            arg2 = default;
+            arg2 = "";
             return (Guid)Call(ref arg1, ref arg2)!;
         }
         
@@ -1025,7 +1025,7 @@ public class AccessorCoreTests_RefArgs
         public virtual float MyMethod(out double arg1, ref DateTime arg2, out string arg3)
         {
             arg1 = default;
-            arg3 = default;
+            arg3 = "";
             return (float)Call(ref arg1, ref arg2, ref arg3)!;
         }
         
@@ -1039,13 +1039,13 @@ public class AccessorCoreTests_RefArgs
         
         public virtual decimal MyMethod(bool arg1, out string arg2, DateTime arg3, TimeSpan arg4)
         {
-            arg2 = default;
+            arg2 = "";
             return (decimal)Call(arg1, ref arg2, arg3, arg4)!;
         }
         
         public virtual decimal MyMethod(bool arg1, out string arg2, DateTime arg3, string arg4)
         {
-            arg2 = default;
+            arg2 = "";
             return (decimal)Call(arg1, ref arg2, arg3, arg4)!;
         }
         
@@ -1137,15 +1137,15 @@ public class AccessorCoreTests_RefArgs
         
         public virtual bool MyMethod(out string arg1, ref DateTime arg2, TimeSpan arg3, out Guid arg4)
         {
-            arg1 = default;
+            arg1 = "";
             arg4 = default;
             return (bool)Call(ref arg1, ref arg2, arg3, ref arg4)!;
         }
         
         public virtual bool MyMethod(out string arg1, ref DateTime arg2, TimeSpan arg3, out string arg4)
         {
-            arg1 = default;
-            arg4 = default;
+            arg1 = "";
+            arg4 = "";
             return (bool)Call(ref arg1, ref arg2, arg3, ref arg4)!;
         }
         
@@ -1157,7 +1157,7 @@ public class AccessorCoreTests_RefArgs
         
         public virtual byte MyMethod(int arg1, long arg2, ref float arg3, out string arg4)
         {
-            arg4 = default;
+            arg4 = "";
             return (byte)Call(arg1, arg2, ref arg3, ref arg4)!;
         }
         
@@ -1183,7 +1183,7 @@ public class AccessorCoreTests_RefArgs
         public virtual Guid MyMethod(byte arg1, out int arg2, ref long arg3, out string arg4)
         {
             arg2 = default;
-            arg4 = default;
+            arg4 = "";
             return (Guid)Call(arg1, ref arg2, ref arg3, ref arg4)!;
         }
         
@@ -1197,7 +1197,7 @@ public class AccessorCoreTests_RefArgs
         public virtual double MyMethod(ref decimal arg1, out bool arg2, ref string arg3, out string arg4)
         {
             arg2 = default;
-            arg4 = default;
+            arg4 = "";
             return (double)Call(ref arg1, ref arg2, ref arg3, ref arg4)!;
         }
     }
@@ -1214,7 +1214,7 @@ public class AccessorCoreTests_RefArgs
         
         public override bool MyMethod(out string arg)
         {
-            arg = default;
+            arg = "";
             return (bool)Call(Name(), ref arg)!;
         }
         
@@ -1234,7 +1234,7 @@ public class AccessorCoreTests_RefArgs
         
         public override DateTime MyMethod(TimeSpan arg1, out string arg2)
         {
-            arg2 = default;
+            arg2 = "";
             return (DateTime)Call(nameof(MyMethod), arg1, ref arg2)!;
         }
         
@@ -1246,7 +1246,7 @@ public class AccessorCoreTests_RefArgs
         
         public override Guid MyMethod(ref string arg1, out string arg2)
         {
-            arg2 = default;
+            arg2 = "";
             return (Guid)Call("MyMethod", ref arg1, ref arg2)!;
         }
         
@@ -1322,7 +1322,7 @@ public class AccessorCoreTests_RefArgs
         public override float MyMethod(out double arg1, ref DateTime arg2, out string arg3)
         {
             arg1 = default;
-            arg3 = default;
+            arg3 = "";
             return (float)Call(Name(), ref arg1, ref arg2, ref arg3)!;
         }
         
@@ -1336,13 +1336,13 @@ public class AccessorCoreTests_RefArgs
         
         public override decimal MyMethod(bool arg1, out string arg2, DateTime arg3, TimeSpan arg4)
         {
-            arg2 = default;
+            arg2 = "";
             return (decimal)Call(Name(), arg1, ref arg2, arg3, arg4)!;
         }
         
         public override decimal MyMethod(bool arg1, out string arg2, DateTime arg3, string arg4)
         {
-            arg2 = default;
+            arg2 = "";
             return (decimal)Call(Name(), arg1, ref arg2, arg3, arg4)!;
         }
         
@@ -1434,15 +1434,15 @@ public class AccessorCoreTests_RefArgs
         
         public override bool MyMethod(out string arg1, ref DateTime arg2, TimeSpan arg3, out Guid arg4)
         {
-            arg1 = default;
+            arg1 = "";
             arg4 = default;
             return (bool)Call(Name(), ref arg1, ref arg2, arg3, ref arg4)!;
         }
         
         public override bool MyMethod(out string arg1, ref DateTime arg2, TimeSpan arg3, out string arg4)
         {
-            arg1 = default;
-            arg4 = default;
+            arg1 = "";
+            arg4 = "";
             return (bool)Call(Name(), ref arg1, ref arg2, arg3, ref arg4)!;
         }
         
@@ -1454,7 +1454,7 @@ public class AccessorCoreTests_RefArgs
         
         public override byte MyMethod(int arg1, long arg2, ref float arg3, out string arg4)
         {
-            arg4 = default;
+            arg4 = "";
             return (byte)Call(Name(), arg1, arg2, ref arg3, ref arg4)!;
         }
         
@@ -1480,7 +1480,7 @@ public class AccessorCoreTests_RefArgs
         public override Guid MyMethod(byte arg1, out int arg2, ref long arg3, out string arg4)
         {
             arg2 = default;
-            arg4 = default;
+            arg4 = "";
             return (Guid)Call(Name(), arg1, ref arg2, ref arg3, ref arg4)!;
         }
         
@@ -1494,7 +1494,7 @@ public class AccessorCoreTests_RefArgs
         public override double MyMethod(ref decimal arg1, out bool arg2, ref string arg3, out string arg4)
         {
             arg2 = default;
-            arg4 = default;
+            arg4 = "";
             return (double)Call(Name(), ref arg1, ref arg2, ref arg3, ref arg4)!;
         }
     }

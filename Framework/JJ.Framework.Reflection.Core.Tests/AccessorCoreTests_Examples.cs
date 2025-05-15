@@ -1,4 +1,5 @@
-﻿namespace JJ.Framework.Reflection.Core.Tests;
+﻿// ReSharper disable RedundantArgumentDefaultValue
+namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
 public class AccessorCoreTests_Examples
@@ -9,8 +10,8 @@ public class AccessorCoreTests_Examples
     {
         private string MyProperty { get; set; } = "10";
         private string MyMethod(int para) => (para * 10).ToString();
-        private string MyMethod2(int para1, int? para2) => (para1 * para2 * 10).ToString();
-        private string MyMethod3(int para1, string para2) => $"{para1 * 10}{para2}";
+        private string MyMethod2(int para1, int? para2) => $"{10 * para1 * para2}";
+        private string MyMethod3(int para1, string para2) => $"{10 * para1}{para2}";
     }
     
     private static class MyStaticClass;
@@ -30,19 +31,19 @@ public class AccessorCoreTests_Examples
     private class TestAccessor_Call_ByLambda : TestAccessorBase
     {
         public string MyMethod(int para) =>
-            _accessor.Call(() => MyMethod(para));
+            _accessor.Call(() => MyMethod(para))!;
     }
 
     private class TestAccessor_Call_ByCallerMemberName : TestAccessorBase
     {
         public string MyMethod(int para) =>
-            (string)_accessor.Call(para);
+            (string)_accessor.Call(para)!;
     }
     
     private class TestAccessor_Call_ByName : TestAccessorBase
     {
         public string MyMethod() =>
-            (string)_accessor.Call("MyMethod", 10);
+            (string)_accessor.Call("MyMethod", 10)!;
     }
             
     [TestMethod]
@@ -70,27 +71,27 @@ public class AccessorCoreTests_Examples
     
     private class MyAccessor_Property_ByLambda : TestAccessorBase
     {
-        public string MyProperty => _accessor.Get(() => MyProperty);
+        public string MyProperty => _accessor.Get(() => MyProperty)!;
     }
 
     private class MyAccessor_Property_ByCallerMemberName : TestAccessorBase
     {
-        public string MyProperty => (string)_accessor.Get();
+        public string MyProperty => (string)_accessor.Get()!;
     }
     
     private class MyAccessor_Property_ByCallerMemberName_UsingTypeArgument : TestAccessorBase
     {
-        public string MyProperty => _accessor.Get<string>();
+        public string MyProperty => _accessor.Get<string>()!;
     }
     
     private class MyAccessor_Property_ByName : TestAccessorBase
     {
-        public string MyProperty => (string)_accessor.Get("MyProperty");
+        public string MyProperty => (string)_accessor.Get("MyProperty")!;
     }
     
     private class MyAccessor_Property_ByName_UsingTypeArgument : TestAccessorBase
     {
-        public string MyProperty => _accessor.Get<string>("MyProperty");
+        public string MyProperty => _accessor.Get<string>("MyProperty")!;
     }
     
     [TestMethod]
@@ -159,7 +160,7 @@ public class AccessorCoreTests_Examples
         AccessorCore _accessor = new(myObject);
         
         public string MyMethod(int para) 
-            => (string)_accessor.Call(para);
+            => (string)_accessor.Call(para)!;
     }
 
     [TestMethod]
@@ -175,25 +176,25 @@ public class AccessorCoreTests_Examples
     class OverloadAccessor1 : TestAccessorBase
     {
         public string MyMethod2(int para1, int? para2) =>
-            (string)_accessor.Call(para1, para2);
+            (string)_accessor.Call(para1, para2)!;
     }
 
     class OverloadAccessor2 : TestAccessorBase
     {
         public string MyMethod(int para) =>
-            (string)_accessor.Call([ para ], [ typeof(int) ]);
+            (string)_accessor.Call([ para ], [ typeof(int) ])!;
     }
 
     class OverloadAccessor3 : TestAccessorBase
     {
         public string MyMethod2(int para1, int? para2) =>
-            (string)_accessor.Call([ para1, para2 ], [ null, typeof(int?) ]);
+            (string)_accessor.Call([ para1, para2 ], [ null, typeof(int?) ])!;
     }
 
     class OverloadAccessor4 : TestAccessorBase
     {
         public string MyMethod2(int para1, int? para2) =>
-            (string)_accessor.Call(para1, para2);
+            (string)_accessor.Call(para1, para2)!;
     }
     
     [TestMethod]

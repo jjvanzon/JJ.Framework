@@ -92,16 +92,16 @@ public class AccessorCoreTests_GetSet
             var accessor = new AccessorCore(obj);
             
             accessor.Set("MyProperty1", 10 + i);
-            AreEqual(10 + i, () => (int)accessor.Get("MyProperty1"));
+            AreEqual(10 + i, () => (int)accessor.Get("MyProperty1")!);
             
             accessor.Set("MyProperty2", "Hello" + i);
-            AreEqual("Hello" + i, () => (string)accessor.Get("MyProperty2"));
+            AreEqual("Hello" + i, () => (string)accessor.Get("MyProperty2")!);
             
             accessor.Set("_myField1", 20.5 + i);
-            AreEqual(20.5 + i, () => (double)accessor.Get("_myField1"));
+            AreEqual(20.5 + i, () => (double)accessor.Get("_myField1")!);
             
             accessor.Set("_myField2", flag);
-            AreEqual(flag, () => (bool)accessor.Get("_myField2"));
+            AreEqual(flag, () => (bool)accessor.Get("_myField2")!);
             
             flag = !flag;
             i++;
@@ -127,7 +127,7 @@ public class AccessorCoreTests_GetSet
 
         public string MyProperty2
         {
-            get => Get<string>();
+            get => Get<string>()!;
             set => Set(value);
         }
 
@@ -181,7 +181,7 @@ public class AccessorCoreTests_GetSet
 
         public string MyProperty2
         {
-            get => Get(() => MyProperty2); 
+            get => Get(() => MyProperty2)!; 
             set => Set(() => MyProperty2, value);
         }
 
@@ -208,7 +208,7 @@ public class AccessorCoreTests_GetSet
         
         public string MyProperty2
         {
-            get => Get<string>("MyProperty2");
+            get => Get<string>("MyProperty2")!;
             set => Set("MyProperty2", value);
         }
         
@@ -264,7 +264,7 @@ public class AccessorCoreTests_GetSet
 
         public string MyProperty2
         {
-            get => _accessor.Get<string>();
+            get => _accessor.Get<string>()!;
             set => _accessor.Set(value);
         }
 
@@ -322,7 +322,7 @@ public class AccessorCoreTests_GetSet
 
         public string MyProperty2
         {
-            get => _accessor.Get(() => MyProperty2); 
+            get => _accessor.Get(() => MyProperty2)!; 
             set => _accessor.Set(() => MyProperty2, value);
         }
 
@@ -351,7 +351,7 @@ public class AccessorCoreTests_GetSet
         
         public string MyProperty2
         {
-            get => _accessor.Get<string>("MyProperty2");
+            get => _accessor.Get<string>("MyProperty2")!;
             set => _accessor.Set("MyProperty2", value);
         }
         
@@ -400,7 +400,7 @@ public class AccessorCoreTests_GetSet
     private class MyClass
     {
         private int MyProperty1 { get; set; }
-        private string MyProperty2 { get; set; }
+        private string MyProperty2 { get; set; } = "";
         private double _myField1;
         private bool _myField2;
     }

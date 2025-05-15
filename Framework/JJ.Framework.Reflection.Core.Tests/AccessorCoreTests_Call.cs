@@ -1,4 +1,5 @@
 ﻿using static System.TimeSpan;
+// ReSharper disable ExplicitCallerInfoArgument
 
 namespace JJ.Framework.Reflection.Core.Tests;
 
@@ -8,7 +9,7 @@ public class AccessorCoreTests_Call
     [TestMethod]
     public void AccessorCore_Call_ByName()
     {
-        var obj  = new MyClass();
+        var obj = new MyClass();
         var accessor = new AccessorCore(obj);
         
         var number = (int)accessor.Call("MyMethod")!;
@@ -26,17 +27,17 @@ public class AccessorCoreTests_Call
 
         // 0 Args
         {
-            int number = accessor.MyMethod()!;
+            int number = accessor.MyMethod();
             AreEqual(1, () => number);
         }
         // 1 Args
         {
-            string text = accessor.MyMethod(2)!;
+            string text = accessor.MyMethod(2);
             AreEqual("2", () => text);
         }
         // 2 Args
         {
-            long number = accessor.Add(1, 2)!;
+            long number = accessor.Add(1, 2);
             AreEqual(3, () => number);
         }
         // 3 Args
@@ -257,14 +258,13 @@ public class AccessorCoreTests_Call
         public DateTime AddDate(DateTime dateTime, TimeSpan timeSpan, double hours) 
             => (DateTime)_accessor.Call([ dateTime, timeSpan, hours ])!;
 
-        public object AcceptsNull(object obj) => obj switch
+        public object AcceptsNull(object? obj) => obj switch
         {
-            string      => _accessor.Call("AcceptsNull", [ obj ], [ typeof(string) ]),
-            int         => _accessor.Call("AcceptsNull", [ obj ], [ typeof(int) ]),
-            CultureInfo => _accessor.Call("AcceptsNull", [ obj ], [ typeof(CultureInfo) ]),
-            _           => _accessor.Call("AcceptsNull", [ obj ])
+            string      => _accessor.Call("AcceptsNull", [ obj ], [ typeof(string) ])!,
+            int         => _accessor.Call("AcceptsNull", [ obj ], [ typeof(int) ])!,
+            CultureInfo => _accessor.Call("AcceptsNull", [ obj ], [ typeof(CultureInfo) ])!,
+            _           => _accessor.Call("AcceptsNull", [ obj ])!
         };
-
 
         public string 
             Concat<T1, T2, T3, T4>
@@ -273,7 +273,7 @@ public class AccessorCoreTests_Call
                 [ arg1, arg2, arg3, arg4 ],
                 [ ],
                 // TODO: Mixed open and closed argument types.
-                [ typeof(T1), typeof(T2), typeof(T3), typeof(T4) ]);
+                [ typeof(T1), typeof(T2), typeof(T3), typeof(T4) ])!;
     }
     
     [TestMethod]
@@ -349,7 +349,7 @@ public class AccessorCoreTests_Call
 
         // 9 Args
         public string FormatSum(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9) 
-            => (string)_accessor.Call(a1, a2, a3, a4, a5, a6, a7, a8, a9);
+            => (string)_accessor.Call(a1, a2, a3, a4, a5, a6, a7, a8, a9)!;
 
         // Void Return
         public void LogSum(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9) 
@@ -381,52 +381,52 @@ public class AccessorCoreTests_Call
         public string Concat
             <T1>
             (byte arg1) 
-            => (string)_accessor.Call<T1>(Name(), arg1);
+            => (string)_accessor.Call<T1>(Name(), arg1)!;
 
         public string Concat
             <T1, T2>
             (short arg1, int arg2)
-            => (string)_accessor.Call<T1, T2>(Name(), arg1, arg2);
+            => (string)_accessor.Call<T1, T2>(Name(), arg1, arg2)!;
 
         public string 
             Concat<T1, T2, T3>
             (long arg1, float arg2, double arg3)
-            => (string)_accessor.Call<T1, T2, T3>(Name(), arg1, arg2, arg3);
+            => (string)_accessor.Call<T1, T2, T3>(Name(), arg1, arg2, arg3)!;
 
         public string 
             Concat<T1, T2, T3, T4>
             (decimal arg1, bool arg2, string arg3, char arg4)
-            => (string)_accessor.Call<T1, T2, T3, T4>(Name(), arg1, arg2, arg3, arg4);
+            => (string)_accessor.Call<T1, T2, T3, T4>(Name(), arg1, arg2, arg3, arg4)!;
 
         public string 
             Concat<T1, T2, T3, T4, T5>
             (DateTime arg1, TimeSpan arg2, Guid arg3, CultureInfo arg4, DayOfWeek arg5)
-            => (string)_accessor.Call<T1, T2, T3, T4, T5>(Name(), arg1, arg2, arg3, arg4, arg5);
+            => (string)_accessor.Call<T1, T2, T3, T4, T5>(Name(), arg1, arg2, arg3, arg4, arg5)!;
 
         public string 
             Concatenate<T1, T2, T3, T4, T5, T6>
             (T1 arg1, byte arg2, T3 arg3, short arg4, T5 arg5, int arg6)
-            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6>(Name(), arg1, arg2, arg3, arg4, arg5, arg6);
+            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6>(Name(), arg1, arg2, arg3, arg4, arg5, arg6)!;
 
         public string Concatenate
             <T1, T2, T3, T4, T5, T6, T7>
             (long arg1, T2 arg2, float arg3, T4 arg4, double arg5, T6 arg6, decimal arg7)
-            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7)!;
 
         public string Concatenate
             <T1, T2, T3, T4, T5, T6, T7, T8>
             (T1 arg1, bool arg2, T3 arg3, string arg4, T5 arg5, char arg6, T7 arg7, DateTime arg8)
-            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)!;
 
         public string Concatenate
             <T1, T2, T3, T4, T5, T6, T7, T8, T9>
             (TimeSpan arg1, T2 arg2, Guid arg3, T4 arg4, CultureInfo arg5, T6 arg6, DayOfWeek arg7, T8 arg8, byte arg9)
-            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
+            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8, T9>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9)!;
 
         public string Concatenate
             <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
             (T1 arg1, short arg2, int arg3, long arg4, float arg5, double arg6, decimal arg7, bool arg8, string arg9, T10 arg10)
-            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10);
+            => (string)_accessor.Call<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(Name(), arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10)!;
     }
     
     private class MyClass
