@@ -101,7 +101,7 @@ public partial class AccessorCore
         }
     }
     
-    // With Params
+    // Indexers With Params
     
     public object? Get(params ICollection<object?> indices)
     {
@@ -121,7 +121,7 @@ public partial class AccessorCore
         property.SetValue(Obj, value, indices);
     }
     
-    // With Collections
+    // Indexers With Collections
     
     public object? Get(ICollection<object?> indices, ICollection<Type?> argTypes)
     {
@@ -130,6 +130,9 @@ public partial class AccessorCore
         return property.GetValue(Obj, indices.ToArray());
     }
 
+    public void Set(ICollection<object?> indices, object? value)
+        => Set(indices, value, [ ]);
+    
     public void Set(ICollection<object?> indices, object? value, ICollection<Type?> argTypes)
     {
         AssertIndices(indices);
@@ -138,7 +141,7 @@ public partial class AccessorCore
         property.SetValue(Obj, value, indices.ToArray());
     }
     
-    // Helpers
+    // Indexer Helpers
     
     private static void AssertIndices(ICollection<object?> indices)
     {
