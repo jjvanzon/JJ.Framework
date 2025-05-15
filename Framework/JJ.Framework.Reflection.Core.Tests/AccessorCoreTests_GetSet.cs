@@ -1,4 +1,6 @@
 ﻿// ReSharper disable RedundantArgumentDefaultValue
+// ReSharper disable FieldCanBeMadeReadOnly.Local
+// ReSharper disable ExplicitCallerInfoArgument
 #pragma warning disable CS0169 // Field is never used
 
 namespace JJ.Framework.Reflection.Core.Tests;
@@ -19,27 +21,91 @@ public class AccessorCoreTests_GetSet
             new Accessor_WithCallerMemberName_AndCast_WithComposition(obj),
             new Accessor_ByLambda_WithInheritance(obj),
             new Accessor_ByLambda_WithComposition(obj),
-            // TODO: Split into WithInheritance and WithComposition variants.
-            new Accessor_WithExplicitName_AndTypeArg(obj),
-            new Accessor_WithExplicitName_AndCast(obj)
+            new Accessor_WithExplicitName_AndTypeArg_WithInheritance(obj),
+            new Accessor_WithExplicitName_AndTypeArg_WithComposition(obj),
+            new Accessor_WithExplicitName_AndCast_WithInheritance(obj),
+            new Accessor_WithExplicitName_AndCast_WithComposition(obj)
         };
         
-        foreach (var accessor in accessors)
+        int i;
+        bool flag = true;
+        
+        for (i = 0; i < accessors.Length; i++)
         {
-            accessor.MyProperty1 = 10;
-            AreEqual(10, () => accessor.MyProperty1);
+            var accessor = accessors[i];
 
-            accessor.MyProperty2 = "Hello";
-            AreEqual("Hello", () => accessor.MyProperty2);
-
-            accessor._myField1 = true;
-            IsTrue(() => accessor._myField1);
-
-            accessor._myField2 = 20.5;
-            AreEqual(20.5, () => accessor._myField2);
+            accessor.MyProperty1 = 10 + i;
+            AreEqual(10 + i, () => accessor.MyProperty1);
+            
+            accessor.MyProperty2 = "Hello" + i;
+            AreEqual("Hello" + i, () => accessor.MyProperty2);
+            
+            accessor._myField1 = 20.5 + i;
+            AreEqual(20.5 + i, () => accessor._myField1);
+            
+            accessor._myField2 = flag;
+            AreEqual(flag, () => accessor._myField2);
+            
+            flag = !flag;
         }
 
-        // TODO: Separately test access by name (with type arg or cast) with direct instantiation of AccessorCore.
+        // Without Wrapper, By Name
+        {
+            var accessor = new AccessorCore(obj);
+            
+            accessor.Set("MyProperty1", 10 + i);
+            AreEqual(10 + i, () => accessor.Get("MyProperty1"));
+            
+            accessor.Set("MyProperty2", "Hello" + i);
+            AreEqual("Hello" + i, () => accessor.Get("MyProperty2"));
+            
+            accessor.Set("_myField1", 20.5 + i);
+            AreEqual(20.5 + i, () => accessor.Get("_myField1"));
+            
+            accessor.Set("_myField2", flag);
+            AreEqual(flag, () => accessor.Get("_myField2"));
+            
+            flag = !flag;
+            i++;
+        }
+        // Without Wrapper, By Name with Type Arg
+        {
+            var accessor = new AccessorCore(obj);
+            
+            accessor.Set("MyProperty1", 10 + i);
+            AreEqual(10 + i, () => accessor.Get<int>("MyProperty1"));
+            
+            accessor.Set("MyProperty2", "Hello" + i);
+            AreEqual("Hello" + i, () => accessor.Get<string>("MyProperty2"));
+            
+            accessor.Set("_myField1", 20.5 + i);
+            AreEqual(20.5 + i, () => accessor.Get<double>("_myField1"));
+            
+            accessor.Set("_myField2", flag);
+            AreEqual(flag, () => accessor.Get<bool>("_myField2"));
+            
+            flag = !flag;
+            i++;
+        }
+        // Without Wrapper, By Name with Cast
+        {
+            var accessor = new AccessorCore(obj);
+            
+            accessor.Set("MyProperty1", 10 + i);
+            AreEqual(10 + i, () => (int)accessor.Get("MyProperty1"));
+            
+            accessor.Set("MyProperty2", "Hello" + i);
+            AreEqual("Hello" + i, () => (string)accessor.Get("MyProperty2"));
+            
+            accessor.Set("_myField1", 20.5 + i);
+            AreEqual(20.5 + i, () => (double)accessor.Get("_myField1"));
+            
+            accessor.Set("_myField2", flag);
+            AreEqual(flag, () => (bool)accessor.Get("_myField2"));
+            
+            flag = !flag;
+            i++;
+        }
     }
 
     [TestMethod]
@@ -65,15 +131,15 @@ public class AccessorCoreTests_GetSet
             set => Set(value);
         }
 
-        public bool _myField1
+        public double _myField1
         {
-            get => Get<bool>();
+            get => Get<double>();
             set => Set(value);
         }
 
-        public double _myField2
+        public bool _myField2
         {
-            get => Get<double>();
+            get => Get<bool>();
             set => Set(value);
         }
     }
@@ -92,15 +158,15 @@ public class AccessorCoreTests_GetSet
             set => Set(value);
         }
 
-        public bool _myField1
+        public double _myField1
         {
-            get => (bool)Get()!;
+            get => (double)Get()!;
             set => Set(value);
         }
 
-        public double _myField2
+        public bool _myField2
         {
-            get => (double)Get()!;
+            get => (bool)Get()!;
             set => Set(value);
         }
     }
@@ -119,20 +185,20 @@ public class AccessorCoreTests_GetSet
             set => Set(() => MyProperty2, value);
         }
 
-        public bool _myField1
+        public double _myField1
         {
             get => Get(() => _myField1);
             set => Set(() => _myField1, value);
         }
 
-        public double _myField2
+        public bool _myField2
         {
             get => Get(() => _myField2);
             set => Set(() => _myField2, value);
         }
     }
    
-    private class Accessor_WithExplicitName_AndTypeArg(MyClass obj) : AccessorCore(obj), IMyAccessor
+    private class Accessor_WithExplicitName_AndTypeArg_WithInheritance(MyClass obj) : AccessorCore(obj), IMyAccessor
     {
         public int MyProperty1
         {
@@ -146,20 +212,20 @@ public class AccessorCoreTests_GetSet
             set => Set("MyProperty2", value);
         }
         
-        public bool _myField1
+        public double _myField1
         {
-            get => Get<bool>("_myField1");
+            get => Get<double>("_myField1");
             set => Set("_myField1", value);
         }
         
-        public double _myField2
+        public bool _myField2
         {
-            get => Get<double>("_myField2");
+            get => Get<bool>("_myField2");
             set => Set("_myField2", value);
         }
     }
         
-    private class Accessor_WithExplicitName_AndCast(MyClass obj) : AccessorCore(obj), IMyAccessor
+    private class Accessor_WithExplicitName_AndCast_WithInheritance(MyClass obj) : AccessorCore(obj), IMyAccessor
     {
         public int MyProperty1
         {
@@ -173,22 +239,22 @@ public class AccessorCoreTests_GetSet
             set => Set("MyProperty2", value);
         }
         
-        public bool _myField1
+        public double _myField1
         {
-            get => (bool)Get("_myField1")!;
+            get => (double)Get("_myField1")!;
             set => Set("_myField1", value);
         }
         
-        public double _myField2
+        public bool _myField2
         {
-            get => (double)Get("_myField2")!;
+            get => (bool)Get("_myField2")!;
             set => Set("_myField2", value);
         }
     }
     
     private class Accessor_WithCallerMemberName_AndTypeArg_WithComposition(MyClass obj) : IMyAccessor
     {
-        private readonly AccessorCore _accessor = new(obj);
+        private AccessorCore _accessor = new(obj);
         
         public int MyProperty1
         {
@@ -202,22 +268,22 @@ public class AccessorCoreTests_GetSet
             set => _accessor.Set(value);
         }
 
-        public bool _myField1
+        public double _myField1
         {
-            get => _accessor.Get<bool>();
+            get => _accessor.Get<double>();
             set => _accessor.Set(value);
         }
 
-        public double _myField2
+        public bool _myField2
         {
-            get => _accessor.Get<double>();
+            get => _accessor.Get<bool>();
             set => _accessor.Set(value);
         }
     }
         
     private class Accessor_WithCallerMemberName_AndCast_WithComposition(MyClass obj) : IMyAccessor
     {
-        private readonly AccessorCore _accessor = new(obj);
+        private AccessorCore _accessor = new(obj);
         
         public int MyProperty1
         {
@@ -231,22 +297,22 @@ public class AccessorCoreTests_GetSet
             set => _accessor.Set(value);
         }
 
-        public bool _myField1
+        public double _myField1
         {
-            get => (bool)_accessor.Get()!;
+            get => (double)_accessor.Get()!;
             set => _accessor.Set(value);
         }
 
-        public double _myField2
+        public bool _myField2
         {
-            get => (double)_accessor.Get()!;
+            get => (bool)_accessor.Get()!;
             set => _accessor.Set(value);
         }
     }
      
     private class Accessor_ByLambda_WithComposition(MyClass obj) : IMyAccessor
     {
-        private readonly AccessorCore _accessor = new(obj);
+        private AccessorCore _accessor = new(obj);
         
         public int MyProperty1
         {
@@ -260,32 +326,90 @@ public class AccessorCoreTests_GetSet
             set => _accessor.Set(() => MyProperty2, value);
         }
 
-        public bool _myField1
+        public double _myField1
         {
             get => _accessor.Get(() => _myField1);
             set => _accessor.Set(() => _myField1, value);
         }
 
-        public double _myField2
+        public bool _myField2
         {
             get => _accessor.Get(() => _myField2);
             set => _accessor.Set(() => _myField2, value);
         }
     }
+       
+    private class Accessor_WithExplicitName_AndTypeArg_WithComposition(MyClass obj) : IMyAccessor
+    {
+        private AccessorCore _accessor = new(obj);
+        
+        public int MyProperty1
+        {
+            get => _accessor.Get<int>("MyProperty1");
+            set => _accessor.Set("MyProperty1", value);
+        }
+        
+        public string MyProperty2
+        {
+            get => _accessor.Get<string>("MyProperty2");
+            set => _accessor.Set("MyProperty2", value);
+        }
+        
+        public double _myField1
+        {
+            get => _accessor.Get<double>("_myField1");
+            set => _accessor.Set("_myField1", value);
+        }
+        
+        public bool _myField2
+        {
+            get => _accessor.Get<bool>("_myField2");
+            set => _accessor.Set("_myField2", value);
+        }
+    }
+        
+    private class Accessor_WithExplicitName_AndCast_WithComposition(MyClass obj) : IMyAccessor
+    {
+        private AccessorCore _accessor = new(obj);
 
+        public int MyProperty1
+        {
+            get => (int)_accessor.Get("MyProperty1")!;
+            set => _accessor.Set("MyProperty1", value);
+        }
+        
+        public string MyProperty2
+        {
+            get => (string)_accessor.Get("MyProperty2")!;
+            set => _accessor.Set("MyProperty2", value);
+        }
+        
+        public double _myField1
+        {
+            get => (double)_accessor.Get("_myField1")!;
+            set => _accessor.Set("_myField1", value);
+        }
+        
+        public bool _myField2
+        {
+            get => (bool)_accessor.Get("_myField2")!;
+            set => _accessor.Set("_myField2", value);
+        }
+    }
+    
     private class MyClass
     {
         private int MyProperty1 { get; set; }
         private string MyProperty2 { get; set; }
-        private bool _myField1;
-        private double _myField2;
+        private double _myField1;
+        private bool _myField2;
     }
 
     private interface IMyAccessor
     {
         int MyProperty1 { get; set; }
         string MyProperty2 { get; set; }
-        bool _myField1 { get; set; }
-        double _myField2 { get; set; }
+        double _myField1 { get; set; }
+        bool _myField2 { get; set; }
     }
 }
