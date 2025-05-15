@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using static System.StringComparison; // For StackTrace
+﻿using System.Diagnostics; // For StackTrace
 
 namespace JJ.Framework.Reflection.Core;
 
