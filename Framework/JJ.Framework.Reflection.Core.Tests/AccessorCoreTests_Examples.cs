@@ -9,7 +9,7 @@ public class AccessorCoreTests_Examples
     private class MyClass : TheBaseClass
     {
         private string MyProperty { get; set; } = "10";
-        private string MyMethod(int para) => (para * 10).ToString();
+        private string MyMethod(int para) => $"{para * 10}";
         private string MyMethod2(int para1, int? para2) => $"{10 * para1 * para2}";
         private string MyMethod3(int para1, string para2) => $"{10 * para1}{para2}";
     }

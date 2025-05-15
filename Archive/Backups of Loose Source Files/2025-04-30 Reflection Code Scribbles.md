@@ -526,4 +526,12 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
             accessor._myField2 = 20.5;
             AreEqual(20.5, () => accessor._myField2);
         }
+
+        // With null int
+        {
+            int? nullNum = null;
+            ThrowsException(
+                () => (string)accessor.Get([ 2, nullNum ])!,
+                "No indexer found with argument types [Int32, Object].");
+        }
 ```
