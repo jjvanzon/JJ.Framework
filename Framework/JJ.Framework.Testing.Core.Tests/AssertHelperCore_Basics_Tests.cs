@@ -8,14 +8,14 @@ public class AssertHelperCore_Basics_Tests
     
     [TestMethod]
     public void AssertHelperCore_IsTrue_Value_Fails() 
-        => ThrowsException(() => IsTrue(false), "Assert.IsTrue failed.");
+        => ThrowsExceptionContaining(() => IsTrue(false), "Assert.IsTrue failed.");
     
     [TestMethod]
     public void AssertHelperCore_IsFalse_Value_Succeeds() => IsFalse(false);
     
     [TestMethod]
     public void AssertHelperCore_IsFalse_Value_Fails()
-        => ThrowsException(() => IsFalse(true), "Assert.IsFalse failed.");
+        => ThrowsExceptionContaining(() => IsFalse(true), "Assert.IsFalse failed.");
     
     [TestMethod]
     public void AssertHelperCore_IsTrue_WithMessage_Succeeds() => IsTrue(true, "It went wrong.");

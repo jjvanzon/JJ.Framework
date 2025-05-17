@@ -145,7 +145,7 @@ public class AccessorCoreTests_Indexers
         {
             // ReSharper disable once VariableCanBeNotNullable
             string? input = "test";
-            AreEqual("80test", () => accessor[8, input]);
+            AreEqual("80test", accessor[8, input]);
         }
         
         // With null string

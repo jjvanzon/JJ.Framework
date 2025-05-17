@@ -35,16 +35,16 @@ public class AccessorCoreTests_GetSet
             var accessor = accessors[i];
 
             accessor.MyProperty1 = 10 + i;
-            AreEqual(10 + i, () => accessor.MyProperty1);
+            AreEqual(10 + i, accessor.MyProperty1);
             
             accessor.MyProperty2 = "Hello" + i;
-            AreEqual("Hello" + i, () => accessor.MyProperty2);
+            AreEqual("Hello" + i, accessor.MyProperty2);
             
             accessor._myField1 = 20.5 + i;
-            AreEqual(20.5 + i, () => accessor._myField1);
+            AreEqual(20.5 + i, accessor._myField1);
             
             accessor._myField2 = flag;
-            AreEqual(flag, () => accessor._myField2);
+            AreEqual(flag, accessor._myField2);
             
             flag = !flag;
         }
@@ -54,16 +54,16 @@ public class AccessorCoreTests_GetSet
             var accessor = new AccessorCore(obj);
             
             accessor.Set("MyProperty1", 10 + i);
-            AreEqual(10 + i, () => accessor.Get("MyProperty1"));
+            AreEqual(10 + i, accessor.Get("MyProperty1"));
             
             accessor.Set("MyProperty2", "Hello" + i);
-            AreEqual("Hello" + i, () => accessor.Get("MyProperty2"));
+            AreEqual("Hello" + i, accessor.Get("MyProperty2"));
             
             accessor.Set("_myField1", 20.5 + i);
-            AreEqual(20.5 + i, () => accessor.Get("_myField1"));
+            AreEqual(20.5 + i, accessor.Get("_myField1"));
             
             accessor.Set("_myField2", flag);
-            AreEqual(flag, () => accessor.Get("_myField2"));
+            AreEqual(flag, accessor.Get("_myField2"));
             
             flag = !flag;
             i++;
@@ -73,16 +73,16 @@ public class AccessorCoreTests_GetSet
             var accessor = new AccessorCore(obj);
             
             accessor.Set("MyProperty1", 10 + i);
-            AreEqual(10 + i, () => accessor.Get<int>("MyProperty1"));
+            AreEqual(10 + i, accessor.Get<int>("MyProperty1"));
             
             accessor.Set("MyProperty2", "Hello" + i);
-            AreEqual("Hello" + i, () => accessor.Get<string>("MyProperty2"));
+            AreEqual("Hello" + i, accessor.Get<string>("MyProperty2"));
             
             accessor.Set("_myField1", 20.5 + i);
-            AreEqual(20.5 + i, () => accessor.Get<double>("_myField1"));
+            AreEqual(20.5 + i, accessor.Get<double>("_myField1"));
             
             accessor.Set("_myField2", flag);
-            AreEqual(flag, () => accessor.Get<bool>("_myField2"));
+            AreEqual(flag, accessor.Get<bool>("_myField2"));
             
             flag = !flag;
             i++;
@@ -92,16 +92,16 @@ public class AccessorCoreTests_GetSet
             var accessor = new AccessorCore(obj);
             
             accessor.Set("MyProperty1", 10 + i);
-            AreEqual(10 + i, () => (int)accessor.Get("MyProperty1")!);
+            AreEqual(10 + i, (int)accessor.Get("MyProperty1")!);
             
             accessor.Set("MyProperty2", "Hello" + i);
-            AreEqual("Hello" + i, () => (string)accessor.Get("MyProperty2")!);
+            AreEqual("Hello" + i, (string)accessor.Get("MyProperty2")!);
             
             accessor.Set("_myField1", 20.5 + i);
-            AreEqual(20.5 + i, () => (double)accessor.Get("_myField1")!);
+            AreEqual(20.5 + i, (double)accessor.Get("_myField1")!);
             
             accessor.Set("_myField2", flag);
-            AreEqual(flag, () => (bool)accessor.Get("_myField2")!);
+            AreEqual(flag, (bool)accessor.Get("_myField2")!);
             
             flag = !flag;
             i++;

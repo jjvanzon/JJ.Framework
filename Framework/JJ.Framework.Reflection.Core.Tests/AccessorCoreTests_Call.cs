@@ -1,5 +1,6 @@
 ﻿using static System.TimeSpan;
 // ReSharper disable ExplicitCallerInfoArgument
+// ReSharper disable RedundantStringInterpolation
 
 namespace JJ.Framework.Reflection.Core.Tests;
 
@@ -21,66 +22,18 @@ public class AccessorCoreTests_Call
     {
         var obj  = new MyClass();
         var accessor = new MyAccessor(obj);
-
-        // 0 Args
-        {
-            int number = accessor.MyMethod();
-            AreEqual(1, () => number);
-        }
-        // 1 Args
-        {
-            string text = accessor.MyMethod(2);
-            AreEqual("2", () => text);
-        }
-        // 2 Args
-        {
-            long number = accessor.Add(1, 2);
-            AreEqual(3, () => number);
-        }
-        // 3 Args
-        {
-            DateTime ret = accessor.AddDate(FromYear(2000), FromDays(1), 10);
-            AreEqual(ToDateTime("2000-01-02 10:00"), () => ret);
-        }
-        // 4 Args
-        {
-            string concat = accessor.Concat(1, true, 2.0f, 'A');
-            AreEqual("1True2A", () => concat);
-        }
-        // 5 Args
-        {
-            string concat = accessor.Concat(1, 2, "A", 3, 4);
-            AreEqual("12A34", () => concat);
-        }
-        // 6 Args
-        {
-            double number = accessor.Add(1, 2, 3, 4, true, 5);
-            AreEqual(16, () => number);
-        }
-        // 7 Args
-        {
-            long number = accessor.AddLongs(1, 2, 3, 4, 5, 6, 7);
-            AreEqual(28, () => number);
-        }
-        // 8 Args
-        {
-            string formattedDateTime = accessor.ConcatDateTime(1, 2, 3, 4, 5, 6, 7, 'A');
-            AreEqual("0001-02-03 04:05:06.007A", () => formattedDateTime);
-        }
-        // 9 Args
-        {
-            string text = accessor.FormatSum(1, 2, 3, 4, 5, 6, 7, 8, 9);
-            AreEqual("Sum: 45", () => text);
-        }
-        // 9 Args with Void Return
-        {
-            accessor.LogSum(1, 2, 3, 4, 5, 6, 7, 8, 9); 
-        }
-        // 10 Args
-        {
-            int count = accessor.CountWhereTrue(true, false, true, true, true, false, true, false, true, false);
-            AreEqual(6, () => count);
-        }
+        AreEqual(1,                              accessor.MyMethod());
+        AreEqual("2",                            accessor.MyMethod(2));
+        AreEqual(3,                              accessor.Add(1, 2));
+        AreEqual(ToDateTime("2000-01-02 10:00"), accessor.AddDate(FromYear(2000), FromDays(1), 10));
+        AreEqual("1True2A",                      accessor.Concat(1, true, 2.0f, 'A'));
+        AreEqual("12A34",                        accessor.Concat(1, 2, "A",  3, 4));
+        AreEqual(16,                             accessor.Add(1, 2, 3, 4, true, 5));
+        AreEqual(28,                             accessor.AddLongs(1, 2, 3, 4, 5, 6, 7));
+        AreEqual("0001-02-03 04:05:06.007A",     accessor.ConcatDateTime(1, 2, 3, 4, 5, 6, 7, 'A'));
+        AreEqual("Sum: 45",                      accessor.FormatSum(1, 2, 3, 4, 5, 6, 7, 8, 9));
+                                                 accessor.LogSum(1, 2, 3, 4, 5, 6, 7, 8, 9); // Void Return
+        AreEqual(6,                              accessor.CountWhereTrue(true, false, true, true, true, false, true, false, true, false));
     }
 
     [TestMethod]
@@ -91,56 +44,36 @@ public class AccessorCoreTests_Call
 
         // TODO: Variance on the type arguments. Too much kept the same in cases.
 
-        // 1 Type Argument
-        {
-            var concat = accessor.Concat<int>(1);
-            AreEqual("<Int32>(1)", () => concat);
-        }
-        // 2 Type Arguments
-        {
-            var concat = accessor.Concat<int, string>(1, 2);
-            AreEqual("<Int32, String>(1, 2)", () => concat);
-        }
-        // 3 Type Arguments
-        {
-            var concat = accessor.Concat<int, string, float>(1, 2, 3);
-            AreEqual("<Int32, String, Single>(1, 2, 3)", () => concat);
-        }
-        // 4 Type Arguments
-        {
-            var concat = accessor.Concat<int, string, float, bool>(1, true, "3", '4');
-            AreEqual("<Int32, String, Single, Boolean>(1, True, 3, 4)", () => concat);
-        }
-        // 5 Type Arguments
-        {
-            var concat = accessor.Concat<int, string, float, bool, char>(FromYear(1), FromSeconds(2), ToGuid(3), GetCultureInfo("nl-NL"), Tuesday);
-            AreEqual("<Int32, String, Single, Boolean, Char>(1, 00:00:02, 00000000-0000-0000-0000-000000000003, nl-NL, Tuesday)", () => concat);
-        }
-        // 6 Type Arguments
-        {
-            var concat = accessor.Concatenate<int, string, float, bool, char, TimeSpan>(1, 2, 3, 4, (char)5, 6);
-            AreEqual($"<Int32, String, Single, Boolean, Char, TimeSpan>(1, 2, 3, 4, {(char)5}, 6)", () => concat);
-        }
-        // 7 Type Arguments
-        {
-            var concat = accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid>(1, "2", 3, true, 5, FromSeconds(6), 7);
-            AreEqual("<Int32, String, Single, Boolean, Char, TimeSpan, Guid>(1, 2, 3, True, 5, 00:00:06, 7)", () => concat);
-        }
-        // 8 Type Arguments
-        {
-            var concat = accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid, CultureInfo>(1, true, 3, "4", (char)5, (char)6, ToGuid(7), FromYear(8));
-            AreEqual($"<Int32, String, Single, Boolean, Char, TimeSpan, Guid, CultureInfo>(1, True, 3, 4, {(char)5}, {(char)6}, 00000000-0000-0000-0000-000000000007, 8)", () => concat);
-        }
-        // 9 Type Arguments
-        {
-            var concat = accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid, CultureInfo, DayOfWeek>(FromSeconds(1), "2", ToGuid(3), true, GetCultureInfo("nl-NL"), FromSeconds(6), Wednesday, GetCultureInfo("de-DE"), 9);
-            AreEqual("<Int32, String, Single, Boolean, Char, TimeSpan, Guid, CultureInfo, DayOfWeek>(00:00:01, 2, 00000000-0000-0000-0000-000000000003, True, nl-NL, 00:00:06, Wednesday, de-DE, 9)", () => concat);
-        }
-        // 10 Type Arguments
-        {
-            var concat = accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid, CultureInfo, DayOfWeek, byte>(1, 2, 3, 4, 5, 6, 7, true, "9", 10);
-            AreEqual("<Int32, String, Single, Boolean, Char, TimeSpan, Guid, CultureInfo, DayOfWeek, Byte>(1, 2, 3, 4, 5, 6, 7, True, 9, 10)", () => concat);
-        }
+        AreEqual(
+            $"<Int32>(1)", 
+            accessor.Concat<int>(1));
+        AreEqual(
+            $"<Int32, String>(1, 2)", 
+            accessor.Concat<int, string>(1, 2));
+        AreEqual(
+            $"<Int32, String, Single>(1, 2, 3)", 
+            accessor.Concat<int, string, float>(1, 2, 3));
+        AreEqual(
+            $"<Int32, String, Single, Boolean>(1, True, 3, 4)", 
+            accessor.Concat<int, string, float, bool>(1, true, "3", '4'));
+        AreEqual(
+            $"<Int32, String, Single, Boolean, Char>(1, 00:00:02, 00000000-0000-0000-0000-000000000003, nl-NL, Tuesday)", 
+            accessor.Concat<int, string, float, bool, char>(FromYear(1), FromSeconds(2), ToGuid(3), GetCultureInfo("nl-NL"), Tuesday));
+        AreEqual(
+            $"<Int32, String, Single, Boolean, Char, TimeSpan>(1, 2, 3, 4, {(char)5}, 6)", 
+            accessor.Concatenate<int, string, float, bool, char, TimeSpan>(1, 2, 3, 4, (char)5, 6));
+        AreEqual(
+            $"<Int32, String, Single, Boolean, Char, TimeSpan, Guid>(1, 2, 3, True, 5, 00:00:06, 7)", 
+            accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid>(1, "2", 3, true, 5, FromSeconds(6), 7));
+        AreEqual(
+            $"<Int32, String, Single, Boolean, Char, TimeSpan, Guid, CultureInfo>(1, True, 3, 4, {(char)5}, {(char)6}, 00000000-0000-0000-0000-000000000007, 8)", 
+            accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid, CultureInfo>(1, true, 3, "4", (char)5, (char)6, ToGuid(7), FromYear(8)));
+        AreEqual(
+            $"<Int32, String, Single, Boolean, Char, TimeSpan, Guid, CultureInfo, DayOfWeek>(00:00:01, 2, 00000000-0000-0000-0000-000000000003, True, nl-NL, 00:00:06, Wednesday, de-DE, 9)", 
+            accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid, CultureInfo, DayOfWeek>(FromSeconds(1), "2", ToGuid(3), true, GetCultureInfo("nl-NL"), FromSeconds(6), Wednesday, GetCultureInfo("de-DE"), 9));
+        AreEqual(
+            $"<Int32, String, Single, Boolean, Char, TimeSpan, Guid, CultureInfo, DayOfWeek, Byte>(1, 2, 3, 4, 5, 6, 7, True, 9, 10)", 
+            accessor.Concatenate<int, string, float, bool, char, TimeSpan, Guid, CultureInfo, DayOfWeek, byte>(1, 2, 3, 4, 5, 6, 7, true, "9", 10));
     }
     
     [TestMethod]
@@ -150,56 +83,48 @@ public class AccessorCoreTests_Call
         var accessor = new AccessorCore(obj);
 
         // With arg collection
-        {
-            string text = (string)accessor.Call("MyMethod", [ 2 ])!;
-            AreEqual("2", () => text);
-       
-            var dateTime = (DateTime)accessor.Call("AddDate", [ FromYear(2000), FromDays(1), 10 ])!;
-            AreEqual(ToDateTime("2000-01-02 10:00"), () => dateTime);
-        }
+        AreEqual("2", (string)accessor.Call("MyMethod", [ 2 ])!);
+        AreEqual(ToDateTime("2000-01-02 10:00"), (DateTime)accessor.Call("AddDate", [ FromYear(2000), FromDays(1), 10 ])!);
 
-        // With arg type collection (needed to distinguish several null-accepting overloads.
-        {
-            ThrowsException(() => accessor.Call("AcceptsNull"),
-                            "Method 'AcceptsNull' not found with argument types ().");
+        // With arg type collection
+        
+        // (needed to distinguish several null-accepting overloads.
 
-            ThrowsException(() => accessor.Call("AcceptsNull", [ null ]),
-                            "Method 'AcceptsNull' not found with argument types (Object).");
-            
-            var text1 = 
-                (string?)accessor.Call(
-                    "AcceptsNull", 
-                    args: [ null ], 
-                    argTypes: [ typeof(string) ]);
+        ThrowsException(() => accessor.Call("AcceptsNull"),
+                        "Method 'AcceptsNull' not found with argument types ().");
 
-            AreEqual("null|null", () => text1);
+        ThrowsException(() => accessor.Call("AcceptsNull", [ null ]),
+                        "Method 'AcceptsNull' not found with argument types (Object).");
+        
+        AreEqual("null|null",
+                 (string?)accessor.Call(
+                     "AcceptsNull",
+                     args: [ null ],
+                     argTypes: [ typeof(string) ]));
+        
+        AreEqual("null", 
+                 (string?)accessor.Call(
+                     "AcceptsNull",
+                     args: [ null ],
+                     argTypes: [ typeof(int) ]));
 
-            var text2 = 
-                (string?)accessor.Call(
-                    "AcceptsNull", 
-                    args: [ null ], 
-                    argTypes: [ typeof(int) ]);
-
-            AreEqual("null", () => text2);
-
-            accessor.Call(
-                "AcceptsNull", 
-                args: [ null ], 
-                argTypes: [ typeof(CultureInfo) ]);
-        }
+        accessor.Call(
+            "AcceptsNull", 
+            args: [ null ], 
+            argTypes: [ typeof(CultureInfo) ]);
 
         // With type argument collection
         {
             // TODO: Prevent empty collection with optional parameters?
             // TODO: Test where argTypes are used/required.
 
-            var concat = accessor.Call(
-                "Concat", 
-                args: [ 1m, true, "3", '4' ], 
-                argTypes: [ ], 
-                typeArgs: [ typeof(int), typeof(string), typeof(float), typeof(bool) ]);
-
-            AreEqual("<Int32, String, Single, Boolean>(1, True, 3, 4)", () => concat);
+            AreEqual(
+                "<Int32, String, Single, Boolean>(1, True, 3, 4)", 
+                accessor.Call(
+                    "Concat", 
+                    args: [ 1m, true, "3", '4' ], 
+                    argTypes: [ ], 
+                    typeArgs: [ typeof(int), typeof(string), typeof(float), typeof(bool) ]));
         }
     }
 
@@ -210,35 +135,17 @@ public class AccessorCoreTests_Call
         var myAccessor = new MyAccessor_WithCollections_AndCallerMemberName(obj);
 
         // With arg collection and CallerMemberName
-        {
-            string text = myAccessor.MyMethod(3);
-            AreEqual("3", () => text);
-
-            DateTime dateTime = myAccessor.AddDate(FromYear(2001), FromDays(2), 20);
-            AreEqual(ToDateTime("2001-01-03 20:00"), () => dateTime);
+        AreEqual("3", myAccessor.MyMethod(3));
+        AreEqual(ToDateTime("2001-01-03 20:00"), myAccessor.AddDate(FromYear(2001), FromDays(2), 20));
     
-        }
-        
         // With arg type collection (needed to distinguish several null-accepting overloads.
-        {
-            ThrowsException(
-                () => myAccessor.AcceptsNull(null),
-                "Method 'AcceptsNull' not found with argument types (Object).");
-
-            var text1 = myAccessor.AcceptsNull("hi");
-            AreEqual("hi|hi", () => text1);
-
-            var text2 = myAccessor.AcceptsNull(3);
-            AreEqual("3", () => text2);
-
-            myAccessor.AcceptsNull(GetCultureInfo("nl-NL"));
-        }
+        AreEqual("hi|hi", myAccessor.AcceptsNull("hi"));
+        AreEqual("3", myAccessor.AcceptsNull(3));
+        myAccessor.AcceptsNull(GetCultureInfo("nl-NL"));
+        ThrowsException(() => myAccessor.AcceptsNull(null), "Method 'AcceptsNull' not found with argument types (Object).");
 
         // With type argument collection and CallerMemberName
-        {
-            var concat = myAccessor.Concat<decimal, short, object, CultureInfo>(3m, true, "5", '7');
-            AreEqual("<Decimal, Int16, Object, CultureInfo>(3, True, 5, 7)", () => concat);
-        }
+        AreEqual("<Decimal, Int16, Object, CultureInfo>(3, True, 5, 7)", myAccessor.Concat<decimal, short, object, CultureInfo>(3m, true, "5", '7'));
     }
 
     private class MyAccessor_WithCollections_AndCallerMemberName(MyClass obj)
@@ -280,28 +187,16 @@ public class AccessorCoreTests_Call
         var accessor = new MyAccessor(obj);
 
         // Start with String
-        {
-            var concat = accessor.Concat("A", 1, true, 2);
-            AreEqual("A1True2", () => concat);
-        }
+        AreEqual("A1True2", accessor.Concat("A", 1, true, 2));
 
         // Start with 2 Strings
-        {
-            var concat = accessor.Concat("A", "B", 12, 34);
-            AreEqual("AB1234", () => concat);
-        }
+        AreEqual("AB1234", accessor.Concat("A", "B", 12, 34));
 
         // End with String
-        {
-            var concat = accessor.Concat(1, 2, true, "A");
-            AreEqual("12TrueA", () => concat);
-        }
+        AreEqual("12TrueA", accessor.Concat(1, 2, true, "A"));
         
         // End with 2 Strings
-        {
-            var concat = accessor.Concat(1, 2, "A", "BC");
-            AreEqual("12ABC", () => concat);
-        }
+        AreEqual("12ABC", accessor.Concat(1, 2, "A", "BC"));
     }
 
     private class MyAccessor(MyClass obj)

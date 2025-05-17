@@ -6,22 +6,13 @@ public static partial class AssertHelperCore
 {
     // Basics
     
-    public static void IsNotNull(object? value) 
-        => Check(value != null);
-    
-    public static void IsNotNull(object? value, string message) 
+    public static void IsNotNull(object? value, [ArgExpress(nameof(value))] string message = null) 
         => Check(value != null, message: message);
     
-    public static void IsTrue(bool value) 
-        => Check(value == true);
-    
-    public static void IsTrue(bool value, string message) 
+    public static void IsTrue(bool value, [ArgExpress(nameof(value))] string message = null) 
         => Check(value == true, message: message);
     
-    public static void IsFalse(bool value) 
-        => Check(value == false);
-    
-    public static void IsFalse(bool value, string message) 
+    public static void IsFalse(bool value, [ArgExpress(nameof(value))] string message = null) 
         => Check(value == false, message: message);
 
     public static void Fail() 

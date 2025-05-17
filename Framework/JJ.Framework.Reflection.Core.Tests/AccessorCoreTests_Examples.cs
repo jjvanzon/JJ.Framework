@@ -50,14 +50,14 @@ public class AccessorCoreTests_Examples
     public void Accessor_Call_ByLambda()
     {
         var accessor = new TestAccessor_Call_ByLambda();
-        AreEqual("10", () => accessor.MyMethod(1));
+        AreEqual("10", accessor.MyMethod(1));
     }
 
     [TestMethod]
     public void Accessor_Call_ByCallerMemberName()
     {
         var accessor = new TestAccessor_Call_ByCallerMemberName();
-        AreEqual("20", () => accessor.MyMethod(2));
+        AreEqual("20", accessor.MyMethod(2));
     }
 
     [TestMethod]
@@ -98,35 +98,35 @@ public class AccessorCoreTests_Examples
     public void Accessor_Property_ByLambda()
     {
         var accessor = new MyAccessor_Property_ByLambda();
-        AreEqual("10", () => accessor.MyProperty);
+        AreEqual("10", accessor.MyProperty);
     }
     
     [TestMethod]
     public void Accessor_Property_ByCallerMemberName()
     {
         var accessor = new MyAccessor_Property_ByCallerMemberName();
-        AreEqual("10", () => accessor.MyProperty);
+        AreEqual("10", accessor.MyProperty);
     }
     
     [TestMethod]
     public void Accessor_Property_ByCallerMemberName_WithTypeArgument()
     {
         var accessor = new MyAccessor_Property_ByCallerMemberName_UsingTypeArgument();
-        AreEqual("10", () => accessor.MyProperty);
+        AreEqual("10", accessor.MyProperty);
     }
     
     [TestMethod]
     public void Accessor_Property_ByName()
     {
         var accessor = new MyAccessor_Property_ByName();
-        AreEqual("10", () => accessor.MyProperty);
+        AreEqual("10", accessor.MyProperty);
     }
     
     [TestMethod]
     public void Accessor_Property_ByName_WithTypeArgument()
     {
         var accessor = new MyAccessor_Property_ByName_UsingTypeArgument();
-        AreEqual("10", () => accessor.MyProperty);
+        AreEqual("10", accessor.MyProperty);
     }
     
     // Construction
@@ -167,8 +167,7 @@ public class AccessorCoreTests_Examples
     public void Accessor_Wrapper()
     {
         var accessor = new MyAccessor(new MyClass());
-        string myString = accessor.MyMethod(10);
-        AreEqual("100", () => myString);
+        AreEqual("100", accessor.MyMethod(10));
     }
 
     // Overloaded Methods
@@ -201,28 +200,28 @@ public class AccessorCoreTests_Examples
     public void Accessor_OverloadedMethod1()
     {
         var accessor = new OverloadAccessor1();
-        AreEqual("60", () => accessor.MyMethod2(2, 3));
+        AreEqual("60", accessor.MyMethod2(2, 3));
     }
     
     [TestMethod]
     public void Accessor_OverloadedMethod2()
     {
         var accessor = new OverloadAccessor2();
-        AreEqual("10", () => accessor.MyMethod(1));
+        AreEqual("10", accessor.MyMethod(1));
     }
     
     [TestMethod]
     public void Accessor_OverloadedMethod3()
     {
         var accessor = new OverloadAccessor3();
-        AreEqual("350", () => accessor.MyMethod2(5, 7));
+        AreEqual("350", accessor.MyMethod2(5, 7));
     }
     
     [TestMethod]
     public void Accessor_OverloadedMethod4()
     {
         var accessor = new OverloadAccessor4();
-        AreEqual("", () => accessor.MyMethod2(5, null));
+        AreEqual("", accessor.MyMethod2(5, null));
     }
     
     // Ref Args
@@ -236,8 +235,8 @@ public class AccessorCoreTests_Examples
         int num = 14;
         bool isEven = accessor.MyMethod(ref num);
         
-        IsTrue(() => isEven);
-        AreEqual(15, () => num);
+        IsTrue(isEven);
+        AreEqual(15, num);
     }
     
     private class MyAccessorWithRef(MyClassWithRef obj) : AccessorCore(obj)
