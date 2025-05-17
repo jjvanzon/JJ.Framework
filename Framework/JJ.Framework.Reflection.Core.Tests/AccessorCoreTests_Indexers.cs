@@ -12,24 +12,21 @@ public class AccessorCoreTests_Indexers
         var accessor = new AccessorCore(obj);
         
         // Get with indexer 
-        var number = (int?)accessor[1];
-        AreEqual(1, () => number);
+        AreEqual(1, (int?)accessor[1]);
         
         // Set with indexer 
         accessor[1] = 2;
         AreEqual(2, accessor[1]);
 
         // Get with method
-        number = (int?)accessor.Get(3);
-        AreEqual(3, () => number);
+        AreEqual(3, (int?)accessor.Get(3));
 
         // Set with method
         accessor.Set(3, 4);
         AreEqual(4, accessor[3]);
 
         // Get with collection
-        number = (int?)accessor.Get([4]);
-        AreEqual(4, () => number);
+        AreEqual(4, (int?)accessor.Get([4]));
 
         // Set with collection
         accessor.Set([4], 5);
@@ -82,8 +79,7 @@ public class AccessorCoreTests_Indexers
         var accessor = new MyAccessor_WithObjectArg(obj);
         
         // Get  
-        int number = (int)accessor[null];
-        AreEqual(Int32.MaxValue, number);
+        AreEqual(Int32.MaxValue, (int)accessor[null]);
         
         // Set
         accessor[null] = 5;
@@ -132,40 +128,31 @@ public class AccessorCoreTests_Indexers
         var accessor = new MyAccessor_WithOverloads(obj);
 
         // With int
-        {
-            string text = accessor[2, 3];
-            AreEqual("60", () => text);
-        }
+        AreEqual("60", accessor[2, 3]);
+        
         // With nullable int
-        {
-            int? nullableNum = 4;
-            string text = accessor[5, nullableNum];
-            AreEqual("200", () => text);
-        }
+        int? nullableNum = 4;
+        AreEqual("200", accessor[5, nullableNum]);
+        
         // With null int
-        {
-            int? nullNum = null;
-            string text = accessor[6, nullNum];
-            AreEqual("", () => text);
-        }
+        int? nullNum = null;
+        AreEqual("", accessor[6, nullNum]);
+        
         // With string
-        {
-            string text = accessor[7, "test"];
-            AreEqual("70test", () => text);
-        }
+        AreEqual("70test", accessor[7, "test"]);
+        
         // With nullable string
         {
             // ReSharper disable once VariableCanBeNotNullable
             string? input = "test";
-            string text = accessor[8, input];
-            AreEqual("80test", () => text);
+            AreEqual("80test", () => accessor[8, input]);
         }
+        
         // With null string
         {
             #pragma warning disable CS8604 // null ref arg
             string? input = null;
-            string text = accessor[9, input];
-            AreEqual("90", () => text);
+            AreEqual("90", accessor[9, input]);
             #pragma warning restore CS8604 // null ref arg
         }
     }
@@ -180,21 +167,15 @@ public class AccessorCoreTests_Indexers
         var accessor = new AccessorCore(obj);
 
         // With int
-        {
-            string text = (string)accessor[2, 3]!;
-            AreEqual("60", () => text);
-        }
+        AreEqual("60", (string)accessor[2, 3]!);
+        
         // With nullable int
-        {
-            int? nullableNum = 4;
-            string text = (string)accessor[5, nullableNum]!;
-            AreEqual("200", () => text);
-        }
+        int? nullableNum = 4;
+        AreEqual("200", (string)accessor[5, nullableNum]!);
+        
         // With null int: resolution not possible
-        {
-            int? nullNum = null;
-            ThrowsException(() => accessor[6, nullNum]);
-        }
+        int? nullNum = null;
+        ThrowsException(() => accessor[6, nullNum]);
     }
     
     [TestMethod]
@@ -204,21 +185,15 @@ public class AccessorCoreTests_Indexers
         var accessor = new AccessorCore(obj);
 
         // With int
-        {
-            string text = (string)accessor.Get([ 2, 3 ])!;
-            AreEqual("60", () => text);
-        }
+        AreEqual("60", (string)accessor.Get([ 2, 3 ])!);
+        
         // With nullable int
-        {
-            int? nullableNum = 4;
-            string text = (string)accessor.Get([ 5, nullableNum ])!;
-            AreEqual("200", () => text);
-        }
+        int? nullableNum = 4;
+        AreEqual("200", (string)accessor.Get([ 5, nullableNum ])!);
+        
         // With null int: resolution not possible
-        {
-            int? nullNum = null;
-            ThrowsException(() => accessor.Get([ 6, nullNum ]));
-        }
+        int? nullNum = null;
+        ThrowsException(() => accessor.Get([ 6, nullNum ]));
     }
     
     [TestMethod]
@@ -228,66 +203,33 @@ public class AccessorCoreTests_Indexers
         var accessor = new AccessorCore(obj);
         
         // With int
-        {
-            string text = (string)accessor.Get([ 2, 3 ], [ typeof(int), typeof(int?) ])!;
-            AreEqual("60", () => text);
-        }
-        {
-            string text = (string)accessor.Get([ 2, 3 ], [ null, typeof(int?) ])!;
-            AreEqual("60", () => text);
-        }
+        AreEqual("60", (string)accessor.Get([ 2, 3 ], [ typeof(int), typeof(int?) ])!);
+        AreEqual("60", (string)accessor.Get([ 2, 3 ], [ null, typeof(int?) ])!);
+        
         // No ambiguity: arg type spec optional
-        {
-            string text = (string)accessor.Get([ 2, 3 ], [ ])!;
-            AreEqual("60", () => text);
-        }
-        {
-            string text = (string)accessor.Get([ 2, 3 ], [ null ])!;
-            AreEqual("60", () => text);
-        }
-        {
-            string text = (string)accessor.Get([ 2, 3 ], [ null, null ])!;
-            AreEqual("60", () => text);
-        }
+        AreEqual("60", (string)accessor.Get([ 2, 3 ], [ ])!);
+        AreEqual("60", (string)accessor.Get([ 2, 3 ], [ null ])!);
+        AreEqual("60", (string)accessor.Get([ 2, 3 ], [ null, null ])!);
+        
         // With nullable int
         int? nullableNum = 4;
-        {
-            string text = (string)accessor.Get([ 5, nullableNum ], [ typeof(int), typeof(int?) ])!;
-            AreEqual("200", () => text);
-        }
-        {
-            string text = (string)accessor.Get([ 5, nullableNum ], [ null, typeof(int?) ])!;
-            AreEqual("200", () => text);
-        }
+        AreEqual("200", (string)accessor.Get([ 5, nullableNum ], [ typeof(int), typeof(int?) ])!);
+        AreEqual("200", (string)accessor.Get([ 5, nullableNum ], [ null, typeof(int?) ])!);
+        
         // No ambiguity: arg type spec optional
-        {
-            string text = (string)accessor.Get([ 5, nullableNum ], [ ])!;
-            AreEqual("200", () => text);
-        }
-        {
-            string text = (string)accessor.Get([ 5, nullableNum ], [ null ])!;
-            AreEqual("200", () => text);
-        }
-        {
-            string text = (string)accessor.Get([ 5, nullableNum ], [ null, null ])!;
-            AreEqual("200", () => text);
-        }
+        AreEqual("200", (string)accessor.Get([ 5, nullableNum ], [ ])!);
+        AreEqual("200", (string)accessor.Get([ 5, nullableNum ], [ null ])!);
+        AreEqual("200", (string)accessor.Get([ 5, nullableNum ], [ null, null ])!);
+        
         // With null int
         int? nullNum = null;
-        {
-            string text = (string)accessor.Get([ 6, nullNum ], [ typeof(int), typeof(int?) ])!;
-            AreEqual("", () => text);
-        }
-        {
-            string text = (string)accessor.Get([ 6, nullNum ], [ null, typeof(int?) ])!;
-            AreEqual("", () => text);
-        }
+        AreEqual("", (string)accessor.Get([ 6, nullNum ], [ typeof(int), typeof(int?) ])!);
+        AreEqual("", (string)accessor.Get([ 6, nullNum ], [ null, typeof(int?) ])!);
+        
         // Ambiguity: exceptions
-        {
-            ThrowsException(() => accessor.Get([ 6, nullNum ], [ ]));
-            ThrowsException(() => accessor.Get([ 6, nullNum ], [ null ]));
-            ThrowsException(() => accessor.Get([ 6, nullNum ], [ null, null ]));
-        }
+        ThrowsException(() => accessor.Get([ 6, nullNum ], [ ]));
+        ThrowsException(() => accessor.Get([ 6, nullNum ], [ null ]));
+        ThrowsException(() => accessor.Get([ 6, nullNum ], [ null, null ]));
     }
         
     [TestMethod]

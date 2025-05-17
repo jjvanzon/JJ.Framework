@@ -12,11 +12,8 @@ public class AccessorCoreTests_Call
         var obj = new MyClass();
         var accessor = new AccessorCore(obj);
         
-        var number = (int)accessor.Call("MyMethod")!;
-        AreEqual(1, () => number);
-        
-        var text = (string)accessor.Call("MyMethod", 2)!;
-        AreEqual("2", () => text);
+        AreEqual(1, (int)accessor.Call("MyMethod")!);
+        AreEqual("2", (string)accessor.Call("MyMethod", 2)!);
     }
     
     [TestMethod]

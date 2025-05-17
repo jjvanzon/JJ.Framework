@@ -22,12 +22,12 @@ public class AssertHelperCore_Basics_Tests
     
     [TestMethod]
     public void AssertHelperCore_IsTrue_WithMessage_Fails() 
-        => ThrowsException(() => IsTrue(false, "It went wrong."), "Assert.IsTrue failed. It went wrong.");
+        => ThrowsExceptionContaining(() => IsTrue(false, "It went wrong."), "Assert.IsTrue failed.", "It went wrong.");
     
     [TestMethod]
     public void AssertHelperCore_IsFalse_WithMessage_Succeeds() => IsFalse(false, "It went wrong.");
     
     [TestMethod]
     public void AssertHelperCore_IsFalse_WithMessage_Fails() 
-        => ThrowsException(() => IsFalse(true, "It went wrong."), "Assert.IsFalse failed. It went wrong.");
+        => ThrowsExceptionContaining(() => IsFalse(true, "It went wrong."), "Assert.IsFalse failed.", "It went wrong.");
 }

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Reflection;
-using System.Text;
 
 namespace JJ.Framework.Testing.Core
 {
     public static class TestHelperCore
     {
+        public static string FormatTestedExpressionMessage(string messageOrExpression) 
+            => Has(messageOrExpression) ? $"Tested: '{messageOrExpression}'." : "";
+        
         // ReSharper disable AssignNullToNotNullAttribute
         public static bool CurrentTestIsInCategory(string category)
         {

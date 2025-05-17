@@ -1,7 +1,5 @@
 ﻿// ReSharper disable RedundantBoolCompare
 
-using System.Runtime.CompilerServices;
-
 namespace JJ.Framework.Testing.Core;
 
 public static partial class AssertHelperCore
@@ -56,7 +54,7 @@ public static partial class AssertHelperCore
     {
         if (!condition())
         {
-            //string message = FormatTestedPropertyMessageLegacy(message);
+            message = FormatTestedExpressionMessage(message);
             string fullMessage = GetExpectedActualMessageLegacy(methodName, expected, actual, message);
             throw new Exception(fullMessage);
         }
@@ -72,7 +70,7 @@ public static partial class AssertHelperCore
     {
         if (!condition)
         {
-            //string message = FormatTestedPropertyMessageLegacy(message);
+            message = FormatTestedExpressionMessage(message);
             string fullMessage = GetFailureMessageLegacy(methodName, message);
             throw new Exception(fullMessage);
         }

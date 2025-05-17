@@ -6,10 +6,7 @@ public static partial class AssertHelperCore
 {
     // AreEqual
     
-    public static void AreEqual<T>(T expected, T actual) 
-        => Check(expected, actual, () => Equals(expected, actual));
-    
-    public static void AreEqual<T>(T expected, T actual, string message) 
+    public static void AreEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string message = "") 
         => Check(expected, actual, message, () => Equals(expected, actual));
     
     /// <inheritdoc cref="_deltadirection" />
