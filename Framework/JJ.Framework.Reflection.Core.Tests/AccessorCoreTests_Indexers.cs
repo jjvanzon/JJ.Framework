@@ -1,7 +1,4 @@
-﻿using JJ.Framework.Testing.Core;
-using static JJ.Framework.Existence.Core.FilledInHelper;
-
-namespace JJ.Framework.Reflection.Core.Tests;
+﻿namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
 public class AccessorCoreTests_Indexers
@@ -15,25 +12,25 @@ public class AccessorCoreTests_Indexers
         var accessor = new AccessorCore(obj);
         
         // Get with indexer 
-        AreEqual(1, (int?)accessor[1]);
+        AreEqual(9, accessor[1]);
         
         // Set with indexer 
-        accessor[1] = 2;
-        AreEqual(2, accessor[1]);
+        accessor[1] = 90;
+        AreEqual(90, accessor[1]);
 
         // Get with method
-        AreEqual(3, (int?)accessor.Get(3));
+        AreEqual(7, accessor.Get(3));
 
         // Set with method
-        accessor.Set(3, 4);
-        AreEqual(4, accessor[3]);
+        accessor.Set(3, 70);
+        AreEqual(70, accessor[3]);
 
         // Get with collection
-        AreEqual(4, (int?)accessor.Get([4]));
+        AreEqual(6, accessor.Get([4]));
 
         // Set with collection
-        accessor.Set([4], 5);
-        AreEqual(5, accessor[4]);
+        accessor.Set([4], 60);
+        AreEqual(60, accessor[4]);
     }
     
     [TestMethod]
@@ -43,12 +40,11 @@ public class AccessorCoreTests_Indexers
         var myAccessor = new MyAccessor(obj);
         
         // Get  
-        int number = (int)myAccessor[1];
-        AreEqual(1, number);
+        AreEqual(9, myAccessor[1]);
         
         // Set
-        myAccessor[1] = 2;
-        AreEqual(2, myAccessor[1]);
+        myAccessor[1] = 90;
+        AreEqual(90, myAccessor[1]);
     }
         
     private class MyAccessor(MyClass obj)
@@ -64,11 +60,11 @@ public class AccessorCoreTests_Indexers
 
     private class MyClass
     {
-        private Dictionary<object, int> _numberDic = CreateNumberDic();
+        private Dictionary<object, int> _numberDic = CreateInvertedDigitDic();
 
         private int this[int i]
         {
-            get => _numberDic[i ];
+            get => _numberDic[i];
             set => _numberDic[i] = value;
         }
     }
@@ -82,7 +78,7 @@ public class AccessorCoreTests_Indexers
         var accessor = new MyAccessor_WithObjectArg(obj);
         
         // Get  
-        AreEqual(Int32.MaxValue, (int)accessor[null]);
+        AreEqual(-1, accessor[null]);
         
         // Set
         accessor[null] = 5;
@@ -102,12 +98,12 @@ public class AccessorCoreTests_Indexers
 
     private class MyClass_WithObjectArg
     {
-        private Dictionary<object, int> _numberDic = CreateNumberDic();
+        private Dictionary<object, int> _numberDic = CreateInvertedDigitDic();
         
         private int this[object? i]
         {
-            get => _numberDic[i ?? 0];
-            set => _numberDic[i ?? 0] = value;
+            get => _numberDic[i ?? -1];
+            set => _numberDic[i ?? -1] = value;
         }
     }
     
@@ -119,9 +115,9 @@ public class AccessorCoreTests_Indexers
         var obj = new MyClass_WithOverloads();
         var accessor = new MyAccessor_WithOverloads(obj);
         
-        ThrowsException(
+        ThrowsExceptionContaining(
             () => { int number = accessor[null]; },
-            "No indexer found with argument types [Object].");
+            "No indexer found");
     }
 
     [TestMethod]
@@ -373,12 +369,12 @@ public class AccessorCoreTests_Indexers
 
     private class MyClass_WithOverloads
     {
-        private Dictionary<object, int> _numberDic = CreateNumberDic();
+        private Dictionary<object, int> _invertedDigitDic = CreateInvertedDigitDic();
 
         private int this[int i]
         {
-            get => _numberDic[i];
-            set => _numberDic[i] = value;
+            get => _invertedDigitDic[i];
+            set => _invertedDigitDic[i] = value;
         }
 
         private string this[string i]
@@ -398,8 +394,10 @@ public class AccessorCoreTests_Indexers
                 { 
                     return val!;
                 }
-                
-                return $"{10 * arg1 * arg2}";
+                else
+                {
+                    return $"{10 * arg1 * arg2}";
+                }
             }
             set => _numNullyNumDic[(arg1, arg2)] = value;
         }
@@ -415,8 +413,10 @@ public class AccessorCoreTests_Indexers
                 { 
                     return val!;
                 }
-                
-                return $"{10 * arg1}{arg2}";
+                else
+                {
+                    return $"{10 * arg1}{arg2}";
+                }
             }
             set => _numNullyTextDic[(arg1, arg2)] = value;
         }
@@ -424,12 +424,7 @@ public class AccessorCoreTests_Indexers
 
     // Helpers
 
-    // TODO: Use inverse digits instead, for variance between index and value.
     
-    static Dictionary<object, int> CreateNumberDic() => new()
-    {
-        [0] = Int32.MaxValue,
-        [1] = 1, [2] = 2, [3] = 3, [4] = 4, [5]  = 5,
-        [6] = 6, [7] = 7, [8] = 8, [9] = 9, [10] = 10
-    };
+    static Dictionary<object, int> CreateInvertedDigitDic() => new()
+        { [-1] = -1, [0] = 10, [1] = 9, [2] = 8, [3] = 7, [4] = 6, [5] = 5, [6] = 4, [7] = 3, [8] = 2, [9] = 1 };
 }
