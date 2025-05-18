@@ -198,6 +198,26 @@ public class AccessorCoreTests_Call
         // End with 2 Strings
         AreEqual("12ABC", accessor.Concat(1, 2, "A", "BC"));
     }
+    
+    [TestMethod]
+    public void AccessorCore_Call_ByLambda()
+    {
+        var obj      = new MyClass();
+        var accessor = new MyAccessorByLambda(obj);
+        AreEqual("1", accessor.MyMethod(1));
+        accessor.LogSum(1, 2, 3, 4, 5, 6, 7, 8, 9);
+    }
+    
+    private class MyAccessorByLambda(MyClass obj)
+    {
+        private readonly AccessorCore _accessor = new(obj);
+        
+        public string MyMethod(int arg1)
+            => (string)_accessor.Call(() => MyMethod(arg1))!;
+        
+        public void LogSum(int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9) 
+            => _accessor.Call(() => LogSum(a1, a2, a3, a4, a5, a6, a7, a8, a9));
+    }
 
     private class MyAccessor(MyClass obj)
     {

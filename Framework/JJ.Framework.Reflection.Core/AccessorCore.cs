@@ -161,27 +161,11 @@ public partial class AccessorCore
     // With Lambdas
 
     /// <inheritdoc cref="_call" />
-    public void Call(Expression<Action> callLambda)
-    {
-        MethodCallInfo info = GetMethodCallInfo(callLambda);
-
-        CallCore(
-            info.Name,
-            info.Parameters.Select(x => x.Value        ).ToArray(),
-            info.Parameters.Select(x => x.ParameterType).ToArray());
-    }
+    public void Call(Expression<Action> callLambda) => Call((LambdaExpression)callLambda);
 
     /// <inheritdoc cref="_call" />
-    public T? Call<T>(Expression<Func<T>> callLambda)
-    {
-        MethodCallInfo info = GetMethodCallInfo(callLambda);
-
-        return (T?)CallCore(
-            info.Name,
-            info.Parameters.Select(x => x.Value        ).ToArray(),
-            info.Parameters.Select(x => x.ParameterType).ToArray());
-    }
-
+    public T? Call<T>(Expression<Func<T>> callLambda) => (T?)Call((LambdaExpression)callLambda);
+    
     /// <inheritdoc cref="_call" />
     public object? Call(LambdaExpression callLambda)
     {

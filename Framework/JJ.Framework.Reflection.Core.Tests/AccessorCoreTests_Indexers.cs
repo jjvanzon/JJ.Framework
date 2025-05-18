@@ -60,12 +60,12 @@ public class AccessorCoreTests_Indexers
 
     private class MyClass
     {
-        private Dictionary<object, int> _numberDic = CreateInvertedDigitDic();
+        private Dictionary<object, int> _invertedDigitDic = CreateInvertedDigitDic();
 
         private int this[int i]
         {
-            get => _numberDic[i];
-            set => _numberDic[i] = value;
+            get => _invertedDigitDic[i];
+            set => _invertedDigitDic[i] = value;
         }
     }
 
@@ -98,12 +98,12 @@ public class AccessorCoreTests_Indexers
 
     private class MyClass_WithObjectArg
     {
-        private Dictionary<object, int> _numberDic = CreateInvertedDigitDic();
+        private Dictionary<object, int> _invertedDigitDic = CreateInvertedDigitDic();
         
         private int this[object? i]
         {
-            get => _numberDic[i ?? -1];
-            set => _numberDic[i ?? -1] = value;
+            get => _invertedDigitDic[i ?? -1];
+            set => _invertedDigitDic[i ?? -1] = value;
         }
     }
     
