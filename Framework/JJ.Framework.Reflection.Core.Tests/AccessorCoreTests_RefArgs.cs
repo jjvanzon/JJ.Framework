@@ -912,13 +912,13 @@ public class AccessorCoreTests_RefArgs
         public virtual bool MyMethod(out int arg)
         {
             arg = default;
-            return (bool)Call(Name(), ref arg)!;
+            return (bool)Call(ref arg)!;
         }
         
         public virtual bool MyMethod(out string arg)
         {
             arg = "";
-            return (bool)Call(Name(), ref arg)!;
+            return (bool)Call(ref arg)!;
         }
         
         // 2 Parameters
