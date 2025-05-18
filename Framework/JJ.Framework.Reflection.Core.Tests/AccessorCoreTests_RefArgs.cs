@@ -500,23 +500,21 @@ public class AccessorCoreTests_RefArgs
     }
     
     [TestMethod]
-    public void AccessorCore_ValValRefVal_2StringsLast_Fails()
-    {
-        foreach (var accessor in new[] { new MyAccessor(), new MyAccessorByName() })
-        {
-            var arg1 = 61;
-            var arg2 = true;
-            var arg3 = "62";
-            var arg4 = "64";
+    public void AccessorCore_ValValRefVal_2StringsLast_RequireExplicitName()
+{
+        var arg1 = 61;
+        var arg2 = true;
+        var arg3 = "62";
+        var arg4 = "64";
 
-            // TODO: A riddle: The "Throw" one doesn't throw. The non-Throw one throws.
-            //ThrowsException(() => accessor.MyMethod(arg1, arg2, ref arg3, arg4));
-            
-            //var ret = accessor.MyMethod(arg1, arg2, ref arg3, arg4);
-            
-            //AreEqual("63", () => arg3);
-            //AreEqual(65,   () => ret);
-        }
+        var accessor = new MyAccessor();
+        var accessorByName = new MyAccessorByName();
+
+        ThrowsException(() => accessor.MyMethod(arg1, arg2, ref arg3, arg4));
+        
+        var ret = accessorByName.MyMethod(arg1, arg2, ref arg3, arg4);
+        AreEqual("63", () => arg3);
+        AreEqual(65,   () => ret);
     }
     
     [TestMethod]
@@ -640,7 +638,7 @@ public class AccessorCoreTests_RefArgs
     }
     
     [TestMethod]
-    public void AccessorCore_ValValValRefString()
+    public void AccessorCore_ValValValRefString_2StringsLast_DistinguishedByRefness()
     {
         foreach (var accessor in new[] { new MyAccessor(), new MyAccessorByName() })
         {
@@ -648,10 +646,11 @@ public class AccessorCoreTests_RefArgs
             var arg2 = 83;
             var arg3 = 84;
             var arg4 = "true";
-            var ret  = accessor.MyMethod(arg1, arg2, arg3, ref arg4);
-            
+                
+            var ret = accessor.MyMethod(arg1, arg2, arg3, ref arg4);
+        
             AreEqual("false", () => arg4);
-            AreEqual(85,      () => ret);
+            AreEqual(85,   () => ret);
         }
     }
     

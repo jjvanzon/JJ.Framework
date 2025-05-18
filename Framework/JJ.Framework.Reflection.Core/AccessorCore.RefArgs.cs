@@ -557,6 +557,4 @@ public partial class AccessorCore
         arg4 = (TRef4)args[3]!;
         return ret;
     }    
-    
-    // TODO: Add 5-argument variations
 }
