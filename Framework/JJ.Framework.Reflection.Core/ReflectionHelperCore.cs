@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using JJ.Framework.Collections.Core;
-using static JJ.Framework.Reflection.ReflectionHelper;
+﻿using JJ.Framework.Collections.Core;
 
 namespace JJ.Framework.Reflection.Core
 {
     public class ReflectionHelperCore
     {
+        public const BindingFlags BindingFlagsAll =
+            BindingFlags.Public |
+            BindingFlags.NonPublic |
+            BindingFlags.Instance |
+            BindingFlags.Static |
+            BindingFlags.FlattenHierarchy |
+            BindingFlags.IgnoreCase;
+
         // Assemblies
 
         public static string GetAssemblyName<TType>()
