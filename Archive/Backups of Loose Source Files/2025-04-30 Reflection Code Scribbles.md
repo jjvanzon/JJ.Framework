@@ -539,16 +539,23 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
 ### PlatformCompatibility CallerArgumentExpressionAttribute:
 
 ```cs
-//#if NETSTANDARD2_0 || NETSTANDARD2_1
-//#if !NET5_0_OR_GREATER
-//#if NET5_0 || NETSTANDARD2_0 || NETSTANDARD2_1
-//#if NET5_0 || NETSTANDARD2_0
-//#if !NET5_0_OR_GREATER || NETSTANDARD2_0
+#if NETSTANDARD2_0 || NETSTANDARD2_1
+#if !NET5_0_OR_GREATER
+#if NET5_0 || NETSTANDARD2_0 || NETSTANDARD2_1
+#if NET5_0 || NETSTANDARD2_0
+#if !NET5_0_OR_GREATER || NETSTANDARD2_0
 ```
 
 ### AccessorCore
 
+```cs
+    public object? Get(params object?[] indices) => Get((ICollection<object?>)indices);
+    public object? Get(ICollection<object?> indices)
 ```
-    //public object? Get(params object?[] indices) => Get((ICollection<object?>)indices);
-    //public object? Get(ICollection<object?> indices)
-```
+
+### AccessorCore Indexer Tests
+
+```cs
+#pragma warning disable CS8604 // null ref arg
+#pragma warning restore CS8604 // null ref arg
+```cs

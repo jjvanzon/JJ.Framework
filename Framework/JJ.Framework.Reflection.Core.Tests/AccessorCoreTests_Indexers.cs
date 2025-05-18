@@ -117,7 +117,7 @@ public class AccessorCoreTests_Indexers
         var accessor = new MyAccessor_WithOverloads(obj);
         
         ThrowsException(
-            () => { int number = accessor [ null]; },
+            () => { int number = accessor[null]; },
             "No indexer found with argument types [Object].");
     }
 
@@ -142,23 +142,14 @@ public class AccessorCoreTests_Indexers
         AreEqual("70test", accessor[7, "test"]);
         
         // With nullable string
-        {
-            // ReSharper disable once VariableCanBeNotNullable
-            string? input = "test";
-            AreEqual("80test", accessor[8, input]);
-        }
+        // ReSharper disable once VariableCanBeNotNullable
+        string? nullableText = "test";
+        AreEqual("80test", accessor[8, nullableText]);
         
         // With null string
-        {
-            #pragma warning disable CS8604 // null ref arg
-            string? input = null;
-            AreEqual("90", accessor[9, input]);
-            #pragma warning restore CS8604 // null ref arg
-        }
+        string? nullText = null;
+        AreEqual("90", accessor[9, nullText]);
     }
-    
-    // TODO: Other variants mirrored from the test above.
-    // TODO: Syntax with type argument for return value?
 
     [TestMethod]
     public void AccessorCore_Indexer_Overload_ResolvedFromValues()
@@ -167,17 +158,31 @@ public class AccessorCoreTests_Indexers
         var accessor = new AccessorCore(obj);
 
         // With int
-        AreEqual("60", (string)accessor[2, 3]!);
+        AreEqual("60", accessor[2, 3]!);
         
         // With nullable int
         int? nullableNum = 4;
-        AreEqual("200", (string)accessor[5, nullableNum]!);
+        AreEqual("200", accessor[5, nullableNum]!);
         
-        // With null int: resolution not possible
+        // With null int
+        // (resolution not possible)
         int? nullNum = null;
         ThrowsException(() => accessor[6, nullNum]);
+        
+        // With string
+        AreEqual("70test", accessor[7, "test"]);
+        
+        // With nullable string
+        // ReSharper disable once VariableCanBeNotNullable
+        string? nullableText = "test";
+        AreEqual("80test", accessor[8, nullableText]);
+        
+        // With null string
+        // (resolution not possible)
+        string? nullText = null;
+        ThrowsException(() => accessor[9, nullText]);
     }
-    
+
     [TestMethod]
     public void AccessorCore_Indexer_Overload_ResolvedFromValueColl()
     {
@@ -185,51 +190,97 @@ public class AccessorCoreTests_Indexers
         var accessor = new AccessorCore(obj);
 
         // With int
-        AreEqual("60", (string)accessor.Get([ 2, 3 ])!);
+        AreEqual("60", accessor.Get([ 2, 3 ])!);
         
         // With nullable int
         int? nullableNum = 4;
-        AreEqual("200", (string)accessor.Get([ 5, nullableNum ])!);
+        AreEqual("200", accessor.Get([ 5, nullableNum ])!);
         
-        // With null int: resolution not possible
+        // With null int
+        // (resolution not possible)
         int? nullNum = null;
         ThrowsException(() => accessor.Get([ 6, nullNum ]));
+
+        // With string
+        AreEqual("70test", accessor.Get([ 7, "test" ]));
+        
+        // With nullable string
+        // ReSharper disable once VariableCanBeNotNullable
+        string? nullableText = "test";
+        AreEqual("80test", accessor.Get([ 8, nullableText ]));
+        
+        // With null string
+        // (resolution not possible)
+        string? nullText = null;
+        ThrowsException(() => accessor.Get([ 9, nullText ]));
     }
-    
+            
     [TestMethod]
-    public void AccessorCore_Indexer_Overload_ResolvedWithArgTypeColl()
+    public void AccessorCore_Indexer_Overload_ResolvedFromArgTypeColl()
     {
         var obj = new MyClass_WithOverloads();
         var accessor = new AccessorCore(obj);
         
         // With int
-        AreEqual("60", (string)accessor.Get([ 2, 3 ], [ typeof(int), typeof(int?) ])!);
-        AreEqual("60", (string)accessor.Get([ 2, 3 ], [ null, typeof(int?) ])!);
+        AreEqual("60", accessor.Get([ 2, 3 ], [ typeof(int), typeof(int?) ])!);
+        AreEqual("60", accessor.Get([ 2, 3 ], [ null, typeof(int?) ])!);
         
         // No ambiguity: arg type spec optional
-        AreEqual("60", (string)accessor.Get([ 2, 3 ], [ ])!);
-        AreEqual("60", (string)accessor.Get([ 2, 3 ], [ null ])!);
-        AreEqual("60", (string)accessor.Get([ 2, 3 ], [ null, null ])!);
+        AreEqual("60", accessor.Get([ 2, 3 ], [ ])!);
+        AreEqual("60", accessor.Get([ 2, 3 ], [ null ])!);
+        AreEqual("60", accessor.Get([ 2, 3 ], [ null, null ])!);
         
         // With nullable int
         int? nullableNum = 4;
-        AreEqual("200", (string)accessor.Get([ 5, nullableNum ], [ typeof(int), typeof(int?) ])!);
-        AreEqual("200", (string)accessor.Get([ 5, nullableNum ], [ null, typeof(int?) ])!);
+        AreEqual("200", accessor.Get([ 5, nullableNum ], [ typeof(int), typeof(int?) ])!);
+        AreEqual("200", accessor.Get([ 5, nullableNum ], [ null, typeof(int?) ])!);
         
         // No ambiguity: arg type spec optional
-        AreEqual("200", (string)accessor.Get([ 5, nullableNum ], [ ])!);
-        AreEqual("200", (string)accessor.Get([ 5, nullableNum ], [ null ])!);
-        AreEqual("200", (string)accessor.Get([ 5, nullableNum ], [ null, null ])!);
+        AreEqual("200", accessor.Get([ 5, nullableNum ], [ ])!);
+        AreEqual("200", accessor.Get([ 5, nullableNum ], [ null ])!);
+        AreEqual("200", accessor.Get([ 5, nullableNum ], [ null, null ])!);
         
         // With null int
         int? nullNum = null;
-        AreEqual("", (string)accessor.Get([ 6, nullNum ], [ typeof(int), typeof(int?) ])!);
-        AreEqual("", (string)accessor.Get([ 6, nullNum ], [ null, typeof(int?) ])!);
+        AreEqual("", accessor.Get([ 6, nullNum ], [ typeof(int), typeof(int?) ])!);
+        AreEqual("", accessor.Get([ 6, nullNum ], [ null, typeof(int?) ])!);
         
         // Ambiguity: exceptions
         ThrowsException(() => accessor.Get([ 6, nullNum ], [ ]));
         ThrowsException(() => accessor.Get([ 6, nullNum ], [ null ]));
         ThrowsException(() => accessor.Get([ 6, nullNum ], [ null, null ]));
+
+        // With string
+        AreEqual("70test", accessor.Get([ 7, "test" ], [ typeof(int), typeof(string) ]));
+        AreEqual("70test", accessor.Get([ 7, "test" ], [ null, typeof(string) ])!);
+        
+        // No ambiguity: arg type spec optional
+        AreEqual("70test", accessor.Get([ 7, "test" ], [ ])!);
+        AreEqual("70test", accessor.Get([ 7, "test" ], [ null ])!);
+        AreEqual("70test", accessor.Get([ 7, "test" ], [ null, null ])!);
+
+        // With nullable string
+        // ReSharper disable once VariableCanBeNotNullable
+        string? nullableText = "test";
+        AreEqual("80test", accessor.Get([ 8, nullableText ], [ typeof(int), typeof(string) ])!);
+        AreEqual("80test", accessor.Get([ 8, nullableText ], [ null, typeof(string) ])!);
+
+        // No ambiguity: arg type spec optional
+        AreEqual("80test", accessor.Get([ 8, nullableText ], [ ])!);
+        AreEqual("80test", accessor.Get([ 8, nullableText ], [ null ])!);
+        AreEqual("80test", accessor.Get([ 8, nullableText ], [ null, null ])!);
+        
+        // With null string
+        string? nullText = null;
+        AreEqual("80", accessor.Get([ 8, nullText ], [ typeof(int), typeof(string) ])!);
+        AreEqual("80", accessor.Get([ 8, nullText ], [ null, typeof(string) ])!);
+
+        // Ambiguity: exceptions
+        ThrowsException(() => accessor.Get([ 8, nullText ], [ ]));
+        ThrowsException(() => accessor.Get([ 8, nullText ], [ null ]));
+        ThrowsException(() => accessor.Get([ 8, nullText ], [ null, null ]));
+
+        // TODO: Overloads that vary by int/double for clearer disambiguation needs?
     }
         
     [TestMethod]
@@ -239,19 +290,15 @@ public class AccessorCoreTests_Indexers
         var accessor = new AccessorCore(obj);
 
         // With int
-        {
-            // Too many argTypes
-            ThrowsException(
-                () => accessor.Get([ 2, 3 ], [ null, null, null ])!,
-                "More argTypes than args.");
-        }
-        {
-            // TODO: Really expected an exception.
-            Type nonNullType = typeof(int);
-            //ThrowsException(
-            //    () => (string)accessor.Get([ 2, nullNum ], [ typeof(int), nonNullType ])!,
-            //    "No indexer found with argument types [Int32, Int32].");
-        }
+        
+        // Too many argTypes
+        ThrowsException(() => accessor.Get([ 2, 3 ], [ null, null, null ])!, "More argTypes than args.");
+        
+        // TODO: Really expected an exception.
+        Type nonNullType = typeof(int);
+        //ThrowsException(
+        //    () => (string)accessor.Get([ 2, nullNum ], [ typeof(int), nonNullType ])!,
+        //    "No indexer found with argument types [Int32, Int32].");
     }
     
     // TODO: Test the setters
