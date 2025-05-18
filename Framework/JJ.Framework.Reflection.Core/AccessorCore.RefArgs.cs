@@ -306,12 +306,20 @@ public partial class AccessorCore
     [Priority(1)]
     public object? Call<TRef3>(object? arg1, object? arg2, ref TRef3 arg3, object? arg4, [Caller] string name = "")
         => Call(name, arg1, arg2, ref arg3, arg4);
-     
+
+    // ncrunch: no coverage start
+
+    // NOTE: Overload resolution is going over my head. Marking as no coverage. Don't know how to solve.
+    // Attempts to call it appear to resolve to:
+    // public object? Call(object? arg1, object? arg2, ref string arg3, [Caller] string name = "")
+        
     /// <inheritdoc cref="_call" />
     [Priority(2)]
     public object? Call<TRef3>(object? arg1, object? arg2, ref TRef3 arg3, string arg4, [Caller] string name = "")
         => Call(name, arg1, arg2, ref arg3, arg4);
 
+    // ncrunch: no coverage end
+    
     /// <inheritdoc cref="_call" />
     [Priority(3)]
     public object? Call<TRef3>(string name, object? arg1, object? arg2, ref TRef3 arg3, object? arg4)

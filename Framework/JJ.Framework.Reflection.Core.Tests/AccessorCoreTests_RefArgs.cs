@@ -500,7 +500,7 @@ public class AccessorCoreTests_RefArgs
     }
     
     [TestMethod]
-    public void AccessorCore_ValValRefVal_2StringsLast_RequireExplicitName()
+    public void AccessorCore_ValValRefValString_2StringsLast_RequireExplicitName()
 {
         var arg1 = 61;
         var arg2 = true;
