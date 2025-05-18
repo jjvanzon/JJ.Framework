@@ -132,6 +132,8 @@ public partial class AccessorCore
     public void Set(ICollection<object?> indices, object? value)
         => Set(indices, value, [ ]);
     
+    // TODO: Swap argTypes and value? Support both syntaxes? So with value at the end also supported?
+    
     public void Set(ICollection<object?> indices, object? value, ICollection<Type?> argTypes)
     {
         AssertIndices(indices);

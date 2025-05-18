@@ -571,5 +571,8 @@ private string this[int para1, double para2] => $"{10 * para1 * para2}";
 
 private string _dummy = "";
 
+        accessor.Set([ 2, 3 ], "60*", [ typeof(int), typeof(int?) ]);
+        AreEqual("60*", accessor.Get([ 2, 3 ], [ typeof(int), typeof(int?) ]));
+
 ```cs
 
