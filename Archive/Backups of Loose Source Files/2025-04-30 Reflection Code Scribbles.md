@@ -558,4 +558,18 @@ Unfortunately the type argument syntax clashes a little, where it is unclear whe
 ```cs
 #pragma warning disable CS8604 // null ref arg
 #pragma warning restore CS8604 // null ref arg
+
+// TODO: Overloads that vary by int/double for clearer disambiguation needs not only by nullables?
+
+private double this[double i]
+{
+    get => _numberDic[i] + .5;
+    set => _numberDic[i] = (int)(value - 0.5);
+}
+
+private string this[int para1, double para2] => $"{10 * para1 * para2}";
+
+private string _dummy = "";
+
 ```cs
+

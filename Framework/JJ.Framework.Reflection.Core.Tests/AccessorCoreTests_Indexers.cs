@@ -1,4 +1,7 @@
-﻿namespace JJ.Framework.Reflection.Core.Tests;
+﻿using JJ.Framework.Testing.Core;
+using static JJ.Framework.Existence.Core.FilledInHelper;
+
+namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
 public class AccessorCoreTests_Indexers
@@ -128,27 +131,35 @@ public class AccessorCoreTests_Indexers
         var accessor = new MyAccessor_WithOverloads(obj);
 
         // With int
-        AreEqual("60", accessor[2, 3]);
+        AreEqual("60",  accessor[2, 3]);
+        AreEqual("60*", accessor[2, 3] += "*");
         
         // With nullable int
         int? nullableNum = 4;
-        AreEqual("200", accessor[5, nullableNum]);
+        AreEqual("200",  accessor[5, nullableNum]);
+        AreEqual("200*", accessor[5, nullableNum] += "*");
         
         // With null int
         int? nullNum = null;
         AreEqual("", accessor[6, nullNum]);
+        // TODO: Should have been resolved from stack frame.
+        //AreEqual("*", accessor[ 6, nullNum] += "*");
         
         // With string
-        AreEqual("70test", accessor[7, "test"]);
+        AreEqual("70test",  accessor[7, "test"]);
+        AreEqual("70test*", accessor[7, "test"] += "*");
         
         // With nullable string
         // ReSharper disable once VariableCanBeNotNullable
         string? nullableText = "test";
-        AreEqual("80test", accessor[8, nullableText]);
+        AreEqual("80test",  accessor[8, nullableText]);
+        AreEqual("80test*", accessor[8, nullableText] += "*");
         
         // With null string
         string? nullText = null;
-        AreEqual("90", accessor[9, nullText]);
+        AreEqual("90",  accessor[9, nullText]);
+        // TODO: Should have been resolved from stack frame.
+        //AreEqual("90*", accessor[9, nullText] += "*");
     }
 
     [TestMethod]
@@ -158,29 +169,35 @@ public class AccessorCoreTests_Indexers
         var accessor = new AccessorCore(obj);
 
         // With int
-        AreEqual("60", accessor[2, 3]!);
+        AreEqual("60",  accessor[2, 3]);
+        AreEqual("60*", accessor[2, 3] += "*");
         
         // With nullable int
         int? nullableNum = 4;
-        AreEqual("200", accessor[5, nullableNum]!);
+        AreEqual("200",  accessor[5, nullableNum]);
+        AreEqual("200*", accessor[5, nullableNum] += "*");
         
         // With null int
         // (resolution not possible)
         int? nullNum = null;
-        ThrowsException(() => accessor[6, nullNum]);
+        ThrowsExceptionContaining(() => accessor[6, nullNum],       "No indexer found");
+        ThrowsExceptionContaining(() => accessor[6, nullNum] = "*", "No indexer found");
         
         // With string
-        AreEqual("70test", accessor[7, "test"]);
+        AreEqual("70test",  accessor[7, "test"]);
+        AreEqual("70test*", accessor[7, "test"] += "*");
         
         // With nullable string
         // ReSharper disable once VariableCanBeNotNullable
         string? nullableText = "test";
-        AreEqual("80test", accessor[8, nullableText]);
+        AreEqual("80test",  accessor[8, nullableText]);
+        AreEqual("80test*", accessor[8, nullableText] += "*");
         
         // With null string
         // (resolution not possible)
         string? nullText = null;
-        ThrowsException(() => accessor[9, nullText]);
+        ThrowsExceptionContaining(() => accessor[9, nullText], "No indexer found");
+        ThrowsExceptionContaining(() => accessor[9, nullText] = "*", "No indexer found");
     }
 
     [TestMethod]
@@ -190,31 +207,43 @@ public class AccessorCoreTests_Indexers
         var accessor = new AccessorCore(obj);
 
         // With int
-        AreEqual("60", accessor.Get([ 2, 3 ])!);
+        AreEqual("60", accessor.Get([ 2, 3 ]));
+        accessor.Set([ 2, 3 ], "60*");
+        AreEqual("60*", accessor.Get([ 2, 3 ]));
         
         // With nullable int
         int? nullableNum = 4;
-        AreEqual("200", accessor.Get([ 5, nullableNum ])!);
-        
+        AreEqual("200", accessor.Get([ 5, nullableNum ]));
+        accessor.Set([ 5, nullableNum ], "200*");
+        AreEqual("200*", accessor.Get([ 5, nullableNum ]));
+            
         // With null int
         // (resolution not possible)
         int? nullNum = null;
-        ThrowsException(() => accessor.Get([ 6, nullNum ]));
+        ThrowsExceptionContaining(() => accessor.Get([ 6, nullNum ]     ), "No indexer found");
+        ThrowsExceptionContaining(() => accessor.Set([ 6, nullNum ], "*"), "No indexer found");
 
         // With string
         AreEqual("70test", accessor.Get([ 7, "test" ]));
+        accessor.Set([ 7, "test" ], "70test*");
+        AreEqual("70test*", accessor.Get([ 7, "test" ]));
         
         // With nullable string
         // ReSharper disable once VariableCanBeNotNullable
         string? nullableText = "test";
         AreEqual("80test", accessor.Get([ 8, nullableText ]));
+        accessor.Set([ 8, nullableText ], "80test*");
+        AreEqual("80test*", accessor.Get([ 8, nullableText ]));
         
         // With null string
         // (resolution not possible)
         string? nullText = null;
-        ThrowsException(() => accessor.Get([ 9, nullText ]));
+        ThrowsExceptionContaining(() => accessor.Get([ 9, nullText ]     ), "No indexer found");
+        ThrowsExceptionContaining(() => accessor.Set([ 9, nullText ], "*"), "No indexer found");
     }
-            
+                    
+    // TODO: Setters
+
     [TestMethod]
     public void AccessorCore_Indexer_Overload_ResolvedFromArgTypeColl()
     {
@@ -222,65 +251,64 @@ public class AccessorCoreTests_Indexers
         var accessor = new AccessorCore(obj);
         
         // With int
-        AreEqual("60", accessor.Get([ 2, 3 ], [ typeof(int), typeof(int?) ])!);
-        AreEqual("60", accessor.Get([ 2, 3 ], [ null, typeof(int?) ])!);
+        AreEqual("60", accessor.Get([ 2, 3 ], [ typeof(int), typeof(int?) ]));
+        AreEqual("60", accessor.Get([ 2, 3 ], [ null, typeof(int?) ]));
         
         // No ambiguity: arg type spec optional
-        AreEqual("60", accessor.Get([ 2, 3 ], [ ])!);
-        AreEqual("60", accessor.Get([ 2, 3 ], [ null ])!);
-        AreEqual("60", accessor.Get([ 2, 3 ], [ null, null ])!);
+        AreEqual("60", accessor.Get([ 2, 3 ], [ ]));
+        AreEqual("60", accessor.Get([ 2, 3 ], [ null ]));
+        AreEqual("60", accessor.Get([ 2, 3 ], [ null, null ]));
         
         // With nullable int
         int? nullableNum = 4;
-        AreEqual("200", accessor.Get([ 5, nullableNum ], [ typeof(int), typeof(int?) ])!);
-        AreEqual("200", accessor.Get([ 5, nullableNum ], [ null, typeof(int?) ])!);
+        AreEqual("200", accessor.Get([ 5, nullableNum ], [ typeof(int), typeof(int?) ]));
+        AreEqual("200", accessor.Get([ 5, nullableNum ], [ null, typeof(int?) ]));
         
         // No ambiguity: arg type spec optional
-        AreEqual("200", accessor.Get([ 5, nullableNum ], [ ])!);
-        AreEqual("200", accessor.Get([ 5, nullableNum ], [ null ])!);
-        AreEqual("200", accessor.Get([ 5, nullableNum ], [ null, null ])!);
+        AreEqual("200", accessor.Get([ 5, nullableNum ], [ ]));
+        AreEqual("200", accessor.Get([ 5, nullableNum ], [ null ]));
+        AreEqual("200", accessor.Get([ 5, nullableNum ], [ null, null ]));
         
         // With null int
         int? nullNum = null;
-        AreEqual("", accessor.Get([ 6, nullNum ], [ typeof(int), typeof(int?) ])!);
-        AreEqual("", accessor.Get([ 6, nullNum ], [ null, typeof(int?) ])!);
+        AreEqual("", accessor.Get([ 6, nullNum ], [ typeof(int), typeof(int?) ]));
+        AreEqual("", accessor.Get([ 6, nullNum ], [ null, typeof(int?) ]));
         
         // Ambiguity: exceptions
-        ThrowsException(() => accessor.Get([ 6, nullNum ], [ ]));
-        ThrowsException(() => accessor.Get([ 6, nullNum ], [ null ]));
-        ThrowsException(() => accessor.Get([ 6, nullNum ], [ null, null ]));
+        ThrowsExceptionContaining(() => accessor.Get([ 6, nullNum ], [ ]), "No indexer found");
+        ThrowsExceptionContaining(() => accessor.Get([ 6, nullNum ], [ null ]), "No indexer found");
+        ThrowsExceptionContaining(() => accessor.Get([ 6, nullNum ], [ null, null ]), "No indexer found");
 
         // With string
         AreEqual("70test", accessor.Get([ 7, "test" ], [ typeof(int), typeof(string) ]));
-        AreEqual("70test", accessor.Get([ 7, "test" ], [ null, typeof(string) ])!);
+        AreEqual("70test", accessor.Get([ 7, "test" ], [ null, typeof(string) ]));
         
         // No ambiguity: arg type spec optional
-        AreEqual("70test", accessor.Get([ 7, "test" ], [ ])!);
-        AreEqual("70test", accessor.Get([ 7, "test" ], [ null ])!);
-        AreEqual("70test", accessor.Get([ 7, "test" ], [ null, null ])!);
+        AreEqual("70test", accessor.Get([ 7, "test" ], [ ]));
+        AreEqual("70test", accessor.Get([ 7, "test" ], [ null ]));
+        AreEqual("70test", accessor.Get([ 7, "test" ], [ null, null ]));
 
         // With nullable string
         // ReSharper disable once VariableCanBeNotNullable
         string? nullableText = "test";
-        AreEqual("80test", accessor.Get([ 8, nullableText ], [ typeof(int), typeof(string) ])!);
-        AreEqual("80test", accessor.Get([ 8, nullableText ], [ null, typeof(string) ])!);
+        AreEqual("80test", accessor.Get([ 8, nullableText ], [ typeof(int), typeof(string) ]));
+        AreEqual("80test", accessor.Get([ 8, nullableText ], [ null, typeof(string) ]));
 
         // No ambiguity: arg type spec optional
-        AreEqual("80test", accessor.Get([ 8, nullableText ], [ ])!);
-        AreEqual("80test", accessor.Get([ 8, nullableText ], [ null ])!);
-        AreEqual("80test", accessor.Get([ 8, nullableText ], [ null, null ])!);
+        AreEqual("80test", accessor.Get([ 8, nullableText ], [ ]));
+        AreEqual("80test", accessor.Get([ 8, nullableText ], [ null ]));
+        AreEqual("80test", accessor.Get([ 8, nullableText ], [ null, null ]));
         
         // With null string
         string? nullText = null;
-        AreEqual("80", accessor.Get([ 8, nullText ], [ typeof(int), typeof(string) ])!);
-        AreEqual("80", accessor.Get([ 8, nullText ], [ null, typeof(string) ])!);
+        AreEqual("80", accessor.Get([ 8, nullText ], [ typeof(int), typeof(string) ]));
+        AreEqual("80", accessor.Get([ 8, nullText ], [ null, typeof(string) ]));
 
         // Ambiguity: exceptions
-        ThrowsException(() => accessor.Get([ 8, nullText ], [ ]));
-        ThrowsException(() => accessor.Get([ 8, nullText ], [ null ]));
-        ThrowsException(() => accessor.Get([ 8, nullText ], [ null, null ]));
+        ThrowsExceptionContaining(() => accessor.Get([ 8, nullText ], [ ]), "No indexer found");
+        ThrowsExceptionContaining(() => accessor.Get([ 8, nullText ], [ null ]), "No indexer found");
+        ThrowsExceptionContaining(() => accessor.Get([ 8, nullText ], [ null, null ]), "No indexer found");
 
-        // TODO: Overloads that vary by int/double for clearer disambiguation needs?
     }
         
     [TestMethod]
@@ -292,12 +320,12 @@ public class AccessorCoreTests_Indexers
         // With int
         
         // Too many argTypes
-        ThrowsException(() => accessor.Get([ 2, 3 ], [ null, null, null ])!, "More argTypes than args.");
+        ThrowsException(() => accessor.Get([ 2, 3 ], [ null, null, null ]), "More argTypes than args.");
         
         // TODO: Really expected an exception.
         Type nonNullType = typeof(int);
         //ThrowsException(
-        //    () => (string)accessor.Get([ 2, nullNum ], [ typeof(int), nonNullType ])!,
+        //    () => (string)accessor.Get([ 2, nullNum ], [ typeof(int), nonNullType ]),
         //    "No indexer found with argument types [Int32, Int32].");
     }
     
@@ -342,8 +370,39 @@ public class AccessorCoreTests_Indexers
             set { }
         }
 
-        private string this[int para1, int? para2] => $"{10 * para1 * para2}";
-        private string this[int para1, string? para2] => $"{para1 * 10}{para2}";
+        private Dictionary<(int, int?), string> _numNullyNumDic = new();
+        
+        private string this[int arg1, int? arg2]
+        {
+            get
+            {
+                _numNullyNumDic.TryGetValue((arg1, arg2), out string? val);
+                if (Has(val)) 
+                { 
+                    return val!;
+                }
+                
+                return $"{10 * arg1 * arg2}";
+            }
+            set => _numNullyNumDic[(arg1, arg2)] = value;
+        }
+        
+        private Dictionary<(int, string?), string> _numNullyTextDic = new();
+
+        private string this[int arg1, string? arg2]
+        {
+            get
+            {
+                _numNullyTextDic.TryGetValue((arg1, arg2), out string? val);
+                if (Has(val)) 
+                { 
+                    return val!;
+                }
+                
+                return $"{10 * arg1}{arg2}";
+            }
+            set => _numNullyTextDic[(arg1, arg2)] = value;
+        }
     }
 
     // Helpers
