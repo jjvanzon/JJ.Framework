@@ -11,41 +11,13 @@ public class ReflectionCacheCore(BindingFlags bindingFlags = BindingFlagsAll)
         private readonly object _propDicLock = new ();
     #endif
     
-    public PropertyInfo Prop<T>([Caller] string name = "")
-        => PropCoreOrThrow(typeof(T), name);
-
-    public PropertyInfo Prop(Type type, [Caller] string name = "") 
-        => PropCoreOrThrow(type, name)!;
+    public PropertyInfo  Prop<T>(                                     [Caller] string name = "") => PropCore<T>(   name, throws)!;
+    public PropertyInfo  Prop(Type type,                              [Caller] string name = "") => PropCore(type, name, throws)!;
+    public PropertyInfo? Prop<T>(        ReflectionFlagsCore options, [Caller] string name = "") => PropCore<T>(   name, options);
+    public PropertyInfo? Prop(Type type, ReflectionFlagsCore options, [Caller] string name = "") => PropCore(type, name, options);
     
-    public PropertyInfo? Prop<T>(ReflectionFlagsCore options, [Caller] string name = "")
-        => PropCore(typeof(T), name, options);
-    
-    public PropertyInfo? Prop(Type type, ReflectionFlagsCore options, [Caller] string name = "")
-        => PropCore(type, name, options);
-    
+    private PropertyInfo? PropCore<T>(string name, ReflectionFlagsCore options) => PropCore(typeof(T), name, options);
     private PropertyInfo? PropCore(Type type, string name, ReflectionFlagsCore options)
-    {
-        if (options.HasFlag(throws))
-        {
-            return PropCoreOrThrow(type, name);
-        }
-        else
-        {
-            return PropCore(type, name);
-        }
-    }
-
-    private PropertyInfo PropCoreOrThrow(Type type, string name)
-    {    
-        PropertyInfo? prop = PropCore(type, name);
-        if (prop == null)
-        {
-            throw new Exception($"Property '{name}' not found on type '{type.Name}'.");
-        }
-        return prop;
-    }
-    
-    private PropertyInfo? PropCore(Type type, string name)
     {
         lock (_propDicLock)
         {
@@ -54,6 +26,12 @@ public class ReflectionCacheCore(BindingFlags bindingFlags = BindingFlagsAll)
                 prop = type.GetProperty(name, bindingFlags);
                 _propDic.Add((type, name), prop);
             }
+            
+            if (prop == null && options.HasFlag(throws))
+            {
+                throw new Exception($"Property '{name}' not found on type '{type.Name}'.");
+            }
+            
             return prop;
         }
     }
