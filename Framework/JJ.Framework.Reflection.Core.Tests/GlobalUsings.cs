@@ -21,8 +21,10 @@ global using static System.Globalization.CultureInfo;
 global using static JJ.Framework.Common.Core.NameHelper;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Reflection.Core.ReflectionHelperCore;
+global using static JJ.Framework.Reflection.Core.ReflectFlags;
 global using static JJ.Framework.Testing.AssertHelper;
 global using static JJ.Framework.Testing.Core.AssertHelperCore;
+
 //global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert; // Specifically excluded; replaced by AssertHelperCore.
 global using static JJ.Framework.Reflection.Core.Tests.Helpers.FormatHelper;
 global using static System.Convert;

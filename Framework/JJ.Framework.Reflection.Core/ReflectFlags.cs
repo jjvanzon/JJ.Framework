@@ -4,4 +4,5 @@
 public enum ReflectFlags
 {
     throws = 1,
+    nothrow = 2
 }

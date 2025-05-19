@@ -22,9 +22,9 @@ public class ReflectionCacheCore(BindingFlags bindingFlags = BindingFlagsAll)
                 prop = type.GetProperty(name, bindingFlags);
                 _propDic.Add((type, name), prop);
             }
-            if (prop == null && flags.HasFlag(throws))
+            if (prop == null && flags.HasFlag(throws) && !flags.HasFlag(nothrow))
             {
-                throw new Exception($"Property '{name}' not found on type '{type.Name}'.");
+                throw new Exception($"Property '{name}' not found in type '{type.Name}'.");
             }
             
             return prop;

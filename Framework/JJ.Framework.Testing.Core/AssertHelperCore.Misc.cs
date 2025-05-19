@@ -9,6 +9,9 @@ public static partial class AssertHelperCore
     public static void IsNotNull(object? value, [ArgExpress(nameof(value))] string message = null) 
         => Check(value != null, message: message);
     
+    public static void IsNull(object? value, [ArgExpress(nameof(value))] string message = null) 
+        => Check(value == null, message: message);
+    
     public static void IsTrue(bool value, [ArgExpress(nameof(value))] string message = null) 
         => Check(value == true, message: message);
     
