@@ -42,6 +42,7 @@
     <NoWarn>$(NoWarn);CS0067</NoWarn> <!--Event never invoked-->
     <NoWarn>$(NoWarn);CS0649</NoWarn> <!--Field never assigned-->
     <NoWarn>$(NoWarn);IDE0032</NoWarn> <!--Use auto-property-->
+    <NoWarn>$(NoWarn);CA2263</NoWarn> <!--Prefer type arg-->
   </PropertyGroup>
 
   <!-- Warnings Disabled for Legacy Code -->

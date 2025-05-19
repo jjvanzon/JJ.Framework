@@ -1,47 +1,66 @@
-﻿// ReSharper disable ClassNeverInstantiated.Local
-#pragma warning disable CA2263 // Prefer type arg
-
+﻿// ReSharper disable StringLiteralTypo
 namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
-public class ReflectionCacheCoreTests
+public class ReflectorTests
 {
-    private static readonly ReflectionCacheCore _reflectionCache = new();
+    private static readonly Reflector _reflector = new();
     
     [TestMethod]
     public void ReflectionCacheCore_Prop()
     {
-        IsNotNull(_reflectionCache.Prop<MyClass>("MyProp"));
-        IsNotNull(_reflectionCache.Prop<MyClass>("MyProp", throws));
-        IsNotNull(_reflectionCache.Prop<MyClass>(throws, "MyProp"));
-        IsNotNull(_reflectionCache.Prop(typeof(MyClass), "MyProp"));
-        IsNotNull(_reflectionCache.Prop(typeof(MyClass), throws, "MyProp"));
-        IsNotNull(_reflectionCache.Prop(typeof(MyClass), "MyProp", throws));
+        AssertProp(_reflector.Prop<MyClass>("MyProp"));
+        AssertProp(_reflector.Prop<MyClass>("MyProp", throws));
+        AssertProp(_reflector.Prop<MyClass>(throws, "MyProp"));
+        AssertProp(_reflector.Prop(typeof(MyClass), "MyProp"));
+        AssertProp(_reflector.Prop(typeof(MyClass), throws, "MyProp"));
+        AssertProp(_reflector.Prop(typeof(MyClass), "MyProp", throws));
+    }
+    
+    [TestMethod]
+    public void ReflectionCacheCore_Prop_CaseInsensitive()
+    {
+        AssertProp(_reflector.Prop<MyClass>("myprop"));
+        AssertProp(_reflector.Prop<MyClass>("myprop", throws));
+        AssertProp(_reflector.Prop<MyClass>(throws, "myprop"));
+        AssertProp(_reflector.Prop(typeof(MyClass), "myprop"));
+        AssertProp(_reflector.Prop(typeof(MyClass), throws, "myprop"));
+        AssertProp(_reflector.Prop(typeof(MyClass), "myprop", throws));
+    }
+    
+    // TODO: Case sensitive option.
+    
+    private void AssertProp(PropertyInfo? prop)
+    {
+        IsNotNull(prop);
+        AreEqual("MyProp", prop!.Name);
     }
     
     [TestMethod]
     public void ReflectionCacheCore_Prop_Throws()
     {
-        ThrowsException(() => _reflectionCache.Prop<MyClass>("NoProp"));
-        ThrowsException(() => _reflectionCache.Prop<MyClass>("NoProp", throws));
-        ThrowsException(() => _reflectionCache.Prop<MyClass>(throws, "NoProp"));
-        ThrowsException(() => _reflectionCache.Prop(typeof(MyClass), "NoProp"));
-        ThrowsException(() => _reflectionCache.Prop(typeof(MyClass), throws, "NoProp"));
-        ThrowsException(() => _reflectionCache.Prop(typeof(MyClass), "NoProp", throws));
+        ThrowsException(() => _reflector.Prop<MyClass>("NoProp"));
+        ThrowsException(() => _reflector.Prop<MyClass>("NoProp", throws));
+        ThrowsException(() => _reflector.Prop<MyClass>(throws, "NoProp"));
+        ThrowsException(() => _reflector.Prop(typeof(MyClass), "NoProp"));
+        ThrowsException(() => _reflector.Prop(typeof(MyClass), throws, "NoProp"));
+        ThrowsException(() => _reflector.Prop(typeof(MyClass), "NoProp", throws));
     }
     
     [TestMethod]
     public void ReflectionCacheCore_Prop_NoThrow()
     {
-        IsNull(() => _reflectionCache.Prop<MyClass>("NoProp", nothrow));
-        IsNull(() => _reflectionCache.Prop<MyClass>(nothrow, "NoProp"));
-        IsNull(() => _reflectionCache.Prop(typeof(MyClass), nothrow, "NoProp"));
-        IsNull(() => _reflectionCache.Prop(typeof(MyClass), "NoProp", nothrow));
+        IsNull(_reflector.Prop<MyClass>("NoProp", nothrow));
+        IsNull(_reflector.Prop<MyClass>(nothrow, "NoProp"));
+        IsNull(_reflector.Prop(typeof(MyClass), nothrow, "NoProp"));
+        IsNull(_reflector.Prop(typeof(MyClass), "NoProp", nothrow));
     }
     
     private class MyClass
     {
         // TODO: Would like to omit the type argument.
-        public string MyProp => _reflectionCache.Prop<MyClass>().Name;
+        public string MyProp => _reflector.Prop<MyClass>().Name;
+        
+        // TODO: Syntax like `Prop(MyProp)`
     }
 }

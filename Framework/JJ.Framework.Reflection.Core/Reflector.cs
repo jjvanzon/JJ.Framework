@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Reflection.Core;
 
-public class ReflectionCacheCore(BindingFlags bindingFlags = BindingFlagsAll)
+public class Reflector(BindingFlags bindingFlags = BindingFlagsAll)
 {
     // Property
     
@@ -22,7 +22,7 @@ public class ReflectionCacheCore(BindingFlags bindingFlags = BindingFlagsAll)
                 prop = type.GetProperty(name, bindingFlags);
                 _propDic.Add((type, name), prop);
             }
-            if (prop == null && flags.HasFlag(throws) && !flags.HasFlag(nothrow))
+            if (prop == null && flags.HasFlag(throws) && !flags.HasFlag(nothrow)) // TODO: Contradiction possible.
             {
                 throw new Exception($"Property '{name}' not found in type '{type.Name}'.");
             }
