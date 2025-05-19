@@ -6,6 +6,7 @@ global using System.Text;
 global using System.Threading;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;
+global using JJ.Framework.Common.Core;
 global using JJ.Framework.Existence.Core;
 global using JJ.Framework.Reflection.Core.docs;
 global using static System.Array;

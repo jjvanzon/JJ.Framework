@@ -1,7 +1,8 @@
 ﻿
 namespace JJ.Framework.Reflection.Core;
 
-public static class ReflectExtensions
+// TODO: Make public once API surface quality is checked.
+internal static class ReflectExtensions
 {
     public static PropertyInfo  Prop(this Type type, string name, Reflect reflect) => reflect.Prop(type, name);
     public static PropertyInfo? Prop(this Type type, string name, NullableFlag nullable, Reflect reflect) => reflect.Prop(type, name, nullable);

@@ -22,11 +22,11 @@ public class Reflect
     {
         if (matchcase)
         {
-            bindingFlags &= ~BindingFlags.IgnoreCase;
+            bindingFlags = bindingFlags.ClearFlag(BindingFlags.IgnoreCase);
         }
         else
         {
-            bindingFlags |= BindingFlags.IgnoreCase;
+            bindingFlags = bindingFlags.SetFlag(BindingFlags.IgnoreCase);
         }
         
         BindingFlags = bindingFlags;
