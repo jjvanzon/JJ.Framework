@@ -1,5 +1,5 @@
 ﻿using static JJ.Framework.Common.KeyHelper;
-
+// ReSharper disable ChangeFieldTypeToSystemThreadingLock
 // ReSharper disable ReplaceWithSingleCallToSingle
 // ReSharper disable InvertIf
 // ReSharper disable RedundantIfElseBlock
@@ -405,6 +405,7 @@ namespace JJ.Framework.Reflection.Core
                     return types;
                 }
 
+                // TODO: Manually back into legacy branch.
                 var stringComparison = _bindingFlags.HasFlag(BindingFlags.IgnoreCase) ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 
                 var list = new List<Type>();
@@ -412,6 +413,7 @@ namespace JJ.Framework.Reflection.Core
                 {
                     try
                     {
+                        // TODO: Manually back into legacy branch.
                         list.AddRange(assembly.GetTypes().Where(x => string.Equals(x.Name, shortTypeName, stringComparison) ||
                                                                      string.Equals(x.FullName, shortTypeName, stringComparison) ||
                                                                      string.Equals(x.AssemblyQualifiedName, shortTypeName, stringComparison)));

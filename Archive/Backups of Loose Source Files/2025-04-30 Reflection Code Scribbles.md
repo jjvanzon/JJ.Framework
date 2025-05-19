@@ -576,8 +576,7 @@ private string _dummy = "";
 
 ```
 
-
-### Reflector
+### Reflect
 
 ```cs
 // TODO: Would like to omit the type argument.
@@ -617,9 +616,22 @@ private string _dummy = "";
     //none = 0,
     //none = 0,
 
+    private PropertyInfo? PropOrNull(string shortTypeName, string name)
+    {
+        var type = TypeOrNull(shortTypeName);
+        if (type == null) return null;
+        return PropOrNull(type, name);
+    }
+
+    private PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable)
+    {
+        var type = TypeOrSomething(shortTypeName, nullable);
+        if (type == null) return null;
+        return PropOrSomething(type, name, nullable);
+    }
 ```
 
-### Reflector Tests
+### Reflect Tests
 
 ```cs
             private static readonly Reflector _reflector = new();

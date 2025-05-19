@@ -1,4 +1,5 @@
 ﻿// ReSharper disable UnusedParameter.Global
+// ReSharper disable UnusedParameter.Local
 
 namespace JJ.Framework.Reflection.Core;
 
@@ -55,7 +56,7 @@ public class Reflect
     public  PropertyInfo? Prop(Type type,                     bool         nullable, [Caller] string name = "") => PropOrSomething(type,          name, nullable);
     public  PropertyInfo? Prop(string shortTypeName,          bool         nullable, [Caller] string name = "") => PropOrSomething(shortTypeName, name, nullable);
 
-    private PropertyInfo PropOrThrow(string shortTypeName, string name) => PropOrThrow(TypeByShortName(shortTypeName), name);
+    private PropertyInfo PropOrThrow(string shortTypeName, string name) => PropOrThrow(Type(shortTypeName), name);
     private PropertyInfo PropOrThrow(Type   type,          string name)
     {
         PropertyInfo? prop = PropOrNull(type, name);
@@ -68,7 +69,8 @@ public class Reflect
         return prop;
     }
 
-    private PropertyInfo? PropOrNull(string shortTypeName, string name) => PropOrNull(TypeByShortName(shortTypeName), name);
+    
+    private PropertyInfo? PropOrNull(string shortTypeName, string name) => Type(shortTypeName, nullable)?.Prop(name, nullable, this);
     private PropertyInfo? PropOrNull(Type   type,          string name)
     {
         lock (_propDicLock)
@@ -86,14 +88,19 @@ public class Reflect
         }
     }
 
-    private PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable) => PropOrSomething(TypeByShortName(shortTypeName), name, nullable);
-    private PropertyInfo? PropOrSomething(Type   type,          string name, bool nullable)
+    private PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable) => Type(shortTypeName, nullable)?.Prop(name, nullable, this);
+    private PropertyInfo? PropOrSomething(Type type, string name, bool nullable)
     {
         return nullable ? PropOrNull(type, name) : PropOrThrow(type, name);
     }
     
+    // Type
+
+    private Type  Type (string shortTypeName                       ) =>            _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
+    private Type? Type (string shortTypeName, NullableFlag nullable) =>            _reflectionCacheLegacy.TryGetTypeByShortName(shortTypeName);
+    private Type? Type (string shortTypeName, bool         nullable) => nullable ? _reflectionCacheLegacy.TryGetTypeByShortName(shortTypeName) 
+                                                                                 : _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
     // Helpers
 
     private static bool GetMatchCase(BindingFlags bindingFlags) => !bindingFlags.HasFlag(BindingFlags.IgnoreCase);
-    private Type TypeByShortName(string shortTypeName) => _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
 }

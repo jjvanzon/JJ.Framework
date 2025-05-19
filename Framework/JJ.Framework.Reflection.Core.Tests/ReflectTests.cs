@@ -1,8 +1,7 @@
-﻿// ReSharper disable FieldCanBeMadeReadOnly.Local
-namespace JJ.Framework.Reflection.Core.Tests;
+﻿namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
-public class ReflectorTests
+public class ReflectTests
 {
     private Type _myType = typeof(MyType);
 
@@ -103,8 +102,6 @@ public class ReflectorTests
         }
     }
 
-    // TODO: Add calls that take "MyType" as string.
-
     [TestMethod]
     public void Reflector_Prop_CaseSensitive_NoMatch_ReturnsNull()
     {
@@ -113,8 +110,7 @@ public class ReflectorTests
             IsNull(reflect.Prop("MyType", "myprop",       nullable      ));
             IsNull(reflect.Prop <MyType>( "myprop",       nullable      ));
             IsNull(reflect.Prop(_myType , "myprop",       nullable      ));
-            // TODO: Inconsistent handling of case sensitivity for the type name.
-            //IsNull(reflect.Prop("myType", "MyProp",       nullable: true));
+            IsNull(reflect.Prop("myType", "MyProp",       nullable: true));
             IsNull(reflect.Prop <MyType>( "myprop",       nullable: true));
             IsNull(reflect.Prop(_myType , "myprop",       nullable: true));
             IsNull(reflect.Prop("MyType", nullable,       "myprop"      ));
