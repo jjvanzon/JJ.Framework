@@ -6,7 +6,7 @@ using static JJ.Framework.Reflection.ReflectionHelper;
 namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
-public class ReflectionCacheCoreTests
+public class ReflectionCacheTests
 {
     private const int REPEATS = 2;
     private string _nonExistentName = Guid.NewGuid().ToString();
@@ -49,7 +49,7 @@ public class ReflectionCacheCoreTests
     // Properties
 
     [TestMethod]
-    public void StaticReflectionCache_GetProperty_Core_Test()
+    public void StaticReflectionCache_GetProperty_Test()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -66,7 +66,7 @@ public class ReflectionCacheCoreTests
     }
     
     [TestMethod]
-    public void StaticReflectionCache_TryGetProperty_Core_Test()
+    public void StaticReflectionCache_TryGetProperty_Test()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -157,7 +157,7 @@ public class ReflectionCacheCoreTests
     // Fields
 
     [TestMethod]
-    public void StaticReflectionCache_GetField_Core_Test()
+    public void StaticReflectionCache_GetField_Test()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -174,7 +174,7 @@ public class ReflectionCacheCoreTests
     }
     
     [TestMethod]
-    public void StaticReflectionCache_TryGetField_Core_Test()
+    public void StaticReflectionCache_TryGetField_Test()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -245,7 +245,7 @@ public class ReflectionCacheCoreTests
     // Methods
     
     [TestMethod]
-    public void StaticReflectionCache_GetMethod_Core_Test()
+    public void StaticReflectionCache_GetMethod_Test()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -259,7 +259,7 @@ public class ReflectionCacheCoreTests
     }
     
     [TestMethod]
-    public void StaticReflectionCache_TryGetMethod_Core_Test()
+    public void StaticReflectionCache_TryGetMethod_Test()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -329,7 +329,7 @@ public class ReflectionCacheCoreTests
     // Indexers
     
     [TestMethod]
-    public void StaticReflectionCache_GetIndexer_Core_Test()
+    public void StaticReflectionCache_GetIndexer_Test()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -342,7 +342,7 @@ public class ReflectionCacheCoreTests
     }
     
     [TestMethod]
-    public void StaticReflectionCache_TryGetIndexer_Core_Test()
+    public void StaticReflectionCache_TryGetIndexer_Test()
     {
         for (int i = 0; i < REPEATS; i++)
         {
@@ -441,15 +441,15 @@ public class ReflectionCacheCoreTests
     // GetTypeByShortName
     
     [TestMethod]
-    public void ReflectionCache_GetTypeByShortName_Core_Test()
+    public void ReflectionCache_GetTypeByShortName_Test()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
         for (int i = 0; i < REPEATS; i++)
         {
-            Type type = reflectionCache.GetTypeByShortName("ReflectionCacheCoreTests");
+            Type type = reflectionCache.GetTypeByShortName("ReflectionCacheTests");
             IsNotNull(() => type);
-            AreEqual(typeof(ReflectionCacheCoreTests), () => type);
+            AreEqual(typeof(ReflectionCacheTests), () => type);
         }
     }
     
@@ -467,15 +467,15 @@ public class ReflectionCacheCoreTests
     }
         
     [TestMethod]
-    public void ReflectionCache_TryGetTypeByShortName_Core_Test()
+    public void ReflectionCache_TryGetTypeByShortName_Test()
     {
         var reflectionCache = new ReflectionCache(BINDING_FLAGS_ALL);
         
         for (int i = 0; i < REPEATS; i++)
         {
-            Type type = reflectionCache.TryGetTypeByShortName("ReflectionCacheCoreTests");
+            Type type = reflectionCache.TryGetTypeByShortName("ReflectionCacheTests");
             IsNotNull(() => type);
-            AreEqual(typeof(ReflectionCacheCoreTests), () => type);
+            AreEqual(typeof(ReflectionCacheTests), () => type);
         }
     }
 
@@ -525,12 +525,12 @@ public class ReflectionCacheCoreTests
         
         for (int i = 0; i < REPEATS; i++)
         {
-            IList<Type> types = reflectionCache.GetTypesByShortName("ReflectionCacheCoreTests");
+            IList<Type> types = reflectionCache.GetTypesByShortName("ReflectionCacheTests");
             
             IsNotNull(  () => types);
             AreEqual(1, () => types.Count);
             IsNotNull(  () => types[0]);
-            AreEqual(typeof(ReflectionCacheCoreTests), () => types[0]);
+            AreEqual(typeof(ReflectionCacheTests), () => types[0]);
         }
     }
         

@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Reflection.Core;
 
 [Flags]
-public enum ReflectionFlagsCore
+public enum ReflectFlags
 {
     throws = 1,
 }
