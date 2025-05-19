@@ -646,5 +646,21 @@ private string _dummy = "";
             ThrowsNotFound(() => reflector.Prop<MyClass>(NoThrowFlag.none, "myprop"));
             ThrowsNotFound(() => reflector.Prop(typeof(MyClass), NoThrowFlag.none, "myprop"));
             ThrowsNotFound(() => reflector.Prop(typeof(MyClass), "myprop", NoThrowFlag.none));
+        
+    [TestMethod]
+    public void Reflector_Prop_Invariant_UnderNullable_IgnoresCase()
+    {
+        foreach (var reflector in _reflectors)
+        {
+            Assert(reflector.Prop<MyClass>(        "myprop"                 ));
+            Assert(reflector.Prop(typeof(MyClass), "myprop"                 ));
+            Assert(reflector.Prop<MyClass>(        "myprop", nullable       ));
+            Assert(reflector.Prop(typeof(MyClass), "myprop", nullable       ));
+            Assert(reflector.Prop<MyClass>(        "myprop", nullable: true ));
+            Assert(reflector.Prop(typeof(MyClass), "myprop", nullable: true ));
+            Assert(reflector.Prop<MyClass>(        "myprop", nullable: false));
+            Assert(reflector.Prop(typeof(MyClass), "myprop", nullable: false));
+        }
+    }
 
 ```

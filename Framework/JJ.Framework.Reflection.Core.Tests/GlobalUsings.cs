@@ -19,6 +19,7 @@ global using static System.String;
 global using static System.DayOfWeek;
 global using static System.Globalization.CultureInfo;
 global using static JJ.Framework.Common.Core.NameHelper;
+global using static JJ.Framework.Collections.Core.StaticEnumerable;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Reflection.Core.ReflectionHelperCore;
 global using static JJ.Framework.Reflection.Core.NullableFlag;
