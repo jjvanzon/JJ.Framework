@@ -5,12 +5,14 @@ namespace JJ.Framework.Reflection.Core;
 
 public class Reflector
 {
-    public Reflector(                                                  ) : this(BindingFlagsAll, false) { }
-    public Reflector(BindingFlags bindingFlags                         ) : this(bindingFlags   , GetMatchCase(bindingFlags)) { }
-    public Reflector(MatchCaseFlag matchcase                           ) : this(BindingFlagsAll, Has(matchcase)) { }
-    public Reflector(bool matchcase                                    ) : this(BindingFlagsAll, Has(matchcase)) { }
-    public Reflector(BindingFlags bindingFlags, MatchCaseFlag matchcase) : this(bindingFlags   , Has(matchcase)) { }
-    public Reflector(BindingFlags bindingFlags, bool matchcase         )
+    public Reflector(                                                    ) : this(BindingFlagsAll, false) { }
+    public Reflector(BindingFlags bindingFlags                           ) : this(bindingFlags   , GetMatchCase(bindingFlags)) { }
+    public Reflector(MatchCaseFlag matchcase                             ) : this(BindingFlagsAll, Has(matchcase)) { }
+    public Reflector(bool matchcase                                      ) : this(BindingFlagsAll, Has(matchcase)) { }
+    public Reflector(MatchCaseFlag matchcase  , BindingFlags bindingFlags) : this(bindingFlags   , Has(matchcase)) { }
+    public Reflector(bool matchcase           , BindingFlags bindingFlags) : this(bindingFlags   , Has(matchcase)) { }
+    public Reflector(BindingFlags bindingFlags, MatchCaseFlag matchcase  ) : this(bindingFlags   , Has(matchcase)) { }
+    public Reflector(BindingFlags bindingFlags, bool matchcase           )
     {
         if (matchcase)
         {
