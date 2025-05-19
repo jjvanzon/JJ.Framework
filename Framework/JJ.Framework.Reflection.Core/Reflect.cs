@@ -2,7 +2,7 @@
 
 namespace JJ.Framework.Reflection.Core;
 
-public class Reflector
+public class Reflect
 {    
     public override string ToString() => DebuggerDisplay(this);
     public BindingFlags BindingFlags { get; }
@@ -10,14 +10,14 @@ public class Reflector
 
     private readonly ReflectionCacheLegacy _reflectionCacheLegacy;
 
-    public Reflector(                                                    ) : this(BindingFlagsAll, false) { }
-    public Reflector(BindingFlags bindingFlags                           ) : this(bindingFlags   , GetMatchCase(bindingFlags)) { }
-    public Reflector(MatchCaseFlag matchcase                             ) : this(BindingFlagsAll, Has(matchcase)) { }
-    public Reflector(bool matchcase                                      ) : this(BindingFlagsAll, Has(matchcase)) { }
-    public Reflector(MatchCaseFlag matchcase  , BindingFlags bindingFlags) : this(bindingFlags   , Has(matchcase)) { }
-    public Reflector(bool matchcase           , BindingFlags bindingFlags) : this(bindingFlags   , Has(matchcase)) { }
-    public Reflector(BindingFlags bindingFlags, MatchCaseFlag matchcase  ) : this(bindingFlags   , Has(matchcase)) { }
-    public Reflector(BindingFlags bindingFlags, bool matchcase           )
+    public Reflect(                                                    ) : this(BindingFlagsAll, false) { }
+    public Reflect(BindingFlags bindingFlags                           ) : this(bindingFlags   , GetMatchCase(bindingFlags)) { }
+    public Reflect(MatchCaseFlag matchcase                             ) : this(BindingFlagsAll, Has(matchcase)) { }
+    public Reflect(bool matchcase                                      ) : this(BindingFlagsAll, Has(matchcase)) { }
+    public Reflect(MatchCaseFlag matchcase  , BindingFlags bindingFlags) : this(bindingFlags   , Has(matchcase)) { }
+    public Reflect(bool matchcase           , BindingFlags bindingFlags) : this(bindingFlags   , Has(matchcase)) { }
+    public Reflect(BindingFlags bindingFlags, MatchCaseFlag matchcase  ) : this(bindingFlags   , Has(matchcase)) { }
+    public Reflect(BindingFlags bindingFlags, bool matchcase           )
     {
         if (matchcase)
         {

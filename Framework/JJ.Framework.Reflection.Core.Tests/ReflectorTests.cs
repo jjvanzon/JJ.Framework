@@ -8,7 +8,7 @@ public class ReflectorTests
 
     // Constructors
 
-    Reflector[] _reflectors =
+    Reflect[] _reflectors =
     [
         new (                                  ),
         new (matchcase: false                  ),
@@ -17,7 +17,7 @@ public class ReflectorTests
         new (BindingFlagsAll,  matchcase: false)
     ];
     
-    Reflector[] _reflectorsMatchCase =
+    Reflect[] _reflectorsMatchCase =
     [
         new (matchcase                       ),
         new (matchcase: true                 ),
@@ -32,22 +32,22 @@ public class ReflectorTests
     [TestMethod]
     public void Reflector_Prop_MainCase()
     {
-        foreach (var reflector in _reflectors)
+        foreach (var reflect in _reflectors)
         {
-            Assert(reflector.Prop("MyType", "MyProp"));
-            Assert(reflector.Prop <MyType>( "MyProp"));
-            Assert(reflector.Prop(_myType,  "MyProp"));
+            Assert(reflect.Prop("MyType", "MyProp"));
+            Assert(reflect.Prop <MyType>( "MyProp"));
+            Assert(reflect.Prop(_myType,  "MyProp"));
         }
     }
     
     [TestMethod]
     public void Reflector_Prop_IgnoresCase()
     {
-        foreach (var reflector in _reflectors)
+        foreach (var reflect in _reflectors)
         {
-            Assert(reflector.Prop("mytype", "myprop"));
-            Assert(reflector.Prop(_myType,  "myprop"));
-            Assert(reflector.Prop <MyType>( "myprop"));
+            Assert(reflect.Prop("mytype", "myprop"));
+            Assert(reflect.Prop(_myType,  "myprop"));
+            Assert(reflect.Prop <MyType>( "myprop"));
         }
     }
 
@@ -56,34 +56,34 @@ public class ReflectorTests
     [TestMethod]
     public void Reflector_Prop_NotFound_Throws()
     {
-        foreach (var reflector in _reflectors)
+        foreach (var reflect in _reflectors)
         {
-            ThrowsException(() => reflector.Prop("MyType", "NoProp"));
-            ThrowsException(() => reflector.Prop <MyType>( "NoProp"));
-            ThrowsException(() => reflector.Prop(_myType , "NoProp"));
-            ThrowsException(() => reflector.Prop("MyType", "NoProp", nullable: false));
-            ThrowsException(() => reflector.Prop <MyType>( "NoProp", nullable: false));
-            ThrowsException(() => reflector.Prop(_myType , "NoProp", nullable: false));
+            ThrowsException(() => reflect.Prop("MyType", "NoProp"));
+            ThrowsException(() => reflect.Prop <MyType>( "NoProp"));
+            ThrowsException(() => reflect.Prop(_myType , "NoProp"));
+            ThrowsException(() => reflect.Prop("MyType", "NoProp", nullable: false));
+            ThrowsException(() => reflect.Prop <MyType>( "NoProp", nullable: false));
+            ThrowsException(() => reflect.Prop(_myType , "NoProp", nullable: false));
         }
     }
 
     [TestMethod]
     public void Reflector_Prop_NotFound_ReturnsNull()
     {
-        foreach (var reflector in _reflectors)
+        foreach (var reflect in _reflectors)
         {
-            IsNull(reflector.Prop("MyType", "NoProp",       nullable      ));
-            IsNull(reflector.Prop <MyType>( "NoProp",       nullable      ));
-            IsNull(reflector.Prop(_myType , "NoProp",       nullable      ));
-            IsNull(reflector.Prop("MyType", "NoProp",       nullable: true));
-            IsNull(reflector.Prop <MyType>( "NoProp",       nullable: true));
-            IsNull(reflector.Prop(_myType , "NoProp",       nullable: true));
-            IsNull(reflector.Prop("MyType", nullable,       "NoProp"      ));
-            IsNull(reflector.Prop <MyType>( nullable,       "NoProp"      ));
-            IsNull(reflector.Prop(_myType , nullable,       "NoProp"      ));
-            IsNull(reflector.Prop("MyType", nullable: true, "NoProp"      ));
-            IsNull(reflector.Prop <MyType>( nullable: true, "NoProp"      ));
-            IsNull(reflector.Prop(_myType , nullable: true, "NoProp"      ));
+            IsNull(reflect.Prop("MyType", "NoProp",       nullable      ));
+            IsNull(reflect.Prop <MyType>( "NoProp",       nullable      ));
+            IsNull(reflect.Prop(_myType , "NoProp",       nullable      ));
+            IsNull(reflect.Prop("MyType", "NoProp",       nullable: true));
+            IsNull(reflect.Prop <MyType>( "NoProp",       nullable: true));
+            IsNull(reflect.Prop(_myType , "NoProp",       nullable: true));
+            IsNull(reflect.Prop("MyType", nullable,       "NoProp"      ));
+            IsNull(reflect.Prop <MyType>( nullable,       "NoProp"      ));
+            IsNull(reflect.Prop(_myType , nullable,       "NoProp"      ));
+            IsNull(reflect.Prop("MyType", nullable: true, "NoProp"      ));
+            IsNull(reflect.Prop <MyType>( nullable: true, "NoProp"      ));
+            IsNull(reflect.Prop(_myType , nullable: true, "NoProp"      ));
         }
     }
 
@@ -92,15 +92,15 @@ public class ReflectorTests
     [TestMethod]
     public void Reflector_Prop_CaseSensitive_NoMatch_Throws()
     {
-        foreach (var reflector in _reflectorsMatchCase)
+        foreach (var reflect in _reflectorsMatchCase)
         {
-            ThrowsNotFound(() => reflector.Prop("MyType", "myprop"));
-            ThrowsNotFound(() => reflector.Prop <MyType>( "myprop"));
-            ThrowsNotFound(() => reflector.Prop(_myType , "myprop"));
+            ThrowsNotFound(() => reflect.Prop("MyType", "myprop"));
+            ThrowsNotFound(() => reflect.Prop <MyType>( "myprop"));
+            ThrowsNotFound(() => reflect.Prop(_myType , "myprop"));
             // TODO: Inconsistent handling of case sensitivity for the type name.
             //ThrowsNotFound(() => reflector.Prop("mytype", "MyProp", nullable: false));
-            ThrowsNotFound(() => reflector.Prop <MyType>( "myprop", nullable: false));
-            ThrowsNotFound(() => reflector.Prop(_myType , "myprop", nullable: false));
+            ThrowsNotFound(() => reflect.Prop <MyType>( "myprop", nullable: false));
+            ThrowsNotFound(() => reflect.Prop(_myType , "myprop", nullable: false));
         }
     }
 
@@ -109,21 +109,21 @@ public class ReflectorTests
     [TestMethod]
     public void Reflector_Prop_CaseSensitive_NoMatch_ReturnsNull()
     {
-        foreach (var reflector in _reflectorsMatchCase)
+        foreach (var reflect in _reflectorsMatchCase)
         {
-            IsNull(reflector.Prop("MyType", "myprop",       nullable      ));
-            IsNull(reflector.Prop <MyType>( "myprop",       nullable      ));
-            IsNull(reflector.Prop(_myType , "myprop",       nullable      ));
+            IsNull(reflect.Prop("MyType", "myprop",       nullable      ));
+            IsNull(reflect.Prop <MyType>( "myprop",       nullable      ));
+            IsNull(reflect.Prop(_myType , "myprop",       nullable      ));
             // TODO: Inconsistent handling of case sensitivity for the type name.
             //IsNull(reflector.Prop("myType", "MyProp",       nullable: true));
-            IsNull(reflector.Prop <MyType>( "myprop",       nullable: true));
-            IsNull(reflector.Prop(_myType , "myprop",       nullable: true));
-            IsNull(reflector.Prop("MyType", nullable,       "myprop"      ));
-            IsNull(reflector.Prop <MyType>( nullable,       "myprop"      ));
-            IsNull(reflector.Prop(_myType , nullable,       "myprop"      ));
-            IsNull(reflector.Prop("MyType", nullable: true, "myprop"      ));
-            IsNull(reflector.Prop <MyType>( nullable: true, "myprop"      ));
-            IsNull(reflector.Prop(_myType , nullable: true, "myprop"      ));
+            IsNull(reflect.Prop <MyType>( "myprop",       nullable: true));
+            IsNull(reflect.Prop(_myType , "myprop",       nullable: true));
+            IsNull(reflect.Prop("MyType", nullable,       "myprop"      ));
+            IsNull(reflect.Prop <MyType>( nullable,       "myprop"      ));
+            IsNull(reflect.Prop(_myType , nullable,       "myprop"      ));
+            IsNull(reflect.Prop("MyType", nullable: true, "myprop"      ));
+            IsNull(reflect.Prop <MyType>( nullable: true, "myprop"      ));
+            IsNull(reflect.Prop(_myType , nullable: true, "myprop"      ));
         }
     }
     
@@ -132,29 +132,29 @@ public class ReflectorTests
     [TestMethod]
     public void Reflector_Prop_MainCase_Invariant_UnderNullable()
     {
-        foreach (var reflector in Union(_reflectors, _reflectorsMatchCase))
+        foreach (var reflect in Union(_reflectors, _reflectorsMatchCase))
         {
-            Assert(reflector.Prop("MyType", "MyProp"                        ));
-            Assert(reflector.Prop <MyType>( "MyProp"                        ));
-            Assert(reflector.Prop(_myType , "MyProp"                        ));
-            Assert(reflector.Prop("MyType", "MyProp",        nullable       ));
-            Assert(reflector.Prop <MyType>( "MyProp",        nullable       ));
-            Assert(reflector.Prop(_myType , "MyProp",        nullable       ));
-            Assert(reflector.Prop("MyType", "MyProp",        nullable: true ));
-            Assert(reflector.Prop <MyType>( "MyProp",        nullable: true ));
-            Assert(reflector.Prop(_myType , "MyProp",        nullable: true ));
-            Assert(reflector.Prop("MyType", "MyProp",        nullable: false));
-            Assert(reflector.Prop <MyType>( "MyProp",        nullable: false));
-            Assert(reflector.Prop(_myType , "MyProp",        nullable: false));
-            Assert(reflector.Prop("MyType", nullable,        "MyProp"       ));
-            Assert(reflector.Prop <MyType>( nullable,        "MyProp"       ));
-            Assert(reflector.Prop(_myType , nullable,        "MyProp"       ));
-            Assert(reflector.Prop("MyType", nullable: true,  "MyProp"       ));
-            Assert(reflector.Prop <MyType>( nullable: true,  "MyProp"       ));
-            Assert(reflector.Prop(_myType , nullable: true,  "MyProp"       ));
-            Assert(reflector.Prop("MyType", nullable: false, "MyProp"       ));
-            Assert(reflector.Prop <MyType>( nullable: false, "MyProp"       ));
-            Assert(reflector.Prop(_myType , nullable: false, "MyProp"       ));
+            Assert(reflect.Prop("MyType", "MyProp"                        ));
+            Assert(reflect.Prop <MyType>( "MyProp"                        ));
+            Assert(reflect.Prop(_myType , "MyProp"                        ));
+            Assert(reflect.Prop("MyType", "MyProp",        nullable       ));
+            Assert(reflect.Prop <MyType>( "MyProp",        nullable       ));
+            Assert(reflect.Prop(_myType , "MyProp",        nullable       ));
+            Assert(reflect.Prop("MyType", "MyProp",        nullable: true ));
+            Assert(reflect.Prop <MyType>( "MyProp",        nullable: true ));
+            Assert(reflect.Prop(_myType , "MyProp",        nullable: true ));
+            Assert(reflect.Prop("MyType", "MyProp",        nullable: false));
+            Assert(reflect.Prop <MyType>( "MyProp",        nullable: false));
+            Assert(reflect.Prop(_myType , "MyProp",        nullable: false));
+            Assert(reflect.Prop("MyType", nullable,        "MyProp"       ));
+            Assert(reflect.Prop <MyType>( nullable,        "MyProp"       ));
+            Assert(reflect.Prop(_myType , nullable,        "MyProp"       ));
+            Assert(reflect.Prop("MyType", nullable: true,  "MyProp"       ));
+            Assert(reflect.Prop <MyType>( nullable: true,  "MyProp"       ));
+            Assert(reflect.Prop(_myType , nullable: true,  "MyProp"       ));
+            Assert(reflect.Prop("MyType", nullable: false, "MyProp"       ));
+            Assert(reflect.Prop <MyType>( nullable: false, "MyProp"       ));
+            Assert(reflect.Prop(_myType , nullable: false, "MyProp"       ));
         }
     }
 
@@ -175,7 +175,7 @@ public class ReflectorTests
     
     private class MyType
     {
-        Reflector _reflector = new();
+        Reflect _reflector = new();
 
         // TODO Assert return value.
         public string MyProp => _reflector.Prop<MyType>().Name;
