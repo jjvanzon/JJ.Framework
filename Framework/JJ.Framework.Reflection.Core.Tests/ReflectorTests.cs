@@ -5,17 +5,20 @@ public class ReflectorTests
 {
     private Reflector[] _reflectors = new[]
     {
-        new Reflector(),
-        new Reflector(matchcase: false),
-        new Reflector(BindingFlagsAll),
-        new Reflector(BindingFlagsAll, matchcase: false),
+        new Reflector(                                  ),
+        new Reflector(matchcase: false                  ),
+        new Reflector(matchcase: false, BindingFlagsAll ),
+        new Reflector(BindingFlagsAll                   ),
+        new Reflector(BindingFlagsAll,  matchcase: false),
     };
     
     private Reflector[] _reflectorsMatchCase = new[]
     {
-        new Reflector(matchcase),
-        new Reflector(matchcase: true),
-        new Reflector(BindingFlagsAll, matchcase),
+        new Reflector(matchcase                       ),
+        new Reflector(matchcase: true                 ),
+        new Reflector(matchcase,       BindingFlagsAll),
+        new Reflector(matchcase: true, BindingFlagsAll),
+        new Reflector(BindingFlagsAll, matchcase      ),
         new Reflector(BindingFlagsAll, matchcase: true),
     };
 
@@ -24,7 +27,7 @@ public class ReflectorTests
     {
         foreach (var reflector in _reflectors)
         {
-            Assert(reflector.Prop<MyClass>(        "MyProp"));
+            Assert(reflector.Prop       <MyClass>( "MyProp"));
             Assert(reflector.Prop(typeof(MyClass), "MyProp"));
         }
     }
@@ -34,7 +37,7 @@ public class ReflectorTests
     {
         foreach (var reflector in _reflectors)
         {
-            Assert(reflector.Prop<MyClass>(        "myprop"));
+            Assert(reflector.Prop       <MyClass>( "myprop"));
             Assert(reflector.Prop(typeof(MyClass), "myprop"));
         }
     }
@@ -46,9 +49,9 @@ public class ReflectorTests
     {
         foreach (var reflector in _reflectors)
         {
-            ThrowsException(() => reflector.Prop<MyClass>(        "NoProp"));
+            ThrowsException(() => reflector.Prop       <MyClass>( "NoProp"));
             ThrowsException(() => reflector.Prop(typeof(MyClass), "NoProp"));
-            ThrowsException(() => reflector.Prop<MyClass>(        "NoProp", nullable: false));
+            ThrowsException(() => reflector.Prop       <MyClass>( "NoProp", nullable: false));
             ThrowsException(() => reflector.Prop(typeof(MyClass), "NoProp", nullable: false));
         }
     }
@@ -58,13 +61,13 @@ public class ReflectorTests
     {
         foreach (var reflector in _reflectors)
         {
-            IsNull(reflector.Prop<MyClass>(        "NoProp",       nullable      ));
+            IsNull(reflector.Prop       <MyClass>( "NoProp",       nullable      ));
             IsNull(reflector.Prop(typeof(MyClass), "NoProp",       nullable      ));
-            IsNull(reflector.Prop<MyClass>(        "NoProp",       nullable: true));
+            IsNull(reflector.Prop       <MyClass>( "NoProp",       nullable: true));
             IsNull(reflector.Prop(typeof(MyClass), "NoProp",       nullable: true));
-            IsNull(reflector.Prop<MyClass>(        nullable,       "NoProp"      ));
+            IsNull(reflector.Prop       <MyClass>( nullable,       "NoProp"      ));
             IsNull(reflector.Prop(typeof(MyClass), nullable,       "NoProp"      ));
-            IsNull(reflector.Prop<MyClass>(        nullable: true, "NoProp"      ));
+            IsNull(reflector.Prop       <MyClass>( nullable: true, "NoProp"      ));
             IsNull(reflector.Prop(typeof(MyClass), nullable: true, "NoProp"      ));
         }
     }
@@ -76,9 +79,9 @@ public class ReflectorTests
     {
         foreach (var reflector in _reflectorsMatchCase)
         {
-            ThrowsNotFound(() => reflector.Prop<MyClass>(        "myprop"));
+            ThrowsNotFound(() => reflector.Prop       <MyClass>( "myprop"));
             ThrowsNotFound(() => reflector.Prop(typeof(MyClass), "myprop"));
-            ThrowsNotFound(() => reflector.Prop<MyClass>(        "myprop", nullable: false));
+            ThrowsNotFound(() => reflector.Prop       <MyClass>( "myprop", nullable: false));
             ThrowsNotFound(() => reflector.Prop(typeof(MyClass), "myprop", nullable: false));
         }
     }
@@ -88,14 +91,14 @@ public class ReflectorTests
     {
         foreach (var reflector in _reflectorsMatchCase)
         {
-            IsNull(reflector.Prop<MyClass>(        "myprop", nullable      ));
-            IsNull(reflector.Prop(typeof(MyClass), "myprop", nullable      ));
-            IsNull(reflector.Prop<MyClass>(        "myprop", nullable: true));
-            IsNull(reflector.Prop(typeof(MyClass), "myprop", nullable: true));
-            IsNull(reflector.Prop<MyClass>(        nullable,       "myprop"));
-            IsNull(reflector.Prop(typeof(MyClass), nullable,       "myprop"));
-            IsNull(reflector.Prop<MyClass>(        nullable: true, "myprop"));
-            IsNull(reflector.Prop(typeof(MyClass), nullable: true, "myprop"));
+            IsNull(reflector.Prop       <MyClass>( "myprop",       nullable      ));
+            IsNull(reflector.Prop(typeof(MyClass), "myprop",       nullable      ));
+            IsNull(reflector.Prop       <MyClass>( "myprop",       nullable: true));
+            IsNull(reflector.Prop(typeof(MyClass), "myprop",       nullable: true));
+            IsNull(reflector.Prop       <MyClass>( nullable,       "myprop"      ));
+            IsNull(reflector.Prop(typeof(MyClass), nullable,       "myprop"      ));
+            IsNull(reflector.Prop       <MyClass>( nullable: true, "myprop"      ));
+            IsNull(reflector.Prop(typeof(MyClass), nullable: true, "myprop"      ));
         }
     }
     
@@ -106,20 +109,20 @@ public class ReflectorTests
     {
         foreach (var reflector in Union(_reflectors, _reflectorsMatchCase))
         {
-            Assert(reflector.Prop<MyClass>(        "MyProp"                       ));
-            Assert(reflector.Prop(typeof(MyClass), "MyProp"                       ));
-            Assert(reflector.Prop<MyClass>(        "MyProp",       nullable       ));
-            Assert(reflector.Prop(typeof(MyClass), "MyProp",       nullable       ));
-            Assert(reflector.Prop<MyClass>(        "MyProp",       nullable: true ));
-            Assert(reflector.Prop(typeof(MyClass), "MyProp",       nullable: true ));
-            Assert(reflector.Prop<MyClass>(        "MyProp",       nullable: false));
-            Assert(reflector.Prop(typeof(MyClass), "MyProp",       nullable: false));
-            Assert(reflector.Prop<MyClass>(        nullable,        "MyProp"      ));
-            Assert(reflector.Prop(typeof(MyClass), nullable,        "MyProp"      ));
-            Assert(reflector.Prop<MyClass>(        nullable: true,  "MyProp"      ));
-            Assert(reflector.Prop(typeof(MyClass), nullable: true,  "MyProp"      ));
-            Assert(reflector.Prop<MyClass>(        nullable: false, "MyProp"      ));
-            Assert(reflector.Prop(typeof(MyClass), nullable: false, "MyProp"      ));
+            Assert(reflector.Prop       <MyClass>( "MyProp"                        ));
+            Assert(reflector.Prop(typeof(MyClass), "MyProp"                        ));
+            Assert(reflector.Prop       <MyClass>( "MyProp",        nullable       ));
+            Assert(reflector.Prop(typeof(MyClass), "MyProp",        nullable       ));
+            Assert(reflector.Prop       <MyClass>( "MyProp",        nullable: true ));
+            Assert(reflector.Prop(typeof(MyClass), "MyProp",        nullable: true ));
+            Assert(reflector.Prop       <MyClass>( "MyProp",        nullable: false));
+            Assert(reflector.Prop(typeof(MyClass), "MyProp",        nullable: false));
+            Assert(reflector.Prop       <MyClass>( nullable,        "MyProp"       ));
+            Assert(reflector.Prop(typeof(MyClass), nullable,        "MyProp"       ));
+            Assert(reflector.Prop       <MyClass>( nullable: true,  "MyProp"       ));
+            Assert(reflector.Prop(typeof(MyClass), nullable: true,  "MyProp"       ));
+            Assert(reflector.Prop       <MyClass>( nullable: false, "MyProp"       ));
+            Assert(reflector.Prop(typeof(MyClass), nullable: false, "MyProp"       ));
         }
     }
 
