@@ -4,7 +4,7 @@ public class Reflector(BindingFlags bindingFlags = BindingFlagsAll)
 {
     // Property
     
-    private readonly Dictionary<(Type, string), PropertyInfo> _propDic = new();
+    private readonly Dictionary<(Type, string), PropertyInfo?> _propDic = new();
     private readonly Lock _propDicLock = new ();
     
     public  PropertyInfo  Prop    <T>(                            [Caller] string name = "") => PropCore(typeof(T), name, throws)!;
@@ -22,7 +22,16 @@ public class Reflector(BindingFlags bindingFlags = BindingFlagsAll)
                 prop = type.GetProperty(name, bindingFlags);
                 _propDic.Add((type, name), prop);
             }
-            if (prop == null && flags.HasFlag(throws) && !flags.HasFlag(nothrow)) // TODO: Contradiction possible.
+
+            if (Has(flags, matchcase))
+            {
+                if (!string.Equals(prop?.Name, name, Ordinal))
+                {
+                    prop = null;
+                }
+            }
+
+            if (prop == null && ShouldThrow(flags))
             {
                 throw new Exception($"Property '{name}' not found in type '{type.Name}'.");
             }
@@ -30,4 +39,13 @@ public class Reflector(BindingFlags bindingFlags = BindingFlagsAll)
             return prop;
         }
     }
+ 
+    private bool ShouldThrow(ReflectFlags flags)
+    {
+        if (Has(flags, throws)) return true;
+        if (Has(flags, nothrow)) return false;
+        return true;
+    }
+
+    private bool Has(ReflectFlags flags, ReflectFlags flag) => (flags & flag) != 0;
 }

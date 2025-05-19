@@ -16,28 +16,17 @@ public class ReflectorTests
         AssertProp(_reflector.Prop(typeof(MyClass), throws, "MyProp"));
         AssertProp(_reflector.Prop(typeof(MyClass), "MyProp", throws));
     }
-    
-    [TestMethod]
-    public void ReflectionCacheCore_Prop_CaseInsensitive()
-    {
-        AssertProp(_reflector.Prop<MyClass>("myprop"));
-        AssertProp(_reflector.Prop<MyClass>("myprop", throws));
-        AssertProp(_reflector.Prop<MyClass>(throws, "myprop"));
-        AssertProp(_reflector.Prop(typeof(MyClass), "myprop"));
-        AssertProp(_reflector.Prop(typeof(MyClass), throws, "myprop"));
-        AssertProp(_reflector.Prop(typeof(MyClass), "myprop", throws));
-    }
-    
-    // TODO: Case sensitive option.
-    
+        
     private void AssertProp(PropertyInfo? prop)
     {
         IsNotNull(prop);
         AreEqual("MyProp", prop!.Name);
     }
+
+    // NotFound
     
     [TestMethod]
-    public void ReflectionCacheCore_Prop_Throws()
+    public void ReflectionCacheCore_Prop_NotFound_Throws()
     {
         ThrowsException(() => _reflector.Prop<MyClass>("NoProp"));
         ThrowsException(() => _reflector.Prop<MyClass>("NoProp", throws));
@@ -48,12 +37,45 @@ public class ReflectorTests
     }
     
     [TestMethod]
-    public void ReflectionCacheCore_Prop_NoThrow()
+    public void ReflectionCacheCore_Prop_NotFound_NoThrow()
     {
         IsNull(_reflector.Prop<MyClass>("NoProp", nothrow));
         IsNull(_reflector.Prop<MyClass>(nothrow, "NoProp"));
         IsNull(_reflector.Prop(typeof(MyClass), nothrow, "NoProp"));
         IsNull(_reflector.Prop(typeof(MyClass), "NoProp", nothrow));
+    }
+
+    // MatchCase
+        
+    [TestMethod]
+    public void ReflectionCacheCore_Prop_CaseInsensitive()
+    {
+        AssertProp(_reflector.Prop<MyClass>("myprop"));
+        AssertProp(_reflector.Prop<MyClass>("myprop", throws));
+        AssertProp(_reflector.Prop<MyClass>(throws, "myprop"));
+        AssertProp(_reflector.Prop(typeof(MyClass), "myprop"));
+        AssertProp(_reflector.Prop(typeof(MyClass), throws, "myprop"));
+        AssertProp(_reflector.Prop(typeof(MyClass), "myprop", throws));
+    }
+
+    [TestMethod]
+    public void ReflectionCacheCore_Prop_CaseSensitive_NoMatch_Throws()
+    {
+        ThrowsException(() => _reflector.Prop<MyClass>("myprop", matchcase));
+        ThrowsException(() => _reflector.Prop<MyClass>("myprop", matchcase | throws));
+        ThrowsException(() => _reflector.Prop<MyClass>(matchcase | throws, "myprop"));
+        ThrowsException(() => _reflector.Prop(typeof(MyClass), "myprop", matchcase));
+        ThrowsException(() => _reflector.Prop(typeof(MyClass), matchcase | throws, "myprop"));
+        ThrowsException(() => _reflector.Prop(typeof(MyClass), "myprop", matchcase | throws));
+    }
+
+    [TestMethod]
+    public void ReflectionCacheCore_Prop_CaseSensitive_NoMatchNoThrow()
+    {
+        IsNull(_reflector.Prop<MyClass>("myprop", matchcase | nothrow));
+        IsNull(_reflector.Prop<MyClass>(matchcase | nothrow, "myprop"));
+        IsNull(_reflector.Prop(typeof(MyClass), matchcase | nothrow, "myprop"));
+        IsNull(_reflector.Prop(typeof(MyClass), "myprop", matchcase | nothrow));
     }
     
     private class MyClass
