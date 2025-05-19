@@ -39,17 +39,17 @@ public class Reflector
     
     // TODO: By (short) type name
 
-    public  PropertyInfo  Prop    <T>(                             [Caller] string name = "") => PropCore(typeof(T), name, false)!;
-    public  PropertyInfo  Prop    (Type type,                      [Caller] string name = "") => PropCore(type,      name, false)!;
-    public  PropertyInfo? Prop    <T>(        NoThrowFlag nothrow, [Caller] string name = "") => PropCore(typeof(T), name, Has(nothrow));
-    public  PropertyInfo? Prop    (Type type, NoThrowFlag nothrow, [Caller] string name = "") => PropCore(type,      name, Has(nothrow));
-    public  PropertyInfo? Prop    <T>(        bool        nothrow, [Caller] string name = "") => PropCore(typeof(T), name, Has(nothrow));
-    public  PropertyInfo? Prop    (Type type, bool        nothrow, [Caller] string name = "") => PropCore(type,      name, Has(nothrow));
-    public  PropertyInfo? Prop    <T>(        string name,         NoThrowFlag nothrow      ) => PropCore(typeof(T), name, Has(nothrow));
-    public  PropertyInfo? Prop    (Type type, string name,         NoThrowFlag nothrow      ) => PropCore(type,      name, Has(nothrow));
-    public  PropertyInfo? Prop    <T>(        string name,         bool        nothrow      ) => PropCore(typeof(T), name, Has(nothrow));
-    public  PropertyInfo? Prop    (Type type, string name,         bool        nothrow      ) => PropCore(type,      name, Has(nothrow));
-    private PropertyInfo? PropCore(Type type, string name,         bool        nothrow      )
+    public  PropertyInfo  Prop    <T>(                               [Caller] string name = "") => PropCore(typeof(T), name, false)!;
+    public  PropertyInfo  Prop    (Type type,                        [Caller] string name = "") => PropCore(type,      name, false)!;
+    public  PropertyInfo? Prop    <T>(        NullableFlag nullable, [Caller] string name = "") => PropCore(typeof(T), name, Has(nullable));
+    public  PropertyInfo? Prop    (Type type, NullableFlag nullable, [Caller] string name = "") => PropCore(type,      name, Has(nullable));
+    public  PropertyInfo? Prop    <T>(        bool         nullable, [Caller] string name = "") => PropCore(typeof(T), name, Has(nullable));
+    public  PropertyInfo? Prop    (Type type, bool         nullable, [Caller] string name = "") => PropCore(type,      name, Has(nullable));
+    public  PropertyInfo? Prop    <T>(        string name,            NullableFlag nullable   ) => PropCore(typeof(T), name, Has(nullable));
+    public  PropertyInfo? Prop    (Type type, string name,            NullableFlag nullable   ) => PropCore(type,      name, Has(nullable));
+    public  PropertyInfo? Prop    <T>(        string name,            bool        nullable    ) => PropCore(typeof(T), name, Has(nullable));
+    public  PropertyInfo? Prop    (Type type, string name,            bool        nullable    ) => PropCore(type,      name, Has(nullable));
+    private PropertyInfo? PropCore(Type type, string name,            bool        nullable    )
     {
         PropertyInfo? prop;
         
@@ -62,7 +62,7 @@ public class Reflector
             }
         }
 
-        if (prop == null && !nothrow)
+        if (prop == null && !nullable)
         {
             throw new Exception($"Property '{name}' not found in {type.Name}.");
         }

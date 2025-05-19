@@ -21,7 +21,7 @@ global using static System.Globalization.CultureInfo;
 global using static JJ.Framework.Common.Core.NameHelper;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Reflection.Core.ReflectionHelperCore;
-global using static JJ.Framework.Reflection.Core.NoThrowFlag;
+global using static JJ.Framework.Reflection.Core.NullableFlag;
 global using static JJ.Framework.Reflection.Core.MatchCaseFlag;
 //global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert; // Specifically excluded; replaced by AssertHelperCore.
 global using static JJ.Framework.Testing.AssertHelper;

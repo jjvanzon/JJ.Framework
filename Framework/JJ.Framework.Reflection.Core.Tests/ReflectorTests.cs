@@ -48,24 +48,24 @@ public class ReflectorTests
         {
             ThrowsException(() => reflector.Prop<MyClass>(        "NoProp"));
             ThrowsException(() => reflector.Prop(typeof(MyClass), "NoProp"));
-            ThrowsException(() => reflector.Prop<MyClass>(        "NoProp", nothrow: false));
-            ThrowsException(() => reflector.Prop(typeof(MyClass), "NoProp", nothrow: false));
+            ThrowsException(() => reflector.Prop<MyClass>(        "NoProp", nullable: false));
+            ThrowsException(() => reflector.Prop(typeof(MyClass), "NoProp", nullable: false));
         }
     }
     
     [TestMethod]
-    public void Reflector_Prop_NotFound_ReturnsNull()
+    public void Reflector_Prop_NotFound_Nullable()
     {
         foreach (var reflector in _reflectors)
         {
-            IsNull(reflector.Prop<MyClass>(        "NoProp",       nothrow      ));
-            IsNull(reflector.Prop(typeof(MyClass), "NoProp",       nothrow      ));
-            IsNull(reflector.Prop<MyClass>(        "NoProp",       nothrow: true));
-            IsNull(reflector.Prop(typeof(MyClass), "NoProp",       nothrow: true));
-            IsNull(reflector.Prop<MyClass>(        nothrow,       "NoProp"      ));
-            IsNull(reflector.Prop(typeof(MyClass), nothrow,       "NoProp"      ));
-            IsNull(reflector.Prop<MyClass>(        nothrow: true, "NoProp"      ));
-            IsNull(reflector.Prop(typeof(MyClass), nothrow: true, "NoProp"      ));
+            IsNull(reflector.Prop<MyClass>(        "NoProp",       nullable      ));
+            IsNull(reflector.Prop(typeof(MyClass), "NoProp",       nullable      ));
+            IsNull(reflector.Prop<MyClass>(        "NoProp",       nullable: true));
+            IsNull(reflector.Prop(typeof(MyClass), "NoProp",       nullable: true));
+            IsNull(reflector.Prop<MyClass>(        nullable,       "NoProp"      ));
+            IsNull(reflector.Prop(typeof(MyClass), nullable,       "NoProp"      ));
+            IsNull(reflector.Prop<MyClass>(        nullable: true, "NoProp"      ));
+            IsNull(reflector.Prop(typeof(MyClass), nullable: true, "NoProp"      ));
         }
     }
 
@@ -78,64 +78,64 @@ public class ReflectorTests
         {
             ThrowsNotFound(() => reflector.Prop<MyClass>(        "myprop"));
             ThrowsNotFound(() => reflector.Prop(typeof(MyClass), "myprop"));
-            ThrowsNotFound(() => reflector.Prop<MyClass>(        "myprop", nothrow: false));
-            ThrowsNotFound(() => reflector.Prop(typeof(MyClass), "myprop", nothrow: false));
+            ThrowsNotFound(() => reflector.Prop<MyClass>(        "myprop", nullable: false));
+            ThrowsNotFound(() => reflector.Prop(typeof(MyClass), "myprop", nullable: false));
         }
     }
 
     [TestMethod]
-    public void Reflector_Prop_CaseSensitive_NoMatch_ReturnsNull()
+    public void Reflector_Prop_CaseSensitive_NoMatch_Nullable()
     {
         foreach (var reflector in _reflectorsMatchCase)
         {
-            IsNull(reflector.Prop<MyClass>(        "myprop", nothrow      ));
-            IsNull(reflector.Prop(typeof(MyClass), "myprop", nothrow      ));
-            IsNull(reflector.Prop<MyClass>(        "myprop", nothrow: true));
-            IsNull(reflector.Prop(typeof(MyClass), "myprop", nothrow: true));
-            IsNull(reflector.Prop<MyClass>(        nothrow,       "myprop"));
-            IsNull(reflector.Prop(typeof(MyClass), nothrow,       "myprop"));
-            IsNull(reflector.Prop<MyClass>(        nothrow: true, "myprop"));
-            IsNull(reflector.Prop(typeof(MyClass), nothrow: true, "myprop"));
+            IsNull(reflector.Prop<MyClass>(        "myprop", nullable      ));
+            IsNull(reflector.Prop(typeof(MyClass), "myprop", nullable      ));
+            IsNull(reflector.Prop<MyClass>(        "myprop", nullable: true));
+            IsNull(reflector.Prop(typeof(MyClass), "myprop", nullable: true));
+            IsNull(reflector.Prop<MyClass>(        nullable,       "myprop"));
+            IsNull(reflector.Prop(typeof(MyClass), nullable,       "myprop"));
+            IsNull(reflector.Prop<MyClass>(        nullable: true, "myprop"));
+            IsNull(reflector.Prop(typeof(MyClass), nullable: true, "myprop"));
         }
     }
     
-    // Invariant under NoThrow
+    // Invariant under Nullable
 
     [TestMethod]
-    public void Reflector_Prop_Core_Test_Invariant_UnderNoThrow()
+    public void Reflector_Prop_Core_Test_Invariant_UnderNullable()
     {
         foreach (var reflector in _reflectors)
         {
-            Assert(reflector.Prop<MyClass>(        "MyProp"                      ));
-            Assert(reflector.Prop(typeof(MyClass), "MyProp"                      ));
-            Assert(reflector.Prop<MyClass>(        "MyProp",       nothrow       ));
-            Assert(reflector.Prop(typeof(MyClass), "MyProp",       nothrow       ));
-            Assert(reflector.Prop<MyClass>(        "MyProp",       nothrow: true ));
-            Assert(reflector.Prop(typeof(MyClass), "MyProp",       nothrow: true ));
-            Assert(reflector.Prop<MyClass>(        "MyProp",       nothrow: false));
-            Assert(reflector.Prop(typeof(MyClass), "MyProp",       nothrow: false));
-            Assert(reflector.Prop<MyClass>(        nothrow,        "MyProp"      ));
-            Assert(reflector.Prop(typeof(MyClass), nothrow,        "MyProp"      ));
-            Assert(reflector.Prop<MyClass>(        nothrow: true,  "MyProp"      ));
-            Assert(reflector.Prop(typeof(MyClass), nothrow: true,  "MyProp"      ));
-            Assert(reflector.Prop<MyClass>(        nothrow: false, "MyProp"      ));
-            Assert(reflector.Prop(typeof(MyClass), nothrow: false, "MyProp"      ));
+            Assert(reflector.Prop<MyClass>(        "MyProp"                       ));
+            Assert(reflector.Prop(typeof(MyClass), "MyProp"                       ));
+            Assert(reflector.Prop<MyClass>(        "MyProp",       nullable       ));
+            Assert(reflector.Prop(typeof(MyClass), "MyProp",       nullable       ));
+            Assert(reflector.Prop<MyClass>(        "MyProp",       nullable: true ));
+            Assert(reflector.Prop(typeof(MyClass), "MyProp",       nullable: true ));
+            Assert(reflector.Prop<MyClass>(        "MyProp",       nullable: false));
+            Assert(reflector.Prop(typeof(MyClass), "MyProp",       nullable: false));
+            Assert(reflector.Prop<MyClass>(        nullable,        "MyProp"      ));
+            Assert(reflector.Prop(typeof(MyClass), nullable,        "MyProp"      ));
+            Assert(reflector.Prop<MyClass>(        nullable: true,  "MyProp"      ));
+            Assert(reflector.Prop(typeof(MyClass), nullable: true,  "MyProp"      ));
+            Assert(reflector.Prop<MyClass>(        nullable: false, "MyProp"      ));
+            Assert(reflector.Prop(typeof(MyClass), nullable: false, "MyProp"      ));
         }
     }
         
     [TestMethod]
-    public void Reflector_Prop_IgnoresCase_Invariant_UnderNoThrow()
+    public void Reflector_Prop_IgnoresCase_Invariant_UnderNullable()
     {
         foreach (var reflector in _reflectors)
         {
-            Assert(reflector.Prop<MyClass>(        "myprop"                ));
-            Assert(reflector.Prop(typeof(MyClass), "myprop"                ));
-            Assert(reflector.Prop<MyClass>(        "myprop", nothrow       ));
-            Assert(reflector.Prop(typeof(MyClass), "myprop", nothrow       ));
-            Assert(reflector.Prop<MyClass>(        "myprop", nothrow: true ));
-            Assert(reflector.Prop(typeof(MyClass), "myprop", nothrow: true ));
-            Assert(reflector.Prop<MyClass>(        "myprop", nothrow: false));
-            Assert(reflector.Prop(typeof(MyClass), "myprop", nothrow: false));
+            Assert(reflector.Prop<MyClass>(        "myprop"                 ));
+            Assert(reflector.Prop(typeof(MyClass), "myprop"                 ));
+            Assert(reflector.Prop<MyClass>(        "myprop", nullable       ));
+            Assert(reflector.Prop(typeof(MyClass), "myprop", nullable       ));
+            Assert(reflector.Prop<MyClass>(        "myprop", nullable: true ));
+            Assert(reflector.Prop(typeof(MyClass), "myprop", nullable: true ));
+            Assert(reflector.Prop<MyClass>(        "myprop", nullable: false));
+            Assert(reflector.Prop(typeof(MyClass), "myprop", nullable: false));
         }
     }
 

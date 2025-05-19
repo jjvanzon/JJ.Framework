@@ -4,7 +4,7 @@ public enum MatchCaseFlag
 {
     matchcase = 1
 }
-public enum NoThrowFlag
+public enum NullableFlag
 {
-    nothrow = 1
+    nullable = 1
 }
