@@ -1,6 +1,5 @@
 ﻿// ReSharper disable IntroduceOptionalParameters.Global
 
-using static JJ.Framework.Reflection.Core.MatchCaseFlag;
 
 namespace JJ.Framework.Reflection.Core;
 
@@ -13,6 +12,7 @@ public class Reflector
     public Reflector(BindingFlags bindingFlags, MatchCaseFlag matchCase) : this(bindingFlags   , GetMatchCase(matchCase   )) { }
     public Reflector(BindingFlags bindingFlags, bool matchCase         )
     {
+
         if (matchCase)
         {
             bindingFlags &= ~BindingFlags.IgnoreCase;
@@ -22,15 +22,19 @@ public class Reflector
             bindingFlags |= BindingFlags.IgnoreCase;
         }
         
-        _bindingFlags = bindingFlags;
+        BindingFlags = bindingFlags;
+        MatchCase = matchCase;
     }
 
     private static bool GetMatchCase() => false;
     private static bool GetMatchCase(bool matchCase) => matchCase;
     private static bool GetMatchCase(MatchCaseFlag matchCase) => matchCase == MatchCaseFlag.matchCase;
-    private static bool GetMatchCase(BindingFlags bindingFlags) => bindingFlags.HasFlag(BindingFlags.IgnoreCase);
+    private static bool GetMatchCase(BindingFlags bindingFlags) => !bindingFlags.HasFlag(BindingFlags.IgnoreCase);
 
-    private readonly BindingFlags _bindingFlags;
+    public BindingFlags BindingFlags { get; }
+    public bool MatchCase { get; }
+
+    public override string ToString() => DebuggerDisplay(this);
 
     // Property
 
@@ -53,23 +57,14 @@ public class Reflector
         {
             if (!_propDic.TryGetValue((type, name), out prop))
             {
-                prop = type.GetProperty(name, _bindingFlags);
+                prop = type.GetProperty(name, BindingFlags);
                 _propDic.Add((type, name), prop);
-            }
-        }
-
-        // TODO: Too much logic. Some flags should be fixed upon construction.
-        if (HasFlag(flags, ReflectFlags.matchcase))
-        {
-            if (!string.Equals(prop?.Name, name, Ordinal))
-            {
-                prop = null;
             }
         }
 
         if (prop == null && ShouldThrow(flags))
         {
-            throw new Exception($"Property '{name}' not found in type '{type.Name}'.");
+            throw new Exception($"Property '{name}' not found in {type.Name}.");
         }
         
         return prop;

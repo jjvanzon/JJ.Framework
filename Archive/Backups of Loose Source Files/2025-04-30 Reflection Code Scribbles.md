@@ -593,4 +593,20 @@ private string _dummy = "";
 
     //private static MatchCaseFlag GetMatchCaseFlag(bool matchCase) => matchCase ? MatchCaseFlag.matchCase : default;
 
+        // TODO: Too much logic. Some flags should be fixed upon construction.
+        //if (HasFlag(flags, ReflectFlags.matchcase))
+        //{
+        //    if (!string.Equals(prop?.Name, name, Ordinal))
+        //    {
+        //        prop = null;
+        //    }
+        //}
+
+```
+
+### Reflector Tests
+
+```cs
+            private static readonly Reflector _reflector = new();
+
 ```
