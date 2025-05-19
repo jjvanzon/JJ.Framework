@@ -405,14 +405,16 @@ namespace JJ.Framework.Reflection.Core
                     return types;
                 }
 
+                var stringComparison = _bindingFlags.HasFlag(BindingFlags.IgnoreCase) ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+
                 var list = new List<Type>();
                 foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     try
                     {
-                        list.AddRange(assembly.GetTypes().Where(x => string.Equals(x.Name, shortTypeName, OrdinalIgnoreCase) ||
-                                                                     string.Equals(x.FullName, shortTypeName, OrdinalIgnoreCase) ||
-                                                                     string.Equals(x.AssemblyQualifiedName, shortTypeName, OrdinalIgnoreCase)));
+                        list.AddRange(assembly.GetTypes().Where(x => string.Equals(x.Name, shortTypeName, stringComparison) ||
+                                                                     string.Equals(x.FullName, shortTypeName, stringComparison) ||
+                                                                     string.Equals(x.AssemblyQualifiedName, shortTypeName, stringComparison)));
                     }
                     catch (ReflectionTypeLoadException)
                     {

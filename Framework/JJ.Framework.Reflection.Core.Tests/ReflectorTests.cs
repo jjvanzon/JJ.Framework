@@ -97,8 +97,7 @@ public class ReflectorTests
             ThrowsNotFound(() => reflect.Prop("MyType", "myprop"));
             ThrowsNotFound(() => reflect.Prop <MyType>( "myprop"));
             ThrowsNotFound(() => reflect.Prop(_myType , "myprop"));
-            // TODO: Inconsistent handling of case sensitivity for the type name.
-            //ThrowsNotFound(() => reflector.Prop("mytype", "MyProp", nullable: false));
+            ThrowsNotFound(() => reflect.Prop("mytype", "MyProp", nullable: false));
             ThrowsNotFound(() => reflect.Prop <MyType>( "myprop", nullable: false));
             ThrowsNotFound(() => reflect.Prop(_myType , "myprop", nullable: false));
         }
@@ -115,7 +114,7 @@ public class ReflectorTests
             IsNull(reflect.Prop <MyType>( "myprop",       nullable      ));
             IsNull(reflect.Prop(_myType , "myprop",       nullable      ));
             // TODO: Inconsistent handling of case sensitivity for the type name.
-            //IsNull(reflector.Prop("myType", "MyProp",       nullable: true));
+            //IsNull(reflect.Prop("myType", "MyProp",       nullable: true));
             IsNull(reflect.Prop <MyType>( "myprop",       nullable: true));
             IsNull(reflect.Prop(_myType , "myprop",       nullable: true));
             IsNull(reflect.Prop("MyType", nullable,       "myprop"      ));
