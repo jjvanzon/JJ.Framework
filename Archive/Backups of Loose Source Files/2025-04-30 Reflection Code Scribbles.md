@@ -582,4 +582,15 @@ private string _dummy = "";
 ```cs
 // TODO: Would like to omit the type argument.
 // TODO: Syntax like `Prop(MyProp)`
+
+        //if (matchCaseFlag == MatchCaseFlag.matchCase)
+        //if (matchCaseFlag == MatchCaseFlag.ignoreCase)
+
+        if (bindingFlags == default) bindingFlags = BindingFlagsAll;
+
+    public Reflector(BindingFlags bindingFlags, bool matchCase         ) => Initialize(bindingFlags, matchCase);
+    private void Initialize(BindingFlags bindingFlags, bool? matchCase)
+
+    //private static MatchCaseFlag GetMatchCaseFlag(bool matchCase) => matchCase ? MatchCaseFlag.matchCase : default;
+
 ```

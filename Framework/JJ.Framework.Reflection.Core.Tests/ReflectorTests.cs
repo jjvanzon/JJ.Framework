@@ -7,7 +7,7 @@ public class ReflectorTests
     private static readonly Reflector _reflector = new();
     
     [TestMethod]
-    public void ReflectionCacheCore_Prop()
+    public void Reflector_Prop()
     {
         Assert(_reflector.Prop<MyClass>("MyProp"));
         Assert(_reflector.Prop<MyClass>("MyProp", throws));
@@ -20,7 +20,7 @@ public class ReflectorTests
     // NotFound
     
     [TestMethod]
-    public void ReflectionCacheCore_Prop_NotFound_Throws()
+    public void Reflector_Prop_NotFound_Throws()
     {
         ThrowsException(() => _reflector.Prop<MyClass>("NoProp"));
         ThrowsException(() => _reflector.Prop<MyClass>("NoProp", throws));
@@ -31,7 +31,7 @@ public class ReflectorTests
     }
     
     [TestMethod]
-    public void ReflectionCacheCore_Prop_NotFound_NoThrow()
+    public void Reflector_Prop_NotFound_NoThrow()
     {
         IsNull(_reflector.Prop<MyClass>("NoProp", nothrow));
         IsNull(_reflector.Prop<MyClass>(nothrow, "NoProp"));
@@ -42,7 +42,7 @@ public class ReflectorTests
     // MatchCase
         
     [TestMethod]
-    public void ReflectionCacheCore_Prop_CaseInsensitive_Succeeds()
+    public void Reflector_Prop_CaseInsensitive_Succeeds()
     {
         Assert(_reflector.Prop<MyClass>("myprop"));
         Assert(_reflector.Prop<MyClass>("myprop", throws));
@@ -53,7 +53,7 @@ public class ReflectorTests
     }
 
     [TestMethod]
-    public void ReflectionCacheCore_Prop_CaseSensitive_NoMatch_Throws()
+    public void Reflector_Prop_CaseSensitive_NoMatch_Throws()
     {
         ThrowsNotFound(() => _reflector.Prop<MyClass>("myprop", matchcase));
         ThrowsNotFound(() => _reflector.Prop<MyClass>("myprop", matchcase | throws));
@@ -64,7 +64,7 @@ public class ReflectorTests
     }
 
     [TestMethod]
-    public void ReflectionCacheCore_Prop_CaseSensitive_NoMatchNoThrow()
+    public void Reflector_Prop_CaseSensitive_NoMatchNoThrow()
     {
         IsNull(_reflector.Prop<MyClass>("myprop", matchcase | nothrow));
         IsNull(_reflector.Prop<MyClass>(matchcase | nothrow, "myprop"));
