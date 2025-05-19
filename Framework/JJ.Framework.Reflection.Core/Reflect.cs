@@ -6,10 +6,12 @@ namespace JJ.Framework.Reflection.Core;
 public class Reflect
 {    
     public override string ToString() => DebuggerDisplay(this);
+
+    private readonly ReflectionCacheLegacy _reflectionCacheLegacy;
     public BindingFlags BindingFlags { get; }
     public bool MatchCase { get; }
 
-    private readonly ReflectionCacheLegacy _reflectionCacheLegacy;
+    // Initialization
 
     public Reflect(                                                    ) : this(BindingFlagsAll, false) { }
     public Reflect(BindingFlags bindingFlags                           ) : this(bindingFlags   , GetMatchCase(bindingFlags)) { }
@@ -20,14 +22,8 @@ public class Reflect
     public Reflect(BindingFlags bindingFlags, MatchCaseFlag matchcase  ) : this(bindingFlags   , Has(matchcase)) { }
     public Reflect(BindingFlags bindingFlags, bool matchcase           )
     {
-        if (matchcase)
-        {
-            bindingFlags = bindingFlags.ClearFlag(BindingFlags.IgnoreCase);
-        }
-        else
-        {
-            bindingFlags = bindingFlags.SetFlag(BindingFlags.IgnoreCase);
-        }
+        bindingFlags = matchcase ? bindingFlags.ClearFlag(BindingFlags.IgnoreCase) 
+                                 : bindingFlags.SetFlag  (BindingFlags.IgnoreCase);
         
         BindingFlags = bindingFlags;
         MatchCase = matchcase;
