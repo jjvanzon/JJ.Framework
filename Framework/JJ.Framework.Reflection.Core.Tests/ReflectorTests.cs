@@ -9,12 +9,12 @@ public class ReflectorTests
     [TestMethod]
     public void ReflectionCacheCore_Prop()
     {
-        AssertProp(_reflector.Prop<MyClass>("MyProp"));
-        AssertProp(_reflector.Prop<MyClass>("MyProp", throws));
-        AssertProp(_reflector.Prop<MyClass>(throws, "MyProp"));
-        AssertProp(_reflector.Prop(typeof(MyClass), "MyProp"));
-        AssertProp(_reflector.Prop(typeof(MyClass), throws, "MyProp"));
-        AssertProp(_reflector.Prop(typeof(MyClass), "MyProp", throws));
+        Assert(_reflector.Prop<MyClass>("MyProp"));
+        Assert(_reflector.Prop<MyClass>("MyProp", throws));
+        Assert(_reflector.Prop<MyClass>(throws, "MyProp"));
+        Assert(_reflector.Prop(typeof(MyClass), "MyProp"));
+        Assert(_reflector.Prop(typeof(MyClass), throws, "MyProp"));
+        Assert(_reflector.Prop(typeof(MyClass), "MyProp", throws));
     }
 
     // NotFound
@@ -44,23 +44,23 @@ public class ReflectorTests
     [TestMethod]
     public void ReflectionCacheCore_Prop_CaseInsensitive_Succeeds()
     {
-        AssertProp(_reflector.Prop<MyClass>("myprop"));
-        AssertProp(_reflector.Prop<MyClass>("myprop", throws));
-        AssertProp(_reflector.Prop<MyClass>(throws, "myprop"));
-        AssertProp(_reflector.Prop(typeof(MyClass), "myprop"));
-        AssertProp(_reflector.Prop(typeof(MyClass), throws, "myprop"));
-        AssertProp(_reflector.Prop(typeof(MyClass), "myprop", throws));
+        Assert(_reflector.Prop<MyClass>("myprop"));
+        Assert(_reflector.Prop<MyClass>("myprop", throws));
+        Assert(_reflector.Prop<MyClass>(throws, "myprop"));
+        Assert(_reflector.Prop(typeof(MyClass), "myprop"));
+        Assert(_reflector.Prop(typeof(MyClass), throws, "myprop"));
+        Assert(_reflector.Prop(typeof(MyClass), "myprop", throws));
     }
 
     [TestMethod]
     public void ReflectionCacheCore_Prop_CaseSensitive_NoMatch_Throws()
     {
-        ThrowsException(() => _reflector.Prop<MyClass>("myprop", matchcase));
-        ThrowsException(() => _reflector.Prop<MyClass>("myprop", matchcase | throws));
-        ThrowsException(() => _reflector.Prop<MyClass>(matchcase | throws, "myprop"));
-        ThrowsException(() => _reflector.Prop(typeof(MyClass), "myprop", matchcase));
-        ThrowsException(() => _reflector.Prop(typeof(MyClass), matchcase | throws, "myprop"));
-        ThrowsException(() => _reflector.Prop(typeof(MyClass), "myprop", matchcase | throws));
+        ThrowsNotFound(() => _reflector.Prop<MyClass>("myprop", matchcase));
+        ThrowsNotFound(() => _reflector.Prop<MyClass>("myprop", matchcase | throws));
+        ThrowsNotFound(() => _reflector.Prop<MyClass>(matchcase | throws, "myprop"));
+        ThrowsNotFound(() => _reflector.Prop(typeof(MyClass), "myprop", matchcase));
+        ThrowsNotFound(() => _reflector.Prop(typeof(MyClass), matchcase | throws, "myprop"));
+        ThrowsNotFound(() => _reflector.Prop(typeof(MyClass), "myprop", matchcase | throws));
     }
 
     [TestMethod]
@@ -74,11 +74,13 @@ public class ReflectorTests
     
     // TODO: Trim tolerance
             
-    private void AssertProp(PropertyInfo? prop)
+    private void Assert(PropertyInfo? prop)
     {
         IsNotNull(prop);
         AreEqual("MyProp", prop!.Name);
     }
+    
+    private void ThrowsNotFound(Func<object?> func) => ThrowsExceptionContaining(func, "not found");
 
     private class MyClass
     {

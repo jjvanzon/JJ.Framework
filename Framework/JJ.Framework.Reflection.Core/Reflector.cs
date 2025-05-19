@@ -15,30 +15,32 @@ public class Reflector(BindingFlags bindingFlags = BindingFlagsAll)
     public  PropertyInfo? Prop    (Type type, string name,        ReflectFlags flags       ) => PropCore(type,      name, flags);
     private PropertyInfo? PropCore(Type type, string name,        ReflectFlags flags       )
     {
+        PropertyInfo? prop;
+        
         lock (_propDicLock)
         {
-            if (!_propDic.TryGetValue((type, name), out PropertyInfo? prop))
+            if (!_propDic.TryGetValue((type, name), out prop))
             {
                 prop = type.GetProperty(name, bindingFlags);
                 _propDic.Add((type, name), prop);
             }
-
-            // TODO: Too much logic. Some flags should be fixed upon construction.
-            if (Has(flags, matchcase))
-            {
-                if (!string.Equals(prop?.Name, name, Ordinal))
-                {
-                    prop = null;
-                }
-            }
-
-            if (prop == null && ShouldThrow(flags))
-            {
-                throw new Exception($"Property '{name}' not found in type '{type.Name}'.");
-            }
-            
-            return prop;
         }
+
+        // TODO: Too much logic. Some flags should be fixed upon construction.
+        if (Has(flags, matchcase))
+        {
+            if (!string.Equals(prop?.Name, name, Ordinal))
+            {
+                prop = null;
+            }
+        }
+
+        if (prop == null && ShouldThrow(flags))
+        {
+            throw new Exception($"Property '{name}' not found in type '{type.Name}'.");
+        }
+        
+        return prop;
     }
  
     private bool ShouldThrow(ReflectFlags flags)
