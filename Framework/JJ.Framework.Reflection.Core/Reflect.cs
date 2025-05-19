@@ -1,6 +1,8 @@
 ﻿// ReSharper disable UnusedParameter.Global
 // ReSharper disable UnusedParameter.Local
 
+using static System.Reflection.BindingFlags;
+
 namespace JJ.Framework.Reflection.Core;
 
 public class Reflect
@@ -13,21 +15,18 @@ public class Reflect
 
     // Initialization
 
-    public Reflect(                                                    ) : this(BindingFlagsAll, false) { }
-    public Reflect(BindingFlags bindingFlags                           ) : this(bindingFlags   , GetMatchCase(bindingFlags)) { }
-    public Reflect(MatchCaseFlag matchcase                             ) : this(BindingFlagsAll, Has(matchcase)) { }
-    public Reflect(bool matchcase                                      ) : this(BindingFlagsAll, Has(matchcase)) { }
-    public Reflect(MatchCaseFlag matchcase  , BindingFlags bindingFlags) : this(bindingFlags   , Has(matchcase)) { }
-    public Reflect(bool matchcase           , BindingFlags bindingFlags) : this(bindingFlags   , Has(matchcase)) { }
-    public Reflect(BindingFlags bindingFlags, MatchCaseFlag matchcase  ) : this(bindingFlags   , Has(matchcase)) { }
-    public Reflect(BindingFlags bindingFlags, bool matchcase           )
+    public Reflect(                                                      ) : this(BindingFlagsAll, false) { }
+    public Reflect(BindingFlags  bindingFlags                            ) : this(bindingFlags,   !bindingFlags.HasFlag(IgnoreCase)) { }
+    public Reflect(MatchCaseFlag matchcase                               ) : this(BindingFlagsAll, Has(matchcase)) { }
+    public Reflect(bool          matchcase                               ) : this(BindingFlagsAll, Has(matchcase)) { }
+    public Reflect(MatchCaseFlag matchcase,    BindingFlags  bindingFlags) : this(bindingFlags,    Has(matchcase)) { }
+    public Reflect(bool          matchcase,    BindingFlags  bindingFlags) : this(bindingFlags,    Has(matchcase)) { }
+    public Reflect(BindingFlags  bindingFlags, MatchCaseFlag matchcase   ) : this(bindingFlags,    Has(matchcase)) { }
+    public Reflect(BindingFlags  bindingFlags, bool          matchcase   )
     {
-        bindingFlags = matchcase ? bindingFlags.ClearFlag(BindingFlags.IgnoreCase) 
-                                 : bindingFlags.SetFlag  (BindingFlags.IgnoreCase);
-        
+        bindingFlags = matchcase ? bindingFlags.ClearFlag(IgnoreCase) : bindingFlags.SetFlag(IgnoreCase);
         BindingFlags = bindingFlags;
         MatchCase = matchcase;
-
         _reflectionCacheLegacy = new ReflectionCacheLegacy(bindingFlags);
     }
 
@@ -96,7 +95,4 @@ public class Reflect
     private Type? Type (string shortTypeName, NullableFlag nullable) =>            _reflectionCacheLegacy.TryGetTypeByShortName(shortTypeName);
     private Type? Type (string shortTypeName, bool         nullable) => nullable ? _reflectionCacheLegacy.TryGetTypeByShortName(shortTypeName) 
                                                                                  : _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
-    // Helpers
-
-    private static bool GetMatchCase(BindingFlags bindingFlags) => !bindingFlags.HasFlag(BindingFlags.IgnoreCase);
 }

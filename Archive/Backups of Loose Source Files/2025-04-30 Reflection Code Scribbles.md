@@ -629,6 +629,10 @@ private string _dummy = "";
         if (type == null) return null;
         return PropOrSomething(type, name, nullable);
     }
+    // Helpers
+
+    private static bool GetMatchCase(BindingFlags bindingFlags) => !bindingFlags.HasFlag(IgnoreCase);
+
 ```
 
 ### Reflect Tests
