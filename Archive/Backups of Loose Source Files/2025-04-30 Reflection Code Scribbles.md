@@ -591,16 +591,31 @@ private string _dummy = "";
     public Reflector(BindingFlags bindingFlags, bool matchCase         ) => Initialize(bindingFlags, matchCase);
     private void Initialize(BindingFlags bindingFlags, bool? matchCase)
 
-    //private static MatchCaseFlag GetMatchCaseFlag(bool matchCase) => matchCase ? MatchCaseFlag.matchCase : default;
+    private static MatchCaseFlag GetMatchCaseFlag(bool matchCase) => matchCase ? MatchCaseFlag.matchCase : default;
+    private static bool GetMatchCase() => false;
+    private static bool GetMatchCase(bool matchcase) => matchcase;
+    private static bool GetMatchCase(MatchCaseFlag matchcase) => matchcase == MatchCaseFlag.matchcase;
 
         // TODO: Too much logic. Some flags should be fixed upon construction.
-        //if (HasFlag(flags, ReflectFlags.matchcase))
-        //{
-        //    if (!string.Equals(prop?.Name, name, Ordinal))
-        //    {
-        //        prop = null;
-        //    }
-        //}
+        if (HasFlag(flags, ReflectFlags.matchcase))
+        {
+            if (!string.Equals(prop?.Name, name, Ordinal))
+            {
+                prop = null;
+            }
+        }
+ 
+    private bool ShouldThrow(NoThrowFlag flags)
+    {
+        if (HasFlag(flags, none)) return true;
+        if (HasFlag(flags, nothrow)) return false;
+        return true;
+    }
+
+    private bool HasFlag(NoThrowFlag flags, NoThrowFlag flag) => (flags & flag) != 0;
+
+    //none = 0,
+    //none = 0,
 
 ```
 
@@ -608,5 +623,28 @@ private string _dummy = "";
 
 ```cs
             private static readonly Reflector _reflector = new();
+
+        new Reflector(MatchCaseFlag.none), // TODO: either support `ignoreCase: true` syntax or call it maybe 'none' to discourage use and express default.
+        new Reflector(BindingFlagsAll, MatchCaseFlag.none),
+
+            Assert(reflector.Prop<MyClass>("MyProp", NoThrowFlag.none));
+            Assert(reflector.Prop<MyClass>(NoThrowFlag.none, "MyProp"));
+            Assert(reflector.Prop(typeof(MyClass), NoThrowFlag.none, "MyProp"));
+            Assert(reflector.Prop(typeof(MyClass), "MyProp", NoThrowFlag.none));
+
+            ThrowsException(() => reflector.Prop<MyClass>("NoProp", NoThrowFlag.none));
+            ThrowsException(() => reflector.Prop<MyClass>(NoThrowFlag.none, "NoProp"));
+            ThrowsException(() => reflector.Prop(typeof(MyClass), NoThrowFlag.none, "NoProp"));
+            ThrowsException(() => reflector.Prop(typeof(MyClass), "NoProp", NoThrowFlag.none));
+
+            Assert(reflector.Prop<MyClass>("myprop", NoThrowFlag.none));
+            Assert(reflector.Prop<MyClass>(NoThrowFlag.none, "myprop"));
+            Assert(reflector.Prop(typeof(MyClass), NoThrowFlag.none, "myprop"));
+            Assert(reflector.Prop(typeof(MyClass), "myprop", NoThrowFlag.none));
+
+            ThrowsNotFound(() => reflector.Prop<MyClass>("myprop", NoThrowFlag.none));
+            ThrowsNotFound(() => reflector.Prop<MyClass>(NoThrowFlag.none, "myprop"));
+            ThrowsNotFound(() => reflector.Prop(typeof(MyClass), NoThrowFlag.none, "myprop"));
+            ThrowsNotFound(() => reflector.Prop(typeof(MyClass), "myprop", NoThrowFlag.none));
 
 ```

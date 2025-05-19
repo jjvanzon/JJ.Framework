@@ -5,15 +5,14 @@ namespace JJ.Framework.Reflection.Core;
 
 public class Reflector
 {
-    public Reflector(                                                  ) : this(BindingFlagsAll, GetMatchCase(            )) { }
+    public Reflector(                                                  ) : this(BindingFlagsAll, false) { }
     public Reflector(BindingFlags bindingFlags                         ) : this(bindingFlags   , GetMatchCase(bindingFlags)) { }
-    public Reflector(MatchCaseFlag matchCase                           ) : this(BindingFlagsAll, GetMatchCase(matchCase   )) { }
-    public Reflector(bool matchCase                                    ) : this(BindingFlagsAll, GetMatchCase(matchCase   )) { }
-    public Reflector(BindingFlags bindingFlags, MatchCaseFlag matchCase) : this(bindingFlags   , GetMatchCase(matchCase   )) { }
-    public Reflector(BindingFlags bindingFlags, bool matchCase         )
+    public Reflector(MatchCaseFlag matchcase                           ) : this(BindingFlagsAll, Has(matchcase)) { }
+    public Reflector(bool matchcase                                    ) : this(BindingFlagsAll, Has(matchcase)) { }
+    public Reflector(BindingFlags bindingFlags, MatchCaseFlag matchcase) : this(bindingFlags   , Has(matchcase)) { }
+    public Reflector(BindingFlags bindingFlags, bool matchcase         )
     {
-
-        if (matchCase)
+        if (matchcase)
         {
             bindingFlags &= ~BindingFlags.IgnoreCase;
         }
@@ -23,12 +22,9 @@ public class Reflector
         }
         
         BindingFlags = bindingFlags;
-        MatchCase = matchCase;
+        MatchCase = matchcase;
     }
 
-    private static bool GetMatchCase() => false;
-    private static bool GetMatchCase(bool matchCase) => matchCase;
-    private static bool GetMatchCase(MatchCaseFlag matchCase) => matchCase == MatchCaseFlag.matchCase;
     private static bool GetMatchCase(BindingFlags bindingFlags) => !bindingFlags.HasFlag(BindingFlags.IgnoreCase);
 
     public BindingFlags BindingFlags { get; }
@@ -43,13 +39,17 @@ public class Reflector
     
     // TODO: By (short) type name
 
-    public  PropertyInfo  Prop    <T>(                            [Caller] string name = "") => PropCore(typeof(T), name, throws)!;
-    public  PropertyInfo  Prop    (Type type,                     [Caller] string name = "") => PropCore(type,      name, throws)!;
-    public  PropertyInfo? Prop    <T>(        ReflectFlags flags, [Caller] string name = "") => PropCore(typeof(T), name, flags);
-    public  PropertyInfo? Prop    (Type type, ReflectFlags flags, [Caller] string name = "") => PropCore(type,      name, flags);
-    public  PropertyInfo? Prop    <T>(        string name,        ReflectFlags flags       ) => PropCore(typeof(T), name, flags);
-    public  PropertyInfo? Prop    (Type type, string name,        ReflectFlags flags       ) => PropCore(type,      name, flags);
-    private PropertyInfo? PropCore(Type type, string name,        ReflectFlags flags       )
+    public  PropertyInfo  Prop    <T>(                             [Caller] string name = "") => PropCore(typeof(T), name, false)!;
+    public  PropertyInfo  Prop    (Type type,                      [Caller] string name = "") => PropCore(type,      name, false)!;
+    public  PropertyInfo? Prop    <T>(        NoThrowFlag nothrow, [Caller] string name = "") => PropCore(typeof(T), name, Has(nothrow));
+    public  PropertyInfo? Prop    (Type type, NoThrowFlag nothrow, [Caller] string name = "") => PropCore(type,      name, Has(nothrow));
+    public  PropertyInfo? Prop    <T>(        bool        nothrow, [Caller] string name = "") => PropCore(typeof(T), name, Has(nothrow));
+    public  PropertyInfo? Prop    (Type type, bool        nothrow, [Caller] string name = "") => PropCore(type,      name, Has(nothrow));
+    public  PropertyInfo? Prop    <T>(        string name,         NoThrowFlag nothrow      ) => PropCore(typeof(T), name, Has(nothrow));
+    public  PropertyInfo? Prop    (Type type, string name,         NoThrowFlag nothrow      ) => PropCore(type,      name, Has(nothrow));
+    public  PropertyInfo? Prop    <T>(        string name,         bool        nothrow      ) => PropCore(typeof(T), name, Has(nothrow));
+    public  PropertyInfo? Prop    (Type type, string name,         bool        nothrow      ) => PropCore(type,      name, Has(nothrow));
+    private PropertyInfo? PropCore(Type type, string name,         bool        nothrow      )
     {
         PropertyInfo? prop;
         
@@ -62,20 +62,11 @@ public class Reflector
             }
         }
 
-        if (prop == null && ShouldThrow(flags))
+        if (prop == null && !nothrow)
         {
             throw new Exception($"Property '{name}' not found in {type.Name}.");
         }
         
         return prop;
     }
- 
-    private bool ShouldThrow(ReflectFlags flags)
-    {
-        if (HasFlag(flags, throws)) return true;
-        if (HasFlag(flags, nothrow)) return false;
-        return true;
-    }
-
-    private bool HasFlag(ReflectFlags flags, ReflectFlags flag) => (flags & flag) != 0;
 }

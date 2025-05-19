@@ -2,6 +2,9 @@
 
 public enum MatchCaseFlag
 {
-    ignoreCase = 0,
-    matchCase = 1
+    matchcase = 1
+}
+public enum NoThrowFlag
+{
+    nothrow = 1
 }

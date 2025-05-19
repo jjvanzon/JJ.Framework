@@ -16,7 +16,7 @@ global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Reflection.ExpressionHelper;
 global using static JJ.Framework.Reflection.ReflectionHelper;
 global using static JJ.Framework.Reflection.Core.ReflectionHelperCore;
-global using static JJ.Framework.Reflection.Core.ReflectFlags;
+global using static JJ.Framework.Reflection.Core.NoThrowFlag;
 global using static JJ.Framework.Reflection.Core.DebuggerDisplays;
 global using Caller = System.Runtime.CompilerServices.CallerMemberNameAttribute;
 global using Priority = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
