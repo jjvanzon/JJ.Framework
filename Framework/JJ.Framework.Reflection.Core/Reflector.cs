@@ -1,5 +1,5 @@
 ﻿// ReSharper disable IntroduceOptionalParameters.Global
-
+// ReSharper disable UnusedParameter.Global
 
 namespace JJ.Framework.Reflection.Core;
 
@@ -39,34 +39,48 @@ public class Reflector
     
     // TODO: By (short) type name
 
-    public  PropertyInfo  Prop    <T>(                               [Caller] string name = "") => PropCore(typeof(T), name, false)!;
-    public  PropertyInfo  Prop    (Type type,                        [Caller] string name = "") => PropCore(type,      name, false)!;
-    public  PropertyInfo? Prop    <T>(        NullableFlag nullable, [Caller] string name = "") => PropCore(typeof(T), name, Has(nullable));
-    public  PropertyInfo? Prop    (Type type, NullableFlag nullable, [Caller] string name = "") => PropCore(type,      name, Has(nullable));
-    public  PropertyInfo? Prop    <T>(        bool         nullable, [Caller] string name = "") => PropCore(typeof(T), name, Has(nullable));
-    public  PropertyInfo? Prop    (Type type, bool         nullable, [Caller] string name = "") => PropCore(type,      name, Has(nullable));
-    public  PropertyInfo? Prop    <T>(        string name,            NullableFlag nullable   ) => PropCore(typeof(T), name, Has(nullable));
-    public  PropertyInfo? Prop    (Type type, string name,            NullableFlag nullable   ) => PropCore(type,      name, Has(nullable));
-    public  PropertyInfo? Prop    <T>(        string name,            bool        nullable    ) => PropCore(typeof(T), name, Has(nullable));
-    public  PropertyInfo? Prop    (Type type, string name,            bool        nullable    ) => PropCore(type,      name, Has(nullable));
-    private PropertyInfo? PropCore(Type type, string name,            bool        nullable    )
+    public  PropertyInfo  Prop<T>(        [Caller] string name = ""                                ) => PropOrThrow    (typeof(T), name);
+    public  PropertyInfo  Prop(Type type, [Caller] string name = ""                                ) => PropOrThrow    (type,      name);
+    public  PropertyInfo? Prop<T>(                 string name,           NullableFlag nullable    ) => PropOrNull     (typeof(T), name);
+    public  PropertyInfo? Prop(Type type,          string name,           NullableFlag nullable    ) => PropOrNull     (type,      name);
+    public  PropertyInfo? Prop<T>(                 string name,           bool         nullable    ) => PropOrSomething(typeof(T), name, nullable);
+    public  PropertyInfo? Prop(Type type,          string name,           bool         nullable    ) => PropOrSomething(type,      name, nullable);
+    public  PropertyInfo? Prop<T>(                 NullableFlag nullable, [Caller] string name = "") => PropOrNull     (typeof(T), name);
+    public  PropertyInfo? Prop(Type type,          NullableFlag nullable, [Caller] string name = "") => PropOrNull     (type,      name);
+    public  PropertyInfo? Prop<T>(                 bool         nullable, [Caller] string name = "") => PropOrSomething(typeof(T), name, nullable);
+    public  PropertyInfo? Prop(Type type,          bool         nullable, [Caller] string name = "") => PropOrSomething(type,      name, nullable);
+    
+    private PropertyInfo PropOrThrow(Type type, string name)
     {
-        PropertyInfo? prop;
+        PropertyInfo? prop = PropOrNull(type, name);
         
-        lock (_propDicLock)
+        if (prop == null)
         {
-            if (!_propDic.TryGetValue((type, name), out prop))
-            {
-                prop = type.GetProperty(name, BindingFlags);
-                _propDic.Add((type, name), prop);
-            }
-        }
-
-        if (prop == null && !nullable)
-        {
-            throw new Exception($"Property '{name}' not found in {type.Name}.");
+            throw new Exception($"Property {name} not found in {type.Name}.");
         }
         
         return prop;
+    }
+
+    private PropertyInfo? PropOrNull(Type type, string name)
+    {
+        lock (_propDicLock)
+        {
+            if (_propDic.TryGetValue((type, name), out PropertyInfo? prop))
+            {
+                return prop;
+            }
+            else
+            {
+                prop = type.GetProperty(name, BindingFlags);
+                _propDic.Add((type, name), prop);
+                return prop;
+            }
+        }
+    }
+
+    private PropertyInfo? PropOrSomething(Type type, string name, bool nullable)
+    {
+        return nullable ? PropOrNull(type, name) : PropOrThrow(type, name);
     }
 }
