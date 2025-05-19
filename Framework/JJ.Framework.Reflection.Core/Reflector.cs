@@ -23,6 +23,7 @@ public class Reflector(BindingFlags bindingFlags = BindingFlagsAll)
                 _propDic.Add((type, name), prop);
             }
 
+            // TODO: Too much logic. Some flags should be fixed upon construction.
             if (Has(flags, matchcase))
             {
                 if (!string.Equals(prop?.Name, name, Ordinal))

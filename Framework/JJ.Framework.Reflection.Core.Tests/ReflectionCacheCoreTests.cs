@@ -48,7 +48,7 @@ public class ReflectorTests
     // MatchCase
         
     [TestMethod]
-    public void ReflectionCacheCore_Prop_CaseInsensitive()
+    public void ReflectionCacheCore_Prop_CaseInsensitive_Succeeds()
     {
         AssertProp(_reflector.Prop<MyClass>("myprop"));
         AssertProp(_reflector.Prop<MyClass>("myprop", throws));
@@ -78,11 +78,11 @@ public class ReflectorTests
         IsNull(_reflector.Prop(typeof(MyClass), "myprop", matchcase | nothrow));
     }
     
+    // TODO: Trim tolerance
+    
     private class MyClass
     {
-        // TODO: Would like to omit the type argument.
         public string MyProp => _reflector.Prop<MyClass>().Name;
         
-        // TODO: Syntax like `Prop(MyProp)`
     }
 }

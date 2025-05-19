@@ -574,5 +574,12 @@ private string _dummy = "";
         accessor.Set([ 2, 3 ], "60*", [ typeof(int), typeof(int?) ]);
         AreEqual("60*", accessor.Get([ 2, 3 ], [ typeof(int), typeof(int?) ]));
 
-```cs
+```
 
+
+### Reflector
+
+```cs
+// TODO: Would like to omit the type argument.
+// TODO: Syntax like `Prop(MyProp)`
+```
