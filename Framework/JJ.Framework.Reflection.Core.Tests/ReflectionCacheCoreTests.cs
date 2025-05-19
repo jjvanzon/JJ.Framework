@@ -16,12 +16,6 @@ public class ReflectorTests
         AssertProp(_reflector.Prop(typeof(MyClass), throws, "MyProp"));
         AssertProp(_reflector.Prop(typeof(MyClass), "MyProp", throws));
     }
-        
-    private void AssertProp(PropertyInfo? prop)
-    {
-        IsNotNull(prop);
-        AreEqual("MyProp", prop!.Name);
-    }
 
     // NotFound
     
@@ -79,7 +73,13 @@ public class ReflectorTests
     }
     
     // TODO: Trim tolerance
-    
+            
+    private void AssertProp(PropertyInfo? prop)
+    {
+        IsNotNull(prop);
+        AreEqual("MyProp", prop!.Name);
+    }
+
     private class MyClass
     {
         public string MyProp => _reflector.Prop<MyClass>().Name;
