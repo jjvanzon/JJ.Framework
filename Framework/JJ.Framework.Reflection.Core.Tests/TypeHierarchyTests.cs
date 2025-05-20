@@ -24,9 +24,9 @@ public class TypeHierarchyTests
         {
             var types = synonym();
             IsTrue(() => types.Contains(type));
-            IsTrue(() => types.Contains(typeof(object)));                // Base class of all classes
-            IsTrue(() => types.Contains(typeof(ISerializable)));         // Interface of Exception
-            IsFalse(() => types.Contains(typeof(ReflectionHelperCore))); // ReflectionHelperCore not part of Exception's hierarchy.
+            IsTrue(() => types.Contains(typeof(object)));        // Base class of all classes
+            IsTrue(() => types.Contains(typeof(ISerializable))); // Interface of Exception
+            IsFalse(() => types.Contains(typeof(Reflector)));    // Reflector not part of Exception's hierarchy.
         }
     }
 
@@ -50,15 +50,15 @@ public class TypeHierarchyTests
             IsTrue(trueSynonym());
         }
         
-        Type wrongType = typeof(ReflectionHelperCore); // Not part of Exception's hierarchy.
+        Type wrongType = typeof(Reflector); // Not part of Exception's hierarchy.
         
         var falseSynonyms = new[]
         { 
             () => HasTypeInHierarchy(type, wrongType),
             () => HasTypeInHierarchy<Exception>(wrongType),
-            () => HasTypeInHierarchy<Exception, ReflectionHelperCore>(),
+            () => HasTypeInHierarchy<Exception, Reflector>(),
             () => type.HasTypeInHierarchy(wrongType),
-            () => type.HasTypeInHierarchy<ReflectionHelperCore>()
+            () => type.HasTypeInHierarchy<Reflector>()
         };
         
         foreach (var falseSynonym in falseSynonyms)
@@ -90,7 +90,7 @@ public class TypeHierarchyTests
             IsTrue (() => types.Contains(type));
             IsTrue (() => types.Contains(typeof(object)));           // Base class
             IsFalse(() => types.Contains(typeof(ISerializable)));    // Not a class
-            IsFalse(() => types.Contains(typeof(ReflectionHelperCore))); // Not part of Exception's list of base classes
+            IsFalse(() => types.Contains(typeof(Reflector))); // Not part of Exception's list of base classes
         }
     }
 
@@ -115,15 +115,15 @@ public class TypeHierarchyTests
             IsTrue(trueSynonym());
         }
         
-        Type wrongType = typeof(ReflectionHelperCore); // Not part of Exception's hierarchy.
+        Type wrongType = typeof(Reflector); // Not part of Exception's hierarchy.
         
         var falseSynonyms = new[]
         {
             () => HasStateTypeInHierarchy(type, wrongType),
             () => HasStateTypeInHierarchy<Exception>(wrongType),
-            () => HasStateTypeInHierarchy<Exception, ReflectionHelperCore>(),
+            () => HasStateTypeInHierarchy<Exception, Reflector>(),
             () => type.HasStateTypeInHierarchy(wrongType),
-            () => type.HasStateTypeInHierarchy<ReflectionHelperCore>()
+            () => type.HasStateTypeInHierarchy<Reflector>()
         };
 
         foreach (var falseSynonym in falseSynonyms)

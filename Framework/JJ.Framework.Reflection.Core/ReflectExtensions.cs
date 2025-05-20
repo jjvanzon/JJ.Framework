@@ -1,7 +1,6 @@
-﻿
-namespace JJ.Framework.Reflection.Core;
+﻿namespace JJ.Framework.Reflection.Core;
 
-public static class ReflectExtensions
+public static partial class ReflectExtensions
 {
     public static PropertyInfo  Prop(this Type type,                        [Caller] string name = "") => Reflect.Prop(type, name);
     public static PropertyInfo? Prop(this Type type, NullableFlag nullable, [Caller] string name = "") => Reflect.Prop(type, nullable, name);

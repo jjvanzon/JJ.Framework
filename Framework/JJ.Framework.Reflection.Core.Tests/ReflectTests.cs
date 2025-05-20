@@ -162,24 +162,6 @@ public class ReflectTests
         }
     }
     
-    // ToString
-    
-    [TestMethod]
-    public void Reflector_Prop_ToString()
-    {
-        BindingFlags bindingFlagsMatchCase = ClearFlag(BindingFlagsAll, BindingFlags.IgnoreCase);
-        
-        foreach (var reflector in _reflectors)
-        {
-            AreEqual($"Reflector ({BindingFlagsAll})", $"{reflector}");
-        }
-        
-        foreach (var reflector in _reflectorsMatchCase)
-        {
-            AreEqual($"Reflector ({bindingFlagsMatchCase})", $"{reflector}");
-        }        
-    }
-    
     // Static
 
     [TestMethod]
@@ -368,6 +350,24 @@ public class ReflectTests
 
         // NotFound scenarios
         ThrowsNotFound(() => Prop<MyType?>("None"));
+    }
+    
+    // ToString
+    
+    [TestMethod]
+    public void Reflector_Prop_ToString()
+    {
+        BindingFlags bindingFlagsMatchCase = ClearFlag(BindingFlagsAll, BindingFlags.IgnoreCase);
+        
+        foreach (var reflector in _reflectors)
+        {
+            AreEqual($"Reflector ({BindingFlagsAll})", $"{reflector}");
+        }
+        
+        foreach (var reflector in _reflectorsMatchCase)
+        {
+            AreEqual($"Reflector ({bindingFlagsMatchCase})", $"{reflector}");
+        }        
     }
     
     // Invariant under Nullable

@@ -9,7 +9,7 @@ public class ReflectionMiscTests
 
     [TestMethod]
     public void GetAssemblyNameTest() 
-        => AreEqual("JJ.Framework.Reflection.Core", () => GetAssemblyName<ReflectionHelperCore>());
+        => AreEqual("JJ.Framework.Reflection.Core", () => GetAssemblyName<Reflector>());
     
     // Fields
     
