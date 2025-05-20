@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-
-namespace JJ.Framework.Reflection.Core
+﻿namespace JJ.Framework.Reflection.Core
 {
     public static class ReflectionExtensionsCore
     {

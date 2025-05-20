@@ -4,6 +4,7 @@
 public class ReflectTests
 {
     private Type _myType = typeof(MyType);
+    private Type _myBase = typeof(MyBase);
 
     // Constructors
 
@@ -33,9 +34,9 @@ public class ReflectTests
     {
         foreach (var reflect in _reflectors)
         {
-            Assert(reflect.Prop("MyType", "MyProp"));
-            Assert(reflect.Prop <MyType>( "MyProp"));
-            Assert(reflect.Prop(_myType,  "MyProp"));
+            AssertProp(reflect.Prop("MyType", "MyProp"));
+            AssertProp(reflect.Prop <MyType>( "MyProp"));
+            AssertProp(reflect.Prop(_myType,  "MyProp"));
         }
     }
     
@@ -44,9 +45,9 @@ public class ReflectTests
     {
         foreach (var reflect in _reflectors)
         {
-            Assert(reflect.Prop("mytype", "myprop"));
-            Assert(reflect.Prop(_myType,  "myprop"));
-            Assert(reflect.Prop <MyType>( "myprop"));
+            AssertProp(reflect.Prop("mytype", "myprop"));
+            AssertProp(reflect.Prop(_myType,  "myprop"));
+            AssertProp(reflect.Prop <MyType>( "myprop"));
         }
     }
 
@@ -86,16 +87,16 @@ public class ReflectTests
         }
     }
     
-    // Trims
+    // Trim
     
     [TestMethod]
-    public void Reflector_Prop_Trims()
+    public void Reflector_Prop_Trim()
     {
         foreach (var reflect in _reflectors)
         {
-            Assert(reflect.Prop("\t\t MyType \n\r", " MyProp "));
-            Assert(reflect.Prop <MyType>( "MyProp  "));
-            Assert(reflect.Prop(_myType,  "\r\nMyProp \t   "));
+            AssertProp(reflect.Prop("\t\t MyType \n\r", " MyProp "));
+            AssertProp(reflect.Prop <MyType>( "MyProp  "));
+            AssertProp(reflect.Prop(_myType,  "\r\nMyProp \t   "));
         }
     }
 
@@ -135,43 +136,71 @@ public class ReflectTests
         }
     }
     
+    // Base Types
+    [TestMethod]
+    public void Reflector_Prop_BaseTypes()
+    {
+        foreach (var reflect in _reflectors)
+        {
+            AssertBaseProp(reflect.Prop("MyBase", "MyBaseProp"));
+            AssertBaseProp(reflect.Prop <MyBase>( "MyBaseProp"));
+            AssertBaseProp(reflect.Prop(_myBase , "MyBaseProp"));
+            AssertBaseProp(reflect.Prop("MyType", "MyBaseProp"));
+            AssertBaseProp(reflect.Prop <MyType>( "MyBaseProp"));
+            AssertBaseProp(reflect.Prop(_myType , "MyBaseProp"));
+            // Negative match
+            ThrowsNotFound(() => reflect.Prop("MyBase", "MyProp"));
+            ThrowsNotFound(() => reflect.Prop <MyBase>( "MyProp"));
+            ThrowsNotFound(() => reflect.Prop(_myBase , "MyProp"));
+            IsNull(reflect.Prop("MyBase", "MyProp", nullable));
+            IsNull(reflect.Prop <MyBase>( "MyProp", nullable));
+            IsNull(reflect.Prop(_myBase , "MyProp", nullable));
+        }
+    }
+    
     // Invariant under Nullable
 
     [TestMethod]
-    public void Reflector_Prop_MainCase_Invariant_UnderNullable()
+    public void Reflector_Prop_Success_Invariant_UnderNullable()
     {
         foreach (var reflect in Union(_reflectors, _reflectorsMatchCase))
         {
-            Assert(reflect.Prop("MyType", "MyProp"                        ));
-            Assert(reflect.Prop <MyType>( "MyProp"                        ));
-            Assert(reflect.Prop(_myType , "MyProp"                        ));
-            Assert(reflect.Prop("MyType", "MyProp",        nullable       ));
-            Assert(reflect.Prop <MyType>( "MyProp",        nullable       ));
-            Assert(reflect.Prop(_myType , "MyProp",        nullable       ));
-            Assert(reflect.Prop("MyType", "MyProp",        nullable: true ));
-            Assert(reflect.Prop <MyType>( "MyProp",        nullable: true ));
-            Assert(reflect.Prop(_myType , "MyProp",        nullable: true ));
-            Assert(reflect.Prop("MyType", "MyProp",        nullable: false));
-            Assert(reflect.Prop <MyType>( "MyProp",        nullable: false));
-            Assert(reflect.Prop(_myType , "MyProp",        nullable: false));
-            Assert(reflect.Prop("MyType", nullable,        "MyProp"       ));
-            Assert(reflect.Prop <MyType>( nullable,        "MyProp"       ));
-            Assert(reflect.Prop(_myType , nullable,        "MyProp"       ));
-            Assert(reflect.Prop("MyType", nullable: true,  "MyProp"       ));
-            Assert(reflect.Prop <MyType>( nullable: true,  "MyProp"       ));
-            Assert(reflect.Prop(_myType , nullable: true,  "MyProp"       ));
-            Assert(reflect.Prop("MyType", nullable: false, "MyProp"       ));
-            Assert(reflect.Prop <MyType>( nullable: false, "MyProp"       ));
-            Assert(reflect.Prop(_myType , nullable: false, "MyProp"       ));
+            AssertProp(reflect.Prop("MyType", "MyProp"                        ));
+            AssertProp(reflect.Prop <MyType>( "MyProp"                        ));
+            AssertProp(reflect.Prop(_myType , "MyProp"                        ));
+            AssertProp(reflect.Prop("MyType", "MyProp",        nullable       ));
+            AssertProp(reflect.Prop <MyType>( "MyProp",        nullable       ));
+            AssertProp(reflect.Prop(_myType , "MyProp",        nullable       ));
+            AssertProp(reflect.Prop("MyType", "MyProp",        nullable: true ));
+            AssertProp(reflect.Prop <MyType>( "MyProp",        nullable: true ));
+            AssertProp(reflect.Prop(_myType , "MyProp",        nullable: true ));
+            AssertProp(reflect.Prop("MyType", "MyProp",        nullable: false));
+            AssertProp(reflect.Prop <MyType>( "MyProp",        nullable: false));
+            AssertProp(reflect.Prop(_myType , "MyProp",        nullable: false));
+            AssertProp(reflect.Prop("MyType", nullable,        "MyProp"       ));
+            AssertProp(reflect.Prop <MyType>( nullable,        "MyProp"       ));
+            AssertProp(reflect.Prop(_myType , nullable,        "MyProp"       ));
+            AssertProp(reflect.Prop("MyType", nullable: true,  "MyProp"       ));
+            AssertProp(reflect.Prop <MyType>( nullable: true,  "MyProp"       ));
+            AssertProp(reflect.Prop(_myType , nullable: true,  "MyProp"       ));
+            AssertProp(reflect.Prop("MyType", nullable: false, "MyProp"       ));
+            AssertProp(reflect.Prop <MyType>( nullable: false, "MyProp"       ));
+            AssertProp(reflect.Prop(_myType , nullable: false, "MyProp"       ));
         }
     }
     
     // Helpers
 
-    private void Assert(PropertyInfo? prop)
+    private void AssertProp(PropertyInfo? prop)
     {
         IsNotNull(prop);
         AreEqual("MyProp", prop!.Name);
+    }
+
+    private void AssertBaseProp(PropertyInfo? prop)
+    {
+        IsNotNull(prop);
+        AreEqual("MyBaseProp", prop!.Name);
     }
     
     private void ThrowsNotFound(Func<object?> func)
@@ -179,12 +208,14 @@ public class ReflectTests
         ThrowsExceptionContaining(func, "not found");
     }
     
-    private class MyType
+    private class MyType : MyBase
     {
         Reflect _reflector = new();
-
-        // TODO Assert return value.
-        public string MyProp => _reflector.Prop<MyType>().Name;
-        
+        public string MyProp => _reflector.Prop<MyType>().Name; // TODO: Assert value.
+    }
+    
+    private class MyBase
+    {
+        public int MyBaseProp => default;
     }
 }

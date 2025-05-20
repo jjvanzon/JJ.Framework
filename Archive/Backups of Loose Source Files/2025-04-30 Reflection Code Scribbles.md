@@ -633,6 +633,9 @@ private string _dummy = "";
 
     private static bool GetMatchCase(BindingFlags bindingFlags) => !bindingFlags.HasFlag(IgnoreCase);
 
+                    PropertyInfo? p = t.GetProperty(nameTrimmed, BindingFlags);
+                    if (p == null) continue;
+
 ```
 
 ### Reflect Tests

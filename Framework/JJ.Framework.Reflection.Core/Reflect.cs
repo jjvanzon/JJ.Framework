@@ -51,6 +51,15 @@ public class Reflect
     public  PropertyInfo? Prop(Type type,                     bool         nullable, [Caller] string name = "") => PropOrSomething(type,          name, nullable);
     public  PropertyInfo? Prop(string shortTypeName,          bool         nullable, [Caller] string name = "") => PropOrSomething(shortTypeName, name, nullable);
 
+    private PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable)
+    {
+        return Type(shortTypeName, nullable)?.Prop(name, nullable, this);
+    }
+    private PropertyInfo? PropOrSomething(Type type, string name, bool nullable)
+    {
+        return nullable ? PropOrNull(type, name) : PropOrThrow(type, name);
+    }
+    
     private PropertyInfo PropOrThrow(string shortTypeName, string name) => PropOrThrow(Type(shortTypeName), name);
     private PropertyInfo PropOrThrow(Type   type,          string name)
     {
@@ -76,17 +85,21 @@ public class Reflect
             
             ThrowIfNull(type);
             ThrowIfNullOrWhiteSpace(name);
-
-            prop = type.GetProperty(name.Trim(), BindingFlags);
-            _propDic.Add((type, name), prop);
+            
+            string nameTrimmed = name.Trim();
+            
+            foreach (Type t in type.GetTypesInHierarchy())
+            {
+                if (t.GetProperty(nameTrimmed, BindingFlags) is PropertyInfo p)
+                {
+                    prop ??= p;
+                    _propDic[(t, name)] = p;
+                }
+            }
 
             return prop;
-            
         }
     }
-
-    private PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable) => Type(shortTypeName, nullable)?.Prop(name, nullable, this);
-    private PropertyInfo? PropOrSomething(Type   type,          string name, bool nullable) => nullable ? PropOrNull(type, name) : PropOrThrow(type, name);
     
     // Type
 
