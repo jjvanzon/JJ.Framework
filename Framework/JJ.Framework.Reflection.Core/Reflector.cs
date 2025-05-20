@@ -1,7 +1,6 @@
 ﻿// ReSharper disable UnusedParameter.Global
 // ReSharper disable UnusedParameter.Local
 
-using static System.Reflection.BindingFlags;
 
 namespace JJ.Framework.Reflection.Core;
 
@@ -32,7 +31,7 @@ public class Reflector
 
     // Prop
 
-    private readonly Dictionary<(Type, string), PropertyInfo?> _propDic = new();
+    private readonly PropDic _propDic = new();
     private readonly Lock _propDicLock = new();
 
     public PropertyInfo  Prop<T>(                   [Caller] string name = ""                                ) => PropOrThrow    (typeof(T),     name,           BindingFlags, _propDic, _propDicLock        );
