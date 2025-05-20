@@ -64,7 +64,6 @@ public class Reflect
         return prop;
     }
 
-    
     private PropertyInfo? PropOrNull(string shortTypeName, string name) => Type(shortTypeName, nullable)?.Prop(name, nullable, this);
     private PropertyInfo? PropOrNull(Type   type,          string name)
     {
@@ -74,25 +73,25 @@ public class Reflect
             {
                 return prop;
             }
-            else
-            {
-                prop = type.GetProperty(name, BindingFlags);
-                _propDic.Add((type, name), prop);
-                return prop;
-            }
+            
+            ThrowIfNull(type);
+            ThrowIfNullOrWhiteSpace(name);
+
+            prop = type.GetProperty(name.Trim(), BindingFlags);
+            _propDic.Add((type, name), prop);
+
+            return prop;
+            
         }
     }
 
     private PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable) => Type(shortTypeName, nullable)?.Prop(name, nullable, this);
-    private PropertyInfo? PropOrSomething(Type type, string name, bool nullable)
-    {
-        return nullable ? PropOrNull(type, name) : PropOrThrow(type, name);
-    }
+    private PropertyInfo? PropOrSomething(Type   type,          string name, bool nullable) => nullable ? PropOrNull(type, name) : PropOrThrow(type, name);
     
     // Type
 
-    private Type  Type (string shortTypeName                       ) =>            _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
+    private Type  Type (string shortTypeName                       ) =>            _reflectionCacheLegacy.   GetTypeByShortName(shortTypeName);
     private Type? Type (string shortTypeName, NullableFlag nullable) =>            _reflectionCacheLegacy.TryGetTypeByShortName(shortTypeName);
     private Type? Type (string shortTypeName, bool         nullable) => nullable ? _reflectionCacheLegacy.TryGetTypeByShortName(shortTypeName) 
-                                                                                 : _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
+                                                                                 : _reflectionCacheLegacy.   GetTypeByShortName(shortTypeName);
 }
