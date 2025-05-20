@@ -331,7 +331,34 @@ public class ReflectTests
             AssertBaseProp(      reflect.Prop(obj, "MyBaseProp"              ));
         }
     }
+    
+    // Nullable Types
+    
+    [TestMethod]
+    public void Reflect_Prop_NullableTypes()
+    {
+        // Nullable value types
+        Type nullType = typeof(int?);
+        nullType.Prop("HasValue");
+        //nullType.Prop("MaxValue");
+        int? nullValue = null;
+        IsNotNull(Prop(nullValue, "HasValue"));
+        //IsNotNull(Prop<Nullable<int>>("HasValue"));
+        
+        MyType? nullObj = null;
+            
+        // Nullable reference type property
+        AssertProp(Prop<MyType?>("MyProp"));
+        AssertProp(nullObj.Prop("MyProp")); // Conclusion: T accepts nulls too here.
 
+        // Nullable base property
+        AssertBaseProp(Prop<MyBase?>("MyBaseProp"));
+        AssertBaseProp(Prop<MyType?>("MyBaseProp"));
+
+        // NotFound scenarios
+        ThrowsNotFound(() => Prop<MyType?>("None"));
+    }
+    
     // Invariant under Nullable
 
     [TestMethod]
