@@ -219,6 +219,36 @@ public class ReflectTests
         AssertProp(Prop <MyType>( nullable: true, "MyProp"));
         AssertProp(Prop(_myType , nullable: true, "MyProp"));
     }
+    
+    // Extensions
+
+    [TestMethod]
+    public void Reflect_Prop_Extensions()
+    {
+        // TODO: Extensions for instances of the type?
+        // TODO: Reflect(or) members that take obj, whose type you reflect?
+        // TODO: Extensions for with accessor methods (Get, Set, Call)?
+        
+        // Non-qualified
+        AssertProp(_myType.Prop("MyProp"));
+        
+        // NotFound
+        ThrowsNotFound(() => _myType.Prop("None"));
+        IsNull(() => _myType.Prop("None", nullable));
+
+        // Base Types
+        AssertBaseProp(_myType.Prop("MyBaseProp"));
+        AssertBaseProp(_myBase.Prop("MyBaseProp"));
+       
+        // Ignore Case / Trims
+        AssertProp(_myType.Prop("myprop \r\n"));
+        
+        // Coverage
+        AssertProp(_myType.Prop("MyProp", nullable));
+        AssertProp(_myType.Prop("MyProp", nullable: true));
+        AssertProp(_myType.Prop(nullable, "MyProp"));
+        AssertProp(_myType.Prop(nullable: true, "MyProp"));
+    }
 
     // Invariant under Nullable
 

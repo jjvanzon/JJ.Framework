@@ -694,7 +694,6 @@ private string _dummy = "";
     private static PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable) => PropOrSomething(shortTypeName, name, nullable, _propDic, _propDicLock);
     private static PropertyInfo? PropOrSomething(Type type, string name, bool nullable) => PropOrSomething(type, name, nullable, _propDic, _propDicLock);
 
-
     private PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable)
     {
         return Type(shortTypeName, nullable)?.Prop(name, nullable, this);
@@ -751,4 +750,12 @@ private string _dummy = "";
     private Type? Type (string shortTypeName, NullableFlag nullable) =>            _reflectionCacheLegacy.TryGetTypeByShortName(shortTypeName);
     private Type? Type (string shortTypeName, bool         nullable) => nullable ? _reflectionCacheLegacy.TryGetTypeByShortName(shortTypeName) 
                                                                                  : _reflectionCacheLegacy.   GetTypeByShortName(shortTypeName);
+```
+
+### ReflectExtensions
+
+```cs
+    public static PropertyInfo  Prop(this Type type, string name, Reflector reflect) => reflect.Prop(type, name);
+    public static PropertyInfo? Prop(this Type type, string name, NullableFlag nullable, Reflector reflect) => reflect.Prop(type, name, nullable);
+    public static PropertyInfo? Prop(this Type type, string name, bool nullable, Reflector reflect) => reflect.Prop(type, name, nullable);
 ```
