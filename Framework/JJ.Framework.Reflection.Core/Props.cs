@@ -1,7 +1,76 @@
-﻿// ReSharper disable UnusedParameter.Global
-// ReSharper disable UnusedParameter.Local
+﻿namespace JJ.Framework.Reflection.Core;
 
-namespace JJ.Framework.Reflection.Core;
+internal static partial class ReflectUtility
+{
+    [MethodImpl(AggressiveInlining)]
+    public static PropertyInfo PropOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
+    {
+        return PropOrThrow(Type(shortTypeName, cache), name, bindingFlags, dic, dicLock);
+    }
+    
+    [MethodImpl(AggressiveInlining)]
+    public static PropertyInfo PropOrThrow(Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock)
+    {
+        PropertyInfo? prop = PropOrNull(type, name, bindingFlags, dic, dicLock);
+        
+        if (prop == null)
+        {
+            throw new Exception($"Property {name} not found in {type.Name}.");
+        }
+        
+        return prop;
+    }
+    
+    [MethodImpl(AggressiveInlining)]
+    public static PropertyInfo? PropOrNull(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
+    {
+        Type? type = Type(shortTypeName, nullable, cache);
+        if (type == null) return null;
+        return PropOrNull(type, name, bindingFlags, dic, dicLock);
+    }
+    
+    [MethodImpl(AggressiveInlining)]
+    public static PropertyInfo? PropOrNull(Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock)
+    {
+        lock (dicLock)
+        {
+            if (dic.TryGetValue((type, name), out PropertyInfo? prop))
+            {
+                return prop;
+            }
+            
+            ThrowIfNull(type);
+            ThrowIfNullOrWhiteSpace(name);
+            string nameTrimmed = name.Trim();
+            
+            foreach (Type typeOrBase in TypesAndBases(type))
+            {
+                if (typeOrBase.GetProperty(nameTrimmed, bindingFlags) is PropertyInfo propResolved)
+                {
+                    prop ??= propResolved;
+                    dic[(typeOrBase, name)] = propResolved;
+                }
+            }
+            
+            return prop;
+        }
+    }
+    
+    [MethodImpl(AggressiveInlining)]
+    public static PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
+    {
+        Type? type = Type(shortTypeName, nullable, cache);
+        if (type == null) return null;
+        return PropOrSomething(type, name, nullable, bindingFlags, dic, dicLock);
+    }
+    
+    [MethodImpl(AggressiveInlining)]
+    public static PropertyInfo? PropOrSomething(Type type, string name, bool nullable, BindingFlags bindingFlags, PropDic dic, Lock dicLock) 
+        => nullable ? PropOrNull(type, name, bindingFlags, dic, dicLock) : PropOrThrow(type, name, bindingFlags, dic, dicLock);
+}
+
+// ReSharper disable UnusedParameter.Global
+// ReSharper disable UnusedParameter.Local
 
 public static partial class Reflect
 {
@@ -71,76 +140,4 @@ public static partial class ReflectExtensions
     public static PropertyInfo? Prop<T>(this T obj,  bool         nullable, [Caller] string name = "") => Reflect.Prop(obj,  nullable, name);
     public static PropertyInfo? Prop<T>(this T obj,  string       name,     NullableFlag    nullable ) => Reflect.Prop(obj,  name, nullable);
     public static PropertyInfo? Prop<T>(this T obj,  string       name,     bool            nullable ) => Reflect.Prop(obj,  name, nullable);
-}
-
-// ReSharper restore UnusedParameter.Global
-// ReSharper restore UnusedParameter.Local
-
-internal static partial class ReflectUtility
-{
-    [MethodImpl(AggressiveInlining)]
-    public static PropertyInfo PropOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
-    {
-        return PropOrThrow(Type(shortTypeName, cache), name, bindingFlags, dic, dicLock);
-    }
-    
-    [MethodImpl(AggressiveInlining)]
-    public static PropertyInfo PropOrThrow(Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock)
-    {
-        PropertyInfo? prop = PropOrNull(type, name, bindingFlags, dic, dicLock);
-        
-        if (prop == null)
-        {
-            throw new Exception($"Property {name} not found in {type.Name}.");
-        }
-        
-        return prop;
-    }
-    
-    [MethodImpl(AggressiveInlining)]
-    public static PropertyInfo? PropOrNull(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
-    {
-        Type? type = Type(shortTypeName, nullable, cache);
-        if (type == null) return null;
-        return PropOrNull(type, name, bindingFlags, dic, dicLock);
-    }
-    
-    [MethodImpl(AggressiveInlining)]
-    public static PropertyInfo? PropOrNull(Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock)
-    {
-        lock (dicLock)
-        {
-            if (dic.TryGetValue((type, name), out PropertyInfo? prop))
-            {
-                return prop;
-            }
-            
-            ThrowIfNull(type);
-            ThrowIfNullOrWhiteSpace(name);
-            string nameTrimmed = name.Trim();
-            
-            foreach (Type typeOrBase in TypesAndBases(type))
-            {
-                if (typeOrBase.GetProperty(nameTrimmed, bindingFlags) is PropertyInfo propResolved)
-                {
-                    prop ??= propResolved;
-                    dic[(typeOrBase, name)] = propResolved;
-                }
-            }
-            
-            return prop;
-        }
-    }
-    
-    [MethodImpl(AggressiveInlining)]
-    public static PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
-    {
-        Type? type = Type(shortTypeName, nullable, cache);
-        if (type == null) return null;
-        return PropOrSomething(type, name, nullable, bindingFlags, dic, dicLock);
-    }
-    
-    [MethodImpl(AggressiveInlining)]
-    public static PropertyInfo? PropOrSomething(Type type, string name, bool nullable, BindingFlags bindingFlags, PropDic dic, Lock dicLock) 
-        => nullable ? PropOrNull(type, name, bindingFlags, dic, dicLock) : PropOrThrow(type, name, bindingFlags, dic, dicLock);
 }
