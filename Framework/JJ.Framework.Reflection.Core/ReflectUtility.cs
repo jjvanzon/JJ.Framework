@@ -44,12 +44,18 @@ internal static class ReflectUtility
             
             string nameTrimmed = name.Trim();
             
-            foreach (Type t in type.GetTypesInHierarchy())
+            ICollection<Type> typesInHierarchy = type.GetTypesInHierarchy();
+            ICollection<Type> nullableUnderlyingTypes = typesInHierarchy.Select(GetUnderlyingType)
+                                                                        .Where(x => x != null)
+                                                                        .Select(x => x!)
+                                                                        .ToArray();
+            
+            foreach (Type typeOrBase in Union(typesInHierarchy, nullableUnderlyingTypes))
             {
-                if (t.GetProperty(nameTrimmed, bindingFlags) is PropertyInfo p)
+                if (typeOrBase.GetProperty(nameTrimmed, bindingFlags) is PropertyInfo propResolved)
                 {
-                    prop ??= p;
-                    dic[(t, name)] = p;
+                    prop ??= propResolved;
+                    dic[(typeOrBase, name)] = propResolved;
                 }
             }
             

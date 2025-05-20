@@ -337,14 +337,25 @@ public class ReflectTests
     [TestMethod]
     public void Reflect_Prop_NullableTypes()
     {
-        // Nullable value types
-        Type nullType = typeof(int?);
-        nullType.Prop("HasValue");
-        //nullType.Prop("MaxValue");
-        int? nullValue = null;
-        IsNotNull(Prop(nullValue, "HasValue"));
-        //IsNotNull(Prop<Nullable<int>>("HasValue"));
+        // Nullable value
+        Type nullType = typeof(DateTime?);
+        IsNotNull(nullType.Prop("HasValue"));
+        IsNotNull(nullType.Prop("Year"));
         
+        DateTime? nullyVal = new(2025, 05, 20);
+        IsNotNull(Prop(nullyVal, "HasValue"));
+        IsNotNull(Prop(nullyVal, "Year"));
+        
+        var yearProp = nullType.Prop("Year");
+        var yearBack = yearProp.GetValue(nullyVal);
+        AreEqual(yearBack, 2025);
+        
+        // Non nullable value
+        Type nonNullType = typeof(DateTime);
+        DateTime nonNullValue = new(2025, 05, 20);
+        IsNotNull(nonNullType.Prop("Year"));
+        
+        // Reference types
         MyType? nullObj = null;
             
         // Nullable reference type property
