@@ -407,6 +407,7 @@ namespace JJ.Framework.Reflection.Core
 
                 // TODO: Manually back into legacy branch.
                 var stringComparison = _bindingFlags.HasFlag(BindingFlags.IgnoreCase) ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+                shortTypeName = shortTypeName.Trim();
 
                 var list = new List<Type>();
                 foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())

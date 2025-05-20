@@ -86,16 +86,14 @@ public class ReflectTests
         }
     }
     
-    // Trim
+    // Trims
     
     [TestMethod]
-    public void Reflector_Prop_Trim()
+    public void Reflector_Prop_Trims()
     {
         foreach (var reflect in _reflectors)
         {
-            // TODO: Trim tolerance should also work for type names.
-            //Assert(reflect.Prop("MyType ", "MyProp"));
-            Assert(reflect.Prop("MyType", " MyProp "));
+            Assert(reflect.Prop("\t\t MyType \n\r", " MyProp "));
             Assert(reflect.Prop <MyType>( "MyProp  "));
             Assert(reflect.Prop(_myType,  "\r\nMyProp \t   "));
         }
