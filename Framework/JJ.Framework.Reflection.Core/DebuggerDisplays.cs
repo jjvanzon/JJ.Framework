@@ -2,7 +2,7 @@
 
 internal static class DebuggerDisplays
 {
-    public static string DebuggerDisplay(Reflect obj)
+    public static string DebuggerDisplay(Reflector obj)
     {
         return $"{obj.GetType().Name} ({obj.BindingFlags})";
     }
