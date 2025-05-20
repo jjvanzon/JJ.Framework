@@ -85,6 +85,21 @@ public class ReflectTests
             IsNull(reflect.Prop(_myType , nullable: true, "NoProp"      ));
         }
     }
+    
+    // Trim
+    
+    [TestMethod]
+    public void Reflector_Prop_Trim()
+    {
+        foreach (var reflect in _reflectors)
+        {
+            // TODO: Trim tolerance should also work for type names.
+            //Assert(reflect.Prop("MyType ", "MyProp"));
+            Assert(reflect.Prop("MyType", " MyProp "));
+            Assert(reflect.Prop <MyType>( "MyProp  "));
+            Assert(reflect.Prop(_myType,  "\r\nMyProp \t   "));
+        }
+    }
 
     // MatchCase
 
@@ -152,8 +167,6 @@ public class ReflectTests
             Assert(reflect.Prop(_myType , nullable: false, "MyProp"       ));
         }
     }
-
-    // TODO: Trim tolerance
     
     // Helpers
 
