@@ -5,16 +5,6 @@ namespace JJ.Framework.Reflection.Core;
 
 public static partial class Reflect
 {
-   public const BindingFlags BindingFlagsAll =
-        BindingFlags.Public |
-        BindingFlags.NonPublic |
-        BindingFlags.Instance |
-        BindingFlags.Static |
-        BindingFlags.FlattenHierarchy |
-        BindingFlags.IgnoreCase;
-    
-    private static readonly ReflectionCacheLegacy _cache = new(BindingFlagsAll);
-    
     // Prop
 
     private static readonly PropDic _propDic = new();
@@ -82,6 +72,9 @@ public static partial class ReflectExtensions
     public static PropertyInfo? Prop<T>(this T obj,  string       name,     NullableFlag    nullable ) => Reflect.Prop(obj,  name, nullable);
     public static PropertyInfo? Prop<T>(this T obj,  string       name,     bool            nullable ) => Reflect.Prop(obj,  name, nullable);
 }
+
+// ReSharper restore UnusedParameter.Global
+// ReSharper restore UnusedParameter.Local
 
 internal static partial class ReflectUtility
 {
