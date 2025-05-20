@@ -30,21 +30,21 @@
 
         // Classes
 
-        /// <inheritdoc cref="_classesinhierarchy" />
-        public static ICollection<Type> GetClassesInHierarchy(this Type type)
-            => ReflectionHelperCore.GetClassesInHierarchy(type);
+        /// <inheritdoc cref="_statetypesinhierarchy" />
+        public static ICollection<Type> GetStateTypesInHierarchy(this Type type)
+            => ReflectionHelperCore.GetStateTypesInHierarchy(type);
 
-        /// <inheritdoc cref="_classesinhierarchy" />
-        public static void AddClassesInHierarchy(this Type type, ICollection<Type> coll)
-            => ReflectionHelperCore.AddClassesInHierarchy(type, coll);
+        /// <inheritdoc cref="_statetypesinhierarchy" />
+        public static void AddStateTypesInHierarchy(this Type type, ICollection<Type> coll)
+            => ReflectionHelperCore.AddStateTypesInHierarchy(type, coll);
         
-        /// <inheritdoc cref="_classesinhierarchy" />
-        public static bool HasClassInHierarchy(this Type type, Type type2)
-            => ReflectionHelperCore.HasClassInHierarchy(type, type2);
+        /// <inheritdoc cref="_statetypesinhierarchy" />
+        public static bool HasStateTypeInHierarchy(this Type type, Type type2)
+            => ReflectionHelperCore.HasStateTypeInHierarchy(type, type2);
 
-        /// <inheritdoc cref="_classesinhierarchy" />
-        public static bool HasClassInHierarchy<TSecond>(this Type first)
-            => ReflectionHelperCore.HasClassInHierarchy(first, typeof(TSecond));
+        /// <inheritdoc cref="_statetypesinhierarchy" />
+        public static bool HasStateTypeInHierarchy<TSecond>(this Type first)
+            => ReflectionHelperCore.HasStateTypeInHierarchy(first, typeof(TSecond));
 
         // Interfaces
 

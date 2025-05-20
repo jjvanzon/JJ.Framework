@@ -70,18 +70,18 @@ public class TypeHierarchyTests
     // Classes
 
     [TestMethod]
-    public void GetClassesInHierarchyTest_New()
+    public void GetStateTypesInHierarchyTest_New()
     {
         Type type = typeof(Exception);
         
         var synonyms = new[]
         {
-            () => GetClassesInHierarchy(type),
-            () => GetClassesInHierarchy<Exception>(),
-            () => type.GetClassesInHierarchy(),
-            () => { var types = new HashSet<Type>(); AddClassesInHierarchy(type, types);      return types; },
-            () => { var types = new HashSet<Type>(); AddClassesInHierarchy<Exception>(types); return types; },
-            () => { var types = new HashSet<Type>(); type.AddClassesInHierarchy(types);       return types; }
+            () => GetStateTypesInHierarchy(type),
+            () => GetStateTypesInHierarchy<Exception>(),
+            () => type.GetStateTypesInHierarchy(),
+            () => { var types = new HashSet<Type>(); AddStateTypesInHierarchy(type, types);      return types; },
+            () => { var types = new HashSet<Type>(); AddStateTypesInHierarchy<Exception>(types); return types; },
+            () => { var types = new HashSet<Type>(); type.AddStateTypesInHierarchy(types);       return types; }
         };
         
         foreach (var synonym in synonyms)
@@ -96,18 +96,18 @@ public class TypeHierarchyTests
 
     
     [TestMethod]
-    public void HasClassInHierarchyTest()
+    public void HasStateTypeInHierarchyTest()
     {
         Type type = typeof(Exception);
         Type secondType = typeof(object);
         
         var trueSynonyms = new[]
         {
-            () => HasClassInHierarchy(type, secondType),
-            () => HasClassInHierarchy<Exception>(secondType),
-            () => HasClassInHierarchy<Exception, object>(),
-            () => type.HasClassInHierarchy(secondType),
-            () => type.HasClassInHierarchy<object>()
+            () => HasStateTypeInHierarchy(type, secondType),
+            () => HasStateTypeInHierarchy<Exception>(secondType),
+            () => HasStateTypeInHierarchy<Exception, object>(),
+            () => type.HasStateTypeInHierarchy(secondType),
+            () => type.HasStateTypeInHierarchy<object>()
         };
 
         foreach (var trueSynonym in trueSynonyms)
@@ -119,11 +119,11 @@ public class TypeHierarchyTests
         
         var falseSynonyms = new[]
         {
-            () => HasClassInHierarchy(type, wrongType),
-            () => HasClassInHierarchy<Exception>(wrongType),
-            () => HasClassInHierarchy<Exception, ReflectionHelperCore>(),
-            () => type.HasClassInHierarchy(wrongType),
-            () => type.HasClassInHierarchy<ReflectionHelperCore>()
+            () => HasStateTypeInHierarchy(type, wrongType),
+            () => HasStateTypeInHierarchy<Exception>(wrongType),
+            () => HasStateTypeInHierarchy<Exception, ReflectionHelperCore>(),
+            () => type.HasStateTypeInHierarchy(wrongType),
+            () => type.HasStateTypeInHierarchy<ReflectionHelperCore>()
         };
 
         foreach (var falseSynonym in falseSynonyms)
@@ -132,7 +132,7 @@ public class TypeHierarchyTests
         }
         
         ThrowsException(
-            () => HasClassInHierarchy(type, typeof(ISerializable)),
+            () => HasStateTypeInHierarchy(type, typeof(ISerializable)),
             "secondType 'ISerializable' is not a class.");
     }
     
@@ -209,7 +209,7 @@ public class TypeHierarchyTests
         var synonyms = new Func<IList<Type>>[]
         {
             // Use List preventing duplicates masked by HashSet.
-            () => { var x = new List<Type>(); AddClassesInHierarchy   (type, x); return x; },
+            () => { var x = new List<Type>(); AddStateTypesInHierarchy   (type, x); return x; },
             () => { var x = new List<Type>(); AddInterfacesInHierarchy(type, x); return x; },
             () => { var x = new List<Type>(); AddTypesInHierarchy     (type, x); return x; },
         };

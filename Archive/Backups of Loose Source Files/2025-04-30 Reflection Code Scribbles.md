@@ -781,3 +781,10 @@ private string _dummy = "";
     //    return PropOrSomething(typeof(T), name, nullable, bindingFlags, dic, dicLock);
     //}
 ```
+
+### Misc
+
+```cs
+   [Obsolete("Use Reflect, Reflector or ReflectExtensions instead.", true)]
+   [Obsolete("Use Reflect, Reflector or ReflectExtensions instead.", true)]
+```

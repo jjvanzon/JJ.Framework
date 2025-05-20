@@ -110,9 +110,9 @@ namespace JJ.Framework.Reflection.Core
         public struct _complementparametertypes { }
         
         /// <summary>
-        /// Handles a collection of this class and its base classes recursively.
+        /// Handles a collection of this class/struct and its base class/structs recursively.
         /// </summary>
-        public struct _classesinhierarchy { }
+        public struct _statetypesinhierarchy { }
         
         /// <summary>
         /// Handles a collection of this interface or its deeper interfaces recursively.
