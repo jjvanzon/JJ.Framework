@@ -117,16 +117,9 @@ internal static partial class ReflectUtility
             
             ThrowIfNull(type);
             ThrowIfNullOrWhiteSpace(name);
-            
             string nameTrimmed = name.Trim();
             
-            ICollection<Type> typesInHierarchy = type.GetTypesInHierarchy();
-            ICollection<Type> nullableUnderlyingTypes = typesInHierarchy.Select(GetUnderlyingType)
-                                                                        .Where(x => x != null)
-                                                                        .Select(x => x!)
-                                                                        .ToArray();
-            
-            foreach (Type typeOrBase in Union(typesInHierarchy, nullableUnderlyingTypes))
+            foreach (Type typeOrBase in TypesAndBases(type))
             {
                 if (typeOrBase.GetProperty(nameTrimmed, bindingFlags) is PropertyInfo propResolved)
                 {
