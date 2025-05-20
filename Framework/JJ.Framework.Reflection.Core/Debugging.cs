@@ -1,6 +1,6 @@
 ﻿namespace JJ.Framework.Reflection.Core;
 
-internal static class Descriptors
+internal static class Debugging
 {
     public static string Descriptor(Reflector obj)
     {
