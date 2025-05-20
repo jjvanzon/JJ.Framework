@@ -683,3 +683,72 @@ private string _dummy = "";
     }
 
 ```
+
+### Removals moving to static utility methods
+
+```cs
+    private static PropertyInfo  PropOrThrow(string shortTypeName, string name) => PropOrThrow(Type(shortTypeName), name, _propDic, _propDicLock);
+    private static PropertyInfo  PropOrThrow(Type   type,          string name) => PropOrThrow(type,                name, _propDic, _propDicLock);
+    private static PropertyInfo? PropOrNull(string shortTypeName, string name) => PropOrNull(shortTypeName, name, _propDic, _propDicLock);
+    private static PropertyInfo? PropOrNull(Type   type,          string name) => PropOrNull(type,          name, _propDic, _propDicLock);
+    private static PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable) => PropOrSomething(shortTypeName, name, nullable, _propDic, _propDicLock);
+    private static PropertyInfo? PropOrSomething(Type type, string name, bool nullable) => PropOrSomething(type, name, nullable, _propDic, _propDicLock);
+
+
+    private PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable)
+    {
+        return Type(shortTypeName, nullable)?.Prop(name, nullable, this);
+    }
+    private PropertyInfo? PropOrSomething(Type type, string name, bool nullable)
+    {
+        return nullable ? PropOrNull(type, name) : PropOrThrow(type, name);
+    }
+    
+    private PropertyInfo PropOrThrow(string shortTypeName, string name) => PropOrThrow(Type(shortTypeName), name);
+    private PropertyInfo PropOrThrow(Type   type,          string name)
+    {
+        PropertyInfo? prop = PropOrNull(type, name);
+        
+        if (prop == null)
+        {
+            throw new Exception($"Property {name} not found in {type.Name}.");
+        }
+        
+        return prop;
+    }
+
+    private PropertyInfo? PropOrNull(string shortTypeName, string name) => Type(shortTypeName, nullable)?.Prop(name, nullable, this);
+    private PropertyInfo? PropOrNull(Type   type,          string name)
+    {
+        lock (_propDicLock)
+        {
+            if (_propDic.TryGetValue((type, name), out PropertyInfo? prop))
+            {
+                return prop;
+            }
+            
+            ThrowIfNull(type);
+            ThrowIfNullOrWhiteSpace(name);
+            
+            string nameTrimmed = name.Trim();
+            
+            foreach (Type t in type.GetTypesInHierarchy())
+            {
+                if (t.GetProperty(nameTrimmed, BindingFlags) is PropertyInfo p)
+                {
+                    prop ??= p;
+                    _propDic[(t, name)] = p;
+                }
+            }
+            
+            return prop;
+        }
+    }
+    
+    // Type
+
+    private Type  Type (string shortTypeName                       ) =>            _reflectionCacheLegacy.   GetTypeByShortName(shortTypeName);
+    private Type? Type (string shortTypeName, NullableFlag nullable) =>            _reflectionCacheLegacy.TryGetTypeByShortName(shortTypeName);
+    private Type? Type (string shortTypeName, bool         nullable) => nullable ? _reflectionCacheLegacy.TryGetTypeByShortName(shortTypeName) 
+                                                                                 : _reflectionCacheLegacy.   GetTypeByShortName(shortTypeName);
+```

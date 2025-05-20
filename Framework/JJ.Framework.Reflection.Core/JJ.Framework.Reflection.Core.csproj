@@ -8,6 +8,9 @@
     <!--<WarningsAsErrors>$(WarningsAsErrors);CA1062</WarningsAsErrors>-->
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\JJ.Framework.Collections.Core\JJ.Framework.Collections.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Common.Core\JJ.Framework.Common.Core.csproj" />
     <ProjectReference Include="..\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj" />

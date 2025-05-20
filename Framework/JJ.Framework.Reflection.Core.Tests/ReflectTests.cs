@@ -1,8 +1,4 @@
-﻿using System.Reflection;
-using static JJ.Framework.Common.Core.FlagHelper;
-using static JJ.Framework.Reflection.Core.Reflect;
-
-namespace JJ.Framework.Reflection.Core.Tests;
+﻿namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
 public class ReflectTests
@@ -212,6 +208,7 @@ public class ReflectTests
         
         // Coverage
         AssertProp(Prop("MyType", "MyProp", nullable));
+        AssertProp(Prop(_myType , "MyProp", nullable));
         AssertProp(Prop("MyType", "MyProp", nullable: true));
         AssertProp(Prop <MyType>( "MyProp", nullable: false));
         AssertProp(Prop(_myType , "MyProp", nullable: true));
