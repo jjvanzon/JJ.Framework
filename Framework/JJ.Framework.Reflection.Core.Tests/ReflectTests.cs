@@ -225,9 +225,6 @@ public class ReflectTests
     [TestMethod]
     public void Reflect_Prop_Extensions()
     {
-        // TODO: Extensions for instances of the type?
-        // TODO: Reflect(or) members that take obj, whose type you reflect?
-        // TODO: Extensions for with accessor methods (Get, Set, Call)?
         
         // Non-qualified
         AssertProp(_myType.Prop("MyProp"));
@@ -248,6 +245,76 @@ public class ReflectTests
         AssertProp(_myType.Prop("MyProp", nullable: true));
         AssertProp(_myType.Prop(nullable, "MyProp"));
         AssertProp(_myType.Prop(nullable: true, "MyProp"));
+    }
+    
+    // From Object 
+    
+    [TestMethod]
+    public void Reflect_Prop_FromObject()
+    {
+        MyType obj = new();
+        {
+            AssertProp    (      obj    .Prop(     "MyProp"                 ));
+            AssertProp    (      obj    .Prop(     "MyProp", nullable: false));
+            AssertProp    (      obj    .Prop(     "MyProp", nullable: true ));
+            AssertProp    (      obj    .Prop(     "MyProp", nullable       ));
+            AssertProp    (              Prop(obj, "MyProp"                 ));
+            AssertProp    (              Prop(obj, "MyProp", nullable: false));
+            AssertProp    (              Prop(obj, "MyProp", nullable: true ));
+            AssertProp    (              Prop(obj, "MyProp", nullable       ));
+            AssertProp    (      Reflect.Prop(obj, "MyProp"                 ));
+            AssertProp    (      Reflect.Prop(obj, "MyProp", nullable: false));
+            AssertProp    (      Reflect.Prop(obj, "MyProp", nullable: true ));
+            AssertProp    (      Reflect.Prop(obj, "MyProp", nullable       ));
+            AssertProp    (      obj    .Prop(     nullable: false, "MyProp"));
+            AssertProp    (      obj    .Prop(     nullable: true,  "MyProp"));
+            AssertProp    (      obj    .Prop(     nullable,        "MyProp"));
+            AssertProp    (              Prop(obj, nullable: false, "MyProp"));
+            AssertProp    (              Prop(obj, nullable: true,  "MyProp"));
+            AssertProp    (              Prop(obj, nullable,        "MyProp"));
+            AssertProp    (      Reflect.Prop(obj, nullable: false, "MyProp"));
+            AssertProp    (      Reflect.Prop(obj, nullable: true,  "MyProp"));
+            AssertProp    (      Reflect.Prop(obj, nullable,        "MyProp"));
+            ThrowsNotFound(() => obj    .Prop(     "NoProp"                 ));
+            ThrowsNotFound(() => obj    .Prop(     "NoProp", nullable: false));
+            IsNull        (      obj    .Prop(     "NoProp", nullable: true ));
+            IsNull        (      obj    .Prop(     "NoProp", nullable       ));
+            ThrowsNotFound(() =>         Prop(obj, "NoProp"                 ));
+            ThrowsNotFound(() =>         Prop(obj, "NoProp", nullable: false));
+            IsNull        (              Prop(obj, "NoProp", nullable: true ));
+            IsNull        (              Prop(obj, "NoProp", nullable       ));
+            ThrowsNotFound(() => Reflect.Prop(obj, "NoProp"                 ));
+            ThrowsNotFound(() => Reflect.Prop(obj, "NoProp", nullable: false));
+            IsNull        (      Reflect.Prop(obj, "NoProp", nullable: true ));
+            IsNull        (      Reflect.Prop(obj, "NoProp", nullable       ));
+            ThrowsNotFound(() => obj    .Prop(     nullable: false, "NoProp"));
+            IsNull        (      obj    .Prop(     nullable: true,  "NoProp"));
+            IsNull        (      obj    .Prop(     nullable,        "NoProp"));
+            ThrowsNotFound(() =>         Prop(obj, nullable: false, "NoProp"));
+            IsNull        (              Prop(obj, nullable: true,  "NoProp"));
+            IsNull        (              Prop(obj, nullable,        "NoProp"));
+            ThrowsNotFound(() => Reflect.Prop(obj, nullable: false, "NoProp"));
+            IsNull        (      Reflect.Prop(obj, nullable: true,  "NoProp"));
+            IsNull        (      Reflect.Prop(obj, nullable,        "NoProp"));
+        }
+        
+        foreach (Reflector reflect in _reflectors)
+        {
+            AssertProp    (      reflect.Prop(obj, "MyProp"                 ));
+            AssertProp    (      reflect.Prop(obj, "MyProp", nullable: false));
+            AssertProp    (      reflect.Prop(obj, "MyProp", nullable: true ));
+            AssertProp    (      reflect.Prop(obj, "MyProp", nullable       ));
+            AssertProp    (      reflect.Prop(obj, nullable: false, "MyProp"));
+            AssertProp    (      reflect.Prop(obj, nullable: true,  "MyProp"));
+            AssertProp    (      reflect.Prop(obj, nullable,        "MyProp"));
+            ThrowsNotFound(() => reflect.Prop(obj, "NoProp"                 ));
+            ThrowsNotFound(() => reflect.Prop(obj, "NoProp", nullable: false));
+            IsNull        (      reflect.Prop(obj, "NoProp", nullable: true ));
+            IsNull        (      reflect.Prop(obj, "NoProp", nullable       ));
+            ThrowsNotFound(() => reflect.Prop(obj, nullable: false, "NoProp"));
+            IsNull        (      reflect.Prop(obj, nullable: true,  "NoProp"));
+            IsNull        (      reflect.Prop(obj, nullable,        "NoProp"));
+        }
     }
 
     // Invariant under Nullable

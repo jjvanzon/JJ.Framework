@@ -759,3 +759,25 @@ private string _dummy = "";
     public static PropertyInfo? Prop(this Type type, string name, NullableFlag nullable, Reflector reflect) => reflect.Prop(type, name, nullable);
     public static PropertyInfo? Prop(this Type type, string name, bool nullable, Reflector reflect) => reflect.Prop(type, name, nullable);
 ```
+
+### ReflectUtility
+
+```cs
+    //[MethodImpl(AggressiveInlining)]
+    //public static PropertyInfo PropOrThrow<T>([UsedImplicitly] T obj, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock)
+    //{
+    //    return PropOrThrow(typeof(T), name, bindingFlags, dic, dicLock);
+    //}
+
+    //[MethodImpl(AggressiveInlining)]
+    //public static PropertyInfo? PropOrNull<T>([UsedImplicitly] T obj, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
+    //{
+    //    return PropOrNull(typeof(T), name, bindingFlags, dic, dicLock);
+    //}
+       
+    //[MethodImpl(AggressiveInlining)]
+    //public static PropertyInfo? PropOrSomething<T>([UsedImplicitly] T obj, string name, bool nullable, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
+    //{
+    //    return PropOrSomething(typeof(T), name, nullable, bindingFlags, dic, dicLock);
+    //}
+```

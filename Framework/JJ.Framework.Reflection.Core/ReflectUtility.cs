@@ -1,13 +1,15 @@
 ﻿namespace JJ.Framework.Reflection.Core;
 
-public static class ReflectUtility
+internal static class ReflectUtility
 {
     [MethodImpl(AggressiveInlining)]
-    internal static PropertyInfo PropOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache) 
-        => PropOrThrow(Type(shortTypeName, cache), name, bindingFlags, dic, dicLock);
+    public static PropertyInfo PropOrThrow(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
+    {
+        return PropOrThrow(Type(shortTypeName, cache), name, bindingFlags, dic, dicLock);
+    }
     
     [MethodImpl(AggressiveInlining)]
-    internal static PropertyInfo PropOrThrow(Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock)
+    public static PropertyInfo PropOrThrow(Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock)
     {
         PropertyInfo? prop = PropOrNull(type, name, bindingFlags, dic, dicLock);
         
@@ -20,7 +22,7 @@ public static class ReflectUtility
     }
     
     [MethodImpl(AggressiveInlining)]
-    internal static PropertyInfo? PropOrNull(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
+    public static PropertyInfo? PropOrNull(string shortTypeName, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
@@ -28,7 +30,7 @@ public static class ReflectUtility
     }
     
     [MethodImpl(AggressiveInlining)]
-    internal static PropertyInfo? PropOrNull(Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock)
+    public static PropertyInfo? PropOrNull(Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock)
     {
         lock (dicLock)
         {
@@ -56,7 +58,7 @@ public static class ReflectUtility
     }
     
     [MethodImpl(AggressiveInlining)]
-    internal static PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
+    public static PropertyInfo? PropOrSomething(string shortTypeName, string name, bool nullable, BindingFlags bindingFlags, PropDic dic, Lock dicLock, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return null;
@@ -64,7 +66,7 @@ public static class ReflectUtility
     }
     
     [MethodImpl(AggressiveInlining)]
-    internal static PropertyInfo? PropOrSomething(Type type, string name, bool nullable, BindingFlags bindingFlags, PropDic dic, Lock dicLock) 
+    public static PropertyInfo? PropOrSomething(Type type, string name, bool nullable, BindingFlags bindingFlags, PropDic dic, Lock dicLock) 
         => nullable ? PropOrNull(type, name, bindingFlags, dic, dicLock) : PropOrThrow(type, name, bindingFlags, dic, dicLock);
 
     // Type
