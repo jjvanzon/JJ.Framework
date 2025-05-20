@@ -27,7 +27,7 @@ global using static JJ.Framework.Reflection.ReflectionHelper;
 global using static JJ.Framework.Reflection.Core.Reflect;
 global using static JJ.Framework.Reflection.Core.ReflectUtility;
 global using static JJ.Framework.Reflection.Core.NullableFlag;
-global using static JJ.Framework.Reflection.Core.DebuggerDisplays;
+global using static JJ.Framework.Reflection.Core.Descriptors;
 global using Caller = System.Runtime.CompilerServices.CallerMemberNameAttribute;
 global using Priority = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
 global using PropDic = System.Collections.Generic.Dictionary<(System.Type, string), System.Reflection.PropertyInfo?>;

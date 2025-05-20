@@ -1,8 +1,8 @@
 ﻿namespace JJ.Framework.Reflection.Core;
 
-internal static class DebuggerDisplays
+internal static class Descriptors
 {
-    public static string DebuggerDisplay(Reflector obj)
+    public static string Descriptor(Reflector obj)
     {
         return $"{obj.GetType().Name} ({obj.BindingFlags})";
     }
