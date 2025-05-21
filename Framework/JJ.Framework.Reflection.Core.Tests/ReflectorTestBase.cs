@@ -4,6 +4,8 @@ public abstract class ReflectorTestBase
 {
     protected Type _myType = typeof(MyType);
     protected Type _myBase = typeof(MyBase);
+    protected MyType _obj = new();
+    protected MyType _myObject = new();
 
     // Constructors
 

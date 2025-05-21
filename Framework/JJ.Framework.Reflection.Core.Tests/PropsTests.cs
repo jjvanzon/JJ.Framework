@@ -6,29 +6,48 @@ public class PropsTests : ReflectorTestBase
     [TestMethod]
     public void Reflector_Props()
     {
-        AssertProps  ( _myType.Props()           );
-        AssertPropDic( _myType.PropDic()         );
-        AssertProps  ( Props  (_myType)          );
-        AssertPropDic( PropDic(_myType)          );
-        AssertProps  ( Props  <MyType>()         );
-        AssertPropDic( PropDic<MyType>()         );
-        AssertProps  ( Props  ("MyType")         );
-        AssertPropDic( PropDic("MyType")         );
-        AssertProps  ( Reflect.Props  ("MyType") );
-        AssertPropDic( Reflect.PropDic("MyType") );
-        AssertProps  ( Reflect.Props  <MyType>() );
-        AssertPropDic( Reflect.PropDic<MyType>() );
-        AssertProps  ( Reflect.Props  (_myType)  );
-        AssertPropDic( Reflect.PropDic(_myType)  );
-    
+        {
+            AssertProps   (      _myObject.Props  (         ));
+            AssertPropDic (      _myObject.PropDic(         ));
+            AssertProps   (      _myType  .Props  (         ));
+            AssertPropDic (      _myType  .PropDic(         ));
+            AssertProps   (      "MyType" .Props  (         ));
+            AssertPropDic (      "MyType" .PropDic(         ));
+            AssertProps   (                Props  (_myObject));
+            AssertPropDic (                PropDic(_myObject));
+            AssertProps   (                Props  (_myType  ));
+            AssertPropDic (                PropDic(_myType  ));
+            AssertProps   (                Props   <MyType>());
+            AssertPropDic (                PropDic <MyType>());
+            AssertProps   (                Props  ("MyType" ));
+            AssertPropDic (                PropDic("MyType" ));
+            AssertProps   (      Reflect  .Props  (_myObject));
+            AssertPropDic (      Reflect  .PropDic(_myObject));
+            AssertProps   (      Reflect  .Props  (_myType  ));
+            AssertPropDic (      Reflect  .PropDic(_myType  ));
+            AssertProps   (      Reflect  .Props   <MyType>());
+            AssertPropDic (      Reflect  .PropDic <MyType>());
+            AssertProps   (      Reflect  .Props  ("MyType" ));
+            AssertPropDic (      Reflect  .PropDic("MyType" ));
+            ThrowsNotFound(() => "NoType" .Props  (         ));
+            ThrowsNotFound(() => "NoType" .PropDic(         ));
+            ThrowsNotFound(() =>           Props  ("NoType" ));
+            ThrowsNotFound(() =>           PropDic("NoType" ));
+            ThrowsNotFound(() => Reflect  .Props  ("NoType" ));
+            ThrowsNotFound(() => Reflect  .PropDic("NoType" ));
+        }
         foreach (var reflect in Union(_reflectors, _reflectorsMatchCase))
         {
-            AssertProps  ( reflect.Props  ("MyType") );
-            AssertPropDic( reflect.PropDic("MyType") );
-            AssertProps  ( reflect.Props  <MyType>() );
-            AssertPropDic( reflect.PropDic<MyType>() );
-            AssertProps  ( reflect.Props  (_myType)  );
-            AssertPropDic( reflect.PropDic(_myType)  );
+            AssertProps   (      reflect  .Props  (_myObject));
+            AssertPropDic (      reflect  .PropDic(_myObject));
+            AssertProps   (      reflect  .Props  (_myType  ));
+            AssertPropDic (      reflect  .PropDic(_myType  ));
+            AssertProps   (      reflect  .Props   <MyType>());
+            AssertPropDic (      reflect  .PropDic <MyType>());
+            AssertProps   (      reflect  .Props  ("MyType" ));
+            AssertPropDic (      reflect  .PropDic("MyType" ));
+            ThrowsNotFound(() => reflect  .Props  ("NoType" ));
+            ThrowsNotFound(() => reflect  .PropDic("NoType" ));
         }
     }
     

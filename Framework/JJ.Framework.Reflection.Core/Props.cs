@@ -5,15 +5,14 @@ internal static partial class ReflectUtility
     public static PropertyInfo[] PropsCore(
         string shortTypeName, BindingFlags bindingFlags, PropsDic dic, Lock lck, ReflectionCacheLegacy cache)
     {        
-        Type? type = Type(shortTypeName, nullable, cache);
-        if (type == null) return [ ];
+        Type type = Type(shortTypeName, cache);
         return PropsCore(type, bindingFlags, dic, lck);
     }
     
     public static PropertyInfo[] PropsCore(
         Type type, BindingFlags bindingFlags, PropsDic dic, Lock lck)
     {
-        PropertyInfo[] props;
+        PropertyInfo[]? props;
         
         lock (lck)
         {
@@ -39,15 +38,14 @@ internal static partial class ReflectUtility
     public static Dictionary<string, PropertyInfo> PropDicCore(
         string shortTypeName, BindingFlags bindingFlags, PropsDicDic dic, Lock lck, ReflectionCacheLegacy cache)
     {
-        Type? type = Type(shortTypeName, nullable, cache);
-        if (type == null) return [ ];
+        Type type = Type(shortTypeName, cache);
         return PropDicCore(type, bindingFlags, dic, lck);
     }
     
     public static Dictionary<string, PropertyInfo> PropDicCore(
         Type type, BindingFlags bindingFlags, PropsDicDic dic, Lock lck)
     { 
-        Dictionary<string, PropertyInfo> props;
+        Dictionary<string, PropertyInfo>? props;
         
         lock (lck)
         {
