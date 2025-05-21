@@ -1,32 +1,8 @@
 ﻿namespace JJ.Framework.Reflection.Core.Tests;
 
 [TestClass]
-public class ReflectTests
+public class PropTests : ReflectorTestBase
 {
-    private Type _myType = typeof(MyType);
-    private Type _myBase = typeof(MyBase);
-
-    // Constructors
-
-    Reflector[] _reflectors =
-    [
-        new (                                  ),
-        new (matchcase: false                  ),
-        new (matchcase: false, BindingFlagsAll ),
-        new (BindingFlagsAll                   ),
-        new (BindingFlagsAll,  matchcase: false)
-    ];
-    
-    Reflector[] _reflectorsMatchCase =
-    [
-        new (matchcase                       ),
-        new (matchcase: true                 ),
-        new (matchcase,       BindingFlagsAll),
-        new (matchcase: true, BindingFlagsAll),
-        new (BindingFlagsAll, matchcase      ),
-        new (BindingFlagsAll, matchcase: true)
-    ];
-    
     // Main Use
 
     [TestMethod]
@@ -429,25 +405,5 @@ public class ReflectTests
     {
         IsNotNull(prop);
         AreEqual("MyBaseProp", prop!.Name);
-    }
-    
-    private void ThrowsNotFound(Func<object?> func)
-    {
-        ThrowsExceptionContaining(func, "not found");
-    }
-    
-    private class MyType : MyBase
-    {
-        Reflector _reflect = new();
-        
-        public string MyProp
-        {
-            get => _reflect.Prop(GetType()).Name; // TODO: Assert value.
-        }
-    }
-    
-    private class MyBase
-    {
-        public int MyBaseProp => default;
     }
 }
