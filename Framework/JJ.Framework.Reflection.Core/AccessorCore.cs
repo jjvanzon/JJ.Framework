@@ -7,6 +7,7 @@ public partial class AccessorCore
     private static readonly ReflectionCacheLegacy _reflectionCacheLegacy = new();
 
     public object? Obj { get; }
+    private readonly Type _type;
     private readonly ICollection<Type> _typesInHierarchy;
 
     // Constructors
@@ -14,21 +15,22 @@ public partial class AccessorCore
     public AccessorCore(object obj)
     {
         Obj = obj ?? throw new NullException(() => obj);
-        _typesInHierarchy = obj.GetType().GetTypesInHierarchy();
+        _type = obj.GetType();
+        _typesInHierarchy = _type.GetTypesInHierarchy();
     }
 
     public AccessorCore(Type type, params ICollection<object?> constructArgs)
     {
-        if (type == null) throw new NullException(() => type);
+        _type = type ?? throw new NullException(() => type);
         _typesInHierarchy = type.GetTypesInHierarchy();
         Obj = TryCreateObject(type, constructArgs);
     }
 
     public AccessorCore(string shortTypeName, params ICollection<object?> constructArgs)
     {
-        Type type = _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
-        _typesInHierarchy = type.GetTypesInHierarchy();
-        Obj = TryCreateObject(type, constructArgs);
+        _type = _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
+        _typesInHierarchy = _type.GetTypesInHierarchy();
+        Obj = TryCreateObject(_type, constructArgs);
     }
     
     private object? TryCreateObject(Type type, ICollection<object?> constructArgs)
@@ -48,15 +50,11 @@ public partial class AccessorCore
     
     public object? Get([Caller] string name = "")
     {
-        foreach (Type type in _typesInHierarchy)
-        {
-            var property = _reflectionCacheLegacy.TryGetProperty(type, name);
-            if (property != null) return property.GetValue(Obj, null);
-            var field = _reflectionCacheLegacy.TryGetField(type, name);
-            if (field != null) return field.GetValue(Obj);
-        }
-
-        throw new Exception($"Property or field '{name}' not found.");
+        var prop = _type.Prop(name, nullable);
+        if (prop != null) return prop.GetValue(Obj, null);
+        var field = _type.Field(name, nullable);
+        if (field != null) return field.GetValue(Obj);
+        throw new Exception($"Property or field {name} not found in {_type.Name}.");
     }
     
     [Priority(1)]
@@ -69,15 +67,21 @@ public partial class AccessorCore
     
     private void SetCore(string name, object? value)
     {
-        foreach (Type type in _typesInHierarchy)
+        var property = _type.Prop(name, nullable);
+        if (property != null)
         {
-            var property = _reflectionCacheLegacy.TryGetProperty(type, name);
-            if (property != null) { property.SetValue(Obj, value, null); return; }
-            var field = _reflectionCacheLegacy.TryGetField(type, name);
-            if (field != null) { field.SetValue(Obj, value); return; }
+            property.SetValue(Obj, value, null);
+            return;
+        }
+        
+        var field = _type.Field(name, nullable);
+        if (field != null)
+        {
+            field.SetValue(Obj, value);
+            return;
         }
 
-        throw new Exception($"Property or field '{name}' not found.");
+        throw new Exception($"Property or field {name} not found in {_type.Name}.");
     }
     
     // Indexers
