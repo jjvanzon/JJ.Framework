@@ -23,17 +23,17 @@ public partial class AccessorCore
     {
         _type = type ?? throw new NullException(() => type);
         _typesInHierarchy = type.GetTypesInHierarchy();
-        Obj = TryCreateObject(type, constructArgs);
+        Obj = NewOrNull(type, constructArgs);
     }
 
     public AccessorCore(string shortTypeName, params ICollection<object?> constructArgs)
     {
         _type = _reflectionCacheLegacy.GetTypeByShortName(shortTypeName);
         _typesInHierarchy = _type.GetTypesInHierarchy();
-        Obj = TryCreateObject(_type, constructArgs);
+        Obj = NewOrNull(_type, constructArgs);
     }
     
-    private object? TryCreateObject(Type type, ICollection<object?> constructArgs)
+    private object? NewOrNull(Type type, ICollection<object?> constructArgs)
     {
         if (constructArgs == null) throw new NullException(() => constructArgs);
         var constructorTypes = TypesFromObjects(constructArgs);
@@ -53,7 +53,7 @@ public partial class AccessorCore
         var prop = _type.Prop(name, nullable);
         if (prop != null)
         {
-            return prop.GetValue(Obj, null);
+            return prop.GetValue(Obj);
         }
 
         var field = _type.Field(name, nullable);
@@ -78,7 +78,7 @@ public partial class AccessorCore
         var prop = _type.Prop(name, nullable);
         if (prop != null)
         {
-            prop.SetValue(Obj, value, null);
+            prop.SetValue(Obj, value);
             return;
         }
         
