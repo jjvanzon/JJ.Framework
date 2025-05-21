@@ -398,38 +398,43 @@ namespace JJ.Framework.Reflection.Core
 
         public IList<Type> GetTypesByShortName(string shortTypeName)
         {
+            Type[] types;
+            
             lock (_typeByShortNameDictionaryLock)
             {
-                if (_typeByShortNameDictionary.TryGetValue(shortTypeName, out Type[] types))
+                if (_typeByShortNameDictionary.TryGetValue(shortTypeName, out types))
                 {
                     return types;
                 }
+            }
 
-                // TODO: Manually back into legacy branch.
-                var stringComparison = _bindingFlags.HasFlag(BindingFlags.IgnoreCase) ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
-                shortTypeName = shortTypeName.Trim();
+            // TODO: Manually merge back into legacy branch.
+            var stringComparison = _bindingFlags.HasFlag(BindingFlags.IgnoreCase) ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+            string trimmedName = shortTypeName.Trim();
 
-                var list = new List<Type>();
-                foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            var list = new List<Type>();
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                try
                 {
-                    try
-                    {
-                        // TODO: Manually back into legacy branch.
-                        list.AddRange(assembly.GetTypes().Where(x => string.Equals(x.Name, shortTypeName, stringComparison) ||
-                                                                     string.Equals(x.FullName, shortTypeName, stringComparison) ||
-                                                                     string.Equals(x.AssemblyQualifiedName, shortTypeName, stringComparison)));
-                    }
-                    catch (ReflectionTypeLoadException)
-                    {
-                        // Ignore.
-                        // TODO: Learn why types of some assemblies cannot be retrieved,
-                        // and why it says the assembly cannot be loaded (file not found),
-                        // while it clearly is part of the app domain.
-                    }
+                    // TODO: Manually merge back into legacy branch.
+                    list.AddRange(assembly.GetTypes().Where(x => string.Equals(x.Name, trimmedName, stringComparison) ||
+                                                                 string.Equals(x.FullName, trimmedName, stringComparison) ||
+                                                                 string.Equals(x.AssemblyQualifiedName, trimmedName, stringComparison)));
                 }
-                types = list.ToArray();
+                catch (ReflectionTypeLoadException)
+                {
+                    // Ignore.
+                    // TODO: Learn why types of some assemblies cannot be retrieved,
+                    // and why it says the assembly cannot be loaded (file not found),
+                    // while it clearly is part of the app domain.
+                }
+            }
+            types = list.ToArray();
 
-                _typeByShortNameDictionary.Add(shortTypeName, types);
+            lock (_typeByShortNameDictionaryLock)
+            {
+                _typeByShortNameDictionary[shortTypeName] = types;
                 return types;
             }
         }
