@@ -2,14 +2,16 @@
 
 internal static partial class ReflectUtility
 {
-    public static PropertyInfo[] PropsCore(string shortTypeName, BindingFlags bindingFlags, PropsDic dic, Lock lck, ReflectionCacheLegacy cache)
+    public static PropertyInfo[] PropsCore(
+        string shortTypeName, BindingFlags bindingFlags, PropsDic dic, Lock lck, ReflectionCacheLegacy cache)
     {        
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return [ ];
         return PropsCore(type, bindingFlags, dic, lck);
     }
     
-    public static PropertyInfo[] PropsCore(Type type, BindingFlags bindingFlags, PropsDic dic, Lock lck)
+    public static PropertyInfo[] PropsCore(
+        Type type, BindingFlags bindingFlags, PropsDic dic, Lock lck)
     {
         PropertyInfo[] props;
         
@@ -31,14 +33,16 @@ internal static partial class ReflectUtility
         return props;
     }
     
-    public static Dictionary<string, PropertyInfo> PropDicCore(string shortTypeName, BindingFlags bindingFlags, PropsDicDic dic, Lock lck, ReflectionCacheLegacy cache)
+    public static Dictionary<string, PropertyInfo> PropDicCore(
+        string shortTypeName, BindingFlags bindingFlags, PropsDicDic dic, Lock lck, ReflectionCacheLegacy cache)
     {
         Type? type = Type(shortTypeName, nullable, cache);
         if (type == null) return [ ];
         return PropDicCore(type, bindingFlags, dic, lck);
     }
     
-    public static Dictionary<string, PropertyInfo> PropDicCore(Type type, BindingFlags bindingFlags, PropsDicDic dic, Lock lck)
+    public static Dictionary<string, PropertyInfo> PropDicCore(
+        Type type, BindingFlags bindingFlags, PropsDicDic dic, Lock lck)
     { 
         Dictionary<string, PropertyInfo> props;
         
