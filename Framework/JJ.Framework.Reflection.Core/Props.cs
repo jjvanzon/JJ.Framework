@@ -23,7 +23,10 @@ internal static partial class ReflectUtility
             }
         }
 
-        props = [.. TypesAndBases(type, bindingFlags).SelectMany(x => x.GetProperties(bindingFlags))];
+        props = TypesAndBases(type, bindingFlags)
+                .SelectMany(x => x.GetProperties(bindingFlags))
+                .Distinct(x => x.Name)
+                .ToArray();
         
         lock (lck)
         {
@@ -56,6 +59,7 @@ internal static partial class ReflectUtility
         
         props = TypesAndBases(type, bindingFlags)
                 .SelectMany(x => x.GetProperties(bindingFlags))
+                .Distinct(x => x.Name)
                 .ToDictionary(x => x.Name);
         
         lock (lck)
