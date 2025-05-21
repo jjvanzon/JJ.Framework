@@ -33,3 +33,4 @@ global using Priority = System.Runtime.CompilerServices.OverloadResolutionPriori
 global using PropDic = System.Collections.Generic.Dictionary<(System.Type, string), System.Reflection.PropertyInfo?>;
 global using FieldDic = System.Collections.Generic.Dictionary<(System.Type, string), System.Reflection.FieldInfo?>;
 global using PropsDic = System.Collections.Generic.Dictionary<System.Type, System.Reflection.PropertyInfo[]>;
+global using PropsDicDic = System.Collections.Generic.Dictionary<System.Type, System.Collections.Generic.Dictionary<string, System.Reflection.PropertyInfo>>;
