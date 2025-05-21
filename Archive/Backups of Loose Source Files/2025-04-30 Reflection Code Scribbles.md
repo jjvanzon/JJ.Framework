@@ -789,7 +789,7 @@ private string _dummy = "";
    [Obsolete("Use Reflect, Reflector or ReflectExtensions instead.", true)]
 ```
 
-### Props
+### Prop
 
 ```cs
     public static PropertyInfo  Prop<T>(                            this string name                                     ) => PropOrThrow    (typeof(T),     name,           BindingFlagsAll, _propDic, _propDicLock        );
@@ -809,4 +809,38 @@ private string _dummy = "";
     public static PropertyInfo? Prop(this Type type,                     bool         nullable, [Caller] string name = "") => Reflect.Prop(type, nullable, name    );
     public static PropertyInfo? Prop<T>(this T obj,                      bool         nullable, [Caller] string name = "") => Reflect.Prop(obj,  nullable, name    );
     public static PropertyInfo? Prop(this string shortTypeName,          bool         nullable, [Caller] string name = "") => Reflect.Prop(shortTypeName, nullable, name    );
+
+
+            if (AllowsHierarchy(bindingFlags))
+            {
+                foreach (Type typeOrBase in TypesAndBases(type))
+                {
+                    if (typeOrBase.GetProperty(nameTrimmed, bindingFlags) is PropertyInfo propResolved)
+                    {
+                        prop ??= propResolved;
+                        dic[(typeOrBase, name)] = propResolved;
+                    }
+                }
+            }
+            else
+            {
+                prop = type.GetProperty(nameTrimmed, bindingFlags);
+                dic[(type, name)] = prop;
+            }
+
+        var query = TypesAndBases(type, bindingFlags).Select(t => (type: t, prop: t.GetProperty(trim, bindingFlags)));
+        var matches = query.Where(x => x.prop != null).ToArray();
+
+        // -----
+        
+        var matches = new List<(Type type, PropertyInfo prop)>();
+
+        foreach (var typeOrBase in TypesAndBases(type, bindingFlags))
+        {
+            if (typeOrBase.GetProperty(trim, bindingFlags) is PropertyInfo foundProp)
+            {
+                matches.Add((typeOrBase, foundProp));
+            }
+        }
+
 ```

@@ -41,7 +41,7 @@ internal static partial class ReflectUtility
             ThrowIfNullOrWhiteSpace(name);
             string nameTrimmed = name.Trim();
             
-            foreach (Type typeOrBase in TypesAndBases(type))
+            foreach (Type typeOrBase in TypesAndBases(type, bindingFlags))
             {
                 if (typeOrBase.GetField(nameTrimmed, bindingFlags) is FieldInfo fieldResolved)
                 {

@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Reflection.Core;
+﻿using System.Linq;
+
+namespace JJ.Framework.Reflection.Core;
 
 internal static partial class ReflectUtility
 {
@@ -30,28 +32,38 @@ internal static partial class ReflectUtility
     [MethodImpl(AggressiveInlining)]
     public static PropertyInfo? PropOrNull(Type type, string name, BindingFlags bindingFlags, PropDic dic, Lock dicLock)
     {
+        PropertyInfo? prop;
+
         lock (dicLock)
         {
-            if (dic.TryGetValue((type, name), out PropertyInfo? prop))
+            if (dic.TryGetValue((type, name), out prop))
             {
                 return prop;
             }
-            
-            ThrowIfNull(type);
-            ThrowIfNullOrWhiteSpace(name);
-            string nameTrimmed = name.Trim();
-            
-            foreach (Type typeOrBase in TypesAndBases(type))
-            {
-                if (typeOrBase.GetProperty(nameTrimmed, bindingFlags) is PropertyInfo propResolved)
-                {
-                    prop ??= propResolved;
-                    dic[(typeOrBase, name)] = propResolved;
-                }
-            }
-            
-            return prop;
         }
+            
+        ThrowIfNull(type);
+        ThrowIfNullOrWhiteSpace(name);
+        
+        string trim = name.Trim();
+
+        var matches = (from t in TypesAndBases(type, bindingFlags)
+                       let p = t.GetProperty(trim, bindingFlags)
+                       where p != null
+                       select (t, p)).ToArray();
+
+        prop = matches.FirstOrDefault().p;
+        
+        lock (dicLock)
+        {
+            dic[(type, trim)] = prop;
+            
+            foreach (var match in matches)
+            {
+                dic[(match.t, trim)] = match.p;
+            }
+        }            
+        return prop;
     }
     
     [MethodImpl(AggressiveInlining)]
