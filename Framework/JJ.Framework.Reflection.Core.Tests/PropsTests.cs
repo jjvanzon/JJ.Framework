@@ -6,20 +6,21 @@ public class PropsTests : ReflectorTestBase
     [TestMethod]
     public void Reflector_Props()
     {
+        // Main use + trims + ignores case 
         {
             AssertProps   (      _myObject.Props  (         ));
             AssertPropDic (      _myObject.PropDic(         ));
             AssertProps   (      _myType  .Props  (         ));
             AssertPropDic (      _myType  .PropDic(         ));
-            AssertProps   (      "MyType" .Props  (         ));
-            AssertPropDic (      "MyType" .PropDic(         ));
+            AssertProps   (      "MyType ".Props  (         ));
+            AssertPropDic (      " mytype".PropDic(         ));
             AssertProps   (                Props  (_myObject));
             AssertPropDic (                PropDic(_myObject));
             AssertProps   (                Props  (_myType  ));
             AssertPropDic (                PropDic(_myType  ));
             AssertProps   (                Props   <MyType>());
             AssertPropDic (                PropDic <MyType>());
-            AssertProps   (                Props  ("MyType" ));
+            AssertProps   (                Props  ("MYTYPE" ));
             AssertPropDic (                PropDic("MyType" ));
             AssertProps   (      Reflect  .Props  (_myObject));
             AssertPropDic (      Reflect  .PropDic(_myObject));
@@ -27,8 +28,11 @@ public class PropsTests : ReflectorTestBase
             AssertPropDic (      Reflect  .PropDic(_myType  ));
             AssertProps   (      Reflect  .Props   <MyType>());
             AssertPropDic (      Reflect  .PropDic <MyType>());
-            AssertProps   (      Reflect  .Props  ("MyType" ));
-            AssertPropDic (      Reflect  .PropDic("MyType" ));
+            AssertProps   (      Reflect  .Props  (" MyType"));
+            AssertPropDic (      Reflect  .PropDic(" mytype"));
+        }
+        // Not found scenarios
+        {
             ThrowsNotFound(() => "NoType" .Props  (         ));
             ThrowsNotFound(() => "NoType" .PropDic(         ));
             ThrowsNotFound(() =>           Props  ("NoType" ));
@@ -36,6 +40,7 @@ public class PropsTests : ReflectorTestBase
             ThrowsNotFound(() => Reflect  .Props  ("NoType" ));
             ThrowsNotFound(() => Reflect  .PropDic("NoType" ));
         }
+        // Instantiated (allowing custom options)
         foreach (var reflect in Union(_reflectors, _reflectorsMatchCase))
         {
             AssertProps   (      reflect  .Props  (_myObject));
@@ -45,10 +50,20 @@ public class PropsTests : ReflectorTestBase
             AssertProps   (      reflect  .Props   <MyType>());
             AssertPropDic (      reflect  .PropDic <MyType>());
             AssertProps   (      reflect  .Props  ("MyType" ));
-            AssertPropDic (      reflect  .PropDic("MyType" ));
+            AssertPropDic (      reflect  .PropDic(" MyType"));
             ThrowsNotFound(() => reflect  .Props  ("NoType" ));
             ThrowsNotFound(() => reflect  .PropDic("NoType" ));
         }
+        // Match case (optional)
+        foreach (var reflect in _reflectorsMatchCase)
+        {
+            AssertProps   (      reflect  .Props  ("MyType" ));
+            AssertPropDic (      reflect  .PropDic("MyType "));
+            ThrowsNotFound(() => reflect  .Props  ("MYTYPE" ));
+            ThrowsNotFound(() => reflect  .PropDic("mytype" ));
+        }
+        
+        // TODO: Base type
     }
     
     private void AssertProps(PropertyInfo[] props)
