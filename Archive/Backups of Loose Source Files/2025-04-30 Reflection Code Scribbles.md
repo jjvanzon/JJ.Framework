@@ -832,7 +832,7 @@ private string _dummy = "";
         var matches = query.Where(x => x.prop != null).ToArray();
 
         // -----
-        
+
         var matches = new List<(Type type, PropertyInfo prop)>();
 
         foreach (var typeOrBase in TypesAndBases(type, bindingFlags))
@@ -842,5 +842,18 @@ private string _dummy = "";
                 matches.Add((typeOrBase, foundProp));
             }
         }
+
+
+        //var matches = (from t in TypesAndBases(type, bindingFlags)
+        //               let p = t.GetProperty(trim, bindingFlags)
+        //               where p != null
+        //               select (t, p)).ToArray();
+
+        //prop = matches.FirstOrDefault().p;
+            
+            //foreach (var match in matches)
+            //{
+            //    dic[(match.t, trim)] = match.p;
+            //}
 
 ```

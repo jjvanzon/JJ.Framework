@@ -46,23 +46,17 @@ internal static partial class ReflectUtility
         ThrowIfNullOrWhiteSpace(name);
         
         string trim = name.Trim();
-
-        var matches = (from t in TypesAndBases(type, bindingFlags)
-                       let p = t.GetProperty(trim, bindingFlags)
-                       where p != null
-                       select (t, p)).ToArray();
-
-        prop = matches.FirstOrDefault().p;
+        
+        prop = (from t in TypesAndBases(type, bindingFlags)
+                let p = t.GetProperty(trim, bindingFlags)
+                where p != null
+                select p).FirstOrDefault();
         
         lock (dicLock)
         {
-            dic[(type, trim)] = prop;
-            
-            foreach (var match in matches)
-            {
-                dic[(match.t, trim)] = match.p;
-            }
-        }            
+            dic[(type, name)] = prop;
+        }
+        
         return prop;
     }
     
