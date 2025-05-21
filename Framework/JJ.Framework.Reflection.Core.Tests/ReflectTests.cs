@@ -208,11 +208,12 @@ public class ReflectTests
     public void Reflect_Prop_Extensions()
     {
         // Main case
-        AssertProp(_myType.Prop("MyProp"));
+        AssertProp(_myType .Prop("MyProp"));
+        AssertProp("myType".Prop("MyProp"));
         
         // NotFound
-        ThrowsNotFound(() => _myType.Prop("None"));
-        IsNull(() => _myType.Prop("None", nullable));
+        ThrowsNotFound(() => _myType.Prop("None"          ));
+        IsNull        (() => _myType.Prop("None", nullable));
 
         // Base Types
         AssertBaseProp(_myType.Prop("MyBaseProp"));
@@ -222,10 +223,25 @@ public class ReflectTests
         AssertProp(_myType.Prop("myprop \r\n"));
         
         // Coverage
-        AssertProp(_myType.Prop("MyProp", nullable));
-        AssertProp(_myType.Prop("MyProp", nullable: true));
-        AssertProp(_myType.Prop(nullable, "MyProp"));
-        AssertProp(_myType.Prop(nullable: true, "MyProp"));
+        AssertProp(_myType .Prop("MyProp",       nullable      ));
+        AssertProp(_myType .Prop("MyProp",       nullable: true));
+        AssertProp(_myType .Prop(nullable,       "MyProp"      ));
+        AssertProp(_myType .Prop(nullable: true, "MyProp"      ));
+        AssertProp("myType".Prop("MyProp",       nullable      ));
+        AssertProp("myType".Prop("MyProp",       nullable: true));
+        AssertProp("myType".Prop(nullable,       "MyProp"      ));
+        AssertProp("myType".Prop(nullable: true, "MyProp"      ));
+        
+        // Too weird
+        /*
+        AssertProp("MyProp".Prop<MyType>());
+        AssertProp("MyProp".Prop<MyType>(nullable));
+        AssertProp("MyProp".Prop<MyType>(nullable: true));
+        AssertProp("MyProp".Prop<MyType>(nullable: false));
+        AssertProp("MyProp".Prop<MyType>(nullable: false));
+        AssertProp(nullable.Prop<MyType>("MyProp"));
+        AssertProp(true.Prop<MyType>("MyProp"));
+        */
     }
     
     // From Object 

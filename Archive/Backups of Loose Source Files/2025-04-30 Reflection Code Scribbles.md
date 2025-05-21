@@ -788,3 +788,25 @@ private string _dummy = "";
    [Obsolete("Use Reflect, Reflector or ReflectExtensions instead.", true)]
    [Obsolete("Use Reflect, Reflector or ReflectExtensions instead.", true)]
 ```
+
+### Props
+
+```cs
+    public static PropertyInfo  Prop<T>(                            this string name                                     ) => PropOrThrow    (typeof(T),     name,           BindingFlagsAll, _propDic, _propDicLock        );
+    public static PropertyInfo  Prop(this Type type,            [Caller] string name = ""                                ) => Reflect.Prop(type,           name    );
+    public static PropertyInfo  Prop<T>(this T obj,             [Caller] string name = ""                                ) => Reflect.Prop(obj,  name              );
+    public static PropertyInfo  Prop(this string shortTypeName, [Caller] string name = ""                                ) => Reflect.Prop(shortTypeName,           name    );
+    public static PropertyInfo? Prop<T>(                            this string name,           NullableFlag nullable    ) => PropOrNull     (typeof(T),     name,           BindingFlagsAll, _propDic, _propDicLock        );
+    public static PropertyInfo? Prop(this Type type,                     string name,     NullableFlag    nullable       ) => Reflect.Prop(type, name,     nullable);
+    public static PropertyInfo? Prop<T>(this T obj,                      string name,     NullableFlag    nullable       ) => Reflect.Prop(obj,  name,     nullable);
+    public static PropertyInfo? Prop(this string shortTypeName,          string name,     NullableFlag    nullable       ) => Reflect.Prop(shortTypeName, name,     nullable);
+    public static PropertyInfo? Prop(this Type type,                     string name,     bool            nullable       ) => Reflect.Prop(type, name,     nullable);
+    public static PropertyInfo? Prop<T>(this T obj,                      string name,     bool            nullable       ) => Reflect.Prop(obj,  name,     nullable);
+    public static PropertyInfo? Prop(this string shortTypeName,          string name,     bool            nullable       ) => Reflect.Prop(shortTypeName, name,     nullable);
+    public static PropertyInfo? Prop(this Type type,                     NullableFlag nullable, [Caller] string name = "") => Reflect.Prop(type, nullable, name    );
+    public static PropertyInfo? Prop<T>(this T obj,                      NullableFlag nullable, [Caller] string name = "") => Reflect.Prop(obj,  nullable, name    );
+    public static PropertyInfo? Prop(this string shortTypeName,          NullableFlag nullable, [Caller] string name = "") => Reflect.Prop(shortTypeName, nullable, name    );
+    public static PropertyInfo? Prop(this Type type,                     bool         nullable, [Caller] string name = "") => Reflect.Prop(type, nullable, name    );
+    public static PropertyInfo? Prop<T>(this T obj,                      bool         nullable, [Caller] string name = "") => Reflect.Prop(obj,  nullable, name    );
+    public static PropertyInfo? Prop(this string shortTypeName,          bool         nullable, [Caller] string name = "") => Reflect.Prop(shortTypeName, nullable, name    );
+```
