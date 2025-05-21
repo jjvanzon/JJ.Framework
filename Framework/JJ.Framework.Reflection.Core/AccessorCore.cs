@@ -51,9 +51,17 @@ public partial class AccessorCore
     public object? Get([Caller] string name = "")
     {
         var prop = _type.Prop(name, nullable);
-        if (prop != null) return prop.GetValue(Obj, null);
+        if (prop != null)
+        {
+            return prop.GetValue(Obj, null);
+        }
+
         var field = _type.Field(name, nullable);
-        if (field != null) return field.GetValue(Obj);
+        if (field != null)
+        {
+            return field.GetValue(Obj);
+        }
+
         throw new Exception($"Property or field {name} not found in {_type.Name}.");
     }
     
@@ -67,10 +75,10 @@ public partial class AccessorCore
     
     private void SetCore(string name, object? value)
     {
-        var property = _type.Prop(name, nullable);
-        if (property != null)
+        var prop = _type.Prop(name, nullable);
+        if (prop != null)
         {
-            property.SetValue(Obj, value, null);
+            prop.SetValue(Obj, value, null);
             return;
         }
         
