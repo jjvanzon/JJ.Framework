@@ -18,8 +18,8 @@ public class ReflectionMiscTests
     {
         var synonyms = new Func<string, FieldInfo>[]
         {
-            fieldName => GetType().GetFieldOrException(fieldName),
-            fieldName => GetFieldOrException(GetType(), fieldName)
+            fieldName => GetType().Field(fieldName),
+            fieldName => Field(GetType(), fieldName)
         };
 
         foreach (var getField in synonyms)
@@ -33,7 +33,7 @@ public class ReflectionMiscTests
 
             ThrowsException(
                 () => getField("❌"),
-                $"Field '❌' not found on type '{GetType().FullName}'.");
+                $"Field ❌ not found in {GetType().Name}.");
         }
     }
 }

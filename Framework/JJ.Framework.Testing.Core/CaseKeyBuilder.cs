@@ -95,9 +95,9 @@ namespace JJ.Framework.Testing.Core
             
             Type type = tuple.GetType();
             
-            string prefix = type.GetFieldOrException("Item1").GetValue(tuple).ToString();
-            string value  = type.GetFieldOrException("Item2").GetValue(tuple).ToString();
-            string suffix = type.GetFieldOrException("Item3").GetValue(tuple).ToString();
+            string prefix = type.Field("Item1").GetValue(tuple)?.ToString();
+            string value  = type.Field("Item2").GetValue(tuple)?.ToString();
+            string suffix = type.Field("Item3").GetValue(tuple)?.ToString();
             
             if (Has(value))
             {

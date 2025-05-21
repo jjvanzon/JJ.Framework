@@ -31,3 +31,4 @@ global using static JJ.Framework.Reflection.Core.Debugging;
 global using Caller = System.Runtime.CompilerServices.CallerMemberNameAttribute;
 global using Priority = System.Runtime.CompilerServices.OverloadResolutionPriorityAttribute;
 global using PropDic = System.Collections.Generic.Dictionary<(System.Type, string), System.Reflection.PropertyInfo?>;
+global using FieldDic = System.Collections.Generic.Dictionary<(System.Type, string), System.Reflection.FieldInfo?>;
