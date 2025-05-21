@@ -34,10 +34,12 @@ public abstract class ReflectorTestBase
     protected class MyType : MyBase
     {
         public string MyProp => GetType().Prop().Name; // TODO: Assert value.
+        public string _myField = Field<MyType>().Name; // TODO: Assert value.
     }
     
     protected class MyBase
     {
         public int MyBaseProp => default;
+        public int _myBaseField;
     }
 }
