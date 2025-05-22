@@ -7,9 +7,10 @@ public abstract class ReflectorTestBase
     protected MyType _obj = new();
     protected MyType _myObject = new();
 
-    private static readonly BindingFlags _staticBindingFlags   = BindingFlagsAll.ClearFlag(Instance    );
-    private static readonly BindingFlags _instanceBindingFlags = BindingFlagsAll.ClearFlag(Static      );
-    private static readonly BindingFlags _baselessBindingFlags = BindingFlagsAll.SetFlag  (DeclaredOnly);
+    private static readonly BindingFlags _staticBindingFlags     = BindingFlagsAll.ClearFlag(Instance    );
+    private static readonly BindingFlags _bindingFlagsMatchCase  = BindingFlagsAll.ClearFlag(IgnoreCase  );
+    private static readonly BindingFlags _instanceBindingFlags   = BindingFlagsAll.ClearFlag(Static      );
+    private static readonly BindingFlags _baselessBindingFlags   = BindingFlagsAll.SetFlag  (DeclaredOnly);
 
     // Constructors
 
@@ -29,7 +30,8 @@ public abstract class ReflectorTestBase
         new (matchcase,             BindingFlagsAll      ),
         new (matchcase: true,       BindingFlagsAll      ),
         new (BindingFlagsAll,       matchcase            ),
-        new (BindingFlagsAll,       matchcase: true      )
+        new (BindingFlagsAll,       matchcase: true      ),
+        new (_bindingFlagsMatchCase                      )
     ];
 
     protected Reflector[] _reflectorsStatic =
@@ -60,17 +62,17 @@ public abstract class ReflectorTestBase
     
     protected class MyType : MyBase
     {
-        public string MyProp => GetType().Prop().Name; // TODO: Assert value.
-        public string _myField = Field<MyType>().Name; // TODO: Assert value.
-        
-        public static int MyStaticProp { get; }
+        public           string       MyProp            => "";
+        private          string      _myField           =  "";
+        protected static int?         MyStaticProp      => default;
+        private   static int?        _myStaticField;
     }
     
     protected class MyBase
     {
-        public int MyBaseProp => default;
-        public int _myBaseField;
-        
-        public static int MyStaticBaseProp { get; }
+        private          bool         MyBaseProp        => default;
+        public           bool        _myBaseField;
+        internal  static CultureInfo  MyStaticBaseProp  => GetCultureInfo("en-US");
+        protected static CultureInfo _myStaticBaseField =  GetCultureInfo("nl-NL");
     }
 }
