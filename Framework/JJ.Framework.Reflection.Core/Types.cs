@@ -21,5 +21,5 @@ internal static partial class ReflectUtility
     
     [MethodImpl(AggressiveInlining)]
     private static bool AllowsHierarchy(BindingFlags bindingFlags)
-         => bindingFlags.HasFlag(FlattenHierarchy) || !bindingFlags.HasFlag(DeclaredOnly);
+        => !bindingFlags.HasFlag(DeclaredOnly);
 }
