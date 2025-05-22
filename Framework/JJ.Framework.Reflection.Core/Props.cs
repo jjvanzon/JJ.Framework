@@ -90,10 +90,10 @@ public static partial class Reflect
 }
 public partial class Reflector
 {
-    private static readonly PropsDic    _propsDic        = new();
-    private static readonly Lock        _propsDicLock    = new();
-    private static readonly PropsDicDic _propsDicDic     = new();
-    private static readonly Lock        _propsDicDicLock = new();
+    private         readonly PropsDic    _propsDic        = new();
+    private         readonly Lock        _propsDicLock    = new();
+    private         readonly PropsDicDic _propsDicDic     = new();
+    private         readonly Lock        _propsDicDicLock = new();
 
     public        PropertyInfo[]                   Props  <T>(                         ) => PropsCore  (typeof(T),     BindingFlags,    _propsDic,    _propsDicLock           );
     public        PropertyInfo[]                   Props     (     Type type           ) => PropsCore  (type,          BindingFlags,    _propsDic,    _propsDicLock           );
