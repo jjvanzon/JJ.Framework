@@ -857,3 +857,26 @@ private string _dummy = "";
             //}
 
 ```
+
+### Baseless Testing
+
+```cs    
+    protected Reflector[] _baselessReflectors =
+    [
+        //new(BindingFlagsAll.ClearFlag(FlattenHierarchy).SetFlag(DeclaredOnly)),
+        new(BindingFlagsAll.SetFlag(DeclaredOnly)),
+        //new(BindingFlagsAll.ClearFlag(FlattenHierarchy)),
+    ];
+
+        {
+            //var baselessReflector = new Reflector(BindingFlagsAll.ClearFlag(FlattenHierarchy).SetFlag(DeclaredOnly));
+            //var baselessReflector = new Reflector(BindingFlagsAll.ClearFlag(FlattenHierarchy));
+            //var baselessReflector = new Reflector(BindingFlagsAll.SetFlag(DeclaredOnly));
+            //AssertBaselessProps(baselessReflector.Props(_myObject));
+        }
+        foreach (var reflect in _baselessReflectors)
+        {
+            AssertBaselessProps(reflect.Props(_myObject));
+        }
+
+```
