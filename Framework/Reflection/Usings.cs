@@ -5,4 +5,5 @@ global using System.Collections.Generic;
 global using System.Text;
 global using System.Reflection;
 global using System.Runtime.CompilerServices;
+global using JJ.Framework.Common;
 global using JJ.Framework.Reflection.docs;

@@ -1,27 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using JJ.Framework.Common;
-
-// ReSharper disable ReplaceWithSingleCallToSingle
-// ReSharper disable InvertIf
-// ReSharper disable RedundantIfElseBlock
-
-namespace JJ.Framework.Reflection
+﻿namespace JJ.Framework.Reflection
 {
-    public class ReflectionCache
+    public class ReflectionCache(BindingFlags bindingFlags)
     {
-        private readonly BindingFlags _bindingFlags;
-
         public ReflectionCache() : this(ReflectionHelper.BINDING_FLAGS_ALL) { }
-
-        public ReflectionCache(BindingFlags bindingFlags) => _bindingFlags = bindingFlags;
-
+        
         // Property
 
-        private readonly Dictionary<(Type, string), PropertyInfo> _propertyDictionary = new Dictionary<(Type, string), PropertyInfo>();
-        private readonly object _propertyDictionaryLock = new object();
+        private readonly Dictionary<(Type, string), PropertyInfo> _propertyDictionary = new ();
+        private readonly object _propertyDictionaryLock = new ();
 
         public PropertyInfo GetProperty(Type type, string name)
         {
@@ -46,7 +32,7 @@ namespace JJ.Framework.Reflection
                     return property;
                 }
 
-                property = type.GetProperty(name, _bindingFlags);
+                property = type.GetProperty(name, bindingFlags);
                 _propertyDictionary[key] = property;
 
                 return property;
@@ -55,8 +41,8 @@ namespace JJ.Framework.Reflection
 
         // Properties
 
-        private readonly Dictionary<Type, PropertyInfo[]> _propertiesDictionary = new Dictionary<Type, PropertyInfo[]>();
-        private readonly object _propertiesDictionaryLock = new object();
+        private readonly Dictionary<Type, PropertyInfo[]> _propertiesDictionary = new ();
+        private readonly object _propertiesDictionaryLock = new ();
 
         public PropertyInfo[] GetProperties(Type type)
         {
@@ -67,7 +53,7 @@ namespace JJ.Framework.Reflection
                     return properties;
                 }
 
-                properties = type.GetProperties(_bindingFlags);
+                properties = type.GetProperties(bindingFlags);
                 _propertiesDictionary.Add(type, properties);
 
                 return properties;
@@ -76,8 +62,8 @@ namespace JJ.Framework.Reflection
 
         // PropertyDictionaries
 
-        private readonly Dictionary<Type, Dictionary<string, PropertyInfo>> _propertyDictionaryDictionary = new Dictionary<Type, Dictionary<string, PropertyInfo>>();
-        private readonly object _propertyDictionaryDictionaryLock = new object();
+        private readonly Dictionary<Type, Dictionary<string, PropertyInfo>> _propertyDictionaryDictionary = new ();
+        private readonly object _propertyDictionaryDictionaryLock = new ();
 
         public Dictionary<string, PropertyInfo> GetPropertyDictionary(Type type)
         {
@@ -88,7 +74,7 @@ namespace JJ.Framework.Reflection
                     return propertyDictionary;
                 }
 
-                propertyDictionary = type.GetProperties(_bindingFlags).ToDictionary(x => x.Name);
+                propertyDictionary = type.GetProperties(bindingFlags).ToDictionary(x => x.Name);
                 _propertyDictionaryDictionary.Add(type, propertyDictionary);
 
                 return propertyDictionary;
@@ -97,8 +83,8 @@ namespace JJ.Framework.Reflection
 
         // Field
 
-        private readonly Dictionary<(Type, string), FieldInfo> _fieldDictionary = new Dictionary<(Type, string), FieldInfo>();
-        private readonly object _fieldDictionaryLock = new object();
+        private readonly Dictionary<(Type, string), FieldInfo> _fieldDictionary = new ();
+        private readonly object _fieldDictionaryLock = new ();
 
         public FieldInfo GetField(Type type, string name)
         {
@@ -123,7 +109,7 @@ namespace JJ.Framework.Reflection
                     return field;
                 }
 
-                field = type.GetField(name, _bindingFlags);
+                field = type.GetField(name, bindingFlags);
                 _fieldDictionary[key] = field;
 
                 return field;
@@ -132,8 +118,8 @@ namespace JJ.Framework.Reflection
 
         // Fields
 
-        private readonly Dictionary<Type, FieldInfo[]> _fieldsDictionary = new Dictionary<Type, FieldInfo[]>();
-        private readonly object _fieldsDictionaryLock = new object();
+        private readonly Dictionary<Type, FieldInfo[]> _fieldsDictionary = new ();
+        private readonly object _fieldsDictionaryLock = new ();
 
         public FieldInfo[] GetFields(Type type)
         {
@@ -144,7 +130,7 @@ namespace JJ.Framework.Reflection
                     return fields;
                 }
 
-                fields = type.GetFields(_bindingFlags);
+                fields = type.GetFields(bindingFlags);
                 _fieldsDictionary.Add(type, fields);
 
                 return fields;
@@ -153,8 +139,8 @@ namespace JJ.Framework.Reflection
 
         // Indexer
 
-        private readonly Dictionary<(Type, string parameterTypesKey), PropertyInfo> _indexerDictionary = new Dictionary<(Type, string), PropertyInfo>();
-        private readonly object _indexerDictionaryLock = new object();
+        private readonly Dictionary<(Type, string parameterTypesKey), PropertyInfo> _indexerDictionary = new ();
+        private readonly object _indexerDictionaryLock = new ();
 
         public PropertyInfo GetIndexer(Type type, params Type[] parameterTypes)
         {
@@ -189,7 +175,7 @@ namespace JJ.Framework.Reflection
                     return null;
                 }
                 string name = defaultMemberAttribute.MemberName;
-                property = type.GetProperty(name, _bindingFlags, null, null, parameterTypes, null);
+                property = type.GetProperty(name, bindingFlags, null, null, parameterTypes, null);
                 _indexerDictionary[key] = property;
 
                 return property;
@@ -198,8 +184,8 @@ namespace JJ.Framework.Reflection
 
         // Method
 
-        private readonly Dictionary<(Type, string, string parameterTypesKey), MethodInfo> _methodDictionary = new Dictionary<(Type, string, string), MethodInfo>();
-        private readonly object _methodDictionaryLock = new object();
+        private readonly Dictionary<(Type, string, string parameterTypesKey), MethodInfo> _methodDictionary = new ();
+        private readonly object _methodDictionaryLock = new ();
 
         public MethodInfo GetMethod(Type type, string name, params Type[] parameterTypes)
         {
@@ -227,7 +213,7 @@ namespace JJ.Framework.Reflection
                     return method;
                 }
 
-                method = type.GetMethod(name, _bindingFlags, null, parameterTypes, null);
+                method = type.GetMethod(name, bindingFlags, null, parameterTypes, null);
                 _methodDictionary[key] = method;
 
                 return method;
@@ -237,9 +223,9 @@ namespace JJ.Framework.Reflection
         // Method (with Type Arguments)
 
         private readonly Dictionary<(Type, string name, string parameterTypesKey, string typeArgumentsKey), MethodInfo> _methodWithTypeArgumentsDictionary 
-            = new Dictionary<(Type, string, string, string), MethodInfo>();
+            = new ();
 
-        private readonly object _methodWithTypeArgumentsDictionaryLock = new object();
+        private readonly object _methodWithTypeArgumentsDictionaryLock = new ();
 
         public MethodInfo GetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
@@ -310,8 +296,8 @@ namespace JJ.Framework.Reflection
 
         // Methods
 
-        private readonly Dictionary<Type, MethodInfo[]> _methodsDictionary = new Dictionary<Type, MethodInfo[]>();
-        private readonly object _methodsDictionaryLock = new object();
+        private readonly Dictionary<Type, MethodInfo[]> _methodsDictionary = new ();
+        private readonly object _methodsDictionaryLock = new ();
 
         public MethodInfo[] GetMethods(Type type)
         {
@@ -324,7 +310,7 @@ namespace JJ.Framework.Reflection
                     return methods;
                 }
 
-                methods = type.GetMethods(_bindingFlags);
+                methods = type.GetMethods(bindingFlags);
                 _methodsDictionary[type] = methods;
 
                 return methods;
@@ -333,8 +319,8 @@ namespace JJ.Framework.Reflection
 
         // Types
 
-        private readonly Dictionary<string, Type[]> _typeByShortNameDictionary = new Dictionary<string, Type[]>();
-        private readonly object _typeByShortNameDictionaryLock = new object();
+        private readonly Dictionary<string, Type[]> _typeByShortNameDictionary = new ();
+        private readonly object _typeByShortNameDictionaryLock = new ();
 
         public Type GetTypeByShortName(string shortTypeName)
         {
@@ -398,8 +384,8 @@ namespace JJ.Framework.Reflection
 
         // Constructor
 
-        private readonly IDictionary<Type, ConstructorInfo> _constructorDictionary = new Dictionary<Type, ConstructorInfo>();
-        private readonly object _constructorDictionaryLock = new object();
+        private readonly Dictionary<Type, ConstructorInfo> _constructorDictionary = new();
+        private readonly object _constructorDictionaryLock = new ();
 
         public ConstructorInfo GetConstructor(Type type)
         {
@@ -410,7 +396,7 @@ namespace JJ.Framework.Reflection
                     return constructor;
                 }
 
-                IList<ConstructorInfo> constructors = type.GetConstructors(_bindingFlags);
+                IList<ConstructorInfo> constructors = type.GetConstructors(bindingFlags);
                 switch (constructors.Count)
                 {
                     case 1:
@@ -418,11 +404,11 @@ namespace JJ.Framework.Reflection
                         return constructors[0];
 
                     case 0:
-                        throw new Exception($"No constructor found for type '{type.FullName}' for '{new {_bindingFlags}}'.");
+                        throw new Exception($"No constructor found for type '{type.FullName}' for '{new { _bindingFlags = bindingFlags}}'.");
 
                     default:
                         throw new Exception(
-                            $"Multiple constructors found on type '{type.FullName}' for '{new { _bindingFlags }}'. " +
+                            $"Multiple constructors found on type '{type.FullName}' for '{new { _bindingFlags = bindingFlags }}'. " +
                             $"Found constructors: {string.Join(", ", constructors)}");
                 }
             }
