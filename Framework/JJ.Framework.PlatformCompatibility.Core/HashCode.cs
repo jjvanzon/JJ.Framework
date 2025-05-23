@@ -1,6 +1,6 @@
 ﻿namespace System;
 
-#if (NETSTANDARD2_0)
+#if NETSTANDARD2_0
 public struct HashCode
 {
     
