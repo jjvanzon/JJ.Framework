@@ -36,3 +36,4 @@ global using PropsDic = System.Collections.Generic.Dictionary<System.Type, Syste
 global using PropsDicDic = System.Collections.Generic.Dictionary<System.Type, System.Collections.Generic.Dictionary<string, System.Reflection.PropertyInfo>>;
 global using FieldsDic = System.Collections.Generic.Dictionary<System.Type, System.Reflection.FieldInfo[]>;
 global using FieldsDicDic = System.Collections.Generic.Dictionary<System.Type, System.Collections.Generic.Dictionary<string, System.Reflection.FieldInfo>>;
+global using MethodDic = System.Collections.Generic.Dictionary<(System.Type, string), System.Reflection.MethodInfo>;
