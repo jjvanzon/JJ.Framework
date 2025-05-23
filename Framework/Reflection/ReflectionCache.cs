@@ -243,11 +243,13 @@ namespace JJ.Framework.Reflection
             return method;
         }
 
-        public MethodInfo TryGetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
+        public MethodInfo? TryGetMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
+            if (typeArguments == null) throw new ArgumentNullException(nameof(typeArguments));
+            if (typeArguments.Length == 0) return TryGetMethod(type, name, parameterTypes);
+
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
-            if (typeArguments == null) throw new ArgumentNullException(nameof(typeArguments));
 
             string parameterTypesKey = CreateKey(parameterTypes);
             string typeArgumentsKey = CreateKey(typeArguments);
@@ -271,10 +273,8 @@ namespace JJ.Framework.Reflection
 
         private MethodInfo TryResolveGenericMethod(Type type, string name, Type[] parameterTypes, Type[] typeArguments)
         {
-            IList<MethodInfo> methods = GetMethods(type).Where(x => string.Equals(x.Name, name))
-                                                        .Where(x => x.GetParameters()
-                                                                     .Select(y => y.ParameterType)
-                                                                     .SequenceEqual(parameterTypes))
+            IList<MethodInfo> methods = GetMethods(type).Where(x => string.Equals(x.Name, name, Ordinal))
+                                                        .Where(x => ArgTypesMatch(x, parameterTypes))
                                                         .ToArray();
             switch (methods.Count)
             {
@@ -297,6 +297,37 @@ namespace JJ.Framework.Reflection
             }
         }
 
+        private bool ArgTypesMatch(MethodInfo openMethod, Type[] closedArgTypes)
+        {
+            Type[] openArgTypes = openMethod.GetParameters().Select(x => x.ParameterType).ToArray();
+            return ArgTypesMatch(openArgTypes, closedArgTypes);
+        }
+
+        private static bool ArgTypesMatch(Type[] openArgTypes, Type[] closedArgTypes)
+        {
+            if (openArgTypes.Length != closedArgTypes.Length)
+            {
+                return false;
+            }
+            
+            for (int i = 0; i < openArgTypes.Length; i++)
+            {
+                if(openArgTypes[i].IsGenericParameter)
+                {
+                    // Ignore generic parameters.
+                    continue;
+                }
+                
+                // Match non-generic parameters
+                if (openArgTypes[i] != closedArgTypes[i])
+                {
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
         // Methods
 
         private readonly Dictionary<Type, MethodInfo[]> _methodsDictionary = new();
