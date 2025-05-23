@@ -398,13 +398,19 @@ namespace JJ.Framework.Reflection
                 {
                     return types;
                 }
+            }
+
+            var stringComparison = _bindingFlags.HasFlag(IgnoreCase) ? OrdinalIgnoreCase : Ordinal;
+            string trimmedName = shortTypeName.Trim();
 
                 var list = new List<Type>();
                 foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
                 {
                     try
                     {
-                        list.AddRange(assembly.GetTypes().Where(x => string.Equals(x.Name, shortTypeName)));
+                    list.AddRange(assembly.GetTypes().Where(x => string.Equals(x.Name, trimmedName, stringComparison) ||
+                                                                 string.Equals(x.FullName, trimmedName, stringComparison) ||
+                                                                 string.Equals(x.AssemblyQualifiedName, trimmedName, stringComparison)));
                     }
                     catch (ReflectionTypeLoadException)
                     {
@@ -416,7 +422,9 @@ namespace JJ.Framework.Reflection
                 }
                 types = list.ToArray();
 
-                _typeByShortNameDictionary.Add(shortTypeName, types);
+            lock (_typeByShortNameDictionaryLock)
+            {
+                _typeByShortNameDictionary[shortTypeName] = types;
                 return types;
             }
         }
