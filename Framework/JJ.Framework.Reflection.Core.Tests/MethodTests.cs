@@ -9,7 +9,7 @@ public class MethodTests : ReflectorTestBase
         // Main Use
         {
             AssertMethod0 (      _myObject.Method(           "Method0"));
-            AssertMethod0 (      _myType  .Method(           "METHOD0"));
+            AssertMethod0 (      _myType  .Method(           "METhod0"));
             AssertMethod0 (                Method(_myObject, "Method0"));
             //AssertMethod0(               Method(_myType,  " Method0"));
             AssertMethod0 (                Method <MyType>(  "Method0"));
