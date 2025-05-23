@@ -178,7 +178,7 @@ internal readonly struct MethodKeyN : IEquatable<MethodKeyN>
         }
         
         _name = name;
-        _hash = HashHandles(_handle0, _handleN, _name);
+        _hash = GenerateHash(_handle0, _handleN, _name);
     }
 
     public bool Equals(MethodKeyN other) =>
@@ -186,7 +186,7 @@ internal readonly struct MethodKeyN : IEquatable<MethodKeyN>
         _handleN.SequenceEqual(other._handleN) &&
         (_name == other._name || string.Equals(_name, other._name, Ordinal));
 
-    private static int HashHandles(RuntimeTypeHandle first, RuntimeTypeHandle[] rest, string name)
+    private static int GenerateHash(RuntimeTypeHandle first, RuntimeTypeHandle[] rest, string name)
     {
         #if NETSTANDARD2_1_OR_GREATER || NET5_0_OR_GREATER
             var hc = new HashCode();
