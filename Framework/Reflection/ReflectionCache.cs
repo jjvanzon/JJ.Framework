@@ -1,4 +1,7 @@
-﻿namespace JJ.Framework.Reflection
+﻿using static JJ.Framework.Common.KeyHelper;
+// ReSharper disable ChangeFieldTypeToSystemThreadingLock
+
+namespace JJ.Framework.Reflection
 {
     public class ReflectionCache(BindingFlags _bindingFlags)
     {
@@ -6,12 +9,12 @@
         
         // Property
 
-        private readonly Dictionary<(Type, string), PropertyInfo> _propertyDictionary = new();
+        private readonly Dictionary<(Type, string), PropertyInfo?> _propertyDictionary = new();
         private readonly object _propertyDictionaryLock = new();
 
         public PropertyInfo GetProperty(Type type, string name)
         {
-            PropertyInfo property = TryGetProperty(type, name);
+            PropertyInfo? property = TryGetProperty(type, name);
             if (property == null)
             {
                 throw new Exception($"Property '{name}' not found.");
@@ -19,7 +22,7 @@
             return property;
         }
 
-        public PropertyInfo TryGetProperty(Type type, string name)
+        public PropertyInfo? TryGetProperty(Type type, string name)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
 
@@ -27,7 +30,7 @@
             {
                 var key = (type, name);
                 
-                if (_propertyDictionary.TryGetValue(key, out PropertyInfo property))
+                if (_propertyDictionary.TryGetValue(key, out PropertyInfo? property))
                 {
                     return property;
                 }
@@ -48,7 +51,7 @@
         {
             lock (_propertiesDictionaryLock)
             {
-                if (_propertiesDictionary.TryGetValue(type, out PropertyInfo[] properties))
+                if (_propertiesDictionary.TryGetValue(type, out PropertyInfo[]? properties))
                 {
                     return properties;
                 }
@@ -69,7 +72,7 @@
         {
             lock (_propertyDictionaryDictionaryLock)
             {
-                if (_propertyDictionaryDictionary.TryGetValue(type, out Dictionary<string, PropertyInfo> propertyDictionary))
+                if (_propertyDictionaryDictionary.TryGetValue(type, out Dictionary<string, PropertyInfo>? propertyDictionary))
                 {
                     return propertyDictionary;
                 }
@@ -83,12 +86,12 @@
 
         // Field
 
-        private readonly Dictionary<(Type, string), FieldInfo> _fieldDictionary = new();
+        private readonly Dictionary<(Type, string), FieldInfo?> _fieldDictionary = new();
         private readonly object _fieldDictionaryLock = new();
 
         public FieldInfo GetField(Type type, string name)
         {
-            FieldInfo field = TryGetField(type, name);
+            FieldInfo? field = TryGetField(type, name);
             if (field == null)
             {
                 throw new Exception($"Field '{name}' not found.");
@@ -96,7 +99,7 @@
             return field;
         }
 
-        public FieldInfo TryGetField(Type type, string name)
+        public FieldInfo? TryGetField(Type type, string name)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
 
@@ -104,7 +107,7 @@
             {
                 var key = (type, name);
 
-                if (_fieldDictionary.TryGetValue(key, out FieldInfo field))
+                if (_fieldDictionary.TryGetValue(key, out FieldInfo? field))
                 {
                     return field;
                 }
@@ -125,7 +128,7 @@
         {
             lock (_fieldsDictionaryLock)
             {
-                if (_fieldsDictionary.TryGetValue(type, out FieldInfo[] fields))
+                if (_fieldsDictionary.TryGetValue(type, out FieldInfo[]? fields))
                 {
                     return fields;
                 }
@@ -139,37 +142,37 @@
 
         // Indexer
 
-        private readonly Dictionary<(Type, string parameterTypesKey), PropertyInfo> _indexerDictionary = new();
+        private readonly Dictionary<(Type, string parameterTypesKey), PropertyInfo?> _indexerDictionary = new();
         private readonly object _indexerDictionaryLock = new();
 
         public PropertyInfo GetIndexer(Type type, params Type[] parameterTypes)
         {
-            PropertyInfo property = TryGetIndexer(type, parameterTypes);
+            PropertyInfo? property = TryGetIndexer(type, parameterTypes);
             if (property == null)
             {
-                throw new Exception($"Indexer not found with parameterTypes '{string.Join(", ", parameterTypes.Select(x => x.ToString()))}'.");
+                throw new Exception($"Indexer not found with parameterTypes '{Join(", ", parameterTypes.Select(x => x.ToString()))}'.");
             }
             return property;
         }
 
-        public PropertyInfo TryGetIndexer(Type type, params Type[] parameterTypes)
+        public PropertyInfo? TryGetIndexer(Type type, params Type[] parameterTypes)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
             if (parameterTypes.Length == 0) throw new Exception("parameterTypes.Length is 0.");
 
-            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
+            string parameterTypesKey = CreateKey(parameterTypes);
 
             lock (_indexerDictionaryLock)
             {
                 var key = (type, parameterTypesKey);
 
-                if (_indexerDictionary.TryGetValue(key, out PropertyInfo property))
+                if (_indexerDictionary.TryGetValue(key, out PropertyInfo? property))
                 {
                     return property;
                 }
 
-                var defaultMemberAttribute = (DefaultMemberAttribute)type.GetCustomAttributes(typeof(DefaultMemberAttribute), inherit: true).SingleOrDefault();
+                var defaultMemberAttribute = (DefaultMemberAttribute?)type.GetCustomAttributes(typeof(DefaultMemberAttribute), inherit: true).SingleOrDefault();
                 if (defaultMemberAttribute == null)
                 {
                     return null;
@@ -184,12 +187,12 @@
 
         // Method
 
-        private readonly Dictionary<(Type, string, string parameterTypesKey), MethodInfo> _methodDictionary = new();
+        private readonly Dictionary<(Type, string, string parameterTypesKey), MethodInfo?> _methodDictionary = new();
         private readonly object _methodDictionaryLock = new();
 
         public MethodInfo GetMethod(Type type, string name, params Type[] parameterTypes)
         {
-            MethodInfo method = TryGetMethod(type, name, parameterTypes);
+            MethodInfo? method = TryGetMethod(type, name, parameterTypes);
             if (method == null)
             {
                 throw new Exception($"Method '{name}' not found.");
@@ -197,18 +200,18 @@
             return method;
         }
 
-        public MethodInfo TryGetMethod(Type type, string name, params Type[] parameterTypes)
+        public MethodInfo? TryGetMethod(Type type, string name, params Type[] parameterTypes)
         {
             if (type == null) throw new ArgumentNullException(nameof(type));
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
 
-            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
+            string parameterTypesKey = CreateKey(parameterTypes);
 
             lock (_methodDictionaryLock)
             {
                 var key = (type, name, parameterTypesKey);
 
-                if (_methodDictionary.TryGetValue(key, out MethodInfo method))
+                if (_methodDictionary.TryGetValue(key, out MethodInfo? method))
                 {
                     return method;
                 }
@@ -246,8 +249,8 @@
             if (parameterTypes == null) throw new ArgumentNullException(nameof(parameterTypes));
             if (typeArguments == null) throw new ArgumentNullException(nameof(typeArguments));
 
-            string parameterTypesKey = KeyHelper.CreateKey(parameterTypes);
-            string typeArgumentsKey = KeyHelper.CreateKey(typeArguments);
+            string parameterTypesKey = CreateKey(parameterTypes);
+            string typeArgumentsKey = CreateKey(typeArguments);
 
             lock (_methodWithTypeArgumentsDictionaryLock)
             {
@@ -324,7 +327,7 @@
 
         public Type GetTypeByShortName(string shortTypeName)
         {
-            Type type = TryGetTypeByShortName(shortTypeName);
+            Type? type = TryGetTypeByShortName(shortTypeName);
             if (type == null)
             {
                 throw new Exception($"Type with short name '{shortTypeName}' not found in the AppDomain's assemblies.");
@@ -332,7 +335,7 @@
             return type;
         }
 
-        public Type TryGetTypeByShortName(string shortTypeName)
+        public Type? TryGetTypeByShortName(string shortTypeName)
         {
             IList<Type> types = GetTypesByShortName(shortTypeName);
 
@@ -347,15 +350,17 @@
                 default:
                     throw new Exception(
                         $"Type with short name '{shortTypeName}' found multiple times in the AppDomain's assemblies. " + 
-                        $"Found types:{Environment.NewLine}{string.Join(Environment.NewLine, types.Select(x => x.FullName))}");
+                        $"Found types:{Environment.NewLine}{Join(Environment.NewLine, types.Select(x => x.FullName))}");
             }
         }
 
         public IList<Type> GetTypesByShortName(string shortTypeName)
         {
+            Type[]? types;
+            
             lock (_typeByShortNameDictionaryLock)
             {
-                if (_typeByShortNameDictionary.TryGetValue(shortTypeName, out Type[] types))
+                if (_typeByShortNameDictionary.TryGetValue(shortTypeName, out types))
                 {
                     return types;
                 }
@@ -391,7 +396,7 @@
         {
             lock (_constructorDictionaryLock)
             {
-                if (_constructorDictionary.TryGetValue(type, out ConstructorInfo constructor))
+                if (_constructorDictionary.TryGetValue(type, out ConstructorInfo? constructor))
                 {
                     return constructor;
                 }
@@ -409,7 +414,7 @@
                     default:
                         throw new Exception(
                             $"Multiple constructors found on type '{type.FullName}' for '{new { _bindingFlags }}'. " +
-                            $"Found constructors: {string.Join(", ", constructors)}");
+                            $"Found constructors: {Join(", ", constructors)}");
                 }
             }
         }

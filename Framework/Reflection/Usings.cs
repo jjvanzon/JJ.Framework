@@ -7,3 +7,6 @@ global using System.Reflection;
 global using System.Runtime.CompilerServices;
 global using JJ.Framework.Common;
 global using JJ.Framework.Reflection.docs;
+global using static System.String; 
+global using static System.StringComparison;
+global using static System.Reflection.BindingFlags;

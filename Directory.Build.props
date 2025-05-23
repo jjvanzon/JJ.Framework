@@ -3,7 +3,12 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   
-  <!-- Disable Warnings for Test Projects -->
+  <!-- Warnings Disabled Globally -->
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CS8632</NoWarn> <!--Nullable annotation used without nullable option on.-->
+  </PropertyGroup>
+
+  <!-- Warnings Disabled for Tests -->
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('Tests'))">
     <NoWarn>$(NoWarn);CS0414</NoWarn> <!--Field is assigned but its value is never used-->
     <NoWarn>$(NoWarn);IDE0060</NoWarn> <!--Unused parameter-->
