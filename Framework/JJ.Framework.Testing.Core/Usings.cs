@@ -4,6 +4,7 @@ global using System.Linq;
 global using System.Text;
 global using System.Linq.Expressions;
 global using System.Runtime.CompilerServices;
+global using System.Diagnostics.CodeAnalysis;
 global using JJ.Framework.Common;
 global using JJ.Framework.Text.Core;
 global using JJ.Framework.Reflection;
