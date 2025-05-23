@@ -66,6 +66,8 @@ public abstract class ReflectorTestBase
         private          string      _myField           =  "";
         protected static int?         MyStaticProp      => default;
         private   static int?        _myStaticField;
+        public           string       Method0(     )    => "Method0";
+        public           int          Method1(int i)    => i;
     }
     
     protected class MyBase
