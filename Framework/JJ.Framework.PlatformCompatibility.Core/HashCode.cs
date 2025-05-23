@@ -104,42 +104,5 @@ public struct HashCode
             return h;
         }
     }
-
-    public static int Combine<T1, T2, T3, T4, T5, T6, T7, T8, T9>(T1 v1, T2 v2, T3 v3, T4 v4, T5 v5, T6 v6, T7 v7, T8 v8, T9 v9)
-    {
-        unchecked
-        {
-            int h = PRIME_LIKE_SEED;
-            h = (h ^ v1?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v2?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v3?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v4?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v5?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v6?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v7?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v8?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v9?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            return h;
-        }
-    }
-
-    public static int Combine<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(T1 v1, T2 v2, T3 v3, T4 v4, T5 v5, T6 v6, T7 v7, T8 v8, T9 v9, T10 v10)
-    {
-        unchecked
-        {
-            int h = PRIME_LIKE_SEED;
-            h = (h ^ v1?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v2?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v3?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v4?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v5?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v6?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v7?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v8?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v9?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            h = (h ^ v10?.GetHashCode() ?? 0) * PRIME_MULTIPLIER;
-            return h;
-        }
-    }
 }
 #endif
