@@ -10,7 +10,7 @@ namespace JJ.Framework.Reflection.Core
         // Property
 
         private readonly Dictionary<(Type, string), PropertyInfo?> _propertyDictionary = new();
-        private readonly object _propertyDictionaryLock = new ();
+        private readonly object _propertyDictionaryLock = new();
 
         public PropertyInfo GetProperty(Type type, string name)
         {
@@ -142,7 +142,7 @@ namespace JJ.Framework.Reflection.Core
 
         // Indexer
 
-        private readonly Dictionary<(Type, string parameterTypesKey), PropertyInfo?> _indexerDictionary = new ();
+        private readonly Dictionary<(Type, string parameterTypesKey), PropertyInfo?> _indexerDictionary = new();
         private readonly object _indexerDictionaryLock = new();
 
         public PropertyInfo GetIndexer(Type type, params Type[] parameterTypes)
