@@ -880,3 +880,36 @@ private string _dummy = "";
         }
 
 ```
+
+### Method
+
+```cs
+internal readonly struct ArgKey2 : IEquatable<ArgKey2>
+{
+    private readonly RuntimeTypeHandle _argTypeHandle1;
+    private readonly RuntimeTypeHandle _argTypeHandle2; // extend for arity ≤ 4
+    private readonly int _hash;
+
+    public ArgKey2(Type argType1, Type argType2)
+    {
+        _argTypeHandle1 = argType1.TypeHandle;
+        _argTypeHandle2 = argType2.TypeHandle;
+        _hash = Combine(_argTypeHandle1, _argTypeHandle2); // one-time cost
+    }
+
+    public bool Equals(ArgKey2 other) =>
+        _argTypeHandle1.Equals(other._argTypeHandle1) && 
+        _argTypeHandle2.Equals(other._argTypeHandle2);
+
+    public override int GetHashCode() => _hash;
+}
+
+        _methodName = Intern(methodName); // cheap one-time interning
+        _argKey = new ArgKey2(argType1, argType2);
+        _hash = Combine(_typeHandle, _methodName, _argKey.GetHashCode());
+
+        
+        //argTypes[0].TypeHandle;
+        //IntPtr intPtr = argTypes[0].TypeHandle.Value;
+
+```

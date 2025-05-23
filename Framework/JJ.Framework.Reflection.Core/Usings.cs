@@ -14,6 +14,7 @@ global using JJ.Framework.Reflection.Core.docs;
 global using static System.Array;
 global using static System.String; 
 global using static System.Nullable;
+global using static System.HashCode;
 global using static System.ArgumentException;
 global using static System.ArgumentNullException;
 global using static System.StringComparison;
@@ -37,3 +38,5 @@ global using PropsDicDic = System.Collections.Generic.Dictionary<System.Type, Sy
 global using FieldsDic = System.Collections.Generic.Dictionary<System.Type, System.Reflection.FieldInfo[]>;
 global using FieldsDicDic = System.Collections.Generic.Dictionary<System.Type, System.Collections.Generic.Dictionary<string, System.Reflection.FieldInfo>>;
 global using MethodDic = System.Collections.Generic.Dictionary<(System.Type, string), System.Reflection.MethodInfo>;
+//global using MethodDic2 = System.Collections.Generic.Dictionary<JJ.Framework.Reflection.Core.MethodKey2, System.Reflection.MethodInfo>;
+//global using MethodDic2 = System.Collections.Generic.Dictionary<JJ.Framework.Reflection.Core.NameTypesKey2, System.Reflection.MethodInfo>;
