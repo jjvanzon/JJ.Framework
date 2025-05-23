@@ -49,6 +49,9 @@ public class PropTests : ReflectorTestBase
     {
         foreach (var reflect in _reflectors)
         {
+            IsNull(reflect.Prop("MyType", "NoProp",       null          ));
+            IsNull(reflect.Prop <MyType>( "NoProp",       null          ));
+            IsNull(reflect.Prop(_myType , "NoProp",       null          ));
             IsNull(reflect.Prop("MyType", "NoProp",       nullable      ));
             IsNull(reflect.Prop <MyType>( "NoProp",       nullable      ));
             IsNull(reflect.Prop(_myType , "NoProp",       nullable      ));
@@ -100,6 +103,9 @@ public class PropTests : ReflectorTestBase
         foreach (var reflect in _reflectorsMatchCase)
         {
             IsTrue(reflect.MatchCase);
+            IsNull(reflect.Prop("MyType", "myprop",       null          ));
+            IsNull(reflect.Prop <MyType>( "myprop",       null          ));
+            IsNull(reflect.Prop(_myType , "myprop",       null          ));
             IsNull(reflect.Prop("MyType", "myprop",       nullable      ));
             IsNull(reflect.Prop <MyType>( "myprop",       nullable      ));
             IsNull(reflect.Prop(_myType , "myprop",       nullable      ));
@@ -122,19 +128,19 @@ public class PropTests : ReflectorTestBase
     {
         foreach (var reflect in _reflectors)
         {
-            AssertBaseProp(reflect.Prop("MyBase", "MyBaseProp"));
-            AssertBaseProp(reflect.Prop <MyBase>( "MyBaseProp"));
-            AssertBaseProp(reflect.Prop(_myBase , "MyBaseProp"));
-            AssertBaseProp(reflect.Prop("MyType", "MyBaseProp"));
-            AssertBaseProp(reflect.Prop <MyType>( "MyBaseProp"));
-            AssertBaseProp(reflect.Prop(_myType , "MyBaseProp"));
+            AssertBaseProp(      reflect.Prop("MyBase", "MyBaseProp"      ));
+            AssertBaseProp(      reflect.Prop <MyBase>( "MyBaseProp"      ));
+            AssertBaseProp(      reflect.Prop(_myBase , "MyBaseProp"      ));
+            AssertBaseProp(      reflect.Prop("MyType", "MyBaseProp"      ));
+            AssertBaseProp(      reflect.Prop <MyType>( "MyBaseProp"      ));
+            AssertBaseProp(      reflect.Prop(_myType , "MyBaseProp"      ));
             // Negative match
-            ThrowsNotFound(() => reflect.Prop("MyBase", "MyProp"));
-            ThrowsNotFound(() => reflect.Prop <MyBase>( "MyProp"));
-            ThrowsNotFound(() => reflect.Prop(_myBase , "MyProp"));
-            IsNull(reflect.Prop("MyBase", "MyProp", nullable));
-            IsNull(reflect.Prop <MyBase>( "MyProp", nullable));
-            IsNull(reflect.Prop(_myBase , "MyProp", nullable));
+            ThrowsNotFound(() => reflect.Prop("MyBase", "MyProp"          ));
+            ThrowsNotFound(() => reflect.Prop <MyBase>( "MyProp"          ));
+            ThrowsNotFound(() => reflect.Prop(_myBase , "MyProp"          ));
+            IsNull(              reflect.Prop("MyBase", "MyProp", nullable));
+            IsNull(              reflect.Prop <MyBase>( "MyProp", nullable));
+            IsNull(              reflect.Prop(_myBase , "MyProp", nullable));
         }
     }
     
@@ -164,18 +170,22 @@ public class PropTests : ReflectorTestBase
         // Ignore Case / Trims
         AssertProp(Prop(" mytype ", "myprop \r\n"));
         
-        // Coverage
-        AssertProp(Prop("MyType", "MyProp", nullable));
-        AssertProp(Prop(_myType , "MyProp", nullable));
-        AssertProp(Prop("MyType", "MyProp", nullable: true));
+        // Coverage                                       
+        AssertProp(Prop("MyType", "MyProp", null           ));
+        AssertProp(Prop <MyType>( "MyProp", null           ));
+        AssertProp(Prop(_myType , "MyProp", null           ));
+        AssertProp(Prop("MyType", "MyProp", null           ));
+        AssertProp(Prop <MyType>( "MyProp", nullable       ));
+        AssertProp(Prop(_myType , "MyProp", nullable       ));
+        AssertProp(Prop("MyType", "MyProp", nullable: true ));
         AssertProp(Prop <MyType>( "MyProp", nullable: false));
-        AssertProp(Prop(_myType , "MyProp", nullable: true));
-        AssertProp(Prop("MyType", nullable, "MyProp"));
-        AssertProp(Prop <MyType>( nullable, "MyProp"));
-        AssertProp(Prop(_myType , nullable, "MyProp"));
-        AssertProp(Prop("MyType", nullable: true, "MyProp"));
-        AssertProp(Prop <MyType>( nullable: true, "MyProp"));
-        AssertProp(Prop(_myType , nullable: true, "MyProp"));
+        AssertProp(Prop(_myType , "MyProp", nullable: true ));
+        AssertProp(Prop("MyType", nullable,        "MyProp"));
+        AssertProp(Prop <MyType>( nullable,        "MyProp"));
+        AssertProp(Prop(_myType , nullable,        "MyProp"));
+        AssertProp(Prop("MyType", nullable: true,  "MyProp"));
+        AssertProp(Prop <MyType>( nullable: true,  "MyProp"));
+        AssertProp(Prop(_myType , nullable: true,  "MyProp"));
     }
     
     // Extensions
@@ -199,10 +209,12 @@ public class PropTests : ReflectorTestBase
         AssertProp(_myType.Prop("myprop \r\n"));
         
         // Coverage
+        AssertProp(_myType .Prop("MyProp",       null          ));
         AssertProp(_myType .Prop("MyProp",       nullable      ));
         AssertProp(_myType .Prop("MyProp",       nullable: true));
         AssertProp(_myType .Prop(nullable,       "MyProp"      ));
         AssertProp(_myType .Prop(nullable: true, "MyProp"      ));
+        AssertProp("myType".Prop("MyProp",       null          ));
         AssertProp("myType".Prop("MyProp",       nullable      ));
         AssertProp("myType".Prop("MyProp",       nullable: true));
         AssertProp("myType".Prop(nullable,       "MyProp"      ));
@@ -231,6 +243,7 @@ public class PropTests : ReflectorTestBase
             AssertProp    (              Prop(obj, "myprop", nullable: false ));
             AssertProp    (              Prop(obj, "myPROP", nullable: true  ));
             AssertProp    (              Prop(obj, "MYPROP", nullable        ));
+            AssertProp    (              Prop(obj, "MYPROP", null            ));
             AssertProp    (              Prop(obj, nullable: false, "MyProp "));
             AssertProp    (              Prop(obj, nullable: true,  "myprop "));
             AssertProp    (              Prop(obj, nullable,        "MYPROP "));
@@ -238,6 +251,7 @@ public class PropTests : ReflectorTestBase
             ThrowsNotFound(() =>         Prop(obj, "NoProp", nullable: false ));
             IsNull        (              Prop(obj, "NoProp", nullable: true  ));
             IsNull        (              Prop(obj, "NoProp", nullable        ));
+            IsNull        (              Prop(obj, "NoProp", null            ));
             ThrowsNotFound(() =>         Prop(obj, nullable: false, "NoProp" ));
             IsNull        (              Prop(obj, nullable: true,  "NoProp" ));
             IsNull        (              Prop(obj, nullable,        "NoProp" ));
@@ -246,6 +260,7 @@ public class PropTests : ReflectorTestBase
             AssertProp    (      obj    .Prop(     "myprop", nullable: false ));
             AssertProp    (      obj    .Prop(     "myPROP", nullable: true  ));
             AssertProp    (      obj    .Prop(     "MYPROP", nullable        ));
+            AssertProp    (      obj    .Prop(     "MYPROP", null            ));
             AssertProp    (      obj    .Prop(     nullable: false, "MyProp "));
             AssertProp    (      obj    .Prop(     nullable: true,  "myprop "));
             AssertProp    (      obj    .Prop(     nullable,        "MYPROP "));
@@ -253,6 +268,7 @@ public class PropTests : ReflectorTestBase
             ThrowsNotFound(() => obj    .Prop(     "NoProp", nullable: false ));
             IsNull        (      obj    .Prop(     "NoProp", nullable: true  ));
             IsNull        (      obj    .Prop(     "NoProp", nullable        ));
+            IsNull        (      obj    .Prop(     "NoProp", null            ));
             ThrowsNotFound(() => obj    .Prop(     nullable: false, "NoProp" ));
             IsNull        (      obj    .Prop(     nullable: true,  "NoProp" ));
             IsNull        (      obj    .Prop(     nullable,        "NoProp" ));
@@ -261,6 +277,7 @@ public class PropTests : ReflectorTestBase
             AssertProp    (      Reflect.Prop(obj, "myprop", nullable: false ));
             AssertProp    (      Reflect.Prop(obj, "myPROP", nullable: true  ));
             AssertProp    (      Reflect.Prop(obj, "MYPROP", nullable        ));
+            AssertProp    (      Reflect.Prop(obj, "MYPROP", null            ));
             AssertProp    (      Reflect.Prop(obj, nullable: false, "MyProp "));
             AssertProp    (      Reflect.Prop(obj, nullable: true,  "myprop "));
             AssertProp    (      Reflect.Prop(obj, nullable,        "MYPROP "));
@@ -268,6 +285,7 @@ public class PropTests : ReflectorTestBase
             ThrowsNotFound(() => Reflect.Prop(obj, "NoProp", nullable: false ));
             IsNull        (      Reflect.Prop(obj, "NoProp", nullable: true  ));
             IsNull        (      Reflect.Prop(obj, "NoProp", nullable        ));
+            IsNull        (      Reflect.Prop(obj, "NoProp", null            ));
             ThrowsNotFound(() => Reflect.Prop(obj, nullable: false, "NoProp" ));
             IsNull        (      Reflect.Prop(obj, nullable: true,  "NoProp" ));
             IsNull        (      Reflect.Prop(obj, nullable,        "NoProp" ));
@@ -280,6 +298,7 @@ public class PropTests : ReflectorTestBase
             AssertProp    (      reflect.Prop(obj, "myprop", nullable: false ));
             AssertProp    (      reflect.Prop(obj, "myPROP", nullable: true  ));
             AssertProp    (      reflect.Prop(obj, "MYPROP", nullable        ));
+            AssertProp    (      reflect.Prop(obj, "MYPROP", null            ));
             AssertProp    (      reflect.Prop(obj, nullable: false, "MyProp "));
             AssertProp    (      reflect.Prop(obj, nullable: true,  "myprop "));
             AssertProp    (      reflect.Prop(obj, nullable,        "MYPROP "));
@@ -287,6 +306,7 @@ public class PropTests : ReflectorTestBase
             ThrowsNotFound(() => reflect.Prop(obj, "NoProp", nullable: false ));
             IsNull        (      reflect.Prop(obj, "NoProp", nullable: true  ));
             IsNull        (      reflect.Prop(obj, "NoProp", nullable        ));
+            IsNull        (      reflect.Prop(obj, "NoProp", null            ));
             ThrowsNotFound(() => reflect.Prop(obj, nullable: false, "NoProp" ));
             IsNull        (      reflect.Prop(obj, nullable: true,  "NoProp" ));
             IsNull        (      reflect.Prop(obj, nullable,        "NoProp" ));
@@ -299,6 +319,7 @@ public class PropTests : ReflectorTestBase
             ThrowsNotFound(() => reflect.Prop(obj, "myprop", nullable: false ));
             IsNull        (      reflect.Prop(obj, "myPROP", nullable: true  ));
             IsNull        (      reflect.Prop(obj, "MYPROP", nullable        ));
+            IsNull        (      reflect.Prop(obj, "MYPROP", null            ));
             AssertProp    (      reflect.Prop(obj, nullable: false, " MyProp"));
             IsNull        (      reflect.Prop(obj, nullable: true,  " myprop"));
             IsNull        (      reflect.Prop(obj, nullable,        " MYPROP"));
@@ -354,6 +375,9 @@ public class PropTests : ReflectorTestBase
             AssertProp(reflect.Prop("MyType", "MyProp"                        ));
             AssertProp(reflect.Prop <MyType>( "MyProp"                        ));
             AssertProp(reflect.Prop(_myType , "MyProp"                        ));
+            AssertProp(reflect.Prop("MyType", "MyProp",        null           ));
+            AssertProp(reflect.Prop <MyType>( "MyProp",        null           ));
+            AssertProp(reflect.Prop(_myType , "MyProp",        null           ));
             AssertProp(reflect.Prop("MyType", "MyProp",        nullable       ));
             AssertProp(reflect.Prop <MyType>( "MyProp",        nullable       ));
             AssertProp(reflect.Prop(_myType , "MyProp",        nullable       ));
@@ -380,12 +404,12 @@ public class PropTests : ReflectorTestBase
     private void AssertProp(PropertyInfo? prop)
     {
         IsNotNull(prop);
-        AreEqual("MyProp", prop!.Name);
+        AreEqual("MyProp", prop.Name);
     }
 
     private void AssertBaseProp(PropertyInfo? prop)
     {
         IsNotNull(prop);
-        AreEqual("MyBaseProp", prop!.Name);
+        AreEqual("MyBaseProp", prop.Name);
     }
 }

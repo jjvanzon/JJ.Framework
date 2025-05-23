@@ -27,7 +27,7 @@ global using static JJ.Framework.Common.Core.FlagHelper;
 global using static JJ.Framework.Collections.Core.StaticEnumerable;
 global using static JJ.Framework.Existence.Core.FilledInHelper;
 global using static JJ.Framework.Reflection.Core.Reflect;
-global using static JJ.Framework.Reflection.Core.NullableFlag;
+global using static JJ.Framework.Reflection.Core.NullFlag;
 global using static JJ.Framework.Reflection.Core.MatchCaseFlag;
 //global using static Microsoft.VisualStudio.TestTools.UnitTesting.Assert; // Specifically excluded; replaced by AssertHelperCore.
 global using static JJ.Framework.Testing.AssertHelper;

@@ -5,7 +5,8 @@ public enum MatchCaseFlag
     matchcase = 1
 }
 
-public enum NullableFlag
+public abstract class NullFlag
 {
-    nullable = 1
+    private NullFlag() { }
+    public const NullFlag? nullable = null;
 }

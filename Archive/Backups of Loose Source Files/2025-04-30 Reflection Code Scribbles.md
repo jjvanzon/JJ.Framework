@@ -959,3 +959,77 @@ public MethodInfo? Method(Type type, bool    nullable, string  name,     params 
 public MethodInfo? Method(Type type, object? nullable, string  name,     params Type?[] argTypes)  => MethodOrSomething(type, name, nullable == null, BindingFlags, argTypes, _methodDicN, _methodDicLockN);
     
 ```
+
+
+### Prop
+
+```cs
+    public static PropertyInfo  Prop<T>(this                              string name                                  ) => PropOrThrow    (typeof(T),     name,           BindingFlagsAll, _propDic, _propLock        );
+    public static PropertyInfo? Prop<T>(this                              string name,        NullFlag? nullable       ) => PropOrNull     (typeof(T),     name,           BindingFlagsAll, _propDic, _propLock        );
+    public static PropertyInfo? Prop<T>(this                              string name,        bool      nullable       ) => PropOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _propDic, _propLock        );
+    public static PropertyInfo? Prop<T>(this                              NullFlag? nullable, [Caller] string name = "") => PropOrNull     (typeof(T),     name,           BindingFlagsAll, _propDic, _propLock        );
+    public static PropertyInfo? Prop<T>(this                              bool      nullable, [Caller] string name = "") => PropOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _propDic, _propLock        );
+```
+
+### Field
+
+```cs
+    public static FieldInfo  Field<T>(this                              string name                                     ) => FieldOrThrow    (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldDicLock        );
+    public static FieldInfo? Field<T>(this                              string name,           NullableFlag nullable    ) => FieldOrNull     (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldDicLock        );
+    public static FieldInfo? Field<T>(this                              string name,           bool         nullable    ) => FieldOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _fieldDic, _fieldDicLock        );
+    public static FieldInfo? Field<T>(this                              NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldDicLock        );
+    public static FieldInfo? Field<T>(this                              bool         nullable, [Caller] string name = "") => FieldOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _fieldDic, _fieldDicLock        );
+```
+
+### FieldTests
+
+```cs
+    
+    // Nullable Types
+    
+    // TODO: Make it work for fields?
+    [TestMethod]
+    public void Reflect_Field_NullableTypes()
+    {
+        // Nullable value
+        Type nullType = typeof(DateTime?);
+        IsNotNull(nullType.Field("HasValue"));
+        IsNotNull(nullType.Field("Year"));
+        
+        DateTime? nullyVal = new(2025, 05, 20);
+        IsNotNull(Field(nullyVal, "HasValue"));
+        IsNotNull(Field(nullyVal, "Year"));
+        
+        var yearField = nullType.Field("Year");
+        var yearBack = yearField.GetValue(nullyVal);
+        AreEqual(yearBack, 2025);
+        
+        // Non nullable value
+        Type nonNullType = typeof(DateTime);
+        DateTime nonNullValue = new(2025, 05, 20);
+        IsNotNull(nonNullType.Field("Year"));
+        
+        // Reference types
+        MyType? nullObj = null;
+            
+        // Nullable reference type field
+        AssertField(Field<MyType?>("_myField"));
+        AssertField(nullObj.Field("_myField")); // Conclusion: T accepts nulls too here.
+
+        // Nullable base field
+        AssertBaseField(Field<MyBase?>("_myBaseField"));
+        AssertBaseField(Field<MyType?>("_myBaseField"));
+
+        // NotFound scenarios
+        ThrowsNotFound(() => Field<MyType?>("None"));
+    }
+        
+        // Too weird
+        AssertField("_myField".Field<MyType>());
+        AssertField("_myField".Field<MyType>(nullable));
+        AssertField("_myField".Field<MyType>(nullable: true));
+        AssertField("_myField".Field<MyType>(nullable: false));
+        AssertField("_myField".Field<MyType>(nullable: false));
+        AssertField(nullable.Field<MyType>("_myField"));
+        AssertField(true.Field<MyType>("_myField"));
+```

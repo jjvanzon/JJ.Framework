@@ -75,78 +75,73 @@ internal static partial class ReflectUtility
 
 public static partial class Reflect
 {
-    internal static readonly FieldDic _fieldDic = new();
-    internal static readonly Lock _fieldLock = new();
-    
-    public static FieldInfo  Field<T>(                           [Caller] string name = ""                                ) => FieldOrThrow    (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo  Field   (     Type type,            [Caller] string name = ""                                ) => FieldOrThrow    (type,          name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo  Field   (     string shortTypeName, [Caller] string name = ""                                ) => FieldOrThrow    (shortTypeName, name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
-    public static FieldInfo  Field<T>(     T obj,                [Caller] string name = ""                                ) => FieldOrThrow    (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field<T>(                                    string name,           NullableFlag nullable    ) => FieldOrNull     (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (     Type type,                     string name,           NullableFlag nullable    ) => FieldOrNull     (type,          name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (     string shortTypeName,          string name,           NullableFlag nullable    ) => FieldOrNull     (shortTypeName, name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
-    public static FieldInfo? Field<T>(     T obj,                         string name,           NullableFlag nullable    ) => FieldOrNull     (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field<T>(                                    string name,           bool         nullable    ) => FieldOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (     Type type,                     string name,           bool         nullable    ) => FieldOrSomething(type,          name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (     string shortTypeName,          string name,           bool         nullable    ) => FieldOrSomething(shortTypeName, name, nullable, BindingFlagsAll, _fieldDic, _fieldLock, _cache);
-    public static FieldInfo? Field<T>(     T obj,                         string name,           bool         nullable    ) => FieldOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field<T>(                                    NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (     Type type,                     NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (type,          name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (     string shortTypeName,          NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (shortTypeName, name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
-    public static FieldInfo? Field<T>(     T obj,                         NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field<T>(                                    bool         nullable, [Caller] string name = "") => FieldOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (     Type type,                     bool         nullable, [Caller] string name = "") => FieldOrSomething(type,          name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (     string shortTypeName,          bool         nullable, [Caller] string name = "") => FieldOrSomething(shortTypeName, name, nullable, BindingFlagsAll, _fieldDic, _fieldLock, _cache);
-    public static FieldInfo? Field<T>(     T obj,                         bool         nullable, [Caller] string name = "") => FieldOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
+          internal static readonly FieldDic _fieldDic = new();
+          internal static readonly Lock _fieldLock = new();
+          
+          public static FieldInfo  Field<T>(                  [Caller] string name = ""                             ) => FieldOrThrow    (typeof(T), name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo  Field   (     Type   type, [Caller] string name = ""                             ) => FieldOrThrow    (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo  Field   (     string type, [Caller] string name = ""                             ) => FieldOrThrow    (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
+          public static FieldInfo  Field<T>(     T      obj,  [Caller] string name = ""                             ) => FieldOrThrow    (typeof(T), name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field<T>(                           string name,        NullFlag? nullable       ) => FieldOrNull     (typeof(T), name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (     Type   type,          string name,        NullFlag? nullable       ) => FieldOrNull     (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (     string type,          string name,        NullFlag? nullable       ) => FieldOrNull     (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
+          public static FieldInfo? Field<T>(     T      obj,           string name,        NullFlag? nullable       ) => FieldOrNull     (typeof(T), name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field<T>(                           string name,        bool      nullable       ) => FieldOrSomething(typeof(T), name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (     Type   type,          string name,        bool      nullable       ) => FieldOrSomething(type,      name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (     string type,          string name,        bool      nullable       ) => FieldOrSomething(type,      name, nullable, BindingFlagsAll, _fieldDic, _fieldLock, _cache);
+          public static FieldInfo? Field<T>(     T      obj,           string name,        bool      nullable       ) => FieldOrSomething(typeof(T), name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
+[Prio(1)] public static FieldInfo? Field<T>(                           NullFlag? nullable, [Caller] string name = "") => FieldOrNull     (typeof(T), name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+[Prio(1)] public static FieldInfo? Field   (     Type   type,          NullFlag? nullable, [Caller] string name = "") => FieldOrNull     (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+[Prio(1)] public static FieldInfo? Field   (     string type,          NullFlag? nullable, [Caller] string name = "") => FieldOrNull     (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
+[Prio(1)] public static FieldInfo? Field<T>(     T      obj,           NullFlag? nullable, [Caller] string name = "") => FieldOrNull     (typeof(T), name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field<T>(                           bool      nullable, [Caller] string name = "") => FieldOrSomething(typeof(T), name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (     Type   type,          bool      nullable, [Caller] string name = "") => FieldOrSomething(type,      name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (     string type,          bool      nullable, [Caller] string name = "") => FieldOrSomething(type,      name, nullable, BindingFlagsAll, _fieldDic, _fieldLock, _cache);
+          public static FieldInfo? Field<T>(     T      obj,           bool      nullable, [Caller] string name = "") => FieldOrSomething(typeof(T), name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
 }
 
 public partial class Reflector
 {    
-    private readonly FieldDic _fieldDic = new();
-    private readonly Lock _fieldLock = new();
-
-    public        FieldInfo  Field<T>(                           [Caller] string name = ""                                ) => FieldOrThrow    (typeof(T),     name,           BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo  Field   (     Type type,            [Caller] string name = ""                                ) => FieldOrThrow    (type,          name,           BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo  Field   (     string shortTypeName, [Caller] string name = ""                                ) => FieldOrThrow    (shortTypeName, name,           BindingFlags,    _fieldDic, _fieldLock, _cache);
-    public        FieldInfo  Field<T>(     T obj,                [Caller] string name = ""                                ) => FieldOrThrow    (typeof(T),     name,           BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field<T>(                                    string name,           NullableFlag nullable    ) => FieldOrNull     (typeof(T),     name,           BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field   (     Type type,                     string name,           NullableFlag nullable    ) => FieldOrNull     (type,          name,           BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field   (     string shortTypeName,          string name,           NullableFlag nullable    ) => FieldOrNull     (shortTypeName, name,           BindingFlags,    _fieldDic, _fieldLock, _cache);
-    public        FieldInfo? Field<T>(     T obj,                         string name,           NullableFlag nullable    ) => FieldOrNull     (typeof(T),     name,           BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field<T>(                                    string name,           bool         nullable    ) => FieldOrSomething(typeof(T),     name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field   (     Type type,                     string name,           bool         nullable    ) => FieldOrSomething(type,          name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field   (     string shortTypeName,          string name,           bool         nullable    ) => FieldOrSomething(shortTypeName, name, nullable, BindingFlags,    _fieldDic, _fieldLock, _cache);
-    public        FieldInfo? Field<T>(     T obj,                         string name,           bool         nullable    ) => FieldOrSomething(typeof(T),     name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field<T>(                                    NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (typeof(T),     name,           BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field   (     Type type,                     NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (type,          name,           BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field   (     string shortTypeName,          NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (shortTypeName, name,           BindingFlags,    _fieldDic, _fieldLock, _cache);
-    public        FieldInfo? Field<T>(     T obj,                         NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (typeof(T),     name,           BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field<T>(                                    bool         nullable, [Caller] string name = "") => FieldOrSomething(typeof(T),     name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field   (     Type type,                     bool         nullable, [Caller] string name = "") => FieldOrSomething(type,          name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
-    public        FieldInfo? Field   (     string shortTypeName,          bool         nullable, [Caller] string name = "") => FieldOrSomething(shortTypeName, name, nullable, BindingFlags,    _fieldDic, _fieldLock, _cache);
-    public        FieldInfo? Field<T>(     T obj,                         bool         nullable, [Caller] string name = "") => FieldOrSomething(typeof(T),     name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
+          private readonly FieldDic _fieldDic = new();
+          private readonly Lock _fieldLock = new();
+         
+          public        FieldInfo  Field<T>(                  [Caller] string name = ""                             ) => FieldOrThrow    (typeof(T), name,           BindingFlags,    _fieldDic, _fieldLock        );
+          public        FieldInfo  Field   (     Type   type, [Caller] string name = ""                             ) => FieldOrThrow    (type,      name,           BindingFlags,    _fieldDic, _fieldLock        );
+          public        FieldInfo  Field   (     string type, [Caller] string name = ""                             ) => FieldOrThrow    (type,      name,           BindingFlags,    _fieldDic, _fieldLock, _cache);
+          public        FieldInfo  Field<T>(     T      obj,  [Caller] string name = ""                             ) => FieldOrThrow    (typeof(T), name,           BindingFlags,    _fieldDic, _fieldLock        );
+          public        FieldInfo? Field<T>(                           string name,        NullFlag? nullable       ) => FieldOrNull     (typeof(T), name,           BindingFlags,    _fieldDic, _fieldLock        );
+          public        FieldInfo? Field   (     Type   type,          string name,        NullFlag? nullable       ) => FieldOrNull     (type,      name,           BindingFlags,    _fieldDic, _fieldLock        );
+          public        FieldInfo? Field   (     string type,          string name,        NullFlag? nullable       ) => FieldOrNull     (type,      name,           BindingFlags,    _fieldDic, _fieldLock, _cache);
+          public        FieldInfo? Field<T>(     T      obj,           string name,        NullFlag? nullable       ) => FieldOrNull     (typeof(T), name,           BindingFlags,    _fieldDic, _fieldLock        );
+          public        FieldInfo? Field<T>(                           string name,        bool      nullable       ) => FieldOrSomething(typeof(T), name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
+          public        FieldInfo? Field   (     Type   type,          string name,        bool      nullable       ) => FieldOrSomething(type,      name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
+          public        FieldInfo? Field   (     string type,          string name,        bool      nullable       ) => FieldOrSomething(type,      name, nullable, BindingFlags,    _fieldDic, _fieldLock, _cache);
+          public        FieldInfo? Field<T>(     T      obj,           string name,        bool      nullable       ) => FieldOrSomething(typeof(T), name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
+[Prio(1)] public        FieldInfo? Field<T>(                           NullFlag? nullable, [Caller] string name = "") => FieldOrNull     (typeof(T), name,           BindingFlags,    _fieldDic, _fieldLock        );
+[Prio(1)] public        FieldInfo? Field   (     Type   type,          NullFlag? nullable, [Caller] string name = "") => FieldOrNull     (type,      name,           BindingFlags,    _fieldDic, _fieldLock        );
+[Prio(1)] public        FieldInfo? Field   (     string type,          NullFlag? nullable, [Caller] string name = "") => FieldOrNull     (type,      name,           BindingFlags,    _fieldDic, _fieldLock, _cache);
+[Prio(1)] public        FieldInfo? Field<T>(     T      obj,           NullFlag? nullable, [Caller] string name = "") => FieldOrNull     (typeof(T), name,           BindingFlags,    _fieldDic, _fieldLock        );
+          public        FieldInfo? Field<T>(                           bool      nullable, [Caller] string name = "") => FieldOrSomething(typeof(T), name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
+          public        FieldInfo? Field   (     Type   type,          bool      nullable, [Caller] string name = "") => FieldOrSomething(type,      name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
+          public        FieldInfo? Field   (     string type,          bool      nullable, [Caller] string name = "") => FieldOrSomething(type,      name, nullable, BindingFlags,    _fieldDic, _fieldLock, _cache);
+          public        FieldInfo? Field<T>(     T      obj,           bool      nullable, [Caller] string name = "") => FieldOrSomething(typeof(T), name, nullable, BindingFlags,    _fieldDic, _fieldLock        );
 }
 
 public static partial class ReflectExtensions
 {
-    //public static FieldInfo  Field<T>(this                              string name                                     ) => FieldOrThrow    (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldDicLock        );
-    public static FieldInfo  Field   (this Type type,            [Caller] string name = ""                                ) => FieldOrThrow    (type,          name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo  Field   (this string shortTypeName, [Caller] string name = ""                                ) => FieldOrThrow    (shortTypeName, name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
-    public static FieldInfo  Field<T>(this T obj,                [Caller] string name = ""                                ) => FieldOrThrow    (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    //public static FieldInfo? Field<T>(this                              string name,           NullableFlag nullable    ) => FieldOrNull     (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldDicLock        );
-    public static FieldInfo? Field   (this Type type,                     string name,           NullableFlag nullable    ) => FieldOrNull     (type,          name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (this string shortTypeName,          string name,           NullableFlag nullable    ) => FieldOrNull     (shortTypeName, name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
-    public static FieldInfo? Field<T>(this T obj,                         string name,           NullableFlag nullable    ) => FieldOrNull     (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    //public static FieldInfo? Field<T>(this                              string name,           bool         nullable    ) => FieldOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _fieldDic, _fieldDicLock        );
-    public static FieldInfo? Field   (this Type type,                     string name,           bool         nullable    ) => FieldOrSomething(type,          name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (this string shortTypeName,          string name,           bool         nullable    ) => FieldOrSomething(shortTypeName, name, nullable, BindingFlagsAll, _fieldDic, _fieldLock, _cache);
-    public static FieldInfo? Field<T>(this T obj,                         string name,           bool         nullable    ) => FieldOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
-    //public static FieldInfo? Field<T>(this                              NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldDicLock        );
-    public static FieldInfo? Field   (this Type type,                     NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (type,          name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (this string shortTypeName,          NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (shortTypeName, name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
-    public static FieldInfo? Field<T>(this T obj,                         NullableFlag nullable, [Caller] string name = "") => FieldOrNull     (typeof(T),     name,           BindingFlagsAll, _fieldDic, _fieldLock        );
-    //public static FieldInfo? Field<T>(this                              bool         nullable, [Caller] string name = "") => FieldOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _fieldDic, _fieldDicLock        );
-    public static FieldInfo? Field   (this Type type,                     bool         nullable, [Caller] string name = "") => FieldOrSomething(type,          name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
-    public static FieldInfo? Field   (this string shortTypeName,          bool         nullable, [Caller] string name = "") => FieldOrSomething(shortTypeName, name, nullable, BindingFlagsAll, _fieldDic, _fieldLock, _cache);
-    public static FieldInfo? Field<T>(this T obj,                         bool         nullable, [Caller] string name = "") => FieldOrSomething(typeof(T),     name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo  Field   (this Type   type, [Caller] string name = ""                             ) => FieldOrThrow    (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo  Field   (this string type, [Caller] string name = ""                             ) => FieldOrThrow    (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
+          public static FieldInfo  Field<T>(this T      obj,  [Caller] string name = ""                             ) => FieldOrThrow    (typeof(T), name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (this Type   type,          string name,        NullFlag? nullable       ) => FieldOrNull     (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (this string type,          string name,        NullFlag? nullable       ) => FieldOrNull     (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
+          public static FieldInfo? Field<T>(this T      obj,           string name,        NullFlag? nullable       ) => FieldOrNull     (typeof(T), name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (this Type   type,          string name,        bool      nullable       ) => FieldOrSomething(type,      name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (this string type,          string name,        bool      nullable       ) => FieldOrSomething(type,      name, nullable, BindingFlagsAll, _fieldDic, _fieldLock, _cache);
+          public static FieldInfo? Field<T>(this T      obj,           string name,        bool      nullable       ) => FieldOrSomething(typeof(T), name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
+[Prio(1)] public static FieldInfo? Field   (this Type   type,          NullFlag? nullable, [Caller] string name = "") => FieldOrNull     (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+[Prio(1)] public static FieldInfo? Field   (this string type,          NullFlag? nullable, [Caller] string name = "") => FieldOrNull     (type,      name,           BindingFlagsAll, _fieldDic, _fieldLock, _cache);
+[Prio(1)] public static FieldInfo? Field<T>(this T      obj,           NullFlag? nullable, [Caller] string name = "") => FieldOrNull     (typeof(T), name,           BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (this Type   type,          bool      nullable, [Caller] string name = "") => FieldOrSomething(type,      name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
+          public static FieldInfo? Field   (this string type,          bool      nullable, [Caller] string name = "") => FieldOrSomething(type,      name, nullable, BindingFlagsAll, _fieldDic, _fieldLock, _cache);
+          public static FieldInfo? Field<T>(this T      obj,           bool      nullable, [Caller] string name = "") => FieldOrSomething(typeof(T), name, nullable, BindingFlagsAll, _fieldDic, _fieldLock        );
 }

@@ -173,34 +173,29 @@ internal static partial class ReflectUtility
 
 public partial class Reflector
 {
-    private readonly MethodDic0 _methodDic0 = new();
-    private readonly Lock   _methodDicLock0 = new();
-    private readonly MethodDicN _methodDicN = new();
-    private readonly Lock   _methodDicLockN = new();
+          private readonly MethodDic0 _methodDic0 = new();
+          private readonly Lock   _methodDicLock0 = new();
+          private readonly MethodDicN _methodDicN = new();
+          private readonly Lock   _methodDicLockN = new();
+          
+          public MethodInfo  Method(Type type,                                  [Caller] string name = ""        ) => MethodOrThrow    (type, name,                   BindingFlags,                     _methodDic0, _methodDicLock0);
+          public MethodInfo? Method(Type type,              bool      nullable, [Caller] string name = ""        ) => MethodOrSomething(type, name, nullable,         BindingFlags,                     _methodDic0, _methodDicLock0);
+[Prio(1)] public MethodInfo? Method(Type type,              NullFlag? nullable, [Caller] string name = ""        ) => MethodOrSomething(type, name, nullable == null, BindingFlags,                     _methodDic0, _methodDicLock0);
+          public MethodInfo? Method(Type type, string name, bool      nullable                                   ) => MethodOrSomething(type, name, nullable,         BindingFlags,                     _methodDic0, _methodDicLock0);
+[Prio(1)] public MethodInfo? Method(Type type, string name, NullFlag? nullable                                   ) => MethodOrSomething(type, name, nullable == null, BindingFlags,                     _methodDic0, _methodDicLock0);
+          public MethodInfo  Method(Type type, string name,                     params Type?[] argTypes          ) => MethodOrThrow    (type, name,                   BindingFlags, argTypes,           _methodDicN, _methodDicLockN);
+          public MethodInfo? Method(Type type, string name, bool      nullable, params Type?[] argTypes          ) => MethodOrSomething(type, name, nullable,         BindingFlags, argTypes,           _methodDicN, _methodDicLockN);
+[Prio(1)] public MethodInfo? Method(Type type, string name, NullFlag? nullable, params Type?[] argTypes          ) => MethodOrSomething(type, name, nullable == null, BindingFlags, argTypes,           _methodDicN, _methodDicLockN);
+          public MethodInfo  Method(Type type, string name,                     Type?[] argTypes, Type[] typeArgs) => MethodOrThrow    (type, name,                   BindingFlags, argTypes, typeArgs, _methodDicN, _methodDicLockN);
+          public MethodInfo? Method(Type type, string name, bool      nullable, Type?[] argTypes, Type[] typeArgs) => MethodOrSomething(type, name, nullable,         BindingFlags, argTypes, typeArgs, _methodDicN, _methodDicLockN);
+[Prio(1)] public MethodInfo? Method(Type type, string name, NullFlag? nullable, Type?[] argTypes, Type[] typeArgs) => MethodOrSomething(type, name, nullable == null, BindingFlags, argTypes, typeArgs, _methodDicN, _methodDicLockN);
     
-    public MethodInfo  Method(Type type,                                [Caller] string name = ""        ) => MethodOrThrow    (type, name,                   BindingFlags,                     _methodDic0, _methodDicLock0);
-    public MethodInfo? Method(Type type,              bool    nullable, [Caller] string name = ""        ) => MethodOrSomething(type, name, nullable,         BindingFlags,                     _methodDic0, _methodDicLock0);
-    public MethodInfo? Method(Type type,              object? nullable, [Caller] string name = ""        ) => MethodOrSomething(type, name, nullable != null, BindingFlags,                     _methodDic0, _methodDicLock0);
-    public MethodInfo? Method(Type type, string name, bool    nullable                                   ) => MethodOrSomething(type, name, nullable,         BindingFlags,                     _methodDic0, _methodDicLock0);
-    public MethodInfo? Method(Type type, string name, object? nullable                                   ) => MethodOrSomething(type, name, nullable != null, BindingFlags,                     _methodDic0, _methodDicLock0);
-    public MethodInfo  Method(Type type, string name,                   params Type?[] argTypes          ) => MethodOrThrow    (type, name,                   BindingFlags, argTypes,           _methodDicN, _methodDicLockN);
-    public MethodInfo? Method(Type type, string name, bool    nullable, params Type?[] argTypes          ) => MethodOrSomething(type, name, nullable,         BindingFlags, argTypes,           _methodDicN, _methodDicLockN);
-    public MethodInfo? Method(Type type, string name, object? nullable, params Type?[] argTypes          ) => MethodOrSomething(type, name, nullable != null, BindingFlags, argTypes,           _methodDicN, _methodDicLockN);
-    public MethodInfo  Method(Type type, string name,                   Type?[] argTypes, Type[] typeArgs) => MethodOrThrow    (type, name,                   BindingFlags, argTypes, typeArgs, _methodDicN, _methodDicLockN);
-    public MethodInfo? Method(Type type, string name, bool    nullable, Type?[] argTypes, Type[] typeArgs) => MethodOrSomething(type, name, nullable,         BindingFlags, argTypes, typeArgs, _methodDicN, _methodDicLockN);
-    public MethodInfo? Method(Type type, string name, object? nullable, Type?[] argTypes, Type[] typeArgs) => MethodOrSomething(type, name, nullable != null, BindingFlags, argTypes, typeArgs, _methodDicN, _methodDicLockN);
-    
-    public MethodInfo Method<T>(T obj,  [Caller] string name = "") => MethodOrThrow(typeof(T), name, BindingFlagsAll, _methodDic0, _methodDicLock0);
-
-    public MethodInfo Method<T>(T obj, string name, params Type?[] argTypes) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, _methodDicN, _methodDicLockN);
-    
-    public MethodInfo Method<T>(T obj, string name, Type?[] argTypes, Type[] typeArgs) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, typeArgs, _methodDicN, _methodDicLockN);
-    
-    public MethodInfo Method<T>([Caller] string name = "") => MethodOrThrow(typeof(T), name, BindingFlagsAll, _methodDic0, _methodDicLock0);
-
-    public MethodInfo Method<T>(string name, params Type?[] argTypes) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, _methodDicN, _methodDicLockN);
-    
-    public MethodInfo Method<T>(string name, Type?[] argTypes, Type[] typeArgs) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, typeArgs, _methodDicN, _methodDicLockN);
+          public MethodInfo Method<T>(T obj,  [Caller] string name = "") => MethodOrThrow(typeof(T), name, BindingFlagsAll, _methodDic0, _methodDicLock0);
+          public MethodInfo Method<T>(T obj, string name, params Type?[] argTypes) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, _methodDicN, _methodDicLockN);
+          public MethodInfo Method<T>(T obj, string name, Type?[] argTypes, Type[] typeArgs) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, typeArgs, _methodDicN, _methodDicLockN);
+          public MethodInfo Method<T>([Caller] string name = "") => MethodOrThrow(typeof(T), name, BindingFlagsAll, _methodDic0, _methodDicLock0);
+          public MethodInfo Method<T>(string name, params Type?[] argTypes) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, _methodDicN, _methodDicLockN);
+          public MethodInfo Method<T>(string name, Type?[] argTypes, Type[] typeArgs) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, typeArgs, _methodDicN, _methodDicLockN);
 }
 
 public static partial class Reflect

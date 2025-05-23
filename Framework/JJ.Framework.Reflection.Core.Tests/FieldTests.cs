@@ -35,9 +35,9 @@ public class FieldTests : ReflectorTestBase
     {
         foreach (var reflect in _reflectors)
         {
-            ThrowsNotFound(() => reflect.Field("MyType", "_noField"));
-            ThrowsNotFound(() => reflect.Field <MyType>( "_noField"));
-            ThrowsNotFound(() => reflect.Field(_myType , "_noField"));
+            ThrowsNotFound(() => reflect.Field("MyType", "_noField"                 ));
+            ThrowsNotFound(() => reflect.Field <MyType>( "_noField"                 ));
+            ThrowsNotFound(() => reflect.Field(_myType , "_noField"                 ));
             ThrowsNotFound(() => reflect.Field("MyType", "_noField", nullable: false));
             ThrowsNotFound(() => reflect.Field <MyType>( "_noField", nullable: false));
             ThrowsNotFound(() => reflect.Field(_myType , "_noField", nullable: false));
@@ -49,12 +49,18 @@ public class FieldTests : ReflectorTestBase
     {
         foreach (var reflect in _reflectors)
         {
+            IsNull(reflect.Field("MyType", "_noField",       null          ));
+            IsNull(reflect.Field <MyType>( "_noField",       null          ));
+            IsNull(reflect.Field(_myType , "_noField",       null          ));
             IsNull(reflect.Field("MyType", "_noField",       nullable      ));
             IsNull(reflect.Field <MyType>( "_noField",       nullable      ));
             IsNull(reflect.Field(_myType , "_noField",       nullable      ));
             IsNull(reflect.Field("MyType", "_noField",       nullable: true));
             IsNull(reflect.Field <MyType>( "_noField",       nullable: true));
             IsNull(reflect.Field(_myType , "_noField",       nullable: true));
+            IsNull(reflect.Field("MyType", null,           "_noField"      ));
+            IsNull(reflect.Field <MyType>( null,           "_noField"      ));
+            IsNull(reflect.Field(_myType , null,           "_noField"      ));
             IsNull(reflect.Field("MyType", nullable,       "_noField"      ));
             IsNull(reflect.Field <MyType>( nullable,       "_noField"      ));
             IsNull(reflect.Field(_myType , nullable,       "_noField"      ));
@@ -85,9 +91,9 @@ public class FieldTests : ReflectorTestBase
         foreach (var reflect in _reflectorsMatchCase)
         {
             IsTrue(reflect.MatchCase);
-            ThrowsNotFound(() => reflect.Field("MyType", "_myfield"));
-            ThrowsNotFound(() => reflect.Field <MyType>( "_myfield"));
-            ThrowsNotFound(() => reflect.Field(_myType , "_myfield"));
+            ThrowsNotFound(() => reflect.Field("MyType", "_myfield"                 ));
+            ThrowsNotFound(() => reflect.Field <MyType>( "_myfield"                 ));
+            ThrowsNotFound(() => reflect.Field(_myType , "_myfield"                 ));
             ThrowsNotFound(() => reflect.Field("mytype", "_myField", nullable: false));
             ThrowsNotFound(() => reflect.Field <MyType>( "_myfield", nullable: false));
             ThrowsNotFound(() => reflect.Field(_myType , "_myfield", nullable: false));
@@ -100,12 +106,18 @@ public class FieldTests : ReflectorTestBase
         foreach (var reflect in _reflectorsMatchCase)
         {
             IsTrue(reflect.MatchCase);
+            IsNull(reflect.Field("MyType", "_myfield",       null          ));
+            IsNull(reflect.Field <MyType>( "_myfield",       null          ));
+            IsNull(reflect.Field(_myType , "_myfield",       null          ));
             IsNull(reflect.Field("MyType", "_myfield",       nullable      ));
             IsNull(reflect.Field <MyType>( "_myfield",       nullable      ));
             IsNull(reflect.Field(_myType , "_myfield",       nullable      ));
             IsNull(reflect.Field("myType", "_myField",       nullable: true));
             IsNull(reflect.Field <MyType>( "_myfield",       nullable: true));
             IsNull(reflect.Field(_myType , "_myfield",       nullable: true));
+            IsNull(reflect.Field("MyType", null,           "_myfield"      ));
+            IsNull(reflect.Field <MyType>( null,           "_myfield"      ));
+            IsNull(reflect.Field(_myType , null,           "_myfield"      ));
             IsNull(reflect.Field("MyType", nullable,       "_myfield"      ));
             IsNull(reflect.Field <MyType>( nullable,       "_myfield"      ));
             IsNull(reflect.Field(_myType , nullable,       "_myfield"      ));
@@ -122,19 +134,22 @@ public class FieldTests : ReflectorTestBase
     {
         foreach (var reflect in _reflectors)
         {
-            AssertBaseField(reflect.Field("MyBase", "_myBaseField"));
-            AssertBaseField(reflect.Field <MyBase>( "_myBaseField"));
-            AssertBaseField(reflect.Field(_myBase , "_myBaseField"));
-            AssertBaseField(reflect.Field("MyType", "_myBaseField"));
-            AssertBaseField(reflect.Field <MyType>( "_myBaseField"));
-            AssertBaseField(reflect.Field(_myType , "_myBaseField"));
+            AssertBaseField(     reflect.Field("MyBase", "_myBaseField"      ));
+            AssertBaseField(     reflect.Field <MyBase>( "_myBaseField"      ));
+            AssertBaseField(     reflect.Field(_myBase , "_myBaseField"      ));
+            AssertBaseField(     reflect.Field("MyType", "_myBaseField"      ));
+            AssertBaseField(     reflect.Field <MyType>( "_myBaseField"      ));
+            AssertBaseField(     reflect.Field(_myType , "_myBaseField"      ));
             // Negative match
-            ThrowsNotFound(() => reflect.Field("MyBase", "_myField"));
-            ThrowsNotFound(() => reflect.Field <MyBase>( "_myField"));
-            ThrowsNotFound(() => reflect.Field(_myBase , "_myField"));
-            IsNull(reflect.Field("MyBase", "_myField", nullable));
-            IsNull(reflect.Field <MyBase>( "_myField", nullable));
-            IsNull(reflect.Field(_myBase , "_myField", nullable));
+            ThrowsNotFound(() => reflect.Field("MyBase", "_myField"          ));
+            ThrowsNotFound(() => reflect.Field <MyBase>( "_myField"          ));
+            ThrowsNotFound(() => reflect.Field(_myBase , "_myField"          ));
+            IsNull(              reflect.Field("MyBase", "_myField", null    ));
+            IsNull(              reflect.Field <MyBase>( "_myField", null    ));
+            IsNull(              reflect.Field(_myBase , "_myField", null    ));
+            IsNull(              reflect.Field("MyBase", "_myField", nullable));
+            IsNull(              reflect.Field <MyBase>( "_myField", nullable));
+            IsNull(              reflect.Field(_myBase , "_myField", nullable));
         }
     }
     
@@ -165,17 +180,22 @@ public class FieldTests : ReflectorTestBase
         AssertField(Field(" mytype ", "_myfield \r\n"));
         
         // Coverage
-        AssertField(Field("MyType", "_myField", nullable));
-        AssertField(Field(_myType , "_myField", nullable));
-        AssertField(Field("MyType", "_myField", nullable: true));
+        AssertField(Field("MyType", "_myField", null           ));
+        AssertField(Field(_myType , "_myField", null           ));
+        AssertField(Field("MyType", "_myField", nullable       ));
+        AssertField(Field(_myType , "_myField", nullable       ));
+        AssertField(Field("MyType", "_myField", nullable: true ));
         AssertField(Field <MyType>( "_myField", nullable: false));
-        AssertField(Field(_myType , "_myField", nullable: true));
-        AssertField(Field("MyType", nullable, "_myField"));
-        AssertField(Field <MyType>( nullable, "_myField"));
-        AssertField(Field(_myType , nullable, "_myField"));
-        AssertField(Field("MyType", nullable: true, "_myField"));
-        AssertField(Field <MyType>( nullable: true, "_myField"));
-        AssertField(Field(_myType , nullable: true, "_myField"));
+        AssertField(Field(_myType , "_myField", nullable: true ));
+        AssertField(Field("MyType", null,           "_myField" ));
+        AssertField(Field <MyType>( null,           "_myField" ));
+        AssertField(Field(_myType , null,           "_myField" ));
+        AssertField(Field("MyType", nullable,       "_myField" ));
+        AssertField(Field <MyType>( nullable,       "_myField" ));
+        AssertField(Field(_myType , nullable,       "_myField" ));
+        AssertField(Field("MyType", nullable: true, "_myField" ));
+        AssertField(Field <MyType>( nullable: true, "_myField" ));
+        AssertField(Field(_myType , nullable: true, "_myField" ));
     }
     
     // Extensions
@@ -189,6 +209,7 @@ public class FieldTests : ReflectorTestBase
         
         // NotFound
         ThrowsNotFound(() => _myType.Field("None"          ));
+        IsNull        (() => _myType.Field("None", null    ));
         IsNull        (() => _myType.Field("None", nullable));
 
         // Base Types
@@ -199,25 +220,18 @@ public class FieldTests : ReflectorTestBase
         AssertField(_myType.Field("_myfield \r\n"));
         
         // Coverage
+        AssertField(_myType .Field("_myField",       null          ));
         AssertField(_myType .Field("_myField",       nullable      ));
         AssertField(_myType .Field("_myField",       nullable: true));
+        AssertField(_myType .Field(null,           "_myField"      ));
         AssertField(_myType .Field(nullable,       "_myField"      ));
         AssertField(_myType .Field(nullable: true, "_myField"      ));
+        AssertField("myType".Field("_myField",       null          ));
         AssertField("myType".Field("_myField",       nullable      ));
         AssertField("myType".Field("_myField",       nullable: true));
+        AssertField("myType".Field(null,           "_myField"      ));
         AssertField("myType".Field(nullable,       "_myField"      ));
         AssertField("myType".Field(nullable: true, "_myField"      ));
-        
-        // Too weird
-        /*
-        AssertField("_myField".Field<MyType>());
-        AssertField("_myField".Field<MyType>(nullable));
-        AssertField("_myField".Field<MyType>(nullable: true));
-        AssertField("_myField".Field<MyType>(nullable: false));
-        AssertField("_myField".Field<MyType>(nullable: false));
-        AssertField(nullable.Field<MyType>("_myField"));
-        AssertField(true.Field<MyType>("_myField"));
-        */
     }
     
     // From Object 
@@ -231,46 +245,58 @@ public class FieldTests : ReflectorTestBase
             AssertField    (              Field(obj, "_myfield", nullable: false ));
             AssertField    (              Field(obj, "_myField", nullable: true  ));
             AssertField    (              Field(obj, "_MYFIELD", nullable        ));
+            AssertField    (              Field(obj, "_MYFIELD", null            ));
             AssertField    (              Field(obj, nullable: false, "_myField "));
             AssertField    (              Field(obj, nullable: true,  "_myfield "));
             AssertField    (              Field(obj, nullable,        "_MYFIELD "));
+            AssertField    (              Field(obj, null,            "_MYFIELD "));
             ThrowsNotFound (() =>         Field(obj, "_noField"                  ));
             ThrowsNotFound (() =>         Field(obj, "_noField", nullable: false ));
             IsNull         (              Field(obj, "_noField", nullable: true  ));
             IsNull         (              Field(obj, "_noField", nullable        ));
+            IsNull         (              Field(obj, "_noField", null            ));
             ThrowsNotFound (() =>         Field(obj, nullable: false, "_noField" ));
             IsNull         (              Field(obj, nullable: true,  "_noField" ));
             IsNull         (              Field(obj, nullable,        "_noField" ));
+            IsNull         (              Field(obj, null,            "_noField" ));
             AssertBaseField(              Field(obj, "_myBaseField "             ));
             AssertField    (      obj    .Field(     "_myField"                  ));
             AssertField    (      obj    .Field(     "_myfield", nullable: false ));
             AssertField    (      obj    .Field(     "_myField", nullable: true  ));
             AssertField    (      obj    .Field(     "_MYFIELD", nullable        ));
+            AssertField    (      obj    .Field(     "_MYFIELD", null            ));
             AssertField    (      obj    .Field(     nullable: false, "_myField "));
             AssertField    (      obj    .Field(     nullable: true,  "_myfield "));
             AssertField    (      obj    .Field(     nullable,        "_MYFIELD "));
+            AssertField    (      obj    .Field(     null,            "_MYFIELD "));
             ThrowsNotFound (() => obj    .Field(     "_noField"                  ));
             ThrowsNotFound (() => obj    .Field(     "_noField", nullable: false ));
             IsNull         (      obj    .Field(     "_noField", nullable: true  ));
             IsNull         (      obj    .Field(     "_noField", nullable        ));
+            IsNull         (      obj    .Field(     "_noField", null            ));
             ThrowsNotFound (() => obj    .Field(     nullable: false, "_noField" ));
             IsNull         (      obj    .Field(     nullable: true,  "_noField" ));
             IsNull         (      obj    .Field(     nullable,        "_noField" ));
+            IsNull         (      obj    .Field(     null,            "_noField" ));
             AssertBaseField(      obj    .Field(     "_myBaseField "             ));
             AssertField    (      Reflect.Field(obj, "_myField"                  ));
             AssertField    (      Reflect.Field(obj, "_myfield", nullable: false ));
             AssertField    (      Reflect.Field(obj, "_myField", nullable: true  ));
             AssertField    (      Reflect.Field(obj, "_MYFIELD", nullable        ));
+            AssertField    (      Reflect.Field(obj, "_MYFIELD", null            ));
             AssertField    (      Reflect.Field(obj, nullable: false, "_myField "));
             AssertField    (      Reflect.Field(obj, nullable: true,  "_myfield "));
             AssertField    (      Reflect.Field(obj, nullable,        "_MYFIELD "));
+            AssertField    (      Reflect.Field(obj, null,            "_MYFIELD "));
             ThrowsNotFound (() => Reflect.Field(obj, "_noField"                  ));
             ThrowsNotFound (() => Reflect.Field(obj, "_noField", nullable: false ));
             IsNull         (      Reflect.Field(obj, "_noField", nullable: true  ));
             IsNull         (      Reflect.Field(obj, "_noField", nullable        ));
+            IsNull         (      Reflect.Field(obj, "_noField", null            ));
             ThrowsNotFound (() => Reflect.Field(obj, nullable: false, "_noField" ));
             IsNull         (      Reflect.Field(obj, nullable: true,  "_noField" ));
             IsNull         (      Reflect.Field(obj, nullable,        "_noField" ));
+            IsNull         (      Reflect.Field(obj, null,            "_noField" ));
             AssertBaseField(      Reflect.Field(obj, "_myBaseField "             ));
         }
         
@@ -280,16 +306,20 @@ public class FieldTests : ReflectorTestBase
             AssertField    (      reflect.Field(obj, "_myfield", nullable: false ));
             AssertField    (      reflect.Field(obj, "_myField", nullable: true  ));
             AssertField    (      reflect.Field(obj, "_MYFIELD", nullable        ));
+            AssertField    (      reflect.Field(obj, "_MYFIELD", null            ));
             AssertField    (      reflect.Field(obj, nullable: false, "_myField "));
             AssertField    (      reflect.Field(obj, nullable: true,  "_myfield "));
             AssertField    (      reflect.Field(obj, nullable,        "_MYFIELD "));
-            ThrowsNotFound(() => reflect.Field(obj, "_noField"                  ));
-            ThrowsNotFound(() => reflect.Field(obj, "_noField", nullable: false ));
-            IsNull        (      reflect.Field(obj, "_noField", nullable: true  ));
-            IsNull        (      reflect.Field(obj, "_noField", nullable        ));
-            ThrowsNotFound(() => reflect.Field(obj, nullable: false, "_noField" ));
-            IsNull        (      reflect.Field(obj, nullable: true,  "_noField" ));
-            IsNull        (      reflect.Field(obj, nullable,        "_noField" ));
+            AssertField    (      reflect.Field(obj, null,            "_MYFIELD "));
+            ThrowsNotFound (() => reflect.Field(obj, "_noField"                  ));
+            ThrowsNotFound (() => reflect.Field(obj, "_noField", nullable: false ));
+            IsNull         (      reflect.Field(obj, "_noField", nullable: true  ));
+            IsNull         (      reflect.Field(obj, "_noField", nullable        ));
+            IsNull         (      reflect.Field(obj, "_noField", null            ));
+            ThrowsNotFound (() => reflect.Field(obj, nullable: false, "_noField" ));
+            IsNull         (      reflect.Field(obj, nullable: true,  "_noField" ));
+            IsNull         (      reflect.Field(obj, nullable,        "_noField" ));
+            IsNull         (      reflect.Field(obj, null,            "_noField" ));
             AssertBaseField(      reflect.Field(obj, "_myBaseField "             ));
         }
         
@@ -299,54 +329,14 @@ public class FieldTests : ReflectorTestBase
             ThrowsNotFound (() => reflect.Field(obj, "_myfield", nullable: false ));
             IsNull         (      reflect.Field(obj, "_myFIELD", nullable: true  ));
             IsNull         (      reflect.Field(obj, "_MYFIELD", nullable        ));
+            IsNull         (      reflect.Field(obj, "_MYFIELD", null            ));
             AssertField    (      reflect.Field(obj, nullable: false, " _myField"));
             IsNull         (      reflect.Field(obj, nullable: true,  " _myfield"));
             IsNull         (      reflect.Field(obj, nullable,        " _MYFIELD"));
+            IsNull         (      reflect.Field(obj, null,            " _MYFIELD"));
             AssertBaseField(      reflect.Field(obj, "_myBaseField"              ));
         }
     }
-    
-    // Nullable Types
-    
-    // TODO: Make it work for fields?
-    /*
-    [TestMethod]
-    public void Reflect_Field_NullableTypes()
-    {
-        // Nullable value
-        Type nullType = typeof(DateTime?);
-        IsNotNull(nullType.Field("HasValue"));
-        IsNotNull(nullType.Field("Year"));
-        
-        DateTime? nullyVal = new(2025, 05, 20);
-        IsNotNull(Field(nullyVal, "HasValue"));
-        IsNotNull(Field(nullyVal, "Year"));
-        
-        var yearField = nullType.Field("Year");
-        var yearBack = yearField.GetValue(nullyVal);
-        AreEqual(yearBack, 2025);
-        
-        // Non nullable value
-        Type nonNullType = typeof(DateTime);
-        DateTime nonNullValue = new(2025, 05, 20);
-        IsNotNull(nonNullType.Field("Year"));
-        
-        // Reference types
-        MyType? nullObj = null;
-            
-        // Nullable reference type field
-        AssertField(Field<MyType?>("_myField"));
-        AssertField(nullObj.Field("_myField")); // Conclusion: T accepts nulls too here.
-
-        // Nullable base field
-        AssertBaseField(Field<MyBase?>("_myBaseField"));
-        AssertBaseField(Field<MyType?>("_myBaseField"));
-
-        // NotFound scenarios
-        ThrowsNotFound(() => Field<MyType?>("None"));
-    }
-    */
-    
     
     // Invariant under Nullable
 
@@ -358,6 +348,9 @@ public class FieldTests : ReflectorTestBase
             AssertField(reflect.Field("MyType", "_myField"                        ));
             AssertField(reflect.Field <MyType>( "_myField"                        ));
             AssertField(reflect.Field(_myType , "_myField"                        ));
+            AssertField(reflect.Field("MyType", "_myField",        null           ));
+            AssertField(reflect.Field <MyType>( "_myField",        null           ));
+            AssertField(reflect.Field(_myType , "_myField",        null           ));
             AssertField(reflect.Field("MyType", "_myField",        nullable       ));
             AssertField(reflect.Field <MyType>( "_myField",        nullable       ));
             AssertField(reflect.Field(_myType , "_myField",        nullable       ));
@@ -367,6 +360,9 @@ public class FieldTests : ReflectorTestBase
             AssertField(reflect.Field("MyType", "_myField",        nullable: false));
             AssertField(reflect.Field <MyType>( "_myField",        nullable: false));
             AssertField(reflect.Field(_myType , "_myField",        nullable: false));
+            AssertField(reflect.Field("MyType", null,            "_myField"       ));
+            AssertField(reflect.Field <MyType>( null,            "_myField"       ));
+            AssertField(reflect.Field(_myType , null,            "_myField"       ));
             AssertField(reflect.Field("MyType", nullable,        "_myField"       ));
             AssertField(reflect.Field <MyType>( nullable,        "_myField"       ));
             AssertField(reflect.Field(_myType , nullable,        "_myField"       ));
@@ -384,12 +380,12 @@ public class FieldTests : ReflectorTestBase
     private void AssertField(FieldInfo? field)
     {
         IsNotNull(field);
-        AreEqual("_myField", field!.Name);
+        AreEqual("_myField", field.Name);
     }
 
     private void AssertBaseField(FieldInfo? field)
     {
         IsNotNull(field);
-        AreEqual("_myBaseField", field!.Name);
+        AreEqual("_myBaseField", field.Name);
     }
 }
