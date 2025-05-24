@@ -8,7 +8,7 @@ public class TestingCoreRegressionTests
     public void Test_CaseCollection_Initialization_RegressionCase()
     {
         // This used to fail before FilledInHelper overloads with HashSet<T> and IList<T> were added.
-        // Before the hope was that HashSet<T> would invoke an overload with ICollection<T>,
+        // Before, the hope was that HashSet<T> would invoke an overload with ICollection<T>,
         // but instead fell back to overloads that take T,
         // disrupting the intention of checking a collection for null or empty.
         CaseCollection<Case> cases = CreateCasesInit;
@@ -51,5 +51,25 @@ public class TestingCoreRegressionTests
         new Case ( (_,1) , (1,0) ), 
         new Case ( (0,1) , (1,0) ) 
     );
-
+    
+    [TestMethod]
+    public void Case_FromTemplate_ChangesNullPropsToZeroes_Regression()
+    {
+        {
+            var caseProp = new CaseProp<int> { Nully = null, Coalesced = 4 };
+            AreEqual("?4", caseProp.Descriptor);
+        }
+        {
+            var cases = new CaseCollection<Case2>();
+            var template = new Case2 { Name = "Template", MainProp = { Nully = null, Coalesced = 4 } };
+            AreEqual("?4", template.MainProp.Descriptor);
+            
+            var subCases = cases.FromTemplate(template, new Case2 { Name = "Derived" });
+            var subCase = subCases.GetAll().Single();
+            //AreEqual("0?4", subCase.MainProp.Descriptor);
+            AreEqual("?4", subCase.MainProp.Descriptor); // Solved! Did it!
+        }
+    }
+    
+    private class Case2 : CaseBase<int> { }
 }

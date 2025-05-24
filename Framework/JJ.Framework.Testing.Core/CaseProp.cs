@@ -116,11 +116,18 @@ namespace JJ.Framework.Testing.Core
             // Favor specifically specified values over template values,
             // even though that gives 2 competing meanings to Nully values:
             // either not filled in in the test case or use default value in the API.
+                
+            // Coalesce now does a hard coalesce from null int to 0.
+            //From.Nully     = Coalesce(From.Nully,     template.From.Nully);
+            //To.Nully       = Coalesce(To.Nully,       template.To.Nully);
+            //From.Coalesced = Coalesce(From.Coalesced, template.From.Coalesced);
+            //To.Coalesced   = Coalesce(To.Coalesced,   template.To.Coalesced);
             
-            From.Nully     = Coalesce(From.Nully,     template.From.Nully);
-            From.Coalesced = Coalesce(From.Coalesced, template.From.Coalesced);
-            To.Nully       = Coalesce(To.Nully,       template.To.Nully);
-            To.Coalesced   = Coalesce(To.Coalesced,   template.To.Coalesced);
+            // Replaced with explicit fallback instead.
+            if (!From.Nully    .FilledIn()) From.Nully     = template.From.Nully    ;
+            if (!To  .Nully    .FilledIn()) To  .Nully     = template.To  .Nully    ;
+            if (!From.Coalesced.FilledIn()) From.Coalesced = template.From.Coalesced;
+            if (!To  .Coalesced.FilledIn()) To  .Coalesced = template.To  .Coalesced;
         }
     }
 }
