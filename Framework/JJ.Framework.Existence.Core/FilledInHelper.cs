@@ -1,4 +1,6 @@
-﻿namespace JJ.Framework.Existence.Core;
+﻿    // ReSharper disable PossibleMultipleEnumeration
+    
+namespace JJ.Framework.Existence.Core;
 
 public static class FilledInHelper
 {
@@ -6,7 +8,11 @@ public static class FilledInHelper
     // For instance C# will choose a wider type over a more narrow generic type.
     // I.e. in case of List<T> it'd rather pick object? than IList<T>, so you have to specify an overload with List<T> explicitly.
     // Also, nullable semantics for value types couldn't be used, unless handle things specifically as `T?` (with a question mark).
-    
+        
+    // TODO: Use Flags enums for more meaningful single-word parameters, e.g. `IgnoreCase` instead of `true`.
+    // Or sneakier: fake it with a lower case `IgnoreCaseFlags.ignoreCase` so you can type Is(value, ignoreCase),
+    // as if that's new boolean syntax.
+
     public static bool FilledIn   ([NotNull]            string? value)                  => FilledIn(value, false);
     public static bool FilledIn   ([NotNull]            string? value, bool trimSpace)  => trimSpace ? !IsNullOrWhiteSpace(value): !IsNullOrEmpty(value);
     public static bool FilledIn<T>([NotNull]            T       value)                  => !Equals(value, default(T));
@@ -48,10 +54,6 @@ public static class FilledInHelper
     public static bool IsNully<T> ([NotNullWhen(false)] IReadOnlyList      <T>? coll)   => !FilledIn(coll);
     public static bool IsNully<T> ([NotNullWhen(false)] IReadOnlyCollection<T>? coll)   => !FilledIn(coll);
     public static bool IsNully<T> ([NotNullWhen(false)] IEnumerable        <T>? coll)   => !FilledIn(coll);
-    
-    // TODO: Use Flags enums for more meaningful single-word parameters, e.g. `IgnoreCase` instead of `true`.
-    // Or sneakier: fake it with a lower case `IgnoreCaseFlags.ignoreCase` so you can type Is(value, ignoreCase),
-    // as if that's new boolean syntax.
     
     public static bool Is(string? value, string? comparison) => Is(value, comparison, ignoreCase: true);
     public static bool Is(string? value, string? comparison, bool ignoreCase) => string.Equals(value ?? "", comparison ?? "", ignoreCase ? OrdinalIgnoreCase : Ordinal);
@@ -110,9 +112,7 @@ public static class FilledInHelper
     public static ICollection        <T> Coalesce<T>(ICollection        <T>? coll,  ICollection        <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
     public static IReadOnlyList      <T> Coalesce<T>(IReadOnlyList      <T>? coll,  IReadOnlyList      <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
     public static IReadOnlyCollection<T> Coalesce<T>(IReadOnlyCollection<T>? coll,  IReadOnlyCollection<T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
-    // ReSharper disable PossibleMultipleEnumeration
     public static IEnumerable        <T> Coalesce<T>(IEnumerable        <T>? coll,  IEnumerable        <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
-    // ReSharper restore PossibleMultipleEnumeration
 
     // 2-Stage Fallback (for some)
     
