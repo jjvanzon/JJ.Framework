@@ -63,7 +63,7 @@ namespace JJ.Framework.Testing.Core
                 if (!Has(Nully) && !Has(Coalesced)) return "";
                 if (Equals(Nully, Coalesced)) return $"{Nully}";
                 if (Has(Nully) && !Has(Coalesced)) return $"{Nully}";
-                return $"({Nully}?{Coalesced})";
+                return $"{Nully}?{Coalesced}";
             }
         }
     }

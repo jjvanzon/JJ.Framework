@@ -97,7 +97,7 @@ namespace JJ.Framework.Testing.Core
                 // No Change
                 if (Equals(From.Nully, To.Nully) && Equals(From.Coalesced, To.Coalesced))
                 {
-                    return $"({Nully}?{Coalesced})";
+                    return $"{Nully}?{Coalesced}";
                 }
                 
                 // Mutation
