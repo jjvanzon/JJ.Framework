@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using JJ.Framework.Existence.Core;
 using static JJ.Framework.Testing.Core.DebuggerDisplayFormatter;
+using static JJ.Framework.Existence.Core.FilledInHelper;
 
 namespace JJ.Framework.Testing.Core
 {
@@ -59,10 +60,10 @@ namespace JJ.Framework.Testing.Core
         {
             get
             {
-                if (!FilledInHelper.Has(Nully) && !FilledInHelper.Has(Coalesced)) return "";
+                if (!Has(Nully) && !Has(Coalesced)) return "";
                 if (Equals(Nully, Coalesced)) return $"{Nully}";
-                if (FilledInHelper.Has(Nully) && !FilledInHelper.Has(Coalesced)) return $"{Nully}";
-                return $"({Nully},{Coalesced})";
+                if (Has(Nully) && !Has(Coalesced)) return $"{Nully}";
+                return $"({Nully}?{Coalesced})";
             }
         }
     }
