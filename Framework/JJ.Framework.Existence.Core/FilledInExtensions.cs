@@ -89,6 +89,8 @@ public static class FilledInExtensions
     public static bool In<T>(this T?   value, IEnumerable        <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
     public static bool In<T>(this T?   value, IEnumerable        <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
     
+    // TODO: Add a variation on Coalesce called `Fallback`, that won't hard coalesce nulls, but keep them if last fallback is null.
+
     // Plain Coalesce (for some)
     
     public static string Coalesce   (this string? value                                     )  => Has(value           ) ? value       :                 ""     ;
