@@ -1062,4 +1062,13 @@ public MethodInfo? Method(Type type, object? nullable, string  name,     params 
     public static MethodInfo Method<T>(this T obj, string name, Type?[] argTypes, Type[] typeArgs) 
         => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, typeArgs, _methodDicN, _methodDicLockN);
 
+    // TODO: Mention arg types.
+    throw new Exception($"Method {name} not found in {type.Name}.");
+    throw new Exception(
+        $"Method not found: {type.Name}.{name}" +
+        $"({Join(", ", argTypes.Select(x => $"{x?.Name ?? "?"}"))})");
+    throw new Exception(
+        $"Method not found: {type.Name}.{name}" +
+        $"({Join(", ", argTypes.Select(x => FormatName(x?.Name)))})");
+
 ```
