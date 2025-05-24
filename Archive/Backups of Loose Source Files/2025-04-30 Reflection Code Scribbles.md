@@ -1033,3 +1033,33 @@ public MethodInfo? Method(Type type, object? nullable, string  name,     params 
         AssertField(nullable.Field<MyType>("_myField"));
         AssertField(true.Field<MyType>("_myField"));
 ```
+
+### Method
+
+```cs
+    public MethodInfo Method<T>(T obj, [Caller] string name = ""                                  ) => MethodOrThrow(typeof(T), name, BindingFlagsAll,                     _methodDic0, _methodDicLock0);
+    public MethodInfo Method<T>(T obj,          string name,     params Type?[] argTypes          ) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes,           _methodDicN, _methodDicLockN);
+    public MethodInfo Method<T>(T obj,          string name,     Type?[] argTypes, Type[] typeArgs) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, typeArgs, _methodDicN, _methodDicLockN);
+    public MethodInfo Method<T>(       [Caller] string name = ""                                  ) => MethodOrThrow(typeof(T), name, BindingFlagsAll,                     _methodDic0, _methodDicLock0);
+    public MethodInfo Method<T>(                string name,     params Type?[] argTypes          ) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes,           _methodDicN, _methodDicLockN);
+    public MethodInfo Method<T>(                string name,     Type?[] argTypes, Type[] typeArgs) => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, typeArgs, _methodDicN, _methodDicLockN);
+    
+    public static MethodInfo Method(this Type type, [Caller] string name = "") 
+        => MethodOrThrow(type, name, BindingFlagsAll, _methodDic0, _methodDicLock0);
+
+    public static MethodInfo Method(this Type type, string name, params Type?[] argTypes) 
+        => MethodOrThrow(type, name, BindingFlagsAll, argTypes, _methodDicN, _methodDicLockN);
+    
+    public static MethodInfo Method(this Type type, string name, Type?[] argTypes, Type[] typeArgs) 
+        => MethodOrThrow(type, name, BindingFlagsAll, argTypes, typeArgs, _methodDicN, _methodDicLockN);
+    
+    public static MethodInfo Method<T>(this T obj, [Caller] string name = "") 
+        => MethodOrThrow(typeof(T), name, BindingFlagsAll, _methodDic0, _methodDicLock0);
+
+    public static MethodInfo Method<T>(this T obj, string name, params Type?[] argTypes) 
+        => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, _methodDicN, _methodDicLockN);
+    
+    public static MethodInfo Method<T>(this T obj, string name, Type?[] argTypes, Type[] typeArgs) 
+        => MethodOrThrow(typeof(T), name, BindingFlagsAll, argTypes, typeArgs, _methodDicN, _methodDicLockN);
+
+```
