@@ -104,7 +104,8 @@ internal static partial class ReflectUtility
         MethodInfo? method = MethodOrNull(type, name, bindingFlags, dic, lck);
         if (method == null)
         {
-            throw new Exception($"Method {name} not found in {type.Name}.");
+            throw new Exception("Method not found: " + Format(type, name));
+
         }
         return method;
     }
@@ -117,12 +118,11 @@ internal static partial class ReflectUtility
         MethodInfo? method = MethodOrNull(type, name, bindingFlags, argTypes, dic, lck);
         if (method == null)
         {
-            // TODO: Mention arg types.
-            throw new Exception($"Method {name} not found in {type.Name}.");
+            throw new Exception("Method not found: " + Format(type, name, argTypes));
         }
         return method;
     }
-    
+
     [MethodImpl(AggressiveInlining)]
     public static MethodInfo MethodOrThrow(
         Type type, string name, BindingFlags bindingFlags, Type?[] argTypes, Type[] typeArgs, 
@@ -131,8 +131,7 @@ internal static partial class ReflectUtility
         MethodInfo? method = MethodOrNull(type, name, bindingFlags, argTypes, typeArgs, dic, lck);
         if (method == null)
         {
-            // TODO: Mention arg types.
-            throw new Exception($"Method {name} not found in {type.Name}.");
+            throw new Exception("Method not found: " + Format(type, name, argTypes, typeArgs));
         }
         return method;
     }
@@ -241,6 +240,22 @@ internal static partial class ReflectUtility
         => nullable ?
            MethodOrNull (type, name, bindingFlags, argTypes, typeArgs, dic, lck) :
            MethodOrThrow(type, name, bindingFlags, argTypes, typeArgs, dic, lck);
+
+    // Helpers
+    
+    // TODO: Make reusable somewhere. I could reuse it in some places.
+    
+    private static string Format(Type? type, string? name, Type?[] argTypes, Type[] typeArgs) 
+        => $"{Format(type)}.{Format(name)}<{Format(typeArgs)}>({Format(argTypes)})";
+    
+    private static string Format(Type? type, string? name, params Type?[] argTypes) 
+        => $"{Format(type)}.{Format(name)}({Format(argTypes)})";
+    
+    private static string Format(Type?[] types) => Join(", ", types.Select(Format));
+    
+    private static string Format(Type? type) => Has(type) ? type.Name : "?";
+    
+    private static string Format(string? name) => Has(name) ? name : "?";
 }
 
 // ReSharper disable UnusedParameter.Global
