@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
+using static System.Globalization.CharUnicodeInfo;
+using static System.Globalization.UnicodeCategory;
+using static System.Text.NormalizationForm;
 
 namespace JJ.Framework.Common
 {
@@ -130,8 +132,18 @@ namespace JJ.Framework.Common
 
             return text;
         }
-
-        /// <inheritdoc cref="_replace" />
+        
+        // TODO: Manual merge back to legacy branch.
+        public static string RemoveAccents(this string input)
+        {
+            if (input == null)
+                return "";
+            string formD = input.Normalize(FormD);
+            var stripped = formD.Where(x => GetUnicodeCategory(x) != NonSpacingMark);
+            return new string(stripped.ToArray()).Normalize(FormC);
+        }
+    
+    /// <inheritdoc cref="_replace" />
         public static string Replace(this string input, string oldValue, string newValue, bool ignoreCase)
         {
             if (string.IsNullOrEmpty(input)) return input;

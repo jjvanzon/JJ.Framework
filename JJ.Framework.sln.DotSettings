@@ -19,4 +19,5 @@
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Prio/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Refness/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Seps/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Truthy/@EntryIndexedValue">True</s:Boolean>
 </wpf:ResourceDictionary>

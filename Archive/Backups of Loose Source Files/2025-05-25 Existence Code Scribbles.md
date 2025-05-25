@@ -70,4 +70,223 @@
         IsFalse(FilledIn(_nonNullSpace, trimSpace: true));
     }
 
-````
+```
+
+### FilledInHelper Redundant Collection Overloads
+
+```
+using System.Collections;
+
+    // Part of the reason for so many overloads is C#'s best-matching quirks in case of generics.
+    // For instance C# will choose a wider concrete type over a more narrow ìnterface.
+    // I.e. in case of List<T> it'd rather pick object? than IList<T>.
+    // To work around that, an overload with List<T> is specified explicitly and so for other collection types.
+    // Also, nullable semantics for value types couldn't be used, unless handle things specifically as `T?` (with a question mark).
+    //public static bool FilledIn   ([NotNull]                /*params*/ object?[]? coll )                  => coll is { Length: > 0 };
+    //public static bool FilledIn<T>([NotNull]                /*params*/ T      []? coll ) where T : struct => coll is { Length: > 0 };
+    //public static bool FilledIn<T>([NotNull]                /*params*/ T?     []? coll ) where T : struct => coll is { Length: > 0 };
+    //public static bool FilledIn<T>([NotNull]                List               <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull]                HashSet            <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull]                IList              <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn   ([NotNull]                IList                 ? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull]                ISet               <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull]                ICollection        <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull]                IReadOnlyList      <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull]                IReadOnlyCollection<T>? coll) => coll is { Count: > 0 };
+
+    //public static bool Has        ([NotNull]                /*params*/ object?[]? coll )                  => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull]                /*params*/ T      []? coll ) where T : struct => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull]                /*params*/ T?     []? coll ) where T : struct => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull]                List               <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull]                HashSet            <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull]                IList              <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull]                ISet               <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull]                ICollection        <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull]                IReadOnlyList      <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull]                IReadOnlyCollection<T>? coll)   => FilledIn(coll);
+
+    //public static bool IsNully    ([NotNullWhen(false)]      /*params*/ object[]? coll )                  => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)]      /*params*/ T     []? coll ) where T : struct => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)]      /*params*/ T?    []? coll ) where T : struct => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)]      List               <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)]      HashSet            <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)]      IList              <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)]      ISet               <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)]      ICollection        <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)]      IReadOnlyList      <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)]      IReadOnlyCollection<T>? coll)   => !FilledIn(coll);
+
+    //public static bool In<T>(     T    value, params             T[]?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
+    //public static bool In<T>(     T?   value, params             T[]?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T?   value, params             T?[]? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T    value, List               <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
+    //public static bool In<T>(     T?   value, List               <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T?   value, List               <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T    value, HashSet            <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
+    //public static bool In<T>(     T?   value, HashSet            <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T?   value, HashSet            <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T    value, IList              <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
+    //public static bool In<T>(     T?   value, IList              <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T?   value, IList              <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T    value, ISet               <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
+    //public static bool In<T>(     T?   value, ISet               <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T?   value, ISet               <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T    value, ICollection        <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
+    //public static bool In<T>(     T?   value, ICollection        <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T?   value, ICollection        <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T    value, IReadOnlyList      <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
+    //public static bool In<T>(     T?   value, IReadOnlyList      <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T?   value, IReadOnlyList      <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T    value, IReadOnlyCollection<T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
+    //public static bool In<T>(     T?   value, IReadOnlyCollection<T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(     T?   value, IReadOnlyCollection<T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+
+    //public static                    T[] Coalesce<T>(                        T[]? coll,                     T[]? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    //public static List               <T> Coalesce<T>(     List               <T>? coll,  List               <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    //public static HashSet            <T> Coalesce<T>(     HashSet            <T>? coll,  HashSet            <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    //public static IList              <T> Coalesce<T>(     IList              <T>? coll,  IList              <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    //public static ISet               <T> Coalesce<T>(     ISet               <T>? coll,  ISet               <T>? fallback) => Has(coll) ? coll : fallback ?? new HashSet<T>();
+    //public static ICollection        <T> Coalesce<T>(     ICollection        <T>? coll,  ICollection        <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    //public static IReadOnlyList      <T> Coalesce<T>(     IReadOnlyList      <T>? coll,  IReadOnlyList      <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    //public static IReadOnlyCollection<T> Coalesce<T>(     IReadOnlyCollection<T>? coll,  IReadOnlyCollection<T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+
+    //public static string Coalesce   (     List               <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(     List               <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(     List               <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (     HashSet            <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(     HashSet            <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(     HashSet            <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (     IList              <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(     IList              <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(     IList              <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (     ISet               <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(     ISet               <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(     ISet               <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (     ICollection        <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(     ICollection        <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(     ICollection        <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (     IReadOnlyList      <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(     IReadOnlyList      <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(     IReadOnlyList      <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (     IReadOnlyCollection<string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(     IReadOnlyCollection<T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(     IReadOnlyCollection<T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    
+    //public static string Coalesce   (     params             string?[]? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(     params             T[]      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(     params             T?[]     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    
+```
+
+### FilledInExtensions Redundant Collection Overloads
+
+    // Part of the reason for so many overloads is C#'s best-matching quirks in case of generics.
+    // For instance C# will choose a wider concrete type over a more narrow ìnterface.
+    // I.e. in case of List<T> it'd rather pick object? than IList<T>.
+    // To work around that, an overload with List<T> is specified explicitly and so for other collection types.
+    // Also, nullable semantics for value types couldn't be used, unless handle things specifically as `T?` (with a question mark).
+
+    //public static bool FilledIn   ([NotNull] this          /*params*/ object?[]? coll )                  => coll is { Length: > 0 };
+    //public static bool FilledIn<T>([NotNull] this          /*params*/ T      []? coll ) where T : struct => coll is { Length: > 0 };
+    //public static bool FilledIn<T>([NotNull] this          /*params*/ T?     []? coll ) where T : struct => coll is { Length: > 0 };
+    //public static bool FilledIn<T>([NotNull] this           List               <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull] this           HashSet            <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull] this           IList              <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull] this           ISet               <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull] this           ICollection        <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull] this           IReadOnlyList      <T>? coll) => coll is { Count: > 0 };
+    //public static bool FilledIn<T>([NotNull] this           IReadOnlyCollection<T>? coll) => coll is { Count: > 0 };
+    
+    //public static bool Has        ([NotNull] this           string? value)                  => FilledIn(value);
+    //public static bool Has        ([NotNull] this           string? value, bool trimSpace)  => FilledIn(value, trimSpace);
+    //public static bool Has<T>     ([NotNull] this           T       value)                  => FilledIn(value);
+    //public static bool Has<T>     ([NotNull] this           T?      value) where T : struct => FilledIn(value);
+    //public static bool Has<T>     ([NotNull] this                              T[]? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull] this           List               <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull] this           HashSet            <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull] this           IList              <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull] this           ISet               <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull] this           ICollection        <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull] this           IReadOnlyList      <T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull] this           IReadOnlyCollection<T>? coll)   => FilledIn(coll);
+    //public static bool Has<T>     ([NotNull] this           IEnumerable        <T>? coll)   => FilledIn(coll);
+
+    //public static bool IsNully<T> ([NotNullWhen(false)] this object?[]  coll ) where T : struct => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)] this T      []? coll ) where T : struct => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)] this T?     []? coll ) where T : struct => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)] this List               <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)] this HashSet            <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)] this IList              <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)] this ISet               <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)] this ICollection        <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)] this IReadOnlyList      <T>? coll)   => !FilledIn(coll);
+    //public static bool IsNully<T> ([NotNullWhen(false)] this IReadOnlyCollection<T>? coll)   => !FilledIn(coll);
+
+    //public static bool In<T>(this T    value, params             T[]?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
+    //public static bool In<T>(this T?   value, params             T[]?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T?   value, params             T?[]? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T    value, List               <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
+    //public static bool In<T>(this T?   value, List               <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T?   value, List               <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T    value, HashSet            <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
+    //public static bool In<T>(this T?   value, HashSet            <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T?   value, HashSet            <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T    value, IList              <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
+    //public static bool In<T>(this T?   value, IList              <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T?   value, IList              <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T    value, ISet               <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
+    //public static bool In<T>(this T?   value, ISet               <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T?   value, ISet               <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T    value, ICollection        <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
+    //public static bool In<T>(this T?   value, ICollection        <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T?   value, ICollection        <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T    value, IReadOnlyList      <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
+    //public static bool In<T>(this T?   value, IReadOnlyList      <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T?   value, IReadOnlyList      <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T    value, IReadOnlyCollection<T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
+    //public static bool In<T>(this T?   value, IReadOnlyCollection<T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T?   value, IReadOnlyCollection<T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+
+    //public static object?[] Coalesce   (this object?[]? coll,  object?[]? fallback )                  => Has(coll) ? coll : fallback ?? [ ];
+    //public static T      [] Coalesce<T>(this T      []? coll,  T      []? fallback ) where T : struct => Has(coll) ? coll : fallback ?? [ ];
+    //public static T?     [] Coalesce<T>(this T?     []? coll,  T?     []? fallback ) where T : struct => Has(coll) ? coll : fallback ?? [ ];
+    //public static List               <T> Coalesce<T>(this List               <T>? coll,  List               <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    //public static HashSet            <T> Coalesce<T>(this HashSet            <T>? coll,  HashSet            <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    //public static IList              <T> Coalesce<T>(this IList              <T>? coll,  IList              <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    //public static ISet               <T> Coalesce<T>(this ISet               <T>? coll,  ISet               <T>? fallback) => Has(coll) ? coll : fallback ?? new HashSet<T>();
+    //public static ICollection        <T> Coalesce<T>(this ICollection        <T>? coll,  ICollection        <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    //public static IReadOnlyList      <T> Coalesce<T>(this IReadOnlyList      <T>? coll,  IReadOnlyList      <T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+    //public static IReadOnlyCollection<T> Coalesce<T>(this IReadOnlyCollection<T>? coll,  IReadOnlyCollection<T>? fallback) => Has(coll) ? coll : fallback ?? [ ];
+
+    //public static string Coalesce   (this List               <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(this List               <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(this List               <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (this HashSet            <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(this HashSet            <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(this HashSet            <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (this IList              <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(this IList              <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(this IList              <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (this ISet               <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(this ISet               <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(this ISet               <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (this ICollection        <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(this ICollection        <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(this ICollection        <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (this IReadOnlyList      <string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(this IReadOnlyList      <T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(this IReadOnlyList      <T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+    //public static string Coalesce   (this IReadOnlyCollection<string?>? fallbacks)                 => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(this IReadOnlyCollection<T>      ? fallbacks)                 => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(this IReadOnlyCollection<T?>     ? fallbacks) where T: struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+
+    //public static bool In   (this string? value, params string?[]?     comparisons                 ) => comparisons?.Contains(value, ignoreCase: true)        ?? false;
+    //public static bool In   (this string? value, string?[]?            comparisons, bool ignoreCase) => comparisons?.Contains(value, ignoreCase      )        ?? false;
+    //public static bool In<T>(this T?   value, IEnumerable        <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+    //public static bool In<T>(this T?   value, IEnumerable        <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
+
+    //public static string Coalesce   (this string?[]? fallbacks)                  => Coalesce((IEnumerable<string?>?)fallbacks);
+    //public static T      Coalesce<T>(this T      []? fallbacks) where T : struct => Coalesce((IEnumerable<T>      ?)fallbacks);
+    //public static T      Coalesce<T>(this T?     []? fallbacks) where T : struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
+
+```

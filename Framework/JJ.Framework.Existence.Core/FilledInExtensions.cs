@@ -1,96 +1,44 @@
 ﻿    // ReSharper disable PossibleMultipleEnumeration
+// ReSharper disable ConstantNullCoalescingCondition
     
 namespace JJ.Framework.Existence.Core;
 
 public static class FilledInExtensions
 {
-    // Part of the reason for so many overloads is C#'s best-matching quirks in case of generics.
-    // For instance C# will choose a wider type over a more narrow generic type.
-    // I.e. in case of List<T> it'd rather pick object? than IList<T>, so you have to specify an overload with List<T> explicitly.
-    // Also, nullable semantics for value types couldn't be used, unless handle things specifically as `T?` (with a question mark).
+    public static bool FilledIn   ([NotNull]            this string?         value)                  => FilledInHelper.FilledIn(value);
+    public static bool FilledIn   ([NotNull]            this string?         value, bool trimSpace)  => FilledInHelper.FilledIn(value, trimSpace);
+    public static bool FilledIn   ([NotNull]            this object?         value)                  => FilledInHelper.FilledIn(value);
+    public static bool FilledIn<T>(                     this T               value) where T : struct => FilledInHelper.FilledIn(value);
+    public static bool FilledIn<T>([NotNull]            this T?              value) where T : struct => FilledInHelper.FilledIn(value);
+    public static bool FilledIn<T>([NotNull]            this IEnumerable<T>? coll )                  => FilledInHelper.FilledIn(coll);
         
-    // TODO: Use Flags enums for more meaningful single-word parameters, e.g. `IgnoreCase` instead of `true`.
-    // Or sneakier: fake it with a lower case `IgnoreCaseFlags.ignoreCase` so you can type Is(value, ignoreCase),
-    // as if that's new boolean syntax.
+  //public static bool Has        ([NotNull]            this string?         value)                  => FilledInHelper.Has(value);
+  //public static bool Has        ([NotNull]            this string?         value, bool trimSpace)  => FilledInHelper.Has(value, trimSpace);
+  //public static bool Has        ([NotNull]            this object?         value)                  => FilledInHelper.Has(value);
+  //public static bool Has<T>     (                     this T               value) where T : struct => FilledInHelper.Has(value);
+  //public static bool Has<T>     ([NotNull]            this T?              value) where T : struct => FilledInHelper.Has(value);
+  //public static bool Has<T>     ([NotNull]            this IEnumerable<T>? coll )                  => FilledInHelper.Has(coll);
     
-    public static bool FilledIn   ([NotNull] this           string? value)                  => FilledIn(value, true);
-    public static bool FilledIn   ([NotNull] this           string? value, bool trimSpace)  => trimSpace ? !IsNullOrWhiteSpace(value): !IsNullOrEmpty(value);
-    public static bool FilledIn<T>([NotNull] this           T       value)                  => !Equals(value, default(T));
-    public static bool FilledIn<T>([NotNull] this           T?      value) where T : struct => !Equals(value, default(T?)) && !Equals(value, default(T));
-    public static bool FilledIn<T>([NotNull] this                              T[]? coll) => coll is { Length: > 0 };
-    public static bool FilledIn<T>([NotNull] this           List               <T>? coll) => coll is { Count: > 0 };
-    public static bool FilledIn<T>([NotNull] this           HashSet            <T>? coll) => coll is { Count: > 0 };
-    public static bool FilledIn<T>([NotNull] this           IList              <T>? coll) => coll is { Count: > 0 };
-    public static bool FilledIn<T>([NotNull] this           ISet               <T>? coll) => coll is { Count: > 0 };
-    public static bool FilledIn<T>([NotNull] this           ICollection        <T>? coll) => coll is { Count: > 0 };
-    public static bool FilledIn<T>([NotNull] this           IReadOnlyList      <T>? coll) => coll is { Count: > 0 };
-    public static bool FilledIn<T>([NotNull] this           IReadOnlyCollection<T>? coll) => coll is { Count: > 0 };
-    public static bool FilledIn<T>([NotNull] this           IEnumerable        <T>? coll) => coll != null && coll.Any();
+    public static bool IsNully    ([NotNullWhen(false)] this string?         value)                  => FilledInHelper.IsNully(value);
+    public static bool IsNully    ([NotNullWhen(false)] this string?         value, bool trimSpace)  => FilledInHelper.IsNully(value, trimSpace);
+    public static bool IsNully    ([NotNullWhen(false)] this object?         value)                  => FilledInHelper.IsNully(value);
+    public static bool IsNully<T> (                     this T               value) where T : struct => FilledInHelper.IsNully(value);
+    public static bool IsNully<T> ([NotNullWhen(false)] this T?              value) where T : struct => FilledInHelper.IsNully(value);
+    public static bool IsNully<T> ([NotNullWhen(false)] this IEnumerable<T>? coll )                  => FilledInHelper.IsNully(coll);
     
-    private static bool Has        ([NotNull] this           string? value)                  => FilledIn(value);
-    private static bool Has        ([NotNull] this           string? value, bool trimSpace)  => FilledIn(value, trimSpace);
-    private static bool Has<T>     ([NotNull] this           T       value)                  => FilledIn(value);
-    private static bool Has<T>     ([NotNull] this           T?      value) where T : struct => FilledIn(value);
-    private static bool Has<T>     ([NotNull] this                              T[]? coll)   => FilledIn(coll);
-    private static bool Has<T>     ([NotNull] this           List               <T>? coll)   => FilledIn(coll);
-    private static bool Has<T>     ([NotNull] this           HashSet            <T>? coll)   => FilledIn(coll);
-    private static bool Has<T>     ([NotNull] this           IList              <T>? coll)   => FilledIn(coll);
-    private static bool Has<T>     ([NotNull] this           ISet               <T>? coll)   => FilledIn(coll);
-    private static bool Has<T>     ([NotNull] this           ICollection        <T>? coll)   => FilledIn(coll);
-    private static bool Has<T>     ([NotNull] this           IReadOnlyList      <T>? coll)   => FilledIn(coll);
-    private static bool Has<T>     ([NotNull] this           IReadOnlyCollection<T>? coll)   => FilledIn(coll);
-    private static bool Has<T>     ([NotNull] this           IEnumerable        <T>? coll)   => FilledIn(coll);
+    public static bool Is(this string? value, string? comparison                 ) => FilledInHelper.Is(value, comparison       );
+    public static bool Is(this string? value, string? comparison, bool ignoreCase) => FilledInHelper.Is(value, comparison, ignoreCase);
     
-    public static bool IsNully    ([NotNullWhen(false)] this string? value)                  => !FilledIn(value);
-    public static bool IsNully    ([NotNullWhen(false)] this string? value, bool trimSpace)  => !FilledIn(value, trimSpace);
-    public static bool IsNully<T> ([NotNullWhen(false)] this T       value)                  => !FilledIn(value);
-    public static bool IsNully<T> ([NotNullWhen(false)] this T?      value) where T : struct => !FilledIn(value);
-    public static bool IsNully<T> ([NotNullWhen(false)] this                    T[]? coll)   => !FilledIn(coll);
-    public static bool IsNully<T> ([NotNullWhen(false)] this List               <T>? coll)   => !FilledIn(coll);
-    public static bool IsNully<T> ([NotNullWhen(false)] this HashSet            <T>? coll)   => !FilledIn(coll);
-    public static bool IsNully<T> ([NotNullWhen(false)] this IList              <T>? coll)   => !FilledIn(coll);
-    public static bool IsNully<T> ([NotNullWhen(false)] this ISet               <T>? coll)   => !FilledIn(coll);
-    public static bool IsNully<T> ([NotNullWhen(false)] this ICollection        <T>? coll)   => !FilledIn(coll);
-    public static bool IsNully<T> ([NotNullWhen(false)] this IReadOnlyList      <T>? coll)   => !FilledIn(coll);
-    public static bool IsNully<T> ([NotNullWhen(false)] this IReadOnlyCollection<T>? coll)   => !FilledIn(coll);
-    public static bool IsNully<T> ([NotNullWhen(false)] this IEnumerable        <T>? coll)   => !FilledIn(coll);
+    public static bool In   (this string? value,                  params IEnumerable<string?>? coll                 ) => FilledInHelper.In(value, coll);
+    public static bool In   (this string? value, bool ignoreCase, params IEnumerable<string?>? coll                 ) => FilledInHelper.In(value, ignoreCase, coll);
+    public static bool In   (this string? value,                         IEnumerable<string?>? coll, bool ignoreCase) => FilledInHelper.In(value, coll, ignoreCase);
+    public static bool In<T>(this T       value,                  params IEnumerable<T>?       coll)                  => FilledInHelper.In(value, coll);
+    public static bool In<T>(this T       value,                  params IEnumerable<T?>?      coll) where T : struct => FilledInHelper.In(value, coll);
+    public static bool In<T>(this T?      value,                  params IEnumerable<T>?       coll) where T : struct => FilledInHelper.In(value, coll);
+    public static bool In<T>(this T?      value,                  params IEnumerable<T?>?      coll) where T : struct => FilledInHelper.In(value, coll);
     
-    public static bool Is(this string? value, string? comparison) => Is(value, comparison, ignoreCase: true);
-    public static bool Is(this string? value, string? comparison, bool ignoreCase) => string.Equals(value ?? "", comparison ?? "", ignoreCase ? OrdinalIgnoreCase : Ordinal);
+    public static bool Contains(this IEnumerable<string> source, string match, bool ignoreCase = false) => FilledInHelper.Contains(source, match, ignoreCase);
     
-    public static bool In(this string? value, params string?[]?        comparisons                 ) => comparisons?.Contains(value, ignoreCase: true)        ?? false;
-    public static bool In(this string? value, ICollection<string?>?    comparisons                 ) => comparisons?.Contains(value, ignoreCase: true)        ?? false;
-    public static bool In(this string? value, string?[]?               comparisons, bool ignoreCase) => comparisons?.Contains(value, ignoreCase      )        ?? false;
-    public static bool In<T>(this T    value, params             T[]?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
-    public static bool In<T>(this T?   value, params             T[]?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T?   value, params             T?[]? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T    value, List               <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
-    public static bool In<T>(this T?   value, List               <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T?   value, List               <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T    value, HashSet            <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
-    public static bool In<T>(this T?   value, HashSet            <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T?   value, HashSet            <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T    value, IList              <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false;
-    public static bool In<T>(this T?   value, IList              <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T?   value, IList              <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T    value, ISet               <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
-    public static bool In<T>(this T?   value, ISet               <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T?   value, ISet               <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T    value, ICollection        <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
-    public static bool In<T>(this T?   value, ICollection        <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T?   value, ICollection        <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T    value, IReadOnlyList      <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
-    public static bool In<T>(this T?   value, IReadOnlyList      <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T?   value, IReadOnlyList      <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T    value, IReadOnlyCollection<T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
-    public static bool In<T>(this T?   value, IReadOnlyCollection<T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T?   value, IReadOnlyCollection<T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T    value, IEnumerable        <T>?  comparisons)                  =>                    comparisons?.Contains(value      ) ?? false; 
-    public static bool In<T>(this T?   value, IEnumerable        <T>?  comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    public static bool In<T>(this T?   value, IEnumerable        <T?>? comparisons) where T : struct => value.HasValue && (comparisons?.Contains(value.Value) ?? false);
-    
-    // TODO: Add a variation on Coalesce called `Fallback`, that won't hard coalesce nulls, but keep them if last fallback is null.
-
     // Plain Coalesce (for some)
     
     public static string Coalesce   (this string? value                                     )  => Has(value           ) ? value       :                 ""     ;

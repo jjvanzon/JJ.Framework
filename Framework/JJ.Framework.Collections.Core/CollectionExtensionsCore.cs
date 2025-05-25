@@ -19,15 +19,6 @@ namespace JJ.Framework.Collections.Core
             return source.Select(selector).Sum();
         }
         
-        public static bool Contains(this IEnumerable<string> source, string match, bool ignoreCase = false)
-        {
-            if (source == null) throw new ArgumentNullException(nameof(source));
-            
-            StringComparison stringComparison = ignoreCase.ToStringComparison();
-            
-            return source.Any(x => (x ?? "").Equals(match, stringComparison));
-        }
-        
         /// <inheritdoc cref="docs._onebecomestwo" />
         public static IList<T> OneBecomesTwo<T>(this IList<T> list)
         {
