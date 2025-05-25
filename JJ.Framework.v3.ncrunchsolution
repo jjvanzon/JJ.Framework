@@ -40,12 +40,6 @@
       <Value>Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Tests.csproj:net7.0</Value>
       <Value>Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Tests.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Testing.Tests\JJ.Framework.Testing.Tests.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net461</Value>
-      <Value>Framework\JJ.Framework.Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net5.0</Value>
-      <Value>Framework\JJ.Framework.Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net6.0</Value>
-      <Value>Framework\JJ.Framework.Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net7.0</Value>
-      <Value>Framework\JJ.Framework.Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.Testing.Core.Tests\JJ.Framework.Testing.Core.Tests.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Soap.Tests\JJ.Framework.Soap.Net48.Tests.csproj</Value>
       <Value>Framework\JJ.Framework.Soap.Tests.Server\JJ.Framework.Soap.Net48.Tests.Server.csproj</Value>
       <Value>Framework\JJ.Framework.Soap.Tests.ServiceInterface\JJ.Framework.Soap.Net48.Tests.ServiceInterface.csproj</Value>
@@ -143,10 +137,6 @@
       <Value>Framework\JJ.Framework.Configuration.Core\JJ.Framework.Configuration.Core.csproj:netstandard2.1</Value>
       <Value>Framework\JJ.Framework.Configuration.Net48\JJ.Framework.Configuration.Net48.csproj</Value>
       <Value>Framework\JJ.Framework.Configuration.Net48.Tests\JJ.Framework.Configuration.Net48.Tests.csproj</Value>
-      <Value>Framework\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj:net9.0</Value>
-      <Value>Framework\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj:netstandard2.0</Value>
-      <Value>Framework\JJ.Framework.Existence.Core\JJ.Framework.Existence.Core.csproj:netstandard2.1</Value>
       <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.IO\JJ.Framework.IO.csproj:netstandard2.0</Value>
@@ -248,12 +238,6 @@
       <Value>Framework\JJ.Framework.Testing\JJ.Framework.Testing.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Testing\JJ.Framework.Testing.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Testing\JJ.Framework.Testing.csproj:netstandard2.1</Value>
-      <Value>Framework\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj:net461</Value>
-      <Value>Framework\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj:net5.0</Value>
-      <Value>Framework\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj:net6.0</Value>
-      <Value>Framework\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj:net7.0</Value>
-      <Value>Framework\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj:net8.0</Value>
-      <Value>Framework\JJ.Framework.Testing.Core\JJ.Framework.Testing.Core.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj:net8.0</Value>
       <Value>Framework\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Text.Core\JJ.Framework.Text.Core.csproj:netstandard2.0</Value>
@@ -271,6 +255,14 @@
       <Value>Framework\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj:net9.0</Value>
       <Value>Framework\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj:netstandard2.0</Value>
       <Value>Framework\JJ.Framework.Xml.Linq\JJ.Framework.Xml.Linq.csproj:netstandard2.1</Value>
+      <Value>Framework\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj:net461</Value>
+      <Value>Framework\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj:net5.0</Value>
+      <Value>Framework\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj:net6.0</Value>
+      <Value>Framework\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj:net7.0</Value>
+      <Value>Framework\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj:net8.0</Value>
+      <Value>Framework\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj:net9.0</Value>
+      <Value>Framework\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj:netstandard2.0</Value>
+      <Value>Framework\JJ.Framework.Tests.Helpers\JJ.Framework.Tests.Helpers.csproj:netstandard2.1</Value>
     </MetricsExclusionList>
     <RdiConfigured>True</RdiConfigured>
     <SolutionConfigured>True</SolutionConfigured>
