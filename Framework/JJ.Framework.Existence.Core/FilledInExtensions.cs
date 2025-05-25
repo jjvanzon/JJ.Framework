@@ -13,8 +13,7 @@ public static class FilledInExtensions
     // Or sneakier: fake it with a lower case `IgnoreCaseFlags.ignoreCase` so you can type Is(value, ignoreCase),
     // as if that's new boolean syntax.
     
-    public static bool FilledIn   ([NotNull] this           string? value)                  => FilledIn(value, false);
-    //public static bool FilledIn   ([NotNull] this           string? value)                  => FilledIn(value, true);
+    public static bool FilledIn   ([NotNull] this           string? value)                  => FilledIn(value, true);
     public static bool FilledIn   ([NotNull] this           string? value, bool trimSpace)  => trimSpace ? !IsNullOrWhiteSpace(value): !IsNullOrEmpty(value);
     public static bool FilledIn<T>([NotNull] this           T       value)                  => !Equals(value, default(T));
     public static bool FilledIn<T>([NotNull] this           T?      value) where T : struct => !Equals(value, default(T?)) && !Equals(value, default(T));

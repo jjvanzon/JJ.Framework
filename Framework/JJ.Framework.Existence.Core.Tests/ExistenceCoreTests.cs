@@ -34,10 +34,19 @@ public class ExistenceCoreTests
     {
         IsFalse(Has(_nullText));
         IsFalse(Has(_nullableEmpty));
+        IsFalse(Has(_nullableSpace));
+        IsFalse(Has(_nonNullEmpty));
+        IsFalse(Has(_nonNullSpace));
         IsFalse(FilledIn(_nullText));
         IsFalse(FilledIn(_nullableEmpty));
+        IsFalse(FilledIn(_nullableSpace));
+        IsFalse(FilledIn(_nonNullEmpty));
+        IsFalse(FilledIn(_nonNullSpace));
         IsFalse(_nullText.FilledIn());
         IsFalse(_nullableEmpty.FilledIn());
+        IsFalse(_nullableSpace.FilledIn());
+        IsFalse(_nonNullEmpty.FilledIn());
+        IsFalse(_nonNullSpace.FilledIn());
     }
 
     [TestMethod]
@@ -50,30 +59,23 @@ public class ExistenceCoreTests
         IsTrue(_nullableWithText.FilledIn());
         IsTrue(_nonNullText.FilledIn());
     }
+
     
     [TestMethod]
     public void FilledIn_TrimSpace()
     {
-        // TODO: I expected trimSpace to be active by default.
-        
-        IsTrue(Has(_nullableSpace));
-        IsFalse(Has(_nullableSpace, true));
-        IsFalse(Has(_nullableSpace, trimSpace: true));
-        IsTrue(Has(_nonNullSpace));
-        IsFalse(Has(_nonNullSpace, true));
-        IsFalse(Has(_nonNullSpace, trimSpace: true));
-        IsTrue(_nullableSpace.FilledIn());
-        IsFalse(_nullableSpace.FilledIn(true));
-        IsFalse(_nullableSpace.FilledIn(trimSpace: true));
-        IsTrue(_nonNullSpace.FilledIn());
-        IsFalse(_nonNullSpace.FilledIn(true));
-        IsFalse(_nonNullSpace.FilledIn(trimSpace: true));
-        IsTrue(FilledIn(_nullableSpace));
-        IsFalse(FilledIn(_nullableSpace, true));
-        IsFalse(FilledIn(_nullableSpace, trimSpace: true));
-        IsTrue(FilledIn(_nonNullSpace));
-        IsFalse(FilledIn(_nonNullSpace, true));
-        IsFalse(FilledIn(_nonNullSpace, trimSpace: true));
+        IsTrue(Has(_nullableSpace, false));
+        IsTrue(Has(_nullableSpace, trimSpace: false));
+        IsTrue(Has(_nonNullSpace, false));
+        IsTrue(Has(_nonNullSpace, trimSpace: false));
+        IsTrue(_nullableSpace.FilledIn(false));
+        IsTrue(_nullableSpace.FilledIn(trimSpace: false));
+        IsTrue(_nonNullSpace.FilledIn(false));
+        IsTrue(_nonNullSpace.FilledIn(trimSpace: false));
+        IsTrue(FilledIn(_nullableSpace, false));
+        IsTrue(FilledIn(_nullableSpace, trimSpace: false));
+        IsTrue(FilledIn(_nonNullSpace, false));
+        IsTrue(FilledIn(_nonNullSpace, trimSpace: false));
     }
     
     int? nullInt    = null;
