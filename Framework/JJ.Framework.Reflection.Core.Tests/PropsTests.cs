@@ -127,113 +127,113 @@ public class PropsTests : ReflectorTestBase
     private void AssertProps(PropertyInfo[] props)
     {
         props = props.OrderBy(x => x.Name).ToArray();
-        IsNotNull(                    props        );
-        AreEqual (4,                  props.Length );
-        IsNotNull(                    props[0]     );
-        IsNotNull(                    props[1]     );
-        IsNotNull(                    props[2]     );
-        IsNotNull(                    props[3]     );
-        AreEqual ("MyBaseProp",       props[0].Name);
-        AreEqual ("MyProp",           props[1].Name);
-        AreEqual ("MyStaticBaseProp", props[2].Name);
-        AreEqual ("MyStaticProp",     props[3].Name);
+        NotNull (                    props        );
+        AreEqual(4,                  props.Length );
+        NotNull (                    props[0]     );
+        NotNull (                    props[1]     );
+        NotNull (                    props[2]     );
+        NotNull (                    props[3]     );
+        AreEqual("MyBaseProp",       props[0].Name);
+        AreEqual("MyProp",           props[1].Name);
+        AreEqual("MyStaticBaseProp", props[2].Name);
+        AreEqual("MyStaticProp",     props[3].Name);
     }
     
     private void AssertPropDic(Dictionary<string, PropertyInfo> props)
     {
-        IsNotNull(                    props                         );
-        AreEqual (4,                  props.Count                   );
-        IsNotNull(                    props["MyBaseProp"      ]     );
-        IsNotNull(                    props["MyProp"          ]     );
-        IsNotNull(                    props["MyStaticBaseProp"]     );
-        IsNotNull(                    props["MyStaticProp"    ]     );
-        AreEqual ("MyBaseProp",       props["MyBaseProp"      ].Name);
-        AreEqual ("MyProp",           props["MyProp"          ].Name);
-        AreEqual ("MyStaticBaseProp", props["MyStaticBaseProp"].Name);
-        AreEqual ("MyStaticProp",     props["MyStaticProp"    ].Name);
+        NotNull (                    props                         );
+        AreEqual(4,                  props.Count                   );
+        NotNull (                    props["MyBaseProp"      ]     );
+        NotNull (                    props["MyProp"          ]     );
+        NotNull (                    props["MyStaticBaseProp"]     );
+        NotNull (                    props["MyStaticProp"    ]     );
+        AreEqual("MyBaseProp",       props["MyBaseProp"      ].Name);
+        AreEqual("MyProp",           props["MyProp"          ].Name);
+        AreEqual("MyStaticBaseProp", props["MyStaticBaseProp"].Name);
+        AreEqual("MyStaticProp",     props["MyStaticProp"    ].Name);
     }
     
     private void AssertBaseProps(PropertyInfo[] props)
     {
         props = props.OrderBy(x => x.Name).ToArray();
-        IsNotNull(                    props        );
-        AreEqual (2,                  props.Length );
-        IsNotNull(                    props[0]     );
-        IsNotNull(                    props[1]     );
-        AreEqual ("MyBaseProp",       props[0].Name);
-        AreEqual ("MyStaticBaseProp", props[1].Name);
+        NotNull (                    props        );
+        AreEqual(2,                  props.Length );
+        NotNull (                    props[0]     );
+        NotNull (                    props[1]     );
+        AreEqual("MyBaseProp",       props[0].Name);
+        AreEqual("MyStaticBaseProp", props[1].Name);
     }
         
     private void AssertBasePropDic(Dictionary<string, PropertyInfo> props)
     {
-        IsNotNull(                    props                         );
-        AreEqual (2,                  props.Count                   );
-        IsNotNull(                    props["MyBaseProp"      ]     );
-        IsNotNull(                    props["MyStaticBaseProp"]     );
-        AreEqual ("MyBaseProp",       props["MyBaseProp"      ].Name);
-        AreEqual ("MyStaticBaseProp", props["MyStaticBaseProp"].Name);
+        NotNull (                    props                         );
+        AreEqual(2,                  props.Count                   );
+        NotNull (                    props["MyBaseProp"      ]     );
+        NotNull (                    props["MyStaticBaseProp"]     );
+        AreEqual("MyBaseProp",       props["MyBaseProp"      ].Name);
+        AreEqual("MyStaticBaseProp", props["MyStaticBaseProp"].Name);
     }
 
     private void AssertBaselessProps(PropertyInfo[] props)
     {
         props = props.OrderBy(x => x.Name).ToArray();
-        IsNotNull(                    props        );
-        AreEqual (2,                  props.Length );
-        IsNotNull(                    props[0]     );
-        IsNotNull(                    props[1]     );
-        AreEqual ("MyProp",           props[0].Name);
-        AreEqual ("MyStaticProp",     props[1].Name);
+        NotNull (                    props        );
+        AreEqual(2,                  props.Length );
+        NotNull (                    props[0]     );
+        NotNull (                    props[1]     );
+        AreEqual("MyProp",           props[0].Name);
+        AreEqual("MyStaticProp",     props[1].Name);
     }
     
     private void AssertBaselessPropDic(Dictionary<string, PropertyInfo> props)
     {
-        IsNotNull(                    props                         );
-        AreEqual (2,                  props.Count                   );
-        IsNotNull(                    props["MyProp"          ]     );
-        IsNotNull(                    props["MyStaticProp"    ]     );
-        AreEqual ("MyProp",           props["MyProp"          ].Name);
-        AreEqual ("MyStaticProp",     props["MyStaticProp"    ].Name);
+        NotNull (                    props                         );
+        AreEqual(2,                  props.Count                   );
+        NotNull (                    props["MyProp"          ]     );
+        NotNull (                    props["MyStaticProp"    ]     );
+        AreEqual("MyProp",           props["MyProp"          ].Name);
+        AreEqual("MyStaticProp",     props["MyStaticProp"    ].Name);
     }
     
     private void AssertStaticProps(PropertyInfo[] props)
     {
         props = props.OrderBy(x => x.Name).ToArray();
-        IsNotNull(                    props        );
-        AreEqual (2,                  props.Length );
-        IsNotNull(                    props[0]     );
-        IsNotNull(                    props[1]     );
-        AreEqual ("MyStaticBaseProp", props[0].Name);
-        AreEqual ("MyStaticProp",     props[1].Name);
+        NotNull (                    props        );
+        AreEqual(2,                  props.Length );
+        NotNull (                    props[0]     );
+        NotNull (                    props[1]     );
+        AreEqual("MyStaticBaseProp", props[0].Name);
+        AreEqual("MyStaticProp",     props[1].Name);
     }
     
     private void AssertStaticPropDic(Dictionary<string, PropertyInfo> props)
     {
-        IsNotNull(                    props                         );
-        AreEqual (2,                  props.Count                   );
-        IsNotNull(                    props["MyStaticBaseProp"]     );
-        IsNotNull(                    props["MyStaticProp"    ]     );
-        AreEqual ("MyStaticBaseProp", props["MyStaticBaseProp"].Name);
-        AreEqual ("MyStaticProp",     props["MyStaticProp"    ].Name);
+        NotNull (                    props                         );
+        AreEqual(2,                  props.Count                   );
+        NotNull (                    props["MyStaticBaseProp"]     );
+        NotNull (                    props["MyStaticProp"    ]     );
+        AreEqual("MyStaticBaseProp", props["MyStaticBaseProp"].Name);
+        AreEqual("MyStaticProp",     props["MyStaticProp"    ].Name);
     }
     
     private void AssertInstanceProps(PropertyInfo[] props)
     {
         props = props.OrderBy(x => x.Name).ToArray();
-        IsNotNull(                    props        );
-        AreEqual (2,                  props.Length );
-        IsNotNull(                    props[0]     );
-        IsNotNull(                    props[1]     );
-        AreEqual ("MyBaseProp",       props[0].Name);
+        NotNull (                    props        );
+        AreEqual(2,                  props.Length );
+        NotNull (                    props[0]     );
+        NotNull (                    props[1]     );
+        AreEqual("MyBaseProp",       props[0].Name);
         AreEqual ("MyProp",           props[1].Name);
     }
     
     private void AssertInstancePropDic(Dictionary<string, PropertyInfo> props)
     {
-        IsNotNull(                    props                        );
-        AreEqual (2,                  props.Count                  );
-        IsNotNull(                    props["MyBaseProp"     ]     );
-        IsNotNull(                    props["MyProp"         ]     );
-        AreEqual ("MyBaseProp",       props["MyBaseProp"     ].Name);
-        AreEqual ("MyProp",           props["MyProp"         ].Name);
+        NotNull (                    props                        );
+        AreEqual(2,                  props.Count                  );
+        NotNull (                    props["MyBaseProp"     ]     );
+        NotNull (                    props["MyProp"         ]     );
+        AreEqual("MyBaseProp",       props["MyBaseProp"     ].Name);
+        AreEqual("MyProp",           props["MyProp"         ].Name);
     }
 }

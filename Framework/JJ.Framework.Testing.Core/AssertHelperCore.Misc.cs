@@ -7,7 +7,7 @@ public static partial class AssertHelperCore
 {
     // Basics
     
-    public static void IsNotNull([NotNull] object? value, [ArgExpress(nameof(value))] string message = null) 
+    public static void NotNull([NotNull] object? value, [ArgExpress(nameof(value))] string message = null) 
         => Check(value != null, message: message);
     
     public static void IsNull(object? value, [ArgExpress(nameof(value))] string message = null) 

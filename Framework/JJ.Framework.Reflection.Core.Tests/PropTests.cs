@@ -334,12 +334,12 @@ public class PropTests : ReflectorTestBase
     {
         // Nullable value
         Type nullType = typeof(DateTime?);
-        IsNotNull(nullType.Prop("HasValue"));
-        IsNotNull(nullType.Prop("Year"));
+        NotNull(nullType.Prop("HasValue"));
+        NotNull(nullType.Prop("Year"));
         
         DateTime? nullyVal = new(2025, 05, 20);
-        IsNotNull(Prop(nullyVal, "HasValue"));
-        IsNotNull(Prop(nullyVal, "Year"));
+        NotNull(Prop(nullyVal, "HasValue"));
+        NotNull(Prop(nullyVal, "Year"));
         
         var yearProp = nullType.Prop("Year");
         var yearBack = yearProp.GetValue(nullyVal);
@@ -348,7 +348,7 @@ public class PropTests : ReflectorTestBase
         // Non nullable value
         Type nonNullType = typeof(DateTime);
         DateTime nonNullValue = new(2025, 05, 20);
-        IsNotNull(nonNullType.Prop("Year"));
+        NotNull(nonNullType.Prop("Year"));
         
         // Reference types
         MyType? nullObj = null;
@@ -403,13 +403,13 @@ public class PropTests : ReflectorTestBase
 
     private void AssertProp(PropertyInfo? prop)
     {
-        IsNotNull(prop);
+        NotNull(prop);
         AreEqual("MyProp", prop.Name);
     }
 
     private void AssertBaseProp(PropertyInfo? prop)
     {
-        IsNotNull(prop);
+        NotNull(prop);
         AreEqual("MyBaseProp", prop.Name);
     }
 }

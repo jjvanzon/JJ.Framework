@@ -15,10 +15,10 @@ public sealed class PlatformCompatibility_CultureInfo_Core_Tests
             var cultureInfo3 = CultureInfo_PlatformSafe.GetCultureInfo(cultureName);
             var cultureInfo4 = PlatformHelper.GetCultureInfo_PlatformSafe(cultureName);
             
-            IsNotNull(cultureInfo1);
-            IsNotNull(cultureInfo2);
-            IsNotNull(cultureInfo3);
-            IsNotNull(cultureInfo4);
+            NotNull(cultureInfo1);
+            NotNull(cultureInfo2);
+            NotNull(cultureInfo3);
+            NotNull(cultureInfo4);
             
             AreEqual(cultureInfo1.Name, cultureInfo2.Name);
             AreEqual(cultureInfo2.Name, cultureInfo3.Name);

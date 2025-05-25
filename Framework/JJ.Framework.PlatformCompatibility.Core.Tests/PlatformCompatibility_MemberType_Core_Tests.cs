@@ -57,13 +57,13 @@ public class PlatformCompatibility_MemberType_Core_Tests
         
         // Check Nulls
         
-        IsNotNull(type           );
-        IsNotNull(nestedType     );
-        IsNotNull(constructorInfo);
-        IsNotNull(fieldInfo      );
-        IsNotNull(propertyInfo   );
-        IsNotNull(methodInfo     );
-        IsNotNull(eventInfo      );
+        NotNull(type           );
+        NotNull(nestedType     );
+        NotNull(constructorInfo);
+        NotNull(fieldInfo      );
+        NotNull(propertyInfo   );
+        NotNull(methodInfo     );
+        NotNull(eventInfo      );
         
         // Act
         

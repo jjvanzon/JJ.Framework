@@ -9,6 +9,9 @@ public static partial class AssertHelperCore
     public static void AreEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string message = "") 
         => Check(expected, actual, message, () => Equals(expected, actual));
     
+    public static void NotEqual<T>(T expected, T actual, [ArgExpress(nameof(actual))] string message = "") 
+        => Check(expected, actual, message, () => !Equals(expected, actual));
+    
     /// <inheritdoc cref="_deltadirection" />
     public static void AreEqual(int expected, Expression<Func<int>> actualExpression, int delta, DeltaDirectionEnum direction = None)
     {

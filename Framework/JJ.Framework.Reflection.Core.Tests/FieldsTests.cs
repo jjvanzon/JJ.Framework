@@ -127,113 +127,113 @@ public class FieldsTests : ReflectorTestBase
     private void AssertFields(FieldInfo[] fields)
     {
         fields = fields.OrderBy(x => x.Name).ToArray();
-        IsNotNull(                      fields        );
-        AreEqual (4,                    fields.Length );
-        IsNotNull(                      fields[0]     );
-        IsNotNull(                      fields[1]     );
-        IsNotNull(                      fields[2]     );
-        IsNotNull(                      fields[3]     );
-        AreEqual ("_myBaseField",       fields[0].Name);
-        AreEqual ("_myField",           fields[1].Name);
-        AreEqual ("_myStaticBaseField", fields[2].Name);
-        AreEqual ("_myStaticField",     fields[3].Name);
+        NotNull (                      fields        );
+        AreEqual(4,                    fields.Length );
+        NotNull (                      fields[0]     );
+        NotNull (                      fields[1]     );
+        NotNull (                      fields[2]     );
+        NotNull (                      fields[3]     );
+        AreEqual("_myBaseField",       fields[0].Name);
+        AreEqual("_myField",           fields[1].Name);
+        AreEqual("_myStaticBaseField", fields[2].Name);
+        AreEqual("_myStaticField",     fields[3].Name);
     }
     
     private void AssertFieldDic(Dictionary<string, FieldInfo> fields)
     {
-        IsNotNull(                      fields                           );
-        AreEqual (4,                    fields.Count                     );
-        IsNotNull(                      fields["_myBaseField"      ]     );
-        IsNotNull(                      fields["_myField"          ]     );
-        IsNotNull(                      fields["_myStaticBaseField"]     );
-        IsNotNull(                      fields["_myStaticField"    ]     );
-        AreEqual ("_myBaseField",       fields["_myBaseField"      ].Name);
-        AreEqual ("_myField",           fields["_myField"          ].Name);
-        AreEqual ("_myStaticBaseField", fields["_myStaticBaseField"].Name);
-        AreEqual ("_myStaticField",     fields["_myStaticField"    ].Name);
+        NotNull (                      fields                           );
+        AreEqual(4,                    fields.Count                     );
+        NotNull (                      fields["_myBaseField"      ]     );
+        NotNull (                      fields["_myField"          ]     );
+        NotNull (                      fields["_myStaticBaseField"]     );
+        NotNull (                      fields["_myStaticField"    ]     );
+        AreEqual("_myBaseField",       fields["_myBaseField"      ].Name);
+        AreEqual("_myField",           fields["_myField"          ].Name);
+        AreEqual("_myStaticBaseField", fields["_myStaticBaseField"].Name);
+        AreEqual("_myStaticField",     fields["_myStaticField"    ].Name);
     }
     
     private void AssertBaseFields(FieldInfo[] fields)
     {
         fields = fields.OrderBy(x => x.Name).ToArray();
-        IsNotNull(                      fields        );
-        AreEqual (2,                    fields.Length );
-        IsNotNull(                      fields[0]     );
-        IsNotNull(                      fields[1]     );
-        AreEqual ("_myBaseField",       fields[0].Name);
-        AreEqual ("_myStaticBaseField", fields[1].Name);
+        NotNull (                      fields        );
+        AreEqual(2,                    fields.Length );
+        NotNull (                      fields[0]     );
+        NotNull (                      fields[1]     );
+        AreEqual("_myBaseField",       fields[0].Name);
+        AreEqual("_myStaticBaseField", fields[1].Name);
     }
         
     private void AssertBaseFieldDic(Dictionary<string, FieldInfo> fields)
     {
-        IsNotNull(                      fields                           );
-        AreEqual (2,                    fields.Count                     );
-        IsNotNull(                      fields["_myBaseField"      ]     );
-        IsNotNull(                      fields["_myStaticBaseField"]     );
-        AreEqual ("_myBaseField",       fields["_myBaseField"      ].Name);
-        AreEqual ("_myStaticBaseField", fields["_myStaticBaseField"].Name);
+        NotNull (                      fields                           );
+        AreEqual(2,                    fields.Count                     );
+        NotNull (                      fields["_myBaseField"      ]     );
+        NotNull (                      fields["_myStaticBaseField"]     );
+        AreEqual("_myBaseField",       fields["_myBaseField"      ].Name);
+        AreEqual("_myStaticBaseField", fields["_myStaticBaseField"].Name);
     }
 
     private void AssertBaselessFields(FieldInfo[] fields)
     {
         fields = fields.OrderBy(x => x.Name).ToArray();
-        IsNotNull(                      fields        );
-        AreEqual (2,                    fields.Length );
-        IsNotNull(                      fields[0]     );
-        IsNotNull(                      fields[1]     );
-        AreEqual ("_myField",           fields[0].Name);
-        AreEqual ("_myStaticField",     fields[1].Name);
+        NotNull (                      fields        );
+        AreEqual(2,                    fields.Length );
+        NotNull (                      fields[0]     );
+        NotNull (                      fields[1]     );
+        AreEqual("_myField",           fields[0].Name);
+        AreEqual("_myStaticField",     fields[1].Name);
     }
     
     private void AssertBaselessFieldDic(Dictionary<string, FieldInfo> fields)
     {
-        IsNotNull(                      fields                           );
-        AreEqual (2,                    fields.Count                     );
-        IsNotNull(                      fields["_myField"          ]     );
-        IsNotNull(                      fields["_myStaticField"    ]     );
-        AreEqual ("_myField",           fields["_myField"          ].Name);
-        AreEqual ("_myStaticField",     fields["_myStaticField"    ].Name);
+        NotNull (                      fields                           );
+        AreEqual(2,                    fields.Count                     );
+        NotNull (                      fields["_myField"          ]     );
+        NotNull (                      fields["_myStaticField"    ]     );
+        AreEqual("_myField",           fields["_myField"          ].Name);
+        AreEqual("_myStaticField",     fields["_myStaticField"    ].Name);
     }
     
     private void AssertStaticFields(FieldInfo[] fields)
     {
         fields = fields.OrderBy(x => x.Name).ToArray();
-        IsNotNull(                      fields        );
-        AreEqual (2,                    fields.Length );
-        IsNotNull(                      fields[0]     );
-        IsNotNull(                      fields[1]     );
-        AreEqual ("_myStaticBaseField", fields[0].Name);
-        AreEqual ("_myStaticField",     fields[1].Name);
+        NotNull (                      fields        );
+        AreEqual(2,                    fields.Length );
+        NotNull (                      fields[0]     );
+        NotNull (                      fields[1]     );
+        AreEqual("_myStaticBaseField", fields[0].Name);
+        AreEqual("_myStaticField",     fields[1].Name);
     }
     
     private void AssertStaticFieldDic(Dictionary<string, FieldInfo> fields)
     {
-        IsNotNull(                      fields                           );
-        AreEqual (2,                    fields.Count                     );
-        IsNotNull(                      fields["_myStaticBaseField"]     );
-        IsNotNull(                      fields["_myStaticField"    ]     );
-        AreEqual ("_myStaticBaseField", fields["_myStaticBaseField"].Name);
-        AreEqual ("_myStaticField",     fields["_myStaticField"    ].Name);
+        NotNull (                      fields                           );
+        AreEqual(2,                    fields.Count                     );
+        NotNull (                      fields["_myStaticBaseField"]     );
+        NotNull (                      fields["_myStaticField"    ]     );
+        AreEqual("_myStaticBaseField", fields["_myStaticBaseField"].Name);
+        AreEqual("_myStaticField",     fields["_myStaticField"    ].Name);
     }
     
     private void AssertInstanceFields(FieldInfo[] fields)
     {
         fields = fields.OrderBy(x => x.Name).ToArray();
-        IsNotNull(                      fields        );
-        AreEqual (2,                    fields.Length );
-        IsNotNull(                      fields[0]     );
-        IsNotNull(                      fields[1]     );
-        AreEqual ("_myBaseField",       fields[0].Name);
-        AreEqual ("_myField",           fields[1].Name);
+        NotNull (                      fields        );
+        AreEqual(2,                    fields.Length );
+        NotNull (                      fields[0]     );
+        NotNull (                      fields[1]     );
+        AreEqual("_myBaseField",       fields[0].Name);
+        AreEqual("_myField",           fields[1].Name);
     }
     
     private void AssertInstanceFieldDic(Dictionary<string, FieldInfo> fields)
     {
-        IsNotNull(                      fields                          );
-        AreEqual (2,                    fields.Count                    );
-        IsNotNull(                      fields["_myBaseField"     ]     );
-        IsNotNull(                      fields["_myField"         ]     );
-        AreEqual ("_myBaseField",       fields["_myBaseField"     ].Name);
-        AreEqual ("_myField",           fields["_myField"         ].Name);
+        NotNull (                      fields                          );
+        AreEqual(2,                    fields.Count                    );
+        NotNull (                      fields["_myBaseField"     ]     );
+        NotNull (                      fields["_myField"         ]     );
+        AreEqual("_myBaseField",       fields["_myBaseField"     ].Name);
+        AreEqual("_myField",           fields["_myField"         ].Name);
     }
 }

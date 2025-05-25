@@ -204,7 +204,7 @@ public class MethodTests : ReflectorTestBase
     
     private void AssertMethod0(MethodInfo? method)
     {
-        IsNotNull(method);
+        NotNull(method);
         AreEqual("Method0", method.Name);
         AreEqual(0, method.GetParameters().Length);
     }

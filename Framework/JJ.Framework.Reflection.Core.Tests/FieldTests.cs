@@ -379,13 +379,13 @@ public class FieldTests : ReflectorTestBase
 
     private void AssertField(FieldInfo? field)
     {
-        IsNotNull(field);
+        NotNull(field);
         AreEqual("_myField", field.Name);
     }
 
     private void AssertBaseField(FieldInfo? field)
     {
-        IsNotNull(field);
+        NotNull(field);
         AreEqual("_myBaseField", field.Name);
     }
 }
