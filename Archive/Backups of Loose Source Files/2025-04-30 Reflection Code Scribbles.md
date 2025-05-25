@@ -1,4 +1,4 @@
-### EADME
+### README
 
 You can omit the method name:
 
