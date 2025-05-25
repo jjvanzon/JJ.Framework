@@ -1,5 +1,6 @@
 ﻿    // ReSharper disable PossibleMultipleEnumeration
 // ReSharper disable ConstantNullCoalescingCondition
+// ReSharper disable ArrangeObjectCreationWhenTypeNotEvident
     
 namespace JJ.Framework.Existence.Core;
 
@@ -22,7 +23,7 @@ public static class FilledInHelper
     public static bool IsNully    ([NotNullWhen(false)]      string?         value)                  => !FilledIn(value);
     public static bool IsNully    ([NotNullWhen(false)]      string?         value, bool trimSpace)  => !FilledIn(value, trimSpace);
     public static bool IsNully    ([NotNullWhen(false)]      object?         value)                  => !FilledIn(value);
-    public static bool IsNully<T> ([NotNullWhen(false)]      T               value) where T : struct => !FilledIn(value);
+    public static bool IsNully<T> (                          T               value) where T : struct => !FilledIn(value);
     public static bool IsNully<T> ([NotNullWhen(false)]      T?              value) where T : struct => !FilledIn(value);
     public static bool IsNully<T> ([NotNullWhen(false)]      IEnumerable<T>? coll )                  => !FilledIn(coll);
     
@@ -61,10 +62,9 @@ public static class FilledInHelper
 
     // Plain Coalesce (for some)
     
-    public static string Coalesce   (string? value                                     )  => Has(value           ) ? value       :                 ""     ;
-    public static string Coalesce   (string? value,                      bool trimSpace)  => Has(value, trimSpace) ? value       :                 ""     ;
-    public static T      Coalesce<T>(T       value                     )                  => Has(value           ) ? value       :                 default;
-    public static T      Coalesce<T>(T?      value                     ) where T : struct => Has(value           ) ? value.Value :                 default;
+    public static string Coalesce   (     string? value                  )                  => Has(value           ) ? value       : value ?? "";
+    public static T      Coalesce<T>(     T?      value                  ) where T : new()  => Has(value           ) ? value       : new();
+    public static T      Coalesce<T>(     T?      value                  ) where T : struct => Has(value           ) ? value.Value : default;
     
     // Single Fallback
 

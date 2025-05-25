@@ -41,10 +41,9 @@ public static class FilledInExtensions
     
     // Plain Coalesce (for some)
     
-    public static string Coalesce   (this string? value                                     )  => Has(value           ) ? value       :                 ""     ;
-    public static string Coalesce   (this string? value,                      bool trimSpace)  => Has(value, trimSpace) ? value       :                 ""     ;
-    public static T      Coalesce<T>(this T       value                     )                  => Has(value           ) ? value       :                 default;
-    public static T      Coalesce<T>(this T?      value                     ) where T : struct => Has(value           ) ? value.Value :                 default;
+    public static string Coalesce   (this string? value                  )                  => FilledInHelper.Coalesce(value);
+    public static T      Coalesce<T>(this T       value                  ) where T : new()  => FilledInHelper.Coalesce(value);
+    public static T      Coalesce<T>(this T?      value                  ) where T : struct => FilledInHelper.Coalesce(value);
     
     // Single Fallback
 

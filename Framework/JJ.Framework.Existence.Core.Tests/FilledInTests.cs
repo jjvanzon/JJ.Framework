@@ -1,6 +1,9 @@
 ﻿// ReSharper disable RedundantEmptyObjectOrCollectionInitializer
 
 using System.Collections.Immutable;
+using System.Globalization;
+using static System.Globalization.CultureInfo;
+
 // ReSharper disable CollectionNeverUpdated.Local
 
 namespace JJ.Framework.Existence.Core.Tests;
@@ -119,21 +122,21 @@ public class FilledInTests
         IsTrue(FilledIn(_nonNullSpace, false));
     }
 
-    int? _nullInt    = null;
-    int  _nonNull0   = 0;
-    int  _nonNull1   = 1;
-    int? _nullable0  = 0;
-    int? _nullable1  = 1;
+    int? _nullInt  = null;
+    int  _nonNull0 = 0;
+    int  _nonNull1 = 1;
+    int? _nully0   = 0;
+    int? _nully1   = 1;
     
     [TestMethod]
     public void FilledIn_Int_True()
     {
         IsTrue(Has(_nonNull1));
-        IsTrue(Has(_nullable1));
+        IsTrue(Has(_nully1));
         IsTrue(_nonNull1.FilledIn());
-        IsTrue(_nullable1.FilledIn());
+        IsTrue(_nully1.FilledIn());
         IsTrue(FilledIn(_nonNull1));
-        IsTrue(FilledIn(_nullable1));
+        IsTrue(FilledIn(_nully1));
     }
     
     [TestMethod]
@@ -141,22 +144,22 @@ public class FilledInTests
     {
         IsFalse(Has(_nullInt));
         IsFalse(Has(_nonNull0));
-        IsFalse(Has(_nullable0));
+        IsFalse(Has(_nully0));
         IsFalse(_nullInt.FilledIn());
         IsFalse(_nonNull0.FilledIn());
-        IsFalse(_nullable0.FilledIn());
+        IsFalse(_nully0.FilledIn());
         IsFalse(FilledIn(_nullInt));
         IsFalse(FilledIn(_nonNull0));
-        IsFalse(FilledIn(_nullable0));
+        IsFalse(FilledIn(_nully0));
     }
         
     [TestMethod]
     public void IsNully_Int_False()
     {
         IsFalse(_nonNull1.IsNully());
-        IsFalse(_nullable1.IsNully());
+        IsFalse(_nully1.IsNully());
         IsFalse(IsNully(_nonNull1));
-        IsFalse(IsNully(_nullable1));
+        IsFalse(IsNully(_nully1));
     }
     
     [TestMethod]
@@ -164,10 +167,10 @@ public class FilledInTests
     {
         IsTrue(_nullInt.IsNully());
         IsTrue(_nonNull0.IsNully());
-        IsTrue(_nullable0.IsNully());
+        IsTrue(_nully0.IsNully());
         IsTrue(IsNully(_nullInt));
         IsTrue(IsNully(_nonNull0));
-        IsTrue(IsNully(_nullable0));
+        IsTrue(IsNully(_nully0));
     }
 
     StringBuilder? _nullObject     = null;
@@ -373,7 +376,7 @@ public class FilledInTests
     }
     
     [TestMethod]
-    public void Is_Test()
+    public void Test_Is()
     {
         // NullOrWhiteSpace
         IsTrue(Is(null,   null  ));
@@ -433,7 +436,7 @@ public class FilledInTests
     }
     
     [TestMethod]
-    public void In_Strings_Test()
+    public void In_Strings()
     {
         // Main Use
         IsTrue (In("GREEN" ,                        "Red", "Green", "Blue"                     ));
@@ -475,7 +478,7 @@ public class FilledInTests
     }
     
     [TestMethod]
-    public void In_Objects_Test()
+    public void In_Objects()
     {
         StringBuilder a = new();
         StringBuilder b = new();
@@ -499,7 +502,7 @@ public class FilledInTests
 
     
     [TestMethod]
-    public void In_Struct_Test()
+    public void In_Structs()
     {
         IsTrue (1.In(     1, 2, 3  ));
         IsTrue (2.In(     1, 2, 3  ));
@@ -517,7 +520,7 @@ public class FilledInTests
     }
     
     [TestMethod]
-    public void In_Nully_Test()
+    public void In_Nully()
     {
         {
             StringBuilder a = new();
@@ -617,5 +620,150 @@ public class FilledInTests
             IsFalse(   @null.In(nullColl ));
             IsFalse(In(@null,   nullColl ));
         }
+    }
+    
+    /// <summary>
+    /// <para>
+    /// Gives you the <c>Type</c> the compiler thought this <c>value</c> was,
+    /// before any automatic conversions or boxing.
+    /// This allows us to differentiate between <c>int?</c> and <c>int</c>.
+    /// </para>
+    /// <para>
+    /// For: <c>int? x = 1</c><br/>
+    /// This: <c>x.GetType()</c> gives back <c>typeof(int)</c><br/>
+    /// This: <c>CompileTimeType(x)</c> still gives back <c>typeof(int?)</c>
+    /// </para>
+    /// <para>
+    /// That way we can inspect the nullability of our returned type,
+    /// while the runtime was already so kind to remove the nullable wrapper for us.
+    /// </para>
+    /// </summary>
+    static Type CompileTimeType<T>(T value) => typeof(T);
+
+    [TestMethod]
+    public void Plain_Coalesce()
+    {
+        {
+            string? @null = null;
+            
+            AreEqual(""   , @null.Coalesce());
+            AreEqual(""   , ""   .Coalesce());
+            AreEqual("   ", "   ".Coalesce());
+            AreEqual("Hi" , "Hi" .Coalesce());
+            AreEqual(""   , Coalesce(@null));
+            AreEqual(""   , Coalesce(""   ));
+            AreEqual("   ", Coalesce("   "));
+            AreEqual("Hi" , Coalesce("Hi" ));
+        }
+        {
+            int? @null = null;
+            AreEqual(0, @null.Coalesce());
+            AreEqual(0, Coalesce(@null));
+            
+            int? nully0 = 0;
+            AreEqual(0,            nully0);
+            AreEqual(0,            nully0.Coalesce());
+            AreEqual(0,            Coalesce(nully0));
+            AreEqual(typeof(int?), CompileTimeType(nully0));
+            AreEqual(typeof(int),  CompileTimeType(nully0.Coalesce()));
+            AreEqual(typeof(int),  CompileTimeType(Coalesce(nully0)));
+            
+            int? nully1 = 1;
+            AreEqual(1,            nully1);
+            AreEqual(1,            nully1.Coalesce());
+            AreEqual(1,            Coalesce(nully1));
+            AreEqual(typeof(int?), CompileTimeType(nully1));
+            AreEqual(typeof(int),  CompileTimeType(nully1.Coalesce()));
+            AreEqual(typeof(int),  CompileTimeType(Coalesce(nully1)));
+        }
+        {
+            int nonNull = 1;
+            AreEqual(1,           nonNull);
+            AreEqual(1,           nonNull.Coalesce());
+            AreEqual(1,           Coalesce(nonNull));
+            AreEqual(typeof(int), CompileTimeType(nonNull));
+            AreEqual(typeof(int), CompileTimeType(nonNull.Coalesce()));
+            AreEqual(typeof(int), CompileTimeType(Coalesce(nonNull)));
+        }
+        {
+            StringBuilder nonNullObject = new();
+            NotNull(nonNullObject);
+            NotNull(Coalesce(nonNullObject));
+
+            StringBuilder? nullObject = null;
+            IsNull(nullObject);
+            NotNull(Coalesce(nullObject));
+        }
+        {
+            List<string>? coll = null;
+            List<string> result = Coalesce(coll);
+            IsNull(coll);
+            NotNull(result);
+        }
+    }
+    
+    [TestMethod]
+    public void Coalesce_SingleFallback()
+    {
+        {
+            string? @null = null;
+            
+            AreEqual("",         Coalesce(@null, @null));
+            AreEqual("Fallback", Coalesce(@null, "Fallback"));
+            AreEqual("Fallback", Coalesce("",    "Fallback"));
+            AreEqual("Fallback", Coalesce("   ", "Fallback"));
+            AreEqual("Fallback", Coalesce(@null, "Fallback", trimSpace: true));
+            AreEqual("Fallback", Coalesce("",    "Fallback", trimSpace: true));
+            AreEqual("Fallback", Coalesce("   ", "Fallback", trimSpace: true));
+            AreEqual("Fallback", Coalesce(@null, "Fallback", trimSpace: false));
+            AreEqual("Fallback", Coalesce("",    "Fallback", trimSpace: false));
+            AreEqual("   ",      Coalesce("   ", "Fallback", trimSpace: false));
+            
+            AreEqual("",         @null.Coalesce(@null));
+            AreEqual("Fallback", @null.Coalesce("Fallback"));
+            AreEqual("Fallback", ""   .Coalesce("Fallback"));
+            AreEqual("Fallback", "   ".Coalesce("Fallback"));
+            AreEqual("Fallback", @null.Coalesce("Fallback", trimSpace: true));
+            AreEqual("Fallback", ""   .Coalesce("Fallback", trimSpace: true));
+            AreEqual("Fallback", "   ".Coalesce("Fallback", trimSpace: true));
+            AreEqual("Fallback", @null.Coalesce("Fallback", trimSpace: false));
+            AreEqual("Fallback", ""   .Coalesce("Fallback", trimSpace: false));
+            AreEqual("   ",      "   ".Coalesce("Fallback", trimSpace: false));
+        }
+        {
+            CultureInfo? nullCulture = null;
+            CultureInfo  culture = GetCultureInfo("nl-NL");
+            AreEqual("nl-NL", Coalesce(culture,     "None"));
+            AreEqual("None" , Coalesce(nullCulture, "None"));
+            AreEqual(""     , Coalesce(nullCulture,  null ));
+            AreEqual("nl-NL", culture    .Coalesce( "None"));
+            AreEqual("None" , nullCulture.Coalesce( "None"));
+            AreEqual(""     , nullCulture.Coalesce(  null ));
+        }
+        {
+            AreEqual("",           Coalesce(0, _nullText ));
+            AreEqual("peekaboo",   Coalesce(0, "peekaboo"));
+            AreEqual("",         0.Coalesce(   _nullText ));
+            AreEqual("peekaboo", 0.Coalesce(   "peekaboo"));
+        }
+        {
+            int? nullNum = null;
+            int? nully0 = 0;
+            int? nully1 = 1;
+            AreEqual("",    Coalesce(nullNum, _nullText));
+            AreEqual("boo", Coalesce(nullNum, "boo"    ));
+            AreEqual("",    Coalesce(nully0,  _nullText));
+            AreEqual("boo", Coalesce(nully0,  "boo"    ));
+            AreEqual("1",   Coalesce(nully1,  _nullText));
+            AreEqual("1",   Coalesce(nully1,  "boo"    ));
+            AreEqual("",    nullNum.Coalesce( _nullText));
+            AreEqual("boo", nullNum.Coalesce( "boo"    ));
+            AreEqual("",    nully0 .Coalesce( _nullText));
+            AreEqual("boo", nully0 .Coalesce( "boo"    ));
+            AreEqual("1",   nully1 .Coalesce( _nullText));
+            AreEqual("1",   nully1 .Coalesce( "boo"    ));
+        }
+        
+        // TODO: More tests
     }
 }

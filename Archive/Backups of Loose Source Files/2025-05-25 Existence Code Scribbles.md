@@ -180,6 +180,7 @@ using System.Collections;
 
 ### FilledInExtensions Redundant Collection Overloads
 
+```
     // Part of the reason for so many overloads is C#'s best-matching quirks in case of generics.
     // For instance C# will choose a wider concrete type over a more narrow ìnterface.
     // I.e. in case of List<T> it'd rather pick object? than IList<T>.
@@ -289,4 +290,168 @@ using System.Collections;
     //public static T      Coalesce<T>(this T      []? fallbacks) where T : struct => Coalesce((IEnumerable<T>      ?)fallbacks);
     //public static T      Coalesce<T>(this T?     []? fallbacks) where T : struct => Coalesce((IEnumerable<T?>     ?)fallbacks);
 
+```
+
+### Coalesce Tests
+
+trimSpace no effect in plain coalesce without fallbacks:
+
+```cs
+        //AreEqual("", @null .Coalesce(trimSpace: true));
+        //AreEqual("", ""    .Coalesce(trimSpace: true));
+        //AreEqual(" ", " "  .Coalesce(trimSpace: true));
+        //AreEqual("", @null .Coalesce(trimSpace: false));
+        //AreEqual("", ""    .Coalesce(trimSpace: false));
+        //AreEqual(" ", " "  .Coalesce(trimSpace: false));
+
+//public static string Coalesce   (this string? value,                   bool trimSpace)  => FilledInHelper.Coalesce(value,          trimSpace);
+    //public static string Coalesce   (     string? value,                   bool trimSpace)  => Has(value, trimSpace) ? value       :    value ?? ""     ;
+```
+
+### Coalesce Testing for Nullable Types
+
+```cs
+            //Assert.IsInstanceOfType<int?>(nully0); // Succeeds
+            //Assert.IsInstanceOfType<int?>(nully1); // Succeeds
+            //Assert.IsNotInstanceOfType<int>(nully0); // Fails.
+            //Assert.IsNotInstanceOfType<int>(nully1); // Fails.
+            //Assert.IsInstanceOfType(nully1, typeof(int?)); // Succeeds
+            //Assert.IsNotInstanceOfType(nully1, typeof(int)); // Fails.
+            
+            //IsOfType<int?>(() => nully0); // TODO: Fails
+            //IsOfType<int?>(() => nully1); // TODO: Fails
+
+
+            Type nully1Type = nully1.GetType();
+            bool isNullable = Nullable.GetUnderlyingType(typeof(int?)) != null;      // true
+            bool same      = Nullable.GetUnderlyingType(nully1.GetType()) == typeof(int);
+            
+            //AreEqual(typeof(int), nully1.GetUnderlyingType());
+            
+            AreEqual(typeof(int?), nully1.GetType()); // Fails
+            NotEqual(typeof(int),  nully1.GetType());
+            AreEqual(typeof(int),  @null.Coalesce().GetType());
+            NotEqual(typeof(int?), @null.Coalesce().GetType());
+            AreEqual(typeof(int),  nully1.Coalesce().GetType());
+            NotEqual(typeof(int?), nully1.Coalesce().GetType());
+
+            
+            AreEqual(0, nully0.Coalesce());
+            AreEqual(0,      0.Coalesce());
+            AreEqual(1, nully1.Coalesce());
+            AreEqual(1,      1.Coalesce());
+            
+            
+            AreEqual(0, Coalesce(nully0));
+            AreEqual(0, Coalesce(     0));
+            AreEqual(1, Coalesce(nully1));
+            AreEqual(1, Coalesce(     1));
+```
+
+### ConfigCascader Tripping over Coalesce One Collection Ffalling back to Another
+
+Finally the solution was to use a collection of concrete collection types: instead of `IEnumerable<IList<T>>` an `IEnumerable<List<T>>`.
+
+```cs
+    //Categories = CoalesceCollection(            xmlLayers.Select(x => GetCats(x))),
+    //Categories = CoalesceCategories(xmlLayers),
+    //Categories = CoalesceCategories(  xmlLayers.Select(x => GetCats(x))),
+        
+        //private static IList<string> CoalesceCategories(LoggerXml[] xmlLayers)
+        //{
+        //    return CoalesceCategories(xmlLayers.Select(x => GetCats(x)));
+        //}
+
+        private static IList<string> CoalesceCategories(IEnumerable<IList<string>> collections)
+        {
+            //return collections.Where(FilledIn).FirstOrDefault() ?? [ ];
+            //return CoalesceLists(collections);
+            return CoalesceCollections<IList<string>, string>(collections);
+        }
+
+        //private static IList<T> CoalesceLists<T>(IEnumerable<IList<T>> collections)
+        //{
+        //    return collections.Where(FilledIn).FirstOrDefault() ?? [ ];
+        //}
+
+        //private static TColl Coalesce<TItem, TColl>(IEnumerable<TColl> collections)
+        //    where TColl : IEnumerable<TItem>
+        //{
+        //    return CoalesceCollections<TItem, TColl>(collections);
+        //}
+
+        private static TColl CoalesceCollections<TColl, TItem>(IEnumerable<TColl> collections)
+            where TColl : IEnumerable<TItem>
+            
+        {
+            IEnumerable<IEnumerable<TItem>> enumerables = collections.Select(x => (IEnumerable<TItem>)x);
+            IEnumerable<TItem> firstFilledEnumerable = enumerables.Where(FilledIn).FirstOrDefault();
+            TColl firstFilledTColl = (TColl)firstFilledEnumerable;
+            IEnumerable<TItem> emptyEnumerable = [ ];
+            TColl emptyColl = (TColl)emptyEnumerable;
+            return firstFilledTColl ?? emptyColl;
+        }
+```
+
+### FilledInHelper : One Collection falling back to another
+
+Plain variadic coalesce method took over the job.
+
+```cs
+
+    //public static IEnumerable<T> Coalesce<T>(IEnumerable<T>? coll, IEnumerable<T>? fallback) => Has(coll) ? coll : fallback ?? [];
+    //public static IEnumerable<T> Coalesce<T>(IEnumerable<T>? coll) => Has(coll) ? coll : [ ];
+    //public static T[] Coalesce<T>(T[]? coll, T[]? fallback) => Has(coll) ? coll : fallback ?? [];
+    //public static T[] Coalesce<T>(T[]? coll, T[]? fallback) => Has(coll) ? coll : fallback ?? [];
+    
+
+    public static TColl CoalesceCollection<TColl, TItem>(params IEnumerable<TColl> collections)
+        where TColl : IEnumerable<TItem>
+        
+    {
+        IEnumerable<IEnumerable<TItem>> enumerables = collections.Select(x => (IEnumerable<TItem>)x);
+        IEnumerable<TItem> firstFilledEnumerable = enumerables.Where(FilledIn).FirstOrDefault();
+        TColl firstFilledTColl = (TColl)firstFilledEnumerable;
+        IEnumerable<TItem> emptyEnumerable = [ ];
+        TColl emptyColl = (TColl)emptyEnumerable;
+        return firstFilledTColl ?? emptyColl;
+    }
+
+    //public static TColl Coalesce<TItem, TColl>(params IEnumerable<TColl>? fallbacks)
+    //    where TColl : IEnumerable<TItem>, new()
+    //{
+    //    if (fallbacks == null) return new();
+        
+    //    TColl last = default;
+        
+    //    foreach (var fallback in fallbacks)
+    //    {
+    //        if (Has(fallback)) return fallback;
+    //        last = fallback;
+    //    }
+        
+    //    return last ?? new();
+    //}
+```
+
+### FilledInHelper
+
+```cs
+    //public static T      Coalesce<T>(     object? value                  ) where T : class, new() => Has(value     ) ? (T)value    : new T();
+    //public static T      Coalesce<T>(     T       value                  ) where T : struct => Has(value           ) ? value       : default;
+```
+
+### FilledInExtensions
+    
+```cs
+    //public static string Coalesce   (this string? value                  )                  => FilledInHelper.Coalesce(value                    );
+    //public static T      Coalesce<T>(this T       value                  )                  => FilledInHelper.Coalesce(value                    );
+    //public static T      Coalesce<T>(this T?      value                  ) where T : struct => FilledInHelper.Coalesce(value                    );
+
+    //public static T      Coalesce<T>(this object? value                  ) where T : class, new() => FilledInHelper.Coalesce(value                   );
+
+
+    // One Collection falling back to another
+
+    public static IEnumerable<T> Coalesce<T>(this IEnumerable<T>? coll, IEnumerable<T>? fallback) => FilledInHelper.Coalesce(coll, fallback);
 ```
