@@ -76,7 +76,7 @@ namespace JJ.Framework.Logging.Core.Config
                 ExcludedCategories = new List<string>()
             };
         }
-
+        
         private static IList<string> GetTypeStrings(LoggerXml xml)
         {
             if (xml == null) throw new NullException(() => xml);
@@ -87,7 +87,7 @@ namespace JJ.Framework.Logging.Core.Config
                   .ToList();
         }
         
-        private static IList<string> GetCats(LoggerXml xml)
+        private static List<string> GetCats(LoggerXml xml)
         {
             if (xml == null) throw new NullException(() => xml);
             
