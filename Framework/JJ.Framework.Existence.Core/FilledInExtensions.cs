@@ -1,6 +1,6 @@
-﻿    // ReSharper disable PossibleMultipleEnumeration
+﻿// ReSharper disable PossibleMultipleEnumeration
 // ReSharper disable ConstantNullCoalescingCondition
-    
+
 namespace JJ.Framework.Existence.Core;
 
 public static class FilledInExtensions
@@ -11,7 +11,7 @@ public static class FilledInExtensions
     public static bool FilledIn<T>(                     this T               value) where T : struct => FilledInHelper.FilledIn(value);
     public static bool FilledIn<T>([NotNull]            this T?              value) where T : struct => FilledInHelper.FilledIn(value);
     public static bool FilledIn<T>([NotNull]            this IEnumerable<T>? coll )                  => FilledInHelper.FilledIn(coll);
-        
+    
   //public static bool Has        ([NotNull]            this string?         value)                  => FilledInHelper.Has(value);
   //public static bool Has        ([NotNull]            this string?         value, bool trimSpace)  => FilledInHelper.Has(value, trimSpace);
   //public static bool Has        ([NotNull]            this object?         value)                  => FilledInHelper.Has(value);
@@ -28,7 +28,7 @@ public static class FilledInExtensions
     
     public static bool Is(this string? value, string? comparison                 ) => FilledInHelper.Is(value, comparison       );
     public static bool Is(this string? value, string? comparison, bool ignoreCase) => FilledInHelper.Is(value, comparison, ignoreCase);
-    
+
     public static bool In   (this string? value,                  params IEnumerable<string?>? coll                 ) => FilledInHelper.In(value, coll);
     public static bool In   (this string? value, bool ignoreCase, params IEnumerable<string?>? coll                 ) => FilledInHelper.In(value, ignoreCase, coll);
     public static bool In   (this string? value,                         IEnumerable<string?>? coll, bool ignoreCase) => FilledInHelper.In(value, coll, ignoreCase);
@@ -40,11 +40,11 @@ public static class FilledInExtensions
     public static bool Contains(this IEnumerable<string> source, string match, bool ignoreCase = false) => FilledInHelper.Contains(source, match, ignoreCase);
     
     // Plain Coalesce (for some)
-    
+
     public static string Coalesce   (this string? value                  )                  => FilledInHelper.Coalesce(value);
     public static T      Coalesce<T>(this T       value                  ) where T : new()  => FilledInHelper.Coalesce(value);
     public static T      Coalesce<T>(this T?      value                  ) where T : struct => FilledInHelper.Coalesce(value);
-    
+
     // Single Fallback
 
     public static string Coalesce   (this string? value, string? fallback)                  => FilledInHelper.Coalesce(value, fallback           );
@@ -59,19 +59,19 @@ public static class FilledInExtensions
 
     // 2-Stage Fallback (for some)
     
-    public static string Coalesce   (this string? value, string? defaultValue, string? fallback)                  => Coalesce(value, Coalesce(defaultValue, fallback));
-    public static string Coalesce   (this string? value, string? defaultValue, string? fallback, bool trimSpace)  => Coalesce(value, Coalesce(defaultValue, fallback, trimSpace), trimSpace);
-    public static T      Coalesce<T>(this T       value, T       defaultValue, T       fallback)                  => Coalesce(value, Coalesce(defaultValue, fallback));
-    public static T      Coalesce<T>(this T?      value, T?      defaultValue, T?      fallback) where T : struct => Coalesce(value, Coalesce(defaultValue, fallback));
-    public static string Coalesce<T>(this T       value, T       defaultValue, string? fallback)                  => Coalesce(value, Coalesce(defaultValue, fallback));
-    public static string Coalesce<T>(this T?      value, T?      defaultValue, string? fallback) where T : struct => Coalesce(value, Coalesce(defaultValue, fallback));
+    public static string Coalesce   (this string? value, string? fallback, string? fallback2)                  => FilledInHelper.Coalesce(value, fallback, fallback2           );
+    public static string Coalesce   (this string? value, string? fallback, string? fallback2, bool trimSpace)  => FilledInHelper.Coalesce(value, fallback, fallback2, trimSpace);
+    public static string Coalesce<T>(this T       value, T       fallback, string? fallback2)                  => FilledInHelper.Coalesce(value, fallback, fallback2           );
+    public static string Coalesce<T>(this T?      value, T?      fallback, string? fallback2) where T : struct => FilledInHelper.Coalesce(value, fallback, fallback2           );
+    public static T      Coalesce<T>(this T       value, T       fallback, T       fallback2) where T : new()  => FilledInHelper.Coalesce(value, fallback, fallback2           );
+    public static T      Coalesce<T>(this T?      value, T?      fallback, T?      fallback2) where T : struct => FilledInHelper.Coalesce(value, fallback, fallback2           );
 
     // Variadic Fallbacks
-    
+
     public static string Coalesce   (this                       IEnumerable<string?>? fallbacks)                 => FilledInHelper.Coalesce(fallbacks);
     public static T      Coalesce<T>(this                       IEnumerable<T> ?      fallbacks) where T : new() => FilledInHelper.Coalesce(fallbacks);
     public static T      Coalesce<T>(this                       IEnumerable<T?>?      fallbacks) where T: struct => FilledInHelper.Coalesce(fallbacks);
-    
+
     public static string Coalesce   (this string? first, params IEnumerable<string?>? fallbacks)                 => FilledInHelper.Coalesce(first.Concat(fallbacks ?? [ ]));
     public static T      Coalesce<T>(this T       first, params IEnumerable<T>?       fallbacks) where T : new() => FilledInHelper.Coalesce(first.Concat(fallbacks ?? [ ]));
     public static T      Coalesce<T>(this T?      first, params IEnumerable<T?>?      fallbacks) where T: struct => FilledInHelper.Coalesce(first.Concat(fallbacks ?? [ ]));

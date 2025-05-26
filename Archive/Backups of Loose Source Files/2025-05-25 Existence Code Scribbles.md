@@ -527,3 +527,11 @@ Plain variadic coalesce method took over the job.
     //public static T      Coalesce<T>(     T?      value, object? fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
     //public static T      Coalesce<T>(     object? value, object? fallback) where T : struct => Has(value           ) ? (T)value    : Coalesce((T?)fallback)    ;
 ```
+
+### FilledIn Tests: Removed while simplifying compile time type checks
+        
+```cs        
+        AreEqual(typeof(int?), CompileTimeType(NullNum));
+        AreEqual(typeof(int),  CompileTimeType(NullNum.Coalesce()));
+        AreEqual(typeof(int),  CompileTimeType(Coalesce(NullNum)));
+```

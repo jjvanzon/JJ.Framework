@@ -19,40 +19,36 @@ public class CoalesceTests_NoFallback
     [TestMethod]
     public void Coalesce_Structs_Nullable_NoFallback()
     {
-        AreEqual(0,            NullNum.Coalesce());
-        AreEqual(0,            Coalesce(NullNum));
-        AreEqual(typeof(int?), CompileTimeType(NullNum));
-        AreEqual(typeof(int),  CompileTimeType(NullNum.Coalesce()));
-        AreEqual(typeof(int),  CompileTimeType(Coalesce(NullNum)));
-        //IsType<int?>(NullNum);
-        //IsType<int>(NullNum.Coalesce());
-        //IsType<int>(Coalesce(NullNum));
-        
-        AreEqual(0,            Nully0);
-        AreEqual(0,            Nully0.Coalesce());
-        AreEqual(0,            Coalesce(Nully0));
-        AreEqual(typeof(int?), CompileTimeType(Nully0));
-        AreEqual(typeof(int),  CompileTimeType(Nully0.Coalesce()));
-        AreEqual(typeof(int),  CompileTimeType(Coalesce(Nully0)));
-        
-        AreEqual(1,            Nully1);
-        AreEqual(1,            Nully1.Coalesce());
-        AreEqual(1,            Coalesce(Nully1));
-        AreEqual(typeof(int?), CompileTimeType(Nully1));
-        AreEqual(typeof(int),  CompileTimeType(Nully1.Coalesce()));
-        AreEqual(typeof(int),  CompileTimeType(Coalesce(Nully1)));
+        IsNull      (   NullNum           );
+        IsType<int?>(   NullNum           );
+        AreEqual    (0, NullNum.Coalesce());
+        IsType<int> (   NullNum.Coalesce());
+        AreEqual    (0, Coalesce(NullNum) );
+        IsType<int> (   Coalesce(NullNum) );
+        AreEqual    (0, Nully0            );
+        IsType<int?>(   Nully0            );
+        AreEqual    (0, Nully0 .Coalesce());
+        IsType<int> (   Nully0 .Coalesce());
+        AreEqual    (0, Coalesce(Nully0)  );
+        IsType<int> (   Coalesce(Nully0)  );
+        AreEqual    (1, Nully1            );
+        IsType<int?>(   Nully1            );
+        AreEqual    (1, Nully1 .Coalesce());
+        IsType<int> (   Nully1 .Coalesce());
+        AreEqual    (1, Coalesce(Nully1)  );
+        IsType<int> (   Coalesce(Nully1)  );
     }
     
     [TestMethod]
     public void Coalesce_Structs_NotNullable_NoFallback()
     {
         int nonNull = 1;
-        AreEqual(1,           nonNull);
-        AreEqual(1,           nonNull.Coalesce());
-        AreEqual(1,           Coalesce(nonNull));
-        AreEqual(typeof(int), CompileTimeType(nonNull));
-        AreEqual(typeof(int), CompileTimeType(nonNull.Coalesce()));
-        AreEqual(typeof(int), CompileTimeType(Coalesce(nonNull)));
+        AreEqual   (1, nonNull           );
+        IsType<int>(   nonNull           );
+        AreEqual   (1, nonNull.Coalesce());
+        IsType<int>(   nonNull.Coalesce());
+        AreEqual   (1, Coalesce(nonNull) );
+        IsType<int>(   Coalesce(nonNull) );
     }
     
     [TestMethod]
