@@ -1,7 +1,7 @@
 ﻿namespace JJ.Framework.Existence.Core.Tests;
 
 [TestClass]
-public class CoalesceTests
+public class CoalesceTests_1Fallback
 {
     // Should check:
     // - [x] int
