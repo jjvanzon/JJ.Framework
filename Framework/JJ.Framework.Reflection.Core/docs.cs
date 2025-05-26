@@ -105,6 +105,24 @@ namespace JJ.Framework.Reflection.Core
         public struct _call { }
 
         /// <summary>
+        /// <para>
+        /// Gives you the <c>Type</c> the compiler thought this <c>value</c> was,
+        /// before any automatic conversions or boxing.
+        /// This allows us to differentiate between <c>int?</c> and <c>int</c>.
+        /// </para>
+        /// <para>
+        /// For: <c>int? x = 1</c><br/>
+        /// This: <c>x.GetType()</c> gives back <c>typeof(int)</c><br/>
+        /// This: <c>CompileTimeType(x)</c> still gives back <c>typeof(int?)</c>
+        /// </para>
+        /// <para>
+        /// That way we can inspect the nullability of our returned type,
+        /// while the runtime was already so kind to remove the nullable wrapper for us.
+        /// </para>
+        /// </summary>
+        public struct _compiletimetype { }
+        
+        /// <summary>
         /// Complements null parameter types with types from parameter values (concrete types).
         /// </summary>
         public struct _complementparametertypes { }

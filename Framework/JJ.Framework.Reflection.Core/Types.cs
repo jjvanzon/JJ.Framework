@@ -22,4 +22,26 @@ internal static partial class ReflectUtility
     [MethodImpl(AggressiveInlining)]
     private static bool AllowsHierarchy(BindingFlags bindingFlags)
         => !bindingFlags.HasFlag(DeclaredOnly);
+    
+    /// <inheritdoc cref="_compiletimetype" />
+    [MethodImpl(AggressiveInlining)]
+    public static Type CompileTimeTypeCore<T>(T value) => typeof(T);
+}
+
+public static partial class Reflect
+{
+    /// <inheritdoc cref="_compiletimetype" />
+    public static Type CompileTimeType<T>(T value) => CompileTimeTypeCore(value);
+}
+
+public partial class Reflector
+{
+    /// <inheritdoc cref="_compiletimetype" />
+    public Type CompileTimeType<T>(T value) => CompileTimeTypeCore(value);
+}
+
+public static partial class ReflectExtensions
+{
+    /// <inheritdoc cref="_compiletimetype" />
+    public static Type CompileTimeType<T>(this T value) => CompileTimeTypeCore(value);
 }
